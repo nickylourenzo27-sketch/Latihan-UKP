@@ -750,6 +750,15 @@
       pesanIsi = diisi;
       kabar(); umumkan(b.aktif ? 'Latihan bersama menyala.' + (diisi ? ' Daftar diisi nama tim: ' + b.peserta.join(', ') + '.' : '') : 'Latihan bersama mati.');
     } });
+    // v8.1 tempo latihan bersama: Ujian (2,1 mnt/soal, sama dengan UKP; bawaan) · Longgar (2,5 mnt/soal); disimpan di s.bersama.tempo
+    const fmtMnt = d => String((Math.round(d / 6) / 10).toFixed(1)).replace('.', ',');
+    const dUjian = L.tempoUjian ? L.tempoUjian(s.profil && s.profil.tingkat) : 126; const dLonggar = L.TEMPO_LONGGAR || 150;
+    const fu = L.formatUjianTingkat ? L.formatUjianTingkat(s.profil && s.profil.tingkat) : { menit: 210, soal: 100 };
+    const segTempo = UKP.c.segmen({ id: id + '-tempo', label: 'Tempo', aktif: L.tempoBersama ? L.tempoBersama().mode : 'ujian',
+      opsi: [{ nilai: 'ujian', label: 'Ujian · ' + fmtMnt(dUjian) + ' mnt/soal' }, { nilai: 'longgar', label: 'Longgar · ' + fmtMnt(dLonggar) + ' mnt/soal' }],
+      onPilih: v => { const t = L.aturTempoBersama ? L.aturTempoBersama(v) : { mode: v }; umumkan('Tempo ' + (t.mode === 'longgar' ? 'longgar' : 'ujian') + ' dipilih.'); if (o.onUbah) { try { o.onUbah({ aktif: b.aktif, peserta: b.peserta.slice(), tempo: t.mode }); } catch (e) { console.error(e); } } } });
+    segTempo.classList.add('bersama-tempo');
+    segTempo.appendChild(h('p', { class: 'bantu' }, 'Tempo ujian sama dengan UKP: ' + fu.menit + ' menit untuk ±' + fu.soal + ' soal.'));
     const isian = h('div', { class: 'bersama-tambah' },
       h('label', { class: 'visually-hidden', for: id + '-nama' }, 'Tambah nama peserta'),
       input, h('button', { type: 'button', class: 'btn', onclick: () => tambah(input.value) }, UKP.icon('tambah', null, true), 'Tambah'));
@@ -772,13 +781,42 @@
         : b.aktif ? (pesanIsi ? 'Daftar diisi nama tim; ubah bila perlu. ' : '') + b.peserta.length + ' orang. Urutan daftar = urutan baris di papan jawaban.' : 'Mati: latihan mencatat jawaban Anda saja.';
       pesanIsi = false;
       input.disabled = b.peserta.length >= L.MAKS_PESERTA;
+      segTempo.hidden = !b.aktif;
     }
     gambar();
-    return h('div', { class: 'atur-bersama stack-sm', 'data-aktif': b.aktif ? '' : null }, sw, daftar, cepat, isian, galat, catatan);
+    return h('div', { class: 'atur-bersama stack-sm', 'data-aktif': b.aktif ? '' : null }, sw, daftar, cepat, isian, galat, catatan, segTempo);
   };
   // daftar peserta aktif (≥ 1 nama dan sakelar menyala) atau null
-  const DETIK_SOAL_BERSAMA = 150; // v8.0 hitung mundur sesi latihan bersama: 2,5 menit per soal
+  // v8.1: hitung mundur sesi = jumlah soal × detik tempo (L.tempoBersama: ujian 126 dtk untuk Tingkat B, longgar 150 dtk)
+  const fmtJamPendek = d => { d = Math.max(0, Math.floor(Number(d) || 0)); return Math.floor(d / 60) + ':' + String(d % 60).padStart(2, '0'); };
   const pesertaAktif = () => { const b = L.siapBersama(UKP.store.get()).bersama; return b.aktif && b.peserta.length ? b.peserta.slice() : null; };
+
+  // v8.1 UKP.c.kartuLanjutBersama() → kartu "Sesi bersama belum selesai · soal 7 dari 20 · 6 orang · sisa 12 mnt" atau null.
+  // "Lanjutkan" → #latih { lanjut: 1 } (soal, urutan, papan soal berjalan, sisa waktu dipulihkan); "Akhiri dan lihat evaluasi" →
+  // L.akhiriSesiBersama → #tim/sesi:<id> (sesi tanpa soal cukup dibuang). Dipakai di saringan Latih dan Beranda (paling atas)
+  UKP.c.kartuLanjutBersama = function (o) {
+    o = o || {};
+    const ba = L.bersamaAktif ? L.bersamaAktif() : null; if (!ba) return null;
+    const sesi = L.sesiBersamaDari ? L.sesiBersamaDari(ba.sesiId) : null; if (!sesi) return null;
+    const n = ba.soalIds.length; const no = Math.min(n, (ba.idx || 0) + 1); const sisaMnt = Math.max(0, Math.ceil((ba.sisaDetik || 0) / 60));
+    const jid = 'lanjut-bersama-' + Math.random().toString(36).slice(2, 6);
+    const meta = [ba.ulang ? 'ulang · soal ' + no + ' dari ' + n : 'soal ' + no + ' dari ' + n, (sesi.peserta || []).length + ' orang', ba.sisaDetik > 0 ? 'sisa ' + sisaMnt + ' mnt' : 'waktu habis'].join(' · ');
+    const akhiri = () => {
+      const isi = Array.isArray(sesi.soal) && sesi.soal.length;
+      if (L.simpanBersamaAktif) L.simpanBersamaAktif(null);
+      if (isi) { if (L.akhiriSesiBersama) L.akhiriSesiBersama(sesi.id); UKP.go('tim', { anggota: 'sesi:' + sesi.id }); return; }
+      if (L.hapusSesiBersama) L.hapusSesiBersama(sesi.id);
+      UKP.toast('Sesi tanpa soal dibuang.');
+      if (kartu.isConnected) { const ganti = kartu.parentNode; kartu.remove(); if (o.onAkhiri) o.onAkhiri(); else if (ganti && UKP.fokus) { const t = ganti.querySelector('h1, h2'); if (t) UKP.fokus(t); } }
+    };
+    const kartu = h('section', { class: 'card kartu-lanjut-bersama', 'aria-labelledby': jid },
+      h('div', { class: 'kartu-lanjut-isi' }, ikon('tim', 'kartu-lanjut-ikon', true),
+        h('div', { class: 'stack-xs' }, h('h2', { class: 'kartu-lanjut-judul', id: jid }, 'Sesi bersama belum selesai'), h('p', { class: 'meta' }, meta))),
+      h('div', { class: 'btn-row' },
+        h('button', { type: 'button', class: 'btn btn-primary', onclick: () => UKP.go('latih', { lanjut: 1 }) }, ikon('play'), 'Lanjutkan'),
+        h('button', { type: 'button', class: 'btn btn-ghost', onclick: akhiri }, 'Akhiri dan lihat evaluasi')));
+    return kartu;
+  };
 
   // ================= LATIH =================
   UKP.views.latih = function (params) {
@@ -788,6 +826,7 @@
     const hentikanTempo = () => { clearInterval(timer); timer = null; };
     let timerSesi = null; // v8.0 hitung mundur sesi latihan bersama; dihentikan saat sesi berakhir dan saat unmount
     const hentikanSesi = () => { clearInterval(timerSesi); timerSesi = null; };
+    let padaLepas = null; // v8.1: simpan keadaan sesi bersama yang bisa dilanjutkan saat unmount
     // paket soal bersumber (try out): f.set = kode paket (soal.sumber.set); pool = seluruh soal paket, lintas tingkat
     const paket = K.daftarSet ? K.daftarSet() : []; const paketDari = set => paket.find(p => p.set === set) || null;
     const f = { set: params.set && paketDari(params.set) ? params.set : '', kode: params.kode || '', topik: params.topik || '', jenis: params.jenis || '', kesulitan: params.kesulitan ? String(params.kesulitan) : '', n: params.n === 'semua' ? 'semua' : Number(params.n) || 20, hanyaSalah: !!params.hanyaSalah, kecuali: !!params.kecuali, tempo: !!params.tempo, baru2025: !!params.baru2025, gayaUkp: !!params.gayaUkp, laporan: params.laporan ? String(params.laporan).toUpperCase() : '' };
@@ -865,17 +904,59 @@
       // v7.7: satu putaran tanpa jeda (penyebut tetap); soal yang salah dikumpulkan untuk "Ulangi N soal yang salah" di ringkasan
       const riwayat = [];
       // v7.9 latihan bersama: peserta dibaca saat putaran dimulai; riwayatB = [{ soal, per: { nama: { opsi, keyakinan, benar } } }]
-      // v8.0: rekaman sesi (UKP.belajar.mulaiSesiBersama) + hitung mundur sesi: tetap 2,5 menit (150 dtk) per soal, seperti papan
-      // referensi tim (10 soal = 25 menit); anggaran per soal (soal.anggaranDetik) tetap dipakai untuk tempo per soal
-      const peserta = pesertaAktif(); const riwayatB = [];
-      const anggaranSesi = peserta ? daftar.length * DETIK_SOAL_BERSAMA : 0;
-      const sesiId = peserta && L.mulaiSesiBersama ? L.mulaiSesiBersama(peserta, daftar.map(x => x.id), anggaranSesi) : null;
+      // v8.0: rekaman sesi (UKP.belajar.mulaiSesiBersama) + hitung mundur sesi
+      // v8.1: hitung mundur = jumlah soal × detik tempo (Ujian 2,1 mnt/soal bawaan, Longgar 2,5); rekaman membawa { tempo, detikPerSoal };
+      // oj.lanjut = keadaan L.bersamaAktif() → melanjutkan sesi terputus (soal, urutan, papan soal berjalan, sisa waktu)
+      const lanjut = oj.lanjut || null;
+      const sesiLama = lanjut && L.sesiBersamaDari ? L.sesiBersamaDari(lanjut.sesiId) : null;
+      const peserta = sesiLama && sesiLama.peserta && sesiLama.peserta.length ? sesiLama.peserta.slice() : pesertaAktif(); const riwayatB = [];
+      const tb = lanjut ? { mode: lanjut.tempo === 'longgar' ? 'longgar' : 'ujian', detik: lanjut.detikPerSoal || (lanjut.tempo === 'longgar' ? (L.TEMPO_LONGGAR || 150) : (L.tempoUjian ? L.tempoUjian(tingkat) : 126)) }
+        : (L.tempoBersama ? L.tempoBersama() : { mode: 'longgar', detik: 150 });
+      const detikTempo = tb.detik;
+      const anggaranSesi = !peserta ? 0 : lanjut && lanjut.anggaranDetik ? lanjut.anggaranDetik : daftar.length * detikTempo;
+      // sesi baru: sesi lama yang masih bisa dilanjutkan ditutup lebih dulu (tetap tersimpan bila berisi soal)
+      if (peserta && !sesiLama && L.bersamaAktif) { const ba = L.bersamaAktif(); if (ba && L.akhiriSesiBersama) L.akhiriSesiBersama(ba.sesiId); }
+      const sesiId = sesiLama ? sesiLama.id : peserta && L.mulaiSesiBersama ? L.mulaiSesiBersama(peserta, daftar.map(x => x.id), anggaranSesi, { tempo: tb.mode, detikPerSoal: detikTempo, mode: 'latihan' }) : null;
       let sesiSelesai = false;
+      // rotasi penjelas: hitungan per nama dalam sesi ini (dinaikkan setiap kali seseorang ditunjuk menjelaskan)
+      const hitungPenjelas = {};
+      const tunjuk = tri => { if (tri && tri.penjelas) hitungPenjelas[tri.penjelas] = (hitungPenjelas[tri.penjelas] || 0) + 1; };
+      if (sesiLama) {
+        idx = Math.min(Math.max(0, lanjut.idx || 0), daftar.length);
+        // soal yang sudah dibuka sebelum terputus: riwayat ringkasan + rotasi penjelas dipulihkan dari rekaman sesi
+        (sesiLama.soal || []).forEach(q => {
+          const so = K.soal(q.id); if (!so) return; const per = {};
+          Object.keys(q.jawaban || {}).forEach(n => { const x = q.jawaban[n] || {}; per[n] = { opsi: x.o || '-', keyakinan: x.k || null, benar: !!x.b }; });
+          riwayatB.push({ soal: so, per, detik: q.detik || 0 });
+          if (L.triaseSoal) { try { tunjuk(L.triaseSoal(so, per, { urutan: peserta, hitungPenjelas })); } catch (e) {} }
+        });
+      }
       const waktuEl = peserta ? h('span', { class: 'waktu-sesi', role: 'timer', 'aria-live': 'off' }) : null;
       const fmtSisa = d => d <= 0 ? 'waktu habis' : Math.floor(d / 60) + ' mnt ' + String(Math.floor(d % 60)).padStart(2, '0') + ' dtk';
-      const sisaSesi = () => Math.ceil(anggaranSesi - (Date.now() - mulaiWaktu) / 1000);
+      // sisa waktu dihitung dari titik mulai hitung (sesi baru: anggaran penuh; lanjutan: sisa yang tersimpan)
+      const sisaAwal = lanjut ? Math.max(0, Number(lanjut.sisaDetik) || 0) : anggaranSesi; const tHitung = Date.now();
+      const sisaSesi = () => Math.ceil(sisaAwal - (Date.now() - tHitung) / 1000);
       const gambarWaktu = () => { if (!waktuEl) return; const d = sisaSesi(); waktuEl.textContent = fmtSisa(d); waktuEl.toggleAttribute('data-habis', d <= 0); if (d > 0 && d <= 120) waktuEl.dataset.sisa = 'sedikit'; else delete waktuEl.dataset.sisa; };
-      if (waktuEl) { gambarWaktu(); hentikanSesi(); timerSesi = setInterval(() => { if (!waktuEl.isConnected && !page.isConnected) { hentikanSesi(); return; } gambarWaktu(); }, 1000); }
+      // v8.1 penunjuk laju soal berjalan di kop: "Soal ini 1:12 / 2:06" (HP: "1:12 / 2:06"); berhenti saat kunci dibuka; nada peringatan setelah lewat tempo
+      const lajuEl = peserta ? h('span', { class: 'laju-soal', role: 'timer', 'aria-live': 'off', title: 'Waktu soal ini dibanding tempo ' + fmtJamPendek(detikTempo) + ' per soal' }) : null;
+      let mulaiSoal = Date.now(), lajuJalan = false, drafSoal = null; // drafSoal = { soalId, jb, yb } papan soal berjalan
+      let kunciTerbuka = false; // kunci soal berjalan sudah dibuka (soal tercatat) → titik lanjut = soal berikutnya
+      const detikSoalKini = () => Math.max(0, Math.floor((Date.now() - mulaiSoal) / 1000 + 0.05)); // +50 ms: detak interval yang sedikit lebih awal tetap terhitung
+      const gambarLaju = () => {
+        if (!lajuEl) return; const d = detikSoalKini();
+        lajuEl.replaceChildren(h('span', { class: 'laju-label' }, 'Soal ini '), h('span', { class: 'laju-angka' }, fmtJamPendek(d) + ' / ' + fmtJamPendek(detikTempo)));
+        lajuEl.toggleAttribute('data-lewat', d > detikTempo);
+      };
+      // v8.1 lanjutkan sesi: keadaan disimpan saat mulai, setiap perubahan papan, kunci dibuka, Lanjut, dan tiap ±5 detik; null saat sesi berakhir
+      const simpanAktif = () => {
+        if (!sesiId || sesiSelesai || !L.simpanBersamaAktif) return;
+        L.simpanBersamaAktif({ sesiId, soalIds: daftar.map(x => x.id), idx: idx + (kunciTerbuka ? 1 : 0), sisaDetik: Math.max(0, sisaSesi()), anggaranDetik: anggaranSesi, tempo: tb.mode, detikPerSoal: detikTempo, ulang: oj.ulang ? 1 : null,
+          draf: !kunciTerbuka && lajuJalan && daftar[idx] ? { soalId: daftar[idx].id, jb: (drafSoal && drafSoal.jb) || {}, yb: (drafSoal && drafSoal.yb) || {}, detikSoal: detikSoalKini() } : null });
+      };
+      const lepasAktif = () => { if (sesiId && L.simpanBersamaAktif) { const a = UKP.store.get().bersamaAktif; if (!a || a.sesiId === sesiId) L.simpanBersamaAktif(null); } };
+      padaLepas = peserta ? simpanAktif : null; // unmount (pindah halaman di tengah sesi): simpan titik lanjut terakhir
+      let tik = 0;
+      if (waktuEl) { gambarWaktu(); hentikanSesi(); timerSesi = setInterval(() => { if (!waktuEl.isConnected && !page.isConnected) { hentikanSesi(); return; } gambarWaktu(); if (lajuJalan) gambarLaju(); if (++tik % 5 === 0) simpanAktif(); }, 1000); }
       // baris peserta di kop: ≥ 768 px "6 orang: Nicky, Mia, …"; di HP cukup "6 orang" (daftar lengkap di title)
       const pesertaEl = peserta ? h('span', { class: 'fokus-peserta', title: peserta.join(', ') }, h('span', null, peserta.length + ' orang'), h('span', { class: 'fokus-peserta-nama' }, ': ' + peserta.join(', '))) : null;
       const metaBersama = peserta ? peserta.length + ' orang · Tingkat ' + tingkat : null;
@@ -892,35 +973,50 @@
       }
       // "Ke menu" (latihan bersama): kembali ke saringan; sesi yang sudah berisi soal ditutup dan tetap tersimpan di Dasbor tim
       function keMenu() {
-        const tutup = () => { hentikanSesi(); if (sesiId && !sesiSelesai && L.akhiriSesiBersama) L.akhiriSesiBersama(sesiId); sesiSelesai = true; if (riwayat.length && UKP.tim) UKP.tim.kirimRingkasan({ selesai: true }); keSaringan(); };
+        const tutup = () => { hentikanSesi(); if (sesiId && !sesiSelesai && L.akhiriSesiBersama) L.akhiriSesiBersama(sesiId); lepasAktif(); sesiSelesai = true; if (riwayat.length && UKP.tim) UKP.tim.kirimRingkasan({ selesai: true }); keSaringan(); };
         if (!riwayatB.length) { tutup(); return; }
         UKP.konfirmasi('Kembali ke menu?', 'Sesi diakhiri. ' + riwayatB.length + ' soal yang sudah dibuka tetap tersimpan dan bisa dilihat di Dasbor tim.', { ya: 'Ke menu', tidak: 'Lanjutkan sesi' }).then(ya => { if (ya && page.isConnected) tutup(); });
       }
       function keluar() {
         const n = peserta ? riwayatB.length : riwayat.length;
-        if (!n) { if (langsungMulai) { modeFokus(false); hentikanTempo(); UKP.kembali(); } else keSaringan(); return; }
+        if (!n) { if (peserta) { hentikanSesi(); if (sesiId && !sesiSelesai && L.akhiriSesiBersama) L.akhiriSesiBersama(sesiId); lepasAktif(); sesiSelesai = true; } if (langsungMulai) { modeFokus(false); hentikanTempo(); UKP.kembali(); } else keSaringan(); return; }
         UKP.konfirmasi('Keluar dari latihan?', n + ' jawaban sudah tercatat. Ringkasan latihan ditampilkan setelah keluar.', { ya: 'Keluar dan lihat ringkasan', tidak: 'Lanjutkan latihan' }).then(ya => { if (ya && page.isConnected) selesai(); });
       }
       const dari = daftar.length;
       const judulKop = (no, nBenar) => peserta
         ? [h('span', { class: 'fokus-baris' }, (oj.ulang ? 'Ulang · soal ' : 'Soal ') + no + ' dari ' + dari + ' · ', waktuEl), pesertaEl]
         : (oj.ulang ? 'Ulang · soal ' : 'Soal ') + no + ' dari ' + dari + ' · ' + nBenar + ' benar';
+      let pertama = true;
       function gambar() {
         hentikanTempo(); area.innerHTML = '';
         if (idx >= daftar.length) { selesai(); return; }
         const soal = daftar[idx]; const anggaran = soal.anggaranDetik || 150; const no = idx;
         const tempoEl = f.tempo ? h('span', { class: 'timer', role: 'timer' }, U.jam(anggaran)) : null;
+        // v8.1 laju soal: mulai dari 0 (atau dari draf yang dipulihkan); papan soal berjalan dipulihkan lewat bersama.awal
+        const draf = pertama && lanjut && lanjut.draf && lanjut.draf.soalId === soal.id ? lanjut.draf : null; pertama = false;
+        mulaiSoal = Date.now() - (draf ? (draf.detikSoal || 0) * 1000 : 0); lajuJalan = !!peserta; kunciTerbuka = false;
+        drafSoal = draf ? { soalId: soal.id, jb: Object.assign({}, draf.jb), yb: Object.assign({}, draf.yb) } : { soalId: soal.id, jb: {}, yb: {} };
+        let awal = null;
+        if (draf) { awal = {}; Object.keys(draf.jb || {}).forEach(n => { awal[n] = { o: draf.jb[n], k: (draf.yb || {})[n] || null }; }); }
+        if (lajuEl) gambarLaju();
         // nomor soal hanya di bar fokus (satu rumah per fakta); kop soal cukup menampilkan kesulitan
-        kop.atur(judulKop(no + 1, benar), no / Math.max(1, dari) * 100, peserta ? [tempoEl] : [tempoEl, tautanAtur()]);
-        const el = UKP.c.soal(soal, { konteks: 'latih', bersama: peserta ? { peserta } : null,
+        kop.atur(judulKop(no + 1, benar), no / Math.max(1, dari) * 100, peserta ? [tempoEl, lajuEl] : [tempoEl, tautanAtur()]);
+        let triKini = null;
+        const el = UKP.c.soal(soal, { konteks: 'latih', detikAwal: draf ? draf.detikSoal || 0 : 0,
+          bersama: peserta ? { peserta, awal, hitungPenjelas, onTriase: tri => { triKini = tri; tunjuk(tri); },
+            onUbah: (nama, v) => { if (v.o) drafSoal.jb[nama] = v.o; else delete drafSoal.jb[nama]; if (v.k) drafSoal.yb[nama] = v.k; else delete drafSoal.yb[nama]; simpanAktif(); } } : null,
           onPeriksaBersama: peserta ? (per, detik) => {
             const m = {}; Object.keys(per).forEach(n => { m[n] = { o: per[n].opsi, k: per[n].keyakinan || null }; });
             L.catatJawabanBersama(soal, m, detik, sesiId ? { sesi: sesiId } : null);
             if (sesiId && L.catatSoalSesi) L.catatSoalSesi(sesiId, soal, per, detik);
             riwayatB.push({ soal, per, detik });
+            // laju berhenti saat kunci dibuka; soal ini sudah tercatat → titik lanjut = soal berikutnya
+            lajuJalan = false; if (lajuEl) { gambarLaju(); lajuEl.setAttribute('data-henti', ''); }
+            kunciTerbuka = true; simpanAktif();
           } : null,
           onKeMenu: peserta ? keMenu : null, onSelesaiSekarang: peserta ? selesaiSekarang : null, metaBersama,
-          onPeriksa: (b, jawab, detik, keyakinan) => { hentikanTempo(); riwayat.push({ soal, benar: !!b, jawab, detik, ulang: !!oj.ulang, keyakinan: keyakinan || null }); kop.atur(peserta ? null : judulKop(no + 1, benar + (b ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, peserta ? undefined : [tautanAtur()]); }, onKeyakinan: v => { const r = riwayat[riwayat.length - 1]; if (r && r.soal === soal) r.keyakinan = v || null; }, onLanjut: (b) => { if (b) benar++; idx++; gambar(); } });
+          onPeriksa: (b, jawab, detik, keyakinan) => { hentikanTempo(); riwayat.push({ soal, benar: !!b, jawab, detik, ulang: !!oj.ulang, keyakinan: keyakinan || null }); kop.atur(peserta ? null : judulKop(no + 1, benar + (b ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, peserta ? undefined : [tautanAtur()]); }, onKeyakinan: v => { const r = riwayat[riwayat.length - 1]; if (r && r.soal === soal) r.keyakinan = v || null; },
+          onLanjut: (b) => { if (b) benar++; if (peserta && sesiId && triKini && triKini.kelas !== 'dikuasai' && L.tandaiBahas) L.tandaiBahas(sesiId, soal.id, true); idx++; if (lajuEl) lajuEl.removeAttribute('data-henti'); gambar(); if (idx < daftar.length) simpanAktif(); } });
         area.append(h('h1', { class: 'visually-hidden' }, (oj.ulang ? 'Putaran ulang, soal ' : 'Soal ') + (no + 1) + ' dari ' + dari), el);
         if (tempoEl) {
           let sisa = anggaran;
@@ -941,7 +1037,7 @@
         if (idx > 0 && UKP.tim) UKP.tim.kirimRingkasan({ selesai: true }); // dasbor tim (js/tim.js): ringkasan, debounce 5 dtk, diam bila tidak tersambung
         if (peserta) {
           hentikanSesi();
-          const sesi = sesiId && !sesiSelesai && L.akhiriSesiBersama ? L.akhiriSesiBersama(sesiId) : null; sesiSelesai = true;
+          const sesi = sesiId && !sesiSelesai && L.akhiriSesiBersama ? L.akhiriSesiBersama(sesiId) : null; lepasAktif(); sesiSelesai = true;
           if (sesi && typeof UKP.c.evaluasiBersama === 'function') { tampilEvaluasi(sesi); return; }
           ringkasanBersama(menit); return;
         }
@@ -1021,20 +1117,33 @@
         UKP.fokus(area.querySelector('h1')); window.scrollTo({ top: 0 });
       }
       gambar();
+      if (peserta) simpanAktif();
     }
     let tUmum = null; // jeda pengumuman jumlah cocok
-    const hasil = () => ({ node: page, unmount: () => { hentikanTempo(); hentikanSesi(); clearTimeout(tUmum); modeFokus(false); } });
+    const hasil = () => ({ node: page, unmount: () => { if (padaLepas) { try { padaLepas(); } catch (e) {} } hentikanTempo(); hentikanSesi(); clearTimeout(tUmum); modeFokus(false); } });
     // v7.7: #latih tanpa params (ubin Beranda, menu Latih) langsung mulai: acak dari tingkat target, 20 soal, jawab langsung.
     // Halaman saringan tetap lewat params apa pun (mis. { atur: 1 } dari "Atur saringan", atau kode/n tanpa mulai)
-    const langsungMulai = !Object.keys(params).some(k => params[k] != null && params[k] !== '' && params[k] !== false);
+    // v8.1: sesi bersama yang bisa dilanjutkan → #latih tanpa params TIDAK memulai sesi baru; saringan menampilkan kartu "Lanjutkan"
+    const bisaLanjut = L.bersamaAktif ? L.bersamaAktif() : null;
+    if (!bisaLanjut && s.bersamaAktif && L.simpanBersamaAktif) L.simpanBersamaAktif(null); // keadaan kedaluwarsa dibersihkan
+    if (params.lanjut && bisaLanjut) {
+      const arr = bisaLanjut.soalIds.map(id => K.soal(id)).filter(Boolean);
+      if (arr.length === bisaLanjut.soalIds.length) { jalankan(arr, { lanjut: bisaLanjut, ulang: !!bisaLanjut.ulang }); return hasil(); }
+    }
+    const langsungMulai = !bisaLanjut && !Object.keys(params).some(k => params[k] != null && params[k] !== '' && params[k] !== false);
+    // params.mulai / params.ids juga tidak memulai sesi bersama baru selama ada sesi yang bisa dilanjutkan (mis. muat ulang halaman:
+    // history.state masih membawa { mulai: true }); saringan menampilkan kartu "Lanjutkan"
+    const tahanMulai = !!bisaLanjut && !!pesertaAktif();
     // v8.0: params.ids = 'B8-076,A3-138' → putaran ulang soal itu (dipakai "Ulangi N soal yang salah" di #tim/sesi:<id>); bersama bila s.bersama aktif
-    if (params.ids) { const arr = String(params.ids).split(',').map(id => K.soal(id.trim())).filter(Boolean); if (arr.length) { jalankan(U.acak(arr), { ulang: true }); return hasil(); } }
-    if ((params.mulai || langsungMulai) && mulai()) return hasil();
+    if (params.ids && !tahanMulai) { const arr = String(params.ids).split(',').map(id => K.soal(id.trim())).filter(Boolean); if (arr.length) { jalankan(U.acak(arr), { ulang: true }); return hasil(); } }
+    if ((params.mulai && !tahanMulai || langsungMulai) && mulai()) return hasil();
     // form filter (DESAIN-V6 D.5): jumlah soal di atas, sakelar role="switch", tombol Mulai membawa jumlah cocok (LT-1);
     // ≥ 1280 ringkasan jumlah cocok di panel kanan lengket
     page.classList.add('lebar');
+    // v8.1: kartu "Sesi bersama belum selesai" paling atas
+    const kartuLanjut = bisaLanjut ? UKP.c.kartuLanjutBersama() : null; if (kartuLanjut) page.appendChild(kartuLanjut);
     page.appendChild(kop({ judul: 'Latih soal', lead: 'Pilih kelompok dan jumlah soal. Setiap jawaban langsung dibahas: inti jawaban, langkah hitung, dan dasar hukumnya.' }));
-    if (params.mulai || langsungMulai) page.appendChild(h('div', { class: 'banner', 'data-tone': 'warn', role: 'note' }, ikon('peringatan'), h('span', null, 'Tidak ada soal yang cocok dengan filter ini. Longgarkan filter di bawah lalu mulai lagi.')));
+    if ((params.mulai && !tahanMulai) || langsungMulai) page.appendChild(h('div', { class: 'banner', 'data-tone': 'warn', role: 'note' }, ikon('peringatan'), h('span', null, 'Tidak ada soal yang cocok dengan filter ini. Longgarkan filter di bawah lalu mulai lagi.')));
     const semuaKel = K.semuaKelompok(); const luar = semuaKel.filter(k => !kelTingkat.includes(k));
     const opsiKel = k => h('option', { value: k, selected: f.kode === k ? true : null }, k + ' · ' + K.namaKelompok(k));
     const opsiSemuaKel = h('option', { value: '' }, 'Semua kelompok Tingkat ' + tingkat);
@@ -1138,7 +1247,9 @@
           togg('baru2025', 'Hanya ketentuan 2025+', 'Soal yang dasar hukumnya berlaku sejak 1 Januari 2025 atau sesudahnya.'),
           togg('tempo', 'Waktu ketat per soal', 'Hitung mundur sesuai target waktu tiap soal (umumnya 2,5 menit), seperti di ujian.'))),
       (() => { const ringkasB = () => { const pb = pesertaAktif(); return 'Latihan bersama' + (pb ? ' · ' + pb.length + ' orang' : ''); }; const sm = h('summary', null, ringkasB());
-        return h('details', { class: 'lipat latih-bersama', open: pesertaAktif() ? true : null }, sm, UKP.c.aturBersama({ onUbah: () => { sm.textContent = ringkasB(); perbaruiTombol(nCocok); } })); })(),
+        // v8.1 pintu ke Ujian tim (kunci dan nilai di akhir; js/views-simulasi.js format tim)
+        const pintuUjian = h('p', { class: 'pintu-ujian-tim small' }, h('a', { href: UKP.href ? UKP.href('simulasi', { tim: 1 }) : '#simulasi', class: 'tautan', onclick: e => { e.preventDefault(); UKP.go('simulasi', { tim: 1 }); } }, ikon('tim', null, true), 'Ujian tim: kunci dan nilai di akhir'));
+        return h('details', { class: 'lipat latih-bersama', open: pesertaAktif() ? true : null }, sm, UKP.c.aturBersama({ onUbah: () => { sm.textContent = ringkasB(); perbaruiTombol(nCocok); } }), pintuUjian); })(),
       jumlah,
       h('div', { class: 'sticky-actions latih-aksi-hp' }, tombolMulaiHp)));
     tata.appendChild(h('aside', { class: 'card ringkas latih-ringkas kl-4 lengket', 'aria-labelledby': 'latih-ringkas-j' },

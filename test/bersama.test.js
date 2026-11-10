@@ -223,9 +223,61 @@ describe('v8.0: sesi latihan bersama', () => {
     assert.deepEqual(e.tersulit.map(q => q.id), ['X1-002', 'X1-004', 'X1-001']);
     assert.ok(!e.tersulit.some(q => q.id === 'X1-003'));
     assert.deepEqual(JSON.parse(JSON.stringify(e.topikTim)), [{ topik: 'X1.1', n: 6, benar: 3, akurasi: 50 }, { topik: 'X1.2', n: 6, benar: 4, akurasi: 67 }]);
-    assert.deepEqual(JSON.parse(JSON.stringify(L.evaluasiSesi(null))), { nSoal: 0, nPeserta: 0, menit: 0, peserta: [], soal: [], tersulit: [], topikTim: [] });
+    // v8.1: keluaran v8.0 + mode, judul, tempo, skor, triase
+    assert.deepEqual(JSON.parse(JSON.stringify(L.evaluasiSesi(null))), { nSoal: 0, nPeserta: 0, menit: 0, peserta: [], soal: [], tersulit: [], topikTim: [],
+      mode: 'latihan', judul: null, tempo: null, skor: null, triase: { daftar: [], nDikuasai: 0, perKelas: { dikuasai: 0, rapuh: 0, terbelah: 0, tersandung: 0 } } });
   });
   it('TIM_BAWAAN berisi enam nama tim', () => {
     assert.deepEqual(JSON.parse(JSON.stringify(L.TIM_BAWAAN)), ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi']);
+  });
+});
+
+describe('v8.1: tempo, info sesi, lanjutkan sesi bersama', () => {
+  beforeEach(() => { reset(['Nicky', 'Mia', 'Novia']); s.sesiBersama = []; s.profil.tingkat = 'B'; s.bersamaAktif = null; delete s.bersama.tempo; });
+  const J = v => JSON.parse(JSON.stringify(v));
+  it('tanpa UKP.ref (format ujian tak dimuat): tempoUjian cadangan 126, BATAS_LULUS 60; tempoBersama bawaan ujian', () => {
+    assert.equal(L.tempoUjian('B'), 126); assert.equal(L.BATAS_LULUS, 60);
+    assert.deepEqual(J(L.tempoBersama()), { mode: 'ujian', detik: 126 });
+  });
+  it('normal(): bersama.tempo longgar dipertahankan, nilai lain dibuang (tanpa field = ujian)', () => {
+    assert.equal(UKP.store.normal({ bersama: { aktif: true, peserta: [], tempo: 'longgar' } }).bersama.tempo, 'longgar');
+    assert.equal('tempo' in UKP.store.normal({ bersama: { aktif: true, peserta: [], tempo: 'kilat' } }).bersama, false);
+  });
+  it('mulaiSesiBersama dengan info: tempo, detikPerSoal, mode, judul, ujianId, bahas, waktuPeserta; anggaran bawaan soal × detikPerSoal', () => {
+    const id = L.mulaiSesiBersama(['Mia'], ['X1-001', 'X1-002'], 0, { tempo: 'ujian', detikPerSoal: 126, mode: 'ujian', judul: '  Ujian   kecil ', ujianId: 'ut9' });
+    const x = L.sesiBersamaDari(id);
+    assert.deepEqual([x.tempo, x.detikPerSoal, x.mode, x.judul, x.ujianId, x.anggaranDetik], ['ujian', 126, 'ujian', 'Ujian kecil', 'ut9', 252]);
+    assert.deepEqual(J(x.bahas), {}); assert.deepEqual(J(x.waktuPeserta), {});
+    const y = L.sesiBersamaDari(L.mulaiSesiBersama(['Mia'], ['X1-001'], 0, { tempo: 'longgar' }));
+    assert.deepEqual([y.tempo, y.detikPerSoal, y.mode, y.judul, y.ujianId, y.anggaranDetik], ['longgar', 150, 'latihan', null, null, 150]);
+  });
+  it('pemanggilan lama (tanpa info) tetap sah: rekaman v8.0 tanpa field v8.1', () => {
+    const x = L.sesiBersamaDari(L.mulaiSesiBersama(['Mia'], ['X1-001'], 0));
+    assert.equal(x.anggaranDetik, 150); assert.ok(!('mode' in x) && !('tempo' in x));
+    assert.equal(L.evaluasiSesi(x).mode, 'latihan');
+  });
+  it('simpanBersamaAktif / bersamaAktif: salinan sah selama sesi berjalan; null bila sesi selesai, hilang, atau > 24 jam', () => {
+    const id = L.mulaiSesiBersama(['Nicky', 'Mia'], ['X1-001', 'X1-002'], 300);
+    L.catatSoalSesi(id, SOAL[0], { Nicky: 'B', Mia: 'A' }, 20);
+    const r = L.simpanBersamaAktif({ sesiId: id, soalIds: ['X1-001', 'X1-002'], idx: 1, sisaDetik: 250.4, anggaranDetik: 300, tempo: 'longgar', detikPerSoal: 150, ulang: false, draf: { soalId: 'X1-002', jb: { Nicky: 'C' }, yb: { Nicky: 'yakin' }, detikSoal: 12 } });
+    assert.deepEqual([r.idx, r.sisaDetik, r.tempo, r.detikPerSoal, r.ulang, r.draf.jb.Nicky], [1, 250, 'longgar', 150, false, 'C']);
+    assert.ok(r.diperbarui > 0);
+    const a = L.bersamaAktif(); assert.equal(a.sesiId, id); a.idx = 9; assert.equal(L.bersamaAktif().idx, 1);
+    assert.equal(UKP.store.normal(J(s)).bersamaAktif.sesiId, id);
+    s.bersamaAktif.diperbarui = Date.now() - 25 * 3600000; assert.equal(L.bersamaAktif(), null);
+    s.bersamaAktif.diperbarui = Date.now(); L.akhiriSesiBersama(id); assert.equal(L.bersamaAktif(), null);
+    L.simpanBersamaAktif({ sesiId: 'sb-tidak-ada', soalIds: [] }); assert.equal(L.bersamaAktif(), null);
+    assert.equal(L.simpanBersamaAktif(null), null); assert.equal(s.bersamaAktif, null);
+  });
+  it('normal(): lembarJawab / bersamaAktif / ujianTim berbentuk rusak menjadi null; data v8.0 tanpa field tetap utuh', () => {
+    const n = UKP.store.normal({ lembarJawab: { jawaban: 'x' }, bersamaAktif: { sesiId: 5 }, ujianTim: [], sesiBersama: [{ id: 'sb-1', peserta: ['Mia'], soal: [] }] });
+    assert.deepEqual([n.lembarJawab, n.bersamaAktif, n.ujianTim], [null, null, null]); assert.equal(n.sesiBersama.length, 1);
+  });
+  it('triaseSoal tanpa bank (soal { id, kunci }) dan urutanBahas sesi v8.0', () => {
+    const t = L.triaseSoal({ id: 'X1-001', kunci: 'B' }, { Nicky: { o: 'B', k: 'yakin' }, Mia: { o: 'A', k: 'yakin' }, Novia: 'B' }, { urutan: ['Nicky', 'Mia', 'Novia'] });
+    assert.deepEqual([t.kelas, t.penjelas, t.saran, t.alasan, J(t.yakinSalah)], ['terbelah', 'Nicky', 'Nicky jelaskan ke Mia', null, ['Mia']]);
+    const sesi = { id: 'sb-x', peserta: ['Nicky', 'Mia'], soal: [{ id: 'X1-001', kunci: 'B', jawaban: { Nicky: { o: 'B' }, Mia: { o: 'B' } } }, { id: 'X1-002', kunci: 'C', jawaban: { Nicky: { o: 'A' }, mia: { o: 'C' } } }] };
+    const u = L.urutanBahas(sesi);
+    assert.deepEqual([u.daftar.length, u.daftar[0].id, u.daftar[0].penjelas, u.nDikuasai], [1, 'X1-002', 'Mia', 1]);
   });
 });

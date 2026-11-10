@@ -204,7 +204,7 @@
         perTopikLemah: (Array.isArray(l.perTopikLemah) ? l.perTopikLemah : []).filter(t => isObj(t) && TOPIK_RE.test(String(t.id))).slice(0, MAKS_LEMAH).map(t => { const n = bulatAngka(t.n, 1e6); return { id: String(t.id), n, benar: Math.min(n, bulatAngka(t.benar, 1e6)) }; }) },
       simulasi: (Array.isArray(raw.simulasi) ? raw.simulasi : []).filter(isObj).slice(-MAKS_SIM).map(x => {
         const jumlah = bulatAngka(x.jumlah, 1000), benar = Math.min(jumlah, bulatAngka(x.benar, 1000)), skor = bulat(angka(x.skor, 100), 1);
-        return { id: teks(x.id, 40), format: ['UKP', 'USKP', 'kustom', 'tryout'].includes(x.format) ? x.format : '', kode: typeof x.kode === 'string' && KODE_RE.test(x.kode) ? x.kode : null,
+        return { id: teks(x.id, 40), format: ['UKP', 'USKP', 'kustom', 'tryout', 'tim'].includes(x.format) ? x.format : '', kode: typeof x.kode === 'string' && KODE_RE.test(x.kode) ? x.kode : null,
           tingkat: ['A', 'B', 'C'].includes(x.tingkat) ? x.tingkat : 'A', selesai: tglOk(x.selesai), skor, benar, salah: Math.min(jumlah - benar, bulatAngka(x.salah, 1000)), kosong: Math.min(jumlah - benar, bulatAngka(x.kosong, 1000)),
           jumlah, menit: bulatAngka(x.menit, 1440), lulus: skor >= BATAS_LULUS, perKelompok: perKelOk(x.perKelompok) };
       }),

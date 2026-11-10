@@ -123,7 +123,7 @@ function normalkan(raw, nama, kini) {
     },
     simulasi: (Array.isArray(raw.simulasi) ? raw.simulasi : []).filter(isObj).slice(-MAKS_SIM).map(x => {
       const jumlah = bulatAngka(x.jumlah, 1000), benar = Math.min(jumlah, bulatAngka(x.benar, 1000)), skor = bulat1(angka(x.skor, 100));
-      return { id: teks(x.id, 40).replace(/[^0-9A-Za-z_.:-]/g, ''), format: ['UKP', 'USKP', 'kustom', 'tryout'].includes(x.format) ? x.format : '',
+      return { id: teks(x.id, 40).replace(/[^0-9A-Za-z_.:-]/g, ''), format: ['UKP', 'USKP', 'kustom', 'tryout', 'tim'].includes(x.format) ? x.format : '',
         kode: typeof x.kode === 'string' && KODE_RE.test(x.kode) ? x.kode : null, tingkat: tingkatOk(x.tingkat), selesai: tglOk(x.selesai),
         skor, benar, salah: Math.min(jumlah - benar, bulatAngka(x.salah, 1000)), kosong: Math.min(jumlah - benar, bulatAngka(x.kosong, 1000)),
         jumlah, menit: bulatAngka(x.menit, 1440), lulus: skor >= BATAS_LULUS, perKelompok: perKelOk(x.perKelompok) };

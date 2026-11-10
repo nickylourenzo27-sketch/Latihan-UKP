@@ -50,7 +50,7 @@ describe('dasbor tim: peserta latihan bersama (lokal)', () => {
     assert.ok(X.dokDari(contoh(), 'Rara', KINI), 'peserta terdaftar tanpa jawaban tetap punya dokumen');
   });
   it('normalLokal: id lokal:, sumber lokal, akurasi 0–100 apa adanya, jawaban ternormalkan, topik lemah dari kunci topik', () => {
-    const d = X.dokDari(contoh(), 'Mia', Date.now());
+    const d = X.dokDari(contoh(), 'Mia', KINI);
     d.latihan.akurasi7 = 1; d.latihan.perTopikLemah = [{ topik: 'A2.5', n: 4, benar: 1 }];
     const n = X.normalLokal(d, 'Mia');
     assert.equal(n.id, 'lokal:Mia'); assert.equal(n.sumber, 'lokal'); assert.equal(X.sumberTeks(n), 'lokal');
@@ -119,5 +119,67 @@ describe('dasbor tim: evaluasi sesi latihan bersama (v8.0)', () => {
     assert.equal(d.latihan.perKelompok.yakin, undefined);
     assert.equal(d.latihan.perKelompok.A2.n, 5);
     assert.equal(d.jawaban[0].k, 'yakin');
+  });
+});
+
+// v8.1: evaluasi mode ujian (CSV skor di atas soal, ringkasan "Sesi terakhir"), kalimat tempo, siapa memilih apa, label ujian tim
+const DATA = fs.readdirSync(path.join(__dirname, '..', 'js', 'data')).filter(f => /^(ref|mu-.*)\.js$/.test(f)).sort().map(f => 'data/' + f);
+const UKP2 = muatInti(['core.js'].concat(DATA, ['learn.js', 'views-tim.js']));
+const X2 = UKP2.views.tim._uji, L2 = UKP2.belajar;
+function sesiUjian() {
+  const ids = UKP2.konten.soalSet('TO-B-2026-11').slice(0, 5);
+  const pola = { Mia: 'BBBB-', Novia: 'BSSB-', Alfi: 'B----' }; // B benar, S salah, - kosong
+  const soal = ids.map((so, i) => {
+    const jawaban = {};
+    Object.keys(pola).forEach(n => { const c = pola[n][i]; const o = c === 'B' ? so.kunci : c === 'S' ? (so.kunci === 'A' ? 'B' : 'A') : '-'; jawaban[n] = { o, k: n === 'Mia' && i === 1 ? 'ragu' : null, b: c === 'B' ? 1 : 0 }; });
+    return { id: so.id, kode: so.kode, topik: so.topik, kunci: so.kunci, detik: 0, jawaban };
+  });
+  return { id: 'sb-u', mulai: KINI - 3600000, selesai: KINI, tingkat: 'B', peserta: ['Mia', 'Novia', 'Alfi'], anggaranDetik: 11 * 60, sumber: 'ujiantim',
+    tempo: 'ujian', detikPerSoal: 126, mode: 'ujian', judul: 'Try Out B 1–5', ujianId: 'utx', bahas: {}, waktuPeserta: { Mia: 600 }, soal };
+}
+describe('dasbor tim: evaluasi tim v8.1', () => {
+  it('csvSesi mode ujian: enam baris skor per orang di atas baris soal, kolom peserta sama', () => {
+    const s = sesiUjian(); const ev = L2.evaluasiSesi(s);
+    const baris = X2.csvSesi(s, ev).replace(/^﻿/, '').trim().split('\r\n');
+    assert.equal(baris.length, 1 + 6 + 5);
+    assert.equal(baris[0], 'id;kode;topik;kunci;Mia;Novia;Alfi');
+    assert.equal(baris[1], 'skor;;;;80;40;20');
+    assert.equal(baris[2], 'lulus;;;;ya;kurang 1 soal;kurang 2 soal');
+    assert.deepEqual(baris.slice(3, 7), ['benar;;;;4;2;1', 'salah;;;;0;2;0', 'kosong;;;;1;1;4', 'ragu;;;;1;0;0']);
+    assert.ok(baris[7].startsWith(s.soal[0].id + ';'));
+    // latihan: tanpa baris skor
+    const lat = Object.assign({}, s, { mode: 'latihan' });
+    assert.equal(X2.csvSesi(lat, L2.evaluasiSesi(lat)).replace(/^﻿/, '').trim().split('\r\n').length, 6);
+  });
+  it('ringkasSesi: jenis dan ringkasan untuk "Sesi terakhir"; menitSesi ujian = waktu ujian', () => {
+    const s = sesiUjian(); const r = J(X2.ringkasSesi(s, L2.evaluasiSesi(s)));
+    assert.equal(r.jenis, 'Ujian tim · Try Out B 1–5'); assert.equal(r.ujian, true);
+    assert.equal(r.meta, '5 soal · 3 orang · rata-rata skor 47 · 1 dari 3 lulus');
+    assert.equal(X2.menitSesi(L2.evaluasiSesi(s), s), 11);
+    const lat = Object.assign({}, s, { mode: 'latihan', judul: null });
+    const rl = J(X2.ringkasSesi(lat, L2.evaluasiSesi(lat)));
+    assert.equal(rl.jenis, 'Latihan'); assert.match(rl.meta, /^5 soal · 3 orang · rata-rata 47% benar$/);
+    assert.equal(X2.menitSesi(L2.evaluasiSesi(lat), lat), 60);
+  });
+  it('kalimatTempo: lewat dari tempo ujian dan masih di dalam tempo', () => {
+    const lewat = J(X2.kalimatTempo({ detikPerSoal: 126, rataDetik: 151, nLewat: 2, terlama: [], soalUjian: 100, menitUjian: 210, proyeksiMenit: 252 }));
+    assert.deepEqual(lewat, { lewat: true, teks: 'Rata-rata 2:31 per soal; tempo ujian 2:06. Dengan laju ini 100 soal butuh ±252 menit, lewat 42 menit dari 210.' });
+    const aman = J(X2.kalimatTempo({ detikPerSoal: 126, rataDetik: 110, nLewat: 0, terlama: [], soalUjian: 100, menitUjian: 210, proyeksiMenit: 183 }));
+    assert.equal(aman.lewat, false);
+    assert.equal(aman.teks, 'Rata-rata 1:50 per soal; tempo ujian 2:06. Dengan laju ini 100 soal butuh ±183 menit, masih di dalam tempo ujian (210 menit).');
+    assert.equal(X2.kalimatTempo(null), null);
+  });
+  it('siapaMemilih: per opsi menurut urutan peserta, kunci ditandai, kosong di akhir', () => {
+    const q = { kunci: 'B', perPeserta: { Nicky: { o: 'A' }, Mia: { o: 'B' }, Novia: { o: 'B', k: 'ragu' }, Melva: { o: '-' }, Alfi: { o: 'C' } } };
+    assert.equal(X2.siapaMemilih(q, ['Nicky', 'Mia', 'Novia', 'Melva', 'Alfi']), 'A: Nicky · B: Mia, Novia (ragu) (kunci) · C: Alfi · kosong: Melva');
+    assert.equal(X2.siapaMemilih({ kunci: 'D', perPeserta: { Mia: { o: 'A' } } }, ['Mia']), 'A: Mia · D: tidak ada (kunci)');
+  });
+  it('jawaban ujian tim (m: ujian) berlabel "Ujian tim" di detail peserta lokal', () => {
+    assert.equal(X2.MODE_JAWAB.ujian, 'Ujian tim');
+    const s = contoh(); s.jawabanBersama.push({ p: 'Mia', s: 'A2-010', k: 'ragu', t: 'A2.5', o: 'C', b: 0, d: 0, w: KINI + 2000, m: 'ujian', sesi: 'sb-u' });
+    const d = X.dokDari(s, 'Mia', KINI);
+    assert.equal(d.jawaban[0].m, 'ujian');
+    const jw = J(X.normalJawaban(d.jawaban));
+    assert.equal(jw[0].m, 'ujian'); assert.equal(jw[1].m, 'latihan');
   });
 });

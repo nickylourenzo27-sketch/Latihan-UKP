@@ -229,15 +229,17 @@
   function daftarSesi(s) { s = s || UKP.store.get(); if (!Array.isArray(s.sesiBersama)) s.sesiBersama = []; return s.sesiBersama; }
   const sesiDari = (s, id) => daftarSesi(s).find(x => x && x.id === id) || null;
   // mulai rekaman sesi → id. Sesi lama yang tidak pernah berisi soal dan belum ditutup ikut dibersihkan
-  L.mulaiSesiBersama = function (peserta, soalIds, anggaranDetik) {
+  // v8.1: info = { tempo: 'ujian'|'longgar', detikPerSoal, mode: 'latihan'|'ujian', judul, ujianId } (opsional; pemanggilan lama tetap sah)
+  L.mulaiSesiBersama = function (peserta, soalIds, anggaranDetik, info) {
     const s = L.siapBersama(UKP.store.get()); const arr = daftarSesi(s);
     for (let i = arr.length - 1; i >= 0; i--) { const x = arr[i]; if (!x || (!x.selesai && !(Array.isArray(x.soal) && x.soal.length))) arr.splice(i, 1); }
     const lihat = new Set(); const pes = [];
     (Array.isArray(peserta) ? peserta : []).forEach(x => { const n = L.rapikanNamaPeserta(x); if (n && n.length <= L.MAKS_NAMA_PESERTA && !lihat.has(n.toLowerCase()) && pes.length < L.MAKS_PESERTA) { lihat.add(n.toLowerCase()); pes.push(n); } });
     const kini = Date.now(); let id = 'sb-' + kini; let i = 1; while (arr.some(x => x.id === id)) id = 'sb-' + kini + '-' + (i++);
     const ids = Array.isArray(soalIds) ? soalIds.filter(x => typeof x === 'string') : [];
-    const anggaran = Math.max(0, Math.round(Number(anggaranDetik) || ids.length * 150));
-    arr.push({ id, mulai: kini, selesai: null, tingkat: (s.profil && s.profil.tingkat) || 'A', peserta: pes, anggaranDetik: anggaran, soal: [], sumber: 'latih', rencana: ids.length });
+    const ext = infoSesiV81(info);
+    const anggaran = Math.max(0, Math.round(Number(anggaranDetik) || ids.length * (ext.detikPerSoal || 150)));
+    arr.push(Object.assign({ id, mulai: kini, selesai: null, tingkat: (s.profil && s.profil.tingkat) || 'A', peserta: pes, anggaranDetik: anggaran, soal: [], sumber: 'latih', rencana: ids.length }, ext));
     if (arr.length > L.MAKS_SESI_BERSAMA) arr.splice(0, arr.length - L.MAKS_SESI_BERSAMA);
     UKP.store.save();
     return id;
@@ -275,7 +277,7 @@
   };
   // ringkasan murni satu sesi (tanpa DOM) untuk UKP.c.evaluasiBersama (js/views-tim.js)
   L.evaluasiSesi = function (sesi) {
-    const kosongHasil = { nSoal: 0, nPeserta: 0, menit: 0, peserta: [], soal: [], tersulit: [], topikTim: [] };
+    const kosongHasil = { nSoal: 0, nPeserta: 0, menit: 0, peserta: [], soal: [], tersulit: [], topikTim: [], mode: 'latihan', judul: null, tempo: null, skor: null, triase: L.urutanBahas(null) };
     if (!sesi || typeof sesi !== 'object') return kosongHasil;
     const peserta = (Array.isArray(sesi.peserta) ? sesi.peserta : []).filter(x => typeof x === 'string' && x);
     const daftarSoal = (Array.isArray(sesi.soal) ? sesi.soal : []).filter(q => q && typeof q.id === 'string');
@@ -307,8 +309,574 @@
     soal.forEach(q => { if (!q.topik) return; const t = perTim[q.topik] = perTim[q.topik] || { topik: q.topik, n: 0, benar: 0 }; t.n += nPeserta; t.benar += q.nBenar; });
     const topikTim = Object.values(perTim).filter(t => t.n >= 3 && t.benar < t.n).sort(urutTopik).slice(0, 5)
       .map(t => ({ topik: t.topik, n: t.n, benar: t.benar, akurasi: Math.round(t.benar / t.n * 100) }));
-    return { nSoal, nPeserta, menit, peserta: hasilP, soal, tersulit, topikTim };
+    // v8.1: detik per soal ikut di soal[]; mode, judul, tempo, skor (mode ujian), triase (urutan bahas)
+    soal.forEach((q, i) => { q.detik = Math.max(0, Math.round(Number(daftarSoal[i].detik) || 0)); });
+    const mode = sesi.mode === 'ujian' ? 'ujian' : 'latihan';
+    return { nSoal, nPeserta, menit, peserta: hasilP, soal, tersulit, topikTim,
+      mode, judul: typeof sesi.judul === 'string' && sesi.judul ? sesi.judul : null,
+      tempo: ringkasTempo(sesi, soal), skor: mode === 'ujian' ? L.skorUjian(sesi) : null, triase: L.urutanBahas(sesi) };
   };
+  // =====================================================================================================================
+  // ---------- v8.1: tempo ujian, triase dan penjelas bahas, skor ujian, rekap, Ujian tim (kode ujian + kode jawaban),
+  //            keadaan ujian tim di perangkat pemimpin, lembar jawab pribadi, lanjutkan sesi bersama ----------
+  // Kontrak: tugas v8.1 (bagian A–E). Semua fungsi baca-saja murni (tanpa DOM); yang menulis store menyebutkannya.
+  // =====================================================================================================================
+  const isObjL = x => x != null && typeof x === 'object' && !Array.isArray(x);
+  const TINGKAT_SAH = ['A', 'B', 'C'];
+  const fmtUKP = () => (UKP.ref && UKP.ref.ujian && UKP.ref.ujian.format && UKP.ref.ujian.format.UKP) || null;
+  const tingkatProfil = () => { try { const p = UKP.store.get().profil; return p && TINGKAT_SAH.includes(p.tingkat) ? p.tingkat : 'A'; } catch (e) { return 'A'; } };
+  const bulatPositif = v => { const n = Math.round(Number(v)); return isFinite(n) && n > 0 ? n : 0; };
+  const teksPendek = (v, n) => typeof v === 'string' ? v.replace(KONTROL_RE, ' ').replace(/\s+/g, ' ').trim().slice(0, n) : '';
+  const OPSI_RE = /^[A-D]$/;
+
+  // ---------- A. tempo ----------
+  L.TEMPO_LONGGAR = 150;
+  L.TEMPO_CADANGAN = 126;
+  L.BATAS_LULUS = (() => { const f = fmtUKP(); return f && typeof f.lulus === 'number' && f.lulus > 0 ? f.lulus : 60; })();
+  // format ujian sungguhan satu tingkat → { menit, soal } (cadangan 210 menit / 100 soal)
+  L.formatUjianTingkat = function (tingkat) {
+    const f = fmtUKP(); const x = f && f[TINGKAT_SAH.includes(tingkat) ? tingkat : tingkatProfil()];
+    const menit = x && Number(x.menit) > 0 ? Number(x.menit) : 210, soal = x && Number(x.soalPerkiraan) > 0 ? Number(x.soalPerkiraan) : 100;
+    return { menit, soal };
+  };
+  // detik per soal ujian sungguhan: round(menit × 60 / soalPerkiraan) (B: 210 × 60 / 100 = 126)
+  L.tempoUjian = function (tingkat) {
+    const f = fmtUKP(); const x = f && f[TINGKAT_SAH.includes(tingkat) ? tingkat : tingkatProfil()];
+    const m = x && Number(x.menit), n = x && Number(x.soalPerkiraan);
+    return m > 0 && n > 0 ? Math.round(m * 60 / n) : L.TEMPO_CADANGAN;
+  };
+  // s.bersama.tempo: 'ujian' (bawaan; field tidak ada = 'ujian') | 'longgar'
+  L.tempoBersama = function () {
+    const s = L.siapBersama(UKP.store.get()); const mode = s.bersama.tempo === 'longgar' ? 'longgar' : 'ujian';
+    return { mode, detik: mode === 'longgar' ? L.TEMPO_LONGGAR : L.tempoUjian(s.profil && s.profil.tingkat) };
+  };
+  L.aturTempoBersama = function (mode) {
+    const s = L.siapBersama(UKP.store.get()); s.bersama.tempo = mode === 'longgar' ? 'longgar' : 'ujian'; UKP.store.save();
+    return L.tempoBersama();
+  };
+  // field v8.1 rekaman sesi dari info mulaiSesiBersama; tanpa info → {} (rekaman sama dengan v8.0)
+  function infoSesiV81(info) {
+    if (!isObjL(info)) return {};
+    const tempo = info.tempo === 'longgar' ? 'longgar' : 'ujian';
+    return {
+      tempo, detikPerSoal: bulatPositif(info.detikPerSoal) || (tempo === 'longgar' ? L.TEMPO_LONGGAR : L.tempoUjian(tingkatProfil())),
+      mode: info.mode === 'ujian' ? 'ujian' : 'latihan', judul: teksPendek(info.judul, 80) || null,
+      ujianId: typeof info.ujianId === 'string' && info.ujianId ? info.ujianId.slice(0, 40) : null, bahas: {}, waktuPeserta: {},
+    };
+  }
+  // ringkasan tempo sesi dari soal[].detik > 0 (null bila tidak ada detik tercatat)
+  function ringkasTempo(sesi, soal) {
+    const dd = soal.filter(q => q.detik > 0); if (!dd.length) return null;
+    const dps = bulatPositif(sesi.detikPerSoal) || (sesi.tempo === 'longgar' ? L.TEMPO_LONGGAR : L.tempoUjian(sesi.tingkat));
+    const rata = Math.round(dd.reduce((a, q) => a + q.detik, 0) / dd.length);
+    const lewat = dd.filter(q => q.detik > dps);
+    const f = L.formatUjianTingkat(sesi.tingkat);
+    return { detikPerSoal: dps, rataDetik: rata, nLewat: lewat.length, terlama: lewat.slice().sort((a, b) => b.detik - a.detik).slice(0, 3).map(q => ({ id: q.id, detik: q.detik })),
+      soalUjian: f.soal, menitUjian: f.menit, proyeksiMenit: Math.round(rata * f.soal / 60) };
+  }
+
+  // ---------- B. triase dan penjelas ----------
+  L.LABEL_JEBAKAN = { 'salah-klasifikasi': 'salah klasifikasi', 'lupa-pasal': 'lupa pasal', 'salah-baca': 'salah baca', 'salah-hitung': 'salah hitung', 'angka-usang': 'angka usang', 'final-nonfinal': 'final vs non-final' };
+  L.MAKS_TEKS_ALASAN = 160;
+  L.PRIORITAS_KELAS = { tersandung: 3, terbelah: 2, rapuh: 1, dikuasai: 0 };
+  // potong teks ≤ n karakter (termasuk '…'), di batas kata bila memungkinkan
+  L.potongTeks = function (t, n) {
+    t = String(t == null ? '' : t).replace(/\s+/g, ' ').trim(); n = n || L.MAKS_TEKS_ALASAN;
+    if (t.length <= n) return t;
+    let c = t.slice(0, n - 1); const sp = c.lastIndexOf(' '); if (sp >= n * 0.6) c = c.slice(0, sp);
+    return c.replace(/[\s,;:.(–-]+$/, '') + '…';
+  };
+  // ['A'] → 'A' · ['A','B'] → 'A dan B' · ['A','B','C'] → 'A, B, dan C'
+  L.gabungNama = arr => { arr = (arr || []).filter(Boolean); return arr.length <= 1 ? (arr[0] || '') : arr.length === 2 ? arr[0] + ' dan ' + arr[1] : arr.slice(0, -1).join(', ') + ', dan ' + arr[arr.length - 1]; };
+  // satu jawaban untuk triase: { o|opsi, k|keyakinan, b|benar } | 'B' | null → { o, k, b }; kunci diketahui → b dihitung ulang
+  function jawabTriase(v, kunci) {
+    if (v == null) return { o: '-', k: null, b: 0 };
+    const { o, k } = jawabPeserta(v);
+    let b = kunci ? (o === kunci ? 1 : 0) : (isObjL(v) && (v.b != null ? v.b : v.benar) ? 1 : 0);
+    if (o === '-') b = 0;
+    return { o, k, b };
+  }
+  L.triaseSoal = function (soal, per, opsi) {
+    soal = isObjL(soal) ? soal : {}; per = isObjL(per) ? per : {}; opsi = isObjL(opsi) ? opsi : {};
+    const kunci = OPSI_RE.test(String(soal.kunci || '')) ? String(soal.kunci) : null;
+    const urutan = Array.isArray(opsi.urutan) ? opsi.urutan.filter(x => typeof x === 'string' && L.rapikanNamaPeserta(x)) : [];
+    const hitung = isObjL(opsi.hitungPenjelas) ? opsi.hitungPenjelas : {};
+    const kunciPer = new Map(); Object.keys(per).forEach(n => { const k = kunciNama(n); if (k && !kunciPer.has(k)) kunciPer.set(k, n); });
+    // nama: menurut opsi.urutan (yang ada di per), lalu sisa per menurut urutan kunci objek
+    const nama = []; const lihat = new Set();
+    urutan.concat(Object.keys(per)).forEach(n => { const k = kunciNama(n); if (kunciPer.has(k) && !lihat.has(k)) { lihat.add(k); nama.push(L.rapikanNamaPeserta(n)); } });
+    const j = {}; nama.forEach(n => { j[n] = jawabTriase(per[kunciPer.get(kunciNama(n))], kunci); });
+    const N = nama.length;
+    const benar = nama.filter(n => j[n].b), salah = nama.filter(n => !j[n].b && j[n].o !== '-'), kosong = nama.filter(n => j[n].o === '-');
+    const nBenar = benar.length, nSalah = salah.length, nKosong = kosong.length;
+    const yakinSalah = salah.filter(n => j[n].k === 'yakin');
+    const belumMantap = benar.filter(n => j[n].k === 'ragu' || j[n].k === 'menebak');
+    let kelas;
+    if (N && nBenar === N) kelas = belumMantap.length ? 'rapuh' : 'dikuasai';
+    else if (nBenar === 0 || nBenar / N < 0.5) kelas = 'tersandung';
+    else kelas = 'terbelah';
+    const hit = n => { const k = Object.keys(hitung).find(x => kunciNama(x) === kunciNama(n)); return k != null ? Number(hitung[k]) || 0 : 0; };
+    const pilih = (calon, utamakanYakin) => calon.slice().sort((a, b) =>
+      (utamakanYakin ? (j[b].k === 'yakin' ? 1 : 0) - (j[a].k === 'yakin' ? 1 : 0) : 0) || hit(a) - hit(b) || nama.indexOf(a) - nama.indexOf(b))[0] || null;
+    let penjelas = null, kepada = [], label, saran;
+    if (kelas === 'dikuasai') { label = 'Dikuasai'; saran = 'Lanjut'; }
+    else if (kelas === 'rapuh') { label = 'Benar semua, belum mantap'; penjelas = pilih(belumMantap, false); saran = penjelas + ', jelaskan singkat alasanmu'; }
+    else {
+      kepada = nama.filter(n => !j[n].b);
+      label = kelas === 'terbelah' ? 'Terbelah ' + nBenar + '–' + (N - nBenar) : nBenar === 0 ? 'Semua belum tepat' : 'Hanya ' + nBenar + ' dari ' + N + ' benar';
+      if (nBenar === 0) saran = 'Baca pembahasan bersama';
+      else { penjelas = pilih(benar, true); saran = nBenar === 1 && kepada.length > 1 ? 'Hanya ' + penjelas + ' yang benar: ' + penjelas + ' jelaskan ke semua' : penjelas + ' jelaskan ke ' + L.gabungNama(kepada); }
+    }
+    // opsi salah terbanyak (seri: lebih banyak yang yakin, lalu huruf)
+    const hitO = {}; salah.forEach(n => { const o = j[n].o; hitO[o] = hitO[o] || { n: 0, y: 0 }; hitO[o].n++; if (j[n].k === 'yakin') hitO[o].y++; });
+    const opsiKeliru = Object.keys(hitO).sort((a, b) => hitO[b].n - hitO[a].n || hitO[b].y - hitO[a].y || (a < b ? -1 : 1))[0] || null;
+    let alasan = null;
+    if (opsiKeliru) {
+      const tag = (isObjL(soal.jebakanOpsi) && typeof soal.jebakanOpsi[opsiKeliru] === 'string' && soal.jebakanOpsi[opsiKeliru]) || null;
+      const ms = isObjL(soal.pembahasan) && isObjL(soal.pembahasan.mengapaSalah) ? soal.pembahasan.mengapaSalah[opsiKeliru] : null;
+      const teks = typeof ms === 'string' && ms.trim() ? L.potongTeks(ms, L.MAKS_TEKS_ALASAN) : null;
+      if (tag || teks) alasan = { opsi: opsiKeliru, tag, label: tag ? (L.LABEL_JEBAKAN[tag] || tag.replace(/-/g, ' ')) : null, teks };
+    }
+    return { kelas, N, nBenar, nSalah, nKosong, label, saran, penjelas, kepada, yakinSalah, belumMantap, opsiKeliru, alasan, prioritas: L.PRIORITAS_KELAS[kelas] };
+  };
+  // jawaban satu soal rekaman sesi per peserta (nama tanpa peduli kapital) → { nama: jawaban|null }
+  function perPesertaSoal(q, peserta) {
+    const jw = isObjL(q.jawaban) ? q.jawaban : {}; const per = {};
+    (peserta.length ? peserta : Object.keys(jw)).forEach(n => { const k = Object.keys(jw).find(x => kunciNama(x) === kunciNama(n)); per[n] = k != null ? jw[k] : null; });
+    return per;
+  }
+  const pesertaSesi = sesi => (Array.isArray(sesi.peserta) ? sesi.peserta : []).filter(x => typeof x === 'string' && x);
+  const soalSesi = sesi => (Array.isArray(sesi.soal) ? sesi.soal : []).filter(q => q && typeof q.id === 'string');
+  // soal bank (untuk jebakanOpsi/pembahasan) dengan kunci rekaman sesi (yang dinilai saat sesi)
+  const soalUntukTriase = q => { const b = K.soal(q.id); return Object.assign({}, b || { id: q.id }, { kunci: q.kunci || (b && b.kunci) || '' }); };
+  L.urutanBahas = function (sesi) {
+    const perKelas = { dikuasai: 0, rapuh: 0, terbelah: 0, tersandung: 0 };
+    if (!isObjL(sesi)) return { daftar: [], nDikuasai: 0, perKelas };
+    const peserta = pesertaSesi(sesi); const bahas = isObjL(sesi.bahas) ? sesi.bahas : {};
+    const item = soalSesi(sesi).map((q, idx) => {
+      const so = soalUntukTriase(q), per = perPesertaSoal(q, peserta);
+      const awal = L.triaseSoal(so, per, { urutan: peserta }); perKelas[awal.kelas]++;
+      return { idx, q, so, per, awal };
+    });
+    const hitung = {};
+    const daftar = item.filter(x => x.awal.prioritas >= 1)
+      .sort((a, b) => b.awal.prioritas - a.awal.prioritas || b.awal.yakinSalah.length - a.awal.yakinSalah.length || b.awal.nSalah - a.awal.nSalah || a.idx - b.idx)
+      .map(x => {
+        const t = L.triaseSoal(x.so, x.per, { urutan: peserta, hitungPenjelas: hitung });
+        if (t.penjelas) hitung[t.penjelas] = (hitung[t.penjelas] || 0) + 1;
+        return Object.assign({ idx: x.idx, id: x.q.id, kode: x.q.kode || String(x.q.id).split('-')[0], topik: x.q.topik || '', kunci: x.q.kunci || '', sudah: !!bahas[x.q.id] }, t);
+      });
+    return { daftar, nDikuasai: perKelas.dikuasai, perKelas };
+  };
+  // tandai soal sudah/belum dibahas pada rekaman sesi → true bila sesi ada
+  L.tandaiBahas = function (sesiId, soalId, sudah) {
+    const x = sesiDari(null, sesiId); if (!x || typeof soalId !== 'string') return false;
+    if (!isObjL(x.bahas)) x.bahas = {};
+    if (sudah === false) delete x.bahas[soalId]; else x.bahas[soalId] = 1;
+    UKP.store.save(); return true;
+  };
+
+  // ---------- C. skor ujian dan rekap ----------
+  const urutKode = k => { const i = (UKP.urutanKelompok || []).indexOf(k); return i < 0 ? 999 : i; };
+  L.skorUjian = function (sesi) {
+    if (!isObjL(sesi)) return [];
+    const peserta = pesertaSesi(sesi), soal = soalSesi(sesi), n = soal.length;
+    const waktu = isObjL(sesi.waktuPeserta) ? sesi.waktuPeserta : {};
+    const batas = L.BATAS_LULUS;
+    return peserta.map(nama => {
+      let benar = 0, salah = 0, kosong = 0, nRagu = 0; const pk = new Map();
+      soal.forEach(q => {
+        const v = perPesertaSoal(q, [nama])[nama]; const { o, k } = jawabPeserta(v); const b = o !== '-' && o === q.kunci;
+        if (b) benar++; else if (o === '-') kosong++; else salah++;
+        if (k === 'ragu') nRagu++;
+        const kode = q.kode || String(q.id).split('-')[0];
+        if (!pk.has(kode)) pk.set(kode, { kode, n: 0, benar: 0 }); const x = pk.get(kode); x.n++; if (b) x.benar++;
+      });
+      const lulus = n > 0 && benar * 100 >= batas * n;
+      const wk = Object.keys(waktu).find(x => kunciNama(x) === kunciNama(nama)); const dt = wk != null ? Number(waktu[wk]) : NaN;
+      return { nama, n, benar, salah, kosong, skor: n ? Math.round(benar / n * 1000) / 10 : 0, lulus,
+        kurang: lulus ? 0 : Math.max(0, Math.ceil(batas * n / 100 - 1e-9) - benar), nRagu,
+        perKelompok: [...pk.values()].sort((a, b) => urutKode(a.kode) - urutKode(b.kode) || (a.kode < b.kode ? -1 : 1)), detik: isFinite(dt) && dt >= 0 ? Math.round(dt) : null };
+    });
+  };
+  const BULAN_PENDEK = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+  const desimal = x => String(Math.round(x * 10) / 10).replace('.', ',');
+  const namaTopik = id => { const t = K.topik(id); return t && t.judul ? t.judul : id; };
+  // teks rekap siap tempel ke grup WhatsApp: judul + tanggal, ringkasan tim, baris per orang, topik yang perlu dibahas (4–10 baris)
+  L.rekapSesi = function (sesi) {
+    if (!isObjL(sesi)) return '';
+    const ev = L.evaluasiSesi(sesi); const ujian = ev.mode === 'ujian';
+    const d = new Date(Number(sesi.mulai) || Number(sesi.selesai) || Date.now());
+    const baris = [(ev.judul || (ujian ? 'Ujian tim' : 'Latihan bersama')) + ' · ' + d.getDate() + ' ' + BULAN_PENDEK[d.getMonth()] + ' ' + d.getFullYear()];
+    let orang;
+    if (ujian) {
+      const sk = ev.skor || []; const rata = sk.length ? sk.reduce((a, x) => a + x.skor, 0) / sk.length : 0;
+      baris.push(ev.nSoal + ' soal · rata-rata skor ' + desimal(rata) + ' · ' + sk.filter(x => x.lulus).length + ' dari ' + sk.length + ' lulus (batas ' + L.BATAS_LULUS + ')');
+      orang = sk.slice().sort((a, b) => b.skor - a.skor).map(x => x.nama + ' ' + desimal(x.skor) + (x.lulus ? ' lulus' : ' (kurang ' + x.kurang + ' soal)'));
+    } else {
+      const tot = ev.nSoal * ev.nPeserta, totB = ev.peserta.reduce((a, p) => a + p.benar, 0);
+      baris.push(ev.nSoal + ' soal · akurasi tim ' + (tot ? Math.round(totB / tot * 100) : 0) + '%' + (ev.menit ? ' · ' + ev.menit + ' menit' : ''));
+      orang = ev.peserta.map(p => p.nama + ' ' + p.benar + '/' + ev.nSoal);
+    }
+    if (!orang.length) baris.push('Belum ada peserta.');
+    else if (orang.length <= 7) orang.forEach(o => baris.push(o));
+    else for (let i = 0; i < orang.length; i += 3) baris.push(orang.slice(i, i + 3).join(' · '));
+    const topik = [];
+    ev.topikTim.forEach(t => { if (topik.length < 3 && !topik.includes(t.topik)) topik.push(t.topik); });
+    ev.triase.daftar.forEach(x => { if (topik.length < 3 && x.prioritas >= 2 && x.topik && !topik.includes(x.topik)) topik.push(x.topik); });
+    baris.push(topik.length ? 'Perlu dibahas: ' + topik.map(namaTopik).join('; ') : 'Tidak ada topik yang perlu dibahas.');
+    return baris.join('\n');
+  };
+
+  // ---------- D. Ujian tim: kode ujian dan kode jawaban ----------
+  const B64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  function keBita(str) { const e = encodeURIComponent(str); const b = []; for (let i = 0; i < e.length; i++) { if (e[i] === '%') { b.push(parseInt(e.substr(i + 1, 2), 16)); i += 2; } else b.push(e.charCodeAt(i)); } return b; }
+  const dariBita = b => decodeURIComponent(b.map(x => '%' + (x < 16 ? '0' : '') + x.toString(16)).join(''));
+  function b64url(str) {
+    const b = keBita(str); let o = '';
+    for (let i = 0; i < b.length; i += 3) {
+      const n = (b[i] << 16) | ((b[i + 1] || 0) << 8) | (b[i + 2] || 0);
+      o += B64[(n >> 18) & 63] + B64[(n >> 12) & 63] + (i + 1 < b.length ? B64[(n >> 6) & 63] : '') + (i + 2 < b.length ? B64[n & 63] : '');
+    }
+    return o;
+  }
+  function dariB64url(s) {
+    if (!/^[A-Za-z0-9_-]*$/.test(s) || s.length % 4 === 1) throw new Error('b64');
+    const b = []; let buf = 0, bit = 0;
+    for (const c of s) { buf = (buf << 6) | B64.indexOf(c); bit += 6; if (bit >= 8) { bit -= 8; b.push((buf >> bit) & 255); buf &= (1 << bit) - 1; } }
+    return dariBita(b);
+  }
+  const hexUtf8 = str => keBita(str).map(x => (x < 16 ? '0' : '') + x.toString(16)).join('');
+  const dariHex = h => { if (!/^([0-9a-f]{2})*$/.test(h)) throw new Error('hex'); const b = []; for (let i = 0; i < h.length; i += 2) b.push(parseInt(h.substr(i, 2), 16)); return dariBita(b); };
+  // cek 3 karakter base36 (djb2) — mendeteksi kode terpotong/salah ketik
+  const cek3 = t => { let x = 5381; for (let i = 0; i < t.length; i++) x = ((x << 5) + x + t.charCodeAt(i)) >>> 0; return (x % 46656).toString(36).padStart(3, '0'); };
+  const ID_UJIAN_RE = /^[A-Za-z0-9]{1,24}$/;
+  const ID_SOAL_RE = /^([A-Z][0-9]{0,2})-([0-9]{3})$/;
+  L.KODE_UJIAN_AWAL = 'UT1';
+  L.TOKEN_JAWABAN_AWAL = 'UKPJ1';
+  const idUjianBaru = () => 'ut' + Date.now().toString(36);
+  // bagian soal: 's<set>~<rentang no>' (paket bersumber, mis. Try Out: 'sTO-B-2026-11~1-40') atau
+  // 'l<segmen>~<segmen>…' dengan segmen '<kode>_<no base36 2 karakter>…' untuk id berurutan yang sekode (urutan dipertahankan),
+  // atau 'r<base64url id>' untuk id di luar pola bank. Yang lebih pendek dipakai.
+  function kodeSoalDaftar(ids) {
+    const seg = []; let kini = null;
+    ids.forEach(id => {
+      const m = id.match(ID_SOAL_RE); const no = m ? Number(m[2]) : -1;
+      if (m && no < 1296) { if (kini && kini.kode === m[1]) kini.nums += no.toString(36).padStart(2, '0'); else { kini = { kode: m[1], nums: no.toString(36).padStart(2, '0') }; seg.push(kini); } }
+      else { kini = null; seg.push({ raw: 'r' + b64url(id) }); }
+    });
+    return 'l' + seg.map(x => x.raw || x.kode + '_' + x.nums).join('~');
+  }
+  function kodeSoalSet(ids) {
+    let terbaik = null;
+    for (const d of K.daftarSet()) {
+      if (!/^[A-Za-z0-9-]+$/.test(d.set)) continue;
+      const peta = new Map(K.soalSet(d.set).map(x => [x.id, Number(x.sumber.no)]));
+      if (!ids.every(id => peta.has(id) && Number.isInteger(peta.get(id)) && peta.get(id) > 0)) continue;
+      const nos = ids.map(id => peta.get(id)); const r = [];
+      for (let i = 0; i < nos.length;) { let j = i; while (j + 1 < nos.length && nos[j + 1] === nos[j] + 1) j++; r.push(j > i ? nos[i] + '-' + nos[j] : String(nos[i])); i = j + 1; }
+      const k = 's' + d.set + '~' + r.join('_');
+      if (!terbaik || k.length < terbaik.length) terbaik = k;
+    }
+    return terbaik;
+  }
+  function bacaSoalKode(t) {
+    if (t[0] === 's') {
+      const i = t.indexOf('~'); if (i < 2) return null;
+      const set = t.slice(1, i), rentang = t.slice(i + 1); if (!/^[0-9]+(-[0-9]+)?(_[0-9]+(-[0-9]+)?)*$/.test(rentang)) return null;
+      const peta = new Map(K.soalSet(set).map(x => [Number(x.sumber.no), x.id])); const out = [];
+      for (const r of rentang.split('_')) {
+        const [a, b] = r.split('-').map(Number); const akhir = b == null ? a : b;
+        if (!(a > 0) || akhir < a || out.length + akhir - a > 400) return null;
+        for (let no = a; no <= akhir; no++) out.push(peta.get(no) || ('?' + set + '#' + no));
+      }
+      return out;
+    }
+    if (t[0] === 'l') {
+      const out = [];
+      for (const seg of t.slice(1).split('~')) {
+        if (seg[0] === 'r') { const id = dariB64url(seg.slice(1)); if (!id || id.length > 40) return null; out.push(id); continue; }
+        const m = seg.match(/^([A-Z][0-9]{0,2})_((?:[0-9a-z]{2})+)$/); if (!m) return null;
+        for (let i = 0; i < m[2].length; i += 2) out.push(m[1] + '-' + String(parseInt(m[2].substr(i, 2), 36)).padStart(3, '0'));
+        if (out.length > 400) return null;
+      }
+      return out;
+    }
+    return null;
+  }
+  function buatKode(o) {
+    o = isObjL(o) ? o : {};
+    const ids = (Array.isArray(o.soalIds) ? o.soalIds : []).filter(x => typeof x === 'string' && x && x.length <= 40);
+    if (!ids.length) return '';
+    const tingkat = TINGKAT_SAH.includes(o.tingkat) ? o.tingkat : tingkatProfil();
+    const menit = Math.min(999, bulatPositif(o.menit) || Math.max(1, Math.round(ids.length * L.tempoUjian(tingkat) / 60)));
+    const id = typeof o.id === 'string' && ID_UJIAN_RE.test(o.id) ? o.id : idUjianBaru();
+    const daftar = kodeSoalDaftar(ids), set = kodeSoalSet(ids);
+    const isi = [L.KODE_UJIAN_AWAL, tingkat + menit, id, b64url(teksPendek(o.judul, 60)), set && set.length <= daftar.length ? set : daftar].join('.');
+    return isi + '.' + cek3(isi);
+  }
+  // teks → kode mentah (dari URL '#ujiantim/<kode>', juga %-encoded, atau 'UT1.…' di mana pun dalam teks)
+  function ambilKodeUjian(teks) {
+    let t = String(teks == null ? '' : teks).slice(0, 20000);
+    for (let i = 0; i < 2; i++) t = t.replace(/(%[0-9A-Fa-f]{2})+/g, m => { try { return decodeURIComponent(m); } catch (e) { return m; } });
+    const m = t.match(/#ujiantim\/([A-Za-z0-9._~-]+)/) || t.match(/(UT1\.[A-Za-z0-9._~-]+)/);
+    return m ? m[1].replace(/[._~-]+$/, '') : null;
+  }
+  function bacaKode(teks) {
+    try {
+      const k = ambilKodeUjian(teks); if (!k) return null;
+      const p = k.split('.'); if (p.length !== 6 || p[0] !== L.KODE_UJIAN_AWAL || cek3(p.slice(0, 5).join('.')) !== p[5]) return null;
+      const hm = p[1].match(/^([ABC])([0-9]{1,3})$/); if (!hm || !(Number(hm[2]) > 0) || !ID_UJIAN_RE.test(p[2])) return null;
+      const judul = dariB64url(p[3]);
+      const soalIds = bacaSoalKode(p[4]); if (!soalIds || !soalIds.length) return null;
+      return { id: p[2], judul, tingkat: hm[1], menit: Number(hm[2]), soalIds, tidakDikenal: soalIds.filter(id => !K.soal(id)) };
+    } catch (e) { return null; }
+  }
+  // kode jawaban: 'UKPJ1.<ujianId>.<nama>.<jawaban>.<detik>.<cek>' — nama alfanumerik apa adanya, selain itu '0' + hex UTF-8;
+  // jawaban satu karakter per soal: A–D, huruf kecil = ragu, '-' kosong, '!' kosong + ragu
+  function buatJawaban(o) {
+    o = isObjL(o) ? o : {};
+    const id = typeof o.ujianId === 'string' && ID_UJIAN_RE.test(o.ujianId) ? o.ujianId : '';
+    const nm = L.rapikanNamaPeserta(o.nama).slice(0, L.MAKS_NAMA_PESERTA);
+    const namaK = !nm ? '' : /^[A-Za-z][A-Za-z0-9]*$/.test(nm) ? nm : '0' + hexUtf8(nm);
+    const jw = Array.isArray(o.jawaban) ? o.jawaban : [], rg = Array.isArray(o.ragu) ? o.ragu : [];
+    const isiJ = jw.slice(0, 400).map((v, i) => { const x = jawabPeserta(v).o; const r = !!rg[i]; return x === '-' ? (r ? '!' : '-') : (r ? x.toLowerCase() : x); }).join('');
+    const dt = Number(o.detik); const isi = [L.TOKEN_JAWABAN_AWAL, id, namaK, isiJ, isFinite(dt) && dt >= 0 ? String(Math.round(dt)) : ''].join('.');
+    return isi + '.' + cek3(isi);
+  }
+  const TOKEN_JWB_RE = /UKPJ1\.([A-Za-z0-9]*)\.([A-Za-z0-9]*)\.([A-Da-d!-]*)\.([0-9]*)\.([0-9a-z]{3})(?![0-9A-Za-z])/g;
+  function bacaToken(m) {
+    let nama = null; const nk = m[2];
+    if (nk) { if (/^0/.test(nk)) { try { nama = dariHex(nk.slice(1)); } catch (e) { nama = null; } } else nama = nk; }
+    const jawaban = [], ragu = [];
+    for (const c of m[3]) { if (c === '-' || c === '!') { jawaban.push('-'); ragu.push(c === '!'); } else { jawaban.push(c.toUpperCase()); ragu.push(c !== c.toUpperCase()); } }
+    return { ujianId: m[1] || null, nama: nama ? L.rapikanNamaPeserta(nama) : null, jawaban, ragu, detik: m[4] ? Number(m[4]) : null,
+      _rusak: cek3(m[0].slice(0, m[0].length - 4)) !== m[5] };
+  }
+  // awalan salinan WhatsApp: '[10/11 14.03] ' atau '10/11/26 14.03 - '
+  const buangKepalaWA = t => t.replace(/^\s*\[[^\]]{0,40}\]\s*/, '').replace(/^\s*\d{1,2}\/\d{1,2}(\/\d{2,4})?,?\s+\d{1,2}[.:]\d{2}(\s*[AP]M)?\s*-\s*/i, '');
+  // nama di depan ':' pertama bila memuat huruf; tanpa ':' → kata pertama yang memuat huruf selain A–D
+  function pisahNama(t) {
+    t = buangKepalaWA(String(t || ''));
+    const i = t.indexOf(':');
+    if (i >= 0 && /\p{L}/u.test(t.slice(0, i))) return { nama: L.rapikanNamaPeserta(t.slice(0, i)).slice(0, L.MAKS_NAMA_PESERTA) || null, isi: t.slice(i + 1) };
+    const m = t.match(/^\s*(\S*[E-Ze-zÀ-￿]\S*)\s+/);
+    return m ? { nama: L.rapikanNamaPeserta(m[1]).slice(0, L.MAKS_NAMA_PESERTA), isi: t.slice(m[0].length) } : { nama: null, isi: t };
+  }
+  function bacaBebas(t) {
+    const { nama, isi: isiMentah } = pisahNama(t); const jawaban = [], ragu = [];
+    // kata yang memuat huruf selain A–D (mis. "semua", "jawabanku") diabaikan utuh agar huruf a/b/c/d di dalamnya tidak terbaca sebagai jawaban
+    const isi = isiMentah.replace(/[\p{L}]+/gu, w => /^[A-Da-d]+$/.test(w) ? w : ' ');
+    for (const c of isi) {
+      if (/[A-Da-d]/.test(c)) { jawaban.push(c.toUpperCase()); ragu.push(false); }
+      else if (c === '-' || c === '_' || c === '–') { jawaban.push('-'); ragu.push(false); }
+      else if (c === '?') { if (ragu.length) ragu[ragu.length - 1] = true; }
+    }
+    return { ujianId: null, nama, jawaban, ragu, detik: null, _rusak: false };
+  }
+  function selesaikanJawaban(r, n) {
+    const panjang = r.jawaban.length; let galat = null;
+    if (r._rusak) galat = 'Kode jawaban tidak utuh. Minta kirim ulang.';
+    else if (!panjang) galat = 'Tidak ada jawaban terbaca.';
+    const nn = Number(n);
+    if (Number.isInteger(nn) && nn > 0) {
+      if (panjang !== nn && !galat) galat = 'Terbaca ' + panjang + ' jawaban, seharusnya ' + nn;
+      r.jawaban = r.jawaban.slice(0, nn); r.ragu = r.ragu.slice(0, nn);
+      while (r.jawaban.length < nn) { r.jawaban.push('-'); r.ragu.push(false); }
+    }
+    const terisi = r.jawaban.filter(x => x !== '-').length;
+    return { ujianId: r.ujianId, nama: r.nama || null, jawaban: r.jawaban, ragu: r.ragu, detik: r.detik, terisi, kosong: r.jawaban.length - terisi, nRagu: r.ragu.filter(Boolean).length, panjang, galat };
+  }
+  function bacaJawaban(teks, n) {
+    const t = String(teks == null ? '' : teks).slice(0, 20000);
+    TOKEN_JWB_RE.lastIndex = 0; const m = TOKEN_JWB_RE.exec(t); TOKEN_JWB_RE.lastIndex = 0;
+    if (m) { const r = bacaToken(m); if (!r.nama) r.nama = pisahNama(t.slice(0, m.index)).nama; return selesaikanJawaban(r, n); }
+    return selesaikanJawaban(bacaBebas(t), n);
+  }
+  // satu tempelan berisi banyak orang: tiap token UKPJ1, atau tiap baris 'Nama: …' (baris lanjutan tanpa ':' ikut baris sebelumnya)
+  function bacaBanyak(teks, n) {
+    const hasil = []; let bebas = null;
+    const tutup = () => { if (bebas) { const r = bacaBebas(bebas); if (r.jawaban.length) hasil.push(selesaikanJawaban(r, n)); bebas = null; } };
+    for (const baris of String(teks == null ? '' : teks).slice(0, 100000).split(/\r?\n/)) {
+      const ada = [...baris.matchAll(TOKEN_JWB_RE)];
+      if (ada.length) {
+        tutup();
+        ada.forEach(m => { const r = bacaToken(m); if (!r.nama) r.nama = pisahNama(baris.slice(0, m.index)).nama; hasil.push(selesaikanJawaban(r, n)); });
+        continue;
+      }
+      const tb = buangKepalaWA(baris); const i = tb.indexOf(':');
+      if (i >= 0 && /\p{L}/u.test(tb.slice(0, i))) { tutup(); bebas = tb; }
+      else if (bebas && /[A-Da-d?_-]/.test(baris)) bebas += ' ' + baris;
+      else if (bebas && !baris.trim()) tutup();
+    }
+    tutup();
+    return hasil;
+  }
+
+  // ---------- D. keadaan ujian tim di perangkat pemimpin (s.ujianTim) ----------
+  const utAktif = () => { const s = UKP.store.get(); return isObjL(s.ujianTim) && Array.isArray(s.ujianTim.soalIds) ? s.ujianTim : null; };
+  const namaDi = (daftar, nama) => { const k = kunciNama(nama); return k ? (daftar.find(x => kunciNama(x) === k) || null) : null; };
+  function pastikanPeserta(u, nama) {
+    let p = namaDi(u.peserta, nama); if (p) return p;
+    const nm = L.rapikanNamaPeserta(nama); if (!nm || nm.length > L.MAKS_NAMA_PESERTA || u.peserta.length >= L.MAKS_PESERTA) return null;
+    u.peserta.push(nm); return nm;
+  }
+  const isiKosong = (o, k) => { if (!isObjL(o[k])) o[k] = {}; return o[k]; };
+  const UT = L.ujianTim = { buatKode, bacaKode, buatJawaban, bacaJawaban, bacaBanyak };
+  UT.aktif = () => { const u = utAktif(); return u ? salinJSON(u) : null; };
+  // susun ujian baru (menggantikan ujian aktif yang ada) → id
+  UT.susun = function (o) {
+    o = isObjL(o) ? o : {}; const s = L.siapBersama(UKP.store.get());
+    const ids = []; (Array.isArray(o.soalIds) ? o.soalIds : []).forEach(x => { if (typeof x === 'string' && x && !ids.includes(x)) ids.push(x); });
+    if (!ids.length) return null;
+    const tingkat = TINGKAT_SAH.includes(o.tingkat) ? o.tingkat : tingkatProfil();
+    const menit = bulatPositif(o.menit) || Math.max(1, Math.round(ids.length * L.tempoUjian(tingkat) / 60));
+    const peserta = []; (Array.isArray(o.peserta) ? o.peserta : s.bersama.peserta).forEach(x => { const n = L.rapikanNamaPeserta(x); if (n && n.length <= L.MAKS_NAMA_PESERTA && !namaDi(peserta, n) && peserta.length < L.MAKS_PESERTA) peserta.push(n); });
+    const kini = Date.now(); const id = typeof o.id === 'string' && ID_UJIAN_RE.test(o.id) ? o.id : idUjianBaru();
+    const jawaban = {}, ragu = {}; peserta.forEach(n => { jawaban[n] = {}; ragu[n] = {}; });
+    const sb = isObjL(o.sumber) ? o.sumber : null;
+    s.ujianTim = { id, judul: teksPendek(o.judul, 80) || 'Ujian tim', tingkat, menit, detikPerSoal: Math.round(menit * 60 / ids.length), soalIds: ids, peserta,
+      cara: o.cara === 'perangkat' ? 'perangkat' : 'papan', dibuat: kini, mulai: null, akhir: null, posisi: 0, jawaban, ragu, detikSoal: {}, terkumpul: {},
+      sumber: sb ? { format: sb.format != null ? String(sb.format) : null, kode: sb.kode != null ? String(sb.kode) : null, bagian: sb.bagian != null ? String(sb.bagian) : null } : null };
+    UKP.store.save();
+    return id;
+  };
+  UT.mulai = function () {
+    const u = utAktif(); if (!u) return null;
+    if (!u.mulai) { u.mulai = Date.now(); u.akhir = u.mulai + u.menit * 60000; UKP.store.save(); }
+    return salinJSON(u);
+  };
+  // opsi 'A'–'D' | '-' (kosong ditandai) | null (hapus)
+  UT.catat = function (nama, soalId, opsi) {
+    const u = utAktif(); if (!u || !u.soalIds.includes(soalId)) return false;
+    const p = namaDi(u.peserta, nama); if (!p) return false;
+    const jw = isiKosong(u.jawaban, p);
+    if (opsi == null) delete jw[soalId]; else jw[soalId] = jawabPeserta(opsi).o;
+    UKP.store.save(); return true;
+  };
+  UT.ragu = function (nama, soalId, ya) {
+    const u = utAktif(); if (!u || !u.soalIds.includes(soalId)) return false;
+    const p = namaDi(u.peserta, nama); if (!p) return false;
+    const rg = isiKosong(u.ragu, p); if (ya) rg[soalId] = 1; else delete rg[soalId];
+    UKP.store.save(); return true;
+  };
+  UT.aturPosisi = function (i) {
+    const u = utAktif(); if (!u) return null;
+    u.posisi = Math.max(0, Math.min(u.soalIds.length - 1, Math.round(Number(i)) || 0)); UKP.store.save(); return u.posisi;
+  };
+  UT.tambahDetik = function (soalId, detik) {
+    const u = utAktif(); const d = Math.min(3600, Math.max(0, Number(detik) || 0)); if (!u || !u.soalIds.includes(soalId)) return 0;
+    if (!isObjL(u.detikSoal)) u.detikSoal = {};
+    u.detikSoal[soalId] = Math.round(((Number(u.detikSoal[soalId]) || 0) + d) * 10) / 10; UKP.store.save(); return u.detikSoal[soalId];
+  };
+  UT.tambahMenit = function (n) {
+    const u = utAktif(); n = Math.round(Number(n) || 0); if (!u) return null;
+    const baru = Math.max(1, u.menit + n); const geser = baru - u.menit; u.menit = baru;
+    if (u.akhir) u.akhir += geser * 60000;
+    u.detikPerSoal = Math.round(u.menit * 60 / u.soalIds.length); UKP.store.save(); return salinJSON(u);
+  };
+  // jawaban lengkap satu orang (dari kode jawaban, ketikan, atau perangkatnya sendiri): larik sejajar soalIds; menimpa catatan papan orang itu
+  UT.kumpul = function (nama, o) {
+    const u = utAktif(); if (!u) return false; o = isObjL(o) ? o : {};
+    const p = pastikanPeserta(u, nama); if (!p) return false;
+    const jw = Array.isArray(o.jawaban) ? o.jawaban : [], rg = Array.isArray(o.ragu) ? o.ragu : [];
+    const aJ = u.soalIds.map((_, i) => jawabPeserta(jw[i]).o), aR = u.soalIds.map((_, i) => !!rg[i]);
+    const pj = u.jawaban[p] = {}, pr = u.ragu[p] = {};
+    u.soalIds.forEach((id, i) => { if (aJ[i] !== '-') pj[id] = aJ[i]; if (aR[i]) pr[id] = 1; });
+    const dt = Number(o.detik);
+    if (!isObjL(u.terkumpul)) u.terkumpul = {};
+    u.terkumpul[p] = { jawaban: aJ, ragu: aR, detik: o.detik != null && isFinite(dt) && dt >= 0 ? Math.round(dt) : null, sumber: ['kode', 'ketik', 'sendiri'].includes(o.sumber) ? o.sumber : 'ketik', pada: Date.now() };
+    UKP.store.save(); return true;
+  };
+  UT.lepasKumpul = function (nama) {
+    const u = utAktif(); if (!u) return false; const p = namaDi(u.peserta, nama); if (!p || !isObjL(u.terkumpul) || !u.terkumpul[p]) return false;
+    delete u.terkumpul[p]; u.jawaban[p] = {}; u.ragu[p] = {}; UKP.store.save(); return true;
+  };
+  UT.ringkas = function () {
+    const u = utAktif(); if (!u) return null;
+    const perPeserta = {};
+    u.peserta.forEach(p => {
+      const jw = isObjL(u.jawaban[p]) ? u.jawaban[p] : {}, rg = isObjL(u.ragu[p]) ? u.ragu[p] : {};
+      const terisi = u.soalIds.filter(id => OPSI_RE.test(jw[id] || '')).length;
+      perPeserta[p] = { terisi, kosong: u.soalIds.length - terisi, nRagu: u.soalIds.filter(id => rg[id]).length, mengumpulkan: !!(isObjL(u.terkumpul) && u.terkumpul[p]) };
+    });
+    const perSoal = u.soalIds.map(id => ({ id, nIsi: u.peserta.filter(p => isObjL(u.jawaban[p]) && OPSI_RE.test(u.jawaban[p][id] || '')).length, nRagu: u.peserta.filter(p => isObjL(u.ragu[p]) && u.ragu[p][id]).length }));
+    return { n: u.soalIds.length, perPeserta, perSoal };
+  };
+  UT.batal = function () { const s = UKP.store.get(); const ada = !!s.ujianTim; s.ujianTim = null; UKP.store.save(); return ada; };
+  // nilai → rekaman s.sesiBersama mode 'ujian' (salinan); panggilan kedua → null. opsi = { hanyaYangMengumpulkan }
+  UT.nilai = function (opsi) {
+    const s = L.siapBersama(UKP.store.get()); const u = utAktif(); if (!u) return null; opsi = isObjL(opsi) ? opsi : {};
+    const kini = Date.now(); const arr = daftarSesi(s);
+    const adaJawab = p => isObjL(u.jawaban[p]) && u.soalIds.some(id => OPSI_RE.test(u.jawaban[p][id] || ''));
+    const peserta = u.peserta.filter(p => !opsi.hanyaYangMengumpulkan || adaJawab(p));
+    let id = 'sb-' + kini; let i = 1; while (arr.some(x => x.id === id)) id = 'sb-' + kini + '-' + (i++);
+    const dS = isObjL(u.detikSoal) ? u.detikSoal : {};
+    const soal = u.soalIds.map(sid => {
+      const b = K.soal(sid); const kunci = (b && b.kunci) || ''; const jawaban = {};
+      peserta.forEach(p => {
+        const o = jawabPeserta(isObjL(u.jawaban[p]) ? u.jawaban[p][sid] : null).o; const rg = !!(isObjL(u.ragu[p]) && u.ragu[p][sid]);
+        jawaban[p] = { o, k: rg && o !== '-' ? 'ragu' : null, b: o !== '-' && o === kunci ? 1 : 0 };
+      });
+      return { id: sid, kode: (b && b.kode) || sid.split('-')[0], topik: (b && b.topik) || '', kunci, detik: Math.round(Math.min(3600, Math.max(0, Number(dS[sid]) || 0))), jawaban };
+    });
+    const waktuPeserta = {};
+    peserta.forEach(p => { const t = isObjL(u.terkumpul) && u.terkumpul[p]; if (t && typeof t.detik === 'number') waktuPeserta[p] = t.detik; });
+    const sesi = { id, mulai: u.mulai || u.dibuat || kini, selesai: kini, tingkat: u.tingkat, peserta, anggaranDetik: u.menit * 60, soal, sumber: 'ujiantim', rencana: soal.length,
+      tempo: 'ujian', detikPerSoal: u.detikPerSoal, mode: 'ujian', judul: u.judul || null, ujianId: u.id, bahas: {}, waktuPeserta, cara: u.cara };
+    arr.push(sesi); if (arr.length > L.MAKS_SESI_BERSAMA) arr.splice(0, arr.length - L.MAKS_SESI_BERSAMA);
+    // riwayat per orang (dasbor lokal): peserta yang menjawab ≥ 1 soal
+    peserta.filter(adaJawab).forEach(p => soal.forEach(q => {
+      const j = q.jawaban[p]; s.jawabanBersama.push({ p, s: q.id, kd: q.kode, t: q.topik, o: j.o, b: j.b, d: q.detik, w: kini, m: 'ujian', k: j.k, sesi: id });
+    }));
+    pangkasBersama(s.jawabanBersama, kini);
+    // statistik pribadi pemimpin (konteks 'simulasi'), kecuali ujian ini sudah ia kerjakan sebagai simulasi di perangkat ini
+    const pemimpin = namaDi(peserta, s.profil && s.profil.nama);
+    const sudahSim = (Array.isArray(s.simulasi) ? s.simulasi : []).some(x => x && isObjL(x.tim) && x.tim.ujianId === u.id);
+    if (pemimpin && !sudahSim) soal.forEach(q => {
+      const j = q.jawaban[pemimpin]; const b = K.soal(q.id); if (!b || j.o === '-') return;
+      L.catatJawaban(b, j.o, q.detik, 'simulasi');
+      if (j.k) { const a = s.jawaban[s.jawaban.length - 1]; if (a && a.soal === q.id && a.konteks === 'simulasi') a.keyakinan = j.k; }
+    });
+    s.ujianTim = null;
+    UKP.store.save();
+    return salinJSON(sesi);
+  };
+
+  // ---------- D. lembar jawab pribadi (HP anggota) ----------
+  L.lembarJawab = {
+    ambil() { const x = UKP.store.get().lembarJawab; return isObjL(x) && Array.isArray(x.jawaban) ? salinJSON(x) : null; },
+    simpan(o) {
+      o = isObjL(o) ? o : {}; const s = UKP.store.get();
+      const jw = Array.isArray(o.jawaban) ? o.jawaban : [], rg = Array.isArray(o.ragu) ? o.ragu : [];
+      const n = Math.min(400, bulatPositif(o.n) || jw.length);
+      s.lembarJawab = { ujianId: typeof o.ujianId === 'string' && o.ujianId ? o.ujianId.slice(0, 40) : null, judul: teksPendek(o.judul, 80), nama: L.rapikanNamaPeserta(o.nama).slice(0, L.MAKS_NAMA_PESERTA), n,
+        jawaban: Array.from({ length: n }, (_, i) => jawabPeserta(jw[i]).o), ragu: Array.from({ length: n }, (_, i) => !!rg[i]), dibuat: Number(o.dibuat) > 0 ? Number(o.dibuat) : Date.now() };
+      UKP.store.save(); return salinJSON(s.lembarJawab);
+    },
+    hapus() { UKP.store.get().lembarJawab = null; UKP.store.save(); return true; },
+  };
+
+  // ---------- E. lanjutkan sesi latihan bersama ----------
+  L.MAKS_JAM_BERSAMA_AKTIF = 24;
+  L.simpanBersamaAktif = function (o) {
+    const s = UKP.store.get();
+    if (!isObjL(o) || typeof o.sesiId !== 'string') { s.bersamaAktif = null; UKP.store.save(); return null; }
+    const dr = isObjL(o.draf) && typeof o.draf.soalId === 'string' ? o.draf : null;
+    s.bersamaAktif = { sesiId: o.sesiId, soalIds: (Array.isArray(o.soalIds) ? o.soalIds : []).filter(x => typeof x === 'string'), idx: Math.max(0, Math.round(Number(o.idx) || 0)),
+      sisaDetik: Math.max(0, Math.round(Number(o.sisaDetik) || 0)), anggaranDetik: Math.max(0, Math.round(Number(o.anggaranDetik) || 0)),
+      tempo: o.tempo === 'longgar' ? 'longgar' : 'ujian', detikPerSoal: bulatPositif(o.detikPerSoal) || null, ulang: o.ulang === undefined ? null : salinJSON(o.ulang), diperbarui: Date.now(),
+      draf: dr ? { soalId: dr.soalId, jb: isObjL(dr.jb) ? salinJSON(dr.jb) : {}, yb: isObjL(dr.yb) ? salinJSON(dr.yb) : {}, detikSoal: Math.max(0, Math.round(Number(dr.detikSoal) || 0)) } : null };
+    UKP.store.save(); return salinJSON(s.bersamaAktif);
+  };
+  L.bersamaAktif = function () {
+    const s = UKP.store.get(); const a = s.bersamaAktif;
+    if (!isObjL(a) || typeof a.sesiId !== 'string' || !Array.isArray(a.soalIds)) return null;
+    const x = sesiDari(s, a.sesiId); if (!x || x.selesai) return null;
+    if (!(Number(a.diperbarui) > 0) || Date.now() - Number(a.diperbarui) > L.MAKS_JAM_BERSAMA_AKTIF * 3600000) return null;
+    return salinJSON(a);
+  };
+
   // kartu buatan pengguna: "Jadikan kartu" dari Lembar Angka / angka kunci topik / "Tambah ke kartu" Angka hari ini
   // (id KA-lembar-*, KA-poin-*, KA-angka-*); kartu dari soal yang keliru (KA-<id soal>) bukan buatan pengguna
   const BUATAN_RE = /^KA-(lembar|poin|angka)-/;

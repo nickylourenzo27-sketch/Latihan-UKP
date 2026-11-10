@@ -26,7 +26,7 @@
   const poolKode = (kode, tingkat) => K.soalKelompok(kode, K.kelompok(tingkat).includes(kode) ? tingkat : undefined);
   function susunAttempt(cfg) {
     const s = UKP.store.get(); const tingkat = cfg.tingkat || s.profil.tingkat; const fmt = formatUjian();
-    let soal = [], menit, perKel = {};
+    let soal = [], menit, perKel = {}, bagianTO = null;
     if (cfg.format === 'USKP') {
       const pool = poolKode(cfg.kode, tingkat); const n = Math.min(40, pool.length);
       soal = U.ambil(pool, n); menit = cfg.menit || (UKP.modul[cfg.kode] && UKP.modul[cfg.kode].meta.durasiUSKP) || 90; perKel[cfg.kode] = n;
@@ -46,18 +46,27 @@
       if (cfg.terbagi) { const setengah = Math.ceil(soal.length / 2); soal = cfg.bagian === 2 ? soal.slice(setengah) : soal.slice(0, setengah); menit = Math.round(menit / 2); }
     } else if (cfg.format === 'tryout') {
       // paket try out: seluruh soal set itu dalam urutan asli (sumber.no); waktu = menit yang dipilih, bawaan durasi UKP tingkat paket
-      const p = paketSet(cfg.kode); soal = K.soalSet(cfg.kode); menit = cfg.menit || ((p && fmt.UKP[p.tingkat]) || {}).menit || Math.max(5, Math.round(soal.length * 2.1)); soal.forEach(x => { perKel[x.kode] = (perKel[x.kode] || 0) + 1; });
+      // v8.1: bagian paket (cfg.dari–cfg.sampai, nomor 1-based) dengan waktu bawaan = n × tempo ujian (B: 126 dtk/soal)
+      const p = paketSet(cfg.kode); const semua = K.soalSet(cfg.kode);
+      const dari = U.clamp(Math.round(Number(cfg.dari) || 1), 1, Math.max(1, semua.length)); const sampai = U.clamp(Math.round(Number(cfg.sampai) || semua.length), dari, Math.max(dari, semua.length));
+      soal = semua.slice(dari - 1, sampai); bagianTO = dari > 1 || sampai < semua.length ? dari + '–' + sampai : null;
+      menit = cfg.menit || (bagianTO ? menitTempo(soal.length, (p && p.tingkat) || tingkat) : ((p && fmt.UKP[p.tingkat]) || {}).menit) || Math.max(5, Math.round(soal.length * 2.1)); soal.forEach(x => { perKel[x.kode] = (perKel[x.kode] || 0) + 1; });
     } else { // kustom
       const pool = cfg.kode ? poolKode(cfg.kode, tingkat) : K.semuaSoal(tingkat); soal = U.ambil(pool, Math.min(cfg.jumlah || 20, pool.length)); menit = cfg.menit || Math.round(soal.length * 2.5); soal.forEach(x => { perKel[x.kode] = (perKel[x.kode] || 0) + 1; });
     }
     const urut = cfg.format === 'UKP' ? kelompokkanVignette(soal) : cfg.format === 'tryout' ? soal : kelompokkanVignette(U.acak(soal));
     // UKP komprehensif tidak punya kode kelompok (label "UKP Tingkat A", bukan "UKP A1")
-    return { id: U.id('sim'), format: cfg.format, tingkat, kode: cfg.format === 'UKP' ? null : (cfg.kode || null), menit, tanpaWaktu: !!cfg.tanpaWaktu, soalIds: urut.map(x => x.id), jawaban: {}, ragu: [], detik: {}, mulai: Date.now(), akhir: Date.now() + menit * 60000, posisi: 0, perKel, selesai: null, terbagi: cfg.format === 'UKP' && cfg.terbagi ? (cfg.bagian || 1) : null };
+    return { id: U.id('sim'), format: cfg.format, tingkat, kode: cfg.format === 'UKP' ? null : (cfg.kode || null), menit, tanpaWaktu: !!cfg.tanpaWaktu, soalIds: urut.map(x => x.id), jawaban: {}, ragu: [], detik: {}, mulai: Date.now(), akhir: Date.now() + menit * 60000, posisi: 0, perKel, selesai: null, terbagi: cfg.format === 'UKP' && cfg.terbagi ? (cfg.bagian || 1) : null, bagian: bagianTO };
   }
+  // v8.1 tempo ujian sungguhan: menit untuk n soal = round(n × L.tempoUjian(tingkat) / 60) (B: 40 soal → 84 mnt)
+  function menitTempo(n, tingkat) { const d = L && typeof L.tempoUjian === 'function' ? L.tempoUjian(tingkat) : 126; return Math.max(1, Math.round(n * d / 60)); }
+  // potongan 40 soal paket try out: Semua · 1–40 · 41–80 · 81–100 (hanya bila paket > 40 soal)
+  function potonganTO(n) { const out = [{ nilai: 'semua', label: 'Semua', dari: 1, sampai: n }]; if (n > 40) for (let i = 1; i <= n; i += 40) out.push({ nilai: i + '-' + Math.min(n, i + 39), label: i + '–' + Math.min(n, i + 39), dari: i, sampai: Math.min(n, i + 39) }); return out; }
   function labelSim(x) {
+    if (x.format === 'tim') return 'Ujian tim · ' + ((x.tim && x.tim.judul) || 'tanpa judul');
     if (x.format === 'UKP') return 'UKP Tingkat ' + x.tingkat + (x.terbagi ? ' (bagian ' + x.terbagi + ')' : '');
     if (x.format === 'USKP') return 'Kelompok ' + (x.kode || '') + ' · 40 soal'; // format internal 'USKP' tetap (data lama)
-    if (x.format === 'tryout') return labelSet(x.kode);
+    if (x.format === 'tryout') { if (!x.bagian) return labelSet(x.kode); const d = paketSet(x.kode); return (d ? d.label : 'Try Out ' + (x.kode || '')) + ' · soal ' + x.bagian; }
     return 'Kustom ' + (x.kode ? x.kode : 'Tingkat ' + x.tingkat);
   }
   const kedaluwarsa = a => !a.tanpaWaktu && a.akhir <= Date.now();
@@ -67,6 +76,14 @@
     a.soalIds.forEach(id => { const so = K.soal(id); if (!so) return; const k = so.kode; perKel[k] = perKel[k] || { benar: 0, total: 0 }; perKel[k].total++; detikKel[k] = (detikKel[k] || 0) + (a.detik[id] || 0); const jw = a.jawaban[id]; if (jw === so.kunci) { benar++; perKel[k].benar++; } if (jw) UKP.belajar.catatJawaban(so, jw, a.detik[id] || 0, 'simulasi'); });
     const total = a.soalIds.length; const skor = total ? Math.round(benar / total * 1000) / 10 : 0;
     const rekam = { id: a.id, format: a.format, tingkat: a.tingkat, kode: a.format === 'UKP' ? null : a.kode, mulai: a.mulai, selesai: Date.now(), skor, benar, total, perKel, detikKel, jawaban: a.jawaban, ragu: a.ragu, soalIds: a.soalIds, detik: a.detik, menit: a.menit, terbagi: a.terbagi, otomatis: !!otomatis, tanpaWaktu: a.tanpaWaktu };
+    if (a.bagian) rekam.bagian = a.bagian;
+    // v8.1 percobaan ujian tim: field tim ikut ke rekaman; detik terpakai untuk kode jawaban. Pemimpin yang mengerjakan bagiannya
+    // di perangkat ini (ujian tim aktif ber-id sama) langsung terkumpul ke s.ujianTim sebagai sumber 'sendiri'
+    if (a.tim) {
+      rekam.tim = Object.assign({}, a.tim); rekam.detikTotal = Math.max(0, Math.round(Math.min(rekam.selesai - a.mulai, a.menit * 60000) / 1000));
+      const UT = L.ujianTim; const u = UT && UT.aktif ? UT.aktif() : null;
+      if (u && u.id === a.tim.ujianId && UT.kumpul(a.tim.nama, { jawaban: a.soalIds.map(id => a.jawaban[id] || '-'), ragu: a.soalIds.map(id => a.ragu.includes(id)), detik: rekam.detikTotal, sumber: 'sendiri' })) rekam.tim.terkumpul = true;
+    }
     s.simulasi.push(rekam); if (s.simulasi.length > 60) s.simulasi.shift();
     s.simulasiAktif = null;
     const akhir = a.tanpaWaktu ? Date.now() : Math.min(Date.now(), a.akhir);
@@ -81,6 +98,45 @@
     UKP.store.save(); const n = s.kartuOtomatis.filter(k => !ada.has(k.id)).length;
     UKP.toast(n ? n + ' kartu ditambahkan ke dek.' : 'Soal yang salah sudah ada di dek kartu.');
   }
+
+  // ================= v8.1 PERCOBAAN UJIAN TIM (format 'tim') =================
+  // UKP.simulasiTim.mulai({ ujianId, judul, tingkat, menit, soalIds, nama }) → s.simulasiAktif (urutan soal apa adanya, tanpa acak);
+  // tokenDari(rekaman) → kode jawaban UKPJ1 (urutan soalIds); kartuKirim(rekaman) → kartu "Kirim jawaban ke pemimpin"
+  function mulaiPercobaanTim(c) {
+    c = c || {}; const s = UKP.store.get(); const ids = (Array.isArray(c.soalIds) ? c.soalIds : []).filter(id => typeof id === 'string' && id);
+    if (!ids.length) return null;
+    const tingkat = ['A', 'B', 'C'].includes(c.tingkat) ? c.tingkat : s.profil.tingkat;
+    const menit = Math.max(1, Math.round(Number(c.menit) || menitTempo(ids.length, tingkat)));
+    const perKel = {}; ids.forEach(id => { const so = K.soal(id); const k = so ? so.kode : String(id).split('-')[0]; perKel[k] = (perKel[k] || 0) + 1; });
+    const kini = Date.now();
+    s.simulasiAktif = { id: U.id('sim'), format: 'tim', tingkat, kode: null, menit, tanpaWaktu: false, soalIds: ids, jawaban: {}, ragu: [], detik: {}, mulai: kini, akhir: kini + menit * 60000, posisi: 0, perKel, selesai: null, terbagi: null,
+      tim: { ujianId: String(c.ujianId || ''), judul: String(c.judul || 'Ujian tim').slice(0, 80), nama: L.rapikanNamaPeserta ? L.rapikanNamaPeserta(c.nama).slice(0, 24) : String(c.nama || '') } };
+    UKP.store.save();
+    return s.simulasiAktif;
+  }
+  function tokenDari(r) {
+    if (!r || !r.tim || !L.ujianTim) return '';
+    const ids = r.soalIds || []; const detik = typeof r.detikTotal === 'number' ? r.detikTotal : Math.max(0, Math.round(Math.min((r.selesai || Date.now()) - r.mulai, (r.menit || 0) * 60000) / 1000));
+    return L.ujianTim.buatJawaban({ ujianId: r.tim.ujianId, nama: r.tim.nama, jawaban: ids.map(id => (r.jawaban || {})[id] || '-'), ragu: ids.map(id => (r.ragu || []).includes(id)), detik });
+  }
+  const teksKirimWA = r => 'Jawaban ' + (r.tim.nama || 'saya') + ' · ' + (r.tim.judul || 'Ujian tim') + '\n' + tokenDari(r);
+  function kartuKirimTim(r) {
+    const u = L.ujianTim && L.ujianTim.aktif ? L.ujianTim.aktif() : null;
+    const diRuang = u && u.id === r.tim.ujianId;
+    if (diRuang && r.tim.terkumpul) return h('section', { class: 'card sorot kirim-tim', 'aria-labelledby': 'kirim-tim-j' },
+      h('div', { class: 'card-head' }, h('div', { class: 'card-head-teks' }, h('h2', { class: 'card-title', id: 'kirim-tim-j' }, 'Jawaban Anda sudah terkumpul'), h('p', { class: 'card-meta' }, r.tim.judul + ' · atas nama ' + r.tim.nama))),
+      h('p', { class: 'small' }, 'Jawaban Anda sudah masuk ruang ujian di perangkat ini. Kumpulkan jawaban anggota lain, lalu nilai hasil tim.'),
+      h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary', onclick: () => UKP.go('ujiantim') }, 'Buka ruang ujian')));
+    const token = tokenDari(r);
+    return h('section', { class: 'card sorot kirim-tim', 'aria-labelledby': 'kirim-tim-j' },
+      h('div', { class: 'card-head' }, h('div', { class: 'card-head-teks' }, h('h2', { class: 'card-title', id: 'kirim-tim-j' }, 'Kirim jawaban ke pemimpin'), h('p', { class: 'card-meta' }, r.tim.judul + ' · atas nama ' + r.tim.nama))),
+      h('p', { class: 'small' }, 'Kode jawaban Anda (satu baris):'),
+      h('p', { class: 'token-jawaban mono', 'data-token': token }, token),
+      h('div', { class: 'btn-row' }, UKP.c.salin(token, { label: 'Salin kode', kelas: 'btn btn-primary', pesan: 'Kode jawaban disalin.', judul: 'Salin kode jawaban' }),
+        h('a', { class: 'btn', href: 'https://wa.me/?text=' + encodeURIComponent(teksKirimWA(r)), target: '_blank', rel: 'noopener' }, UKP.icon('chat', null, true), 'Kirim lewat WhatsApp')),
+      h('p', { class: 'meta' }, 'Skor Anda sudah dihitung di perangkat ini; pemimpin menggabungkan hasil tim.'));
+  }
+  UKP.simulasiTim = { mulai: mulaiPercobaanTim, tokenDari, kartuKirim: kartuKirimTim, teksKirim: teksKirimWA, menitTempo };
 
   // ================= PRA-UJIAN =================
   const fmtSkor = x => UKP.fmt.angka(x, x % 1 ? 1 : 0);
@@ -102,6 +158,7 @@
     }
     const page = h('div', { class: 'page lebar halaman-simulasi' });
     page.appendChild(UKP.c.kop({ judul: 'Simulasi ujian', lead: 'Latihan ujian penuh seperti CAT: waktu berjalan, pembahasan muncul setelah dikirim.' }));
+    { const kut = typeof UKP.c.kartuUjianTim === 'function' ? UKP.c.kartuUjianTim() : null; if (kut) page.appendChild(kut); } // v8.1 ujian tim berjalan
     const lulusBatas = (fmt.UKP || {}).lulus || 60;
     // ≥ 1024: Ringkasan + tombol Mulai di kolom kanan lengket; < 1024: satu baris .meta tepat di atas .sticky-actions
     const kolomDua = window.innerWidth >= 1024;
@@ -110,9 +167,12 @@
     // konfigurasi per format, agar pilihan satu format tidak bocor ke format lain
     // paket soal bersumber (try out): format 'tryout' hanya tampil bila ada soal ber-sumber.set; kode = set, urutan asli
     const paket = K.daftarSet ? K.daftarSet() : [];
-    const cfg = { format: ['UKP', 'USKP', 'kustom'].concat(paket.length ? ['tryout'] : []).includes(params.format) ? params.format : 'UKP', kodeUSKP: params.kode && UKP.modul[params.kode] ? params.kode : kelT[0], kodeKustom: params.format === 'kustom' && params.kode ? params.kode : '', jumlah: 20, menitKustom: 50, tanpaWaktu: false, terbagi: false, bagian: 1, set: params.format === 'tryout' && paket.some(p => p.set === params.kode) ? params.kode : (paket[0] ? paket[0].set : null), menitTO: null };
+    const cfg = { format: ['UKP', 'USKP', 'kustom'].concat(paket.length ? ['tryout'] : []).includes(params.format) ? params.format : 'UKP', kodeUSKP: params.kode && UKP.modul[params.kode] ? params.kode : kelT[0], kodeKustom: params.format === 'kustom' && params.kode ? params.kode : '', jumlah: 20, menitKustom: 50, tanpaWaktu: false, terbagi: false, bagian: 1, set: params.format === 'tryout' && paket.some(p => p.set === params.kode) ? params.kode : (paket[0] ? paket[0].set : null), menitTO: null,
+      bagianTO: typeof params.bagian === 'string' ? params.bagian : 'semua', tim: !!params.tim, cara: params.cara === 'perangkat' ? 'perangkat' : 'papan' };
     const paketAktif = () => paket.find(p => p.set === cfg.set) || paket[0] || null;
-    const menitTO = () => { const p = paketAktif(); return cfg.menitTO || (p && (fmt.UKP[p.tingkat] || {}).menit) || (p ? Math.max(5, Math.round(p.n * 2.1)) : 210); };
+    // v8.1 bagian paket (Semua · 1–40 · 41–80 · 81–100): potongan terpilih, menit bawaan = n × tempo ujian tingkat paket
+    const potAktif = () => { const p = paketAktif(); const pot = potonganTO(p ? p.n : 0); return pot.find(x => x.nilai === cfg.bagianTO) || pot[0]; };
+    const menitTO = () => { const p = paketAktif(); const b = potAktif(); if (cfg.menitTO) return cfg.menitTO; if (p && b.nilai !== 'semua') return menitTempo(b.sampai - b.dari + 1, p.tingkat || tingkat); return (p && (fmt.UKP[p.tingkat] || {}).menit) || (p ? Math.max(5, Math.round(p.n * 2.1)) : 210); };
     const kartu = h('section', { class: 'card form-sim', 'aria-labelledby': 'sim-form-j' });
     const ringkas = h('aside', { class: 'card ringkas ringkas-sim', 'aria-labelledby': 'sim-ringkas-j' });
     const opsiKel = (k, pilih, denganMenit) => h('option', { value: k, selected: k === pilih ? true : null }, k + ' · ' + K.namaKelompok(k) + (denganMenit ? ' · ' + ((UKP.modul[k].meta.durasiUSKP) || 90) + ' mnt' : '') + (kelT.includes(k) ? '' : ' (di luar target)'));
@@ -121,14 +181,67 @@
     function perkiraan() {
       if (cfg.format === 'UKP') { const f = fmt.UKP[tingkat] || {}; const m = cfg.terbagi ? Math.round((f.menit || 180) / 2) : (f.menit || 180); const n = cfg.terbagi ? Math.ceil((f.soalPerkiraan || 60) / 2) : (f.soalPerkiraan || 60); return [m, '±' + n, 'UKP komprehensif ' + tingkat + (cfg.terbagi ? ' · bagian ' + cfg.bagian : '')]; }
       if (cfg.format === 'USKP') return [(UKP.modul[cfg.kodeUSKP] && UKP.modul[cfg.kodeUSKP].meta.durasiUSKP) || 90, '40', 'Per kelompok ' + cfg.kodeUSKP];
-      if (cfg.format === 'tryout') { const p = paketAktif(); return [menitTO(), String(p ? p.n : 0), p ? p.label : 'Try Out']; }
+      if (cfg.format === 'tryout') { const p = paketAktif(); const b = potAktif(); return [menitTO(), String(p ? b.sampai - b.dari + 1 : 0), (p ? p.label : 'Try Out') + (b.nilai !== 'semua' ? ' · soal ' + b.label : '')]; }
       return [cfg.menitKustom, String(cfg.jumlah), 'Kustom ' + (cfg.kodeKustom || 'Tingkat ' + tingkat)];
     }
+    function runDariCfg() {
+      return cfg.format === 'tryout' ? { format: 'tryout', kode: cfg.set, tingkat: (paketAktif() || {}).tingkat || tingkat, menit: menitTO(), dari: potAktif().dari, sampai: potAktif().sampai } : cfg.format === 'USKP' ? { format: 'USKP', kode: cfg.kodeUSKP } : cfg.format === 'kustom' ? { format: 'kustom', kode: cfg.kodeKustom || null, jumlah: cfg.jumlah, menit: cfg.menitKustom } : { format: 'UKP', terbagi: cfg.terbagi, bagian: cfg.bagian };
+    }
     function mulai() {
-      const run = cfg.format === 'tryout' ? { format: 'tryout', kode: cfg.set, tingkat: (paketAktif() || {}).tingkat || tingkat, menit: menitTO() } : cfg.format === 'USKP' ? { format: 'USKP', kode: cfg.kodeUSKP } : cfg.format === 'kustom' ? { format: 'kustom', kode: cfg.kodeKustom || null, jumlah: cfg.jumlah, menit: cfg.menitKustom } : { format: 'UKP', terbagi: cfg.terbagi, bagian: cfg.bagian };
-      run.tanpaWaktu = cfg.tanpaWaktu;
+      const run = runDariCfg(); run.tanpaWaktu = cfg.tanpaWaktu;
       const a = susunAttempt(run); if (!a.soalIds.length) { UKP.toast('Belum ada soal untuk pilihan ini.', { nada: 'attn' }); return; }
       s.simulasiAktif = a; UKP.store.save(); UKP.go('simulasi', { jalan: true, dariPraUjian: true });
+    }
+    // ---------- v8.1 kartu "Ujian tim": sakelar, peserta, cara menjawab, ringkasan, Mulai ujian tim ----------
+    const UT = L.ujianTim;
+    const pesertaTim = () => {
+      const b = L.siapBersama(UKP.store.get()).bersama; if (b.peserta.length) return b.peserta.slice();
+      const out = []; [L.rapikanNamaPeserta(s.profil.nama)].concat(L.TIM_BAWAAN || []).forEach(n => { if (n && !out.some(x => x.toLowerCase() === n.toLowerCase())) out.push(n); });
+      return out.slice(0, L.MAKS_PESERTA || 12);
+    };
+    const kartuTim = h('section', { class: 'card kartu-tim-sim', 'aria-labelledby': 'sim-tim-j' });
+    const timRingkas = h('p', { class: 'meta tim-ringkas', 'aria-live': 'polite' });
+    const stickyMulai = h('div', { class: 'sticky-actions' });
+    function perbaruiRingkasTim() { const [m, n] = perkiraan(); timRingkas.textContent = n + ' soal · ' + m + ' mnt · ' + pesertaTim().length + ' orang'; }
+    function ubahPeserta() {
+      if (typeof UKP.c.aturBersama !== 'function') return;
+      UKP.dialog({ judul: 'Peserta ujian tim', isi: () => h('div', { class: 'stack-sm' }, h('p', { class: 'small muted' }, 'Urutan daftar = urutan baris di papan.'), UKP.c.aturBersama({ onUbah: () => {} })),
+        kaki: dlg => [h('button', { type: 'button', class: 'btn btn-primary', onclick: () => dlg.close('ok') }, 'Selesai')], onClose: () => gambarTim('.tim-ubah') });
+    }
+    function gambarTim(fokusSel) {
+      if (!UT) { kartuTim.hidden = true; return; }
+      const peserta = pesertaTim();
+      kartuTim.replaceChildren(h('h2', { class: 'card-title', id: 'sim-tim-j' }, 'Ujian tim'),
+        sw('sim-tim', 'Kerjakan sebagai tim (kunci dan nilai di akhir)', 'Semua mengerjakan soal yang sama dengan waktu ujian; nilai per orang, batas lulus ' + ((fmt.UKP || {}).lulus || 60) + '.', cfg.tim, e => { cfg.tim = e.target.checked; gambar('#sim-tim'); }),
+        cfg.tim ? h('div', { class: 'stack-sm tim-isi' },
+          h('div', { class: 'tim-peserta' }, h('span', { class: 'meta' }, 'Peserta'), h('span', { class: 'tim-nama' }, peserta.length ? peserta.join(', ') : 'belum ada'),
+            typeof UKP.c.aturBersama === 'function' ? h('button', { type: 'button', class: 'btn btn-sm btn-ghost btn-text tim-ubah', onclick: ubahPeserta }, 'Ubah peserta') : null),
+          UKP.c.segmen({ id: 'sim-cara', label: 'Cara menjawab', aktif: cfg.cara, penuh: true, opsi: [{ nilai: 'papan', label: 'Satu layar', sub: 'dicatat pemimpin' }, { nilai: 'perangkat', label: 'Perangkat masing-masing', sub: 'pakai kode' }], onPilih: v => { cfg.cara = v; } }),
+          timRingkas,
+          h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary btn-lg tim-mulai', onclick: mulaiTim, disabled: peserta.length ? null : true }, UKP.icon('play'), 'Mulai ujian tim'))) : null);
+      perbaruiRingkasTim();
+      if (fokusSel) { const el = kartuTim.querySelector(fokusSel); if (el) el.focus(); }
+    }
+    function pilihUjianAda(ada) {
+      return new Promise(resolve => {
+        UKP.dialog({ judul: 'Ujian tim lain masih berjalan', ukuran: 'sm', isi: () => h('p', null, '“' + ada.judul + '” belum dinilai. Lanjutkan ujian itu, atau buang lalu susun yang baru.'),
+          kaki: dlg => [h('button', { type: 'button', class: 'btn btn-danger btn-attn', onclick: () => dlg.close('buang') }, UKP.icon('hapus'), 'Buang'), h('button', { type: 'button', class: 'btn btn-primary', autofocus: true, onclick: () => dlg.close('lanjut') }, 'Lanjutkan')],
+          onClose: v => resolve(v) });
+      });
+    }
+    async function mulaiTim() {
+      const ada = UT.aktif();
+      if (ada) {
+        const v = await pilihUjianAda(ada);
+        if (v === 'lanjut') { UKP.go('ujiantim'); return; }
+        if (v !== 'buang' || !(await UKP.konfirmasi('Buang ujian tim?', 'Jawaban yang sudah dicatat untuk “' + ada.judul + '” akan hilang.', { ya: 'Buang', bahaya: true }))) return;
+        UT.batal();
+      }
+      const run = runDariCfg(); run.tanpaWaktu = false;
+      const a = susunAttempt(run); if (!a.soalIds.length) { UKP.toast('Belum ada soal untuk pilihan ini.', { nada: 'attn' }); return; }
+      const id = UT.susun({ judul: labelSim(a), tingkat: a.tingkat, menit: a.menit, soalIds: a.soalIds, peserta: pesertaTim(), cara: cfg.cara, sumber: { format: a.format, kode: a.kode, bagian: a.bagian || (a.terbagi ? String(a.terbagi) : null) } });
+      if (!id) { UKP.toast('Ujian tim gagal disusun.', { nada: 'attn' }); return; }
+      UKP.go('ujiantim');
     }
     const tombolMulai = blok => h('button', { type: 'button', class: 'btn btn-primary btn-lg' + (blok ? ' btn-block' : ''), onclick: mulai }, UKP.icon('play'), 'Mulai simulasi');
     // aturan dan pintasan: dilipat agar ringkasan dan tombol tidak terdorong ke bawah
@@ -137,18 +250,19 @@
       h('p', { class: 'meta petunjuk-kbd' }, 'Pintasan: ', UKP.c.kbd('←'), ' ', UKP.c.kbd('→'), ' soal · ', UKP.c.kbd('R'), ' ragu · ', UKP.c.kbd('G'), ' daftar soal · ', UKP.c.kbd('A'), '–', UKP.c.kbd('D'), ' jawab'));
     function gambarRingkas() {
       const [m, n] = perkiraan();
-      metaHP.textContent = (cfg.tanpaWaktu ? 'tanpa batas waktu' : m + ' mnt') + ' · ' + n + ' soal · batas ' + lulusBatas;
+      metaHP.textContent = (cfg.tanpaWaktu && !cfg.tim ? 'tanpa batas waktu' : m + ' mnt') + ' · ' + n + ' soal · batas ' + lulusBatas;
+      perbaruiRingkasTim(); stickyMulai.hidden = !!(cfg.tim && UT); metaHP.hidden = !!(cfg.tim && UT);
       if (!kolomDua) return;
       // kolom sempit (±330 px): fakta sebagai dl.fakta tiga baris, bukan tiga tile yang memecah "±100" dan "mnt"; format tidak diulang (sudah di segmen)
       const fakta = (dt, dd) => h('div', null, h('dt', null, dt), h('dd', null, dd));
       ringkas.replaceChildren(h('div', { class: 'card-head' }, h('div', { class: 'card-head-teks' }, h('h2', { class: 'card-title', id: 'sim-ringkas-j' }, 'Ringkasan'))),
         h('dl', { class: 'fakta ringkas-fakta' }, fakta('Waktu', cfg.tanpaWaktu ? 'tanpa batas waktu' : m + ' menit'), fakta('Soal', n + ' soal'), fakta('Batas lulus', 'skor ' + lulusBatas)),
-        tombolMulai(true), aturan());
+        cfg.tim && UT ? null : tombolMulai(true), aturan());
     }
     function gambar(fokusSel) {
       kartu.replaceChildren(h('h2', { class: 'visually-hidden', id: 'sim-form-j' }, 'Atur simulasi'));
       const fUKP = fmt.UKP[tingkat] || {};
-      const seg = UKP.c.segmen({ id: 'sim-format', label: 'Format', aktif: cfg.format, penuh: true, opsi: [{ nilai: 'UKP', label: 'Komprehensif ' + tingkat, sub: (fUKP.menit || 180) + ' mnt · ±' + (fUKP.soalPerkiraan || 60) + ' soal' }, { nilai: 'USKP', label: 'Per kelompok', sub: '40 soal' }, { nilai: 'kustom', label: 'Kustom', sub: 'atur sendiri' }].concat(paket.length ? [{ nilai: 'tryout', label: 'Try Out', sub: (paketAktif() || {}).n + ' soal · ' + menitTO() + ' mnt' }] : []), onPilih: v => { cfg.format = v; gambar('[data-format="' + v + '"]'); } });
+      const seg = UKP.c.segmen({ id: 'sim-format', label: 'Format', aktif: cfg.format, penuh: true, opsi: [{ nilai: 'UKP', label: 'Komprehensif ' + tingkat, sub: (fUKP.menit || 180) + ' mnt · ±' + (fUKP.soalPerkiraan || 60) + ' soal' }, { nilai: 'USKP', label: 'Per kelompok', sub: '40 soal' }, { nilai: 'kustom', label: 'Kustom', sub: 'atur sendiri' }].concat(paket.length ? [{ nilai: 'tryout', label: 'Try Out', sub: (paketAktif() ? potAktif().sampai - potAktif().dari + 1 : 0) + ' soal · ' + menitTO() + ' mnt' }] : []), onPilih: v => { cfg.format = v; gambar('[data-format="' + v + '"]'); } });
       const segEl = seg.querySelector('.seg') || seg; segEl.classList.add('bersub'); // K-11: segmen ber-sub (P1 juga menambahkannya otomatis)
       seg.querySelectorAll('button[data-nilai]').forEach(b => { b.dataset.format = b.dataset.nilai; });
       kartu.appendChild(seg);
@@ -159,7 +273,8 @@
           window.innerWidth < 900 ? UKP.c.banner('Simulasi komprehensif sebaiknya dikerjakan di laptop, seperti ujian sesungguhnya.', 'info') : null);
       } else if (cfg.format === 'tryout') {
         const p = paketAktif(); const komposisi = p ? p.kelompok.map(k => k + ' ' + p.perKelompok[k]).join(', ') : '';
-        kartu.append(paket.length > 1 ? h('div', { class: 'field' }, h('label', { for: 'sim-set' }, 'Paket'), h('select', { class: 'select', id: 'sim-set', onchange: e => { cfg.set = e.target.value; cfg.menitTO = null; gambar('#sim-set'); } }, paket.map(q => h('option', { value: q.set, selected: q.set === cfg.set ? true : null }, q.judul + ' · ' + q.n + ' soal')))) : null,
+        kartu.append(paket.length > 1 ? h('div', { class: 'field' }, h('label', { for: 'sim-set' }, 'Paket'), h('select', { class: 'select', id: 'sim-set', onchange: e => { cfg.set = e.target.value; cfg.menitTO = null; cfg.bagianTO = 'semua'; gambar('#sim-set'); } }, paket.map(q => h('option', { value: q.set, selected: q.set === cfg.set ? true : null }, q.judul + ' · ' + q.n + ' soal')))) : null,
+          p && p.n > 40 ? UKP.c.segmen({ id: 'sim-bagian-to', label: 'Bagian', aktif: potAktif().nilai, batas: true, opsi: potonganTO(p.n).map(x => ({ nilai: x.nilai, label: x.label })), onPilih: v => { cfg.bagianTO = v; cfg.menitTO = null; const inp = kartu.querySelector('#sim-m-to'); if (inp) inp.value = menitTO(); const sb = kartu.querySelector('[data-format="tryout"] small'); if (sb) sb.textContent = perkiraan()[1] + ' soal · ' + menitTO() + ' mnt'; gambarRingkas(); } }) : null,
           h('p', { class: 'small' }, (p ? p.judul : 'Paket try out') + ': ' + (p ? p.n : 0) + ' soal dalam urutan asli try out' + (p && p.tingkat ? ', waktu bawaan seperti UKP Tingkat ' + p.tingkat : '') + '. Komposisi kelompok: ' + komposisi + '. Pembahasan muncul setelah dikirim.'),
           h('div', { class: 'field' }, h('label', { for: 'sim-m-to' }, 'Menit'), h('div', { class: 'input-grup' }, h('input', { class: 'input angka', id: 'sim-m-to', type: 'number', inputmode: 'numeric', min: 5, max: 300, value: menitTO(), oninput: e => { const v = Number(e.target.value); if (v) cfg.menitTO = U.clamp(v, 5, 300); gambarRingkas(); } }), h('span', { class: 'imbuh', 'aria-hidden': 'true' }, 'mnt'))),
           window.innerWidth < 900 ? UKP.c.banner('Try out ' + (p ? p.n : '') + ' soal sebaiknya dikerjakan di laptop, seperti ujian sesungguhnya.', 'info') : null);
@@ -170,13 +285,14 @@
         kartu.append(h('div', { class: 'form-grid dua' }, h('div', { class: 'field' }, h('label', { for: 'sim-j' }, 'Jumlah soal'), h('input', { class: 'input angka', id: 'sim-j', type: 'number', inputmode: 'numeric', min: 5, max: 120, value: cfg.jumlah, oninput: e => { cfg.jumlah = U.clamp(Number(e.target.value) || 20, 5, 120); gambarRingkas(); } })), h('div', { class: 'field' }, h('label', { for: 'sim-m' }, 'Menit'), h('div', { class: 'input-grup' }, h('input', { class: 'input angka', id: 'sim-m', type: 'number', inputmode: 'numeric', min: 5, max: 300, value: cfg.menitKustom, oninput: e => { cfg.menitKustom = U.clamp(Number(e.target.value) || 50, 5, 300); gambarRingkas(); } }), h('span', { class: 'imbuh', 'aria-hidden': 'true' }, 'mnt')))),
           h('div', { class: 'field' }, h('label', { for: 'sim-kode2' }, 'Kelompok (opsional)'), h('select', { class: 'select', id: 'sim-kode2', onchange: e => { cfg.kodeKustom = e.target.value || ''; gambarRingkas(); } }, h('option', { value: '', selected: !cfg.kodeKustom ? true : null }, 'Semua kelompok Tingkat ' + tingkat), semuaKel.map(k => opsiKel(k, cfg.kodeKustom, false)))));
       }
-      kartu.append(sw('sim-tanpa', 'Tanpa batas waktu', 'Untuk kebutuhan aksesibilitas. Jawaban tetap dinilai; waktu terpakai tidak dinilai.', cfg.tanpaWaktu, e => { cfg.tanpaWaktu = e.target.checked; gambarRingkas(); }));
-      gambarRingkas();
-      if (fokusSel) { const el = kartu.querySelector(fokusSel); if (el) el.focus(); }
+      if (!cfg.tim || !UT) kartu.append(sw('sim-tanpa', 'Tanpa batas waktu', 'Untuk kebutuhan aksesibilitas. Jawaban tetap dinilai; waktu terpakai tidak dinilai.', cfg.tanpaWaktu, e => { cfg.tanpaWaktu = e.target.checked; gambarRingkas(); }));
+      gambarTim(); gambarRingkas();
+      if (fokusSel) { const el = kartu.querySelector(fokusSel) || kartuTim.querySelector(fokusSel); if (el) el.focus(); }
     }
     gambar();
-    if (kolomDua) page.appendChild(h('div', { class: 'tata' }, h('div', { class: 'k-7 kl-8 stack' }, kartu), h('div', { class: 'k-5 kl-4 lengket' }, ringkas)));
-    else page.append(kartu, aturan(), metaHP, h('div', { class: 'sticky-actions' }, tombolMulai(false)));
+    stickyMulai.appendChild(tombolMulai(false)); if (cfg.tim && UT) stickyMulai.hidden = true;
+    if (kolomDua) page.appendChild(h('div', { class: 'tata' }, h('div', { class: 'k-7 kl-8 stack' }, kartu, kartuTim), h('div', { class: 'k-5 kl-4 lengket' }, ringkas)));
+    else page.append(kartu, kartuTim, aturan(), metaHP, stickyMulai);
     // riwayat (8 terakhir): satu rumah, di bawah formulir. Nada hanya untuk pengecualian (§3.3): bila mayoritas di bawah 60, hanya yang memenuhi diberi pill
     const riwayat = s.simulasi.filter(x => x.selesai).slice(-8).reverse();
     if (riwayat.length) {
@@ -445,6 +561,7 @@
     const durasi = Math.max(1, Math.round(((r.selesai || Date.now()) - r.mulai) / 60000));
     page.appendChild(UKP.c.kop({ crumbs: [{ teks: 'Simulasi', view: 'simulasi' }, { teks: 'Hasil' }], judul: 'Hasil simulasi ' + labelSim(r),
       meta: r.otomatis || r.terbagi ? [r.otomatis ? UKP.c.pill('dikirim otomatis saat waktu habis', 'warn') : null, r.terbagi ? UKP.c.pill('bagian ' + r.terbagi + ', bukan ukuran stamina', 'nila') : null] : null }));
+    if (r.tim) page.appendChild(kartuKirimTim(r));
     const butuh = Math.ceil(r.total * .6); const tingkat = tingkatUlas(r);
     const nSalah = tingkat.salah.length; const nKosong = tingkat.kosong.length; const kurang = Math.max(0, butuh - r.benar);
     // stempel "diraih" sekali per hasil (sesi ini)
@@ -505,7 +622,7 @@
     // ≥ 1280: skor | langkah dan per topik | per kelompok berdampingan (6 | 6; tanpa per topik 7 | 5) agar halaman hasil ≤ 1.300 px; < 1280 bertumpuk
     page.appendChild(h('div', { class: 'tata hasil-tata' + (adaTopik ? ' dua' : '') }, h('div', { class: 'kl-7' }, kartuSkor), h('div', { class: 'kl-5' }, sectLangkah), sectKel, sectTopik));
     // tren: format, kelompok, dan tingkat yang sama
-    const tren = s.simulasi.filter(x => x.selesai && x.format === r.format && x.tingkat === r.tingkat && (r.format === 'UKP' || (x.kode || '') === (r.kode || '')) && !x.terbagi).slice(-6);
+    const tren = r.format === 'tim' ? [] : s.simulasi.filter(x => x.selesai && x.format === r.format && x.tingkat === r.tingkat && (r.format === 'UKP' || (x.kode || '') === (r.kode || '')) && (x.bagian || null) === (r.bagian || null) && !x.terbagi).slice(-6);
     if (tren.length > 1) page.appendChild(h('section', { class: 'card', 'aria-label': 'Tren skor' }, UKP.viz && UKP.viz.garis ? UKP.viz.garis({ judul: 'Tren terhadap batas 60', sub: tren.length + ' simulasi ' + labelSim(r), titik: tren.map(x => ({ x: UKP.fmt.tanggal(U.iso(new Date(x.selesai))).replace(/ \d{4}$/, ''), y: x.skor })), acuan: 60, acuanLabel: 'batas lulus', labelSeri: 'Skor', kolomLabel: 'Tanggal', kolomNilai: 'Skor' })
       : h('div', { class: 'bar-list' }, tren.map(x => h('div', { class: 'bar-item' }, h('span', { class: 'nama' }, UKP.fmt.tanggal(U.iso(new Date(x.selesai)))), h('div', { class: 'bar', 'data-pita': U.pita(x.skor), 'aria-hidden': 'true' }, h('span', { style: { width: Math.min(100, x.skor) + '%' } })), h('span', { class: 'nilai' }, UKP.fmt.angka(x.skor, 0)))))));
     return page;

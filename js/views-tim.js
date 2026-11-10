@@ -289,7 +289,7 @@
       nama: (terdaftar || (semua[semua.length - 1] || {}).p || String(nama)).trim(), tingkat: p.tingkat || null, diperbarui: terakhir || null, versiApp: UKP.versi || '',
       latihan: { total: semua.length, benar, akurasi7: n7 ? Math.round(b7 / n7 * 100) : null, sesi7: hari7.size, terakhir: terakhir || null, perKelompok: perKel, perTopikLemah: lemah },
       simulasi: [], hadir: { hari14: hari14.size, rangkaian: 0 },
-      jawaban: semua.slice().sort((a, b) => Number(b.w) - Number(a.w)).slice(0, JAWAB_MAKS).map(x => ({ s: x.s, t: x.t || '', o: /^[A-D]$/.test(x.o) ? x.o : '-', b: x.b === 1 || x.b === true ? 1 : 0, d: Math.round(Number(x.d) || 0), w: Number(x.w), m: 'latih', k: ykDari(x) })),
+      jawaban: semua.slice().sort((a, b) => Number(b.w) - Number(a.w)).slice(0, JAWAB_MAKS).map(x => ({ s: x.s, t: x.t || '', o: /^[A-D]$/.test(x.o) ? x.o : '-', b: x.b === 1 || x.b === true ? 1 : 0, d: Math.round(Number(x.d) || 0), w: Number(x.w), m: x.m === 'ujian' ? 'ujian' : 'latih', k: ykDari(x) })),
       sumber: 'lokal',
     };
   }
@@ -308,10 +308,12 @@
   function normalLokal(dok, nama) {
     if (!dok) return null;
     // keyakinan per jawaban (v8.0, field k): bila dokumen dari modul belajar belum membawanya, lengkapi dari s.jawabanBersama
-    if (Array.isArray(dok.jawaban) && dok.jawaban.some(j => j && !LABEL_YAKIN[j.k])) {
-      const kn = kunciNama(nama); const peta = new Map();
-      entriBersama(stateApp()).forEach(x => { const y = ykDari(x); if (y && kunciNama(x.p) === kn) peta.set(x.s + '|' + Math.round(Number(x.w)), y); });
-      if (peta.size) dok = Object.assign({}, dok, { jawaban: dok.jawaban.map(j => j && !LABEL_YAKIN[j.k] && peta.has(j.s + '|' + Math.round(Number(j.w))) ? Object.assign({}, j, { k: peta.get(j.s + '|' + Math.round(Number(j.w))) }) : j) });
+    // v8.1: mode ujian tim (entri m: 'ujian') juga dilengkapi dari s.jawabanBersama — dokumen modul belajar menulis m: 'latih' untuk semua
+    if (Array.isArray(dok.jawaban) && dok.jawaban.length) {
+      const kn = kunciNama(nama); const peta = new Map(); const kunciW = j => j.s + '|' + Math.round(Number(j.w));
+      entriBersama(stateApp()).forEach(x => { if (kunciNama(x.p) !== kn) return; const y = ykDari(x); const uj = x.m === 'ujian'; if (y || uj) peta.set(kunciW(x), { k: y, uj }); });
+      if (peta.size) dok = Object.assign({}, dok, { jawaban: dok.jawaban.map(j => { const e = j && peta.get(kunciW(j)); if (!e) return j;
+        const t = Object.assign({}, j); if (!LABEL_YAKIN[j.k] && e.k) t.k = e.k; if (e.uj) t.m = 'ujian'; return t; }) });
     }
     const n = normal(Object.assign({}, dok, { id: ID_LOKAL + nama, saya: false }), 'lokal', null);
     n.nama = String(dok.nama || nama).slice(0, 40); n.lokal = true; n.online = false; n.langsung = false;
@@ -333,7 +335,20 @@
   const bersamaAktif = () => { const s = stateApp(); return !!(s.bersama && s.bersama.aktif); };
 
   // bagian "Latihan bersama di perangkat ini" (tampil apa pun status sambungan tim). opsi.ringkas: tanpa ajakan bila kosong
+  // v8.1: kartu "Ujian tim berjalan" (views-ujian-tim.js) dan "Sesi bersama belum selesai" (views-belajar.js) di atas bagian lokal
+  function kartuBerjalan() {
+    const out = [];
+    ['kartuUjianTim', 'kartuLanjutBersama'].forEach(nm => {
+      const f = UKP.c && UKP.c[nm]; if (typeof f !== 'function') return;
+      try { const el = f(); if (el && el.nodeType) out.push(el); } catch (e) { console.error(e); }
+    });
+    return out.length ? h('div', { class: 'stack-sm eval-berjalan', 'data-k': 'kartu-berjalan' }, out) : null;
+  }
   function bagianLokal(opsi) {
+    const kartuB = kartuBerjalan(); const sect = bagianLokalInti(opsi);
+    return kartuB ? UKP.frag(kartuB, sect) : sect;
+  }
+  function bagianLokalInti(opsi) {
     const daftar = pesertaLokal();
     const atur = () => UKP.go('latih', { atur: 1 });
     const sesiNode = daftarSesiNode();
@@ -675,7 +690,7 @@
   // ================= jawaban per soal (field `jawaban` ringkasan, kontrak v7.7) =================
   // entri: { s: id soal, t: topik, o: 'A'–'D' | '-', b: 0|1, d: detik, w: epoch detik, m: 'latihan'|'simulasi'|'sesi'|'cek', sim?, k: keyakinan|null }
   const JAWAB_MAKS = 400, HAL_JAWAB = 30;
-  const MODE_JAWAB = { latihan: 'Latihan', simulasi: 'Simulasi', sesi: 'Sesi harian', cek: 'Cek pemahaman' };
+  const MODE_JAWAB = { latihan: 'Latihan', simulasi: 'Simulasi', sesi: 'Sesi harian', cek: 'Cek pemahaman', ujian: 'Ujian tim' }; // v8.1: ujian = jawaban ujian tim (s.jawabanBersama m: 'ujian')
   const LABEL_YAKIN = { yakin: 'Yakin', ragu: 'Ragu', menebak: 'Menebak' };
   // label manusiawi untuk nilai jebakanOpsi di modul (docs/SKEMA-KONTEN.md) + nilai yang mungkin dipakai kemudian
   const POLA = {
@@ -1011,12 +1026,24 @@
   }
   const teksJawabSel = j => j.o === '-' ? 'kosong' : j.o + (j.k ? ' (' + LABEL_YAKIN[j.k].toLowerCase() + ')' : '');
   // murni: CSV sesi (pemisah ';'): id;kode;topik;kunci;<peserta…> — sel "huruf (keyakinan)" atau "kosong"
+  // v8.1 mode ujian: baris skor per orang (skor, lulus, benar, salah, kosong, ragu) di atas baris soal, dalam kolom peserta yang sama
   function csvSesi(sesi, ev) {
     ev = ev || evaluasi(sesi);
     const nama = (normalSesi(sesi) || { peserta: [] }).peserta;
     const rows = ev.soal.map(q => [q.id, q.kode, q.topik, q.kunci].concat(nama.map(nm => { const j = q.perPeserta[nm]; return j ? teksJawabSel(j) : ''; })));
-    return '﻿' + [['id', 'kode', 'topik', 'kunci'].concat(nama)].concat(rows).map(r => r.map(selCsv).join(';')).join('\r\n') + '\r\n';
+    const skor = ev.mode === 'ujian' && Array.isArray(ev.skor) ? ev.skor : null;
+    const atas = [];
+    if (skor) {
+      const dari = nm => skor.find(x => kunciNama(x.nama) === kunciNama(nm)) || null;
+      const baris = (label, f) => [label, '', '', ''].concat(nama.map(nm => { const x = dari(nm); return x ? f(x) : ''; }));
+      atas.push(baris('skor', x => angkaKoma(x.skor)), baris('lulus', x => x.lulus ? 'ya' : 'kurang ' + x.kurang + ' soal'),
+        baris('benar', x => x.benar), baris('salah', x => x.salah), baris('kosong', x => x.kosong), baris('ragu', x => x.nRagu));
+    }
+    return '﻿' + [['id', 'kode', 'topik', 'kunci'].concat(nama)].concat(atas, rows).map(r => r.map(selCsv).join(';')).join('\r\n') + '\r\n';
   }
+  const angkaKoma = x => String(Math.round((Number(x) || 0) * 10) / 10).replace('.', ',');
+  const mmss = d => { d = Math.max(0, Math.round(Number(d) || 0)); return Math.floor(d / 60) + ':' + z2(d % 60); };
+  const batasLulus = () => { const b = UKP.belajar && Number(UKP.belajar.BATAS_LULUS); return b > 0 ? b : BATAS; };
   const namaPendek = nm => nm.length > 8 ? nm.slice(0, 7) + '…' : nm;
   const hasilSel = j => j.o === '-' ? 'kosong' : j.b ? 'benar' : 'salah';
   function tanggalSesi(t) {
@@ -1024,7 +1051,51 @@
     const iso = U.hariDari(t); const s = U.selisihHari(iso, U.hariIni());
     return (s === 0 ? 'Hari ini' : s === 1 ? 'Kemarin' : (typeof U.tglPanjang === 'function' ? U.tglPanjang(iso) : tgl(t))) + ' · ' + jam(t);
   }
-  function metaSesi(ev) { return ev.nSoal + ' soal · ' + ev.nPeserta + ' orang' + (ev.menit != null ? ' · ' + ev.menit + ' menit' : ''); }
+  // mode ujian: menit = waktu ujian yang disepakati (anggaranDetik), bukan lama rekaman; latihan: lama sesi
+  function menitSesi(ev, sesi) {
+    if (ev.mode === 'ujian' && sesi && Number(sesi.anggaranDetik) > 0) return Math.round(Number(sesi.anggaranDetik) / 60);
+    return ev.menit != null && ev.menit !== 0 ? ev.menit : null;
+  }
+  function metaSesi(ev, sesi) { const m = menitSesi(ev, sesi); return ev.nSoal + ' soal · ' + ev.nPeserta + ' orang' + (m != null ? ' · ' + m + ' menit' : ''); }
+  const adalahUjian = ev => ev && ev.mode === 'ujian' && Array.isArray(ev.skor);
+  // murni: label jenis dan ringkasan satu sesi untuk daftar "Sesi terakhir"
+  function ringkasSesi(sesi, ev) {
+    ev = ev || evaluasi(sesi);
+    if (adalahUjian(ev)) {
+      const sk = ev.skor; const rata = sk.length ? sk.reduce((a, x) => a + x.skor, 0) / sk.length : null;
+      return { jenis: 'Ujian tim' + (ev.judul ? ' · ' + ev.judul : ''), ujian: true,
+        meta: ev.nSoal + ' soal · ' + ev.nPeserta + ' orang' + (rata != null ? ' · rata-rata skor ' + Math.round(rata) + ' · ' + sk.filter(x => x.lulus).length + ' dari ' + sk.length + ' lulus' : '') };
+    }
+    const rata = ev.nSoal && ev.nPeserta ? Math.round(ev.peserta.reduce((a, p) => a + p.benar, 0) / (ev.nSoal * ev.nPeserta) * 100) : null;
+    return { jenis: 'Latihan' + (ev.judul ? ' · ' + ev.judul : ''), ujian: false, meta: ev.nSoal + ' soal · ' + ev.nPeserta + ' orang' + (rata != null ? ' · rata-rata ' + rata + '% benar' : '') };
+  }
+  // murni: kalimat tempo (null bila sesi tanpa detik tercatat)
+  function kalimatTempo(t) {
+    if (!t || !(t.rataDetik > 0)) return null;
+    const soalU = Number(t.soalUjian) || 100, menitU = Number(t.menitUjian) || 210;
+    const tu = Math.round(menitU * 60 / soalU); const lewat = Math.round(t.proyeksiMenit - menitU);
+    return { lewat: lewat > 0, teks: 'Rata-rata ' + mmss(t.rataDetik) + ' per soal; tempo ujian ' + mmss(tu) + '. Dengan laju ini ' + soalU + ' soal butuh ±' + t.proyeksiMenit + ' menit, '
+      + (lewat > 0 ? 'lewat ' + lewat + ' menit dari ' + menitU + '.' : 'masih di dalam tempo ujian (' + menitU + ' menit).') };
+  }
+  // murni: siapa memilih apa pada satu soal → "A: Nicky · B: Mia, Novia (kunci) · C: Alfi · kosong: Melva"
+  function siapaMemilih(q, urutanNama) {
+    const per = (q && q.perPeserta) || {}; const nama = (urutanNama && urutanNama.length ? urutanNama : Object.keys(per));
+    const grup = { A: [], B: [], C: [], D: [], '-': [] };
+    nama.forEach(nm => { const j = per[nm]; const o = j && /^[A-D]$/.test(j.o) ? j.o : '-'; grup[o].push(nm + (j && j.k === 'ragu' && o !== '-' ? ' (ragu)' : '')); });
+    const bagian = ['A', 'B', 'C', 'D'].filter(o => grup[o].length || o === q.kunci).map(o => o + ': ' + (grup[o].length ? grup[o].join(', ') : 'tidak ada') + (o === q.kunci ? ' (kunci)' : ''));
+    if (grup['-'].length) bagian.push('kosong: ' + grup['-'].join(', '));
+    return bagian.join(' · ');
+  }
+  const KELAS_BAHAS = { tersandung: ['Tersandung', 'attn'], terbelah: ['Terbelah', 'warn'], rapuh: ['Belum mantap', 'nila'], dikuasai: ['Dikuasai', 'ok'] };
+  const pillKelas = kelas => { const k = KELAS_BAHAS[kelas] || KELAS_BAHAS.dikuasai; return UKP.c.pill(k[0], k[1], null, { 'data-kelas': kelas }); };
+  // saringan matriks: q dari ev.soal, kelasDari(id) → kelas triase ('dikuasai' bila tidak ada di urutan bahas)
+  const SARING_MATRIKS = [
+    { nilai: 'semua', label: 'Semua', f: () => true },
+    { nilai: 'salah', label: 'Ada yang salah', f: (q, ev) => q.nBenar < ev.nPeserta },
+    { nilai: 'terbelah', label: 'Terbelah', f: (q, ev, kelasDari) => kelasDari(q.id) === 'terbelah' },
+    { nilai: 'tersandung', label: 'Tersandung', f: (q, ev, kelasDari) => kelasDari(q.id) === 'tersandung' },
+  ];
+  const MATRIKS_AWAL = 20, MATRIKS_BATAS_PENUH = 30, BAHAS_AWAL = 10;
 
   // dialog soal satu sesi: jawaban tiap orang di atas soal (mode ulas); Sebelumnya/Berikutnya di antara soal sesi
   function bukaSoalSesi(ev, awalIdx) {
@@ -1045,92 +1116,326 @@
 
   // komponen dasbor evaluasi tim (dipakai di akhir sesi latihan dan di #tim/sesi:<id>)
   // opsi: onUlangi(soalIds) · onTutup() · labelTutup · ringkas (tanpa matriks dan topik) · tingkatJudul (1|2, bawaan 2) · tanpaKop · diDasbor (sembunyikan "Lihat di Dasbor tim")
+  // v8.1: mode ujian (ev.mode 'ujian': skor per orang, per kelompok), bagian Tempo, Urutan bahas + mode bahas (menggantikan
+  // "Soal paling banyak salah"), saringan matriks dan "Tampilkan semua" (> 30 soal), rekap untuk grup (salin / WhatsApp)
   function evaluasiBersama(sesi, opsi) {
     opsi = opsi || {};
     const ev = evaluasi(sesi); const sn = normalSesi(sesi) || { peserta: [], soal: [], mulai: null };
-    const wadah = h('div', { class: 'stack eval-tim', 'data-k': 'evaluasi-tim' });
+    const ujian = adalahUjian(ev);
+    const wadah = h('div', { class: 'stack eval-tim', 'data-k': 'evaluasi-tim', 'data-mode': ujian ? 'ujian' : 'latihan' });
     if (!opsi.tanpaKop) {
       const H = opsi.tingkatJudul === 1 ? 'h1' : 'h2';
       wadah.append(h('div', { class: 'eval-kop' }, h('p', { class: 'eyebrow' }, tanggalSesi(sn.mulai)),
-        h(H, { class: 'eval-judul' }, 'Evaluasi tim'), h('p', { class: 'meta' }, metaSesi(ev) + (sn.tingkat ? ' · Tingkat ' + sn.tingkat : '') + (sesi && !sesi.selesai ? ' · belum selesai' : ''))));
+        h(H, { class: 'eval-judul' }, ujian ? 'Hasil ujian tim' : 'Evaluasi tim'),
+        ujian && ev.judul ? h('p', { class: 'eval-subjudul' }, ev.judul) : null,
+        h('p', { class: 'meta' }, metaSesi(ev, sesi) + (sn.tingkat ? ' · Tingkat ' + sn.tingkat : '') + (sesi && !sesi.selesai ? ' · belum selesai' : ''))));
     }
-    if (!ev.nSoal || !ev.nPeserta) { wadah.append(UKP.c.kosong('Belum ada soal yang dinilai', 'Sesi ini berakhir sebelum kunci soal pertama dibuka.', null, { ringkas: true })); return wadah; }
-    const totalJ = ev.nSoal * ev.nPeserta;
-    const nBenar = ev.peserta.reduce((a, p) => a + p.benar, 0), nKosong = ev.peserta.reduce((a, p) => a + p.kosong, 0), nYS = ev.peserta.reduce((a, p) => a + p.yakinSalah, 0);
-    const akTim = Math.round(nBenar / totalJ * 100);
-    wadah.append(h('div', { class: 'pita-stat tim-pita eval-pita' },
-      tile({ label: 'Akurasi tim', nilai: akTim + '%', sub: nBenar + ' dari ' + totalJ + ' jawaban benar' }),
-      tile({ label: 'Rata-rata benar', nilai: (Math.round(nBenar / ev.nPeserta * 10) / 10).toString().replace('.', ','), sub: 'dari ' + ev.nSoal + ' soal per orang' }),
-      tile({ label: 'Yakin tapi salah', nilai: String(nYS), sub: nYS ? 'bahas lebih dulu' : 'tidak ada' }),
-      tile({ label: 'Kosong', nilai: String(nKosong), sub: 'jawaban tidak diisi' })));
-    // peringkat
-    const peringkat = h('ol', { class: 'eval-peringkat', 'aria-label': 'Peringkat peserta' }, ev.peserta.map((p, i) => h('li', { 'data-k': 'peringkat-' + p.nama },
-      h('span', { class: 'eval-no tim-angka', 'aria-hidden': 'true' }, String(i + 1)),
-      h('span', { class: 'eval-nama', title: p.nama }, p.nama),
-      h('span', { class: 'eval-skor tim-angka' }, p.benar + '/' + ev.nSoal),
-      p.akurasi == null ? h('span') : UKP.c.barMini(p.akurasi, { label: p.nama + ': ' + p.akurasi + ' dari 100, batas aman 60' }),
-      h('span', { class: 'eval-ket' }, p.yakinSalah ? UKP.c.pill('yakin tapi salah: ' + p.yakinSalah, 'attn') : null, p.kosong ? h('span', { class: 'meta' }, p.kosong + ' kosong') : null))));
-    wadah.append(UKP.c.sect({ judul: 'Peringkat', meta: 'urut jumlah benar', isi: peringkat }));
-    // matriks soal × peserta
-    if (!opsi.ringkas) {
-      const nama = ev.peserta.map(p => p.nama).slice().sort((a, b) => sn.peserta.indexOf(a) - sn.peserta.indexOf(b));
-      const tbl = h('table', { class: 'tabel eval-matriks' }, h('caption', { class: 'visually-hidden' }, 'Jawaban tiap orang per soal. Pilih baris untuk membuka soal.'),
-        h('thead', null, h('tr', null, h('th', { scope: 'col', class: 'eval-kol-soal' }, 'Soal'), h('th', { scope: 'col', class: 'eval-kol-kunci' }, 'Kunci'),
-          nama.map(nm => h('th', { scope: 'col', title: nm, abbr: nm }, namaPendek(nm))))),
-        h('tbody', null, ev.soal.map((q, i) => h('tr', { 'data-k': 'baris-' + q.id, onclick: e => { if (!e.target.closest('button')) bukaSoalSesi(ev, i); } },
-          h('th', { scope: 'row', class: 'eval-kol-soal' }, h('button', { type: 'button', class: 'eval-soal-btn', 'aria-label': 'Soal ' + (i + 1) + ', ' + q.id + (judulTopik(q.topik) ? ', ' + judulTopik(q.topik) : '') + ', ' + q.nBenar + ' dari ' + ev.nPeserta + ' benar. Buka soal', onclick: () => bukaSoalSesi(ev, i) },
-            h('span', { class: 'kode' }, q.id), h('span', { class: 'eval-topik', title: judulTopik(q.topik) || null }, q.topik || ''))),
-          h('td', { class: 'eval-kol-kunci tim-angka' }, q.kunci || '–'),
-          nama.map(nm => { const j = q.perPeserta[nm] || { o: '-', k: null, b: 0 }; const hs = hasilSel(j);
-            return h('td', { class: 'eval-td' }, h('span', { class: 'eval-sel', 'data-hasil': hs, title: nm + ': ' + hs + (j.k ? ', ' + LABEL_YAKIN[j.k].toLowerCase() : '') },
-              h('span', { 'aria-hidden': 'true' }, j.o === '-' ? '–' : j.o), j.k ? h('span', { class: 'eval-yk', 'aria-hidden': 'true' }, TEKS_YK[j.k]) : null,
-              h('span', { class: 'visually-hidden' }, (j.o === '-' ? 'kosong' : j.o + ', ' + hs) + (j.k ? ', ' + LABEL_YAKIN[j.k].toLowerCase() : ''))));
-          })))));
-      const legenda = h('p', { class: 'tim-peta-legenda meta eval-legenda' }, h('span', { 'data-hasil': 'benar', 'aria-hidden': 'true' }), 'benar', h('span', { 'data-hasil': 'salah', 'aria-hidden': 'true' }), 'salah', h('span', { 'data-hasil': 'kosong', 'aria-hidden': 'true' }), 'kosong', ' · Y yakin · R ragu · N menebak');
-      const wrapM = UKP.c.tabelWrap('Matriks jawaban soal per orang', tbl); wrapM.classList.add('eval-matriks-wrap');
-      wadah.append(UKP.c.sect({ judul: 'Jawaban per soal', meta: 'pilih baris untuk membuka soal', isi: h('div', { class: 'stack-sm' }, legenda, wrapM) }));
-    }
-    // soal paling banyak salah
-    if (ev.tersulit.length) {
-      const idxDari = q => ev.soal.indexOf(q) >= 0 ? ev.soal.indexOf(q) : ev.soal.findIndex(x => x.id === q.id);
-      wadah.append(UKP.c.sect({ judul: 'Soal paling banyak salah', meta: ev.tersulit.length + ' soal', isi: h('ol', { class: 'eval-sulit' }, ev.tersulit.map(q => {
-        const jt = judulTopik(q.topik); const adaTopik = q.topik && UKP.konten && UKP.konten.topik && UKP.konten.topik(q.topik);
-        const salahNama = Object.keys(q.perPeserta || {}).filter(nm => !q.perPeserta[nm].b);
-        return h('li', { 'data-k': 'sulit-' + q.id },
-          h('button', { type: 'button', class: 'eval-sulit-btn', onclick: () => bukaSoalSesi(ev, idxDari(q)) },
-            h('span', { class: 'eval-sulit-kop' }, h('span', { class: 'kode' }, q.id), h('span', { class: 'tim-angka', 'data-nada': q.nBenar * 2 < ev.nPeserta ? 'attn' : null }, q.nBenar + ' dari ' + ev.nPeserta + ' benar')),
-            h('span', { class: 'eval-sulit-topik' }, (q.topik ? q.topik + ' ' : '') + (jt || namaKel(q.kode))),
-            salahNama.length ? h('span', { class: 'meta' }, 'Belum tepat: ' + salahNama.join(', ')) : null),
-          adaTopik ? UKP.link('Pelajari lagi', 'topik', { id: q.topik }, 'btn btn-text btn-sm') : null);
-      })) }));
-    }
+    if (!ev.nSoal || !ev.nPeserta) { wadah.append(UKP.c.kosong('Belum ada soal yang dinilai', ujian ? 'Ujian ini belum berisi jawaban.' : 'Sesi ini berakhir sebelum kunci soal pertama dibuka.', null, { ringkas: true })); return wadah; }
+    const namaUrut = sn.peserta.length ? sn.peserta.filter(nm => ev.peserta.some(p => p.nama === nm)).concat(ev.peserta.map(p => p.nama).filter(nm => sn.peserta.indexOf(nm) < 0)) : ev.peserta.map(p => p.nama);
+    const idsSalah = ev.soal.filter(q => q.nSalah + q.nKosong > 0).map(q => q.id);
+    const adaUlangi = typeof opsi.onUlangi === 'function' && idsSalah.length > 0;
+    const idxDari = id => ev.soal.findIndex(x => x.id === id);
+
+    if (ujian) wadah.append(pitaUjian(ev), bagianSkorUjian(ev));
+    else wadah.append(pitaLatihan(ev), bagianPeringkat(ev));
+    const tempo = bagianTempo(ev, i => bukaSoalSesi(ev, i), idxDari); if (tempo) wadah.append(tempo);
+    if (ujian && !opsi.ringkas) { const pk = bagianPerKelompok(ev); if (pk) wadah.append(pk); }
+    // urutan bahas (triase) — bila modul belajar belum menyediakannya, kembali ke "Soal paling banyak salah" v8.0
+    const tri = ev.triase && Array.isArray(ev.triase.daftar) ? ev.triase : null;
+    const bahas = tri ? kendaliBahas(sesi, ev, tri, namaUrut, adaUlangi ? () => opsi.onUlangi(idsSalah.slice()) : null, idsSalah.length) : null;
+    const kelasDari = id => { const x = tri && tri.daftar.find(d => d.id === id); return x ? x.kelas : 'dikuasai'; };
+    if (!opsi.ringkas) wadah.append(bagianMatriks(ev, namaUrut, kelasDari));
+    if (bahas) wadah.append(bahas.bagian);
+    else if (ev.tersulit && ev.tersulit.length) wadah.append(bagianTersulit(ev));
     if (!opsi.ringkas && ev.topikTim.length) {
       wadah.append(UKP.c.sect({ judul: 'Topik yang perlu dibahas tim', meta: 'akurasi terendah · min. 3 jawaban', isi: UKP.c.daftarSkor(ev.topikTim.map(t => ({ kode: t.topik, judul: judulTopik(t.topik) || t.topik, nilai: t.akurasi, satuan: '%', meta: t.benar + ' dari ' + t.n + ' jawaban benar', view: UKP.konten && UKP.konten.topik && UKP.konten.topik(t.topik) ? 'topik' : null, params: { id: t.topik } })), 'Topik yang perlu dibahas tim') }));
     }
     // aksi
-    const idsSalah = ev.soal.filter(q => q.nSalah + q.nKosong > 0).map(q => q.id);
-    const nmBerkas = 'sesi-bersama-' + (sn.mulai ? U.hariDari(sn.mulai) + '-' + jam(sn.mulai).replace('.', '') : String(sn.id || 'tim')) + '.csv';
+    const nmBerkas = (ujian ? 'ujian-tim-' : 'sesi-bersama-') + (sn.mulai ? U.hariDari(sn.mulai) + '-' + jam(sn.mulai).replace('.', '') : String(sn.id || 'tim')) + '.csv';
+    const B = UKP.belajar; const adaRekap = !!(B && typeof B.rekapSesi === 'function');
+    const teksRekap = () => { try { return String(B.rekapSesi(sesi) || ''); } catch (e) { console.error(e); return ''; } };
+    let tRekap = null, tWa = null;
+    if (adaRekap) {
+      tRekap = UKP.c.salin(teksRekap, { label: 'Salin rekap untuk grup', kelas: 'btn', judul: 'Salin rekap', pesan: 'Rekap disalin. Tempel di grup WhatsApp.' });
+      tRekap.setAttribute('data-k', 'eval-rekap');
+      const r = teksRekap();
+      tWa = r ? h('a', { class: 'btn', 'data-k': 'eval-wa', href: 'https://wa.me/?text=' + encodeURIComponent(r), target: '_blank', rel: 'noopener noreferrer' }, 'Kirim rekap lewat WhatsApp') : null;
+    }
     const aksi = [
-      typeof opsi.onUlangi === 'function' && idsSalah.length ? h('button', { type: 'button', class: 'btn btn-primary', 'data-k': 'eval-ulangi', onclick: () => opsi.onUlangi(idsSalah.slice()) }, 'Ulangi ' + idsSalah.length + ' soal yang salah') : null,
-      h('button', { type: 'button', class: 'btn', 'data-k': 'eval-csv', onclick: () => unduhCsv(nmBerkas, csvSesi(sesi, ev), 'Salin CSV sesi') }, UKP.icon('unduh', null, true), 'Ekspor CSV sesi'),
+      adaUlangi ? h('button', { type: 'button', class: 'btn btn-primary', 'data-k': 'eval-ulangi', onclick: () => opsi.onUlangi(idsSalah.slice()) }, 'Ulangi ' + idsSalah.length + ' soal yang salah') : null,
+      tRekap, tWa,
+      h('button', { type: 'button', class: 'btn btn-ghost', 'data-k': 'eval-csv', onclick: () => unduhCsv(nmBerkas, csvSesi(sesi, ev), 'Salin CSV sesi') }, UKP.icon('unduh', null, true), 'Ekspor CSV'),
       opsi.diDasbor ? null : h('button', { type: 'button', class: 'btn btn-ghost', 'data-k': 'eval-dasbor', onclick: () => UKP.go('tim', {}) }, 'Lihat di Dasbor tim'),
-      typeof opsi.onTutup === 'function' ? h('button', { type: 'button', class: 'btn' + (typeof opsi.onUlangi === 'function' && idsSalah.length ? '' : ' btn-primary'), 'data-k': 'eval-tutup', onclick: () => opsi.onTutup() }, opsi.labelTutup || 'Selesai') : null,
+      typeof opsi.onTutup === 'function' ? h('button', { type: 'button', class: 'btn' + (adaUlangi ? '' : ' btn-primary'), 'data-k': 'eval-tutup', onclick: () => opsi.onTutup() }, opsi.labelTutup || 'Selesai') : null,
     ];
     wadah.append(h('div', { class: 'btn-row eval-aksi' }, aksi));
     return wadah;
   }
   UKP.c.evaluasiBersama = evaluasiBersama;
 
-  // daftar "Sesi terakhir" di bagian lokal Dasbor tim
+  function pitaLatihan(ev) {
+    const totalJ = ev.nSoal * ev.nPeserta;
+    const nBenar = ev.peserta.reduce((a, p) => a + p.benar, 0), nKosong = ev.peserta.reduce((a, p) => a + p.kosong, 0), nYS = ev.peserta.reduce((a, p) => a + p.yakinSalah, 0);
+    return h('div', { class: 'pita-stat tim-pita eval-pita' },
+      tile({ label: 'Akurasi tim', nilai: Math.round(nBenar / totalJ * 100) + '%', sub: nBenar + ' dari ' + totalJ + ' jawaban benar' }),
+      tile({ label: 'Rata-rata benar', nilai: (Math.round(nBenar / ev.nPeserta * 10) / 10).toString().replace('.', ','), sub: 'dari ' + ev.nSoal + ' soal per orang' }),
+      tile({ label: 'Yakin tapi salah', nilai: String(nYS), sub: nYS ? 'bahas lebih dulu' : 'tidak ada' }),
+      tile({ label: 'Kosong', nilai: String(nKosong), sub: 'jawaban tidak diisi' }));
+  }
+  function bagianPeringkat(ev) {
+    const peringkat = h('ol', { class: 'eval-peringkat', 'aria-label': 'Peringkat peserta' }, ev.peserta.map((p, i) => h('li', { 'data-k': 'peringkat-' + p.nama },
+      h('span', { class: 'eval-no tim-angka', 'aria-hidden': 'true' }, String(i + 1)),
+      h('span', { class: 'eval-nama', title: p.nama }, p.nama),
+      h('span', { class: 'eval-skor tim-angka' }, p.benar + '/' + ev.nSoal),
+      p.akurasi == null ? h('span') : UKP.c.barMini(p.akurasi, { label: p.nama + ': ' + p.akurasi + ' dari 100, batas aman 60' }),
+      h('span', { class: 'eval-ket' }, p.yakinSalah ? UKP.c.pill('yakin tapi salah: ' + p.yakinSalah, 'attn') : null, p.kosong ? h('span', { class: 'meta' }, p.kosong + ' kosong') : null))));
+    return UKP.c.sect({ judul: 'Peringkat', meta: 'urut jumlah benar', isi: peringkat });
+  }
+  // mode ujian: pita (rata-rata skor, lulus, kosong, ragu) dan skor per orang menurut urutan peserta (bukan peringkat)
+  function pitaUjian(ev) {
+    const sk = ev.skor; const N = sk.length; const bt = batasLulus();
+    const rata = N ? sk.reduce((a, x) => a + x.skor, 0) / N : 0; const nLulus = sk.filter(x => x.lulus).length;
+    const kosong = sk.reduce((a, x) => a + x.kosong, 0), ragu = sk.reduce((a, x) => a + x.nRagu, 0);
+    return h('div', { class: 'pita-stat tim-pita eval-pita', 'data-k': 'pita-ujian' },
+      tile({ label: 'Rata-rata skor', nilai: angkaKoma(rata), sub: 'batas lulus ' + bt }),
+      tile({ label: 'Lulus (≥ ' + bt + ')', nilai: nLulus + ' dari ' + N, sub: nLulus === N ? 'semua lulus' : (N - nLulus) + ' orang belum lulus' }),
+      tile({ label: 'Kosong', nilai: String(kosong), sub: 'jawaban tidak diisi' }),
+      tile({ label: 'Ragu', nilai: String(ragu), sub: 'jawaban bertanda ragu' }));
+  }
+  function bagianSkorUjian(ev) {
+    const bt = batasLulus();
+    const daftar = h('ol', { class: 'eval-skor-daftar', 'aria-label': 'Skor per orang' }, ev.skor.map(x => {
+      const rinci = [x.benar + ' benar', x.salah + ' salah', x.kosong + ' kosong', x.nRagu ? x.nRagu + ' ragu' : null, x.detik != null ? Math.max(1, Math.round(x.detik / 60)) + ' menit' : null].filter(Boolean).join(' · ');
+      return h('li', { 'data-k': 'skor-' + x.nama, 'data-lulus': x.lulus ? '' : null },
+        h('span', { class: 'eval-nama', title: x.nama }, x.nama),
+        h('span', { class: 'eval-skor-besar tim-angka', 'data-nada': x.lulus ? null : 'attn' }, angkaKoma(x.skor)),
+        h('span', { class: 'eval-skor-status' }, x.lulus ? UKP.c.pill('Lulus', 'ok', 'check') : UKP.c.pill('kurang ' + x.kurang + ' soal', 'attn')),
+        UKP.c.barMini(x.skor, { acuan: bt, nada: x.lulus ? null : 'attn', label: x.nama + ': skor ' + angkaKoma(x.skor) + ' dari 100, batas lulus ' + bt }),
+        h('span', { class: 'meta eval-skor-rinci' }, rinci));
+    }));
+    return UKP.c.sect({ judul: 'Skor per orang', meta: 'skor = benar ÷ soal × 100 · lulus ≥ ' + bt, isi: daftar });
+  }
+  // mode ujian: persen benar per kelompok soal (baris) per orang (kolom); sel < 60% bernada
+  function bagianPerKelompok(ev) {
+    const kode = []; const n = {};
+    ev.skor.forEach(x => (x.perKelompok || []).forEach(k => { if (kode.indexOf(k.kode) < 0) { kode.push(k.kode); n[k.kode] = k.n; } }));
+    if (!kode.length) return null;
+    const bt = batasLulus();
+    const tbl = h('table', { class: 'tabel eval-kel' }, h('caption', { class: 'visually-hidden' }, 'Persen jawaban benar per kelompok soal untuk tiap orang'),
+      h('thead', null, h('tr', null, h('th', { scope: 'col', class: 'eval-kel-kode' }, 'Kelompok'), h('th', { scope: 'col', class: 'num' }, 'Soal'),
+        ev.skor.map(x => h('th', { scope: 'col', class: 'num', title: x.nama, abbr: x.nama }, namaPendek(x.nama))))),
+      h('tbody', null, kode.map(k => h('tr', { 'data-k': 'kel-' + k },
+        h('th', { scope: 'row', class: 'eval-kel-kode', title: namaKel(k) }, h('span', { class: 'kode' }, k), h('span', { class: 'eval-kel-nama' }, namaKel(k))),
+        h('td', { class: 'num tim-angka' }, String(n[k])),
+        ev.skor.map(x => { const y = (x.perKelompok || []).find(z => z.kode === k); const p = y && y.n ? Math.round(y.benar / y.n * 100) : null;
+          return h('td', { class: 'num' }, p == null ? '–' : h('span', { class: 'eval-kel-sel tim-angka', 'data-nada': p < bt ? 'attn' : null, title: x.nama + ': ' + y.benar + ' dari ' + y.n + ' benar' }, p + '%')); })))));
+    const wrap = UKP.c.tabelWrap('Persen benar per kelompok', tbl); wrap.classList.add('eval-kel-wrap');
+    return UKP.c.sect({ judul: 'Per kelompok', meta: 'persen benar · di bawah ' + bt + '% ditandai', isi: wrap });
+  }
+  // tempo: kalimat proyeksi ke ujian sungguhan + ≤ 3 soal terlama (bisa dibuka)
+  function bagianTempo(ev, buka, idxDari) {
+    const t = ev.tempo; const k = kalimatTempo(t); if (!k) return null;
+    const nDetik = ev.soal.filter(q => q.detik > 0).length;
+    const terlama = (t.terlama || []).filter(x => idxDari(x.id) >= 0);
+    return UKP.c.sect({ judul: 'Tempo', meta: 'dari ' + nDetik + ' soal berwaktu', isi: h('div', { class: 'eval-tempo', 'data-k': 'tempo', 'data-nada': k.lewat ? 'attn' : null },
+      h('p', { class: 'eval-tempo-kalimat' }, k.teks),
+      t.nLewat ? h('p', { class: 'meta' }, t.nLewat + ' dari ' + nDetik + ' soal melewati ' + mmss(t.detikPerSoal) + (terlama.length ? '. Terlama:' : '.')) : null,
+      terlama.length ? h('ul', { class: 'eval-tempo-lama', 'aria-label': 'Soal terlama' }, terlama.map(x => h('li', null,
+        h('button', { type: 'button', class: 'btn btn-sm btn-ghost', 'data-k': 'tempo-' + x.id, 'aria-label': 'Buka soal ' + x.id + ', ' + mmss(x.detik), onclick: () => buka(idxDari(x.id)) }, h('span', { class: 'kode' }, x.id), h('span', { class: 'tim-angka' }, mmss(x.detik)))))) : null) });
+  }
+  // matriks soal × orang; saringan (> 10 soal) dan 20 baris pertama untuk sesi > 30 soal
+  function bagianMatriks(ev, nama, kelasDari) {
+    const pakaiSaring = ev.nSoal > 10;
+    let saring = 'semua'; let semua = ev.nSoal <= MATRIKS_BATAS_PENUH;
+    const tbody = h('tbody');
+    const info = h('span', { class: 'meta', 'aria-live': 'polite', 'data-k': 'matriks-info' });
+    const tSemua = h('button', { type: 'button', class: 'btn btn-ghost btn-sm', 'data-k': 'matriks-semua', onclick: () => { semua = true; isi(); } });
+    const baris = (q, i) => h('tr', { 'data-k': 'baris-' + q.id, onclick: e => { if (!e.target.closest('button')) bukaSoalSesi(ev, i); } },
+      h('th', { scope: 'row', class: 'eval-kol-soal' }, h('button', { type: 'button', class: 'eval-soal-btn', 'aria-label': 'Soal ' + (i + 1) + ', ' + q.id + (judulTopik(q.topik) ? ', ' + judulTopik(q.topik) : '') + ', ' + q.nBenar + ' dari ' + ev.nPeserta + ' benar. Buka soal', onclick: () => bukaSoalSesi(ev, i) },
+        h('span', { class: 'kode' }, q.id), h('span', { class: 'eval-topik', title: judulTopik(q.topik) || null }, q.topik || ''))),
+      h('td', { class: 'eval-kol-kunci tim-angka' }, q.kunci || '–'),
+      nama.map(nm => { const j = q.perPeserta[nm] || { o: '-', k: null, b: 0 }; const hs = hasilSel(j);
+        return h('td', { class: 'eval-td' }, h('span', { class: 'eval-sel', 'data-hasil': hs, title: nm + ': ' + hs + (j.k ? ', ' + LABEL_YAKIN[j.k].toLowerCase() : '') },
+          h('span', { 'aria-hidden': 'true' }, j.o === '-' ? '–' : j.o), j.k ? h('span', { class: 'eval-yk', 'aria-hidden': 'true' }, TEKS_YK[j.k]) : null,
+          h('span', { class: 'visually-hidden' }, (j.o === '-' ? 'kosong' : j.o + ', ' + hs) + (j.k ? ', ' + LABEL_YAKIN[j.k].toLowerCase() : ''))));
+      }));
+    function isi() {
+      const fx = (SARING_MATRIKS.find(x => x.nilai === saring) || SARING_MATRIKS[0]).f;
+      const arr = ev.soal.map((q, i) => ({ q, i })).filter(x => fx(x.q, ev, kelasDari));
+      const tampil = semua ? arr : arr.slice(0, MATRIKS_AWAL);
+      tbody.replaceChildren(...(tampil.length ? tampil.map(x => baris(x.q, x.i)) : [h('tr', { class: 'eval-matriks-kosong' }, h('td', { colspan: String(2 + nama.length) }, 'Tidak ada soal untuk saringan ini.'))]));
+      info.textContent = tampil.length < arr.length ? 'Menampilkan ' + tampil.length + ' dari ' + arr.length + ' soal' : arr.length + ' soal';
+      tSemua.textContent = 'Tampilkan semua (' + arr.length + ')';
+      tSemua.hidden = tampil.length >= arr.length;
+    }
+    const tbl = h('table', { class: 'tabel eval-matriks' }, h('caption', { class: 'visually-hidden' }, 'Jawaban tiap orang per soal. Pilih baris untuk membuka soal.'),
+      h('thead', null, h('tr', null, h('th', { scope: 'col', class: 'eval-kol-soal' }, 'Soal'), h('th', { scope: 'col', class: 'eval-kol-kunci' }, 'Kunci'),
+        nama.map(nm => h('th', { scope: 'col', title: nm, abbr: nm }, namaPendek(nm))))), tbody);
+    isi();
+    const ujian = ev.mode === 'ujian';
+    const legenda = h('p', { class: 'tim-peta-legenda meta eval-legenda' }, h('span', { 'data-hasil': 'benar', 'aria-hidden': 'true' }), 'benar', h('span', { 'data-hasil': 'salah', 'aria-hidden': 'true' }), 'salah', h('span', { 'data-hasil': 'kosong', 'aria-hidden': 'true' }), 'kosong', ujian ? ' · R ragu' : ' · Y yakin · R ragu · N menebak');
+    const wrapM = UKP.c.tabelWrap('Matriks jawaban soal per orang', tbl); wrapM.classList.add('eval-matriks-wrap');
+    let seg = null;
+    if (pakaiSaring) {
+      const hitung = v => ev.soal.filter(q => SARING_MATRIKS.find(x => x.nilai === v).f(q, ev, kelasDari)).length;
+      seg = UKP.c.segmen({ ariaLabel: 'Saring soal', aktif: saring, opsi: SARING_MATRIKS.map(x => ({ nilai: x.nilai, label: x.label + ' (' + hitung(x.nilai) + ')' })), onPilih: v => { saring = v; isi(); } });
+      seg.setAttribute('data-k', 'matriks-saring'); seg.classList.add('eval-saring');
+    }
+    return UKP.c.sect({ judul: 'Jawaban per soal', meta: 'pilih baris untuk membuka soal', idBagian: null, isi: h('div', { class: 'stack-sm' }, seg, legenda, wrapM,
+      h('div', { class: 'eval-matriks-kaki' }, info, tSemua)) });
+  }
+  // cadangan v8.0 (modul belajar tanpa urutanBahas)
+  function bagianTersulit(ev) {
+    const idxDari = q => ev.soal.indexOf(q) >= 0 ? ev.soal.indexOf(q) : ev.soal.findIndex(x => x.id === q.id);
+    return UKP.c.sect({ judul: 'Soal paling banyak salah', meta: ev.tersulit.length + ' soal', isi: h('ol', { class: 'eval-sulit' }, ev.tersulit.map(q => {
+      const jt = judulTopik(q.topik);
+      const salahNama = Object.keys(q.perPeserta || {}).filter(nm => !q.perPeserta[nm].b);
+      return h('li', { 'data-k': 'sulit-' + q.id },
+        h('button', { type: 'button', class: 'eval-sulit-btn', onclick: () => bukaSoalSesi(ev, idxDari(q)) },
+          h('span', { class: 'eval-sulit-kop' }, h('span', { class: 'kode' }, q.id), h('span', { class: 'tim-angka', 'data-nada': q.nBenar * 2 < ev.nPeserta ? 'attn' : null }, q.nBenar + ' dari ' + ev.nPeserta + ' benar')),
+          h('span', { class: 'eval-sulit-topik' }, (q.topik ? q.topik + ' ' : '') + (jt || namaKel(q.kode))),
+          salahNama.length ? h('span', { class: 'meta' }, 'Belum tepat: ' + salahNama.join(', ')) : null));
+    })) });
+  }
+
+  // ---------- urutan bahas (triase) dan mode bahas ----------
+  // tri = UKP.belajar.urutanBahas(sesi) (lewat ev.triase); tanda "sudah dibahas" disimpan lewat UKP.belajar.tandaiBahas
+  function kendaliBahas(sesi, ev, tri, namaUrut, onUlangi, nUlangi) {
+    const daftar = tri.daftar; const n = daftar.length;
+    const sudah = new Set(daftar.filter(x => x.sudah).map(x => x.id));
+    const B = UKP.belajar;
+    const ringkas = h('p', { class: 'meta eval-bahas-ringkas', 'data-k': 'bahas-ringkas', 'aria-live': 'polite' });
+    const tMulai = h('button', { type: 'button', class: 'btn btn-primary', 'data-k': 'bahas-mulai', onclick: () => { const i = daftar.findIndex(x => !sudah.has(x.id)); buka(i < 0 ? 0 : i); } });
+    const cek = new Map();
+    function segarkan() {
+      const s = daftar.filter(x => sudah.has(x.id)).length;
+      ringkas.textContent = n + ' soal perlu dibahas · ' + tri.nDikuasai + ' dikuasai dilewati' + (s ? ' · ' + s + ' sudah dibahas' : '');
+      tMulai.textContent = s >= n ? 'Bahas ulang · ' + n + ' soal' : s ? 'Lanjutkan bahas · ' + (n - s) + ' tersisa' : 'Mulai bahas · ' + n + ' soal';
+      cek.forEach((el, id) => { el.checked = sudah.has(id); const li = el.closest('li'); if (li) li.toggleAttribute('data-sudah', sudah.has(id)); });
+    }
+    function tandai(id, v) {
+      if (v) sudah.add(id); else sudah.delete(id);
+      if (B && typeof B.tandaiBahas === 'function' && sesi && sesi.id) { try { B.tandaiBahas(sesi.id, id, !!v); } catch (e) { console.error(e); } }
+      segarkan();
+    }
+    const buka = i => bukaBahas({ daftar, ev, sudah, tandai, namaUrut, onUlangi, nUlangi }, i);
+    if (!n) {
+      return { bagian: UKP.c.sect({ judul: 'Urutan bahas', isi: h('div', { class: 'stack-sm', 'data-k': 'bahas-kosong' }, h('p', { class: 'meta' }, 'Tidak ada soal yang perlu dibahas: ' + tri.nDikuasai + ' soal dijawab benar oleh semua orang tanpa ragu.')) }) };
+    }
+    const ol = h('ol', { class: 'eval-bahas', 'aria-label': 'Urutan bahas' }, daftar.map((x, i) => {
+      const jt = judulTopik(x.topik);
+      const kotak = h('input', { type: 'checkbox', 'data-k': 'bahas-cek-' + x.id, 'aria-label': 'Soal ' + x.id + ' sudah dibahas', onchange: e => tandai(x.id, e.target.checked) });
+      cek.set(x.id, kotak);
+      const alasan = x.alasan && (x.alasan.label || x.alasan.opsi) ? 'Banyak memilih ' + x.alasan.opsi + (x.alasan.label ? ': ' + x.alasan.label : '') : null;
+      return h('li', { 'data-k': 'bahas-' + x.id, 'data-kelas': x.kelas },
+        h('span', { class: 'eval-bahas-no tim-angka', 'aria-hidden': 'true' }, String(i + 1)),
+        h('button', { type: 'button', class: 'eval-bahas-btn', 'aria-label': (i + 1) + '. ' + x.id + ', ' + (KELAS_BAHAS[x.kelas] || [''])[0] + ', ' + x.saran + '. Buka mode bahas', onclick: () => buka(i) },
+          h('span', { class: 'eval-bahas-kop' }, h('span', { class: 'kode' }, x.id), pillKelas(x.kelas), h('span', { class: 'eval-bahas-topik', title: jt || null }, (x.topik ? x.topik + ' ' : '') + (jt || namaKel(x.kode)))),
+          h('span', { class: 'eval-bahas-saran' }, x.saran),
+          alasan ? h('span', { class: 'meta eval-bahas-alasan' }, alasan) : null),
+        h('label', { class: 'eval-bahas-cek' }, kotak, h('span', null, 'Dibahas')));
+    }));
+    segarkan();
+    // daftar panjang (ujian): BAHAS_AWAL baris pertama + "Tampilkan semua"; mode bahas tetap memuat semuanya
+    let tSemua = null;
+    if (n > BAHAS_AWAL + 2) {
+      const li = Array.from(ol.children); li.slice(BAHAS_AWAL).forEach(x => { x.hidden = true; });
+      tSemua = h('button', { type: 'button', class: 'btn btn-ghost btn-sm', 'data-k': 'bahas-semua', onclick: () => { li.forEach(x => { x.hidden = false; }); tSemua.remove(); } }, 'Tampilkan semua (' + n + ')');
+    }
+    const bagian = UKP.c.sect({ judul: 'Urutan bahas', aksi: tMulai, isi: h('div', { class: 'stack-sm', 'data-k': 'urutan-bahas' }, ringkas, ol, tSemua) });
+    return { bagian, buka };
+  }
+  // mode bahas: satu soal per langkah (mode ulas) dengan kotak triase, stopwatch, Sebelumnya / Sudah dibahas, lanjut
+  // papan ketik: ← → pindah, Enter = sudah dibahas dan lanjut, Esc = tutup
+  function bukaBahas(ctx, awal) {
+    const daftar = ctx.daftar; const n = daftar.length; if (!n) return null;
+    let pos = Math.max(0, Math.min(n - 1, awal || 0)); let akhir = false;
+    const waktu = {}; let t0 = Date.now(); let detak = null;
+    const jamEl = h('span', { class: 'eval-bahas-jam tim-angka', 'data-k': 'bahas-jam', title: 'Lama membahas soal ini' });
+    const posisi = h('span', { class: 'meta tim-dlg-posisi', 'aria-live': 'polite', 'data-k': 'bahas-posisi' });
+    const tSebelum = h('button', { type: 'button', class: 'btn', 'data-k': 'bahas-sebelum', onclick: () => geser(-1) }, UKP.icon('back', null, true), h('span', { class: 'lbl-panjang' }, 'Sebelumnya'));
+    const tLanjut = h('button', { type: 'button', class: 'btn btn-primary', 'data-k': 'bahas-lanjut', autofocus: true, onclick: () => lanjut() }, 'Sudah dibahas, lanjut');
+    const kaki = h('div', { class: 'tim-dlg-nav eval-bahas-nav' }, tSebelum, posisi, tLanjut);
+    let dlg = null;
+    const catatWaktu = () => { const x = daftar[pos]; if (x && !akhir) waktu[x.id] = (waktu[x.id] || 0) + (Date.now() - t0); t0 = Date.now(); };
+    const tampilJam = () => { const x = daftar[pos]; if (!x || akhir) return; jamEl.textContent = 'Waktu bahas ' + mmss(((waktu[x.id] || 0) + (Date.now() - t0)) / 1000); };
+    function isiSoal(x) {
+      const q = ctx.ev.soal[x.idx] || ctx.ev.soal.find(y => y.id === x.id) || { id: x.id, kunci: x.kunci, perPeserta: {} };
+      const so = cariSoal(x.id);
+      const kotak = h('div', { class: 'eval-triase', 'data-k': 'triase', 'data-kelas': x.kelas },
+        h('div', { class: 'eval-triase-kop' }, pillKelas(x.kelas), h('strong', null, x.label), ctx.sudah.has(x.id) ? UKP.c.pill('sudah dibahas', 'ok', 'check') : null, jamEl),
+        h('p', { class: 'eval-triase-saran' }, x.saran),
+        h('p', { class: 'eval-triase-pilih', 'data-k': 'triase-pilih' }, siapaMemilih(q, ctx.namaUrut)),
+        x.alasan && (x.alasan.teks || x.alasan.label) ? h('p', { class: 'small eval-triase-alasan' }, h('strong', null, 'Opsi ' + x.alasan.opsi + (x.alasan.label ? ' · ' + x.alasan.label : '') + (x.alasan.teks ? ': ' : '')), x.alasan.teks || '') : null);
+      return h('div', { class: 'stack tim-dlg-soal' }, kotak,
+        so ? UKP.c.soal(so, { hanyaBaca: true, denganUmpan: true, fokus: false, jawabanAwal: '-', detik: 0, konteks: 'ulas', tanpaTutor: true, tanpaLog: true })
+          : h('p', { class: 'meta' }, 'Soal ini tidak ada di versi aplikasi ini; bahas dari catatan di atas.'));
+    }
+    function isiAkhir() {
+      const s = daftar.filter(x => ctx.sudah.has(x.id)).length;
+      const semua = s >= n;
+      return h('div', { class: 'stack eval-bahas-akhir', 'data-k': 'bahas-akhir' },
+        h('p', { class: 'eval-bahas-akhir-judul' }, semua ? 'Semua soal sudah dibahas' : 'Sampai di akhir urutan bahas'),
+        h('p', { class: 'meta' }, semua ? n + ' soal dibahas.' : s + ' dari ' + n + ' soal ditandai sudah dibahas.'),
+        semua ? null : h('button', { type: 'button', class: 'btn', 'data-k': 'bahas-ke-belum', onclick: () => { const i = daftar.findIndex(x => !ctx.sudah.has(x.id)); akhir = false; pos = i < 0 ? 0 : i; t0 = Date.now(); segarkan(); } }, 'Ke soal yang belum dibahas'));
+    }
+    function segarkan() {
+      if (!dlg) return;
+      const jd = dlg.querySelector('.dlg-head h2'); const body = dlg.querySelector('.dlg-body');
+      if (akhir) {
+        if (jd) jd.textContent = 'Bahas selesai';
+        if (body) { body.replaceChildren(isiAkhir()); body.scrollTop = 0; }
+        posisi.textContent = 'Bahas ' + n + ' dari ' + n;
+        tSebelum.disabled = false;
+        tLanjut.textContent = ctx.onUlangi ? 'Ulangi ' + ctx.nUlangi + ' soal yang salah' : 'Tutup';
+        tLanjut.setAttribute('data-k', ctx.onUlangi ? 'bahas-ulangi' : 'bahas-tutup');
+        return;
+      }
+      const x = daftar[pos];
+      if (jd) jd.textContent = 'Bahas ' + x.id;
+      if (body) { body.replaceChildren(isiSoal(x)); body.scrollTop = 0; }
+      posisi.textContent = 'Bahas ' + (pos + 1) + ' dari ' + n;
+      tSebelum.disabled = pos === 0;
+      tLanjut.textContent = 'Sudah dibahas, lanjut'; tLanjut.setAttribute('data-k', 'bahas-lanjut');
+      tampilJam();
+    }
+    function geser(d) {
+      if (akhir) { if (d < 0) { akhir = false; pos = n - 1; t0 = Date.now(); segarkan(); } return; }
+      const baru = pos + d; if (baru < 0 || baru >= n) return;
+      catatWaktu(); pos = baru; segarkan();
+    }
+    function lanjut() {
+      if (akhir) { if (dlg) dlg.close('selesai'); if (ctx.onUlangi) ctx.onUlangi(); return; }
+      catatWaktu(); ctx.tandai(daftar[pos].id, true);
+      if (pos < n - 1) { pos++; segarkan(); } else { akhir = true; segarkan(); }
+      try { tLanjut.focus({ preventScroll: true }); } catch (e) {}
+    }
+    dlg = UKP.dialog({ judul: 'Bahas ' + daftar[pos].id, ukuran: 'lg', kelas: 'tim-dlg eval-bahas-dlg', isi: () => isiSoal(daftar[pos]), kaki,
+      onClose: () => { clearInterval(detak); detak = null; } });
+    if (dlg) {
+      dlg.setAttribute('data-k', 'mode-bahas');
+      dlg.addEventListener('keydown', e => {
+        if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
+        const t = e.target; if (t && t.closest && t.closest('input, textarea, select, [contenteditable]')) return;
+        if (e.key === 'ArrowRight') { e.preventDefault(); if (akhir) return; geser(1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); geser(-1); }
+        else if (e.key === 'Enter') { if (t && t.closest && t.closest('button, a, summary')) return; e.preventDefault(); lanjut(); }
+      });
+      detak = setInterval(() => { if (!dlg.isConnected) { clearInterval(detak); return; } tampilJam(); }, 1000);
+    }
+    segarkan();
+    return dlg;
+  }
+
+  // daftar "Sesi terakhir" di bagian lokal Dasbor tim (v8.1: jenis Latihan / Ujian tim · judul; ujian: rata-rata skor dan jumlah lulus)
   function daftarSesiNode() {
     const arr = daftarSesi().slice(0, SESI_MAKS_DAFTAR); if (!arr.length) return null;
     return h('div', { class: 'stack-sm eval-sesi-bagian' }, h('h3', { class: 'eval-sesi-judul' }, 'Sesi terakhir'),
-      h('ul', { class: 'eval-sesi', 'aria-label': 'Sesi latihan bersama terakhir' }, arr.map(x => {
-        const ev = evaluasi(x); const mulaiT = ms(x.mulai);
-        const rata = ev.nSoal && ev.nPeserta ? Math.round(ev.peserta.reduce((a, p) => a + p.benar, 0) / (ev.nSoal * ev.nPeserta) * 100) : null;
-        return h('li', null, UKP.link([
-          h('span', { class: 'eval-sesi-kop' }, h('span', { class: 'eval-sesi-tgl' }, tanggalSesi(mulaiT)), x.selesai ? null : UKP.c.pill('belum selesai', 'warn')),
-          h('span', { class: 'meta' }, ev.nSoal + ' soal · ' + ev.nPeserta + ' orang' + (rata != null ? ' · rata-rata ' + rata + '% benar' : '')),
+      h('ul', { class: 'eval-sesi', 'aria-label': 'Sesi latihan bersama dan ujian tim terakhir' }, arr.map(x => {
+        const ev = evaluasi(x); const mulaiT = ms(x.mulai); const r = ringkasSesi(x, ev);
+        return h('li', { 'data-mode': r.ujian ? 'ujian' : 'latihan' }, UKP.link([
+          h('span', { class: 'eval-sesi-kop' }, h('span', { class: 'eval-sesi-jenis' }, r.jenis), x.selesai ? null : UKP.c.pill('belum selesai', 'warn')),
+          h('span', { class: 'meta' }, h('span', { class: 'eval-sesi-tgl' }, tanggalSesi(mulaiT)), ' · ' + r.meta),
           UKP.icon('chevron-kanan', 'chev', true)], 'tim', { anggota: 'sesi:' + x.id }, 'eval-sesi-baris'));
       })));
   }
@@ -1159,9 +1464,13 @@
     }
     const ev = evaluasi(sesi); const mulaiT = ms(sesi.mulai);
     const hapus = h('button', { type: 'button', class: 'btn btn-ghost', 'data-k': 'hapus-sesi', onclick: async () => {
-      const ya = await UKP.konfirmasi('Hapus sesi ini?', 'Rekaman sesi ' + tanggalSesi(mulaiT) + ' akan dihapus dari perangkat ini. Jawaban per peserta di Dasbor tim tetap tersimpan. Tindakan ini tidak dapat dibatalkan.', { ya: 'Hapus', bahaya: true });
+      const ya = await UKP.konfirmasi('Hapus sesi ini?', 'Rekaman ' + (adalahUjian(ev) ? 'ujian tim ' : 'sesi ') + tanggalSesi(mulaiT) + ' akan dihapus dari perangkat ini. Jawaban per peserta di Dasbor tim tetap tersimpan. Tindakan ini tidak dapat dibatalkan.', { ya: 'Hapus', bahaya: true });
       if (!ya) return; hapusSesi(sesi.id); UKP.toast('Sesi dihapus.', { lintasRute: true }); UKP.go('tim', {}, { replace: true }); } }, UKP.icon('hapus', null, true), 'Hapus sesi');
-    page.append(UKP.c.kop({ crumbs, eyebrow: tanggalSesi(mulaiT), judul: 'Evaluasi tim', meta: h('span', { class: 'meta' }, metaSesi(ev) + (sesi.tingkat ? ' · Tingkat ' + sesi.tingkat : '') + (sesi.selesai ? '' : ' · belum selesai')) }),
+    // v8.1: sesi bermode ujian → "Hasil ujian tim" + judul ujian
+    const ujian = adalahUjian(ev);
+    crumbs[1].teks = ujian ? 'Hasil ujian tim' : 'Evaluasi sesi';
+    page.append(UKP.c.kop({ crumbs, eyebrow: tanggalSesi(mulaiT), judul: ujian ? 'Hasil ujian tim' : 'Evaluasi tim',
+      meta: h('span', { class: 'meta' }, (ujian && ev.judul ? ev.judul + ' · ' : '') + metaSesi(ev, sesi) + (sesi.tingkat ? ' · Tingkat ' + sesi.tingkat : '') + (sesi.selesai ? '' : ' · belum selesai')) }),
       evaluasiBersama(sesi, { tanpaKop: true, diDasbor: true, onTutup: () => UKP.go('tim', {}), labelTutup: 'Kembali ke Dasbor tim', onUlangi: ulangiSesi(sesi) }),
       h('div', { class: 'btn-row' }, hapus));
     return { node: page };
@@ -1265,7 +1574,7 @@
     return id ? halamanDetail(id) : halamanDaftar();
   };
   // untuk uji: urutan dan CSV tanpa DOM
-  UKP.views.tim._uji = { normal, urutkan, csv, keP, sumberTeks, normalJawaban, analisisJawaban, petaSimulasi, csvJawaban, labelPola, pesertaDari, dokDari, normalLokal, adalahLokal, normalSesi, evaluasiLokal, csvSesi, daftarSesi };
+  UKP.views.tim._uji = { normal, urutkan, csv, keP, sumberTeks, normalJawaban, analisisJawaban, petaSimulasi, csvJawaban, labelPola, pesertaDari, dokDari, normalLokal, adalahLokal, normalSesi, evaluasiLokal, csvSesi, daftarSesi, ringkasSesi, kalimatTempo, siapaMemilih, menitSesi, SARING_MATRIKS, MODE_JAWAB };
   if (UKP.viz && UKP.viz.gaya) UKP.viz.gaya('ukp-tim-room', ':where(.tim-sumber){color:var(--muted)}'
     + ':where(.tim-online){display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-meta,.8125rem);color:var(--muted);white-space:nowrap}');
 })(typeof window !== 'undefined' ? window : globalThis);

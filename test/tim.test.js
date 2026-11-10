@@ -274,7 +274,11 @@ test('tanpa window.claude: status mati, tidak ada tulis, pantau memanggil cb([])
   assert.equal(UKP.tim.kodeHasil().slice(0, 6), 'UKP1.z', 'setelah disiapkan, versi terkompres dipakai');
 });
 
-test('window.claude tiruan: tersambung, kirim satu kali per perubahan, pantau melihat dok, aktif=false tidak menulis', async () => {
+// bekukan Date.now selama satu uji agar jendela waktu (mis. 30 hari jawaban) dihitung relatif terhadap KINI fixture, bukan jam nyata
+function bekukanWaktu(t, kini) { const asli = Date.now; Date.now = () => kini; t.after(() => { Date.now = asli; }); }
+
+test('window.claude tiruan: tersambung, kirim satu kali per perubahan, pantau melihat dok, aktif=false tidak menulis', async (tc) => {
+  bekukanWaktu(tc, KINI); // tepat KINI: entri 30 hari lalu masih di dalam jendela HARI_JAWAB (batas inklusif)
   const t = claudeTiruan();
   const { UKP, simpan } = muat({ claude: t.claude });
   isiState(UKP);

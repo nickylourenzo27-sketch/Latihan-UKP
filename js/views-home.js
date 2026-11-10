@@ -587,7 +587,21 @@
   }
   UKP.c.dasborKemajuan = () => berandaDasbor({ sematkan: true });
   UKP.c.sesiHariIni = () => berandaDasbor({ hanyaSesi: true });
-  UKP.views.beranda = function () { const p = UKP.store.get().profil; return p.berandaLengkap === true ? berandaDasbor() : berandaRingkas(); };
+  UKP.views.beranda = function () {
+    const p = UKP.store.get().profil; const page = p.berandaLengkap === true ? berandaDasbor() : berandaRingkas();
+    // v8.1: kartu kerja tim yang belum selesai paling atas (tepat di bawah sapaan): "Ujian tim berjalan" (U2, js/views-ujian-tim.js)
+    // dan "Sesi bersama belum selesai" (js/views-belajar.js); fungsi lintas berkas diperiksa dulu
+    try {
+      const kartu = [typeof UKP.c.kartuUjianTim === 'function' ? UKP.c.kartuUjianTim() : null, typeof UKP.c.kartuLanjutBersama === 'function' ? UKP.c.kartuLanjutBersama() : null].filter(Boolean);
+      if (kartu.length && page && page.nodeType) {
+        const kepala = [...page.children].find(x => x.tagName === 'HEADER' || x.querySelector('h1'));
+        let jangkar = kepala || null; while (jangkar && jangkar.nextElementSibling && jangkar.nextElementSibling.classList.contains('banner')) jangkar = jangkar.nextElementSibling;
+        const wadah = h('div', { class: 'stack-sm beranda-tim-aktif' }, kartu);
+        if (jangkar) jangkar.after(wadah); else page.prepend(wadah);
+      }
+    } catch (e) { console.error(e); }
+    return page;
+  };
 
   // ----- Beranda ringkas (bawaan v7.2): sapaan, satu kartu Lanjutkan, ubin aksi, satu tautan Kemajuan -----
   function aktivitasTerakhir(s) {

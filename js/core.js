@@ -1,7 +1,7 @@
 /* Pelatih UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '8.0.1';
+  UKP.versi = '8.1';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   UKP.modul = UKP.modul || {};          // kode -> modul konten
@@ -259,6 +259,11 @@
     bersama: { aktif: false, peserta: [] },   // v7.9 latihan bersama: catat jawaban per nama (satu layar, beberapa orang)
     jawabanBersama: [],     // v7.9/v8.0: [{ p, s, kd, t, o, b, d, w, m, k (keyakinan|null), sesi }] terlama → terbaru; tidak ikut ringkasan tim (UKP.belajar.catatJawabanBersama)
     sesiBersama: [],        // v8.0: rekaman sesi latihan bersama [{ id, mulai, selesai, tingkat, peserta, anggaranDetik, soal: [...], sumber }] terlama → terbaru, ≤ 60
+                            // v8.1: + tempo, detikPerSoal, mode ('latihan'|'ujian'), judul, ujianId, bahas {soalId: 1}, waktuPeserta {nama: detik} (opsional)
+    // v8.1 (opsional, bawaan null; bentuk di js/learn.js): s.bersama.tempo 'ujian' (bila tidak ada) | 'longgar'
+    ujianTim: null,         // ujian tim aktif di perangkat pemimpin (UKP.belajar.ujianTim)
+    lembarJawab: null,      // lembar jawab pribadi di HP anggota (UKP.belajar.lembarJawab)
+    bersamaAktif: null,     // sesi latihan bersama yang belum selesai, untuk dilanjutkan (UKP.belajar.bersamaAktif)
   });
   const isObj = x => x != null && typeof x === 'object' && !Array.isArray(x);
   const punya = (o, k) => o != null && Object.prototype.hasOwnProperty.call(o, k);
@@ -308,12 +313,18 @@
     else if (rd) o.rencanaDasar = salinAman(rd);
     o.laporan = o.laporan.filter(x => typeof x.minggu === 'string');
     // v7.9 latihan bersama: peserta = nama unik (≤ 12, ≤ 24 karakter, tanpa karakter kontrol); entri jawaban berbentuk objek bernama
+    const tempoB = o.bersama.tempo === 'longgar' || o.bersama.tempo === 'ujian' ? o.bersama.tempo : null;
     o.bersama = { aktif: o.bersama.aktif === true, peserta: (Array.isArray(o.bersama.peserta) ? o.bersama.peserta : []).filter(x => typeof x === 'string').map(x => x.replace(/[\u0000-\u001f\u007f-\u009f]/g, ' ').replace(/\s+/g, ' ').trim()).filter((x, i, a) => x && x.length <= 24 && a.findIndex(y => y.toLowerCase() === x.toLowerCase()) === i).slice(0, 12) };
     o.jawabanBersama = o.jawabanBersama.filter(x => typeof x.p === 'string' && typeof x.s === 'string');
     // v8.0: k = keyakinan; entri v7.9 menyimpan kode kelompok di k → pindah ke kd
     const YK = ['yakin', 'ragu', 'menebak'];
     o.jawabanBersama = o.jawabanBersama.map(x => { if (x.k == null || YK.includes(x.k)) return x; const y = salinAman(x); if (typeof y.k === 'string' && !y.kd) y.kd = y.k; y.k = null; return y; });
+    if (tempoB) o.bersama.tempo = tempoB;  // v8.1: tanpa field = 'ujian'
     o.sesiBersama = o.sesiBersama.filter(x => typeof x.id === 'string' && Array.isArray(x.peserta) && Array.isArray(x.soal)).slice(-60);
+    // v8.1: keadaan kerja ujian tim / lembar jawab / lanjutkan sesi bersama — bentuk rusak → null (data v8.0 tidak punya field ini)
+    if (!(isObj(o.ujianTim) && typeof o.ujianTim.id === 'string' && Array.isArray(o.ujianTim.soalIds) && Array.isArray(o.ujianTim.peserta))) o.ujianTim = null;
+    if (!(isObj(o.lembarJawab) && Array.isArray(o.lembarJawab.jawaban))) o.lembarJawab = null;
+    if (!(isObj(o.bersamaAktif) && typeof o.bersamaAktif.sesiId === 'string' && Array.isArray(o.bersamaAktif.soalIds))) o.bersamaAktif = null;
     return o;
   }
   let state = null; let penyimpananOK = true;
@@ -423,7 +434,7 @@
     try { UKP.terapkanTema(); } catch (e) {}
     const view = UKP.sekarang ? UKP.sekarang().view : null;
     if (!view) return;
-    if (view !== 'mulai' && !state.profil.onboardingSelesai && adaView('mulai')) { UKP.go('mulai', {}, { replace: true }); return; }
+    if (view !== 'mulai' && !UKP.VIEW_TAMU[view] && !state.profil.onboardingSelesai && adaView('mulai')) { UKP.go('mulai', {}, { replace: true }); return; }
     try { if (UKP.perbaruiTopbar) UKP.perbaruiTopbar(); if (UKP.perbaruiNav) UKP.perbaruiNav(view); } catch (e) {}
     renderSinkron();
     if (document.hidden) tundaToast = true; else umumkanSinkron();
@@ -667,7 +678,9 @@
 
   // ---------- router ----------
   UKP.views = UKP.views || {};
-  const TOKEN = { beranda: 'beranda', belajar: 'belajar', latih: 'latih', ulang: 'ulang', kalkulator: 'kalkulator', simulasi: 'simulasi', kasus: 'kasus', rencana: 'rencana', kemajuan: 'kemajuan', referensi: 'referensi', 'info-ujian': 'infoujian', profesi: 'profesi', pengaturan: 'pengaturan', strategi: 'strategi', tutor: 'tutor', mulai: 'mulai', tingkat: 'tingkat', kelompok: 'kelompok', topik: 'topik', formulir: 'formulir', lembar: 'lembar', cakupan: 'cakupan', tim: 'tim' };
+  // view yang boleh dibuka sebelum onboarding selesai (tautan yang dibagikan pemimpin ke anggota tim)
+  UKP.VIEW_TAMU = { ujiantim: 1, lj: 1 };
+  const TOKEN = { beranda: 'beranda', belajar: 'belajar', latih: 'latih', ulang: 'ulang', kalkulator: 'kalkulator', simulasi: 'simulasi', kasus: 'kasus', rencana: 'rencana', kemajuan: 'kemajuan', referensi: 'referensi', 'info-ujian': 'infoujian', profesi: 'profesi', pengaturan: 'pengaturan', strategi: 'strategi', tutor: 'tutor', mulai: 'mulai', tingkat: 'tingkat', kelompok: 'kelompok', topik: 'topik', formulir: 'formulir', lembar: 'lembar', cakupan: 'cakupan', tim: 'tim', ujiantim: 'ujiantim', lj: 'lj' };
   const DARI_TOKEN = Object.create(null); for (const k in TOKEN) DARI_TOKEN[TOKEN[k]] = k;
   // token hash (#infoujian, #topik/A2.8) atau nama view mentah (#info-ujian) → nama view; selain itu null
   function viewDariToken(tok) {
@@ -681,7 +694,8 @@
   // params kunci ikut di hash agar tautan dapat dibuka di tab baru, dimuat ulang, atau dibagikan:
   // #topik/A2.8 · #kelompok/B7 · #kalkulator/kurs · #lembar/A1 · #tingkat/B · #kasus/K-A1-01 · #cakupan/C ·
   // #formulir/1771 (formulir) atau #formulir/1771.induk.1 (baris). Params lain tetap hanya di history.state.
-  const PARAM_HASH = { topik: 'id', kelompok: 'kode', kalkulator: 'jenis', lembar: 'kode', tingkat: 'tingkat', kasus: 'id', cakupan: 'tingkat', 'info-ujian': 'tab', tim: 'anggota' };
+  // v8.1: #ujiantim/<kode ujian> (UKP.belajar.ujianTim.buatKode; hanya [A-Za-z0-9._~-]) dan #lj (lembar jawab pribadi, tanpa params).
+  const PARAM_HASH = { topik: 'id', kelompok: 'kode', kalkulator: 'jenis', lembar: 'kode', tingkat: 'tingkat', kasus: 'id', cakupan: 'tingkat', 'info-ujian': 'tab', tim: 'anggota', ujiantim: 'kode' };
   // view yang tak bermakna tanpa params → induknya (bukan halaman "tidak ditemukan"); kalkulator, lembar, formulir,
   // dan kasus tanpa params sudah menampilkan daftar induknya sendiri
   const INDUK_TANPA_PARAMS = { topik: 'tingkat', kelompok: 'tingkat' };
@@ -853,7 +867,8 @@
       render(r.view, r.params, {}); return;
     }
     const s = load();
-    if (!s.profil.onboardingSelesai) { UKP.go('mulai', {}, { replace: true }); return; }
+    // tautan tim (ikut ujian tim lewat kode, lembar jawab) boleh dibuka pengunjung baru tanpa onboarding (UKP.VIEW_TAMU)
+    if (!s.profil.onboardingSelesai && !(rute && UKP.VIEW_TAMU[rute.view])) { UKP.go('mulai', {}, { replace: true }); return; }
     const r = arahkanInduk(rute || { view: 'beranda', params: {} });
     UKP.go(r.view, r.params, { replace: true });
   };
