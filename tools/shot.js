@@ -281,6 +281,8 @@ const SANDI_UJI = process.env.SHOT_SANDI || 'UKP2026';
   };
   // Dasbor tim tanpa window.claude (berkas file://): status "Belum tersambung", satu primer, kode hasil sendiri ditempel → tampil di daftar
   const alurTim = async (page, shot) => {
+    // v8.1: UKP.go mengarahkan pengunjung yang belum onboarding ke #mulai (kecuali VIEW_TAMU), jadi tandai selesai dulu
+    await page.evaluate(() => { const s = UKP.store.get(); s.profil.onboardingSelesai = true; UKP.store.save(); });
     if (!(await goBaru(page, 'tim'))) return;
     await page.waitForTimeout(400);
     const meta = (await page.locator('.halaman-tim .page-head .meta').first().textContent() || '').trim();

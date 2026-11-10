@@ -183,3 +183,38 @@ describe('dasbor tim: evaluasi tim v8.1', () => {
     assert.equal(jw[0].m, 'ujian'); assert.equal(jw[1].m, 'latihan');
   });
 });
+
+// v8.2 B3: evaluasi versi anggota (U1) dan rekap tim (T6) — pembantu murni
+describe('v8.2 evaluasi room: versi anggota dan rekap tanpa skor per nama', () => {
+  const X3 = UKP.views.tim._uji;
+  const sesi = (lain) => Object.assign({ id: 'sb-r1', mulai: new Date(2026, 10, 9, 19, 30).getTime(), selesai: new Date(2026, 10, 9, 20, 0).getTime(), peserta: ['Nicky', 'Mia', 'Novia', 'Alfi'],
+    soal: ['A1-001', 'A1-002'].map((id, i) => ({ id, kode: 'A1', topik: '', kunci: 'B', jawaban: { Nicky: { o: 'B', b: 1 }, Mia: { o: i ? 'C' : 'B', b: i ? 0 : 1 }, Novia: { o: 'C', b: 0 }, Alfi: { o: i ? 'A' : '-', b: 0 } } })), sumber: 'room' }, lain || {});
+  it('versiAnggota: opsi.anggota menang; rekaman room di perangkat tanpa room tuan = anggota; rekaman lokal = pemandu', () => {
+    assert.equal(X3.versiAnggota(sesi(), null), true);
+    assert.equal(X3.versiAnggota(sesi({ sumber: 'latih' }), null), false);
+    assert.equal(X3.versiAnggota(sesi(), { anggota: false }), false);
+    assert.equal(X3.versiAnggota(sesi({ sumber: 'ujiantim' }), { anggota: true }), true);
+  });
+  it('angkaTim: sesi.tim bila ada, selain itu dari jawaban terisi (kosong tidak dihitung)', () => {
+    const ev = UKP.views.tim._uji.evaluasiLokal(sesi());
+    assert.deepEqual(J(X3.angkaTim(sesi(), ev)), { benar: 3, dijawab: 7 });
+    assert.deepEqual(J(X3.angkaTim(sesi({ tim: { benar: 14, dijawab: 18 } }), ev)), { benar: 14, dijawab: 18 });
+  });
+  it('sebaranTanpaNama: hitungan per opsi tanpa nama', () => {
+    const ev = X3.evaluasiLokal(sesi()); const t = X3.sebaranTanpaNama(ev.soal[1]);
+    assert.equal(t, 'A 1 · B 1 · C 2');
+    assert.ok(!/Mia|Novia|Nicky|Alfi/.test(t));
+  });
+  it('rekapAnggota: tiga baris T6, terima kasih urut abjad tanpa nol, tanpa skor per nama', () => {
+    const s = sesi({ tim: { benar: 3, dijawab: 7, hadir: 4, terimaKasih: { Mia: 3, Alfi: 0, Jessie: 2 }, bahasLagi: ['A1-002'] } });
+    const r = J(X3.rekapAnggota(s, X3.evaluasiLokal(s)));
+    assert.equal(r.length, 3);
+    assert.equal(r[0], 'Malam ini: 4 orang · 2 soal · skor tim 43%');
+    assert.equal(r[1], 'Terima kasih untuk penjelas: Jessie (2), Mia (3)');
+    assert.equal(r[2], 'Bahas lagi minggu depan: A1-002');
+    assert.equal(X3.teksTerimaKasih(sesi({ tim: { terimaKasih: { Mia: 0 } } })), null);
+    const tanpaTim = J(X3.rekapAnggota(sesi(), X3.evaluasiLokal(sesi())));
+    assert.deepEqual(tanpaTim.slice(1), ['Bahas lagi minggu depan: A1-002']); // tanpa sesi.tim: tanpa terima kasih; A1-002 punya 3 jawaban salah
+    assert.ok(!/Nicky \d|Mia \d|Novia \d/.test(tanpaTim.join('\n')));
+  });
+});

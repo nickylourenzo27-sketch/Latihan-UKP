@@ -43,7 +43,7 @@
    aplikasi belum siap (koneksi lambat, berkas gagal diunduh, cache lama) — menampilkan panel pemulihan: muat ulang, bersihkan cache,
    salin laporan. Progres belajar (localStorage) tidak pernah disentuh. js/app.js memanggil window.__ukpMuat.siap() setelah render pertama. */
 (function () {
-  var W = window, D = document, TOTAL = 28, mulai = Date.now(), terakhirNaik = mulai, nTerakhir = 0, galat = [], siap = false, panel = false, detak;
+  var W = window, D = document, TOTAL = 30, mulai = Date.now(), terakhirNaik = mulai, nTerakhir = 0, galat = [], siap = false, panel = false, detak;
   function skrip() { try { return performance.getEntriesByType('resource').filter(function (r) { return r.initiatorType === 'script'; }).length; } catch (e) { return 0; } }
   function nama(u) { return String(u || '').replace(/[?#].*$/, '').split('/').slice(-2).join('/'); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -125,6 +125,7 @@
 <script src="js/viz.js"></script>
 <script src="js/learn.js"></script>
 <script src="js/tim.js"></script>
+<script src="js/ruang.js"></script>
 <script src="js/soal.js"></script>
 <script src="js/views-home.js"></script>
 <script src="js/views-belajar.js"></script>
@@ -132,6 +133,7 @@
 <script src="js/views-ujian-tim.js"></script>
 <script src="js/views-alat.js"></script>
 <script src="js/views-tim.js"></script>
+<script src="js/views-ruang.js"></script>
 <script src="js/app.js"></script>
 <!--ARTIFACT-BODY-END-->
 </body>

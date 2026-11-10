@@ -23,7 +23,7 @@ function muat(opsi) {
     document: { addEventListener: noop, removeEventListener: noop, dispatchEvent: e => peristiwa.push(e), body: null, head: null, getElementById: () => null, createElement: el, documentElement: el(), querySelector: () => null, querySelectorAll: () => [], visibilityState: 'visible', cookie: opsi.cookie || '' },
     addEventListener: noop, removeEventListener: noop, matchMedia: () => ({ matches: false, addEventListener: noop }),
     localStorage: { getItem: k => simpan.has(k) ? simpan.get(k) : null, setItem: (k, v) => simpan.set(k, String(v)), removeItem: k => simpan.delete(k) },
-    location: opsi.fetch ? { hash: '', protocol: 'https:', replace: u => { (ctx.__pindah = ctx.__pindah || []).push(u); } } : { hash: '' }, history: { replaceState: noop, pushState: noop },
+    location: opsi.fetch ? { hash: '', protocol: 'https:', hostname: opsi.host || 'contoh.id', replace: u => { (ctx.__pindah = ctx.__pindah || []).push(u); } } : { hash: '' }, history: { replaceState: noop, pushState: noop },
     navigator: { platform: 'Linux', userAgent: '' }, requestAnimationFrame: noop, cancelAnimationFrame: noop,
     setTimeout: (f, ms) => { const t = setTimeout(f, ms); if (t && t.unref) t.unref(); return t; }, clearTimeout,
     setInterval: (f, ms) => { const t = setInterval(f, ms); if (t && t.unref) t.unref(); return t; }, clearInterval,
@@ -880,4 +880,39 @@ ujiServer('server: penanda ukp_srv — server tidak terjangkau → status jujur,
   // penanda + 401 → sesi berakhir (bukan jalur Claude)
   const s4 = serverTiruan({ nama: 'rina', sesiHabis: true }); const D = muat({ fetch: s4.fetch, cookie: 'ukp_srv=1' }); D.UKP.tim._jeda.ulang = [60000];
   await D.UKP.tim.siap(); assert.equal(D.UKP.tim.status(), 'mati'); assert.equal(D.UKP.tim.info().galat, 'sesi-berakhir'); assert.equal(await D.UKP.tim.bolehDasbor(), false);
+});
+
+// ---------- v8.1.1 host statis: probe api/saya hemat dan senyap ----------
+ujiServer('server: host statis (*.github.io dsb.) tanpa penanda → api/saya tidak diminta; dengan penanda ukp_srv tetap dicoba', async () => {
+  for (const host of ['nickylourenzo27-sketch.github.io', 'ukp.netlify.app', 'x.pages.dev', 'y.vercel.app']) {
+    const s = serverTiruan({ saya: 404 }); const A = muat({ fetch: s.fetch, host }); A.UKP.tim._jeda.ulang = [20];
+    assert.equal(await A.UKP.tim.siap(), null); await tunggu(40);
+    assert.equal(s.log.filter(x => x.url === 'api/saya').length, 0, host + ': tanpa probe');
+    assert.equal(A.UKP.tim.status(), 'mati');
+  }
+  // penanda ada: server tim di balik host statis (mis. proksi) tetap terdeteksi
+  const s2 = serverTiruan({ nama: 'rina' }); const B = muat({ fetch: s2.fetch, host: 'tim.github.io', cookie: 'ukp_srv=1' });
+  const c = await B.UKP.tim.siap(); assert.ok(c && c.server); assert.equal(s2.log.filter(x => x.url === 'api/saya').length, 1);
+});
+
+ujiServer('server: 404 diingat 30 hari di ukp.tim.bukanServer → pemuatan berikutnya tanpa probe; kedaluwarsa/penanda/server → probe lagi', async () => {
+  const s = serverTiruan({ saya: 404 }); const A = muat({ fetch: s.fetch }); A.UKP.tim._jeda.ulang = [20];
+  await A.UKP.tim.siap(); await tunggu(40);
+  assert.equal(s.log.filter(x => x.url === 'api/saya').length, 1);
+  const cap = Number(A.simpan.get('ukp.tim.bukanServer')); assert.ok(cap > Date.now() - 5000 && cap <= Date.now(), 'cap waktu tersimpan');
+  // pemuatan berikutnya (localStorage sama): tanpa probe
+  const s2 = serverTiruan({ saya: 404 }); const B = muat({ fetch: s2.fetch, ls: Object.fromEntries(A.simpan) });
+  assert.equal(await B.UKP.tim.siap(), null); assert.equal(s2.log.length, 0, 'tidak ada permintaan sama sekali');
+  // penanda 31 hari lalu → probe lagi
+  const s3 = serverTiruan({ saya: 404 }); const C = muat({ fetch: s3.fetch, ls: { 'ukp.tim.bukanServer': String(Date.now() - 31 * 86400000) } });
+  await C.UKP.tim.siap(); assert.equal(s3.log.filter(x => x.url === 'api/saya').length, 1);
+  // cookie penanda menang atas penanda negatif; server menjawab → penanda negatif dihapus
+  const s4 = serverTiruan({ nama: 'rina' }); const D = muat({ fetch: s4.fetch, cookie: 'ukp_srv=1', ls: Object.fromEntries(A.simpan) });
+  const c = await D.UKP.tim.siap(); assert.ok(c && c.server); assert.ok(!D.simpan.has('ukp.tim.bukanServer'), 'penanda negatif dihapus');
+  // waktu habis / 5xx bukan "jelas bukan server" → tidak diingat
+  const s5 = serverTiruan({ mati: true }); const E = muat({ fetch: s5.fetch }); E.UKP.tim._jeda.ulang = [60000];
+  await E.UKP.tim.siap(); assert.ok(!E.simpan.has('ukp.tim.bukanServer'));
+  // dengan penanda cookie, 404 tidak diingat
+  const s6 = serverTiruan({ saya: 404 }); const F = muat({ fetch: s6.fetch, cookie: 'ukp_srv=1' }); F.UKP.tim._jeda.ulang = [60000];
+  await F.UKP.tim.siap(); assert.ok(!F.simpan.has('ukp.tim.bukanServer'));
 });

@@ -23,7 +23,9 @@ describe('dasbor tim: rute dan pemuatan', () => {
     const a = idx.indexOf('src="js/views-alat.js"'), t = idx.indexOf('src="js/views-tim.js"'), b = idx.indexOf('src="js/app.js"');
     assert.ok(a > 0 && t > a && b > t);
   });
-  it('navigasi menampilkan "Dasbor tim" di grup Ujian', () => {
-    assert.match(baca('js/app.js'), /label: 'Ujian', item: \[[^\]]*\]*[^\n]*\['tim', 'Dasbor tim', 'tim'\]/);
+  // v8.2 (audit T3): Dasbor tim pindah dari grup Ujian ke grup Tim paling atas
+  it('navigasi menampilkan "Dasbor tim" di grup Tim', () => {
+    assert.match(baca('js/app.js'), /label: 'Tim', item: \[[^\n]*\['tim', 'Dasbor tim', '[a-z-]+'\]/);
+    assert.doesNotMatch(baca('js/app.js'), /label: 'Ujian', item: \[[^\n]*\['tim', 'Dasbor tim'/);
   });
 });

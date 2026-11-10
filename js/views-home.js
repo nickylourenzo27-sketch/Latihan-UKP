@@ -591,6 +591,24 @@
     const p = UKP.store.get().profil; const page = p.berandaLengkap === true ? berandaDasbor() : berandaRingkas();
     // v8.1: kartu kerja tim yang belum selesai paling atas (tepat di bawah sapaan): "Ujian tim berjalan" (U2, js/views-ujian-tim.js)
     // dan "Sesi bersama belum selesai" (js/views-belajar.js); fungsi lintas berkas diperiksa dulu
+    // v8.2 (U3): blok Tim = UKP.c.kartuRoom() (js/views-ruang.js) paling atas; kartu ujian tim / lanjut bersama sudah ada di dalamnya.
+    // Isi Beranda pribadi tetap di bawahnya dengan judul kecil "Latihan pribadi". Tanpa kartuRoom → kartu v8.1 seperti semula.
+    let blokTim = null;
+    try { if (typeof UKP.c.kartuRoom === 'function') { const el = UKP.c.kartuRoom(); if (el && el.nodeType) blokTim = el; } } catch (e) { console.error(e); blokTim = null; }
+    if (blokTim && page && page.nodeType) {
+      try {
+        const kepala = [...page.children].find(x => x.tagName === 'HEADER' || x.querySelector('h1'));
+        let jangkar = kepala || null; while (jangkar && jangkar.nextElementSibling && jangkar.nextElementSibling.classList.contains('banner')) jangkar = jangkar.nextElementSibling;
+        const wadah = h('div', { class: 'beranda-tim', 'data-k': 'blok-tim' }, blokTim);
+        const judulPribadi = h('h2', { class: 'beranda-subjudul', 'data-k': 'latihan-pribadi' }, 'Latihan pribadi');
+        if (jangkar) jangkar.after(wadah, judulPribadi); else page.prepend(wadah, judulPribadi);
+        // satu tombol utama per layar: tombol utama ada di blok Tim; kartu "Lanjutkan" pribadi menjadi tombol biasa
+        page.querySelectorAll('.btn-primary').forEach(b => { if (!wadah.contains(b)) b.classList.remove('btn-primary'); });
+        const primer = [...wadah.querySelectorAll('.btn-primary')]; const utama = primer.find(b => b.classList.contains('room-utama')) || primer[0];
+        primer.forEach(b => { if (b !== utama) b.classList.remove('btn-primary'); }); // kartu sisipan (ujian/lanjut bersama) tidak menambah primer
+      } catch (e) { console.error(e); }
+      return page;
+    }
     try {
       const kartu = [typeof UKP.c.kartuUjianTim === 'function' ? UKP.c.kartuUjianTim() : null, typeof UKP.c.kartuLanjutBersama === 'function' ? UKP.c.kartuLanjutBersama() : null].filter(Boolean);
       if (kartu.length && page && page.nodeType) {
@@ -598,6 +616,8 @@
         let jangkar = kepala || null; while (jangkar && jangkar.nextElementSibling && jangkar.nextElementSibling.classList.contains('banner')) jangkar = jangkar.nextElementSibling;
         const wadah = h('div', { class: 'stack-sm beranda-tim-aktif' }, kartu);
         if (jangkar) jangkar.after(wadah); else page.prepend(wadah);
+        // v8.1 V1: satu tombol utama per layar — kartu "Lanjutkan" latihan pribadi turun menjadi tombol biasa selama kartu tim tampil
+        page.querySelectorAll('.kartu-lanjut .btn-primary').forEach(b => b.classList.remove('btn-primary'));
       }
     } catch (e) { console.error(e); }
     return page;

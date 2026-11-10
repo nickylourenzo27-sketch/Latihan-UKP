@@ -127,6 +127,15 @@ describe('dokPeserta', () => {
     assert.equal(d.jawaban[0].k, null);
     assert.equal(d.jawaban[0].m, 'latih');
   });
+  it('v8.1.1: jawaban ujian tim (m: ujian) tetap bermode ujian di dokPeserta; lainnya latih', () => {
+    const kini = Date.now();
+    s.jawabanBersama.push({ p: 'Mia', s: SOAL[0].id, o: 'B', b: 1, d: 10, w: kini - 2000, m: 'ujian', sesi: 'sb-1', k: 'ragu' });
+    s.jawabanBersama.push({ p: 'Mia', s: SOAL[1].id, o: 'A', b: 0, d: 10, w: kini - 1000, m: 'latih' });
+    s.jawabanBersama.push({ p: 'Mia', s: SOAL[2].id, o: 'A', b: 1, d: 10, w: kini, m: 'aneh' });
+    const d = L.dokPeserta('Mia');
+    assert.deepEqual(d.jawaban.map(x => x.m), ['latih', 'latih', 'ujian']);
+    assert.equal(d.jawaban[2].k, 'ragu');
+  });
   it('peserta terdaftar tanpa jawaban → dokumen kosong; nama tak dikenal → null', () => {
     const d = L.dokPeserta('Novia');
     assert.equal(d.latihan.total, 0); assert.equal(d.latihan.akurasi7, null); assert.equal(d.jawaban.length, 0); assert.equal(d.diperbarui, null);
@@ -279,5 +288,85 @@ describe('v8.1: tempo, info sesi, lanjutkan sesi bersama', () => {
     const sesi = { id: 'sb-x', peserta: ['Nicky', 'Mia'], soal: [{ id: 'X1-001', kunci: 'B', jawaban: { Nicky: { o: 'B' }, Mia: { o: 'B' } } }, { id: 'X1-002', kunci: 'C', jawaban: { Nicky: { o: 'A' }, mia: { o: 'C' } } }] };
     const u = L.urutanBahas(sesi);
     assert.deepEqual([u.daftar.length, u.daftar[0].id, u.daftar[0].penjelas, u.nDikuasai], [1, 'X1-002', 'Mia', 1]);
+  });
+});
+
+// ---------- v8.2 B2: latihan bersama di room tim (js/views-belajar.js, UKP.latihRoom) ----------
+describe('v8.2 B2: latihan bersama di room (murni + penyiar dengan room tiruan)', () => {
+  const U2 = muatInti(['core.js', 'learn.js', 'views-belajar.js']);
+  const LR = U2.latihRoom; const M = LR._murni;
+  const j = x => JSON.parse(JSON.stringify(x));
+  it('potong: sesi room ≤ 120 soal', () => {
+    const arr = Array.from({ length: 130 }, (_, i) => ({ id: 'X1-' + i }));
+    const p = M.potong(arr); assert.equal(p.daftar.length, 120); assert.equal(p.dipotong, 10); assert.equal(p.daftar[119].id, 'X1-119');
+    assert.equal(M.potong(arr.slice(0, 5)).dipotong, 0);
+  });
+  it('perRoom: { opsi, keyakinan, benar } → { o, k, b }; "-" tanpa keyakinan dan b 0', () => {
+    assert.deepEqual(j(M.perRoom({ Mia: { opsi: 'D', keyakinan: 'yakin', benar: true }, Novia: { opsi: '-', keyakinan: 'ragu', benar: false }, Alfi: { opsi: 'A', keyakinan: null, benar: false } })),
+      { Mia: { o: 'D', k: 'yakin', b: 1 }, Novia: { o: '-', k: null, b: 0 }, Alfi: { o: 'A', k: null, b: 0 } });
+  });
+  it('skor tim kumulatif: 5/6 + 3/6 + 6/6 → "Tim 14/18 benar · 78%"; kosong tidak dihitung dijawab', () => {
+    const per = nb => { const o = {}; ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi'].forEach((n, i) => { o[n] = { opsi: i < nb ? 'B' : 'C', benar: i < nb }; }); return { per: o }; };
+    const r = [per(5), per(3), per(6)];
+    assert.deepEqual(j(M.timKumulatif(r)), { benar: 14, dijawab: 18 });
+    assert.equal(M.teksSkor(M.timKumulatif(r)), 'Tim 14/18 benar · 78%');
+    assert.equal(M.teksSkor({ benar: 0, dijawab: 0 }), '');
+    assert.deepEqual(j(M.timKumulatif([{ per: { Mia: { opsi: '-', benar: false }, Novia: { opsi: 'A', benar: true } } }])), { benar: 1, dijawab: 1 });
+    assert.deepEqual(j(M.jejakTim(r)).map(x => x.benar + '/' + x.dijawab), ['5/6', '8/12', '14/18']);
+  });
+  it('sejakLulus: soal pertama ≥ 5 dengan akurasi ≥ 60 yang bertahan; null bila sekarang di bawah garis', () => {
+    const jejak = [[1, 2], [2, 4], [3, 5], [4, 6], [5, 9], [6, 12], [7, 13], [8, 17]].map(([ke, b]) => ({ ke, benar: b, dijawab: ke * 3 }));
+    assert.equal(M.sejakLulus(jejak), 5);
+    assert.equal(M.sejakLulus(jejak.slice(0, 4)), null);
+    assert.equal(M.sejakLulus([{ ke: 5, benar: 15, dijawab: 15 }, { ke: 6, benar: 15, dijawab: 30 }]), null);
+  });
+  it('penjelas hanya bila benar di per room (ejaan per); diisi pemandu; peta hadir; isi dari dokumen HP', () => {
+    const perR = { Mia: { o: 'D', k: 'yakin', b: 1 }, Melva: { o: 'A', k: null, b: 0 }, Alfi: { o: '-', k: null, b: 0 } };
+    assert.equal(M.penjelas({ penjelas: 'mia' }, perR), 'Mia');
+    assert.equal(M.penjelas({ penjelas: 'Melva' }, perR), null);
+    assert.equal(M.penjelas(null, perR), null);
+    assert.deepEqual(j(M.diisi({ Nicky: 'papan', Mia: 'hp', Melva: 'papan', Alfi: 'papan' }, Object.assign({ Nicky: { o: 'D', k: null, b: 1 } }, perR), 'nicky')), ['Melva']);
+    assert.deepEqual(j(M.hadirPeta({ Mia: { online: true }, melva: { online: false } }, ['Nicky', 'Mia', 'Melva', 'Alfi'], 'Nicky')), { Mia: 'online', Melva: 'offline', Alfi: 'offline' });
+    assert.deepEqual(j(M.isiDok({ j: { 'X1-001': 'b' }, k: { 'X1-001': 'ragu' } }, 'X1-001')), { o: 'B', k: 'ragu' });
+    assert.deepEqual(j(M.isiDok({ j: { 'X1-001': '-' }, k: { 'X1-001': 'yakin' } }, 'X1-001')), { o: '-', k: null });
+    assert.equal(M.isiDok({ j: {} }, 'X1-001'), null); assert.equal(M.isiDok({ j: { 'X1-001': 'Z' } }, 'X1-001'), null); assert.equal(M.isiDok(null, 'X1-001'), null);
+  });
+  function tiruanR(awal) {
+    const log = []; let st = { aktivitas: awal || null };
+    const R = {
+      log, state: () => j(st),
+      mulaiLatihan: o => { log.push('mulaiLatihan'); st.aktivitas = { jenis: 'latihan', id: o.id, soalIds: o.soalIds, idx: 0, fase: 'jawab', tim: null }; return j(st); },
+      aturSoal: i => { log.push('aturSoal:' + i); st.aktivitas.idx = i; st.aktivitas.fase = 'jawab'; return j(st); },
+      bukaKunci: (id, per, o) => { log.push('bukaKunci:' + id + ':' + (o.penjelas || '-') + ':' + (o.tim ? o.tim.benar + '/' + o.tim.dijawab : '-')); if (o.penjelas === 'Tolak') return false; st.aktivitas.fase = 'kunci'; st.aktivitas.tim = o.tim; return j(st); },
+      terbitkanSesi: s => { log.push('terbitkanSesi:' + s.id + ':' + (s.tim ? s.tim.benar : '-')); return true; },
+      akhiriAktivitas: () => { log.push('akhiriAktivitas'); const a = st.aktivitas; st.aktivitas = null; return { aktivitas: a }; },
+    };
+    return R;
+  }
+  it('penyiar: tiap langkah mengirim tepat satu perubahan (mulai, soal, kunci, selesai)', () => {
+    const R = tiruanR(); const sr = LR.buatSiarRoom(R, { sesiId: 'sb-1', soalIds: ['X1-001', 'X1-002', 'X1-003'], detikPerSoal: 126, akhirSesi: () => 1000 });
+    assert.equal(sr.mulai(0), true); assert.deepEqual(R.log.splice(0), ['mulaiLatihan']);
+    assert.equal(sr.soal(0), true); assert.deepEqual(R.log.splice(0), []);
+    assert.equal(sr.kunci('X1-001', { Mia: { o: 'B', k: 'yakin', b: 1 } }, 'Mia', { benar: 1, dijawab: 1 }), true); assert.deepEqual(R.log.splice(0), ['bukaKunci:X1-001:Mia:1/1']);
+    sr.soal(1); assert.deepEqual(R.log.splice(0), ['aturSoal:1']);
+    sr.soal(1); assert.deepEqual(R.log.splice(0), []);
+    // penjelas ditolak room → diulang sekali tanpa penjelas (skor tim tetap terkirim)
+    assert.equal(sr.kunci('X1-002', {}, 'Tolak', { benar: 1, dijawab: 2 }), true); assert.deepEqual(R.log.splice(0), ['bukaKunci:X1-002:Tolak:1/2', 'bukaKunci:X1-002:-:1/2']);
+    assert.equal(sr.selesai({ id: 'sb-1', tim: { benar: 1 } }), true); assert.deepEqual(R.log.splice(0), ['terbitkanSesi:sb-1:1', 'akhiriAktivitas']);
+    // aktivitas sudah diakhiri: tidak ada pesan lagi
+    sr.lepas(); sr.kunci('X1-003', {}, null, null); assert.deepEqual(R.log.splice(0), []);
+  });
+  it('penyiar: lanjut setelah muat ulang meneruskan aktivitas yang sama (tanpa mulaiLatihan); aktivitas lain → mulai ulang', () => {
+    const R = tiruanR({ jenis: 'latihan', id: 'sb-2', soalIds: ['X1-001', 'X1-002', 'X1-003'], idx: 1, fase: 'kunci' });
+    const sr = LR.buatSiarRoom(R, { sesiId: 'sb-2', soalIds: ['X1-001', 'X1-002', 'X1-003'], detikPerSoal: 126, akhirSesi: null });
+    sr.mulai(2); assert.deepEqual(R.log.splice(0), ['aturSoal:2']);
+    const R2 = tiruanR({ jenis: 'latihan', id: 'sb-lain', soalIds: ['X1-001'], idx: 0, fase: 'jawab' });
+    const sr2 = LR.buatSiarRoom(R2, { sesiId: 'sb-3', soalIds: ['X1-001', 'X1-002'], detikPerSoal: 126, akhirSesi: null });
+    sr2.mulai(1); assert.deepEqual(R2.log.splice(0), ['mulaiLatihan', 'aturSoal:1']);
+    // "Pindah ke satu layar": hanya akhiriAktivitas, rekaman belum diterbitkan
+    sr2.lepas(); assert.deepEqual(R2.log.splice(0), ['akhiriAktivitas']);
+  });
+  it('tanpa UKP.ruang (claude.ai/file://): ruangTersedia false dan peranRoom null tanpa melempar', () => {
+    assert.equal(LR.ruangTersedia(), false); assert.equal(LR.peranRoom(), null);
   });
 });
