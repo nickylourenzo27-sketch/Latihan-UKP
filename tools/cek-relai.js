@@ -23,8 +23,6 @@ if (typeof WebSocket !== 'function' || !globalThis.crypto || !globalThis.crypto.
 }
 require(path.join(__dirname, '..', 'js', 'ruang.js'));
 const R = globalThis.UKP.ruang;
-if (process.env.KRED) { const [nm, sd] = process.env.KRED.split(':'); const asli = R._kodek.Kodek.connect; R._kodek.Kodek.connect = o => asli(Object.assign({}, o, { username: nm, password: sd })); }
-const LABEL = process.env.LABEL || '';
 const RELAI = urlArg.length ? urlArg : R.RELAI_BAWAAN.slice();
 
 const tidur = ms => new Promise(r => setTimeout(r, ms));
@@ -109,13 +107,45 @@ async function alur(nama, urlTuan, urlB, urlC) {
   return { nama, lulus, galat, langkah, total: langkah.reduce((n, x) => n + x.ms, 0) };
 }
 
+// alamat yang tidak menjawab sama sekali (TCP timeout), untuk meniru jalur mati
+const JALUR_MATI = process.env.JALUR_MATI || 'wss://mqtt.eclipseprojects.io:443/mqtt';
+// tuan memakai `urlTuan`; anggota memakai `urlAnggota` (biasanya daftar penuh) → di jalur mana anggota berakhir, dan berapa lama
+async function pilihJalur(nama, urlTuan, urlAnggota) {
+  const A = instans(urlTuan), B = instans(urlAnggota); const o = { nama, lulus: false, galat: null };
+  const tanpaKred = x => String(x || '').split('#')[0];
+  try {
+    const kode = A.buat({ nama: 'Uji-A', peserta: ['Uji-A', 'Uji-B'], namaRoom: 'Uji jalur', tingkat: 'B' });
+    await tunggu(() => A.status().relai.length && A.status().relai.every(r => r.status === 'tersambung'), 14000, 'tuan tersambung');
+    await tidur(500);
+    let t = Date.now(); const st0 = await dengan(B.intip(kode), 35000, 'intip'); o.intipMs = Date.now() - t;
+    if (!st0) throw new Error('intip tidak menemukan room');
+    t = Date.now(); const st = await dengan(B.gabung(kode, 'Uji-B'), 35000, 'gabung'); o.gabungMs = Date.now() - t;
+    if (!st) throw new Error('gabung tidak menerima state');
+    await tunggu(() => { const h = A.hadir(); return h['Uji-B'] && h['Uji-B'].online; }, 12000, 'tuan melihat anggota hadir');
+    const rel = B.status().relai.filter(r => r.status === 'tersambung').map(r => tanpaKred(r.url));
+    o.jalurAnggota = rel.join(',');
+    if (!rel.length || !urlTuan.map(tanpaKred).includes(rel[0])) throw new Error('anggota berakhir di jalur yang tidak dipakai tuan: ' + o.jalurAnggota);
+    // pesan dua arah benar-benar jalan
+    const id = 'sb-uji-' + Date.now().toString(36);
+    A.mulaiLatihan({ id, soalIds: ['A1-001'], detikPerSoal: 60 });
+    await tunggu(() => { const s = B.state(); return s && s.aktivitas && s.aktivitas.id === id; }, 10000, 'anggota menerima latihan');
+    B.kirimJawaban({ aktivitas: id, soalId: 'A1-001', o: 'C', k: 'ragu' });
+    await tunggu(() => { const j = A.jawabanSemua(id); return j['Uji-B'] && j['Uji-B'].j && j['Uji-B'].j['A1-001'] === 'C'; }, 10000, 'tuan menerima jawaban');
+    A.akhiriAktivitas();
+    await dengan(A.tutup(), 15000, 'tutup');
+    o.lulus = true;
+  } catch (e) { o.galat = String((e && e.message) || e); try { await dengan(A.tutup(), 6000, 'tutup').catch(() => {}); } catch (e2) {} }
+  await bereskan([A, B]);
+  return o;
+}
+
 (async () => {
   const t0 = Date.now();
   console.log('Pemeriksa jalur Room tim · ' + new Date().toISOString() + ' · Node ' + process.version);
   // 1) salam pembuka ke tiap jalur (sama dengan tombol "Cek sambungan" di aplikasi)
   const u = instans(RELAI);
   const salam = await dengan(u.ujiRelai(), 20000, 'ujiRelai').catch(e => RELAI.map(url => ({ url, ok: false, ms: 0, alasan: String(e.message || e) })));
-  salam.forEach((x, i) => console.log('  salam jalur ' + (i + 1) + ' ' + x.url + ' → ' + (x.ok ? 'tersambung ' + x.ms + ' ms' : 'GAGAL: ' + x.alasan)));
+  salam.forEach((x, i) => console.log('  salam jalur ' + (i + 1) + ' ' + String(x.url).split('#')[0] + ' → ' + (x.ok ? 'tersambung ' + x.ms + ' ms' : 'GAGAL: ' + x.alasan)));
 
   // 2) alur room penuh di tiap jalur sendiri-sendiri
   const hasil = [];
@@ -134,19 +164,36 @@ async function alur(nama, urlTuan, urlB, urlC) {
     console.log('  alur lintas jalur (' + baik.length + ' jalur) → ' + (lintas.lulus ? 'LULUS ' + lintas.total + ' ms' : 'GAGAL di langkah ' + (lintas.langkah.length + 1) + ': ' + lintas.galat));
     lintas.langkah.forEach(l => console.log('      ' + l.apa + ': ' + l.ms + ' ms'));
   }
+  // 4) anggota memilih jalur tempat state berada: tuan hanya di SATU jalur (yang terakhir lulus), anggota memegang daftar penuh
+  const tanpaKred = x => String(x || '').split('#')[0];
+  let pilih = null, depan = null;
+  if (baik.length >= 2) {
+    pilih = await pilihJalur('tuan di satu jalur', [baik[baik.length - 1]], RELAI);
+    console.log('  pemilihan jalur (tuan hanya di ' + tanpaKred(baik[baik.length - 1]) + ') → ' + (pilih.lulus ? 'LULUS: anggota di ' + pilih.jalurAnggota + ', intip ' + pilih.intipMs + ' ms, gabung ' + pilih.gabungMs + ' ms' : 'GAGAL: ' + pilih.galat));
+  }
+  // 5) jalur mati di urutan pertama: gabung tidak boleh menunggu batas sambung
+  if (baik.length >= 1 && !urlArg.length) {
+    depan = await pilihJalur('jalur mati di depan', baik, [JALUR_MATI].concat(baik));
+    console.log('  jalur mati di depan → ' + (depan.lulus ? 'LULUS: anggota di ' + depan.jalurAnggota + ', intip ' + depan.intipMs + ' ms, gabung ' + depan.gabungMs + ' ms' : 'GAGAL: ' + depan.galat));
+    if (depan.lulus && depan.intipMs + depan.gabungMs > 7000) { depan.lulus = false; depan.galat = 'terlalu lama: ' + (depan.intipMs + depan.gabungMs) + ' ms'; }
+  }
   const ringkas = {
     waktu: new Date().toISOString(), node: process.version, detik: Math.round((Date.now() - t0) / 1000),
     lulus: baik.length, dari: RELAI.length,
     jalur: hasil.map(h => ({ url: h.url, salam: h.salam ? (h.salam.ok ? h.salam.ms : h.salam.alasan) : null, lulus: h.lulus, ms: h.total, galat: h.galat, langkahGagal: h.lulus ? null : h.langkah.length + 1 })),
     lintas: lintas ? { lulus: lintas.lulus, ms: lintas.total, galat: lintas.galat } : null,
+    pilih: pilih ? { lulus: pilih.lulus, jalurAnggota: pilih.jalurAnggota || null, intipMs: pilih.intipMs || null, gabungMs: pilih.gabungMs || null, galat: pilih.galat } : null,
+    depan: depan ? { lulus: depan.lulus, jalurAnggota: depan.jalurAnggota || null, intipMs: depan.intipMs || null, gabungMs: depan.gabungMs || null, galat: depan.galat } : null,
   };
-  console.log('Ringkasan: ' + ringkas.lulus + ' dari ' + ringkas.dari + ' jalur lulus penuh' + (lintas ? '; lintas jalur ' + (lintas.lulus ? 'lulus' : 'GAGAL') : '') + ' · ' + ringkas.detik + ' dtk');
+  console.log('Ringkasan: ' + ringkas.lulus + ' dari ' + ringkas.dari + ' jalur lulus penuh' + (lintas ? '; lintas jalur ' + (lintas.lulus ? 'lulus' : 'GAGAL') : '') + (pilih ? '; pemilihan jalur ' + (pilih.lulus ? 'lulus' : 'GAGAL') : '') + (depan ? '; jalur mati di depan ' + (depan.lulus ? 'lulus' : 'GAGAL') : '') + ' · ' + ringkas.detik + ' dtk');
   if (diGitHub) {
     // anotasi: terbaca lewat API check-runs tanpa mengunduh log
     const bersih = s => String(s).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A');
-    ringkas.jalur.forEach((j, i) => console.log('::' + (j.lulus ? 'notice' : 'warning') + ' title=Jalur ' + LABEL + (i + 1) + '::' + bersih(JSON.stringify(j))));
-    if (lintas) console.log('::' + (lintas.lulus ? 'notice' : 'warning') + ' title=Lintas jalur ' + LABEL + '::' + bersih(JSON.stringify(ringkas.lintas)));
-    console.log('::' + (ringkas.lulus ? 'notice' : 'error') + ' title=Ringkasan ' + LABEL + '::' + bersih(ringkas.lulus + ' dari ' + ringkas.dari + ' jalur lulus penuh, ' + ringkas.detik + ' dtk'));
+    ringkas.jalur.forEach((j, i) => console.log('::' + (j.lulus ? 'notice' : 'warning') + ' title=Jalur ' + (i + 1) + '::' + bersih(JSON.stringify(j))));
+    if (lintas) console.log('::' + (lintas.lulus ? 'notice' : 'warning') + ' title=Lintas jalur::' + bersih(JSON.stringify(ringkas.lintas)));
+    if (pilih) console.log('::' + (pilih.lulus ? 'notice' : 'warning') + ' title=Pemilihan jalur::' + bersih(JSON.stringify(ringkas.pilih)));
+    if (depan) console.log('::' + (depan.lulus ? 'notice' : 'warning') + ' title=Jalur mati di depan::' + bersih(JSON.stringify(ringkas.depan)));
+    console.log('::' + (ringkas.lulus ? 'notice' : 'error') + ' title=Ringkasan::' + bersih(ringkas.lulus + ' dari ' + ringkas.dari + ' jalur lulus penuh, ' + ringkas.detik + ' dtk'));
     if (process.env.GITHUB_STEP_SUMMARY) {
       const baris = ['## Jalur Room tim', '', '| Jalur | Salam | Alur penuh | Catatan |', '|---|---|---|---|']
         .concat(ringkas.jalur.map((j, i) => '| ' + (i + 1) + ' `' + j.url + '` | ' + (typeof j.salam === 'number' ? j.salam + ' ms' : 'gagal') + ' | ' + (j.lulus ? 'lulus ' + j.ms + ' ms' : 'GAGAL') + ' | ' + (j.galat || '') + ' |'));

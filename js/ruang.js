@@ -135,11 +135,21 @@
   // ======================================================================================
   // KONFIGURASI
   // ======================================================================================
-  const RELAI_BAWAAN = ['wss://mqtt.eclipseprojects.io:443/mqtt', 'wss://broker.emqx.io:8084/mqtt', 'wss://broker.hivemq.com:8884/mqtt', 'wss://test.mosquitto.org:8081/'];
+  // v8.2 B0b: urutan dari uji jalur publik sungguhan (10 Nov 2026). Entri boleh 'url#nama:sandi' → username/password MQTT di CONNECT;
+  // shiftr.io satu-satunya jalur di port 443 (Wi-Fi kantor yang hanya membuka 80/443). eclipseprojects.io dibuang (mati).
+  const RELAI_BAWAAN = ['wss://broker.emqx.io:8084/mqtt', 'wss://public.cloud.shiftr.io:443#public:public', 'wss://test.mosquitto.org:8081/', 'wss://broker.hivemq.com:8884/mqtt'];
+  // 'url#nama:sandi' → { url (tanpa fragmen), username, password } (username/password null bila tanpa '#')
+  function pisahRelai(entri) {
+    const t = String(entri == null ? '' : entri); const i = t.indexOf('#');
+    if (i < 0) return { url: t, username: null, password: null };
+    const kred = t.slice(i + 1); const j = kred.indexOf(':');
+    const dek = x => { try { return decodeURIComponent(x); } catch (e) { return x; } };
+    return { url: t.slice(0, i), username: dek(j < 0 ? kred : kred.slice(0, j)), password: j < 0 ? null : dek(kred.slice(j + 1)) };
+  }
   const KONFIG_BAWAAN = {
     keepalive: 30,            // detik, dikirim di CONNECT
     pingMs: 20000,            // PINGREQ tiap 20 dtk; tanpa PINGRESP sampai ping berikutnya → sambungan dianggap mati
-    batasSambungMs: 6000,     // batas satu percobaan sambung (sampai SUBACK)
+    batasSambungMs: 8000,     // batas satu percobaan sambung (sampai SUBACK); hivemq kadang perlu ±6 dtk
     jedaSambung: [1000, 2000, 5000, 10000, 20000],
     jitter: 0.3,              // + 0–30 % acak
     jedaRelaiBerikut: 300,    // anggota: jeda sebelum mencoba relai berikutnya dalam satu putaran
@@ -148,7 +158,9 @@
     detakMs: 30000,           // detak kehadiran
     hadirBasiMs: 95000,       // tanpa kabar selama ini → tidak online
     debounceMs: 250,          // jawaban hidup
-    tungguStateMs: 4000,      // gabung(): setelah tersambung, tunggu state retained selama ini
+    tungguStateMs: 4000,      // gabung(): setelah tersambung, tunggu state retained selama ini; anggota: jalur tanpa state → pindah
+    tungguRelaiLainMs: 1200,  // v8.2 B0b: pemilihan jalur: setelah state pertama, tunggu relai lain paling lama selama ini
+    segarJalurMs: 120000,     // v8.2 B0b: pemenang intip() dipakai gabung() selama ini
     tungguGabungMs: 30000,    // gabung(): batas keseluruhan
     mintaSesiMs: 5000,
     jedaBersihMs: 2000,       // anggota: kosongkan dokumen jawaban setelah aktivitas berakhir
@@ -416,7 +428,7 @@
     async function sambung() {
       if (berhenti || ws || sedang) return;
       sedang = true;
-      kon.url = urlKini(); kon.terlihat = new Map(); setStatus('menyambung');
+      kon.entri = urlKini(); const pr = pisahRelai(kon.entri); kon.url = pr.url; kon.terlihat = new Map(); setStatus('menyambung');
       let will = null; try { will = o.buatWill ? await o.buatWill() : null; } catch (e) { will = null; }
       sedang = false;
       if (berhenti || ws) return;
@@ -425,7 +437,7 @@
       const pengurai = new Pengurai(MAKS_PAKET); let siap = false, connack = false, alasanTutup = null;
       timerSambung = setTimeout(() => { if (!siap && ws === sok) { alasanTutup = 'waktu habis (' + Math.round(K.batasSambungMs / 1000) + ' dtk)'; try { sok.close(); } catch (e) {} selesai(sok); } }, K.batasSambungMs);
       let rantai = Promise.resolve();
-      sok.onopen = () => { if (ws === sok) kirimMentah(Kodek.connect({ clientId: o.idKlien, keepalive: K.keepalive, clean: true, will })); };
+      sok.onopen = () => { if (ws === sok) kirimMentah(Kodek.connect({ clientId: o.idKlien, keepalive: K.keepalive, clean: true, will, username: pr.username == null ? undefined : pr.username, password: pr.password == null ? undefined : pr.password })); };
       sok.onmessage = ev => {
         if (ws !== sok) return; const d = ev.data;
         if (typeof d === 'string') return;
@@ -489,6 +501,8 @@
       tambahan.add(topik);
       if (kon.status === 'tersambung') { subId = subId >= 65535 ? 1 : subId + 1; kirimMentah(Kodek.subscribe({ id: subId, topik: [topik] })); }
     };
+    // pindah jalur: DISCONNECT rapi (tanpa last will) lalu tutup; sambung ulang memakai url()/jedaKhusus seperti biasa
+    kon.pindah = function () { const s = ws; if (s) { kirimMentah(Kodek.disconnect()); try { s.close(); } catch (e) {} } };
     kon.putuskan = function () { const s = ws; if (s) { try { s.close(); } catch (e) {} } };  // uji/pemulihan: tutup tanpa DISCONNECT (last will berlaku)
     kon.antrean = () => antre.size;
     return kon;
@@ -558,6 +572,10 @@
         calon: false, urutPulih: 0, timerCalon: null,   // pulihkan() sebagai tuan: calon tuan sampai tidak ada state lebih baru
         adopsi: null,            // id aktivitas yang dokumen jawaban lamanya sudah diadopsi
         penjelas: new Map(),     // aktivitasId → { soalId: nama } (dari hasilSoal.penjelas), 4 aktivitas terakhir
+        // v8.2 B0b
+        hadirBoleh: o.peran === 'tuan',   // anggota: dokumen hadir baru terbit setelah state (bukan nisan) terlihat di jaringan
+        jalur: null,             // entri relai tempat anggota terakhir menerima state yang sah
+        kosongBeruntun: 0, timerKosong: null, pindahSegera: false,
       };
     }
     const salin = x => (x == null ? x : JSON.parse(JSON.stringify(x)));
@@ -598,6 +616,7 @@
         // anggota: percobaan gagal → relai berikutnya; sambungan yang putus setelah tersambung → coba relai yang sama dulu
         saatGagal: (k, pernah) => { if (r !== rt || typeof url !== 'function') return; if (!pernah) { r.idxRelai = (r.idxRelai + 1) % daftarRelai().length; if (r.idxRelai === 0) r.putaran++; } },
         jedaKhusus: typeof url === 'function' ? (k => {
+          if (r.pindahSegera) { r.pindahSegera = false; return api.KONFIG.jedaRelaiBerikut; }   // pindah dari jalur tanpa state
           if (k.terakhirPernah) return null;                                   // jeda bertahap biasa (1 dtk)
           if (r.idxRelai !== 0) return api.KONFIG.jedaRelaiBerikut;            // masih dalam satu putaran
           const J = api.KONFIG.jedaSambung; return J[Math.min(Math.max(r.putaran - 1, 0), J.length - 1)];
@@ -618,7 +637,7 @@
         if (!putar) {
           // turun dari tuan: mulai dari relai yang sedang tersambung agar jeda sesingkat mungkin
           const aktif = r.koneksi.find(k => k.status === 'tersambung'); const i = aktif ? daftarRelai().indexOf(aktif.urlTetap) : -1;
-          r.idxRelai = i >= 0 ? i : 0;
+          if (r.koneksi.length) r.idxRelai = i >= 0 ? i : 0;   // anggota baru: idxRelai dari pemilihan jalur / jalur tersimpan
           r.koneksi.forEach(k => k.henti());
           const k = koneksiBaru(() => daftarRelai()[r.idxRelai % daftarRelai().length]); r.koneksi = [k]; k.mulai();
         } else { r.koneksi.forEach(k => { if (k !== putar) k.henti(); }); r.koneksi = [putar]; }
@@ -630,9 +649,22 @@
       // kehadiran + dokumen sendiri ke relai ini
       kirimHadir(true, k);
       if (r.dokSaya && r.dokSaya.aktivitas && r.state && r.state.aktivitas && r.state.aktivitas.id === r.dokSaya.aktivitas) terbitDok(k);
+      if (r.peran === 'anggota') { const token = k.tersambungPada; setTimeout(() => cekKosong(r, k, token), api.KONFIG.tungguStateMs); }
       // calon tuan (pulihkan): masa tunggu dimulai saat relai pertama tersambung
       if (r.calon && !r.timerCalon) r.timerCalon = setTimeout(() => akhiriCalon(r), Math.max(api.KONFIG.graceMs, api.KONFIG.tungguCalonMs));
       if (r.peran === 'tuan') setTimeout(() => pulihkanDi(r, k), api.KONFIG.graceMs);
+    }
+    // anggota: jalur tersambung tanpa 's' dalam tungguStateMs → pindah ke jalur berikutnya. Setelah satu putaran penuh tanpa state,
+    // tetap di jalur yang tersambung dan coba putaran berikutnya setelah jedaSambung bertahap (tidak berputar tanpa henti)
+    function cekKosong(r, k, token) {
+      const masih = () => r === rt && r.peran === 'anggota' && k.status === 'tersambung' && k.tersambungPada === token && !k.terlihat.has('s');
+      if (!masih()) return;
+      const n = daftarRelai().length; if (n < 2) return;
+      r.kosongBeruntun++;
+      const pindah = () => { if (!masih()) return; r.idxRelai = (r.idxRelai + 1) % n; r.pindahSegera = true; k.pindah(); };
+      if (r.kosongBeruntun % n !== 0) { pindah(); return; }
+      const J = api.KONFIG.jedaSambung; const jeda = J[Math.min(r.kosongBeruntun / n - 1, J.length - 1)];
+      clearTimeout(r.timerKosong); r.timerKosong = setTimeout(pindah, jeda);
     }
     // calon tuan: tidak ada state lebih baru selama masa tunggu → benar-benar tuan; terbitkan ulang (versiApp diperbarui bila beda)
     function akhiriCalon(r) {
@@ -660,7 +692,8 @@
       r.timerDetak = setInterval(() => { if (r === rt) { kirimHadir(true); pancarStatus(); } }, api.KONFIG.detakMs);
     }
     function kirimHadir(online, hanyaKon) {
-      if (!rt) return; const r = rt; const obj = amplop({ online, peran: r.peran, siap: online ? r.siap || null : null });
+      if (!rt) return; const r = rt; if (!r.hadirBoleh && r.peran !== 'tuan') return Promise.resolve();
+      const obj = amplop({ online, peran: r.peran, siap: online ? r.siap || null : null });
       catatHadir(validHadir(obj), false);
       return slugNama(r.nama).then(slug => terbit('h/' + slug, obj, true, hanyaKon));
     }
@@ -684,6 +717,11 @@
       else if (/^r\/[A-Za-z0-9][A-Za-z0-9._:-]{0,59}$/.test(sufiks)) { v = validSesi(o); jenis = 'r'; if (v && v.sesi.id !== sufiks.slice(2)) v = null; }
       if (!v || r !== rt) return;
       kon.terlihat.set(sufiks, kunciDup);
+      if (jenis === 's' && r.peran === 'anggota' && !v.ditutup) {
+        r.kosongBeruntun = 0; clearTimeout(r.timerKosong);
+        if (kon.entri && r.jalur !== kon.entri) { r.jalur = kon.entri; perbaruiSimpan({ relai: kon.entri }); }
+        if (!r.hadirBoleh) { r.hadirBoleh = true; kirimHadir(true); }
+      }
       const paksa = jenis === 'r' && r.menungguSesi.has(v.sesi.id);
       if (!r.dedup.tambah(kunciDup) && !paksa) return;
       // tuan meneruskan jawaban dan kehadiran ke relai lain: anggota di relai berbeda tetap bertemu
@@ -829,7 +867,7 @@
       let alasan = c.alasan;
       if (c.tersedia && !tersambung && rt.semuaGagal) alasan = 'Belum bisa terhubung ke room. Periksa internet; bila tetap gagal, jaringan atau halaman ini memblokir koneksi keluar (misalnya Wi-Fi kantor atau server tim ber-CSP). Aplikasi terus mencoba.';
       return { tersedia: c.tersedia, alasan, tersambung,
-        relai: rt.koneksi.map(k => ({ url: k.url || k.urlTetap || null, status: k.status, galat: k.galat || null, galatPada: k.galatPada || null, gagal: k.gagalBeruntun || 0, sejak: k.status === 'tersambung' ? k.tersambungPada || null : null })),
+        relai: rt.koneksi.map(k => ({ url: k.url || (k.urlTetap ? pisahRelai(k.urlTetap).url : null), status: k.status, galat: k.galat || null, galatPada: k.galatPada || null, gagal: k.gagalBeruntun || 0, sejak: k.status === 'tersambung' ? k.tersambungPada || null : null })),
         online: onlineKini(), peran: rt.peran, calon: !!rt.calon, versiBeda: versiBeda() };
     };
     // versi aplikasi di state (versi pemimpin) ≠ versi halaman ini; tuan selalu false (state mengikuti versinya sendiri)
@@ -849,12 +887,13 @@
     }
     function hentiRt() {
       const r = rt; if (!r) return; r.hidup = false; rt = null;
-      clearInterval(r.timerDetak); clearTimeout(r.timerJawab); clearTimeout(r.timerBersih); clearTimeout(r.timerCalon);
+      clearInterval(r.timerDetak); clearTimeout(r.timerJawab); clearTimeout(r.timerBersih); clearTimeout(r.timerCalon); clearTimeout(r.timerKosong);
       r.koneksi.forEach(k => k.henti()); r.koneksi = [];
       r.menungguSesi.forEach(ws => ws.forEach(fn => fn(null))); r.menungguSesi.clear();
     }
     function wajibNama(nama) { const n = rapikanNama(nama); if (!validNama(n)) throw new Error('Nama harus 1–24 karakter.'); return n; }
 
+    let tokenMulai = 0;   // gabung() yang masih memilih jalur dibatalkan bila ada buat/gabung/pulihkan/keluar sesudahnya
     api.tersedia = () => cekTersedia();
     api.buat = function (o) {
       o = o || {}; const c = cekTersedia(); if (!c.tersedia) throw new Error(c.alasan);
@@ -862,7 +901,7 @@
       const peserta = []; (Array.isArray(o.peserta) ? o.peserta : []).concat([nama]).forEach(x => { const n = rapikanNama(x); if (validNama(n) && !peserta.some(y => kunciNama(y) === kunciNama(n)) && peserta.length < 12) peserta.push(n); });
       const namaRoom = (typeof o.namaRoom === 'string' ? o.namaRoom.replace(/[\u0000-\u001f\u007f-\u009f]/g, ' ').trim() : '').slice(0, 60) || 'Room tim';
       const tingkat = ['A', 'B', 'C'].indexOf(o.tingkat) >= 0 ? o.tingkat : null;
-      hentiRt();
+      hentiRt(); tokenMulai++;
       const kode = kodeBaru(CR());
       const r = mulaiRt({ kode, nama, peran: 'tuan', namaRoom });
       const t = now();
@@ -878,25 +917,36 @@
       const k = normalKode(kode); if (!k) return Promise.reject(new Error('Kode room tidak valid. Kode berisi 14 huruf/angka, misalnya ABCD-EFGHJ-KMNPQ.'));
       let n; try { n = wajibNama(nama); } catch (e) { return Promise.reject(e); }
       const lama = bacaSimpan();
-      hentiRt();
-      const r = mulaiRt({ kode: k, nama: n, peran: 'anggota', namaRoom: '' });
-      if (lama && lama.kode === k && isObj(lama.state)) { const s = validState(lama.state); if (s) r.state = s; }
-      tulisSimpan({ kode: k, nama: n, peran: 'anggota', namaRoom: r.state ? r.state.room.nama : '', dibuat: lama && lama.kode === k ? lama.dibuat || now() : now() });
+      hentiRt(); const token = ++tokenMulai;
       pancarStatus();
+      // v8.2 B0b: jalur dipilih menurut tempat state room berada (pemenang intip() yang masih segar, atau pemilihan internal tanpa kehadiran)
+      const segar = jalurSegar(k);
+      return (segar ? Promise.resolve(segar) : pilihJalur(k).catch(() => null)).then(pilih => {
+        if (token !== tokenMulai) return null;   // dibatalkan oleh buat/gabung/pulihkan/keluar lain
+        if (pilih && pilih.ditutup) { if (lama && lama.kode === k) tulisSimpan(null); pancar('tutup', { tuan: pilih.state.tuan }); return null; }   // room bernisan
+        const r = mulaiRt({ kode: k, nama: n, peran: 'anggota', namaRoom: '' });
+        const idx = pilih ? daftarRelai().indexOf(pilih.entri) : -1; r.idxRelai = idx >= 0 ? idx : 0;
+        if (lama && lama.kode === k && isObj(lama.state)) { const s = validState(lama.state); if (s && !s.ditutup) r.state = s; }
+        tulisSimpan({ kode: k, nama: n, peran: 'anggota', namaRoom: r.state ? r.state.room.nama : '', dibuat: lama && lama.kode === k ? lama.dibuat || now() : now() });
+        pancarStatus();
+        return tungguStateGabung(r);
+      });
+    };
+    function tungguStateGabung(r) {
       return new Promise(res => {
         let selesai = false, tState = null; const awal = r.state ? r.state.urut : -1;
         const akhir = hasil => { if (selesai) return; selesai = true; lepas1(); lepas2(); clearTimeout(tBatas); clearTimeout(tState); res(hasil); };
-        const lepas1 = api.on('state', s => { if (r === rt && s.urut > awal) akhir(s); });
+        const lepas1 = api.on('state', s => { if (s.ditutup) { akhir(null); return; } if (r === rt && s.urut > awal) akhir(s); });
         const lepas2 = api.on('status', st => { if (r !== rt) { akhir(null); return; } if (st.tersambung && !tState) tState = setTimeout(() => akhir(r === rt && r.state ? salin(r.state) : null), api.KONFIG.tungguStateMs); });
         const tBatas = setTimeout(() => akhir(r === rt && r.state ? salin(r.state) : null), api.KONFIG.tungguGabungMs);
       });
-    };
+    }
     // lanjutkan room yang tersimpan di perangkat ini (panggil sekali saat aplikasi dimuat) → true bila ada yang dilanjutkan
     api.pulihkan = function () {
       if (rt) return true; const s = bacaSimpan(); if (!s) return false;
       const kode = normalKode(s.kode); if (!kode || !validNama(s.nama) || !cekTersedia().tersedia) return false;
       const peran = s.peran === 'tuan' ? 'tuan' : 'anggota';
-      const r = mulaiRt({ kode, nama: s.nama, peran, namaRoom: s.namaRoom, dibuat: s.dibuat });
+      tokenMulai++; const r = mulaiRt({ kode, nama: s.nama, peran, namaRoom: s.namaRoom, dibuat: s.dibuat });
       if (isObj(s.state)) r.state = validState(s.state);
       if (isObj(s.indeks)) r.indeks = validIndeks(s.indeks);
       if (peran === 'tuan' && r.state) {
@@ -905,10 +955,13 @@
         r.calon = true; r.urutPulih = r.state.urut;
       }
       if (typeof s.siap === 'string' && r.state && r.state.lobi && r.state.lobi.id === s.siap) r.siap = s.siap;
+      // v8.2 B0b: anggota mulai dari jalur tempat state terakhir diterima (bila masih ada di daftar)
+      if (peran === 'anggota' && typeof s.relai === 'string') { const i = daftarRelai().indexOf(s.relai); if (i >= 0) { r.idxRelai = i; r.jalur = s.relai; } }
       pancarStatus();
       return true;
     };
     api.keluar = function () {
+      tokenMulai++;
       const r = rt; if (!r) { tulisSimpan(null); return Promise.resolve(); }
       tulisSimpan(null);
       const tunggu = kirimHadir(false) || Promise.resolve();
@@ -1147,55 +1200,80 @@
     api.intip = function (kode) {
       const c = cekTersedia(); if (!c.tersedia) return Promise.reject(new Error(c.alasan));
       const k = normalKode(kode); if (!k) return Promise.reject(new Error('Kode room tidak valid. Kode berisi 14 huruf/angka, misalnya ABCD-EFGHJ-KMNPQ.'));
-      if (rt && rt.kode === k && rt.state) return Promise.resolve(salin(rt.state));
+      if (rt && rt.kode === k && rt.state) return Promise.resolve(rt.state.ditutup ? null : salin(rt.state));
+      return pilihJalur(k).then(x => (x && !x.ditutup ? salin(x.state) : null), () => null);
+    };
+    // v8.2 B0b: pemenang pemilihan jalur per kode (memori, berlaku KONFIG.segarJalurMs)
+    const pemenang = new Map();
+    function jalurSegar(k) {
+      const m = pemenang.get(k);
+      return m && now() - m.t < api.KONFIG.segarJalurMs && daftarRelai().indexOf(m.entri) >= 0 ? { entri: m.entri, state: null, ditutup: false } : null;
+    }
+    // sambung ke semua jalur sekaligus (tanpa kehadiran/last will), baca 's' retained, lalu putus.
+    // Selesai bila semua jalur melapor (state / tersambung tanpa state selama tungguStateMs / gagal) atau tungguRelaiLainMs setelah
+    // state pertama, mana yang lebih dulu. Pemenang = urut terbesar; seri → yang paling awal di daftar (agar semua anggota berkumpul).
+    // → Promise<{ state, entri, ditutup } | null>
+    function pilihJalur(k) {
       const K = api.KONFIG;
       return new Promise(res => {
-        let selesai = false, terbaik = null, tAkhir = null; const kons = [], tuntas = new Map();
-        const akhir = () => { if (selesai) return; selesai = true; clearTimeout(tBatas); clearTimeout(tAkhir); kons.forEach(x => { try { x.henti(); } catch (e) {} }); res(terbaik ? salin(terbaik) : null); };
+        let selesai = false, tAkhir = null; const kons = [], lapor = new Map(), stateDi = new Map(); let urls = [];
+        const akhir = () => {
+          if (selesai) return; selesai = true; clearTimeout(tBatas); clearTimeout(tAkhir); kons.forEach(x => { try { x.henti(); } catch (e) {} });
+          let hasil = null;
+          urls.forEach(u => { const v = stateDi.get(u); if (v && (!hasil || v.urut > hasil.state.urut)) hasil = { state: v, entri: u, ditutup: !!v.ditutup }; });
+          if (hasil && !hasil.ditutup) pemenang.set(k, { entri: hasil.entri, t: now() });
+          if (hasil && hasil.ditutup) pemenang.delete(k);
+          while (pemenang.size > 8) pemenang.delete(pemenang.keys().next().value);
+          res(hasil);
+        };
         const tBatas = setTimeout(akhir, K.tungguGabungMs);
-        const cek = () => { if (!selesai && tuntas.size && Array.from(tuntas.values()).every(Boolean)) akhir(); };
+        const cek = () => { if (!selesai && lapor.size && Array.from(lapor.values()).every(Boolean)) akhir(); };
         kunciUntuk(k).then(({ awalan, kunci }) => {
           if (selesai) return;
           const kr = Kripto(CR(), K.iterasi); const topik = awalan + '/s';
-          daftarRelai().forEach(u => {
-            tuntas.set(u, false);
+          urls = daftarRelai();
+          urls.forEach(u => {
+            lapor.set(u, false);
             const kon = Koneksi({
               url: u, WS: WSk(), idKlien: idKlien(), konfig: K, filter: () => [topik], buatWill: null,
               saatPublish: p => {
                 if (selesai || p.topik !== topik || !p.muatan || !p.muatan.length || p.muatan.length > MAKS_PAKET) return;
                 kr.dekripsi(kunci, topik, p.muatan).then(t => {
                   if (selesai || t == null) return; let o; try { o = parseAman(t); } catch (e) { return; }
-                  const v = validState(o); if (!v || v.ditutup) return;
-                  if (!terbaik || v.urut > terbaik.urut) terbaik = v;
-                  if (!tAkhir) tAkhir = setTimeout(akhir, Math.min(300, K.tungguStateMs));   // beri relai lain sebentar untuk state yang lebih baru
+                  const v = validState(o); if (!v) return;
+                  const lama = stateDi.get(u); if (!lama || v.urut > lama.urut) stateDi.set(u, v);
+                  lapor.set(u, true);
+                  if (!tAkhir) tAkhir = setTimeout(akhir, K.tungguRelaiLainMs);
+                  cek();
                 });
               },
-              saatStatus: kk => { if (kk.status === 'tersambung') setTimeout(() => { tuntas.set(u, true); cek(); }, K.tungguStateMs); },
-              saatGagal: (kk, pernah) => { if (!pernah) { tuntas.set(u, true); try { kk.henti(false); } catch (e) {} cek(); } },
+              saatStatus: kk => { if (kk.status === 'tersambung') setTimeout(() => { lapor.set(u, true); cek(); }, K.tungguStateMs); },
+              saatGagal: (kk, pernah) => { if (!pernah) { lapor.set(u, true); try { kk.henti(false); } catch (e) {} cek(); } },
             });
             kons.push(kon); kon.mulai();
           });
         }).catch(akhir);
       });
-    };
-    // tuan: tutup room. Anggota yang online menerima state terakhir (ditutup: true) lalu keluar; retained s, i, r/*, a/*, h/* dihapus
-    // dari semua relai; perangkat ini keluar. → Promise<bool> (true bila minimal satu relai tersambung saat penghapusan dikirim)
+    }
+    // tuan: tutup room. State penutup (ditutup: true, peserta []) terbit retained di 's' sebagai batu nisan: anggota online dan yang
+    // tersambung kemudian keluar; retained i, r/*, a/*, h/* dihapus dari semua relai; perangkat ini keluar. → Promise<bool> (true bila minimal satu relai tersambung saat penghapusan dikirim)
     api.tutup = function () {
       const r = rt; if (!r || r.peran !== 'tuan' || !r.state) return Promise.resolve(false);
       return (async () => {
         try { await r.siapP; } catch (e) {}
         if (r !== rt) return false;
         const tersambung = r.koneksi.some(k => k.status === 'tersambung');
-        const s = salin(r.state); const t = now(); s.t = t; s.urut = Math.max(r.state.urut + 1, t); s.aktivitas = null; s.lobi = null; s.ditutup = true;
-        const v = validState(s); if (v) { r.state = v; terbit('s', v, false); }
         const nama = new Set([r.nama].concat(r.state.room.peserta)); r.hadir.forEach(h => nama.add(h.nama));
+        // v8.2 B0b: batu nisan — state penutup RETAINED di 's' (tidak dihapus), peserta dikosongkan. Tidak bergantung pada kecepatan hapus relai
+        const s = salin(r.state); const t = now(); s.t = t; s.urut = Math.max(r.state.urut + 1, t); s.aktivitas = null; s.lobi = null; s.ditutup = true; s.room.peserta = [];
+        const v = validState(s); if (v) { r.state = v; terbit('s', v, true); }
         r.jawaban.forEach(m => Object.keys(m).forEach(k => nama.add(m[k].nama)));
         const kunciUnik = new Map(); nama.forEach(n => { if (validNama(n) && !kunciUnik.has(kunciNama(n))) kunciUnik.set(kunciNama(n), n); });
         const slugs = await Promise.all(Array.from(kunciUnik.values()).map(slugNama));
         slugs.forEach(sl => { if (sl) { hapusRetained('a/' + sl); hapusRetained('h/' + sl); } });
         const ids = new Set(r.indeks ? r.indeks.daftar.map(e => e.id) : []); r.sesiCache.forEach((x, id) => ids.add(id));
         ids.forEach(id => hapusRetained('r/' + id));
-        hapusRetained('i'); hapusRetained('s');
+        hapusRetained('i');
         await Promise.race([r.rantaiKeluar, new Promise(ok => setTimeout(ok, 1500))]);
         tulisSimpan(null);
         if (rt === r) hentiRt();
@@ -1207,24 +1285,24 @@
     // → Promise<[{ url, ok, ms, alasan }]> (alasan: null bila ok)
     api.ujiRelai = function () {
       const urls = daftarRelai(); const c = cekTersedia(); const WS = WSk();
-      if (!c.tersedia || typeof WS !== 'function') return Promise.resolve(urls.map(url => ({ url, ok: false, ms: 0, alasan: c.alasan || 'WebSocket tidak tersedia.' })));
+      if (!c.tersedia || typeof WS !== 'function') return Promise.resolve(urls.map(url => ({ url: pisahRelai(url).url, ok: false, ms: 0, alasan: c.alasan || 'WebSocket tidak tersedia.' })));
       const batas = api.KONFIG.batasSambungMs;
       const idAcak = () => { try { return hex(acakBytes(CR(), 6)); } catch (e) { return Math.random().toString(16).slice(2, 14); } };
       return Promise.all(urls.map(url => new Promise(res => {
-        const t0 = Date.now(); let ws = null, selesai = false;
+        const pr = pisahRelai(url); const t0 = Date.now(); let ws = null, selesai = false;
         const akhir = (ok, alasan) => {
           if (selesai) return; selesai = true; clearTimeout(tm);
           if (ws) { ws.onopen = ws.onmessage = ws.onerror = ws.onclose = null; try { if (ok && ws.readyState === 1) ws.send(Kodek.disconnect()); } catch (e) {} try { ws.close(); } catch (e) {} }
-          res({ url, ok, ms: Date.now() - t0, alasan: ok ? null : alasan });
+          res({ url: pr.url, ok, ms: Date.now() - t0, alasan: ok ? null : alasan });
         };
         const tm = setTimeout(() => akhir(false, 'Waktu habis (' + Math.round(batas / 1000) + ' dtk) tanpa balasan.'), batas);
-        try { ws = new WS(url, ['mqtt']); } catch (e) { akhir(false, 'Tidak bisa dibuka: ' + String((e && e.message) || e).slice(0, 120)); return; }
+        try { ws = new WS(pr.url, ['mqtt']); } catch (e) { akhir(false, 'Tidak bisa dibuka: ' + String((e && e.message) || e).slice(0, 120)); return; }
         ws.binaryType = 'arraybuffer'; const pg = new Pengurai(4096);
         const olah = b => {
           let pk; try { pk = pg.dorong(b); } catch (e) { akhir(false, 'Balasan server tidak dikenal.'); return; }
           for (const p of pk) if (p.jenis === 'connack') { if (p.kode === 0) akhir(true, null); else akhir(false, 'Ditolak server (kode ' + p.kode + ').'); return; }
         };
-        ws.onopen = () => { try { ws.send(Kodek.connect({ clientId: 'ukp' + idAcak(), keepalive: 30, clean: true })); } catch (e) { akhir(false, 'Gagal mengirim salam pembuka.'); } };
+        ws.onopen = () => { try { ws.send(Kodek.connect({ clientId: 'ukp' + idAcak(), keepalive: 30, clean: true, username: pr.username == null ? undefined : pr.username, password: pr.password == null ? undefined : pr.password })); } catch (e) { akhir(false, 'Gagal mengirim salam pembuka.'); } };
         ws.onmessage = ev => { const d = ev.data; if (typeof d === 'string') return; if (d && typeof d.arrayBuffer === 'function' && !ArrayBuffer.isView(d)) d.arrayBuffer().then(olah, () => {}); else olah(d); };
         ws.onerror = () => {};
         ws.onclose = () => akhir(false, 'Sambungan ditutup sebelum siap (diblokir jaringan atau server mati).');
@@ -1243,6 +1321,7 @@
   inti.normalKode = normalKode;
   inti.formatKode = formatKode;
   inti.RELAI_BAWAAN = RELAI_BAWAAN.slice();
+  inti.pisahRelai = pisahRelai;
   inti.MAKS_PAKET = MAKS_PAKET;
   inti._kodek = { Kodek, Pengurai, uraiPaket, varint, cocokFilter, utf8, dariUtf8, satukan };
   inti._kripto = { Kripto, kodeBaru, normalKode, formatKode, ALFABET, PANJANG_KODE, GARAM };
