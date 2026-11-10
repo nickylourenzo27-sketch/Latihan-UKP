@@ -5,6 +5,9 @@
 const path = require('node:path');
 require(path.join(__dirname, '..', 'js', 'ruang.js'));
 const R = globalThis.UKP.ruang; const Koneksi = R._Koneksi;
+// cabang uji: kredensial MQTT untuk semua sambungan proses ini (KRED="nama:sandi")
+if (process.env.KRED) { const [nm, sd] = process.env.KRED.split(':'); const asli = R._kodek.Kodek.connect; R._kodek.Kodek.connect = o => asli(Object.assign({}, o, { username: nm, password: sd })); }
+const LABEL = process.env.LABEL || '';
 const K = Object.assign({}, R.KONFIG, { batasSambungMs: 9000 });
 const tidur = ms => new Promise(r => setTimeout(r, ms));
 const hex = n => Array.from(crypto.getRandomValues(new Uint8Array(n))).map(b => b.toString(16).padStart(2, '0')).join('');
@@ -71,12 +74,12 @@ async function selidik(url) {
 
 (async () => {
   const utama = process.env.SELIDIK_URL ? process.env.SELIDIK_URL.split(',') : R.RELAI_BAWAAN.slice();
-  const kandidat = ['wss://mqtt.eclipseprojects.io/mqtt', 'ws://mqtt.eclipseprojects.io/mqtt', 'wss://broker.emqx.io:443/mqtt', 'wss://broker.hivemq.com:443/mqtt', 'wss://broker-cn.emqx.io:8084/mqtt', 'wss://mqtt-dashboard.com:8884/mqtt', 'wss://public.cloud.shiftr.io:443', 'wss://test.mosquitto.org:8091/', 'wss://broker.emqx.io:8084/', 'wss://broker.hivemq.com:8884/'];
+  const kandidat = ['wss://mqtt.eclipseprojects.io/mqtt', 'ws://mqtt.eclipseprojects.io/mqtt', 'wss://broker.emqx.io:443/mqtt', 'wss://broker.hivemq.com:443/mqtt', 'wss://broker-cn.emqx.io:8084/mqtt', 'wss://mqtt-dashboard.com:8884/mqtt', 'wss://public.cloud.shiftr.io:443', 'wss://test.mosquitto.org:8091/', 'wss://broker.mqttgo.io:8084/mqtt', 'wss://broker.mqttgo.io:443/mqtt', 'wss://mqtt.eclipseprojects.io:8443/mqtt'];
   const u = R.buatInstans({ WebSocket, crypto: globalThis.crypto, store: { get: () => ({}), save() {} }, lokasi: { hostname: 'x.github.io', origin: 'https://x.github.io', pathname: '/' } });
   u.RELAI = process.env.SELIDIK_URL ? utama : kandidat; Object.assign(u.KONFIG, { batasSambungMs: 9000 });
   const hk = await u.ujiRelai();
-  catat('notice', 'Kandidat', hk.map(x => x.url.replace(/^wss?:\/\//, m => (m === 'ws://' ? 'ws ' : '')) + '=' + (x.ok ? x.ms + 'ms' : 'X ' + String(x.alasan).slice(0, 40))).join(' | '));
+  if (!process.env.SELIDIK_URL) catat('notice', 'Kandidat', hk.map(x => x.url.replace(/^wss?:\/\//, m => (m === 'ws://' ? 'ws ' : '')) + '=' + (x.ok ? x.ms + 'ms' : 'X ' + String(x.alasan).slice(0, 40))).join(' | '));
   const hasil = await Promise.all(utama.map(url => selidik(url).catch(e => ({ url, galat: String(e.message || e) }))));
-  hasil.forEach((o, i) => { console.log(JSON.stringify(o)); catat('notice', 'Selidik ' + (i + 1), o); });
+  hasil.forEach((o, i) => { console.log(JSON.stringify(o)); catat('notice', 'Selidik ' + LABEL + (i + 1), o); });
   process.exit(0);
 })().catch(e => { console.error(e); process.exit(0); });

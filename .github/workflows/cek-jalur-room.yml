@@ -35,5 +35,15 @@ jobs:
       - name: Selidik pesan tersimpan
         if: github.ref == 'refs/heads/cek-jalur'
         run: node tools/selidik-relai.js
+      - name: Selidik kandidat 443 dan Asia
+        if: github.ref == 'refs/heads/cek-jalur'
+        run: |
+          LABEL=S KRED=public:public SELIDIK_URL=wss://public.cloud.shiftr.io:443 node tools/selidik-relai.js || true
+          LABEL=G SELIDIK_URL=wss://broker.mqttgo.io:8084/mqtt,wss://broker-cn.emqx.io:8084/mqtt node tools/selidik-relai.js || true
+      - name: Alur penuh kandidat
+        if: github.ref == 'refs/heads/cek-jalur'
+        run: |
+          LABEL=S KRED=public:public node tools/cek-relai.js wss://public.cloud.shiftr.io:443 || true
+          LABEL=G node tools/cek-relai.js wss://broker.mqttgo.io:8084/mqtt wss://broker-cn.emqx.io:8084/mqtt || true
       - name: Uji jalur dengan js/ruang.js
         run: node tools/cek-relai.js --json

@@ -23,6 +23,8 @@ if (typeof WebSocket !== 'function' || !globalThis.crypto || !globalThis.crypto.
 }
 require(path.join(__dirname, '..', 'js', 'ruang.js'));
 const R = globalThis.UKP.ruang;
+if (process.env.KRED) { const [nm, sd] = process.env.KRED.split(':'); const asli = R._kodek.Kodek.connect; R._kodek.Kodek.connect = o => asli(Object.assign({}, o, { username: nm, password: sd })); }
+const LABEL = process.env.LABEL || '';
 const RELAI = urlArg.length ? urlArg : R.RELAI_BAWAAN.slice();
 
 const tidur = ms => new Promise(r => setTimeout(r, ms));
@@ -142,9 +144,9 @@ async function alur(nama, urlTuan, urlB, urlC) {
   if (diGitHub) {
     // anotasi: terbaca lewat API check-runs tanpa mengunduh log
     const bersih = s => String(s).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A');
-    ringkas.jalur.forEach((j, i) => console.log('::' + (j.lulus ? 'notice' : 'warning') + ' title=Jalur ' + (i + 1) + '::' + bersih(JSON.stringify(j))));
-    if (lintas) console.log('::' + (lintas.lulus ? 'notice' : 'warning') + ' title=Lintas jalur::' + bersih(JSON.stringify(ringkas.lintas)));
-    console.log('::' + (ringkas.lulus ? 'notice' : 'error') + ' title=Ringkasan::' + bersih(ringkas.lulus + ' dari ' + ringkas.dari + ' jalur lulus penuh, ' + ringkas.detik + ' dtk'));
+    ringkas.jalur.forEach((j, i) => console.log('::' + (j.lulus ? 'notice' : 'warning') + ' title=Jalur ' + LABEL + (i + 1) + '::' + bersih(JSON.stringify(j))));
+    if (lintas) console.log('::' + (lintas.lulus ? 'notice' : 'warning') + ' title=Lintas jalur ' + LABEL + '::' + bersih(JSON.stringify(ringkas.lintas)));
+    console.log('::' + (ringkas.lulus ? 'notice' : 'error') + ' title=Ringkasan ' + LABEL + '::' + bersih(ringkas.lulus + ' dari ' + ringkas.dari + ' jalur lulus penuh, ' + ringkas.detik + ' dtk'));
     if (process.env.GITHUB_STEP_SUMMARY) {
       const baris = ['## Jalur Room tim', '', '| Jalur | Salam | Alur penuh | Catatan |', '|---|---|---|---|']
         .concat(ringkas.jalur.map((j, i) => '| ' + (i + 1) + ' `' + j.url + '` | ' + (typeof j.salam === 'number' ? j.salam + ' ms' : 'gagal') + ' | ' + (j.lulus ? 'lulus ' + j.ms + ' ms' : 'GAGAL') + ' | ' + (j.galat || '') + ' |'));
