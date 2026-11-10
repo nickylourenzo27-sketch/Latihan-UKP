@@ -8,6 +8,7 @@ on:
     paths:
       - 'js/ruang.js'
       - 'tools/cek-relai.js'
+      - 'tools/selidik-relai.js'
       - '.github/workflows/cek-jalur-room.yml'
 permissions:
   contents: read
@@ -24,5 +25,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Diagnosa TCP dan TLS
+        run: |
+          for u in https://mqtt.eclipseprojects.io/mqtt https://broker.emqx.io:8084/mqtt https://broker.hivemq.com:8884/mqtt https://test.mosquitto.org:8081/ ; do
+            out=$(curl -sS -m 9 -o /dev/null -w 'http=%{http_code} ip=%{remote_ip} tcp=%{time_connect} tls=%{time_appconnect} total=%{time_total}' "$u" 2>&1 || true)
+            echo "::notice title=curl $u::$out"
+          done
+          echo "::notice title=dns::$(getent hosts mqtt.eclipseprojects.io broker.emqx.io broker.hivemq.com test.mosquitto.org | tr '\n' ';')"
+      - name: Selidik pesan tersimpan
+        if: github.ref == 'refs/heads/cek-jalur'
+        run: node tools/selidik-relai.js
       - name: Uji jalur dengan js/ruang.js
         run: node tools/cek-relai.js --json
