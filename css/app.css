@@ -3465,3 +3465,324 @@ main > .page:has(> .fokus-bersama) { gap: var(--s-3); }
 .lj-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .lj-aksi { margin-top: var(--s-3); }
 @media (max-width: 359px) { .lj-baris { grid-template-columns: 1.75rem repeat(4, minmax(40px, 1fr)) minmax(48px, auto); gap: 3px; padding-inline: 0; } }
+
+/* ---- v8.1 V2: kerapian HP ruang ujian (menu ⋮ sebaris dengan judul; ikon salin kode ujian mengikuti kode) ---- */
+.halaman-ruang-ujian > .page-head { flex-wrap: nowrap; align-items: flex-start; }
+.halaman-ruang-ujian > .page-head > .page-head-teks { flex: 1 1 0; min-width: 0; }
+.halaman-ruang-ujian > .page-head > .page-actions { flex: none; width: auto; }
+.ruang-bagi .ut-kode { display: block; }
+.ruang-bagi .ut-kode code { word-break: break-all; }
+.ruang-bagi .ut-kode > :is(button, .btn) { vertical-align: middle; margin-inline-start: 2px; }
+
+/* ---- v8.1 V1: toast saat papan latihan bersama / ujian tim tampil → di atas (di bawah bar fokus), agar baris status dan blok
+   triase di dekat bar aksi bawah tidak tertutup. Toast latar (ok/info tanpa aksi) ditunda di core.js sampai papan hilang ---- */
+html body:has(#main .soal-bersama) .toast { top: calc(56px + env(safe-area-inset-top, 0px)); bottom: auto !important; }
+/* ---- v8.1 V1: kop latihan bersama di layar ≤ 359 px (HP 320): hitung mundur tidak boleh terpotong elipsis; baris
+   "Soal 3 dari 10 · 20 mnt 53 dtk" boleh dua baris dan "6 orang" (juga ada di bar aksi) disembunyikan ---- */
+@media (max-width: 359px) {
+  .fokus-bersama .fokus-baris { white-space: normal; text-overflow: clip; text-align: center; line-height: 1.2; }
+  .fokus-bersama .fokus-peserta { display: none; }
+}
+
+/* ---- v8.2 B4: tata letak — mode fokus sesi di desktop, kolom terpusat (--w-sesi), kepala tunggal (fokusBar tengah/menu),
+   sidebar rapat dengan grup Tim, papan bersama desktop, petunjuk kbd di layar sentuh, bar aksi bersama HP (audit T1–T13) ----
+   Kelas/variabel: --w-sesi · .fokus-bar.ada-tengah/.ada-menu · .fokus-tengah · .fokus-menu · .menu-lebih-teks · .menu-lebih-isi > .bahaya */
+:root { --w-sesi: 960px; }
+/* (T1/T10/T13) sesi = body[data-mode="fokus"] + .fokus-bar di #main (latih, latihan bersama, ulang kartu, studi kasus, layar room
+   anggota): seperti mode ujian, tanpa sidebar/rail dan topbar (≥ 600; < 600 topbar sudah hilang), satu kolom terpusat, bar fokus
+   menempel di y = 0 sejak awal (tanpa celah dan tanpa lompatan saat lengket). Onboarding (.ob-opsi, tanpa .fokus-bar) tidak berubah. */
+@media (min-width: 600px) {
+  body[data-mode="fokus"]:has(#main .fokus-bar) .sidebar,
+  body[data-mode="fokus"]:has(#main .fokus-bar) .topbar { display: none; }
+  body[data-mode="fokus"]:has(#main .fokus-bar) .shell { grid-template-columns: minmax(0, 1fr); }
+  body[data-mode="fokus"]:has(#main .fokus-bar) main { padding-top: 0; }
+  body[data-mode="fokus"]:has(#main .fokus-bar) main > .page { max-width: var(--w-sesi); margin-inline: auto; row-gap: var(--s-5); }
+  /* studi kasus dengan panel data kanan tetap 1200 agar kolom langkah tidak sempit */
+  body[data-mode="fokus"]:has(#main .fokus-bar) main > .page:has(.panel-kanan, .tata) { max-width: var(--w-lebar); }
+  body[data-mode="fokus"] main > .page > .fokus-bar { top: env(safe-area-inset-top, 0px); margin-top: 0; }
+  html:has(body[data-mode="fokus"] #main .fokus-bar) { scroll-padding-top: calc(var(--fokus-bar-h) + var(--s-4) + env(safe-area-inset-top, 0px)); }
+}
+@media (min-width: 1024px) {
+  /* kepala tunggal selebar kolom, garis bawah seperti .ujian-bar (bukan kotak mengambang di bawah topbar) */
+  body[data-mode="fokus"] main > .page > .fokus-bar { padding: 0 var(--s-1); border: 0; border-bottom: var(--garis); border-radius: 0; background: var(--bg); overflow: visible; }
+  main:has(.fokus-bersama) { padding-top: 0; }
+  /* satu tepi kanan untuk kutipan, stem, dan opsi di kolom sesi (T6) */
+  body[data-mode="fokus"] #main .soal :is(.stem, .kutipan) { max-width: none; }
+}
+/* (T2) evaluasi tim dan saringan Latih memakai lebar sesi yang sama; halaman biasa ≥ 1280 dipusatkan di area isi (tidak rata kiri) */
+@media (min-width: 1024px) {
+  main > .page:has(.eval-tim) { max-width: var(--w-sesi); margin-inline: auto; }
+  body[data-view="latih"]:not([data-mode]) main > .page.lebar:not(:has(.eval-tim, .fokus-bar)) { max-width: var(--w-sesi); }
+}
+@media (min-width: 1280px) { main > .page { margin-inline: auto; } }
+
+/* (3) kepala tunggal gaya referensi: [✕] "Latihan UKP · Soal 7 dari 10 · 24:30" … "6 orang: Nicky, Mia, …" [aksi] [Menu] */
+.fokus-bar:is(.ada-tengah, .ada-menu) { display: flex; align-items: center; gap: var(--s-2); overflow: visible; }
+.fokus-bar:is(.ada-tengah, .ada-menu) > .fokus-judul { flex: 1 1 auto; }
+.fokus-bar.ada-tengah > .fokus-judul { flex: 0 1 auto; text-align: left; }
+.fokus-bar.ada-tengah.fokus-bersama .fokus-judul { align-items: flex-start; }
+.fokus-tengah { flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; font-size: var(--fs-14); font-weight: var(--fw-med); color: var(--muted); }
+.fokus-bar > .fokus-kanan, .fokus-bar > .fokus-menu { flex: none; }
+.fokus-menu > summary.menu-lebih-teks { gap: 6px; border-radius: var(--r-pill); }
+.fokus-menu > summary.menu-lebih-teks svg { width: 16px; height: 16px; }
+.menu-lebih-isi > .bahaya, .menu-lebih-isi > .bahaya svg { color: var(--attn); }
+@media (max-width: 599px) {
+  .fokus-tengah { display: none; }
+  .fokus-bar.ada-tengah > .fokus-judul { flex: 1 1 auto; text-align: center; }
+  .fokus-menu > summary.menu-lebih-teks { min-height: 40px; padding-inline: var(--s-3); }
+}
+
+/* (T3/T11) sidebar rapat di layar pendek: 19 tujuan (grup Tim + Harian/Materi/Alat/Ujian) muat tanpa gulir di 768–800 px */
+@media (min-width: 1024px) and (max-height: 900px) {
+  .sidebar { gap: var(--s-2); padding-bottom: var(--s-2); }
+  .sidebar .group-label { margin-bottom: 0; line-height: 18px; }
+  .sidebar .foot { padding-top: var(--s-1); }
+  .sidebar .foot p { display: none; }
+}
+@media (min-width: 1024px) and (max-height: 1200px) and (pointer: fine) {
+  .sidebar { gap: var(--s-3); }
+  .sidebar a { min-height: 36px; }
+  .sidebar .group-label { margin-bottom: 2px; }
+}
+@media (min-width: 1024px) and (max-height: 1100px) and (pointer: fine) { .sidebar { gap: 10px; } .sidebar a { min-height: 34px; } }
+@media (min-width: 1024px) and (max-height: 900px) and (pointer: fine) { .sidebar { gap: var(--s-2); } .sidebar a { min-height: 30px; } }
+@media (min-width: 1024px) and (max-height: 820px) and (pointer: fine) {
+  .sidebar { gap: 6px; }
+  .sidebar .group { gap: 1px; }
+  .sidebar a { min-height: 28px; }
+  .sidebar .group-label { margin-bottom: 0; line-height: 16px; }
+}
+@media (min-width: 1024px) and (max-height: 740px) and (pointer: fine) {
+  .sidebar { gap: 4px; }
+  .sidebar a { min-height: 26px; }
+  .sidebar .group-label { font-size: 11px; line-height: 14px; }
+}
+
+/* (T8) papan bersama di desktop: kolom nama dibatasi sehingga tombol mulai tepat sesudah nama; zebra halus per baris */
+@media (min-width: 700px) {
+  .soal-bersama .papan-baris { grid-template-columns: 18px minmax(6rem, 14rem) auto minmax(0, 1fr); grid-template-areas: "no nama pilihan hasil"; }
+  .soal-bersama .papan-pilihan { justify-content: flex-start; }
+  .soal-bersama .papan-hasil { justify-self: start; }
+  .soal-bersama .papan-daftar > .papan-baris:nth-child(even):not([data-aktif]) { background: var(--zebra); }
+}
+
+/* (T12) petunjuk papan ketik tidak berguna di layar sentuh tanpa hover */
+@media (hover: none) { .petunjuk-kbd, .soal .petunjuk-kbd, .onboarding .petunjuk-kbd { display: none; } }
+
+/* (T7) bar aksi latihan bersama di HP lebih pendek: "6 orang · Tingkat B" (sudah ada di kop) disembunyikan, hitungan satu baris,
+   tombol 44 px; bila "Ke menu" dan "Selesai sekarang" sudah pindah ke Menu kop (B2), bar menjadi satu baris */
+@media (max-width: 699px) {
+  .sticky-actions.aksi-bersama { padding-block: 6px; row-gap: 2px; }
+  .aksi-bersama .aksi-meta > .aksi-info { display: none; }
+  .aksi-bersama .aksi-meta { flex-direction: row; align-items: center; line-height: 1.3; }
+  .aksi-bersama > .aksi-menu { min-height: 32px; }
+  .aksi-bersama .aksi-kanan > .btn { --btn-h: 44px; }
+  .sticky-actions.aksi-bersama:not(:has(> .aksi-menu)):not(:has(.aksi-selesai)) { flex-wrap: nowrap; }
+  .sticky-actions.aksi-bersama:not(:has(> .aksi-menu)):not(:has(.aksi-selesai)) > .aksi-meta { order: 0; flex: 1 1 auto; justify-content: flex-start; text-align: left; }
+  .sticky-actions.aksi-bersama:not(:has(> .aksi-menu)):not(:has(.aksi-selesai)) > .aksi-kanan { flex: 0 1 auto; }
+}
+
+/* ---- v8.2 B3: ujian tim di room, evaluasi versi anggota, peringkat bersakelar, Riwayat room ---- */
+.eval-orang-bagian { display: grid; gap: var(--s-2); }
+.eval-orang { display: grid; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.eval-orang > li { display: grid; grid-template-columns: minmax(0, 10em) 3.5em minmax(60px, 1fr) auto; align-items: center; gap: var(--s-1) var(--s-3); min-height: 44px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.eval-skor-tim { display: grid; gap: 6px; padding: var(--s-3) var(--s-4); border: 1px solid var(--line); border-radius: var(--r-md, 12px); background: var(--surface); }
+.eval-skor-tim-teks { margin: 0; font-size: 1.0625rem; font-variant-numeric: tabular-nums; }
+.eval-anggota { display: grid; gap: var(--s-2); }
+.eval-anggota-skor { margin: 0; font-size: 1.125rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.eval-anggota-skor .eval-skor-besar { font-size: 1.5rem; font-weight: 700; }
+.eval-anggota-tim, .eval-hasilku { margin: 0; font-weight: var(--fw-med); }
+.eval-anggota-fakta { margin: 0; }
+.eval-terima-kasih { margin: 0; }
+.eval-rekap-anggota p { margin: 0; }
+.ruang-peserta[data-st="kerja"] .ruang-status { color: var(--ink); }
+.ruang-cadangan > summary { min-height: 44px; display: flex; align-items: center; }
+.kirim-cadangan .token-jawaban { word-break: break-all; }
+@media (max-width: 599px) {
+  .eval-orang > li { grid-template-columns: minmax(0, 1fr) auto; }
+  .eval-orang .bar-mini { grid-column: 1 / -1; }
+  .eval-orang .eval-ket { grid-column: 1 / -1; justify-content: flex-start; }
+}
+
+/* ---- v8.2 B1: layar room (js/views-ruang.js) — gabung, lobi, HP anggota (menjawab · terkirim · hasil), kartu Beranda,
+   status sambungan, kop skor tim. Kelas: .halaman-room · .status-room[data-nada] · .titik-room · .skor-tim · .inisial-room ·
+   .kartu-pembuka · .grid-nama-room > .nama-room · .room-anggota · .baris-huruf > .huruf-besar · .baris-yakin > .yakin-room ·
+   .bar-bawah-room · .terkirim-room · .hasil-room · .batang-tim · .penjelas-pribadi · .kartu-room · .rekap-room ---- */
+.halaman-room { min-width: 0; }
+.halaman-room :is(.stem-room, .opsi-room, .kutipan, .penjelas-umum, .row-title) { overflow-wrap: anywhere; }
+.titik-room { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--ink-faint); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.titik-room[data-nada="ok"] { background: var(--ok); box-shadow: none; }
+.titik-room[data-nada="warn"] { background: var(--warn); box-shadow: none; }
+.titik-room[data-nada="attn"] { background: var(--attn); box-shadow: none; }
+.status-room { display: inline-flex; align-items: center; gap: 6px; min-width: 0; font-size: var(--fs-small, .875rem); color: var(--muted); }
+.status-room .status-room-teks { min-width: 0; }
+.status-room.ringkas { font-size: var(--fs-caption, .8125rem); white-space: nowrap; }
+.status-room[data-nada="attn"]:not(.ringkas) { color: var(--ink); flex-wrap: wrap; }
+@media (max-width: 599px) { .fokus-bar .status-room.ringkas .status-room-teks { display: none; } }
+/* T1 kop skor tim dengan garis lulus */
+.skor-tim { display: grid; gap: 4px; }
+.skor-tim-teks { margin: 0; font-size: var(--fs-body, 1rem); }
+.skor-tim-bar { position: relative; height: 8px; border-radius: 4px; background: var(--surface-2); overflow: visible; }
+.skor-tim-bar > .isi { position: absolute; inset: 0 auto 0 0; width: calc(var(--p, 0) * 1%); border-radius: 4px; background: var(--warn); }
+.skor-tim[data-di-atas] .skor-tim-bar > .isi { background: var(--ok); }
+.skor-tim-bar > .garis { position: absolute; top: -3px; bottom: -3px; left: calc(var(--garis, 60) * 1%); width: 2px; margin-left: -1px; background: var(--ink); border-radius: 1px; }
+.skor-tim-sejak, .skor-tim-saya { margin: 0; }
+/* T3 deretan inisial */
+.inisial-room { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-3); margin: 0; padding: 0; list-style: none; }
+.inisial-room > li { display: inline-flex; align-items: center; gap: 6px; min-width: 0; font-size: var(--fs-small, .875rem); color: var(--muted); }
+.inisial-room .bulat { display: inline-grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); color: var(--muted); font-size: 12px; font-weight: 600; box-shadow: inset 0 0 0 1px var(--line); }
+.inisial-room > li[data-on] { color: var(--ink); }
+.inisial-room > li[data-on] .bulat { background: var(--ok-soft); color: var(--ok); box-shadow: inset 0 0 0 2px var(--ok); }
+@media (max-width: 399px) { .inisial-room .nama { display: none; } }
+.kartu-pembuka { display: grid; gap: var(--s-3); }
+.pembuka-baris { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: var(--fs-body, 1rem); }
+.pembuka-baris > li:first-child { font-weight: 600; }
+.menunggu-pemimpin, .siap-ok { margin: 0; font-size: var(--fs-body, 1rem); }
+.siap-ok strong { color: var(--ok); }
+.room-siap, .room-utama { min-height: 52px; font-size: 1.0625rem; }
+.tautan-room { display: flex; flex-wrap: wrap; align-items: center; gap: 0 2px; margin: 0; }
+.tautan-room .btn-text { min-height: 40px; }
+/* (a) pilih nama */
+.grid-nama-room { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2); }
+@media (min-width: 600px) { .grid-nama-room { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.nama-room { display: grid; align-content: center; gap: 2px; min-height: 56px; padding: var(--s-2) var(--s-3); border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--surface); color: var(--ink); font: inherit; font-size: 1.0625rem; font-weight: 600; text-align: left; cursor: pointer; min-width: 0; }
+.nama-room .nama { overflow-wrap: anywhere; }
+.nama-room .meta { font-weight: 400; font-size: 12px; }
+.nama-room:hover:not([disabled]) { border-color: var(--primary); background: var(--primary-soft); }
+.nama-room[aria-pressed="true"] { border-color: var(--primary); box-shadow: inset 0 0 0 1px var(--primary); background: var(--primary-soft); }
+.nama-room.lain { font-weight: 500; color: var(--muted); border-style: dashed; }
+.nama-room[disabled] { opacity: .6; cursor: default; }
+.setuju-room p { font-size: var(--fs-body, 1rem); }
+.isian-baris { display: flex; gap: var(--s-2); min-width: 0; }
+.isian-baris > .input { flex: 1 1 auto; min-width: 0; }
+.kode-room { font-size: 1.25rem; letter-spacing: .08em; overflow-wrap: anywhere; }
+.tautan-room-input, .dlg-room .tautan-room { font-size: 13px; }
+.editor-nama { gap: var(--s-2); }
+.chip-nama { display: inline-flex; align-items: center; gap: 2px; padding-right: 2px; }
+.daftar-jalur { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.daftar-jalur > li { display: flex; align-items: center; gap: 8px; }
+/* (d) HP anggota */
+.room-anggota { width: 100%; max-width: 40rem; margin-inline: auto; min-width: 0; padding-bottom: var(--s-4); }
+.soal-kop-room { margin: 0; }
+.stem-room { margin: 0; font-size: 1.0625rem; line-height: 1.55; }
+.opsi-room { display: grid; gap: var(--s-2); margin: 0; padding: 0; list-style: none; }
+.opsi-room > li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: var(--s-2); align-items: baseline; line-height: 1.5; }
+.opsi-room .huruf { font-weight: 700; color: var(--muted); }
+.kutipan-room blockquote { margin: var(--s-2) 0 0; }
+.jawab-room { padding-top: var(--s-2); }
+.baris-huruf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-2); }
+.huruf-besar { min-height: 60px; border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--surface); color: var(--ink); font: inherit; font-size: 1.5rem; font-weight: 700; cursor: pointer; touch-action: manipulation; }
+.huruf-besar:hover { border-color: var(--primary); }
+.huruf-besar[aria-pressed="true"] { background: var(--primary-fill, var(--primary)); border-color: var(--primary-fill, var(--primary)); color: var(--primary-ink); }
+.baris-yakin { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-2); }
+.yakin-room { min-height: 48px; border: 1px solid var(--line-strong); border-radius: var(--r-pill); background: var(--surface); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; touch-action: manipulation; }
+.yakin-room[aria-pressed="true"] { background: var(--primary-soft); border-color: var(--primary); box-shadow: inset 0 0 0 1px var(--primary); color: var(--primary-strong); }
+.tidak-tahu { justify-self: start; min-height: 44px; }
+.tidak-tahu[aria-pressed="true"] { background: var(--surface-2); }
+.jawab-room .label { margin: var(--s-2) 0 0; }
+.bar-bawah-room { position: sticky; bottom: 0; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2px var(--s-3); min-height: 56px; margin-top: var(--s-2); padding: var(--s-2) var(--s-3) calc(var(--s-2) + env(safe-area-inset-bottom, 0px)); border-top: var(--garis); background: var(--bg); font-size: var(--fs-small, .875rem); }
+.bar-bawah-room > :first-child { font-weight: 600; }
+.terkirim-room { justify-items: center; padding: var(--s-6) 0 var(--s-2); text-align: center; }
+.terkirim-ikon { margin: 0; color: var(--ok); }
+.terkirim-ikon svg { width: 48px; height: 48px; }
+.terkirim-room .room-h1 { margin: 0; font-size: 1.375rem; }
+.hasil-room .garis-hasil { display: flex; align-items: center; gap: var(--s-2); margin: 0; font-size: 1.5rem; line-height: 1.25; }
+.hasil-room .garis-hasil svg { width: 28px; height: 28px; flex: none; }
+.hasil-room[data-hasil="benar"] .garis-hasil { color: var(--ok); }
+.hasil-room[data-hasil="salah"] .garis-hasil svg { color: var(--attn); }
+.tim-room { padding: var(--s-3) var(--s-4); border: var(--garis); border-radius: var(--r-md); background: var(--surface); }
+.tim-room > .label { margin: 0; }
+.bilah-tim { margin: 0; font-size: var(--fs-body, 1rem); }
+.batang-tim { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.batang-tim > li { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr) 1.75rem 2.75rem; align-items: center; gap: var(--s-2); font-size: var(--fs-small, .875rem); }
+.batang-tim .huruf { font-weight: 700; }
+.batang-tim .jalur { height: 10px; border-radius: 5px; background: var(--surface-2); overflow: hidden; }
+.batang-tim .jalur > .isi { display: block; height: 100%; min-width: 0; border-radius: 5px; background: var(--ink-faint); }
+.batang-tim > li[data-kunci] .jalur > .isi { background: var(--ok); }
+.batang-tim .n { text-align: right; font-variant-numeric: tabular-nums; }
+.batang-tim .tanda-kunci { color: var(--ok); font-size: 12px; font-weight: 600; }
+.penjelas-umum { margin: 0; color: var(--muted); }
+.penjelas-pribadi { margin: 0; font-size: 1.0625rem; font-weight: 600; }
+.penjelas-pribadi[data-peran="penjelas"] { color: var(--primary); }
+.paham-ok { margin: 0; color: var(--ok); font-weight: 600; }
+.pembahasan-room > .soal { margin-top: var(--s-3); }
+.ujian-room .room-h1 { font-size: 1.375rem; margin: 0; }
+/* kartu Beranda (U3) */
+.kartu-room { display: grid; gap: var(--s-3); }
+.kartu-room .status-hadir { display: flex; align-items: center; gap: 6px; }
+.kartu-room .card-title a { color: inherit; text-decoration: none; }
+.kartu-room .card-title a:hover { text-decoration: underline; }
+.kartu-room .tempel-room .field { margin-top: var(--s-2); }
+.kartu-room-sisip:empty { display: none; }
+.rekap-baris { display: grid; gap: 4px; margin: 0; padding-left: 1.1rem; }
+.rekap-hasilku { margin: 0; }
+.riwayat-room .row-link { min-height: 48px; }
+@media (max-width: 599px) {
+  .halaman-room .page-head .page-actions { align-self: flex-start; }
+  .huruf-besar { min-height: 56px; }
+}
+/* bar bawah HP di dasar layar walau isi pendek; nama room di kepala disembunyikan di HP agar hitung mundur tetap terlihat */
+main > .page.halaman-room:has(> .bar-bawah-room) { display: flex; flex-direction: column; min-height: calc(100dvh - var(--s-8) - env(safe-area-inset-bottom, 0px)); }
+main > .page.halaman-room > .bar-bawah-room { margin-top: auto; }
+@media (max-width: 599px) { .bar-room .fokus-room-nama { display: none; } }
+.halaman-room .page-head > .page-actions { margin-left: auto; }
+.tautan-tombol { min-height: 32px; padding: 0; border: 0; background: none; color: var(--primary); font: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.tautan-room .sep { padding-inline: 4px; }
+@media (forced-colors: active) {
+  .titik-room, .skor-tim-bar > .isi, .batang-tim .jalur > .isi { forced-color-adjust: none; background: CanvasText; }
+  .huruf-besar[aria-pressed="true"], .yakin-room[aria-pressed="true"], .nama-room[aria-pressed="true"] { outline: 3px solid Highlight; }
+}
+/* ---- v8.2 B3 (Beranda): blok Tim paling atas, judul kecil "Latihan pribadi" ---- */
+.beranda-tim { display: grid; gap: var(--s-2); }
+.beranda-subjudul { margin: var(--s-2) 0 0; font-size: .8125rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+
+/* ---- v8.2 B2: latihan bersama di room — kop skor tim, status baris papan (HP / offline / diisi), "isi untuk", hitung mundur
+   kunci + Tahan, segmen "Sendiri | Bersama" di saringan Latih. Kelas: .kop-tim-latih · .papan-status[data-nada] · .papan-isi ·
+   .papan-baris[data-jauh|data-offline|data-tertutup] · .aksi-tahan · .latih-mode · .ajakan-room · .catatan-room ---- */
+.kop-tim-latih { margin: 0 0 var(--s-3); }
+.kop-tim-latih .skor-tim { max-width: 28rem; }
+.kop-tim-latih .skor-tim-teks { font-size: var(--fs-small, .9rem); }
+.papan-nama > .papan-status { display: block; font-weight: var(--fw-reg, 400); font-size: var(--fs-12, .75rem); line-height: 1.3; color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
+.papan-status[data-nada="ok"] { color: var(--ok); font-weight: var(--fw-med, 500); }
+.papan-status[data-nada="info"] { color: var(--info, var(--primary)); }
+.papan-status[data-nada="mati"] { color: var(--muted); }
+.papan-nama > .papan-isi { display: inline-flex; min-height: 32px; padding: 0; font-size: var(--fs-12, .75rem); font-weight: var(--fw-med, 500); text-decoration: underline; }
+.papan-nama > .papan-isi[hidden] { display: none; }
+.papan-baris[data-tertutup] .papan-pilihan { display: none; }
+.papan-baris[data-offline] .papan-nama { color: var(--muted); }
+.papan-baris[data-jauh] { box-shadow: inset 3px 0 0 var(--ok); }
+.papan-baris[data-jauh] .papan-opsi, .papan-baris[data-jauh] .papan-yk { opacity: .75; }
+.soal-bersama .papan-baris:has(.papan-status:not([hidden])) .papan-nama,
+.soal-bersama .papan-baris:has(.papan-isi:not([hidden])) .papan-nama { white-space: normal; }
+.aksi-bersama .aksi-tahan[hidden] { display: none; }
+.aksi-bersama[data-hitung] .aksi-hitung { color: var(--ink); font-weight: var(--fw-semi, 600); }
+@media (pointer: coarse) { .papan-nama > .papan-isi { min-height: 40px; } }
+@media (max-width: 699px) {
+  .aksi-bersama .aksi-tahan { --btn-h: 44px; padding-inline: var(--s-2); }
+  .kop-tim-latih { margin-bottom: var(--s-2); }
+}
+.latih-form > .latih-mode { margin-bottom: var(--s-2); }
+.latih-mode.seg > button { min-height: 48px; flex: 1 1 0; justify-content: center; font-weight: var(--fw-semi, 600); }
+.latih-form > .latih-bersama { padding: var(--s-3); border-radius: var(--r-2, 10px); background: var(--surface-2); margin-bottom: var(--s-3); }
+.latih-form > .latih-bersama[hidden] { display: none; }
+.latih-form > .latih-bersama .atur-bersama { padding-top: 0; }
+.ajakan-room p, .catatan-room { margin: 0; }
+/* HP: kop latihan bersama memberi ruang untuk hitung mundur — tombol Menu cukup ikon ⋮ (label tetap di aria-label/teks tersembunyi) */
+@media (max-width: 599px) {
+  .fokus-bersama .fokus-menu > summary.menu-lebih-teks { padding-inline: 0; min-width: 40px; justify-content: center; }
+  .fokus-bersama .fokus-menu > summary.menu-lebih-teks > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+
+/* ---- v8.2 V3: pemeriksa room — menu ⋮ sebaris dengan status, terkirim tertunda, room tidak ditemukan ---- */
+.halaman-room .page-meta > .menu-room { margin-inline-start: auto; }
+.halaman-room .page-meta > .menu-room > summary { min-width: 40px; min-height: 40px; }
+.terkirim-room[data-tertunda] .terkirim-ikon { color: var(--warn, #b26b00); }
+.room-tidak-ada .card-title { margin: 0; }
+/* V3 (butir 10b): kop runner pemandu di HP 360–599 px — "Soal 1 dari 20 · 42 mnt 00 dtk" boleh dua baris, tidak terpotong elipsis */
+@media (min-width: 360px) and (max-width: 599px) {
+  .fokus-bersama .fokus-baris { white-space: normal; text-overflow: clip; text-align: center; line-height: 1.15; }
+  .fokus-bersama .fokus-peserta { line-height: 1.15; }
+}
+
+/* ---- v8.2 kritik: jarak spanduk "Ke lobi room" dari kop evaluasi ---- */
+.banner:has(.ke-lobi-room) { margin-bottom: 16px; }

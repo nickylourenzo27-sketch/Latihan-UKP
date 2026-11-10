@@ -1,7 +1,7 @@
 /* Pelatih UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '8.1';
+  UKP.versi = '8.2';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   UKP.modul = UKP.modul || {};          // kode -> modul konten
@@ -583,11 +583,26 @@
     try { (a.onclick || a.fn)(); } catch (e) { console.error(e); }
     return true;
   }
+  // v8.1 V1: selama papan latihan bersama / ujian tim tampil, toast latar (nada ok/info tanpa aksi, mis. "Siap dipakai offline")
+  // ditunda sampai papan hilang, agar tidak menutupi baris status dan blok triase; toast lain tetap tampil (diposisikan di atas, css)
+  const sedangSesiBersama = () => { try { return !!document.querySelector('#main .soal-bersama, body[data-mode="ujian"] .ut-bar'); } catch (e) { return false; } };
+  let toastTunda = [], toastTundaTimer = null;
+  function periksaToastTunda() {
+    if (sedangSesiBersama()) return;
+    clearInterval(toastTundaTimer); toastTundaTimer = null;
+    const x = toastTunda.filter(t => Date.now() - t.pada < 30 * 60000).pop(); toastTunda = [];
+    if (x) UKP.toast(x.teks, x.opsi);
+  }
   UKP.toast = function (teks, opsi) {
     if (!siapkanToast()) return;
     if (typeof opsi === 'number') opsi = { ms: opsi };
     opsi = opsi || {};
     teks = String(teks == null ? '' : teks);
+    if (!opsi.aksi && !opsi.penting && (opsi.nada === 'ok' || opsi.nada === 'info') && sedangSesiBersama()) {
+      toastTunda.push({ teks, opsi, pada: Date.now() }); if (toastTunda.length > 3) toastTunda.shift();
+      if (!toastTundaTimer) toastTundaTimer = setInterval(periksaToastTunda, 2000);
+      return;
+    }
     const aksi = opsi.aksi && opsi.aksi.label && typeof (opsi.aksi.onclick || opsi.aksi.fn) === 'function' ? opsi.aksi : null;
     clearTimeout(toastKeluarTimer); toastEl.classList.remove('keluar');
     toastAksi = aksi; toastLintas = !!opsi.lintasRute; toastPada = Date.now();
@@ -679,8 +694,8 @@
   // ---------- router ----------
   UKP.views = UKP.views || {};
   // view yang boleh dibuka sebelum onboarding selesai (tautan yang dibagikan pemimpin ke anggota tim)
-  UKP.VIEW_TAMU = { ujiantim: 1, lj: 1 };
-  const TOKEN = { beranda: 'beranda', belajar: 'belajar', latih: 'latih', ulang: 'ulang', kalkulator: 'kalkulator', simulasi: 'simulasi', kasus: 'kasus', rencana: 'rencana', kemajuan: 'kemajuan', referensi: 'referensi', 'info-ujian': 'infoujian', profesi: 'profesi', pengaturan: 'pengaturan', strategi: 'strategi', tutor: 'tutor', mulai: 'mulai', tingkat: 'tingkat', kelompok: 'kelompok', topik: 'topik', formulir: 'formulir', lembar: 'lembar', cakupan: 'cakupan', tim: 'tim', ujiantim: 'ujiantim', lj: 'lj' };
+  UKP.VIEW_TAMU = { ujiantim: 1, lj: 1, room: 1 };
+  const TOKEN = { beranda: 'beranda', belajar: 'belajar', latih: 'latih', ulang: 'ulang', kalkulator: 'kalkulator', simulasi: 'simulasi', kasus: 'kasus', rencana: 'rencana', kemajuan: 'kemajuan', referensi: 'referensi', 'info-ujian': 'infoujian', profesi: 'profesi', pengaturan: 'pengaturan', strategi: 'strategi', tutor: 'tutor', mulai: 'mulai', tingkat: 'tingkat', kelompok: 'kelompok', topik: 'topik', formulir: 'formulir', lembar: 'lembar', cakupan: 'cakupan', tim: 'tim', ujiantim: 'ujiantim', lj: 'lj', room: 'room' };
   const DARI_TOKEN = Object.create(null); for (const k in TOKEN) DARI_TOKEN[TOKEN[k]] = k;
   // token hash (#infoujian, #topik/A2.8) atau nama view mentah (#info-ujian) → nama view; selain itu null
   function viewDariToken(tok) {
@@ -695,7 +710,7 @@
   // #topik/A2.8 · #kelompok/B7 · #kalkulator/kurs · #lembar/A1 · #tingkat/B · #kasus/K-A1-01 · #cakupan/C ·
   // #formulir/1771 (formulir) atau #formulir/1771.induk.1 (baris). Params lain tetap hanya di history.state.
   // v8.1: #ujiantim/<kode ujian> (UKP.belajar.ujianTim.buatKode; hanya [A-Za-z0-9._~-]) dan #lj (lembar jawab pribadi, tanpa params).
-  const PARAM_HASH = { topik: 'id', kelompok: 'kode', kalkulator: 'jenis', lembar: 'kode', tingkat: 'tingkat', kasus: 'id', cakupan: 'tingkat', 'info-ujian': 'tab', tim: 'anggota', ujiantim: 'kode' };
+  const PARAM_HASH = { topik: 'id', kelompok: 'kode', kalkulator: 'jenis', lembar: 'kode', tingkat: 'tingkat', kasus: 'id', cakupan: 'tingkat', 'info-ujian': 'tab', tim: 'anggota', ujiantim: 'kode', room: 'kode' };
   // view yang tak bermakna tanpa params → induknya (bukan halaman "tidak ditemukan"); kalkulator, lembar, formulir,
   // dan kasus tanpa params sudah menampilkan daftar induknya sendiri
   const INDUK_TANPA_PARAMS = { topik: 'tingkat', kelompok: 'tingkat' };
@@ -735,6 +750,8 @@
   UKP.go = function (view, params, opsi) {
     params = params || {}; opsi = opsi || {};
     if (!adaView(view)) { console.warn('view tidak ada', view); view = 'beranda'; }
+    // v8.1 V1: pengunjung baru yang masuk lewat tautan tim (UKP.VIEW_TAMU) lalu membuka halaman lain tetap diarahkan ke onboarding
+    if (view !== 'mulai' && !UKP.VIEW_TAMU[view] && adaView('mulai') && !load().profil.onboardingSelesai) { view = 'mulai'; params = {}; opsi = Object.assign({}, opsi, { replace: true }); }
     const st = { view, params };
     // posisi gulir halaman yang ditinggalkan disimpan di entrinya (dipulihkan saat Kembali)
     if (!opsi.replace) { try { const lama = history.state; if (lama && lama.view) history.replaceState(Object.assign({}, lama, { gulir: Math.round(window.scrollY || 0) }), '', location.hash || UKP.href(lama.view, lama.params)); } catch (e) {} }
@@ -762,6 +779,7 @@
     // tanpa state: hash diubah manual, tautan jangkar/tab baru (#topik/A2.8), atau skip link sebelum JS siap
     const tok = (location.hash || '').slice(1);
     const rute = ruteDariHash(tok);
+    if (rute && rute.view !== 'mulai' && !UKP.VIEW_TAMU[rute.view] && adaView('mulai') && !load().profil.onboardingSelesai) { UKP.go('mulai', {}, { replace: true }); return; }
     if (rute) { const r = arahkanInduk(rute); try { history.replaceState({ view: r.view, params: r.params }, '', UKP.href(r.view, r.params)); } catch (err) {} render(r.view, r.params, {}); return; }
     // bukan rute (#main, kosong, jangkar): tetap di halaman ini, pulihkan URL rute, pindahkan fokus
     if (current.view) { try { history.replaceState({ view: current.view, params: current.params || {} }, '', UKP.href(current.view, current.params)); } catch (err) {} }
@@ -1339,7 +1357,15 @@
     return false;
   };
   UKP.mode.aktif = () => (document.body && document.body.dataset.mode) || null;
-  // bar mode fokus: UKP.c.fokusBar({ judul?, p?, onKeluar, label?, labelKeluar?, aksi? }) → .fokus-bar; el.atur(teks, p, aksiKanan)
+  // bar mode fokus: UKP.c.fokusBar({ judul?, p?, onKeluar, label?, labelKeluar?, aksi?, tengah?, menu?, labelMenu? }) → .fokus-bar
+  //   el.atur(teks, p, aksiKanan) · v8.2: el.aturTengah(isi) · el.aturMenu(item)
+  //   Kepala tunggal v8.2 (gaya referensi "Latihan UKP · Soal 7 dari 10 · 24:30 | 6 orang: … | Menu"):
+  //   - tengah: string | simpul | daftar simpul (mis. "6 orang: Nicky, Mia, …"). Dibuat span.fokus-tengah (elipsis, title = teksnya);
+  //     bila ada, judul rata kiri. Di layar < 600 px .fokus-tengah disembunyikan (taruh info wajib di judul). null/'' = tanpa tengah.
+  //   - menu: [{ teks, ikon?, onclick?, view?, params?, bahaya? }] → tombol "Menu" di paling kanan (details.menu-lebih.fokus-menu,
+  //     lewat UKP.c.menuLebih): Esc menutup dan fokus kembali ke tombol; item bahaya: true diberi kelas .bahaya (warna peringatan).
+  //     labelMenu mengganti teks tombol (bawaan "Menu"). Tanpa menu (atau daftar kosong) = tanpa tombol, perilaku lama.
+  //   Tanpa tengah/menu, susunan anak sama persis dengan v8.1: button.icon-btn + .fokus-judul + .fokus-kanan.
   C7.fokusBar = function (o) {
     o = o || {};
     const judul = h('span', { class: 'fokus-judul', role: 'status' }, o.judul || '');
@@ -1352,7 +1378,27 @@
       if (p != null) el.style.setProperty('--p', String(angkaP(p)));
       if (aksiKanan !== undefined) kanan.replaceChildren(...[].concat(aksiKanan || []).filter(Boolean).map(x => x.nodeType ? x : tombolAksi(Object.assign({ gaya: 'hantu' }, x), 'btn-sm')));
     };
+    let tengah = null, menu = null;
+    el.aturTengah = isi => {
+      const kosong = isi == null || isi === '' || (Array.isArray(isi) && !isi.filter(x => x != null).length);
+      if (kosong) { if (tengah) { tengah.remove(); tengah = null; } el.classList.remove('ada-tengah'); return; }
+      if (!tengah) { tengah = h('span', { class: 'fokus-tengah' }); judul.after(tengah); }
+      tengah.replaceChildren(...[].concat(isi).filter(x => x != null).map(x => x.nodeType ? x : document.createTextNode(String(x))));
+      tengah.title = tengah.textContent.trim();
+      el.classList.add('ada-tengah');
+    };
+    el.aturMenu = item => {
+      const daftar = (item || []).filter(Boolean);
+      if (menu) { menu.remove(); menu = null; }
+      el.classList.toggle('ada-menu', daftar.length > 0);
+      if (!daftar.length) return;
+      menu = C7.menuLebih({ label: o.labelMenu || 'Menu', teks: o.labelMenu || 'Menu', item: daftar });
+      menu.classList.add('fokus-menu');
+      el.appendChild(menu);
+    };
     el.atur(null, o.p, o.aksi);
+    if (o.tengah != null) el.aturTengah(o.tengah);
+    if (o.menu) el.aturMenu(o.menu);
     return el;
   };
 
@@ -1462,16 +1508,19 @@
     return el;
   };
 
-  // K-15 menu aksi lain: UKP.c.menuLebih({ label, item: [{ teks, ikon?, onclick?, view?, params? }] }) → details.menu-lebih
+  // K-15 menu aksi lain: UKP.c.menuLebih({ label, teks?, item: [{ teks, ikon?, onclick?, view?, params?, bahaya? }] }) → details.menu-lebih
+  //   v8.2: teks → pemicu bertulisan (summary.btn.btn-sm "Menu" + ikon) alih-alih ikon ⋮; bahaya: true → item berkelas .bahaya
   C7.menuLebih = function (o) {
     o = o || {}; const label = o.label || 'Aksi lain';
-    const ringkas = h('summary', { class: 'icon-btn', 'aria-label': label, title: label }, UKP.icon('titik-tiga'));
+    const ringkas = o.teks
+      ? h('summary', { class: 'btn btn-sm menu-lebih-teks', 'aria-label': label !== o.teks ? label : null }, UKP.icon('titik-tiga', null, true), h('span', null, o.teks))
+      : h('summary', { class: 'icon-btn', 'aria-label': label, title: label }, UKP.icon('titik-tiga'));
     const det = h('details', { class: 'menu-lebih' });
     const tutup = fokusKembali => { if (!det.open) return; det.open = false; if (fokusKembali) UKP.fokus(ringkas); };
     const isi = h('div', { class: 'menu-lebih-isi' }, (o.item || []).filter(Boolean).map(x => {
       const ik = x.ikon ? UKP.icon(x.ikon, null, true) : null;
-      if (x.view && typeof x.onclick !== 'function') { const a = UKP.link([ik, x.teks || ''], x.view, x.params); a.addEventListener('click', () => tutup(false)); return a; }
-      return h('button', { type: 'button', onclick: e => { tutup(true); if (typeof x.onclick === 'function') x.onclick(e); } }, ik, x.teks || '');
+      if (x.view && typeof x.onclick !== 'function') { const a = UKP.link([ik, x.teks || ''], x.view, x.params, x.bahaya ? 'bahaya' : null); a.addEventListener('click', () => tutup(false)); return a; }
+      return h('button', { type: 'button', class: x.bahaya ? 'bahaya' : null, onclick: e => { tutup(true); if (typeof x.onclick === 'function') x.onclick(e); } }, ik, x.teks || '');
     }));
     det.append(ringkas, isi);
     det.addEventListener('keydown', e => { if (e.key === 'Escape' && det.open) { e.preventDefault(); e.stopPropagation(); tutup(true); } });

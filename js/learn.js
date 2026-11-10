@@ -211,7 +211,7 @@
     const jawaban = entri.slice(-400).reverse().map(e => {
       const so = K.soal ? K.soal(e.s) : null;
       const o = /^[A-D]$/.test(e.o) ? e.o : '-';
-      return { s: String(e.s), t: String((so && so.topik) || e.t || ''), o, b: e.b && e.o !== '-' ? 1 : 0, d: Math.round(Number(e.d) || 0), w: Number(e.w) || 0, m: 'latih', k: o !== '-' ? yakinSah(e.k) : null };
+      return { s: String(e.s), t: String((so && so.topik) || e.t || ''), o, b: e.b && e.o !== '-' ? 1 : 0, d: Math.round(Number(e.d) || 0), w: Number(e.w) || 0, m: e.m === 'ujian' ? 'ujian' : 'latih', k: o !== '-' ? yakinSah(e.k) : null }; // v8.1.1: mode ujian dibawa dari sumbernya
     }).sort((a, b) => b.w - a.w);
     return {
       nama: namaTampil, tingkat: (s.profil && s.profil.tingkat) || 'A', diperbarui: terakhir || null, versiApp: String(UKP.versi || ''),
@@ -271,9 +271,35 @@
   };
   L.sesiBersama = () => salinJSON(daftarSesi().filter(x => x && typeof x.id === 'string')).reverse();
   L.sesiBersamaDari = id => { const x = sesiDari(null, id); return x ? salinJSON(x) : null; };
+  // v8.2 V3: salinan rekaman room yang dihapus anggota diingat (ukp.tim.tolakSesi) agar tidak masuk lagi saat tersambung ulang
+  const KUNCI_TOLAK = 'ukp.tim.tolakSesi';
+  const bacaTolak = () => { try { const v = JSON.parse(root.localStorage.getItem(KUNCI_TOLAK) || '[]'); return Array.isArray(v) ? v.filter(x => typeof x === 'string') : []; } catch (e) { return []; } };
+  L.sesiDitolak = id => bacaTolak().indexOf(id) >= 0;
   L.hapusSesiBersama = function (id) {
     const arr = daftarSesi(); const i = arr.findIndex(x => x && x.id === id); if (i < 0) return false;
-    arr.splice(i, 1); UKP.store.save(); return true;
+    const dariRoom = arr[i] && arr[i].sumber === 'room';
+    arr.splice(i, 1); UKP.store.save();
+    if (dariRoom) { try { const t = bacaTolak().filter(x => x !== id); t.push(id); root.localStorage.setItem(KUNCI_TOLAK, JSON.stringify(t.slice(-200))); } catch (e) {} }
+    return true;
+  };
+  // v8.2 room tim (js/ruang.js): rekaman sesi yang diterima dari room → sisip/perbarui menurut id, sumber 'room' (sumber asli di sumberAsal).
+  // Rekaman milik perangkat ini (sumber lain, mis. 'latih' di perangkat pemimpin) tidak ditimpa. → 'baru' | 'diperbarui' | 'sama' | null
+  L.terimaSesiRoom = function (sesi) {
+    if (!sesi || typeof sesi !== 'object' || typeof sesi.id !== 'string' || !sesi.id || sesi.id.length > 60 || !Array.isArray(sesi.peserta) || !Array.isArray(sesi.soal) || typeof sesi.mulai !== 'number') return null;
+    if (L.sesiDitolak(sesi.id)) return null;   // V3: salinan yang sudah dihapus di perangkat ini tidak diterima lagi
+    const s = L.siapBersama(UKP.store.get()); const arr = daftarSesi(s);
+    const x = salinJSON(sesi); if (x.sumber !== 'room') x.sumberAsal = typeof x.sumber === 'string' ? x.sumber : null; x.sumber = 'room';
+    const i = arr.findIndex(y => y && y.id === x.id);
+    if (i >= 0) {
+      if (arr[i].sumber !== 'room') return null;
+      if (JSON.stringify(arr[i]) === JSON.stringify(x)) return 'sama';
+      arr[i] = x; UKP.store.save(); return 'diperbarui';
+    }
+    let j = arr.length; while (j > 0 && arr[j - 1] && Number(arr[j - 1].mulai) > x.mulai) j--;   // daftar urut terlama → terbaru
+    arr.splice(j, 0, x);
+    if (arr.length > L.MAKS_SESI_BERSAMA) arr.splice(0, arr.length - L.MAKS_SESI_BERSAMA);
+    UKP.store.save();
+    return arr.some(y => y.id === x.id) ? 'baru' : null;
   };
   // ringkasan murni satu sesi (tanpa DOM) untuk UKP.c.evaluasiBersama (js/views-tim.js)
   L.evaluasiSesi = function (sesi) {
@@ -508,24 +534,73 @@
     const ev = L.evaluasiSesi(sesi); const ujian = ev.mode === 'ujian';
     const d = new Date(Number(sesi.mulai) || Number(sesi.selesai) || Date.now());
     const baris = [(ev.judul || (ujian ? 'Ujian tim' : 'Latihan bersama')) + ' · ' + d.getDate() + ' ' + BULAN_PENDEK[d.getMonth()] + ' ' + d.getFullYear()];
+    // v8.2 B0: rekaman room membawa sesi.tim (T6); rekaman bersumber room (HP anggota) tanpa skor per nama (U1)
+    const tim = isObjL(sesi.tim) ? sesi.tim : null; const dariRoom = sesi.sumber === 'room';
     let orang;
     if (ujian) {
       const sk = ev.skor || []; const rata = sk.length ? sk.reduce((a, x) => a + x.skor, 0) / sk.length : 0;
       baris.push(ev.nSoal + ' soal · rata-rata skor ' + desimal(rata) + ' · ' + sk.filter(x => x.lulus).length + ' dari ' + sk.length + ' lulus (batas ' + L.BATAS_LULUS + ')');
       orang = sk.slice().sort((a, b) => b.skor - a.skor).map(x => x.nama + ' ' + desimal(x.skor) + (x.lulus ? ' lulus' : ' (kurang ' + x.kurang + ' soal)'));
+    } else if (tim && Number.isInteger(tim.akurasi)) {
+      const hadir = Number.isInteger(tim.hadir) && tim.hadir > 0 ? ' · ' + tim.hadir + ' dari ' + ev.nPeserta + ' hadir' : '';
+      baris.push(ev.nSoal + ' soal · skor tim ' + tim.akurasi + '%' + hadir + (ev.menit ? ' · ' + ev.menit + ' menit' : ''));
+      orang = ev.peserta.map(p => p.nama + ' ' + p.benar + '/' + ev.nSoal);
     } else {
       const tot = ev.nSoal * ev.nPeserta, totB = ev.peserta.reduce((a, p) => a + p.benar, 0);
       baris.push(ev.nSoal + ' soal · akurasi tim ' + (tot ? Math.round(totB / tot * 100) : 0) + '%' + (ev.menit ? ' · ' + ev.menit + ' menit' : ''));
       orang = ev.peserta.map(p => p.nama + ' ' + p.benar + '/' + ev.nSoal);
     }
-    if (!orang.length) baris.push('Belum ada peserta.');
+    if (dariRoom) { /* tanpa baris per orang */ }
+    else if (!orang.length) baris.push('Belum ada peserta.');
     else if (orang.length <= 7) orang.forEach(o => baris.push(o));
     else for (let i = 0; i < orang.length; i += 3) baris.push(orang.slice(i, i + 3).join(' · '));
+    if (tim) {
+      const tk = isObjL(tim.terimaKasih) ? tim.terimaKasih : {};
+      const nm = Object.keys(tk).filter(n => Math.round(Number(tk[n])) > 0).sort((a, b) => a.localeCompare(b, 'id', { sensitivity: 'base' }));
+      if (nm.length) baris.push('Terima kasih untuk penjelas: ' + nm.map(n => n + ' (' + Math.round(Number(tk[n])) + ')').join(', '));
+      const bl = Array.isArray(tim.bahasLagi) ? tim.bahasLagi.filter(x => typeof x === 'string' && x).slice(0, 10) : [];
+      if (bl.length) baris.push('Bahas lagi: ' + bl.join(', '));
+    }
     const topik = [];
     ev.topikTim.forEach(t => { if (topik.length < 3 && !topik.includes(t.topik)) topik.push(t.topik); });
     ev.triase.daftar.forEach(x => { if (topik.length < 3 && x.prioritas >= 2 && x.topik && !topik.includes(x.topik)) topik.push(x.topik); });
     baris.push(topik.length ? 'Perlu dibahas: ' + topik.map(namaTopik).join('; ') : 'Tidak ada topik yang perlu dibahas.');
     return baris.join('\n');
+  };
+  // v8.2 B0 room tim (T4, T6): ringkasan tim satu rekaman sesi, dirakit pemimpin sebelum terbitkanSesi → sesi.tim. Murni (tanpa store).
+  // opsi = { paham: { nama: { soalId: 1 } | dokumen jawaban room (punya .paham) }, penjelas: { soalId: nama }, hadir: n | [nama], batasSalah: 3 }
+  // → { benar, dijawab, akurasi (0–100 | null), hadir, terimaKasih: { penjelas: n } (urut abjad, tanpa nol), bahasLagi: [soalId dengan ≥ batasSalah salah] }
+  L.timDariSesi = function (sesi, opsi) {
+    opsi = isObjL(opsi) ? opsi : {};
+    const out = { benar: 0, dijawab: 0, akurasi: null, hadir: 0, terimaKasih: {}, bahasLagi: [] };
+    if (!isObjL(sesi)) return out;
+    const peserta = pesertaSesi(sesi), soal = soalSesi(sesi); const batas = bulatPositif(opsi.batasSalah) || 3;
+    const menjawab = new Set(); const penjelasSoal = {};
+    soal.forEach(q => {
+      const per = perPesertaSoal(q, peserta); const kunci = OPSI_RE.test(String(q.kunci || '')) ? String(q.kunci) : null; let salah = 0;
+      Object.keys(per).forEach(n => {
+        if (per[n] == null) return; const j = jawabTriase(per[n], kunci); if (j.o === '-') return;
+        out.dijawab++; menjawab.add(kunciNama(n)); if (j.b) out.benar++; else salah++;
+      });
+      if (salah >= batas) out.bahasLagi.push(q.id);
+      const pj = (isObjL(opsi.penjelas) && opsi.penjelas[q.id]) || q.penjelas;
+      if (typeof pj === 'string' && pj) penjelasSoal[q.id] = pj;
+    });
+    out.akurasi = out.dijawab ? Math.round(out.benar / out.dijawab * 100) : null;
+    if (Array.isArray(opsi.hadir)) out.hadir = new Set(opsi.hadir.filter(x => typeof x === 'string' && x).map(kunciNama)).size;
+    else if (opsi.hadir != null && isFinite(Number(opsi.hadir))) out.hadir = Math.max(0, Math.min(12, Math.round(Number(opsi.hadir))));
+    else out.hadir = menjawab.size;
+    const tampil = n => peserta.find(p => kunciNama(p) === kunciNama(n)) || n;
+    const hitung = {}; const paham = isObjL(opsi.paham) ? opsi.paham : {};
+    Object.keys(paham).forEach(nama => {
+      let m = paham[nama]; if (isObjL(m) && isObjL(m.paham)) m = m.paham; if (!isObjL(m)) return;
+      Object.keys(m).forEach(sid => {
+        if (!m[sid]) return; const pj = penjelasSoal[sid]; if (!pj || kunciNama(pj) === kunciNama(nama)) return;   // soal di luar rekaman / berterima kasih ke diri sendiri: diabaikan
+        const t = tampil(pj); hitung[t] = (hitung[t] || 0) + 1;
+      });
+    });
+    Object.keys(hitung).sort((a, b) => a.localeCompare(b, 'id', { sensitivity: 'base' })).forEach(n => { out.terimaKasih[n] = hitung[n]; });
+    return out;
   };
 
   // ---------- D. Ujian tim: kode ujian dan kode jawaban ----------
@@ -785,7 +860,7 @@
     u.soalIds.forEach((id, i) => { if (aJ[i] !== '-') pj[id] = aJ[i]; if (aR[i]) pr[id] = 1; });
     const dt = Number(o.detik);
     if (!isObjL(u.terkumpul)) u.terkumpul = {};
-    u.terkumpul[p] = { jawaban: aJ, ragu: aR, detik: o.detik != null && isFinite(dt) && dt >= 0 ? Math.round(dt) : null, sumber: ['kode', 'ketik', 'sendiri'].includes(o.sumber) ? o.sumber : 'ketik', pada: Date.now() };
+    u.terkumpul[p] = { jawaban: aJ, ragu: aR, detik: o.detik != null && isFinite(dt) && dt >= 0 ? Math.round(dt) : null, sumber: ['kode', 'ketik', 'sendiri', 'room'].includes(o.sumber) ? o.sumber : 'ketik', pada: Date.now() };
     UKP.store.save(); return true;
   };
   UT.lepasKumpul = function (nama) {
@@ -866,7 +941,9 @@
     s.bersamaAktif = { sesiId: o.sesiId, soalIds: (Array.isArray(o.soalIds) ? o.soalIds : []).filter(x => typeof x === 'string'), idx: Math.max(0, Math.round(Number(o.idx) || 0)),
       sisaDetik: Math.max(0, Math.round(Number(o.sisaDetik) || 0)), anggaranDetik: Math.max(0, Math.round(Number(o.anggaranDetik) || 0)),
       tempo: o.tempo === 'longgar' ? 'longgar' : 'ujian', detikPerSoal: bulatPositif(o.detikPerSoal) || null, ulang: o.ulang === undefined ? null : salinJSON(o.ulang), diperbarui: Date.now(),
-      draf: dr ? { soalId: dr.soalId, jb: isObjL(dr.jb) ? salinJSON(dr.jb) : {}, yb: isObjL(dr.yb) ? salinJSON(dr.yb) : {}, detikSoal: Math.max(0, Math.round(Number(dr.detikSoal) || 0)) } : null };
+      draf: dr ? { soalId: dr.soalId, jb: isObjL(dr.jb) ? salinJSON(dr.jb) : {}, yb: isObjL(dr.yb) ? salinJSON(dr.yb) : {}, detikSoal: Math.max(0, Math.round(Number(dr.detikSoal) || 0)) } : null,
+      // v8.2 B0: sesi ini berjalan di room tim (1, atau kode room ≤ 20 karakter); null = satu layar
+      room: typeof o.room === 'string' && o.room ? o.room.slice(0, 20) : o.room ? 1 : null };
     UKP.store.save(); return salinJSON(s.bersamaAktif);
   };
   L.bersamaAktif = function () {

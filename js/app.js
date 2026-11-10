@@ -8,26 +8,33 @@
     { view: 'latih', label: 'Latih', ikon: 'pen' },
     { view: 'ulang', label: 'Ulang', ikon: 'repeat' },
   ];
+  // butir grup: [view, label, ikon, alias?, params?, kunciNav?] — kunciNav (bawaan = view) membedakan tautan ke view yang sama
+  // dengan params lain (mis. "Latihan bersama" → latih { atur: 1 }) agar tidak ikut ditandai aktif atau tersaring dari "Lainnya".
+  // v8.2 (audit T3/T11): grup Tim paling atas; Dasbor tim pindah ke sini dan tetap memakai penanda tandaiTim/aturNavTim.
   const GRUP_SIDEBAR = [
+    { label: 'Tim', item: [['room', 'Room tim', 'tim'], ['latih', 'Latihan bersama', 'play', null, { atur: 1, bersama: 1 }, 'latih-bersama'], ['ujiantim', 'Ujian tim', 'sim'], ['tim', 'Dasbor tim', 'chart']] },
     { label: 'Harian', item: [['beranda', 'Hari Ini', 'home', ['sesi']], ['rencana', 'Rencana', 'plan'], ['kemajuan', 'Kemajuan', 'chart']] },
     { label: 'Materi', item: [['tingkat', 'Belajar A/B/C', 'book', ['belajar', 'kelompok', 'topik', 'lembar', 'cakupan']], ['latih', 'Latih soal', 'pen'], ['ulang', 'Ulang kartu', 'repeat'], ['kasus', 'Studi kasus', 'kasus'], ['simulasi', 'Simulasi ujian', 'sim'], ['strategi', 'Strategi PG', 'strategi']] },
     { label: 'Alat', item: [['kalkulator', 'Kalkulator', 'calc'], ['referensi', 'Referensi', 'ref'], ['formulir', 'Peta formulir', 'formulir'], ['tutor', 'Tutor AI', 'chat']] },
-    { label: 'Ujian', item: [['info-ujian', 'Info ujian', 'info'], ['profesi', 'Etika & Profesi', 'etika'], ['tim', 'Dasbor tim', 'tim']] },
+    { label: 'Ujian', item: [['info-ujian', 'Info ujian', 'info'], ['profesi', 'Etika & Profesi', 'etika']] },
   ];
   // lembar "Lainnya" (v7 P2-10): kelompok dan urutan sama dengan sidebar (Harian/Materi/Alat/Ujian), tanpa tujuan yang sudah
   // punya tab di bar bawah; judul kecil per kelompok; Pengaturan satu baris di bawah garis
   const DI_BAR_BAWAH = new Set(NAV_UTAMA.map(n => n.view));
-  const GRUP_LAINNYA = GRUP_SIDEBAR.map(g => ({ label: g.label, item: g.item.filter(([v]) => !DI_BAR_BAWAH.has(v)) })).filter(g => g.item.length);
+  const kunciNav = x => x[5] || x[0];
+  const GRUP_LAINNYA = GRUP_SIDEBAR.map(g => ({ label: g.label, item: g.item.filter(x => !DI_BAR_BAWAH.has(kunciNav(x))) })).filter(g => g.item.length);
   const LAINNYA = [].concat(...GRUP_LAINNYA.map(g => g.item), [['pengaturan', 'Pengaturan', 'settings']]);
   // view yang dicapai lewat "Lainnya" dan tidak punya tab sendiri di bar bawah → tombol Lainnya ditandai aktif
-  const ALIAS_LAINNYA = LAINNYA.map(x => x[0]).filter(v => !NAV_UTAMA.some(n => n.view === v || (n.alias || []).includes(v)));
+  const ALIAS_LAINNYA = LAINNYA.filter(x => !x[4]).map(x => x[0]).filter(v => !NAV_UTAMA.some(n => n.view === v || (n.alias || []).includes(v)));
   // item navigasi: ikon + label (+ lencana hitungan opsional). Lencana hidden sampai ada angka.
   const navLink = (v, alias, ...isi) => h('a', { href: UKP.href(v), 'data-go': v, 'data-nav': v, 'data-alias': (alias || []).join(' ') }, ...isi);
+  // tautan grup sidebar: params (data-params) dan kunci navigasi tersendiri bila ada
+  const navLinkGrup = ([v, , , alias, params, kunci], ...isi) => { const a = navLink(v, alias, ...isi); if (params) { a.setAttribute('href', UKP.href(v, params)); a.dataset.params = JSON.stringify(params); } if (kunci) a.dataset.nav = kunci; return a; };
   const lencana = id => h('span', { class: 'badge', id, hidden: true });
   const LABEL_NAV = Object.create(null);
-  [['beranda', 'Hari Ini']].concat(...GRUP_SIDEBAR.map(g => g.item), LAINNYA).forEach(([v, l]) => { if (!LABEL_NAV[v]) LABEL_NAV[v] = l; });
+  [['beranda', 'Hari Ini']].concat(...GRUP_SIDEBAR.map(g => g.item), LAINNYA).forEach(([v, l, , , params]) => { if (!LABEL_NAV[v] && !params) LABEL_NAV[v] = l; });
   // view tingkat puncak (punya tempat sendiri di navigasi); rute lain atau halaman berkop remah adalah rute anak → tombol Kembali tampil
-  const PUNCAK = new Set(['beranda', 'mulai', 'tingkat', 'latih', 'ulang', 'rencana', 'kemajuan', 'kasus', 'simulasi', 'strategi', 'kalkulator', 'referensi', 'formulir', 'tutor', 'info-ujian', 'profesi', 'tim', 'pengaturan', 'sesi']);
+  const PUNCAK = new Set(['beranda', 'mulai', 'tingkat', 'latih', 'ulang', 'rencana', 'kemajuan', 'kasus', 'simulasi', 'strategi', 'kalkulator', 'referensi', 'formulir', 'tutor', 'info-ujian', 'profesi', 'tim', 'pengaturan', 'sesi', 'room', 'ujiantim']);
 
   // Dasbor tim hanya tampil di navigasi bagi pemimpin tim (pemilik artifact) atau bila tidak ada penyimpanan tim (berkas offline,
   // emulator: dasbor hanya berisi kode hasil yang ditempel di perangkat ini). Tersembunyi sampai UKP.tim.bolehDasbor() menjawab.
@@ -43,7 +50,7 @@
     sidebar.innerHTML = '';
     sidebar.appendChild(h('a', { class: 'brand', href: UKP.href('beranda'), 'data-go': 'beranda', 'aria-label': 'Pelatih UKP, ke Hari Ini' }, h('span', { class: 'mark', 'aria-hidden': 'true' }, 'UKP'), h('span', { class: 'brand-teks' }, 'Pelatih UKP')));
     for (const g of GRUP_SIDEBAR) sidebar.appendChild(h('div', { class: 'group', role: 'group', 'aria-label': g.label }, h('div', { class: 'group-label', 'aria-hidden': 'true' }, g.label),
-      g.item.map(([v, l, ik, alias]) => tandaiTim(v, navLink(v, alias, UKP.icon(ik), h('span', { class: 'nav-teks' }, l), v === 'rencana' ? lencana('badge-rencana') : v === 'ulang' ? lencana('badge-ulang-sb') : null)))));
+      g.item.map(x => { const [v, l, ik] = x; return tandaiTim(v, navLinkGrup(x, UKP.icon(ik), h('span', { class: 'nav-teks' }, l), v === 'rencana' ? lencana('badge-rencana') : v === 'ulang' ? lencana('badge-ulang-sb') : null)); })));
     const temaBtn = h('button', { type: 'button', class: 'icon-btn sm tema-btn', id: 'btn-tema', 'aria-label': 'Tema gelap', 'aria-pressed': 'false', 'data-tip': 'Tema gelap', onclick: gantiTema }, UKP.icon('bulan'));
     sidebar.appendChild(h('div', { class: 'group foot' },
       h('div', { class: 'foot-baris', style: { display: 'flex', alignItems: 'center', gap: '4px' } }, navLink('pengaturan', null, UKP.icon('settings'), h('span', { class: 'nav-teks' }, 'Pengaturan')), temaBtn),
@@ -100,7 +107,7 @@
   }
   function bukaLainnya() {
     const kini = UKP.sekarang().view;
-    const tautan = (dlg, [v, l, ik], kelas) => h('a', { class: kelas || null, href: UKP.href(v), 'aria-current': v === kini ? 'page' : null, onclick: e => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); dlg.close(); UKP.go(v); } }, UKP.icon(ik), h('span', { class: kelas ? 'row-title' : null }, l), kelas ? UKP.icon('chevron-kanan', 'chev', true) : null);
+    const tautan = (dlg, [v, l, ik, , params], kelas) => h('a', { class: kelas || null, href: UKP.href(v, params), 'aria-current': v === kini && !params ? 'page' : null, onclick: e => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); dlg.close(); UKP.go(v, params || {}); } }, UKP.icon(ik), h('span', { class: kelas ? 'row-title' : null }, l), kelas ? UKP.icon('chevron-kanan', 'chev', true) : null);
     UKP.dialog({ judul: 'Lainnya', sheet: true, kelas: 'dlg-lainnya', isi: dlg => h('div', { class: 'lainnya stack' },
       GRUP_LAINNYA.map((g, i) => h('section', { class: 'lainnya-grup stack-sm', 'aria-labelledby': 'lainnya-g' + i },
         h('h3', { class: 'eyebrow', id: 'lainnya-g' + i }, g.label),
@@ -370,6 +377,8 @@
     // laporan mingguan otomatis sebelum render pertama (banner Hari Ini): Jumat–Minggu → minggu ini, Senin–Kamis → minggu lalu
     if (UKP.store.get().profil.onboardingSelesai && UKP.belajar && typeof UKP.belajar.laporanMingguan === 'function') { try { UKP.belajar.laporanMingguan(); } catch (e) { console.error(e); } }
     UKP.mulaiDariHash();
+    // room tim (js/views-ruang.js): melanjutkan room tersimpan dan memasang pengamat global; diam bila modul tidak ada
+    try { if (UKP.ruangUI && typeof UKP.ruangUI.boot === 'function') UKP.ruangUI.boot(); } catch (e) { console.error(e); }
     document.addEventListener('ukp:render', () => { UKP.perbaruiTopbar(); perbaruiJudulRingkas(); });
     perbaruiJudulRingkas();
     // penjaga muat (index.html): render pertama selesai; berkas yang gagal dimuat sebelum ini → tawarkan muat ulang (materi bisa tidak lengkap)

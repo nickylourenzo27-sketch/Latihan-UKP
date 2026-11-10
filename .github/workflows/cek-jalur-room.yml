@@ -1,0 +1,47 @@
+# Pemeriksa Room tim.
+# 1) Jalur: menjalankan js/ruang.js yang sama dengan website terhadap jalur publik sungguhan (Node 22, tanpa dependensi).
+# 2) Peramban: alur pemimpin dan dua anggota dari layar ke layar di Chrome, lewat jalur publik yang sama.
+# Tidak ada data pengguna yang dikirim: room uji sekali pakai, terenkripsi, dan ditutup di akhir.
+# Berjalan saat berkas room atau pemeriksanya berubah, atau dijalankan manual dari tab Actions.
+name: Cek jalur Room tim
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'js/ruang.js'
+      - 'js/views-ruang.js'
+      - 'tools/cek-relai.js'
+      - 'tools/uji-room-web.js'
+      - '.github/workflows/cek-jalur-room.yml'
+permissions:
+  contents: read
+concurrency:
+  group: cek-jalur-room-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  cek:
+    name: Uji jalur publik
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Uji jalur dengan js/ruang.js
+        run: node tools/cek-relai.js --json
+  peramban:
+    name: Uji peramban lewat jalur publik
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pasang playwright-core
+        run: npm install --no-save --no-audit --no-fund playwright-core@1
+      - name: Alur pemimpin dan anggota di Chrome
+        run: node tools/uji-room-web.js .

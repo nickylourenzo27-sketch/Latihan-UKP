@@ -22,6 +22,8 @@
    server lambat/mati → status 'server-tak-terjangkau' dan deteksi diulang (5, 15, 30, lalu tiap 60 dtk, juga saat tab terlihat atau
    peristiwa 'online'); 401 → 'mati' + galat 'sesi-berakhir'. Tanpa penanda, hanya respons yang jelas bukan server tim (404, HTML, JSON tanpa
    server:true) yang mengalihkan ke jalur Claude; waktu habis tetap dicoba ulang di latar.
+   Hemat probe (v8.1.1): tanpa penanda, host statis (*.github.io, *.netlify.app, *.pages.dev, *.vercel.app) tidak pernah meminta api/saya,
+   dan hasil "jelas bukan server tim" di host lain diingat 30 hari di localStorage 'ukp.tim.bukanServer' (cap waktu) agar tidak ada 404 tiap pemuatan.
    Pemilik progres: profil.akunServer diisi akun server pertama yang tersambung. Bila akun yang masuk berbeda (perangkat bersama), tidak
    ada yang dikirim (galat 'akun-berbeda', info().akunBeda) sampai pengguna memilih gantiPemilikProgres() (arsipkan progres akun lama di
    'ukp.arsip:<akun>', pulihkan arsip akun ini bila ada, atau mulai baru) atau keluar.
@@ -792,10 +794,26 @@
     if (r.status >= 500 || r.status === 408 || r.status === 429) return { jenis: 'tak-terjangkau' };
     return { jenis: 'bukan' };
   }
+  // v8.1.1 host statis (GitHub Pages dsb.) tidak punya server tim: probe api/saya dilewati (tanpa 404 di konsol) kecuali cookie penanda ada.
+  // Di host lain, hasil "jelas bukan server tim" diingat 30 hari di localStorage (KUNCI_BUKAN_SERVER = cap waktu); penanda ukp_srv selalu menang.
+  const KUNCI_BUKAN_SERVER = 'ukp.tim.bukanServer', HARI_BUKAN_SERVER = 30;
+  const HOST_STATIS = /(^|\.)(github\.io|netlify\.app|pages\.dev|vercel\.app)$/i;
+  function lewatiProbe() {
+    if (penandaServer()) return false;
+    try { if (HOST_STATIS.test(String((root.location && root.location.hostname) || ''))) return true; } catch (e) {}
+    const t = lsGet(KUNCI_BUKAN_SERVER, null); const umur = typeof t === 'number' ? Date.now() - t : -1;
+    return umur >= 0 && umur < HARI_BUKAN_SERVER * 86400000;
+  }
+  function ingatDeteksi(h) {
+    if (!h) return;
+    if (h.jenis === 'server') { try { root.localStorage.removeItem(KUNCI_BUKAN_SERVER); } catch (e) {} }
+    else if (h.jenis === 'bukan' && !penandaServer()) lsSet(KUNCI_BUKAN_SERVER, Date.now());
+  }
   function deteksiServer() {
     if (janjiServer) return janjiServer;
     if (!bisaServer()) return (janjiServer = Promise.resolve(null));
-    const p = cobaServer(JEDA.batasDeteksi).then(h => { hasilDeteksi = h; if (h.jenis === 'server') return h.sv; if (janjiServer === p) janjiServer = null; return null; });
+    if (lewatiProbe()) { hasilDeteksi = { jenis: 'bukan', dilewati: true }; return Promise.resolve(null); }
+    const p = cobaServer(JEDA.batasDeteksi).then(h => { hasilDeteksi = h; ingatDeteksi(h); if (h.jenis === 'server') return h.sv; if (janjiServer === p) janjiServer = null; return null; });
     janjiServer = p;
     return p;
   }
@@ -818,7 +836,7 @@
     sedangUlang = true; let h;
     try { h = await cobaServer(JEDA.batasDeteksi); } finally { sedangUlang = false; }
     if (srv) return;
-    hasilDeteksi = h;
+    hasilDeteksi = h; ingatDeteksi(h);
     if (h.jenis === 'server') {
       langkahUlang = 0; janjiServer = Promise.resolve(h.sv);
       const c = pasangServer(h.sv);
