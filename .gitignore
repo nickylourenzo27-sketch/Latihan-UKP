@@ -1,0 +1,7 @@
+# hasil build dan data lokal
+dist/
+node_modules/
+deploy/data/*.json
+*.log
+.DS_Store
+muat.png

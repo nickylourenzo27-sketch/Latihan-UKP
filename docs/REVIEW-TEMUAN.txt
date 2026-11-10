@@ -1,0 +1,339 @@
+===== None
+RINGKASAN: Saya mengaudit Pelatih UKP terhadap WCAG 2.2 AA dengan axe-core 4.14.0 (dipasang dengan npm i --no-save, sehingga node_modules/axe-core sekarang ada di proyek dan boleh dihapus) ditambah Playwright. Pemindaian mencakup 27 keadaan layar, masing-masing di HP 390px dan desktop 1280px, tema terang dan gelap (108 pemindaian). Saya juga menguji papan ketik, kontras token yang dihitung dari CSS, reflow 320px, teks 200%, target ≥24px, fokus yang tertutup elemen lengket, dan reduced-motion.
+
+Ada 7 temuan P1:
+1. Tautan "Lewati ke konten" justru membawa ke Hari Ini dari halaman mana pun.
+2. Cincin fokus 
+[P1] Tautan lewati ('Lewati ke konten') berpindah ke Hari Ini dan membuang konteks (2.4.1, 3.2.2)
+   lokasi: index.html:20 (a.skip href="#main"); js/core.js:192 (popstate: state null → render('beranda'))
+   fix: JS (app.js atau boot): document.querySelector('a.skip').addEventListener('click', e => { e.preventDefault(); const m = document.getElementById('main'); (m.querySelector('h1') || m).focus(); });. Lalu buat popstate tahan banting di core.js:192: window.addEventListener('popstate', e => { const st = e.state; if (!st || !st.view) { const v = DARI_TOKEN[(location.hash||'').slice(1)]; if (!v) return; render(v, {}, {}); return; } if (stackLen > 0) stackLen--; render(st.view, st.params || {}, {}); });. Perubahan ini juga menghilangkan temuan axe 'skip-link' pada href="#referensi" di hasil pencarian.
+[P1] Cincin fokus tombol segmen (.seg) terpotong overflow:hidden sehingga fokus tidak terlihat (2.4.7)
+   lokasi: css/app.css:389 (.seg { … overflow: hidden }), :99 (outline-offset 2px). Dipakai di views-home.js:119 (ukuran sesi), views-belajar.js:158 (jumlah soal), views-simulasi.js:43,49 (format/bagian), views-alat.js:69 (rencana tingkat), 199–205 (pengaturan tingkat/status/latar/tema)
+   fix: CSS: .seg { overflow: visible; } .seg button:first-child { border-radius: var(--r-btn) 0 0 var(--r-btn); } .seg button:last-child { border-radius: 0 var(--r-btn) var(--r-btn) 0; } .seg button:focus-visible { outline: 2px solid var(--focus); outline-offset: -4px; position: relative; z-index: 1; } dan untuk tombol terpilih: .seg button[aria-pressed="true"]:focus-visible { outline-color: var(--primary-ink); }.
+[P1] Fokus hilang ke <body> setelah render ulang di alur soal, CAT, dan ulas (2.4.3)
+   lokasi: js/views-belajar.js:121,128-129 (latih gambar: area.innerHTML=''); js/views-home.js:160,176 (sesi soal); js/views-simulasi.js:84,100-109 (ke()/gambar: kiri.innerHTML=''), :91-94 (gambarGrid membuat ulang tombol grid), :169,175 (ulas Berikutnya); js/views-belajar.js:82 (cek pemahaman topik)
+   fix: Buat helper di core.js: UKP.fokus = el => { if (!el) return; if (el.tabIndex < 0 && !/^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/.test(el.tagName)) el.tabIndex = -1; el.focus({ preventScroll: true }); };. Panggil di akhir gambar(): latih/sesi/cek → UKP.fokus(area.querySelector('h1')). CAT ke(i) → setelah gambar(), UKP.fokus(kiri.querySelector('h1')) agar 'Soal n' terbaca. Untuk klik grid simpan indeks lalu kanan.querySelector('[aria-current="true"]').focus(). Ulas → UKP.fokus(area.querySelector('.soal-kop')). Pertimbangkan juga hanya mengganti isi kiri dan mempertahankan elemen nav agar tombol tetap terfokus.
+[P1] Kalkulator: mengubah select atau checkbox membuat seluruh form dirender ulang dan fokus hilang (2.4.3, 3.2.2)
+   lokasi: js/views-alat.js:26 (form.innerHTML=''), :29 (select onchange → gambarForm()), :30 (checkbox boolean onchange → gambarForm())
+   fix: Di awal gambarForm(): const fid = document.activeElement && form.contains(document.activeElement) ? document.activeElement.id : null;. Di akhir: if (fid) { const el = document.getElementById(fid); if (el) el.focus(); }. Cara yang lebih baik adalah tidak membangun ulang form: render semua field sekali, lalu field bersyarat (tampilJika) cukup di-toggle dengan wrapper.hidden = !tampil(i).
+[P1] Reflow 320px: topbar meluap 71px setelah tanggal ujian diisi, tombol Cari dan Tutor di luar layar (1.4.10)
+   lokasi: css/app.css:121-132 (.topbar flex tanpa wrap, .chip white-space:nowrap di :220, .icon-btn tanpa flex:none); js/app.js:34,51 (teks chip 'UKP A · 49 hari')
+   fix: CSS: .topbar .icon-btn { flex: none; } .topbar .chip-tingkat { min-width: 0; overflow: hidden; text-overflow: ellipsis; flex: 0 1 auto; } @media (max-width: 380px) { .topbar .brand { font-size: 0; gap: 0; } .topbar .brand .mark { font-size: 11px; } }. Alternatifnya, pindahkan '· 49 hari' ke <span class="chip-hari"> dan sembunyikan di bawah 360px (teks tetap tersedia lewat aria-label pada chip).
+[P1] Reflow 320px: layar CAT melebar ke 405px (Berikutnya di luar layar), Referensi KMK bunga/Perubahan melebar ke 555–602px (1.4.10)
+   lokasi: css/app.css:212 (.sticky-actions flex tanpa wrap), :477 (.stack grid dengan track auto = min-content), :141 (.page tanpa min-width:0 untuk anaknya); js/views-simulasi.js:76-77,105 (nav 3 tombol di dalam .stack); js/views-alat.js:139 (area div pembungkus .tabel-wrap adalah item grid dengan min-width:auto)
+   fix: CSS: .page > *, .stack > *, .stack-sm > * { min-width: 0; } .stack, .stack-sm { grid-template-columns: minmax(0, 1fr); } .sticky-actions { flex-wrap: wrap; } .sticky-actions .btn { flex: 1 1 auto; }. Di layar CAT pada lebar sempit, pertimbangkan tombol ikon + teks pendek ('‹ Sebelumnya' → '‹').
+[P1] Kontras label interval di tombol 'Ingat' (flashcard) hanya 1,31:1 / 1,33:1 (1.4.3)
+   lokasi: css/app.css:346 (.flash-nilai .btn small { color: var(--muted) }) pada .btn-primary (soal.js:86)
+   fix: CSS: .flash-nilai .btn-primary small, .flash-nilai .btn-attn small { color: inherit; opacity: .9; }. Hasilnya ±7:1 di terang dan ±9:1 di gelap. Kalau mau lebih umum: .btn small { color: inherit; }.
+[P1] 'Impor berkas…' tidak dapat dijangkau dengan papan ketik (2.1.1)
+   lokasi: js/views-alat.js:212 (<label class="btn"> membungkus <input type=file hidden>)
+   fix: Ganti dengan tombol nyata: const fileIn = h('input',{type:'file',accept:'application/json,.json',class:'visually-hidden',tabindex:'-1',onchange:…}); h('button',{class:'btn',type:'button',onclick:()=>fileIn.click()},'Impor berkas…'), fileIn. Alternatifnya, pertahankan label dan pakai class visually-hidden (bukan hidden) pada input, lalu tambahkan CSS label.btn:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }.
+[P2] Fokus tertutup penuh oleh bottomnav fixed atau sticky-actions saat menelusuri dengan Tab (2.4.11)
+   lokasi: css/app.css:83 (html tanpa scroll-padding); .bottomnav fixed (:150), .sticky-actions (:212)
+   fix: CSS: html { scroll-padding-top: calc(60px + env(safe-area-inset-top, 0px)); scroll-padding-bottom: calc(var(--nav-h) + 80px + env(safe-area-inset-bottom, 0px)); } @media (min-width: 1024px) { html { scroll-padding-bottom: 80px; } }. Di mode ujian: body[data-mode="ujian"] { scroll-padding-top: 64px; }.
+[P2] Token --ink-faint gagal 4,5:1 di kedua tema (teks label sidebar, .faint)
+   lokasi: css/app.css:13 (#7E8B85), :55 dan :69 (#6F7D76); dipakai :109 (.faint), :177 (.sidebar .group-label 11px)
+   fix: Terang: --ink-faint: #66736D (4,53 bg / 4,96 surface). Gelap: --ink-faint: #83918A (5,62 bg / 5,21 surface / 4,71 surface-2). Atau pakai --muted untuk teks dan sisakan --ink-faint hanya untuk dekorasi non-teks.
+[P2] Batas input dan select (--line-strong) di bawah 3:1 (1.4.11)
+   lokasi: css/app.css:15 (#9AA8A1), :56 dan :70 (#4A5A52); dipakai .input/.select/textarea.input (:380), juga .btn, .chip, .seg, .opsi label
+   fix: Terang: --line-strong: #7A8882 (3,70 surface / 3,38 bg / 3,13 surface-2). Gelap: --line-strong: #62736A (3,42 surface / 3,68 bg / 3,08 surface-2). Kalau ingin token lain tetap, cukup tambahkan --field-line khusus .input/.select.
+[P2] Badge jumlah kartu di bottomnav tema gelap: putih di atas #FF8A80 = 2,28:1 (1.4.3)
+   lokasi: css/app.css:164 (.bottomnav .badge { background: var(--attn); color: #fff })
+   fix: Tambahkan token --attn-ink: #FFFFFF (terang) dan #0F1512 (gelap, 8,10:1 di atas #FF8A80), lalu .bottomnav .badge { color: var(--attn-ink); }. Lengkapi juga nama aksesibelnya: badge 'Ulang 12' → <span class="visually-hidden"> kartu jatuh tempo</span> (app.js:26).
+[P2] Umpan balik jawaban tidak terumumkan dengan andal ke pembaca layar (4.1.3)
+   lokasi: js/soal.js:28 (wadah umpan tanpa role), :43 (panel role=status disisipkan sudah berisi), :47 (fokus langsung ke Lanjut), :64 (role=status pada panel ±1000 karakter dengan details/tabel)
+   fix: Buat wadah live yang permanen dan ringkas: di UKP.c.soal buat const live = h('p',{class:'visually-hidden',role:'status'}) saat render. Saat periksa: live.textContent = benar ? 'Benar.' : 'Kurang tepat. Jawaban Anda '+dipilih+', kunci '+soal.kunci+'.';. Hapus role=status dari panel 4 blok, dan jadikan .inti fokusabel (tabindex=-1) sebagai target fokus pertama sebelum Lanjut, atau beri aria-describedby pada tombol Lanjut yang menunjuk .inti.
+[P2] Live region kalkulator membungkus seluruh hasil, dan toast/pesan galat tidak andal (4.1.3, 3.3.1)
+   lokasi: js/views-alat.js:21 (hasilBox role=status aria-live=polite), :42-53 (isi diganti total tiap input, debounce 250 ms); js/core.js:149 (toast role=status baru dibuat saat toast pertama); galat hanya lewat toast 3 detik: js/views-belajar.js:110,243,244; js/views-alat.js:212
+   fix: Kalkulator: hapus role/aria-live dari hasilBox dan tambahkan <p class="visually-hidden" role="status" id="kal-ringkas"> yang hanya diisi utama.label + ': ' + fmtNilai(utama), atau r.galat. Toast: buat elemen .toast[role=status] saat boot (hidden, kosong). Galat input: tampilkan inline di bawah field (<p id="err-…" class="small" style="color:var(--attn)">), set aria-invalid="true" dan aria-describedby, lalu fokuskan field-nya.
+[P2] role="tablist" berisi <button aria-pressed> di Peta materi (axe aria-required-children, kritis, 1.3.1)
+   lokasi: js/views-belajar.js:14
+   fix: Ganti role: 'tablist' dengan role: 'group' dan 'aria-label': 'Pilih tingkat' (tombol tetap memakai aria-pressed). Pola tab penuh (role=tab, aria-selected, panah kiri/kanan, roving tabindex) tidak diperlukan karena tombol ini menavigasi rute.
+[P2] Region tabel bergulir tidak bisa difokus, sehingga tidak bisa digulir dengan papan ketik (2.1.1; axe scrollable-region-focusable)
+   lokasi: css/app.css:328 (.tabel-wrap); dibuat di views-home.js:222 (angka kunci topik), views-belajar.js:57 (perubahan kelompok), :218 (data kasus), views-alat.js:114 (heatmap), :145, :147 (referensi)
+   fix: Buat helper UKP.c.tabelWrap(caption, table) = h('div',{class:'tabel-wrap',tabindex:'0',role:'region','aria-label':caption}, table) dan pakai di semua lokasi di atas, sesuai spesifikasi §7 ('role="region" tergulir yang bisa difokus'). Tambahkan CSS .tabel-wrap:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }.
+[P2] Grup tombol tanpa nama: tombol hanya bernama 'A/B/C', '5/10/20/40', 'Baru', 'Ikut sistem', dan navigasi bulan '‹' '›' (1.3.1, 2.4.6, 4.1.2)
+   lokasi: js/views-alat.js:69 (rencana Tingkat), :199-205 (pengaturan Tingkat/Status/Latar/Tema: span.label tidak terhubung), :107 (tombol '‹' '›' Kartu Hadir); js/views-belajar.js:158,165 (Jumlah soal); js/views-simulasi.js:43-44,49 (Format, Bagian); js/views-home.js:27,33,39,60 (.ob-opsi onboarding)
+   fix: Untuk setiap grup: const id = U.id('lbl'); h('span',{class:'label',id},'Tingkat'), h('div',{class:'seg',role:'group','aria-labelledby':id},…). Onboarding: .ob-opsi role=group dengan aria-labelledby ke h1 langkah. Bulan: h('button',{class:'btn btn-sm','aria-label':'Bulan sebelumnya'},'‹') dan 'Bulan berikutnya'.
+[P2] Pintasan satu karakter '/' dan '?' aktif global tanpa cara mematikannya (2.1.4)
+   lokasi: js/app.js:56-59; js/views-alat.js:194-217 (Pengaturan tanpa toggle pintasan)
+   fix: Tambahkan pengaturan.pintasan (default true) dan sw('pintasan','Pintasan satu tombol (/ dan ?)','Matikan bila memakai input suara.') di Pengaturan. Di app.js:58-59 bungkus kondisinya dengan UKP.store.get().pengaturan.pintasan !== false untuk '/' dan '?'. Ctrl/Cmd+K tetap aktif.
+[P2] Grid nomor CAT: penanda 'soal saat ini' identik dengan cincin fokus di tema terang; status 'terjawab' hanya dibedakan warna (2.4.7, 1.4.1)
+   lokasi: css/app.css:418 (button[aria-current=true] { outline: 2px solid var(--primary) }), :99 (--focus = #0E5A47 = --primary di terang), :416 (data-st=isi hanya bg/border)
+   fix: CSS: .grid-nomor button[aria-current="true"] { outline: none; background: var(--ink); color: var(--bg); font-weight: 700; } .grid-nomor button[data-st="isi"]::after { content: ""; position: absolute; left: 25%; right: 25%; bottom: 3px; height: 2px; background: var(--primary); } (tambahkan position: relative pada tombol). Untuk ragu, tambahkan glyph: .grid-nomor button[data-st="ragu"]::before { content: "?"; }. Opsi .opsi label:has(input:checked) sebaiknya juga mendapat penanda bentuk (border 2px atau ikon ✓).
+[P2] Teks 200% (skala font sistem/rem): sisi flashcard absolut dengan tinggi tetap sehingga teks meluap dan menimpa elemen lain (1.4.4)
+   lokasi: css/app.css:339 (.flash-inner min-height:220px), :341 (.flash-sisi position:absolute; inset:0)
+   fix: Tumpuk dengan grid, bukan absolut: .flash-inner { display: grid; min-height: 220px; } .flash-sisi { position: relative; inset: auto; grid-area: 1 / 1; } (backface-visibility tetap). Karena .belakang memakai [hidden], sisi yang tersembunyi tidak ikut menentukan tinggi. Pada sisi terbuka, set .depan { visibility: hidden } atau aria-hidden="true" setelah transisi.
+[P2] Konten terpotong ellipsis di layar sempit: skor/tempo per kelompok dan nama topik hilang; nama topik heatmap hanya di atribut title (1.4.10, 1.3.1)
+   lokasi: css/app.css:370 (.bar-item .nama nowrap + ellipsis), :471 (.heat .sel nowrap + ellipsis); js/views-simulasi.js:150 (teks '… · 0/40 · tempo 0/90 mnt'), :154 (title=judul topik); js/views-alat.js:110
+   fix: CSS: .bar-item .nama { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; } dan pisahkan angka ke baris meta: h('span',{class:'nama'}, nama, h('span',{class:'tiny muted',style:{display:'block'}}, benar+'/'+total+' · tempo …')). Heatmap: .heat .sel { white-space: normal; } dan tampilkan judul topik sebagai teks (atau <abbr title> dan daftar keterangan di bawah).
+[P3] Cincin fokus chip terpotong sebagian oleh .chip-row overflow-x:auto
+   lokasi: css/app.css:227
+   fix: .chip-row { padding: 4px; margin: -4px; scroll-padding-inline: 4px; } atau .chip-row .chip:focus-visible { outline-offset: -3px; }.
+[P3] Kurangi gerak: toggle tidak mematikan transisi cincin; smooth scroll mengabaikan prefers-reduced-motion
+   lokasi: css/app.css:506-508 (tanpa .ring .fill); js/soal.js:48 dan js/views-simulasi.js:177 (behavior:'smooth')
+   fix: CSS: :root[data-gerak="kurang"] .ring .fill, :root[data-gerak="kurang"] .btn { transition: none; }. JS: const halus = () => matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.dataset.gerak === 'kurang' ? 'auto' : 'smooth'; lalu umpan.scrollIntoView({ block: 'nearest', behavior: halus() });.
+[P3] Font px tetap tidak ikut skala teks/rem (bertentangan dengan spesifikasi §7 'teks 200% via rem')
+   lokasi: css/app.css:157-164 (bottomnav 11px, badge 10px), :177 (group-label 11px), :234 (stempel 11px), :288 (ring label 11px), :313 (.tanda 11px), :359 dan :363 (hadir 11px/9px), :471 (heat 11px)
+   fix: Konversi ke rem: 11px → .6875rem, 10px → .625rem, 9px → .5625rem, 15px → .9375rem. Batasi tinggi tetap .bottomnav a { height: auto; min-height: var(--nav-h); padding-block: 4px; }.
+[P3] Flashcard: kontainer fokusabel tanpa peran/nama; sisi depan tetap terbaca saat kartu dibalik
+   lokasi: js/soal.js:79-94 (card.tabIndex=0 tanpa role), :89 (balik tidak menyembunyikan depan)
+   fix: h('div',{class:'flash',role:'group','aria-roledescription':'kartu','aria-label':'Kartu '+n+' dari '+total}). Di balik(): depan.setAttribute('aria-hidden', String(terbuka)); atau depan.inert = terbuka.
+[P3] Target kecil dan label tabel: tombol tutup banner 22x20px; <th> kosong di heatmap
+   lokasi: css/app.css:278 (.banner .close font-size 18px, tanpa padding); js/views-alat.js:114 (h('th', null, ''))
+   fix: .banner .close { min-width: 44px; min-height: 44px; margin: -10px -10px -10px auto; display: grid; place-items: center; }. Heatmap: h('th',{scope:'col'}, h('span',{class:'visually-hidden'},'Kelompok')) dan baris kode sebagai h('th',{scope:'row',class:'mono'},k).
+[P3] Pengumuman 'Waktu habis' hilang karena live region ikut dibuang saat navigasi ke hasil
+   lokasi: js/views-simulasi.js:81 (live di dalam page), :117 (set assertive lalu kirim(true)), :132 (UKP.go replace langsung menghapus page)
+   fix: Tambahkan region global permanen <div id="live-assertive" class="visually-hidden" role="alert"> di index.html. Saat waktu habis: document.getElementById('live-assertive').textContent = 'Waktu habis. Jawaban dikirim otomatis.'; lalu jalankan kirim(true) di setTimeout(…, 50).
+[P3] Navigasi dan konteks kecil: bottomnav tanpa item aktif untuk tampilan di 'Lainnya'; progres onboarding tidak terekspos; jumlah hasil cari tidak diumumkan
+   lokasi: js/app.js:27,42 (button Lainnya tidak pernah aria-current); js/views-home.js:22 (.ob-progress hanya visual); js/views-alat.js:297-305 (hasil cari tanpa status)
+   fix: perbaruiNav: bila view termasuk LAINNYA, set aria-current="page" (atau data-aktif + teks tersembunyi 'halaman saat ini') pada tombol Lainnya. Onboarding: h('div',{class:'ob-progress',role:'img','aria-label':'Langkah '+(langkah+1)+' dari '+total}). Cari: tambahkan <p class="visually-hidden" role="status"> dan isi list.length+' hasil'.
+===== None
+RINGKASAN: Review visual dan UX untuk Pelatih UKP, dinilai terhadap SPESIFIKASI §6–7. Cakupannya: tools/shot.js (HP terang, desktop gelap), skrip tambahan untuk HP gelap 390, desktop terang 1366, serta tablet 768 terang dan gelap (32 layar per konfigurasi), uji reflow 320/360/390, dan hitung kontras token. Proyek tidak diubah. Semua tangkapan dan skrip ada di /tmp/claude-0/-home-user/d629c9bc-6a32-5bcb-8f58-00c1aca71847/scratchpad/review/visual-ux/ (subfolder shot/, rev/, rev2/, verify/, scripts/). Usulan CSS di scripts/patch.css sudah diuji dengan menyuntikkan stylesheet: overflow beranda, KMK dan CAT h
+[P1] Opsi salah yang dipilih tampil hijau (primary-soft), sama seperti kunci
+   lokasi: css/app.css:308 vs css/app.css:311-312 (js/soal.js:39-40 mengisi data-hasil)
+   fix: Naikkan spesifisitas status hasil: `.opsi.terkunci label[data-hasil="kunci"]{border-color:var(--ok);background:var(--ok-soft)}` dan `.opsi.terkunci label[data-hasil="salah"]{border-color:var(--attn);background:var(--attn-soft)}` (sudah diverifikasi: rgb(251,231,229)). Alternatif: ubah baris 308 menjadi `.opsi label:where(:has(input:checked))`. Tambahkan ikon ✓/✗ di `.tanda` agar status tidak hanya warna.
+[P1] Tombol Lanjut ada di atas panel umpan balik dan tergulir keluar layar saat pembahasan dibaca
+   lokasi: js/soal.js:33 (wrap.append(aksi, umpan)), js/soal.js:42-48; css/app.css:212-216
+   fix: Urutkan DOM menjadi stem › opsi › umpan › aksi: `wrap.append(umpan, aksi)`. Sebelum diperiksa, panel umpan masih kosong, jadi Periksa tetap lengket di bawah; setelah diperiksa, Lanjut lengket di bawah selama panel dibaca. Di HP buat tombol primer selebar layar: `@media (max-width:599px){.sticky-actions .btn-primary{flex:1}}`.
+[P1] Topbar memaksa gulir horizontal di HP
+   lokasi: css/app.css:121-131; js/app.js:31-36 dan :49-52 (teks chip)
+   fix: Sudah diverifikasi lebar 320/360/390 tanpa overflow: `.topbar .brand{min-width:0;overflow:hidden;white-space:nowrap}` `@media (max-width:420px){.topbar .brand{font-size:0;gap:0}.topbar .brand .mark{font-size:11px}}` `.topbar .chip-tingkat{min-width:0;overflow:hidden;text-overflow:ellipsis}`. Lebih rapi lagi: bungkus teks brand dalam `<span class="brand-teks">` lalu sembunyikan di bawah 420 px, dan di HP pakai chip ringkas "B · 139 h".
+[P1] Layar simulasi CAT di HP meluber 15 px ke kanan
+   lokasi: css/app.css:141 (.page grid) dan :212-216 (.sticky-actions nowrap); js/views-simulasi.js:101-104 (tiga tombol nav)
+   fix: `.page > *, .stack > *{min-width:0}` ditambah `.sticky-actions{flex-wrap:wrap}` dan `.sticky-actions > .btn{flex:1 1 auto}` (sudah diverifikasi lewat injeksi: scrollWidth sama dengan viewport; lihat verify/fix-360-cat.png). Pertimbangkan juga ikon saja untuk Sebelumnya di bawah 400 px.
+[P1] Data kasus lengket menutupi lebih dari 50% layar HP
+   lokasi: css/app.css:407 (.data-lengket sticky di semua lebar); js/views-belajar.js:218
+   fix: `@media (max-width:1023px){.data-lengket{position:static}}` (sudah diverifikasi). Di HP, ubah markup menjadi `<details class="card data-lengket"><summary>Data kasus · 8 baris</summary>…</details>`; summary-nya boleh lengket: `.data-lengket summary{position:sticky;top:52px}`. Di desktop, pindahkan data ke panel kanan 320 px.
+[P1] Sisi belakang flashcard meluap keluar kartu dan menimpa tombol
+   lokasi: css/app.css:339-342 (.flash-inner min-height:220px, .flash-sisi position:absolute; inset:0)
+   fix: Tumpuk kedua sisi dengan grid supaya tinggi kartu mengikuti sisi terpanjang: `.flash-inner{display:grid}` `.flash-sisi{position:relative;inset:auto;grid-area:1/1}` (sudah diverifikasi: 307/307 di 390). Animasi rotateY dan backface-visibility tetap berfungsi.
+[P1] Referensi › KMK bunga menggulir horizontal di HP
+   lokasi: css/app.css:141 (.page tanpa min-width:0 pada anak grid); js/views-alat.js:147
+   fix: `.page > *{min-width:0}` (sudah diverifikasi: 320/360/390 tanpa overflow). Untuk tabel KMK di HP, sembunyikan kolom uplift 10/15/20% atau jadikan kartu per bulan.
+[P2] Bottom nav tetap tampil saat sesi dan bar sesi terbungkus 3 baris; chrome HP ±266 px
+   lokasi: js/app.js:46 (bottomnav hanya disembunyikan di 'mulai' dan mode ujian); js/views-home.js:156 (teks bar '[Soal] › Bukti', '0 / 12 mnt', 'Cukup sampai sini'); memakai .ujian-bar css/app.css:411
+   fix: Set `document.body.dataset.mode='sesi'` di views.sesi (dan hapus saat unmount), lalu `body[data-mode="sesi"] .bottomnav{display:none}` dan `body[data-mode="sesi"] .sticky-actions{bottom:0}`. Bar sesi: ganti teks bertanda kurung dengan `<div class="sesi-bar"><ol class="seg-blok">` (5 segmen 4 px, aktif = --primary) + span mono "Soal 3/8 · 4/12 mnt" + tombol teks "Cukup". CSS: `.sesi-bar{display:grid;grid-template-columns:1fr auto;gap:4px 8px}` `.sesi-bar .seg-blok{grid-column:1/-1;display:flex;gap:2px}` `.sesi-bar .seg-blok li{flex:1;height:4px;background:var(--surface-2)}`. Tinggi bar menjadi ±44 px.
+[P2] Kalimat inti umpan balik seluruhnya tebal dan berwarna (6–8 baris merah/hijau)
+   lokasi: js/soal.js:62-65; css/app.css:318-319
+   fix: Pisahkan status dari penjelasan: `h('p',{class:'inti'}, h('strong',{class:'status','data-hasil':…}, benar?'Benar.':'Kurang tepat.'), ' Jawaban Anda '+dipilih+'; kunci '+kunci+'. ', pb.inti)`. CSS: `.umpan .inti{font-weight:400;color:var(--ink)}` `.umpan .status[data-hasil="salah"]{color:var(--attn);font-weight:700}` `.umpan .status[data-hasil="benar"]{color:var(--ok);font-weight:700}` ditambah ikon ✓/✗ di depan status.
+[P2] Cincin dan bar penguasaan menampilkan angka "5" tanpa data (bertentangan dengan aturan sampel ≥ 8)
+   lokasi: js/learn.js:62 (komponen tempo memberi skor dasar ±5 saat n=0); js/core.js:232-238 (label selalu persen); js/views-home.js:137-138; js/views-alat.js:110 (Peta kelemahan)
+   fix: Bila n < 8, panggil `UKP.c.ring(0,{teks:'–',label:'Belum cukup data: butuh '+butuh+' soal'})` dan tambahkan `.ring[data-kosong] .fill{stroke:transparent}`. Di Peta kelemahan, saring `rows.filter(x=>x.p.n>=8)` dan tampilkan `UKP.c.kosong('Belum ada topik dengan data cukup','Kerjakan diagnosis atau Latih 10 soal; angka muncul setelah 8 soal per topik.', tombol)`. Beri sufiks % pada label cincin besar.
+[P2] Tabel Angka kunci di HP: nilai tersembunyi jauh di kanan
+   lokasi: css/app.css:332 (.tabel td.num white-space:nowrap) dan :103 (mark); js/views-home.js:222
+   fix: Beri kelas `tabel kunci` lalu: `@media (max-width:639px){.tabel.kunci tr{display:grid;grid-template-columns:1fr;padding:8px 0}.tabel.kunci td{border:0;padding:2px 10px}.tabel.kunci td.num{text-align:left;white-space:normal}}`. Stabilo hanya untuk angka; teks syarat cukup `.mono` tanpa `<mark>` (spesifikasi: stabilo hemat).
+[P2] Kontras di bawah ambang WCAG di beberapa komponen
+   lokasi: css/app.css:346 (.flash-nilai .btn small color:var(--muted)); :15/:56/:70 (--line-strong); :177 (.sidebar .group-label var(--ink-faint)); :164 (.bottomnav .badge color:#fff)
+   fix: `.flash-nilai .btn small{color:inherit;opacity:.85}`. Token: terang `--line-strong:#748079` (4,11:1 di atas putih), gelap `--line-strong:#66786F` (3,66:1); kalau garis kuitansi dan tabel ingin tetap lembut, pisahkan menjadi token `--line-input`. `.sidebar .group-label{color:var(--muted)}`. `.bottomnav .badge{color:var(--bg)}` (8,1:1 di tema gelap).
+[P2] Grid nomor CAT: status hanya lewat warna; panel kanan setinggi ±1.300 px; 'Tersimpan' tak terlihat
+   lokasi: css/app.css:414-422; js/views-simulasi.js:77-78 dan :94
+   fix: `.grid-nomor{grid-template-columns:repeat(8,minmax(0,1fr))}` `.grid-nomor button{position:relative}` `.grid-nomor button[data-st="isi"]::after{content:"";position:absolute;bottom:3px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--primary)}` `.grid-nomor button[data-st="ragu"]::after{content:"⚑";position:absolute;top:0;right:2px;font-size:9px}`. Panel kanan: `max-height:calc(100vh - 80px);overflow:auto`. Pindahkan "Tersimpan hh:mm:ss" ke .ujian-bar.
+[P2] Dialog Kirim menonjolkan 'Kirim sekarang' walau banyak soal kosong; ada tombol × padahal spesifikasi closedby=none
+   lokasi: js/views-simulasi.js:121
+   fix: Bila kosong > 0: jadikan "Kembali ke soal" sebagai `.btn-primary` dengan fokus awal, "Kirim sekarang" sebagai `.btn.btn-attn`, dan tambahkan "Ke soal kosong pertama (no. 2)". Hilangkan tombol × untuk dialog ini.
+[P2] Deskripsi baris switch tidak bergaya: ukurannya sama dengan judul dan berwarna ink
+   lokasi: css/app.css:379 (.bantu hanya didefinisikan di dalam .field) dan :393 (.switch); dipakai js/views-alat.js:35,38,203 dan js/views-simulasi.js:48,59
+   fix: `.switch .bantu{font-size:var(--fs-13);color:var(--muted);margin-top:2px}` `.switch strong{font-weight:600;font-size:var(--fs-16)}`. Di Latih HP, tombol mulai dibuat lengket dengan jumlah: `.sticky-actions` berisi "Mulai 10 soal".
+[P2] Kutipan peraturan panjang dan miring mendorong stem keluar layar HP
+   lokasi: css/app.css:518-519 (.kutipan p{font-style:italic}, 14 px); js/soal.js:25
+   fix: `.kutipan p{font-style:normal;font-size:var(--fs-14);line-height:1.5}`. Di HP: `@media (max-width:599px){.kutipan p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}}` ditambah tombol teks "Tampilkan kutipan lengkap" (atau jadikan `<details open>` di desktop dan tertutup di HP).
+[P2] Hasil simulasi di HP: label per kelompok terpotong sehingga skor dan tempo hilang
+   lokasi: css/app.css:370 (.bar-item .nama white-space:nowrap; text-overflow:ellipsis); js/views-simulasi.js (bar per kelompok)
+   fix: `.bar-item .nama{white-space:normal}`, atau pisahkan meta ke baris mono sendiri: `<span class="nama">A1 PPh OP</span><span class="meta">0/25 · tempo 0/53 mnt</span>` dengan `.bar-item .meta{grid-column:1;font-size:var(--fs-12)}`.
+[P3] Judul hasil keliru: 'Hasil simulasi UKP A1' untuk ujian komprehensif
+   lokasi: js/views-simulasi.js:144 (memakai r.kode) dan :39 (cfg.kode default = kelompok pertama)
+   fix: `'Hasil simulasi ' + (r.format==='UKP' ? 'UKP Tingkat '+r.tingkat : r.format+' '+r.kode)`, atau jangan mengisi cfg.kode untuk format UKP.
+[P3] Stempel besar selalu miring −3°, termasuk BELUM (label kritis)
+   lokasi: css/app.css:242 (.stempel.besar transform:rotate(-3deg)); js/views-simulasi.js:146
+   fix: `.stempel.besar{transform:none}` ditambah kelas baru `.stempel.miring{transform:rotate(-3deg)}` yang hanya dipasang pada HADIR/DIKUASAI. Keyframe stempel-tekan cukup memakai scale untuk kelas non-miring.
+[P3] Cincin fokus h1 muncul saat halaman dimuat atau navigasi programatik
+   lokasi: css/app.css:99 dan :142 (.page > h1 hanya untuk h1 anak langsung); js/core.js:206 dan js/views-home.js:70
+   fix: `h1[tabindex="-1"]:focus{outline:none}`, karena fokus rute adalah target pembaca layar, bukan elemen interaktif. Hapus `.page > h1` yang hanya menangkap sebagian kasus.
+[P3] Microcopy dan format angka/tanggal tidak konsisten
+   lokasi: js/views-home.js:26 vs :9; js/views-home.js:118; js/views-home.js:208 vs js/learn.js:137; js/views-alat.js:212; js/views-alat.js:215; js/core.js:243 + js/views-home.js:225
+   fix: (a) "Jawab lima pertanyaan singkat". (b) Format lewat `U.menitDetik`: 0,5 → "30 dtk", 1,4 → "1½ mnt", atau bulatkan ke menit dengan `Intl.NumberFormat('id-ID')`. (c) Label dari data: `'Lanjut '+L.susunSesi('kilat').menit+' menit lagi?'`. (d) "Impor tidak berhasil: isi kotak bukan ekspor Pelatih UKP yang utuh. Salin ulang dari perangkat asal." (e) `UKP.fmt.tanggal(statusPer)`. (f) Di core.js:243 tambahkan separator hanya bila `items.filter(Boolean).length`.
+[P3] Flashcard: sisi belakang tanpa pertanyaan; Lupa dan Ingat sama-sama '10 mnt' untuk kartu baru
+   lokasi: js/soal.js:81 dan :85-86; js/learn.js:109
+   fix: Tambahkan `h('p',{class:'small muted'},kartu.depan)` di atas jawaban pada sisi belakang. Untuk kartu baru, label Ingat dibuat "Ingat · ulang 10 mnt lagi" dan Lupa "Lupa · ulang sekarang", atau naikkan anak tangga pertama Ingat langsung ke 1 hari.
+[P3] Kuitansi melebar penuh di tablet; Kartu Hadir bulan berjalan belum ada di Bukti Sesi; strip 7 hari tanpa tanggal
+   lokasi: css/app.css:349 (.kuitansi), js/views-home.js:198-208 (Bukti), js/views-home.js:133-134 (strip)
+   fix: `.kuitansi{max-width:440px}`. Tambahkan komponen grid hadir bulanan (sudah ada di Kemajuan) di bawah tombol Bukti. Sel strip: `h('span',null,'Rab'), h('span',{class:'tgl'},'21')` dengan `.hadir-strip .tgl{font-size:13px;color:var(--ink)}`. Ganti "rangkaian 0 hari" dengan "Sesi pertama hari ini memulai rangkaian".
+[P3] Tab chip aktif tidak terlihat di HP; laporan mingguan menampilkan minggu kosong sebelum pengguna mulai; Buku Kesalahan kosong tanpa CTA
+   lokasi: js/views-alat.js:98 (chip-row), :121 (kosong tanpa aksi), :123+ (laporan); css/app.css:227
+   fix: Setelah render: `page.querySelector('.chip[aria-pressed="true"]').scrollIntoView({inline:'center',block:'nearest'})`, atau `.chip-row{flex-wrap:wrap}` untuk tab ≤ 5. Saring minggu sebelum aktivitas pertama. `UKP.c.kosong(…, h('button',{class:'btn btn-sm',onclick:()=>UKP.go('latih',{mulai:true,n:10})},'Latih 10 soal'))`.
+[P3] Timer ≤ 5 menit hanya berubah warna; kop soal 3 baris menduplikasi nomor bar
+   lokasi: js/views-simulasi.js:88 (timer), css/app.css:412-413; js/soal.js:16 (kop)
+   fix: Tambahkan `h('span',{class:'sisa'},'Sisa < 5 mnt')` saat sisa ≤ 300, dan `.ujian-bar .timer{font-size:var(--fs-24)}` (desktop 30). Kop: tampilkan "A1-044 · Angsuran PPh 25 & OPPT" dengan `.soal-kop span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}`, dan sembunyikan nomor kanan bila bar sesi/latih sudah menampilkannya.
+[P3] Rail tablet 600–1023 px belum ada; ruang kanan desktop ±260 px kosong
+   lokasi: css/app.css:149-190 (hanya bar bawah < 1024 dan sidebar ≥ 1024)
+   fix: `@media (min-width:600px) and (max-width:1023px){.shell{grid-template-columns:80px 1fr}.sidebar{display:flex;…}.sidebar a{flex-direction:column;font-size:11px}.sidebar .group-label,.sidebar .foot p{display:none}.bottomnav{display:none}}` (memakai markup sidebar yang sudah ada). Tambahkan `.panel-kanan` 320 px pada ≥ 1280 untuk data kasus dan Tutor.
+[P2] Peningkatan UX #1: Mode fokus sesi (zona jempol, tanpa navigasi situs)
+   lokasi: js/app.js:46, js/views-home.js:144-182, css/app.css:212-217
+   fix: Saat sesi berjalan: sembunyikan bottom nav, kecilkan topbar menjadi bar sesi 44 px (progres 5 segmen + menit + "Cukup"), dan buat tombol Periksa/Lanjut selebar layar serta lengket di bawah. Hasilnya ±150 px ruang baca tambahan untuk stem panjang dan risiko keluar sesi tanpa sengaja hilang. Upaya kecil: 1 atribut data-mode dan sekitar 15 baris CSS.
+[P2] Peningkatan UX #2: Panel umpan balik berurutan 'baca lalu aksi' dan jujur soal kartu otomatis
+   lokasi: js/soal.js:27-48 dan :59-73
+   fix: Susunan baru: status beserta ikon › kalimat inti (badan normal) › tag sebab › jejak hitung › cite (dilipat di HP) › details opsi lain › bar aksi lengket berisi [Lanjut] [Tanya Tutor] dan baris kecil "Kartu ditambahkan ke dek · Batalkan · Laporkan soal". Untuk tag `angka-usang`, pakai pola kalimat spesifikasi ("Jawaban A benar menurut ketentuan sebelum…").
+[P2] Peningkatan UX #3: Data kasus sebagai laci ringkas di HP dan panel kanan di desktop
+   lokasi: js/views-belajar.js:204-218, css/app.css:407
+   fix: HP: narasi dalam `<details>` ("Baca narasi kasus") dan bar lengket 44 px "Data kasus · 8 baris ▾" yang membuka lembar bawah (`UKP.dialog({sheet:true})`). Desktop ≥ 1280: tabel data lengket di panel kanan 320 px di samping stepper. Hasilnya langkah aktif selalu terlihat bersama angkanya.
+[P2] Peningkatan UX #4: State 'belum cukup data' yang mengajak, bukan angka palsu
+   lokasi: js/learn.js:62-71, js/core.js:232, js/views-home.js:135-138, js/views-alat.js:108-111
+   fix: Komponen tunggal `UKP.c.ring` dengan state `kosong`: tanda "–", track putus-putus, aria-label "butuh n soal". Kartu Posisi penguasaan di Hari Ini menampilkan satu ajakan ("Diagnosis 15 soal · 12 mnt untuk memunculkan angka"). Peta kelemahan memakai `UKP.c.kosong` dengan CTA. Ini juga memenuhi prinsip §1 (5): "Penguasaan terukur dengan sampel minimum".
+[P2] Peningkatan UX #5: Daftar soal CAT sebagai lembar bawah di HP dan panel ber-scroll di desktop, dengan filter kosong/ragu
+   lokasi: js/views-simulasi.js:76-104 dan :121
+   fix: Tambahkan tombol "Daftar soal" di `.ujian-bar` yang membuka `UKP.dialog({sheet:true})` berisi grid 8 kolom beserta ikon status dan chip filter [Semua · Kosong 99 · Ragu 1]. Di desktop panel kanan `max-height:calc(100vh - 80px);overflow:auto` dengan "Tersimpan" di bar. Dialog Kirim mendapat tombol "Ke soal kosong pertama". Ini meniru alur CAT nyata dan mengurangi kiriman prematur.
+===== None
+RINGKASAN: Saya menjalankan uji fungsional end-to-end dengan Playwright (Chromium, file://) pada viewport 390x844 dan 1366x900, ditambah pindaian lebar 320 dan 390 px. Datanya nyata: onboarding, diagnosis 24 soal, sesi standar penuh, cek pemahaman 20 topik, Latih dengan 5 toggle, Ulang, 1 studi kasus penuh, 6 jenis simulasi, 17 kalkulator, serta semua halaman alat, Cari, Kembali, deep-link, keyboard, dan mode waktu (lelah, tenggat, Minggu Tenang, Hari H, absen) memakai page.clock. Di semua langkah tidak ada console.error maupun pageerror. Satu-satunya console.warn adalah "view tidak ada" yang memang dise
+[P1] Overlay ::after kartu 'Etika & Profesi' menutupi seluruh layar pertama Peta materi; semua klik di area itu membuka Etika & Profesi
+   lokasi: js/views-belajar.js:34 (h('div', { class: 'card' }) tanpa 'klik') + css/app.css:258 (.card-link::after{position:absolute;inset:0}) dan :259 (position:relative hanya untuk .card.klik)
+   fix: Tambahkan kelas 'klik' pada kartu itu: h('div', { class: 'card klik' }, …). Sebagai pengaman global: .card:has(.card-link){position:relative}.
+[P1] Overflow horizontal di HP: soal setelah Periksa, topik, kalkulator, dan Referensi melebar sampai 450–1009 px
+   lokasi: css/app.css:323 (.jejak td:last-child{white-space:nowrap}), :332 (.tabel td.num nowrap), track grid implisit 'auto' pada .page :141, .sect :264, .card :247, .stack :477; js/core.js:247 (table.jejak tidak dibungkus .tabel-wrap)
+   fix: Beri .page, .stack, .sect, .card, .card-grid aturan grid-template-columns:minmax(0,1fr) (atau min-width:0 pada anak). Pada .jejak td:last-child pakai white-space:normal dan overflow-wrap:anywhere; nowrap cukup untuk sel yang benar-benar angka. Bungkus UKP.c.jejak dalam .tabel-wrap. Pastikan .tabel td.num yang berisi teks bisa wrap. Tambahkan pindaian overflow 320 px ke tools/shot.js.
+[P1] Studi kasus di HP: kartu 'Data kasus' sticky tanpa batas tinggi menutupi langkah, dan pada 3 kasus lebih tinggi dari layar
+   lokasi: css/app.css:407 (.data-lengket{position:sticky;top:52px;z-index:2}); js/views-belajar.js:218
+   fix: Aktifkan sticky hanya pada ≥1024 px. Di HP jadikan <details> 'Data kasus' yang bisa dilipat atau beri max-height:35vh;overflow:auto. Biarkan sel nilai wrap.
+[P2] Konfigurasi simulasi bocor antar-format: jumlah/menit Kustom dipakai UKP, checkbox 'Tanpa batas waktu' tampil reset, dan kelompok USKP terbawa ke Kustom
+   lokasi: js/views-simulasi.js:15 (target = cfg.jumlah || …), :18 (menit = cfg.menit || …), :55 (oninput set cfg.jumlah/menit), :59 (checkbox tanpa checked: cfg.tanpaWaktu), :56-57 (option sim-kode2 tanpa selected; reset kode hanya bila sama dengan kelompok pertama)
+   fix: Simpan cfg terpisah per format atau reset jumlah/menit/kode saat format diganti. Set checked pada checkbox tanpa waktu dan selected pada option sim-kode2 sesuai cfg.
+[P2] Hasil, riwayat, dan kartu 'Simulasi berjalan' untuk UKP komprehensif berlabel 'UKP A1' alih-alih 'UKP Tingkat A'
+   lokasi: js/views-simulasi.js:39 (cfg.kode default K.kelompok(tingkat)[0]), :25 (kode: cfg.kode || null untuk semua format), :35, :66, :144
+   fix: Di susunAttempt pakai kode: cfg.format === 'UKP' ? null : cfg.kode (dan kustom hanya bila dipilih).
+[P2] Tombol kelompok (Latih 10, Simulasi 40, Dek kartu, Studi kasus) buntu untuk kelompok di luar tingkat target dan untuk Etika (E)
+   lokasi: js/views-belajar.js:47-50; filter tingkat di :98 (K.semuaSoal(tingkat)), :183-184 (antrean kartu), :209 (K.semuaKasus(tingkat)); js/views-simulasi.js:12 dan :52 (select hanya K.kelompok(tingkat)); js/views-alat.js:188 (profesi memakai views.kelompok)
+   fix: Teruskan kode dengan override tingkat (mis. pakai K.soalKelompok(kode) tanpa filter tingkat ketika params.kode diberikan), sertakan E di daftar. Kalau memang tidak didukung, sembunyikan/nonaktifkan tombol dengan teks 'Pindah target ke B untuk melatih B6'.
+[P2] Catatan pengalaman ujian tersimpan tetapi tidak tampil saat halaman dibuka lagi (risiko tertimpa kosong)
+   lokasi: js/views-alat.js:179 (h('textarea', { …, value: s.kesanUjian }); h() memakai setAttribute('value'), yang tidak mengisi textarea)
+   fix: Isi lewat text: s.kesanUjian, atau set kesan.value = s.kesanUjian setelah dibuat. Sebaiknya h() menangani properti value untuk textarea/select.
+[P2] Pintasan A–D tidak berfungsi sampai fokus berada di dalam soal; Ctrl/Cmd+huruf ikut mengganti jawaban
+   lokasi: js/soal.js:51-54 (listener keydown di wrap .soal, tanpa cek e.ctrlKey/metaKey/altKey); fokus awal ke h1/body (js/core.js:206, js/views-belajar.js:117-129)
+   fix: Pasang handler di document saat ada .soal aktif dan target bukan field ketik. Abaikan kombinasi modifier. Atau fokuskan fieldset opsi setelah render soal.
+[P2] Flashcard: Spasi tidak membalik di halaman Ulang, dan setelah dibalik Spasi kedua memberi nilai 'Ingat' tanpa sengaja
+   lokasi: js/views-belajar.js:197 (f.focus() dipanggil sebelum page terpasang; render lalu memfokuskan h1); js/soal.js:89 (fokus pindah ke tombol Ingat) dan :93 (Spasi diabaikan bila target BUTTON)
+   fix: Fokuskan .flash setelah mount (requestAnimationFrame atau setelah render). Pertahankan fokus di kartu, atau tangani Spasi di level kartu dengan preventDefault, lalu nilai hanya lewat 1/2/3 atau klik.
+[P2] Studi kasus: input angka kosong dibaca 0, dihitung salah dan memakan petunjuk, serta diterima benar bila kuncinya 0
+   lokasi: js/views-belajar.js:221 (parseAngka('') → Number('') = 0) dan :243
+   fix: Di parseAngka, kembalikan NaN bila String(v).trim() === '' (setelah membuang 'Rp'), supaya cek() menampilkan 'Masukkan angka.'.
+[P2] Progres studi kasus hilang setelah membuka 'Buka kalkulator' atau 'Coba angka lain di kalkulator' lalu Kembali
+   lokasi: js/views-belajar.js:220 (state aktif/status/petunjukN hanya di closure), :233, :253
+   fix: Simpan progres per kasus di store (mis. s.kasusProgres[id] = {aktif, status, petunjukN}) lalu pulihkan saat render. Alternatif: buka kalkulator di dialog atau panel tanpa berpindah rute.
+[P2] Skip link 'Lewati ke konten' dan perubahan hash manual memindahkan pengguna ke Hari Ini
+   lokasi: index.html:20 (<a class="skip" href="#main">); js/core.js:192 (popstate dengan state null selalu render('beranda'))
+   fix: Di popstate, bila e.state null, petakan location.hash lewat DARI_TOKEN dan abaikan hash non-rute seperti #main. Untuk skip link, pakai onclick dengan preventDefault lalu document.getElementById('main').focus().
+[P2] Dek Perubahan selalu mulai dari 30 kartu yang sama, mengabaikan jatuh tempo; kartu ke-31 dst. tak pernah muncul
+   lokasi: js/learn.js:121 (q = semua kartu dek perubahan, tanpa filter jatuh tempo/urutan) + js/views-belajar.js:183 (maks 30)
+   fix: Urutkan dek: jatuh tempo dulu, lalu yang belum pernah dinilai. Kecualikan kartu yang belum jatuh tempo (atau beri mode 'tinjau semua' yang tidak mengubah SRS).
+[P2] Soal simulasi yang tidak dijawab dicatat sebagai kesalahan (Buku Kesalahan, penguasaan, pool 'hanya salah')
+   lokasi: js/views-simulasi.js:126 (catatJawaban(so, a.jawaban[id] || '-', …) untuk semua soal)
+   fix: Lewati catatJawaban untuk soal kosong, atau catat dengan konteks 'kosong' lalu kecualikan dari bukuKesalahan/penguasaan. Skor simulasi tetap menghitung kosong = salah.
+[P3] 'Tambah ke kartu' pada Angka hari ini di luar tingkat target membuat kartu yang tak pernah muncul
+   lokasi: js/views-home.js:139 (tambahKartuAngka memakai a.kelompok apa pun); js/learn.js:17 (semuaKartu memfilter kelompok tingkat)
+   fix: Pilih angka hari ini dari kelompok tingkat target saja (dan E sebagai opsional), atau map kartu ke kelompok tingkat.
+[P3] Tempo ketat: label awal selalu '2:30', format berubah, dan timer terus berjalan setelah diperiksa
+   lokasi: js/views-belajar.js:127 ('2:30' hard-coded) dan :131 (sisa = soal.anggaranDetik; interval tidak dihentikan saat periksa)
+   fix: Inisialisasi dengan U.jam(anggaran), selaraskan teks bantu ('anggaran per soal'), dan hentikan interval saat periksa (pakai hook onPeriksa atau callback).
+[P3] Filter Latih: 'Ubah filter' mereset semua filter; jenis 'baris-spt' dan 'etika' selalu 0 soal; dropdown kesulitan tidak menandai nilai params
+   lokasi: js/views-belajar.js:143 (UKP.go('latih') tanpa f), :156 (opsi jenis), :157 (option kesulitan tanpa selected)
+   fix: Teruskan f tanpa mulai ke 'Ubah filter'. Sembunyikan jenis yang tidak punya soal di pool. Set selected pada opsi kesulitan.
+[P3] Referensi: tab KMK bunga mengabaikan Saring; tab lain tanpa pesan kosong
+   lokasi: js/views-alat.js:147 (tab bunga tidak memakai cocok()), :144-146 (tanpa UKP.c.kosong)
+   fix: Terapkan cocok(x.periode + ' ' + x.kmk) di tab bunga, dan tampilkan UKP.c.kosong('Tidak ada yang cocok') di semua tab.
+[P3] Cari: halaman Kalkulator/Referensi/Studi kasus/Belajar/Tutor tidak terindeks, Enter tidak membuka hasil, dan istilah membuka glosarium tanpa saring
+   lokasi: js/views-alat.js:295 (daftar Halaman), :292 (teks kalkulator hanya k.nama), :293 (istilah → referensi tanpa q), :306-307 (tanpa Enter)
+   fix: Tambahkan halaman yang hilang serta kata 'kalkulator' pada entri kalkulator. Enter membuka hasil pertama. Teruskan params {tab:'glosarium', q:istilah} dan isi input saring.
+[P3] Link sidebar, bottom nav, dan Lainnya memakai '#info-ujian' yang bukan token rute; bottom nav tanpa item aktif untuk halaman di bawah Lainnya
+   lokasi: js/app.js:23, :26, :36 (href '#'+v), js/core.js:179 (token 'infoujian'); js/app.js:44-46 (data-nav 'lainnya' tak pernah aktif)
+   fix: Bangun href dengan pemetaan TOKEN yang sama dengan UKP.link, dan terima kedua bentuk di mulaiDariHash. Tandai tombol Lainnya aktif untuk view yang ada di LAINNYA.
+[P3] Pintasan '?' membuka dialog bertumpuk; '/' tidak berfungsi saat fokus di opsi radio
+   lokasi: js/app.js:64 (mengetik = semua input termasuk radio/checkbox), :66 ('?' tanpa cek dialog[open])
+   fix: Anggap 'mengetik' hanya untuk input teks, textarea, dan contenteditable. Cegah '?' bila sudah ada dialog terbuka.
+[P3] Ulas di hasil simulasi menumpuk blok 'Ulas jawaban' bila tombol diklik lebih dari sekali; kartu berjalan untuk simulasi tanpa waktu menampilkan sisa menit
+   lokasi: js/views-simulasi.js:164-167 (page.appendChild(wrap) setiap klik), :34-35 (teks sisa waktu tanpa cek a.tanpaWaktu)
+   fix: Ganti seksi ulas yang lama (replaceWith), dan untuk tanpaWaktu tampilkan 'tanpa batas waktu'.
+[P3] Tanggal ujian lampau bisa ditetapkan ('Jadikan tanggal ujian saya' pada periode yang sudah lewat, atau diketik di Rencana)
+   lokasi: js/views-alat.js:162 (tombol untuk semua periode), :66 (min hanya di picker; nilai ketikan diterima)
+   fix: Nonaktifkan tombol untuk ujian < hari ini, validasi tanggal di onchange Rencana/Pengaturan, dan beri pesan 'tanggal sudah lewat'.
+[P3] Skor penguasaan: topik yang belum pernah dilatih bernilai 5, dan jawaban salah yang cepat malah menaikkan skor
+   lokasi: js/learn.js:61-62 (tempo = 0.5 bila n=0; tempo penuh untuk jawaban cepat meski salah)
+   fix: Komponen tempo bernilai 0 bila n=0, dan hanya dihitung dari jawaban benar (atau dikalikan akurasi).
+[P3] Detail kecil Hari Ini/Sesi: menit blok berformat desimal Inggris, Penuh 30 berisi ±36 menit, 'Lanjut 7 menit lagi?' membuka Kilat 5, dan 'Cukup sampai sini' tanpa aktivitas tetap mencatat HADIR
+   lokasi: js/views-home.js:118 (b.menit + ' mnt'), js/learn.js:160 (kasus estimasiMenit 12–18 ditambahkan), js/views-home.js:208, :183-188
+   fix: Pakai UKP.fmt.angka(b.menit, 1). Batasi blok kasus agar total ≈ menit target. Selaraskan label dan ukuran 'Lanjut'. Catat HADIR hanya bila ada ≥1 item dikerjakan.
+[P3] Kalkulator: input uang berisi huruf dibaca 0, bukan kosong; galat impor menampilkan pesan parser berbahasa Inggris
+   lokasi: js/views-alat.js:24 (parseUang('abc') → Number('') = 0), :212 (toast 'Gagal impor: ' + e.message)
+   fix: parseUang mengembalikan null bila tidak ada digit. Untuk impor, tampilkan 'Berkas bukan JSON ekspor Pelatih UKP yang valid.'.
+[P3] Lain-lain: mode lelah tidak aktif 00.00–03.00, 'Ingat' pada kartu baru = 10 mnt (sama dengan Lupa), Laporan mingguan menghitung CUTI sebagai 'hari hadir', dan merek topbar terbungkus dua baris di 390 px
+   lokasi: js/learn.js:138 dan js/views-home.js:105 (getHours() >= 21); js/learn.js:115; js/views-alat.js:124; css topbar .brand
+   fix: Lelah bila jam ≥ 21 atau < 3. Kartu baru + Ingat langsung ke 1 hari. Hitung hanya status HADIR. Sembunyikan teks merek < 400 px.
+===== None
+RINGKASAN: Saya membaca seluruh core.js, learn.js, soal.js, views-home.js, views-belajar.js, views-simulasi.js, views-alat.js dan app.js. kalkulator.js saya baca sepintas untuk titik integrasi (UKP.fmt, UKP.kalkulator, kalkulatorByJenis). Semua temuan saya uji dengan Playwright/Chromium lewat file://. Skrip uji (t1.js–t8.js, data-check.js, kref.js), tangkapan layar (T2, T3, T4, T6, T25) dan hasil tools/shot.js (di subfolder shots/) ada di /tmp/claude-0/-home-user/d629c9bc-6a32-5bcb-8f58-00c1aca71847/scratchpad/review/core-reviewer/. Baseline `node tools/shot.js` lolos tanpa galat konsol. Berkas proyek ti
+[P1] Simulasi terkirim ganda saat waktu habis ketika dialog 'Kirim jawaban?' terbuka (rekaman & jawaban duplikat)
+   lokasi: js/views-simulasi.js:117 (tick → kirim(true)), :119-121 (ringkasanKirim membuka dialog di body), :123-133 (kirim tanpa guard re-entrancy); js/core.js:194-199 (render tidak menutup <dialog> terbuka)
+   fix: Di layarUjian: `let terkirim = false; function kirim(otomatis) { if (terkirim || UKP.store.get().simulasiAktif !== a) return; terkirim = true; document.querySelectorAll('dialog[open]').forEach(d => d.close('auto')); clearInterval(timer); catatWaktu(); ... }`. Lalu tombol dialog: `onclick: () => { dlg.close('ya'); kirim(false); }` tetap aman karena ada guard. Tambahkan juga di core.js render() sebelum `main.innerHTML = ''`: `document.querySelectorAll('dialog[open]').forEach(d => d.close('navigasi'));`.
+[P1] Catatan pengalaman ujian tidak pernah ditampilkan ulang, lalu terhapus saat Simpan ditekan lagi
+   lokasi: js/views-alat.js:179 (`h('textarea', { ..., value: s.kesanUjian })`); js/core.js:62 (`el.setAttribute(k, v)` — atribut value diabaikan oleh <textarea>)
+   fix: Perbaikan umum di h() (core.js sekitar :56): `else if (k === 'value' && el.tagName === 'TEXTAREA') el.value = v;` diletakkan sebelum cabang setAttribute. Atau lokal di views-alat.js:179: `const kesan = h('textarea', { class: 'input', rows: 5, id: 'kesan-ujian', placeholder: '…' }); kesan.value = s.kesanUjian || '';`.
+[P1] Dua tab saling menimpa seluruh progres (last-writer-wins tanpa sinkronisasi)
+   lokasi: js/core.js:116-129 (state di memori per tab; save() menulis JSON.stringify(state) penuh; tidak ada listener 'storage'/BroadcastChannel)
+   fix: Minimal: muat ulang state ketika tab lain menulis. `window.addEventListener('storage', e => { if (e.key !== KEY || e.newValue == null) return; clearTimeout(saveTimer); state = null; load(); if (UKP.sekarang().view !== 'simulasi') UKP.render(); UKP.toast('Progres diperbarui dari tab lain.'); });`. Lebih aman lagi, beri penanda tulis: simpan `state.rev = (state.rev||0)+1` dan sebelum setItem baca rev tersimpan. Bila lebih baru, gabungkan array append-only (jawaban, sesi, simulasi) per id/pada sebelum menulis. Alternatif lain: BroadcastChannel('ukp') untuk menjadikan tab kedua read-only dengan banner.
+[P2] Skip link 'Lewati ke konten' dan edit hash manual melempar pengguna ke Hari Ini
+   lokasi: js/core.js:192 (popstate dengan e.state null → render('beranda')); index.html:20 (`<a class="skip" href="#main">`)
+   fix: `window.addEventListener('popstate', e => { if (stackLen > 0) stackLen--; const st = e.state; if (st && st.view) return render(st.view, st.params || {}, {}); const tok = location.hash.slice(1); if (tok === 'main' || tok === '') { history.replaceState(current, '', '#' + (TOKEN[current.view] || current.view)); document.getElementById('main').focus(); return; } const v = DARI_TOKEN[tok] || tok; render(UKP.views[v] ? v : 'beranda', {}, {}); });`. Tambahkan juga di app.js: `document.querySelector('.skip').addEventListener('click', e => { e.preventDefault(); document.getElementById('main').focus(); });`.
+[P2] Autosave 'visibilitychange' tidak efektif: save() selalu tertunda 60 ms, tidak ada flush pada hide/pagehide
+   lokasi: js/core.js:124-129 (save debounce setTimeout 60 ms); js/views-simulasi.js:135 (`onVis` memanggil simpan() yang juga tertunda; catatWaktu() tidak dipanggil)
+   fix: `function tulis() { clearTimeout(saveTimer); saveTimer = null; try { localStorage.setItem(KEY, JSON.stringify(state)); penyimpananOK = true; } catch (e) { penyimpananOK = false; } } function save() { load(); clearTimeout(saveTimer); saveTimer = setTimeout(tulis, 60); } UKP.store.flush = () => { if (state && saveTimer) tulis(); }; document.addEventListener('visibilitychange', () => { if (document.hidden) UKP.store.flush(); }); window.addEventListener('pagehide', () => UKP.store.flush());`. Di layarUjian: `const onVis = () => { if (document.hidden) { catatWaktu(); UKP.store.flush(); } };`. Panggil juga catatWaktu() dan flush di unmount.
+[P2] Konfigurasi simulasi bocor antar format: USKP tak bisa dimulai setelah membuka Kustom; UKP memakai jumlah/menit Kustom; tampilan form tidak sesuai state
+   lokasi: js/views-simulasi.js:39 (cfg tunggal), :52 (select USKP tanpa set cfg.kode saat render), :55 (cfg.jumlah/cfg.menit dari Kustom), :56-57 (cfg.kode di-null-kan, select Kustom tanpa `selected`), :59 (checkbox 'Tanpa batas waktu' tanpa `checked`), :13/:15/:18 (susunAttempt memakai cfg.menit/cfg.jumlah untuk semua format)
+   fix: Pisahkan state per format dan render kontrol dari state: `const cfg = { format: params.format || 'UKP', kodeUSKP: params.kode || K.kelompok(tingkat)[0], kodeKustom: params.kode || '', jumlah: 20, menitKustom: 50, tanpaWaktu: false, terbagi: false, bagian: 1 };`. Select USKP: `onchange: e => cfg.kodeUSKP = e.target.value` + `selected: k === cfg.kodeUSKP`. Select Kustom dengan `selected: k === cfg.kodeKustom`. Input `value: cfg.jumlah` / `value: cfg.menitKustom`. Checkbox `checked: cfg.tanpaWaktu ? true : null`. Saat mulai: `const run = cfg.format === 'USKP' ? { format: 'USKP', kode: cfg.kodeUSKP } : cfg.format === 'kustom' ? { format: 'kustom', kode: cfg.kodeKustom || null, jumlah: cfg.jumlah, menit: cfg.menitKustom } : { format: 'UKP', terbagi: cfg.terbagi, bagian: cfg.bagian }; run.tanpaWaktu = cfg.tanpaWaktu; const a = susunAttempt(run);`.
+[P2] Kalkulator, Cari, dan soal simulasi (dengan Periksa = kunci + pembahasan) dapat dibuka selama simulasi
+   lokasi: js/views-alat.js:8 (cek `document.body.dataset.mode === 'ujian'` selalu false karena unmount di views-simulasi.js:136 menghapus mode sebelum view berikut dirender); js/app.js:111 (pintasan '/' & Ctrl+K tanpa cek mode); js/views-alat.js:302-303 (hasil Cari 'Soal' membuka soal mode belajar)
+   fix: Tentukan status dari state, bukan dari atribut DOM: `UKP.simulasiBerjalan = () => { const a = UKP.store.get().simulasiAktif; return !!(a && !a.selesai && !a.tanpaWaktu && a.akhir > Date.now()); };`. Pakai di views-alat.js:8, di T.buka (:236), dan di UKP.cari (tolak hasil jenis 'Soal' atau toast 'Pencarian nonaktif selama simulasi'). Di app.js:111 tambahkan `&& document.body.dataset.mode !== 'ujian'`.
+[P2] 'Siap daftar' dan lencana 'Stamina Komprehensif' menghitung simulasi terbagi, bertentangan dengan teks UI
+   lokasi: js/learn.js:202 (filter siapDaftar tanpa `!x.terbagi`); js/learn.js:213 (lencana stamina); teks yang dilanggar: js/views-simulasi.js:48 ('tidak dihitung untuk Siap Daftar'), :146 ('bukan ukuran stamina')
+   fix: learn.js:202 → `const sim = s.simulasi.filter(x => x.format === 'UKP' && x.tingkat === p.tingkat && x.selesai && !x.terbagi && !x.tanpaWaktu).slice(-2);`. learn.js:213 → `if (s.simulasi.some(x => x.selesai && x.format === 'UKP' && !x.terbagi && !x.tanpaWaktu)) beri('stamina', 'Stamina Komprehensif');`.
+[P2] Sesi harian dan 'Cek pemahaman' tidak menyaring soal per tingkat: pengguna Tingkat A mendapat soal khusus B/C
+   lokasi: js/learn.js:146-147 (poolTopik/poolLemah memakai K.soalTopik tanpa filter tingkat; bandingkan :148 yang memakai K.semuaSoal(tingkat)); js/views-belajar.js:74-77 (cek pemahaman); js/learn.js:141-144 (topik ringkas dipilih walau tidak punya soal untuk tingkat)
+   fix: `const cocok = x => (x.tingkat || []).includes(tingkat); const poolTopik = topik ? K.soalTopik(topik.id).filter(cocok) : []; const poolLemah = terlemah.flatMap(t => K.soalTopik(t.topik.id)).filter(cocok);`. Di views-belajar.js:74: `const soalTopik = K.soalTopik(t.id).filter(x => x.tingkat.includes(s.profil.tingkat));`. Pertimbangkan juga melewati topik tanpa soal untuk tingkat target di urutanTopik/topikTerlemah, atau beri label 'materi B/C'.
+[P2] Urutan soal vignette tidak dijaga ('Data untuk soal ini dan tiga soal berikutnya' muncul setelah 'Lanjutan data …')
+   lokasi: js/views-simulasi.js:7 (kelompokkanVignette mengambil grp dari arr yang sudah diacak); :24
+   fix: `function posAsli(x) { return UKP.modul[x.kode].soal.indexOf(x); } function kelompokkanVignette(arr) { const out = [], seen = new Set(); for (const x of arr) { if (seen.has(x.id)) continue; const grp = x.kasusId ? arr.filter(y => y.kasusId === x.kasusId).sort((p, q) => posAsli(p) - posAsli(q)) : [x]; grp.forEach(y => { seen.add(y.id); out.push(y); }); } return out; }`. Pertimbangkan juga mengambil vignette utuh saat sampling (U.ambil per unit vignette).
+[P2] Impor progres tanpa normalisasi: default profil/pengaturan hilang, nilai null membuat semua halaman crash
+   lokasi: js/core.js:135 (`state = Object.assign(DEFAULT(), d)` tanpa merge profil/pengaturan dan tanpa cek tipe); js/core.js:120 (load juga tidak memvalidasi tipe array/objek)
+   fix: `function normal(d) { const def = DEFAULT(); const o = Object.assign(def, d); o.profil = Object.assign(DEFAULT().profil, d.profil || {}); o.pengaturan = Object.assign(DEFAULT().pengaturan, d.pengaturan || {}); for (const k of Object.keys(def)) { const dv = DEFAULT()[k]; if (Array.isArray(dv) && !Array.isArray(o[k])) o[k] = dv; else if (dv && typeof dv === 'object' && !Array.isArray(dv) && (o[k] == null || typeof o[k] !== 'object' || Array.isArray(o[k]))) o[k] = dv; } delete o.__proto__; return o; }`. Pakai di impor: `if (!d || typeof d !== 'object' || typeof d.profil !== 'object') throw …; state = normal(d);` dan di load(): `state = normal(parsed)`.
+[P2] Menit HADIR menggelembung (1440–2880 menit) dan simulasi kedaluwarsa mencatat semua soal sebagai salah
+   lokasi: js/views-home.js:184-188 (menit = now − sesi.mulai, termasuk jeda berhari-hari; tgl = hari lanjutan); js/views-simulasi.js:126 (soal kosong dicatat '-' = salah) dan :130 (HADIR menit = now − a.mulai); js/views-belajar.js:190,194 (mulaiWaktu Ulang tidak direset saat 'Cek jatuh tempo lagi')
+   fix: Sesi: simpan `sesi.aktifMs` dan `sesi.terakhir`. Di simpan() tambahkan `const d = Date.now() - (sesi.terakhir || sesi.mulai); sesi.aktifMs = (sesi.aktifMs || 0) + Math.min(d, 5 * 60000); sesi.terakhir = Date.now();`. Lalu `menit = Math.max(1, Math.round(sesi.aktifMs / 60000))`. Simulasi: `UKP.hadir.catat('HADIR', Math.min(a.menit, Math.round((Math.min(Date.now(), a.akhir) - a.mulai) / 60000)))`. Bila simulasi kedaluwarsa tanpa satu jawaban pun, jangan catatJawaban/HADIR dan tawarkan 'Buang'. Ulang: reset `mulaiWaktu = Date.now()` (ubah ke `let`) di tombol 'Cek jatuh tempo lagi'.
+[P2] Safari iOS: progres hanya di localStorage, rawan dihapus ITP setelah 7 hari tanpa kunjungan
+   lokasi: js/core.js:108-136 (penyimpanan tunggal localStorage); js/views-home.js:98 (banner 'kembali setelah ≥7 hari' tepat di skenario ini)
+   fix: Saat boot: `if (navigator.storage && navigator.storage.persist) navigator.storage.persisted().then(p => p || navigator.storage.persist());`. Tampilkan banner sekali di iOS: 'Tambahkan ke Layar Utama atau ekspor progres berkala'. Simpan `s.eksporTerakhir` dan ingatkan ekspor bila lebih dari 7 hari.
+[P3] Batas hari 03.00 tidak konsisten: mode lelah, kuota kartu baru, laporan mingguan, dan hari tenggat memakai jam/tanggal kalender
+   lokasi: js/learn.js:138 (`lelah = getHours() >= 21` → false pukul 00–02); js/learn.js:120 (S.baru membandingkan `U.iso(new Date(st.terakhir))` dengan hariIni); js/views-home.js:105-107 (ukuran default & tenggat dari `new Date()`); js/views-alat.js:124 (laporan `U.iso(new Date(j.pada))`)
+   fix: Tambahkan di core.js: `hariDari(ts) { const d = new Date(ts); if (d.getHours() < 3) d.setDate(d.getDate() - 1); return UKP.util.iso(d); }, jamBelajar() { const j = new Date().getHours(); return j < 3 ? j + 24 : j; }`. Lalu pakai `const lelah = U.jamBelajar() >= 21;` (learn.js:138, views-home.js:105), `U.hariDari(st.terakhir) === hariIni` (learn.js:120), `U.hariDari(j.pada)` (views-alat.js:124), dan `const tgl = new Date(U.hariIni() + 'T12:00:00')` untuk tenggat. Hapus juga kondisi redundan Maret 31/April 30 di :107.
+[P3] Dek kartu per kelompok tidak pernah memberi kartu baru; fallback 'acak' mengubah jadwal SRS kartu yang belum jatuh tempo
+   lokasi: js/learn.js:121 (S.baru mengambil 10 kartu baru lintas kelompok, lalu baru difilter kode); js/learn.js:120 (kuota dihitung dari `reps === 1`, sehingga kartu baru yang dinilai dua kali keluar dari kuota); js/views-belajar.js:184 dan :193 (fallback U.ambil 15 / '10 kartu acak' dinilai dengan S.nilai)
+   fix: `S.baru = function (tingkat, n, kode) { …; return K.semuaKartu(tingkat).filter(k => (!kode || k.kode === kode) && !(s.kartu[k.id] && s.kartu[k.id].reps)).slice(0, sisa); }`. Di S.antrean: `let jt = S.jatuhTempo(tingkat); if (opsi.kode) jt = jt.filter(k => k.kode === opsi.kode); const baru = S.baru(tingkat, opsi.baru == null ? 10 : opsi.baru, opsi.kode);`. Hitung kuota dari `st.pertama` (tanggal pertama dinilai, diset di S.nilai bila reps===0). Mode 'acak' sebaiknya tidak memanggil S.nilai (latihan bebas) atau diberi label 'tidak mengubah jadwal'.
+[P3] Pintasan huruf A–D tidak memeriksa modifier: Ctrl/Cmd+C memilih opsi C, Ctrl+A memilih A
+   lokasi: js/soal.js:51-54
+   fix: Di awal handler: `if (e.ctrlKey || e.metaKey || e.altKey) return;`. Untuk ulas simulasi (views-simulasi.js:173), tambahkan juga `terkunci`, misalnya opsi `{ hanyaBaca: true }` yang langsung mengunci, agar tombol huruf tidak mengubah radio yang dinonaktifkan.
+[P3] Kompatibilitas: opsi terpilih hanya terlihat lewat :has(); <dialog>.showModal dan replaceChildren tanpa fallback
+   lokasi: css/app.css:305-308 (input disembunyikan opacity 0; status terpilih & fokus hanya `label:has(input:checked/:focus-visible)`); js/soal.js:21; js/core.js:166 (showModal), js/core.js:6 (`rc.apply`, sedangkan replaceChildren baru ada di Safari 14)
+   fix: Tandai lewat JS: di onchange `Object.values(labels).forEach(l => l.toggleAttribute('data-dipilih', l === labels[k]))` dan saat render awal untuk jawabanAwal. CSS: `.opsi label[data-dipilih] { … }` serta `.opsi input:focus-visible + kbd { outline: … }`. Dialog: `if (typeof dlg.showModal !== 'function') { dlg.setAttribute('open', ''); dlg.close = v => { dlg.returnValue = v || ''; dlg.removeAttribute('open'); dlg.dispatchEvent(new Event('close')); }; } else dlg.showModal();`. core.js:6: `P.replaceChildren = function (...c) { if (rc) return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); };`.
+[P3] Dialog (Tutor, Cari, Kirim) dan TTS tetap aktif setelah pindah rute
+   lokasi: js/core.js:194-199 (render tidak menutup dialog/TTS); js/core.js:155-167
+   fix: Di render() sebelum unmount: `document.querySelectorAll('dialog[open]').forEach(d => d.close('navigasi')); try { speechSynthesis.cancel(); } catch (e) {}`. Gunakan juga id unik per dialog (`const jid = UKP.util.id('dlg')`) agar aria-labelledby tidak menunjuk elemen ganda saat dialog bertumpuk.
+[P3] Deep link tidak konsisten: href sidebar/bottom-nav memakai nama view, router memakai TOKEN; params tidak ada di URL
+   lokasi: js/app.js:76, :77, :79, :92 (`href: '#' + v`); js/core.js:179-180, :188, :211-218
+   fix: Ekspor `UKP.href = (view, params) => '#' + (TOKEN[view] || view) + (params && Object.keys(params).length ? '?' + new URLSearchParams(params) : '')` dan pakai di app.js serta UKP.link. Di mulaiDariHash parse `?…` menjadi params, dan terima juga nama view mentah (`DARI_TOKEN[tok] || (UKP.views[tok] && tok)`).
+[P3] Layar ujian: keluar tanpa konfirmasi, waktu soal terakhir tidak dicatat, teks sisa waktu salah untuk mode tanpa waktu
+   lokasi: js/views-simulasi.js:136 (unmount tanpa catatWaktu/flush; spesifikasi §6.4 meminta dialog 'Lanjutkan / Simpan dan keluar'); js/views-simulasi.js:34 (pra-ujian selalu menulis 'sisa waktu ± N menit (waktu tetap berjalan)')
+   fix: unmount: `() => { catatWaktu(); UKP.store.flush && UKP.store.flush(); clearInterval(timer); … }`. Teks pra-ujian: `a.tanpaWaktu ? 'tanpa batas waktu' : 'sisa waktu ± ' + sisa + ' menit (waktu tetap berjalan)'`. Untuk konfirmasi keluar, sisipkan pushState penjaga di layarUjian lalu tampilkan UKP.konfirmasi pada popstate pertama.
+[P3] Teks UI menjanjikan kartu otomatis yang tidak dibuat
+   lokasi: js/views-simulasi.js:170 ('Soal yang keliru sudah masuk … dek kartu otomatis'); js/soal.js:66 ('kartu perubahan ditambahkan ke dek Anda'); js/learn.js:31 (konteks 'simulasi' tidak membuat kartu; kartu otomatis bertipe 'definisi' dengan dekTambahan: [])
+   fix: Ubah teks ulas menjadi 'Soal yang keliru sudah masuk Buku Kesalahan.' dan tambahkan tombol 'Tambah yang salah ke kartu' (`salahIds.forEach(id => UKP.belajar.kartuOtomatisDariSoal(K.soal(id)))`). Di kartuOtomatisDariSoal: `dekTambahan: (soal.jebakanOpsi || {})[opsi] === 'angka-usang' ? ['perubahan-2025-2026'] : []` (teruskan opsiDipilih), dan tampilkan teks umpan hanya bila konteks bukan simulasi.
+[P3] Latih mode tempo: setInterval tanpa unmount, bisa menumpuk antar-latihan
+   lokasi: js/views-belajar.js:118, :130-131 (view tidak mengembalikan {node, unmount}; interval baru berhenti sendiri bila #tempo tidak ada)
+   fix: Angkat `let timer = null` ke scope view dan kembalikan `return { node: page, unmount: () => clearInterval(timer) };` (juga untuk jalur params.mulai). Pola yang sama berlaku untuk debounce kalkulator (views-alat.js:22, :41).
+[P3] Detail logika minor: penguasaan topik belum disentuh = 5, tren UKP mencampur tingkat, rangkaian ikut menghitung CUTI
+   lokasi: js/learn.js:61 (tempo 0,5 bila n=0 → skor 5); js/views-simulasi.js:160 (tren format UKP tanpa filter tingkat); js/learn.js:127 (CUTI/IZIN menambah rangkaian, sehingga 'Lewati hari ini' ikut mengejar lencana '7 Hari Hadir'); js/views-alat.js:124 (laporan 'hari hadir' menghitung CUTI)
+   fix: `const tempo = st.n ? U.clamp(1 - Math.max(0, st.tempo - 150) / 150, 0, 1) : 0;`. Tren: tambahkan `&& x.tingkat === r.tingkat`. Rangkaian: lewati tanpa menambah, misalnya `while (s.hadir[t]) { if (s.hadir[t].status === 'HADIR') n++; t = U.tambahHari(t, -1); }`. Laporan: `filter(d => … && s.hadir[d].status === 'HADIR')`.

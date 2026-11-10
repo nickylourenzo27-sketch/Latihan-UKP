@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<!--ARTIFACT-START-->
+<title>Pelatih UKP</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Pelatih harian untuk Uji Kompetensi Perpajakan (UKP) tingkat A, B, dan C: materi per kisi-kisi resmi, latihan soal berpembahasan, kartu hafalan, studi kasus, simulasi CAT, kalkulator pajak, dan rencana belajar.">
+<meta name="theme-color" content="#F3F5F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1512" media="(prefers-color-scheme: dark)">
+<!-- PWA: manifest + service worker (sw.js, didaftarkan js/app.js) agar bisa dipakai offline; ikon dari icons/buat-ikon.js -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="application-name" content="Pelatih UKP">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="UKP">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3CclipPath id='sudut'%3E%3Crect width='512' height='512' rx='112'/%3E%3C/clipPath%3E%3Crect width='512' height='512' rx='112' fill='%230E5A47'/%3E%3Cg clip-path='url(%23sudut)'%3E%3Cpath d='M0 118H512' stroke='%230A4536' stroke-width='6'/%3E%3Cpath d='M0 418H512' stroke='%230A4536' stroke-width='6'/%3E%3C/g%3E%3CclipPath id='pita'%3E%3Crect x='100' y='206' width='312' height='100'/%3E%3C/clipPath%3E%3Crect x='94' y='168' width='324' height='176' rx='18' fill='none' stroke='%23F3F5F4' stroke-width='20'/%3E%3Cg clip-path='url(%23pita)' fill='none' stroke='%23F3F5F4' stroke-width='24' stroke-linejoin='miter'%3E%3Cpath d='M132 196V266a28 28 0 0 0 56 0V196'/%3E%3Cpath d='M228 196V316M300 196L238 262M252 246L302 316'/%3E%3Cpath d='M324 316V218H354a26 26 0 0 1 0 52H324'/%3E%3C/g%3E%3Crect x='112' y='372' width='88' height='12' rx='3' fill='%23F5C542'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/app.css">
+<!--ARTIFACT-HEAD-END-->
+</head>
+<body>
+<!--ARTIFACT-BODY-START-->
+<a class="skip" href="#main">Lewati ke konten</a>
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="Navigasi utama"></nav>
+  <div class="kolom-utama">
+    <header class="topbar" id="topbar"></header>
+    <main id="main" tabindex="-1" aria-live="off"><div class="page muat" aria-busy="true"><p class="eyebrow">Memuat materi…</p><span class="skeleton" aria-hidden="true"></span><span class="skeleton" aria-hidden="true"></span><span class="skeleton" aria-hidden="true"></span></div></main>
+  </div>
+</div>
+<nav class="bottomnav" id="bottomnav" aria-label="Navigasi utama (ponsel)"></nav>
+<div id="live" class="visually-hidden" role="status" aria-live="polite"></div>
+<div id="live-assertive" role="alert" class="visually-hidden"></div>
+<script>
+/* Penjaga muat (boot guard): menulis progres modul di layar "Memuat materi…", menangkap berkas/skrip yang gagal dimuat, dan — bila
+   aplikasi belum siap (koneksi lambat, berkas gagal diunduh, cache lama) — menampilkan panel pemulihan: muat ulang, bersihkan cache,
+   salin laporan. Progres belajar (localStorage) tidak pernah disentuh. js/app.js memanggil window.__ukpMuat.siap() setelah render pertama. */
+(function () {
+  var W = window, D = document, TOTAL = 27, mulai = Date.now(), terakhirNaik = mulai, nTerakhir = 0, galat = [], siap = false, panel = false, detak;
+  function skrip() { try { return performance.getEntriesByType('resource').filter(function (r) { return r.initiatorType === 'script'; }).length; } catch (e) { return 0; } }
+  function nama(u) { return String(u || '').replace(/[?#].*$/, '').split('/').slice(-2).join('/'); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function catat(p) { if (galat.length < 12 && galat.indexOf(p) < 0) galat.push(p); }
+  W.addEventListener('error', function (e) {
+    if (siap) return;
+    var t = e && e.target;
+    if (t && t !== W && t.tagName && (t.tagName === 'SCRIPT' || t.tagName === 'LINK')) { catat('Berkas gagal dimuat: ' + nama(t.src || t.href)); if (t.tagName === 'SCRIPT') tampil(); }
+    else if (e && e.message) catat('Galat skrip: ' + e.message + (e.filename ? ' @ ' + nama(e.filename) + ':' + e.lineno : ''));
+  }, true);
+  W.addEventListener('unhandledrejection', function (e) { if (!siap) { var r = e && e.reason; catat('Galat: ' + (r && r.message ? r.message : r)); } });
+  function laporan() {
+    var sw = '?'; try { sw = navigator.serviceWorker && navigator.serviceWorker.controller ? 'aktif' : 'tidak ada'; } catch (e) {}
+    return ['Pelatih UKP — laporan muat halaman', 'Waktu sejak mulai: ' + Math.round((Date.now() - mulai) / 1000) + ' detik', 'Modul termuat: ' + skrip() + '/' + TOTAL,
+      'Alamat: ' + location.href.replace(/[?#].*$/, ''), 'Peramban: ' + navigator.userAgent, 'Online: ' + navigator.onLine, 'Service worker: ' + sw,
+      'Inti aplikasi (UKP): ' + (W.UKP ? 'termuat' : 'belum'), 'Layar: ' + W.innerWidth + '×' + W.innerHeight]
+      .concat(galat.length ? ['Galat:'].concat(galat.map(function (g) { return '- ' + g; })) : ['Galat: tidak ada']).join('\n');
+  }
+  function bersihkan() {
+    var tugas = [];
+    try { if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) tugas.push(navigator.serviceWorker.getRegistrations().then(function (rs) { return Promise.all(rs.map(function (r) { return r.unregister(); })); })); } catch (e) {}
+    try { if (W.caches && caches.keys) tugas.push(caches.keys().then(function (ks) { return Promise.all(ks.map(function (k) { return caches.delete(k); })); })); } catch (e) {}
+    Promise.all(tugas).catch(function () {}).then(function () { location.reload(); });
+  }
+  function tombol(aksi, label, utama) {
+    return '<button type="button" data-aksi="' + aksi + '" style="min-height:44px;padding:0 16px;border-radius:6px;font:inherit;font-weight:600;cursor:pointer;' +
+      (utama ? 'border:0;background:#0E5A47;color:#fff' : 'border:1px solid currentColor;background:transparent;color:inherit') + '">' + label + '</button>';
+  }
+  function tampil() {
+    if (panel || siap) return; panel = true;
+    var main = D.getElementById('main'); if (!main) return;
+    var dtk = Math.round((Date.now() - mulai) / 1000), gagal = galat.length;
+    main.innerHTML = '<div id="ukp-pemulihan" style="max-width:36rem;margin:10vh auto;padding:0 20px;font:16px/1.55 system-ui,-apple-system,\'Segoe UI\',sans-serif">' +
+      '<p style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin:0 0 6px">Pelatih UKP</p>' +
+      '<h1 style="font-size:1.35rem;line-height:1.3;margin:0 0 8px">' + (gagal ? 'Ada berkas yang gagal dimuat' : 'Halaman belum siap setelah ' + dtk + ' detik') + '</h1>' +
+      '<p style="margin:0 0 14px">' + (gagal ? 'Sebagian materi tidak terunduh. ' : 'Biasanya karena koneksi lambat atau cache lama di peramban. ') +
+      'Coba muat ulang; bila masih gagal, bersihkan cache. Progres belajar di perangkat ini tidak terhapus.</p>' +
+      (gagal ? '<ul style="margin:0 0 14px;padding-left:20px;font-size:14px">' + galat.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul>' : '') +
+      '<div style="display:flex;flex-wrap:wrap;gap:8px">' + tombol('ulang', 'Muat ulang', true) + tombol('bersih', 'Bersihkan cache &amp; muat ulang') + tombol('salin', 'Salin laporan') + '</div>' +
+      '<p style="font-size:13px;opacity:.75;margin:14px 0 0">Masih gagal? Kirimkan laporan di atas. Versi offline (berkas tunggal, Pengaturan › Versi offline) bisa dibuka tanpa internet.</p>' +
+      '<pre id="ukp-laporan" style="white-space:pre-wrap;font-size:12px;opacity:.8;margin:10px 0 0" hidden></pre></div>';
+    main.addEventListener('click', function (e) {
+      var b = e.target && e.target.closest ? e.target.closest('button[data-aksi]') : null; if (!b) return;
+      var a = b.getAttribute('data-aksi');
+      if (a === 'ulang') location.reload();
+      else if (a === 'bersih') bersihkan();
+      else if (a === 'salin') { var t = laporan(), pre = D.getElementById('ukp-laporan'); if (pre) { pre.textContent = t; pre.hidden = false; } try { navigator.clipboard.writeText(t).then(function () { b.textContent = 'Tersalin'; }, function () {}); } catch (x) {} }
+    });
+  }
+  W.__ukpMuat = { siap: function () { siap = true; clearInterval(detak); }, galat: function () { return galat.slice(); }, laporan: laporan, tampil: tampil };
+  detak = setInterval(function () {
+    if (siap) return;
+    if (!D.querySelector('#main .muat') && !D.getElementById('ukp-pemulihan')) { W.__ukpMuat.siap(); return; }
+    var n = Math.min(skrip(), TOTAL), kini = Date.now();
+    if (n !== nTerakhir) { nTerakhir = n; terakhirNaik = kini; }
+    var el = D.querySelector('#main .muat .eyebrow'); if (el && n > 0 && !W.UKP_OFFLINE) el.textContent = 'Memuat materi… ' + n + '/' + TOTAL + ' modul';
+    // macet: tidak ada modul baru selama 20 detik (dan sudah ≥ 25 detik sejak mulai) → panel pemulihan; render aplikasi menggantikannya bila akhirnya siap
+    if (kini - mulai > 25000 && kini - terakhirNaik > 20000) tampil();
+  }, 500);
+})();
+</script>
+<script src="js/core.js"></script>
+<script src="js/akses.js"></script>
+<script src="js/data/ref.js"></script>
+<script src="js/data/formulir.js"></script>
+<script src="js/data/cakupan.js"></script>
+<script src="js/data/mu-A1.js"></script>
+<script src="js/data/mu-A2.js"></script>
+<script src="js/data/mu-A3.js"></script>
+<script src="js/data/mu-A4.js"></script>
+<script src="js/data/mu-A5.js"></script>
+<script src="js/data/mu-B6.js"></script>
+<script src="js/data/mu-B7.js"></script>
+<script src="js/data/mu-B8.js"></script>
+<script src="js/data/mu-C9.js"></script>
+<script src="js/data/mu-C10.js"></script>
+<script src="js/data/mu-E.js"></script>
+<script src="js/kalkulator.js"></script>
+<script src="js/viz.js"></script>
+<script src="js/learn.js"></script>
+<script src="js/tim.js"></script>
+<script src="js/soal.js"></script>
+<script src="js/views-home.js"></script>
+<script src="js/views-belajar.js"></script>
+<script src="js/views-simulasi.js"></script>
+<script src="js/views-alat.js"></script>
+<script src="js/views-tim.js"></script>
+<script src="js/app.js"></script>
+<!--ARTIFACT-BODY-END-->
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Dipakai otomatis oleh BuildKit untuk "docker build -f deploy/Dockerfile ." (berkas <Dockerfile>.dockerignore di samping Dockerfile).
+# Bila builder Anda lama (tanpa BuildKit), salin berkas ini ke akar proyek sebagai .dockerignore.
+# Strategi: abaikan semua, lalu izinkan hanya yang disalin Dockerfile.
+**
+!dist/site/**
+!deploy/server.js
+!deploy/lib-pengguna.js
+!deploy/lib-hasil.js
+!deploy/kelola-pengguna.js
+# jangan pernah ikut: data pengguna/sesi, rahasia
+deploy/data
+**/.env
+**/*.pem
+**/*.key

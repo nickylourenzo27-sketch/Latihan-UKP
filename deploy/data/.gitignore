@@ -1,0 +1,3 @@
+# Data rahasia (hash sandi, sesi) — jangan pernah di-commit/diunggah.
+*
+!.gitignore

@@ -1,0 +1,29 @@
+/* Uji statis Dasbor tim (#tim, #tim/<id>): rute, pemuatan skrip, navigasi — jalankan: node --test test/ */
+'use strict';
+const { describe, it } = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const baca = f => fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
+
+describe('dasbor tim: rute dan pemuatan', () => {
+  it('router mengenal token #tim dan menaruh id anggota di hash', () => {
+    const core = baca('js/core.js');
+    assert.match(core.match(/const TOKEN = \{([^}]*)\}/)[1], /\btim: 'tim'/);
+    assert.match(core.match(/const PARAM_HASH = \{([^}]*)\}/)[1], /\btim: 'anggota'/);
+  });
+  it('view tim didefinisikan dan punya cadangan tanpa UKP.tim', () => {
+    const v = baca('js/views-tim.js');
+    assert.match(v, /UKP\.views\.tim = function/);
+    assert.match(v, /ukp\.tim\.manual/);
+    assert.match(v, /UKP\.tim && typeof UKP\.tim === 'object' \? UKP\.tim : cadangan/);
+  });
+  it('index.html memuat views-tim.js setelah views-alat.js dan sebelum app.js', () => {
+    const idx = baca('index.html');
+    const a = idx.indexOf('src="js/views-alat.js"'), t = idx.indexOf('src="js/views-tim.js"'), b = idx.indexOf('src="js/app.js"');
+    assert.ok(a > 0 && t > a && b > t);
+  });
+  it('navigasi menampilkan "Dasbor tim" di grup Ujian', () => {
+    assert.match(baca('js/app.js'), /label: 'Ujian', item: \[[^\]]*\]*[^\n]*\['tim', 'Dasbor tim', 'tim'\]/);
+  });
+});

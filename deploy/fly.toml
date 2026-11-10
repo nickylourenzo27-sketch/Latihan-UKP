@@ -1,0 +1,39 @@
+# Contoh konfigurasi Fly.io. Jalankan dari AKAR proyek (setelah dist/site dibangun):
+#   fly launch --no-deploy --copy-config --config deploy/fly.toml   (ganti nama app di bawah bila sudah dipakai)
+#   fly volumes create ukp_data --size 1 --region sin --config deploy/fly.toml
+#   fly secrets set ADMIN_USER=admin ADMIN_PASS='ganti-sandi-ini' RAHASIA_SESI="$(openssl rand -base64 48)" --config deploy/fly.toml
+#   fly deploy . --config deploy/fly.toml --dockerfile deploy/Dockerfile
+app = "pelatih-ukp-tim"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8080"
+  TRUST_PROXY = "1"
+  COOKIE_SECURE = "1"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    path = "/sehat"
+    timeout = "5s"
+
+# Volume Fly dipasang milik root: image mulai sebagai root, menjadikan folder data milik "node", lalu server melepas hak root
+# (JALANKAN_SEBAGAI=node di Dockerfile). "fly ssh console -C 'node deploy/kelola-pengguna.js ...'" aman dijalankan sebagai root.
+[[mounts]]
+  source = "ukp_data"
+  destination = "/app/deploy/data"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

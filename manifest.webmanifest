@@ -1,0 +1,27 @@
+{
+  "id": "./",
+  "name": "Pelatih UKP",
+  "short_name": "UKP",
+  "description": "Pelatih harian Uji Kompetensi Perpajakan (UKP) tingkat A, B, dan C: materi, latihan soal berpembahasan, kartu hafalan, studi kasus, simulasi CAT, dan kalkulator pajak. Tetap bisa dipakai tanpa internet setelah dibuka sekali.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F3F5F4",
+  "theme_color": "#0F1512",
+  "categories": ["education"],
+  "icons": [
+    { "src": "icons/ikon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/ikon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/ikon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/ikon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/ikon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Latih soal", "short_name": "Latih", "url": "./#latih", "icons": [{ "src": "icons/ikon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Ulang kartu", "short_name": "Ulang", "url": "./#ulang", "icons": [{ "src": "icons/ikon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Kalkulator pajak", "short_name": "Kalkulator", "url": "./#kalkulator", "icons": [{ "src": "icons/ikon-192.png", "sizes": "192x192", "type": "image/png" }] }
+  ]
+}

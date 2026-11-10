@@ -1,0 +1,40 @@
+# Render Blueprint — Pelatih UKP (layanan web gratis).
+# Render membaca Blueprint dari berkas render.yaml di AKAR repo: salin berkas ini ke akar repo (lihat README-DEPLOY.md bagian A),
+# atau isi formulir "New Web Service" secara manual dengan nilai yang sama.
+services:
+  - type: web
+    name: pelatih-ukp
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: node tools/build-artifact.js && mkdir -p dist/site && cp -r index.html css js sw.js manifest.webmanifest icons dist/site/
+    startCommand: node deploy/server.js
+    healthCheckPath: /sehat
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: TRUST_PROXY        # Render meneruskan IP asli lewat X-Forwarded-For
+        value: "1"
+      - key: COOKIE_SECURE      # Render selalu HTTPS
+        value: "1"
+      - key: RAHASIA_SESI       # sesi admin dan anggota tetap berlaku walau layanan tidur/restart (disk free tier tidak permanen); akun anggota mode masuk nama dibuat ulang dari sesi
+        generateValue: true
+      - key: MASUK_NAMA         # 1 = anggota masuk hanya dengan mengetik nama (tanpa sandi); admin tetap bersandi. Hapus/isi 0 untuk mode sandi.
+        value: "1"
+      - key: DAFTAR_NAMA        # opsional: nama yang boleh masuk, dipisah koma/baris (mis. "Rina, Budi, Citra"); tampil sebagai pilihan
+        sync: false
+      - key: ADMIN_USER         # WAJIB dalam mode masuk nama: akun pemimpin tim; selalu admin Dasbor tim (melihat hasil semua anggota)
+        sync: false
+      - key: ADMIN_PASS         # sandi admin, min. 8 karakter (disarankan 12+). Tanpa admin bersandi server menolak berjalan bila MASUK_NAMA=1
+        sync: false
+      - key: PENGGUNA_TIM       # opsional: akun BERSANDI "nama:sandi" atau "nama:scrypt$...", SATU AKUN PER BARIS; akhiran ":admin" = admin Dasbor tim
+        sync: false
+      - key: KONTAK_ADMIN       # opsional: email/URL untuk tautan "Hubungi admin"
+        sync: false
+    # Disk permanen (opsional, hanya paket berbayar). Bila diaktifkan, pengguna dari Shell (kelola-pengguna.js) dan ringkasan Dasbor tim
+    # (hasil.json) ikut tersimpan. Tanpa disk, hasil.json hilang saat layanan tidur; aplikasi anggota mengirim ulang saat dibuka lagi:
+    # disk:
+    #   name: ukp-data
+    #   mountPath: /opt/render/project/src/deploy/data
+    #   sizeGB: 1
