@@ -1,0 +1,28 @@
+# Pemeriksa jalur Room tim: menjalankan js/ruang.js yang sama dengan website terhadap jalur publik sungguhan.
+# Tidak ada data pengguna yang dikirim (room uji sekali pakai, terenkripsi, ditutup di akhir).
+name: Cek jalur Room tim
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, cek-jalur]
+    paths:
+      - 'js/ruang.js'
+      - 'tools/cek-relai.js'
+      - '.github/workflows/cek-jalur-room.yml'
+permissions:
+  contents: read
+concurrency:
+  group: cek-jalur-room-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  cek:
+    name: Uji jalur publik
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Uji jalur dengan js/ruang.js
+        run: node tools/cek-relai.js --json
