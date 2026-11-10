@@ -43,7 +43,7 @@ Kode room terdiri dari 14 karakter tanpa huruf yang mirip (tanpa 0/O, 1/I/L), di
 1. **Beranda → blok Tim → "Buat room tim".** Bila tim lokal sudah pernah diisi (`Nicky, Mia, Novia, Jessie, Melva, Alfi`), daftar itu langsung terpakai.
 2. Dialog **Buat room tim**: *Nama room* (bawaan "Tim UKP B"), *Anggota* (chip nama, bisa ditambah atau dihapus, maks. 12), *Tingkat* (B). Tombol **Buat room**.
 3. Layar **Room siap**: kode besar, tombol **Bagikan ke WhatsApp** (berbagi bawaan HP, atau `wa.me` di laptop) dan **Salin tautan**. Teks undangan:
-   > Room latihan UKP "Tim UKP B". Buka tautan ini di HP, lalu ketuk nama Anda: https://nickylourenzo27-sketch.github.io/Latihan-UKP/#room/K7QM-3XRTA-9HWPE
+   > Room MABAR UKP "Tim UKP B". Buka tautan ini di HP, lalu ketuk nama Anda: https://nickylourenzo27-sketch.github.io/Latihan-UKP/#room/K7QM-3XRTA-9HWPE
 
 ### 4.2 Lobi room (`#room`)
 - Kepala: **Tim UKP B** · Tingkat B · status sambungan ("Tersambung" / "Menyambung ulang…").

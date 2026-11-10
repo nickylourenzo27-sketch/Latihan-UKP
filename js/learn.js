@@ -87,6 +87,46 @@
     }
     return false;
   };
+  // ---------- v9.0 S2: soal hari ini (Beranda dan halaman sambutan) ----------
+  // Layak tampil di kartu kecil: pilihan ganda biasa empat opsi A–D (tiap ≤ 100 karakter), stem ≤ 240 karakter, tanpa kutipan
+  // pasal panjang, tanpa narasi studi kasus (kasusId) atau rujukan formulir; kunci salah satu opsi; untuk tingkat itu.
+  L.SOAL_HARI = { maksStem: 240, maksOpsi: 100 };
+  L.soalHariLayak = function (soal, tingkat) {
+    if (!soal || typeof soal !== 'object' || typeof soal.id !== 'string' || typeof soal.stem !== 'string') return false;
+    if (soal.kutipan || soal.kasusId || soal.formulirRef) return false;
+    if (tingkat && !(Array.isArray(soal.tingkat) && soal.tingkat.includes(tingkat))) return false;
+    const o = soal.opsi; if (!o || typeof o !== 'object' || Array.isArray(o)) return false;
+    const kunciOpsi = Object.keys(o); if (kunciOpsi.join('') !== 'ABCD') return false;
+    if (!kunciOpsi.every(k => typeof o[k] === 'string' && o[k].trim() && o[k].length <= L.SOAL_HARI.maksOpsi)) return false;
+    if (!soal.stem.trim() || soal.stem.length > L.SOAL_HARI.maksStem) return false;
+    return kunciOpsi.includes(soal.kunci);
+  };
+  // pembantu murni: (daftar soal, tanggal 'YYYY-MM-DD', tingkat) → satu soal atau null. Deterministik: bank layak diurutkan
+  // menurut id, lalu indeks = (nomor hari × langkah + geser tingkat) mod n, sehingga hari berurutan selalu berganti soal
+  // (bila bank > 1) dan tiap tingkat punya urutan sendiri. V6: langkah = bilangan koprima dengan n terdekat ke 0,618 n
+  // (dulu 7919 mod n, yang untuk n = 40 bernilai 39 ≡ −1 sehingga hari berurutan memilih soal bertetangga di topik yang sama);
+  // koprima menjamin seluruh bank terjangkau sebelum berulang.
+  const fpb = (a, b) => { while (b) [a, b] = [b, a % b]; return a; };
+  L.langkahSoalHari = function (n) { if (!(n > 1)) return 1; let k = Math.max(1, Math.round(n * 0.618)); while (fpb(k, n) !== 1) k++; return k % n || 1; };
+  // simpanan (opsional) = s.soalHari { tgl, id }: bila tanggalnya hari ini dan soalnya masih layak di bank, soal itu yang dipakai,
+  // sehingga soal yang sudah dijawab tidak tergantikan saat bank berubah (pembaruan data, ganti tingkat) dan tidak bisa dijawab dua kali.
+  // V6: entri log jawaban yang berasal dari kartu Soal hari ini (soal dan hari belajar sama dengan s.soalHari). Dipakai Beranda agar
+  // kartu "Lanjutkan belajar" tidak beralih ke topik acak soal hari ini; statistik dan penguasaan tetap menghitungnya.
+  L.dariSoalHari = function (j, soalHari) {
+    if (!j || !soalHari || typeof soalHari !== 'object' || typeof soalHari.id !== 'string' || j.soal !== soalHari.id) return false;
+    return typeof j.pada === 'number' && UKP.util.hariDari(j.pada) === soalHari.tgl;
+  };
+  L.pilihSoalHari = function (daftar, tgl, tingkat, simpanan) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(tgl || '')); if (!m || !Array.isArray(daftar)) return null;
+    const bank = daftar.filter(x => L.soalHariLayak(x, tingkat)).sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+    if (!bank.length) return null;
+    if (simpanan && typeof simpanan === 'object' && simpanan.tgl === tgl && typeof simpanan.id === 'string') { const lama = bank.find(x => x.id === simpanan.id); if (lama) return lama; }
+    const hari = Math.round(Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000);
+    let geser = 0; for (const c of String(tingkat || '')) geser = (geser * 31 + c.charCodeAt(0)) % 9973;
+    const n = bank.length; const langkah = L.langkahSoalHari(n);
+    const i = ((((hari % n) * langkah) % n + geser) % n + n) % n;
+    return bank[i];
+  };
   // ---------- v7.9 latihan bersama: satu layar, beberapa orang (jawaban per nama di perangkat pemimpin) ----------
   // s.bersama = { aktif, peserta: [nama…] }; s.jawabanBersama = [{ p, s, kd, t, o, b, d, w, m, k, sesi }] terlama → terbaru
   // (v8.0: k = keyakinan|null, kd = kode kelompok; entri v7.9 masih menyimpan kode di k, lihat kodeEntri).

@@ -1,38 +1,48 @@
-/* Pelatih UKP — boot: shell, navigasi, topbar, lembar "Lainnya", pintasan, kapabilitas runtime */
+/* MABAR UKP — boot: kerangka (kop atas, panel/lembar "Lainnya", bar bawah), pintasan, kapabilitas runtime */
 (function (root) {
   const UKP = root.UKP; const h = UKP.h; const U = UKP.util;
 
-  const NAV_UTAMA = [
-    { view: 'beranda', label: 'Hari Ini', ikon: 'home', alias: ['sesi'] },
-    { view: 'tingkat', label: 'Belajar', ikon: 'book', alias: ['belajar', 'kelompok', 'topik', 'profesi', 'lembar', 'cakupan'] },
-    { view: 'latih', label: 'Latih', ikon: 'pen' },
-    { view: 'ulang', label: 'Ulang', ikon: 'repeat' },
-  ];
-  // butir grup: [view, label, ikon, alias?, params?, kunciNav?] — kunciNav (bawaan = view) membedakan tautan ke view yang sama
-  // dengan params lain (mis. "Latihan bersama" → latih { atur: 1 }) agar tidak ikut ditandai aktif atau tersaring dari "Lainnya".
-  // v8.2 (audit T3/T11): grup Tim paling atas; Dasbor tim pindah ke sini dan tetap memakai penanda tandaiTim/aturNavTim.
-  const GRUP_SIDEBAR = [
-    { label: 'Tim', item: [['room', 'Room tim', 'tim'], ['latih', 'Latihan bersama', 'play', null, { atur: 1, bersama: 1 }, 'latih-bersama'], ['ujiantim', 'Ujian tim', 'sim'], ['tim', 'Dasbor tim', 'chart']] },
+  // v9.0 S1: kaki situs (D3 butir 7) untuk halaman berpita (.page.selebar); pengganti catatan kaki sidebar lama
+  UKP.c = UKP.c || {};
+  UKP.c.kakiSitus = () => h('footer', { class: 'kaki-situs' }, h('div', { class: 'wadah-situs' },
+    h('span', { class: 'kaki-merek' }, 'MABAR UKP'),
+    h('p', { class: 'kaki-teks' }, 'Sarana latihan mandiri, bukan situs resmi penyelenggara Uji Kompetensi Perpajakan. Bukan nasihat pajak.')));
+
+  // ---------- v9.0 S1: kerangka satu kop atas (tanpa menu samping) ----------
+  // butir navigasi: [view, label, ikon, alias?, params?, kunciNav?] — kunciNav (bawaan = view) membedakan tautan ke view yang sama
+  // dengan params lain (mis. "Latihan bersama" → latih { atur: 1, bersama: 1 }, kunci 'latih-bersama' = alias Mode mabar).
+  const ALIAS_MATERI = ['belajar', 'kelompok', 'topik', 'lembar', 'cakupan'];
+  const ALIAS_MABAR = ['ujiantim', 'tim', 'latih-bersama'];
+  // kop ≥ 1024: Simulasi · Mode mabar · Latihan · Materi · Kalkulator · [Lainnya]
+  const KOP_NAV = [['simulasi', 'Simulasi', 'sim'], ['room', 'Mode mabar', 'tim', ALIAS_MABAR], ['latih', 'Latihan', 'pen'], ['tingkat', 'Materi', 'book', ALIAS_MATERI], ['kalkulator', 'Kalkulator', 'calc']];
+  // bar bawah < 1024: Beranda · Latih · Mabar · Materi · [Lainnya]
+  const TAB_BAWAH = [['beranda', 'Beranda', 'home', ['sesi']], ['latih', 'Latih', 'pen'], ['room', 'Mabar', 'tim', ALIAS_MABAR], ['tingkat', 'Materi', 'book', ALIAS_MATERI]];
+  // panel "Lainnya" (≥ 1024) dan lembar "Lainnya" (< 1024): kelompok yang sama; lembar HP menambah Simulasi dan Kalkulator
+  // (keduanya punya tautan kop di desktop) dan tidak mengulang tujuan yang sudah menjadi tab bar bawah
+  const GRUP_LAINNYA = [
     { label: 'Harian', item: [['beranda', 'Hari Ini', 'home', ['sesi']], ['rencana', 'Rencana', 'plan'], ['kemajuan', 'Kemajuan', 'chart']] },
-    { label: 'Materi', item: [['tingkat', 'Belajar A/B/C', 'book', ['belajar', 'kelompok', 'topik', 'lembar', 'cakupan']], ['latih', 'Latih soal', 'pen'], ['ulang', 'Ulang kartu', 'repeat'], ['kasus', 'Studi kasus', 'kasus'], ['simulasi', 'Simulasi ujian', 'sim'], ['strategi', 'Strategi PG', 'strategi']] },
-    { label: 'Alat', item: [['kalkulator', 'Kalkulator', 'calc'], ['referensi', 'Referensi', 'ref'], ['formulir', 'Peta formulir', 'formulir'], ['tutor', 'Tutor AI', 'chat']] },
+    { label: 'Berlatih', item: [['simulasi', 'Simulasi ujian', 'sim', null, null, null, 'hp'], ['ulang', 'Ulang kartu', 'repeat'], ['kasus', 'Studi kasus', 'kasus'], ['strategi', 'Strategi PG', 'strategi']] },
+    { label: 'Tim', item: [['latih', 'Latihan bersama', 'play', null, { atur: 1, bersama: 1 }, 'latih-bersama'], ['ujiantim', 'Ujian tim', 'sim'], ['tim', 'Dasbor tim', 'chart']] },
+    { label: 'Alat', item: [['kalkulator', 'Kalkulator', 'calc', null, null, null, 'hp'], ['referensi', 'Referensi', 'ref'], ['formulir', 'Peta formulir', 'formulir'], ['tutor', 'Tutor AI', 'chat']] },
     { label: 'Ujian', item: [['info-ujian', 'Info ujian', 'info'], ['profesi', 'Etika & Profesi', 'etika']] },
   ];
-  // lembar "Lainnya" (v7 P2-10): kelompok dan urutan sama dengan sidebar (Harian/Materi/Alat/Ujian), tanpa tujuan yang sudah
-  // punya tab di bar bawah; judul kecil per kelompok; Pengaturan satu baris di bawah garis
-  const DI_BAR_BAWAH = new Set(NAV_UTAMA.map(n => n.view));
+  const BUTIR_PENGATURAN = ['pengaturan', 'Pengaturan', 'settings'];
   const kunciNav = x => x[5] || x[0];
-  const GRUP_LAINNYA = GRUP_SIDEBAR.map(g => ({ label: g.label, item: g.item.filter(x => !DI_BAR_BAWAH.has(kunciNav(x))) })).filter(g => g.item.length);
-  const LAINNYA = [].concat(...GRUP_LAINNYA.map(g => g.item), [['pengaturan', 'Pengaturan', 'settings']]);
-  // view yang dicapai lewat "Lainnya" dan tidak punya tab sendiri di bar bawah → tombol Lainnya ditandai aktif
-  const ALIAS_LAINNYA = LAINNYA.filter(x => !x[4]).map(x => x[0]).filter(v => !NAV_UTAMA.some(n => n.view === v || (n.alias || []).includes(v)));
-  // item navigasi: ikon + label (+ lencana hitungan opsional). Lencana hidden sampai ada angka.
+  const DI_TAB = new Set(TAB_BAWAH.map(x => x[0]));
+  const grupPanel = () => GRUP_LAINNYA.map(g => ({ label: g.label, item: g.item.filter(x => x[6] !== 'hp') }));
+  const grupLembar = () => GRUP_LAINNYA.map(g => ({ label: g.label, item: g.item.filter(x => !DI_TAB.has(kunciNav(x))) })).filter(g => g.item.length);
+  // tombol Lainnya ditandai aktif bila halaman kini hanya bisa dicapai lewat Lainnya (bukan kop/tab, bukan Beranda)
+  const tercakup = (daftar, v) => daftar.some(x => kunciNav(x) === v || (x[3] || []).includes(v));
+  const viewLainnya = daftar => [].concat(...GRUP_LAINNYA.map(g => g.item), [BUTIR_PENGATURAN]).map(kunciNav)
+    .filter((v, i, a) => a.indexOf(v) === i && v !== 'beranda' && !tercakup(daftar, v));
+  const ALIAS_LAINNYA_KOP = viewLainnya(KOP_NAV);
+  const ALIAS_LAINNYA_TAB = viewLainnya(TAB_BAWAH);
   const navLink = (v, alias, ...isi) => h('a', { href: UKP.href(v), 'data-go': v, 'data-nav': v, 'data-alias': (alias || []).join(' ') }, ...isi);
-  // tautan grup sidebar: params (data-params) dan kunci navigasi tersendiri bila ada
+  // tautan butir: params (data-params) dan kunci navigasi tersendiri bila ada
   const navLinkGrup = ([v, , , alias, params, kunci], ...isi) => { const a = navLink(v, alias, ...isi); if (params) { a.setAttribute('href', UKP.href(v, params)); a.dataset.params = JSON.stringify(params); } if (kunci) a.dataset.nav = kunci; return a; };
   const lencana = id => h('span', { class: 'badge', id, hidden: true });
   const LABEL_NAV = Object.create(null);
-  [['beranda', 'Hari Ini']].concat(...GRUP_SIDEBAR.map(g => g.item), LAINNYA).forEach(([v, l, , , params]) => { if (!LABEL_NAV[v] && !params) LABEL_NAV[v] = l; });
+  [['beranda', 'Beranda'], ['room', 'Mode mabar'], ['tingkat', 'Materi']].concat(KOP_NAV, ...GRUP_LAINNYA.map(g => g.item), [BUTIR_PENGATURAN]).forEach(([v, l, , , params]) => { if (!LABEL_NAV[v] && !params) LABEL_NAV[v] = l; });
   // view tingkat puncak (punya tempat sendiri di navigasi); rute lain atau halaman berkop remah adalah rute anak → tombol Kembali tampil
   const PUNCAK = new Set(['beranda', 'mulai', 'tingkat', 'latih', 'ulang', 'rencana', 'kemajuan', 'kasus', 'simulasi', 'strategi', 'kalkulator', 'referensi', 'formulir', 'tutor', 'info-ujian', 'profesi', 'tim', 'pengaturan', 'sesi', 'room', 'ujiantim']);
 
@@ -45,37 +55,101 @@
     document.querySelectorAll('[data-nav-tim]').forEach(el => { el.hidden = !timTerlihat; });
   }
   UKP.timTerlihat = () => timTerlihat;
+  const lencanaButir = v => v === 'rencana' ? lencana('badge-rencana') : v === 'ulang' ? lencana('badge-ulang-sb') : null;
+
+  // ---- panel "Lainnya" di bawah kop (≥ 1024): bukan dialog; Escape, klik di luar, fokus keluar, atau pindah halaman menutupnya ----
+  let btnLainnya = null, panelLainnya = null;
+  function lainnyaTerbuka() { return !!(panelLainnya && !panelLainnya.hidden); }
+  function bukaPanelLainnya() {
+    if (!panelLainnya || lainnyaTerbuka()) return;
+    panelLainnya.hidden = false; btnLainnya.setAttribute('aria-expanded', 'true');
+    document.body.dataset.kopPanel = '';
+  }
+  function tutupLainnya(kembalikanFokus) {
+    if (!lainnyaTerbuka()) return;
+    const diDalam = panelLainnya.contains(document.activeElement);
+    panelLainnya.hidden = true; btnLainnya.setAttribute('aria-expanded', 'false');
+    delete document.body.dataset.kopPanel;
+    if (kembalikanFokus || (kembalikanFokus !== false && diDalam)) { try { btnLainnya.focus({ preventScroll: true }); } catch (e) {} }
+  }
+  UKP.tutupLainnya = () => tutupLainnya(false);
+  function bangunPanelLainnya() {
+    const id = 'kop-lainnya-panel';
+    btnLainnya = h('button', { type: 'button', class: 'kop-lainnya', id: 'btn-lainnya', 'aria-haspopup': 'true', 'aria-expanded': 'false', 'aria-controls': id, 'data-nav': 'lainnya', 'data-alias': ALIAS_LAINNYA_KOP.join(' '),
+      onclick: () => { if (lainnyaTerbuka()) tutupLainnya(true); else bukaPanelLainnya(); } }, h('span', { class: 'kop-nav-teks', 'data-teks': 'Lainnya' }, h('span', null, 'Lainnya')), UKP.icon('chevron-bawah', 'kop-chev', true));
+    const tautan = x => tandaiTim(x[0], navLinkGrup(x, UKP.icon(x[2]), h('span', { class: 'nav-teks' }, x[1]), lencanaButir(x[0])));
+    panelLainnya = h('div', { class: 'kop-panel', id, hidden: true },
+      h('div', { class: 'kop-panel-grid' }, grupPanel().map((g, i) => h('section', { class: 'kop-panel-grup', 'aria-labelledby': 'kop-lainnya-g' + i },
+        h('h2', { class: 'kop-panel-judul', id: 'kop-lainnya-g' + i }, g.label),
+        h('ul', { class: 'kop-panel-daftar', role: 'list' }, g.item.map(x => tandaiTim(x[0], h('li', null, tautan(x)))))))),
+      h('div', { class: 'kop-panel-kaki' }, tautan(BUTIR_PENGATURAN)));
+    // klik tautan di panel: rute berganti (ukp:render menutup panel)
+    panelLainnya.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      const semua = Array.from(panelLainnya.querySelectorAll('a')).filter(a => a.offsetParent !== null);
+      const i = semua.indexOf(document.activeElement); if (i < 0) return;
+      e.preventDefault(); const j = (i + (e.key === 'ArrowDown' ? 1 : -1) + semua.length) % semua.length; semua[j].focus();
+    });
+    btnLainnya.addEventListener('keydown', e => { if (e.key === 'ArrowDown') { e.preventDefault(); bukaPanelLainnya(); const a = panelLainnya.querySelector('a:not([hidden])'); if (a) a.focus(); } });
+    return [btnLainnya, panelLainnya];
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lainnyaTerbuka() && !document.querySelector('dialog[open]')) { e.preventDefault(); tutupLainnya(true); } });
+  document.addEventListener('pointerdown', e => { if (!lainnyaTerbuka()) return; const t = e.target; if (panelLainnya.contains(t) || btnLainnya.contains(t)) return; tutupLainnya(false); });
+  document.addEventListener('focusin', e => { if (!lainnyaTerbuka()) return; const t = e.target; if (panelLainnya.contains(t) || btnLainnya.contains(t)) return; tutupLainnya(false); });
+  document.addEventListener('ukp:render', () => tutupLainnya(false));
+  root.addEventListener('resize', () => { if (lainnyaTerbuka() && root.innerWidth < 1024) tutupLainnya(false); });
+
   function bangunShell() {
+    // menu samping lama tidak dipakai lagi (D1): elemennya dipertahankan kosong (kerangka versi offline), tersembunyi di semua lebar
     const sidebar = document.getElementById('sidebar');
-    sidebar.innerHTML = '';
-    sidebar.appendChild(h('a', { class: 'brand', href: UKP.href('beranda'), 'data-go': 'beranda', 'aria-label': 'Pelatih UKP, ke Hari Ini' }, h('span', { class: 'mark', 'aria-hidden': 'true' }, 'UKP'), h('span', { class: 'brand-teks' }, 'Pelatih UKP')));
-    for (const g of GRUP_SIDEBAR) sidebar.appendChild(h('div', { class: 'group', role: 'group', 'aria-label': g.label }, h('div', { class: 'group-label', 'aria-hidden': 'true' }, g.label),
-      g.item.map(x => { const [v, l, ik] = x; return tandaiTim(v, navLinkGrup(x, UKP.icon(ik), h('span', { class: 'nav-teks' }, l), v === 'rencana' ? lencana('badge-rencana') : v === 'ulang' ? lencana('badge-ulang-sb') : null)); })));
-    const temaBtn = h('button', { type: 'button', class: 'icon-btn sm tema-btn', id: 'btn-tema', 'aria-label': 'Tema gelap', 'aria-pressed': 'false', 'data-tip': 'Tema gelap', onclick: gantiTema }, UKP.icon('bulan'));
-    sidebar.appendChild(h('div', { class: 'group foot' },
-      h('div', { class: 'foot-baris', style: { display: 'flex', alignItems: 'center', gap: '4px' } }, navLink('pengaturan', null, UKP.icon('settings'), h('span', { class: 'nav-teks' }, 'Pengaturan')), temaBtn),
-      h('p', { class: 'tiny muted foot-catatan' }, 'Bukan nasihat pajak. Soal disusun ulang dari kisi-kisi resmi.')));
+    if (sidebar) { sidebar.innerHTML = ''; sidebar.hidden = true; sidebar.inert = true; }
+    // bar bawah (< 1024): empat tab + Lainnya (lencana kartu jatuh tempo, karena Ulang kartu kini di dalam Lainnya)
     const nav = document.getElementById('bottomnav'); nav.innerHTML = '';
-    for (const n of NAV_UTAMA) nav.appendChild(navLink(n.view, n.alias, UKP.icon(n.ikon), h('span', null, n.label), n.view === 'ulang' ? h('span', { class: 'badge', id: 'badge-ulang', hidden: true }) : null));
-    nav.appendChild(h('button', { type: 'button', onclick: bukaLainnya, 'data-nav': 'lainnya', 'data-alias': ALIAS_LAINNYA.join(' '), 'aria-haspopup': 'dialog' }, UKP.icon('more'), h('span', null, 'Lainnya')));
-    // topbar: Kembali (rute anak) · judul ringkas · [merek HP] · Cari (kolom semu ≥ 1024 / ikon) · chip target · Tutor
+    for (const x of TAB_BAWAH) nav.appendChild(navLink(x[0], x[3], UKP.icon(x[2]), h('span', null, x[1])));
+    nav.appendChild(h('button', { type: 'button', onclick: bukaLainnya, 'data-nav': 'lainnya', 'data-alias': ALIAS_LAINNYA_TAB.join(' '), 'aria-haspopup': 'dialog' }, UKP.icon('more'), h('span', null, 'Lainnya'), h('span', { class: 'badge', id: 'badge-ulang', hidden: true })));
+    // kop: Kembali · merek · [judul ringkas < 1024] · [kop-nav ≥ 1024] · pengisi · Cari · Offline · chip tingkat · Tutor · [tema · profil ≥ 1024]
     const tb = document.getElementById('topbar'); tb.innerHTML = '';
     const kbdCari = UKP.mac ? '⌘ K' : 'Ctrl K';
+    const kopNav = h('nav', { class: 'kop-nav', 'aria-label': 'Navigasi utama' },
+      KOP_NAV.map(x => navLink(x[0], x[3], h('span', { class: 'kop-nav-teks', 'data-teks': x[1] }, h('span', null, x[1])))), bangunPanelLainnya());
+    const temaBtn = h('button', { type: 'button', class: 'icon-btn tema-btn', id: 'btn-tema', 'aria-label': 'Tema gelap', 'aria-pressed': 'false', 'data-tip': 'Tema gelap', onclick: gantiTema }, UKP.icon('bulan'));
     tb.append(
       h('button', { type: 'button', class: 'icon-btn', id: 'btn-kembali', 'aria-label': 'Kembali', 'data-tip': 'Kembali', hidden: true, onclick: () => UKP.kembali() }, UKP.icon('back')),
-      h('a', { class: 'brand', href: UKP.href('beranda'), 'data-go': 'beranda', 'aria-label': 'Pelatih UKP, ke Hari Ini', style: { minWidth: '26px' } }, h('span', { class: 'mark', 'aria-hidden': 'true' }, 'UKP'), h('span', { class: 'brand-teks' }, 'Pelatih UKP')),
-      // judul ringkas menyusut lebih dulu; chip target tidak terpotong
-      h('span', { class: 'judul-ringkas', id: 'judul-ringkas', 'aria-hidden': 'true', style: { flexShrink: '20' } }),
-      // satu pemicu cari: < 1024 tombol ikon, ≥ 1024 kolom semu berteks + kbd (diatur CSS)
-      h('button', { type: 'button', class: 'cari-pemicu', id: 'cari-pemicu', 'aria-label': 'Cari materi, soal, pasal', 'data-tip': 'Cari (' + kbdCari + ')', 'aria-keyshortcuts': 'Control+K Meta+K /', onclick: () => bukaCari() },
+      h('a', { class: 'brand', href: UKP.href('beranda'), 'data-go': 'beranda', 'aria-label': 'MABAR UKP, ke Beranda' }, UKP.c.merek({ ukuran: 40 })),
+      // judul ringkas (< 1024) menyusut lebih dulu; chip target tidak terpotong
+      h('span', { class: 'judul-ringkas', id: 'judul-ringkas', 'aria-hidden': 'true' }),
+      kopNav,
+      h('span', { class: 'spacer kop-pengisi', 'aria-hidden': 'true' }),
+      h('button', { type: 'button', class: 'cari-pemicu', id: 'cari-pemicu', 'aria-label': 'Cari materi, soal, pasal', 'data-tip': 'Cari (' + kbdCari + ' atau /)', 'aria-keyshortcuts': 'Control+K Meta+K /', onclick: () => bukaCari() },
         UKP.icon('search'), h('span', { class: 'teks' }, 'Cari materi, soal, pasal…'), h('kbd', { class: 'petunjuk-kbd' }, kbdCari)),
       // status koneksi: tampil hanya saat navigator.onLine false (lihat bagian offline di bawah)
-      h('span', { class: 'pill pill-offline', id: 'pill-offline', 'data-tone': 'info', hidden: navigator.onLine !== false, title: 'Tidak ada koneksi internet. Materi, latihan, dan kalkulator tetap bisa dipakai.', style: { flexShrink: '0' } }, 'Offline'),
-      h('button', { type: 'button', class: 'chip chip-tingkat', id: 'chip-tingkat', 'data-tingkat': 'A', 'aria-haspopup': 'dialog', style: { flexShrink: '0' }, onclick: bukaTarget }, 'UKP A'),
-      h('button', { type: 'button', class: 'icon-btn', id: 'btn-tutor', 'aria-label': 'Tanya Tutor', 'data-tip': 'Tanya Tutor', onclick: () => UKP.tutor.buka(UKP.konteksTutorSaatIni ? UKP.konteksTutorSaatIni() : {}) }, UKP.icon('chat')));
+      h('span', { class: 'pill pill-offline', id: 'pill-offline', 'data-tone': 'info', hidden: navigator.onLine !== false, title: 'Tidak ada koneksi internet. Materi, latihan, dan kalkulator tetap bisa dipakai.' }, 'Offline'),
+      h('button', { type: 'button', class: 'chip chip-tingkat', id: 'chip-tingkat', 'data-tingkat': 'A', 'aria-haspopup': 'dialog', onclick: bukaTarget }, 'UKP A'),
+      h('button', { type: 'button', class: 'icon-btn', id: 'btn-tutor', 'aria-label': 'Tanya Tutor', 'data-tip': 'Tanya Tutor', onclick: () => { tutupLainnya(false); UKP.tutor.buka(UKP.konteksTutorSaatIni ? UKP.konteksTutorSaatIni() : {}); } }, UKP.icon('chat')),
+      temaBtn,
+      h('a', { class: 'kop-profil', id: 'kop-profil', href: UKP.href('mulai', { isi: 1 }) }, 'Masuk'));
     perbaruiTema();
   }
-  // tombol tema di kaki sidebar: tekan = tema gelap
+  // tombol profil: sudah onboarding → inisial + nama depan (ke Pengaturan); belum → "Masuk" (ke formulir onboarding)
+  function perbaruiProfil() {
+    const a = document.getElementById('kop-profil'); if (!a) return;
+    const p = UKP.store.get().profil || {};
+    const tb = document.getElementById('topbar');
+    if (p.onboardingSelesai) {
+      const nama = String(p.nama || '').replace(/\s+/g, ' ').trim(); const depan = nama.split(' ')[0] || 'Profil';
+      const kunci = 'p|' + depan; if (a.dataset.kunci === kunci) return; a.dataset.kunci = kunci;
+      a.className = 'kop-profil'; a.setAttribute('href', UKP.href('pengaturan')); a.dataset.go = 'pengaturan'; a.dataset.nav = 'pengaturan'; delete a.dataset.params;
+      a.setAttribute('aria-label', (nama ? nama + ', ' : '') + 'profil dan pengaturan'); a.dataset.tip = 'Profil dan pengaturan';
+      a.replaceChildren(h('span', { class: 'kop-inisial', 'aria-hidden': 'true' }, (depan[0] || 'P').toUpperCase()), h('span', { class: 'kop-nama', 'aria-hidden': 'true' }, depan));
+      if (tb) delete tb.dataset.tamu;
+    } else {
+      if (a.dataset.kunci === 'masuk') return; a.dataset.kunci = 'masuk';
+      a.className = 'kop-profil kop-masuk'; a.setAttribute('href', UKP.href('mulai', { isi: 1 })); a.dataset.go = 'mulai'; a.dataset.params = JSON.stringify({ isi: 1 }); delete a.dataset.nav; a.removeAttribute('aria-current');
+      a.removeAttribute('aria-label'); delete a.dataset.tip; a.replaceChildren('Masuk');
+      if (tb) tb.dataset.tamu = '';
+    }
+  }
+  // tombol tema di kop (≥ 1024) dan baris tema di lembar Lainnya: tekan = tema gelap
   function perbaruiTema() {
     const b = document.getElementById('btn-tema'); if (!b) return;
     const gelap = UKP.temaEfektif ? UKP.temaEfektif() === 'dark' : false;
@@ -93,6 +167,7 @@
   // pemilih target (chip "UKP A · 47 hari"): tingkat + tanggal ujian ringkas
   const RENDER_AMAN = ['beranda', 'tingkat', 'belajar', 'kelompok', 'kemajuan', 'rencana', 'info-ujian', 'pengaturan', 'formulir', 'lembar', 'kalkulator', 'referensi'];
   function bukaTarget() {
+    tutupLainnya(false);
     if (UKP.simulasiBerjalan && UKP.simulasiBerjalan()) { UKP.toast('Target tidak dapat diubah selama simulasi.'); return; }
     const s = UKP.store.get(); const p = s.profil; const fmt = (((UKP.ref || {}).ujian || {}).format || {}).UKP || {};
     const info = h('p', { class: 'small muted', id: 'tgt-info' });
@@ -105,15 +180,27 @@
       info),
       kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => { dlg.close(); UKP.go('pengaturan'); } }, 'Pengaturan'), h('button', { type: 'button', class: 'btn btn-primary', autofocus: true, onclick: () => { dlg.close(); UKP.go('rencana'); } }, 'Buka Rencana')] });
   }
+  // lembar "Lainnya" (< 1024): kelompok sama dengan panel kop, ditambah Simulasi/Kalkulator; baris tema; Pengaturan di bawah garis
   function bukaLainnya() {
-    const kini = UKP.sekarang().view;
-    const tautan = (dlg, [v, l, ik, , params], kelas) => h('a', { class: kelas || null, href: UKP.href(v, params), 'aria-current': v === kini && !params ? 'page' : null, onclick: e => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); dlg.close(); UKP.go(v, params || {}); } }, UKP.icon(ik), h('span', { class: kelas ? 'row-title' : null }, l), kelas ? UKP.icon('chevron-kanan', 'chev', true) : null);
-    UKP.dialog({ judul: 'Lainnya', sheet: true, kelas: 'dlg-lainnya', isi: dlg => h('div', { class: 'lainnya stack' },
-      GRUP_LAINNYA.map((g, i) => h('section', { class: 'lainnya-grup stack-sm', 'aria-labelledby': 'lainnya-g' + i },
-        h('h3', { class: 'eyebrow', id: 'lainnya-g' + i }, g.label),
-        h('div', { class: 'menu-grid' }, g.item.filter(x => x[0] !== 'tim' || timTerlihat).map(x => tautan(dlg, x))))),
-      h('div', { class: 'list-rows lainnya-kaki' }, tautan(dlg, ['pengaturan', 'Pengaturan', 'settings'], 'row-link'))) });
+    const kini = UKP.sekarang().view; const efektif = viewEfektif(kini, UKP.sekarang().params);
+    const salinLencana = v => { const asal = document.getElementById(v === 'rencana' ? 'badge-rencana' : v === 'ulang' ? 'badge-ulang-sb' : ''); if (!asal || asal.hidden) return null; const b = asal.cloneNode(true); b.removeAttribute('id'); return b; };
+    const tautan = (dlg, x, kelas) => { const [v, l, ik, , params] = x; const k = kunciNav(x);
+      return h('a', { class: kelas || null, href: UKP.href(v, params), 'aria-current': k === efektif ? 'page' : null, onclick: e => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); dlg.close(); UKP.go(v, params || {}); } },
+        UKP.icon(ik), h('span', { class: kelas ? 'row-title' : null }, l), salinLencana(v), kelas ? UKP.icon('chevron-kanan', 'chev', true) : null); };
+    UKP.dialog({ judul: 'Lainnya', sheet: true, kelas: 'dlg-lainnya', isi: dlg => {
+      const gelap = () => (UKP.temaEfektif ? UKP.temaEfektif() === 'dark' : false);
+      const temaBaris = h('button', { type: 'button', class: 'row-link lainnya-tema', 'aria-pressed': String(gelap()), onclick: () => { gantiTema(); temaBaris.setAttribute('aria-pressed', String(gelap())); temaBaris.replaceChildren(...isiTema()); } });
+      const isiTema = () => [UKP.icon(gelap() ? 'sun' : 'bulan'), h('span', { class: 'row-title' }, 'Tema gelap'), h('span', { class: 'lainnya-tema-status muted small' }, gelap() ? 'Aktif' : 'Nonaktif')];
+      temaBaris.append(...isiTema());
+      return h('div', { class: 'lainnya stack' },
+        grupLembar().map((g, i) => h('section', { class: 'lainnya-grup stack-sm', 'aria-labelledby': 'lainnya-g' + i },
+          h('h3', { class: 'eyebrow', id: 'lainnya-g' + i }, g.label),
+          h('div', { class: 'menu-grid' }, g.item.filter(x => x[0] !== 'tim' || timTerlihat).map(x => tautan(dlg, x))))),
+        h('div', { class: 'list-rows lainnya-kaki' }, temaBaris, tautan(dlg, BUTIR_PENGATURAN, 'row-link')));
+    } });
   }
+  // kunci navigasi halaman kini: latihan bersama (params bersama/room) ditandai sebagai Mode mabar
+  function viewEfektif(view, params) { const p = params || {}; return view === 'latih' && (p.bersama || p.room) ? 'latih-bersama' : view; }
   // judul ringkas topbar (v7 P2-01): kosong selama h1 terlihat (remah dan judul tidak ditulis dua kali); setelah h1 keluar
   // layar, isinya judul h1 (sans, elipsis). Halaman tanpa h1 terlihat memakai label navigasinya.
   let pengamatJudul = null;
@@ -147,11 +234,13 @@
   function jadwalLencanaRencana() { clearTimeout(tundaRencana); const jalan = () => { try { hitungLencanaRencana(); } catch (e) {} }; if (root.requestIdleCallback) { tundaRencana = setTimeout(() => root.requestIdleCallback(jalan, { timeout: 800 }), 50); } else tundaRencana = setTimeout(jalan, 120); }
   // Cari dinonaktifkan selama simulasi berjalan (ditentukan dari state, bukan atribut DOM)
   function bukaCari() {
+    tutupLainnya(false);
     if (UKP.simulasiBerjalan && UKP.simulasiBerjalan()) { UKP.toast('Pencarian nonaktif selama simulasi.'); return; }
     if (typeof UKP.cari === 'function') UKP.cari();
   }
   UKP.perbaruiNav = function (view) {
-    document.querySelectorAll('[data-nav]').forEach(a => { const alias = (a.dataset.alias || '').split(' ').filter(Boolean); const aktif = a.dataset.nav === view || alias.includes(view); if (aktif) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    const efektif = viewEfektif(view, (UKP.sekarang() || {}).params);
+    document.querySelectorAll('[data-nav]').forEach(a => { const alias = (a.dataset.alias || '').split(' ').filter(Boolean); const aktif = a.dataset.nav === efektif || alias.includes(efektif); if (aktif) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     // Kembali hanya pada rute anak (halaman berkop remah, atau view di luar navigasi puncak)
     const back = document.getElementById('btn-kembali');
     if (back) { const main = document.getElementById('main'); const anak = !!(main && main.querySelector('.page-head .crumb')) || !PUNCAK.has(view); back.hidden = view === 'beranda' || view === 'mulai' || !anak; }
@@ -160,16 +249,21 @@
       [['badge-ulang', ' kartu jatuh tempo'], ['badge-ulang-sb', ' kartu jatuh tempo']].forEach(([id, ket]) => { const b = document.getElementById(id); if (b) { b.hidden = !n; b.replaceChildren(n > 99 ? '99+' : String(n), h('span', { class: 'visually-hidden' }, ket)); } });
     } catch (e) {}
     jadwalLencanaRencana();
-    const tb = document.getElementById('topbar'); if (tb) tb.hidden = view === 'mulai';
-    // onboarding (P2-09): sidebar/rail tidak tampil dan tidak terjangkau Tab selama langkah 1–5
-    const sb = document.getElementById('sidebar'); if (sb) { sb.inert = view === 'mulai'; if (view === 'mulai') sb.setAttribute('aria-hidden', 'true'); else sb.removeAttribute('aria-hidden'); }
+    // onboarding berlangkah (mulai { isi: 1 }): tanpa kop; halaman sambutan (mulai tanpa params, body[data-sambutan] dari S2) berkop
+    const tb = document.getElementById('topbar'); if (tb) tb.hidden = view === 'mulai' && !document.body.hasAttribute('data-sambutan');
+    perbaruiProfil();
     perbaruiBarBawah();
   };
   // bar bawah disembunyikan pada onboarding, mode ujian, dan mode fokus (K-08); dipanggil juga saat data-mode berubah
   function perbaruiBarBawah() {
     const bn = document.getElementById('bottomnav'); if (!bn) return;
     const mode = document.body.dataset.mode;
-    bn.hidden = UKP.sekarang().view === 'mulai' || mode === 'ujian' || mode === 'fokus';
+    // v9.0 V5: pengunjung yang belum onboarding (mis. anggota yang baru membuka tautan undangan room) tidak melihat bar bawah:
+    // keempat tabnya hanya membawa ke formulir onboarding dan mengalihkan perhatian dari layar room. Kop tetap ada (merek, Masuk).
+    const tamu = !((UKP.store.get().profil || {}).onboardingSelesai);
+    bn.hidden = UKP.sekarang().view === 'mulai' || mode === 'ujian' || mode === 'fokus' || tamu;
+    // mode fokus/ujian menyala setelah kop dirender: panel Lainnya ikut ditutup
+    if (mode === 'ujian' || mode === 'fokus' || mode === 'sesi') tutupLainnya(false);
   }
   // penjaga mode fokus (P2-02): setiap mount rute dimulai tanpa mode fokus; view yang membutuhkannya menyalakannya lagi.
   // UKP.mode.fokus (P1) tidak menimpa mode ujian/sesi; cadangan di bawah berperilaku sama.
@@ -182,13 +276,14 @@
     const V = UKP.views || {};
     Object.keys(V).forEach(k => {
       const f = V[k]; if (typeof f !== 'function' || f.__penjagaFokus) return;
-      const g = function () { matikanFokus(); return f.apply(this, arguments); };
+      const g = function () { matikanFokus(); delete document.body.dataset.sambutan; return f.apply(this, arguments); };
       Object.assign(g, f); g.__penjagaFokus = true; V[k] = g;
     });
     try { new MutationObserver(perbaruiBarBawah).observe(document.body, { attributes: true, attributeFilter: ['data-mode'] }); } catch (e) {}
   }
   UKP.perbaruiTopbar = function () {
     const s = UKP.store.get(); const chip = document.getElementById('chip-tingkat'); if (!chip) return;
+    perbaruiProfil();
     chip.dataset.tingkat = s.profil.tingkat;
     let hari = null; if (s.profil.tanggalUjian) { const d = U.selisihHari(U.hariIni(), s.profil.tanggalUjian); if (d >= 0) hari = d; }
     // v7 P2-01: chip hanya "UKP A"; hitung mundur cukup di h1 Hari Ini, di sini hanya sebagai tooltip (satu rumah per fakta)
@@ -458,11 +553,11 @@
       galat, tombol);
     const main = document.getElementById('main');
     main.replaceChildren(h('div', { class: 'akses' }, h('section', { class: 'card akses-kartu', 'aria-labelledby': 'akses-judul' },
-      h('div', { class: 'akses-merek' }, h('span', { class: 'mark', 'aria-hidden': 'true' }, 'UKP'), h('span', { class: 'brand-teks' }, 'Pelatih UKP')),
+      h('div', { class: 'akses-merek' }, UKP.c.merek({ ukuran: 40 })),
       h('h1', { id: 'akses-judul' }, 'Masuk'),
       h('p', { class: 'muted' }, K.pesan || 'Masukkan nama Anda dan sandi tim.'),
       form)));
-    document.title = 'Masuk · Pelatih UKP';
+    document.title = 'Masuk · MABAR UKP';
     // penjaga muat (index.html): layar masuk sudah tampil → jangan tampilkan panel pemulihan
     if (root.__ukpMuat && typeof root.__ukpMuat.siap === 'function') root.__ukpMuat.siap();
     setTimeout(() => (inNama.value ? inSandi : inNama).focus(), 0);

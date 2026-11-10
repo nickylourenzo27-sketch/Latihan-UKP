@@ -1,4 +1,4 @@
-/* Pelatih UKP — gerbang akses tim (sisi klien, tanpa server).
+/* MABAR UKP — gerbang akses tim (sisi klien, tanpa server).
    Satu sandi tim + nama anggota bebas. Yang disimpan hanya hash SHA-256 dari (salt + '|' + sandi); ganti sandi dengan
    `node tools/akses-sandi.js <sandi-baru>` (menulis ulang salt dan sandiHash di bawah). Mengganti sandi otomatis mengeluarkan semua orang.
    JUJUR: ini pembatas ringan untuk tim internal, bukan keamanan kuat — siapa pun yang mahir bisa membaca atau melewati JS ini.

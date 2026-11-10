@@ -1,8 +1,20 @@
-# Pelatih UKP — situs belajar interaktif Uji Kompetensi Perpajakan tingkat A, B, C
+# MABAR UKP — belajar bareng Uji Kompetensi Perpajakan tingkat A, B, C
+
+> Sejak v8.3 aplikasi ini bernama **MABAR UKP** (sebelumnya *Pelatih UKP*). Pengenal internal sengaja tidak diganti agar data yang sudah tersimpan tetap terbaca: kunci localStorage `ukp.v1` dan `ukp.tim.*`, awalan cache service worker `ukp-`, nilai `aplikasi: 'pelatih-ukp'` pada berkas ekspor/impor, nama berkas `pelatih-ukp-offline.html` dan `pelatih-ukp-progres-*.json`, UID pengingat kalender, serta folder `deploy/`.
 
 Aplikasi web satu halaman (vanilla HTML/CSS/JS, tanpa backend) untuk belajar mandiri menghadapi **UKP** (Uji Kompetensi Perpajakan, PMK 55/2026, penyelenggara BPPK) sekaligus kompatibel dengan format **USKP** lama (40 soal per mata ujian). Progres tersimpan di browser (localStorage). Bisa dibuka langsung dari berkas `index.html` atau dihosting statis (GitHub Pages, Netlify, Vercel, Cloudflare Pages).
 
 > Soal adalah rekonstruksi dari kisi-kisi resmi, bukan soal asli. Bukan nasihat pajak. Tidak berafiliasi dengan BPPK, DJP, KP3SKP, maupun asosiasi mana pun. Status ketentuan per 25 Oktober 2026; item berlabel ◐ perlu verifikasi ke teks resmi.
+
+## Tampilan MABAR UKP (v8.3 dan v9.0)
+
+Tampilan mengikuti kanvas desain pemilik ("MABAR UKP · Logo" dan "MABAR UKP · Beranda web").
+
+- **Identitas (v8.3).** Dua warna merek: tinta `#0F2A4A` dan aksen `#F2B01E`, untuk tema terang dan gelap. Huruf: Space Grotesk (judul), Inter (isi), IBM Plex Mono (label dan angka). Logo persen lewat `UKP.c.merek()`; ikon dibuat `icons/buat-ikon.js`.
+- **Kerangka (v9.0).** Satu kop atas di semua lebar, tanpa menu samping. Di 1024 px ke atas kop memuat Simulasi, Mode mabar, Latihan, Materi, Kalkulator, dan panel Lainnya. Di bawah 1024 px ada bar bawah lima tab: Beranda, Latih, Mabar, Materi, Lainnya. Layar sesi, ujian, dan formulir awal tetap tanpa kop.
+- **Beranda (v9.0).** Pita biru bermotif kisi dengan sapaan dan dua tombol, kartu **Soal hari ini** (satu soal per hari per tingkat, dicatat seperti latihan biasa), strip Mata ujian, blok Mode mabar, Lanjutkan belajar, empat kartu cara berlatih, dan kaki situs.
+- **Sambutan (v9.0).** Pengunjung baru di akar situs melihat halaman sambutan berkerangka sama, dengan tombol Masuk menuju formulir lima langkah. Tautan tim (`#room/<kode>`, `#ujiantim/<kode>`, `#lj`) tetap langsung ke layarnya.
+- **Mode mabar** adalah nama pintu fitur tim (halaman `#room`). Nama fitur di dalamnya tidak berubah.
 
 ## Isi saat ini (status 9 November 2026, v7.8)
 
@@ -61,7 +73,7 @@ Aplikasi punya **layar masuk** sendiri: anggota tim mengisi **nama** (bebas, unt
 
 **Cara membagikan (pilih salah satu):**
 
-1. **Tautan Artifact** — buka Artifact Pelatih UKP di claude.ai › menu **Bagikan** › salin tautan › kirim ke tim beserta sandinya.
+1. **Tautan Artifact** — buka Artifact MABAR UKP di claude.ai › menu **Bagikan** › salin tautan › kirim ke tim beserta sandinya.
 2. **Berkas offline** — kirim `dist/pelatih-ukp-offline.html` (dari `node tools/build-offline.js` atau Pengaturan › Versi offline). Penerima cukup membukanya di browser; layar masuk tetap muncul.
 
 Sandi bawaan: `UKP2026`. Sesi diingat di browser; anggota bisa keluar di **Pengaturan › Akses tim › Keluar**.
@@ -75,7 +87,7 @@ node tools/build-artifact.js && node tools/build-offline.js   # lalu terbitkan u
 
 Matikan gerbang: ubah `aktif: true` menjadi `aktif: false` di `js/akses.js`.
 
-**Jujur soal keamanan:** ini **pembatas ringan** untuk tim internal, bukan keamanan kuat. Pemeriksaan sandi terjadi di browser (yang tersimpan hanya hash SHA-256 bersalt), sehingga siapa pun yang mahir bisa membaca atau melewati JavaScript-nya. Gunakan hanya untuk materi yang memang tidak rahasia — materi Pelatih UKP bukan rahasia. Bila butuh login sungguhan per orang, pakai paket hosting di `deploy/`.
+**Jujur soal keamanan:** ini **pembatas ringan** untuk tim internal, bukan keamanan kuat. Pemeriksaan sandi terjadi di browser (yang tersimpan hanya hash SHA-256 bersalt), sehingga siapa pun yang mahir bisa membaca atau melewati JavaScript-nya. Gunakan hanya untuk materi yang memang tidak rahasia — materi MABAR UKP bukan rahasia. Bila butuh login sungguhan per orang, pakai paket hosting di `deploy/`.
 
 ## Dasbor tim (belajar bersama)
 

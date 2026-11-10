@@ -1,4 +1,4 @@
-/* Pelatih UKP — Ujian tim (#ujiantim, #ujiantim/<kode>) dan lembar jawab pribadi (#lj). v8.1
+/* MABAR UKP — Ujian tim (#ujiantim, #ujiantim/<kode>) dan lembar jawab pribadi (#lj). v8.1
    Lapisan data ada di js/learn.js (UKP.belajar.ujianTim = UT, UKP.belajar.lembarJawab, UKP.belajar.tempoUjian); view ini hanya memakainya.
    Keadaan view ujiantim:
    (i)   params.kode            → "Ikut ujian tim" (anggota membuka tautan; percobaan = simulasi format 'tim' lewat UKP.simulasiTim)

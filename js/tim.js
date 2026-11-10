@@ -1,4 +1,4 @@
-/* Pelatih UKP — dasbor tim: ringkasan hasil latihan dan simulasi anggota ke penyimpanan bersama Artifact (capability db + user).
+/* MABAR UKP — dasbor tim: ringkasan hasil latihan dan simulasi anggota ke penyimpanan bersama Artifact (capability db + user).
    Satu dok per anggota di koleksi 'tim' (id dok = id akun dari user.id()), ditimpa utuh. Tidak ada teks bebas selain nama. Sejak v7.7
    ringkasan membawa field jawaban: jawaban per soal yang ringkas (id soal, topik, opsi, benar, detik, waktu, mode, id simulasi, keyakinan;
    maks. MAKS_JAWAB entri terbaru dalam HARI_JAWAB hari, terbaru dulu, seluruh ringkasan ≤ MAKS_BYTE) agar admin melihat salah di mana.

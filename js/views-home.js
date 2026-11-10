@@ -1,4 +1,4 @@
-/* Pelatih UKP — tampilan: Mulai (onboarding), Hari Ini (beranda), Sesi (runner), Bukti Sesi */
+/* MABAR UKP — tampilan: Mulai (onboarding), Hari Ini (beranda), Sesi (runner), Bukti Sesi */
 (function (root) {
   const UKP = root.UKP; const h = UKP.h; const U = UKP.util; const K = UKP.konten; const L = UKP.belajar;
 
@@ -201,7 +201,26 @@
   }
 
   // ================= ONBOARDING =================
-  UKP.views.mulai = function () {
+  // v9.0 S2 (D5): mulai tanpa params untuk pengunjung baru = halaman sambutan (kop situs tampil, body[data-sambutan]);
+  // mulai { isi: 1 } (atau pengguna yang sudah onboarding, mis. "Ulangi panduan awal") = formulir lima langkah dalam mode fokus.
+  // Formulir yang terisi sebagian disimpan di sessionStorage (ukp.obDraft) sehingga muat ulang kembali ke formulir.
+  const KUNCI_DRAFT_OB = 'ukp.obDraft';
+  const bacaDraftOb = () => { try { const x = JSON.parse(sessionStorage.getItem(KUNCI_DRAFT_OB) || 'null'); return x && typeof x === 'object' && x.draft && typeof x.draft === 'object' ? x : null; } catch (e) { return null; } };
+  const hapusDraftOb = () => { try { sessionStorage.removeItem(KUNCI_DRAFT_OB); } catch (e) {} };
+  let mulaiPertama = true;
+  UKP.views.mulai = function (params) {
+    params = params || {};
+    const pertama = mulaiPertama; mulaiPertama = false;
+    const simpanan = bacaDraftOb();
+    if (!params.isi && !UKP.store.get().profil.onboardingSelesai && !(pertama && simpanan)) {
+      document.body.dataset.sambutan = '';
+      return { node: halamanSambutan(), unmount: () => { delete document.body.dataset.sambutan; } };
+    }
+    delete document.body.dataset.sambutan;
+    if (!params.isi && simpanan && pertama) { try { UKP.perbaruiParams({ isi: 1 }, 'mulai'); } catch (e) {} }
+    return formulirMulai(simpanan);
+  };
+  function formulirMulai(simpanan) {
     const s = UKP.store.get(); const p = s.profil;
     // nama (wajib, 2–40 karakter): sapaan dan nama di dasbor tim; bawaan dari gerbang akses tim bila sudah masuk
     const namaAkses = (() => { try { const x = UKP.akses && UKP.akses.sesi && UKP.akses.sesi(); return x && x.nama || ''; } catch (e) { return ''; } })();
@@ -216,6 +235,9 @@
       return false;
     }
     let langkah = 0; const total = 5;
+    if (simpanan) { const d = simpanan.draft; for (const k of Object.keys(draft)) if (k in d) draft[k] = d[k]; langkah = U.clamp(Number(simpanan.langkah) || 0, 0, total - 1); }
+    let beres = false;
+    const simpanDraft = () => { if (beres) return; try { sessionStorage.setItem(KUNCI_DRAFT_OB, JSON.stringify({ langkah, draft })); } catch (e) {} };
     // mode fokus (P2-09): tanpa navigasi situs selama lima langkah; penjaga rute app.js mematikannya di mount berikutnya
     modeFokus(true);
     const page = h('div', { class: 'page onboarding' });
@@ -236,7 +258,8 @@
         langkah < total - 1 ? h('button', { type: 'button', class: 'btn btn-ghost btn-sm', onclick: () => { if (cekNama()) selesai(true); } }, 'Lewati, atur nanti') : null);
       let isi;
       if (langkah === 0) isi = h('div', { class: 'stack' },
-        h('h1', null, 'Selamat datang di Pelatih UKP'),
+        h('div', { class: 'ob-merek' }, UKP.c.merek({ ukuran: 40 })),
+        h('h1', null, 'Selamat datang di MABAR UKP'),
         h('p', { class: 'lead' }, 'Lima pertanyaan singkat (± 1 menit) untuk menyusun target dan menit belajar harian Anda. Semua bisa diubah di Pengaturan.'),
         h('div', { class: 'field' }, h('label', { for: 'ob-nama' }, 'Nama Anda'),
           h('input', { class: 'input', id: 'ob-nama', type: 'text', autocomplete: 'name', required: true, minlength: 2, maxlength: 40, value: draft.nama, 'aria-describedby': 'ob-nama-bantu ob-nama-galat',
@@ -316,14 +339,18 @@
       if (e.key === 'Enter' && (!t || !/^(BUTTON|A|SUMMARY)$/.test(t.tagName))) { const lanjut = page.querySelector('.ob-aksi .btn-primary'); if (lanjut) { e.preventDefault(); lanjut.click(); } }
     });
     function selesai(lewati) {
-      Object.assign(p, draft, { nama: namaBersih(), onboardingSelesai: true }); UKP.store.save(); UKP.perbaruiTopbar();
+      beres = true; hapusDraftOb(); Object.assign(p, draft, { nama: namaBersih(), onboardingSelesai: true }); UKP.store.save(); UKP.perbaruiTopbar();
       if (UKP.tim && typeof UKP.tim.kirimRingkasan === 'function') UKP.tim.kirimRingkasan({ segera: true });
       // v7.2: selesai atau dilewati, langsung ke beranda ringkas (kartu "Mulai sesi pertama" + tautan diagnosis)
       UKP.go('beranda', {}, { replace: true });
     }
+    page.addEventListener('click', () => setTimeout(simpanDraft)); page.addEventListener('input', () => setTimeout(simpanDraft));
     render();
-    return { node: page, unmount: () => modeFokus(false) };
-  };
+    // V6: "Ulangi panduan awal" (pengguna yang sudah onboarding) ditinggalkan lewat navigasi → draf dibuang, agar tidak muncul lagi
+    // setelah "Hapus semua data" atau di formulir berikutnya. Pengunjung baru tetap menyimpan drafnya (muat ulang dan Masuk lagi).
+    const sudahOnboarding = !!p.onboardingSelesai;
+    return { node: page, unmount: () => { modeFokus(false); if (sudahOnboarding) hapusDraftOb(); } };
+  }
   L.susunDiagnosis = function () {
     const s = UKP.store.get(); const t = s.profil.tingkat; const kel = K.kelompok(t); if (!kel.length) return null;
     const soal = kel.flatMap(k => U.ambil(K.soalKelompok(k, t).filter(x => x.kesulitan <= 2), 3));
@@ -341,6 +368,7 @@
   function berandaDasbor(opsi) {
     const hanyaSesi = !!(opsi && opsi.hanyaSesi);
     const sem = !!(opsi && (opsi.sematkan || hanyaSesi));
+    const tanpaKop = !!(opsi && opsi.tanpaKop); // v9.0: disematkan di Beranda berpita (h1 milik pita)
     const s = UKP.store.get(); const p = s.profil; const tingkat = p.tingkat;
     const page = h('div', { class: 'page lebar beranda' });
     const hariIni = U.hariIni(); const hariTersisa = p.tanggalUjian ? U.selisihHari(hariIni, p.tanggalUjian) : null;
@@ -384,7 +412,7 @@
     const judulKop = hariTersisa != null && hariTersisa >= 0 ? (hariTersisa === 0 ? 'Hari ujian' : hariTersisa + ' hari menuju UKP ' + tingkat) : baru ? sapaan + '. Selamat datang.' : sapaan + '. Sesi hari ini?';
     const ujianMeta = p.tanggalUjian && hariTersisa > 0 ? h('span', { class: 'meta' }, 'Ujian ' + U.tglPanjang(p.tanggalUjian)) : null;
     const mg = metaMinggu();
-    if (!sem) page.appendChild(kopHalaman({ eyebrow: U.tglPanjang(hariIni), judul: judulKop,
+    if (!sem && !tanpaKop) page.appendChild(kopHalaman({ eyebrow: U.tglPanjang(hariIni), judul: judulKop,
       meta: ujianMeta || mg ? [ujianMeta, mg] : null,
       // pengguna baru: "Buka Rencana" sudah ada di ceklis Mulai dari sini, jadi tidak diulang di kop
       aksi: hariTersisa === 0 ? null : [kesiapanKop(), baru ? null : UKP.link(['Lihat rencana', ikon('chevron-kanan', null, true)], 'rencana', null, 'btn btn-sm btn-ghost btn-text rata')] }));
@@ -587,49 +615,13 @@
   }
   UKP.c.dasborKemajuan = () => berandaDasbor({ sematkan: true });
   UKP.c.sesiHariIni = () => berandaDasbor({ hanyaSesi: true });
-  UKP.views.beranda = function () {
-    const p = UKP.store.get().profil; const page = p.berandaLengkap === true ? berandaDasbor() : berandaRingkas();
-    // v8.1: kartu kerja tim yang belum selesai paling atas (tepat di bawah sapaan): "Ujian tim berjalan" (U2, js/views-ujian-tim.js)
-    // dan "Sesi bersama belum selesai" (js/views-belajar.js); fungsi lintas berkas diperiksa dulu
-    // v8.2 (U3): blok Tim = UKP.c.kartuRoom() (js/views-ruang.js) paling atas; kartu ujian tim / lanjut bersama sudah ada di dalamnya.
-    // Isi Beranda pribadi tetap di bawahnya dengan judul kecil "Latihan pribadi". Tanpa kartuRoom → kartu v8.1 seperti semula.
-    let blokTim = null;
-    try { if (typeof UKP.c.kartuRoom === 'function') { const el = UKP.c.kartuRoom(); if (el && el.nodeType) blokTim = el; } } catch (e) { console.error(e); blokTim = null; }
-    if (blokTim && page && page.nodeType) {
-      try {
-        const kepala = [...page.children].find(x => x.tagName === 'HEADER' || x.querySelector('h1'));
-        let jangkar = kepala || null; while (jangkar && jangkar.nextElementSibling && jangkar.nextElementSibling.classList.contains('banner')) jangkar = jangkar.nextElementSibling;
-        const wadah = h('div', { class: 'beranda-tim', 'data-k': 'blok-tim' }, blokTim);
-        const judulPribadi = h('h2', { class: 'beranda-subjudul', 'data-k': 'latihan-pribadi' }, 'Latihan pribadi');
-        if (jangkar) jangkar.after(wadah, judulPribadi); else page.prepend(wadah, judulPribadi);
-        // satu tombol utama per layar: tombol utama ada di blok Tim; kartu "Lanjutkan" pribadi menjadi tombol biasa
-        page.querySelectorAll('.btn-primary').forEach(b => { if (!wadah.contains(b)) b.classList.remove('btn-primary'); });
-        const primer = [...wadah.querySelectorAll('.btn-primary')]; const utama = primer.find(b => b.classList.contains('room-utama')) || primer[0];
-        primer.forEach(b => { if (b !== utama) b.classList.remove('btn-primary'); }); // kartu sisipan (ujian/lanjut bersama) tidak menambah primer
-      } catch (e) { console.error(e); }
-      return page;
-    }
-    try {
-      const kartu = [typeof UKP.c.kartuUjianTim === 'function' ? UKP.c.kartuUjianTim() : null, typeof UKP.c.kartuLanjutBersama === 'function' ? UKP.c.kartuLanjutBersama() : null].filter(Boolean);
-      if (kartu.length && page && page.nodeType) {
-        const kepala = [...page.children].find(x => x.tagName === 'HEADER' || x.querySelector('h1'));
-        let jangkar = kepala || null; while (jangkar && jangkar.nextElementSibling && jangkar.nextElementSibling.classList.contains('banner')) jangkar = jangkar.nextElementSibling;
-        const wadah = h('div', { class: 'stack-sm beranda-tim-aktif' }, kartu);
-        if (jangkar) jangkar.after(wadah); else page.prepend(wadah);
-        // v8.1 V1: satu tombol utama per layar — kartu "Lanjutkan" latihan pribadi turun menjadi tombol biasa selama kartu tim tampil
-        page.querySelectorAll('.kartu-lanjut .btn-primary').forEach(b => b.classList.remove('btn-primary'));
-      }
-    } catch (e) { console.error(e); }
-    return page;
-  };
-
-  // ----- Beranda ringkas (bawaan v7.2): sapaan, satu kartu Lanjutkan, ubin aksi, satu tautan Kemajuan -----
+  // ----- aktivitas terakhir (kartu Lanjutkan di Beranda) -----
   function aktivitasTerakhir(s) {
     const a = s.sesiAktif;
     if (a && !a.selesai && a.blok && a.blok.length) return { judul: a.ukuran === 'diagnosis' ? 'Diagnosis' : 'Sesi belajar', meta: 'Langkah ' + (a.posisi + 1) + ' dari ' + a.blok.length, buka: () => UKP.go('sesi'), sesi: true };
     if (UKP.simulasiBerjalan && UKP.simulasiBerjalan()) return { judul: 'Simulasi ujian', meta: 'Sedang berjalan', buka: () => UKP.go('simulasi', { jalan: true }) };
     const cand = [];
-    for (let i = s.jawaban.length - 1; i >= 0; i--) { const j = s.jawaban[i]; if (j && j.topik && j.konteks !== 'simulasi' && K.topik(j.topik)) { cand.push({ pada: j.pada || 0, jenis: 'latih', id: j.topik }); break; } }
+    for (let i = s.jawaban.length - 1; i >= 0; i--) { const j = s.jawaban[i]; if (j && j.topik && j.konteks !== 'simulasi' && K.topik(j.topik) && !(L.dariSoalHari && L.dariSoalHari(j, s.soalHari))) { cand.push({ pada: j.pada || 0, jenis: 'latih', id: j.topik }); break; } }
     for (const id in s.topikDibaca) { const v = s.topikDibaca[id]; if (typeof v === 'number' && K.topik(id)) cand.push({ pada: v, jenis: 'baca', id }); }
     const sim = s.simulasi.filter(x => x && x.selesai).slice(-1)[0]; if (sim) cand.push({ pada: typeof sim.selesai === 'number' ? sim.selesai : 0, jenis: 'sim' });
     const x = cand.sort((a, b) => b.pada - a.pada)[0]; if (!x) return null;
@@ -638,48 +630,250 @@
     if (x.jenis === 'latih') return { judul: t.id + ' ' + t.judul, meta: 'Latihan soal', buka: () => UKP.go('latih', { topik: t.id, kode: t.kode, n: 10, mulai: true }) };
     return { judul: t.id + ' ' + t.judul, meta: 'Baca materi', buka: () => UKP.go('topik', { id: t.id }) };
   }
-  function berandaRingkas() {
-    const s = UKP.store.get(); const p = s.profil; const tingkat = p.tingkat; const hariIni = U.hariIni();
-    const page = h('div', { class: 'page beranda beranda-ringkas' });
-    const jam = new Date().getHours(); const sapa = jam < 11 ? 'Selamat pagi' : jam < 15 ? 'Selamat siang' : jam < 18 ? 'Selamat sore' : 'Selamat malam';
-    const nama = typeof p.nama === 'string' ? p.nama.trim() : '';
-    const sisa = p.tanggalUjian ? U.selisihHari(hariIni, p.tanggalUjian) : null;
-    const ujian = sisa == null || sisa < 0 ? null : sisa === 0 ? 'Hari ujian UKP ' + tingkat : sisa + ' hari menuju UKP ' + tingkat;
-    page.appendChild(h('header', { class: 'sapa' }, h('h1', { tabindex: '-1' }, nama ? sapa + ', ' + nama : sapa + '.'), h('p', { class: 'meta' }, gabungMeta([U.tglPanjang(hariIni), ujian]))));
-    if (!UKP.store.ok) page.appendChild(h('div', { class: 'banner', 'data-tone': 'warn' }, 'Penyimpanan browser tidak tersedia. Progres tidak tersimpan.'));
 
-    // satu kartu aksi: Lanjutkan (ada aktivitas terakhir) atau Mulai sesi pertama (pengguna baru); ajakan kedua hanya tautan meta
+  // ================= v9.0 S2: BERANDA DAN SAMBUTAN (BRIEF-V9 D3–D5) =================
+  // Kerangka halaman berpita: div.page.beranda.selebar > section.beranda-pita.pita-kisi (h1 + kartu Soal hari ini) ·
+  // nav.beranda-mata (strip MATA UJIAN) · div.wadah-situs.beranda-isi (Mode mabar · Lanjutkan belajar · Empat cara berlatih ·
+  // Alat lain) · UKP.c.kakiSitus(). Halaman sambutan (mulai tanpa params, pengunjung baru) memakai kerangka yang sama.
+  const NS_SVG = 'http://www.w3.org/2000/svg';
+  // ikon garis 24 × 24 dari kanvas desain (stroke currentColor); label → role="img", tanpa label → aria-hidden
+  function svgGaris(isi, o) {
+    o = o || {}; const s = document.createElementNS(NS_SVG, 'svg');
+    const atr = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': o.lebar || '1.8', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', focusable: 'false', class: o.kelas || null };
+    for (const k in atr) if (atr[k] != null) s.setAttribute(k, atr[k]);
+    if (o.label) { s.setAttribute('role', 'img'); s.setAttribute('aria-label', o.label); } else s.setAttribute('aria-hidden', 'true');
+    s.innerHTML = isi; return s;
+  }
+  const IKON_CARA = {
+    simulasi: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/>',
+    mabar: '<circle cx="8.5" cy="8" r="3.2"/><circle cx="16.5" cy="9" r="2.6"/><path d="M2.5 19c.6-3.4 2.9-5.2 6-5.2s5.4 1.8 6 5.2M15.5 14c2.8 0 4.9 1.5 5.6 4.4"/>',
+    yakin: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16 9.5"/>',
+    materi: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/>',
+  };
+  const IKON_CEK = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+  const IKON_SILANG = '<path d="M7 7l10 10M17 7L7 17"/>';
+  const sapaanJam = () => { const jam = new Date().getHours(); return jam < 3 ? 'Selamat malam' : jam < 11 ? 'Selamat pagi' : jam < 15 ? 'Selamat siang' : jam < 18 ? 'Selamat sore' : 'Selamat malam'; };
+  const kaki = () => (typeof UKP.c.kakiSitus === 'function' ? UKP.c.kakiSitus() : h('footer', { class: 'kaki-situs' }, h('div', { class: 'wadah-situs' },
+    h('span', { class: 'kaki-merek' }, 'MABAR UKP'), h('p', { class: 'kaki-teks' }, 'Sarana latihan mandiri, bukan situs resmi penyelenggara Uji Kompetensi Perpajakan. Bukan nasihat pajak.'))));
+  const YAKIN = [['yakin', 'Yakin'], ['ragu', 'Ragu'], ['menebak', 'Nebak']];
+  // keadaan tersimpan (kunci store baru soalHari = { tgl, id, o, k }); toleran bila kunci belum ada atau rusak
+  function bacaSoalHari(s, tgl, id) {
+    const x = s && s.soalHari;
+    if (!x || typeof x !== 'object' || x.tgl !== tgl || x.id !== id || !/^[A-D]$/.test(String(x.o || ''))) return null;
+    return { o: x.o, k: YAKIN.some(y => y[0] === x.k) ? x.k : null };
+  }
+  // dasar hukum dari data soal; tanpa dasar hukum → inti pembahasan
+  function teksDasar(soal) {
+    const dh = Array.isArray(soal.dasarHukum) ? soal.dasarHukum.map(d => (d && typeof d === 'object' ? d.pasal : d)).filter(x => typeof x === 'string' && x.trim()) : [];
+    if (dh.length) return { label: 'Dasar hukum:', teks: dh.join('; ') + (/[.)]$/.test(dh[dh.length - 1]) ? '' : '.') };
+    const inti = soal.pembahasan && typeof soal.pembahasan.inti === 'string' ? soal.pembahasan.inti : '';
+    return inti ? { label: 'Pembahasan:', teks: inti } : null;
+  }
+  // D4 kartu "Soal hari ini". o.tingkat; o.catat (pengguna terdaftar: jawaban + keyakinan dicatat lewat L.catatJawaban /
+  // L.aturKeyakinan dan keadaan terjawab disimpan di s.soalHari); o.latih: tujuan tautan "Latih 10 soal lagi"
+  function kartuSoalHari(o) {
+    o = o || {}; const tingkat = o.tingkat || 'A'; const tgl = U.hariIni();
+    // V6: soal yang sudah dijawab hari ini tetap tampil walau bank berubah (pembaruan data, ganti tingkat) — satu jawaban per hari
+    let soal = null; try { soal = L.pilihSoalHari(K.semuaSoal(tingkat), tgl, tingkat, o.catat ? UKP.store.get().soalHari : null); } catch (e) { console.error(e); }
+    const kepalaKanan = h('span', { class: 'sh-tingkat' }, 'TINGKAT ' + tingkat);
+    if (!soal) return h('section', { class: 'kartu-soal-hari', 'aria-labelledby': 'sh-judul' },
+      h('div', { class: 'sh-kepala' }, h('h2', { class: 'sh-label', id: 'sh-judul' }, 'SOAL HARI INI'), kepalaKanan),
+      h('p', { class: 'sh-kosong' }, 'Soal hari ini belum tersedia. Bank soal tingkat ini sedang dimuat.'));
+    const s = UKP.store.get();
+    const st = (o.catat ? bacaSoalHari(s, tgl, soal.id) : null) || { o: null, k: null };
+    const t0 = Date.now();
+    const live = h('p', { class: 'visually-hidden', role: 'status', 'aria-live': 'polite' });
+    const huruf = ['A', 'B', 'C', 'D'];
+    const tombolOpsi = huruf.map(x => h('button', { type: 'button', class: 'sh-opsi', 'data-h': x, onclick: () => jawab(x) },
+      h('span', { class: 'sh-huruf', 'aria-hidden': 'true' }, x), h('span', { class: 'sh-teks' }, h('span', { class: 'visually-hidden' }, 'Opsi ' + x + ': '), soal.opsi[x]), h('span', { class: 'sh-tanda' })));
+    const tombolYakin = YAKIN.map(([v, label]) => h('button', { type: 'button', class: 'sh-pil', 'data-v': v, 'aria-pressed': 'false', onclick: () => pilihYakin(v) }, label));
+    const dasar = teksDasar(soal);
+    const bawah = h('div', { class: 'sh-bawah', hidden: true },
+      dasar ? h('p', { class: 'sh-dasar' }, h('span', { class: 'sh-dasar-label' }, dasar.label), ' ', dasar.teks) : null,
+      h('p', { class: 'sh-aksi' }, o.latih || UKP.link(['Latih 10 soal lagi', ikon('chevron-kanan', null, true)], 'latih', { n: 10, mulai: true }, 'sh-tautan')));
+    const nmKel = namaPendek(soal.kode);
+    const kartu = h('section', { class: 'kartu-soal-hari', 'aria-labelledby': 'sh-judul', 'data-soal': soal.id },
+      h('div', { class: 'sh-kepala' }, h('h2', { class: 'sh-label', id: 'sh-judul' }, h('span', null, 'SOAL HARI INI'), h('span', { 'aria-hidden': 'true' }, ' · '), h('span', { class: 'visually-hidden' }, ', '), h('span', null, nmKel.toUpperCase())), kepalaKanan),
+      h('p', { class: 'sh-stem', id: 'sh-stem' }, soal.stem),
+      h('div', { class: 'sh-daftar', role: 'group', 'aria-labelledby': 'sh-stem' }, tombolOpsi),
+      h('div', { class: 'sh-yakin', role: 'group', 'aria-labelledby': 'sh-yakin-l' }, h('span', { class: 'sh-yakin-label', id: 'sh-yakin-l' }, 'Seberapa yakin?'), tombolYakin),
+      bawah, live);
+    function simpan() {
+      if (!o.catat || !st.o) return;
+      try { const s2 = UKP.store.get(); s2.soalHari = { tgl, id: soal.id, o: st.o, k: st.k }; UKP.store.save(); } catch (e) { console.error(e); }
+    }
+    function terapkan() {
+      const jawabTerkunci = !!st.o;
+      tombolOpsi.forEach(b => {
+        const x = b.dataset.h; const kunci = jawabTerkunci && x === soal.kunci; const salah = jawabTerkunci && x === st.o && x !== soal.kunci;
+        b.dataset.hasil = kunci ? 'kunci' : salah ? 'salah' : '';
+        if (!b.dataset.hasil) delete b.dataset.hasil;
+        if (jawabTerkunci) b.setAttribute('aria-disabled', 'true'); else b.removeAttribute('aria-disabled');
+        if (x === st.o) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+        const tanda = b.querySelector('.sh-tanda'); tanda.replaceChildren(kunci ? svgGaris(IKON_CEK, { lebar: '2.5', label: 'Jawaban benar' }) : salah ? svgGaris(IKON_SILANG, { lebar: '2.5', label: 'Pilihan Anda, belum tepat' }) : null);
+      });
+      tombolYakin.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === st.k)));
+      kartu.dataset.terjawab = jawabTerkunci ? (st.o === soal.kunci ? 'benar' : 'salah') : '';
+      if (!jawabTerkunci) delete kartu.dataset.terjawab;
+      bawah.hidden = !jawabTerkunci;
+    }
+    function jawab(x) {
+      if (st.o) return;
+      // V6: tab lain sudah menjawab soal ini (store tersinkron sebelum kartu dirender ulang) → tampilkan jawaban itu, jangan catat lagi
+      if (o.catat) { const lain = bacaSoalHari(UKP.store.get(), tgl, soal.id); if (lain) { st.o = lain.o; st.k = lain.k; terapkan(); return; } }
+      st.o = x; const benar = x === soal.kunci;
+      if (o.catat) {
+        try { L.catatJawaban(soal, x, (Date.now() - t0) / 1000, 'latih'); if (st.k) L.aturKeyakinan(soal.id, 'latih', st.k); } catch (e) { console.error(e); }
+        simpan();
+      }
+      terapkan();
+      live.textContent = benar ? 'Benar. Jawaban ' + x + '.' : 'Belum tepat. Anda memilih ' + x + '; jawaban benar ' + soal.kunci + ': ' + soal.opsi[soal.kunci] + '.';
+    }
+    function pilihYakin(v) {
+      st.k = st.k === v ? null : v;
+      if (o.catat && st.o) { try { L.aturKeyakinan(soal.id, 'latih', st.k); } catch (e) { console.error(e); } simpan(); }
+      terapkan();
+    }
+    terapkan();
+    if (st.o) live.textContent = '';
+    return kartu;
+  }
+  // D3.1 pita: eyebrow mono, h1, paragraf, dua tombol, kartu Soal hari ini di kanan
+  function pitaBeranda(o) {
+    return h('section', { class: 'beranda-pita pita-kisi', 'aria-labelledby': 'pita-judul' },
+      h('div', { class: 'wadah-situs pita-dalam' },
+        h('div', { class: 'pita-teks' },
+          h('p', { class: 'pita-eyebrow' }, o.eyebrow),
+          h('h1', { class: 'pita-judul', id: 'pita-judul', tabindex: '-1' }, o.judul),
+          h('p', { class: 'pita-lead' }, o.lead),
+          h('div', { class: 'pita-aksi' }, o.aksi)),
+        o.kartu));
+  }
+  // D3.2 strip MATA UJIAN: item = [{ teks, view?, params?, judul? }]
+  function stripMataUjian(item) {
+    return h('nav', { class: 'beranda-mata', 'aria-labelledby': 'mata-label' }, h('div', { class: 'wadah-situs mata-dalam' },
+      h('span', { class: 'mata-label', id: 'mata-label' }, 'MATA UJIAN'),
+      h('ul', { class: 'mata-daftar' }, item.map(x => h('li', null, x.view ? UKP.link(x.teks, x.view, x.params || null, 'mata-chip') : h('span', { class: 'mata-chip' }, x.teks))))));
+  }
+  // D3.5 empat kartu-tautan. tujuan[i] = [view, params]
+  function empatCara(meta, tujuan) {
+    const KARTU = [
+      ['simulasi', 'Simulasi berwaktu', 'Kerjakan set tryout dengan batas waktu seperti ujian, lalu lihat skor dan riwayatnya.'],
+      ['mabar', 'Mode mabar', 'Satu layar, satu pemandu. Soal dibaca bersama, tiap anggota menjawab sendiri, hasil per orang langsung terlihat.'],
+      ['yakin', 'Yakin, ragu, nebak', 'Tandai keyakinan tiap jawaban supaya ketahuan mana yang benar-benar paham dan mana yang kebetulan benar.'],
+      ['materi', 'Materi dan kalkulator', 'Ringkasan per mata ujian, kalkulator pajak dengan contoh soal, dan kartu hafalan.'],
+    ];
+    return h('section', { class: 'beranda-cara', 'aria-labelledby': 'cara-judul' },
+      h('h2', { class: 'cara-judul', id: 'cara-judul' }, 'Empat cara berlatih, satu tujuan: siap di hari ujian.'),
+      h('ul', { class: 'cara-kisi' }, KARTU.map(([ik, judul, teks], i) => h('li', null, UKP.link([
+        h('span', { class: 'cara-atas' }, svgGaris(IKON_CARA[ik], { kelas: 'cara-ikon' }), h('span', { class: 'cara-no', 'aria-hidden': 'true' }, '0' + (i + 1))),
+        h('h3', { class: 'cara-nama' }, judul), h('span', { class: 'cara-teks' }, teks), meta[i] ? h('span', { class: 'cara-meta' }, meta[i]) : null,
+      ], tujuan[i][0], tujuan[i][1] || null, 'kartu-cara')))));
+  }
+  // D3.4 kartu Lanjutkan (atau Mulai sesi pertama); tombolnya sekunder
+  function kartuLanjut(s) {
+    const tingkat = s.profil.tingkat; const hariIni = U.hariIni();
     const akhir = aktivitasTerakhir(s);
     const hadir = !!(s.hadir[hariIni] && s.hadir[hariIni].status === 'HADIR');
     const susun = () => { let x = null; try { x = L.susunSesi('standar'); } catch (e) {} return x && x.blok && x.blok.length ? x : null; };
     const mulaiSesi = x => { s.sesiAktif = x; UKP.store.save(); UKP.go('sesi'); };
     const tautanAlt = (teks, fn) => h('button', { type: 'button', class: 'lanjut-alt', onclick: fn }, teks);
     const kartuAksi = (meta, judul, alt, tombol) => h('section', { class: 'card kartu-lanjut', 'aria-labelledby': 'lanjut-judul' },
-      h('div', { class: 'lanjut-teks' }, h('span', { class: 'meta' }, meta), h('h2', { class: 'lanjut-judul', id: 'lanjut-judul' }, judul), alt),
+      h('div', { class: 'lanjut-teks' }, h('span', { class: 'meta' }, meta), h('h3', { class: 'lanjut-judul', id: 'lanjut-judul' }, judul), alt),
       h('div', { class: 'btn-row' }, tombol));
     if (akhir) {
       const sesi = !akhir.sesi && !hadir ? susun() : null;
-      page.appendChild(kartuAksi(akhir.meta, akhir.judul, sesi ? tautanAlt('atau mulai sesi harian · ' + sesi.menit + ' mnt', () => mulaiSesi(sesi)) : null,
-        h('button', { type: 'button', class: 'btn btn-primary', onclick: akhir.buka }, ikon('play'), 'Lanjutkan')));
-    } else {
-      const sesi = susun(); const nDiag = K.kelompok(tingkat).length * 3; const menitDiag = Math.max(1, Math.round(nDiag * .8));
-      const diag = () => { const d = L.susunDiagnosis(); if (!d) { UKP.toast('Konten untuk tingkat ini belum dimuat.'); return; } mulaiSesi(d); };
-      page.appendChild(kartuAksi('Langkah pertama', 'Mulai sesi pertama', nDiag ? tautanAlt('atau diagnosis ' + nDiag + ' soal · ± ' + menitDiag + ' mnt', diag) : null,
-        h('button', { type: 'button', class: 'btn btn-primary', disabled: !sesi, onclick: () => { if (sesi) mulaiSesi(sesi); } }, ikon('play'), sesi ? 'Mulai sesi · ' + sesi.menit + ' mnt' : 'Mulai sesi')));
+      return kartuAksi(akhir.meta, akhir.judul, sesi ? tautanAlt('atau mulai sesi harian · ' + sesi.menit + ' mnt', () => mulaiSesi(sesi)) : null,
+        h('button', { type: 'button', class: 'btn', onclick: akhir.buka }, ikon('play'), 'Lanjutkan'));
     }
+    const sesi = susun(); const nDiag = K.kelompok(tingkat).length * 3; const menitDiag = Math.max(1, Math.round(nDiag * .8));
+    const diag = () => { const d = L.susunDiagnosis(); if (!d) { UKP.toast('Konten untuk tingkat ini belum dimuat.'); return; } mulaiSesi(d); };
+    return kartuAksi('Langkah pertama', 'Mulai sesi pertama', nDiag ? tautanAlt('atau diagnosis ' + nDiag + ' soal · ± ' + menitDiag + ' mnt', diag) : null,
+      h('button', { type: 'button', class: 'btn', disabled: !sesi, onclick: () => { if (sesi) mulaiSesi(sesi); } }, ikon('play'), sesi ? 'Mulai sesi · ' + sesi.menit + ' mnt' : 'Mulai sesi'));
+  }
+  // meta hidup kartu 02: status room bila ada
+  function metaRoom() {
+    try {
+      const r = UKP.ruang; if (!r || typeof r.tersedia !== 'function') return 'Latihan satu layar bersama tim';
+      const i = typeof r.info === 'function' ? r.info() : null;
+      if (i) { const st = typeof r.status === 'function' ? r.status() : null; const on = st && Array.isArray(st.online) ? st.online.length : 0; return (i.namaRoom || 'Room tim') + (st && st.tersambung ? ' · ' + on + ' online' : ''); }
+      return r.tersedia().tersedia ? 'Belum ada room tim' : 'Latihan satu layar bersama tim';
+    } catch (e) { return 'Latihan satu layar bersama tim'; }
+  }
 
-    let nTempo = 0; try { nTempo = UKP.srs.jatuhTempo(tingkat).length; } catch (e) {}
-    const adaKartu = Object.keys(s.kartu || {}).length > 0;
-    const ubin = [
-      ['book', 'Belajar materi', 'Peta materi ' + (UKP.namaTingkat[tingkat] || 'Tingkat ' + tingkat), 'tingkat', { tingkat }],
-      ['pen', 'Latih soal', '20 soal acak, langsung dibahas', 'latih'],
-      ['sim', 'Simulasi ujian', 'Waktu dan format ujian', 'simulasi'],
-      ['repeat', 'Ulang kartu', nTempo ? nTempo + ' kartu jatuh tempo' : adaKartu ? 'Tidak ada yang jatuh tempo' : 'Belum ada kartu', 'ulang'],
-    ];
-    page.appendChild(h('nav', { class: 'ubin-aksi', 'aria-label': 'Aksi utama' }, ubin.map(([ik, judul, ket, view, prm]) => UKP.link([ikon(ik), h('span', { class: 'ubin-judul' }, judul), h('span', { class: 'ubin-ket' }, ket)], view, prm || null, 'ubin'))));
-    const alat = [['calc', 'Kalkulator pajak', 'kalkulator'], ['ref', 'Referensi', 'referensi'], ['kasus', 'Studi kasus', 'kasus'], ['formulir', 'Cakupan materi resmi', 'cakupan', { tingkat }]];
-    page.appendChild(h('nav', { class: 'list-rows alat-ringkas', 'aria-label': 'Alat lain' }, alat.map(([ik, judul, view, prm]) => UKP.link([ikon(ik, null, true), h('span', { class: 'row-title' }, judul), ikon('chevron-kanan', 'chev', true)], view, prm || null, 'row-link'))));
-    page.appendChild(h('p', { class: 'tautan-tenang' }, UKP.link(['Lihat kemajuan', ikon('chevron-kanan', null, true)], 'kemajuan', null, 'tautan-kop rata')));
+  // ----- Beranda (pengguna yang sudah onboarding) -----
+  UKP.views.beranda = function () {
+    const s = UKP.store.get(); const p = s.profil; const tingkat = p.tingkat; const hariIni = U.hariIni();
+    const page = h('div', { class: 'page beranda selebar' });
+    const nama = typeof p.nama === 'string' ? p.nama.trim().split(/\s+/)[0] : '';
+    const sisa = p.tanggalUjian ? U.selisihHari(hariIni, p.tanggalUjian) : null;
+    const eyebrow = 'UJI KOMPETENSI PERPAJAKAN · ' + (UKP.namaTingkat[tingkat] || 'Tingkat ' + tingkat).toUpperCase() + (sisa == null || sisa < 0 ? '' : sisa === 0 ? ' · HARI UJIAN' : ' · ' + sisa + ' HARI LAGI');
+    page.appendChild(pitaBeranda({ eyebrow, judul: sapaanJam() + (nama ? ', ' + nama + '.' : '.'),
+      lead: ['Belajar pajak bareng, lulus bareng. ', h('span', { class: 'pita-tgl' }, U.tglPanjang(hariIni) + '.')],
+      aksi: [UKP.link('Mulai simulasi', 'simulasi', null, 'tombol-pita utama'), UKP.link('Buka mode mabar', 'room', null, 'tombol-pita garis')],
+      kartu: kartuSoalHari({ tingkat, catat: true }) }));
+    page.appendChild(stripMataUjian(K.kelompok(tingkat).map(kode => ({ teks: namaPendek(kode), view: 'kelompok', params: { kode } }))));
+
+    const isi = h('div', { class: 'wadah-situs beranda-isi' }); page.appendChild(isi);
+    if (!UKP.store.ok) isi.appendChild(h('div', { class: 'banner', 'data-tone': 'warn' }, 'Penyimpanan browser tidak tersedia. Progres tidak tersimpan.'));
+    const duo = h('div', { class: 'beranda-duo' }); isi.appendChild(duo);
+    // D3.3 Mode mabar: blok Tim = UKP.c.kartuRoom() (kartu ujian tim / lanjut bersama sudah di dalamnya); tanpa kartuRoom →
+    // kartu ujian tim dan lanjut bersama v8.1 langsung. Di dalam blok tepat satu tombol utama.
+    let blokTim = null;
+    try { if (typeof UKP.c.kartuRoom === 'function') { const el = UKP.c.kartuRoom(); if (el && el.nodeType) blokTim = el; } } catch (e) { console.error(e); blokTim = null; }
+    if (!blokTim) {
+      try {
+        const kartu = [typeof UKP.c.kartuUjianTim === 'function' ? UKP.c.kartuUjianTim() : null, typeof UKP.c.kartuLanjutBersama === 'function' ? UKP.c.kartuLanjutBersama() : null].filter(x => x && x.nodeType);
+        if (kartu.length) blokTim = h('div', { class: 'stack-sm beranda-tim-aktif' }, kartu);
+      } catch (e) { console.error(e); }
+    }
+    const wadahTim = blokTim ? h('div', { class: 'beranda-tim', 'data-k': 'blok-tim' }, blokTim) : null;
+    if (wadahTim) duo.appendChild(h('section', { class: 'beranda-bagian bagian-mabar', 'aria-labelledby': 'mabar-judul' }, h('h2', { class: 'bagian-judul', id: 'mabar-judul' }, 'Mode mabar'), wadahTim));
+    // D3.4 Lanjutkan belajar (isi latihan pribadi, tidak dilipat)
+    duo.appendChild(h('section', { class: 'beranda-bagian bagian-lanjut', 'aria-labelledby': 'lanjut-bagian-judul' },
+      h('h2', { class: 'bagian-judul', id: 'lanjut-bagian-judul', 'data-k': 'latihan-pribadi' }, 'Lanjutkan belajar'), kartuLanjut(s)));
+    if (p.berandaLengkap === true) {
+      // pilihan lama: dasbor lengkap menggantikan Empat cara dan Alat lain (tanpa kop dan h1 keduanya)
+      let dasbor = null; try { dasbor = berandaDasbor({ tanpaKop: true }); } catch (e) { console.error(e); }
+      if (dasbor && dasbor.nodeType) { dasbor.className = 'beranda-dasbor'; isi.appendChild(dasbor); }
+    } else {
+      let nTempo = 0; try { nTempo = UKP.srs.jatuhTempo(tingkat).length; } catch (e) {}
+      const simAkhir = (s.simulasi || []).filter(x => x && x.selesai).slice(-1)[0];
+      isi.appendChild(empatCara([
+        simAkhir ? 'Terakhir: skor ' + Math.round(simAkhir.skor || 0) : 'Belum ada riwayat simulasi',
+        metaRoom(),
+        '20 soal acak, langsung dibahas',
+        nTempo ? nTempo + ' kartu jatuh tempo' : 'Peta materi ' + (UKP.namaTingkat[tingkat] || 'Tingkat ' + tingkat),
+      ], [['simulasi'], ['room'], ['latih'], ['tingkat', { tingkat }]]));
+      // D3.6 Alat lain
+      const alat = [['calc', 'Kalkulator pajak', 'kalkulator'], ['ref', 'Referensi', 'referensi'], ['kasus', 'Studi kasus', 'kasus'], ['formulir', 'Cakupan materi resmi', 'cakupan', { tingkat }]];
+      isi.appendChild(h('section', { class: 'beranda-bagian bagian-alat', 'aria-labelledby': 'alat-judul' }, h('h2', { class: 'bagian-judul', id: 'alat-judul' }, 'Alat lain'),
+        h('nav', { class: 'list-rows alat-ringkas', 'aria-labelledby': 'alat-judul' }, alat.map(([ik, judul, view, prm]) => UKP.link([ikon(ik, null, true), h('span', { class: 'row-title' }, judul), ikon('chevron-kanan', 'chev', true)], view, prm || null, 'row-link'))),
+        h('p', { class: 'tautan-tenang' }, UKP.link(['Lihat kemajuan', ikon('chevron-kanan', null, true)], 'kemajuan', null, 'tautan-kop rata'))));
+    }
+    page.appendChild(kaki());
+    // satu tombol utama per layar: hanya di blok Tim (tombol pita bergaya sendiri, bukan .btn-primary)
+    try {
+      page.querySelectorAll('.btn-primary').forEach(b => { if (!wadahTim || !wadahTim.contains(b)) b.classList.remove('btn-primary'); });
+      if (wadahTim) { const primer = [...wadahTim.querySelectorAll('.btn-primary')]; const utama = primer.find(b => b.classList.contains('room-utama')) || primer[0]; primer.forEach(b => { if (b !== utama) b.classList.remove('btn-primary'); }); }
+    } catch (e) { console.error(e); }
+    return page;
+  };
+
+  // ----- Sambutan pengunjung baru (D5): mulai tanpa params; kop situs tampil (bukan mode fokus) -----
+  const MATA_UJIAN_STATIS = ['KUP', 'PPh Orang Pribadi', 'PPh Badan', 'PPh Pemotongan dan Pemungutan', 'PPN dan PPnBM', 'PBB, BPHTB, Bea Meterai', 'Akuntansi Perpajakan', 'Kode Etik'];
+  function halamanSambutan() {
+    const page = h('div', { class: 'page beranda sambutan selebar' });
+    const isiForm = { isi: 1 };
+    page.appendChild(pitaBeranda({ eyebrow: 'UJI KOMPETENSI PERPAJAKAN · TINGKAT A, B, C', judul: 'Belajar pajak bareng, lulus bareng.',
+      lead: 'Simulasi ujian berwaktu, latihan tim di satu layar, dan pembahasan lengkap dengan dasar hukumnya untuk persiapan UKP.',
+      aksi: [UKP.link('Mulai simulasi', 'mulai', isiForm, 'tombol-pita utama'), UKP.link('Buka mode mabar', 'room', null, 'tombol-pita garis')],
+      kartu: kartuSoalHari({ tingkat: 'A', catat: false, latih: UKP.link(['Latih 10 soal lagi', ikon('chevron-kanan', null, true)], 'mulai', isiForm, 'sh-tautan') }) }));
+    page.appendChild(stripMataUjian(MATA_UJIAN_STATIS.map(teks => ({ teks }))));
+    const isi = h('div', { class: 'wadah-situs beranda-isi' }); page.appendChild(isi);
+    isi.appendChild(empatCara(['Isi profil singkat dulu', 'Buka room tanpa daftar', 'Tingkat A, B, dan C', 'Lengkap dengan dasar hukum'],
+      [['mulai', isiForm], ['room'], ['mulai', isiForm], ['mulai', isiForm]]));
+    page.appendChild(kaki());
     return page;
   }
 

@@ -14,7 +14,7 @@ const ROOT = path.join(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const DIR_FONT = path.join(DIST, 'fonts');
 const MANIFES_FONT = path.join(DIR_FONT, 'fonts.json');
-const URL_FONT_CSS = 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap';
+const URL_FONT_CSS = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap';
 // User-Agent Chrome agar Google Fonts mengirim woff2 (UA lain bisa mendapat ttf)
 const UA_CHROME = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 const TARGET_BYTE = 8 * 1024 * 1024;

@@ -1,4 +1,4 @@
-/* Peta formulir — Pelatih UKP (status ketentuan per 27 Oktober 2026).
+/* Peta formulir — MABAR UKP (status ketentuan per 27 Oktober 2026).
    Peta logis komponen pelaporan: SPT Tahunan (1770, 1770 S, 1771), SPT Masa PPN, SPT Masa PPh 21/26,
    SPT Masa PPh Unifikasi, bukti potong Coretax, SPOP/LSPOP PBB-P5L, dan SPT Masa Bea Meterai.
    Sumber: docs/research/02a (A.9, B.4, C.7) dan 02b (A.7, B.1–B.4, C.2, C.4), modul konten, dan petunjuk pengisian

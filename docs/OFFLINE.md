@@ -1,4 +1,4 @@
-# Versi offline — Pelatih UKP tanpa internet (mis. di pesawat)
+# Versi offline — MABAR UKP tanpa internet (mis. di pesawat)
 
 Status 30 Oktober 2026. Dokumen ini menjelaskan **versi berkas tunggal** `pelatih-ukp-offline.html`: satu berkas HTML mandiri yang memuat seluruh CSS, skrip, data materi, dan font, sehingga bisa dibuka tanpa jaringan dari penyimpanan perangkat.
 
@@ -25,7 +25,7 @@ Ada dua jalur offline. Keduanya saling melengkapi:
    <script>window.UKP_OFFLINE = true;</script>
    ```
 5. **PWA**: `<link rel="manifest">` dibuang (manifest hanya berlaku di http(s); dari `file://` hanya memicu galat konsol). Ikon berkas lokal disematkan sebagai data URI; ikon yang sudah berupa data URI dibiarkan. `js/app.js` tidak mendaftarkan service worker bila `window.UKP_OFFLINE` atau bukan http(s).
-6. Judul menjadi `Pelatih UKP (offline)`. Komentar `<!--ARTIFACT-START-->`, `<!--ARTIFACT-HEAD-END-->`, `<!--ARTIFACT-BODY-START-->`, `<!--ARTIFACT-BODY-END-->` dipertahankan.
+6. Judul menjadi `MABAR UKP (offline)`. Komentar `<!--ARTIFACT-START-->`, `<!--ARTIFACT-HEAD-END-->`, `<!--ARTIFACT-BODY-START-->`, `<!--ARTIFACT-BODY-END-->` dipertahankan.
 
 Pemeriksaan otomatis saat build (gagal → kode keluar 1): tidak ada lagi `<script src>`/stylesheet/manifest lokal, tidak ada rujukan Google Fonts di luar isi skrip, jumlah tag `<script>` = jumlah skrip + 1 (deteksi tag yang terputus), semua penanda ARTIFACT ada, dan `UKP_OFFLINE` mendahului core.js. Ukuran akhir dicetak; target **< 8 MB** (saat ini ±5,4 MB, sebagian besar `js/data/*.js`).
 
@@ -110,7 +110,7 @@ Daftar periksa sebelum berangkat: (1) unduh atau bangun berkas saat masih online
 **iPhone dan iPad**
 - Membuka dari aplikasi Files (pratinjau Quick Look) atau membagikan ke Safari **tidak menjalankan skrip**: halaman berhenti di "Memuat materi…".
 - Pakai aplikasi **Documents by Readdle** (impor berkas, lalu ketuk untuk membuka di peramban bawaannya), atau Chrome iOS lewat *Bagikan › Buka dengan Chrome*. Uji dulu dalam mode pesawat.
-- **Cara teraman di iPhone: PWA.** Buka alamat hosting Pelatih UKP di Safari › *Bagikan* › *Tambahkan ke Layar Utama*, lalu buka sekali saat masih online agar service worker menyimpan semua aset.
+- **Cara teraman di iPhone: PWA.** Buka alamat hosting MABAR UKP di Safari › *Bagikan* › *Tambahkan ke Layar Utama*, lalu buka sekali saat masih online agar service worker menyimpan semua aset.
 
 Petunjuk yang sama tampil di aplikasi (Pengaturan › Versi offline, bagian lipat per perangkat).
 

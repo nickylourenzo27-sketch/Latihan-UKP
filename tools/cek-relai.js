@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Pelatih UKP — pemeriksa jalur Room tim (v8.2).
+/* MABAR UKP — pemeriksa jalur Room tim (v8.2).
    Menjalankan js/ruang.js yang SAMA dengan website terhadap jalur publik sungguhan, dari Node ≥ 22
    (WebSocket dan WebCrypto bawaan Node, tanpa dependensi). Tidak ada data pengguna yang dikirim: room uji sekali pakai
    bernama "Uji jalur", pesertanya "Uji-A"/"Uji-B"/"Uji-C", isinya terenkripsi seperti room biasa, dan room ditutup

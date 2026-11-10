@@ -1,4 +1,4 @@
-/* Uji mesin kalkulator Pelatih UKP — jalankan: node --test test/
+/* Uji mesin kalkulator MABAR UKP — jalankan: node --test test/
    Kasus acuan dari docs/SKEMA-KALKULATOR.md dan riset 02a/02b ditandai "acuan".
    Bagian "adversarial" (akhir berkas): batas lapisan, input aneh, fuzz semua input, kombinasi pilihan,
    cek silang tabel TER dengan riset 02a, dan integrasi kmkBunga dari js/data/ref.js. */

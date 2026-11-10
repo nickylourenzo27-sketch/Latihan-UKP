@@ -1,4 +1,4 @@
-/* Pelatih UKP — Dasbor tim (#tim, #tim/<id>): hasil latihan dan simulasi anggota tim untuk belajar bersama.
+/* MABAR UKP — Dasbor tim (#tim, #tim/<id>): hasil latihan dan simulasi anggota tim untuk belajar bersama.
    Sumber data: UKP.tim (js/tim.js) — pantau() koleksi db 'tim' (capability db + user di Artifact claude.ai) — digabung dengan
    daftar manual dari kode hasil yang ditempel (localStorage 'ukp.tim.manual') dan ringkasan yang diterima lewat room (sumber 'langsung',
    localStorage 'ukp.tim.terima' + dok 'tim/anon_<id>'). Di server tim sendiri (deploy/server.js) sumbernya 'server': admin melihat semua
@@ -1772,7 +1772,7 @@
     function perbaruiJudul() {
       if (!page.isConnected) return;
       const h1 = page.querySelector('h1'); if (!h1) return;
-      document.title = (h1.textContent || 'Pelatih UKP').trim() + ' · Pelatih UKP';
+      document.title = (h1.textContent || 'MABAR UKP').trim() + ' · MABAR UKP';
       if (UKP.perbaruiJudulRingkas) UKP.perbaruiJudulRingkas();
     }
     gambar();

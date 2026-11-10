@@ -1,4 +1,4 @@
-/* Pelatih UKP — modul visualisasi UKP.viz: batang, kolom, garis, sparkline, ringSegmen, heatmap, statTile.
+/* MABAR UKP — modul visualisasi UKP.viz: batang, kolom, garis, sparkline, ringSegmen, heatmap, statTile.
    Struktur DOM dan kelas mengikuti kontrak di css/app.css ("viz: kelas untuk UKP.viz"):
    <figure class="viz viz-kolom|viz-bar|viz-garis|viz-heat|viz-ring"> + figcaption.viz-judul + <svg role="img" aria-label>
    (.viz-grid · .viz-sumbu · .viz-batang[data-tone|data-pita] · .viz-seri · .viz-titik · .viz-acuan + .viz-acuan-label ·

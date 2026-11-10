@@ -1,4 +1,4 @@
-/* Pelatih UKP — mesin 19 kalkulator pajak (fungsi murni, tanpa DOM).
+/* MABAR UKP — mesin 19 kalkulator pajak (fungsi murni, tanpa DOM).
    Kontrak   : docs/SKEMA-KALKULATOR.md · daftar & rumus: docs/SPESIFIKASI.md §5.
    Sumber    : docs/research/02a-regulasi-kup-pphop-potput.md, docs/research/02b-regulasi-badan-ppn-pbb-intl.md
                (status ketentuan per 25 Oktober 2026).

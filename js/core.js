@@ -1,7 +1,7 @@
-/* Pelatih UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
+/* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '8.2';
+  UKP.versi = '9.0';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   UKP.modul = UKP.modul || {};          // kode -> modul konten
@@ -360,9 +360,9 @@
       let o;
       try { o = typeof json === 'string' ? JSON.parse(json.replace(/^﻿/, '').trim()) : json; }
       catch (e) { throw new Error('Teks bukan JSON yang valid. Salin ulang seluruh isi ekspor dari perangkat asal.'); }
-      if (isObj(o) && o.aplikasi != null && o.aplikasi !== 'pelatih-ukp') throw new Error('Berkas ini bukan ekspor Pelatih UKP.');
+      if (isObj(o) && o.aplikasi != null && o.aplikasi !== 'pelatih-ukp') throw new Error('Berkas ini bukan ekspor MABAR UKP.');
       const d = isObj(o) && isObj(o.data) ? o.data : o;
-      if (!isObj(d) || !isObj(d.profil)) throw new Error('Isinya bukan ekspor Pelatih UKP yang utuh. Salin ulang dari perangkat asal.');
+      if (!isObj(d) || !isObj(d.profil)) throw new Error('Isinya bukan ekspor MABAR UKP yang utuh. Salin ulang dari perangkat asal.');
       load(); isiUlang(normal(d)); tulis(true);
       return true;
     },
@@ -462,7 +462,7 @@
     if (p.teksBesar) r.setAttribute('data-teks', 'besar'); else r.removeAttribute('data-teks');
     // warna bilah peramban mengikuti tema manual (DESAIN-V6 §G.12)
     try {
-      const WARNA = { light: '#F3F5F4', dark: '#0F1512' };
+      const WARNA = { light: '#F6F7F9', dark: '#0A1626' }; // = --bg terang/gelap (v8.3)
       document.querySelectorAll('meta[name="theme-color"]').forEach(m => {
         const asal = /dark/.test(m.getAttribute('media') || '') ? 'dark' : 'light';
         m.setAttribute('content', WARNA[p.tema === 'light' || p.tema === 'dark' ? p.tema : asal]);
@@ -695,6 +695,10 @@
   UKP.views = UKP.views || {};
   // view yang boleh dibuka sebelum onboarding selesai (tautan yang dibagikan pemimpin ke anggota tim)
   UKP.VIEW_TAMU = { ujiantim: 1, lj: 1, room: 1 };
+  // v9.0 D5: pengunjung baru yang menuju fitur tertentu diarahkan ke formulir onboarding (mulai { isi: 1 }); akar situs dan Beranda
+  // menuju halaman sambutan (mulai tanpa params)
+  const paramsMulai = view => (!view || view === 'beranda' || view === 'mulai') ? {} : { isi: 1 };
+  UKP.paramsMulai = paramsMulai;
   const TOKEN = { beranda: 'beranda', belajar: 'belajar', latih: 'latih', ulang: 'ulang', kalkulator: 'kalkulator', simulasi: 'simulasi', kasus: 'kasus', rencana: 'rencana', kemajuan: 'kemajuan', referensi: 'referensi', 'info-ujian': 'infoujian', profesi: 'profesi', pengaturan: 'pengaturan', strategi: 'strategi', tutor: 'tutor', mulai: 'mulai', tingkat: 'tingkat', kelompok: 'kelompok', topik: 'topik', formulir: 'formulir', lembar: 'lembar', cakupan: 'cakupan', tim: 'tim', ujiantim: 'ujiantim', lj: 'lj', room: 'room' };
   const DARI_TOKEN = Object.create(null); for (const k in TOKEN) DARI_TOKEN[TOKEN[k]] = k;
   // token hash (#infoujian, #topik/A2.8) atau nama view mentah (#info-ujian) → nama view; selain itu null
@@ -710,7 +714,7 @@
   // #topik/A2.8 · #kelompok/B7 · #kalkulator/kurs · #lembar/A1 · #tingkat/B · #kasus/K-A1-01 · #cakupan/C ·
   // #formulir/1771 (formulir) atau #formulir/1771.induk.1 (baris). Params lain tetap hanya di history.state.
   // v8.1: #ujiantim/<kode ujian> (UKP.belajar.ujianTim.buatKode; hanya [A-Za-z0-9._~-]) dan #lj (lembar jawab pribadi, tanpa params).
-  const PARAM_HASH = { topik: 'id', kelompok: 'kode', kalkulator: 'jenis', lembar: 'kode', tingkat: 'tingkat', kasus: 'id', cakupan: 'tingkat', 'info-ujian': 'tab', tim: 'anggota', ujiantim: 'kode', room: 'kode' };
+  const PARAM_HASH = { topik: 'id', kelompok: 'kode', kalkulator: 'jenis', lembar: 'kode', tingkat: 'tingkat', kasus: 'id', cakupan: 'tingkat', 'info-ujian': 'tab', tim: 'anggota', ujiantim: 'kode', room: 'kode', mulai: 'isi' };
   // view yang tak bermakna tanpa params → induknya (bukan halaman "tidak ditemukan"); kalkulator, lembar, formulir,
   // dan kasus tanpa params sudah menampilkan daftar induknya sendiri
   const INDUK_TANPA_PARAMS = { topik: 'tingkat', kelompok: 'tingkat' };
@@ -751,7 +755,7 @@
     params = params || {}; opsi = opsi || {};
     if (!adaView(view)) { console.warn('view tidak ada', view); view = 'beranda'; }
     // v8.1 V1: pengunjung baru yang masuk lewat tautan tim (UKP.VIEW_TAMU) lalu membuka halaman lain tetap diarahkan ke onboarding
-    if (view !== 'mulai' && !UKP.VIEW_TAMU[view] && adaView('mulai') && !load().profil.onboardingSelesai) { view = 'mulai'; params = {}; opsi = Object.assign({}, opsi, { replace: true }); }
+    if (view !== 'mulai' && !UKP.VIEW_TAMU[view] && adaView('mulai') && !load().profil.onboardingSelesai) { params = paramsMulai(view); view = 'mulai'; opsi = Object.assign({}, opsi, { replace: true }); }
     const st = { view, params };
     // posisi gulir halaman yang ditinggalkan disimpan di entrinya (dipulihkan saat Kembali)
     if (!opsi.replace) { try { const lama = history.state; if (lama && lama.view) history.replaceState(Object.assign({}, lama, { gulir: Math.round(window.scrollY || 0) }), '', location.hash || UKP.href(lama.view, lama.params)); } catch (e) {} }
@@ -779,7 +783,7 @@
     // tanpa state: hash diubah manual, tautan jangkar/tab baru (#topik/A2.8), atau skip link sebelum JS siap
     const tok = (location.hash || '').slice(1);
     const rute = ruteDariHash(tok);
-    if (rute && rute.view !== 'mulai' && !UKP.VIEW_TAMU[rute.view] && adaView('mulai') && !load().profil.onboardingSelesai) { UKP.go('mulai', {}, { replace: true }); return; }
+    if (rute && rute.view !== 'mulai' && !UKP.VIEW_TAMU[rute.view] && adaView('mulai') && !load().profil.onboardingSelesai) { UKP.go('mulai', paramsMulai(rute.view), { replace: true }); return; }
     if (rute) { const r = arahkanInduk(rute); try { history.replaceState({ view: r.view, params: r.params }, '', UKP.href(r.view, r.params)); } catch (err) {} render(r.view, r.params, {}); return; }
     // bukan rute (#main, kosong, jangkar): tetap di halaman ini, pulihkan URL rute, pindahkan fokus
     if (current.view) { try { history.replaceState({ view: current.view, params: current.params || {} }, '', UKP.href(current.view, current.params)); } catch (err) {} }
@@ -839,7 +843,7 @@
     document.body.dataset.view = view;
     main.textContent = '';
     let out;
-    try { out = UKP.views[view](params); } catch (e) { console.error(e); out = h('div', { class: 'page' }, h('h1', null, 'Terjadi kesalahan'), h('p', { class: 'muted' }, 'Halaman ini gagal dimuat: ' + e.message), h('button', { class: 'btn', onclick: () => UKP.go('beranda') }, 'Ke Hari Ini')); }
+    try { out = UKP.views[view](params); } catch (e) { console.error(e); out = h('div', { class: 'page' }, h('h1', null, 'Terjadi kesalahan'), h('p', { class: 'muted' }, 'Halaman ini gagal dimuat: ' + e.message), h('button', { class: 'btn', onclick: () => UKP.go('beranda') }, 'Ke Beranda')); }
     if (out && out.node) { unmount = out.unmount; out = out.node; }
     if (out) main.appendChild(out);
     // transisi antar-rute: pudar 120 ms pada main > .page (CSS main[data-masuk]); tidak untuk render ulang di tempat.
@@ -869,7 +873,7 @@
     if (h1 && !h1.hasAttribute('tabindex')) h1.setAttribute('tabindex', '-1');
     if (opsi.renderUlang) { if (fokusLama && !pulihkanFokus(main, fokusLama)) UKP.fokus(h1 || main); }
     else if (!opsi.tanpaFokus) UKP.fokus(h1 || main);
-    if (h1) document.title = (h1.textContent || 'Pelatih UKP').trim() + ' · Pelatih UKP';
+    if (h1) { const jt = (h1.textContent || 'MABAR UKP').trim(); document.title = /MABAR UKP/.test(jt) ? jt : jt + ' · MABAR UKP'; }
     const live = document.getElementById('live'); if (live && h1 && !opsi.renderUlang) live.textContent = h1.textContent;
     document.dispatchEvent(new CustomEvent('ukp:render', { detail: current }));
   }
@@ -886,7 +890,7 @@
     }
     const s = load();
     // tautan tim (ikut ujian tim lewat kode, lembar jawab) boleh dibuka pengunjung baru tanpa onboarding (UKP.VIEW_TAMU)
-    if (!s.profil.onboardingSelesai && !(rute && UKP.VIEW_TAMU[rute.view])) { UKP.go('mulai', {}, { replace: true }); return; }
+    if (!s.profil.onboardingSelesai && !(rute && UKP.VIEW_TAMU[rute.view])) { UKP.go('mulai', rute && rute.view === 'mulai' ? rute.params : paramsMulai(rute && rute.view), { replace: true }); return; }
     const r = arahkanInduk(rute || { view: 'beranda', params: {} });
     UKP.go(r.view, r.params, { replace: true });
   };
@@ -935,6 +939,24 @@
     return h('div', a, svg, label);
   };
   UKP.c.stempel = (teks, tone, opsi) => h('span', { class: 'stempel' + (opsi && opsi.besar ? ' besar' : '') + (opsi && opsi.diraih ? ' diraih' : ''), 'data-tone': tone || 'muted' }, teks);
+  // merek MABAR UKP (v8.3): simbol persen (kotak, dua titik, satu garis; viewBox 96) + "MABAR" + lencana "UKP".
+  // Warna simbol diatur CSS lewat kelas (.merek-kotak, .merek-titik, .merek-garis) sehingga ikut tema: terang kotak tinta + titik kuning,
+  // gelap kotak kuning + titik tinta, garis selalu putih. Ukuran teks mengikuti --merek-u (= ukuran simbol dalam px).
+  // opsi.ukuran: px simbol (bawaan 32) · opsi.tanpaTeks: hanya simbol (role="img", aria-label "Logo MABAR UKP") · opsi.kelas: kelas tambahan.
+  // Struktur: span.merek > span.mark > svg.merek-simbol, lalu span.brand-teks > span.merek-nama + span.merek-lencana
+  // (.mark dan .brand-teks dipertahankan agar aturan tata letak lama, mis. menyembunyikan label di topbar sempit, tetap berlaku).
+  UKP.c.merek = opsi => {
+    opsi = opsi || {};
+    const u = Math.max(12, Math.round(Number(opsi.ukuran) || 32)), NS = 'http://www.w3.org/2000/svg';
+    const el = (tag, at) => { const n = document.createElementNS(NS, tag); for (const k in at) n.setAttribute(k, at[k]); return n; };
+    const svg = el('svg', { viewBox: '0 0 96 96', width: u, height: u, class: 'merek-simbol', focusable: 'false' });
+    if (opsi.tanpaTeks) { svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', 'Logo MABAR UKP'); } else svg.setAttribute('aria-hidden', 'true');
+    svg.append(el('rect', { class: 'merek-kotak', width: 96, height: 96, rx: 20 }), el('circle', { class: 'merek-titik', cx: 30, cy: 30, r: 12 }), el('circle', { class: 'merek-titik', cx: 66, cy: 66, r: 12 }),
+      el('line', { class: 'merek-garis', x1: 68, y1: 22, x2: 28, y2: 74, 'stroke-width': 9, 'stroke-linecap': 'round' }));
+    const akar = h('span', { class: 'merek' + (opsi.tanpaTeks ? ' merek-simbol-saja' : '') + (opsi.kelas ? ' ' + opsi.kelas : ''), style: '--merek-u:' + u + 'px' }, h('span', { class: 'mark' }, svg));
+    if (!opsi.tanpaTeks) akar.appendChild(h('span', { class: 'brand-teks' }, h('span', { class: 'merek-nama' }, 'MABAR'), h('span', { class: 'merek-lencana' }, 'UKP')));
+    return akar;
+  };
   UKP.c.cite = (d, opsi) => {
     const statusPer = (UKP.ref && UKP.ref.statusPer) || '2026-10-25';
     const items = (Array.isArray(d) ? d : [d]).filter(x => x && (typeof x === 'string' || x.pasal || x.dasar));

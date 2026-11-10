@@ -1,4 +1,4 @@
-/* Pelatih UKP — Room tim (v8.2): satu room tetap untuk tim di website statis, tanpa server sendiri dan tanpa akun.
+/* MABAR UKP — Room tim (v8.2): satu room tetap untuk tim di website statis, tanpa server sendiri dan tanpa akun.
    Transport: klien MQTT 3.1.1 minimal (QoS 0) di atas WebSocket ke relai publik gratis. Isi pesan dienkripsi AES-GCM 256
    dengan kunci yang diturunkan dari kode room (PBKDF2-SHA-256), jadi relai hanya melihat byte acak dan awalan topik berupa hash.
    Lapisan (masing-masing diuji sendiri di test/ruang.test.js):

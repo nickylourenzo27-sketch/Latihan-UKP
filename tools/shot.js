@@ -96,6 +96,12 @@ const SANDI_UJI = process.env.SHOT_SANDI || 'UKP2026';
   });
   // 1. onboarding HP
   await sesi('hp-onboarding', { width: 390, height: 844 }, false, async (page, shot) => {
+    // v9.0: akar situs = halaman sambutan (berkop, tombol Masuk); formulir lima langkah di mulai { isi: 1 } (mode fokus, tanpa kop)
+    if (await page.evaluate(() => document.body.hasAttribute('data-sambutan'))) {
+      if (await page.evaluate(() => document.getElementById('topbar').hidden)) errors.push('hp-onboarding: kop tersembunyi di halaman sambutan');
+      await page.click('#kop-profil'); await page.waitForTimeout(400); await shot('formulir-awal');
+      if (!(await page.evaluate(() => document.getElementById('topbar').hidden))) errors.push('hp-onboarding: kop tampil di formulir onboarding');
+    }
     // langkah pertama: kolom 'Nama Anda' wajib (bawaan dari sesi akses tim bila ada)
     if (await page.locator('#ob-nama').count() && !(await page.inputValue('#ob-nama')).trim()) await page.fill('#ob-nama', 'Penguji');
     for (let i = 0; i < 4; i++) { await page.click('button.btn-primary'); await page.waitForTimeout(150); await shot('ob' + (i + 1)); }
@@ -119,6 +125,10 @@ const SANDI_UJI = process.env.SHOT_SANDI || 'UKP2026';
     await page.evaluate(() => { const s = UKP.store.get(); s.profil.onboardingSelesai = true; s.profil.tanggalUjian = '2026-12-15'; UKP.store.save(); });
     await isiData(page);
     await go(page, 'beranda'); await shot('beranda');
+    // v9.0: panel "Lainnya" di bawah kop (bukan dialog): buka, tangkap, Escape menutup dan fokus kembali ke tombolnya
+    await page.click('#btn-lainnya'); await page.waitForTimeout(250); await page.screenshot({ path: path.join(out, 'desktop-panel-lainnya-layar.png') });
+    await page.keyboard.press('Escape'); await page.waitForTimeout(150);
+    if (!(await page.evaluate(() => document.getElementById('kop-lainnya-panel').hidden && document.activeElement && document.activeElement.id === 'btn-lainnya'))) errors.push('desktop: panel Lainnya tidak tertutup Escape atau fokus tidak kembali ke tombolnya');
     await go(page, 'tingkat'); await shot('tingkat');
     if (await goBaru(page, 'cakupan', { tingkat: 'C' })) await shot('cakupan');
     const kode0 = await page.evaluate(() => UKP.konten.semuaKelompok()[0]); await go(page, 'kelompok', { kode: kode0 }); await shot('kelompok');
@@ -162,7 +172,7 @@ const SANDI_UJI = process.env.SHOT_SANDI || 'UKP2026';
     await go(page, 'latih', { mulai: true, n: 5 }); await shot('latih');
     await page.click('.opsi label:nth-child(3)'); await cekKunciTerlihat(page, 'hp latih', errors); await shot('umpan');
     await go(page, 'simulasi'); await shot('simulasi');
-    await page.click('.bottomnav button'); await page.waitForTimeout(300); await shot('lainnya');
+    await page.click('.bottomnav button[data-nav="lainnya"]'); await page.waitForTimeout(300); await shot('lainnya');
     await page.keyboard.press('Escape'); await page.waitForTimeout(150);
     await go(page, 'rencana'); await shot('rencana');
     await go(page, 'kemajuan', { tab: 'laporan' }); await shot('kemajuan-laporan');
@@ -234,7 +244,7 @@ const SANDI_UJI = process.env.SHOT_SANDI || 'UKP2026';
     if (await goBaru(page, 'lembar', { kode: kode0 })) await shot('lembar');
     await jelajahIU(page, shot, 'w1280');
   });
-  // 6. tablet 768 gelap (rail): tata letak menengah
+  // 6. tablet 768 gelap (v9.0: pola HP, kop + bar bawah; rel tablet dihapus): tata letak menengah
   await sesi('tablet', { width: 768, height: 1024 }, true, async (page, shot) => {
     await page.evaluate(() => { const s = UKP.store.get(); s.profil.onboardingSelesai = true; s.profil.tanggalUjian = '2026-12-15'; UKP.store.save(); });
     await isiData(page);

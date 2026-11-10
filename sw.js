@@ -1,4 +1,4 @@
-/* Pelatih UKP — service worker: semua aset aplikasi disimpan di Cache Storage agar aplikasi tetap bisa dipakai tanpa internet
+/* MABAR UKP — service worker: semua aset aplikasi disimpan di Cache Storage agar aplikasi tetap bisa dipakai tanpa internet
    (mis. di pesawat). Didaftarkan oleh js/app.js hanya pada http(s); file:// dan versi berkas tunggal (window.UKP_OFFLINE) tidak memakainya.
    Strategi:
    - aset lokal (index.html, css/, js/, js/data/, manifest, icons/): dimuat semua saat install (precache), lalu cache-first;
@@ -9,7 +9,7 @@
    cache versi lama dihapus saat activate. Daftar skrip juga dibaca ulang dari index.html saat install, jadi berkas baru tetap ikut. */
 'use strict';
 /* <ASET-OTOMATIS> ditulis ulang oleh tools/build-artifact.js — jangan diubah manual */
-const VERSI = '4992f5c50e4d';
+const VERSI = '60ee05918bea';
 const ASET = [
   "index.html",
   "js/core.js",
@@ -162,10 +162,10 @@ self.addEventListener('message', event => {
 
 function halamanOffline() {
   const html = '<!doctype html><html lang="id"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' +
-    '<title>Pelatih UKP · Offline</title><style>body{margin:0;padding:24px;font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;background:#F3F5F4;color:#15201B}' +
-    'main{max-width:32rem;margin:12vh auto}h1{font-size:1.4rem;margin:0 0 .5rem}button{font:inherit;font-weight:600;min-height:44px;padding:0 18px;margin-top:8px;border:0;border-radius:6px;background:#0E5A47;color:#fff;cursor:pointer}' +
-    '@media (prefers-color-scheme: dark){body{background:#0F1512;color:#E4EBE7}button{background:#7ED3B4;color:#0F1512}}</style>' +
-    '<main><h1>Anda sedang offline</h1><p>Pelatih UKP belum tersimpan di perangkat ini. Sambungkan internet, buka aplikasi sekali sampai muncul pesan ' +
+    '<title>MABAR UKP · Offline</title><style>body{margin:0;padding:24px;font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;background:#F6F7F9;color:#18212F}' +
+    'main{max-width:32rem;margin:12vh auto}h1{font-size:1.4rem;margin:0 0 .5rem}button{font:inherit;font-weight:600;min-height:44px;padding:0 18px;margin-top:8px;border:0;border-radius:6px;background:#0F2A4A;color:#fff;cursor:pointer}' +
+    '@media (prefers-color-scheme: dark){body{background:#0A1626;color:#E8EEF6}button{background:#F2B01E;color:#0F2A4A}}</style>' +
+    '<main><h1>Anda sedang offline</h1><p>MABAR UKP belum tersimpan di perangkat ini. Sambungkan internet, buka aplikasi sekali sampai muncul pesan ' +
     '“Siap dipakai offline”, lalu aplikasi bisa dibuka tanpa internet.</p><button type="button" onclick="location.reload()">Coba lagi</button></main></html>';
   return new Response(html, { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' } });
 }

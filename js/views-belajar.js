@@ -694,7 +694,7 @@
       tab: CAKUPAN_TINGKAT.filter(t => C.tingkat[t]).map(t => ({ id: t, label: [h('span', { class: 'tab-awal' }, 'Tingkat '), t], hitung: hitungCakupan(t, sentuh).butir })),
       isi: t => { tingkat = t; return isiTab(t); },
       onGanti: t => {
-        tingkat = t; if (h1) h1.textContent = judulH1(t); document.title = judulH1(t) + ' · Pelatih UKP';
+        tingkat = t; if (h1) h1.textContent = judulH1(t); document.title = judulH1(t) + ' · MABAR UKP';
         const remah = kopEl.querySelector('.crumb a[data-go="tingkat"]'); if (remah) { remah.dataset.params = JSON.stringify({ tingkat: t }); remah.setAttribute('href', UKP.href('tingkat', { tingkat: t })); }
         UKP.perbaruiParams({ tingkat: t }, 'cakupan');
       } });

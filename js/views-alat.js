@@ -1,4 +1,4 @@
-/* Pelatih UKP — Kalkulator, Rencana (v1), Kemajuan, Referensi, Info Ujian, Etika & Profesi, Pengaturan, Peta formulir, Lembar angka, Tutor AI, Pencarian */
+/* MABAR UKP — Kalkulator, Rencana (v1), Kemajuan, Referensi, Info Ujian, Etika & Profesi, Pengaturan, Peta formulir, Lembar angka, Tutor AI, Pencarian */
 (function (root) {
   const UKP = root.UKP; const h = UKP.h; const U = UKP.util; const K = UKP.konten; const L = UKP.belajar;
 
@@ -257,7 +257,7 @@
     // salin hasil: nama kalkulator, hasil utama, baris hasil, dasar hukum
     const teksSalin = () => {
       const r = rTerakhir; if (!r) return kal.nama;
-      const baris = [kal.nama + ' — Pelatih UKP'].concat((r.hasil || []).map(x => x.label + ': ' + fmtNilai(x)));
+      const baris = [kal.nama + ' — MABAR UKP'].concat((r.hasil || []).map(x => x.label + ': ' + fmtNilai(x)));
       const dasar = r.dasarHukum || kal.dasarHukum || []; if (dasar.length) baris.push('Dasar: ' + dasar.join('; '));
       baris.push('Bukan nasihat pajak; cek dasar hukum sebelum dipakai.');
       return baris.join('\n');
@@ -573,12 +573,12 @@
     const stamp = utc(new Date()); const ubah = Number.isFinite(opsi.ubah) && opsi.ubah > 0 ? utc(new Date(opsi.ubah)) : stamp;
     const seq = Number.isInteger(opsi.seq) && opsi.seq > 0 ? opsi.seq : 0;
     const [hh, mm] = String(jam || '19:30').split(':'); const tgl = (/^\d{4}-\d{2}-\d{2}$/.test(opsi.mulai || '') ? opsi.mulai : U.hariIni()).replace(/-/g, '');
-    const baris = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Pelatih UKP//Pengingat Belajar//ID', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
+    const baris = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//MABAR UKP//Pengingat Belajar//ID', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
       'UID:pengingat-harian@pelatih-ukp', 'SEQUENCE:' + seq, 'DTSTAMP:' + stamp, 'LAST-MODIFIED:' + ubah, 'DTSTART:' + tgl + 'T' + hh + mm + '00', 'DURATION:PT' + menit + 'M',
       'RRULE:FREQ=DAILY' + (sampai ? ';UNTIL=' + String(sampai).replace(/-/g, '') + 'T235959' : ''),
-      'SUMMARY:' + escIcs('Sesi Pelatih UKP (' + menit + ' menit)'),
-      'DESCRIPTION:' + escIcs('Buka Pelatih UKP dan kerjakan sesi hari ini. Sesi Kilat 5 menit pun cukup untuk menjaga rangkaian.'),
-      'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + escIcs('Waktunya sesi Pelatih UKP'), 'TRIGGER:PT0M', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'];
+      'SUMMARY:' + escIcs('Sesi MABAR UKP (' + menit + ' menit)'),
+      'DESCRIPTION:' + escIcs('Buka MABAR UKP dan kerjakan sesi hari ini. Sesi Kilat 5 menit pun cukup untuk menjaga rangkaian.'),
+      'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + escIcs('Waktunya sesi MABAR UKP'), 'TRIGGER:PT0M', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'];
     return baris.map(lipatIcs).join('\r\n') + '\r\n';
   };
   function kartuPengingat(prefix) {
@@ -814,7 +814,7 @@
   // teks laporan untuk disalin (Momen 7, format kuitansi ringkas tanpa data pribadi)
   function teksLaporan(l) {
     const pct = l.akurasi == null ? null : Math.round(l.akurasi * 100);
-    return ['Laporan mingguan Pelatih UKP · ' + rentangTgl(l.mulai, l.akhir),
+    return ['Laporan mingguan MABAR UKP · ' + rentangTgl(l.mulai, l.akhir),
       'Akurasi: ' + (pct == null ? '–' : pct + '%') + ' dari ' + (l.n || 0) + ' soal (' + (l.benar || 0) + ' benar)',
       'Hari hadir: ' + (l.hadir || 0) + ' · ' + (l.menit || 0) + ' menit · ' + (l.sesi || 0) + ' sesi',
       (l.topikNaik || []).length ? 'Naik: ' + l.topikNaik.map(x => x.id + ' ' + x.dari + '→' + x.ke + '%').join('; ') : null,
@@ -1298,7 +1298,7 @@
   // padanan tools/build-offline.js (lihat docs/OFFLINE.md). window.UKP_OFFLINE = true menandai halaman versi offline.
   const OFF = UKP.berkasOffline = UKP.berkasOffline || {};
   OFF.NAMA = 'pelatih-ukp-offline.html';
-  OFF.URL_FONT = 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap';
+  OFF.URL_FONT = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap';
   OFF.aktif = () => !!root.UKP_OFFLINE;
   // isi <meta name="pelatih-ukp-offline" content="<versi> <tanggal build>">
   OFF.info = () => { const m = document.querySelector('meta[name="pelatih-ukp-offline"]'); const c = m ? String(m.getAttribute('content') || '').trim().split(/\s+/) : []; return { versi: c[0] || null, dibuat: c[1] || null }; };
@@ -1315,7 +1315,7 @@
       return sb && !sb.children.length && b.querySelector('#main') && b.querySelector('#topbar') && b.querySelector('#bottomnav') ? b.innerHTML.replace(/\n\s*\n+/g, '\n').trim() : null;
     } catch (e) { return null; }
   })();
-  const OFF_JUDUL = (() => { try { return String(document.title || '').trim() || 'Pelatih UKP'; } catch (e) { return 'Pelatih UKP'; } })();
+  const OFF_JUDUL = (() => { try { return String(document.title || '').trim() || 'MABAR UKP'; } catch (e) { return 'MABAR UKP'; } })();
   // isi <script> inline tidak boleh memuat "</script" (menutup tag) atau "<!--" (mode escape skrip HTML)
   const lolosSkrip = t => String(t).replace(/<\/(script)/gi, '<\\/$1').replace(/<!--/g, '\\x3C!--');
   const lolosGaya = t => String(t).replace(/<\/(style)/gi, '<\\/$1');
@@ -1370,14 +1370,14 @@
       if (!teks.trim()) { const g = new Error(a.label + ': berkas kosong'); g.berkas = a.label; throw g; }
       isi.push(Object.assign({ teks }, a)); n++;
     }
-    lapor('font (Public Sans, JetBrains Mono)');
+    lapor('font (Space Grotesk, Inter, IBM Plex Mono)');
     const font = await OFF.fontTertanam(); n++; lapor('selesai');
     const versi = UKP.versi || '0'; const tanggal = U.hariIni();
     const desk = document.querySelector('meta[name="description"]');
     const tema = [...document.querySelectorAll('meta[name="theme-color"]')].map(x => '<meta name="theme-color" content="' + lolosAtr(x.getAttribute('content') || '') + '"' + (x.getAttribute('media') ? ' media="' + lolosAtr(x.getAttribute('media')) + '"' : '') + '>');
     // ikon yang sudah berupa data URI ikut disalin; manifest PWA tidak (hanya berlaku di http(s))
     const ikon = [...document.querySelectorAll('link[rel~="icon"][href^="data:"], link[rel="apple-touch-icon"][href^="data:"]')].map(x => '<link rel="' + lolosAtr(x.getAttribute('rel')) + '"' + (x.getAttribute('type') ? ' type="' + lolosAtr(x.getAttribute('type')) + '"' : '') + (x.getAttribute('sizes') ? ' sizes="' + lolosAtr(x.getAttribute('sizes')) + '"' : '') + ' href="' + lolosAtr(x.getAttribute('href')) + '">');
-    const judul = OFF_JUDUL.replace(/\s*[·|–-]\s*.*$/, '') || 'Pelatih UKP';
+    const judul = OFF_JUDUL.replace(/\s*[·|–-]\s*.*$/, '') || 'MABAR UKP';
     const html = ['<!doctype html>', '<html lang="id">', '<head>', '<meta charset="utf-8">', '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
       '<meta name="pelatih-ukp-offline" content="' + lolosAtr(versi + ' ' + tanggal) + '">', '<script>window.UKP_OFFLINE = true;</script>', '<!--ARTIFACT-START-->',
       '<title>' + lolosAtr(/offline/i.test(judul) ? judul : judul + ' (offline)') + '</title>', desk ? '<meta name="description" content="' + lolosAtr(desk.getAttribute('content') || '') + '">' : '', ...tema, ...ikon,
@@ -1420,7 +1420,7 @@
       lipat('iPhone dan iPad', h('ul', { class: 'bersih small' },
         h('li', null, 'Membuka dari aplikasi Files (pratinjau) atau membagikan ke Safari tidak menjalankan skrip, jadi halaman berhenti di "Memuat materi…".'),
         h('li', null, 'Pakai aplikasi ', h('strong', null, 'Documents by Readdle'), ' (impor berkas, lalu ketuk untuk membuka di peramban bawaannya), atau Chrome iOS lewat Bagikan › Buka dengan Chrome. Uji dulu dalam mode pesawat.'),
-        h('li', null, h('strong', null, 'Cara teraman di iPhone: '), 'buka alamat hosting Pelatih UKP di Safari, lalu Bagikan › Tambahkan ke Layar Utama (PWA). Buka sekali saat masih online sebelum berangkat.')))
+        h('li', null, h('strong', null, 'Cara teraman di iPhone: '), 'buka alamat hosting MABAR UKP di Safari, lalu Bagikan › Tambahkan ke Layar Utama (PWA). Buka sekali saat masih online sebelum berangkat.')))
     );
   }
   // isi kartu Pengaturan › Versi offline. catatEkspor: pencatat waktu ekspor dari kartu Data
@@ -1435,7 +1435,7 @@
         status.textContent = hasil === 'ditolak' ? 'Penyimpanan dibatalkan.' : hasil === 'sibuk' ? 'Masih ada permintaan simpan yang terbuka; coba lagi sebentar.' : 'Berkas ekspor progres disiapkan. Bila tidak muncul, pakai Salin ekspor di bagian Data.';
       } }, UKP.icon('unduh'), 'Ekspor progres');
       return [h('div', { class: 'banner', 'data-tone': 'ok', role: 'note' }, UKP.icon('cek-lingkar'), h('div', { class: 'stack-sm' }, h('strong', { class: 'judul' }, 'Anda sedang memakai versi offline'),
-        h('span', null, (inf.versi ? 'Pelatih UKP v' + inf.versi : 'Pelatih UKP') + (inf.dibuat ? ', berkas dibuat ' + UKP.fmt.tanggal(inf.dibuat) : '') + '. Materi, soal, kartu, kalkulator, dan referensi berjalan tanpa internet; Tutor AI tidak tersedia offline.'))),
+        h('span', null, (inf.versi ? 'MABAR UKP v' + inf.versi : 'MABAR UKP') + (inf.dibuat ? ', berkas dibuat ' + UKP.fmt.tanggal(inf.dibuat) : '') + '. Materi, soal, kartu, kalkulator, dan referensi berjalan tanpa internet; Tutor AI tidak tersedia offline.'))),
         h('p', { class: 'small' }, 'Progres versi offline dan versi daring tersimpan terpisah (tiap alamat punya penyimpanan browser sendiri). Pindahkan lewat Ekspor progres di sini, lalu Impor di bagian Data pada versi lainnya.'),
         h('div', { class: 'btn-row' }, eksporBtn, h('button', { type: 'button', class: 'btn btn-ghost btn-text', onclick: () => { const d = document.getElementById('pg-data'); if (d) { try { d.scrollIntoView({ behavior: UKP.gulirHalus ? UKP.gulirHalus() : 'auto', block: 'start' }); } catch (e) {} const j = document.getElementById('pg-data-j'); if (j) UKP.fokus(j); } } }, UKP.icon('unggah'), 'Ke Data dan impor')),
         status, caraBukaOffline()];
@@ -1453,7 +1453,7 @@
         if (cara === 'disimpan' || cara === 'diunduh') UKP.toast('Berkas offline siap (' + ukuranMb(hasil.byte) + ').', { nada: 'ok' });
       } catch (e) {
         progresWadah.hidden = true;
-        status.textContent = location.protocol === 'file:' ? 'Browser tidak mengizinkan halaman file:// membaca berkas lain. Halaman ini sudah berjalan dari berkas lokal: salin seluruh folder Pelatih UKP untuk dipakai tanpa internet, atau buka lewat alamat hosting lalu coba lagi.' : 'Berkas offline gagal dibuat (' + ((e && e.message) || 'galat') + '). Pastikan masih tersambung internet, muat ulang halaman, lalu coba lagi.';
+        status.textContent = location.protocol === 'file:' ? 'Browser tidak mengizinkan halaman file:// membaca berkas lain. Halaman ini sudah berjalan dari berkas lokal: salin seluruh folder MABAR UKP untuk dipakai tanpa internet, atau buka lewat alamat hosting lalu coba lagi.' : 'Berkas offline gagal dibuat (' + ((e && e.message) || 'galat') + '). Pastikan masih tersambung internet, muat ulang halaman, lalu coba lagi.';
       } finally { btn.disabled = false; btn.removeAttribute('aria-busy'); }
     } }, UKP.icon('unduh'), 'Unduh berkas offline (±5 MB)');
     return [h('ul', { class: 'bersih small' },
@@ -1504,8 +1504,8 @@
     const teksEkspor = () => s.eksporTerakhir ? 'Ekspor terakhir: ' + UKP.fmt.tanggal(U.iso(new Date(s.eksporTerakhir))) + '.' : 'Belum pernah diekspor. Ekspor berkala melindungi progres bila data browser terhapus.';
     const infoEkspor = h('p', { class: 'small muted' }, teksEkspor());
     const catatEkspor = () => { s.eksporTerakhir = Date.now(); UKP.store.save(); infoEkspor.textContent = teksEkspor(); };
-    const GALAT_KOTAK = 'Impor tidak berhasil: isi kotak bukan ekspor Pelatih UKP yang utuh. Salin ulang dari perangkat asal.';
-    const GALAT_BERKAS = 'Berkas bukan JSON ekspor Pelatih UKP yang valid.';
+    const GALAT_KOTAK = 'Impor tidak berhasil: isi kotak bukan ekspor MABAR UKP yang utuh. Salin ulang dari perangkat asal.';
+    const GALAT_BERKAS = 'Berkas bukan JSON ekspor MABAR UKP yang valid.';
     const pesanImpor = h('p', { class: 'galat', role: 'alert', hidden: true, style: { margin: '0' } });
     const galatImpor = teks => { pesanImpor.replaceChildren(UKP.icon('peringatan', null, true), h('span', null, teks)); pesanImpor.hidden = false; ta.setAttribute('aria-invalid', 'true'); };
     async function impor(json, galat) {
@@ -1628,7 +1628,7 @@
     const bagian = [['pg-target', 'Target'], ['pg-tampilan', 'Tampilan dan belajar'], ['pg-tutor', 'Tutor'], ['pg-pengingat', 'Pengingat'], ['pg-data', 'Data']].concat(kartuTim ? [['pg-tim', 'Tim']] : []).concat([['pg-offline', 'Offline']]).concat(aksesAktif ? [['pg-akses', 'Akses tim']] : []);
     const di = daftarIsi(bagian, 'Bagian Pengaturan', { media: '(min-width: 1024px)', kelas: 'k-3' });
     page.append(di.chips, h('div', { class: 'tata' }, di.aside, h('div', { class: 'k-9 stack' }, kartuTarget, kartuTampilan, kartuTutor, kartuIngat, kartuData, kartuTim, kartuOffline, kartuAkses, kartuBahaya,
-      h('p', { class: 'meta' }, 'Pelatih UKP ' + UKP.versi + ' · konten ' + ((UKP.ref && UKP.ref.versiKonten) || '-') + ' · status per ' + ((UKP.ref && UKP.ref.statusPer) ? UKP.fmt.tanggal(UKP.ref.statusPer) : '-') + '. Bukan nasihat pajak. Soal disusun ulang dari kisi-kisi resmi.'))));
+      h('p', { class: 'meta' }, 'MABAR UKP ' + UKP.versi + ' · konten ' + ((UKP.ref && UKP.ref.versiKonten) || '-') + ' · status per ' + ((UKP.ref && UKP.ref.statusPer) ? UKP.fmt.tanggal(UKP.ref.statusPer) : '-') + '. Bukan nasihat pajak. Soal disusun ulang dari kisi-kisi resmi.'))));
     requestAnimationFrame(() => di.amati());
     return page;
   };
@@ -1842,7 +1842,7 @@
     const pilihan = K.kelompok(tingkat).includes(kode) ? K.kelompok(tingkat) : K.kelompok(tingkat).concat(kode);
     // pemilih kelompok sebagai tab (T05): isi diganti di tempat tanpa memuat ulang halaman
     const tabs = UKP.c.tabs({ id: 'lb', label: 'Pilih kelompok', aktif: kode, tab: pilihan.map(k => ({ id: k, label: k })),
-      isi: k => { kode = k; judulEl.textContent = 'Lembar angka ' + k; document.title = 'Lembar angka ' + k + ' · Pelatih UKP'; const crumbAkhir = kop.querySelector('.crumb a[data-go="kelompok"]'); if (crumbAkhir) { const ct = crumbAkhir.querySelector('.crumb-teks'); if (ct) ct.textContent = k; else crumbAkhir.textContent = k; crumbAkhir.title = k + ' ' + UKP.modul[k].meta.nama; crumbAkhir.dataset.params = JSON.stringify({ kode: k }); if (UKP.href) crumbAkhir.setAttribute('href', UKP.href('kelompok', { kode: k })); } return isiLembar(k); },
+      isi: k => { kode = k; judulEl.textContent = 'Lembar angka ' + k; document.title = 'Lembar angka ' + k + ' · MABAR UKP'; const crumbAkhir = kop.querySelector('.crumb a[data-go="kelompok"]'); if (crumbAkhir) { const ct = crumbAkhir.querySelector('.crumb-teks'); if (ct) ct.textContent = k; else crumbAkhir.textContent = k; crumbAkhir.title = k + ' ' + UKP.modul[k].meta.nama; crumbAkhir.dataset.params = JSON.stringify({ kode: k }); if (UKP.href) crumbAkhir.setAttribute('href', UKP.href('kelompok', { kode: k })); } return isiLembar(k); },
       onGanti: k => UKP.perbaruiParams({ kode: k }, 'lembar') });
     page.append(tabs.el, tabs.elPanel);
     return page;

@@ -1,4 +1,4 @@
-/* Pelatih UKP — Room tim (v8.2): layar room untuk pemimpin dan anggota di atas UKP.ruang (js/ruang.js).
+/* MABAR UKP — Room tim (v8.2): layar room untuk pemimpin dan anggota di atas UKP.ruang (js/ruang.js).
    Rute #room dan #room/<kode> (js/core.js TOKEN, PARAM_HASH 'kode', VIEW_TAMU); UKP.ruangUI.boot() dipanggil js/app.js setelah rute pertama.
    Antarmuka:
    - UKP.views.room(params)            keadaan a–g (rencana-integrasi §3): gabung · ajakan buat · lobi · latihan anggota (lima keadaan HP:
@@ -32,7 +32,7 @@
   // teks undangan untuk grup WhatsApp
   function teksUndangan(namaRoom, tautan) {
     const n = rapikan(namaRoom) || 'Room tim';
-    return 'Room latihan UKP "' + n + '". Buka tautan ini di HP, lalu ketuk nama Anda: ' + String(tautan || '').trim();
+    return 'Room MABAR UKP "' + n + '". Buka tautan ini di HP, lalu ketuk nama Anda: ' + String(tautan || '').trim();
   }
   // per = { nama: { o, k, b } } → hitungan per huruf TANPA nama: { per: { A, B, C, D, '-' }, total, dijawab, benar }
   function kelompokJawaban(per, kunci) {
@@ -776,7 +776,7 @@
     }
     function segarkanJudul() {
       const h1 = page.querySelector('h1:not(.visually-hidden)') || page.querySelector('h1'); if (!h1) return;
-      const t = h1.textContent.trim(); try { document.title = t + ' · Pelatih UKP'; } catch (e) {}
+      const t = h1.textContent.trim(); try { document.title = t + ' · MABAR UKP'; } catch (e) {}
       const el = document.getElementById('judul-ringkas'); if (el && el.textContent) { el.textContent = t; el.title = t; }
     }
     const jadwal = () => { clearTimeout(tTunda); tTunda = setTimeout(() => gambar(false), 40); };
@@ -799,7 +799,7 @@
         default: return layarKosong();
       }
     }
-    const kop = (judul, o) => { o = o || {}; return UKP.c.kop({ eyebrow: o.eyebrow || 'Room tim', judul, lead: o.lead || null, meta: o.meta || null, aksi: o.aksi || null }); };
+    const kop = (judul, o) => { o = o || {}; return UKP.c.kop({ eyebrow: o.eyebrow || 'Mode mabar', judul, lead: o.lead || null, meta: o.meta || null, aksi: o.aksi || null }); };
     // V3: menu ⋮ sebaris dengan baris status (dulu di .page-actions, yang turun ke baris kosong sendiri di HP)
     const kopDenganMenu = (judul, o) => { o = Object.assign({}, o || {}); const m = UI.menu(); o.meta = [].concat(o.meta || []).filter(Boolean); if (m) o.meta.push(m); return kop(judul, o); };
 

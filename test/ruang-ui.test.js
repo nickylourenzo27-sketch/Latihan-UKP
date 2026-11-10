@@ -26,7 +26,7 @@ describe('ruang-ui: antarmuka terpasang', () => {
 describe('ruang-ui: teks undangan', () => {
   it('memuat nama room dan tautan apa adanya, tanpa istilah teknis', () => {
     const t = M.teksUndangan('Tim UKP Tingkat B', 'https://nickylourenzo27-sketch.github.io/Latihan-UKP/#room/K7QM-3XRTA-9HWPE');
-    assert.equal(t, 'Room latihan UKP "Tim UKP Tingkat B". Buka tautan ini di HP, lalu ketuk nama Anda: https://nickylourenzo27-sketch.github.io/Latihan-UKP/#room/K7QM-3XRTA-9HWPE');
+    assert.equal(t, 'Room MABAR UKP "Tim UKP Tingkat B". Buka tautan ini di HP, lalu ketuk nama Anda: https://nickylourenzo27-sketch.github.io/Latihan-UKP/#room/K7QM-3XRTA-9HWPE');
     assert.doesNotMatch(t, LARANGAN);
   });
   it('nama kosong → "Room tim"; spasi dan karakter kendali dirapikan', () => {
