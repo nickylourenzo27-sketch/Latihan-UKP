@@ -1,6 +1,6 @@
 # Room tim: satu ruang tetap untuk latihan dan ujian bersama
 
-**Tanggal:** 10 November 2026 · **Versi:** v8.2 (sudah dibangun, belum terbit; `UKP.versi` masih '8.1') · **Status:** dibangun dan diuji ujung-ke-ujung dengan broker Mosquitto lokal (laptop pemandu + 3 HP, termasuk pengunjung baru dan satu HP yang putus saat mengirim). Jalur publik sungguhan hanya diuji dari GitHub Actions (`tools/cek-relai.js`), belum dengan HP sungguhan.
+**Tanggal:** 10 November 2026 · **Versi:** v8.2 (terbit 10 November 2026) · **Status:** dibangun dan diuji ujung-ke-ujung dengan broker Mosquitto lokal (laptop pemandu + 3 HP, termasuk pengunjung baru dan satu HP yang putus saat mengirim). Jalur publik sungguhan hanya diuji dari GitHub Actions (`tools/cek-relai.js`), belum dengan HP sungguhan.
 **Ringkas perilaku akhir:** bagian 4–7 dan 10 di bawah sudah disamakan dengan aplikasi v8.2. Istilah di layar: perangkat yang mengatur room disebut **pemandu** di menu ("Jadikan perangkat ini pemandu") dan **pemimpin** di teks anggota ("Menunggu pemimpin menilai").
 **Untuk:** Nicky (pemimpin tim) dan agen pembangun. Rencana kerja teknis ada di `scratchpad/v82/rencana-integrasi.md`.
 

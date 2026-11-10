@@ -127,7 +127,7 @@ Pemimpin tim (pemilik Artifact, atau **admin** di server tim sendiri) melihat **
 }
 ```
 
-## Room tim (v8.2, belum terbit)
+## Room tim (v8.2)
 
 Satu ruang tetap untuk tim di **website** (bukan di dalam claude.ai): saat pemimpin memulai latihan atau ujian, semua HP ikut, jawaban masuk sendiri ke laptop pemimpin, dan hasilnya tersimpan di room. Rancangan dan perilaku lengkap: `docs/RUANG-TIM.md`.
 

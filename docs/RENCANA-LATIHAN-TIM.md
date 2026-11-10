@@ -2,7 +2,7 @@
 
 **Tanggal:** 9 November 2026 · **Versi acuan:** v8.0.1 · **Status:** sebagian dikerjakan di v8.1 (10 November 2026); butir bertanda ✓ sudah ada di aplikasi, sisanya tetap rencana.
 
-## Status pengerjaan (v8.1, ditambah v8.2 yang belum terbit)
+## Status pengerjaan (v8.1 dan v8.2)
 
 | Butir | Status | Yang ada di aplikasi (v8.1) | Beda dari rencana |
 |---|---|---|---|
@@ -13,9 +13,9 @@
 | 2.1 Ujian tim (CAT) | ✓ v8.1 | Simulasi › **Kerjakan sebagai tim**: Satu layar (papan A–D + Ragu, tanpa kunci, Daftar soal, hitung mundur, Tambah 5 menit) atau Perangkat masing-masing. Try Out bisa per **Bagian** (1–40 · 41–80 · 81–100; 40 soal = 84 menit). **Hasil ujian tim**: skor per orang, lulus/kurang k soal, per kelompok, Tempo, Urutan bahas, rekap WhatsApp, CSV. | Ujian tim tidak lewat Latihan bersama, tetapi lewat Simulasi (rute `#ujiantim`). |
 | 3.3 Try Out serentak dengan kode | ✓ v8.1 tanpa server | **Ruang ujian**: pemimpin membagikan tautan `…#ujiantim/<kode>` (kode ujian berisi paket, urutan, menit); anggota mengerjakan di layar CAT di HP masing-masing lalu mengirim **kode jawaban** satu baris lewat WhatsApp; pemimpin menempel dan **Nilai sekarang** (bisa hanya yang mengumpulkan). | Tanpa server dan tanpa status otomatis "5/6 selesai": jawaban terkumpul saat ditempel pemimpin. |
 
-| 3.2 Sinkron sesi bersama | ✓ v8.2 lewat room, tanpa server (belum terbit) | Rekaman latihan bersama dan ujian tim **diterbitkan ke room** saat selesai; HP anggota menampilkan "Sesi selesai · Lihat evaluasi" / "Hasil ujian tim tersedia" dan **Riwayat room**. Anggota melihat versi anggota (angka tim + hasil sendiri, tanpa nama orang lain). | Bukan `PUT /api/sesi` di server tim, melainkan layanan penghubung publik (jalur MQTT) terenkripsi dengan kode room. Tanpa jaminan layanan; hanya di website (tidak di claude.ai). Privasi sebatas tampilan: rekaman di room memuat jawaban semua orang. |
+| 3.2 Sinkron sesi bersama | ✓ v8.2 lewat room, tanpa server | Rekaman latihan bersama dan ujian tim **diterbitkan ke room** saat selesai; HP anggota menampilkan "Sesi selesai · Lihat evaluasi" / "Hasil ujian tim tersedia" dan **Riwayat room**. Anggota melihat versi anggota (angka tim + hasil sendiri, tanpa nama orang lain). | Bukan `PUT /api/sesi` di server tim, melainkan layanan penghubung publik (jalur MQTT) terenkripsi dengan kode room. Tanpa jaminan layanan; hanya di website (tidak di claude.ai). Privasi sebatas tampilan: rekaman di room memuat jawaban semua orang. |
 | 3.3 (lanjutan) | ✓ v8.2 lewat room | Ujian tim di room: HP anggota menerima "Ujian tim dimulai", ruang ujian pemandu menampilkan "sedang mengerjakan · 12/40 terisi" (tanpa huruf) dan "sudah mengumpulkan" otomatis. Kode jawaban tetap ada sebagai cadangan bila HP putus. | Status "5/6 selesai" kini ada tanpa server, selama room tersambung. |
-| 3.4 Ruang jarak jauh langsung | ✓ v8.2 tanpa server (belum terbit) | **Room tim** (`#room/<kode>`): anggota membuka tautan dan mengetuk nama; latihan bersama di room mengisi papan laptop sendiri ("✓ sudah menjawab" tanpa huruf sebelum kunci), kunci terbuka setelah hitung mundur 2 dtk, anggota telat bergabung di soal berjalan, "isi untuk <nama>" bagi yang offline, ambil alih pemandu. | Bukan endpoint server + SSE, melainkan jalur publik gratis tanpa SLA. Cadangan: latihan satu layar dan kode jawaban. Rincian: `docs/RUANG-TIM.md`. |
+| 3.4 Ruang jarak jauh langsung | ✓ v8.2 tanpa server | **Room tim** (`#room/<kode>`): anggota membuka tautan dan mengetuk nama; latihan bersama di room mengisi papan laptop sendiri ("✓ sudah menjawab" tanpa huruf sebelum kunci), kunci terbuka setelah hitung mundur 2 dtk, anggota telat bergabung di soal berjalan, "isi untuk <nama>" bagi yang offline, ambil alih pemandu. | Bukan endpoint server + SSE, melainkan jalur publik gratis tanpa SLA. Cadangan: latihan satu layar dan kode jawaban. Rincian: `docs/RUANG-TIM.md`. |
 
 Butir lain (1.4, 1.6–1.8, 2.2–2.9 kecuali rekap WhatsApp yang sudah ada, 3.1) tetap rencana. Rekap grup dari 2.2 sudah tersedia sebagai **Salin rekap untuk grup** di Evaluasi tim dan Hasil ujian tim.
 
