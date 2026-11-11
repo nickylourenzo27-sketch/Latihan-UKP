@@ -131,6 +131,9 @@
       tim: { ujianId: String(c.ujianId || ''), judul: String(c.judul || 'Ujian tim').slice(0, 80), nama: L.rapikanNamaPeserta ? L.rapikanNamaPeserta(c.nama).slice(0, 24) : String(c.nama || '') } };
     if (c.room) s.simulasiAktif.tim.room = 1;
     UKP.store.save();
+    // v9.3.2 B2: kabar awal ke room — dokumen jawaban (bentuk lama, isi kosong) terbit sekarang sehingga laptop pemimpin langsung
+    // menulis "sedang mengerjakan · 0/N terisi" walau belum ada jawaban. Tanpa o dan k: isi dokumen tidak berubah, hanya diterbitkan.
+    if (c.room) kirimJawabanRoom(s.simulasiAktif, ids[0], {});
     return s.simulasiAktif;
   }
   function tokenDari(r) {

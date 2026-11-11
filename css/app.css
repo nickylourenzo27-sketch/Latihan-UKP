@@ -4522,3 +4522,36 @@ dialog.dlg-mulai-room[open] { display: flex; flex-direction: column; max-height:
   .baris-dua-room { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: end; }
   .baris-dua-room .seg { display: flex; width: 100%; }
 }
+/* ---- v9.3.2 B2: status tiap orang di ruang ujian pemimpin (js/views-ujian-tim.js ruangUjian). Titik: abu-abu = belum masuk room,
+   garis tepi = sudah masuk belum mulai / Anda belum mengerjakan, biru = sedang mengerjakan, hijau = sudah mengumpulkan,
+   jingga = HP terputus. Tulisan status selalu menyertai titik. Kelas: .ruang-ringkas · .ruang-peserta[data-st] · .titik-nada[data-nada="garis"] ---- */
+.ruang-peserta { grid-template-columns: 10px minmax(5rem, auto) minmax(0, 1fr) auto; }
+.ruang-peserta .titik-nada { width: 10px; height: 10px; }
+.titik-nada[data-nada="garis"] { background: transparent; box-shadow: inset 0 0 0 2px var(--viz-netral); }
+.ruang-peserta[data-st="putus"] .ruang-status { color: var(--warn); }
+.ruang-peserta[data-st="saya"] .ruang-status, .ruang-peserta[data-st="masuk"] .ruang-status { color: var(--ink); }
+.ruang-ringkas { margin: 0; font-weight: var(--fw-semi); color: var(--ink); }
+@media (max-width: 479px) { .ruang-peserta { grid-template-columns: 10px minmax(0, 1fr) auto; } }
+@media (forced-colors: active) { .titik-nada[data-nada="garis"] { background: Canvas; box-shadow: none; } }
+
+/* ---- v9.3.2 B1: gabung lewat tautan (kartu menghubungkan, kalimat privasi di bawah daftar nama) ---- */
+.hubung-room { text-align: center; padding-block: var(--s-4); }
+.hubung-room .card-title { margin: 0; }
+.hubung-room p { margin: 0; color: var(--muted); }
+.hubung-bilah { display: block; height: 4px; border-radius: 999px; background: var(--surface-3); overflow: hidden; position: relative; margin-top: var(--s-2); }
+.hubung-bilah::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 40%; border-radius: inherit; background: var(--primary); animation: hubung-geser 1.2s var(--ease-standar) infinite; }
+@keyframes hubung-geser { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+@media (prefers-reduced-motion: reduce) { .hubung-bilah::after { animation: none; width: 100%; opacity: .5; } }
+:root[data-gerak="kurang"] .hubung-bilah::after { animation: none; width: 100%; opacity: .5; }
+.catatan-privasi-room { margin: 0; }
+/* ---- akhir v9.3.2 B1 ---- */
+/* ---- v9.3.2 P1: bilah "Menghubungkan ke room…" terlihat di kartu putih (jalur --surface-3 nyaris sama dengan kartu) ---- */
+.hubung-room .hubung-bilah { background: var(--surface-2); height: 6px; width: min(240px, 100%); margin-inline: auto; }
+@media (forced-colors: active) { .hubung-room .hubung-bilah { border: 1px solid CanvasText; } .hubung-room .hubung-bilah::after { forced-color-adjust: none; background: Highlight; } }
+/* ---- akhir v9.3.2 P1 ---- */
+
+/* ---- v9.3.2: saran untuk pemimpin di layar ujian room (.ruang-saran) ---- */
+.ruang-saran { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2, 8px) var(--s-3, 12px); padding: var(--s-2, 8px) var(--s-3, 12px); border: 1px solid var(--line); border-left: 3px solid var(--warn); border-radius: 6px; background: var(--warn-soft); color: var(--ink); }
+.ruang-saran[hidden], .ruang-saran-aksi[hidden] { display: none; }
+.ruang-saran-teks { margin: 0; flex: 1 1 280px; }
+.ruang-saran-aksi { display: inline-flex; flex-wrap: wrap; gap: var(--s-2, 8px); }

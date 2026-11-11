@@ -507,12 +507,15 @@
             const adaLama = !!(sw.controller || reg.active);
             baru.addEventListener('statechange', () => { if (baru.state === 'installed' && adaLama) tawarkan(reg, false); });
           });
-          // aplikasi yang lama terbuka: cek versi baru saat kembali ke tab (paling sering sekali per 10 menit)
+          // aplikasi yang lama terbuka: cek versi baru saat kembali ke tab (paling sering sekali per 10 menit), dan tiap 30 menit
+          // selama tab terlihat (laptop pemimpin bisa terbuka berjam-jam tanpa pernah berpindah tab)
           let cekTerakhir = Date.now();
+          const cekBaru = () => { cekTerakhir = Date.now(); try { reg.update().catch(e => catatSW('cek pembaruan gagal', e && e.message)); } catch (e) {} };
           document.addEventListener('visibilitychange', () => {
             if (document.visibilityState !== 'visible' || !daring() || Date.now() - cekTerakhir < 600000) return;
-            cekTerakhir = Date.now(); reg.update().catch(e => catatSW('cek pembaruan gagal', e && e.message));
+            cekBaru();
           });
+          setInterval(() => { if (document.visibilityState === 'visible' && daring() && Date.now() - cekTerakhir >= 1800000) cekBaru(); }, 300000);
           return sw.ready.then(r => { if (r && r.active) umumkanSiapOffline(); });
         }).catch(e => catatSW('pendaftaran service worker gagal; aplikasi berjalan tanpa cache offline', e && e.message));
       } catch (e) { catatSW('pendaftaran service worker gagal', e && e.message); }

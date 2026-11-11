@@ -74,8 +74,9 @@ const initRelai = relai => {
       await foto(o, 'gabung');
       cek(nama + ': layar gabung dengan nama room (tanpa onboarding)', msNama >= 0, { ms: Date.now() - t0, judul: await o.page.evaluate(() => (document.querySelector('.halaman-room h1') || document.querySelector('h1') || {}).textContent || location.hash) });
       await o.page.click('.nama-room:has-text("' + nama + '")');
+      // v9.3.2: ketuk nama langsung masuk (layar "Sebelum masuk" dihapus). Klien lama (≤ v9.3.1) masih punya tombol Mengerti: ketuk bila ada.
       const setuju = await tunggu(o.page, () => !!document.querySelector('.room-mengerti') || !!document.querySelector('.room-siap'), null, 8000);
-      if (setuju >= 0 && await o.page.locator('.room-mengerti').count()) { await foto(o, 'setuju'); await o.page.click('.room-mengerti'); }
+      if (setuju >= 0 && await o.page.locator('.room-mengerti').count()) { await foto(o, 'setuju'); await o.page.click('.room-mengerti'); console.log('       (' + nama + ': klien lama, langkah Mengerti diketuk)'); }
       const t1 = Date.now();
       const msLobi = await tunggu(o.page, () => !!document.querySelector('.room-siap'), null, 25000);
       cek(nama + ': masuk lobi', msLobi >= 0, { ms: Date.now() - t1, jalur: await o.page.evaluate(() => UKP.ruang.status().relai.map(r => String(r.url).replace(/^wss?:\/\//, '').split(/[:/]/)[0] + '=' + r.status)) });

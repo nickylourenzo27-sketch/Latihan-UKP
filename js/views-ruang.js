@@ -284,7 +284,42 @@
     if (!arr.length) return 'Sambungan belum bisa diperiksa. Periksa internet, lalu coba lagi.';
     return ok ? 'Internet lancar. Latihan bersama bisa dipakai.' : 'Belum bisa tersambung. Coba data seluler, atau Wi-Fi lain.';
   }
-  UI._murni = { teksUndangan, kelompokJawaban, teksBatang, teksBenarTim, sisaDetik, fmtSisa, pilihKeadaan, keadaanAnggota, teksPenjelas, labelBaku, teksSkorTim, teksSaya, teksSoalIni, teksHitungJawab, teksMasuk, teksSiap, teksBarisLalu, persenTim, sejakLulus, hasilku, rekapPenutup, alasanAwam, inisial, ringkasHadir, tglPendek, teksRiwayat, labelSesiLalu, teksCekSambungan, fmtMSS, teksRingkasWaktu, barisWaktuHP, labelBahas };
+  // v9.3.2 A.2: nama profil perangkat ini cocok (tanpa beda huruf besar-kecil) dengan tepat satu nama di daftar room → masuk tanpa ketukan.
+  // Tidak bila: onboarding belum selesai, orangnya pernah memilih "Bukan Anda? Ganti nama" untuk room ini (tolak), nama itu nama pemimpin,
+  // atau nama itu sedang dipakai perangkat lain menurut intip (online = null/tidak diketahui → dianggap tidak dipakai).
+  // o = { profil: { nama, onboardingSelesai }, daftar, tuan, online, tolak, sah(nama)→bool } → nama persis seperti di daftar, atau null
+  function namaDariProfil(o) {
+    o = o || {}; const p = o.profil || {}; const nm = rapikan(p.nama);
+    if (!nm || !p.onboardingSelesai || o.tolak) return null;
+    const cocok = (Array.isArray(o.daftar) ? o.daftar : []).filter(n => samaNama(n, nm));
+    if (cocok.length !== 1) return null;
+    const nama = cocok[0];
+    if (o.tuan && samaNama(nama, o.tuan)) return null;
+    if (typeof o.sah === 'function' && !o.sah(nama)) return null;
+    if (Array.isArray(o.online) && o.online.some(x => samaNama(x, nama))) return null;
+    return nama;
+  }
+  // v9.3.2 B.1: ujian tim di HP dibuka sendiri (jalur tombol "Mulai mengerjakan") bila semuanya beres; sekali saja per ujian per tab (sudah).
+  // o = { status, terkumpul, simAktif, kodeInfo, sisa (detik atau null), sudah }
+  function bolehBukaUjian(o) {
+    o = o || {};
+    if (o.sudah || o.status === 'selesai' || o.terkumpul || o.simAktif) return false;
+    const k = o.kodeInfo; if (!k || !Array.isArray(k.soalIds) || !k.soalIds.length) return false;
+    if (Array.isArray(k.tidakDikenal) && k.tidakDikenal.length) return false;
+    if (o.sisa != null && !(o.sisa > 0)) return false;
+    return true;
+  }
+  // kalimat di bawah judul layar gabung. v9.3.2 P1: selama "Menghubungkan ke room…" (termasuk masuk tanpa ketukan dari nama profil)
+  // tidak lagi menyuruh "Ketuk nama Anda" atau "memilih nama", karena tidak ada nama yang perlu diketuk.
+  // o = { tuan, online (larik nama tersambung, atau null bila tidak diketahui), daftar, menghubungkan }
+  function teksLeadGabung(o) {
+    o = o || {}; const tuan = rapikan(o.tuan); if (!tuan) return null;
+    const belumBuka = Array.isArray(o.online) && !o.online.some(x => samaNama(x, tuan));
+    if (o.menghubungkan) return belumBuka ? tuan + ' belum membuka room. Latihan dimulai saat ia datang.' : tuan + ' mengajak Anda latihan soal bersama.';
+    return belumBuka ? tuan + ' belum membuka room. Anda tetap bisa memilih nama sekarang; latihan dimulai saat ia datang.'
+      : tuan + ' mengajak Anda latihan soal bersama. ' + ((Array.isArray(o.daftar) ? o.daftar : []).some(n => !samaNama(n, tuan)) ? 'Ketuk nama Anda untuk ikut.' : 'Tulis nama Anda untuk ikut.');
+  }
+  UI._murni = { teksLeadGabung, teksUndangan, kelompokJawaban, teksBatang, teksBenarTim, sisaDetik, fmtSisa, pilihKeadaan, keadaanAnggota, teksPenjelas, labelBaku, teksSkorTim, teksSaya, teksSoalIni, teksHitungJawab, teksMasuk, teksSiap, teksBarisLalu, persenTim, sejakLulus, hasilku, rekapPenutup, alasanAwam, inisial, ringkasHadir, tglPendek, teksRiwayat, labelSesiLalu, teksCekSambungan, fmtMSS, teksRingkasWaktu, barisWaktuHP, labelBahas, namaDariProfil, bolehBukaUjian };
 
   // =====================================================================
   // AKSES AMAN KE UKP.ruang DAN PENYIMPANAN KECIL
@@ -300,6 +335,8 @@
   const jawabanSemua = id => { const r = R(); return r && fn(r, 'jawabanSemua') ? aman(() => r.jawabanSemua(id), {}) || {} : {}; };
   const lsBaca = (k, cad) => { try { const v = root.localStorage.getItem(k); return v == null ? cad : JSON.parse(v); } catch (e) { return cad; } };
   const lsTulis = (k, v) => { try { if (v == null) root.localStorage.removeItem(k); else root.localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const KBUKAN = 'ukp.tim.bukanSaya';   // v9.3.2: { kodeRoom: 1 } room yang pernah "Bukan Anda? Ganti nama" di perangkat ini
+  const KUJIAN_OTO = 'ukp.tim.ujianOto'; // v9.3.2: [ujianId] ujian tim yang sudah dibuka sendiri di tab ini (sessionStorage)
   const ssBaca = (k, cad) => { try { const v = root.sessionStorage.getItem(k); return v == null ? cad : JSON.parse(v); } catch (e) { return cad; } };
   const ssTulis = (k, v) => { try { root.sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   const hariIni = () => (UKP.util && UKP.util.hariIni ? UKP.util.hariIni() : new Date().toISOString().slice(0, 10));
@@ -406,9 +443,23 @@
     if (i && i.peran === 'anggota' && st && st.aktivitas && v !== 'room') ajakBuka(st.aktivitas, true);
     pasangSpanduk();
   };
+  // v9.3.2: aman membawa anggota ke room tanpa ditanya: ia tidak sedang mengerjakan soal atau simulasi, tidak ada dialog terbuka,
+  // dan ia tidak sedang mengetik
+  function amanPindahKeRoom() {
+    try {
+      if (UKP.simulasiBerjalan && UKP.simulasiBerjalan()) return false;
+      if (UKP.mode && UKP.mode.aktif && UKP.mode.aktif()) return false;
+      if (document.querySelector('dialog[open]')) return false;
+      const ae = document.activeElement; if (ae && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName)) return false;
+    } catch (e) { return false; }
+    return true;
+  }
   function ajakBuka(a, berjalan) {
     const teks = a.jenis === 'ujian' ? (berjalan ? 'Ujian tim sedang berjalan' : 'Pemimpin memulai ujian tim') : (berjalan ? 'Latihan bersama sedang berjalan' : 'Pemimpin memulai latihan bersama');
-    toast(teks, { aksi: { label: 'Buka', onclick: () => UKP.go('room') }, penting: true, lintasRute: true, ms: 12000 });
+    // pemimpin BARU SAJA memulai dan anggota sedang di halaman lain: langsung ke room (di sana soal latihan muncul sendiri dan ujian
+    // tim terbuka sendiri). Aktivitas yang sudah berjalan saat anggota datang tetap hanya ditawarkan.
+    if (!berjalan && amanPindahKeRoom()) { toast(teks + '.', { penting: true, lintasRute: true, ms: 5000 }); try { UKP.go('room'); } catch (e) {} return; }
+    toast(teks, { aksi: { label: 'Buka', onclick: () => UKP.go('room') }, penting: true, lintasRute: true, ms: 20000 });
   }
   function pasangPengamat() {
     const r = R(); if (!r || pengamatTerpasang || !fn(r, 'on')) return; pengamatTerpasang = true;
@@ -1109,10 +1160,7 @@
       const ingat = lsBaca('ukp.tim.namaRoom', {});
       const namaIngat = ingat && ingat[kodeParam] ? ingat[kodeParam] : null;
       const judul = namaR ? 'Gabung room "' + namaR + '"' : 'Gabung room tim';
-      let lead = null;
-      if (tuan && !lokal.tidakAda && lokal.intip !== null) lead = onlineIntip && !onlineIntip.some(x => samaNama(x, tuan))
-        ? tuan + ' belum membuka room. Anda tetap bisa memilih nama sekarang; latihan dimulai saat ia datang.'
-        : tuan + ' mengajak Anda latihan soal bersama. ' + (daftar.some(n => !samaNama(n, tuan)) ? 'Ketuk nama Anda untuk ikut.' : 'Tulis nama Anda untuk ikut.');
+      const lead = tuan && !lokal.tidakAda && lokal.intip !== null ? teksLeadGabung({ tuan, online: onlineIntip, daftar, menghubungkan: lokal.gabungJalan }) : null;
       const node = h('div', { class: 'stack layar-gabung' });
       node.appendChild(kop(judul, { lead, meta: tingkat ? [UKP.c.pill('Tingkat ' + tingkat)] : null }));
       // V3: tautan room yang sudah ditutup (nisan) atau tidak ditemukan → katakan, jangan menunggu tanpa akhir / jatuh ke "Buat room"
@@ -1127,15 +1175,6 @@
             UKP.link('Ke Beranda', 'beranda', null, 'btn btn-ghost'))));
         return { node };
       }
-      if (lokal.langkah === 'setuju') {
-        node.appendChild(h('section', { class: 'card stack setuju-room', 'aria-labelledby': 'setuju-j' },
-          h('h2', { class: 'card-title', id: 'setuju-j', tabindex: '-1', 'data-fokus-awal': '' }, 'Sebelum masuk'),
-          h('p', null, 'Jawaban dan hasil latihan Anda terlihat oleh anggota room. Siapa pun yang memegang tautan room bisa masuk, jadi jangan teruskan tautan ke luar tim.'),
-          h('div', { class: 'btn-row' },
-            h('button', { type: 'button', class: 'btn btn-primary btn-lg room-mengerti', onclick: () => { lsTulis('ukp.tim.setuju', kodeParam); masuk(lokal.namaDipilih); } }, 'Mengerti'),
-            h('button', { type: 'button', class: 'btn btn-ghost', onclick: () => { lokal.langkah = 'nama'; gambar(true); } }, 'Kembali'))));
-        return { node };
-      }
       if (lokal.langkah === 'ganda') {
         node.appendChild(h('section', { class: 'card stack' },
           h('h2', { class: 'card-title', tabindex: '-1', 'data-fokus-awal': '' }, lokal.namaDipilih + ' sudah masuk di perangkat lain.'),
@@ -1143,6 +1182,14 @@
           h('div', { class: 'btn-row' },
             h('button', { type: 'button', class: 'btn btn-primary room-ini-saya', onclick: () => { lokal.langkah = 'nama'; lokal.izinGanda = lokal.namaDipilih; pilihNama(lokal.namaDipilih); } }, 'Ini saya, masuk di sini'),
             h('button', { type: 'button', class: 'btn room-nama-lain', onclick: () => { lokal.langkah = 'nama'; lokal.namaDipilih = null; lokal.izinGanda = null; gambar(true); } }, 'Pilih nama lain'))));
+        return { node };
+      }
+      // v9.3.2 A.4: selama menghubungkan, satu kartu yang jelas (juga saat masuk otomatis); bila gagal, kembali ke daftar nama dengan pesan galat yang ada
+      if (lokal.gabungJalan) {
+        node.appendChild(h('section', { class: 'card stack-sm hubung-room', 'aria-labelledby': 'hubung-j', 'aria-busy': 'true' },
+          h('h2', { class: 'card-title', id: 'hubung-j', role: 'status', tabindex: '-1', 'data-fokus-awal': '' }, 'Menghubungkan ke room…'),
+          lokal.namaDipilih ? h('p', null, 'Masuk sebagai ', h('strong', null, lokal.namaDipilih)) : null,
+          h('span', { class: 'hubung-bilah', 'aria-hidden': 'true' })));
         return { node };
       }
       if (memuat) {
@@ -1172,11 +1219,19 @@
         adaAnggota ? h('div', { class: 'grid-nama-room', role: 'group', 'aria-labelledby': 'siapa-j' }, tombolNama,
           lokal.namaLain ? null : h('button', { type: 'button', class: 'nama-room lain', disabled: lokal.gabungJalan ? true : null, onclick: () => { lokal.namaLain = true; gambar(true); setTimeout(() => { const x = page.querySelector('#' + iid); if (x) x.focus(); }, 30); } }, h('span', { class: 'nama' }, 'Nama saya tidak ada'))) : null,
         isianTerbuka ? h('div', { class: 'field' }, h('label', { for: iid }, adaAnggota ? 'Tulis nama Anda' : 'Nama Anda'), h('div', { class: 'isian-baris' }, inp, h('button', { type: 'button', class: 'btn btn-primary room-masuk-nama', disabled: lokal.gabungJalan ? true : null, onclick: kirimLain }, 'Masuk room'))) : null,
-        lokal.gabungJalan ? h('p', { class: 'small', role: 'status' }, 'Menghubungkan ke room…') : null,
-        galat));
+        galat,
+        // v9.3.2 A.1: pengganti layar persetujuan lama (satu ketukan tambahan dihapus)
+        h('p', { class: 'small muted catatan-privasi-room' }, 'Jawaban dan hasil latihan Anda terlihat oleh anggota room. Jangan teruskan tautan ke luar tim.')));
       node.appendChild(h('p', { class: 'meta' }, 'Nama diingat di HP ini, jadi lain kali langsung masuk.'));
-      // kunjungan berikutnya: nama diingat dan persetujuan sudah ada → langsung masuk tanpa ketukan
-      if (namaIngat && !lokal.autoCoba && !lokal.gabungJalan && lsBaca('ukp.tim.setuju', null) === kodeParam) { lokal.autoCoba = true; lokal.izinGanda = namaIngat; setTimeout(() => pilihNama(namaIngat), 0); }
+      // kunjungan berikutnya: nama diingat (ditulis hanya setelah berhasil masuk) → langsung masuk tanpa ketukan.
+      // v9.3.2: layar persetujuan sudah tidak ada, jadi ukp.tim.setuju (hanya menyimpan SATU kode room) tidak lagi menjadi syarat di sini.
+      if (namaIngat && !lokal.autoCoba && !lokal.gabungJalan) { lokal.autoCoba = true; lokal.izinGanda = namaIngat; setTimeout(() => pilihNama(namaIngat), 0); }
+      // v9.3.2 A.2: belum pernah masuk room ini, tetapi nama profil perangkat ini ada di daftar → langsung masuk tanpa ketukan
+      else if (!namaIngat && !lokal.autoCoba && !lokal.gabungJalan && !lokal.galat) {
+        const tolak = !!(lsBaca(KBUKAN, {}) || {})[kodeParam];
+        const nmProfil = namaDariProfil({ profil: aman(() => UKP.store.get().profil, null), daftar, tuan, online: onlineIntip, tolak, sah: namaSah });
+        if (nmProfil) { lokal.autoCoba = true; setTimeout(() => pilihNama(nmProfil), 0); }
+      }
       return { node };
     }
     async function pilihNama(nama) {
@@ -1189,7 +1244,6 @@
       if (prof && !samaNama(prof, nama) && s.profil.onboardingSelesai) {
         if (!(await UKP.konfirmasi('Masuk sebagai ' + nama + '?', 'Nama profil Anda tetap ' + prof + '.', { ya: 'Masuk sebagai ' + nama }))) return;
       }
-      if (lsBaca('ukp.tim.setuju', null) !== kodeParam) { lokal.langkah = 'setuju'; gambar(true); return; }
       masuk(nama);
     }
     async function masuk(nama) {
@@ -1203,6 +1257,8 @@
       // V3: gabung() → null tanpa room di perangkat ini = room bernisan (ditutup) atau dibatalkan → layar "sudah ditutup", bukan "Buat room"
       if (!hasil && !info()) { lokal.gabungJalan = false; lokal.tidakAda = kenaTutup ? 'tutup' : 'kosong'; gambar(true); return; }
       klaimTab();
+      // v9.3.2 A.1: tanda persetujuan tetap ditulis saat masuk (versi lama di perangkat ini memakainya untuk masuk otomatis)
+      lsTulis('ukp.tim.setuju', kodeParam);
       const ingat = lsBaca('ukp.tim.namaRoom', {}) || {}; ingat[kodeParam] = nama; lsTulis('ukp.tim.namaRoom', ingat);
       // pengunjung baru: cukup nama; tingkat mengikuti room, onboarding dianggap selesai (seperti Ikut ujian tim)
       const s = UKP.store.get(); const st = hasil || stR();
@@ -1312,6 +1368,8 @@
       // B.1 v9.2 "Bukan Anda? Ganti nama": keluar dari room di HP ini, lupakan nama yang diingat, kembali ke layar pilih nama
       const rr = R(); const i = info(); if (!rr || !i) return;
       const kode = i.kode; const ingat = lsBaca('ukp.tim.namaRoom', {}) || {}; delete ingat[kode]; lsTulis('ukp.tim.namaRoom', ingat);
+      // v9.3.2 A.2: setelah "Ganti nama", masuk otomatis berdasarkan nama profil tidak diulang untuk room ini di perangkat ini
+      const bukan = lsBaca(KBUKAN, {}) || {}; bukan[kode] = 1; lsTulis(KBUKAN, bukan);
       try { await rr.keluar(); } catch (e) {}
       lepasTab();
       UKP.go('room', { kode: fn(rr, 'formatKode') ? rr.formatKode(kode) : kode });
@@ -1691,16 +1749,43 @@
         isi.append(h('p', { class: 'small' }, 'Ada simulasi lain yang belum dikirim. Lanjutkan dulu, atau buang agar bisa ikut ujian tim ini.'),
           h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn', onclick: () => UKP.go('simulasi', { jalan: true }) }, 'Lanjutkan simulasi itu'), h('button', { type: 'button', class: 'btn btn-danger btn-attn', onclick: buang }, UKP.icon('hapus', null, true), 'Buang')));
       } else {
-        isi.append(h('p', { class: 'small' }, 'Kerjakan sendiri seperti CAT. Kunci jawaban dibuka di akhir; jawaban terkumpul sendiri saat dikirim atau saat waktu habis.'),
-          h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary btn-lg room-mulai-ujian', onclick: () => {
-            const sim = UKP.simulasiTim; if (!sim || !fn(sim, 'mulai')) { toast('Simulasi belum siap. Muat ulang halaman.', { nada: 'warn' }); return; }
-            const s2 = UKP.store.get(); if (!s2.profil.onboardingSelesai) { s2.profil.onboardingSelesai = true; if (['A', 'B', 'C'].includes(kodeInfo.tingkat)) s2.profil.tingkat = kodeInfo.tingkat; UKP.store.save(); }
-            const akhir = Number(a.akhir) > 0 ? a.akhir - selisih() : null;
-            const menit = akhir ? Math.max(1, Math.round((akhir - Date.now()) / 60000)) : kodeInfo.menit;
-            const hasil = sim.mulai({ ujianId: a.id, judul: a.judul || kodeInfo.judul, tingkat: kodeInfo.tingkat, menit: kodeInfo.menit || menit, soalIds: kodeInfo.soalIds, nama: i.nama, akhir, room: 1 });
-            if (!hasil) { toast('Ujian ini tidak berisi soal.', { nada: 'attn' }); return; }
-            UKP.go('simulasi', { jalan: true });
-          } }, UKP.icon('play', null, true), 'Mulai mengerjakan')));
+        // jalur yang sama untuk tombol "Mulai mengerjakan" dan untuk pembukaan otomatis (v9.3.2 B.1)
+        const mulaiUjian = () => {
+          const sim = UKP.simulasiTim; if (!sim || !fn(sim, 'mulai')) { toast('Simulasi belum siap. Muat ulang halaman.', { nada: 'warn' }); return false; }
+          const s2 = UKP.store.get(); if (!s2.profil.onboardingSelesai) { s2.profil.onboardingSelesai = true; if (['A', 'B', 'C'].includes(kodeInfo.tingkat)) s2.profil.tingkat = kodeInfo.tingkat; UKP.store.save(); }
+          const akhir = Number(a.akhir) > 0 ? a.akhir - selisih() : null;
+          const menit = akhir ? Math.max(1, Math.round((akhir - Date.now()) / 60000)) : kodeInfo.menit;
+          const hasil = sim.mulai({ ujianId: a.id, judul: a.judul || kodeInfo.judul, tingkat: kodeInfo.tingkat, menit: kodeInfo.menit || menit, soalIds: kodeInfo.soalIds, nama: i.nama, akhir, room: 1 });
+          if (!hasil) { toast('Ujian ini tidak berisi soal.', { nada: 'attn' }); return false; }
+          UKP.go('simulasi', { jalan: true }); return true;
+        };
+        // v9.3.2: jawaban atas nama ini sudah terkumpul di room dari perangkat lain (dokumen jawaban bertanda selesai) → ujian tidak
+        // dibuka sendiri, dan orangnya diberi tahu sebelum mengerjakan lagi (kiriman baru menggantikan yang lama)
+        const dokSaya = ambilDari(jawabanSemua(a.id), i.nama);
+        const kumpulLain = !!(dokSaya && dokSaya.selesai === true);
+        isi.append(kumpulLain ? UKP.c.banner('Jawaban atas nama Anda sudah terkumpul di room dari perangkat lain. Mengerjakan lagi di sini akan menggantinya.', 'warn') : null,
+          h('p', { class: 'small' }, 'Kerjakan sendiri seperti CAT. Kunci jawaban dibuka di akhir; jawaban terkumpul sendiri saat dikirim atau saat waktu habis.'),
+          h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn' + (kumpulLain ? '' : ' btn-primary') + ' btn-lg room-mulai-ujian', onclick: mulaiUjian }, UKP.icon('play', null, true), kumpulLain ? 'Kerjakan lagi di HP ini' : 'Mulai mengerjakan')));
+        // v9.3.2 B.1/B.2: ujian dibuka sendiri, sekali saja per ujian per tab. Keluar dari layar soal lalu kembali ke room → layar ini
+        // dengan "Lanjutkan mengerjakan" (simulasi aktif), atau "Mulai mengerjakan" bila simulasi itu dibuang; tidak dilempar masuk lagi.
+        const sudahOto = ssBaca(KUJIAN_OTO, []) || [];
+        if (bolehBukaUjian({ status: a.status, terkumpul: !!rek || kumpulLain, simAktif: !!aktif, kodeInfo, sisa: sisaDetik(a.akhir, selisih()), sudah: Array.isArray(sudahOto) && sudahOto.includes(a.id) })) {
+          // HP yang baru saja tersambung menunggu sebentar: kabar dari room (termasuk "jawaban sudah terkumpul") belum tentu sudah tiba
+          const baruMasuk = !tersambungSejak || Date.now() - tersambungSejak < 2500;
+          setTimeout(() => {
+            // masih di layar ujian yang sama (layar ini bisa diganti tepat setelah masuk room; layar pengganti menjadwalkan ulang).
+            // Tanda "sudah dibuka sendiri" ditulis tepat sebelum membuka, supaya jadwal yang batal tidak menghabiskan jatah sekali itu.
+            if (!page.isConnected || !isi.isConnected) return;
+            const a2 = (stR() || {}).aktivitas; if (!a2 || a2.id !== a.id || a2.status === 'selesai') return;
+            const sa = UKP.store.get().simulasiAktif; if (sa && !sa.selesai) return;
+            const sud = ssBaca(KUJIAN_OTO, []); const daftarOto = Array.isArray(sud) ? sud : [];
+            if (daftarOto.includes(a.id)) return;
+            // dokumen jawaban atas nama ini (dari perangkat lain) bisa baru tiba sesaat setelah masuk room: periksa lagi sebelum membuka
+            const dk = ambilDari(jawabanSemua(a.id), i.nama); if (dk && dk.selesai === true) { gambar(true); return; }
+            ssTulis(KUJIAN_OTO, daftarOto.concat(a.id).slice(-20));
+            mulaiUjian();
+          }, baruMasuk ? 1500 : 0);
+        }
       }
       return { node: [ks.bar, h('div', { class: 'room-anggota stack' }, isi)], detik };
     }

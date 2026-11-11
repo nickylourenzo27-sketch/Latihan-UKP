@@ -380,3 +380,108 @@ describe('ruang-ui: waktu mengerjakan dan membahas (v9.3 W2)', () => {
     assert.doesNotMatch(semua, LARANGAN); assert.doesNotMatch(semua, /sesi|aktivitas|peserta/i);
   });
 });
+
+// v9.3.2: tautan room langsung tersambung (satu ketukan, tanpa ketukan bila nama profil cocok) dan ujian tim terbuka sendiri di HP
+describe('ruang-ui: gabung lewat tautan dan ujian tim terbuka sendiri (v9.3.2)', () => {
+  const fs = require('node:fs'); const path = require('node:path');
+  const src = fs.readFileSync(path.join(__dirname, '..', 'js', 'views-ruang.js'), 'utf8');
+  const fungsi = nama => { const i = src.indexOf('function ' + nama + '('); assert.ok(i >= 0, nama); const j = src.indexOf('\n    }\n', i); return src.slice(i, j); };
+  const daftar = ['Nicky', 'Mita', 'Nora', 'Jeni'];
+  const profil = (nama, selesai) => ({ nama, onboardingSelesai: selesai !== false });
+  it('A.2 namaDariProfil: nama profil cocok tanpa beda huruf besar-kecil → nama persis seperti di daftar', () => {
+    assert.equal(M.namaDariProfil({ profil: profil('Mita'), daftar, tuan: 'Nicky', online: [] }), 'Mita');
+    assert.equal(M.namaDariProfil({ profil: profil('  mita '), daftar, tuan: 'Nicky', online: ['Nicky'] }), 'Mita');
+    assert.equal(M.namaDariProfil({ profil: profil('NORA'), daftar, tuan: 'Nicky', online: null }), 'Nora', 'online tidak diketahui → dianggap tidak dipakai');
+    assert.equal(M.namaDariProfil({ profil: profil('Jeni'), daftar, tuan: 'Nicky' }), 'Jeni');
+  });
+  it('A.2 namaDariProfil: tidak masuk sendiri bila sedang dipakai, pernah "Ganti nama", onboarding belum selesai, di luar daftar, nama pemimpin, atau nama tidak sah', () => {
+    assert.equal(M.namaDariProfil({ profil: profil('Mita'), daftar, tuan: 'Nicky', online: ['mita'] }), null, 'sedang dipakai perangkat lain → tetap ditanya');
+    assert.equal(M.namaDariProfil({ profil: profil('Mita'), daftar, tuan: 'Nicky', online: [], tolak: true }), null, 'pernah memilih Bukan Anda? Ganti nama');
+    assert.equal(M.namaDariProfil({ profil: profil('Mita', false), daftar, tuan: 'Nicky', online: [] }), null, 'onboarding belum selesai');
+    assert.equal(M.namaDariProfil({ profil: profil('Dodi'), daftar, tuan: 'Nicky', online: [] }), null, 'nama di luar daftar tidak masuk sendiri');
+    assert.equal(M.namaDariProfil({ profil: profil('nicky'), daftar, tuan: 'Nicky', online: [] }), null, 'nama pemimpin tidak dipakai otomatis');
+    assert.equal(M.namaDariProfil({ profil: profil(''), daftar, tuan: 'Nicky', online: [] }), null);
+    assert.equal(M.namaDariProfil({ profil: null, daftar }), null);
+    assert.equal(M.namaDariProfil({ profil: profil('Mita'), daftar: ['Mita', 'MITA'], online: [] }), null, 'cocok dengan dua nama → tanya');
+    assert.equal(M.namaDariProfil({ profil: profil('Mita'), daftar, online: [], sah: () => false }), null, 'nama terlarang');
+    assert.equal(M.namaDariProfil(), null);
+  });
+  it('B.1 bolehBukaUjian: dibuka sendiri hanya bila ujian berjalan, belum terkumpul, tanpa simulasi lain, soal terbaca dan dikenal, belum pernah dibuka sendiri di tab ini', () => {
+    const k = { soalIds: ['A1-001', 'B6-002'], tidakDikenal: [] };
+    assert.equal(M.bolehBukaUjian({ status: 'jalan', kodeInfo: k, sisa: 600 }), true);
+    assert.equal(M.bolehBukaUjian({ status: 'jalan', kodeInfo: k, sisa: null }), true, 'tanpa batas waktu');
+    assert.equal(M.bolehBukaUjian({ kodeInfo: k }), true, 'pemimpin versi lama tanpa status');
+    assert.equal(M.bolehBukaUjian({ status: 'jalan', kodeInfo: k, sisa: 600, sudah: true }), false, 'B.2 sekali saja per ujian per tab');
+    assert.equal(M.bolehBukaUjian({ status: 'selesai', kodeInfo: k }), false, 'ujian ditutup');
+    assert.equal(M.bolehBukaUjian({ status: 'jalan', kodeInfo: k, terkumpul: true }), false, 'sudah terkumpul');
+    assert.equal(M.bolehBukaUjian({ status: 'jalan', kodeInfo: k, simAktif: true }), false, 'ada simulasi lain / simulasi ini sudah berjalan');
+    assert.equal(M.bolehBukaUjian({ status: 'jalan', kodeInfo: null }), false, 'soal tidak terbaca');
+    assert.equal(M.bolehBukaUjian({ status: 'jalan', kodeInfo: { soalIds: [] } }), false, 'tanpa soal');
+    assert.equal(M.bolehBukaUjian({ status: 'jalan', kodeInfo: { soalIds: ['X'], tidakDikenal: ['X'] } }), false, 'versi berbeda');
+    assert.equal(M.bolehBukaUjian({ status: 'jalan', kodeInfo: k, sisa: 0 }), false, 'waktu habis');
+    assert.equal(M.bolehBukaUjian(), false);
+  });
+  it('A.1: layar "Sebelum masuk" dan tombol Mengerti dihapus; kalimatnya pindah ke bawah daftar nama; tanda persetujuan tetap ditulis saat masuk', () => {
+    assert.ok(!/Sebelum masuk|room-mengerti|'Mengerti'|langkah = 'setuju'|langkah === 'setuju'/.test(src));
+    assert.match(src, /'Jawaban dan hasil latihan Anda terlihat oleh anggota room\. Jangan teruskan tautan ke luar tim\.'/);
+    const m = fungsi('masuk');
+    assert.match(m, /lsTulis\('ukp\.tim\.setuju', kodeParam\);/);
+    assert.ok(m.indexOf("lsTulis('ukp.tim.setuju'") > m.indexOf('if (!hasil && !info())'), 'ditulis setelah berhasil masuk');
+    assert.ok(!/ukp\.tim\.setuju/.test(fungsi('pilihNama')), 'pilihNama tidak lagi menunggu persetujuan');
+  });
+  it('A.2/A.3: masuk otomatis memakai namaDariProfil dengan daftar abaikan "Ganti nama"; dialog nama profil berbeda tetap ada; nama ganda tetap ditanya', () => {
+    const g = fungsi('layarGabung');
+    assert.match(g, /namaDariProfil\(\{ profil: [^\n]*, daftar, tuan, online: onlineIntip, tolak, sah: namaSah \}\)/);
+    assert.match(g, /const tolak = !!\(lsBaca\(KBUKAN, \{\}\) \|\| \{\}\)\[kodeParam\];/);
+    assert.match(fungsi('gantiNama'), /bukan\[kode\] = 1; lsTulis\(KBUKAN, bukan\);/);
+    assert.match(src, /const KBUKAN = 'ukp\.tim\.bukanSaya';/);
+    assert.match(fungsi('pilihNama'), /'Masuk sebagai ' \+ nama \+ '\?', 'Nama profil Anda tetap ' \+ prof \+ '\.'/);
+    assert.match(fungsi('pilihNama'), /!samaNama\(lokal\.izinGanda, nama\) && onIntip\.some/);
+    assert.match(src, /'Anda masuk sebagai '/); assert.match(src, /'Bukan Anda\? Ganti nama'/);
+  });
+  it('A.4: kartu "Menghubungkan ke room…" yang jelas selama gabung', () => {
+    const g = fungsi('layarGabung');
+    assert.match(g, /if \(lokal\.gabungJalan\) \{[\s\S]{0,300}'Menghubungkan ke room…'/);
+  });
+  it('B: tombol "Mulai mengerjakan" dan pembukaan otomatis memakai jalur yang sama, ditandai sekali per ujian per tab (sessionStorage)', () => {
+    const u = fungsi('layarUjianAnggota');
+    assert.match(u, /onclick: mulaiUjian \}, UKP\.icon\('play', null, true\), kumpulLain \? 'Kerjakan lagi di HP ini' : 'Mulai mengerjakan'/);
+    // jawaban atas nama ini sudah terkumpul di room dari perangkat lain → tidak dibuka sendiri, orangnya diberi tahu dulu
+    assert.match(u, /const kumpulLain = !!\(dokSaya && dokSaya\.selesai === true\);/);
+    assert.match(u, /terkumpul: !!rek \|\| kumpulLain,/);
+    assert.match(u, /Jawaban atas nama Anda sudah terkumpul di room dari perangkat lain\./);
+    assert.match(u, /bolehBukaUjian\(\{[^\n]*sudah: Array\.isArray\(sudahOto\) && sudahOto\.includes\(a\.id\) \}\)/);
+    assert.match(u, /ssTulis\(KUJIAN_OTO,/);
+    assert.match(u, /'Lanjutkan mengerjakan'/);
+    assert.match(src, /const KUJIAN_OTO = 'ukp\.tim\.ujianOto';/);
+  });
+  it('v9.3.2: pemimpin baru saja memulai dan anggota di halaman lain → langsung dibawa ke room bila aman; yang sudah berjalan hanya ditawarkan', () => {
+    const ab = fungsi('ajakBuka');
+    assert.match(ab, /if \(!berjalan && amanPindahKeRoom\(\)\) \{ toast\(teks \+ '\.', [^\n]*UKP\.go\('room'\)/);
+    assert.match(ab, /aksi: \{ label: 'Buka', onclick: \(\) => UKP\.go\('room'\) \}/);
+    const am = fungsi('amanPindahKeRoom');
+    assert.match(am, /UKP\.simulasiBerjalan\(\)\) return false;/);
+    assert.match(am, /UKP\.mode\.aktif\(\)\) return false;/);
+    assert.match(am, /dialog\[open\]/);
+  });
+});
+
+// v9.3.2 P1: kalimat di bawah judul layar gabung tidak menyuruh mengetuk nama selama "Menghubungkan ke room…"
+describe('ruang-ui: kalimat layar gabung selama menghubungkan (v9.3.2 P1)', () => {
+  const daftar = ['Nicky', 'Sari', 'Dodi'];
+  it('belum menghubungkan: ajakan mengetuk nama (atau menulis nama bila daftar hanya pemimpin) tetap seperti v9.2', () => {
+    assert.equal(M.teksLeadGabung({ tuan: 'Nicky', online: ['Nicky'], daftar }), 'Nicky mengajak Anda latihan soal bersama. Ketuk nama Anda untuk ikut.');
+    assert.equal(M.teksLeadGabung({ tuan: 'Nicky', online: null, daftar: ['Nicky'] }), 'Nicky mengajak Anda latihan soal bersama. Tulis nama Anda untuk ikut.');
+    assert.equal(M.teksLeadGabung({ tuan: 'Nicky', online: [], daftar }), 'Nicky belum membuka room. Anda tetap bisa memilih nama sekarang; latihan dimulai saat ia datang.');
+  });
+  it('sedang menghubungkan (termasuk masuk tanpa ketukan dari nama profil): tidak ada ajakan mengetuk atau memilih nama', () => {
+    const a = M.teksLeadGabung({ tuan: 'Nicky', online: ['nicky'], daftar, menghubungkan: true });
+    const b = M.teksLeadGabung({ tuan: 'Nicky', online: [], daftar, menghubungkan: true });
+    assert.equal(a, 'Nicky mengajak Anda latihan soal bersama.');
+    assert.equal(b, 'Nicky belum membuka room. Latihan dimulai saat ia datang.');
+    for (const t of [a, b]) assert.doesNotMatch(t, /Ketuk|Tulis|memilih nama/);
+  });
+  it('tanpa nama pemimpin → tidak ada kalimat', () => {
+    assert.equal(M.teksLeadGabung({ tuan: '', online: [], daftar }), null);
+  });
+});

@@ -429,3 +429,70 @@ describe('v8.1 D: lembar jawab pribadi', () => {
     assert.equal(L.lembarJawab.simpan({ jawaban: ['A', 'B'] }).n, 2);
   });
 });
+
+// v9.3.2 B2: status tiap orang di ruang ujian pemimpin (js/views-ujian-tim.js, UKP.ujianTimUI._murni). Tanpa DOM.
+describe('v9.3.2 B2: status peserta dan baris ringkas di ruang ujian pemimpin', () => {
+  const UI = muatInti(['core.js', 'learn.js', 'views-ujian-tim.js']);
+  const M = UI.ujianTimUI._murni;
+  const st = o => J(M.statusPeserta(Object.assign({ n: 40, pakaiRoom: true, mengumpulkan: false, terisi: 0, sumber: null, nIsi: null, online: false, pernah: false, pemimpin: false, mulaiSaya: false }, o)));
+  it('belum pernah tersambung sejak ujian dimulai, tanpa dokumen → "belum masuk room" (titik abu-abu)', () => {
+    assert.deepEqual(st({}), { st: 'belum', nada: null, teks: 'belum masuk room' });
+  });
+  it('tersambung tanpa dokumen jawaban → "sudah masuk, belum mulai" (titik garis tepi)', () => {
+    assert.deepEqual(st({ online: true, pernah: true }), { st: 'masuk', nada: 'garis', teks: 'sudah masuk, belum mulai' });
+  });
+  it('tersambung dengan dokumen (kabar awal: 0 terisi) → "sedang mengerjakan · 0/40 terisi"; lalu n/N (titik biru)', () => {
+    assert.deepEqual(st({ online: true, nIsi: 0 }), { st: 'kerja', nada: 'info', teks: 'sedang mengerjakan · 0/40 terisi' });
+    assert.equal(st({ online: true, nIsi: 12 }).teks, 'sedang mengerjakan · 12/40 terisi');
+  });
+  it('tidak tersambung lagi: dengan dokumen → "HP terputus · n/N terisi"; pernah masuk tanpa dokumen → "HP terputus" (titik jingga)', () => {
+    assert.deepEqual(st({ online: false, pernah: true, nIsi: 7 }), { st: 'putus', nada: 'warn', teks: 'HP terputus · 7/40 terisi' });
+    assert.deepEqual(st({ online: false, pernah: false, nIsi: 0 }), { st: 'putus', nada: 'warn', teks: 'HP terputus · 0/40 terisi' });
+    assert.deepEqual(st({ online: false, pernah: true }), { st: 'putus', nada: 'warn', teks: 'HP terputus' });
+  });
+  it('sudah mengumpulkan menang atas kehadiran: "sudah mengumpulkan · n/N terisi · lewat room" (titik hijau)', () => {
+    assert.deepEqual(st({ mengumpulkan: true, terisi: 38, sumber: 'room', online: false, nIsi: 38 }), { st: 'kumpul', nada: 'ok', teks: 'sudah mengumpulkan · 38/40 terisi · lewat room' });
+    assert.equal(st({ mengumpulkan: true, terisi: 40, sumber: 'sendiri' }).teks, 'sudah mengumpulkan · 40/40 terisi · perangkat ini');
+  });
+  it('baris pemimpin: "Anda · belum mengerjakan" sampai Kerjakan bagian saya; sesudahnya seperti anggota lain', () => {
+    assert.deepEqual(st({ pemimpin: true, online: true }), { st: 'saya', nada: 'garis', teks: 'Anda · belum mengerjakan' });
+    assert.equal(st({ pemimpin: true, mulaiSaya: true }).teks, 'sedang mengerjakan · 0/40 terisi');
+    assert.equal(st({ pemimpin: true, nIsi: 5 }).teks, 'sedang mengerjakan · 5/40 terisi');
+    assert.equal(st({ pemimpin: true, mengumpulkan: true, terisi: 40, sumber: 'sendiri' }).st, 'kumpul');
+  });
+  it('tanpa room (cara v8.1, kode jawaban) tetap "belum"', () => {
+    assert.deepEqual(st({ pakaiRoom: false, online: true, nIsi: 3 }), { st: 'belum', nada: null, teks: 'belum' });
+  });
+  it('baris ringkas: yang terputus dan yang sudah mengumpulkan terhitung sudah masuk room', () => {
+    assert.equal(M.barisRingkas(['saya', 'belum', 'masuk', 'kerja', 'putus', 'kumpul'], 6), '5 dari 6 sudah masuk room · 1 sedang mengerjakan · 1 sudah mengumpulkan');
+    const sepuluh = ['saya', 'masuk', 'masuk', 'masuk', 'kerja', 'kerja', 'kerja', 'belum', 'belum', 'belum'];
+    assert.equal(M.barisRingkas(sepuluh, 10), '7 dari 10 sudah masuk room · 3 sedang mengerjakan · 0 sudah mengumpulkan');
+    assert.equal(M.barisRingkas([], 0), '0 dari 0 sudah masuk room · 0 sedang mengerjakan · 0 sudah mengumpulkan');
+    // v9.3.2: saran untuk pemimpin (apa yang harus dilakukan untuk yang belum tersambung)
+    assert.deepEqual(J(M.saranRuang(['saya', 'kerja', 'kumpul'])), { belum: 0, teks: null });
+    assert.deepEqual(J(M.saranRuang(['belum', 'belum', 'belum', 'kerja'])), { belum: 3, teks: '3 orang belum masuk room: kirim lagi tautan room ke mereka.' });
+    assert.deepEqual(J(M.saranRuang(['putus', 'kerja'])), { belum: 0, teks: 'Yang terputus atau belum mulai: minta ia membuka lagi tautan room di HP-nya.' });
+    assert.equal(M.saranRuang(['belum', 'masuk']).teks, '1 orang belum masuk room: kirim lagi tautan room ke mereka. Yang terputus atau belum mulai: minta ia membuka lagi tautan room di HP-nya.');
+    assert.deepEqual(J(M.saranRuang(null)), { belum: 0, teks: null });
+  });
+});
+
+// v9.3.2 P2: "pernah tersambung" bertahan saat laptop pemimpin dimuat ulang (anggota yang masuk lobi sebelum ujian dimulai lalu
+// terputus semula kembali tertulis "belum masuk room" setelah muat ulang, karena wasiat offline-nya bercap waktu sebelum ujian dimulai).
+describe('v9.3.2 P2: catatan pernah tersambung tersimpan di perangkat pemimpin', () => {
+  const UI = muatInti(['core.js', 'learn.js', 'views-ujian-tim.js']);
+  const M = UI.ujianTimUI._murni;
+  it('pulihkanPernah: hanya untuk ujian yang sama; isi rusak → kosong', () => {
+    assert.deepEqual([...M.pulihkanPernah({ id: 'ut-1', nama: ['tika', 'mita'] }, 'ut-1')], ['tika', 'mita']);
+    assert.equal(M.pulihkanPernah({ id: 'ut-1', nama: ['tika'] }, 'ut-2').size, 0);
+    assert.equal(M.pulihkanPernah(null, 'ut-1').size, 0);
+    assert.equal(M.pulihkanPernah({ id: 'ut-1', nama: 'tika' }, 'ut-1').size, 0);
+    assert.equal(M.pulihkanPernah({ id: 'ut-1', nama: [1, '', null, 'tika'] }, 'ut-1').size, 1);
+    assert.equal(M.pulihkanPernah({ id: 'ut-1', nama: ['a'] }, '').size, 0);
+  });
+  it('terpulihkan + tidak tersambung + tanpa dokumen → "HP terputus" (bukan "belum masuk room")', () => {
+    const pernah = M.pulihkanPernah({ id: 'ut-1', nama: ['tika'] }, 'ut-1').has('tika');
+    const o = { n: 10, pakaiRoom: true, mengumpulkan: false, terisi: 0, sumber: null, nIsi: null, online: false, pernah, pemimpin: false, mulaiSaya: false };
+    assert.equal(J(M.statusPeserta(o)).teks, 'HP terputus');
+  });
+});
