@@ -33,6 +33,9 @@ const lolosSkrip = t => String(t).replace(/<\/(script)/gi, '<\\/$1').replace(/<!
 const lolosGaya = t => String(t).replace(/<\/(style)/gi, '<\\/$1');
 const atribut = (tag, nama) => { const m = new RegExp('\\s' + nama + '\\s*=\\s*("([^"]*)"|\'([^\']*)\'|([^\\s>]+))', 'i').exec(tag); return m ? (m[2] != null ? m[2] : m[3] != null ? m[3] : m[4]) : null; };
 const lokal = u => !!u && !/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(u);
+// v9.4 (FB1): index.html rilis bercap versi (js/app.js?v=<VERSI>, tools/build-artifact.js); berkas dibaca tanpa query dan
+// data-sumber ditulis tanpa query, jadi hasilnya sama dengan atau tanpa cap
+const tanpaQuery = u => String(u).split(/[?#]/)[0];
 const bacaLokal = rel => { const p = path.resolve(ROOT, rel.split(/[?#]/)[0]); if (!p.startsWith(ROOT + path.sep)) throw new Error('jalur di luar proyek: ' + rel); return fs.readFileSync(p, 'utf8'); };
 
 async function ambil(url, jenis) {
@@ -131,7 +134,7 @@ async function main() {
       if (rel.split(/\s+/).includes('stylesheet') && !fontDisisipkan && font.length) { fontDisisipkan = true; return '<style id="font-tertanam">\n' + cssFontTertanam(font) + '\n</style>' + (nl || ''); }
       return '';
     }
-    if (rel.split(/\s+/).includes('stylesheet') && lokal(href)) { nGaya++; return '<style data-sumber="' + href + '">\n' + lolosGaya(bacaLokal(href)) + '\n</style>' + (nl || ''); }
+    if (rel.split(/\s+/).includes('stylesheet') && lokal(href)) { nGaya++; return '<style data-sumber="' + tanpaQuery(href) + '">\n' + lolosGaya(bacaLokal(href)) + '\n</style>' + (nl || ''); }
     if (rel.split(/\s+/).includes('stylesheet')) peringatkan('stylesheet eksternal dibiarkan (butuh internet): ' + href);
     // manifest PWA hanya berlaku di http(s); dari file:// hanya memicu galat konsol → dibuang (service worker juga dilewati app.js saat UKP_OFFLINE)
     if (rel.split(/\s+/).includes('manifest')) return '';
@@ -153,7 +156,7 @@ async function main() {
     if (!src) return tag;
     if (!lokal(src)) { peringatkan('skrip eksternal dibiarkan (butuh internet): ' + src); return tag; }
     nSkrip++;
-    return '<script data-sumber="' + src + '">\n' + lolosSkrip(bacaLokal(src)) + '\n</script>';
+    return '<script data-sumber="' + tanpaQuery(src) + '">\n' + lolosSkrip(bacaLokal(src)) + '\n</script>';
   });
   // 3. penanda versi offline + bendera UKP_OFFLINE di <head>, sebelum skrip apa pun (termasuk core.js)
   const sisipan = '<meta name="pelatih-ukp-offline" content="' + versi + ' ' + tanggal + '">\n<script>window.UKP_OFFLINE = true;</script>\n';

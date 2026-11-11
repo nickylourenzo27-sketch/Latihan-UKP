@@ -15,7 +15,7 @@ UKP.register({
       "PP 55/2022 s.t.d.d. PP 20/2026 (PPh final UMKM, natura); PMK 164/2023",
       "PMK 101/PMK.010/2016 (PTKP); PER-17/PJ/2015 (NPPN)",
       "PP 60/2010 jo. PMK 114/2025 (zakat/sumbangan keagamaan wajib)",
-      "PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018 (angsuran PPh 25, OP pengusaha tertentu)",
+      "PMK 81/2024 (angsuran PPh 25, termasuk OP pengusaha tertentu; menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)",
       "PMK 192/PMK.03/2018 (kredit PPh Pasal 24); PMK 66/2023 (natura); PMK 18/PMK.03/2021",
       "PMK 81/2024 dan PER-11/PJ/2025 (Coretax, SPT Tahunan, bukti potong)"
     ],
@@ -43,8 +43,8 @@ UKP.register({
       { label: "Zakat/sumbangan keagamaan wajib", nilai: "ke BAZNAS/LAZ/lembaga resmi, bukti sah, tahun dibayar, tidak menimbulkan rugi", dasar: "Ps. 9 ayat (1) huruf g UU PPh; PMK 114/2025", berlakuSejak: "2025-12-31" },
       { label: "PPh final UMKM orang pribadi", nilai: "0,5% × peredaran bruto; batas Rp4,8 M; Rp500 jt pertama setahun tidak kena", dasar: "PP 55/2022 s.t.d.d. PP 20/2026; Ps. 7 ayat (2a) UU PPh", berlakuSejak: "2026-04-22" },
       { label: "Penerima baru PPh final UMKM", nilai: "OP, PT perorangan 1 orang, koperasi; pekerjaan bebas dikecualikan; jangka waktu OP dihapus", dasar: "PP 20/2026", berlakuSejak: "2026-04-22" },
-      { label: "Angsuran PPh 25 orang pribadi", nilai: "(PPh terutang tahun lalu − PPh 21/22/23/24) ÷ 12; Jan–Feb pakai angsuran Desember", dasar: "Ps. 25 ayat (1)–(2) UU PPh", berlakuSejak: "2009-01-01" },
-      { label: "Angsuran OP pengusaha tertentu (pengecer)", nilai: "0,75% × peredaran bruto bulanan tiap tempat usaha", dasar: "PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018 Ps. 7", berlakuSejak: "2009-01-01" },
+      { label: "Angsuran PPh 25 orang pribadi", nilai: "(PPh terutang tahun lalu − PPh 21/22/23/24) ÷ 12; bulan sebelum SPT disampaikan pakai angsuran Desember", dasar: "Ps. 25 ayat (1)–(2) UU PPh", berlakuSejak: "2009-01-01" },
+      { label: "Angsuran OP pengusaha tertentu (pengecer)", nilai: "0,75% × peredaran bruto bulanan tiap tempat usaha", dasar: "PMK 81/2024 (menggantikan PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" },
       { label: "Batas setor PPh 25 dan PPh final UMKM", nilai: "tanggal 15 bulan berikutnya", dasar: "PMK 81/2024 Ps. 94", berlakuSejak: "2025-01-01" },
       { label: "Kredit pajak SPT orang pribadi", nilai: "PPh 21, 22, 23, 24, 25 — bukan PPh final atau sanksi", dasar: "Ps. 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
       { label: "Batas kredit PPh 24 (per negara)", nilai: "terkecil: pajak luar negeri dibayar atau (neto LN ÷ PKP) × PPh terutang", dasar: "Ps. 24 UU PPh; PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" },
@@ -143,7 +143,7 @@ UKP.register({
         "Tidak boleh dikurangkan (Pasal 9 ayat (1)): premi asuransi jiwa/kesehatan yang dibayar OP untuk dirinya (huruf d), sumbangan/hibah kecuali zakat dan sumbangan tertentu (huruf g), PPh (huruf h), biaya pribadi WP dan tanggungannya termasuk 'gaji' pemilik atau prive (huruf i), serta sanksi administrasi dan pidana pajak (huruf k).",
         "Biaya untuk mendapatkan penghasilan yang dikenai PPh final atau bukan objek tidak dapat dikurangkan dari penghasilan yang dikenai tarif umum; penghasilan final yang ikut dalam laba komersial dikoreksi negatif.",
         "Sejak TP 2022 biaya natura/kenikmatan untuk pegawai dapat dikurangkan pemberi kerja sepanjang memenuhi biaya 3M (Pasal 6 ayat (1) huruf n UU PPh s.t.d.t.d. UU 7/2021); sebelumnya tidak boleh dibiayakan.",
-        "PPh 21 pegawai yang ditanggung pemberi kerja tanpa diberikan sebagai tunjangan adalah PPh yang tidak boleh dibiayakan; bila diberikan sebagai tunjangan PPh, menjadi bagian biaya gaji.",
+        "PPh 21 pegawai yang ditanggung pemberi kerja (tanpa tunjangan) sejak PMK 66/2023 diperlakukan sebagai kenikmatan menurut penjelasan DJP: menjadi penghasilan pegawai dan dapat dibiayakan pemberi kerja, sama dengan tunjangan PPh. Aturan lama (PER-16/PJ/2016: bukan penghasilan pegawai dan tidak boleh dibiayakan) tidak berlaku untuk tahun pajak 2023 ke atas (pemotongan sejak Juli 2023).",
         "Penyusutan fiskal harta berwujud bukan bangunan: Kelompok 1 4 tahun (garis lurus 25%), Kelompok 2 8 tahun (12,5%), Kelompok 3 16 tahun (6,25%), Kelompok 4 20 tahun (5%); dimulai pada bulan pengeluaran dan dihitung proporsional bulan pada tahun pertama."
       ],
       poinKunci: [
@@ -168,7 +168,8 @@ UKP.register({
         jawaban: "Rp5.000.000",
         langkah: [ ["Tarif Kelompok 1 garis lurus", "25%"], ["Penyusutan setahun", "Rp6.000.000"], ["Maret–Desember", "10 bulan"], ["Rp6.000.000 × 10/12", "Rp5.000.000"] ]
       },
-      verifikasi: "✅"
+      verifikasi: "◐",
+      peringatan: "Perlakuan PPh 21 yang ditanggung pemberi kerja sebagai kenikmatan yang dapat dibiayakan bersandar pada penjelasan DJP (Juli 2023, diberitakan DDTCNews) dan FAQ PMK 66/2023; bunyi pasal PMK 66/2023, PMK 168/2023, dan PP 55/2022 tentang hal ini belum dibaca langsung. Butir lain adalah teks UU PPh."
     },
     {
       id: "A1.4", slug: "nppn", judul: "Norma Penghitungan Penghasilan Neto (NPPN)",
@@ -321,7 +322,7 @@ UKP.register({
         { label: "Kredit pajak OP", nilai: "PPh 21, 22, 23, 24, 25", dasar: "Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
         { label: "Batas PPh 24", nilai: "min(pajak LN; neto LN/PKP × PPh terutang) per negara", dasar: "Pasal 24 UU PPh; PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" },
         { label: "Pelunasan PPh 29", nilai: "sebelum SPT disampaikan", dasar: "Pasal 9 ayat (2) UU KUP", berlakuSejak: "2008-01-01" },
-        { label: "Bunga bayar setelah batas SPT", nilai: "(acuan + 5%)/12 per bulan, maks 24 bulan", dasar: "Pasal 9 ayat (2b) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2021-10-29" }
+        { label: "Bunga bayar setelah batas SPT", nilai: "(acuan + 5%)/12 per bulan, maks 24 bulan", dasar: "Pasal 9 ayat (2b) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02" }
       ],
       dasarHukum: [
         { pasal: "Pasal 28, 28A, dan 29 UU PPh", catatan: "kredit pajak, lebih bayar, kurang bayar" },
@@ -345,19 +346,19 @@ UKP.register({
       estimasiMenit: 12, jenisDominan: ["hitung", "prosedur"],
       ringkasan: [
         "Angsuran bulanan = (PPh terutang menurut SPT tahun lalu − PPh 21, 22, 23 yang dipotong/dipungut − PPh 24 yang boleh dikreditkan) ÷ 12 (Pasal 25 ayat (1) UU PPh); PPh 25 tahun lalu dan PPh final tidak dikurangkan.",
-        "Hasil nol atau negatif berarti angsuran nihil. Untuk bulan-bulan sebelum batas waktu penyampaian SPT Tahunan, angsuran sama dengan angsuran bulan terakhir tahun pajak sebelumnya (Pasal 25 ayat (2)).",
-        "WP OP Pengusaha Tertentu (OPPT) adalah pedagang pengecer yang mempunyai satu atau lebih tempat usaha: angsuran 0,75% × peredaran bruto bulanan masing-masing tempat usaha, dan menjadi kredit pajak di SPT Tahunan (PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018).",
+        "Hasil nol atau negatif berarti angsuran nihil. Untuk bulan-bulan sebelum SPT Tahunan disampaikan (sebelum batas waktu penyampaiannya), angsuran sama dengan angsuran bulan terakhir tahun pajak sebelumnya; angsuran baru berlaku sejak bulan SPT disampaikan, paling lambat sejak bulan batas waktu (Pasal 25 ayat (2)).",
+        "WP OP Pengusaha Tertentu (OPPT) adalah pedagang pengecer yang mempunyai satu atau lebih tempat usaha: angsuran 0,75% × peredaran bruto bulanan masing-masing tempat usaha, dan menjadi kredit pajak di SPT Tahunan (PMK 81/2024; menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025).",
         "WP yang seluruh penghasilan usahanya dikenai PPh final 0,5% membayar PPh final, bukan angsuran OPPT 0,75%.",
         "PPh 25 disetor paling lambat tanggal 15 bulan berikutnya; bukti setor yang telah mendapat NTPN dianggap sebagai SPT Masa PPh 25 (PMK 81/2024)."
       ],
       poinKunci: [
         { label: "Rumus angsuran OP biasa", nilai: "(PPh terutang − PPh 21/22/23/24) ÷ 12", dasar: "Pasal 25 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
-        { label: "Angsuran OPPT", nilai: "0,75% × peredaran bruto bulanan per tempat usaha", dasar: "PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018 Pasal 7", berlakuSejak: "2009-01-01" },
+        { label: "Angsuran OPPT", nilai: "0,75% × peredaran bruto bulanan per tempat usaha", dasar: "PMK 81/2024 (menggantikan PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" },
         { label: "Batas setor PPh 25", nilai: "tanggal 15 bulan berikutnya", dasar: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" }
       ],
       dasarHukum: [
         { pasal: "Pasal 25 ayat (1), (2), dan (7) UU PPh", catatan: "rumus angsuran, bulan sebelum SPT, WP tertentu" },
-        { pasal: "PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018", catatan: "OP pengusaha tertentu 0,75%" },
+        { pasal: "PMK 81/2024 (angsuran PPh Pasal 25, termasuk OP pengusaha tertentu; menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)", catatan: "OP pengusaha tertentu 0,75%" },
         { pasal: "PMK 81/2024 Pasal 94", catatan: "batas setor tanggal 15" }
       ],
       jebakan: [
@@ -425,7 +426,7 @@ UKP.register({
         { label: "Denda terlambat SPT Tahunan OP", nilai: "Rp100.000", dasar: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" },
         { label: "Perpanjangan", nilai: "paling lama 2 bulan, pemberitahuan sebelum batas waktu", dasar: "Pasal 3 ayat (4) UU KUP", berlakuSejak: "2008-01-01" },
         { label: "Suami-istri PH/MT", nilai: "masing-masing menyampaikan SPT; PPh gabungan dibagi sebanding neto; kredit mengikuti pemilik bukti potong", dasar: "Pasal 8 ayat (2)–(3) dan Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
-        { label: "Bunga pembetulan kurang bayar", nilai: "(acuan + 5%)/12 per bulan, maks 24 bulan", dasar: "Pasal 8 ayat (2) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2021-10-29" }
+        { label: "Bunga pembetulan kurang bayar", nilai: "(acuan + 5%)/12 per bulan, maks 24 bulan", dasar: "Pasal 8 ayat (2) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02" }
       ],
       dasarHukum: [
         { pasal: "Pasal 3 ayat (3) huruf b, (4), (5), dan (7) UU KUP", catatan: "batas waktu, perpanjangan, SPT dianggap tidak disampaikan" },
@@ -724,22 +725,36 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-017", topik: "A1.3", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3,
+      id: "A1-017",
+      topik: "A1.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
       stem: "Ny. Indah (apotek, peredaran bruto 2026 Rp5,4 miliar, menyelenggarakan pembukuan) melaporkan laba komersial 2026 Rp410.000.000. Beban yang tercatat antara lain: bunga KPR rumah tinggal pribadi Rp24.000.000; PPh Pasal 21 karyawan yang ditanggung apotek tanpa diberikan sebagai tunjangan Rp9.000.000; PBB gedung apotek Rp6.000.000; biaya pelatihan apoteker pendamping Rp5.000.000; makan siang seluruh karyawan Rp30.000.000. Laba juga memuat bunga deposito Rp8.000.000 (PPh final). Penghasilan neto fiskal 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp435.000.000", B: "Rp465.000.000", C: "Rp426.000.000", D: "Rp441.000.000" },
-      kunci: "A",
-      jebakanOpsi: { B: "angka-usang", C: "salah-klasifikasi", D: "lupa-pasal" },
+      kunci: "C",
+      jebakanOpsi: { A: "angka-usang", B: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Koreksi positif atas bunga KPR rumah pribadi (biaya pribadi) dan PPh 21 yang ditanggung tanpa tunjangan (PPh tidak boleh dibiayakan); koreksi negatif atas bunga deposito final. PBB usaha, pelatihan, dan natura makan karyawan boleh dibiayakan.",
-        jejakHitung: [ ["Laba komersial", "Rp410.000.000"], ["+ Bunga KPR rumah pribadi", "Rp24.000.000"], ["+ PPh 21 ditanggung (bukan tunjangan)", "Rp9.000.000"], ["− Bunga deposito (final)", "Rp8.000.000"], ["Neto fiskal", "Rp435.000.000"] ],
-        mengapaSalah: { B: "Mengoreksi natura makan karyawan seperti sebelum UU HPP", C: "Menganggap PPh 21 yang ditanggung sebagai biaya gaji; tanpa tunjangan ia tetap PPh yang tidak boleh dibiayakan", D: "Mengoreksi PBB gedung usaha; PBB adalah pajak selain PPh yang boleh dibiayakan" },
-        jebakan: "PPh 21 'ditanggung' dan 'tunjangan PPh' berbeda perlakuannya bagi pemberi kerja."
+        inti: "Koreksi positif hanya atas bunga KPR rumah pribadi (biaya pribadi, Pasal 9 ayat (1) huruf i) dan koreksi negatif atas bunga deposito yang final. Sejak PMK 66/2023, PPh 21 yang ditanggung pemberi kerja adalah kenikmatan bagi pegawai sehingga dapat dibiayakan seperti tunjangan PPh (penjelasan DJP). PBB usaha, pelatihan, dan makan siang seluruh karyawan juga boleh dibiayakan.",
+        jejakHitung: [
+          ["Laba komersial", "Rp410.000.000"],
+          ["+ Bunga KPR rumah pribadi", "Rp24.000.000"],
+          ["PPh 21 ditanggung (kenikmatan pegawai)", "tidak dikoreksi"],
+          ["− Bunga deposito (final)", "Rp8.000.000"],
+          ["Neto fiskal", "Rp426.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengoreksi positif PPh 21 yang ditanggung Rp9.000.000 menurut aturan lama (PER-16/PJ/2016); sejak PMK 66/2023 PPh itu kenikmatan pegawai yang boleh dibiayakan",
+          B: "Mengoreksi makan siang seluruh karyawan Rp30.000.000 (boleh dibiayakan; sebelum UU HPP pun dikecualikan dari larangan natura) dan PPh 21 ditanggung Rp9.000.000",
+          D: "Mengoreksi PBB gedung usaha Rp6.000.000 (pajak selain PPh yang boleh dibiayakan) dan PPh 21 yang ditanggung Rp9.000.000"
+        },
+        jebakan: "Aturan lama membedakan PPh 21 ditanggung dan tunjangan PPh; sejak PMK 66/2023 keduanya menjadi penghasilan pegawai dan dapat dibiayakan pemberi kerja."
       },
-      dasarHukum: [ { pasal: "Pasal 9 ayat (1) huruf h dan i UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (1) huruf a dan n UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) huruf i UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (1) huruf a dan n UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "PMK 66/2023 (natura dan/atau kenikmatan)", berlakuSejak: "2023-07-01" }],
       anggaranDetik: 180,
       verifikasi: "◐",
-      peringatan: "Kunci memperlakukan PPh 21 yang ditanggung pemberi kerja (bukan tunjangan PPh) sebagai PPh yang tidak dapat dibiayakan (Pasal 9 ayat (1) huruf h) dan bukan natura/kenikmatan yang boleh dibiayakan sejak UU HPP; penegasan ini belum dicek ke teks PMK 66/2023 dan PMK 168/2023 dalam riset proyek. Bila ternyata diperlakukan sebagai kenikmatan, neto fiskal menjadi Rp426.000.000 (opsi C)."
+      peringatan: "Kunci dipindah dari A ke C mengikuti penjelasan DJP (Juli 2023, diberitakan DDTCNews) dan FAQ PMK 66/2023: PPh 21 yang ditanggung pemberi kerja adalah kenikmatan yang menjadi penghasilan pegawai dan dapat dibiayakan. Bunyi pasal PMK 66/2023, PMK 168/2023, dan PP 55/2022 tentang hal ini belum dibaca langsung; bila perlakuan lama (tidak boleh dibiayakan) ternyata masih berlaku, jawabannya Rp435.000.000 (opsi A)."
     },
     {
       id: "A1-018", topik: "A1.4", kasusId: "V-A1-01", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2, laporanUjian: ["B-2026-10"],
@@ -1121,7 +1136,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-040", topik: "A1.8", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3,
+      id: "A1-040",
+      topik: "A1.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
       stem: "Ibu Fitri menyampaikan SPT Tahunan PPh OP Tahun Pajak 2025 pada 10 April 2026 tanpa pemberitahuan perpanjangan. SPT berstatus kurang bayar Rp8.000.000 dan PPh Pasal 29 itu dilunasi pada hari yang sama. Anggap tarif bunga per bulan menurut KMK untuk sanksi dengan uplift 5% yang berlaku 1,10%. Jumlah sanksi administrasi yang akan ditagih dengan STP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp88.000", B: "Rp260.000", C: "Rp1.088.000", D: "Rp188.000" },
@@ -1129,11 +1148,20 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", C: "salah-klasifikasi" },
       pembahasan: {
         inti: "Dua sanksi berjalan bersamaan: denda Pasal 7 ayat (1) Rp100.000 karena SPT terlambat dan bunga Pasal 9 ayat (2b) karena PPh 29 dibayar setelah batas waktu SPT; 31 Maret–10 April dihitung 1 bulan.",
-        jejakHitung: [ ["Denda SPT Tahunan OP terlambat", "Rp100.000"], ["Masa bunga 31 Mar–10 Apr 2026", "1 bulan"], ["Bunga = Rp8.000.000 × 1,10% × 1", "Rp88.000"], ["Jumlah sanksi", "Rp188.000"] ],
-        mengapaSalah: { A: "Lupa denda keterlambatan SPT Pasal 7 ayat (1)", B: "Memakai bunga 2% per bulan sebelum UU HPP", C: "Memakai denda SPT Tahunan badan Rp1.000.000" },
+        jejakHitung: [
+          ["Denda SPT Tahunan OP terlambat", "Rp100.000"],
+          ["Masa bunga 31 Mar–10 Apr 2026", "1 bulan"],
+          ["Bunga = Rp8.000.000 × 1,10% × 1", "Rp88.000"],
+          ["Jumlah sanksi", "Rp188.000"]
+        ],
+        mengapaSalah: {
+          A: "Lupa denda keterlambatan SPT Pasal 7 ayat (1)",
+          B: "Memakai bunga flat 2% per bulan (Rp160.000), yang sudah diganti tarif bunga per bulan dari Menteri Keuangan sejak UU Cipta Kerja (2 November 2020)",
+          C: "Memakai denda SPT Tahunan badan Rp1.000.000"
+        },
         jebakan: "Terlambat lapor dan terlambat bayar adalah dua pelanggaran berbeda dengan dua sanksi berbeda."
       },
-      dasarHukum: [ { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2b) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2021-10-29" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026 (tarif bunga bulanan)" } ],
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2b) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026 (tarif bunga bulanan)" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -1173,7 +1201,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-043", topik: "A1.9", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3,
+      id: "A1-043",
+      topik: "A1.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
       stem: "Ibu Maria adalah pedagang pengecer pakaian dengan dua toko: Toko A di Bekasi dan Toko B di Bogor. Peredaran bruto 2025-nya Rp6,3 miliar sehingga ia tidak memakai PPh final UMKM. Peredaran bruto Maret 2026: Toko A Rp320.000.000 dan Toko B Rp180.000.000. Besarnya angsuran PPh Pasal 25 Masa Maret 2026 dan batas paling lambat penyetorannya yang tepat adalah ...",
       kataKualifikasi: ["paling lambat"],
       opsi: { A: "Total Rp2.500.000 (0,5% × Rp500.000.000) disetor paling lambat 15 April 2026", B: "Toko A Rp2.400.000 dan Toko B Rp1.350.000, disetor paling lambat 10 April 2026", C: "Sebesar PPh terutang SPT 2025 dikurangi kredit pajak lalu dibagi 12, tanpa memperhatikan peredaran bruto bulanan", D: "Toko A Rp2.400.000 dan Toko B Rp1.350.000, masing-masing untuk tempat usahanya, disetor paling lambat 15 April 2026" },
@@ -1181,11 +1213,19 @@ UKP.register({
       jebakanOpsi: { A: "final-nonfinal", B: "angka-usang", C: "lupa-pasal" },
       pembahasan: {
         inti: "Ibu Maria adalah OP pengusaha tertentu (pedagang pengecer dengan tempat usaha): angsurannya 0,75% × peredaran bruto bulanan masing-masing tempat usaha, disetor paling lambat tanggal 15 bulan berikutnya, dan menjadi kredit di SPT Tahunan.",
-        jejakHitung: [ ["Toko A: 0,75% × Rp320.000.000", "Rp2.400.000"], ["Toko B: 0,75% × Rp180.000.000", "Rp1.350.000"], ["Jatuh tempo setor", "15 April 2026"] ],
-        mengapaSalah: { A: "Memakai tarif PPh final UMKM 0,5%, padahal peredaran bruto 2025 melebihi Rp4,8 miliar", B: "Tanggal 10 adalah batas lama PPh yang dipotong/dipungut sebelum 2025; PPh 25 disetor paling lambat tanggal 15 (kini seragam untuk semua pajak masa, PMK 81/2024 Pasal 94)", C: "Rumus Pasal 25 ayat (1) tidak berlaku bagi OPPT yang memakai ketentuan khusus 0,75%" },
+        jejakHitung: [
+          ["Toko A: 0,75% × Rp320.000.000", "Rp2.400.000"],
+          ["Toko B: 0,75% × Rp180.000.000", "Rp1.350.000"],
+          ["Jatuh tempo setor", "15 April 2026"]
+        ],
+        mengapaSalah: {
+          A: "Memakai tarif PPh final UMKM 0,5%, padahal peredaran bruto 2025 melebihi Rp4,8 miliar",
+          B: "Tanggal 10 adalah batas lama PPh yang dipotong/dipungut sebelum 2025 (kini juga tanggal 15); PPh 25 disetor paling lambat tanggal 15 (PMK 81/2024 Pasal 94)",
+          C: "Rumus Pasal 25 ayat (1) tidak berlaku bagi OPPT yang memakai ketentuan khusus 0,75%"
+        },
         jebakan: "OPPT dihitung per tempat usaha, bukan total semua toko dalam satu setoran."
       },
-      dasarHukum: [ { pasal: "PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018 Pasal 7 ayat (1)", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" } ],
+      dasarHukum: [{ pasal: "PMK 81/2024 (angsuran PPh Pasal 25 Wajib Pajak orang pribadi pengusaha tertentu; mencabut dan menggantikan PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 140,
       verifikasi: "✅"
     },
@@ -1831,19 +1871,38 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-079", topik: "A1.3", kasusId: "V-A1-08", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
-      stem: "Data untuk soal ini dan tiga soal berikutnya: Pak Wayan Sudarma (K/3: istri tidak bekerja; menanggung tiga anak kandung dan ibu kandungnya sejak 2020) memiliki bengkel servis dan pengecatan mobil di Denpasar, menyelenggarakan pembukuan, dengan peredaran bruto 2025 Rp5,3 miliar dan 2026 Rp5,9 miliar. Laba komersial 2026 Rp735.000.000, yang di dalamnya tercatat antara lain: pendapatan sewa sebagian lantai ruko kepada sebuah bank Rp120.000.000 (bruto), dengan PPh final 10% yang dipotong penyewa Rp12.000.000 dicatat sebagai beban pajak; biaya pemeliharaan bagian ruko yang disewakan Rp6.000.000 (tidak ada biaya lain, termasuk penyusutan, yang dapat dialokasikan ke bagian yang disewakan); bunga deposito yang dicatat neto setelah dipotong PPh final Rp16.000.000; gaji 14 karyawan Rp420.000.000; bingkisan hari raya Nyepi untuk seluruh karyawan Rp9.000.000; sumbangan kepada panitia peringatan 17 Agustus di banjar Rp10.000.000; biaya promosi berupa pameran dan hadiah bagi pelanggan Rp18.000.000 tanpa daftar nominatif; PPh Pasal 25 yang disetor Rp48.000.000; biaya sekolah anak-anak Pak Wayan Rp24.000.000; serta dana punia wajib kepada lembaga keagamaan Hindu yang disahkan pemerintah Rp20.000.000 (bukti sah) yang juga dibukukan sebagai beban. Penyusutan komersial sama dengan penyusutan fiskal. Penghasilan neto fiskal usaha 2026 Pak Wayan adalah ...",
+      id: "A1-079",
+      topik: "A1.3",
+      kasusId: "V-A1-08",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "Data untuk soal ini dan tiga soal berikutnya: Pak Wayan Sudarma (K/3: istri tidak bekerja; menanggung tiga anak kandung dan ibu kandungnya sejak 2020) memiliki bengkel servis dan pengecatan mobil di Denpasar, menyelenggarakan pembukuan, dengan peredaran bruto 2025 Rp5,3 miliar dan 2026 Rp5,9 miliar. Laba komersial 2026 Rp735.000.000, yang di dalamnya tercatat antara lain: pendapatan sewa sebagian lantai ruko kepada sebuah bank Rp120.000.000 (bruto), dengan PPh final 10% yang dipotong penyewa Rp12.000.000 dicatat sebagai beban pajak; biaya pemeliharaan bagian ruko yang disewakan Rp6.000.000 (tidak ada biaya lain, termasuk penyusutan, yang dapat dialokasikan ke bagian yang disewakan); bunga deposito Rp16.000.000 (dicatat neto, yaitu setelah dipotong PPh final); gaji 14 karyawan Rp420.000.000; bingkisan hari raya Nyepi untuk seluruh karyawan Rp9.000.000; sumbangan kepada panitia peringatan 17 Agustus di banjar Rp10.000.000; biaya promosi berupa pameran dan hadiah bagi pelanggan Rp18.000.000 tanpa daftar nominatif; PPh Pasal 25 yang disetor Rp48.000.000; biaya sekolah anak-anak Pak Wayan Rp24.000.000; serta dana punia wajib kepada lembaga keagamaan Hindu yang disahkan pemerintah Rp20.000.000 (bukti sah) yang juga dibukukan sebagai beban. Penyusutan komersial sama dengan penyusutan fiskal. Penghasilan neto fiskal usaha 2026 Pak Wayan adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp737.000.000", B: "Rp717.000.000", C: "Rp753.000.000", D: "Rp719.000.000" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
         inti: "Koreksi negatif atas penghasilan final (sewa ruko dan bunga deposito); koreksi positif atas PPh final dan biaya pemeliharaan yang terkait penghasilan final, sumbangan panitia, promosi tanpa daftar nominatif, PPh 25, biaya sekolah anak (pribadi), serta dana punia wajib yang dibukukan sebagai beban — yang terakhir dikurangkan tersendiri pada tahap penghitungan PKP, bukan dalam neto usaha.",
-        jejakHitung: [ ["Laba komersial", "Rp735.000.000"], ["− Sewa ruko dan bunga deposito (PPh final)", "−Rp136.000.000"], ["+ PPh final sewa dan pemeliharaan bagian ruko yang disewakan", "+Rp18.000.000"], ["+ Sumbangan panitia 17 Agustus (Pasal 9 ayat (1) huruf g)", "+Rp10.000.000"], ["+ Promosi tanpa daftar nominatif (PMK 02/PMK.03/2010)", "+Rp18.000.000"], ["+ PPh 25 (huruf h) dan biaya sekolah anak (huruf i)", "+Rp72.000.000"], ["+ Dana punia wajib yang dibukukan sebagai beban (dipindah ke pengurang PKP)", "+Rp20.000.000"], ["Tidak dikoreksi", "gaji, bingkisan Nyepi untuk seluruh karyawan"], ["Penghasilan neto fiskal usaha", "Rp737.000.000"] ],
-        mengapaSalah: { B: "Membiarkan dana punia wajib sebagai beban usaha; sumbangan keagamaan wajib dikurangkan tersendiri setelah penghasilan neto, sehingga bila juga dibiarkan dalam laba akan terkurang dua kali", C: "Lupa mengeluarkan bunga deposito Rp16.000.000 yang telah dikenai PPh final", D: "Lupa mengoreksi PPh final sewa dan biaya pemeliharaan bagian ruko yang disewakan (Rp18.000.000), padahal keduanya biaya untuk penghasilan yang dikenai PPh final" },
+        jejakHitung: [
+          ["Laba komersial", "Rp735.000.000"],
+          ["− Sewa ruko dan bunga deposito (PPh final)", "−Rp136.000.000"],
+          ["+ PPh final sewa dan pemeliharaan bagian ruko yang disewakan", "+Rp18.000.000"],
+          ["+ Sumbangan panitia 17 Agustus (Pasal 9 ayat (1) huruf g)", "+Rp10.000.000"],
+          ["+ Promosi tanpa daftar nominatif (PMK 02/PMK.03/2010)", "+Rp18.000.000"],
+          ["+ PPh 25 (huruf h) dan biaya sekolah anak (huruf i)", "+Rp72.000.000"],
+          ["+ Dana punia wajib yang dibukukan sebagai beban (dipindah ke pengurang PKP)", "+Rp20.000.000"],
+          ["Tidak dikoreksi", "gaji, bingkisan Nyepi untuk seluruh karyawan"],
+          ["Penghasilan neto fiskal usaha", "Rp737.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Membiarkan dana punia wajib sebagai beban usaha; sumbangan keagamaan wajib dikurangkan tersendiri setelah penghasilan neto, sehingga bila juga dibiarkan dalam laba akan terkurang dua kali",
+          C: "Lupa mengeluarkan bunga deposito Rp16.000.000 yang telah dikenai PPh final",
+          D: "Lupa mengoreksi PPh final sewa dan biaya pemeliharaan bagian ruko yang disewakan (Rp18.000.000), padahal keduanya biaya untuk penghasilan yang dikenai PPh final"
+        },
         jebakan: "Opsi hanya berselisih Rp2 juta–Rp20 juta; tiap pengecoh menguji satu pos (sumbangan keagamaan wajib, bunga final, biaya terkait penghasilan final)."
       },
-      dasarHukum: [ { pasal: "Pasal 6 ayat (1) dan Pasal 9 ayat (1) huruf g, h, dan i UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) huruf a dan d UU PPh; PP 94/2010 Pasal 13 (biaya untuk penghasilan final)", berlakuSejak: "2010-12-30" }, { pasal: "PMK 02/PMK.03/2010 (daftar nominatif biaya promosi)", berlakuSejak: "2010-01-05" }, { pasal: "Pasal 9 ayat (1) huruf g UU PPh; PP 60/2010; PMK 114/2025", berlakuSejak: "2025-12-31" } ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) dan Pasal 9 ayat (1) huruf g, h, dan i UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) huruf a dan d UU PPh; PP 94/2010 Pasal 13 (biaya untuk penghasilan final)", berlakuSejak: "2010-12-30" }, { pasal: "PMK 02/PMK.03/2010 (daftar nominatif biaya promosi)", berlakuSejak: "2010-01-05" }, { pasal: "Pasal 9 ayat (1) huruf g UU PPh; PP 60/2010; PMK 114/2025", berlakuSejak: "2025-12-31" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -1894,22 +1953,38 @@ UKP.register({
       peringatan: "Nomor angka induk mengikuti formulir 1770 pra-Coretax sebagai peta logis; di Coretax (PER-11/PJ/2025) komponen yang sama diisi melalui lampiran sehingga penomoran dapat berbeda. Penghitungan PKP dan PPh yang menjadi kunci tidak bergantung pada penomoran."
     },
     {
-      id: "A1-082", topik: "A1.9", kasusId: "V-A1-08", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3,
-      kutipan: "Pasal 25 ayat (1) UU PPh (diringkas): besarnya angsuran pajak dalam tahun pajak berjalan yang harus dibayar sendiri setiap bulan adalah PPh terutang menurut SPT Tahunan tahun pajak yang lalu dikurangi PPh yang dipotong (Pasal 21 dan 23), PPh yang dipungut (Pasal 22), dan PPh Pasal 24 yang boleh dikreditkan, dibagi 12. Pasal 25 ayat (2): besarnya angsuran untuk bulan-bulan sebelum batas waktu penyampaian SPT Tahunan sama dengan besarnya angsuran untuk bulan terakhir dari tahun pajak yang lalu.",
+      id: "A1-082",
+      topik: "A1.9",
+      kasusId: "V-A1-08",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      kutipan: "Pasal 25 ayat (1) UU PPh (diringkas): besarnya angsuran pajak dalam tahun pajak berjalan yang harus dibayar sendiri setiap bulan adalah PPh terutang menurut SPT Tahunan tahun pajak yang lalu dikurangi PPh yang dipotong (Pasal 21 dan 23), PPh yang dipungut (Pasal 22), dan PPh Pasal 24 yang boleh dikreditkan, dibagi 12. Pasal 25 ayat (2): besarnya angsuran untuk bulan-bulan sebelum SPT Tahunan disampaikan sebelum batas waktu penyampaian SPT Tahunan sama dengan besarnya angsuran untuk bulan terakhir dari tahun pajak yang lalu.",
       stem: "Lanjutan data Pak Wayan Sudarma (bengkel servis dan pengecatan mobil, bukan pedagang pengecer): SPT Tahunan 2026 dengan PPh terutang Rp80.250.000 disampaikan pada 25 Maret 2027. Kredit dan pembayaran 2026: PPh Pasal 22 atas impor cat dan suku cadang Rp6.500.000; PPh Pasal 23 yang dipotong pelanggan badan atas jasa perawatan kendaraan Rp3.850.000; PPh final atas sewa ruko Rp12.000.000; PPh final bunga deposito Rp4.000.000; serta angsuran PPh Pasal 25 Rp4.000.000 setiap bulan selama 2026 (termasuk Masa Desember 2026). Ia tidak memperoleh penghasilan tidak teratur. Berdasarkan kutipan tersebut, angsuran PPh Pasal 25 Masa Februari 2027 dan Masa April 2027 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Februari Rp5.825.000; April Rp5.825.000", B: "Februari Rp4.000.000; April Rp1.825.000", C: "Februari Rp4.000.000; April Rp4.825.000", D: "Februari Rp4.000.000; April Rp5.825.000" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "final-nonfinal" },
       pembahasan: {
-        inti: "Bulan sebelum batas waktu SPT (Januari–Februari 2027) memakai angsuran Desember 2026 Rp4.000.000 (Pasal 25 ayat (2)). Setelah SPT 2026 disampaikan, angsuran = (Rp80.250.000 − PPh 22 Rp6.500.000 − PPh 23 Rp3.850.000) ÷ 12 = Rp5.825.000; PPh final dan PPh 25 tahun lalu tidak dikurangkan.",
-        jejakHitung: [ ["Masa Februari 2027 (sebelum batas waktu SPT 31 Maret 2027)", "= angsuran Desember 2026 = Rp4.000.000"], ["PPh terutang SPT 2026", "Rp80.250.000"], ["− PPh 22 dan PPh 23", "Rp10.350.000"], ["PPh final sewa dan deposito; PPh 25 2026", "tidak dikurangkan"], ["(Rp80.250.000 − Rp10.350.000) ÷ 12 (berlaku untuk Masa April 2027)", "Rp5.825.000"] ],
-        mengapaSalah: { A: "Angsuran baru tidak berlaku untuk bulan-bulan sebelum batas waktu penyampaian SPT; Januari–Februari memakai angsuran Desember tahun lalu", B: "Ikut mengurangkan PPh 25 yang disetor selama 2026; Pasal 25 ayat (1) hanya mengurangkan PPh 21, 22, 23, dan 24", C: "Ikut mengurangkan PPh final sewa ruko; PPh final bukan kredit pajak dan bukan pengurang dasar angsuran" },
+        inti: "Bulan-bulan sebelum SPT 2026 disampaikan (25 Maret 2027), yaitu Januari–Februari 2027, memakai angsuran Desember 2026 Rp4.000.000 (Pasal 25 ayat (2)). Sejak bulan SPT disampaikan (Maret 2027), angsuran = (Rp80.250.000 − PPh 22 Rp6.500.000 − PPh 23 Rp3.850.000) ÷ 12 = Rp5.825.000; PPh final dan PPh 25 tahun lalu tidak dikurangkan.",
+        jejakHitung: [
+          ["Masa Februari 2027 (sebelum SPT disampaikan 25 Maret 2027)", "= angsuran Desember 2026 = Rp4.000.000"],
+          ["PPh terutang SPT 2026", "Rp80.250.000"],
+          ["− PPh 22 dan PPh 23", "Rp10.350.000"],
+          ["PPh final sewa dan deposito; PPh 25 2026", "tidak dikurangkan"],
+          ["(Rp80.250.000 − Rp10.350.000) ÷ 12 (berlaku sejak Masa Maret 2027, termasuk April)", "Rp5.825.000"]
+        ],
+        mengapaSalah: {
+          A: "Angsuran baru tidak berlaku untuk bulan-bulan sebelum SPT disampaikan; karena SPT disampaikan 25 Maret 2027, Januari–Februari memakai angsuran Desember 2026",
+          B: "Ikut mengurangkan PPh 25 yang disetor selama 2026; Pasal 25 ayat (1) hanya mengurangkan PPh 21, 22, 23, dan 24",
+          C: "Ikut mengurangkan PPh final sewa ruko; PPh final bukan kredit pajak dan bukan pengurang dasar angsuran"
+        },
         jebakan: "Pertanyaan meminta dua masa sekaligus: satu mengikuti ayat (2), yang lain ayat (1)."
       },
-      dasarHukum: [ { pasal: "Pasal 25 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018", berlakuSejak: "2009-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 (angsuran PPh Pasal 25; menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 170,
-      verifikasi: "✅"
+      verifikasi: "◐",
+      peringatan: "Frasa 'bukan pedagang pengecer' dimaksudkan sebagai 'bukan Wajib Pajak orang pribadi pengusaha tertentu', yang rumusan definisinya dalam PMK 81/2024 belum dicek ke naskah peraturan. Bila usaha jasa seperti bengkel dengan tempat usaha yang terpisah dari tempat tinggal ternyata termasuk pengusaha tertentu, angsurannya 0,75% × peredaran bruto bulanan tiap tempat usaha, bukan menurut Pasal 25 ayat (1) dan (2)."
     },
     {
       id: "A1-083", topik: "A1.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
@@ -2200,7 +2275,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-098", topik: "A1.9", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3,
+      id: "A1-098",
+      topik: "A1.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
       stem: "Tuan Ferry Santoso (K/0) menjalankan usaha percetakan orang pribadi dengan pembukuan (peredaran bruto 2025 Rp5,6 miliar) dan bukan pedagang pengecer. SPT Tahunan 2025 yang ia sampaikan pada 24 Maret 2026 memuat penghasilan neto usaha Rp300.000.000 dan keuntungan penjualan saham PT Kertas Prima (perusahaan tertutup, tidak tercatat di bursa) Rp200.000.000; saham itu dimiliki sebagai investasi jangka panjang, sehingga keuntungannya merupakan penghasilan tidak teratur. Tidak ada zakat dan kompensasi kerugian. Kredit pajak 2025: PPh 22 atas impor tinta Rp4.200.000; PPh 23 yang dipotong pelanggan badan atas jasa cetak Rp3.000.000; PPh 25 yang disetor Rp30.000.000. Angsuran PPh Pasal 25 per bulan yang berlaku untuk Masa April 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp6.014.583", B: "Rp1.918.750", C: "Rp3.368.750", D: "Nihil" },
@@ -2208,17 +2287,31 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Penghasilan tidak teratur dikeluarkan dari dasar angsuran: PPh dihitung ulang atas penghasilan teratur saja (PKP Rp241,5 juta, PPh Rp30.225.000), lalu dikurangi PPh 22 dan PPh 23, kemudian dibagi 12.",
-        jejakHitung: [ ["PKP tanpa penghasilan tidak teratur (Rp300.000.000 − PTKP K/0 Rp58.500.000)", "Rp241.500.000"], ["PPh atas penghasilan teratur: Rp3.000.000 + 15% × Rp181.500.000", "Rp30.225.000"], ["− PPh 22 dan PPh 23", "Rp7.200.000"], ["PPh 25 tahun 2025", "tidak dikurangkan"], ["Rp23.025.000 ÷ 12", "Rp1.918.750"] ],
-        mengapaSalah: { A: "Memakai PPh terutang seluruhnya (Rp79.375.000) termasuk atas keuntungan saham yang tidak teratur", C: "Mengalokasikan PPh terutang secara proporsional 300/500; yang benar menghitung ulang PPh dengan tarif Pasal 17 atas penghasilan teratur", D: "Ikut mengurangkan PPh 25 yang disetor selama 2025 sehingga hasilnya negatif" },
+        jejakHitung: [
+          ["PKP tanpa penghasilan tidak teratur (Rp300.000.000 − PTKP K/0 Rp58.500.000)", "Rp241.500.000"],
+          ["PPh atas penghasilan teratur: Rp3.000.000 + 15% × Rp181.500.000", "Rp30.225.000"],
+          ["− PPh 22 dan PPh 23", "Rp7.200.000"],
+          ["PPh 25 tahun 2025", "tidak dikurangkan"],
+          ["Rp23.025.000 ÷ 12", "Rp1.918.750"]
+        ],
+        mengapaSalah: {
+          A: "Memakai PPh terutang seluruhnya (Rp79.375.000) termasuk atas keuntungan saham yang tidak teratur",
+          C: "Mengalokasikan PPh terutang secara proporsional 300/500; yang benar menghitung ulang PPh dengan tarif Pasal 17 atas penghasilan teratur",
+          D: "Ikut mengurangkan PPh 25 yang disetor selama 2025 sehingga hasilnya negatif"
+        },
         jebakan: "Penghasilan tidak teratur membesarkan PPh terutang tahun lalu; bila tidak dikeluarkan, angsuran tahun berjalan membengkak lebih dari tiga kali lipat."
       },
-      dasarHukum: [ { pasal: "Pasal 25 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018 (angsuran bagi WP yang memperoleh penghasilan tidak teratur)", berlakuSejak: "2009-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1) dan ayat (6) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 113 ayat (5) huruf b dan Pasal 115 (angsuran bila ada penghasilan tidak teratur; dahulu KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 180,
       verifikasi: "◐",
-      peringatan: "Rumus angsuran bagi Wajib Pajak yang memperoleh penghasilan tidak teratur (PPh dihitung ulang atas penghasilan teratur) mengikuti PMK 255/PMK.03/2008 sebagaimana dikenal umum; teks pasal PMK dan perubahannya belum dibaca langsung dalam riset proyek."
+      peringatan: "Batasan penghasilan teratur dan rumus angsurannya mengikuti PER-11/PJ/2025 Pasal 113 ayat (5) dan Pasal 115 (dahulu KEP-537/PJ/2000) sebagaimana dikutip pembahasan try out UKP B November 2026; kutipan itu belum dicocokkan langsung dengan naskah resmi. Frasa 'bukan pedagang pengecer' dimaksudkan sebagai 'bukan Wajib Pajak orang pribadi pengusaha tertentu', yang rumusan definisinya dalam PMK 81/2024 belum dicek."
     },
     {
-      id: "A1-099", topik: "A1.9", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 1,
+      id: "A1-099",
+      topik: "A1.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
       stem: "Untuk Tahun Pajak 2026 keempat Wajib Pajak orang pribadi berikut tidak memakai PPh final UMKM karena peredaran bruto 2025-nya di atas Rp4,8 miliar. Wajib Pajak yang angsuran PPh Pasal 25-nya dihitung 0,75% dari peredaran bruto bulanan setiap tempat usaha sebagai Wajib Pajak orang pribadi pengusaha tertentu adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Bapak Andi, distributor bahan bangunan yang hanya menjual partai besar kepada toko-toko dari gudangnya", B: "dr. Budi, dokter spesialis yang berpraktik di dua rumah sakit", C: "Ibu Citra, pemilik dua gedung rumah kos yang disewakan bulanan", D: "Ibu Dewi, pedagang pengecer pakaian yang memiliki toko di dua pusat perbelanjaan" },
@@ -2226,13 +2319,21 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "final-nonfinal" },
       pembahasan: {
         inti: "Wajib Pajak orang pribadi pengusaha tertentu adalah pedagang pengecer yang mempunyai satu atau lebih tempat usaha; angsurannya 0,75% × peredaran bruto bulanan tiap tempat usaha.",
-        jejakHitung: [ ["Kriteria OPPT", "pedagang pengecer dengan 1 atau lebih tempat usaha"], ["Ibu Dewi", "pengecer dengan 2 toko → OPPT"] ],
-        mengapaSalah: { A: "Distributor yang menjual kepada toko lain adalah pedagang besar, bukan pengecer; angsurannya mengikuti Pasal 25 ayat (1)", B: "Dokter menjalankan pekerjaan bebas, bukan perdagangan eceran", C: "Penghasilan sewa bangunan dikenai PPh final 10%, bukan dasar angsuran OPPT" },
+        jejakHitung: [
+          ["Kriteria OPPT", "pedagang pengecer dengan 1 atau lebih tempat usaha"],
+          ["Ibu Dewi", "pengecer dengan 2 toko → OPPT"]
+        ],
+        mengapaSalah: {
+          A: "Distributor yang menjual kepada toko lain adalah pedagang besar, bukan pengecer; angsurannya mengikuti Pasal 25 ayat (1)",
+          B: "Dokter menjalankan pekerjaan bebas, bukan perdagangan eceran",
+          C: "Penghasilan sewa bangunan dikenai PPh final 10%, bukan dasar angsuran OPPT"
+        },
         jebakan: "Kata kuncinya 'pedagang pengecer', bukan sekadar 'punya lebih dari satu tempat usaha'."
       },
-      dasarHukum: [ { pasal: "PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018 Pasal 7 ayat (1)", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" } ],
+      dasarHukum: [{ pasal: "PMK 81/2024 (angsuran PPh Pasal 25 Wajib Pajak orang pribadi pengusaha tertentu; mencabut dan menggantikan PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 80,
-      verifikasi: "✅"
+      verifikasi: "◐",
+      peringatan: "Kunci D benar menurut rumusan mana pun, tetapi rumusan 'pedagang pengecer' pada pembahasan mungkin sudah usang: PMK 215/PMK.03/2018, yang diteruskan PMK 81/2024, diduga merumuskan pengusaha tertentu sebagai orang pribadi yang berusaha di bidang perdagangan atau jasa (selain pekerjaan bebas) di tempat usaha yang berbeda dari tempat tinggal. Bila demikian, distributor pada opsi A juga dapat termasuk; bunyi definisi itu belum dicek ke naskah peraturan."
     },
     {
       id: "A1-100", topik: "A1.10", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
@@ -2271,7 +2372,11 @@ UKP.register({
       peringatan: "Perlakuan bagian Rp500 juta bagi suami-istri berstatus KK (sekali untuk keluarga) dan PH/MT (masing-masing) mengikuti penjelasan PP 55/2022 dan PMK 164/2023 sebagaimana dirangkum sumber sekunder; belum dicek ke teks resmi."
     },
     {
-      id: "A1-102", topik: "A1.10", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A1-102",
+      topik: "A1.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       kutipan: "Pasal 9 ayat (2a) UU KUP s.t.d.t.d. UU 7/2021 (diringkas): pembayaran atau penyetoran pajak yang dilakukan setelah tanggal jatuh tempo dikenai sanksi administratif berupa bunga sebesar tarif bunga per bulan yang ditetapkan Menteri Keuangan, dihitung dari tanggal jatuh tempo pembayaran sampai dengan tanggal pembayaran, paling lama 24 bulan, dan bagian dari bulan dihitung penuh 1 bulan. Tarif bunga per bulan = (suku bunga acuan + 5%) ÷ 12.",
       stem: "Ibu Wulandari (OP, warung kelontong dengan PPh final UMKM) menghitung PPh final Masa Mei 2026 Rp1.150.000, tetapi baru membuat kode billing di Coretax dan menyetornya pada 3 Agustus 2026. Batas setor Masa Mei 2026 (15 Juni 2026) jatuh pada hari kerja. Anggap tarif bunga per bulan dengan uplift 5% yang berlaku saat jatuh tempo 1,05%. Berdasarkan kutipan tersebut dan PMK 81/2024, besarnya sanksi bunga Pasal 9 ayat (2a) atas keterlambatan penyetoran itu adalah ...",
       kataKualifikasi: [],
@@ -2280,11 +2385,19 @@ UKP.register({
       jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "angka-usang" },
       pembahasan: {
         inti: "Dari jatuh tempo 15 Juni 2026 sampai pembayaran 3 Agustus 2026 terdapat 1 bulan 19 hari, dihitung 2 bulan. Bunga = Rp1.150.000 × 1,05% × 2 = Rp24.150.",
-        jejakHitung: [ ["Jatuh tempo (tanggal 15 bulan berikutnya)", "15 Juni 2026"], ["15 Juni–3 Agustus 2026", "1 bulan 19 hari → 2 bulan"], ["Bunga = Rp1.150.000 × 1,05% × 2", "Rp24.150"] ],
-        mengapaSalah: { A: "Bagian bulan dihitung penuh; 1 bulan 19 hari menjadi 2 bulan, bukan 1 bulan", C: "Bunga dihitung sejak tanggal jatuh tempo pembayaran (15 Juni), bukan sejak akhir Masa Pajak Mei", D: "Memakai bunga 2% per bulan yang berlaku sebelum UU HPP" },
+        jejakHitung: [
+          ["Jatuh tempo (tanggal 15 bulan berikutnya)", "15 Juni 2026"],
+          ["15 Juni–3 Agustus 2026", "1 bulan 19 hari → 2 bulan"],
+          ["Bunga = Rp1.150.000 × 1,05% × 2", "Rp24.150"]
+        ],
+        mengapaSalah: {
+          A: "Bagian bulan dihitung penuh; 1 bulan 19 hari menjadi 2 bulan, bukan 1 bulan",
+          C: "Bunga dihitung sejak tanggal jatuh tempo pembayaran (15 Juni), bukan sejak akhir Masa Pajak Mei",
+          D: "Memakai bunga flat 2% per bulan (Rp1.150.000 × 2% × 2), yang sudah diganti tarif bunga per bulan dari Menteri Keuangan sejak UU Cipta Kerja (2 November 2020)"
+        },
         jebakan: "Masa bunga dihitung dari tanggal jatuh tempo setor (tanggal 15), bukan dari akhir masa pajak atau batas lapor."
       },
-      dasarHukum: [ { pasal: "Pasal 9 ayat (2a) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2021-10-29" }, { pasal: "PMK 81/2024 Pasal 94 (batas setor tanggal 15)", berlakuSejak: "2025-01-01" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026 (tarif bunga bulanan)" } ],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2a) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02" }, { pasal: "PMK 81/2024 Pasal 94 (batas setor tanggal 15)", berlakuSejak: "2025-01-01" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026 (tarif bunga bulanan)" }],
       anggaranDetik: 130,
       verifikasi: "✅"
     },
@@ -2450,7 +2563,7 @@ UKP.register({
     { id: "KT-A1-33", topik: "A1.8", tipe: "angka", depan: "Batas kredit PPh Pasal 24 per negara?", belakang: "Terkecil: pajak luar negeri atau (neto LN/PKP) × PPh terutang", dasar: "Pasal 24 UU PPh; PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-34", topik: "A1.8", tipe: "prosedur", depan: "Kapan PPh Pasal 29 OP harus dilunasi?", belakang: "Sebelum SPT Tahunan disampaikan (paling lambat 31 Maret)", dasar: "Pasal 9 ayat (2) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-35", topik: "A1.9", tipe: "angka", depan: "Rumus angsuran PPh 25 orang pribadi biasa?", belakang: "(PPh terutang − PPh 21/22/23/24 tahun lalu) ÷ 12", dasar: "Pasal 25 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-36", topik: "A1.9", tipe: "angka", depan: "Angsuran PPh 25 OP pengusaha tertentu (pedagang pengecer)?", belakang: "0,75% × peredaran bruto bulanan setiap tempat usaha", dasar: "PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018 Pasal 7", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A1-36", topik: "A1.9", tipe: "angka", depan: "Angsuran PPh 25 OP pengusaha tertentu (pedagang pengecer)?", belakang: "0,75% × peredaran bruto bulanan setiap tempat usaha", dasar: "PMK 81/2024 (angsuran PPh Pasal 25 OP pengusaha tertentu; menggantikan PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-37", topik: "A1.9", tipe: "prosedur", depan: "Batas setor PPh 25 dan PPh final UMKM?", belakang: "Tanggal 15 bulan berikutnya (sudah tanggal 15 sebelum 2025)", dasar: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-38", topik: "A1.10", tipe: "angka", depan: "Tarif, batas, dan bagian bebas PPh final UMKM orang pribadi?", belakang: "0,5%; peredaran bruto ≤ Rp4,8 miliar; Rp500 juta pertama tidak kena", dasar: "PP 55/2022 s.t.d.d. PP 20/2026; Pasal 7 ayat (2a) UU PPh", berlakuSejak: "2022-01-01", menggantikan: "0,5% sejak rupiah pertama (PP 23/2018)", dekTambahan: [] },
     { id: "KT-A1-39", topik: "A1.10", tipe: "definisi", depan: "Siapa penerima baru PPh final UMKM sejak PP 20/2026?", belakang: "OP, PT perorangan didirikan 1 orang, dan koperasi", dasar: "PP 20/2026", berlakuSejak: "2026-04-22", menggantikan: "OP, koperasi, CV, firma, PT, BUMDes (PP 55/2022 awal)", dekTambahan: ["perubahan-2025-2026"] },
@@ -2460,7 +2573,7 @@ UKP.register({
     { id: "KT-A1-43", topik: "A1.11", tipe: "angka", depan: "Batas lapor SPT Tahunan OP dan denda terlambat?", belakang: "31 Maret; denda Rp100.000", dasar: "Pasal 3 ayat (3) huruf b dan Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-44", topik: "A1.11", tipe: "prosedur", depan: "Suami-istri PH/MT: siapa menyampaikan SPT dan mengkreditkan PPh 21 istri?", belakang: "Masing-masing SPT sendiri; PPh 21 istri dikreditkan di SPT istri", dasar: "Pasal 8 ayat (2)–(3) dan Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-45", topik: "A1.11", tipe: "prosedur", depan: "Perpanjangan penyampaian SPT Tahunan OP?", belakang: "Paling lama 2 bulan; pemberitahuan sebelum batas, lunasi kekurangan", dasar: "Pasal 3 ayat (4)–(5) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-46", topik: "A1.11", tipe: "angka", depan: "Sanksi pembetulan SPT yang menimbulkan kurang bayar?", belakang: "Bunga (acuan + 5%)/12 per bulan, maksimal 24 bulan", dasar: "Pasal 8 ayat (2) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2021-10-29", menggantikan: "2% per bulan (UU 28/2007)", dekTambahan: [] },
+    { id: "KT-A1-46", topik: "A1.11", tipe: "angka", depan: "Sanksi pembetulan SPT yang menimbulkan kurang bayar?", belakang: "Bunga (acuan + 5%)/12 per bulan, maksimal 24 bulan", dasar: "Pasal 8 ayat (2) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02", menggantikan: "2% per bulan (UU 28/2007)", dekTambahan: [] },
     { id: "KT-A1-47", topik: "A1.11", tipe: "prosedur", depan: "Media pembuatan SPT Tahunan OP sejak 2025?", belakang: "Coretax, dengan bukti potong elektronik (BPA1, BP21, BPPU)", dasar: "PMK 81/2024; PER-11/PJ/2025", berlakuSejak: "2025-05-22", menggantikan: "e-Filing/e-Form DJP Online", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A1-48", topik: "A1.1", tipe: "pasal", depan: "Kapan WNI yang bekerja di luar negeri menjadi subjek pajak luar negeri?", belakang: "Di luar Indonesia > 183 hari dalam 12 bulan dan memenuhi persyaratan tertentu", dasar: "Pasal 2 ayat (4) UU PPh (tambahan UU 11/2020); PMK 18/PMK.03/2021", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-49", topik: "A1.1", tipe: "pasal", depan: "Syarat pejabat diplomatik/konsulat asing dikecualikan dari subjek pajak?", belakang: "Bukan WNI, tanpa penghasilan lain di Indonesia, ada perlakuan timbal balik", dasar: "Pasal 3 ayat (1) huruf b UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
@@ -2480,8 +2593,8 @@ UKP.register({
     { id: "KT-A1-63", topik: "A1.7", tipe: "angka", depan: "PPh kumulatif orang pribadi pada PKP Rp5 miliar?", belakang: "Rp1.444.000.000; kelebihannya dikenai 35%", dasar: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01", menggantikan: "tarif tertinggi 30% (UU 36/2008)", dekTambahan: [] },
     { id: "KT-A1-64", topik: "A1.8", tipe: "pasal", depan: "Rugi usaha di satu negara dalam penghitungan PPh 24?", belakang: "Tidak digabung; batas kredit dihitung per negara", dasar: "Pasal 24 UU PPh; PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-65", topik: "A1.8", tipe: "definisi", depan: "Mengapa pegawai yang pindah kerja dalam setahun biasanya kurang bayar?", belakang: "Tiap pemberi kerja memakai PTKP setahun dan lapisan 5% dari awal", dasar: "Pasal 17 dan Pasal 21 UU PPh; PMK 168/2023", berlakuSejak: "2024-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-66", topik: "A1.9", tipe: "prosedur", depan: "Angsuran PPh 25 bulan-bulan sebelum batas waktu SPT Tahunan?", belakang: "Sama dengan angsuran bulan terakhir tahun pajak lalu", dasar: "Pasal 25 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-67", topik: "A1.9", tipe: "definisi", depan: "Penghasilan tidak teratur dalam dasar angsuran PPh 25?", belakang: "Dikeluarkan; PPh dihitung ulang atas penghasilan teratur saja", dasar: "Pasal 25 ayat (1) UU PPh; PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A1-66", topik: "A1.9", tipe: "prosedur", depan: "Angsuran PPh 25 bulan-bulan sebelum SPT Tahunan disampaikan?", belakang: "Sama dengan angsuran bulan terakhir tahun pajak lalu; angsuran baru mulai bulan SPT disampaikan (paling lambat bulan batas waktu)", dasar: "Pasal 25 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A1-67", topik: "A1.9", tipe: "definisi", depan: "Penghasilan tidak teratur dalam dasar angsuran PPh 25?", belakang: "Dikeluarkan; PPh dihitung ulang atas penghasilan teratur saja", dasar: "Pasal 25 ayat (1) dan ayat (6) huruf b UU PPh; PER-11/PJ/2025 Pasal 113 dan 115 (dahulu KEP-537/PJ/2000)", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-68", topik: "A1.10", tipe: "angka", depan: "Bagian Rp500 juta PPh final UMKM bagi suami-istri?", belakang: "KK: sekali untuk keluarga; PH/MT: masing-masing", dasar: "Pasal 7 ayat (2a) dan Pasal 8 UU PPh; PMK 164/2023", berlakuSejak: "2022-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-69", topik: "A1.10", tipe: "prosedur", depan: "Bendahara membeli dari UMKM yang menyerahkan Surat Keterangan: memungut apa?", belakang: "PPh final 0,5%, bukan PPh 22 1,5%", dasar: "PP 55/2022 s.t.d.d. PP 20/2026; PMK 164/2023", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-70", topik: "A1.11", tipe: "pasal", depan: "Denda terlambat SPT bagi Wajib Pajak OP yang telah meninggal dunia?", belakang: "Tidak dikenakan; SPT tetap disampaikan wakil/ahli waris", dasar: "Pasal 7 ayat (2) dan Pasal 32 ayat (1) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
@@ -2585,7 +2698,7 @@ UKP.register({
           penjelasan: "Penghapusan jangka waktu oleh PP 20/2026 tidak menghapus batas Rp4,8 miliar. Karena peredaran 2025 melebihi batas, 2026 memakai tarif umum; NPPN juga tidak tersedia karena peredaran brutonya tidak kurang dari Rp4,8 miliar." },
         { no: 2, pertanyaan: "Bagaimana angsuran PPh Pasal 25 Bapak Yusuf pada 2026 dihitung?", tipe: "pilihan",
           opsi: { A: "(PPh terutang 2025 − kredit PPh 21/22/23/24) ÷ 12", B: "0,75% × peredaran bruto bulanan setiap toko sebagai Wajib Pajak orang pribadi pengusaha tertentu", C: "0,5% × peredaran bruto bulanan seluruh toko", D: "Nihil sepanjang 2026 karena tahun pertama setelah keluar dari PPh final" }, jawaban: "B",
-          petunjuk: ["Ia pedagang pengecer dengan dua tempat usaha", "Ketentuan OP pengusaha tertentu (PMK 255/PMK.03/2008 s.t.d.t.d. PMK 215/PMK.03/2018)", "Jawaban: B"],
+          petunjuk: ["Ia pedagang pengecer dengan dua tempat usaha", "Ketentuan OP pengusaha tertentu (PMK 81/2024; menggantikan PMK 215/PMK.03/2018)", "Jawaban: B"],
           penjelasan: "Sebagai pedagang pengecer, Bapak Yusuf adalah Wajib Pajak orang pribadi pengusaha tertentu: angsuran 0,75% dari peredaran bruto bulanan masing-masing tempat usaha, tidak bergantung pada SPT tahun lalu. Karena itu angsurannya tidak nihil walaupun SPT 2025 tidak memuat PPh terutang dengan tarif umum." },
         { no: 3, pertanyaan: "Berapa angsuran PPh Pasal 25 Masa Maret 2026 untuk Toko Medan (Rp)?", tipe: "angka", jawaban: 1950000, toleransi: 0,
           petunjuk: ["Hitung per tempat usaha", "0,75% × Rp260.000.000", "Jawaban: Rp1.950.000"],
@@ -2634,7 +2747,7 @@ UKP.register({
           penjelasan: "Kurang bayar dilunasi sebelum SPT disampaikan, paling lambat 31 Maret 2027." },
         { no: 7, pertanyaan: "Berapa angsuran PPh Pasal 25 per bulan untuk 2027 (Rp)?", tipe: "angka", jawaban: 4000000, toleransi: 0,
           petunjuk: ["Pasal 25 ayat (1): PPh terutang dikurangi PPh 21, 22, 23, dan 24, dibagi 12", "(Rp94.000.000 − Rp46.000.000) ÷ 12", "Jawaban: Rp4.000.000"],
-          penjelasan: "Karena tidak ada PPh 25 tahun lalu, dasar angsuran sama dengan PPh 29; angsuran baru berlaku setelah SPT 2026 disampaikan." }
+          penjelasan: "Karena tidak ada PPh 25 tahun lalu, dasar angsuran sama dengan PPh 29; angsuran baru berlaku sejak bulan SPT 2026 disampaikan, paling lambat sejak Masa Maret 2027." }
       ],
       kesimpulan: "Neto pekerjaan Rp229 juta, neto NPPN Rp200 juta, dan neto Singapura Rp125 juta menghasilkan PKP Rp500 juta dan PPh Rp94 juta. Kredit PPh 24 dibatasi Rp23,5 juta; setelah kredit PPh 21 Rp22,5 juta, PPh 29 Rp48 juta dan angsuran 2027 Rp4 juta per bulan.",
       kalkulatorRef: "pph24"

@@ -371,7 +371,8 @@ describe('ruang-ui: waktu mengerjakan dan membahas (v9.3 W2)', () => {
     // pemimpin versi lama tetap menampilkan "Mengerjakan · sisa …" (field lama saja)
     const lamaJawab = akt(); delete lamaJawab.detikBahas; delete lamaJawab.mulaiBahas;
     assert.equal(M.barisWaktuHP(lamaJawab, 0, T0 + 45000).teks, 'Mengerjakan · sisa 1:21');
-    assert.equal(M.barisWaktuHP(akt({ detikPerSoal: 0 }), 0, T0), null, 'tanpa target mengerjakan');
+    // v9.4 W: detikPerSoal 0 = pemimpin memilih tanpa batas → hitung naik (dulu: baris tidak tampil). Uji lengkap: test/v94-w.test.js
+    assert.equal(M.barisWaktuHP(akt({ detikPerSoal: 0 }), 0, T0).teks, 'Mengerjakan 0:00', 'tanpa batas: hitung naik');
     assert.equal(M.barisWaktuHP({ jenis: 'ujian', id: 'u', mulai: T0, akhir: T0 + 1 }, 0, T0), null);
     assert.equal(M.barisWaktuHP(null), null);
   });
@@ -429,13 +430,14 @@ describe('ruang-ui: gabung lewat tautan dan ujian tim terbuka sendiri (v9.3.2)',
     assert.ok(m.indexOf("lsTulis('ukp.tim.setuju'") > m.indexOf('if (!hasil && !info())'), 'ditulis setelah berhasil masuk');
     assert.ok(!/ukp\.tim\.setuju/.test(fungsi('pilihNama')), 'pilihNama tidak lagi menunggu persetujuan');
   });
-  it('A.2/A.3: masuk otomatis memakai namaDariProfil dengan daftar abaikan "Ganti nama"; dialog nama profil berbeda tetap ada; nama ganda tetap ditanya', () => {
+  it('A.2/A.3: masuk otomatis memakai namaDariProfil dengan daftar abaikan "Ganti nama"; nama ganda tetap ditanya (v9.4: dialog nama profil berbeda dihapus)', () => {
     const g = fungsi('layarGabung');
     assert.match(g, /namaDariProfil\(\{ profil: [^\n]*, daftar, tuan, online: onlineIntip, tolak, sah: namaSah \}\)/);
     assert.match(g, /const tolak = !!\(lsBaca\(KBUKAN, \{\}\) \|\| \{\}\)\[kodeParam\];/);
     assert.match(fungsi('gantiNama'), /bukan\[kode\] = 1; lsTulis\(KBUKAN, bukan\);/);
     assert.match(src, /const KBUKAN = 'ukp\.tim\.bukanSaya';/);
-    assert.match(fungsi('pilihNama'), /'Masuk sebagai ' \+ nama \+ '\?', 'Nama profil Anda tetap ' \+ prof \+ '\.'/);
+    // v9.4 Ka2: dialog "Masuk sebagai …? Nama profil Anda tetap …" dihapus (ketukan tambahan di jalan menuju room); lihat test/v94-ka.test.js
+    assert.ok(!/Nama profil Anda tetap/.test(fungsi('pilihNama')));
     assert.match(fungsi('pilihNama'), /!samaNama\(lokal\.izinGanda, nama\) && onIntip\.some/);
     assert.match(src, /'Anda masuk sebagai '/); assert.match(src, /'Bukan Anda\? Ganti nama'/);
   });

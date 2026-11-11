@@ -1,6 +1,7 @@
 # Pemeriksa Room tim.
 # 1) Jalur: menjalankan js/ruang.js yang sama dengan website terhadap jalur publik sungguhan (Node 22, tanpa dependensi).
 # 2) Peramban: alur pemimpin dan dua anggota dari layar ke layar di Chrome, lewat jalur publik yang sama.
+# 3) WebKit (v9.4): alur yang sama di WebKit dari Playwright (mesin Safari), HP anggota memakai profil iPhone.
 # Tidak ada data pengguna yang dikirim: room uji sekali pakai, terenkripsi, dan ditutup di akhir.
 # Berjalan saat berkas room atau pemeriksanya berubah, atau dijalankan manual dari tab Actions.
 name: Cek jalur Room tim
@@ -11,6 +12,8 @@ on:
     paths:
       - 'js/ruang.js'
       - 'js/views-ruang.js'
+      - 'js/app.js'
+      - 'sw.js'
       - 'tools/cek-relai.js'
       - 'tools/uji-room-web.js'
       - '.github/workflows/cek-jalur-room.yml'
@@ -44,4 +47,22 @@ jobs:
       - name: Pasang playwright-core
         run: npm install --no-save --no-audit --no-fund playwright-core@1
       - name: Alur pemimpin dan anggota di Chrome
+        run: node tools/uji-room-web.js .
+  webkit:
+    name: Uji peramban WebKit (profil iPhone)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pasang Playwright dan WebKit
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1
+          npx playwright install --with-deps webkit
+      - name: Alur pemimpin dan anggota di WebKit
+        env:
+          BROWSER: webkit
         run: node tools/uji-room-web.js .

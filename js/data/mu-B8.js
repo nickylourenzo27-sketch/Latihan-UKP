@@ -22,7 +22,7 @@ UKP.register({
       { sebelum: "PBB-P2 dan BPHTB diatur UU 28/2009 (PDRD); PBB-P2 dialihkan ke daerah paling lambat 2014", sesudah: "UU 1/2022 (HKPD) menjadi dasar PBB-P2 dan BPHTB: PBB-P2 meliputi semua bumi/bangunan kecuali kawasan usaha perkebunan, perhutanan, dan pertambangan, yang tetap PBB-P5L pusat; NJOPTKP PBB-P2 paling sedikit Rp10.000.000 dan NJKP 20%–100% menurut Perda", dasar: "UU 1/2022 Pasal 38–41; Perda wajib menyesuaikan paling lambat 5 Januari 2024", berlakuSejak: "2022-01-05" },
       { sebelum: "Klasifikasi objek dan penetapan NJOP PBB-P5L menurut PMK 186/PMK.03/2019 versi awal", sesudah: "PMK 234/PMK.03/2022 mengubah PMK 186/2019 untuk menyelaraskan cakupan sektor PBB-P5L dengan UU HKPD", dasar: "PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" },
       { sebelum: "Pembayaran PBB-P5L dengan e-Billing DJP Online dan identitas NPWP 15 digit", sesudah: "Kode billing dibuat di Coretax dengan NPWP 16 digit/NIK dan NOP; layanan administrasi PBB-P5L dilakukan elektronik", dasar: "PMK 81/2024", berlakuSejak: "2025-01-01" },
-      { sebelum: "Sanksi bunga UU KUP dan denda keterlambatan PBB sama-sama 2% per bulan (sebelum UU HPP)", sesudah: "Bunga UU KUP memakai tarif bunga per bulan dari KMK; denda PBB-P5L tetap 2% sebulan paling lama 24 bulan karena UU PBB tidak diubah UU HPP", dasar: "UU 7/2021 (HPP) yang mengubah Pasal 9, 13, 14 UU KUP; Pasal 11 ayat (3) UU PBB", berlakuSejak: "2021-10-29" },
+      { sebelum: "Sanksi bunga UU KUP dan denda keterlambatan PBB sama-sama 2% per bulan (sebelum UU Cipta Kerja)", sesudah: "Bunga UU KUP memakai tarif bunga per bulan dari KMK (diatur UU Cipta Kerja dan dipertahankan UU HPP); denda PBB-P5L tetap 2% sebulan paling lama 24 bulan karena UU PBB tidak diubah kedua undang-undang itu", dasar: "UU 11/2020 (Cipta Kerja) yang mengubah pasal-pasal sanksi bunga UU KUP (Pasal 8, 9, 13, 14, 19), dipertahankan UU 7/2021 (HPP); Pasal 11 ayat (3) UU PBB", berlakuSejak: "2020-11-02" },
       { sebelum: "Permohonan keberatan dan pengurangan PBB diajukan dengan surat ke KPP berdasarkan PMK tersendiri", sesudah: "Tata cara pelaksanaan hak wajib pajak dikonsolidasikan dalam PMK 118/2024 dan diajukan melalui Coretax (rincian khusus PBB perlu dicek ke teks primer)", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01" }
     ],
     lembarRingkas: [
@@ -218,7 +218,7 @@ UKP.register({
         "SKP huruf a = pokok pajak + denda administrasi 25% dari pokok; SKP huruf b = selisih pajak + denda 25% dari selisih (Pasal 10 ayat (3)–(4)). Denda 25% ini bukan kenaikan Pasal 13 UU KUP.",
         "SPPT harus dilunasi paling lambat 6 bulan sejak tanggal diterimanya SPPT; SKP paling lambat 1 bulan sejak diterima (Pasal 11 ayat (1)–(2)).",
         "Pajak yang tidak atau kurang dibayar pada jatuh tempo dikenai denda 2% sebulan dari jatuh tempo sampai hari pembayaran, paling lama 24 bulan (maksimum 48%); denda ditambah utang yang belum dibayar ditagih dengan STP yang harus dilunasi 1 bulan sejak diterima (Pasal 11 ayat (3)–(4)).",
-        "UU HPP mengubah sanksi bunga UU KUP menjadi tarif bunga per bulan dari KMK, tetapi tidak mengubah UU PBB; denda keterlambatan PBB-P5L tetap 2% sebulan."
+        "UU Cipta Kerja (berlaku 2 November 2020, dipertahankan UU HPP) mengubah sanksi bunga UU KUP menjadi tarif bunga per bulan dari KMK, tetapi tidak mengubah UU PBB; denda keterlambatan PBB-P5L tetap 2% sebulan."
       ],
       poinKunci: [
         { label: "Jatuh tempo SPPT", nilai: "6 bulan sejak SPPT diterima", dasar: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" },
@@ -976,19 +976,29 @@ UKP.register({
       peringatan: "Penggolongan kabel bawah laut sebagai objek PBB-P5L sektor lainnya dan cara penilaian koridor perairannya menurut PMK 186/2019 s.t.d.d. PMK 234/2022 belum dicek ke teks primer (NJOP diberikan di stem); cara menghitung bagian bulan pada denda Pasal 11 ayat (3) dinyatakan sebagai asumsi di stem."
     },
     {
-      id: "B8-036", topik: "B8.5", tingkat: ["B", "C"], jenis: "konsep", kesulitan: 2,
+      id: "B8-036",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
       stem: "Pada 2026 PT Bumi Kencana Agro terlambat tepat satu bulan atas dua kewajiban: (i) menyetor PPh Pasal 25 Masa Juli 2026 sebesar Rp50.000.000; (ii) melunasi SPPT PBB-P5L 2026 sebesar Rp50.000.000 setelah jatuh temponya. Pernyataan yang tepat mengenai sanksinya adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Keduanya dikenai bunga 2% sebulan karena UU HPP menyeragamkan sanksi seluruh jenis pajak pusat", B: "Keduanya dikenai tarif bunga per bulan KMK karena PBB-P5L adalah pajak pusat yang tunduk pada UU KUP", C: "(i) bunga tarif KMK per bulan; (ii) denda 25% dari pokok PBB karena terlambat membayar SPPT", D: "(i) bunga tarif KMK per bulan (Pasal 9 ayat (2a) UU KUP); (ii) denda 2% sebulan (Pasal 11 ayat (3) UU PBB) = Rp1.000.000" },
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
-        inti: "UU HPP mengubah sanksi bunga UU KUP menjadi tarif berbasis suku bunga acuan, tetapi tidak mengubah UU PBB; denda keterlambatan PBB tetap 2% sebulan paling lama 24 bulan. Bunga Pasal 9 ayat (2a) UU KUP memakai tarif per bulan dari KMK (suku bunga acuan + 5%, dibagi 12) dan ditagih dengan STP; denda PBB 2% × Rp50.000.000 × 1 bulan = Rp1.000.000 ditagih dengan STP PBB.",
-        jejakHitung: [ ["Denda PBB 2% × 1 bulan × 50.000.000", "Rp1.000.000"] ],
-        mengapaSalah: { A: "Bunga 2% flat untuk UU KUP adalah ketentuan sebelum UU HPP", B: "UU PBB mengatur sendiri denda keterlambatan (Pasal 11 ayat (3)) sebagai ketentuan khusus", C: "Denda 25% adalah sanksi dalam SKP (Pasal 10), bukan keterlambatan bayar" },
-        jebakan: "Soal lintas kelompok: KUP pasca-UU HPP vs UU PBB yang tidak berubah."
+        inti: "UU Cipta Kerja (UU 11/2020, berlaku 2 November 2020; dipertahankan UU HPP) mengubah sanksi bunga UU KUP menjadi tarif berbasis suku bunga acuan, tetapi tidak mengubah UU PBB; denda keterlambatan PBB tetap 2% sebulan paling lama 24 bulan. Bunga Pasal 9 ayat (2a) UU KUP memakai tarif per bulan dari KMK (suku bunga acuan + 5%, dibagi 12) dan ditagih dengan STP; denda PBB 2% × Rp50.000.000 × 1 bulan = Rp1.000.000 ditagih dengan STP PBB.",
+        jejakHitung: [
+          ["Denda PBB 2% × 1 bulan × 50.000.000", "Rp1.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Bunga 2% flat untuk UU KUP adalah ketentuan sebelum UU Cipta Kerja (2 November 2020); UU HPP tidak mengembalikannya dan tidak menyeragamkan sanksi PBB",
+          B: "UU PBB mengatur sendiri denda keterlambatan (Pasal 11 ayat (3)) sebagai ketentuan khusus",
+          C: "Denda 25% adalah sanksi dalam SKP (Pasal 10), bukan keterlambatan bayar"
+        },
+        jebakan: "Soal lintas kelompok: bunga KUP berbasis tarif KMK (sejak UU Cipta Kerja, dipertahankan UU HPP) vs UU PBB yang tidak berubah."
       },
-      dasarHukum: [ { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 11 ayat (3) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 11 ayat (3) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
@@ -1029,7 +1039,13 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-039", topik: "B8.6", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-02",
+      id: "B8-039",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-02",
       stem: "Lanjutan data V-B8-02: Keputusan keberatan atas SPPT 2026 PT Andalan Bara Utama diterima perusahaan pada 8 Februari 2027. Alih-alih mengurangi, keputusan itu menambah PBB terutang karena penelitian lapangan menemukan bukaan tambang baru per 1 Januari 2026 yang belum dilaporkan dalam SPOP. Upaya hukum yang tersedia dan batas waktunya adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Keberatan kedua kepada DJP paling lambat 8 Mei 2027 karena keputusan menambah pajak", B: "Gugatan ke Pengadilan Pajak paling lambat 30 hari sejak keputusan diterima", C: "Banding ke Pengadilan Pajak paling lambat 8 Agustus 2027 (6 bulan sejak keputusan diterima)", D: "Banding ke Pengadilan Pajak paling lambat 8 Mei 2027 (3 bulan sejak keputusan diterima)" },
@@ -1037,11 +1053,18 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
         inti: "Keputusan keberatan, termasuk yang menambah pajak (Pasal 16 UU PBB), dapat diajukan banding ke Pengadilan Pajak dalam 3 bulan sejak keputusan diterima (Pasal 35 ayat (2) UU 14/2002).",
-        jejakHitung: [ ["Keputusan keberatan diterima", "8 Februari 2027"], ["+ 3 bulan", "8 Mei 2027"] ],
-        mengapaSalah: { A: "Tidak ada keberatan kedua atas keputusan keberatan; upaya berikutnya adalah banding", B: "Gugatan 30 hari dipakai untuk pelaksanaan penagihan atau keputusan selain keputusan keberatan", C: "Jangka banding 3 bulan, bukan 6 bulan" },
+        jejakHitung: [
+          ["Keputusan keberatan diterima", "8 Februari 2027"],
+          ["+ 3 bulan", "8 Mei 2027"]
+        ],
+        mengapaSalah: {
+          A: "Tidak ada keberatan kedua atas keputusan keberatan; upaya berikutnya adalah banding",
+          B: "Atas isi keputusan keberatan upayanya banding, bukan gugatan; gugatan dipakai untuk pelaksanaan penagihan (14 hari sejak tanggal pelaksanaan penagihan) atau keputusan lain yang dapat digugat (30 hari sejak keputusan diterima), Pasal 40 UU 14/2002",
+          C: "Jangka banding 3 bulan, bukan 6 bulan"
+        },
         jebakan: "Keputusan keberatan boleh menambah pajak; jalurnya tetap banding dalam 3 bulan."
       },
-      dasarHukum: [ { pasal: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" } ],
+      dasarHukum: [{ pasal: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" }],
       anggaranDetik: 130,
       verifikasi: "✅"
     },
@@ -2739,7 +2762,7 @@ UKP.register({
     { id: "KT-B8-24", topik: "B8.5", tipe: "angka", depan: "Denda administrasi dalam SKP PBB?", belakang: "25% dari pokok (huruf a) atau dari selisih (huruf b)", dasar: "Pasal 10 ayat (3)–(4) UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-25", topik: "B8.5", tipe: "angka", depan: "Denda keterlambatan bayar PBB?", belakang: "2% sebulan, paling lama 24 bulan; ditagih dengan STP", dasar: "Pasal 11 ayat (3)–(4) UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-26", topik: "B8.5", tipe: "prosedur", depan: "Dua dasar penerbitan SKP PBB?", belakang: "SPOP tak disampaikan setelah teguran; pemeriksaan menunjukkan pajak lebih besar", dasar: "Pasal 10 ayat (2) UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B8-27", topik: "B8.5", tipe: "pasal", depan: "Apakah UU HPP mengubah denda 2% PBB-P5L?", belakang: "Tidak; tarif bunga KMK hanya untuk sanksi bunga UU KUP", dasar: "Pasal 11 ayat (3) UU PBB; Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2021-10-29", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B8-27", topik: "B8.5", tipe: "pasal", depan: "Apakah perubahan sanksi bunga UU KUP (UU Cipta Kerja, dipertahankan UU HPP) mengubah denda 2% PBB-P5L?", belakang: "Tidak; tarif bunga KMK hanya untuk sanksi bunga UU KUP", dasar: "Pasal 11 ayat (3) UU PBB; Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-28", topik: "B8.6", tipe: "angka", depan: "Batas pengajuan keberatan PBB?", belakang: "3 bulan sejak SPPT/SKP diterima, kecuali keadaan di luar kekuasaan", dasar: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-29", topik: "B8.6", tipe: "angka", depan: "Batas keputusan keberatan PBB dan akibat bila lewat?", belakang: "12 bulan sejak surat keberatan diterima; lewat berarti dianggap diterima", dasar: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-30", topik: "B8.6", tipe: "angka", depan: "Batas banding atas keputusan keberatan PBB?", belakang: "3 bulan sejak keputusan diterima, ke Pengadilan Pajak", dasar: "Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12", menggantikan: null, dekTambahan: [] },
@@ -2977,6 +3000,7 @@ UKP.register({
     { teks: "Hafalkan pasangan tenggat beserta titik awalnya: SPOP 30 hari, SPPT 6 bulan, SKP/STP 1 bulan, keberatan 3 bulan (semua sejak diterima), keputusan 12 bulan sejak surat keberatan diterima.", tagSebab: "salah-baca" },
     { teks: "Sanksi PBB berasal dari UU PBB sendiri: denda SKP 25% sekali dan denda telat bayar 2% sebulan maks 24 bulan. Opsi bertarif bunga KMK atau kenaikan 75% adalah pengecoh dari UU KUP.", tagSebab: "lupa-pasal" },
     { teks: "Keadaan 1 Januari mengunci objek setahun: bangunan selesai Februari, klinik yang berubah komersial, atau tambang yang tutup Juli baru berpengaruh tahun berikutnya, tanpa pro rata.", tagSebab: "salah-baca" },
-    { teks: "Objek offshore dan kabel bawah laut: laut tetap 'bumi', anjungan/pipa/kabel 'bangunan', kapal bukan objek; untuk sektor lainnya cek dulu NJOP ≥ Rp1 miliar (NJKP 40%) atau di bawahnya (20%).", tagSebab: "salah-klasifikasi" }
+    { teks: "Objek offshore dan kabel bawah laut: laut tetap 'bumi', anjungan/pipa/kabel 'bangunan', kapal bukan objek; untuk sektor lainnya cek dulu NJOP ≥ Rp1 miliar (NJKP 40%) atau di bawahnya (20%).", tagSebab: "salah-klasifikasi" },
+    { teks: "Tenggat 'N bulan sejak tanggal X': contoh di penjelasan undang-undang menghitung sampai sehari sebelum tanggal yang sama (7 Oktober menjadi 6 November). Soal latihan dan try out sering memakai tanggal yang sama. Hitung keduanya, lalu pilih yang ada di opsi.", tagSebab: "salah-hitung" }
   ]
 });

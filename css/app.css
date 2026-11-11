@@ -4555,3 +4555,150 @@ dialog.dlg-mulai-room[open] { display: flex; flex-direction: column; max-height:
 .ruang-saran[hidden], .ruang-saran-aksi[hidden] { display: none; }
 .ruang-saran-teks { margin: 0; flex: 1 1 280px; }
 .ruang-saran-aksi { display: inline-flex; flex-wrap: wrap; gap: var(--s-2, 8px); }
+
+/* ===== v9.4 W ===== */
+/* Waktu mengerjakan tanpa batas: kalimat penjelas di bawah pilihan (dialog Mulai .penjelas-tempo-room, saringan .bantu-tempo)
+   dan label "Tanpa batas" yang tidak terpotong di HP 320 px (keterangan kecil boleh turun baris, label tidak). */
+.tempo-room { display: flex; flex-direction: column; gap: 4px; }
+.penjelas-tempo-room { margin: 0; }
+.penjelas-tempo-room[hidden] { display: none; }
+@media (max-width: 479px) {
+  .tempo-room .seg.bersub button > span, .bersama-tempo .seg.bersub button > span { flex: none; white-space: nowrap; }
+  .tempo-room .seg.bersub button small, .bersama-tempo .seg.bersub button small { flex: 0 1 auto; min-width: 0; white-space: normal; }
+}
+/* ===== v9.4 H ===== */
+/* "Semua soal" di hasil (HP anggota, tinjauan lembar jawab dan ujian tim): peta nomor 1..N menurut jawaban sendiri.
+   Tanda tidak hanya warna: ✓ benar, ✗ salah, – tidak menjawab (sudut kanan atas). Target sentuh 44 px; 100 soal tetap rapi di 320 px. */
+.semua-soal .semua-saring { margin: 0; }
+.semua-soal .semua-saring button { min-height: 44px; }
+@media (max-width: 599px) { .semua-soal .semua-saring { display: grid; grid-template-columns: 1fr 1fr; } .semua-soal .semua-saring button { min-width: 0; } }
+.semua-peta { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 4px; }
+.semua-peta > li { margin: 0; min-width: 0; }
+.semua-no { position: relative; display: grid; place-items: center; width: 100%; min-height: 44px; padding: 0 2px; border: 1px solid var(--line-strong); border-radius: var(--r-sm, 6px);
+  background: var(--surface); color: var(--ink); font: inherit; font-family: var(--font-mono); font-size: var(--fs-12, .75rem); font-weight: var(--fw-med, 500); font-variant-numeric: tabular-nums; cursor: pointer; }
+.semua-no:hover { filter: brightness(.96); }
+.semua-no:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; z-index: 1; }
+.semua-no-tanda { position: absolute; top: 2px; right: 4px; font-size: 11px; line-height: 1; font-weight: var(--fw-semi, 600); }
+.semua-no[data-status="benar"] { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+.semua-no[data-status="salah"] { background: var(--attn); border-color: var(--attn); color: var(--attn-ink); font-weight: var(--fw-semi, 600); }
+.semua-no[data-status="kosong"] { background: var(--surface-2); border-color: var(--line); color: var(--muted); border-style: dashed; }
+.semua-legenda { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 0; }
+.semua-legenda > span { display: inline-grid; place-items: center; width: 20px; height: 20px; border: 1px solid; border-radius: 4px; font-size: 12px; line-height: 1; }
+.semua-legenda > span[data-status="benar"] { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+.semua-legenda > span[data-status="salah"] { background: var(--attn); border-color: var(--attn); color: var(--attn-ink); }
+.semua-legenda > span[data-status="kosong"] { background: var(--surface-2); border-color: var(--line); color: var(--muted); border-style: dashed; }
+.semua-info { margin: 0; }
+.eval-bahas-pilihan { align-items: center; gap: var(--s-2, 8px) var(--s-3, 12px); }
+.lj-tinjau-slot:empty { display: none; }
+@media (forced-colors: active) { .semua-no[data-status="salah"], .semua-legenda > span[data-status="salah"] { border-width: 3px; } .semua-no { forced-color-adjust: auto; } }
+/* ===== v9.4 Ka ===== */
+/* Info sambungan (dialog), tanda versi lama, isian tautan room untuk anggota, tombol teks berukuran sentuh di layar gabung */
+.info-sambungan-daftar { margin: 0; display: grid; gap: 2px; font-size: 0.9375rem; }
+.info-sambungan-daftar .info-baris { display: grid; grid-template-columns: minmax(7.5rem, 40%) 1fr; gap: var(--s-2, 8px); padding: 6px 0; border-bottom: 1px solid var(--line); }
+.info-sambungan-daftar .info-baris:last-child { border-bottom: 0; }
+.info-sambungan-daftar dt { color: var(--muted, inherit); font-weight: 500; }
+.info-sambungan-daftar dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 380px) { .info-sambungan-daftar .info-baris { grid-template-columns: 1fr; gap: 0; } }
+.versi-lama-tanda { display: inline-block; margin-inline-start: 6px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--warn); background: var(--warn-soft); color: var(--ink); font-size: 0.8125rem; font-weight: 600; line-height: 1.5; white-space: nowrap; }
+.saran-versi-lama { margin: 0; padding: var(--s-2, 8px) var(--s-3, 12px); border-left: 3px solid var(--warn); background: var(--warn-soft); border-radius: 6px; color: var(--ink); }
+.room-anggota-tautan .isian-baris { display: flex; gap: var(--s-2, 8px); }
+.room-anggota-tautan .isian-baris .input { flex: 1 1 auto; min-width: 0; }
+.layar-gabung .room-info-sambungan, .room-tidak-ada .room-info-sambungan { min-height: 44px; }
+.room-tidak-ada[data-sebab="jalur"], .room-tidak-ada[data-sebab="internet"] { border-left: 3px solid var(--warn); }
+.dlg-info-sambungan .btn-row .btn { min-height: 44px; }
+@media (forced-colors: active) { .versi-lama-tanda, .saran-versi-lama { border-color: CanvasText; } }
+/* v9.4 FB3: "Anda: <nama>" di HP anggota selama latihan atau ujian tim berjalan (di bawah kop, sebaris dengan baris waktu) */
+.room-anda { width: 100%; max-width: 40rem; margin: 0 auto; padding: 4px var(--s-3, 12px); color: var(--muted); font-size: var(--fs-small, 0.875rem); line-height: var(--lh-small, 1.4); min-width: 0; overflow-wrap: anywhere; }
+.room-anda strong { color: var(--ink); font-weight: 600; }
+/* v9.4 FB3: butir menu room (termasuk "Ganti nama") setinggi target sentuh 44 px */
+.menu-room .menu-lebih-isi > button, .bar-room .fokus-menu .menu-lebih-isi > button { min-height: 44px; }
+/* v9.4 FB4: tanda versi lama di dalam sel nama layar ujian pemimpin */
+.ruang-peserta .ruang-nama .versi-lama-tanda { margin-inline-start: 4px; font-weight: 600; vertical-align: 1px; }
+/* ===== v9.4 Kb ===== */
+/* Peramban lama (Kb3). (1) Kotak dialog cadangan tanpa showModal (iOS < 15.4: tanpa <dialog>): di tengah layar di atas latar,
+   gulir sendiri; lembar bawah menempel di dasar. */
+dialog[data-cadangan] {
+  display: block; position: fixed; z-index: 1000; top: 50%; left: 50%; right: auto; bottom: auto; margin: 0;
+  transform: translate(-50%, -50%); max-height: calc(100vh - 32px); overflow: auto; -webkit-overflow-scrolling: touch; animation: none;
+}
+dialog.sheet[data-cadangan] { top: auto; bottom: 0; left: 0; transform: none; max-height: 88vh; }
+.dlg-latar-cadangan { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 999; background: var(--scrim); }
+/* (2) Tanpa satuan dvh (Safari < 15.4, Chrome < 108): batas tinggi kotak dan tabel memakai vh agar tombol di kaki dialog tetap terlihat */
+@supports not (height: 1dvh) {
+  .dlg-body { max-height: 70vh; }
+  .dlg-lalu-room .dlg-body { max-height: calc(88vh - 140px); }
+  dialog.dlg-mulai-room[open] { max-height: calc(100vh - 24px); }
+  .tabel-wrap.tinggi { max-height: 70vh; }
+}
+/* (3) Tanpa :has() (html.tanpa-has dan atribut body diisi js/core.js): topbar tidak menutupi bar fokus/sesi yang berisi Menu dan Cukup,
+   dan pesan singkat tidak menutupi bar aksi di dasar layar */
+html.tanpa-has body[data-mode="sesi"][data-ada-bar] .topbar { display: none; }
+@media (min-width: 600px) {
+  html.tanpa-has body[data-mode="fokus"][data-ada-bar] .sidebar,
+  html.tanpa-has body[data-mode="fokus"][data-ada-bar] .topbar { display: none; }
+  html.tanpa-has body[data-mode="fokus"][data-ada-bar] .shell { grid-template-columns: minmax(0, 1fr); }
+  html.tanpa-has body[data-mode="fokus"][data-ada-bar] main { padding-top: 0; }
+}
+html.tanpa-has body[data-ada-aksi] .toast { bottom: calc(var(--nav-h, 0px) + var(--tinggi-aksi, 72px) + var(--s-2) + env(safe-area-inset-bottom, 0px)); }
+html.tanpa-has body[data-mode][data-ada-aksi] .toast { bottom: calc(var(--tinggi-aksi, 72px) + var(--s-2) + env(safe-area-inset-bottom, 0px)); }
+/* ===== v9.4 perbaikan FA ===== */
+/* FA5 (tinjauan tampilan 1, sudah ada sejak v9.2): bilah bawah papan pemimpin di bawah 700 px. Aturan T7 (spesifisitas 0,5,0) membuat wadah
+   tombol boleh menyusut, sehingga tombol "Buka kunci jawaban" (flex: none) meluber ke kiri menutupi "N dari M orang sudah menjawab" dan
+   "Tahan" tergencet. Wadah tombol tidak lagi menyusut. Sebelum kunci jawaban dibuka, teks hitungan mendapat baris sendiri di atas tombol;
+   sesudahnya bilah tetap satu baris. Penanda data-satu-baris dan data-sebelum-kunci diisi js/soal.js (isiAksiBersama), sehingga blok ini
+   tidak butuh fitur pemilih baru. Selektor sengaja sama kuat dengan aturan T7 (0,5,0) agar menang karena letaknya lebih akhir. */
+@media (max-width: 699px) {
+  .sticky-actions.aksi-bersama.aksi-bersama[data-satu-baris] > .aksi-meta { flex: 1 1 0; min-width: 0; }
+  .sticky-actions.aksi-bersama.aksi-bersama[data-satu-baris] > .aksi-kanan { flex: 0 0 auto; margin-left: auto; }
+  .sticky-actions.aksi-bersama[data-satu-baris][data-sebelum-kunci] { flex-wrap: wrap; row-gap: 4px; }
+  .sticky-actions.aksi-bersama.aksi-bersama[data-satu-baris][data-sebelum-kunci] > .aksi-meta { order: -3; flex: 1 1 100%; }
+}
+/* HP 320 px, soal 2 dan seterusnya, selama hitung mundur 2 detik: "Soal sebelumnya" disembunyikan agar bilah tidak menjadi tiga baris */
+@media (max-width: 341px) { .sticky-actions.aksi-bersama[data-hitung] > .aksi-lihat-lagi { display: none; } }
+
+/* FA10: kop papan tanpa batas di HP sempit. "Waktu " disembunyikan (.waktu-kata, aturan v9.3 W1), "latihan" ditulis berhuruf besar:
+   "Latihan 0:02". Pembaca layar tetap membaca "Waktu latihan 0:02". */
+@media (max-width: 359px) { .fokus-bersama .waktu-sesi .waktu-kapital { text-transform: capitalize; } }
+
+/* FA7: lembar jawab yang dikunci. Tombol jawaban tampak mati (jawaban yang dipilih tetap jelas), kalimat "Lembar dikunci" di atas daftar */
+.lj-btn:disabled { cursor: not-allowed; }
+.lj-btn:disabled:not([aria-pressed="true"]) { opacity: .45; border-style: dashed; }
+.lj-btn:disabled:hover { filter: none; }
+.lj-dikunci-info { display: flex; align-items: center; gap: var(--s-2); margin: 0; padding: var(--s-2) var(--s-3); border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm, 6px); background: var(--surface-2); color: var(--ink); font-size: var(--fs-small, .875rem); font-weight: var(--fw-semi, 600); }
+.lj-dikunci-info[hidden] { display: none; }
+.lj-dikunci-info .ikon { flex: none; }
+
+/* FA2: nomor soal yang tidak ada di versi aplikasi ini: garis titik dan angka dicoret, ditambah kalimat yang menyebut nomornya */
+.semua-no[data-tak-ada] { border-style: dotted; border-width: 2px; cursor: default; }
+.semua-no[data-tak-ada] .semua-no-angka { text-decoration: line-through; }
+.semua-no[data-tak-ada]:hover { filter: none; }
+.eval-bahas-anggota > li[data-tak-ada] .eval-bahas-btn { border-style: dotted; }
+.eval-tak-ada { display: block; font-weight: var(--fw-semi, 600); }
+
+/* FA6: legenda "nomor tanpa tanda: Anda belum ikut" (kotak contoh netral) */
+.semua-legenda > span[data-status="netral"] { background: var(--surface); border-color: var(--line-strong); }
+
+/* FA8: tombol "Buka dari soal 1" dan "Buka semua soal dari nomor 1": target sentuh 44 px di HP */
+@media (max-width: 599px) { [data-k="semua-dari-1"], [data-k="buka-dari-1"] { min-height: 44px; } }
+
+/* FA9: dialog soal (HP anggota, tinjauan lembar jawab, evaluasi pemimpin): kaki dialog (Sebelumnya/Berikutnya) selalu terlihat, hanya isi
+   yang bergulir; kode soal tidak dipatah; topik pindah dari judul ke baris pertama isi di HP */
+dialog.tim-dlg[open] { display: flex; flex-direction: column; max-height: calc(100dvh - 24px); overflow: hidden; }
+.tim-dlg > .dlg-head, .tim-dlg > .dlg-foot { flex: none; }
+.tim-dlg > .dlg-body { flex: 1 1 auto; min-height: 0; max-height: none; }
+@supports not (height: 1dvh) { dialog.tim-dlg[open] { max-height: calc(100vh - 24px); } }
+.tim-dlg .kode-soal-utuh { white-space: nowrap; }
+.tim-dlg-topik-hp { display: none; margin: 0; }
+@media (max-width: 599px) {
+  .tim-dlg .dlg-head h2 { font-size: var(--fs-h3, 1.0625rem); line-height: 1.3; }
+  .tim-dlg .tim-dlg-topik { display: none; }
+  .tim-dlg-topik-hp { display: block; }
+  .tim-dlg > .dlg-foot { padding-block: var(--s-2); }
+}
+/* (4) v9.5 FC4: tanpa :has() teks pilihan jawaban di HP tidak terjepit satu kata per baris saat ada tanda "Jawaban Anda"/"Kunci" */
+@media (max-width: 599px) {
+  html.tanpa-has .opsi label .teks { flex: 1 1 calc(100% - 28px - var(--s-3)); }
+}
+/* (5) v9.5 FC4: animasi masuk dialog (dialog[open]:not(.sheet)) tidak boleh menimpa posisi tengah kotak cadangan */
+dialog[data-cadangan][open]:not(.sheet) { animation: none; }

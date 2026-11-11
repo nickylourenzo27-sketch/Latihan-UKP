@@ -8,6 +8,9 @@
    Pakai:  node tools/cek-relai.js            → semua jalur bawaan, satu per satu, lalu uji lintas jalur
            node tools/cek-relai.js wss://…    → hanya jalur yang disebut
            node tools/cek-relai.js --json     → ringkasan JSON di baris terakhir
+           node tools/cek-relai.js --calon=wss://…   (atau env RELAI_CALON=wss://…,wss://…)
+                                              → v9.4 Kb2: juga periksa CALON jalur (belum ada di daftar bawaan) satu per satu;
+                                                hasil per calon dilaporkan (dan dianotasi di GitHub Actions) tetapi tidak mengubah kode keluar
    Keluar 0 bila minimal satu jalur lulus penuh; 1 bila tidak ada yang lulus; 2 bila lingkungan tidak mendukung. */
 'use strict';
 const path = require('node:path');
@@ -15,6 +18,7 @@ const path = require('node:path');
 const argv = process.argv.slice(2);
 const mauJson = argv.includes('--json');
 const urlArg = argv.filter(a => /^wss?:\/\//i.test(a));
+const CALON = argv.filter(a => /^--calon=/.test(a)).map(a => a.slice(8)).concat(String(process.env.RELAI_CALON || '').split(',')).map(x => x.trim()).filter(x => /^wss?:\/\//i.test(x));
 const diGitHub = !!process.env.GITHUB_ACTIONS;
 
 if (typeof WebSocket !== 'function' || !globalThis.crypto || !globalThis.crypto.subtle) {
@@ -177,12 +181,25 @@ async function pilihJalur(nama, urlTuan, urlAnggota) {
     console.log('  jalur mati di depan → ' + (depan.lulus ? 'LULUS: anggota di ' + depan.jalurAnggota + ', intip ' + depan.intipMs + ' ms, gabung ' + depan.gabungMs + ' ms' : 'GAGAL: ' + depan.galat));
     if (depan.lulus && depan.intipMs + depan.gabungMs > 7000) { depan.lulus = false; depan.galat = 'terlalu lama: ' + (depan.intipMs + depan.gabungMs) + ' ms'; }
   }
+  // v9.4 Kb2: calon jalur (salam + alur penuh di jalur itu sendiri); tidak memengaruhi kode keluar
+  const calon = [];
+  if (CALON.length) {
+    const uc = instans(CALON);
+    const salamC = await dengan(uc.ujiRelai(), 20000, 'ujiRelai calon').catch(e => CALON.map(url => ({ url, ok: false, ms: 0, alasan: String(e.message || e) })));
+    for (let i = 0; i < CALON.length; i++) {
+      const h = await alur('calon ' + (i + 1), [CALON[i]], [CALON[i]], [CALON[i]]);
+      const sc = salamC[i] || null;
+      calon.push({ url: CALON[i], salam: sc ? (sc.ok ? sc.ms : sc.alasan) : null, lulus: h.lulus, ms: h.total, galat: h.galat, langkahGagal: h.lulus ? null : h.langkah.length + 1 });
+      console.log('  calon ' + (i + 1) + ' ' + CALON[i].split('#')[0] + ' → salam ' + (sc && sc.ok ? sc.ms + ' ms' : 'GAGAL') + ', alur ' + (h.lulus ? 'LULUS ' + h.total + ' ms' : 'GAGAL di langkah ' + (h.langkah.length + 1) + ': ' + h.galat));
+    }
+  }
   const ringkas = {
     waktu: new Date().toISOString(), node: process.version, detik: Math.round((Date.now() - t0) / 1000),
     lulus: baik.length, dari: RELAI.length,
     jalur: hasil.map(h => ({ url: h.url, salam: h.salam ? (h.salam.ok ? h.salam.ms : h.salam.alasan) : null, lulus: h.lulus, ms: h.total, galat: h.galat, langkahGagal: h.lulus ? null : h.langkah.length + 1 })),
     lintas: lintas ? { lulus: lintas.lulus, ms: lintas.total, galat: lintas.galat } : null,
     pilih: pilih ? { lulus: pilih.lulus, jalurAnggota: pilih.jalurAnggota || null, intipMs: pilih.intipMs || null, gabungMs: pilih.gabungMs || null, galat: pilih.galat } : null,
+    calon,
     depan: depan ? { lulus: depan.lulus, jalurAnggota: depan.jalurAnggota || null, intipMs: depan.intipMs || null, gabungMs: depan.gabungMs || null, galat: depan.galat } : null,
   };
   console.log('Ringkasan: ' + ringkas.lulus + ' dari ' + ringkas.dari + ' jalur lulus penuh' + (lintas ? '; lintas jalur ' + (lintas.lulus ? 'lulus' : 'GAGAL') : '') + (pilih ? '; pemilihan jalur ' + (pilih.lulus ? 'lulus' : 'GAGAL') : '') + (depan ? '; jalur mati di depan ' + (depan.lulus ? 'lulus' : 'GAGAL') : '') + ' · ' + ringkas.detik + ' dtk');
@@ -192,11 +209,13 @@ async function pilihJalur(nama, urlTuan, urlAnggota) {
     ringkas.jalur.forEach((j, i) => console.log('::' + (j.lulus ? 'notice' : 'warning') + ' title=Jalur ' + (i + 1) + '::' + bersih(JSON.stringify(j))));
     if (lintas) console.log('::' + (lintas.lulus ? 'notice' : 'warning') + ' title=Lintas jalur::' + bersih(JSON.stringify(ringkas.lintas)));
     if (pilih) console.log('::' + (pilih.lulus ? 'notice' : 'warning') + ' title=Pemilihan jalur::' + bersih(JSON.stringify(ringkas.pilih)));
+    calon.forEach((c, i) => console.log('::' + (c.lulus ? 'notice' : 'warning') + ' title=Calon jalur ' + (i + 1) + '::' + bersih(JSON.stringify(c))));
     if (depan) console.log('::' + (depan.lulus ? 'notice' : 'warning') + ' title=Jalur mati di depan::' + bersih(JSON.stringify(ringkas.depan)));
     console.log('::' + (ringkas.lulus ? 'notice' : 'error') + ' title=Ringkasan::' + bersih(ringkas.lulus + ' dari ' + ringkas.dari + ' jalur lulus penuh, ' + ringkas.detik + ' dtk'));
     if (process.env.GITHUB_STEP_SUMMARY) {
       const baris = ['## Jalur Room tim', '', '| Jalur | Salam | Alur penuh | Catatan |', '|---|---|---|---|']
         .concat(ringkas.jalur.map((j, i) => '| ' + (i + 1) + ' `' + j.url + '` | ' + (typeof j.salam === 'number' ? j.salam + ' ms' : 'gagal') + ' | ' + (j.lulus ? 'lulus ' + j.ms + ' ms' : 'GAGAL') + ' | ' + (j.galat || '') + ' |'));
+      calon.forEach((c, i) => baris.push('| calon ' + (i + 1) + ' `' + c.url.split('#')[0] + '` | ' + (typeof c.salam === 'number' ? c.salam + ' ms' : 'gagal') + ' | ' + (c.lulus ? 'lulus ' + c.ms + ' ms' : 'GAGAL') + ' | ' + (c.galat || '') + ' |'));
       if (lintas) baris.push('', 'Lintas jalur: ' + (lintas.lulus ? 'lulus' : 'GAGAL: ' + lintas.galat));
       try { require('node:fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY, baris.join('\n') + '\n'); } catch (e) {}
     }

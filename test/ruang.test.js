@@ -673,9 +673,12 @@ describe('ruang: alur room penuh di relai tiruan', () => {
   it('room tidak tersedia: tanpa crypto.subtle, tanpa WebSocket, atau di dalam claude.ai', async () => {
     const jar = buatJaringan();
     const tanpaSubtle = instans(jar, ['ws://r1'], { env: { crypto: { getRandomValues: b => b } } }).api;
-    const st = tanpaSubtle.status(); assert.equal(st.tersedia, false); assert.match(st.alasan, /https/);
-    assert.throws(() => tanpaSubtle.buat({ nama: 'Nicky' }), /https/);
-    await assert.rejects(tanpaSubtle.gabung('ABCD-EFGHJ-KMNPQ', 'Mita'), /https/);
+    // v9.4 Kb3: di halaman https (website tim) tanpa crypto.subtle = browser lama, bukan "butuh https"; di http biasa tetap "https"
+    const st = tanpaSubtle.status(); assert.equal(st.tersedia, false); assert.match(st.alasan, /belum mendukung/); assert.doesNotMatch(st.alasan, /https/);
+    assert.throws(() => tanpaSubtle.buat({ nama: 'Nicky' }), /belum mendukung/);
+    await assert.rejects(tanpaSubtle.gabung('ABCD-EFGHJ-KMNPQ', 'Mita'), /belum mendukung/);
+    const httpBiasa = instans(jar, ['ws://r1'], { env: { crypto: { getRandomValues: b => b }, lokasi: { protocol: 'http:', hostname: '192.168.1.5', origin: 'http://192.168.1.5', pathname: '/' } } }).api;
+    assert.match(httpBiasa.status().alasan, /https/);
     const claude = instans(jar, ['ws://r1'], { env: { lokasi: { hostname: 'claude.ai', origin: 'https://claude.ai', pathname: '/' } } }).api;
     assert.match(claude.status().alasan, /claude\.ai/);
     const tanpaWS = R.buatInstans({ crypto: globalThis.crypto, WebSocket: 'bukan', store: { get: () => ({}), save() {} } });

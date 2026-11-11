@@ -677,7 +677,7 @@
       { key: 'harga', label: 'Harga jual/penggantian dalam masa (belum termasuk PPN)', tipe: 'uang', default: 100000000, min: 0 },
       { key: 'mewah', label: 'Barang mewah (objek PPnBM)', tipe: 'boolean', default: false, bantu: 'Barang mewah: PPN 12% × harga jual penuh (sejak 1 Feb 2025).' },
       { key: 'tarifPpnbm', label: 'Tarif PPnBM', tipe: 'persen', default: 0, min: 0, tampilJika: { key: 'mewah', nilai: true }, bantu: 'Mis. 20% hunian mewah ≥ Rp30 miliar; 75% yacht.' },
-      { key: 'pm', label: 'Pajak masukan yang dapat dikreditkan', tipe: 'uang', default: 4400000, min: 0, bantu: 'PM yang memenuhi Ps. 9 ayat (8) (berhubungan langsung dengan usaha, bukan sedan/station wagon, faktur lengkap).' },
+      { key: 'pm', label: 'Pajak masukan yang dapat dikreditkan', tipe: 'uang', default: 4400000, min: 0, bantu: 'PM yang memenuhi Ps. 9 ayat (8) (berhubungan langsung dengan usaha, faktur lengkap). Larangan untuk sedan dan station wagon dihapus UU HPP sejak 1 April 2022.' },
       { key: 'kompensasi', label: 'Kompensasi lebih bayar masa sebelumnya', tipe: 'uang', default: 0, min: 0 },
       { key: 'akhirTahunBuku', label: 'Masa ini adalah akhir tahun buku', tipe: 'boolean', default: false }
     ],

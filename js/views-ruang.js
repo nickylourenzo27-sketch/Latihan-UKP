@@ -84,11 +84,18 @@
     const d = Math.max(0, Math.floor(Number(detik) || 0));
     return Math.floor(d / 60) + ':' + String(d % 60).padStart(2, '0');
   }
+  // v9.4 W: hitung naik tanpa batas bisa melewati satu jam → "1:05:09" (di bawah satu jam sama dengan fmtMSS)
+  function fmtNaik(detik) {
+    const d = Math.max(0, Math.floor(Number(detik) || 0));
+    return d < 3600 ? fmtMSS(d) : Math.floor(d / 3600) + ':' + String(Math.floor(d % 3600 / 60)).padStart(2, '0') + ':' + String(d % 60).padStart(2, '0');
+  }
   // "10 soal · kira-kira 41 menit (21 mengerjakan + 20 membahas)"; Bebas: "10 soal · 21 menit mengerjakan · membahas tanpa batas"
+  // v9.4 W: waktu mengerjakan tanpa batas (detikKerja 0) → "10 soal · mengerjakan tanpa batas · membahas 2 menit per soal · lama latihan tidak diperkirakan"
   function teksRingkasWaktu(n, detikKerja, detikBahas) {
     n = Math.max(0, Math.round(Number(n) || 0));
     const mK = Math.round(n * (Number(detikKerja) || 0) / 60);
     const b = Number(detikBahas) || 0;
+    if (!(Number(detikKerja) > 0)) return n + ' soal · mengerjakan tanpa batas · ' + (b > 0 ? 'membahas ' + Math.round(b / 60) + ' menit per soal' : 'membahas bebas') + ' · lama latihan tidak diperkirakan';
     if (!(b > 0)) return n + ' soal · ' + mK + ' menit mengerjakan · membahas tanpa batas';
     const mB = Math.round(n * b / 60);
     return n + ' soal · kira-kira ' + (mK + mB) + ' menit (' + mK + ' mengerjakan + ' + mB + ' membahas)';
@@ -105,18 +112,30 @@
       return sisa > 0 ? { fase: 'bahas', teks: 'Membahas · sisa ' + fmtMSS(Math.min(sisa, a.detikBahas)), habis: false, sisa } : { fase: 'bahas', teks: 'Waktu membahas habis.', habis: true, sisa: 0 };
     }
     if (a.fase === 'jawab') {
+      // v9.4 W: detikPerSoal 0 = pemimpin memilih tanpa batas (pemimpin versi lama selalu mengirim angka positif) →
+      // "Mengerjakan 1:21" hitung naik dari mulaiSoal; tidak pernah habis. Batas 24 jam supaya jam yang kacau tidak menampilkan angka liar
+      if (a.detikPerSoal === 0) {
+        const m = Number(a.mulaiSoal); if (!(m > 0)) return null;
+        const jalan = Math.min(86400, Math.max(0, Math.floor((t - m) / 1000)));
+        return { fase: 'kerja', teks: 'Mengerjakan ' + fmtNaik(jalan), habis: false, sisa: null, naik: jalan };
+      }
       const sisa = target(a.mulaiSoal, a.detikPerSoal); if (sisa == null) return null;
       return sisa > 0 ? { fase: 'kerja', teks: 'Mengerjakan · sisa ' + fmtMSS(Math.min(sisa, a.detikPerSoal)), habis: false, sisa } : { fase: 'kerja', teks: o && o.sudahJawab ? 'Waktu mengerjakan habis.' : 'Waktu mengerjakan habis. Jawab sekarang.', habis: true, sisa: 0 };
     }
     return null;
   }
   // keadaan view room (rencana §3 a–g) dari masukan polos
-  // o = { tersedia, tabKedua, kode (param ternormal | null), kodeSalah, info ({ kode, peran } | null), state }
+  // o = { tersedia, tabKedua, kode (param ternormal | null), kodeSalah, info ({ kode, peran } | null), state,
+  //       kodeSimpan (kode room yang tersimpan di perangkat ini | null), memulihkan (boot menunda pemulihan room) }
   function pilihKeadaan(o) {
     o = o || {};
     if (!o.tersedia) return 'tidakTersedia';
     if (o.kodeSalah) return 'kodeSalah';
     const info = o.info || null;
+    // v9.4 FB2: tautan room yang SAMA dengan room yang sedang dipegang tab lain → "Room terbuka di tab lain" (perilaku v9.3.2 untuk
+    // pemimpin), bukan layar pilih nama; boot yang menunda pemulihan → layar menghubungkan (tanpa masuk otomatis dari layar gabung)
+    if (!info && o.tabKedua && o.kode && o.kodeSimpan && o.kode === o.kodeSimpan) return 'tabKedua';
+    if (!info && o.memulihkan && (!o.kode || o.kode === o.kodeSimpan)) return 'memulihkan';
     if (o.kode && (!info || info.kode !== o.kode)) return 'gabung';
     if (!info) return o.tabKedua ? 'tabKedua' : 'kosong';
     const st = o.state;
@@ -251,6 +270,7 @@
   function alasanAwam(alasan, opsi) {
     const a = String(alasan || '');
     if (opsi && opsi.semuaGagal) return 'Belum bisa tersambung ke room. Coba data seluler, atau Wi-Fi lain.';
+    if (/belum mendukung/i.test(a)) return 'Peramban ini belum bisa membuka room. Perbarui peramban, atau buka tautan room di Chrome atau Safari terbaru.';   // v9.4 Kb3
     if (/claude|claudeusercontent|artifact/i.test(a)) return 'Room online hanya tersedia di website tim.';
     if (/https|WebCrypto|crypto|aman/i.test(a)) return 'Room butuh halaman https://. Buka lewat website tim.';
     if (/WebSocket/i.test(a)) return 'Peramban ini belum mendukung room. Coba Chrome atau Safari terbaru.';
@@ -319,7 +339,106 @@
     return belumBuka ? tuan + ' belum membuka room. Anda tetap bisa memilih nama sekarang; latihan dimulai saat ia datang.'
       : tuan + ' mengajak Anda latihan soal bersama. ' + ((Array.isArray(o.daftar) ? o.daftar : []).some(n => !samaNama(n, tuan)) ? 'Ketuk nama Anda untuk ikut.' : 'Tulis nama Anda untuk ikut.');
   }
-  UI._murni = { teksLeadGabung, teksUndangan, kelompokJawaban, teksBatang, teksBenarTim, sisaDetik, fmtSisa, pilihKeadaan, keadaanAnggota, teksPenjelas, labelBaku, teksSkorTim, teksSaya, teksSoalIni, teksHitungJawab, teksMasuk, teksSiap, teksBarisLalu, persenTim, sejakLulus, hasilku, rekapPenutup, alasanAwam, inisial, ringkasHadir, tglPendek, teksRiwayat, labelSesiLalu, teksCekSambungan, fmtMSS, teksRingkasWaktu, barisWaktuHP, labelBahas, namaDariProfil, bolehBukaUjian };
+  // ---------- v9.4 Ka2/Ka3: tautan yang rusak sedikit, sebab gagal tersambung, info sambungan, versi lama ----------
+  // kode dari tautan yang dibawa WhatsApp: '#' ter-enkode, huruf kecil, spasi, atau tanda baca di ujung ("ABCD-EFGHJ-KMNPQ)." → "ABCD-EFGHJ-KMNPQ").
+  // Hanya membuang tanda baca di ujung; isi kode tidak ditebak. → teks yang bisa diberikan ke normalKode (atau '' bila kosong)
+  function rapikanKodeTautan(teks) {
+    let t = String(teks == null ? '' : teks);
+    for (let i = 0; i < 2 && /%[0-9a-f]{2}/i.test(t); i++) { try { t = decodeURIComponent(t); } catch (e) { break; } }
+    const m = t.match(/#?room\/(.*)$/i); if (m) t = m[1];
+    t = t.replace(/^[\s"'([{<]+/, '');
+    // berhenti di karakter pertama yang tidak mungkin ada di kode (kode: huruf, angka, dan pemisah - _ . spasi)
+    const cut = t.search(/[^0-9A-Za-z\-_.\s]/); if (cut >= 0) t = t.slice(0, cut);
+    return t.replace(/[\s\-_.]+$/, '').trim();
+  }
+  // hash halaman → hash rute room yang rapi, atau null bila tidak perlu diubah.
+  // '#%23room/x', '#ROOM/x', '#room%2Fx', '#Room/x).' → '#room/x'. Hash rute lain (atau sudah rapi) → null
+  function hashRoomRapi(hash) {
+    const asli = String(hash == null ? '' : hash);
+    let t = asli.replace(/^#/, '');
+    for (let i = 0; i < 2 && /%(?:23|2f|20)/i.test(t); i++) { try { t = decodeURIComponent(t); } catch (e) { break; } }
+    t = t.replace(/^[#\s]+/, '');
+    const m = t.match(/^room(?:\/(.*))?$/i); if (!m) return null;
+    const kode = m[1] != null ? rapikanKodeTautan(m[1]) : '';
+    const baru = '#room' + (kode ? '/' + kode : '');
+    return baru === asli ? null : baru;
+  }
+  // "Chrome 120 · Android 14" · "Safari 17 · iPhone iOS 17.2" · "dalam aplikasi Instagram" (peramban di dalam aplikasi sering bermasalah)
+  function ringkasPeramban(ua) {
+    const u = String(ua || ''); if (!u) return 'tidak diketahui';
+    const ver = re => { const m = u.match(re); return m ? m[1] : ''; };
+    let os = '';
+    if (/iPhone|iPad|iPod/.test(u)) os = (/iPad/.test(u) ? 'iPad' : 'iPhone') + (ver(/OS (\d+(?:_\d+)?)/) ? ' iOS ' + ver(/OS (\d+(?:_\d+)?)/).replace('_', '.') : '');
+    else if (/Android/.test(u)) os = 'Android' + (ver(/Android (\d+(?:\.\d+)?)/) ? ' ' + ver(/Android (\d+(?:\.\d+)?)/) : '');
+    else if (/Windows/.test(u)) os = 'Windows';
+    else if (/Mac OS X|Macintosh/.test(u)) os = 'Mac';
+    else if (/Linux/.test(u)) os = 'Linux';
+    let br = '';
+    const dalam = u.match(/\b(FBAN|FBAV|Instagram|Line|WhatsApp|TikTok|musical_ly|Telegram)\b/);
+    if (dalam) br = 'dalam aplikasi ' + ({ FBAN: 'Facebook', FBAV: 'Facebook', musical_ly: 'TikTok' }[dalam[1]] || dalam[1]);
+    else if (/SamsungBrowser\/(\d+)/.test(u)) br = 'Samsung Internet ' + ver(/SamsungBrowser\/(\d+)/);
+    else if (/EdgA?\/(\d+)/.test(u)) br = 'Edge ' + ver(/EdgA?\/(\d+)/);
+    else if (/OPR\/(\d+)|Opera/.test(u)) br = 'Opera' + (ver(/OPR\/(\d+)/) ? ' ' + ver(/OPR\/(\d+)/) : '');
+    else if (/Firefox\/(\d+)|FxiOS\/(\d+)/.test(u)) br = 'Firefox ' + (ver(/Firefox\/(\d+)/) || ver(/FxiOS\/(\d+)/));
+    else if (/CriOS\/(\d+)/.test(u)) br = 'Chrome ' + ver(/CriOS\/(\d+)/);
+    else if (/; wv\)/.test(u)) br = 'tampilan web di dalam aplikasi';
+    else if (/Chrome\/(\d+)/.test(u)) br = 'Chrome ' + ver(/Chrome\/(\d+)/);
+    else if (/Version\/(\d+(?:\.\d+)?).*Safari/.test(u)) br = 'Safari ' + ver(/Version\/(\d+(?:\.\d+)?)/);
+    else if (/Safari/.test(u)) br = 'Safari';
+    return [br || 'peramban lain', os].filter(Boolean).join(' · ');
+  }
+  // '9.3.2' < '9.4' → true; nilai tidak dikenal → false
+  function versiLebihLama(a, b) {
+    const p = v => String(v || '').split('.').map(x => parseInt(x, 10));
+    const x = p(a), y = p(b); if (!x.length || !y.length || x.some(isNaN) || y.some(isNaN)) return false;
+    for (let i = 0; i < Math.max(x.length, y.length); i++) { const d = (x[i] || 0) - (y[i] || 0); if (d) return d < 0; }
+    return false;
+  }
+  // anggota memakai versi lebih lama dari pemimpin? x = entri hadir() ({ online, versiApp }). Sejak v9.4 kehadiran membawa versiApp;
+  // kehadiran online tanpa versiApp berarti versi sebelum 9.4 (kecuali pemimpin sendiri juga tanpa versi, mis. pohon pengembangan)
+  function versiAnggotaLama(x, versiPemimpin) {
+    if (!x || !x.online || !versiPemimpin) return false;
+    if (!x.versiApp) return versiLebihLama('9.3.99', versiPemimpin);
+    return versiLebihLama(x.versiApp, versiPemimpin);
+  }
+  // sebab gagal masuk room → { kunci, judul, teks, tombol } (kalimat biasa, satu tindakan).
+  // o = { daring (navigator.onLine), jalur ([{ ok }] hasil uji jalur, atau null bila belum diuji), tidakAda ('tutup' | 'kosong' | null), tuanBelum }
+  function sebabGagal(o) {
+    o = o || {};
+    if (o.daring === false) return { kunci: 'internet', judul: 'HP ini tidak tersambung ke internet', teks: 'Nyalakan data seluler atau Wi-Fi, lalu ketuk Coba lagi.', tombol: 'Coba lagi' };
+    if (o.tidakAda === 'tutup') return { kunci: 'tutup', judul: 'Room ini sudah ditutup', teks: 'Minta tautan baru ke yang mengirimi Anda tautan ini.', tombol: 'Ke Beranda' };
+    const jalur = Array.isArray(o.jalur) ? o.jalur : null;
+    if (jalur && jalur.length && !jalur.some(x => x && x.ok)) return { kunci: 'jalur', judul: 'Semua jalur sambungan gagal', teks: 'Internet ada, tetapi jaringan ini menolak sambungan room. Wi-Fi kantor atau kampus sering memblokirnya. Matikan Wi-Fi dan pakai data seluler, lalu ketuk Coba lagi.', tombol: 'Coba lagi' };
+    if (o.tuanBelum) return { kunci: 'belum', judul: 'Pemimpin belum membuka room', teks: 'Halaman ini tersambung sendiri begitu pemimpin membuka room. Biarkan terbuka.', tombol: 'Coba lagi' };
+    return { kunci: 'kosong', judul: 'Room tidak ditemukan', teks: 'Room ini belum dibuat, sudah ditutup, atau tautannya terpotong. Minta tautan baru ke yang mengirimi Anda tautan ini.', tombol: 'Coba lagi' };
+  }
+  const dua = n => String(n).padStart(2, '0');
+  const jamMenit = t => { const d = new Date(Number(t)); return isNaN(d) || !(Number(t) > 0) ? '' : dua(d.getHours()) + '.' + dua(d.getMinutes()) + '.' + dua(d.getSeconds()); };
+  // teks "Info sambungan" untuk disalin ke WhatsApp. Tanpa kode room penuh (4 karakter terakhir saja) dan tanpa data pribadi selain nama panggilan.
+  // o = { versi, peramban, nama, kode, peran, daring, jalur: [{ status, sejak, galatPada }], dataRoom, selisihMs, kini, online (jumlah) }
+  function teksInfoSambungan(o) {
+    o = o || {}; const kini = Number(o.kini) || Date.now();
+    const kode = String(o.kode || '').replace(/[^0-9A-Za-z]/g, '');
+    const baris = ['Info sambungan MABAR UKP', 'Versi aplikasi: ' + (o.versi || '?'), 'Peramban: ' + (o.peramban || '?')];
+    if (o.nama) baris.push('Nama: ' + rapikan(o.nama).slice(0, 24) + (o.peran === 'tuan' ? ' (pemimpin)' : ''));
+    baris.push('Room: ' + (kode ? '…' + kode.slice(-4) : 'belum masuk'));
+    baris.push('Internet: ' + (o.daring === false ? 'tidak tersambung' : 'tersambung'));
+    const jalur = Array.isArray(o.jalur) ? o.jalur : [];
+    if (!jalur.length) baris.push('Jalur sambungan: belum dicoba');
+    jalur.forEach((j, i) => {
+      const ok = j && j.status === 'tersambung'; const t = ok ? j.sejak : j && j.galatPada;
+      const kata = ok ? 'tersambung' : j && j.status === 'menyambung' ? 'sedang menyambung' : j && (j.status === 'gagal' || j.galatPada) ? 'gagal' : 'belum tersambung';
+      baris.push('Jalur ' + (i + 1) + ': ' + kata + (t ? ' sejak ' + jamMenit(t) : ''));
+    });
+    baris.push('Data room: ' + (o.dataRoom ? 'sudah diterima' : 'belum diterima'));
+    if (typeof o.online === 'number') baris.push('Orang tersambung: ' + o.online);
+    const s = Number(o.selisihMs) || 0;
+    baris.push('Selisih jam dengan pemimpin: ' + (o.peran === 'tuan' ? 'perangkat ini pemimpin' : !o.dataRoom ? 'belum diketahui' : Math.abs(s) < 1000 ? 'kurang dari 1 detik' : (s > 0 ? 'HP ini lebih lambat ' : 'HP ini lebih cepat ') + Math.round(Math.abs(s) / 1000) + ' detik'));
+    baris.push('Jam sekarang: ' + jamMenit(kini) + ' (' + new Date(kini).toISOString().slice(0, 10) + ')');
+    return baris.join('\n');
+  }
+
+  UI._murni = { rapikanKodeTautan, hashRoomRapi, ringkasPeramban, versiLebihLama, versiAnggotaLama, sebabGagal, teksInfoSambungan, teksLeadGabung, teksUndangan, kelompokJawaban, teksBatang, teksBenarTim, sisaDetik, fmtSisa, pilihKeadaan, keadaanAnggota, teksPenjelas, labelBaku, teksSkorTim, teksSaya, teksSoalIni, teksHitungJawab, teksMasuk, teksSiap, teksBarisLalu, persenTim, sejakLulus, hasilku, rekapPenutup, alasanAwam, inisial, ringkasHadir, tglPendek, teksRiwayat, labelSesiLalu, teksCekSambungan, fmtMSS, teksRingkasWaktu, barisWaktuHP, labelBahas, namaDariProfil, bolehBukaUjian, fmtNaik };
 
   // =====================================================================
   // AKSES AMAN KE UKP.ruang DAN PENYIMPANAN KECIL
@@ -331,14 +450,17 @@
   const stR = () => { const r = R(); return r ? aman(() => r.state(), null) : null; };
   const statusR = () => { const r = R(); return r ? aman(() => r.status(), null) : null; };
   const selisih = () => { const r = R(); return r && fn(r, 'selisihJam') ? aman(() => r.selisihJam(), 0) || 0 : 0; };
+  const belumAdaJam = () => { const r = R(); return !!(r && fn(r, 'adaSampelJam') && !aman(() => r.adaSampelJam(), true)); };   // v9.5 FC5
   const onlineKini = () => { const s = statusR(); return s && Array.isArray(s.online) ? s.online : []; };
   const jawabanSemua = id => { const r = R(); return r && fn(r, 'jawabanSemua') ? aman(() => r.jawabanSemua(id), {}) || {} : {}; };
   const lsBaca = (k, cad) => { try { const v = root.localStorage.getItem(k); return v == null ? cad : JSON.parse(v); } catch (e) { return cad; } };
   const lsTulis = (k, v) => { try { if (v == null) root.localStorage.removeItem(k); else root.localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   const KBUKAN = 'ukp.tim.bukanSaya';   // v9.3.2: { kodeRoom: 1 } room yang pernah "Bukan Anda? Ganti nama" di perangkat ini
   const KUJIAN_OTO = 'ukp.tim.ujianOto'; // v9.3.2: [ujianId] ujian tim yang sudah dibuka sendiri di tab ini (sessionStorage)
-  const ssBaca = (k, cad) => { try { const v = root.sessionStorage.getItem(k); return v == null ? cad : JSON.parse(v); } catch (e) { return cad; } };
-  const ssTulis = (k, v) => { try { root.sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  // v9.4 Kb3: salinan di memori agar rekap penutup tetap tampil saat sessionStorage menolak menulis (mode privat Safari lama, penyimpanan penuh)
+  const ssMem = new Map();
+  const ssBaca = (k, cad) => { if (ssMem.has(k)) return JSON.parse(ssMem.get(k)); try { const v = root.sessionStorage.getItem(k); return v == null ? cad : JSON.parse(v); } catch (e) { return cad; } };
+  const ssTulis = (k, v) => { ssMem.set(k, JSON.stringify(v)); try { root.sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   const hariIni = () => (UKP.util && UKP.util.hariIni ? UKP.util.hariIni() : new Date().toISOString().slice(0, 10));
   const pesertaRoom = st => (st && st.room && Array.isArray(st.room.peserta) ? st.room.peserta : []);
   const namaPemimpin = st => (st && st.tuan) || 'pemimpin';
@@ -379,6 +501,8 @@
   // =====================================================================
   const KUNCI_TAB = 'ukp.tim.tab';
   let tabId = null, tabKedua = false, tabHilang = false, tDetakTab = null;
+  let memulihkan = false, kodeSimpanBoot = null;   // v9.4 FB2: boot sedang menunda pemulihan room; kode room tersimpan saat boot
+  const TUNDA_PULIH_MS = 1500;
   function idTab() {
     if (tabId) return tabId;
     tabId = ssBaca('ukp.tim.tabId', null);
@@ -420,11 +544,36 @@
     const r = R(); if (!r) return;
     idTab();
     let kodeHash = null;
-    try { const rute = UKP.ruteDariHash ? UKP.ruteDariHash(location.hash) : null; if (rute && rute.view === 'room' && rute.params && rute.params.kode && fn(r, 'normalKode')) kodeHash = r.normalKode(rute.params.kode); } catch (e) {}
+    try { const rute = UKP.ruteDariHash ? UKP.ruteDariHash(location.hash) : null; if (rute && rute.view === 'room' && rute.params && rute.params.kode && fn(r, 'normalKode')) kodeHash = r.normalKode(rapikanKodeTautan(rute.params.kode)); } catch (e) {}
     const simpan = aman(() => UKP.store.get().ruang, null);
     const kodeLain = !!(kodeHash && simpan && simpan.kode && simpan.kode !== kodeHash);
-    if (simpan && simpan.kode && kunciTabLain()) tabKedua = true;
-    if (!tabKedua && !kodeLain && tersedia()) { try { if (r.pulihkan()) klaimTab(); } catch (e) { console.error(e); } }
+    // v9.4 FB2 (memperbaiki Ka2): hanya perangkat ANGGOTA yang tabnya dibuka di layar room (tautan yang baru diketuk) mengambil room dari
+    // tab lain; tab lain itu mendapat spanduk "Room sekarang dipakai di tab lain". Perangkat pemimpin kembali ke perilaku v9.3.2: tab
+    // kedua berhenti di "Room terbuka di tab lain" dengan tombol "Pakai room di tab ini", supaya papan latihan atau ujian tim yang sedang
+    // berjalan di tab pertama tidak kehilangan sambungan.
+    let viewAwal = null; try { const ru = UKP.ruteDariHash ? UKP.ruteDariHash(location.hash) : null; viewAwal = ru ? ru.view : null; } catch (e) {}
+    const tersembunyi = !!(typeof document !== 'undefined' && document.hidden);
+    const perangkatTuan = !!(simpan && simpan.peran === 'tuan');
+    const tabIniDiRoom = !perangkatTuan && viewAwal === 'room' && !kodeLain && !tersembunyi;
+    if (simpan && simpan.kode && kunciTabLain() && !tabIniDiRoom) tabKedua = true;
+    kodeSimpanBoot = simpan && simpan.kode && fn(r, 'normalKode') ? r.normalKode(simpan.kode) : null;
+    // v9.4 FB2 (balapan dua tab): tab anggota yang BUKAN di layar room, atau sedang tersembunyi, menunda pemulihan sekitar 1,5 detik
+    // lalu memeriksa ulang kunci tab, supaya tab tautan yang dimuat hampir bersamaan tidak ditimpa. Perangkat pemimpin tidak menunda
+    // (tidak ada pengambilalihan yang perlu dilindungi; papan yang dimuat ulang tersambung secepatnya).
+    const tundaPulih = !perangkatTuan && !tabIniDiRoom;
+    if (!tabKedua && !kodeLain && tersedia()) {
+      if (tundaPulih && simpan && simpan.kode) {
+        memulihkan = true;
+        setTimeout(() => {
+          memulihkan = false;
+          if (!info() && !tabKedua) {
+            if (kunciTabLain()) tabKedua = true;
+            else { try { if (r.pulihkan()) klaimTab(); } catch (e) { console.error(e); } }
+          }
+          beriTahu('tab'); pasangSpanduk(); setelahPulih(false);
+        }, TUNDA_PULIH_MS);
+      } else { try { if (r.pulihkan()) klaimTab(); } catch (e) { console.error(e); } }
+    }
     pasangPengamat();
     stateLama = stR(); catatPernahTuan();
     try { root.addEventListener('pagehide', lepasTab); } catch (e) {}
@@ -436,13 +585,16 @@
       if (k && k.id && k.id !== idTab() && tDetakTab && !tabHilang && info()) kehilanganTab();
     }); } catch (e) {}
     try { document.addEventListener('ukp:render', pasangSpanduk); } catch (e) {}
+    setelahPulih(true);
+    pasangSpanduk();
+  };
+  function setelahPulih(awal) {
     const v = UKP.sekarang ? UKP.sekarang().view : null;
-    if (v === 'room') { try { UKP.render(); } catch (e) {} }
+    if (awal && v === 'room') { try { UKP.render(); } catch (e) {} }
     // anggota membuka aplikasi saat aktivitas berjalan
     const i = info(); const st = stR();
     if (i && i.peran === 'anggota' && st && st.aktivitas && v !== 'room') ajakBuka(st.aktivitas, true);
-    pasangSpanduk();
-  };
+  }
   // v9.3.2: aman membawa anggota ke room tanpa ditanya: ia tidak sedang mengerjakan soal atau simulasi, tidak ada dialog terbuka,
   // dan ia tidak sedang mengetik
   function amanPindahKeRoom() {
@@ -722,13 +874,19 @@
     if (!pes.length) return null;
     const tuan = st && st.tuan;
     const i = info(); const r = R(); const hd = i && i.peran === 'tuan' && r && fn(r, 'hadir') ? aman(() => r.hadir(), {}) || {} : {};
+    // v9.4 Ka3: di laptop pemimpin, anggota yang memakai versi aplikasi lebih lama ditandai "versi lama" dengan saran singkat
+    let adaLama = false; const vh = i && i.peran === 'tuan' && r && fn(r, 'versiHadir') ? aman(() => r.versiHadir(), {}) || {} : {};
+    const daftarLi = pes.map(n => {
+      const ada = on.some(x => samaNama(x, n)); const x = ambilDari(hd, n); const dua = !!(x && x.ganda);
+      const lama = !!(i && i.peran === 'tuan' && ada && !samaNama(n, tuan) && versiAnggotaLama({ online: ada, versiApp: ambilDari(vh, n) }, UKP.versi)); if (lama) adaLama = true;
+      return h('li', { 'data-on': ada ? '' : null, 'data-versi-lama': lama ? '' : null, title: n + (ada ? ' · sudah masuk' : ' · belum masuk room') + (lama ? ' · versi lama' : '') }, h('span', { class: 'bulat', 'aria-hidden': 'true' }, inisial(n)),
+        h('span', { class: 'nama' }, n + (samaNama(n, tuan) ? ' (pemimpin)' : '')), dua ? h('span', { class: 'meta nama-dua' }, ' · dipakai di 2 perangkat') : null,
+        lama ? h('span', { class: 'versi-lama-tanda' }, 'versi lama') : null,
+        h('span', { class: 'visually-hidden' }, ada ? ' sudah masuk' : ' belum masuk room'));
+    });
     return h('div', { class: 'stack-sm daftar-masuk' },
-      h('ul', { class: 'inisial-room', 'aria-label': 'Anggota room' }, pes.map(n => {
-        const ada = on.some(x => samaNama(x, n)); const x = ambilDari(hd, n); const dua = !!(x && x.ganda);
-        return h('li', { 'data-on': ada ? '' : null, title: n + (ada ? ' · sudah masuk' : ' · belum masuk room') }, h('span', { class: 'bulat', 'aria-hidden': 'true' }, inisial(n)),
-          h('span', { class: 'nama' }, n + (samaNama(n, tuan) ? ' (pemimpin)' : '')), dua ? h('span', { class: 'meta nama-dua' }, ' · dipakai di 2 perangkat') : null,
-          h('span', { class: 'visually-hidden' }, ada ? ' sudah masuk' : ' belum masuk room'));
-      })),
+      h('ul', { class: 'inisial-room', 'aria-label': 'Anggota room' }, daftarLi),
+      adaLama ? h('p', { class: 'small saran-versi-lama', role: 'status' }, 'Bertanda versi lama: minta mereka menutup tab lalu membuka lagi tautan room, supaya soal sama.') : null,
       h('p', { class: 'meta legenda-masuk', 'aria-hidden': 'true' }, h('span', { class: 'titik-room', 'data-nada': 'ok' }), ' sudah masuk', h('span', { class: 'titik-room' }), ' belum masuk room'));
   }
 
@@ -850,6 +1008,45 @@
       tampil(arr);
     }
   }
+  // v9.4 Ka3: hasil uji jalur terakhir (dipakai layar gabung dan Info sambungan saat perangkat belum masuk room)
+  let ujiJalurTerakhir = null;   // { t, hasil: [{ ok }] }
+  function ujiJalur() {
+    const r = R(); if (!r || !fn(r, 'ujiRelai')) return Promise.resolve(null);
+    return Promise.resolve().then(() => r.ujiRelai()).then(arr => { const t = Date.now(); ujiJalurTerakhir = { t, hasil: (Array.isArray(arr) ? arr : []).map(x => ({ ok: !!(x && x.ok), t })) }; return ujiJalurTerakhir.hasil; }).catch(() => null);
+  }
+  const daring = () => { try { return navigator.onLine !== false; } catch (e) { return true; } };
+  function dataInfoSambungan(kodeCadangan) {
+    const i = info(); const st = statusR(); const s = stR();
+    let jalur = st && Array.isArray(st.relai) && st.relai.length ? st.relai.map(x => ({ status: x.status, sejak: x.sejak, galatPada: x.galatPada })) : [];
+    if (!jalur.length && ujiJalurTerakhir) jalur = ujiJalurTerakhir.hasil.map(x => ({ status: x.ok ? 'tersambung' : 'gagal', sejak: x.ok ? x.t : null, galatPada: x.ok ? null : x.t }));
+    let ua = ''; try { ua = navigator.userAgent; } catch (e) {}
+    return { versi: UKP.versi, peramban: ringkasPeramban(ua), nama: i ? i.nama : null, peran: i ? i.peran : null, kode: i ? i.kode : kodeCadangan || '', daring: daring(),
+      jalur, dataRoom: !!(s && s.room), selisihMs: selisih(), kini: Date.now(), online: i && st && Array.isArray(st.online) ? st.online.length : undefined };
+  }
+  // "Info sambungan": bisa dibuka dari layar gabung dan dari menu room. Teksnya bisa disalin untuk dikirim ke pemimpin lewat WhatsApp.
+  function dialogInfoSambungan(kodeCadangan) {
+    const isi = h('div', { class: 'stack-sm info-sambungan' });
+    const tampil = () => {
+      const teks = teksInfoSambungan(dataInfoSambungan(kodeCadangan));
+      const baris = teks.split('\n').slice(1);
+      isi.replaceChildren(
+        h('p', { class: 'small muted' }, 'Kirim info ini ke pemimpin bila HP Anda belum tersambung. Isinya tidak memuat kode room lengkap.'),
+        h('dl', { class: 'info-sambungan-daftar' }, baris.map(b => { const k = b.indexOf(': '); return h('div', { class: 'info-baris' }, h('dt', null, b.slice(0, k)), h('dd', null, b.slice(k + 2))); })),
+        h('div', { class: 'btn-row' },
+          UKP.c.salin(() => teksInfoSambungan(dataInfoSambungan(kodeCadangan)), { label: 'Salin info sambungan', kelas: 'btn btn-primary room-salin-info', pesan: 'Info sambungan disalin. Tempel di WhatsApp ke pemimpin.' }),
+          h('button', { type: 'button', class: 'btn room-periksa-jalur', onclick: async ev => { const b = ev.currentTarget; b.disabled = true; b.textContent = 'Memeriksa…'; await ujiJalur(); tampil(); } }, 'Periksa jalur lagi')));
+    };
+    tampil();
+    UKP.dialog({ judul: 'Info sambungan', ukuran: 'sm', kelas: 'dlg-info-sambungan', isi: () => isi, kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => dlg.close('ok') }, 'Tutup')] });
+    if (!info() && !ujiJalurTerakhir) ujiJalur().then(tampil);
+  }
+  UI.dialogInfoSambungan = dialogInfoSambungan;
+  // v9.4 Ka3: dipakai daftar orang di layar ujian tim (js/views-ujian-tim.js): true bila perangkat nama ini memakai versi lebih lama dari pemimpin
+  UI.versiLamaNama = function (nama) {
+    const i = info(); const r = R(); if (!i || i.peran !== 'tuan' || !r || !fn(r, 'versiHadir') || samaNama(nama, i.nama)) return false;
+    const online = onlineKini().some(x => samaNama(x, nama));
+    return versiAnggotaLama({ online, versiApp: ambilDari(aman(() => r.versiHadir(), {}) || {}, nama) }, UKP.versi);
+  };
   async function ambilAlih() {
     const r = R(); const st = stR(); if (!r || !st) return;
     const tuan = namaPemimpin(st);
@@ -873,6 +1070,17 @@
     lepasTab(); toast('Room ditutup. Buat room baru bila perlu.');
     UKP.go('beranda');
   }
+  // B.1 v9.2 "Bukan Anda? Ganti nama": keluar dari room di HP ini, lupakan nama yang diingat, kembali ke layar pilih nama.
+  // v9.4 FB3: dipakai juga butir "Ganti nama" di menu room (kapan pun, juga saat latihan atau ujian tim berjalan). Tanpa dialog.
+  async function gantiNama() {
+    const rr = R(); const i = info(); if (!rr || !i) return;
+    const kode = i.kode; const ingat = lsBaca('ukp.tim.namaRoom', {}) || {}; delete ingat[kode]; lsTulis('ukp.tim.namaRoom', ingat);
+    // v9.3.2 A.2: setelah "Ganti nama", masuk otomatis berdasarkan nama profil tidak diulang untuk room ini di perangkat ini
+    const bukan = lsBaca(KBUKAN, {}) || {}; bukan[kode] = 1; lsTulis(KBUKAN, bukan);
+    try { await rr.keluar(); } catch (e) {}
+    lepasTab();
+    UKP.go('room', { kode: fn(rr, 'formatKode') ? rr.formatKode(kode) : kode });
+  }
   // item menu room (dipakai UKP.c.fokusBar({ menu }) dan UKP.ruangUI.menu())
   UI.itemMenu = function () {
     const i = info(); if (!i) return [];
@@ -880,7 +1088,9 @@
     return [
       { teks: 'Undang anggota', ikon: 'chat', onclick: () => UI.dialogBagikan() },
       tuan ? { teks: 'Ubah room', ikon: 'pen', onclick: dialogUbahRoom } : null,
+      !tuan ? { teks: 'Ganti nama', ikon: 'pen', onclick: gantiNama } : null,
       { teks: 'Cek sambungan', ikon: 'cek-lingkar', onclick: dialogCekSambungan },
+      { teks: 'Info sambungan', ikon: 'info', onclick: () => dialogInfoSambungan() },
       // C.6 v9.2: hanya untuk yang pernah memimpin room ini, atau bila pemimpin sedang tidak tersambung
       !tuan && (pernahTuan() || pemimpinHilang()) ? { teks: 'Pimpin dari perangkat ini', ikon: 'flag', onclick: ambilAlih } : null,
       { teks: 'Keluar dari room', ikon: 'keluar', onclick: keluarRoom },
@@ -913,7 +1123,10 @@
     const pilihanBahas = Array.isArray(L.PILIHAN_BAHAS) && L.PILIHAN_BAHAS.length ? L.PILIHAN_BAHAS.slice() : PILIHAN_BAHAS_CADANGAN.slice();
     let bahas = fn(L, 'bahasBersama') ? aman(() => L.bahasBersama(), 120) : 120;
     if (pilihanBahas.indexOf(bahas) < 0) bahas = 120;
-    const detikTempo = () => (tempo === 'longgar' ? (L.TEMPO_LONGGAR || 150) : tempoUjian);
+    // v9.4 W: 'bebas' = tanpa batas (0 detik, tanpa hitung mundur)
+    if (['ujian', 'longgar', 'bebas'].indexOf(tempo) < 0) tempo = 'ujian';
+    const detikTempo = () => (tempo === 'bebas' ? 0 : tempo === 'longgar' ? (L.TEMPO_LONGGAR || 150) : tempoUjian);
+    const penjelasTempo = h('p', { class: 'meta penjelas-tempo-room', hidden: tempo !== 'bebas' }, 'Tanpa batas: tidak ada hitung mundur. Cocok untuk belajar sambil membahas.');
     const ringkas = h('p', { class: 'meta ringkas-waktu-room', 'aria-live': 'polite' });
     const perbaruiRingkas = () => { ringkas.textContent = teksRingkasWaktu(n, detikTempo(), bahas); };
     const saya = i && i.nama ? i.nama : rapikan(s.profil && s.profil.nama);
@@ -945,7 +1158,7 @@
         h('div', { class: 'baris-dua-room' },
           UKP.c.segmen({ label: 'Jumlah soal', radio: true, aktif: 20, opsi: [10, 20, 40].map(x => ({ nilai: x, label: x + ' soal' })), onPilih: aturN }),
           h('div', { class: 'field' }, h('label', { for: sid }, 'Sumber soal'), sel)),
-        UKP.c.segmen({ label: 'Waktu mengerjakan per soal', radio: true, aktif: tempo, opsi: [{ nilai: 'ujian', label: 'Seperti ujian', sub: desimal(tempoUjian / 60) + ' menit' }, { nilai: 'longgar', label: 'Lebih santai', sub: desimal((L.TEMPO_LONGGAR || 150) / 60) + ' menit' }], onPilih: v => { tempo = v; perbaruiRingkas(); } }),
+        h('div', { class: 'tempo-room' }, UKP.c.segmen({ label: 'Waktu mengerjakan per soal', radio: true, aktif: tempo, opsi: [{ nilai: 'ujian', label: 'Seperti ujian', sub: desimal(tempoUjian / 60) + ' menit' }, { nilai: 'longgar', label: 'Lebih santai', sub: desimal((L.TEMPO_LONGGAR || 150) / 60) + ' menit' }, { nilai: 'bebas', label: 'Tanpa batas', sub: 'tanpa hitung mundur' }], onPilih: v => { tempo = v; penjelasTempo.hidden = v !== 'bebas'; perbaruiRingkas(); } }), penjelasTempo),
         h('div', { class: 'bahas-room' }, UKP.c.segmen({ label: 'Waktu membahas per soal', radio: true, aktif: bahas, opsi: pilihanBahas.map(x => ({ nilai: x, label: labelBahas(x) })), onPilih: v => { bahas = v; perbaruiRingkas(); } }), ringkas),
         h('div', { class: 'field' }, h('span', { class: 'label' }, 'Yang ikut'), chipIkut,
           h('p', { class: 'meta' }, 'Lepas centang yang tidak ikut.' + (diRoom ? ' Jawaban yang belum masuk bisa diisi dari laptop ini.' : ''))), galat),
@@ -973,7 +1186,7 @@
         const iid = UKP.util.id('tempel');
         const galat = h('p', { class: 'galat small', role: 'alert', hidden: true });
         const inp = h('input', { class: 'input', id: iid, type: 'text', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', placeholder: 'Tempel tautan room' });
-        const buka = () => { const k = fn(r, 'normalKode') ? r.normalKode(inp.value) : null; if (!k) { galat.textContent = 'Tautan tidak dikenali. Salin ulang tautan lengkap dari grup.'; galat.hidden = false; inp.focus(); return; } UKP.go('room', { kode: r.formatKode ? r.formatKode(k) : k }); };
+        const buka = () => { const k = fn(r, 'normalKode') ? r.normalKode(rapikanKodeTautan(inp.value)) || r.normalKode(inp.value) : null; if (!k) { galat.textContent = 'Tautan tidak dikenali. Salin ulang tautan lengkap dari grup.'; galat.hidden = false; inp.focus(); return; } UKP.go('room', { kode: r.formatKode ? r.formatKode(k) : k }); };
         inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); buka(); } });
         isi.push(h('div', { class: 'card-head' }, h('div', { class: 'card-head-teks' }, h('span', { class: 'eyebrow' }, 'Tim'), h('h2', { class: 'card-title', id: 'kartu-room-j' }, 'Latihan bersama tim'), h('p', { class: 'card-meta' }, 'Sekali saja. Tautannya dibagikan ke grup WA.'))),
           h('button', { type: 'button', class: 'btn btn-primary btn-lg btn-block room-utama', onclick: () => UI.dialogBuat() }, UKP.icon('tim', null, true), 'Buat room tim'),
@@ -1021,8 +1234,8 @@
     let layar = null, tDetik = null, tTunda = null, lepasDengar = null, modeFokusAktif = false;
     const r = R();
     let kodeParam = null, kodeSalah = false;
-    if (params.kode) { kodeParam = r && fn(r, 'normalKode') ? r.normalKode(params.kode) : null; if (!kodeParam) kodeSalah = true; }
-    const keadaan = () => pilihKeadaan({ tersedia: !!r && tersedia(), tabKedua, kode: kodeParam, kodeSalah, info: info(), state: stR() });
+    if (params.kode) { kodeParam = r && fn(r, 'normalKode') ? r.normalKode(rapikanKodeTautan(params.kode)) : null; if (!kodeParam) kodeSalah = true; }
+    const keadaan = () => pilihKeadaan({ tersedia: !!r && tersedia(), tabKedua, kode: kodeParam, kodeSalah, info: info(), state: stR(), kodeSimpan: kodeSimpanBoot, memulihkan });
     function modeFokus(on) { if (on === modeFokusAktif) return; modeFokusAktif = on; try { UKP.mode.fokus(on); } catch (e) {} }
     function kunciLayar() {
       const k = keadaan();
@@ -1035,7 +1248,7 @@
       // tidak digambar ulang tepat saat pemimpin kembali ke lobi (bukaLobi / rekap tiba) — penyebab klik "Tutup room" yang gagal
       if (k === 'lobi') { const i = info(); const st = stR(); return [k, i.peran, st.tuan].join('|'); }
       if (k === 'ujianAnggota' || k === 'latihanTuan' || k === 'ujianTuan') { const a = stR().aktivitas; return [k, a.id, a.status || '', a.idx || 0, a.fase || ''].join('|'); }
-      if (k === 'gabung') return [k, lokal.langkah, lokal.gabungJalan, lokal.intip === undefined ? 'u' : lokal.intip === null ? 'n' : 'i', lokal.namaLain, lokal.galat || '', lokal.tidakAda || ''].join('|');
+      if (k === 'gabung') return [k, lokal.langkah, lokal.gabungJalan, lokal.intip === undefined ? 'u' : lokal.intip === null ? 'n' : 'i', lokal.namaLain, lokal.galat || '', lokal.tidakAda || '', lokal.lambat ? 'l' : ''].join('|');
       if (k === 'menunggu') return [k, !!(statusR() || {}).tersambung].join('|');
       return k;
     }
@@ -1078,6 +1291,7 @@
         case 'gabung': return layarGabung();
         case 'kosong': return layarKosong();
         case 'menunggu': return layarMenunggu();
+        case 'memulihkan': return layarMemulihkan();
         case 'lobi': return layarLobi();
         case 'latihanAnggota': return layarLatihan();
         case 'latihanTuan': return layarLatihanTuan();
@@ -1102,7 +1316,7 @@
       const iid = UKP.util.id('tautan-room');
       const galat = h('p', { class: 'galat small', role: 'alert', hidden: true });
       const inp = h('input', { class: 'input', id: iid, type: 'text', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', enterkeyhint: 'go', placeholder: 'https://…#room/…' });
-      const buka = () => { const k = r && fn(r, 'normalKode') ? r.normalKode(inp.value) : null; if (!k) { galat.textContent = 'Tautan tidak dikenali. Salin ulang tautan lengkap dari grup.'; galat.hidden = false; inp.setAttribute('aria-invalid', 'true'); inp.focus(); return; } UKP.go('room', { kode: fn(r, 'formatKode') ? r.formatKode(k) : k }); };
+      const buka = () => { const k = r && fn(r, 'normalKode') ? r.normalKode(rapikanKodeTautan(inp.value)) || r.normalKode(inp.value) : null; if (!k) { galat.textContent = 'Tautan tidak dikenali. Salin ulang tautan lengkap dari grup.'; galat.hidden = false; inp.setAttribute('aria-invalid', 'true'); inp.focus(); return; } UKP.go('room', { kode: fn(r, 'formatKode') ? r.formatKode(k) : k }); };
       inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); buka(); } });
       inp.addEventListener('input', () => { galat.hidden = true; inp.removeAttribute('aria-invalid'); });
       return h('div', { class: 'field isian-tautan-room' }, h('label', { for: iid }, label || 'Tempel tautan room'), h('div', { class: 'isian-baris' }, inp, h('button', { type: 'button', class: 'btn', onclick: buka }, 'Buka')), galat);
@@ -1119,12 +1333,22 @@
       if (ditutupPemimpin) return { node: h('div', { class: 'stack' }, kop('Room sudah ditutup', { lead: 'Hasil latihan di HP ini tetap tersimpan. Minta tautan baru ke yang mengirimi Anda tautan ini.' }),
         h('section', { class: 'card stack room-tidak-ada' }, h('div', { class: 'btn-row' }, UKP.link('Ke Beranda', 'beranda', null, 'btn btn-primary')),
           h('details', { class: 'lipat' }, h('summary', null, 'Sudah punya tautan baru? Tempel di sini'), isianTautan()))) };
+      // v9.4 Ka2 (e): anggota yang membuka website tanpa kode room langsung melihat isian tautan (dulu tersembunyi di lipatan),
+      // pemimpin tetap melihat tombol Buat room tim
       return { node: h('div', { class: 'stack' }, kop('Room tim', { lead: 'Satu room untuk tim. Anggota cukup membuka tautan di HP dan mengetuk namanya.' }),
+        h('section', { class: 'card stack room-anggota-tautan', 'aria-labelledby': 'anggota-tautan-j' },
+          h('h2', { class: 'card-title', id: 'anggota-tautan-j' }, 'Diajak masuk room?'),
+          h('p', { class: 'small' }, 'Buka tautan room dari grup WhatsApp tim. Bila tautannya tidak bisa diketuk, salin lalu tempel di sini.'),
+          isianTautan('Tautan room dari grup')),
         h('section', { class: 'card stack' },
+          h('h2', { class: 'card-title' }, 'Memimpin latihan?'),
           h('button', { type: 'button', class: 'btn btn-primary btn-lg btn-block room-utama', onclick: () => UI.dialogBuat() }, UKP.icon('tim', null, true), 'Buat room tim'),
-          h('p', { class: 'meta' }, 'Sekali saja. Tautannya dibagikan ke grup WA.'),
-          h('details', { class: 'lipat' }, h('summary', null, 'Sudah punya tautan? Tempel di sini'), isianTautan())),
+          h('p', { class: 'meta' }, 'Sekali saja. Tautannya dibagikan ke grup WA.')),
         h('p', { class: 'small' }, UKP.link('Latihan bersama satu layar', 'latih', { atur: 1 }))) };
+    }
+    function layarMemulihkan() {
+      return { node: h('div', { class: 'stack' }, kop('Menghubungkan ke room…'),
+        h('section', { class: 'card stack-sm' }, h('p', { role: 'status' }, 'Sebentar, perangkat ini sedang menghubungi room.'))) };
     }
     function layarMenunggu() {
       const tersambung = !!(statusR() || {}).tersambung;
@@ -1136,16 +1360,36 @@
     function layarGabung() {
       const kodeT = fn(r, 'formatKode') ? r.formatKode(kodeParam) : kodeParam;
       if (lokal.intip === undefined && !lokal.intipJalan) {
-        lokal.intipJalan = true;
+        lokal.intipJalan = true; lokal.lambat = false; lokal.jalur = null;
         const batas = new Promise(res => setTimeout(() => res(null), 9000));
+        // v9.4 Ka3: tidak ada internet → katakan langsung (tidak menunggu 9 detik); tersambung lagi → coba sendiri
+        if (!daring()) { lokal.intip = null; lokal.intipJalan = false; return layarGabungGagal(); }
+        // v9.4 Ka2/Ka3: lewat 3 detik masih mencari → kalimat "masih mencari" dan jalur sambungan diuji sekaligus. Semua jalur gagal → katakan sekarang.
+        const tokenIntip = lokal.tokenIntip = (lokal.tokenIntip || 0) + 1;
+        setTimeout(() => {
+          if (lokal.tokenIntip !== tokenIntip || lokal.intip !== undefined) return;
+          lokal.lambat = true; jadwal();
+          ujiJalur().then(hasil => {
+            if (lokal.tokenIntip !== tokenIntip || lokal.intip !== undefined || !hasil) return;
+            lokal.jalur = hasil;
+            if (hasil.length && !hasil.some(x => x.ok)) { lokal.intip = null; lokal.intipJalan = false; jadwal(); }
+          });
+        }, 3000);
+        const selesaiIntip = st => {
+          if (lokal.tokenIntip !== tokenIntip || lokal.intip !== undefined) return;
+          if (st || lokal.tidakAda) { lokal.intip = st; jadwal(); return; }
+          // tidak ada room: pastikan dulu jalurnya (room tidak ditemukan ≠ jaringan memblokir)
+          const segar = ujiJalurTerakhir && Date.now() - ujiJalurTerakhir.t < 20000 ? Promise.resolve(ujiJalurTerakhir.hasil) : ujiJalur();
+          segar.then(hasil => { if (lokal.tokenIntip !== tokenIntip || lokal.intip !== undefined) return; lokal.jalur = hasil; lokal.intip = null; jadwal(); });
+        };
         if (fn(r, 'intipRinci')) {
           // v9.2 G3: { state, ditutup, online } → room yang sudah ditutup dikatakan langsung; online = nama yang sedang tersambung (null = tidak diketahui)
           Promise.race([Promise.resolve().then(() => r.intipRinci(kodeParam)).catch(() => null), batas]).then(x => {
             let st = x && x.state && x.state.room && !x.ditutup ? x.state : null; if (x && x.ditutup) lokal.tidakAda = 'tutup';
             if (st && Array.isArray(x.online) && !Array.isArray(st.online)) st = Object.assign({}, st, { online: x.online });
-            lokal.intip = st; jadwal(); });
+            selesaiIntip(st); });
         } else if (fn(r, 'intip')) {
-          Promise.race([Promise.resolve().then(() => r.intip(kodeParam)).catch(() => null), batas]).then(st => { lokal.intip = st && st.room ? st : null; jadwal(); });
+          Promise.race([Promise.resolve().then(() => r.intip(kodeParam)).catch(() => null), batas]).then(st => { selesaiIntip(st && st.room ? st : null); });
         } else lokal.intip = null;
       }
       const st = lokal.intip || null;
@@ -1163,18 +1407,9 @@
       const lead = tuan && !lokal.tidakAda && lokal.intip !== null ? teksLeadGabung({ tuan, online: onlineIntip, daftar, menghubungkan: lokal.gabungJalan }) : null;
       const node = h('div', { class: 'stack layar-gabung' });
       node.appendChild(kop(judul, { lead, meta: tingkat ? [UKP.c.pill('Tingkat ' + tingkat)] : null }));
-      // V3: tautan room yang sudah ditutup (nisan) atau tidak ditemukan → katakan, jangan menunggu tanpa akhir / jatuh ke "Buat room"
-      if (lokal.tidakAda || (lokal.intip === null && !lokal.gabungJalan)) {
-        const tutup = lokal.tidakAda === 'tutup';
-        node.appendChild(h('section', { class: 'card stack room-tidak-ada', 'aria-labelledby': 'tidak-ada-j' },
-          h('h2', { class: 'card-title', id: 'tidak-ada-j', tabindex: '-1', 'data-fokus-awal': '' }, tutup ? 'Room ini sudah ditutup' : 'Room tidak ditemukan'),
-          h('p', null, tutup ? 'Minta tautan baru ke yang mengirimi Anda tautan ini.'
-            : 'Room ini mungkin sudah ditutup, atau internet HP ini belum lancar. Periksa internet, lalu coba lagi. Bila tetap begini, minta tautan baru ke yang mengirimi Anda tautan ini.'),
-          tutup ? h('div', { class: 'btn-row' }, UKP.link('Ke Beranda', 'beranda', null, 'btn btn-primary room-ke-beranda')) : h('div', { class: 'btn-row' },
-            h('button', { type: 'button', class: 'btn btn-primary room-coba-lagi', onclick: () => { lokal.intip = undefined; lokal.intipJalan = false; lokal.tidakAda = null; gambar(true); } }, UKP.icon('atur-ulang', null, true), 'Coba lagi'),
-            UKP.link('Ke Beranda', 'beranda', null, 'btn btn-ghost'))));
-        return { node };
-      }
+      // V3: tautan room yang sudah ditutup (nisan) atau tidak ditemukan → katakan, jangan menunggu tanpa akhir / jatuh ke "Buat room".
+      // v9.4 Ka3: sebabnya dibedakan (tidak ada internet · semua jalur gagal · room ditutup · room tidak ditemukan), satu tindakan utama
+      if (lokal.tidakAda || (lokal.intip === null && !lokal.gabungJalan)) return layarGabungGagal(node);
       if (lokal.langkah === 'ganda') {
         node.appendChild(h('section', { class: 'card stack' },
           h('h2', { class: 'card-title', tabindex: '-1', 'data-fokus-awal': '' }, lokal.namaDipilih + ' sudah masuk di perangkat lain.'),
@@ -1195,8 +1430,9 @@
       if (memuat) {
         node.appendChild(h('section', { class: 'card stack pilih-nama', 'aria-labelledby': 'siapa-j', 'aria-busy': 'true' },
           h('h2', { class: 'card-title', id: 'siapa-j' }, 'Siapa Anda?'),
-          h('p', { class: 'small muted', role: 'status' }, 'Memuat daftar nama…'),
-          h('div', { class: 'grid-nama-room kerangka-nama', 'aria-hidden': 'true' }, [0, 1, 2, 3].map(() => h('span', { class: 'nama-room kerangka' })))));
+          h('p', { class: 'small muted', role: 'status' }, lokal.lambat ? 'Masih mencari room. Biasanya kurang dari 10 detik.' : 'Mencari room dan daftar nama…'),
+          h('div', { class: 'grid-nama-room kerangka-nama', 'aria-hidden': 'true' }, [0, 1, 2, 3].map(() => h('span', { class: 'nama-room kerangka' }))),
+          lokal.lambat ? h('button', { type: 'button', class: 'tautan-tombol room-info-sambungan', onclick: () => dialogInfoSambungan(kodeParam) }, 'Info sambungan') : null));
         return { node };
       }
       const galat = h('p', { class: 'galat small', role: 'alert', hidden: !lokal.galat }, lokal.galat || '');
@@ -1223,6 +1459,7 @@
         // v9.3.2 A.1: pengganti layar persetujuan lama (satu ketukan tambahan dihapus)
         h('p', { class: 'small muted catatan-privasi-room' }, 'Jawaban dan hasil latihan Anda terlihat oleh anggota room. Jangan teruskan tautan ke luar tim.')));
       node.appendChild(h('p', { class: 'meta' }, 'Nama diingat di HP ini, jadi lain kali langsung masuk.'));
+      node.appendChild(h('p', { class: 'meta' }, h('button', { type: 'button', class: 'tautan-tombol room-info-sambungan', onclick: () => dialogInfoSambungan(kodeParam) }, 'Info sambungan')));
       // kunjungan berikutnya: nama diingat (ditulis hanya setelah berhasil masuk) → langsung masuk tanpa ketukan.
       // v9.3.2: layar persetujuan sudah tidak ada, jadi ukp.tim.setuju (hanya menyimpan SATU kode room) tidak lagi menjadi syarat di sini.
       if (namaIngat && !lokal.autoCoba && !lokal.gabungJalan) { lokal.autoCoba = true; lokal.izinGanda = namaIngat; setTimeout(() => pilihNama(namaIngat), 0); }
@@ -1234,16 +1471,30 @@
       }
       return { node };
     }
+    // v9.4 Ka3: kartu gagal masuk room. node = layar gabung yang sudah berisi kop (bila tidak ada, kop umum dibuat di sini)
+    function layarGabungGagal(node) {
+      node = node || h('div', { class: 'stack layar-gabung' }, kop('Gabung room tim'));
+      const sb = sebabGagal({ daring: daring(), jalur: lokal.jalur, tidakAda: lokal.tidakAda === 'tutup' ? 'tutup' : null });
+      const coba = () => { lokal.intip = undefined; lokal.intipJalan = false; lokal.tidakAda = null; lokal.jalur = null; lokal.galat = null; gambar(true); };
+      if (sb.kunci === 'internet') root.addEventListener('online', () => { if (page.isConnected && keadaan() === 'gabung' && lokal.intip === null) coba(); }, { once: true });
+      const utama = sb.kunci === 'tutup' ? UKP.link('Ke Beranda', 'beranda', null, 'btn btn-primary room-ke-beranda')
+        : h('button', { type: 'button', class: 'btn btn-primary room-coba-lagi', onclick: coba }, UKP.icon('atur-ulang', null, true), 'Coba lagi');
+      node.appendChild(h('section', { class: 'card stack room-tidak-ada', 'data-sebab': sb.kunci, 'aria-labelledby': 'tidak-ada-j' },
+        h('h2', { class: 'card-title', id: 'tidak-ada-j', tabindex: '-1', 'data-fokus-awal': '' }, sb.judul),
+        h('p', null, sb.teks),
+        h('div', { class: 'btn-row' }, utama, sb.kunci === 'tutup' ? null : UKP.link('Ke Beranda', 'beranda', null, 'btn btn-ghost')),
+        h('p', { class: 'meta' }, h('button', { type: 'button', class: 'tautan-tombol room-info-sambungan', onclick: () => dialogInfoSambungan(kodeParam) }, 'Info sambungan'))));
+      try { UKP.umumkan(sb.judul); } catch (e) {}
+      return { node };
+    }
     async function pilihNama(nama) {
       nama = rapikan(nama); if (!nama || lokal.gabungJalan) return;
       lokal.namaDipilih = nama; lokal.galat = null;
       // v9.2: nama (dari tombol atau diketik, tanpa beda huruf besar-kecil, termasuk nama pemimpin) yang sedang tersambung di perangkat lain → tanya dulu
       const st = lokal.intip; const onIntip = st && Array.isArray(st.online) ? st.online : [];
       if (!samaNama(lokal.izinGanda, nama) && onIntip.some(x => samaNama(x, nama))) { lokal.langkah = 'ganda'; gambar(true); return; }
-      const s = UKP.store.get(); const prof = rapikan(s.profil.nama);
-      if (prof && !samaNama(prof, nama) && s.profil.onboardingSelesai) {
-        if (!(await UKP.konfirmasi('Masuk sebagai ' + nama + '?', 'Nama profil Anda tetap ' + prof + '.', { ya: 'Masuk sebagai ' + nama }))) return;
-      }
+      // v9.4 (Ka2): dialog konfirmasi saat nama yang diketuk berbeda dengan nama profil dihapus: satu ketukan dan satu layar tambahan di jalan menuju room.
+      // Salah ketuk tetap mudah dibetulkan: lobi menampilkan "Anda masuk sebagai … · Bukan Anda? Ganti nama". Nama profil tidak diubah.
       masuk(nama);
     }
     async function masuk(nama) {
@@ -1252,7 +1503,13 @@
       let hasil = null; let kenaTutup = false;
       const lepasTutup = fn(rr, 'on') ? aman(() => rr.on('tutup', () => { kenaTutup = true; }), null) : null;
       try { hasil = await rr.gabung(kodeParam, nama); }
-      catch (e) { if (typeof lepasTutup === 'function') lepasTutup(); lokal.gabungJalan = false; lokal.galat = (e && /Kode/.test(e.message)) ? 'Tautan room tidak dikenali. Salin ulang tautan lengkap dari grup.' : alasanAwam(e && e.message); gambar(true); return; }
+      catch (e) {
+        if (typeof lepasTutup === 'function') lepasTutup();
+        let pesan = (e && /Kode/.test(e.message)) ? 'Tautan room tidak dikenali. Salin ulang tautan lengkap dari grup.' : alasanAwam(e && e.message);
+        // v9.4 Ka3: sebab yang bisa dipastikan (tidak ada internet, semua jalur gagal) dikatakan dengan kalimat yang sama seperti kartu gagal
+        if (!(e && /Kode/.test(e.message))) { const sb = sebabGagal({ daring: daring(), jalur: daring() ? await ujiJalur() : null }); if (sb.kunci === 'internet' || sb.kunci === 'jalur') pesan = sb.judul + '. ' + sb.teks; }
+        lokal.gabungJalan = false; lokal.galat = pesan; gambar(true); return;
+      }
       if (typeof lepasTutup === 'function') lepasTutup();
       // V3: gabung() → null tanpa room di perangkat ini = room bernisan (ditutup) atau dibatalkan → layar "sudah ditutup", bukan "Buat room"
       if (!hasil && !info()) { lokal.gabungJalan = false; lokal.tidakAda = kenaTutup ? 'tutup' : 'kosong'; gambar(true); return; }
@@ -1364,16 +1621,6 @@
         h('div', { class: 'list-rows' }, riw.map(e => h('button', { type: 'button', class: 'row-link baris-tombol', onclick: () => UKP.go('tim', { anggota: 'sesi:' + e.id }) },
           h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, teksRiwayat(e))), UKP.icon('chevron-kanan', 'chev', true)))));
     }
-    async function gantiNama() {
-      // B.1 v9.2 "Bukan Anda? Ganti nama": keluar dari room di HP ini, lupakan nama yang diingat, kembali ke layar pilih nama
-      const rr = R(); const i = info(); if (!rr || !i) return;
-      const kode = i.kode; const ingat = lsBaca('ukp.tim.namaRoom', {}) || {}; delete ingat[kode]; lsTulis('ukp.tim.namaRoom', ingat);
-      // v9.3.2 A.2: setelah "Ganti nama", masuk otomatis berdasarkan nama profil tidak diulang untuk room ini di perangkat ini
-      const bukan = lsBaca(KBUKAN, {}) || {}; bukan[kode] = 1; lsTulis(KBUKAN, bukan);
-      try { await rr.keluar(); } catch (e) {}
-      lepasTab();
-      UKP.go('room', { kode: fn(rr, 'formatKode') ? rr.formatKode(kode) : kode });
-    }
     // V10 temuan 6: butir menu ⋮ lobi tidak basi. Bila butir berubah (mis. "Pimpin dari perangkat ini" saat pemimpin > 60 dtk hilang)
     // dan menu sedang TERTUTUP, elemen menu saja yang diganti; menu yang sedang terbuka tidak pernah diganti.
     function segarkanMenu() {
@@ -1453,7 +1700,10 @@
       if (!bar.querySelector('.fokus-menu')) { const m = UI.menu(); if (m) bar.appendChild(m); }
       const detik = () => { const sisa = sisaDetik(a.akhirSesi || a.akhir, selisih()); waktu.textContent = sisa == null ? '' : fmtSisa(sisa); };
       detik();
-      return { bar, detik };
+      // v9.4 FB3: HP anggota selalu menunjukkan sedang masuk sebagai siapa (salah ketuk nama dibetulkan lewat Menu › Ganti nama)
+      const i = info();
+      const anda = i && i.peran !== 'tuan' ? h('p', { class: 'room-anda small' }, 'Anda: ', h('strong', null, i.nama)) : null;
+      return { bar, detik, anda };
     }
     // B.7 v9.2: lembar "Soal sebelumnya" (soal yang kunci jawabannya sudah dibuka di latihan ini; tanpa nama siapa pun)
     function soalLalu(a) {
@@ -1513,6 +1763,7 @@
       const soal = K && K.soal ? K.soal(sid) : null;
       const ks = kepalaSesi(st, a);
       const node = [ks.bar];
+      if (ks.anda) node.push(ks.anda);
       const jaw = jawabanSaya(a, sid);
       const sub = keadaanAnggota(a, jaw, lokal.ubah);
       // v9.3 W2: baris tipis waktu mengerjakan / membahas di bawah kop (diperbarui tiap detik di tempat, tanpa menggambar ulang)
@@ -1581,7 +1832,8 @@
       let habisLalu = null;
       const detik = () => {
         const x = barisWaktuHP(a, selisih(), Date.now(), o);
-        if (!x) { el.hidden = true; return; }
+        // v9.5 FC5: sebelum ada sampel jam dari pemimpin, jam HP bisa meleset (mis. "5:08" padahal 0:08): baris disembunyikan dulu
+        if (!x || belumAdaJam()) { el.hidden = true; return; }
         el.hidden = false;
         // diumumkan sekali saat waktu habis (teks habis tidak berubah lagi, jadi tidak diumumkan berulang)
         if (x.habis && habisLalu === false) el.setAttribute('aria-live', 'polite');
@@ -1787,7 +2039,7 @@
           }, baruMasuk ? 1500 : 0);
         }
       }
-      return { node: [ks.bar, h('div', { class: 'room-anggota stack' }, isi)], detik };
+      return { node: [ks.bar, ks.anda, h('div', { class: 'room-anggota stack' }, isi)].filter(Boolean), detik };
     }
     // ---------- (g) ujian tim di perangkat pemimpin ----------
     function layarUjianTuan() {

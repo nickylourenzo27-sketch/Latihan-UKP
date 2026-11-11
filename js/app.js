@@ -1,6 +1,16 @@
 /* MABAR UKP — boot: kerangka (kop atas, panel/lembar "Lainnya", bar bawah), pintasan, kapabilitas runtime */
 (function (root) {
   const UKP = root.UKP; const h = UKP.h; const U = UKP.util;
+  // v9.4 (FB1): versi aset yang dijalankan halaman ini = cap ?v=<VERSI> pada alamat js/app.js (index.html rilis ditulis
+  // tools/build-artifact.js; VERSI sama dengan sw.js). Kosong di pohon sumber tanpa cap. Dibaca saat skrip ini dijalankan.
+  const VERSI_ASET = (() => {
+    try {
+      const d = root.document; if (!d) return '';
+      const s = d.currentScript || Array.from(d.querySelectorAll('script[src]')).find(x => /(^|\/)js\/app\.js(?:[?#]|$)/.test(x.getAttribute('src') || ''));
+      return s && s.src ? (new URL(s.src, root.location.href).searchParams.get('v') || '') : '';
+    } catch (e) { return ''; }
+  })();
+  UKP.versiAset = VERSI_ASET;
 
   // v9.0 S1: kaki situs (D3 butir 7) untuk halaman berpita (.page.selebar); pengganti catatan kaki sidebar lama
   UKP.c = UKP.c || {};
@@ -417,6 +427,22 @@
       if (!sw || typeof sw.register !== 'function') return;
       let muatUlangDiminta = false, sudahMuatUlang = false, regKini = null, menunggu = false, tPantau = null, paksaNanti = false;
       const muatUlang = () => { if (sudahMuatUlang) return; sudahMuatUlang = true; location.reload(); };
+      // v9.4 (FB1): tanya versi sebuah service worker (pesan 'VERSI?', batas 1 detik) → string atau null (tidak terjawab, versi lama)
+      const tanyaVersi = w => new Promise(selesai => {
+        let beres = false, t = 0;
+        const akhir = v => { if (beres) return; beres = true; clearTimeout(t); selesai(v); };
+        if (!w || typeof w.postMessage !== 'function' || typeof MessageChannel === 'undefined') { akhir(null); return; }
+        t = setTimeout(() => akhir(null), 1000);
+        try {
+          const mc = new MessageChannel();
+          mc.port1.onmessage = e => { const d = e && e.data; akhir(d && typeof d.versi === 'string' ? d.versi : null); };
+          w.postMessage({ type: 'VERSI?' }, [mc.port2]);
+        } catch (e) { akhir(null); }
+      });
+      // true = service worker itu memegang versi yang SAMA dengan aset halaman ini: halaman sudah menjalankan versi itu
+      const versiSamaDenganHalaman = w => VERSI_ASET ? tanyaVersi(w).then(v => !!v && v === VERSI_ASET) : Promise.resolve(false);
+      let tCadanganMuat = 0, muatDimintaOrang = false;
+      const sudahDicek = typeof WeakSet === 'function' ? new WeakSet() : { has: () => true, add() {} };
       // v9.3.1: versi baru DIPASANG SENDIRI. Dulu versi baru hanya ditawarkan lewat toast 15 detik ("Versi baru tersedia · Muat ulang");
       // bila terlewat, peramban terus memakai versi lama dari cache walau halaman dimuat ulang (aset cache-first).
       // Pengaman: paling banyak 2 pemasangan otomatis per tab, berjarak ≥ 30 detik, supaya tidak pernah berputar tanpa henti.
@@ -441,16 +467,26 @@
         if (!paksa && !amanMuatUlang()) return false;
         if (otomatis !== false && !bolehOtomatis()) return false;
         if (otomatis !== false) { try { const c = catatanTerap(); sessionStorage.setItem(KUNCI_TERAP, JSON.stringify({ t: Date.now(), n: c.n + 1 })); } catch (e) {} }
-        muatUlangDiminta = true; menunggu = false; clearInterval(tPantau); tPantau = null;
+        muatUlangDiminta = true; muatDimintaOrang = otomatis === false; menunggu = false; clearInterval(tPantau); tPantau = null;
         try { UKP.toast('Memasang versi baru…', { nada: 'info', ms: 4000, lintasRute: true, penting: true }); } catch (e) {}
         try { w.postMessage({ type: 'SKIP_WAITING' }); } catch (e) { catatSW('pesan SKIP_WAITING gagal', e); }
-        setTimeout(muatUlang, 4000); // cadangan bila controllerchange tidak datang
+        clearTimeout(tCadanganMuat); tCadanganMuat = setTimeout(muatUlang, 4000); // cadangan bila controllerchange tidak datang
         return true;
       };
       // versi baru terpasang dan menunggu: pasang sekarang bila aman (saatBuka = halaman baru saja dibuka → selalu dipasang);
       // bila belum aman, coba lagi tiap pindah halaman dan tiap 5 detik, sambil menawarkan tombol
       const tawarkan = (reg, saatBuka) => {
         if (!reg.waiting) return;
+        // v9.4 (FB1): versi yang menunggu sama dengan aset halaman ini (halaman baru dibuka di bawah service worker lama dan sudah
+        // memuat aset bercap versi baru): cukup aktifkan, tanpa muat ulang dan tanpa pemberitahuan
+        if (VERSI_ASET && !paksaNanti && !sudahDicek.has(reg.waiting)) {
+          const w = reg.waiting; sudahDicek.add(w);
+          versiSamaDenganHalaman(w).then(sama => {
+            if (sama) { catatSW('versi baru sudah dijalankan halaman ini; diaktifkan tanpa muat ulang'); try { w.postMessage({ type: 'SKIP_WAITING' }); } catch (e) {} return; }
+            tawarkan(reg, saatBuka);
+          });
+          return;
+        }
         if (paksaNanti) { paksaNanti = false; if (terapkan(reg, true, false)) return; }
         if (terapkan(reg, !!saatBuka)) return;
         if (menunggu) return;
@@ -489,7 +525,7 @@
           try { UKP.toast('Versi baru terpasang. Memuat ulang…', { nada: 'info', ms: 4000, lintasRute: true, penting: true }); } catch (e) {}
           setTimeout(muatUlang, 1200);
         };
-        sw.addEventListener('controllerchange', () => {
+        const gantiPengendali = () => {
           if (muatUlangDiminta) { muatUlang(); return; }
           if (!adaKontrolAwal) return;   // pemasangan pertama: tidak ada versi lama yang perlu diganti
           if (menungguMuat) return;
@@ -498,6 +534,16 @@
           setInterval(muatSaatAman, 5000);
           muatSaatAman();
           if (menungguMuat) saatBoleh(() => { if (menungguMuat) UKP.toast('Versi baru terpasang.', { nada: 'info', ms: 15000, lintasRute: true, aksi: { label: 'Muat ulang', onclick: muatUlang } }); });
+        };
+        // v9.4 (FB1): pengendali baru memegang versi yang sama dengan aset halaman ini → halaman sudah menjalankan versi itu, jangan
+        // dimuat ulang (termasuk cadangan muat ulang otomatis). Beda atau tidak terjawab dalam 1 detik → perilaku v9.3.1.
+        sw.addEventListener('controllerchange', () => {
+          if (!VERSI_ASET || muatDimintaOrang) { gantiPengendali(); return; }
+          versiSamaDenganHalaman(sw.controller).then(sama => {
+            if (!sama) { gantiPengendali(); return; }
+            clearTimeout(tCadanganMuat); muatUlangDiminta = false;
+            catatSW('pengendali baru memegang versi halaman ini (' + VERSI_ASET + '); tidak dimuat ulang');
+          });
         });
         sw.register('sw.js', { scope: './' }).then(reg => {
           regKini = reg;
@@ -635,6 +681,25 @@
     setTimeout(() => (inNama.value ? inSandi : inNama).focus(), 0);
   }
   UKP.keluarAkses = () => { if (UKP.akses) UKP.akses.keluar(); location.hash = ''; location.reload(); };
+  // v9.4 (Ka2): tautan room yang sedikit rusak saat dikirim lewat WhatsApp ('#' ter-enkode, '#ROOM/…', tanda baca di ujung)
+  // dirapikan sebelum rute pertama dibaca, supaya tetap langsung membuka layar gabung room
+  function rapikanHashRoom() {
+    try {
+      const M = UKP.ruangUI && UKP.ruangUI._murni; if (!M || typeof M.hashRoomRapi !== 'function') return;
+      const baru = M.hashRoomRapi(location.hash); if (!baru) return;
+      history.replaceState(history.state, '', location.pathname + location.search + baru);
+    } catch (e) {}
+  }
+  rapikanHashRoom();
+  // tautan rusak yang diketuk saat aplikasi sudah terbuka (hanya hash yang berubah): rapikan lalu baca ulang rute
+  root.addEventListener('hashchange', () => {
+    try {
+      const M = UKP.ruangUI && UKP.ruangUI._murni; const baru = M && typeof M.hashRoomRapi === 'function' ? M.hashRoomRapi(location.hash) : null;
+      if (!baru) return;
+      history.replaceState(null, '', location.pathname + location.search + baru);
+      root.dispatchEvent(new PopStateEvent('popstate', { state: null }));
+    } catch (e) {}
+  });
   function mulai() { if (UKP.akses && UKP.akses.perluMasuk()) layarMasuk(); else boot(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mulai); else mulai();
 })(typeof window !== 'undefined' ? window : globalThis);

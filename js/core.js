@@ -1,9 +1,26 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '9.3.2';
+  UKP.versi = '9.4';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
+  // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
+  // Aturan yang menentukan tampil-tidaknya bar dan tombol diberi cadangan di css/app.css (blok v9.4 Kb) lewat html.tanpa-has dan
+  // atribut body[data-ada-bar] (bar fokus/sesi di #main) dan body[data-ada-aksi] (bar aksi lengket terlihat) yang diisi di sini.
+  (function () {
+    let bisa = true; try { document.querySelector(':has(*)'); } catch (e) { bisa = false; }
+    UKP.dukungHas = bisa;
+    if (bisa || typeof MutationObserver !== 'function') return;
+    const pasang = () => {
+      const b = document.body; if (!b) return; document.documentElement.classList.add('tanpa-has');
+      let tunda = 0;
+      const atur = (nama, ya) => { if (ya) { if (!b.hasAttribute(nama)) b.setAttribute(nama, ''); } else if (b.hasAttribute(nama)) b.removeAttribute(nama); };
+      const perbarui = () => { tunda = 0; atur('data-ada-bar', !!document.querySelector('#main .fokus-bar, #main .sesi-bar')); atur('data-ada-aksi', !!document.querySelector('.sticky-actions:not([hidden]), .nav-topik:not([hidden])')); };
+      perbarui();
+      try { new MutationObserver(() => { if (!tunda) tunda = setTimeout(perbarui, 0); }).observe(b, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] }); } catch (e) {}
+    };
+    if (document.body) pasang(); else document.addEventListener('DOMContentLoaded', pasang);
+  })();
   UKP.modul = UKP.modul || {};          // kode -> modul konten
   UKP.urutanKelompok = ['A1', 'A2', 'A3', 'A4', 'A5', 'B6', 'B7', 'B8', 'C9', 'C10', 'E'];
   UKP.tingkatKelompok = { A: ['A1', 'A2', 'A3', 'A4', 'A5'], B: ['A1', 'A2', 'A3', 'A4', 'A5', 'B6', 'B7', 'B8'], C: ['A1', 'A2', 'A3', 'A4', 'A5', 'B6', 'B7', 'B8', 'C9', 'C10'] };
@@ -260,7 +277,7 @@
     jawabanBersama: [],     // v7.9/v8.0: [{ p, s, kd, t, o, b, d, w, m, k (keyakinan|null), sesi }] terlama → terbaru; tidak ikut ringkasan tim (UKP.belajar.catatJawabanBersama)
     sesiBersama: [],        // v8.0: rekaman sesi latihan bersama [{ id, mulai, selesai, tingkat, peserta, anggaranDetik, soal: [...], sumber }] terlama → terbaru, ≤ 60
                             // v8.1: + tempo, detikPerSoal, mode ('latihan'|'ujian'), judul, ujianId, bahas {soalId: 1}, waktuPeserta {nama: detik} (opsional)
-    // v8.1 (opsional, bawaan null; bentuk di js/learn.js): s.bersama.tempo 'ujian' (bila tidak ada) | 'longgar'
+    // v8.1 (opsional, bawaan null; bentuk di js/learn.js): s.bersama.tempo 'ujian' (bila tidak ada) | 'longgar' | 'bebas' (v9.4: tanpa batas)
     ujianTim: null,         // ujian tim aktif di perangkat pemimpin (UKP.belajar.ujianTim)
     lembarJawab: null,      // lembar jawab pribadi di HP anggota (UKP.belajar.lembarJawab)
     bersamaAktif: null,     // sesi latihan bersama yang belum selesai, untuk dilanjutkan (UKP.belajar.bersamaAktif)
@@ -313,7 +330,8 @@
     else if (rd) o.rencanaDasar = salinAman(rd);
     o.laporan = o.laporan.filter(x => typeof x.minggu === 'string');
     // v7.9 latihan bersama: peserta = nama unik (≤ 12, ≤ 24 karakter, tanpa karakter kontrol); entri jawaban berbentuk objek bernama
-    const tempoB = o.bersama.tempo === 'longgar' || o.bersama.tempo === 'ujian' ? o.bersama.tempo : null;
+    // v9.4 W: + 'bebas' (waktu mengerjakan tanpa batas)
+    const tempoB = o.bersama.tempo === 'longgar' || o.bersama.tempo === 'ujian' || o.bersama.tempo === 'bebas' ? o.bersama.tempo : null;
     const bahasB = [60, 120, 180, 0].includes(o.bersama.detikBahas) ? o.bersama.detikBahas : null;
     o.bersama = { aktif: o.bersama.aktif === true, peserta: (Array.isArray(o.bersama.peserta) ? o.bersama.peserta : []).filter(x => typeof x === 'string').map(x => x.replace(/[\u0000-\u001f\u007f-\u009f]/g, ' ').replace(/\s+/g, ' ').trim()).filter((x, i, a) => x && x.length <= 24 && a.findIndex(y => y.toLowerCase() === x.toLowerCase()) === i).slice(0, 12) };
     o.jawabanBersama = o.jawabanBersama.filter(x => typeof x.p === 'string' && typeof x.s === 'string');
@@ -640,6 +658,23 @@
   //       wajib (tak tertutup lewat Esc/latar), closedby ('any' | 'closerequest' | 'none'),
   //       tanpaTutup (tanpa tombol ×; bawaan untuk closedby 'none')
   // Markup V6: <dialog> → .dlg-head (h2 + tutup) · .dlg-body (gulir sendiri) · .dlg-foot (aksi; bahaya .kiri) bersaudara
+  // v9.5 FC4: kotak cadangan (tanpa showModal) yang sedang terbuka, bawah → atas. Esc dan penahan fokus hanya untuk kotak paling atas.
+  const tumpukCadangan = [];
+  let pasangCadangan = false;
+  const atasCadangan = () => { while (tumpukCadangan.length && !tumpukCadangan[tumpukCadangan.length - 1].isConnected) tumpukCadangan.pop(); return tumpukCadangan[tumpukCadangan.length - 1]; };
+  function pasangPenjagaCadangan() {
+    if (pasangCadangan) return; pasangCadangan = true;
+    document.addEventListener('keydown', e => {
+      const atas = atasCadangan();
+      if (!atas || e.key !== 'Escape' && e.key !== 'Esc') return;
+      e.preventDefault(); e.stopPropagation(); atas._escCadangan();
+    }, true);
+    document.addEventListener('focusin', e => {
+      const atas = atasCadangan();
+      if (!atas || !e.target || atas.contains(e.target)) return;
+      atas._fokusCadangan();
+    }, true);
+  }
   UKP.dialog = function (opts) {
     opts = opts || {};
     const jid = UKP.util.id('dlg-judul');
@@ -666,15 +701,30 @@
     if (typeof dlg.showModal === 'function') { try { dlg.showModal(); return dlg; } catch (e) {} }
     // cadangan untuk peramban tanpa <dialog>.showModal
     dlg.setAttribute('open', ''); dlg.setAttribute('role', 'dialog'); dlg.setAttribute('aria-modal', 'true');
+    // v9.4 Kb3: tanpa <dialog> (iOS < 15.4) kotak ini akan muncul di dasar halaman; data-cadangan + latar = tampil di tengah layar (CSS blok v9.4 Kb)
+    dlg.setAttribute('data-cadangan', ''); const latar = h('div', { class: 'dlg-latar-cadangan', 'aria-hidden': 'true' });
+    if (dlg.parentNode) dlg.parentNode.insertBefore(latar, dlg);
+    latar.addEventListener('click', () => { if (bolehLatar) dlg.close('batal'); }); dlg.addEventListener('close', () => latar.remove());
+    // v9.5 FC4: kotak bertumpuk: latar ke-n di atas kotak ke-(n-1) (z-index 1000 + 2n - 1, kotak 1000 + 2n)
+    tumpukCadangan.push(dlg); const ke = tumpukCadangan.length;
+    latar.style.zIndex = String(1000 + 2 * ke - 1); dlg.style.zIndex = String(1000 + 2 * ke);
+    if (!dlg.hasAttribute('tabindex')) dlg.setAttribute('tabindex', '-1');
+    const pertama = () => dlg.querySelector('[autofocus]') || dlg.querySelector('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])') || dlg;
+    dlg._escCadangan = () => { if (bolehEsc) dlg.close('batal'); };
+    dlg._fokusCadangan = () => { try { pertama().focus({ preventScroll: true }); } catch (e) {} };
+    pasangPenjagaCadangan();
     dlg.close = function (v) {
       if (!dlg.hasAttribute('open')) return;
+      const i = tumpukCadangan.indexOf(dlg); if (i >= 0) tumpukCadangan.splice(i, 1);
       dlg.returnValue = v == null ? '' : String(v);
       dlg.removeAttribute('open');
       dlg.dispatchEvent(new Event('close'));
       if (sebelum && sebelum.isConnected && typeof sebelum.focus === 'function') { try { sebelum.focus({ preventScroll: true }); } catch (e) {} }
     };
-    dlg.addEventListener('keydown', e => { if (e.key === 'Escape' && bolehEsc) { e.preventDefault(); dlg.close('batal'); } });
-    UKP.fokus(dlg.querySelector('[autofocus]') || dlg.querySelector('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])') || dlg);
+    // dlg.remove() tanpa close() (mis. layar diganti): keluarkan dari tumpukan agar Esc dan fokus tidak tertahan
+    const hapusAsli = dlg.remove;
+    dlg.remove = function () { const i = tumpukCadangan.indexOf(dlg); if (i >= 0) tumpukCadangan.splice(i, 1); latar.remove(); return hapusAsli.apply(dlg, arguments); };
+    UKP.fokus(pertama());
     return dlg;
   };
   UKP.konfirmasi = function (judul, teks, opsi) {

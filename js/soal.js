@@ -611,6 +611,8 @@
       const meta = h('p', { class: 'aksi-meta' }, opsi.metaBersama ? h('span', { class: 'aksi-info' }, opsi.metaBersama) : null, hitungEl, terkunci ? null : ketKunciHp);
       const akhir = typeof opsi.onSelesaiSekarang === 'function' ? h('button', { type: 'button', class: 'btn aksi-selesai', onclick: () => opsi.onSelesaiSekarang() }, 'Selesai sekarang') : null;
       aksi.replaceChildren(...[aksiKiri, kiri, meta, h('span', { class: 'aksi-kanan' }, akhir, terkunci ? null : btnTahan, terkunci ? null : ketKunci, primer)].filter(Boolean));
+      // v9.4 FA5: penanda tata letak bilah untuk CSS (tanpa :has()): bilah tanpa "Ke menu"/"Selesai sekarang", dan sebelum kunci jawaban dibuka
+      aksi.toggleAttribute('data-satu-baris', !kiri && !akhir); aksi.toggleAttribute('data-sebelum-kunci', !!btnKunci && primer === btnKunci);
       aksi.hidden = false;
     }
     function periksa() {

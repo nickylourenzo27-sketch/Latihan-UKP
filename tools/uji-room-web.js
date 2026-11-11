@@ -1,12 +1,24 @@
 // Uji peramban Room tim dari layar ke layar: pemimpin (laptop) + dua anggota (HP) + pengunjung setelah room ditutup.
 // Lokal : RELAI=ws://127.0.0.1:19141/,ws://127.0.0.1:19142/ NODE_PATH=/opt/node22/lib/node_modules node uji-room-web.js <root> [dirGambar]
 // CI    : node uji-room-web.js <root>          (tanpa RELAI → jalur publik bawaan; Chrome sistem lewat playwright-core)
+// WebKit: BROWSER=webkit node uji-room-web.js <root>   (v9.4: peramban Safari dari Playwright; HP anggota memakai profil perangkat iPhone.
+//         Butuh paket playwright dan `npx playwright install --with-deps webkit`. Tanpa BROWSER perilakunya sama seperti sebelumnya: Chromium.)
 'use strict';
 const http = require('node:http'); const fs = require('node:fs'); const path = require('node:path');
 let pw; try { pw = require('playwright'); } catch (e) { pw = require('playwright-core'); }
 const root = path.resolve(process.argv[2] || '.'); const dirGambar = process.argv[3] || null;
 const RELAI = process.env.RELAI ? process.env.RELAI.split(',') : null;
 const diGitHub = !!process.env.GITHUB_ACTIONS; const PORT = Number(process.env.PORT || 19160);
+const BROWSER = String(process.env.BROWSER || 'chromium').toLowerCase();
+if (!['chromium', 'webkit', 'firefox'].includes(BROWSER)) { console.error('BROWSER tidak dikenal: ' + BROWSER + ' (chromium, webkit, atau firefox)'); process.exit(2); }
+// HP anggota: Chromium memakai ukuran layar HP seperti sebelumnya; WebKit memakai profil perangkat iPhone (ukuran, sentuh, user agent Safari iOS)
+const PERANGKAT_IPHONE = 'iPhone 13';
+// PROFIL_HP=iphone: profil iPhone juga di Chromium (untuk mencoba alur sentuh dan layar pendek tanpa WebKit)
+const PROFIL_IPHONE = BROWSER === 'webkit' || process.env.PROFIL_HP === 'iphone';
+function opsiHP() {
+  if (PROFIL_IPHONE && pw.devices && pw.devices[PERANGKAT_IPHONE]) { const d = Object.assign({}, pw.devices[PERANGKAT_IPHONE]); delete d.defaultBrowserType; return d; }
+  return { viewport: { width: 390, height: 844 } };
+}
 const AWALAN = '/Latihan-UKP/'; const URL0 = 'http://127.0.0.1:' + PORT + AWALAN;
 const LAMBAT = RELAI ? 1 : 3;   // jalur publik: batas tunggu tiga kali lebih longgar
 const tidur = ms => new Promise(r => setTimeout(r, ms));
@@ -28,10 +40,13 @@ const initRelai = relai => {
 
 (async () => {
   await new Promise(r => server.listen(PORT, '127.0.0.1', r));
-  const browser = await pw.chromium.launch(diGitHub ? { channel: 'chrome', headless: true } : {});
+  const mesin = pw[BROWSER]; if (!mesin) throw new Error('Peramban ' + BROWSER + ' tidak tersedia di paket Playwright ini.');
+  const browser = await mesin.launch(diGitHub && BROWSER === 'chromium' ? { channel: 'chrome', headless: true } : {});
+  console.log('Peramban: ' + BROWSER + (PROFIL_IPHONE ? ' · HP anggota: profil ' + PERANGKAT_IPHONE : ''));
   let n = 0;
   async function buka(nama, url, vp, profil) {
-    const ctx = await browser.newContext({ viewport: vp, serviceWorkers: 'block' });
+    // vp = 'hp' → ukuran HP (Chromium) atau profil iPhone (WebKit); selain itu ukuran layar apa adanya
+    const ctx = await browser.newContext(Object.assign(vp === 'hp' ? opsiHP() : { viewport: vp }, { serviceWorkers: 'block' }));
     if (RELAI) await ctx.addInitScript(initRelai, RELAI);
     if (profil) await ctx.addInitScript(p => { if (!localStorage.getItem('ukp.v1.seed')) { localStorage.setItem('ukp.v1.seed', '1'); localStorage.setItem('ukp.v1', JSON.stringify(p)); } }, profil);
     const page = await ctx.newPage();
@@ -69,7 +84,7 @@ const initRelai = relai => {
     // 2. dua anggota tanpa state membuka tautan di HP
     async function gabung(nama) {
       const t0 = Date.now();
-      const o = await buka(nama, tautan, { width: 390, height: 844 }, null);
+      const o = await buka(nama, tautan, 'hp', null);
       const msNama = await tunggu(o.page, () => { const h = document.querySelector('.halaman-room h1'); return h && /Gabung room/.test(h.textContent) && document.querySelectorAll('.nama-room:not(.kerangka)').length >= 2; }, null, 20000);
       await foto(o, 'gabung');
       cek(nama + ': layar gabung dengan nama room (tanpa onboarding)', msNama >= 0, { ms: Date.now() - t0, judul: await o.page.evaluate(() => (document.querySelector('.halaman-room h1') || document.querySelector('h1') || {}).textContent || location.hash) });
@@ -149,18 +164,18 @@ const initRelai = relai => {
     cek('Mita: keluar otomatis saat room ditutup', msTutup >= 0, { ms: msTutup });
     await foto(mita, 'ditutup');
     await tidur(1500);
-    const tamu = await buka('Tamu', tautan, { width: 390, height: 844 }, null);
+    const tamu = await buka('Tamu', tautan, 'hp', null);
     const msTak = await tunggu(tamu.page, () => /tidak ditemukan|sudah ditutup|belum dibuka/i.test((document.querySelector('#main') || {}).innerText || ''), null, 15000);
     cek('tautan room yang sudah ditutup: layar berkata tidak ditemukan atau ditutup', msTak >= 0, { ms: msTak, teks: await tamu.page.evaluate(() => ((document.querySelector('#main') || {}).innerText || '').replace(/\n+/g, ' | ').slice(0, 200)) });
     await foto(tamu, 'tautan-lama');
   } catch (e) { cek('skrip berjalan sampai akhir', false, String((e && e.message) || e).slice(0, 300)); for (const o of [nicky, mita, nora]) if (o) await foto(o, 'galat'); }
   cek('tanpa galat halaman', galatHalaman.length === 0, galatHalaman.slice(0, 5));
   const lulus = hasil.filter(x => x.ok).length;
-  console.log(lulus + ' lulus, ' + gagal + ' gagal' + (RELAI ? ' (broker lokal)' : ' (jalur publik)'));
+  console.log(lulus + ' lulus, ' + gagal + ' gagal' + (RELAI ? ' (broker lokal)' : ' (jalur publik)') + ' · ' + BROWSER);
   if (diGitHub) {
     const bersih = s => String(s).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A');
     hasil.filter(x => !x.ok).slice(0, 8).forEach(x => console.log('::warning title=Peramban GAGAL::' + bersih(x.nama + ' ' + JSON.stringify(x.info).slice(0, 400))));
-    console.log('::' + (gagal ? 'error' : 'notice') + ' title=Peramban ringkasan::' + bersih(lulus + ' lulus, ' + gagal + ' gagal · ' + hasil.filter(x => x.ok && x.info && x.info.ms != null).map(x => x.nama.split(':')[0].slice(0, 14) + ' ' + x.info.ms + 'ms').join('; ').slice(0, 700)));
+    console.log('::' + (gagal ? 'error' : 'notice') + ' title=Peramban ' + BROWSER + ' ringkasan::' + bersih(lulus + ' lulus, ' + gagal + ' gagal · ' + hasil.filter(x => x.ok && x.info && x.info.ms != null).map(x => x.nama.split(':')[0].slice(0, 14) + ' ' + x.info.ms + 'ms').join('; ').slice(0, 700)));
   }
   await browser.close(); server.close();
   process.exit(gagal ? 1 : 0);

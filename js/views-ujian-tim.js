@@ -37,7 +37,37 @@
     const m = t.match(/UT1\.[A-Za-z0-9._~-]*[A-Za-z0-9]/);
     return m && UT().bacaKode(m[0]) ? m[0] : null;
   }
-  const kartuSect = (judul, id, isi, kelas) => h('section', { class: 'card stack-sm' + (kelas ? ' ' + kelas : ''), 'aria-labelledby': id }, h('h2', { class: 'card-title', id }, judul), isi);
+  // v9.4 FA3/FA4: lembar jawab yang kunci jawabannya pernah tampil di HP ini, PER UJIAN, bersama jawaban saat dikunci.
+  // Satu kunci penyimpanan: localStorage['ukp.lj.beku'] = { [ujianId]: { j: 'CBBA-', r: '00010', t } }, paling banyak 20 terbaru.
+  // Tidak terhapus oleh Kosongkan, berganti kode ujian, atau muat ulang: lembar ujian itu terkunci selamanya di HP ini.
+  const KBEKU = 'ukp.lj.beku'; const MAKS_BEKU = 20;
+  // murni: buang isi rusak, simpan MAKS_BEKU yang terbaru
+  function rapikanBeku(m) {
+    const o = {}; if (!m || typeof m !== 'object' || Array.isArray(m)) return o;
+    Object.keys(m).filter(k => k && m[k] && typeof m[k] === 'object' && typeof m[k].j === 'string')
+      .sort((a, b) => (Number(m[b].t) || 0) - (Number(m[a].t) || 0)).slice(0, MAKS_BEKU)
+      .forEach(k => { o[k] = { j: m[k].j, r: typeof m[k].r === 'string' ? m[k].r : '', t: Number(m[k].t) || 0 }; });
+    return o;
+  }
+  function bacaBeku() { try { return rapikanBeku(JSON.parse(root.localStorage.getItem(KBEKU) || 'null')); } catch (e) { return {}; } }
+  function catatBeku(idU, jawaban, ragu, t) {
+    if (!idU) return; const m = bacaBeku();
+    m[idU] = { j: (jawaban || []).join(''), r: (ragu || []).map(x => x ? 1 : 0).join(''), t: Number(t) || Date.now() };
+    try { root.localStorage.setItem(KBEKU, JSON.stringify(rapikanBeku(m))); } catch (e) {}
+  }
+  const bekuUjian = idU => (idU && bacaBeku()[idU]) || null;
+  // murni: menempel kode ujian di lembar jawab → { aksi, tanya }
+  //   aksi 'pulihkan': ujian itu sudah dikunci di HP ini → jawaban beku dipulihkan, lembar dikunci
+  //   aksi 'kosong'  : berganti ke ujian lain → lembar baru kosong (jawaban ujian lama tidak dibawa)
+  //   aksi 'tetap'   : lembar polos diberi kode ujian, atau kode ujian yang sama → jawaban tetap
+  //   tanya: lembar yang tampil masih terbuka dan berisi jawaban yang akan hilang → minta persetujuan dulu
+  function rencanaGantiKode(o) {
+    o = o || {}; const pindah = o.lamaId !== o.baruId;
+    if (o.baruBeku) return { aksi: 'pulihkan', tanya: !!(pindah && o.adaIsi && !o.lamaTerkunci) };
+    if (o.lamaId && pindah) return { aksi: 'kosong', tanya: !!(o.adaIsi && !o.lamaTerkunci) };
+    return { aksi: 'tetap', tanya: false };
+  }
+  const kartuSect =(judul, id, isi, kelas) => h('section', { class: 'card stack-sm' + (kelas ? ' ' + kelas : ''), 'aria-labelledby': id }, h('h2', { class: 'card-title', id }, judul), isi);
   const tautanWA = teks => 'https://wa.me/?text=' + encodeURIComponent(teks);
   const tombolWA = (teks, label, kelas) => h('a', { class: kelas || 'btn', href: tautanWA(teks), target: '_blank', rel: 'noopener' }, UKP.icon('chat', null, true), label || 'Kirim lewat WhatsApp');
 
@@ -282,6 +312,12 @@
     if (rek && UKP.simulasiTim) {
       page.append(UKP.simulasiTim.kartuKirim(rek),
         h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn', onclick: () => UKP.go('simulasi', { hasil: rek.id }) }, 'Lihat hasil saya')));
+      return page;
+    }
+    // v9.4 FA3: kunci jawaban ujian ini sudah terbuka di HP ini lewat Lembar jawab → ujian ini tidak ditawarkan lagi di HP ini
+    if (bekuUjian(info.id)) {
+      page.append(UKP.c.banner('Kunci jawaban ujian ini sudah terbuka di HP ini lewat Lembar jawab, jadi ujian ini tidak bisa dikerjakan lagi di HP ini.', 'warn'),
+        h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn', 'data-k': 'ikut-ke-lj', onclick: () => UKP.go('lj') }, 'Buka lembar jawab')));
       return page;
     }
     // simulasi lain (atau ujian ini) sedang berjalan
@@ -548,6 +584,10 @@
       li.toggleAttribute('data-kumpul', !!x.q.mengumpulkan);
       const titik = li.querySelector('.titik-nada'); if (titik) { if (x.s.nada) titik.setAttribute('data-nada', x.s.nada); else titik.removeAttribute('data-nada'); }
       const stEl = li.querySelector('.ruang-status'); if (stEl && stEl.textContent !== x.s.teks) stEl.textContent = x.s.teks;
+      // v9.4 Ka3: perangkat anggota dengan versi aplikasi lebih lama dari pemimpin → tanda "versi lama" (js/views-ruang.js UKP.ruangUI.versiLamaNama)
+      const lama = !!(UKP.ruangUI && typeof UKP.ruangUI.versiLamaNama === 'function' && UKP.ruangUI.versiLamaNama(x.p)); const tLama = li.querySelector('.versi-lama-tanda');
+      // v9.4 FB4: tanda di DALAM sel nama (bukan sel grid kelima), supaya tombol Lepas tetap di kolom terakhir baris yang sama
+      if (lama && !tLama) (li.querySelector('.ruang-nama') || li).append(' ', h('span', { class: 'versi-lama-tanda', title: 'Minta ia membuka lagi tautan room supaya versinya sama' }, 'versi lama')); else if (!lama && tLama) tLama.remove();
       const lepas = li.querySelector('.ruang-lepas');
       if (x.q.mengumpulkan && !lepas) li.append(tombolLepas(x.p));
       else if (!x.q.mengumpulkan && lepas) lepas.remove();
@@ -711,17 +751,77 @@
     const infoUjian = h('p', { class: 'meta lj-ujian', 'aria-live': 'polite' });
     const galatKode = h('p', { class: 'galat small', role: 'alert', hidden: true });
     const ringkas = h('p', { class: 'lj-ringkas', 'aria-live': 'polite' });
+    // v9.4 FA7: lembar dikunci → kalimat di ATAS daftar (tombol jawaban juga tampak mati, lihat css blok v9.4 perbaikan FA)
+    const kunciInfo = h('p', { class: 'lj-dikunci-info', 'data-k': 'lj-dikunci', hidden: true }, UKP.icon('gembok', null, true), 'Lembar dikunci. Jawaban tidak bisa diubah lagi.');
     const daftar = h('ol', { class: 'lj-daftar', 'aria-label': 'Jawaban per nomor' });
     const aksi = h('div', { class: 'btn-row lj-aksi' });
     const tulisInfo = () => { infoUjian.textContent = lj.ujianId ? 'Ujian: ' + (lj.judul || 'Ujian tim') + ' · ' + lj.n + ' soal' : ''; };
-    inNama.addEventListener('change', () => { lj.nama = L.rapikanNamaPeserta(inNama.value); simpan(); gambarAksi(); });
-    inN.addEventListener('change', () => { const v = Math.round(Number(inN.value)); if (!v || v < 1) { inN.value = lj.n; return; } lj.n = Math.min(200, v); inN.value = lj.n; rapikan(); simpan(); gambarDaftar(); });
-    inKode.addEventListener('change', () => {
+    inNama.addEventListener('change', () => { lj.nama = L.rapikanNamaPeserta(inNama.value); simpan(); gambarAksi(); perbaruiSyarat(); });
+    inN.addEventListener('change', () => { const v = Math.round(Number(inN.value)); if (!v || v < 1 || dikunci()) { inN.value = lj.n; return; } lj.n = Math.min(200, v); inN.value = lj.n; rapikan(); simpan(); gambarDaftar(); gambarTinjau(); });
+    // v9.4 H4: tinjauan jawaban sendiri SETELAH mengirim. Butuh urutan soal dari kode ujian (disimpan terpisah: ukp.lj.tinjau, hanya lembar yang tampil);
+    // kunci jawaban baru tampil setelah anggota menyalin atau mengirim kode jawabannya lalu menyatakan sudah mengirim.
+    // v9.4 FA3/FA4: sejak kunci tampil, lembar ujian ITU terkunci selamanya di HP ini (ukp.lj.beku per ujianId, lihat bacaBeku di atas)
+    const KTINJAU = 'ukp.lj.tinjau';
+    function bacaTinjau() { try { const v = JSON.parse(localStorage.getItem(KTINJAU) || 'null'); return v && typeof v === 'object' && typeof v.ujianId === 'string' && Array.isArray(v.soalIds) ? v : null; } catch (e) { return null; } }
+    function tulisTinjau(v) { try { if (v) localStorage.setItem(KTINJAU, JSON.stringify(v)); else localStorage.removeItem(KTINJAU); } catch (e) {} }
+    const tinjauCocok = () => { const t = bacaTinjau(); return t && lj.ujianId && t.ujianId === lj.ujianId && t.soalIds.length === lj.n && t.soalIds.every(x => typeof x === 'string') ? t : null; };
+    const dikunci = () => { if (!lj.ujianId) return false; if (bekuUjian(lj.ujianId)) return true; const t = tinjauCocok(); return !!(t && t.dikunci); };
+    const pulihkan = b => { lj.jawaban = b.j.split(''); lj.ragu = b.r.split('').map(x => x === '1'); };
+    // lembar yang dikunci sebelum daftar beku ada → catat; lembar ujian yang terkunci selalu menampilkan jawaban saat dikunci
+    { const t0 = bacaTinjau(); if (lj.ujianId && t0 && t0.dikunci && t0.ujianId === lj.ujianId && !bekuUjian(lj.ujianId)) catatBeku(lj.ujianId, lj.jawaban, lj.ragu, t0.t); }
+    { const b0 = bekuUjian(lj.ujianId); if (b0) { pulihkan(b0); rapikan(); simpan(); } }
+    // syarat membuka tinjauan: kode jawaban untuk isi lembar SAAT INI sudah keluar (Salin kode jawaban atau Kirim lewat WhatsApp),
+    // dan ujian yang sama tidak sedang dikerjakan di HP ini
+    const sidik = () => token();
+    const sedangDikerjakan = () => { try { const a = UKP.store.get().simulasiAktif; return !!(a && !a.selesai && a.tim && a.tim.ujianId === lj.ujianId); } catch (e) { return false; } };
+    let siapTerakhir = null;
+    function tandaiTerkirim() { const t = tinjauCocok(); if (!t || dikunci() || t.disalin === sidik()) return; tulisTinjau(Object.assign({}, t, { disalin: sidik() })); gambarTinjau(); }
+    function perbaruiSyarat() { const t = tinjauCocok(); if (!t || dikunci()) return; if ((!sedangDikerjakan() && t.disalin === sidik()) !== siapTerakhir) gambarTinjau(); }
+    const slotTinjau = h('div', { class: 'stack lj-tinjau-slot', 'data-k': 'lj-tinjau' });
+    function gambarTinjau() {
+      const t = tinjauCocok(); const kunci = dikunci();
+      daftar.querySelectorAll('button').forEach(b => { b.disabled = kunci; });
+      inN.disabled = kunci; kunciInfo.hidden = !kunci; daftar.toggleAttribute('data-dikunci', kunci);
+      if (!t) { slotTinjau.replaceChildren(lj.ujianId ? '' : h('p', { class: 'meta lj-tinjau-catatan' }, 'Ingin meninjau soal dengan kunci jawaban setelah mengirim? Pakai kode ujian dari pemimpin.')); return; }
+      if (!kunci) {
+        const dikerjakan = sedangDikerjakan(); const siap = !dikerjakan && t.disalin === sidik(); siapTerakhir = siap;
+        const syarat = dikerjakan ? 'Anda sedang mengerjakan ujian ini di HP ini. Tinjauan terbuka setelah jawaban dikirim.'
+          : siap ? 'Kode jawaban sudah disalin atau dibuka di WhatsApp. Pastikan sudah terkirim ke pemimpin.' : 'Salin kode jawaban atau kirim lewat WhatsApp dulu. Setelah itu tinjauan bisa dibuka.';
+        slotTinjau.replaceChildren(h('section', { class: 'card stack-sm lj-tinjau', 'aria-labelledby': id + '-tj' },
+          h('h2', { class: 'card-title', id: id + '-tj' }, 'Tinjau jawaban Anda'),
+          h('p', { class: 'small' }, 'Setelah kode jawaban terkirim ke pemimpin, Anda bisa membuka semua soal: jawaban Anda, kunci jawaban, dan pembahasan.'),
+          h('p', { class: 'meta', id: id + '-ts', 'data-k': 'lj-tinjau-syarat' }, syarat),
+          h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn', 'data-k': 'lj-buka-tinjau', disabled: siap ? null : true, 'aria-describedby': id + '-ts', onclick: async () => {
+            const t2 = tinjauCocok(); if (!t2 || dikunci() || sedangDikerjakan() || t2.disalin !== sidik()) { gambarTinjau(); return; }
+            if (!await UKP.konfirmasi('Sudah mengirim kode jawaban?', 'Kunci jawaban akan terbuka di HP ini. Lembar jawab ujian ini tidak bisa diisi lagi di HP ini.', { ya: 'Sudah, tinjau jawaban' })) return;
+            const kini = Date.now(); catatBeku(t2.ujianId, lj.jawaban, lj.ragu, kini); tulisTinjau(Object.assign({}, t2, { dikunci: true, t: kini }));
+            gambarTinjau(); UKP.umumkan('Lembar jawab dikunci. Tinjauan jawaban terbuka.');
+            const sj = slotTinjau.querySelector('h2'); if (sj) { sj.setAttribute('tabindex', '-1'); UKP.fokus(sj); } } }, 'Sudah mengirim, tinjau jawaban'))));
+        return;
+      }
+      const items = t.soalIds.map((sid, i) => ({ id: sid, o: lj.jawaban[i], ragu: lj.ragu[i] }));
+      const bagian = typeof UKP.c.semuaSoalSendiri === 'function' ? UKP.c.semuaSoalSendiri(items, { judul: 'Tinjau jawaban Anda' }) : null;
+      slotTinjau.replaceChildren(h('p', { class: 'meta', role: 'status' }, 'Lembar ini dikunci karena kunci jawaban ujian ini sudah terbuka di HP ini. Untuk ujian berikutnya, pakai kode ujian yang baru.'), bagian || '');
+    }
+    inKode.addEventListener('change', async () => {
       const v = inKode.value.trim(); galatKode.hidden = true; if (!v) return;
       const k = ambilKode(v); const info = k ? ut.bacaKode(k) : null;
       if (!info) { galatKode.textContent = 'Kode ujian tidak dikenali.'; galatKode.hidden = false; return; }
-      lj.ujianId = info.id; lj.judul = info.judul; lj.n = info.soalIds.length; inN.value = lj.n; inKode.value = '';
-      rapikan(); simpan(); tulisInfo(); gambarDaftar(); UKP.umumkan('Lembar jawab disesuaikan: ' + lj.n + ' soal.');
+      inKode.value = '';
+      // keadaan SEBELUM berganti
+      const lamaId = lj.ujianId || null; const lamaTerkunci = dikunci(); const adaIsi = lj.jawaban.some(x => x !== '-') || lj.ragu.some(Boolean);
+      if (lamaId && lamaTerkunci && !bekuUjian(lamaId)) { const t0 = bacaTinjau(); catatBeku(lamaId, lj.jawaban, lj.ragu, t0 && t0.t); }
+      const b = bekuUjian(info.id);
+      const rc = rencanaGantiKode({ lamaId, lamaTerkunci, adaIsi, baruId: info.id, baruBeku: !!b });
+      if (rc.tanya && !await UKP.konfirmasi('Ganti ke ujian lain?', rc.aksi === 'pulihkan'
+        ? 'Kunci jawaban ujian itu sudah terbuka di HP ini, jadi lembarnya tampil dengan jawaban saat dikunci. Jawaban di lembar ini dihapus.'
+        : 'Jawaban dan tanda ragu di lembar ini dihapus. Lembar untuk ujian itu dimulai kosong.', { ya: 'Ganti ujian', bahaya: true })) { UKP.umumkan('Lembar jawab tidak diubah.'); return; }
+      lj.ujianId = info.id; lj.judul = info.judul; lj.n = info.soalIds.length; inN.value = lj.n;
+      if (rc.aksi === 'pulihkan') pulihkan(b); else if (rc.aksi === 'kosong') { lj.jawaban = []; lj.ragu = []; }
+      { const lama = bacaTinjau(); const sama = lama && lama.ujianId === info.id && lama.soalIds.length === info.soalIds.length;
+        if (!(rc.aksi === 'tetap' && sama)) tulisTinjau(b ? { ujianId: info.id, soalIds: info.soalIds.slice(0, 200), dikunci: true, t: b.t } : { ujianId: info.id, soalIds: info.soalIds.slice(0, 200), dikunci: false }); }
+      rapikan(); simpan(); tulisInfo(); gambarDaftar(); gambarTinjau(); gambarAksi();
+      UKP.umumkan(b ? 'Kunci jawaban ujian ini sudah terbuka di HP ini. Lembar dikunci.' : 'Lembar jawab disesuaikan: ' + lj.n + ' soal.');
     });
     let sorot = -1; const barisEl = [];
     const berikutKosong = dari => { for (let i = dari + 1; i < lj.n; i++) if (lj.jawaban[i] === '-') return i; return dari + 1 < lj.n ? dari + 1 : -1; };
@@ -733,8 +833,10 @@
     }
     function aturSorot(i) { const lama = sorot; sorot = i; gambarBaris(lama); gambarBaris(i); const li = barisEl[i]; if (li) { try { const r = li.getBoundingClientRect(); if (r.bottom > window.innerHeight - 80) li.scrollIntoView({ block: 'center', behavior: UKP.gulirHalus ? UKP.gulirHalus() : 'auto' }); } catch (e) {} } }
     function pilih(i, k) {
+      if (dikunci()) return;
       const lama = lj.jawaban[i]; lj.jawaban[i] = lama === k ? '-' : k; simpan(); gambarBaris(i); gambarRingkas();
       if (lj.jawaban[i] !== '-' && lama === '-') aturSorot(berikutKosong(i)); else aturSorot(i);
+      perbaruiSyarat();
     }
     function gambarDaftar() {
       barisEl.length = 0; sorot = Math.max(0, lj.jawaban.indexOf('-'));
@@ -742,7 +844,7 @@
         const gid = id + '-b' + i;
         const li = h('li', { class: 'lj-baris' }, h('span', { class: 'lj-no', id: gid }, String(i + 1)),
           h('span', { class: 'lj-opsi', role: 'group', 'aria-labelledby': gid }, ['A', 'B', 'C', 'D'].map(k => h('button', { type: 'button', class: 'lj-btn', 'data-opsi': k, 'aria-pressed': 'false', 'aria-label': 'Nomor ' + (i + 1) + ' jawaban ' + k, onclick: () => pilih(i, k) }, k))),
-          h('button', { type: 'button', class: 'lj-btn lj-ragu', 'aria-pressed': 'false', 'aria-label': 'Nomor ' + (i + 1) + ' ragu', onclick: () => { lj.ragu[i] = !lj.ragu[i]; simpan(); gambarBaris(i); gambarRingkas(); } }, 'Ragu'));
+          h('button', { type: 'button', class: 'lj-btn lj-ragu', 'aria-pressed': 'false', 'aria-label': 'Nomor ' + (i + 1) + ' ragu', onclick: () => { if (dikunci()) return; lj.ragu[i] = !lj.ragu[i]; simpan(); gambarBaris(i); gambarRingkas(); perbaruiSyarat(); } }, 'Ragu'));
         barisEl.push(li); return li;
       }));
       lj.jawaban.forEach((_, i) => gambarBaris(i)); gambarRingkas();
@@ -757,18 +859,27 @@
     }
     function gambarAksi() {
       waEl = tombolWA(teksWA(), 'Kirim lewat WhatsApp');
-      aksi.replaceChildren(UKP.c.salin(() => token(), { label: 'Salin kode jawaban', kelas: 'btn btn-primary', pesan: 'Kode jawaban disalin.', judul: 'Salin kode jawaban' }), waEl,
-        h('button', { type: 'button', class: 'btn btn-ghost btn-text lj-kosongkan', onclick: async () => { if (await UKP.konfirmasi('Kosongkan lembar jawab?', 'Semua jawaban dan tanda ragu di lembar ini dihapus.', { ya: 'Kosongkan', bahaya: true })) { lj.jawaban = lj.jawaban.map(() => '-'); lj.ragu = lj.ragu.map(() => false); simpan(); gambarDaftar(); UKP.umumkan('Lembar jawab dikosongkan.'); } } }, UKP.icon('hapus', null, true), 'Kosongkan'));
+      waEl.addEventListener('click', tandaiTerkirim); // kode jawaban keluar lewat WhatsApp
+      aksi.replaceChildren(UKP.c.salin(() => { const k = token(); tandaiTerkirim(); return k; }, { label: 'Salin kode jawaban', kelas: 'btn btn-primary', pesan: 'Kode jawaban disalin.', judul: 'Salin kode jawaban' }), waEl,
+        h('button', { type: 'button', class: 'btn btn-ghost btn-text lj-kosongkan', onclick: async () => {
+          // v9.4 FA3: lembar terkunci → Kosongkan melepas lembar dari ujian itu (lembar polos baru), BUKAN membuka kuncinya
+          const terkunci = dikunci();
+          if (!await UKP.konfirmasi('Kosongkan lembar jawab?', terkunci ? 'Lembar ini dilepas dari ujian itu dan menjadi lembar polos yang kosong. Lembar ujian itu tetap dikunci di HP ini.' : 'Semua jawaban dan tanda ragu di lembar ini dihapus.', { ya: 'Kosongkan', bahaya: true })) return;
+          lj.jawaban = lj.jawaban.map(() => '-'); lj.ragu = lj.ragu.map(() => false);
+          if (terkunci) { lj.ujianId = null; lj.judul = ''; tulisTinjau(null); }
+          else { const t = bacaTinjau(); if (t && t.disalin) tulisTinjau(Object.assign({}, t, { disalin: null })); }
+          simpan(); tulisInfo(); gambarDaftar(); gambarTinjau(); gambarAksi();
+          UKP.umumkan(terkunci ? 'Lembar jawab dikosongkan dan dilepas dari ujian itu.' : 'Lembar jawab dikosongkan.'); } }, UKP.icon('hapus', null, true), 'Kosongkan'));
     }
     page.append(h('section', { class: 'card stack-sm lj-atur', 'aria-label': 'Pengaturan lembar jawab' },
         h('div', { class: 'form-grid dua' }, h('div', { class: 'field' }, h('label', { for: id + '-nama' }, 'Nama'), inNama), h('div', { class: 'field' }, h('label', { for: id + '-n' }, 'Jumlah soal'), inN)),
         h('details', { class: 'lipat' }, h('summary', null, 'Pakai kode ujian'), h('div', { class: 'field' }, h('label', { for: id + '-kode' }, 'Tempel kode atau tautan ujian'), inKode, galatKode)), infoUjian),
-      h('div', { class: 'lj-kop' }, ringkas), daftar, aksi);
-    tulisInfo(); gambarDaftar(); gambarAksi();
+      h('div', { class: 'lj-kop' }, ringkas), kunciInfo, daftar, aksi, slotTinjau);
+    tulisInfo(); gambarDaftar(); gambarAksi(); gambarTinjau();
     return page;
   };
 
   // v8.2: siarkan(), pemanduRoom(), pesertaRoom(), kumpulDariRoom(nama, dok) untuk views-simulasi.js dan uji
-  UKP.ujianTimUI = { dialogKumpul, tautanUjian, fmtJam, siarkan: siarkanUjian, pemanduRoom: () => !!roomTuan(), pesertaRoom, kumpulDariRoom, tersiar,
-    _murni: { statusPeserta, barisRingkas, saranRuang, pulihkanPernah } }; // v9.3.2 B2/P2: untuk uji
+  UKP.ujianTimUI = { dialogKumpul, tautanUjian, fmtJam, siarkan: siarkanUjian, pemanduRoom: () => !!roomTuan(), pesertaRoom, kumpulDariRoom, tersiar, kunciTerbuka: idU => !!bekuUjian(idU),
+    _murni: { statusPeserta, barisRingkas, saranRuang, pulihkanPernah, KBEKU, rapikanBeku, rencanaGantiKode } }; // v9.3.2 B2/P2: untuk uji
 })(typeof window !== 'undefined' ? window : globalThis);

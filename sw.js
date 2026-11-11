@@ -6,11 +6,12 @@
    - lintas asal: hanya Google Fonts (stale-while-revalidate; gagal → stylesheet kosong/fon sistem tanpa galat). Permintaan lain tidak disentuh.
    Pembaruan: VERSI dan daftar ASET di blok otomatis ditulis ulang oleh `node tools/build-artifact.js` (hash isi semua aset). Versi baru
    langsung aktif setelah semua aset tersimpan (skipWaiting, v9.3.1) dan mengambil alih halaman yang terbuka; js/app.js lalu memuat
-   ulang halaman itu saat aman. Pesan { type: 'SKIP_WAITING' } tetap diterima untuk versi yang sempat menunggu;
+   ulang halaman itu saat aman, KECUALI halaman itu sudah menjalankan versi ini (v9.4: cap ?v=<VERSI> pada aset di index.html,
+   lihat cacheDulu dan pesan 'VERSI?'). Pesan { type: 'SKIP_WAITING' } tetap diterima untuk versi yang sempat menunggu;
    cache versi lama dihapus saat activate. Daftar skrip juga dibaca ulang dari index.html saat install, jadi berkas baru tetap ikut. */
 'use strict';
 /* <ASET-OTOMATIS> ditulis ulang oleh tools/build-artifact.js — jangan diubah manual */
-const VERSI = 'e56565f01e2f';
+const VERSI = '65e6e215ca3d';
 const ASET = [
   "index.html",
   "js/core.js",
@@ -148,18 +149,30 @@ async function pasang() {
 // skrip di memorinya, dan muat ulang berikutnya sudah dilayani dari cache baru. js/app.js memuat ulang sendiri saat aman.
 self.addEventListener('install', event => { if (HOST_TANPA_SW) return; event.waitUntil(pasang().then(() => self.skipWaiting())); });
 
+// v9.4 (FB1): pindah versi TANPA memuat ulang paksa. index.html rilis merujuk setiap skrip dan stylesheet dengan cap versi
+// (js/app.js?v=<VERSI>, ditulis tools/build-artifact.js). Navigasi selalu jaringan dulu, jadi halaman yang baru dibuka menerima
+// index.html baru beserta capnya. Service worker versi mana pun (juga 9.0 sampai 9.3.2) mencari aset di cache dengan alamat persis
+// termasuk query; alamat bercap versi baru tidak ada di cache lama, jadi diambil dari jaringan. Halaman yang baru dibuka langsung
+// menjalankan versi baru pada muatan pertama walau service worker lama masih memegang kendali. Halaman yang sudah terbuka tidak
+// pernah dimuat ulang oleh service worker (dulu v9.4 Ka1 memuat ulang paksa halaman versi lama; papan pemimpin yang sedang
+// menjalankan latihan bersama ikut kembali ke Beranda karena Client.url adalah alamat muat, bukan rute sekarang).
 self.addEventListener('activate', event => {
   if (HOST_TANPA_SW) return;
-  event.waitUntil(caches.keys()
-    .then(kunci => Promise.all(kunci.filter(k => k.startsWith(AWALAN) && k !== CACHE).map(k => caches.delete(k))))
-    .catch(e => debug('pembersihan cache gagal', e))
-    .then(() => self.clients.claim()));
+  event.waitUntil((async () => {
+    try {
+      const ks = await caches.keys();
+      await Promise.all(ks.filter(k => k.startsWith(AWALAN) && k !== CACHE).map(k => caches.delete(k)));
+    } catch (e) { debug('pembersihan cache gagal', e); }
+    await self.clients.claim();
+  })());
 });
 
 self.addEventListener('message', event => {
   const d = event.data; const jenis = d && (typeof d === 'string' ? d : d.type);
   if (jenis === 'SKIP_WAITING') self.skipWaiting();
-  else if (jenis === 'VERSI') {
+  // 'VERSI?' (v9.4 FB1): js/app.js bertanya versi service worker yang baru mengambil alih; sama dengan cap aset halaman = halaman
+  // sudah menjalankan versi itu, tidak perlu dimuat ulang. 'VERSI' dipertahankan untuk alat diagnosa lama.
+  else if (jenis === 'VERSI' || jenis === 'VERSI?') {
     const balas = { type: 'VERSI', versi: VERSI, cache: CACHE };
     try { if (event.ports && event.ports[0]) event.ports[0].postMessage(balas); else if (event.source) event.source.postMessage(balas); } catch (e) {}
   }
@@ -195,9 +208,32 @@ function navigasi(event, req) {
   });
 }
 
-// aset lokal: cache-first; tidak ada di cache → jaringan (lalu disimpan); jaringan gagal → salinan tanpa query string bila ada
+// aset lokal: cache-first; tidak ada di cache → jaringan (lalu disimpan); jaringan gagal → salinan tanpa query string bila ada.
+// v9.4 (FB1) cap versi ?v=<versi> (index.html rilis): cache pra-muat tetap berkunci alamat polos.
+// - v sama dengan VERSI: isi cache versi ini (ignoreSearch), tanpa jaringan; bila belum ada, jaringan (tidak disimpan ganda);
+// - v berbeda (halaman lebih baru daripada service worker ini, atau sebaliknya): jaringan dulu dan TIDAK disimpan ke cache versi
+//   ini (isinya milik versi lain); jaringan gagal → cadangan dari cache (ignoreSearch) supaya aplikasi tetap terbuka luring.
+function capVersi(req) { try { return new URL(req.url).searchParams.get('v'); } catch (e) { return null; } }
 async function cacheDulu(req) {
   const cache = await caches.open(CACHE);
+  const v = capVersi(req);
+  if (v != null) {
+    if (v === VERSI) {
+      const ada = await cache.match(req, { ignoreSearch: true, ignoreVary: true });
+      if (ada) return ada;
+      return fetch(req);
+    }
+    try {
+      const res = await fetch(req);
+      if (res.ok) return res;
+      const mirip = await cache.match(req, { ignoreSearch: true, ignoreVary: true });
+      return mirip || res;
+    } catch (e) {
+      const mirip = await cache.match(req, { ignoreSearch: true, ignoreVary: true });
+      if (mirip) return mirip;
+      throw e;
+    }
+  }
   const ada = await cache.match(req, { ignoreVary: true });
   if (ada) return ada;
   try {

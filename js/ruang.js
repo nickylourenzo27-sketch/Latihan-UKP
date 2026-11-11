@@ -148,7 +148,11 @@
   }
   const KONFIG_BAWAAN = {
     keepalive: 30,            // detik, dikirim di CONNECT
-    pingMs: 20000,            // PINGREQ tiap 20 dtk; tanpa PINGRESP sampai ping berikutnya → sambungan dianggap mati
+    pingMs: 4000,             // v9.4 Kb: PINGREQ tiap 4 dtk (dulu 20; 2 byte); tanpa PINGRESP dalam batasPingMs → sambungan dianggap mati
+    batasPingMs: 3000,        // v9.4 Kb: batas tunggu PINGRESP paling sedikit. Jalur yang membisu terdeteksi ≤ 7 dtk, bukan ≤ 40 dtk
+    batasPingMaksMs: 12000,   // v9.5 FC2: batas tunggu PINGRESP paling lama (jaringan lambat): jepit(4 × waktu tempuh + batasPingTambahMs, batasPingMs, ini)
+    batasPingTambahMs: 1000,  // v9.5 FC2
+    jedaCekHidupMs: 1500,     // v9.4 Kb: setelah menerbitkan, kirim PINGREQ pemeriksa (paling sering sekali per jeda ini) agar putus diam cepat terdeteksi
     batasSambungMs: 8000,     // batas satu percobaan sambung (sampai SUBACK); hivemq kadang perlu ±6 dtk
     jedaSambung: [1000, 2000, 5000, 10000, 20000],
     jitter: 0.3,              // + 0–30 % acak
@@ -156,6 +160,10 @@
     graceMs: 1500,            // tuan: tunggu retained setelah tersambung sebelum menerbitkan ulang
     tungguCalonMs: 5000,      // v8.2 B0: pulihkan() sebagai tuan = calon tuan; terbit ulang hanya bila max(graceMs, ini) lewat tanpa state lebih baru
     detakMs: 30000,           // detak kehadiran
+    detakTuanMs: 5000,        // v9.5 FC3: pemimpin mengirim kabar hadir (bentuk sama) ke tiap jalur lebih sering, agar anggota tahu jalurnya masih dipakai pemimpin
+    bisuTuanMinMs: 12000,     // v9.5 FC3: anggota: tanpa kabar segar pemimpin di jalurnya selama maks(ini, bisuTuanKali × jarak kabar teramati) → lomba jalur
+    bisuTuanKali: 2.2,
+    jedaLombaBisuMaksMs: 120000,  // v9.5 FC3: lomba karena pemimpin membisu diulang dengan jeda 15, 30, 60, 120 dtk selama tetap tanpa kabar
     hadirBasiMs: 95000,       // tanpa kabar selama ini → tidak online
     tungguHadirIntipMs: 250,  // v9.2 G3: intip menahan sambungan sesudah keputusan jalur agar kehadiran sempat terbaca (≤ 300)
     debounceMs: 250,          // jawaban hidup
@@ -163,6 +171,9 @@
     tungguRelaiLainMs: 1200,  // v8.2 B0b: pemilihan jalur: setelah state pertama, tunggu relai lain paling lama selama ini
     segarJalurMs: 120000,     // v8.2 B0b: pemenang intip() dipakai gabung() selama ini
     tungguGabungMs: 30000,    // gabung(): batas keseluruhan
+    lombaJalur: true,         // v9.4 Kb: anggota berlomba ke semua jalur saat putus, saat jalur lambat, dan saat pemimpin hilang dari jalurnya
+    lombaCadanganMs: 1500,    // v9.4 Kb: anggota: jalur pertama belum memberi data room selama ini → lomba cadangan ke semua jalur
+    jedaLombaTuanMs: 15000,   // v9.4 Kb: lomba karena pemimpin hilang dari jalur ini paling sering sekali per jeda ini
     mintaSesiMs: 5000,
     jedaBersihMs: 2000,       // anggota: kosongkan dokumen jawaban setelah aktivitas berakhir
     iterasi: 150000,          // PBKDF2
@@ -354,7 +365,10 @@
     if (!validAmplop(o) || typeof o.online !== 'boolean') return null;
     if (o.peran != null && o.peran !== 'tuan' && o.peran !== 'anggota') return null;
     if (o.siap != null && !(teks(o.siap, 60) && RE_ID.test(o.siap))) return null;   // v8.2 B0: siap = lobi.id | null (opsional)
-    return { v: 1, t: o.t, urut: o.urut, d: o.d, nama: o.nama, online: o.online, peran: o.peran || 'anggota', siap: o.siap == null ? null : o.siap };
+    const out = { v: 1, t: o.t, urut: o.urut, d: o.d, nama: o.nama, online: o.online, peran: o.peran || 'anggota', siap: o.siap == null ? null : o.siap };
+    // v9.4 (Ka3): versiApp opsional; nilai yang tidak sah diabaikan (pesan tetap diterima)
+    if (typeof o.versiApp === 'string' && o.versiApp.length >= 1 && o.versiApp.length <= 20 && /^[0-9A-Za-z.\-]+$/.test(o.versiApp)) out.versiApp = o.versiApp;
+    return out;
   }
   function validEntriIndeks(x) {
     if (!isObj(x) || !teks(x.id, 60) || !RE_ID.test(x.id) || !angka(x.t)) return null;
@@ -429,23 +443,34 @@
   // ======================================================================================
   // (b) KONEKSI — satu sambungan ke satu relai (atau berpindah antar-relai untuk anggota)
   // ======================================================================================
+  // v9.5 FC2: batas tunggu PINGRESP menyesuaikan waktu tempuh sambungan: jepit(4 × rtt + batasPingTambahMs, batasPingMs, batasPingMaksMs).
+  // Jaringan normal (rtt < 500 ms) tetap 3 dtk, jadi jalur yang membisu ketahuan ≤ pingMs + 3 dtk; jaringan lambat (rtt 3 dtk) tidak diputus.
+  function batasPingUntuk(K, rtt) {
+    // bawah ≤ pingMs dan tambahan ≤ bawah/3 (bawaan: 3000 dan 1000) agar konfig uji yang dipercepat tetap berskala sama
+    const bawah = Math.max(1, Math.min(Number(K.batasPingMs) || K.pingMs, K.pingMs));
+    const atas = Math.max(bawah, Number(K.batasPingMaksMs) || bawah);
+    const tambah = Math.min(bawah / 3, K.batasPingTambahMs == null ? 1000 : Math.max(0, Number(K.batasPingTambahMs) || 0));
+    const r = rtt == null || !isFinite(rtt) ? 0 : Math.max(0, rtt);
+    return Math.round(Math.min(atas, Math.max(bawah, 4 * r + tambah)));
+  }
   // o = { url: string | () => string, WS, idKlien, konfig, filter: () => [topik…], buatWill: async () => will|null,
   //       saatPublish(paket, kon), saatStatus(kon), saatGagal(kon, pernahTersambung) }
   function Koneksi(o) {
     const K = o.konfig;
     // v8.2 B0: galat/galatPada/tersambungPada untuk diagnosis (status().relai)
     const kon = { status: 'mati', url: null, terlihat: new Map(), gagalBeruntun: 0, pernahGagal: false, galat: null, galatPada: null, tersambungPada: null };
-    let ws = null, berhenti = true, timerSambung = null, timerUlang = null, timerPing = null, menungguPing = false;
+    let ws = null, berhenti = true, timerSambung = null, timerUlang = null, timerPing = null, menungguPing = false, timerPong = null, pingPada = 0, cekHidupFn = null;
     let subId = 0, subMenunggu = 0; const antre = new Map(); const tambahan = new Set();
     const urlKini = () => (typeof o.url === 'function' ? o.url() : o.url);
     function setStatus(s) { if (kon.status === s) return; kon.status = s; try { o.saatStatus && o.saatStatus(kon); } catch (e) {} }
     function kirimMentah(b) { if (ws && ws.readyState === 1) { try { ws.send(b); return true; } catch (e) { return false; } } return false; }
-    function bersihTimer() { clearTimeout(timerSambung); timerSambung = null; clearInterval(timerPing); timerPing = null; }
+    function bersihTimer() { clearTimeout(timerSambung); timerSambung = null; clearInterval(timerPing); timerPing = null; clearTimeout(timerPong); timerPong = null; cekHidupFn = null; }
     function jadwalUlang() {
       if (berhenti) return;
       const urutan = K.jedaSambung; const i = Math.min(kon.gagalBeruntun - 1, urutan.length - 1);
       let jeda = urutan[Math.max(0, i)];
       if (o.jedaKhusus) { const j = o.jedaKhusus(kon); if (j != null) jeda = j; }
+      if (jeda === Infinity) { clearTimeout(timerUlang); timerUlang = null; return; }   // v9.4 Kb: ditahan (lomba jalur memutuskan); kon.segera() menyambung
       jeda = Math.round(jeda * (1 + Math.random() * K.jitter));
       clearTimeout(timerUlang); timerUlang = setTimeout(() => { timerUlang = null; sambung(); }, jeda);
     }
@@ -460,9 +485,11 @@
       let sok; try { sok = new o.WS(kon.url, ['mqtt']); } catch (e) { kon.galat = 'tidak bisa dibuka: ' + String((e && e.message) || e).slice(0, 120); kon.galatPada = Date.now(); kon.gagalBeruntun++; kon.pernahGagal = true; kon.terakhirPernah = false; setStatus('putus'); try { o.saatGagal && o.saatGagal(kon, false); } catch (e2) {} jadwalUlang(); return; }
       ws = sok; sok.binaryType = 'arraybuffer';
       const pengurai = new Pengurai(MAKS_PAKET); let siap = false, connack = false, alasanTutup = null;
+      let rtt = null, connectPada = 0;   // v9.5 FC2: waktu tempuh rata-rata bergerak sambungan ini (CONNECT→CONNACK, lalu tiap PINGREQ→PINGRESP)
+      const ukurRtt = sampel => { if (!(sampel >= 0) || !isFinite(sampel)) return; rtt = rtt == null ? sampel : 0.75 * rtt + 0.25 * sampel; kon.rttMs = Math.round(rtt); };
       timerSambung = setTimeout(() => { if (!siap && ws === sok) { alasanTutup = 'waktu habis (' + Math.round(K.batasSambungMs / 1000) + ' dtk)'; try { sok.close(); } catch (e) {} selesai(sok); } }, K.batasSambungMs);
       let rantai = Promise.resolve();
-      sok.onopen = () => { if (ws === sok) kirimMentah(Kodek.connect({ clientId: o.idKlien, keepalive: K.keepalive, clean: true, will, username: pr.username == null ? undefined : pr.username, password: pr.password == null ? undefined : pr.password })); };
+      sok.onopen = () => { if (ws === sok) { connectPada = Date.now(); kirimMentah(Kodek.connect({ clientId: o.idKlien, keepalive: K.keepalive, clean: true, will, username: pr.username == null ? undefined : pr.username, password: pr.password == null ? undefined : pr.password })); } };
       sok.onmessage = ev => {
         if (ws !== sok) return; const d = ev.data;
         if (typeof d === 'string') return;
@@ -478,19 +505,29 @@
         if (ws !== sok) return;
         if (p.jenis === 'connack') {
           if (p.kode !== 0) { alasanTutup = 'ditolak server (CONNACK ' + p.kode + ')'; try { sok.close(); } catch (e) {} selesai(sok); return; }
-          connack = true; const f = o.filter().concat(Array.from(tambahan));
+          connack = true; if (connectPada) ukurRtt(Date.now() - connectPada); const f = o.filter().concat(Array.from(tambahan));
           if (f.length) { subMenunggu = ++subId > 65535 ? (subId = 1) : subId; kirimMentah(Kodek.subscribe({ id: subMenunggu, topik: f })); } else jadiSiap();
         } else if (p.jenis === 'suback') { if (connack && !siap && p.id === subMenunggu) jadiSiap(); }
-        else if (p.jenis === 'pingresp') menungguPing = false;
+        else if (p.jenis === 'pingresp') { if (menungguPing) ukurRtt(Date.now() - pingPada); menungguPing = false; clearTimeout(timerPong); timerPong = null; }
         else if (p.jenis === 'publish' && siap) { try { o.saatPublish(p, kon); } catch (e) {} }
       }
       function jadiSiap() {
         siap = true; clearTimeout(timerSambung); timerSambung = null; kon.gagalBeruntun = 0; menungguPing = false;
-        timerPing = setInterval(() => {
-          if (ws !== sok) return;
-          if (menungguPing) { alasanTutup = 'ping tidak dijawab'; try { sok.close(); } catch (e) {} selesai(sok); return; }
-          menungguPing = kirimMentah(Kodek.pingreq());
-        }, K.pingMs);
+        // v9.4 Kb: PINGREQ menunggu PINGRESP paling lama batasPing (lihat batasPingUntuk); kirimPing(true) = pemeriksa setelah menerbitkan.
+        // v9.5 FC1: satu-satunya pemutus adalah batas balasan (timerPong). Ping berkala yang jatuh saat ping lain masih menunggu
+        // (dalam batas) tidak dikirim dan TIDAK memutus: dulu tabrakan ping pemeriksa + ping berkala memutus sambungan yang sehat.
+        const kirimPing = pemeriksa => {
+          if (ws !== sok || !siap) return;
+          if (menungguPing) return;   // ping sebelumnya masih dalam batas; timerPong yang memutuskan
+          if (pemeriksa && Date.now() - pingPada < (K.jedaCekHidupMs == null ? 1500 : K.jedaCekHidupMs)) return;
+          menungguPing = kirimMentah(Kodek.pingreq()); pingPada = Date.now();
+          if (menungguPing) {
+            const batasPong = batasPingUntuk(K, rtt); kon.batasPingKini = batasPong;
+            clearTimeout(timerPong); timerPong = setTimeout(() => { timerPong = null; if (ws === sok && menungguPing) { alasanTutup = 'ping tidak dijawab'; try { sok.close(); } catch (e) {} selesai(sok); } }, batasPong);
+          }
+        };
+        cekHidupFn = () => kirimPing(true);
+        timerPing = setInterval(() => kirimPing(false), K.pingMs);
         kon.tersambungPada = Date.now();
         setStatus('tersambung');
         for (const [topik, x] of antre) kirimMentah(Kodek.publish({ topik, muatan: x.muatan, retain: x.retain }));
@@ -518,7 +555,7 @@
     };
     // QoS 0; saat tidak tersambung disimpan "terakhir per topik"
     kon.terbit = function (topik, muatan, retain) {
-      if (kon.status === 'tersambung' && kirimMentah(Kodek.publish({ topik, muatan, retain: !!retain }))) return true;
+      if (kon.status === 'tersambung' && kirimMentah(Kodek.publish({ topik, muatan, retain: !!retain }))) { if (cekHidupFn) cekHidupFn(); return true; }
       if (!berhenti) { antre.delete(topik); antre.set(topik, { muatan, retain: !!retain }); }
       return false;
     };
@@ -530,6 +567,11 @@
     kon.pindah = function () { const s = ws; if (s) { kirimMentah(Kodek.disconnect()); try { s.close(); } catch (e) {} } };
     kon.putuskan = function () { const s = ws; if (s) { try { s.close(); } catch (e) {} } };  // uji/pemulihan: tutup tanpa DISCONNECT (last will berlaku)
     kon.antrean = () => antre.size;
+    // v9.4 Kb: sambung sekarang (mis. setelah lomba jalur memilih relai); tanpa efek bila sedang tersambung/menyambung atau berhenti
+    kon.adaSoket = () => !!ws;
+    kon.segera = function () { if (berhenti || ws || sedang) return; clearTimeout(timerUlang); timerUlang = null; sambung(); };
+    // v9.4 Kb: periksa sekarang apakah sambungan masih hidup (PINGREQ; tanpa PINGRESP dalam batasPingMs → putus)
+    kon.cekHidup = function () { if (cekHidupFn) cekHidupFn(); };
     return kon;
   }
 
@@ -566,11 +608,22 @@
     api.on = function (nama, fn) { if (typeof fn !== 'function') return () => {}; (pendengar[nama] = pendengar[nama] || []).push(fn); return () => api.off(nama, fn); };
     api.off = function (nama, fn) { const a = pendengar[nama]; if (!a) return; const i = a.indexOf(fn); if (i >= 0) a.splice(i, 1); };
 
+    // v9.4 Kb3: halaman tidak aman (http biasa selain localhost, atau berkas file://) dibedakan dari browser lama di halaman https,
+    // agar layar tidak menyuruh "buka lewat https" kepada orang yang sudah membuka website tim di browser lama.
+    function halamanTidakAman(loc) {
+      if (!env.lokasi && root.isSecureContext === false) return true;
+      if (!loc) return false;
+      const pr = String(loc.protocol || String(loc.origin || '').split('//')[0] || '').toLowerCase(); const host = String(loc.hostname || '');
+      return pr === 'file:' || (pr === 'http:' && !/^(localhost|127\.0\.0\.1|\[::1\])$/i.test(host));
+    }
+    const ALASAN_LAMA = 'Browser ini belum mendukung room tim (fitur bawaan untuk mengunci isi room tidak ada). Perbarui browser, atau buka tautan room di Chrome atau Safari versi terbaru.';
     function cekTersedia() {
       const cr = CR();
-      if (!TE || !TD) return { tersedia: false, alasan: 'Browser ini terlalu lama untuk room tim (TextEncoder tidak ada).' };
-      if (!cr || !cr.subtle || typeof cr.subtle.importKey !== 'function' || typeof cr.getRandomValues !== 'function') return { tersedia: false, alasan: 'Room tim memerlukan halaman aman (alamat https://). Halaman ini dibuka lewat http biasa atau browsernya terlalu lama, jadi room tidak tersedia di sini.' };
-      if (typeof WSk() !== 'function') return { tersedia: false, alasan: 'Browser ini tidak mendukung WebSocket, jadi room tim tidak tersedia.' };
+      if (!TE || !TD) return { tersedia: false, alasan: ALASAN_LAMA };
+      if (!cr || !cr.subtle || typeof cr.subtle.importKey !== 'function' || typeof cr.getRandomValues !== 'function') {
+        return { tersedia: false, alasan: halamanTidakAman(lokasi()) ? 'Room tim memerlukan halaman aman (alamat https://). Halaman ini dibuka lewat http biasa atau dari berkas, jadi room tidak tersedia di sini. Buka website tim.' : ALASAN_LAMA };
+      }
+      if (typeof WSk() !== 'function') return { tersedia: false, alasan: 'Browser ini belum mendukung room tim (WebSocket tidak ada). Perbarui browser, atau buka tautan room di Chrome atau Safari versi terbaru.' };
       const loc = lokasi(); const host = loc && typeof loc.hostname === 'string' ? loc.hostname : '';
       if (/(^|\.)claude\.ai$|claudeusercontent\.com$/i.test(host)) return { tersedia: false, alasan: 'Room tim tidak tersedia di dalam claude.ai: halaman Artifact tidak boleh membuka koneksi keluar. Buka website tim (GitHub Pages) untuk memakai room.' };
       return { tersedia: true, alasan: null };
@@ -601,6 +654,13 @@
         hadirBoleh: o.peran === 'tuan',   // anggota: dokumen hadir baru terbit setelah state (bukan nisan) terlihat di jaringan
         jalur: null,             // entri relai tempat anggota terakhir menerima state yang sah
         kosongBeruntun: 0, timerKosong: null, pindahSegera: false,
+        // v9.4 Kb: lomba jalur anggota
+        lomba: null,             // lomba yang sedang berjalan { alasan, henti() }
+        tahan: false,            // sambungan utama menunggu keputusan lomba (tidak menyambung sendiri)
+        segeraSambung: false,    // sambungan utama dipindah oleh lomba: sambung lagi tanpa jeda dan tanpa lomba baru
+        lombaGagal: 0, timerLomba: null, timerCadangan: null, lombaPada: 0, lombaTuanPada: 0,
+        // v9.5 FC3: kabar segar pemimpin di sambungan utama anggota
+        kabarTuanPada: 0, hadirTuanPada: 0, kabarTuanTok: null, jarakTuan: [], timerBisu: null, lombaBisuPada: 0, jedaBisu: 0,
       };
     }
     const salin = x => (x == null ? x : JSON.parse(JSON.stringify(x)));
@@ -639,8 +699,16 @@
         saatPublish: (p, k) => { r.rantaiMasuk = r.rantaiMasuk.then(() => terimaPublish(r, k, p)).catch(() => {}); },
         saatStatus: k => { if (r !== rt) return; if (k.status === 'tersambung') { if (typeof url === 'function') r.putaran = 0; saatTersambung(k); } hitungSemuaGagal(); pancarStatus(); },
         // anggota: percobaan gagal → relai berikutnya; sambungan yang putus setelah tersambung → coba relai yang sama dulu
-        saatGagal: (k, pernah) => { if (r !== rt || typeof url !== 'function') return; if (!pernah) { r.idxRelai = (r.idxRelai + 1) % daftarRelai().length; if (r.idxRelai === 0) r.putaran++; } },
+        // v9.4 Kb: dengan KONFIG.lombaJalur, setiap putus/gagal → lomba ke semua jalur; sambungan utama ditahan sampai lomba memilih
+        saatGagal: (k, pernah) => {
+          if (r !== rt || typeof url !== 'function') return;
+          if (r.segeraSambung) return;   // dipindah oleh lomba: jedaKhusus menyambung lagi tanpa jeda
+          if (lombaAktif(r)) { r.tahan = true; mulaiLomba(r, 'putus'); return; }
+          if (!pernah) { r.idxRelai = (r.idxRelai + 1) % daftarRelai().length; if (r.idxRelai === 0) r.putaran++; }
+        },
         jedaKhusus: typeof url === 'function' ? (k => {
+          if (r.segeraSambung) { r.segeraSambung = false; return 0; }
+          if (r.tahan) return Infinity;
           if (r.pindahSegera) { r.pindahSegera = false; return api.KONFIG.jedaRelaiBerikut; }   // pindah dari jalur tanpa state
           if (k.terakhirPernah) return null;                                   // jeda bertahap biasa (1 dtk)
           if (r.idxRelai !== 0) return api.KONFIG.jedaRelaiBerikut;            // masih dalam satu putaran
@@ -652,6 +720,7 @@
     function aturKoneksi() {
       if (!rt) return; const r = rt;
       if (r.peran === 'tuan') {
+        hentiLomba(r); r.tahan = false; r.segeraSambung = false; clearTimeout(r.timerLomba); clearTimeout(r.timerCadangan);
         const urls = daftarRelai(); const ada = new Map(r.koneksi.map(k => [k.urlTetap, k]));
         const baru = [];
         urls.forEach(u => { let k = ada.get(u); if (!k) { k = koneksiBaru(u); k.urlTetap = u; k.mulai(); } baru.push(k); ada.delete(u); });
@@ -665,6 +734,8 @@
           if (r.koneksi.length) r.idxRelai = i >= 0 ? i : 0;   // anggota baru: idxRelai dari pemilihan jalur / jalur tersimpan
           r.koneksi.forEach(k => k.henti());
           const k = koneksiBaru(() => daftarRelai()[r.idxRelai % daftarRelai().length]); r.koneksi = [k]; k.mulai();
+          // v9.4 Kb: jalur pertama belum memberi data room dalam lombaCadanganMs → lomba cadangan ke semua jalur
+          if (lombaAktif(r)) { clearTimeout(r.timerCadangan); r.timerCadangan = setTimeout(() => { r.timerCadangan = null; if (r === rt && r.peran === 'anggota' && !(k.status === 'tersambung' && k.terlihat.has('s'))) mulaiLomba(r, 'lambat'); }, api.KONFIG.lombaCadanganMs); }
         } else { r.koneksi.forEach(k => { if (k !== putar) k.henti(); }); r.koneksi = [putar]; }
       }
     }
@@ -686,10 +757,112 @@
       if (!masih()) return;
       const n = daftarRelai().length; if (n < 2) return;
       r.kosongBeruntun++;
+      // v9.4 Kb: lomba ke semua jalur (jeda bertahap bila lomba sebelumnya juga tidak menemukan data room)
+      if (lombaAktif(r)) {
+        const J = api.KONFIG.jedaSambung; const jeda = r.kosongBeruntun <= 1 ? 0 : J[Math.min(r.kosongBeruntun - 2, J.length - 1)];
+        clearTimeout(r.timerKosong); r.timerKosong = setTimeout(() => { if (masih()) mulaiLomba(r, 'kosong'); }, jeda);
+        return;
+      }
       const pindah = () => { if (!masih()) return; r.idxRelai = (r.idxRelai + 1) % n; r.pindahSegera = true; k.pindah(); };
       if (r.kosongBeruntun % n !== 0) { pindah(); return; }
       const J = api.KONFIG.jedaSambung; const jeda = J[Math.min(r.kosongBeruntun / n - 1, J.length - 1)];
       clearTimeout(r.timerKosong); r.timerKosong = setTimeout(pindah, jeda);
+    }
+    // ---------- v9.4 Kb: lomba jalur anggota ----------
+    // Anggota menyambung ke SATU jalur (sambungan utama, dengan pesan wasiat). Saat sambungan itu putus atau gagal, saat jalur pertama
+    // lambat memberi data room, saat jalur tidak berisi data room, atau saat pemimpin hilang dari jalur itu, anggota membuka sambungan
+    // baca singkat ke SEMUA jalur sekaligus (tanpa nama, tanpa kehadiran, tanpa wasiat; hanya 's' dan kehadiran pemimpin) lalu memakai
+    // jalur pemenang: state sah dengan urut ≥ state yang sudah dimiliki dan pemimpin online di sana → langsung menang; selain itu
+    // pemenang dipilih tungguRelaiLainMs setelah state pertama atau setelah semua jalur melapor: urut terbesar, lalu pemimpin online,
+    // lalu urutan daftar. Bentuk pesan tidak berubah; pemimpin dan anggota versi lama tidak melihat bedanya.
+    const lombaAktif = r => !!api.KONFIG.lombaJalur && r.peran === 'anggota' && daftarRelai().length > 1;
+    function hentiLomba(r) { const l = r && r.lomba; if (!l) return; r.lomba = null; l.henti(); }
+    function mulaiLomba(r, alasan) {
+      if (r !== rt || r.lomba || !r.awalan || !r.kunci) return;
+      clearTimeout(r.timerLomba); r.timerLomba = null;
+      const K = api.KONFIG; const urls = daftarRelai(); const awalan = r.awalan; const kr = r.kripto; const kunci = r.kunci;
+      const minUrut = r.state && !r.state.ditutup ? r.state.urut : -1;
+      const tuanNama = r.state && validNama(r.state.tuan) ? r.state.tuan : null;
+      const info = new Map(urls.map(u => [u, { state: null, tuan: null, lapor: false, tersambung: false }]));
+      // v9.5 FC3: lomba karena pemimpin membisu: kabar hadir tersimpan pemimpin dianggap online hanya bila lebih muda dari batas bisu,
+      // dan bila tidak ada jalur yang lebih baik, anggota tetap di jalurnya (tidak berpindah hanya karena urutan daftar)
+      const basiTuan = alasan === 'bisu' ? batasBisuTuan(r) : K.hadirBasiMs;
+      const entriKini = r.koneksi[0] ? r.koneksi[0].entri : null;
+      const kons = []; let selesai = false, tAkhir = null, tBatas = null;
+      const bersih = () => { clearTimeout(tBatas); clearTimeout(tAkhir); kons.forEach(x => { try { x.henti(); } catch (e) {} }); };
+      const l = { alasan, info, henti: () => { if (selesai) return; selesai = true; bersih(); } };
+      r.lomba = l; r.lombaPada = now();
+      function putuskan(pilih) {
+        if (selesai) return; selesai = true; bersih(); if (r.lomba === l) r.lomba = null;
+        if (r !== rt || r.peran !== 'anggota') return;
+        let u = pilih || null;
+        if (!u) {
+          let skorTerbaik = null;
+          const urutan = alasan === 'bisu' && urls.indexOf(entriKini) >= 0 ? [entriKini].concat(urls.filter(x => x !== entriKini)) : urls;
+          urutan.forEach(x => { const y = info.get(x); if (!y.state) return; const sk = [y.state.urut, y.tuan === true ? 2 : y.tuan === null && alasan !== 'bisu' ? 1 : 0];
+            if (!skorTerbaik || sk[0] > skorTerbaik[0] || (sk[0] === skorTerbaik[0] && sk[1] > skorTerbaik[1])) { skorTerbaik = sk; u = x; } });
+          if (!u) { const kini = r.koneksi[0] ? r.koneksi[0].entri : null; u = kini && info.get(kini) && info.get(kini).tersambung ? kini : urls.find(x => info.get(x).tersambung) || null; }
+        }
+        const k = r.koneksi[0];
+        if (!u) {
+          // tidak ada jalur yang terjangkau: coba lagi dengan jeda bertahap (sambungan utama tetap ditahan)
+          r.lombaGagal++; r.putaran = Math.max(r.putaran, 1); hitungSemuaGagal(); pancarStatus();
+          if (r.tahan) { const J = K.jedaSambung; const jeda = Math.round(J[Math.min(r.lombaGagal - 1, J.length - 1)] * (1 + Math.random() * K.jitter));
+            r.timerLomba = setTimeout(() => { r.timerLomba = null; if (r === rt && r.tahan) mulaiLomba(r, 'putus'); }, jeda); }
+          return;
+        }
+        const idx = urls.indexOf(u);
+        if (!k) return;
+        if (r.tahan) { r.tahan = false; r.idxRelai = idx; k.segera(); return; }
+        if (k.entri === u && (k.status === 'tersambung' || k.status === 'menyambung')) return;   // sudah di jalur pemenang
+        r.idxRelai = idx;
+        if (k.adaSoket()) { r.segeraSambung = true; k.pindah(); } else k.segera();
+      }
+      function nilai() {
+        if (selesai) return;
+        for (const u of urls) {
+          const x = info.get(u); if (!x.state) continue;
+          if (x.state.ditutup && x.state.urut > minUrut) { putuskan(u); return; }   // room ditutup: ke jalur itu agar penutupan diterima
+          if (!x.state.ditutup && x.state.urut >= minUrut && x.tuan === true) { putuskan(u); return; }
+        }
+        // v9.5 FC3: lomba 'bisu': kabar pemimpin yang belum terbaca (masih didekripsi) ditunggu sampai tAkhir
+        const semua = Array.from(info.values());
+        if (semua.every(x => x.lapor) && !(alasan === 'bisu' && tuanNama && semua.some(x => x.state && x.tuan === null))) putuskan();
+      }
+      tBatas = setTimeout(() => putuskan(), K.batasSambungMs + K.tungguStateMs);
+      const topikS = awalan + '/s';
+      (tuanNama ? slugNama(tuanNama) : Promise.resolve('')).then(slug => {
+        if (selesai) return;
+        const topikH = slug ? awalan + '/h/' + slug : null;
+        urls.forEach(u => {
+          const x = info.get(u);
+          const kon = Koneksi({
+            url: u, WS: WSk(), idKlien: idKlien(), konfig: K, filter: () => (topikH ? [topikS, topikH] : [topikS]), buatWill: null,
+            saatPublish: p => {
+              if (selesai || !p.muatan || !p.muatan.length || p.muatan.length > MAKS_PAKET) return;
+              if (p.topik === topikS) {
+                kr.dekripsi(kunci, topikS, p.muatan).then(t => {
+                  if (selesai || t == null) return; let o; try { o = parseAman(t); } catch (e) { return; }
+                  const v = validState(o); if (!v) return;
+                  if (!x.state || v.urut > x.state.urut) x.state = v;
+                  x.lapor = true; if (!tAkhir) tAkhir = setTimeout(() => putuskan(), K.tungguRelaiLainMs);
+                  nilai();
+                }, () => {});
+              } else if (topikH && p.topik === topikH) {
+                kr.dekripsi(kunci, topikH, p.muatan).then(t => {
+                  if (selesai || t == null) return; let o; try { o = parseAman(t); } catch (e) { return; }
+                  const v = validHadir(o); if (!v || kunciNama(v.nama) !== kunciNama(tuanNama)) return;
+                  x.tuan = p.retain ? !!(v.online && Math.abs(now() + api.selisihJam() - v.t) < basiTuan) : v.online;
+                  nilai();
+                }, () => {});
+              }
+            },
+            saatStatus: kk => { if (kk.status === 'tersambung' && !x.tersambung) { x.tersambung = true; setTimeout(() => { if (!x.lapor) { x.lapor = true; nilai(); } }, K.tungguStateMs); } },
+            saatGagal: (kk, pernah) => { if (!pernah) { x.lapor = true; try { kk.henti(false); } catch (e) {} nilai(); } },
+          });
+          kons.push(kon); kon.mulai();
+        });
+      }, () => putuskan());
     }
     // calon tuan: tidak ada state lebih baru selama masa tunggu → benar-benar tuan; terbitkan ulang (versiApp diperbarui bila beda)
     function akhiriCalon(r) {
@@ -712,14 +885,53 @@
         if (sesi && validRekaman(sesi)) terbit('r/' + e.id, amplop({ sesi: validRekaman(sesi) }), true, k);
       });
     }
+    // v9.5 FC3: detak penuh tiap detakMs (semua perangkat, seperti dulu); pemimpin juga mengirim kabar hadir singkat tiap detakTuanMs
+    // ke semua jalur (bentuk pesan sama, versi lama menerimanya sebagai detak biasa). Anggota memeriksa kabar pemimpin di jalurnya.
     function mulaiDetak() {
-      const r = rt; clearInterval(r.timerDetak);
-      r.timerDetak = setInterval(() => { if (r === rt) { kirimHadir(true); pancarStatus(); } }, api.KONFIG.detakMs);
+      const r = rt; clearInterval(r.timerDetak); clearInterval(r.timerBisu);
+      const K = api.KONFIG; const dt = Math.max(50, Math.min(Number(K.detakTuanMs) || K.detakMs, K.detakMs)); let penuhPada = now();
+      r.timerDetak = setInterval(() => {
+        if (r !== rt) return;
+        if (now() - penuhPada >= K.detakMs - dt / 2) { penuhPada = now(); kirimHadir(true); pancarStatus(); }
+        else if (r.peran === 'tuan') kirimHadir(true, null, true);
+      }, dt);
+      const minBisu = K.bisuTuanMinMs == null ? 12000 : Number(K.bisuTuanMinMs) || 12000;
+      r.timerBisu = setInterval(() => cekTuanBisu(r), Math.max(50, Math.min(1000, minBisu / 4)));
     }
-    function kirimHadir(online, hanyaKon) {
+    // ---------- v9.5 FC3: anggota mendeteksi pemimpin yang membisu di jalurnya ----------
+    // Kasus: laptop pemimpin kehilangan jalur ini secara diam (relai baru menerbitkan pesan wasiatnya setelah ±45 dtk). Sambungan anggota
+    // sendiri hidup, tetapi kabar pemimpin berhenti. Pemimpin baru mengirim kabar tiap detakTuanMs; pemimpin versi lama tiap detakMs.
+    // Batas = maks(bisuTuanMinMs, bisuTuanKali × jarak kabar hadir teramati [≤ detakMs; sebelum teramati = detakMs]).
+    function batasBisuTuan(r) {
+      const K = api.KONFIG; const minBisu = K.bisuTuanMinMs == null ? 12000 : Number(K.bisuTuanMinMs) || 12000;
+      const jarak = r.jarakTuan.length ? Math.min(Math.max.apply(null, r.jarakTuan), K.detakMs) : K.detakMs;
+      return Math.max(minBisu, (Number(K.bisuTuanKali) || 2.2) * jarak);
+    }
+    function catatKabarTuan(r, kon, hadir) {
+      const t = now(); const tok = kon.tersambungPada || 0;
+      if (r.kabarTuanTok !== tok) { r.kabarTuanTok = tok; r.hadirTuanPada = 0; }   // jarak hanya diukur di dalam satu sambungan
+      if (hadir) {
+        if (r.hadirTuanPada) { const j = t - r.hadirTuanPada; if (j > 50) { r.jarakTuan.push(j); if (r.jarakTuan.length > 4) r.jarakTuan.shift(); } }
+        r.hadirTuanPada = t;
+      }
+      r.kabarTuanPada = t; r.jedaBisu = 0;
+    }
+    function cekTuanBisu(r) {
+      if (r !== rt || r.peran !== 'anggota' || !lombaAktif(r) || r.lomba || r.tahan || !r.state || r.state.ditutup || !validNama(r.state.tuan)) return;
+      const k = r.koneksi[0]; if (!k || k.status !== 'tersambung' || !k.terlihat.has('s')) return;
+      const h = r.hadir.get(kunciNama(r.state.tuan)); if (!h || !h.online) return;   // pemimpin sudah keluar: ditangani lomba 'tuan'
+      const sejak = Math.max(r.kabarTuanPada || 0, k.tersambungPada || 0);
+      if (now() - sejak <= batasBisuTuan(r)) return;
+      const K = api.KONFIG; const jeda = r.jedaBisu || K.jedaLombaTuanMs;
+      if (now() - r.lombaBisuPada < jeda) return;
+      r.lombaBisuPada = now(); r.jedaBisu = Math.min(jeda * 2, Math.max(jeda, Number(K.jedaLombaBisuMaksMs) || 120000));
+      mulaiLomba(r, 'bisu');
+    }
+    function kirimHadir(online, hanyaKon, singkat) {
       if (!rt) return; const r = rt; if (!r.hadirBoleh && r.peran !== 'tuan') return Promise.resolve();
-      const obj = amplop({ online, peran: r.peran, siap: online ? r.siap || null : null });
-      catatHadir(validHadir(obj), false);
+      // v9.4 (Ka3, opsional): versiApp = versi aplikasi perangkat ini, supaya pemimpin bisa menandai "versi lama". Versi lama mengabaikannya.
+      const obj = amplop({ online, peran: r.peran, siap: online ? r.siap || null : null, versiApp: versiKini() });
+      if (!singkat) catatHadir(validHadir(obj), false);   // v9.5 FC3: kabar singkat pemimpin tidak memicu tampilan ulang di laptop sendiri
       return slugNama(r.nama).then(slug => terbit('h/' + slug, obj, true, hanyaKon));
     }
 
@@ -742,8 +954,13 @@
       else if (/^r\/[A-Za-z0-9][A-Za-z0-9._:-]{0,59}$/.test(sufiks)) { v = validSesi(o); jenis = 'r'; if (v && v.sesi.id !== sufiks.slice(2)) v = null; }
       if (!v || r !== rt) return;
       kon.terlihat.set(sufiks, kunciDup);
+      // v9.5 FC3: kabar segar (bukan tersimpan) dari pemimpin di sambungan utama anggota
+      if (!p.retain && r.peran === 'anggota' && r.state && kunciNama(o.nama) === kunciNama(r.state.tuan) && o.d !== r.d && r.koneksi.indexOf(kon) >= 0 && !(jenis === 'h' && !v.online)) catatKabarTuan(r, kon, jenis === 'h');
       if (jenis === 's' && r.peran === 'anggota' && !v.ditutup) {
         r.kosongBeruntun = 0; clearTimeout(r.timerKosong);
+        // v9.4 Kb: sambungan utama sudah memberi data room: lomba cadangan/kosong tidak diperlukan lagi
+        clearTimeout(r.timerCadangan); r.timerCadangan = null; r.lombaGagal = 0;
+        if (r.lomba && (r.lomba.alasan === 'lambat' || r.lomba.alasan === 'kosong') && r.koneksi.indexOf(kon) >= 0) hentiLomba(r);
         if (kon.entri && r.jalur !== kon.entri) { r.jalur = kon.entri; perbaruiSimpan({ relai: kon.entri }); }
         if (!r.hadirBoleh) { r.hadirBoleh = true; kirimHadir(true); }
       }
@@ -755,7 +972,14 @@
       if (jenis === 's') terimaState(v, segar);
       else if (jenis === 'i') terimaIndeks(v);
       else if (jenis === 'a') terimaJawaban(v);
-      else if (jenis === 'h') { catatHadir(v, segar); }
+      else if (jenis === 'h') {
+        catatHadir(v, segar);
+        // v9.4 Kb: kabar langsung "pemimpin offline" di jalur anggota (mis. pesan wasiat saat laptop pemimpin kehilangan jalur ini) →
+        // lomba mencari jalur tempat pemimpin masih online. Paling sering sekali per jedaLombaTuanMs.
+        if (segar && !v.online && r.peran === 'anggota' && r.state && kunciNama(v.nama) === kunciNama(r.state.tuan) && r.koneksi.indexOf(kon) >= 0 && lombaAktif(r) && now() - r.lombaTuanPada > api.KONFIG.jedaLombaTuanMs) {
+          r.lombaTuanPada = now(); mulaiLomba(r, 'tuan');
+        }
+      }
       else if (jenis === 'r') terimaSesi(v);
     }
     function sampelJam(o, segar) {
@@ -923,7 +1147,8 @@
     }
     function hentiRt() {
       const r = rt; if (!r) return; r.hidup = false; rt = null;
-      clearInterval(r.timerDetak); clearTimeout(r.timerJawab); clearTimeout(r.timerBersih); clearTimeout(r.timerCalon); clearTimeout(r.timerKosong); clearTimeout(r.timerBalasJam);
+      clearInterval(r.timerDetak); clearInterval(r.timerBisu); clearTimeout(r.timerJawab); clearTimeout(r.timerBersih); clearTimeout(r.timerCalon); clearTimeout(r.timerKosong); clearTimeout(r.timerBalasJam);
+      clearTimeout(r.timerLomba); clearTimeout(r.timerCadangan); hentiLomba(r);
       r.koneksi.forEach(k => k.henti()); r.koneksi = [];
       r.menungguSesi.forEach(ws => ws.forEach(fn => fn(null))); r.menungguSesi.clear();
     }
@@ -1028,6 +1253,8 @@
       return out;
     };
     api.riwayat = () => (rt && rt.indeks ? salin(rt.indeks.daftar) : []);
+    // v9.5 FC5: sudah ada sampel jam segar dari pemimpin? (anggota; pemimpin selalu true). Sebelum itu jam HP bisa meleset.
+    api.adaSampelJam = function () { return !!(rt && (rt.peran === 'tuan' || rt.jam.length)); };
     api.selisihJam = function () {
       if (!rt || rt.peran === 'tuan' || !rt.jam.length) return 0;
       return Math.max.apply(null, rt.jam);   // sampel = jamTuan − jamLokal − latensi; maksimum = latensi terkecil
@@ -1037,6 +1264,13 @@
     api.hadir = function () {
       if (!rt) return {}; const out = {}; const onl = new Set(onlineKini().map(kunciNama));
       rt.hadir.forEach((h, k) => { out[h.nama] = { nama: h.nama, online: onl.has(k), peran: h.peran, t: h.t, siap: siapBerlaku(h.siap), siapId: h.siap || null, ganda: gandaNama(k) }; });
+      return out;
+    };
+    // v9.4 (Ka3, tambahan diagnosa): { nama: versiApp | null } dari kehadiran terakhir tiap nama. null = perangkat tidak mengirim versi
+    // (versi sebelum 9.4). Terpisah dari hadir() supaya bentuk entri hadir() tidak berubah.
+    api.versiHadir = function () {
+      if (!rt) return {}; const out = {};
+      rt.hadir.forEach(h => { out[h.nama] = h.versiApp || null; });
       return out;
     };
     // { soalId: nama } penjelas yang diumumkan pemimpin lewat bukaKunci untuk aktivitas itu (bawaan: aktivitas berjalan)
@@ -1411,6 +1645,21 @@
       })));
     };
 
+    // v9.4 Kb: jaringan kembali / halaman terlihat lagi (HP dibuka) → periksa sambungan sekarang; anggota yang sedang menunggu jeda
+    // lomba langsung berlomba lagi. Hanya instans bawaan peramban (env.pantauJaringan !== false).
+    api.periksaSekarang = function () {
+      const r = rt; if (!r) return;
+      r.koneksi.forEach(k => { try { k.cekHidup(); } catch (e) {} });
+      if (r.peran === 'anggota' && r.tahan && !r.lomba) { clearTimeout(r.timerLomba); r.timerLomba = null; mulaiLomba(r, 'putus'); }
+    };
+    if (env.pantauJaringan !== false && !env.WebSocket && typeof root.addEventListener === 'function') {
+      try {
+        root.addEventListener('online', () => api.periksaSekarang());
+        const doc = root.document;
+        if (doc && typeof doc.addEventListener === 'function') doc.addEventListener('visibilitychange', () => { if (doc.visibilityState === 'visible') api.periksaSekarang(); });
+      } catch (e) {}
+    }
+
     // ---------- untuk uji ----------
     api._rt = () => rt;
     api._putuskanSemua = () => { if (rt) rt.koneksi.forEach(k => k.putuskan()); };
@@ -1429,4 +1678,5 @@
   inti._kripto = { Kripto, kodeBaru, normalKode, formatKode, ALFABET, PANJANG_KODE, GARAM };
   inti._protokol = Protokol;
   inti._Koneksi = Koneksi;
+  inti._batasPingUntuk = batasPingUntuk;
 })(typeof window !== 'undefined' ? window : globalThis);

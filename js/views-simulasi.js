@@ -142,6 +142,43 @@
     return L.ujianTim.buatJawaban({ ujianId: r.tim.ujianId, nama: r.tim.nama, jawaban: ids.map(id => (r.jawaban || {})[id] || '-'), ragu: ids.map(id => (r.ragu || []).includes(id)), detik });
   }
   const teksKirimWA = r => 'Jawaban ' + (r.tim.nama || 'saya') + ' · ' + (r.tim.judul || 'Ujian tim') + '\n' + tokenDari(r);
+  // v9.4 H3: kabar "hasil sudah tersedia" di kartu jawaban terkumpul. Sebelumnya kartu ini diam: anggota yang menunggu di layar
+  // ini (atau HP-nya terputus saat pemimpin menilai) baru melihat hasil setelah membuka room sendiri. Sekarang kartu mendengarkan
+  // room (rekaman hasil baru, indeks riwayat) dan memeriksa ulang berkala, lalu menampilkan "Lihat hasil tim" tanpa muat ulang.
+  function slotHasilTim(r, sesiAda) {
+    const ujianId = r.tim.ujianId;
+    const tombol = s => h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary', 'data-k': 'lihat-hasil-tim', onclick: () => UKP.go('tim', { anggota: 'sesi:' + s.id }) }, 'Lihat hasil tim'));
+    if (sesiAda) return h('div', { class: 'stack-sm', 'data-k': 'kirim-hasil' }, h('p', { class: 'small' }, 'Hasil ujian tim sudah tersedia.'), tombol(sesiAda));
+    const slot = h('div', { class: 'stack-sm', 'data-k': 'kirim-hasil', 'aria-live': 'polite' }, h('p', { class: 'small' }, 'Pemimpin menilai setelah semua mengumpulkan. Hasil ujian tim muncul di sini dan di Riwayat room.'));
+    const R = UKP.ruang; if (!R || typeof R.on !== 'function' || typeof R.info !== 'function') return slot;
+    const lepas = []; let selesai = false; let terpasang = false; const dicoba = new Map();
+    const henti = () => { selesai = true; lepas.forEach(f => { try { f(); } catch (e) {} }); lepas.length = 0; clearInterval(jam); };
+    const lokal = () => { try { return (UKP.store.get().sesiBersama || []).slice().reverse().find(x => x && x.ujianId === ujianId) || null; } catch (e) { return null; } };
+    function temu(s) {
+      if (selesai || !s || s.ujianId !== ujianId || typeof s.id !== 'string') return;
+      if (terpasang && !slot.isConnected) { henti(); return; }
+      henti();
+      slot.replaceChildren(h('p', { class: 'small' }, h('strong', null, 'Hasil ujian tim sudah tersedia.'), ' Semua soal bisa dibuka, yang benar juga.'), tombol(s));
+      try { UKP.umumkan('Hasil ujian tim sudah tersedia.'); } catch (e) {}
+    }
+    function cari() {
+      if (selesai) return;
+      if (terpasang && !slot.isConnected) { henti(); return; }
+      const ada = lokal(); if (ada) { temu(ada); return; }
+      let inf = null; try { inf = R.info(); } catch (e) { inf = null; } if (!inf || typeof R.riwayat !== 'function' || typeof R.mintaSesi !== 'function') return;
+      let riw = []; try { riw = R.riwayat() || []; } catch (e) { riw = []; }
+      const kini = Date.now();
+      riw.filter(e => e && e.mode === 'ujian' && typeof e.id === 'string' && Number(e.t) >= (Number(r.mulai) || 0) - 6 * 3600000).slice(0, 3).forEach(e => {
+        if (kini - (dicoba.get(e.id) || 0) < 20000) return; dicoba.set(e.id, kini);
+        Promise.resolve().then(() => R.mintaSesi(e.id)).then(s => { if (s) temu(s); }).catch(() => {});
+      });
+    }
+    ['sesi'].forEach(nm => { try { lepas.push(R.on(nm, s => temu(s))); } catch (e) {} });
+    ['indeks', 'status'].forEach(nm => { try { lepas.push(R.on(nm, () => setTimeout(cari, 300))); } catch (e) {} });
+    const jam = setInterval(cari, 8000);
+    setTimeout(() => { terpasang = true; cari(); }, 600);
+    return slot;
+  }
   function kartuKirimTim(r) {
     const u = L.ujianTim && L.ujianTim.aktif ? L.ujianTim.aktif() : null;
     const diRuang = u && u.id === r.tim.ujianId;
@@ -155,8 +192,7 @@
       const sesiTim = (UKP.store.get().sesiBersama || []).slice().reverse().find(x => x && x.ujianId === r.tim.ujianId) || null;
       return h('section', { class: 'card sorot kirim-tim', 'data-k': 'kirim-room', 'aria-labelledby': 'kirim-tim-j' },
         h('div', { class: 'card-head' }, h('div', { class: 'card-head-teks' }, h('h2', { class: 'card-title', id: 'kirim-tim-j' }, 'Jawaban Anda sudah terkumpul di room ✓'), h('p', { class: 'card-meta' }, r.tim.judul + ' · atas nama ' + r.tim.nama))),
-        h('p', { class: 'small' }, sesiTim ? 'Hasil ujian tim sudah tersedia.' : 'Pemimpin menilai setelah semua mengumpulkan. Hasil ujian tim muncul di Riwayat room.'),
-        sesiTim ? h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary', onclick: () => UKP.go('tim', { anggota: 'sesi:' + sesiTim.id }) }, 'Lihat hasil tim')) : null,
+        slotHasilTim(r, sesiTim),
         h('details', { class: 'lipat kirim-cadangan' }, h('summary', null, 'Cadangan: kode jawaban'),
           h('div', { class: 'stack-sm' }, h('p', { class: 'small' }, 'Hanya bila pemimpin meminta. Kode jawaban Anda (satu baris):'),
             h('p', { class: 'token-jawaban mono', 'data-token': token }, token),
@@ -246,7 +282,7 @@
     function perbaruiRingkasTim() { const [m, n] = perkiraan(); timRingkas.textContent = n + ' soal · ' + m + ' mnt · ' + pesertaTim().length + ' orang'; }
     function ubahPeserta() {
       if (typeof UKP.c.aturBersama !== 'function') return;
-      UKP.dialog({ judul: 'Anggota ujian tim', isi: () => h('div', { class: 'stack-sm' }, h('p', { class: 'small muted' }, 'Tulis nama anggota tim Anda satu per satu. Bisa diubah nanti. Urutan daftar = urutan baris di papan.'), UKP.c.aturBersama({ onUbah: () => {} })),
+      UKP.dialog({ judul: 'Anggota ujian tim', isi: () => h('div', { class: 'stack-sm' }, h('p', { class: 'small muted' }, 'Tulis nama anggota tim Anda satu per satu. Bisa diubah nanti. Urutan daftar = urutan baris di papan.'), UKP.c.aturBersama({ tanpaTempo: true, onUbah: () => {} })),
         kaki: dlg => [h('button', { type: 'button', class: 'btn btn-primary', onclick: () => dlg.close('ok') }, 'Selesai')], onClose: () => gambarTim('.tim-ubah') });
     }
     function gambarTim(fokusSel) {
@@ -676,6 +712,11 @@
     sectKel.classList.add('hasil-kel'); { const b = sectKel.querySelector('.salin-kop'); if (b) b.style.marginLeft = 'auto'; }
     // ≥ 1280: skor | langkah dan per topik | per kelompok berdampingan (6 | 6; tanpa per topik 7 | 5) agar halaman hasil ≤ 1.300 px; < 1280 bertumpuk
     page.appendChild(h('div', { class: 'tata hasil-tata' + (adaTopik ? ' dua' : '') }, h('div', { class: 'kl-7' }, kartuSkor), h('div', { class: 'kl-5' }, sectLangkah), sectKel, sectTopik));
+    // v9.4 H4: ujian tim (lewat tautan, kode, atau room): semua soal yang dikerjakan, ditandai menurut jawaban sendiri; ketuk nomor →
+    // soal, jawaban Anda, kunci jawaban, pembahasan. Halaman ini hanya ada setelah jawaban dikirim.
+    if (r.tim && typeof UKP.c.semuaSoalSendiri === 'function') {
+      try { page.appendChild(UKP.c.semuaSoalSendiri(r.soalIds.map(id => ({ id, o: r.jawaban[id] || '-', ragu: (r.ragu || []).includes(id) })), { judul: 'Semua soal ujian ini' })); } catch (e) { console.error(e); }
+    }
     // tren: format, kelompok, dan tingkat yang sama
     const tren = r.format === 'tim' ? [] : s.simulasi.filter(x => x.selesai && x.format === r.format && x.tingkat === r.tingkat && (r.format === 'UKP' || (x.kode || '') === (r.kode || '')) && (x.bagian || null) === (r.bagian || null) && !x.terbagi).slice(-6);
     if (tren.length > 1) page.appendChild(h('section', { class: 'card', 'aria-label': 'Tren skor' }, UKP.viz && UKP.viz.garis ? UKP.viz.garis({ judul: 'Tren terhadap batas 60', sub: tren.length + ' simulasi ' + labelSim(r), titik: tren.map(x => ({ x: UKP.fmt.tanggal(U.iso(new Date(x.selesai))).replace(/ \d{4}$/, ''), y: x.skor })), acuan: 60, acuanLabel: 'batas lulus', labelSeri: 'Skor', kolomLabel: 'Tanggal', kolomNilai: 'Skor' })

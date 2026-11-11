@@ -1137,7 +1137,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-049", topik: "A5.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A5-049",
+      topik: "A5.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       kutipan: "Pasal 9 ayat (2a) UU KUP (parafrase): pembayaran atau penyetoran pajak yang dilakukan setelah tanggal jatuh tempo dikenai sanksi administratif berupa bunga sebesar tarif bunga per bulan yang ditetapkan Menteri Keuangan, dihitung dari tanggal jatuh tempo sampai dengan tanggal pembayaran, paling lama 24 bulan, dan bagian dari bulan dihitung penuh 1 bulan.",
       stem: "Dua temuan pemeriksaan Oktober 2026: (1) PT Wahana, yang bukan pemungut, menerima 30 kuitansi bernilai di atas Rp5.000.000 sepanjang 2025 tanpa meterai; (2) Bank Wahana, pemungut bea meterai atas cek dan bilyet giro, menyetor bea meterai Masa Agustus 2026 sebesar Rp2.500.000 pada 21 Oktober 2026, padahal jatuh temponya 15 September 2026; SPT Masa disampaikan tepat waktu. Anggap tarif bunga Pasal 9 ayat (2a) yang berlaku 1,01% per bulan. Berdasarkan kutipan tersebut, sanksi administratif yang dikenakan kepada PT Wahana dan Bank Wahana masing-masing adalah ...",
       kataKualifikasi: [],
@@ -1146,11 +1150,20 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-hitung" },
       pembahasan: {
         inti: "Pihak terutang yang tidak melunasi dikenai sanksi 100% per dokumen (Pasal 18; bila ditemukan pemeriksaan, ditetapkan dengan SKP menurut Pasal 19 UU 10/2020); pemungut yang menyetor penuh tetapi terlambat ditagih dengan STP berupa bunga Pasal 9 ayat (2a) UU KUP (Pasal 11 UU 10/2020), bagian bulan dihitung penuh.",
-        jejakHitung: [ ["PT Wahana: 30 × 100% × Rp10.000", "Rp300.000"], ["Bank Wahana: 15 September → 15 Oktober 2026", "1 bulan"], ["15 Oktober → 21 Oktober 2026 (bagian bulan)", "1 bulan"], ["Bunga = 2.500.000 × 1,01% × 2", "Rp50.500"] ],
-        mengapaSalah: { A: "Sanksi 100% bagi pemungut hanya untuk bea meterai yang tidak dipungut atau tidak disetor; setoran yang terlambat ditagih bunga UU KUP", B: "Menjumlahkan pokok Rp300.000 ke dalam sanksi PT Wahana", D: "Menghitung bunga 1 bulan saja; 6 hari pada bulan kedua dihitung penuh" },
+        jejakHitung: [
+          ["PT Wahana: 30 × 100% × Rp10.000", "Rp300.000"],
+          ["Bank Wahana: 15 September → 15 Oktober 2026", "1 bulan"],
+          ["15 Oktober → 21 Oktober 2026 (bagian bulan)", "1 bulan"],
+          ["Bunga = 2.500.000 × 1,01% × 2", "Rp50.500"]
+        ],
+        mengapaSalah: {
+          A: "Sanksi 100% bagi pemungut hanya untuk bea meterai yang tidak dipungut atau tidak disetor; setoran yang terlambat ditagih bunga UU KUP",
+          B: "Menjumlahkan pokok Rp300.000 ke dalam sanksi PT Wahana",
+          D: "Menghitung bunga 1 bulan saja; 6 hari pada bulan kedua dihitung penuh"
+        },
         jebakan: "Dua rezim sanksi dalam satu soal: UU 10/2020 untuk pihak terutang, UU KUP untuk pemungut."
       },
-      dasarHukum: [ { pasal: "Pasal 11, Pasal 18, dan Pasal 19 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2021-10-29" } ],
+      dasarHukum: [{ pasal: "Pasal 11, Pasal 18, dan Pasal 19 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -1780,7 +1793,12 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-085", topik: "A5.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A5-07",
+      id: "A5-085",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-A5-07",
       stem: "Lanjutan data PT Kasir Awan Indonesia. Pemeriksaan pada Oktober 2026 atas Masa Juli 2026 (SPT Masa disampaikan tepat waktu) menemukan: (1) bea meterai atas 1.200 tanda terima bernilai lebih dari Rp5.000.000 telah dipungut dari pengguna tetapi tidak disetor; (2) bea meterai atas 300 tanda terima lain bernilai lebih dari Rp5.000.000 sama sekali tidak dipungut karena kesalahan sistem; (3) bea meterai atas 15.000 dokumen telah dipungut dan disetor penuh pada 28 Agustus 2026, padahal jatuh tempo efektifnya 18 Agustus 2026 (15–17 Agustus hari libur). Anggap tarif bunga Pasal 9 ayat (2a) UU KUP 1,01% per bulan. Total sanksi administratif, di luar pokok, yang dikenakan kepada PT Kasir Awan adalah ...",
       kataKualifikasi: ["di luar pokok"],
       opsi: { A: "Rp16.515.000", B: "Rp13.515.000", C: "Rp17.760.000", D: "Rp165.000.000" },
@@ -1788,11 +1806,23 @@ UKP.register({
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Pasal 11 membedakan: bea meterai yang tidak dipungut atau tidak disetor ditetapkan dengan SKP sebesar pokok + sanksi 100%, sedangkan setoran penuh yang terlambat ditagih STP berupa bunga Pasal 9 ayat (2a) UU KUP.",
-        jejakHitung: [ ["Dokumen tidak disetor + tidak dipungut", "1.200 + 300 = 1.500"], ["Pokok dalam SKP 1.500 × Rp10.000", "Rp15.000.000"], ["Sanksi 100% dalam SKP", "Rp15.000.000"], ["Setoran terlambat 15.000 × Rp10.000", "Rp150.000.000"], ["Lama terlambat 18–28 Agustus (bagian bulan = 1 bulan)", "1 bulan"], ["Bunga STP = 150.000.000 × 1,01% × 1", "Rp1.515.000"], ["Total sanksi", "Rp16.515.000"] ],
-        mengapaSalah: { B: "Tidak mengenakan sanksi atas 300 dokumen yang tidak dipungut; Pasal 11 mencakup bea meterai yang tidak dipungut maupun tidak disetor", C: "Memakai tarif bunga Pasal 13 ayat (2) 1,84%; keterlambatan setor memakai tarif Pasal 9 ayat (2a)", D: "Mengenakan sanksi 100% juga atas setoran yang lengkap tetapi terlambat; itu ditagih STP berupa bunga" },
+        jejakHitung: [
+          ["Dokumen tidak disetor + tidak dipungut", "1.200 + 300 = 1.500"],
+          ["Pokok dalam SKP 1.500 × Rp10.000", "Rp15.000.000"],
+          ["Sanksi 100% dalam SKP", "Rp15.000.000"],
+          ["Setoran terlambat 15.000 × Rp10.000", "Rp150.000.000"],
+          ["Lama terlambat 18–28 Agustus (bagian bulan = 1 bulan)", "1 bulan"],
+          ["Bunga STP = 150.000.000 × 1,01% × 1", "Rp1.515.000"],
+          ["Total sanksi", "Rp16.515.000"]
+        ],
+        mengapaSalah: {
+          B: "Tidak mengenakan sanksi atas 300 dokumen yang tidak dipungut; Pasal 11 mencakup bea meterai yang tidak dipungut maupun tidak disetor",
+          C: "Memakai tarif bunga Pasal 13 ayat (2) 1,84%; keterlambatan setor memakai tarif Pasal 9 ayat (2a)",
+          D: "Mengenakan sanksi 100% juga atas setoran yang lengkap tetapi terlambat; itu ditagih STP berupa bunga"
+        },
         jebakan: "Keterlambatan 10 hari tetap dihitung 1 bulan bunga; jatuh tempo efektif sudah bergeser karena hari libur."
       },
-      dasarHukum: [ { pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "KMK 47/MK/EF.2/2026 (tarif bunga Oktober 2026)", berlakuSejak: "2026-10-01" } ],
+      dasarHukum: [{ pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "KMK 47/MK/EF.2/2026 (tarif bunga Oktober 2026)", berlakuSejak: "2026-10-01" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -2026,7 +2056,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-099", topik: "A5.6", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 3,
+      id: "A5-099",
+      topik: "A5.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 3,
       stem: "Konsultan menyusun ringkasan rezim sanksi untuk PT Dana Lancar, yang berstatus pemungut bea meterai atas tanda terima pembayaran digital sekaligus sering menerima kuitansi kertas di atas Rp5.000.000 dari pemasoknya. Ringkasan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "Atas kuitansi pemasok yang diterima tanpa meterai, PT Dana Lancar membayar bea meterai ditambah sanksi 100% melalui pemeteraian kemudian; atas bea meterai yang dipungut tetapi tidak disetor, diterbitkan SKP ditambah sanksi 100%; atas setoran yang hanya terlambat, juga diterbitkan SKP ditambah sanksi 100%.", B: "Atas kuitansi pemasok yang diterima tanpa meterai, PT Dana Lancar membayar bea meterai ditambah sanksi 100% melalui pemeteraian kemudian; atas bea meterai yang dipungut tetapi tidak disetor, diterbitkan SKP ditambah sanksi 100%; atas setoran yang hanya terlambat, ditagih STP berupa bunga UU KUP.", C: "Atas kuitansi pemasok yang diterima tanpa meterai, PT Dana Lancar membayar bea meterai ditambah bunga 1,01% per bulan sejak saat terutang; atas bea meterai yang dipungut tetapi tidak disetor, diterbitkan SKP ditambah sanksi 100%; atas setoran yang hanya terlambat, ditagih STP berupa bunga UU KUP.", D: "Atas kuitansi pemasok yang diterima tanpa meterai, PT Dana Lancar membayar bea meterai ditambah sanksi 100% melalui pemeteraian kemudian; atas bea meterai yang dipungut tetapi tidak disetor, ditagih STP berupa bunga UU KUP tanpa sanksi 100%; atas setoran yang hanya terlambat, ditagih STP berupa bunga UU KUP." },
@@ -2035,15 +2069,23 @@ UKP.register({
       pembahasan: {
         inti: "Tiga rezim berbeda: pihak terutang yang tidak melunasi membayar pokok + 100% (Pasal 18); pemungut yang tidak memungut/menyetor diterbitkan SKP + 100%; pemungut yang terlambat menyetor atau melapor ditagih STP sesuai UU KUP (Pasal 11).",
         jejakHitung: [],
-        mengapaSalah: { A: "Setoran penuh yang terlambat ditagih STP berupa bunga, bukan SKP + 100%", C: "Sanksi pemeteraian kemudian adalah 100% tetap (Pasal 18), bukan bunga per bulan", D: "Bea meterai yang tidak disetor ditetapkan SKP + 100% (Pasal 11), bukan sekadar bunga" },
+        mengapaSalah: {
+          A: "Setoran penuh yang terlambat ditagih STP berupa bunga, bukan SKP + 100%",
+          C: "Sanksi pemeteraian kemudian adalah 100% tetap (Pasal 18), bukan bunga per bulan",
+          D: "Bea meterai yang tidak disetor ditetapkan SKP + 100% (Pasal 11), bukan sekadar bunga"
+        },
         jebakan: "Satu wajib pajak dapat terkena dua kedudukan sekaligus: pihak terutang dan pemungut, dengan rezim sanksi berbeda."
       },
-      dasarHukum: [ { pasal: "Pasal 11 dan Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2021-10-29" } ],
+      dasarHukum: [{ pasal: "Pasal 11 dan Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
     {
-      id: "A5-100", topik: "A5.6", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2,
+      id: "A5-100",
+      topik: "A5.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
       kutipan: "Pasal 9 ayat (2a) UU KUP (parafrase): pembayaran atau penyetoran pajak yang dilakukan setelah tanggal jatuh tempo dikenai sanksi administratif berupa bunga sebesar tarif bunga per bulan yang ditetapkan Menteri Keuangan, dihitung dari tanggal jatuh tempo sampai dengan tanggal pembayaran, paling lama 24 bulan, dan bagian dari bulan dihitung penuh 1 bulan.",
       stem: "PT Giro Andalan, pemungut bea meterai, ternyata belum menyetor bea meterai Masa Mei 2024 sebesar Rp50.000.000 yang telah dipungut dan dilaporkan dalam SPT Masa tepat waktu; jatuh tempo setor saat itu Senin, 10 Juni 2024. Setelah ditegur KPP, bea meterai tersebut disetor pada 20 Oktober 2026, dan DJP menerbitkan STP atas keterlambatan setor. Anggap tarif bunga Pasal 9 ayat (2a) yang berlaku pada saat dimulainya penghitungan sanksi 0,94% per bulan (tarif Oktober 2026: 1,01%). Berdasarkan kutipan tersebut, sanksi bunga dalam STP adalah ...",
       kataKualifikasi: [],
@@ -2052,11 +2094,19 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Keterlambatan 10 Juni 2024–20 Oktober 2026 adalah 28 bulan 10 hari (29 bulan), tetapi bunga dibatasi 24 bulan: Rp50.000.000 × 0,94% × 24.",
-        jejakHitung: [ ["10 Juni 2024–20 Oktober 2026", "28 bulan 10 hari → 29 bulan"], ["Batas paling lama", "24 bulan"], ["Bunga = 50.000.000 × 0,94% × 24", "Rp11.280.000"] ],
-        mengapaSalah: { A: "Menghitung 29 bulan; bunga dibatasi paling lama 24 bulan", C: "Memakai tarif Oktober 2026 1,01%; soal menetapkan tarif saat dimulainya penghitungan sanksi 0,94%", D: "Mengenakan sanksi 100%; soal menyatakan DJP menerbitkan STP atas keterlambatan setor" },
+        jejakHitung: [
+          ["10 Juni 2024–20 Oktober 2026", "28 bulan 10 hari → 29 bulan"],
+          ["Batas paling lama", "24 bulan"],
+          ["Bunga = 50.000.000 × 0,94% × 24", "Rp11.280.000"]
+        ],
+        mengapaSalah: {
+          A: "Menghitung 29 bulan; bunga dibatasi paling lama 24 bulan",
+          C: "Memakai tarif Oktober 2026 1,01%; soal menetapkan tarif saat dimulainya penghitungan sanksi 0,94%",
+          D: "Mengenakan sanksi 100%; soal menyatakan DJP menerbitkan STP atas keterlambatan setor"
+        },
         jebakan: "Batas 24 bulan dan tarif yang dipakai adalah dua jebakan terpisah; periksa keduanya."
       },
-      dasarHukum: [ { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -2176,7 +2226,7 @@ UKP.register({
     { id: "KT-A5-50", topik: "A5.5", tipe: "angka", depan: "Dokumen luar negeri sudah dipakai di Indonesia tanpa dilunasi?", belakang: "Rp10.000 + sanksi 100% = Rp20.000, lewat pemeteraian kemudian", dasar: "Pasal 8 ayat (1) huruf e, Pasal 17–18 UU 10/2020", berlakuSejak: "2021-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A5-51", topik: "A5.5", tipe: "pasal", depan: "Siapa yang dilarang menerima dokumen yang bea meterainya belum lunas?", belakang: "Hakim, panitera, jurusita, notaris, PPAT, ASN, dan pejabat negara", dasar: "Pasal 21 UU 10/2020", berlakuSejak: "2021-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A5-52", topik: "A5.6", tipe: "pasal", depan: "Sanksi bea meterai di SPT PPh: biaya atau bukan?", belakang: "Bukan biaya (koreksi positif); pokok bea meterai tetap biaya", dasar: "Pasal 9 ayat (1) huruf k dan Pasal 6 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A5-53", topik: "A5.6", tipe: "angka", depan: "Bunga STP pemungut terlambat setor: batas lama?", belakang: "Paling lama 24 bulan; bagian bulan dihitung penuh", dasar: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2021-10-29", menggantikan: null, dekTambahan: [] }
+    { id: "KT-A5-53", topik: "A5.6", tipe: "angka", depan: "Bunga STP pemungut terlambat setor: batas lama?", belakang: "Paling lama 24 bulan; bagian bulan dihitung penuh", dasar: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] }
   ],
   kasus: [
     {

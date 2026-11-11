@@ -198,7 +198,7 @@ UKP.register({
         langkah: [["(1) Pasal 24 ayat (4)", "Peringatan"], ["(2) Pasal 30 ayat (1) huruf b jo. ayat (3)", "Pembekuan paling lama 2 tahun"], ["(3) Pasal 30 ayat (1) huruf c jo. ayat (4)", "Pencabutan permanen, SKK tidak berlaku"]]
       },
       verifikasi: "◐",
-      peringatan: "Pemetaan sanksi (Pasal 24 ayat (4)–(5), Pasal 30 ayat (3)–(4)) berasal dari beberapa ringkasan sekunder teks PMK 55/2026 yang saling cocok. Sanksi khusus untuk larangan huruf d (gratifikasi) dan huruf f (rangkap jabatan), serta jenis pembekuan yang dihitung dalam aturan pencabutan setelah tiga kali pembekuan, belum terbaca; soal modul ini tidak bergantung pada hal tersebut."
+      peringatan: "Pemetaan sanksi (Pasal 24 ayat (4)–(5), Pasal 30 ayat (3)–(4)) berasal dari beberapa ringkasan sekunder teks PMK 55/2026 yang saling cocok. Sanksi khusus untuk larangan huruf d (gratifikasi) dan huruf f (rangkap jabatan), serta bunyi aturan pencabutan setelah tiga kali pembekuan (nomor pasal, jenis pembekuan yang dihitung, dan ada tidaknya batas jangka waktu; ringkasan sekunder yang belum dicocokkan menyebut paling banyak 3 kali dalam 5 tahun terakhir), belum terbaca. Soal E-034 bergantung pada aturan tiga kali pembekuan itu dan karena itu bertanda ◐; soal lain modul ini tidak bergantung pada hal tersebut."
     },
     {
       id: "E.5", slug: "kuasa-wp-pmk44", judul: "Kuasa Wajib Pajak menurut PMK 44/2026",
@@ -1337,15 +1337,14 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "E-034", topik: "E.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "E-034",
+      topik: "E.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Riwayat sanksi izin Konsultan Pajak Samsul (izin B): pembekuan 6 bulan pada 2027 karena pelanggaran kode etik asosiasi (mencela rekan di media sosial); pembekuan 1 tahun pada 2028 karena memberikan keterangan menyesatkan kepada klien; pembekuan 18 bulan pada 2030 karena menerima permintaan klien membuat kontrak bertanggal mundur. Pada 2032, setelah pembekuan ketiga berakhir, Dewan Kehormatan asosiasinya kembali memutuskan Samsul melanggar kode etik karena mempublikasikan data klien. Menurut PMK 55/2026, sanksi izin yang paling tepat atas pelanggaran 2032 adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Pembekuan izin paling lama 2 tahun, sesuai Pasal 24 ayat (5) untuk pelanggaran kode etik",
-        B: "Peringatan, karena pelanggaran publikasi tergolong ringan",
-        C: "Pencabutan izin yang bersifat permanen, karena Samsul melanggar lagi setelah tiga kali dikenai pembekuan",
-        D: "Pembekuan izin 3 bulan, lalu pencabutan bila Samsul tetap mengulangi pelanggaran setelahnya"
-      },
+      opsi: { A: "Pembekuan izin paling lama 2 tahun, sesuai Pasal 24 ayat (5) untuk pelanggaran kode etik", B: "Peringatan, karena pelanggaran publikasi tergolong ringan", C: "Pencabutan izin yang bersifat permanen, karena Samsul melanggar lagi setelah tiga kali dikenai pembekuan", D: "Pembekuan izin 3 bulan, lalu pencabutan bila Samsul tetap mengulangi pelanggaran setelahnya" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
@@ -1363,11 +1362,10 @@ UKP.register({
         },
         jebakan: "Menilai pelanggaran terakhir secara terpisah tanpa melihat riwayat pembekuan."
       },
-      dasarHukum: [
-        { pasal: "PMK 55/2026 — pencabutan setelah tiga kali pembekuan", berlakuSejak: "2026-08-24" },
-        { pasal: "Pasal 24 ayat (5) PMK 55/2026", berlakuSejak: "2026-08-24" }
-      ],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PMK 55/2026 — pencabutan setelah tiga kali pembekuan", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 24 ayat (5) PMK 55/2026", berlakuSejak: "2026-08-24" }],
+      anggaranDetik: 150,
+      verifikasi: "◐",
+      peringatan: "Bunyi resmi ketentuan PMK 55/2026 tentang pencabutan izin setelah tiga kali pembekuan belum terbaca: nomor pasal, jenis pembekuan yang dihitung, dan ada tidaknya batas jangka waktu belum dicocokkan ke teks JDIH Kemenkeu. Menurut ringkasan sekunder yang belum dicocokkan, pembekuan dibatasi paling banyak 3 kali dalam 5 tahun terakhir; bila benar, jawaban bergantung pada bulan kejadian yang tidak disebut di soal."
     },
     {
       id: "E-035", topik: "E.4", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2,
@@ -3171,7 +3169,7 @@ UKP.register({
     { id: "KT-E-16", topik: "E.4", tipe: "prosedur", depan: "Sanksi memberi jasa di luar klasifikasi izin?", belakang: "Peringatan", dasar: "Pasal 24 ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: [] },
     { id: "KT-E-17", topik: "E.4", tipe: "prosedur", depan: "Sanksi tidak bergabung asosiasi dalam 30 hari kerja?", belakang: "Pembekuan izin 3 bulan; tetap tidak bergabung → pencabutan", dasar: "PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-E-18", topik: "E.4", tipe: "pasal", depan: "Dasar pencabutan karena imbalan kepada petugas pajak atau pemerasan?", belakang: "Pasal 30 ayat (4) PMK 55/2026", dasar: "Pasal 30 ayat (1) huruf c, e dan ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: [] },
-    { id: "KT-E-19", topik: "E.4", tipe: "prosedur", depan: "Kapan pembekuan berulang berubah menjadi pencabutan?", belakang: "Melanggar lagi setelah tiga kali dikenai pembekuan", dasar: "PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: [] },
+    { id: "KT-E-19", topik: "E.4", tipe: "prosedur", depan: "Kapan pembekuan berulang berubah menjadi pencabutan?", belakang: "Melanggar lagi setelah tiga kali dikenai pembekuan ◐ (nomor dan bunyi pasal belum dicek)", dasar: "PMK 55/2026 (sumber sekunder: pembekuan paling banyak 3 kali dalam 5 tahun terakhir)", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: [] },
     { id: "KT-E-20", topik: "E.5", tipe: "angka", depan: "PMK kuasa WP yang berlaku dan tanggal berlakunya?", belakang: "PMK 44/2026, berlaku 6 Juli 2026", dasar: "PMK 44/2026", berlakuSejak: "2026-07-06", menggantikan: "PMK 229/PMK.03/2014", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-E-21", topik: "E.5", tipe: "definisi", depan: "Tiga kategori kuasa WP menurut PMK 44/2026?", belakang: "Konsultan pajak; pihak lain ber-SKT (termasuk karyawan); keluarga", dasar: "PMK 44/2026 Pasal 2–3", berlakuSejak: "2026-07-06", menggantikan: "Konsultan pajak atau karyawan WP (PMK 229/2014)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-E-22", topik: "E.5", tipe: "definisi", depan: "Siapa 'keluarga' yang boleh menjadi kuasa WP?", belakang: "Suami/istri; keluarga sedarah atau semenda sampai derajat kedua", dasar: "PMK 44/2026 Pasal 2–3", berlakuSejak: "2026-07-06", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },

@@ -20,7 +20,9 @@ describe('dasbor tim: rute dan pemuatan', () => {
   });
   it('index.html memuat views-tim.js setelah views-alat.js dan sebelum app.js', () => {
     const idx = baca('index.html');
-    const a = idx.indexOf('src="js/views-alat.js"'), t = idx.indexOf('src="js/views-tim.js"'), b = idx.indexOf('src="js/app.js"');
+    // v9.4 FB1: index.html rilis bercap versi (src="js/app.js?v=<VERSI>", tools/build-artifact.js)
+    const di = f => idx.search(new RegExp('src="js/' + f.replace('.', '\\.') + '(?:\\?v=[0-9a-f]+)?"'));
+    const a = di('views-alat.js'), t = di('views-tim.js'), b = di('app.js');
     assert.ok(a > 0 && t > a && b > t);
   });
   // v8.2 (audit T3): Dasbor tim pindah dari grup Ujian ke grup Tim paling atas
