@@ -2,7 +2,8 @@
 // Lokal : RELAI=ws://127.0.0.1:19141/,ws://127.0.0.1:19142/ NODE_PATH=/opt/node22/lib/node_modules node uji-room-web.js <root> [dirGambar]
 // CI    : node uji-room-web.js <root>          (tanpa RELAI → jalur publik bawaan; Chrome sistem lewat playwright-core)
 // WebKit: BROWSER=webkit node uji-room-web.js <root>   (v9.4: peramban Safari dari Playwright; HP anggota memakai profil perangkat iPhone.
-//         Butuh paket playwright dan `npx playwright install --with-deps webkit`. Tanpa BROWSER perilakunya sama seperti sebelumnya: Chromium.)
+//         Butuh paket playwright dan WebKit-nya: di GitHub lewat image mcr.microsoft.com/playwright (lihat .github/workflows), di tempat lain
+//         `npx playwright install --with-deps webkit`. Tanpa BROWSER perilakunya sama seperti sebelumnya: Chromium.)
 'use strict';
 const http = require('node:http'); const fs = require('node:fs'); const path = require('node:path');
 let pw; try { pw = require('playwright'); } catch (e) { pw = require('playwright-core'); }

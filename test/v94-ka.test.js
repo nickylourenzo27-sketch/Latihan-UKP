@@ -384,7 +384,11 @@ describe('v9.4 Ka4: uji peramban WebKit di CI', () => {
   });
   it('workflow: job WebKit (continue-on-error) dan sw.js serta js/app.js di paths', () => {
     const y = fs.readFileSync(path.join(ROOT, '.github', 'workflows', 'cek-jalur-room.yml'), 'utf8');
-    assert.match(y, /npx playwright install --with-deps webkit/);
+    // v9.4.1: WebKit dari image resmi Playwright (tanpa memasang paket Ubuntu di mesin uji); versi image = versi paket npm
+    const vImage = (y.match(/image: mcr\.microsoft\.com\/playwright:v(\d+\.\d+\.\d+)-noble/) || [])[1];
+    const vNpm = (y.slice(y.indexOf('webkit:')).match(/playwright@(\d+\.\d+\.\d+)/) || [])[1];
+    assert.ok(vImage, 'image Playwright bernomor versi'); assert.equal(vNpm, vImage, 'versi paket npm sama dengan image');
+    assert.ok(!/install --with-deps/.test(y.split('\n').filter(b => !/^\s*#/.test(b)).join('\n')), 'tidak memasang paket sistem di mesin uji (komentar boleh menyebutnya)');
     assert.match(y, /BROWSER: webkit/);
     assert.match(y, /- 'sw\.js'/); assert.match(y, /- 'js\/app\.js'/);
     const job = y.slice(y.indexOf('webkit:'));
