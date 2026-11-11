@@ -476,3 +476,168 @@ describe('v9.2 G1 (temuan V9): menyusul, satu cara menghitung, nama tak biasa', 
     assert.deepEqual(J(M.susulan(['Rina', 'Sari', 'Tika', 'Dodi'], L3.roomAwalSesi(id), ['Rina', 'Sari'])), ['Dodi'], 'Tika (dilepas centangnya) tidak ikut; Dodi menyusul');
   });
 });
+
+// ---------- v9.3 W1: waktu mengerjakan dan waktu membahas (js/learn.js, js/views-belajar.js) ----------
+describe('v9.3 W1: waktu membahas (pengaturan, catatan, tempo.bahas, rekap, anggaran)', () => {
+  const J = v => JSON.parse(JSON.stringify(v));
+  beforeEach(() => { reset(['Nicky', 'Mita', 'Nora']); s.sesiBersama = []; s.bersamaAktif = null; delete s.bersama.detikBahas; try { localStorage.removeItem('ukp.bersama.detikBahas'); } catch (e) {} });
+  it('pengaturan: bawaan 120; hanya 60/120/180/0 (Bebas); nilai tidak sah → 120; bertahan setelah normal() store', () => {
+    assert.deepEqual(J(L.PILIHAN_BAHAS), [60, 120, 180, 0]);
+    assert.equal(L.bahasBersama(), 120);
+    assert.equal(L.aturBahasBersama(180), 180); assert.equal(L.bahasBersama(), 180); assert.equal(s.bersama.detikBahas, 180);
+    assert.equal(L.aturBahasBersama(0), 0); assert.equal(L.bahasBersama(), 0, '0 = Bebas, bukan bawaan');
+    for (const v of [90, -60, '60', null, undefined, NaN, Infinity, 3600]) { L.aturBahasBersama(0); assert.equal(L.aturBahasBersama(v), 120, String(v)); }
+  });
+  it('pengaturan bertahan: normal() store mempertahankan s.bersama.detikBahas yang sah, dan cerminan localStorage tetap jadi cadangan', () => {
+    // konteks vm sendiri dengan localStorage yang benar-benar menyimpan (vm.createContext disadap untuk mengganti tiruannya)
+    const vm = require('node:vm'); const asli = vm.createContext; const simpan = new Map();
+    vm.createContext = c => { c.localStorage = { getItem: k => (simpan.has(k) ? simpan.get(k) : null), setItem: (k, v) => simpan.set(k, String(v)), removeItem: k => simpan.delete(k) }; return asli(c); };
+    let U4; try { U4 = muatInti(['core.js', 'learn.js']); } finally { vm.createContext = asli; }
+    const L4 = U4.belajar; const s4 = U4.store.get();
+    assert.equal(L4.bahasBersama(), 120);
+    L4.aturBahasBersama(60); assert.equal(simpan.get('ukp.bersama.detikBahas'), '60');
+    const n = U4.store.normal(J(s4)); assert.equal(n.bersama.detikBahas, 60, 'normal() mempertahankan nilai yang sah');
+    for (const rusak of [90, -1, '60', null, 3600]) { const x = J(s4); x.bersama.detikBahas = rusak; assert.equal(U4.store.normal(x).bersama.detikBahas, undefined, 'nilai tidak sah dibuang: ' + String(rusak)); }
+    { const x = J(s4); x.bersama.detikBahas = 0; assert.equal(U4.store.normal(x).bersama.detikBahas, 0, 'Bebas dipertahankan'); }
+    delete s4.bersama.detikBahas; assert.equal(L4.bahasBersama(), 60, 'cerminan dipakai');
+    s4.bersama.detikBahas = 'rusak'; assert.equal(L4.bahasBersama(), 60);
+    L4.aturBahasBersama(0); delete s4.bersama.detikBahas; assert.equal(L4.bahasBersama(), 0, 'Bebas juga bertahan');
+  });
+  it('anggaran = jumlah soal × (mengerjakan + membahas); Bebas = jumlah soal × mengerjakan; mulaiSesiBersama menyimpan detikBahas', () => {
+    assert.equal(L.anggaranBersama(10, 126, 120), 2460); assert.equal(L.anggaranBersama(10, 126, 0), 1260); assert.equal(L.anggaranBersama(3, 150, 'x'), 450);
+    const a = L.mulaiSesiBersama(['Nicky'], ['X1-001', 'X1-002'], 0, { tempo: 'ujian', detikPerSoal: 126, detikBahas: 120 });
+    const x = L.sesiBersamaDari(a); assert.deepEqual([x.detikBahas, x.anggaranDetik], [120, 492]);
+    const b = L.mulaiSesiBersama(['Nicky'], ['X1-001'], 0, { tempo: 'ujian', detikPerSoal: 126, detikBahas: 0 }); assert.equal(L.sesiBersamaDari(b).detikBahas, 0);
+    const c = L.mulaiSesiBersama(['Nicky'], ['X1-001'], 300, { tempo: 'ujian', detikPerSoal: 126, detikBahas: 99999 }); assert.equal(L.sesiBersamaDari(c).detikBahas, undefined, 'di luar 0..3600 → tidak ada');
+    const d = L.mulaiSesiBersama(['Nicky'], ['X1-001'], 300, { tempo: 'ujian', detikPerSoal: 126 }); assert.ok(!('detikBahas' in L.sesiBersamaDari(d)), 'tanpa info.detikBahas → field tidak ditulis');
+  });
+  it('catatBahasSesi: bulat dan dibatasi 0..3600; soal tidak dikenal, sesi tidak ada, atau latihan selesai → false', () => {
+    const id = L.mulaiSesiBersama(['Nicky', 'Mita'], ['X1-001', 'X1-002'], 0, { detikPerSoal: 126, detikBahas: 120 });
+    L.catatSoalSesi(id, SOAL[0], { Nicky: 'B', Mita: 'A' }, 80);
+    assert.equal(L.catatBahasSesi(id, 'X1-001', 95.6), true); assert.equal(L.sesiBersamaDari(id).soal[0].bahasDetik, 96);
+    assert.equal(L.catatBahasSesi(id, 'X1-001', 99999), true); assert.equal(L.sesiBersamaDari(id).soal[0].bahasDetik, 3600);
+    assert.equal(L.catatBahasSesi(id, 'X1-001', -5), true); assert.equal(L.sesiBersamaDari(id).soal[0].bahasDetik, 0);
+    assert.equal(L.catatBahasSesi(id, 'X1-001', 'abc'), false); assert.equal(L.catatBahasSesi(id, 'X1-001', null), false); assert.equal(L.catatBahasSesi(id, 'X1-001', NaN), false);
+    assert.equal(L.sesiBersamaDari(id).soal[0].bahasDetik, 0, 'nilai tak sah tidak menimpa');
+    assert.equal(L.catatBahasSesi(id, 'X1-002', 30), false, 'soal belum tercatat');
+    assert.equal(L.catatBahasSesi('sb-tidak-ada', 'X1-001', 30), false);
+    L.catatBahasSesi(id, 'X1-001', 70); L.catatSoalSesi(id, SOAL[0], { Nicky: 'B', Mita: 'B' }, 85);
+    assert.equal(L.sesiBersamaDari(id).soal[0].bahasDetik, 70, 'catatSoalSesi ulang tidak menghapus waktu membahas');
+    L.akhiriSesiBersama(id); assert.equal(L.catatBahasSesi(id, 'X1-001', 10), false, 'latihan selesai tidak diubah'); assert.equal(L.sesiBersamaDari(id).soal[0].bahasDetik, 70);
+  });
+  const sesiW = (bahas, target) => ({ id: 'sb-w', mulai: 0, selesai: 19 * 60000, tingkat: 'B', peserta: ['Nicky', 'Mita'], anggaranDetik: 1230, detikPerSoal: 126, tempo: 'ujian', mode: 'latihan', sumber: 'latih',
+    ...(target === undefined ? {} : { detikBahas: target }),
+    soal: [['X1-001', 'B', 100], ['X1-002', 'C', 150], ['X1-003', 'A', 140], ['X1-004', 'D', 120], ['X1-001x', 'B', 150]].map(([id, k, d], i) => Object.assign({ id, kode: 'X1', topik: 'X1.1', kunci: k, detik: d, jawaban: { Nicky: { o: k }, Mita: { o: 'A' } } }, bahas && bahas[i] !== undefined ? { bahasDetik: bahas[i] } : {})) });
+  it('evaluasiSesi: soal[].bahasDetik, tempo.totalDetik, tempo.bahas (rata-rata, lewat target, terlama ≤ 3 urut turun)', () => {
+    const e = L.evaluasiSesi(sesiW([90, 150, 60, 125, 50], 120));
+    assert.deepEqual(e.soal.map(q => q.bahasDetik), [90, 150, 60, 125, 50]);
+    assert.equal(e.tempo.totalDetik, 660);
+    assert.deepEqual(J(e.tempo.bahas), { target: 120, n: 5, rataDetik: 95, nLewat: 2, terlama: [{ id: 'X1-002', detik: 150 }, { id: 'X1-004', detik: 125 }], totalDetik: 475 });
+    assert.equal(e.tempo.rataDetik, 132, 'kalimat mengerjakan tetap');
+  });
+  it('tempo.bahas Bebas: nLewat 0, terlama = 3 terlama apa adanya; target tidak ada di rekaman → 0', () => {
+    const b = L.evaluasiSesi(sesiW([90, 150, 60, 125, 50], 0)).tempo.bahas;
+    assert.deepEqual(J(b), { target: 0, n: 5, rataDetik: 95, nLewat: 0, terlama: [{ id: 'X1-002', detik: 150 }, { id: 'X1-004', detik: 125 }, { id: 'X1-001', detik: 90 }], totalDetik: 475 });
+    assert.equal(L.evaluasiSesi(sesiW([90], undefined)).tempo.bahas.target, 0);
+  });
+  it('rekaman lama tanpa field → bahasDetik null dan tempo.bahas null; nilai tidak wajar dari room diabaikan', () => {
+    const lama = L.evaluasiSesi(sesiW(null, undefined));
+    assert.deepEqual(lama.soal.map(q => q.bahasDetik), [null, null, null, null, null]); assert.equal(lama.tempo.bahas, null); assert.equal(lama.tempo.totalDetik, 660);
+    const aneh = L.evaluasiSesi(sesiW(['90', -1, 3601, Infinity, 40], 'x'));
+    assert.deepEqual(aneh.soal.map(q => q.bahasDetik), [null, null, null, null, 40]);
+    assert.deepEqual(J(aneh.tempo.bahas), { target: 0, n: 1, rataDetik: 40, nLewat: 0, terlama: [{ id: 'X1-001x', detik: 40 }], totalDetik: 40 });
+    assert.equal(L.evaluasiSesi(sesiW([null, {}, true], 120)).tempo.bahas, null);
+    // tanpa waktu mengerjakan tetapi ada waktu membahas → tempo tetap objek (rataDetik 0)
+    const t = sesiW([30, 40], 60); t.soal.forEach(q => { q.detik = 0; });
+    const et = L.evaluasiSesi(t).tempo; assert.deepEqual([et.rataDetik, et.totalDetik, et.nLewat, et.bahas.n, et.bahas.totalDetik], [0, 0, 0, 2, 70]);
+  });
+  it('rekap WhatsApp: "Waktu: 11 menit mengerjakan · 8 menit membahas" hanya bila waktu membahas tercatat', () => {
+    const se = sesiW([90, 100, 100, 100, 90], 120); se.soal.forEach(q => { q.detik = 132; });   // 660 dtk = 11 menit; 480 dtk = 8 menit
+    assert.match(L.rekapSesi(se), /\nWaktu: 11 menit mengerjakan · 8 menit membahas\n/);
+    assert.doesNotMatch(L.rekapSesi(sesiW(null, undefined)), /Waktu:/);
+  });
+  it('titik lanjut membawa target membahas dan saat kunci jawaban dibuka (untuk muat ulang saat membahas)', () => {
+    const id = L.mulaiSesiBersama(['Nicky', 'Mita'], ['X1-001', 'X1-002'], 0, { detikPerSoal: 126, detikBahas: 180 });
+    L.catatSoalSesi(id, SOAL[0], { Nicky: 'B', Mita: 'A' }, 20);
+    const t0 = Date.now() - 45000;
+    const r = L.simpanBersamaAktif({ sesiId: id, soalIds: ['X1-001', 'X1-002'], idx: 1, sisaDetik: 500, anggaranDetik: 612, detikPerSoal: 126, detikBahas: 180, bahas: { soalId: 'X1-001', mulai: t0 } });
+    assert.deepEqual([r.detikBahas, r.bahas.soalId, r.bahas.mulai], [180, 'X1-001', t0]);
+    assert.deepEqual(J(L.bersamaAktif().bahas), { soalId: 'X1-001', mulai: t0 });
+    const q = L.simpanBersamaAktif({ sesiId: id, soalIds: [], detikBahas: 'x', bahas: { soalId: 5, mulai: t0 } }); assert.deepEqual([q.detikBahas, q.bahas], [null, null]);
+    assert.equal(L.simpanBersamaAktif({ sesiId: id, soalIds: [], detikBahas: 0 }).detikBahas, 0);
+  });
+  it('papan: teks ringkas total waktu dan penyiar room meneruskan detikBahas (ruang.js lama mengabaikannya)', () => {
+    const U2 = muatInti(['core.js', 'learn.js', 'views-belajar.js']);
+    assert.equal(U2.c.teksWaktuBersama(10, 126, 120), '10 soal · kira-kira 41 menit (21 mengerjakan + 20 membahas)');
+    assert.equal(U2.c.teksWaktuBersama(10, 126, 0), '10 soal · 21 menit mengerjakan · membahas tanpa batas');
+    const terima = []; let st = { aktivitas: null };
+    const R = { state: () => JSON.parse(JSON.stringify(st)), mulaiLatihan: o => { terima.push(o); st.aktivitas = { jenis: 'latihan', id: o.id, soalIds: o.soalIds, idx: 0, fase: 'jawab' }; return true; },
+      aturSoal: i => { terima.push('aturSoal:' + i); st.aktivitas.idx = i; st.aktivitas.fase = 'jawab'; return true; }, bukaKunci: () => { st.aktivitas.fase = 'kunci'; return true; }, akhiriAktivitas: () => { st.aktivitas = null; } };
+    const sr = U2.latihRoom.buatSiarRoom(R, { sesiId: 'sb-b', soalIds: ['X1-001', 'X1-002'], detikPerSoal: 126, detikBahas: 0, akhirSesi: null });
+    assert.equal(sr.mulai(0), true); assert.equal(terima[0].detikBahas, 0);
+    // papan yang sedang membahas soal 0 (muat ulang) tidak mengembalikan room ke fase menjawab
+    sr.kunci('X1-001', {}, null, null); terima.length = 0;
+    assert.equal(sr.faseKunci(0), true); assert.equal(sr.soal(0, true), true); assert.deepEqual(terima, []);
+    sr.soal(0); assert.deepEqual(terima, ['aturSoal:0'], 'tanpa tetapKunci perilaku lama tetap');
+    const sr2 = U2.latihRoom.buatSiarRoom(R, { sesiId: 'sb-c', soalIds: ['X1-001'], detikPerSoal: 126, detikBahas: 'x', akhirSesi: null });
+    terima.length = 0; sr2.mulai(0); assert.ok(!('detikBahas' in terima[0]), 'nilai tidak sah tidak dikirim');
+  });
+});
+
+// ---------- v9.3 P1: muat ulang pemimpin saat membahas di room ----------
+describe('v9.3 P1: papan menyambung ke room saat soal dipulihkan ke fase membahas', () => {
+  const U3 = muatInti(['core.js', 'learn.js', 'views-belajar.js']);
+  const LR3 = U3.latihRoom;
+  it('terkunciSaatSambung: sebelum soal pertama digambar, soal yang dipulihkan (pulihB) dihitung terkunci', () => {
+    assert.equal(typeof LR3.terkunciSaatSambung, 'function');
+    assert.equal(LR3.terkunciSaatSambung(null, true, { idx: 0 }, 0), true, 'muat ulang saat membahas soal 1 (Rina)');
+    assert.equal(LR3.terkunciSaatSambung(null, true, { idx: 2 }, 3), false, 'soal lain → tidak terkunci');
+    assert.equal(LR3.terkunciSaatSambung(null, false, { idx: 0 }, 0), false, 'pemulihan hanya untuk gambar pertama');
+    assert.equal(LR3.terkunciSaatSambung(null, true, null, 0), false, 'tanpa pemulihan (titik lanjut v9.2 / mengerjakan)');
+    assert.equal(LR3.terkunciSaatSambung({ terkunci: () => true }, true, null, 0), true, 'papan sudah tergambar: ikut keadaan papan');
+    assert.equal(LR3.terkunciSaatSambung({ terkunci: () => false }, true, { idx: 0 }, 0), false);
+    assert.equal(LR3.terkunciSaatSambung({}, true, { idx: 0 }, 0), false);
+  });
+  it('alur mount: room di fase kunci soal 1 tetap di fase kunci (tanpa aturSoal, mulaiBahas tidak mulai ulang)', () => {
+    // tiruan room seperti ruang.js v9.3: bukaKunci saat fase sudah kunci tidak mengubah mulaiBahas
+    const terima = []; let jam = 1000;
+    const st = { aktivitas: { jenis: 'latihan', id: 'sb-p1', soalIds: ['X1-001', 'X1-002'], idx: 0, fase: 'kunci', mulaiBahas: 500 } };
+    const R = { state: () => JSON.parse(JSON.stringify(st)), mulaiLatihan: o => { terima.push('mulaiLatihan'); return true; },
+      aturSoal: i => { terima.push('aturSoal:' + i); st.aktivitas.idx = i; st.aktivitas.fase = 'jawab'; st.aktivitas.mulaiBahas = null; return true; },
+      bukaKunci: () => { terima.push('bukaKunci'); if (st.aktivitas.fase !== 'kunci') { st.aktivitas.fase = 'kunci'; st.aktivitas.mulaiBahas = jam; } return true; } };
+    const sr = LR3.buatSiarRoom(R, { sesiId: 'sb-p1', soalIds: ['X1-001', 'X1-002'], detikPerSoal: 126, detikBahas: 120, akhirSesi: null });
+    // urutan di jalankan(): sambungRoom (elKini null) → gambar() → siar.soal(idx, pulih) → bukaKunci pemulihan → siar.kunci
+    jam = 25000;
+    const terkunci = LR3.terkunciSaatSambung(null, true, { idx: 0 }, 0);
+    assert.equal(sr.mulai(0, terkunci), true);
+    assert.equal(sr.soal(0, true), true);
+    sr.kunci('X1-001', {}, null, null);
+    assert.deepEqual(terima, ['bukaKunci'], 'room tidak pernah kembali ke fase menjawab');
+    assert.deepEqual([st.aktivitas.fase, st.aktivitas.mulaiBahas], ['kunci', 500]);
+    // perilaku lama (v9.3 W1 sebelum perbaikan): tanpa tetapKunci → aturSoal lalu bukaKunci → mulaiBahas mulai ulang
+    terima.length = 0; sr.soal(0); sr.kunci('X1-001', {}, null, null);
+    assert.deepEqual(terima, ['aturSoal:0', 'bukaKunci']); assert.equal(st.aktivitas.mulaiBahas, 25000);
+  });
+  it('detikKerjaLanjut: muat ulang saat MENGERJAKAN lewat room → dari aktivitas.mulaiSoal (cocok dengan HP); lainnya draf', () => {
+    const f = LR3.detikKerjaLanjut; const kini = 1000000;
+    const a = { jenis: 'latihan', id: 'sb-r', idx: 1, fase: 'jawab', soalIds: ['X1-001', 'X1-002'], mulaiSoal: kini - 6400 };
+    const draf = { soalId: 'X1-002', detikSoal: 0 };
+    assert.equal(f(draf, a, 'sb-r', 1, 'X1-002', kini), 6, 'Rina memuat ulang 6 dtk setelah soal tampil, draf terakhir 0 dtk');
+    assert.equal(f(draf, null, 'sb-r', 1, 'X1-002', kini), 0, 'satu layar: draf (perilaku v9.2)');
+    assert.equal(f(draf, Object.assign({}, a, { fase: 'kunci' }), 'sb-r', 1, 'X1-002', kini), 0);
+    assert.equal(f(draf, Object.assign({}, a, { id: 'sb-lain' }), 'sb-r', 1, 'X1-002', kini), 0);
+    assert.equal(f(draf, a, 'sb-r', 0, 'X1-001', kini), 0, 'idx lain');
+    assert.equal(f(draf, a, 'sb-r', 1, 'X1-009', kini), 0, 'soal lain');
+    assert.equal(f({ detikSoal: 40 }, Object.assign({}, a, { mulaiSoal: kini + 5000 }), 'sb-r', 1, 'X1-002', kini), 40, 'mulaiSoal di masa depan → draf');
+    assert.equal(f({ detikSoal: 40 }, Object.assign({}, a, { mulaiSoal: 'x' }), 'sb-r', 1, 'X1-002', kini), 40);
+    assert.equal(f({ detikSoal: 40 }, Object.assign({}, a, { mulaiSoal: kini - 90000 * 1000 }), 'sb-r', 1, 'X1-002', kini), 40, '> 24 jam → draf');
+    assert.equal(f({ detikSoal: -3 }, null, 'sb-r', 1, 'X1-002', kini), 0);
+  });
+  it('tempo.totalDetik memotong detik per soal ke 0..3600 (rekaman room tidak wajar); rata-rata tetap seperti v9.2', () => {
+    const sesi = { id: 'sb-aneh', mulai: 1, selesai: 2, tingkat: 'B', peserta: ['Rina'], detikPerSoal: 126, detikBahas: 120,
+      soal: [{ id: 'X1-001', kode: 'X1', topik: 'X1.1', kunci: 'B', detik: 86400, bahasDetik: 60, jawaban: { Rina: { o: 'B', b: true } } },
+        { id: 'X1-002', kode: 'X1', topik: 'X1.1', kunci: 'C', detik: 100, bahasDetik: 60, jawaban: { Rina: { o: 'C', b: true } } }] };
+    const t = L.evaluasiSesi(sesi).tempo;
+    assert.equal(t.totalDetik, 3700); assert.equal(t.rataDetik, 43250); assert.equal(t.bahas.totalDetik, 120);
+  });
+});

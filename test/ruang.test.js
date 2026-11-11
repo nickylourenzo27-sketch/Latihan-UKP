@@ -1487,3 +1487,157 @@ describe('ruang: intip online + intipRinci (v9.2 G3)', () => {
     assert.equal(x.state.tuan, 'Rina'); assert.deepEqual(x.online, ['Rina']);
   });
 });
+
+// ======================================================================================
+// v9.3 W2: aktivitas.detikBahas + aktivitas.mulaiBahas (opsional, lunak); kompatibel dua arah dengan versi 9.2
+// ======================================================================================
+// "versi 9.2": sumber js/ruang.js yang sama dengan tambahan v9.3 W2 dibuang (validator tanpa field, mulaiLatihan/aturSoal/bukaKunci lama)
+function muatRuang92() {
+  let src = fs.readFileSync(path.join(__dirname, '..', 'js', 'ruang.js'), 'utf8');
+  const buang = (pola, nama) => { const n = src.length; src = src.replace(pola, ''); assert.ok(src.length < n, 'tambahan v9.3 tidak ditemukan: ' + nama); };
+  buang(", detikBahas: bersihDetikBahas(a.detikBahas), mulaiBahas: a.fase === 'kunci' ? bersihMulaiBahas(a.mulaiBahas) : null", 'validator');
+  buang(", detikBahas: bersihDetikBahas(typeof o.detikBahas === 'number' ? Math.round(o.detikBahas) : o.detikBahas), mulaiBahas: null", 'mulaiLatihan');
+  buang(' a.mulaiBahas = null;', 'aturSoal');
+  buang(/\n        \/\/ v9\.3 W2: mulaiBahas dipasang sekali[^\n]*\n        if \(a\.fase !== 'kunci'[^\n]*/, 'bukaKunci');
+  assert.ok(!/mulaiBahas|detikBahas\b(?!\(x)/.test(src.replace(/function bersih(DetikBahas|MulaiBahas)[^\n]*/g, '').replace(/\/\/[^\n]*/g, '')), 'tidak ada sisa field v9.3');
+  const ctx = { console, Date, Math, JSON, setTimeout: unrefT(setTimeout), clearTimeout, setInterval: unrefT(setInterval), clearInterval, crypto: globalThis.crypto, TextEncoder, TextDecoder };
+  ctx.window = ctx; vm.createContext(ctx); vm.runInContext(src, ctx, { filename: 'ruang-9.2.js' });
+  return ctx.UKP.ruang;
+}
+describe('ruang: waktu membahas di pesan room (v9.3 W2)', () => {
+  const SOAL = ['A1-104', 'B6-126', 'A3-144'];
+  const TIM = ['Nicky', 'Mita', 'Nora', 'Jeni'];
+  async function siapkan(opsiTuan) {
+    const jar = buatJaringan(); const urls = ['ws://r1', 'ws://r2']; urls.forEach(u => jar.relaiBaru(u));
+    const nicky = instans(jar, urls, opsiTuan);
+    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim UKP B', peserta: TIM, tingkat: 'B' });
+    await tunggu(() => nicky.api.status().tersambung);
+    const masuk = async (nama, o) => { const x = instans(jar, urls, o); await x.api.gabung(kode, nama); return x; };
+    return { jar, nicky, kode, masuk };
+  }
+
+  it('validator lunak: tanpa field → null; nilai tidak sah (NaN, negatif, 1e9, string, pecahan) → null; pesan tidak pernah ditolak', () => {
+    const t = Date.now();
+    const st = (o) => ({ v: 1, t, urut: t, d: 'abcdef', nama: 'Nicky', tuan: 'Nicky', room: { nama: 'Tim', peserta: ['Nicky'], tingkat: 'B' }, versiApp: '9.3', lobi: null,
+      aktivitas: Object.assign({ jenis: 'latihan', id: 'sb-1', soalIds: SOAL, idx: 0, fase: 'kunci', mulaiSoal: t, detikPerSoal: 126, akhirSesi: null, hasilSoal: null, tim: null }, o) });
+    const akt = o => { const v = P.validState(st(o)); assert.ok(v, 'state tetap sah: ' + JSON.stringify(o)); return v.aktivitas; };
+    assert.equal(akt({}).detikBahas, null); assert.equal(akt({}).mulaiBahas, null);
+    assert.equal(akt({ detikBahas: 120 }).detikBahas, 120);
+    assert.equal(akt({ detikBahas: 0 }).detikBahas, 0, '0 = Bebas tetap 0');
+    assert.equal(akt({ detikBahas: 3600 }).detikBahas, 3600);
+    for (const x of [NaN, -1, 3601, 1e9, '120', 90.5, Infinity, null, true, {}, [120]]) assert.equal(akt({ detikBahas: x }).detikBahas, null, 'detikBahas ' + String(x));
+    assert.equal(akt({ mulaiBahas: t }).mulaiBahas, t);
+    for (const x of [NaN, -5, 0, 1e15, String(t), Infinity, null, {}]) assert.equal(akt({ mulaiBahas: x }).mulaiBahas, null, 'mulaiBahas ' + String(x));
+    assert.equal(akt({ fase: 'jawab', mulaiBahas: t }).mulaiBahas, null, 'mulaiBahas hanya bermakna saat kunci jawaban dibuka');
+    // ujian tidak membawa kedua field
+    const u = P.validAktivitas({ jenis: 'ujian', id: 'u-1', kode: 'X', judul: null, mulai: t, akhir: t + 1, status: 'jalan', detikBahas: 60, mulaiBahas: t });
+    assert.equal(u.detikBahas, undefined); assert.equal(u.mulaiBahas, undefined);
+  });
+
+  it('bolak-balik lewat relai tiruan: mulaiLatihan({ detikBahas }) → bukaKunci mengisi mulaiBahas → aturSoal mengosongkan', async () => {
+    const { nicky, masuk } = await siapkan();
+    const mita = await masuk('Mita');
+    const s1 = nicky.api.mulaiLatihan({ id: 'sb-w1', soalIds: SOAL, detikPerSoal: 126, detikBahas: 120 });
+    assert.equal(s1.aktivitas.detikBahas, 120); assert.equal(s1.aktivitas.mulaiBahas, null);
+    await tunggu(() => mita.api.state().aktivitas && mita.api.state().aktivitas.id === 'sb-w1');
+    assert.equal(mita.api.state().aktivitas.detikBahas, 120);
+    assert.equal(mita.api.state().aktivitas.mulaiBahas, null);
+    const t0 = Date.now();
+    nicky.api.bukaKunci('A1-104', { Mita: { o: 'D', k: 'yakin', b: 1 } }, { tim: { benar: 1, dijawab: 1 } });
+    const mb = nicky.api.state().aktivitas.mulaiBahas;
+    assert.ok(mb >= t0 && mb <= Date.now(), 'mulaiBahas = jam pemimpin saat kunci dibuka');
+    await tunggu(() => mita.api.state().aktivitas.fase === 'kunci');
+    assert.equal(mita.api.state().aktivitas.mulaiBahas, mb);
+    assert.equal(mita.api.state().aktivitas.detikBahas, 120);
+    // buka ulang pada soal yang sama tidak memulai ulang waktu membahas
+    await tidur(5);
+    nicky.api.bukaKunci('A1-104', { Mita: { o: 'D', k: 'yakin', b: 1 } }, { penjelas: 'Mita' });
+    assert.equal(nicky.api.state().aktivitas.mulaiBahas, mb);
+    assert.equal(nicky.simpan.s.ruang.state.aktivitas.mulaiBahas, mb, 'tersimpan untuk pulihkan() (muat ulang melanjutkan)');
+    nicky.api.aturSoal(1);
+    assert.equal(nicky.api.state().aktivitas.mulaiBahas, null);
+    await tunggu(() => mita.api.state().aktivitas.idx === 1);
+    assert.equal(mita.api.state().aktivitas.mulaiBahas, null);
+    assert.equal(mita.api.state().aktivitas.detikBahas, 120, 'target bertahan melewati aturSoal');
+    // Bebas (0), nilai tidak sah, dan tanpa field
+    assert.equal(nicky.api.mulaiLatihan({ id: 'sb-w2', soalIds: SOAL, detikPerSoal: 126, detikBahas: 0 }).aktivitas.detikBahas, 0);
+    assert.equal(nicky.api.mulaiLatihan({ id: 'sb-w3', soalIds: SOAL, detikPerSoal: 126, detikBahas: 179.6 }).aktivitas.detikBahas, 180);
+    for (const x of [NaN, -60, 1e9, '120']) { const s = nicky.api.mulaiLatihan({ id: 'sb-w4', soalIds: SOAL, detikPerSoal: 126, detikBahas: x }); assert.ok(s, 'tidak ditolak: ' + String(x)); assert.equal(s.aktivitas.detikBahas, null); }
+    const s5 = nicky.api.mulaiLatihan({ id: 'sb-w5', soalIds: SOAL, detikPerSoal: 126 });
+    assert.equal(s5.aktivitas.detikBahas, null); assert.equal(s5.aktivitas.mulaiBahas, null);
+    // mulaiLatihan baru setelah kunci dibuka mengosongkan mulaiBahas
+    nicky.api.bukaKunci('A1-104', { Mita: { o: 'D', k: null, b: 1 } });
+    assert.ok(nicky.api.state().aktivitas.mulaiBahas);
+    assert.equal(nicky.api.mulaiLatihan({ id: 'sb-w6', soalIds: SOAL, detikPerSoal: 126, detikBahas: 60 }).aktivitas.mulaiBahas, null);
+  });
+
+  it('kompatibel: HP versi 9.2 (validator tanpa field) ikut room versi baru; alur latihan utuh', async () => {
+    const lama = muatRuang92();
+    const { nicky, masuk } = await siapkan();
+    const hpLama = await masuk('Mita', { R: lama });
+    nicky.api.mulaiLatihan({ id: 'sb-k3', soalIds: SOAL, detikPerSoal: 126, detikBahas: 180 });
+    await tunggu(() => hpLama.api.state().aktivitas && hpLama.api.state().aktivitas.id === 'sb-k3', 2000, 'HP lama menerima latihan');
+    assert.equal(hpLama.api.state().aktivitas.detikBahas, undefined, 'validator lama membuang field');
+    assert.ok(hpLama.api.kirimJawaban({ aktivitas: 'sb-k3', soalId: 'A1-104', o: 'B', k: 'ragu' }));
+    await tunggu(() => nicky.api.jawabanSemua().Mita && nicky.api.jawabanSemua().Mita.j['A1-104'] === 'B', 2000, 'jawaban HP lama sampai');
+    nicky.api.bukaKunci('A1-104', { Mita: { o: 'B', k: 'ragu', b: 1 } }, { penjelas: 'Mita', tim: { benar: 1, dijawab: 1 } });
+    await tunggu(() => hpLama.api.state().aktivitas.fase === 'kunci');
+    assert.equal(hpLama.api.state().aktivitas.mulaiBahas, undefined);
+    assert.equal(hpLama.api.state().aktivitas.hasilSoal.penjelas, 'Mita');
+    nicky.api.aturSoal(1);
+    await tunggu(() => hpLama.api.state().aktivitas.idx === 1);
+  });
+
+  it('kompatibel: pemimpin versi 9.2 memimpin HP versi baru (kedua field dibaca null, alur latihan utuh)', async () => {
+    const lama = muatRuang92();
+    const { nicky, masuk } = await siapkan({ R: lama });
+    const hpBaru = await masuk('Mita');
+    nicky.api.mulaiLatihan({ id: 'sb-k4', soalIds: SOAL, detikPerSoal: 126, detikBahas: 120 });
+    assert.equal(nicky.api.state().aktivitas.detikBahas, undefined, 'pemimpin lama mengabaikan detikBahas');
+    await tunggu(() => hpBaru.api.state().aktivitas && hpBaru.api.state().aktivitas.id === 'sb-k4', 2000, 'HP baru menerima latihan');
+    assert.equal(hpBaru.api.state().aktivitas.detikBahas, null);
+    assert.equal(hpBaru.api.state().aktivitas.mulaiBahas, null);
+    assert.equal(hpBaru.api.state().aktivitas.detikPerSoal, 126);
+    assert.ok(hpBaru.api.kirimJawaban({ aktivitas: 'sb-k4', soalId: 'A1-104', o: 'C' }));
+    await tunggu(() => nicky.api.jawabanSemua().Mita && nicky.api.jawabanSemua().Mita.j['A1-104'] === 'C', 2000, 'jawaban HP baru sampai ke pemimpin lama');
+    nicky.api.bukaKunci('A1-104', { Mita: { o: 'C', k: null, b: 0 } }, { tim: { benar: 0, dijawab: 1 } });
+    await tunggu(() => hpBaru.api.state().aktivitas.fase === 'kunci');
+    assert.equal(hpBaru.api.state().aktivitas.mulaiBahas, null, 'pemimpin lama tanpa mulaiBahas → HP tidak menampilkan waktu membahas');
+    nicky.api.aturSoal(1);
+    await tunggu(() => hpBaru.api.state().aktivitas.idx === 1);
+  });
+});
+
+describe('ruang: jam HP yang baru masuk atau muat ulang (v9.3 P2)', () => {
+  // Tanpa balasan tuan, HP yang baru tersambung hanya menerima pesan tersimpan (bukan sampel jam) sampai detak tuan berikutnya (30 dtk
+  // di aplikasi). HP berjam meleset lalu menampilkan "Waktu mengerjakan habis" padahal papan masih "sisa 1:30".
+  it('tuan membalas kabar online perangkat baru dengan kabar hadir segar → selisihJam anggota benar tanpa menunggu detak', async () => {
+    const jar = buatJaringan(); const urls = ['ws://r1']; urls.forEach(u => jar.relaiBaru(u));
+    const lambat = { detakMs: 60000 };
+    const nicky = instans(jar, urls, { env: { now: () => Date.now() + 7000 }, konfig: lambat });
+    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim jam', peserta: ['Nicky', 'Dodi', 'Rina'], tingkat: 'B' });
+    await tunggu(() => nicky.api.status().tersambung);
+    nicky.api.mulaiLatihan({ id: 'sb-jam', soalIds: ['A1-104'], detikPerSoal: 126, detikBahas: 120 });
+    await tidur(50);
+    // Dodi (jam lokal tertinggal 7 dtk dari tuan) masuk di tengah soal: tidak ada perubahan state sesudah ia masuk
+    const dodi = instans(jar, urls, { konfig: lambat });
+    await dodi.api.gabung(kode, 'Dodi');
+    await tunggu(() => Math.abs(dodi.api.selisihJam() - 7000) <= 300, 3000, 'selisihJam Dodi ' + dodi.api.selisihJam());
+    // muat ulang = perangkat (d) baru dengan nama sama: tuan membalas lagi
+    await dodi.api.keluar().catch(() => {});
+    const dodi2 = instans(jar, urls, { konfig: lambat });
+    await dodi2.api.gabung(kode, 'Dodi');
+    await tunggu(() => Math.abs(dodi2.api.selisihJam() - 7000) <= 300, 4000, 'selisihJam Dodi (muat ulang) ' + dodi2.api.selisihJam());
+    assert.equal(nicky.api.selisihJam(), 0);
+  });
+  it('tiga anggota masuk bersamaan (jam tuan tertinggal 5 dtk): balasan digabung tetap memberi semua anggota selisihJam yang benar', async () => {
+    const jar = buatJaringan(); const urls = ['ws://r1']; urls.forEach(u => jar.relaiBaru(u));
+    const lambat = { detakMs: 60000 };
+    const nicky = instans(jar, urls, { env: { now: () => Date.now() - 5000 }, konfig: lambat });
+    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim jam', peserta: ['Nicky', 'Rina', 'Budi', 'Sari'], tingkat: 'B' });
+    await tunggu(() => nicky.api.status().tersambung);
+    const anggota = ['Rina', 'Budi', 'Sari'].map(() => instans(jar, urls, { konfig: lambat }));
+    await Promise.all(anggota.map((o, k) => o.api.gabung(kode, ['Rina', 'Budi', 'Sari'][k])));
+    await tunggu(() => anggota.every(o => Math.abs(o.api.selisihJam() + 5000) <= 300), 5000, 'selisihJam ' + anggota.map(o => o.api.selisihJam()).join(','));
+  });
+});

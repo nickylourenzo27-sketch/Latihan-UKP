@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '9.2';
+  UKP.versi = '9.3';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   UKP.modul = UKP.modul || {};          // kode -> modul konten
@@ -314,12 +314,14 @@
     o.laporan = o.laporan.filter(x => typeof x.minggu === 'string');
     // v7.9 latihan bersama: peserta = nama unik (≤ 12, ≤ 24 karakter, tanpa karakter kontrol); entri jawaban berbentuk objek bernama
     const tempoB = o.bersama.tempo === 'longgar' || o.bersama.tempo === 'ujian' ? o.bersama.tempo : null;
+    const bahasB = [60, 120, 180, 0].includes(o.bersama.detikBahas) ? o.bersama.detikBahas : null;
     o.bersama = { aktif: o.bersama.aktif === true, peserta: (Array.isArray(o.bersama.peserta) ? o.bersama.peserta : []).filter(x => typeof x === 'string').map(x => x.replace(/[\u0000-\u001f\u007f-\u009f]/g, ' ').replace(/\s+/g, ' ').trim()).filter((x, i, a) => x && x.length <= 24 && a.findIndex(y => y.toLowerCase() === x.toLowerCase()) === i).slice(0, 12) };
     o.jawabanBersama = o.jawabanBersama.filter(x => typeof x.p === 'string' && typeof x.s === 'string');
     // v8.0: k = keyakinan; entri v7.9 menyimpan kode kelompok di k → pindah ke kd
     const YK = ['yakin', 'ragu', 'menebak'];
     o.jawabanBersama = o.jawabanBersama.map(x => { if (x.k == null || YK.includes(x.k)) return x; const y = salinAman(x); if (typeof y.k === 'string' && !y.kd) y.kd = y.k; y.k = null; return y; });
     if (tempoB) o.bersama.tempo = tempoB;  // v8.1: tanpa field = 'ujian'
+    if (bahasB != null) o.bersama.detikBahas = bahasB;  // v9.3: waktu membahas per soal (0 = Bebas); tanpa field = 120
     o.sesiBersama = o.sesiBersama.filter(x => typeof x.id === 'string' && Array.isArray(x.peserta) && Array.isArray(x.soal)).slice(-60);
     // v8.1: keadaan kerja ujian tim / lembar jawab / lanjutkan sesi bersama — bentuk rusak → null (data v8.0 tidak punya field ini)
     if (!(isObj(o.ujianTim) && typeof o.ujianTim.id === 'string' && Array.isArray(o.ujianTim.soalIds) && Array.isArray(o.ujianTim.peserta))) o.ujianTim = null;

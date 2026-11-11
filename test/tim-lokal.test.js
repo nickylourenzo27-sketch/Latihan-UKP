@@ -229,3 +229,40 @@ describe('v8.2 evaluasi room: versi anggota dan rekap tanpa skor per nama', () =
     assert.ok(!/Nicky \d|Mita \d|Nora \d/.test(tanpaTim.join('\n')));
   });
 });
+
+// v9.3 W2: kalimat waktu membahas di bagian Tempo (pembantu murni; data dari tempo.bahas dan tempo.totalDetik buatan js/learn.js)
+describe('v9.3 evaluasi: waktu membahas di bagian Tempo', () => {
+  const X4 = UKP.views.tim._uji;
+  it('target 2:00: rata-rata, yang melewati target, terlama, dan baris total', () => {
+    const k = J(X4.kalimatBahas({ detikPerSoal: 126, rataDetik: 132, totalDetik: 660, bahas: { target: 120, n: 5, rataDetik: 95, nLewat: 2, terlama: [{ id: 'A1-104', detik: 190 }, { id: 'B6-126', detik: 150 }], totalDetik: 480 } }));
+    assert.equal(k.teks, 'Membahas: rata-rata 1:35 per soal, target 2:00.');
+    assert.equal(k.lewat, '2 dari 5 soal melewati target.');
+    assert.deepEqual(k.terlama.map(x => x.id), ['A1-104', 'B6-126']);
+    assert.equal(k.total, 'Total 19 menit: 11 mengerjakan, 8 membahas.');
+  });
+  it('semua dalam target: tanpa kalimat lewat', () => {
+    const k = J(X4.kalimatBahas({ totalDetik: 1260, bahas: { target: 180, n: 10, rataDetik: 61, nLewat: 0, terlama: [{ id: 'A1-104', detik: 170 }], totalDetik: 610 } }));
+    assert.equal(k.teks, 'Membahas: rata-rata 1:01 per soal, target 3:00.');
+    assert.equal(k.lewat, null);
+    assert.equal(k.total, 'Total 31 menit: 21 mengerjakan, 10 membahas.');
+  });
+  it('Bebas (target 0): "tanpa target", tidak ada yang melewati target meski nLewat terisi, terlama tetap ada', () => {
+    const k = J(X4.kalimatBahas({ totalDetik: 600, bahas: { target: 0, n: 4, rataDetik: 200, nLewat: 3, terlama: [{ id: 'A3-144', detik: 400 }, { id: 'A1-104', detik: 250 }, { id: 'B6-126', detik: 100 }, { id: 'X1-001', detik: 1 }], totalDetik: 800 } }));
+    assert.equal(k.teks, 'Membahas: rata-rata 3:20 per soal, tanpa target.');
+    assert.equal(k.lewat, null);
+    assert.equal(k.terlama.length, 3, 'paling banyak 3');
+    assert.equal(k.total, 'Total 23 menit: 10 mengerjakan, 13 membahas.');
+  });
+  it('rekaman lama atau tanpa waktu membahas: null (bagian waktu membahas disembunyikan); kalimat mengerjakan tidak berubah', () => {
+    assert.equal(X4.kalimatBahas(null), null);
+    // latihan kurang dari satu menit: tanpa baris "Total 0 menit"
+    assert.equal(X4.kalimatBahas({ totalDetik: 12, bahas: { target: 120, n: 1, rataDetik: 9, nLewat: 0, terlama: [], totalDetik: 9 } }).total, null);
+    assert.equal(X4.kalimatBahas({ totalDetik: 40, bahas: { target: 120, n: 1, rataDetik: 30, nLewat: 0, terlama: [], totalDetik: 30 } }).total, 'Total 2 menit: 1 mengerjakan, 1 membahas.');
+    assert.equal(X4.kalimatBahas({ detikPerSoal: 126, rataDetik: 110 }), null);
+    assert.equal(X4.kalimatBahas({ rataDetik: 110, bahas: null }), null);
+    assert.equal(X4.kalimatBahas({ rataDetik: 110, bahas: { target: 120, n: 0, rataDetik: 0, nLewat: 0, terlama: [], totalDetik: 0 } }), null);
+    // tanpa waktu mengerjakan tercatat (totalDetik tidak ada): total = waktu membahas saja
+    assert.equal(J(X4.kalimatBahas({ rataDetik: 0, bahas: { target: 60, n: 1, rataDetik: 59, nLewat: 0, terlama: [], totalDetik: 59 } })).total, 'Total 1 menit: 0 mengerjakan, 1 membahas.');
+    assert.equal(J(X4.kalimatTempo({ detikPerSoal: 126, rataDetik: 110, nLewat: 0, terlama: [], soalUjian: 100, menitUjian: 210, proyeksiMenit: 183, bahas: null })).lewat, false);
+  });
+});

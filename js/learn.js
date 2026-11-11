@@ -282,7 +282,10 @@
     const kini = Date.now(); let id = 'sb-' + kini; let i = 1; while (arr.some(x => x.id === id)) id = 'sb-' + kini + '-' + (i++);
     const ids = Array.isArray(soalIds) ? soalIds.filter(x => typeof x === 'string') : [];
     const ext = infoSesiV81(info);
-    const anggaran = Math.max(0, Math.round(Number(anggaranDetik) || ids.length * (ext.detikPerSoal || 150)));
+    // v9.3 W1: info.detikBahas (target membahas per soal, 0 = Bebas) → sesi.detikBahas; tanpa info.detikBahas → field tidak ditulis (dibaca null)
+    const dBahas = isObjL(info) && info.detikBahas != null ? detikWajar(info.detikBahas) : null;
+    if (dBahas != null) ext.detikBahas = dBahas;
+    const anggaran = Math.max(0, Math.round(Number(anggaranDetik) || ids.length * ((ext.detikPerSoal || 150) + (dBahas || 0))));
     arr.push(Object.assign({ id, mulai: kini, selesai: null, tingkat: (s.profil && s.profil.tingkat) || 'A', peserta: pes, anggaranDetik: anggaran, soal: [], sumber: 'latih', rencana: ids.length }, ext));
     if (arr.length > L.MAKS_SESI_BERSAMA) arr.splice(0, arr.length - L.MAKS_SESI_BERSAMA);
     UKP.store.save();
@@ -300,7 +303,17 @@
     const ent = { id: soal.id, kode: soal.kode || String(soal.id).split('-')[0], topik: soal.topik || '', kunci: soal.kunci || '', detik: Math.round(Math.min(3600, Math.max(0, Number(detik) || 0))), jawaban };
     if (!Array.isArray(x.soal)) x.soal = [];
     const i = x.soal.findIndex(q => q && q.id === soal.id);
-    if (i >= 0) x.soal[i] = ent; else x.soal.push(ent);
+    if (i >= 0) { if (x.soal[i] && x.soal[i].bahasDetik != null) ent.bahasDetik = x.soal[i].bahasDetik; x.soal[i] = ent; } else x.soal.push(ent);
+    UKP.store.save();
+    return true;
+  };
+  // v9.3 W1: waktu membahas satu soal (dari kunci jawaban dibuka sampai Lanjut atau latihan diakhiri) → soal[].bahasDetik (bulat 0..3600).
+  // false bila rekaman tidak ada, sudah ditutup, soal belum tercatat, atau detik bukan bilangan (nilai di luar batas dipotong ke 0..3600)
+  L.catatBahasSesi = function (sesiId, soalId, detik) {
+    const s = UKP.store.get(); const x = sesiDari(s, sesiId); if (!x || x.selesai || !Array.isArray(x.soal)) return false;
+    const q = x.soal.find(y => y && y.id === soalId); const n = Number(detik);
+    if (!q || detik == null || detik === '' || typeof detik === 'boolean' || !isFinite(n)) return false;
+    q.bahasDetik = Math.round(Math.min(3600, Math.max(0, n)));
     UKP.store.save();
     return true;
   };
@@ -410,6 +423,8 @@
       .map(t => ({ topik: t.topik, n: t.n, benar: t.benar, akurasi: Math.round(t.benar / t.n * 100) }));
     // v8.1: detik per soal ikut di soal[]; mode, judul, tempo, skor (mode ujian), triase (urutan bahas)
     soal.forEach((q, i) => { q.detik = Math.max(0, Math.round(Number(daftarSoal[i].detik) || 0)); });
+    // v9.3 W1: waktu membahas per soal (rekaman lama atau nilai tidak wajar dari room → null)
+    soal.forEach((q, i) => { q.bahasDetik = detikWajar(daftarSoal[i].bahasDetik); });
     const mode = sesi.mode === 'ujian' ? 'ujian' : 'latihan';
     return { nSoal, nPeserta, menit, peserta: hasilP, soal, tersulit, topikTim,
       mode, judul: typeof sesi.judul === 'string' && sesi.judul ? sesi.judul : null,
@@ -425,6 +440,8 @@
   const fmtUKP = () => (UKP.ref && UKP.ref.ujian && UKP.ref.ujian.format && UKP.ref.ujian.format.UKP) || null;
   const tingkatProfil = () => { try { const p = UKP.store.get().profil; return p && TINGKAT_SAH.includes(p.tingkat) ? p.tingkat : 'A'; } catch (e) { return 'A'; } };
   const bulatPositif = v => { const n = Math.round(Number(v)); return isFinite(n) && n > 0 ? n : 0; };
+  // v9.3 W1: detik dari rekaman (bisa datang dari room): hanya bilangan terbatas 0..3600 (dibulatkan); lainnya → null
+  function detikWajar(v) { return typeof v === 'number' && isFinite(v) && v >= 0 && v <= 3600 ? Math.round(v) : null; }
   const teksPendek = (v, n) => typeof v === 'string' ? v.replace(KONTROL_RE, ' ').replace(/\s+/g, ' ').trim().slice(0, n) : '';
   const OPSI_RE = /^[A-D]$/;
 
@@ -453,6 +470,28 @@
     const s = L.siapBersama(UKP.store.get()); s.bersama.tempo = mode === 'longgar' ? 'longgar' : 'ujian'; UKP.store.save();
     return L.tempoBersama();
   };
+  // v9.3 W1: waktu membahas per soal. s.bersama.detikBahas: 60 | 120 | 180 | 0 (Bebas); tidak ada = 120.
+  // Cerminan di localStorage (ukp.bersama.detikBahas) karena normal() store versi ini membangun ulang s.bersama tanpa field ini
+  L.PILIHAN_BAHAS = [60, 120, 180, 0];
+  L.BAHAS_BAWAAN = 120;
+  const KUNCI_BAHAS = 'ukp.bersama.detikBahas';
+  const bahasSah = v => typeof v === 'number' && L.PILIHAN_BAHAS.indexOf(v) >= 0;
+  L.bahasBersama = function () {
+    const s = L.siapBersama(UKP.store.get()); if (bahasSah(s.bersama.detikBahas)) return s.bersama.detikBahas;
+    try { const raw = root.localStorage.getItem(KUNCI_BAHAS); const v = raw == null || raw === '' ? NaN : Number(raw); if (bahasSah(v)) { s.bersama.detikBahas = v; return v; } } catch (e) {}
+    return L.BAHAS_BAWAAN;
+  };
+  L.aturBahasBersama = function (detik) {
+    const v = bahasSah(detik) ? detik : L.BAHAS_BAWAAN;
+    const s = L.siapBersama(UKP.store.get()); s.bersama.detikBahas = v; UKP.store.save();
+    try { root.localStorage.setItem(KUNCI_BAHAS, String(v)); } catch (e) {}
+    return v;
+  };
+  // anggaran waktu latihan = jumlah soal × (waktu mengerjakan + waktu membahas); Bebas (0) → jumlah soal × waktu mengerjakan
+  L.anggaranBersama = function (nSoal, detikPerSoal, detikBahas) {
+    const n = Math.max(0, Math.round(Number(nSoal) || 0)); const k = bulatPositif(detikPerSoal); const b = detikWajar(detikBahas) || 0;
+    return n * (k + b);
+  };
   // field v8.1 rekaman sesi dari info mulaiSesiBersama; tanpa info → {} (rekaman sama dengan v8.0)
   function infoSesiV81(info) {
     if (!isObjL(info)) return {};
@@ -464,14 +503,28 @@
     };
   }
   // ringkasan tempo sesi dari soal[].detik > 0 (null bila tidak ada detik tercatat)
+  // v9.3 W1: + totalDetik (jumlah waktu mengerjakan tercatat) dan bahas (waktu membahas; null bila tidak tercatat)
   function ringkasTempo(sesi, soal) {
-    const dd = soal.filter(q => q.detik > 0); if (!dd.length) return null;
+    const dd = soal.filter(q => q.detik > 0); const bahas = ringkasBahas(sesi, soal); if (!dd.length && !bahas) return null;
     const dps = bulatPositif(sesi.detikPerSoal) || (sesi.tempo === 'longgar' ? L.TEMPO_LONGGAR : L.tempoUjian(sesi.tingkat));
-    const rata = Math.round(dd.reduce((a, q) => a + q.detik, 0) / dd.length);
+    const rata = dd.length ? Math.round(dd.reduce((a, q) => a + q.detik, 0) / dd.length) : 0;
+    // v9.3 P1: total waktu mengerjakan (baris "Total … menit") memakai detik per soal yang dipotong ke 0..3600 seperti bahasDetik
+    // (rekaman room boleh membawa detik sampai 86400; rata-rata di atas tetap seperti v9.2)
+    const total = dd.reduce((a, q) => a + Math.min(3600, q.detik), 0);
     const lewat = dd.filter(q => q.detik > dps);
     const f = L.formatUjianTingkat(sesi.tingkat);
     return { detikPerSoal: dps, rataDetik: rata, nLewat: lewat.length, terlama: lewat.slice().sort((a, b) => b.detik - a.detik).slice(0, 3).map(q => ({ id: q.id, detik: q.detik })),
-      soalUjian: f.soal, menitUjian: f.menit, proyeksiMenit: Math.round(rata * f.soal / 60) };
+      soalUjian: f.soal, menitUjian: f.menit, proyeksiMenit: Math.round(rata * f.soal / 60), totalDetik: total, bahas };
+  }
+  // waktu membahas: { target (0 = Bebas), n, rataDetik, nLewat, terlama [{ id, detik }] ≤ 3 urut turun, totalDetik } | null
+  function ringkasBahas(sesi, soal) {
+    const dd = soal.filter(q => typeof q.bahasDetik === 'number'); if (!dd.length) return null;
+    const target = detikWajar(sesi && sesi.detikBahas) || 0;
+    const total = dd.reduce((a, q) => a + q.bahasDetik, 0);
+    const lewat = target ? dd.filter(q => q.bahasDetik > target) : [];
+    const calon = target ? lewat : dd;
+    return { target, n: dd.length, rataDetik: Math.round(total / dd.length), nLewat: lewat.length,
+      terlama: calon.slice().sort((a, b) => b.bahasDetik - a.bahasDetik).slice(0, 3).map(q => ({ id: q.id, detik: q.bahasDetik })), totalDetik: total };
   }
 
   // ---------- B. triase dan penjelas ----------
@@ -635,6 +688,8 @@
       const ikut = tim && Number.isInteger(tim.hadir) && tim.hadir > 0 ? tim.hadir + ' dari ' + ev.nPeserta + ' orang ikut' : ev.nPeserta + ' orang';
       baris.push(ev.nSoal + ' soal · ' + ikut + (ev.menit ? ' · ' + ev.menit + ' menit' : ''));
       baris.push(dijawab ? L.teksSkorTim({ benar, dijawab }) + (tidak && !dariRoom ? ' · ' + tidak + ' kali tidak menjawab' : '') : 'Belum ada jawaban yang masuk.');
+      // v9.3 W1: "Waktu: 11 menit mengerjakan · 8 menit membahas" bila waktu membahas tercatat
+      const tp = ev.tempo; if (tp && tp.bahas) baris.push('Waktu: ' + Math.round(tp.totalDetik / 60) + ' menit mengerjakan · ' + Math.round(tp.bahas.totalDetik / 60) + ' menit membahas');
       orang = ev.peserta.map(p => p.nama + ' benar ' + p.benar + ' dari ' + (p.ikut != null ? p.ikut : ev.nSoal) + ' soal');
     }
     if (dariRoom) { /* tanpa baris per orang */ }
@@ -1031,7 +1086,10 @@
       tempo: o.tempo === 'longgar' ? 'longgar' : 'ujian', detikPerSoal: bulatPositif(o.detikPerSoal) || null, ulang: o.ulang === undefined ? null : salinJSON(o.ulang), diperbarui: Date.now(),
       draf: dr ? { soalId: dr.soalId, jb: isObjL(dr.jb) ? salinJSON(dr.jb) : {}, yb: isObjL(dr.yb) ? salinJSON(dr.yb) : {}, detikSoal: Math.max(0, Math.round(Number(dr.detikSoal) || 0)) } : null,
       // v8.2 B0: sesi ini berjalan di room tim (1, atau kode room ≤ 20 karakter); null = satu layar
-      room: typeof o.room === 'string' && o.room ? o.room.slice(0, 20) : o.room ? 1 : null };
+      room: typeof o.room === 'string' && o.room ? o.room.slice(0, 20) : o.room ? 1 : null,
+      // v9.3 W1: target membahas (0 = Bebas; null = tidak diketahui) dan saat kunci jawaban soal yang sedang dibahas dibuka (ms jam perangkat ini)
+      detikBahas: detikWajar(o.detikBahas),
+      bahas: isObjL(o.bahas) && typeof o.bahas.soalId === 'string' && Number(o.bahas.mulai) > 0 && isFinite(Number(o.bahas.mulai)) ? { soalId: o.bahas.soalId, mulai: Math.round(Number(o.bahas.mulai)) } : null };
     UKP.store.save(); return salinJSON(s.bersamaAktif);
   };
   L.bersamaAktif = function () {

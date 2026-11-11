@@ -187,7 +187,7 @@ describe('v8.1 C: evaluasiSesi, skorUjian, rekapSesi', () => {
     const se = sesiUjian(); se.soal[1].detik = 200; se.soal[2].detik = 300; se.soal[3].detik = 0;
     const e = J(L.evaluasiSesi(se));
     assert.equal(e.mode, 'ujian'); assert.equal(e.judul, 'Try Out B 1–4');
-    assert.deepEqual(e.tempo, { detikPerSoal: 126, rataDetik: 200, nLewat: 2, terlama: [{ id: TO[2], detik: 300 }, { id: TO[1], detik: 200 }], soalUjian: 100, menitUjian: 210, proyeksiMenit: 333 });
+    assert.deepEqual(e.tempo, { detikPerSoal: 126, rataDetik: 200, nLewat: 2, terlama: [{ id: TO[2], detik: 300 }, { id: TO[1], detik: 200 }], soalUjian: 100, menitUjian: 210, proyeksiMenit: 333, totalDetik: 600, bahas: null }); // v9.3: + totalDetik, bahas
     assert.equal(e.skor.length, 3); assert.equal(e.skor[0].nama, 'Mita');
     assert.ok(Array.isArray(e.triase.daftar)); assert.equal(e.soal[1].detik, 200);
   });

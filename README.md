@@ -32,6 +32,17 @@ Dua rilis ini tidak menambah fitur besar. Isinya kejelasan: teks, urutan, dan ap
 - **Evaluasi (v9.2).** Satu angka skor tim di kop, pita "Rata-rata per orang · Semua benar · Yakin tapi salah · Tidak menjawab", sakelar peringkat tetap mati sebagai bawaan, dan tombol yang jarang dipakai pindah ke menu **Lainnya**.
 - **Batasan yang tidak berubah.** Tautan room adalah satu-satunya kunci: tidak ada akun dan tidak ada sandi room. Siapa pun yang memegang tautan bisa masuk dengan nama apa pun, melihat daftar nama dan jawaban, dan dengan kemampuan teknis bisa mengganggu room (misalnya mengambil alih peran pemimpin atau menutup room). Bagikan tautan hanya di grup tim. Bila tautan bocor: **Tutup room**, lalu buat room baru dan bagikan tautan barunya.
 
+## Waktu mengerjakan dan waktu membahas (v9.3)
+
+Latihan bersama kini punya dua waktu yang sama-sama terlihat, bertarget, dan tercatat.
+
+- **Pengaturan.** "Waktu mengerjakan per soal" (seperti ujian 2,1 menit, atau lebih santai 2,5 menit) dan "Waktu membahas per soal" (1, 2, atau 3 menit, atau Bebas; bawaan 2 menit). Ada di dialog **Mulai latihan bersama** dan di saringan Latihan mode Bersama, dengan baris ringkas "20 soal · kira-kira 82 menit (42 mengerjakan + 40 membahas)". Pilihan tersimpan di perangkat pemimpin (`s.bersama.detikBahas`; 0 = Bebas).
+- **Anggaran waktu latihan** = jumlah soal × (waktu mengerjakan + waktu membahas). Bebas: jumlah soal × waktu mengerjakan.
+- **Papan pemimpin.** Satu penghitung fase di kop: "Mengerjakan · sisa 1:21", lalu setelah kunci jawaban dibuka "Membahas · sisa 1:30". Lewat target: "lewat 0:12" dengan nada peringatan. Tidak ada tindakan otomatis: kunci jawaban tidak terbuka sendiri dan soal tidak pindah sendiri. Muat ulang saat membahas melanjutkan penghitung.
+- **HP anggota.** Baris tipis di bawah kop dengan penghitung yang sama, memakai koreksi jam yang sudah ada. Dengan pemimpin versi lama, hanya waktu mengerjakan yang tampil.
+- **Catatan.** Tiap soal di hasil latihan menyimpan `detik` (mengerjakan) dan `bahasDetik` (membahas); hasil latihan menyimpan `detikBahas` (target). Evaluasi, bagian Tempo: "Membahas: rata-rata 1:35 per soal, target 2:00." dan "Total 19 menit: 11 mengerjakan, 8 membahas." Rekap WhatsApp mendapat satu baris waktu.
+- **Pesan room.** Dua field opsional di `state.aktivitas`: `detikBahas` dan `mulaiBahas`. Versi lama mengabaikannya; nilai tidak wajar dari room dianggap tidak ada.
+
 ## Isi saat ini (status 9 November 2026, v7.8)
 
 | | Jumlah |

@@ -1110,6 +1110,22 @@
     return { lewat: lewat > 0, teks: 'Rata-rata ' + mmss(t.rataDetik) + ' per soal; tempo ujian ' + mmss(tu) + '. Dengan laju ini ' + soalU + ' soal butuh ±' + t.proyeksiMenit + ' menit, '
       + (lewat > 0 ? 'lewat ' + lewat + ' menit dari ' + menitU + '.' : 'masih di dalam tempo ujian (' + menitU + ' menit).') };
   }
+  // v9.3 W2 · murni: kalimat waktu membahas dari tempo.bahas (null bila tidak tercatat, mis. rekaman lama)
+  //   → { teks: 'Membahas: rata-rata 1:35 per soal, target 2:00.', lewat: '2 dari 5 soal melewati target.' | null, terlama: [{ id, detik }], total: 'Total 19 menit: 11 mengerjakan, 8 membahas.' | null }
+  function kalimatBahas(t) {
+    const b = t && t.bahas;
+    if (!b || !(Number(b.n) > 0)) return null;
+    const target = Number(b.target) > 0 ? Number(b.target) : 0;
+    const n = Math.round(b.n);
+    const nLewat = target && Number(b.nLewat) > 0 ? Math.round(b.nLewat) : 0;
+    const terlama = (Array.isArray(b.terlama) ? b.terlama : []).filter(x => x && typeof x.id === 'string' && Number(x.detik) >= 0).slice(0, 3);
+    const teks = 'Membahas: rata-rata ' + mmss(b.rataDetik) + ' per soal, ' + (target ? 'target ' + mmss(target) : 'tanpa target') + '.';
+    const lewat = nLewat ? nLewat + ' dari ' + n + ' soal melewati target.' : null;
+    const mK = Math.round((Number(t.totalDetik) || 0) / 60), mB = Math.round((Number(b.totalDetik) || 0) / 60);
+    // latihan yang sangat singkat (kurang dari satu menit) tidak diberi baris total: "Total 0 menit" tidak berguna
+    const total = mK + mB >= 1 ? 'Total ' + (mK + mB) + ' menit: ' + mK + ' mengerjakan, ' + mB + ' membahas.' : null;
+    return { teks, lewat, terlama, total };
+  }
   // murni: siapa memilih apa pada satu soal → "A: Nicky · B: Budi, Sari (kunci) · C: Hadi · kosong: Tika"
   function siapaMemilih(q, urutanNama) {
     const per = (q && q.perPeserta) || {}; const nama = (urutanNama && urutanNama.length ? urutanNama : Object.keys(per));
@@ -1466,14 +1482,25 @@
   }
   // tempo: kalimat proyeksi ke ujian sungguhan + ≤ 3 soal terlama (bisa dibuka)
   function bagianTempo(ev, buka, idxDari) {
-    const t = ev.tempo; const k = kalimatTempo(t); if (!k) return null;
+    const t = ev.tempo; const k = kalimatTempo(t);
+    // v9.3 W2: waktu membahas (bila tercatat) + baris total; rekaman lama tanpa bahasDetik → bagian ini tidak tampil
+    const kb = kalimatBahas(t);
+    if (!k && !kb) return null;
     const nDetik = ev.soal.filter(q => q.detik > 0).length;
-    const terlama = (t.terlama || []).filter(x => idxDari(x.id) >= 0);
-    return UKP.c.sect({ judul: 'Tempo', meta: 'dari ' + nDetik + ' soal berwaktu', isi: h('div', { class: 'eval-tempo', 'data-k': 'tempo', 'data-nada': k.lewat ? 'attn' : null },
-      h('p', { class: 'eval-tempo-kalimat' }, k.teks),
-      t.nLewat ? h('p', { class: 'meta' }, t.nLewat + ' dari ' + nDetik + ' soal melewati ' + mmss(t.detikPerSoal) + (terlama.length ? '. Terlama:' : '.')) : null,
-      terlama.length ? h('ul', { class: 'eval-tempo-lama', 'aria-label': 'Soal terlama' }, terlama.map(x => h('li', null,
-        h('button', { type: 'button', class: 'btn btn-sm btn-ghost', 'data-k': 'tempo-' + x.id, 'aria-label': 'Buka soal ' + labelSoal(ev.soal[idxDari(x.id)] || x) + ', ' + mmss(x.detik), title: namaTopikSoal(ev.soal[idxDari(x.id)] || x) || null, onclick: () => buka(idxDari(x.id)) }, h('span', { class: 'kode' }, x.id), h('span', { class: 'eval-tempo-topik' }, namaTopikSoal(ev.soal[idxDari(x.id)] || x)), h('span', { class: 'tim-angka' }, mmss(x.detik)))))) : null) });
+    const terlama = k ? (t.terlama || []).filter(x => idxDari(x.id) >= 0) : [];
+    const tombolLama = (daftar, awalan, label) => h('ul', { class: 'eval-tempo-lama', 'aria-label': label }, daftar.map(x => h('li', null,
+      h('button', { type: 'button', class: 'btn btn-sm btn-ghost', 'data-k': awalan + x.id, 'aria-label': 'Buka soal ' + labelSoal(ev.soal[idxDari(x.id)] || x) + ', ' + mmss(x.detik), title: namaTopikSoal(ev.soal[idxDari(x.id)] || x) || null, onclick: () => buka(idxDari(x.id)) }, h('span', { class: 'kode' }, x.id), h('span', { class: 'eval-tempo-topik' }, namaTopikSoal(ev.soal[idxDari(x.id)] || x)), h('span', { class: 'tim-angka' }, mmss(x.detik))))));
+    const lamaB = kb ? kb.terlama.filter(x => idxDari(x.id) >= 0) : [];
+    const nB = kb ? ev.soal.filter(q => q.bahasDetik != null).length || Math.round(t.bahas.n) : 0;
+    const meta = [k ? 'dari ' + nDetik + ' soal berwaktu' : null, kb && (!k || nB !== nDetik) ? nB + ' soal dibahas' : null].filter(Boolean).join(' · ');
+    return UKP.c.sect({ judul: 'Tempo', meta: meta || null, isi: h('div', { class: 'eval-tempo', 'data-k': 'tempo', 'data-nada': k && k.lewat ? 'attn' : null },
+      k ? h('p', { class: 'eval-tempo-kalimat' }, k.teks) : null,
+      k && t.nLewat ? h('p', { class: 'meta' }, t.nLewat + ' dari ' + nDetik + ' soal melewati ' + mmss(t.detikPerSoal) + (terlama.length ? '. Terlama:' : '.')) : null,
+      terlama.length ? tombolLama(terlama, 'tempo-', 'Soal terlama dikerjakan') : null,
+      kb ? h('p', { class: 'eval-tempo-kalimat eval-tempo-bahas', 'data-k': 'tempo-bahas' }, kb.teks) : null,
+      kb && (kb.lewat || lamaB.length) ? h('p', { class: 'meta' }, (kb.lewat ? kb.lewat.replace(/\.$/, '') + (lamaB.length ? '. Terlama:' : '.') : 'Terlama:')) : null,
+      lamaB.length ? tombolLama(lamaB, 'tempo-bahas-', 'Soal terlama dibahas') : null,
+      kb && kb.total ? h('p', { class: 'eval-tempo-total', 'data-k': 'tempo-total' }, kb.total) : null) });
   }
   // matriks soal × orang; saringan (> 10 soal) dan 20 baris pertama untuk sesi > 30 soal
   function bagianMatriks(ev, nama, kelasDari) {
@@ -1838,7 +1865,7 @@
     return id ? halamanDetail(id) : halamanDaftar();
   };
   // untuk uji: urutan dan CSV tanpa DOM
-  UKP.views.tim._uji = { normal, urutkan, csv, keP, sumberTeks, normalJawaban, analisisJawaban, petaSimulasi, csvJawaban, labelPola, pesertaDari, dokDari, normalLokal, adalahLokal, normalSesi, evaluasiLokal, csvSesi, daftarSesi, ringkasSesi, kalimatTempo, siapaMemilih, menitSesi, SARING_MATRIKS, MODE_JAWAB, rekapAnggota, angkaTim, versiAnggota, teksTerimaKasih, bahasLagi, sebaranTanpaNama, KUNCI_PERINGKAT };
+  UKP.views.tim._uji = { normal, urutkan, csv, keP, sumberTeks, normalJawaban, analisisJawaban, petaSimulasi, csvJawaban, labelPola, pesertaDari, dokDari, normalLokal, adalahLokal, normalSesi, evaluasiLokal, csvSesi, daftarSesi, ringkasSesi, kalimatTempo, kalimatBahas, siapaMemilih, menitSesi, SARING_MATRIKS, MODE_JAWAB, rekapAnggota, angkaTim, versiAnggota, teksTerimaKasih, bahasLagi, sebaranTanpaNama, KUNCI_PERINGKAT };
   if (UKP.viz && UKP.viz.gaya) UKP.viz.gaya('ukp-tim-room', ':where(.tim-sumber){color:var(--muted)}'
     + ':where(.tim-online){display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-meta,.8125rem);color:var(--muted);white-space:nowrap}');
 })(typeof window !== 'undefined' ? window : globalThis);

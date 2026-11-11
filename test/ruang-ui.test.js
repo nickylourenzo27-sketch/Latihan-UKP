@@ -327,3 +327,56 @@ describe('ruang-ui: istilah baku dan tanpa nama dari kode (v9.2)', () => {
     assert.match(lt, /perbarui: \(\) => \{ gantiBilaBeda\(slotIngin, \[barisInginIkut\(\)\]\); \}/);
   });
 });
+
+// v9.3 W2: waktu mengerjakan dan waktu membahas (dialog Mulai dan HP anggota)
+describe('ruang-ui: waktu mengerjakan dan membahas (v9.3 W2)', () => {
+  it('fmtMSS dan label pilihan membahas', () => {
+    assert.equal(M.fmtMSS(81), '1:21'); assert.equal(M.fmtMSS(0), '0:00'); assert.equal(M.fmtMSS(-5), '0:00'); assert.equal(M.fmtMSS(600), '10:00'); assert.equal(M.fmtMSS(NaN), '0:00');
+    assert.deepEqual([60, 120, 180, 0].map(M.labelBahas), ['1 menit', '2 menit', '3 menit', 'Bebas']);
+  });
+  it('baris ringkas total waktu di dialog Mulai (seperti brief)', () => {
+    assert.equal(M.teksRingkasWaktu(10, 126, 120), '10 soal · kira-kira 41 menit (21 mengerjakan + 20 membahas)');
+    assert.equal(M.teksRingkasWaktu(10, 126, 0), '10 soal · 21 menit mengerjakan · membahas tanpa batas');
+    assert.equal(M.teksRingkasWaktu(20, 150, 60), '20 soal · kira-kira 70 menit (50 mengerjakan + 20 membahas)');
+    assert.equal(M.teksRingkasWaktu(40, 126, 180), '40 soal · kira-kira 204 menit (84 mengerjakan + 120 membahas)');
+  });
+  const T0 = 1700000000000;
+  const akt = o => Object.assign({ jenis: 'latihan', id: 'sb-1', soalIds: ['A1-104', 'B6-126'], idx: 0, fase: 'jawab', mulaiSoal: T0, detikPerSoal: 126, akhirSesi: null, hasilSoal: null, tim: null, detikBahas: 120, mulaiBahas: null }, o || {});
+  it('HP · mengerjakan: hitung mundur dari mulaiSoal + detikPerSoal, memakai selisih jam pemimpin', () => {
+    assert.deepEqual(pol(M.barisWaktuHP(akt(), 0, T0 + 45000)), { fase: 'kerja', teks: 'Mengerjakan · sisa 1:21', habis: false, sisa: 81 });
+    assert.equal(M.barisWaktuHP(akt(), 0, T0).teks, 'Mengerjakan · sisa 2:06');
+    // jam HP 30 detik di belakang pemimpin (selisih +30000): sisa sama dengan laptop
+    assert.equal(M.barisWaktuHP(akt(), 30000, T0 + 15000).teks, 'Mengerjakan · sisa 1:21');
+    // jam HP di depan pemimpin: sisa tidak pernah melebihi waktu mengerjakan
+    assert.equal(M.barisWaktuHP(akt(), -60000, T0).teks, 'Mengerjakan · sisa 2:06');
+    assert.equal(M.barisWaktuHP(akt(), 0, T0 + 125500).teks, 'Mengerjakan · sisa 0:01');
+  });
+  it('HP · mengerjakan habis: "Waktu mengerjakan habis. Jawab sekarang." (sudah menjawab: tanpa ajakan)', () => {
+    assert.deepEqual(pol(M.barisWaktuHP(akt(), 0, T0 + 126000)), { fase: 'kerja', teks: 'Waktu mengerjakan habis. Jawab sekarang.', habis: true, sisa: 0 });
+    assert.equal(M.barisWaktuHP(akt(), 0, T0 + 999000).teks, 'Waktu mengerjakan habis. Jawab sekarang.');
+    assert.equal(M.barisWaktuHP(akt(), 0, T0 + 200000, { sudahJawab: true }).teks, 'Waktu mengerjakan habis.');
+  });
+  it('HP · membahas: hitung mundur dari mulaiBahas + detikBahas; habis: "Waktu membahas habis."', () => {
+    const k = akt({ fase: 'kunci', mulaiBahas: T0 + 100000 });
+    assert.deepEqual(pol(M.barisWaktuHP(k, 0, T0 + 130000)), { fase: 'bahas', teks: 'Membahas · sisa 1:30', habis: false, sisa: 90 });
+    assert.equal(M.barisWaktuHP(k, 0, T0 + 220000).teks, 'Waktu membahas habis.');
+    assert.equal(M.barisWaktuHP(k, 0, T0 + 220000).habis, true);
+  });
+  it('HP · baris membahas tidak tampil: Bebas, pemimpin versi lama (tanpa field), nilai tidak sah; ujian tanpa baris', () => {
+    assert.equal(M.barisWaktuHP(akt({ fase: 'kunci', mulaiBahas: T0, detikBahas: 0 }), 0, T0 + 1000), null, 'Bebas');
+    const lama = akt({ fase: 'kunci' }); delete lama.detikBahas; delete lama.mulaiBahas;
+    assert.equal(M.barisWaktuHP(lama, 0, T0 + 1000), null, 'pemimpin versi lama');
+    assert.equal(M.barisWaktuHP(akt({ fase: 'kunci', mulaiBahas: null }), 0, T0 + 1000), null);
+    assert.equal(M.barisWaktuHP(akt({ fase: 'kunci', mulaiBahas: T0, detikBahas: 1e9 }), 0, T0 + 1000), null);
+    // pemimpin versi lama tetap menampilkan "Mengerjakan · sisa …" (field lama saja)
+    const lamaJawab = akt(); delete lamaJawab.detikBahas; delete lamaJawab.mulaiBahas;
+    assert.equal(M.barisWaktuHP(lamaJawab, 0, T0 + 45000).teks, 'Mengerjakan · sisa 1:21');
+    assert.equal(M.barisWaktuHP(akt({ detikPerSoal: 0 }), 0, T0), null, 'tanpa target mengerjakan');
+    assert.equal(M.barisWaktuHP({ jenis: 'ujian', id: 'u', mulai: T0, akhir: T0 + 1 }, 0, T0), null);
+    assert.equal(M.barisWaktuHP(null), null);
+  });
+  it('teks waktu memakai istilah baku dan tanpa istilah teknis', () => {
+    const semua = [M.barisWaktuHP(akt(), 0, T0).teks, M.barisWaktuHP(akt(), 0, T0 + 1e6).teks, M.barisWaktuHP(akt({ fase: 'kunci', mulaiBahas: T0 }), 0, T0).teks, M.teksRingkasWaktu(10, 126, 120)].join(' ');
+    assert.doesNotMatch(semua, LARANGAN); assert.doesNotMatch(semua, /sesi|aktivitas|peserta/i);
+  });
+});

@@ -285,6 +285,10 @@
     for (const n of p) { if (out.length >= 12) break; if (validNama(n) && !out.some(y => kunciNama(y) === kunciNama(n))) out.push(n); }
     return out.length ? out : null;
   }
+  // v9.3 W2: target membahas per soal (detik, bulat 0..3600; 0 = Bebas). Selain itu → null.
+  function bersihDetikBahas(x) { return bulat(x, 0, 3600) ? x : null; }
+  // v9.3 W2: saat kunci jawaban dibuka (ms, jam pemimpin). Bilangan positif terbatas; selain itu → null.
+  function bersihMulaiBahas(x) { return angka(x) && x > 0 && x < 1e14 ? x : null; }
   function validAktivitas(a) {
     if (a === null || a === undefined) return null;
     if (!isObj(a)) return undefined;
@@ -305,7 +309,9 @@
       }
       // v8.2 B0: skor tim kumulatif (opsional), diisi pemimpin saat bukaKunci
       const tim = validTimAkt(a.tim); if (tim === undefined) return undefined;
-      return { jenis: 'latihan', id: a.id, soalIds: a.soalIds.slice(), idx: a.idx, fase: a.fase, mulaiSoal: a.mulaiSoal, detikPerSoal: a.detikPerSoal, akhirSesi: a.akhirSesi == null ? null : a.akhirSesi, hasilSoal: hasil, tim, peserta: bersihPeserta(a.peserta) };
+      // v9.3 W2: detikBahas (target membahas per soal, 0 = Bebas) dan mulaiBahas (ms jam pemimpin saat kunci jawaban dibuka),
+      // keduanya opsional dan lunak: nilai tidak sah → null, pesan tidak pernah ditolak karena keduanya.
+      return { jenis: 'latihan', id: a.id, soalIds: a.soalIds.slice(), idx: a.idx, fase: a.fase, mulaiSoal: a.mulaiSoal, detikPerSoal: a.detikPerSoal, akhirSesi: a.akhirSesi == null ? null : a.akhirSesi, hasilSoal: hasil, tim, peserta: bersihPeserta(a.peserta), detikBahas: bersihDetikBahas(a.detikBahas), mulaiBahas: a.fase === 'kunci' ? bersihMulaiBahas(a.mulaiBahas) : null };
     }
     if (a.jenis === 'ujian') {
       if (!teks(a.id, 60) || !RE_ID.test(a.id)) return undefined;
@@ -846,8 +852,19 @@
       let m = r.perangkat.get(k); if (!m) { m = new Map(); r.perangkat.set(k, m); }
       m.delete(v.d); m.set(v.d, { online: v.online, t: v.t, terima: now(), segar: !!segar }); while (m.size > 8) m.delete(m.keys().next().value);
       sampelJam(v, segar);
+      balasJam(r, v, lama, segar);
       pancar('hadir', { nama: v.nama, online: v.online, peran: v.peran, siap: siapBerlaku(v.siap), ganda: gandaNama(k) });
       pancarStatus();
+    }
+    // v9.3 P2: anggota yang baru tersambung (perangkat baru atau muat ulang) hanya menerima pesan tersimpan, jadi belum punya sampel jam
+    // segar sampai detak tuan berikutnya (≤ detakMs). Dengan jam HP yang meleset, sisa waktu mengerjakan/membahas di HP salah selama itu.
+    // Tuan membalas kabar online segar dari perangkat baru dengan satu kabar hadir segar (digabung, paling sering sekali per 2 dtk).
+    function balasJam(r, v, lama, segar) {
+      if (r.peran !== 'tuan' || r.calon || !segar || !v.online || v.d === r.d || kunciNama(v.nama) === kunciNama(r.nama)) return;
+      if (lama && lama.d === v.d && lama.online) return;
+      if (r.timerBalasJam) return;
+      const jeda = Math.max(300, 2000 - (now() - (r.balasJamPada || 0)));
+      r.timerBalasJam = setTimeout(() => { r.timerBalasJam = null; if (r !== rt || r.peran !== 'tuan') return; r.balasJamPada = now(); kirimHadir(true); }, jeda);
     }
     const siapBerlaku = id => !!(id && rt && rt.state && rt.state.lobi && rt.state.lobi.id === id);
     function segarHadir(x, d) {
@@ -906,7 +923,7 @@
     }
     function hentiRt() {
       const r = rt; if (!r) return; r.hidup = false; rt = null;
-      clearInterval(r.timerDetak); clearTimeout(r.timerJawab); clearTimeout(r.timerBersih); clearTimeout(r.timerCalon); clearTimeout(r.timerKosong);
+      clearInterval(r.timerDetak); clearTimeout(r.timerJawab); clearTimeout(r.timerBersih); clearTimeout(r.timerCalon); clearTimeout(r.timerKosong); clearTimeout(r.timerBalasJam);
       r.koneksi.forEach(k => k.henti()); r.koneksi = [];
       r.menungguSesi.forEach(ws => ws.forEach(fn => fn(null))); r.menungguSesi.clear();
     }
@@ -1061,7 +1078,7 @@
     api.mulaiLatihan = function (o) {
       o = o || {};
       return ubahState(s => {
-        s.aktivitas = { jenis: 'latihan', id: o.id, soalIds: Array.isArray(o.soalIds) ? o.soalIds.slice() : [], idx: 0, fase: 'jawab', mulaiSoal: now(), detikPerSoal: o.detikPerSoal == null ? 0 : Math.round(o.detikPerSoal), akhirSesi: o.akhirSesi == null ? null : o.akhirSesi, hasilSoal: null, tim: null, peserta: bersihPeserta(Array.isArray(o.peserta) ? o.peserta.map(rapikanNama) : null) };
+        s.aktivitas = { jenis: 'latihan', id: o.id, soalIds: Array.isArray(o.soalIds) ? o.soalIds.slice() : [], idx: 0, fase: 'jawab', mulaiSoal: now(), detikPerSoal: o.detikPerSoal == null ? 0 : Math.round(o.detikPerSoal), akhirSesi: o.akhirSesi == null ? null : o.akhirSesi, hasilSoal: null, tim: null, peserta: bersihPeserta(Array.isArray(o.peserta) ? o.peserta.map(rapikanNama) : null), detikBahas: bersihDetikBahas(typeof o.detikBahas === 'number' ? Math.round(o.detikBahas) : o.detikBahas), mulaiBahas: null };
         s.lobi = null;
       });
     };
@@ -1071,7 +1088,7 @@
       return ubahState(s => { const a = s.aktivitas; if (!a || a.jenis !== 'latihan') return false; a.peserta = bersihPeserta(Array.isArray(peserta) ? peserta.map(rapikanNama) : null); });
     };
     api.aturSoal = function (idx) {
-      return ubahState(s => { const a = s.aktivitas; if (!a || a.jenis !== 'latihan' || !bulat(idx, 0, a.soalIds.length - 1)) return false; a.idx = idx; a.fase = 'jawab'; a.mulaiSoal = now(); a.hasilSoal = null; });
+      return ubahState(s => { const a = s.aktivitas; if (!a || a.jenis !== 'latihan' || !bulat(idx, 0, a.soalIds.length - 1)) return false; a.idx = idx; a.fase = 'jawab'; a.mulaiSoal = now(); a.hasilSoal = null; a.mulaiBahas = null; });
     };
     // opsi = { penjelas: nama | null (harus ada di per dengan b = 1), tim: { benar, dijawab } | null (kumulatif; tidak disebut = tetap) }
     api.bukaKunci = function (soalId, per, opsi) {
@@ -1081,6 +1098,8 @@
         const p = validPer(per || {}); if (!p) return false;
         const pj = penjelasDi(p, opsi.penjelas); if (pj === undefined) return false;
         if (opsi.tim !== undefined) { const tim = validTimAkt(opsi.tim); if (tim === undefined) return false; a.tim = tim; }
+        // v9.3 W2: mulaiBahas dipasang sekali per soal; buka ulang (mis. per diperbarui) tidak memulai ulang waktu membahas
+        if (a.fase !== 'kunci' || !bersihMulaiBahas(a.mulaiBahas)) a.mulaiBahas = now();
         a.fase = 'kunci'; a.hasilSoal = { soalId, per: p, penjelas: pj };
       });
     };

@@ -719,8 +719,8 @@
       fokus(intiEl);
       gulirLangsung();
     }
-    // v8.1 triase setelah kunci dibuka (latihan bersama): .triase-bersama[data-kelas] berisi pill label, saran penjelas, stopwatch
-    // "Bahas m:ss" (sejak kunci dibuka sampai Lanjut; tidak untuk 'dikuasai'), "Kenapa C keliru: <label> — <teks>", "Yakin tapi salah: …".
+    // v8.1 triase setelah kunci dibuka (latihan bersama): .triase-bersama[data-kelas] berisi pill label, saran penjelas
+    // (v9.3: tanpa stopwatch; waktu membahas ada di kop papan), "Kenapa C keliru: <label> — <teks>", "Yakin tapi salah: …".
     // opsi.bersama.hitungPenjelas = { nama: n } (dipegang pemanggil untuk rotasi penjelas); opsi.bersama.onTriase(hasil) setelah dihitung
     let triEl = null, tBahas = null, mulaiBahas = 0;
     function hitungTriase(per) {
@@ -883,7 +883,7 @@
   // opsiU: { kartu: {id, baru, perubahan} | null, konteks, hanyaBaca, keyakinan: 'yakin'|'ragu'|'menebak'|null } — teks kartu otomatis
   // hanya bila kartu benar-benar dibuat; keyakinan (Momen 2) tampil sebagai kombinasi di kop (status), tanpa mengubah penilaian
   // v9.2 G1: hasil satu soal latihan bersama setelah kunci jawaban dibuka, dipakai papan (bukaKunci) dan mode lihat lagi (views-belajar).
-  // UKP.c.hasilBersama(soal, nama[], per { nama: { opsi|o, keyakinan|k } }, { tri, jam, sudahLanjut() }) →
+  // UKP.c.hasilBersama(soal, nama[], per { nama: { opsi|o, keyakinan|k } }, { tri, jam }) →
   //   { status (p.status-bersama), triase (div.triase-bersama | null), hasil 'benar'|'salah'|'sebagian', teks (pembaca layar), ringkas ("3 dari 5 yang menjawab benar"), tBahas, mulaiBahas }
   // Satu cara menghitung: yang dihitung hanya yang menjawab; yang tidak menjawab ditulis terpisah. Ikon silang hanya bila tak ada yang benar.
   const NADA_KELAS = { dikuasai: 'ok', rapuh: 'info', terbelah: 'warn', tersandung: 'attn' };
@@ -905,26 +905,20 @@
     const status = h('p', { class: 'status blok status-besar status-bersama', tabindex: '-1', 'data-hasil': hasil }, ikonSt,
       h('span', null, h('strong', null, 'Jawaban benar: ' + kunci), baris.map(t => h('span', { class: 'status-ket status-baris' }, t))));
     const tri = o.tri || null; let triase = null, tBahas = null, mulaiBahas = 0;
-    // v9.2 (V9 S5): tidak ada yang menjawab → tanpa pil dan tanpa "Waktu bahas" (baris status sudah menyebutnya)
+    // v9.2 (V9 S5): tidak ada yang menjawab → tanpa pil (baris status sudah menyebutnya)
     if (tri && tri.nJawab !== 0) {
       if (tri.kelas === 'dikuasai') triase = h('div', { class: 'triase-bersama blok', 'data-kelas': tri.kelas }, h('p', { class: 'triase-baris' }, h('span', { class: 'triase-saran' }, 'Lanjut ke soal berikutnya.')));
       else {
-        const jam = o.jam ? h('span', { class: 'triase-bahas', role: 'timer', 'aria-live': 'off', title: 'Lama pembahasan soal ini' }, 'Waktu bahas 0:00') : null;
+        // v9.3 W1: stopwatch "Waktu bahas" dihapus; waktu membahas tampil sebagai penghitung fase di kop papan (views-belajar)
         const al = tri.alasan;
         triase = h('div', { class: 'triase-bersama blok', 'data-kelas': tri.kelas },
-          h('p', { class: 'triase-baris' }, h('span', { class: 'pill', 'data-tone': NADA_KELAS[tri.kelas] || null }, tri.label), h('strong', { class: 'triase-saran' }, tri.saran), jam),
+          h('p', { class: 'triase-baris' }, h('span', { class: 'pill', 'data-tone': NADA_KELAS[tri.kelas] || null }, tri.label), h('strong', { class: 'triase-saran' }, tri.saran)),
           al && (al.label || al.teks) ? h('p', { class: 'triase-alasan' }, h('span', { class: 'triase-ket' }, 'Kenapa ' + al.opsi + ' keliru: '), [al.label, al.teks].filter(Boolean).join(' — ')) : null,
           tri.yakinSalah && tri.yakinSalah.length ? h('p', { class: 'triase-yakin' }, h('span', { class: 'triase-ket' }, 'Yakin tapi salah: '), tri.yakinSalah.join(', ')) : null);
-        if (jam) {
-          mulaiBahas = Date.now();
-          const tik = () => {
-            if ((typeof o.sudahLanjut === 'function' && o.sudahLanjut()) || !jam.isConnected && Date.now() - mulaiBahas > 5000) { clearInterval(tBahas); return; }
-            const d = Math.floor((Date.now() - mulaiBahas) / 1000); jam.textContent = 'Waktu bahas ' + Math.floor(d / 60) + ':' + String(d % 60).padStart(2, '0');
-          };
-          tBahas = setInterval(tik, 1000);
-        }
       }
     }
+    // o.jam: saat kunci dibuka (wrap.detikBahas di papan); tBahas tetap null (tidak ada stopwatch lagi)
+    if (o.jam) mulaiBahas = Date.now();
     const teks = 'Jawaban benar: ' + kunci + '. ' + baris.join('. ') + '.' + (tri && tri.kelas !== 'dikuasai' && tri.nJawab !== 0 ? ' ' + tri.saran + '.' : '');
     return { status, triase, hasil, teks, ringkas, tBahas, mulaiBahas };
   };
