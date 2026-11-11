@@ -215,7 +215,7 @@
     page.appendChild(UKP.c.kop({ eyebrow: 'Ujian tim', judul: info.judul || 'Ujian tim', meta: [UKP.c.pill(n + ' soal'), UKP.c.pill(info.menit + ' menit', null, 'jam')] }));
     if (info.tidakDikenal && info.tidakDikenal.length) {
       page.append(UKP.c.banner('Versi aplikasi berbeda: muat ulang halaman ini lalu buka tautannya lagi. (' + info.tidakDikenal.length + ' dari ' + n + ' soal belum ada di perangkat ini.)', 'warn', null,
-        h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: () => location.reload() }, UKP.icon('atur-ulang', null, true), 'Muat ulang'))));
+        h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: () => { try { if (typeof UKP.perbaruiAplikasi === 'function') { UKP.perbaruiAplikasi(true); return; } } catch (e) {} location.reload(); } }, UKP.icon('atur-ulang', null, true), 'Muat ulang'))));
       return page;
     }
     // pernah mengerjakan ujian ini di perangkat ini

@@ -5,11 +5,12 @@
    - navigasi ke halaman aplikasi ('./' atau index.html): network-first dengan batas waktu, cadangan dari cache, lalu halaman offline sederhana;
    - lintas asal: hanya Google Fonts (stale-while-revalidate; gagal → stylesheet kosong/fon sistem tanpa galat). Permintaan lain tidak disentuh.
    Pembaruan: VERSI dan daftar ASET di blok otomatis ditulis ulang oleh `node tools/build-artifact.js` (hash isi semua aset). Versi baru
-   menunggu (waiting) sampai halaman mengirim pesan { type: 'SKIP_WAITING' } (toast "Versi baru tersedia · Muat ulang");
+   langsung aktif setelah semua aset tersimpan (skipWaiting, v9.3.1) dan mengambil alih halaman yang terbuka; js/app.js lalu memuat
+   ulang halaman itu saat aman. Pesan { type: 'SKIP_WAITING' } tetap diterima untuk versi yang sempat menunggu;
    cache versi lama dihapus saat activate. Daftar skrip juga dibaca ulang dari index.html saat install, jadi berkas baru tetap ikut. */
 'use strict';
 /* <ASET-OTOMATIS> ditulis ulang oleh tools/build-artifact.js — jangan diubah manual */
-const VERSI = '1076a4abcf28';
+const VERSI = 'e4c1cbea8a06';
 const ASET = [
   "index.html",
   "js/core.js",
@@ -141,7 +142,11 @@ async function pasang() {
   await siapkanFont(html).catch(e => debug('fon dilewati', e && e.message));
 }
 
-self.addEventListener('install', event => { if (HOST_TANPA_SW) return; event.waitUntil(pasang()); });
+// v9.3.1: versi baru langsung aktif (skipWaiting) setelah semua aset tersimpan. Dulu ia menunggu sampai halaman mengirim
+// SKIP_WAITING lewat toast 15 detik "Versi baru tersedia"; bila toast itu terlewat, perangkat terus memakai versi lama walau
+// halaman dimuat ulang. Aman karena halaman memuat semua skripnya saat dibuka: halaman yang sedang terbuka tetap berjalan dengan
+// skrip di memorinya, dan muat ulang berikutnya sudah dilayani dari cache baru. js/app.js memuat ulang sendiri saat aman.
+self.addEventListener('install', event => { if (HOST_TANPA_SW) return; event.waitUntil(pasang().then(() => self.skipWaiting())); });
 
 self.addEventListener('activate', event => {
   if (HOST_TANPA_SW) return;

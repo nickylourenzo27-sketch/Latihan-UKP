@@ -23,6 +23,11 @@
   const rapikan = v => String(v == null ? '' : v).replace(/[\u0000-\u001f\u007f-\u009f]/g, ' ').replace(/\s+/g, ' ').trim();
   const kunciNama = v => rapikan(v).toLowerCase();
   const samaNama = (a, b) => !!kunciNama(a) && kunciNama(a) === kunciNama(b);
+  // v9.3.1: "Muat ulang" di spanduk versi berbeda memasang versi baru (UKP.perbaruiAplikasi di js/app.js); muat ulang biasa
+  // saja tidak cukup karena aset dilayani dari cache service worker
+  const muatUlangVersi = () => { try { if (typeof UKP.perbaruiAplikasi === 'function') { UKP.perbaruiAplikasi(true); return; } } catch (e) {} location.reload(); };
+  let sudahCekVersi = false;
+  const cekVersiSekali = () => { if (sudahCekVersi) return; sudahCekVersi = true; try { if (typeof UKP.perbaruiAplikasi === 'function') UKP.perbaruiAplikasi(false); } catch (e) {} };
   const ambilDari = (obj, nama) => { if (!obj || typeof obj !== 'object') return null; const k = Object.keys(obj).find(x => samaNama(x, nama)); return k != null ? obj[k] : null; };
   const isObj = x => !!x && typeof x === 'object' && !Array.isArray(x);
   const fn = (o, k) => !!o && typeof o[k] === 'function';
@@ -588,9 +593,10 @@
     else if (tabHilang) b = UKP.c.banner('Room sekarang dipakai di tab lain. Tutup tab ini, atau pakai room di sini.', 'warn', null,
       h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: () => { const r = R(); klaimTab(); try { if (r) r.pulihkan(); } catch (e) {} pasangSpanduk(); beriTahu('tab'); } }, 'Pakai di tab ini')));
     else if (versiBeda()) {
+      cekVersiSekali();   // versi berbeda dengan pemimpin: cek versi baru sekarang; dipasang sendiri saat aman
       const st = stR(); const vp = st && st.versiApp ? st.versiApp : '?';
       b = UKP.c.banner('Versi aplikasi Anda (' + (UKP.versi || '?') + ') berbeda dengan pemimpin (' + vp + '). Muat ulang agar soal sama.', 'warn', null,
-        h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: () => location.reload() }, UKP.icon('atur-ulang', null, true), 'Muat ulang')));
+        h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: muatUlangVersi }, UKP.icon('atur-ulang', null, true), 'Muat ulang')));
     }
     if (!b) return;
     b.setAttribute('data-spanduk-room', jenis);
@@ -1478,7 +1484,7 @@
       if (kopTim) isi.appendChild(kopTim);
       if (!soal) {
         isi.append(h('h1', { class: 'room-h1' }, 'Soal ' + (a.idx + 1) + ' dari ' + a.soalIds.length),
-          UKP.c.banner('Soal ini belum ada di aplikasi Anda. Muat ulang agar versinya sama dengan pemimpin.', 'warn', null, h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: () => location.reload() }, UKP.icon('atur-ulang', null, true), 'Muat ulang'))));
+          UKP.c.banner('Soal ini belum ada di aplikasi Anda. Muat ulang agar versinya sama dengan pemimpin.', 'warn', null, h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: muatUlangVersi }, UKP.icon('atur-ulang', null, true), 'Muat ulang'))));
         return { node, detik: detikLayar };
       }
       const bawah = h('div', { class: 'bar-bawah-room', role: 'status', 'aria-live': 'polite', 'data-langkah': sub });
@@ -1676,7 +1682,7 @@
       isi.append(h('h1', { class: 'card-title room-h1', id: 'ujian-j', tabindex: '-1', 'data-fokus-awal': '' }, rek ? 'Jawaban Anda sudah terkumpul di room' : 'Ujian tim dimulai'),
         h('p', { class: 'meta' }, [a.judul || 'Ujian tim', n ? n + ' soal' : null].filter(Boolean).join(' · '), n ? ' · ' : null, sisaEl));
       if (!kodeInfo) isi.append(UKP.c.banner('Soal ujian ini belum bisa dibaca di perangkat ini. Muat ulang halaman.', 'warn'));
-      else if (kodeInfo.tidakDikenal && kodeInfo.tidakDikenal.length) isi.append(UKP.c.banner('Versi aplikasi Anda berbeda dengan pemimpin. Muat ulang agar soal sama. (' + kodeInfo.tidakDikenal.length + ' dari ' + n + ' soal belum ada.)', 'warn', null, h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: () => location.reload() }, 'Muat ulang'))));
+      else if (kodeInfo.tidakDikenal && kodeInfo.tidakDikenal.length) isi.append(UKP.c.banner('Versi aplikasi Anda berbeda dengan pemimpin. Muat ulang agar soal sama. (' + kodeInfo.tidakDikenal.length + ' dari ' + n + ' soal belum ada.)', 'warn', null, h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: muatUlangVersi }, 'Muat ulang'))));
       else if (rek) isi.append(h('p', { class: 'small' }, 'Tunggu pemimpin menilai. Hasil ujian tim muncul di sini.'), h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn', onclick: () => UKP.go('simulasi', { hasil: rek.id }) }, 'Lihat hasil saya')));
       else if (a.status === 'selesai') isi.append(h('p', { class: 'small' }, 'Pemimpin sudah menutup ujian. Menunggu hasil.'));
       else if (aktif && aktif.tim && aktif.tim.ujianId === a.id) isi.append(h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary btn-lg', onclick: () => UKP.go('simulasi', { jalan: true }) }, UKP.icon('play', null, true), 'Lanjutkan mengerjakan')));

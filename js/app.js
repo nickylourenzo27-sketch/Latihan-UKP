@@ -415,33 +415,102 @@
       let sw;
       try { sw = navigator.serviceWorker; } catch (e) { catatSW('service worker tidak tersedia di konteks ini', e && e.message); return; }
       if (!sw || typeof sw.register !== 'function') return;
-      let muatUlangDiminta = false, sudahMuatUlang = false;
+      let muatUlangDiminta = false, sudahMuatUlang = false, regKini = null, menunggu = false, tPantau = null, paksaNanti = false;
       const muatUlang = () => { if (sudahMuatUlang) return; sudahMuatUlang = true; location.reload(); };
-      // versi baru terpasang dan menunggu: tawarkan; tombol → SKIP_WAITING → controllerchange → muat ulang
-      const tawarkan = reg => {
+      // v9.3.1: versi baru DIPASANG SENDIRI. Dulu versi baru hanya ditawarkan lewat toast 15 detik ("Versi baru tersedia · Muat ulang");
+      // bila terlewat, peramban terus memakai versi lama dari cache walau halaman dimuat ulang (aset cache-first).
+      // Pengaman: paling banyak 2 pemasangan otomatis per tab, berjarak ≥ 30 detik, supaya tidak pernah berputar tanpa henti.
+      const KUNCI_TERAP = 'ukp.sw.terap';
+      const catatanTerap = () => { try { const x = JSON.parse(sessionStorage.getItem(KUNCI_TERAP) || 'null'); return x && typeof x === 'object' ? { t: Number(x.t) || 0, n: Number(x.n) || 0 } : { t: 0, n: 0 }; } catch (e) { return { t: 0, n: 0 }; } };
+      const bolehOtomatis = () => { const c = catatanTerap(); return c.n < 2 && Date.now() - c.t >= 30000; };
+      // aman memuat ulang sendiri: tidak sedang mengerjakan soal atau ujian, tidak ada dialog terbuka, tidak sedang mengetik,
+      // dan di room tidak ada latihan atau ujian yang sedang berjalan
+      const amanMuatUlang = () => {
+        try {
+          if (UKP.simulasiBerjalan && UKP.simulasiBerjalan()) return false;
+          if (UKP.mode && UKP.mode.aktif && UKP.mode.aktif()) return false;
+          if (document.querySelector('dialog[open]')) return false;
+          const ae = document.activeElement; if (ae && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName)) return false;
+          const R = UKP.ruang; const st = R && typeof R.state === 'function' ? R.state() : null; if (st && st.aktivitas) return false;
+        } catch (e) { return false; }
+        return true;
+      };
+      // pasang versi yang sedang menunggu lalu muat ulang. paksa = diminta orangnya (tombol) atau halaman baru saja dibuka
+      const terapkan = (reg, paksa, otomatis) => {
+        const w = reg && reg.waiting; if (!w || sudahMuatUlang || muatUlangDiminta) return false;
+        if (!paksa && !amanMuatUlang()) return false;
+        if (otomatis !== false && !bolehOtomatis()) return false;
+        if (otomatis !== false) { try { const c = catatanTerap(); sessionStorage.setItem(KUNCI_TERAP, JSON.stringify({ t: Date.now(), n: c.n + 1 })); } catch (e) {} }
+        muatUlangDiminta = true; menunggu = false; clearInterval(tPantau); tPantau = null;
+        try { UKP.toast('Memasang versi baru…', { nada: 'info', ms: 4000, lintasRute: true, penting: true }); } catch (e) {}
+        try { w.postMessage({ type: 'SKIP_WAITING' }); } catch (e) { catatSW('pesan SKIP_WAITING gagal', e); }
+        setTimeout(muatUlang, 4000); // cadangan bila controllerchange tidak datang
+        return true;
+      };
+      // versi baru terpasang dan menunggu: pasang sekarang bila aman (saatBuka = halaman baru saja dibuka → selalu dipasang);
+      // bila belum aman, coba lagi tiap pindah halaman dan tiap 5 detik, sambil menawarkan tombol
+      const tawarkan = (reg, saatBuka) => {
         if (!reg.waiting) return;
+        if (paksaNanti) { paksaNanti = false; if (terapkan(reg, true, false)) return; }
+        if (terapkan(reg, !!saatBuka)) return;
+        if (menunggu) return;
+        menunggu = true;
+        const coba = () => { if (menunggu && regKini) terapkan(regKini, false); };
+        document.addEventListener('ukp:render', coba);
+        tPantau = setInterval(coba, 5000);
         saatBoleh(() => {
-          const w = reg.waiting; if (!w) return;
-          UKP.toast('Versi baru tersedia.', { nada: 'info', ms: 15000, lintasRute: true, aksi: { label: 'Muat ulang', onclick: () => {
-            muatUlangDiminta = true;
-            try { w.postMessage({ type: 'SKIP_WAITING' }); } catch (e) { catatSW('pesan SKIP_WAITING gagal', e); }
-            setTimeout(muatUlang, 4000); // cadangan bila controllerchange tidak datang
-          } } });
+          if (!menunggu || !reg.waiting) return;
+          UKP.toast('Versi baru tersedia.', { nada: 'info', ms: 15000, lintasRute: true, aksi: { label: 'Muat ulang', onclick: () => terapkan(reg, true, false) } });
         });
       };
+      // dipakai layar lain (mis. room saat versi berbeda dengan pemimpin, atau tombol "Muat ulang"): cek versi baru sekarang.
+      // paksa = orangnya menekan tombol: pasang versi baru bila ada, selain itu muat ulang biasa
+      UKP.perbaruiAplikasi = paksa => {
+        const reg = regKini;
+        if (!reg) { if (paksa) location.reload(); return false; }
+        if (reg.waiting) { if (!terapkan(reg, !!paksa, !paksa) && paksa) location.reload(); return true; }
+        if (paksa) paksaNanti = true;
+        let selesai = false;
+        const akhir = () => { if (selesai) return; selesai = true; if (!paksa) return; if (reg.waiting) { if (!terapkan(reg, true, false)) location.reload(); } else if (!reg.installing) location.reload(); };
+        try { reg.update().then(akhir).catch(e => { catatSW('cek pembaruan gagal', e && e.message); akhir(); }); } catch (e) { akhir(); }
+        if (paksa) setTimeout(() => { if (!sudahMuatUlang && !muatUlangDiminta && !reg.installing && !reg.waiting) location.reload(); }, 6000);
+        return true;
+      };
       try {
-        sw.addEventListener('controllerchange', () => { if (muatUlangDiminta) muatUlang(); });
+        // v9.3.1: service worker versi baru kini langsung aktif (sw.js: skipWaiting). Halaman yang sudah punya pengendali lalu
+        // berganti pengendali = versi baru sudah mengambil alih: muat ulang sendiri saat aman, supaya skrip di halaman ikut baru
+        const adaKontrolAwal = !!sw.controller;
+        let menungguMuat = false;
+        const muatSaatAman = () => {
+          if (!menungguMuat || sudahMuatUlang || muatUlangDiminta) return;
+          if (!amanMuatUlang() || !bolehOtomatis()) return;
+          try { const c = catatanTerap(); sessionStorage.setItem(KUNCI_TERAP, JSON.stringify({ t: Date.now(), n: c.n + 1 })); } catch (e) {}
+          menungguMuat = false; muatUlangDiminta = true;
+          try { UKP.toast('Versi baru terpasang. Memuat ulang…', { nada: 'info', ms: 4000, lintasRute: true, penting: true }); } catch (e) {}
+          setTimeout(muatUlang, 1200);
+        };
+        sw.addEventListener('controllerchange', () => {
+          if (muatUlangDiminta) { muatUlang(); return; }
+          if (!adaKontrolAwal) return;   // pemasangan pertama: tidak ada versi lama yang perlu diganti
+          if (menungguMuat) return;
+          menungguMuat = true;
+          document.addEventListener('ukp:render', muatSaatAman);
+          setInterval(muatSaatAman, 5000);
+          muatSaatAman();
+          if (menungguMuat) saatBoleh(() => { if (menungguMuat) UKP.toast('Versi baru terpasang.', { nada: 'info', ms: 15000, lintasRute: true, aksi: { label: 'Muat ulang', onclick: muatUlang } }); });
+        });
         sw.register('sw.js', { scope: './' }).then(reg => {
-          if (reg.waiting && (sw.controller || reg.active)) tawarkan(reg);
+          regKini = reg;
+          if (reg.waiting && (sw.controller || reg.active)) tawarkan(reg, true);
           reg.addEventListener('updatefound', () => {
             const baru = reg.installing; if (!baru) return;
             const adaLama = !!(sw.controller || reg.active);
-            baru.addEventListener('statechange', () => { if (baru.state === 'installed' && adaLama) tawarkan(reg); });
+            baru.addEventListener('statechange', () => { if (baru.state === 'installed' && adaLama) tawarkan(reg, false); });
           });
-          // aplikasi yang lama terbuka: cek versi baru saat kembali ke tab (paling sering sekali per jam)
+          // aplikasi yang lama terbuka: cek versi baru saat kembali ke tab (paling sering sekali per 10 menit)
           let cekTerakhir = Date.now();
           document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState !== 'visible' || !daring() || Date.now() - cekTerakhir < 3600000) return;
+            if (document.visibilityState !== 'visible' || !daring() || Date.now() - cekTerakhir < 600000) return;
             cekTerakhir = Date.now(); reg.update().catch(e => catatSW('cek pembaruan gagal', e && e.message));
           });
           return sw.ready.then(r => { if (r && r.active) umumkanSiapOffline(); });
