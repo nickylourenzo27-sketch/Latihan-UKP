@@ -50,8 +50,10 @@ jobs:
         run: node tools/uji-room-web.js .
   webkit:
     name: Uji peramban WebKit (profil iPhone)
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # ubuntu-24.04, bukan ubuntu-latest: pada 11 November 2026 image ubuntu-26.04 gagal menemukan alamat mirror paket Ubuntu
+    # ("Temporary failure resolving archive.ubuntu.com"), sehingga pemasangan pustaka sistem WebKit macet sampai batas waktu.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
@@ -61,7 +63,7 @@ jobs:
       - name: Pasang Playwright dan WebKit
         run: |
           npm install --no-save --no-audit --no-fund playwright@1
-          npx playwright install --with-deps webkit
+          npx playwright install --with-deps webkit || { echo "pemasangan gagal, coba sekali lagi"; sleep 20; npx playwright install --with-deps webkit; }
       - name: Alur pemimpin dan anggota di WebKit
         env:
           BROWSER: webkit
