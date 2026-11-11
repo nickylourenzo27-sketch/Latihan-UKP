@@ -1,4 +1,4 @@
-/* Uji murni layar room v8.2 (js/views-ruang.js, UKP.ruangUI._murni): teks undangan, pengelompokan jawaban tim tanpa nama,
+/* Uji murni layar room v8.2 (+ v9.2 G2: istilah baku, satu cara menghitung, tanpa nama dari kode) (js/views-ruang.js, UKP.ruangUI._murni): teks undangan, pengelompokan jawaban tim tanpa nama,
    sisa waktu dengan selisih jam, pemilihan keadaan view a–g dan lima keadaan HP anggota, teks penjelas aman (U2),
    kop skor tim (T1), rekap penutup (T6), kalimat awam tanpa istilah teknis. Tanpa DOM. Jalankan: node --test test/ */
 'use strict';
@@ -36,7 +36,7 @@ describe('ruang-ui: teks undangan', () => {
 });
 
 describe('ruang-ui: pengelompokan jawaban tim (tanpa nama)', () => {
-  const per = { Nicky: { o: 'B', k: 'yakin', b: 1 }, Mia: { o: 'B', k: 'ragu', b: 1 }, Novia: { o: 'C', k: 'yakin', b: 0 }, Jessie: { o: 'B', k: null, b: 1 }, Melva: { o: 'A', k: 'menebak', b: 0 }, Alfi: { o: 'B', k: 'yakin', b: 1 } };
+  const per = { Nicky: { o: 'B', k: 'yakin', b: 1 }, Mita: { o: 'B', k: 'ragu', b: 1 }, Nora: { o: 'C', k: 'yakin', b: 0 }, Jeni: { o: 'B', k: null, b: 1 }, Mega: { o: 'A', k: 'menebak', b: 0 }, Aldi: { o: 'B', k: 'yakin', b: 1 } };
   it('menghitung per huruf, benar, dan total', () => {
     const k = M.kelompokJawaban(per, 'B');
     assert.deepEqual(pol(k.per), { A: 1, B: 4, C: 1, D: 0, '-': 0 });
@@ -73,7 +73,7 @@ describe('ruang-ui: sisa waktu menurut jam pemimpin', () => {
 });
 
 describe('ruang-ui: pemilihan keadaan view (a–g)', () => {
-  const st = (aktivitas) => ({ tuan: 'Nicky', room: { nama: 'Tim', peserta: ['Nicky', 'Mia'] }, aktivitas: aktivitas || null });
+  const st = (aktivitas) => ({ tuan: 'Nicky', room: { nama: 'Tim', peserta: ['Nicky', 'Mita'] }, aktivitas: aktivitas || null });
   const anggota = { kode: 'KODEKODEKODEKO', peran: 'anggota' }, tuan = { kode: 'KODEKODEKODEKO', peran: 'tuan' };
   it('tidak tersedia, kode salah, tab kedua', () => {
     assert.equal(M.pilihKeadaan({ tersedia: false, kode: 'X' }), 'tidakTersedia');
@@ -110,36 +110,64 @@ describe('ruang-ui: pemilihan keadaan view (a–g)', () => {
 });
 
 describe('ruang-ui: teks penjelas aman (U2)', () => {
-  const per = { Nicky: { o: 'B', b: 1 }, Mia: { o: 'B', k: 'yakin', b: 1 }, Jessie: { o: 'B', b: 1 }, Alfi: { o: 'B', b: 1 }, Novia: { o: 'C', k: 'yakin', b: 0 }, Melva: { o: 'C', b: 0 } };
-  const dasar = { per, penjelas: 'Mia', kunci: 'B', label: 'Terbelah 4–2', opsiKeliru: 'C', alasanLabel: 'angka usang' };
-  it('baris umum tidak menyebut nama yang keliru', () => {
+  const per = { Nicky: { o: 'B', b: 1 }, Mita: { o: 'B', k: 'yakin', b: 1 }, Jeni: { o: 'B', b: 1 }, Aldi: { o: 'B', b: 1 }, Nora: { o: 'C', k: 'yakin', b: 0 }, Mega: { o: 'C', b: 0 } };
+  const dasar = { per, penjelas: 'Mita', kunci: 'B', label: 'Terbelah 4–2', opsiKeliru: 'C', alasanLabel: 'angka usang' };
+  it('baris umum tidak menyebut nama yang keliru; label baku, tanpa kata "menggoda"', () => {
     const t = M.teksPenjelas(Object.assign({ nama: 'Nicky' }, dasar));
-    assert.equal(t.umum, 'Terbelah 4–2 · Mia jelaskan kenapa B · C menggoda 2 orang (angka usang)');
-    assert.ok(!t.umum.includes('Novia') && !t.umum.includes('Melva'));
+    assert.equal(t.umum, 'Tim terbagi · 2 orang memilih C (biasanya karena angka usang)');
+    assert.doesNotMatch(t.umum, /menggoda|Terbelah|Tersandung/);
+    assert.ok(!t.umum.includes('Nora') && !t.umum.includes('Mega'));
     assert.doesNotMatch(t.umum, LARANGAN);
   });
   it('HP penjelas, HP yang keliru (Dengarkan + Paham), HP yang benar', () => {
-    const pj = M.teksPenjelas(Object.assign({ nama: 'mia' }, dasar));
-    assert.equal(pj.pribadi, 'Giliran Anda menjelaskan kenapa B.'); assert.equal(pj.peran, 'penjelas'); assert.equal(pj.bolehPaham, false);
-    const salah = M.teksPenjelas(Object.assign({ nama: 'Novia' }, dasar));
-    assert.equal(salah.pribadi, 'Dengarkan Mia.'); assert.equal(salah.bolehPaham, true);
-    const benar = M.teksPenjelas(Object.assign({ nama: 'Alfi' }, dasar));
-    assert.equal(benar.pribadi, 'Benar · B'); assert.equal(benar.bolehPaham, false);
+    const pj = M.teksPenjelas(Object.assign({ nama: 'mita' }, dasar));
+    assert.equal(pj.pribadi, 'Giliran Anda: jelaskan ke tim kenapa jawabannya B.'); assert.equal(pj.peran, 'penjelas'); assert.equal(pj.bolehPaham, false);
+    const salah = M.teksPenjelas(Object.assign({ nama: 'Nora' }, dasar));
+    assert.equal(salah.pribadi, 'Dengarkan Mita menjelaskan kenapa B.'); assert.equal(salah.bolehPaham, true);
+    const benar = M.teksPenjelas(Object.assign({ nama: 'Aldi' }, dasar));
+    assert.equal(benar.pribadi, 'Dengarkan Mita menjelaskan kenapa B.'); assert.equal(benar.peran, 'benar'); assert.equal(benar.bolehPaham, false);
     const absen = M.teksPenjelas(Object.assign({ nama: 'Orang lain' }, dasar));
     assert.equal(absen.bolehPaham, true, 'yang tidak menjawab soal itu juga boleh berterima kasih');
   });
   it('penjelas yang tidak ada di per diabaikan; tanpa penjelas → kalimat umum tanpa nama', () => {
-    const t = M.teksPenjelas(Object.assign({ nama: 'Novia' }, dasar, { penjelas: 'Budi' }));
-    assert.equal(t.bolehPaham, false); assert.ok(!/Budi/.test(t.umum)); assert.match(t.umum, /dibahas bersama/);
+    const t = M.teksPenjelas(Object.assign({ nama: 'Nora' }, dasar, { penjelas: 'Budi' }));
+    assert.equal(t.bolehPaham, false); assert.ok(!/Budi/.test(t.umum)); assert.match(t.umum, /Baca pembahasan bersama/);
     const t2 = M.teksPenjelas({ per: { A: { o: 'C' }, B: { o: 'C' } }, kunci: 'B', nama: 'A', label: 'Semua belum tepat' });
-    assert.match(t2.umum, /baca pembahasan bersama/);
+    assert.match(t2.umum, /^Banyak yang salah · Baca pembahasan bersama/);
+  });
+  it('label pembagian jawaban memakai istilah baku (dari kelas, juga dari label lama)', () => {
+    assert.equal(M.labelBaku('terbelah'), 'Tim terbagi'); assert.equal(M.labelBaku('tersandung'), 'Banyak yang salah');
+    assert.equal(M.labelBaku('rapuh'), 'Semua benar, tapi ada yang ragu');
+    assert.equal(M.labelBaku(null, 'Terbelah 3–4'), 'Tim terbagi'); assert.equal(M.labelBaku(null, 'Hanya 1 dari 7 benar'), 'Banyak yang salah');
+    assert.equal(M.labelBaku(null, 'Benar semua, belum mantap'), 'Semua benar, tapi ada yang ragu'); assert.equal(M.labelBaku(null, ''), null);
   });
 });
 
-describe('ruang-ui: kop skor tim (T1) dan garis lulus', () => {
-  it('"Tim 14/18 benar · 78%" setelah 3 soal (5/6, 3/6, 6/6)', () => {
-    assert.equal(M.teksSkorTim({ benar: 14, dijawab: 18 }), 'Tim 14/18 benar · 78%');
-    assert.equal(M.teksSkorTim({ benar: 41, dijawab: 60 }), 'Tim 41/60 benar · 68%');
+describe('ruang-ui: satu cara menghitung (skor tim, per soal, per orang)', () => {
+  it('"Skor tim 78% · 14 dari 18 jawaban benar" setelah 3 soal (5/6, 3/6, 6/6)', () => {
+    assert.equal(M.teksSkorTim({ benar: 14, dijawab: 18 }), 'Skor tim 78% · 14 dari 18 jawaban benar');
+    assert.equal(M.teksSkorTim({ benar: 3, dijawab: 5 }), 'Skor tim 60% · 3 dari 5 jawaban benar');
+  });
+  it('per orang "Anda benar 1 dari 2 soal"; per soal tanpa nama, yang tidak menjawab terpisah', () => {
+    assert.equal(M.teksSaya({ benar: 1, dijawab: 2 }), 'Anda benar 1 dari 2 soal'); assert.equal(M.teksSaya({ benar: 0, dijawab: 0 }), '');
+    const kel = M.kelompokJawaban({ A1: { o: 'B' }, A2: { o: 'C' }, A3: { o: '-' }, A4: { o: '-' }, A5: { o: '-' } }, 'B');
+    assert.equal(M.teksSoalIni(kel, false), 'Soal ini: 1 orang benar, 1 salah, 3 tidak menjawab');
+    assert.equal(M.teksSoalIni(kel, true), 'Soal ini: 1 orang benar, 1 salah, 3 belum menjawab');
+    assert.equal(M.teksSoalIni(M.kelompokJawaban({ A1: { o: 'B' } }, 'B')), 'Soal ini: 1 orang benar');
+  });
+  it('hitungan di HP: penyebut dari aktivitas.peserta bila ada, tanpa itu jumlah saja', () => {
+    assert.equal(M.teksHitungJawab(0, ['a', 'b']), 'Belum ada yang menjawab');
+    assert.equal(M.teksHitungJawab(3, ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']), '3 dari 10 orang sudah menjawab');
+    assert.equal(M.teksHitungJawab(3, null), '3 orang sudah menjawab');
+    assert.equal(M.teksHitungJawab(2, []), '2 orang sudah menjawab');
+  });
+  it('lobi pemimpin dan lembar soal sebelumnya', () => {
+    assert.equal(M.teksMasuk(1, 10), '1 dari 10 orang sudah masuk');
+    assert.equal(M.teksSiap([]), 'Belum ada yang menekan Siap');
+    assert.equal(M.teksSiap(['Budi', 'Sari', 'Dodi']), '3 orang sudah siap: Budi, Sari, Dodi');
+    assert.equal(M.teksBarisLalu({ o: 'A', k: 'ragu', kunci: 'C' }), 'Anda A (Ragu) · kunci jawaban C');
+    assert.equal(M.teksBarisLalu({ o: 'B', k: 'menebak', kunci: 'B' }), 'Anda B (Nebak) · kunci jawaban B');
+    assert.equal(M.teksBarisLalu({ o: null, kunci: 'D' }), 'Anda tidak menjawab · kunci jawaban D');
   });
   it('tanpa tim (klien lama) → kosong', () => { assert.equal(M.teksSkorTim(null), ''); assert.equal(M.teksSkorTim({ benar: 0, dijawab: 0 }), ''); assert.equal(M.persenTim(undefined), null); });
   it('sejakLulus: pertama kali ≥ 60 setelah ≥ 5 soal, dan masih di atas', () => {
@@ -152,29 +180,40 @@ describe('ruang-ui: kop skor tim (T1) dan garis lulus', () => {
 });
 
 describe('ruang-ui: rekap penutup (T6)', () => {
-  const sesi = { id: 'sb-1', mulai: new Date(2026, 10, 10, 19, 30).getTime(), peserta: ['Nicky', 'Mia', 'Novia'],
-    soal: [{ id: 'B6-001', kunci: 'B', jawaban: { Nicky: { o: 'B' }, Mia: { o: 'B' }, Novia: { o: 'C' } } },
-      { id: 'B6-002', kunci: 'A', jawaban: { Nicky: { o: 'A' }, Mia: { o: 'C' }, Novia: { o: '-' } } }] };
-  it('menghitung hadir, jumlah soal, skor tim; Hasilku hanya untuk nama sendiri dan tidak ikut disalin', () => {
-    const r = M.rekapPenutup(sesi, 'Novia');
-    assert.equal(r.baris[0], 'Malam ini: 3 dari 3 hadir · 2 soal · skor tim 60%');
-    assert.equal(r.hasilku, 'Hasilku: 0 dari 2');
-    assert.ok(!r.salin.includes('Hasilku'));
+  const sesi = { id: 'sb-1', mulai: new Date(2026, 10, 10, 19, 30).getTime(), peserta: ['Nicky', 'Mita', 'Nora'],
+    soal: [{ id: 'B6-001', kunci: 'B', jawaban: { Nicky: { o: 'B' }, Mita: { o: 'B' }, Nora: { o: 'C' } } },
+      { id: 'B6-002', kunci: 'A', jawaban: { Nicky: { o: 'A' }, Mita: { o: 'C' }, Nora: { o: '-' } } }] };
+  it('satu fakta per baris; skor tim dengan cara hitung baku; hasil sendiri tidak ikut disalin', () => {
+    const r = M.rekapPenutup(sesi, 'Nora');
+    assert.equal(r.judul, 'Latihan tadi selesai');
+    assert.deepEqual(Array.from(r.baris), ['3 dari 3 orang ikut', '2 soal dikerjakan', 'Skor tim 60% · 3 dari 5 jawaban benar']);
+    assert.equal(r.hasilku, 'Hasil Anda: 0 dari 2 soal benar');
+    assert.equal(M.rekapPenutup(sesi, 'Mita').hasilku, 'Hasil Anda: 1 dari 2 soal benar');
+    assert.equal(M.rekapPenutup(sesi, 'Rina').hasilku, null, 'tidak menjawab satu soal pun (mis. pemimpin) → tanpa hasil pribadi');
+    assert.ok(!r.salin.includes('Hasil Anda'));
     assert.equal(r.terimaKasih, null, 'tanpa ucapan → baris dihilangkan');
     for (const n of sesi.peserta) assert.ok(!r.salin.includes(n + ' '), 'salinan tidak memuat skor per nama: ' + n);
   });
-  it('memakai sesi.tim bila ada: terima kasih abjad tanpa nol, bahas lagi', () => {
-    const s2 = Object.assign({}, sesi, { tim: { akurasi: 78, hadir: 5, terimaKasih: { Mia: 3, Jessie: 2, Alfi: 0 }, bahasLagi: ['B-76', 'B-81'] }, peserta: ['a', 'b', 'c', 'd', 'e', 'f'] });
-    const r = M.rekapPenutup(s2, null, { awal: 'Malam ini' });
-    assert.equal(r.baris[0], 'Malam ini: 5 dari 6 hadir · 2 soal · skor tim 78%');
-    assert.equal(r.terimaKasih, 'Terima kasih untuk penjelas: Jessie (2), Mia (3)');
-    assert.equal(r.bahasLagi, 'Bahas lagi minggu depan: B-76, B-81');
-    assert.equal(r.salin.split('\n').length, 3);
+  it('memakai sesi.tim bila ada: penjelas abjad tanpa nol, perlu dibahas lagi dengan nama topik (tanpa kode mentah)', () => {
+    const s2 = Object.assign({}, sesi, { tim: { akurasi: 78, hadir: 5, terimaKasih: { Mita: 3, Jeni: 2, Aldi: 0 }, bahasLagi: ['B-76', 'B-81'] }, peserta: ['a', 'b', 'c', 'd', 'e', 'f'] });
+    const r = M.rekapPenutup(s2, null, { namaTopik: id => (id === 'B-76' ? 'PPh Pasal 22' : 'PPN') });
+    assert.equal(r.baris[0], '5 dari 6 orang ikut');
+    assert.equal(r.baris[2], 'Skor tim 78%', 'tanpa jawaban di rekaman → angka dari sesi.tim saja');
+    assert.equal(r.terimaKasih, 'Jeni membantu menjelaskan 2 soal, Mita 3 soal');
+    assert.equal(r.bahasLagi, 'Perlu dibahas lagi: 2 soal tentang PPh Pasal 22, PPN');
+    assert.ok(!/B-76|B-81/.test(r.salin), 'kode soal mentah tidak ikut disalin');
     assert.equal(r.hasilku, null);
+    assert.equal(M.rekapPenutup(s2, null).bahasLagi, 'Perlu dibahas lagi: 2 soal');
   });
-  it('soal dengan ≥ 3 salah masuk "bahas lagi" bila sesi.tim tidak ada', () => {
-    const s3 = { id: 'x', mulai: 1, peserta: ['A', 'B', 'C', 'D'], soal: [{ id: 'B6-009', kunci: 'B', jawaban: { A: { o: 'A' }, B: { o: 'C' }, C: { o: '-' }, D: { o: 'B' } } }] };
-    assert.equal(M.rekapPenutup(s3, 'D').bahasLagi, 'Bahas lagi minggu depan: B6-009');
+  it('penjelas dihitung per soal yang ia jelaskan: "Bayu membantu menjelaskan 1 soal"', () => {
+    const s4 = Object.assign({}, sesi, { soal: sesi.soal.map((q, k) => Object.assign({}, q, k ? {} : { penjelas: 'Bayu' })) });
+    assert.equal(M.rekapPenutup(s4, null).terimaKasih, 'Bayu membantu menjelaskan 1 soal');
+  });
+  it('soal dengan ≥ 3 jawaban salah masuk "perlu dibahas lagi" bila sesi.tim tidak ada (yang tidak menjawab tidak dihitung salah)', () => {
+    const s3 = { id: 'x', mulai: 1, peserta: ['A', 'B', 'C', 'D', 'E'], soal: [{ id: 'B6-009', kunci: 'B', jawaban: { A: { o: 'A' }, B: { o: 'C' }, C: { o: 'D' }, D: { o: 'B' }, E: { o: '-' } } }] };
+    assert.equal(M.rekapPenutup(s3, 'D').bahasLagi, 'Perlu dibahas lagi: 1 soal');
+    s3.soal[0].jawaban.C = { o: '-' };
+    assert.equal(M.rekapPenutup(s3, 'D').bahasLagi, null);
   });
   it('masukan rusak → null', () => { assert.equal(M.rekapPenutup(null), null); });
 });
@@ -187,18 +226,104 @@ describe('ruang-ui: teks awam dan pembantu kecil', () => {
     assert.match(M.alasanAwam('x', { semuaGagal: true }), /data seluler/);
   });
   it('ringkasHadir maks. 3 nama lalu +n', () => {
-    assert.equal(M.ringkasHadir(['Nicky', 'Mia', 'Jessie']), 'Nicky, Mia, Jessie sedang di room');
-    assert.equal(M.ringkasHadir(['Nicky', 'Mia', 'Jessie', 'Alfi', 'Melva']), 'Nicky, Mia, Jessie +2 sedang di room');
-    assert.equal(M.ringkasHadir([]), 'Belum ada yang di room');
+    assert.equal(M.ringkasHadir(['Nicky', 'Mita', 'Jeni']), 'Nicky, Mita, Jeni sudah masuk');
+    assert.equal(M.ringkasHadir(['Nicky', 'Mita', 'Jeni', 'Aldi', 'Mega']), 'Nicky, Mita, Jeni +2 sudah masuk');
+    assert.equal(M.ringkasHadir([]), 'Belum ada yang masuk room');
   });
   it('inisial, tanggal pendek, baris riwayat, label sesi lalu, cek sambungan', () => {
-    assert.equal(M.inisial('Nicky'), 'NI'); assert.equal(M.inisial('Mia Sari'), 'MS'); assert.equal(M.inisial(''), '?');
+    assert.equal(M.inisial('Nicky'), 'NI'); assert.equal(M.inisial('Mita Sari'), 'MS'); assert.equal(M.inisial(''), '?');
     const t = new Date(2026, 10, 10, 19).getTime();
     assert.equal(M.tglPendek(t), 'Sel 10 Nov');
-    assert.equal(M.teksRiwayat({ t, mode: 'latihan', nSoal: 20, akurasiTim: 68 }), 'Sel 10 Nov · Latihan · 20 soal · akurasi tim 68%');
-    assert.equal(M.teksRiwayat({ t, mode: 'latihan', nSoal: 10 }), 'Sel 10 Nov · Latihan · 10 soal');
-    assert.equal(M.labelSesiLalu(t - 7 * 86400000, t), 'Minggu lalu'); assert.equal(M.labelSesiLalu(t - 86400000, t), 'Sesi lalu');
-    assert.equal(M.teksCekSambungan([{ ok: true }, { ok: false }, { ok: true }, { ok: false }]), 'Sambungan 2 dari 4 tersedia');
-    assert.doesNotMatch(M.teksCekSambungan([]), LARANGAN);
+    assert.equal(M.teksRiwayat({ t, mode: 'latihan', nSoal: 20, akurasiTim: 68 }), 'Sel 10 Nov · Latihan bersama · 20 soal · skor tim 68%');
+    assert.equal(M.teksRiwayat({ t, mode: 'latihan', nSoal: 10 }), 'Sel 10 Nov · Latihan bersama · 10 soal');
+    assert.equal(M.labelSesiLalu(t - 7 * 86400000, t), 'Minggu lalu'); assert.equal(M.labelSesiLalu(t - 86400000, t), 'Latihan lalu');
+    assert.equal(M.teksCekSambungan([{ ok: true }, { ok: false }, { ok: true }, { ok: false }]), 'Internet lancar. Latihan bersama bisa dipakai.');
+    assert.match(M.teksCekSambungan([{ ok: false }]), /data seluler/);
+    for (const x of [[], [{ ok: true }], [{ ok: false }]]) assert.doesNotMatch(M.teksCekSambungan(x), /jalur|relai|sambungan \d/i);
+  });
+});
+
+describe('ruang-ui: istilah baku dan tanpa nama dari kode (v9.2)', () => {
+  const fs = require('node:fs'); const path = require('node:path');
+  const src = fs.readFileSync(path.join(__dirname, '..', 'js', 'views-ruang.js'), 'utf8');
+  it('views-ruang.js tidak memakai L.TIM_BAWAAN sama sekali', () => { assert.ok(!/TIM_BAWAAN/.test(src)); });
+  it('lobi tidak digambar ulang karena lobi.id / rekap (menu ⋮ yang terbuka tetap stabil); menu terbuka dipertahankan saat gambar ulang', () => {
+    const baris = src.split('\n').find(x => /if \(k === 'lobi'\) \{/.test(x)) || '';
+    assert.ok(baris && !/lobi\.id|selesaiTerakhir/.test(baris), baris);
+    assert.match(src, /menuBuka[\s\S]{0,200}\.open = true/);
+  });
+  it('nama yang sedang dipakai: dicek untuk tombol dan nama ketikan, kecuali yang diizinkan "Ini saya"', () => {
+    assert.match(src, /!samaNama\(lokal\.izinGanda, nama\) && onIntip\.some\(x => samaNama\(x, nama\)\)/);
+    assert.match(src, /'sedang dipakai'/);
+  });
+  it('teks layar tanpa istilah yang dilarang brief', () => {
+    const teks = (src.match(/'[^'\n]*'/g) || []).filter(x => /[A-Z][a-z]+ |\. |: /.test(x));
+    const larang = /\b(pemandu|triase|menggoda|Tersandung|Terbelah|akurasi tim|Lihat kunci|Menebak|di room'|Hasilku|ruang ujian|Jalur \d)\b/;
+    const kena = teks.filter(x => larang.test(x));
+    assert.deepEqual(kena, []);
+  });
+  // V10 (tugas lanjutan kedua)
+  const fungsi = nama => { const i = src.indexOf('function ' + nama + '('); assert.ok(i >= 0, nama); const j = src.indexOf('\n  }\n', i); return src.slice(i, j); };
+  it('V10 a: nama baru tidak ditambahkan otomatis; periksaTamu hanya menandai "ingin ikut", hanya nama sah, maks 8', () => {
+    const pt = fungsi('periksaTamu');
+    assert.ok(!/aturRoom|tambahkanTamu\(n\)\s*;/.test(pt.replace(/onclick: \(\) => tambahkanTamu\(n\)/, '')), 'periksaTamu tidak boleh menambah sendiri');
+    assert.match(pt, /namaSah\(n\)/); assert.match(pt, /MAKS_TUNGGU/); assert.match(src, /const MAKS_TUNGGU = 8;/);
+    assert.match(pt, /const s = stR\(\);[^\n]*di luar loop/);
+    assert.match(src, /'Ingin ikut: '/); assert.match(src, /'Tambahkan'/); assert.match(src, /'Abaikan'/);
+    assert.match(src, /'Daftar tim sudah penuh \(12 nama\)\. Hapus satu nama lewat menu Ubah room\.'/);
+    assert.match(src, /'Nama itu tidak bisa dipakai\. Tulis nama panggilan Anda \(1 sampai 24 karakter\)\.'/);
+    assert.match(src, /_protokol[\s\S]{0,80}validNama/);
+    assert.match(src, /pesertaRoom\(st\)\.filter\(p => !baru\.some\(x => samaNama\(x, p\)\)\)\.forEach\(p => abaikanNama\(kode, p\)\)/, 'yang dihapus lewat Ubah room tidak ditawarkan lagi');
+    assert.ok(!/ditambahkan otomatis/.test(src.replace(/\/\/.*$/gm, '')));
+  });
+  it('V10 b: huruf dikirim saat diketuk (k: null) di alur biasa; mode Ubah tidak mengirim sampai lengkap', () => {
+    const bm = fungsi('bagianMenjawab');
+    assert.match(bm, /if \(hurufBaru && !cur\.ubah\) kirim\(a, sid, \{ o: cur\.o, k: null \}\);/);
+    assert.match(bm, /if \(cur\.o === '-' \|\| \(cur\.o && cur\.k\)\)/);
+    assert.equal(M.keadaanAnggota({ jenis: 'latihan', id: 'x', soalIds: ['A1-001'], idx: 0, fase: 'jawab' }, { o: 'B', k: null }, false), 'menjawab', 'huruf tanpa keyakinan tetap di langkah 2');
+  });
+  it('V10 c: menu ⋮ lobi disegarkan bila butirnya berubah, tetapi tidak saat sedang terbuka', () => {
+    const sm = fungsi('segarkanMenu');
+    assert.match(sm, /if \(!m \|\| m\.open\) return;/); assert.match(sm, /dataset\.butir === teks/);
+    assert.match(src, /m\.dataset\.butir = item\.map\(x => x\.teks\)\.join\('\|'\)/);
+  });
+  // v9.2 V8
+  it('V8: toast "X bergabung" di laptop pemimpin hanya untuk nama sah yang sudah ada di daftar room (nama di luar daftar lewat "Ingin ikut")', () => {
+    const sb = fungsi('sambut');
+    const baris = sb.split('\n').find(x => /' bergabung'/.test(x)) || '';
+    assert.match(baris, /namaSah\(ev\.nama\) && pesertaRoom\(s\)\.some\(p => samaNama\(p, ev\.nama\)\)/);
+  });
+  it('V8: jawaban yang tidak ada di per pemimpin (nama di luar daftar latihan) tidak masuk "Anda benar x dari y"', () => {
+    const ck = fungsi('catatKemajuan');
+    assert.match(ck, /const tidakDihitung = isObj\(a\.hasilSoal\.per\) && Object\.keys\(a\.hasilSoal\.per\)\.length > 0 && !dariPer;/);
+    assert.match(ck, /t\.ids\[sid\] = !tidakDihitung && o && soal \?/);
+  });
+  it('V8: baris lembar Soal sebelumnya memakai "kunci jawaban", bukan "kunci" saja', () => {
+    assert.ok(!/· kunci ' \+/.test(src));
+  });
+  it('v9.2: pemimpin yang tidak menjawab tidak dihitung "tidak menjawab" di HP; pemimpin yang menjawab tetap dihitung', () => {
+    const per = { Rina: { o: '-' }, Budi: { o: 'B' }, Sari: { o: 'A' }, Tika: { o: '-' } };
+    assert.deepEqual(pol(M.kelompokJawaban(per, 'B')), { per: { A: 1, B: 1, C: 0, D: 0, '-': 2 }, total: 4, dijawab: 2, benar: 1 });
+    const k = M.kelompokJawaban(per, 'B', 'rina');
+    assert.deepEqual(pol(k), { per: { A: 1, B: 1, C: 0, D: 0, '-': 1 }, total: 3, dijawab: 2, benar: 1 });
+    assert.equal(M.teksSoalIni(k, false), 'Soal ini: 1 orang benar, 1 salah, 1 tidak menjawab');
+    const ikut = M.kelompokJawaban(Object.assign({}, per, { Rina: { o: 'B' } }), 'B', 'Rina');
+    assert.equal(ikut.total, 4); assert.equal(ikut.benar, 2);
+  });
+  it('v9.2: anggota yang menyusul: soal sebelum ia ikut tidak masuk penyebut "Hasil Anda"', () => {
+    const sesi = { id: 'sb-2', mulai: 1, peserta: ['Rina', 'Budi', 'Dodi'], soal: [
+      { id: 'B6-001', kunci: 'B', jawaban: { Rina: { o: '-' }, Budi: { o: 'B' } } },
+      { id: 'B6-002', kunci: 'A', jawaban: { Rina: { o: '-' }, Budi: { o: 'C' }, Dodi: { o: 'A' } } },
+      { id: 'B6-003', kunci: 'C', jawaban: { Rina: { o: '-' }, Budi: { o: 'C' }, Dodi: { o: '-' } } }] };
+    assert.deepEqual(pol(M.hasilku(sesi, 'Dodi')), { benar: 1, n: 2, dijawab: 1 });
+    assert.equal(M.rekapPenutup(sesi, 'dodi').hasilku, 'Hasil Anda: 1 dari 2 soal benar');
+    assert.deepEqual(pol(M.hasilku(sesi, 'Budi')), { benar: 2, n: 3, dijawab: 3 });
+    // rekaman tanpa jawaban per nama sama sekali (bentuk lama): semua soal tetap dihitung
+    assert.equal(M.hasilku({ soal: [{ id: 'B6-001', kunci: 'B' }, { id: 'B6-002', kunci: 'A', jawaban: {} }] }, 'Dodi').n, 2);
+  });
+  it('v9.2: halaman room pemimpin saat latihan berjalan tetap menampilkan "Ingin ikut" dan memperbaruinya di tempat', () => {
+    const lt = fungsi('layarLatihanTuan');
+    assert.match(lt, /const slotIngin = h\('div', \{ class: 'slot-ingin' \}, barisInginIkut\(\)\);/);
+    assert.match(lt, /perbarui: \(\) => \{ gantiBilaBeda\(slotIngin, \[barisInginIkut\(\)\]\); \}/);
   });
 });

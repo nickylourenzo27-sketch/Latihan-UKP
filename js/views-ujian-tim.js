@@ -109,28 +109,35 @@
     } else {
       const r = ut.ringkas(); const nK = u.peserta.filter(p => r.perPeserta[p] && r.perPeserta[p].mengumpulkan).length;
       meta = nK + ' dari ' + u.peserta.length + ' sudah mengumpulkan' + (tersiar(u) ? ' · lewat room' : '');
-      aksi = h('button', { type: 'button', class: primer, onclick: () => UKP.go('ujiantim') }, 'Buka ruang ujian');
+      aksi = h('button', { type: 'button', class: primer, onclick: () => UKP.go('ujiantim') }, 'Buka ujian tim');
     }
     return h('section', { class: 'card sorot kartu-ujian-tim', 'aria-label': 'Ujian tim berjalan' },
       h('div', { class: 'kut-teks' }, h('strong', null, u.cara === 'papan' ? 'Ujian tim berjalan' : 'Ujian tim'), h('span', { class: 'meta' }, u.judul + ' · ' + meta)), aksi);
   };
 
+  // v9.2 G3: saran nama hanya dari daftar yang tersimpan di perangkat ini (anggota latihan bersama dan room yang pernah dibuka); tanpa nama dari kode
+  function namaTersimpan() {
+    const out = []; const tambah = n => { const t = typeof n === 'string' ? L.rapikanNamaPeserta(n) : ''; if (t && !out.some(x => x.toLowerCase() === t.toLowerCase())) out.push(t); };
+    try { const s = UKP.store.get(); if (s.bersama && Array.isArray(s.bersama.peserta)) s.bersama.peserta.forEach(tambah);
+      const st = s.ruang && s.ruang.state; if (st && st.room && Array.isArray(st.room.peserta)) st.room.peserta.forEach(tambah); } catch (e) {}
+    return out.slice(0, 12);
+  }
   // ================= dialog "Kumpulkan jawaban" / "Tempel lembar jawab" =================
   // opsi: { judul, onSimpan() }. Tempelan diurai langsung dengan UT.bacaBanyak(teks, n); baris ketik manual per peserta.
   function dialogKumpul(opsi) {
     opsi = opsi || {}; const ut = UT(); let u = ut.aktif(); if (!u) return null;
     const n = u.soalIds.length; const id = U.id('kumpul');
-    const ta = h('textarea', { class: 'input mono kumpul-tempel', id: id + '-ta', rows: 4, spellcheck: 'false', autocomplete: 'off', autocapitalize: 'off', placeholder: 'UKPJ1.… atau  Mia: ABCD-AB?C…' });
+    const ta = h('textarea', { class: 'input mono kumpul-tempel', id: id + '-ta', rows: 4, spellcheck: 'false', autocomplete: 'off', autocapitalize: 'off', placeholder: 'UKPJ1.… atau  Budi: ABCD-AB?C…' });
     const daftarHasil = h('ul', { class: 'kumpul-hasil', 'aria-live': 'polite', 'aria-label': 'Jawaban terbaca' });
     let hasil = []; // [{ r, target: nama|''|'+nama' }]
     const opsiTarget = (r, pilih) => {
       const sel = h('select', { class: 'select kumpul-target', 'aria-label': 'Jawaban ini milik' });
-      const isi = [h('option', { value: '' }, 'Pilih peserta…')].concat(u.peserta.map(p => h('option', { value: p }, p)));
+      const isi = [h('option', { value: '' }, 'Pilih anggota…')].concat(u.peserta.map(p => h('option', { value: p }, p)));
       const nm = r.nama ? L.rapikanNamaPeserta(r.nama) : '';
-      if (nm && !cariPeserta(u.peserta, nm)) isi.push(h('option', { value: '+' + nm }, 'Tambahkan ' + nm + ' sebagai peserta'));
+      if (nm && !cariPeserta(u.peserta, nm)) isi.push(h('option', { value: '+' + nm }, 'Tambahkan ' + nm + ' sebagai anggota'));
       sel.append(...isi); sel.value = pilih; return sel;
     };
-    const ringkasR = r => r.terisi + '/' + n + ' terisi · ' + r.nRagu + ' ragu · ' + r.kosong + ' kosong';
+    const ringkasR = r => r.terisi + '/' + n + ' terisi · ' + r.nRagu + ' ragu · ' + r.kosong + ' tidak menjawab';
     function urai() {
       u = ut.aktif() || u; const teks = ta.value;
       const lama = new Map(hasil.map(x => [x.kunci, x.target]));
@@ -150,7 +157,7 @@
           h('span', { class: 'meta' }, ringkasR(r) + (r.ujianId ? ' · kode' : ' · ketikan')),
           peringatan.map(p => h('span', { class: 'small kumpul-galat' }, UKP.icon('peringatan', null, true), p)));
       }));
-      if (!hasil.length && teks.trim()) daftarHasil.replaceChildren(h('li', { class: 'meta' }, 'Belum ada jawaban terbaca. Tulis satu baris per orang, mis. “Mia: ABCD-AB…”, atau tempel kode UKPJ1.'));
+      if (!hasil.length && teks.trim()) daftarHasil.replaceChildren(h('li', { class: 'meta' }, 'Belum ada jawaban terbaca. Tulis satu baris per orang, mis. “Budi: ABCD-AB…”, atau tempel kode UKPJ1.'));
     }
     ta.addEventListener('input', urai);
     // ketik manual per peserta
@@ -174,7 +181,7 @@
       hasil.forEach(x => { const t = cariPeserta(u.peserta, x.r.nama) || (x.target ? x.target.replace(/^\+/, '') : ''); if (t) entri.push({ nama: t, r: x.r, sumber: x.r.ujianId ? 'kode' : 'ketik' }); });
       Object.keys(manual).forEach(p => entri.push({ nama: p, r: manual[p], sumber: 'ketik' }));
       const tanpa = hasil.filter(x => !cariPeserta(u.peserta, x.r.nama) && !x.target).length;
-      if (!entri.length) { UKP.toast(tanpa ? 'Pilih peserta untuk jawaban yang terbaca.' : 'Belum ada jawaban untuk disimpan.', { nada: 'warn' }); return; }
+      if (!entri.length) { UKP.toast(tanpa ? 'Pilih anggota untuk jawaban yang terbaca.' : 'Belum ada jawaban untuk disimpan.', { nada: 'warn' }); return; }
       // satu entri per orang (yang terakhir menang)
       const per = new Map(); entri.forEach(e => per.set(kunciNama(e.nama), e)); const akhir = [...per.values()];
       const ada = ringkasAda();
@@ -188,7 +195,7 @@
     return UKP.dialog({ judul: opsi.judul || 'Kumpulkan jawaban', ukuran: 'lg', kelas: 'dlg-kumpul',
       isi: () => h('div', { class: 'stack' },
         h('div', { class: 'field' }, h('label', { for: id + '-ta' }, 'Tempel kode jawaban atau ketikan huruf, satu baris per orang'), ta,
-          h('p', { class: 'meta' }, n + ' soal · huruf A–D, “-” kosong, “?” sesudah huruf = ragu')),
+          h('p', { class: 'meta' }, n + ' soal · huruf A–D, “-” = tidak menjawab, “?” sesudah huruf = ragu')),
         daftarHasil,
         h('details', { class: 'lipat kumpul-manual' }, h('summary', null, 'Ketik manual per orang'), h('div', { class: 'stack-sm' }, barisManual))),
       kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => dlg.close('batal') }, 'Batal'), h('button', { type: 'button', class: 'btn btn-primary kumpul-simpan', onclick: () => simpan(dlg) }, 'Simpan')] });
@@ -232,8 +239,7 @@
     const iid = U.id('nama');
     const galat = h('p', { class: 'galat small', role: 'alert', hidden: true, id: iid + '-g' });
     const input = h('input', { class: 'input', id: iid, type: 'text', maxlength: String(L.MAKS_NAMA_PESERTA || 24), autocomplete: 'name', autocapitalize: 'words', spellcheck: 'false', enterkeyhint: 'go', value: namaProfil(), 'aria-describedby': iid + '-g' });
-    // v9.1 K1: saran nama hanya dari daftar peserta yang pernah disimpan di perangkat ini (tanpa nama tim bawaan)
-    const saran = ((L.siapBersama ? L.siapBersama(UKP.store.get()).bersama.peserta : []) || []).slice(0, 12).map(nm => h('button', { type: 'button', class: 'chip', onclick: () => { input.value = nm; galat.hidden = true; input.removeAttribute('aria-invalid'); } }, nm));
+    const saran = namaTersimpan().map(nm => h('button', { type: 'button', class: 'chip', onclick: () => { input.value = nm; galat.hidden = true; input.removeAttribute('aria-invalid'); } }, nm));
     function mulai() {
       const nama = L.rapikanNamaPeserta(input.value);
       if (!nama) { galat.textContent = 'Tulis nama Anda agar pemimpin tahu jawaban siapa.'; galat.hidden = false; input.setAttribute('aria-invalid', 'true'); input.focus(); return; }
@@ -269,7 +275,7 @@
     const page = h('div', { class: 'page halaman-ujian-tim-awal' });
     // v8.2: pemandu room → susun langsung untuk room (cara perangkat, jawaban masuk lewat room)
     const keRoom = !!((params && params.room) || roomTuan());
-    page.append(UKP.c.kop({ judul: 'Ujian tim', lead: 'Berlatih dalam kondisi ujian: tanpa kunci sampai akhir, waktu seperti UKP, nilai per orang.' }),
+    page.append(UKP.c.kop({ judul: 'Ujian tim', lead: 'Berlatih dalam kondisi ujian: kunci jawaban baru dibuka di akhir, waktu seperti UKP, nilai per orang.' }),
       h('div', { class: 'ut-aksi' },
         kartuSect('Susun ujian tim', 'ut-susun-j', [h('p', { class: 'small' }, keRoom ? 'Pilih soal dan waktu. Ujian dikirim ke room; anggota mengerjakan di HP masing-masing.' : 'Pemimpin memilih soal dan cara menjawab: satu layar, atau perangkat masing-masing.'), h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary', onclick: () => UKP.go('simulasi', keRoom ? { tim: 1, cara: 'perangkat', room: 1 } : { tim: 1 }) }, 'Susun ujian tim'))]),
         kartuSect('Ikut ujian tim', 'ut-ikut-j', [h('p', { class: 'small' }, 'Punya kode atau tautan dari pemimpin? Tempel di sini.'), isianKode()]),
@@ -295,12 +301,12 @@
     const r = UT().ringkas(); const P = u.peserta.length;
     const grid = h('div', { class: 'grid-nomor ut-grid' }, r.perSoal.map((x, i) => {
       const st = !P ? 'kosong' : x.nRagu ? 'ragu' : x.nIsi >= P ? 'isi' : x.nIsi > 0 ? 'sebagian' : 'kosong';
-      const ket = st === 'ragu' ? 'ada ragu' : st === 'isi' ? 'semua sudah menjawab' : st === 'sebagian' ? x.nIsi + ' dari ' + P + ' menjawab' : 'belum';
+      const ket = st === 'ragu' ? 'ada ragu' : st === 'isi' ? 'semua sudah menjawab' : st === 'sebagian' ? x.nIsi + ' dari ' + P + ' menjawab' : 'belum ada yang menjawab';
       return h('button', { type: 'button', 'data-st': st, 'aria-current': i === posisi ? 'true' : null, 'aria-label': 'Soal ' + (i + 1) + ', ' + ket + (i === posisi ? ', soal saat ini' : ''), title: ket, onclick: () => { dlg.close('pilih'); onPilih(i); } }, i + 1);
     }));
-    const legenda = h('div', { class: 'legenda' }, h('span', { 'data-st': 'isi' }, 'semua menjawab'), h('span', { 'data-st': 'sebagian' }, 'sebagian'), h('span', { 'data-st': 'kosong' }, 'belum'), h('span', { 'data-st': 'ragu' }, 'ada ragu'));
+    const legenda = h('div', { class: 'legenda' }, h('span', { 'data-st': 'isi' }, 'semua menjawab'), h('span', { 'data-st': 'sebagian' }, 'sebagian'), h('span', { 'data-st': 'kosong' }, 'belum ada yang menjawab'), h('span', { 'data-st': 'ragu' }, 'ada ragu'));
     const orang = denganOrang && P ? h('table', { class: 'tabel ut-orang' }, h('caption', { class: 'visually-hidden' }, 'Ringkasan per orang'),
-      h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Nama'), h('th', { scope: 'col', class: 'num' }, 'Terisi'), h('th', { scope: 'col', class: 'num' }, 'Kosong'), h('th', { scope: 'col', class: 'num' }, 'Ragu'))),
+      h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Nama'), h('th', { scope: 'col', class: 'num' }, 'Terisi'), h('th', { scope: 'col', class: 'num' }, 'Tidak menjawab'), h('th', { scope: 'col', class: 'num' }, 'Ragu'))),
       h('tbody', null, u.peserta.map(p => { const q = r.perPeserta[p] || { terisi: 0, kosong: r.n, nRagu: 0 }; return h('tr', null, h('th', { scope: 'row' }, p), h('td', { class: 'num' }, String(q.terisi)), h('td', { class: 'num' }, String(q.kosong)), h('td', { class: 'num' }, String(q.nRagu))); }))) : null;
     const dlg = UKP.dialog({ judul: 'Daftar soal', sheet: sempit(), isi: () => h('div', { class: 'stack' }, grid, legenda, orang) });
     return dlg;
@@ -371,7 +377,7 @@
     async function selesai() {
       catatDetik(); const r = ut.ringkas(); u = ut.aktif();
       const kosong = u.peserta.map(p => p + ' ' + ((r.perPeserta[p] || {}).kosong != null ? r.perPeserta[p].kosong : n));
-      const ya = await UKP.konfirmasi('Selesai dan nilai?', 'Soal kosong: ' + kosong.join(', ') + '. Soal kosong dinilai salah. Kunci dan nilai tampil setelah ini; jawaban tidak dapat diubah lagi.', { ya: 'Nilai sekarang', tidak: 'Kembali ke soal' });
+      const ya = await UKP.konfirmasi('Selesai dan nilai?', 'Belum dijawab: ' + kosong.join(', ') + ' soal. Soal yang tidak dijawab dinilai salah. Kunci jawaban dan nilai tampil setelah ini; jawaban tidak dapat diubah lagi.', { ya: 'Nilai sekarang', tidak: 'Kembali ke soal' });
       if (ya && terpasang) nilaiSekarang();
     }
     const onKey = e => {
@@ -403,7 +409,7 @@
     const keluar = () => { delete document.body.dataset.mode; UKP.go('ujiantim', {}, { replace: true }); };
     const bar = h('div', { class: 'ujian-bar ut-bar', role: 'region', 'aria-label': 'Status ujian tim' },
       h('div', { class: 'ut-bar-kiri' }, h('span', { class: 'ut-judul' }, 'Ujian tim · ' + u.judul), posBar), h('div', { class: 'ut-bar-tengah' }, timerEl),
-      h('div', { class: 'ut-bar-kanan' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: keluar }, UKP.icon('x', null, true), 'Ruang ujian')));
+      h('div', { class: 'ut-bar-kanan' }, h('button', { type: 'button', class: 'btn btn-sm', onclick: keluar }, UKP.icon('x', null, true), 'Tutup tayangan')));
     const isi = h('div', { class: 'ut-isi' }); const nav = h('div', { class: 'sticky-actions nav-ujian ut-nav' });
     page.append(bar, isi, nav);
     let terpasang = true;
@@ -486,7 +492,7 @@
         if (!kumpul2.length) return;
         let hanya = true;
         const sw = UKP.c.sakelar({ id: U.id('hanya'), judul: 'Nilai hanya yang sudah mengumpulkan', nilai: true, onchange: e => { hanya = e.target.checked; } });
-        UKP.dialog({ judul: 'Nilai sekarang?', ukuran: 'sm', isi: () => h('div', { class: 'stack-sm' }, h('p', null, belum2.length ? 'Belum mengumpulkan: ' + L.gabungNama(belum2) + '. Jawaban yang masuk setelah dinilai tidak ikut.' : 'Semua peserta sudah mengumpulkan.'), belum2.length ? sw : null),
+        UKP.dialog({ judul: 'Nilai sekarang?', ukuran: 'sm', isi: () => h('div', { class: 'stack-sm' }, h('p', null, belum2.length ? 'Belum mengumpulkan: ' + L.gabungNama(belum2) + '. Jawaban yang masuk setelah dinilai tidak ikut.' : 'Semua anggota sudah mengumpulkan.'), belum2.length ? sw : null),
           kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => dlg.close('batal') }, 'Batal'), h('button', { type: 'button', class: 'btn btn-primary', autofocus: true, onclick: () => {
             dlg.close('ya'); sapuRoom(); const siarkan = tersiar(ut.aktif());
             const sesi = ut.nilai({ hanyaYangMengumpulkan: hanya });
@@ -494,7 +500,7 @@
       }
       // primer tunggal: "Kirim ke room" bila ada; selain itu "Nilai sekarang" saat lewat room (cara v8.1: "Salin undangan")
       const nilaiPrimer = pakaiRoom;
-      out.push(kartuSect('Peserta', 'ruang-peserta-j', [
+      out.push(kartuSect('Anggota', 'ruang-peserta-j', [
         h('p', { class: 'meta' }, kumpul.length + ' dari ' + u.peserta.length + ' sudah mengumpulkan' + (pakaiRoom ? ' · jawaban masuk sendiri dari room' : '')),
         h('ul', { class: 'ruang-daftar' }, baris),
         h('div', { class: 'btn-row' }, pakaiRoom ? null : h('button', { type: 'button', class: 'btn ruang-kumpul', onclick: () => dialogKumpul({ judul: 'Kumpulkan jawaban', onSimpan: () => gambar() }) }, UKP.icon('tambah', null, true), 'Kumpulkan jawaban'),
@@ -514,7 +520,7 @@
         h('div', { class: 'btn-row' },
           sudahSaya ? h('span', { class: 'meta' }, 'Bagian ' + nm + ' sudah terkumpul.') : h('button', { type: 'button', class: 'btn ruang-saya', onclick: kerjakan }, UKP.icon('play', null, true), bagianSaya ? 'Lanjutkan bagian saya' : 'Kerjakan bagian saya'),
           h('button', { type: 'button', class: 'btn ruang-tayang', onclick: () => UKP.go('ujiantim', { tayang: 1 }) }, UKP.icon('mata', null, true), 'Tayangkan soal di layar ini')),
-        h('p', { class: 'meta' }, 'Tayangan soal untuk proyektor: tanpa kunci, untuk tim yang menulis di kertas atau di Lembar jawab.')]));
+        h('p', { class: 'meta' }, 'Tayangan soal untuk proyektor: tanpa kunci jawaban, untuk tim yang menulis di kertas atau di Lembar jawab.')]));
       return out;
     }
     // gambar ulang di tempat (jawaban room, status, state); fokus dipulihkan lewat data-k atau teks tombol

@@ -35,7 +35,7 @@ test('selesai() memakai kalimatKesalahanLatih dengan jumlah keliru dan belum tah
 
 test('jawab langsung: status menyebut teks kunci, alasan opsi terpilih terbuka, gulir tidak menyejajarkan panel ke atas', () => {
   const src = fs.readFileSync(path.join(__dirname, '..', 'js', 'soal.js'), 'utf8');
-  assert.match(src, /'Kunci ' \+ soal\.kunci \+ ': '/);
+  assert.match(src, /'Kunci jawaban ' \+ soal\.kunci \+ ': '/); // v9.2 V7: istilah baku "Kunci jawaban"
   assert.match(src, /open: bukaSalah \? true : null/);
   assert.match(src, /if \(langsung\) gulirLangsung\(\);/);
 });

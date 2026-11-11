@@ -1542,6 +1542,8 @@
       } }, 'Keluar');
       const kirimKini = h('button', { type: 'button', class: 'btn btn-ghost btn-text', hidden: true, onclick: async () => { await T.kirimRingkasan({ segera: true }); gambarTim(); UKP.toast(T.info().galat ? 'Ringkasan belum terkirim.' : 'Ringkasan terbaru sudah ada di dasbor tim.', { nada: T.info().galat ? 'attn' : 'ok', ms: 3000 }); } }, UKP.icon('atur-ulang'), 'Kirim sekarang');
       // nama di ringkasan tim (profil.nama; juga diminta di onboarding langkah pertama)
+      // v9.2 G3: kalimat "tidak ada akun" hanya bila bukan server tim sendiri (di sana memang ada akun)
+      const adaAkunServer = () => { try { const i = T.info(); return !!(i && i.modeServer); } catch (e) { return false; } };
       const galatNama = h('p', { class: 'galat small', id: 'pg-tim-nama-galat', role: 'alert', hidden: true });
       const inNama = h('input', { class: 'input', id: 'pg-tim-nama', type: 'text', autocomplete: 'name', minlength: 2, maxlength: 40, value: UKP.store.get().profil.nama || '', 'aria-describedby': 'pg-tim-nama-bantu pg-tim-nama-galat' });
       const simpanNama = () => {
@@ -1555,7 +1557,7 @@
       inNama.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); simpanNama(); } });
       const fieldNama = h('div', { class: 'field' }, h('label', { for: 'pg-tim-nama' }, 'Nama Anda'),
         h('div', { class: 'btn-row' }, inNama, h('button', { type: 'button', class: 'btn', onclick: simpanNama }, 'Simpan nama')),
-        h('span', { class: 'bantu', id: 'pg-tim-nama-bantu' }, 'Tampil di dasbor pemimpin tim dan sapaan Beranda.'), galatNama);
+        h('span', { class: 'bantu', id: 'pg-tim-nama-bantu' }, 'Tampil di dasbor pemimpin tim dan sapaan Beranda.' + (adaAkunServer() ? '' : ' Nama ini hanya tersimpan di perangkat ini. Tidak ada akun.')), galatNama);   // gambarTim() di bawah menyetel ulang teks ini (server tim: teks akun)
       const pemimpinOn = h('p', { class: 'small', hidden: true }, UKP.c.titikNada('ok'), ' Pemimpin online');
       let swTim = null;
       // mode masuk nama (deploy/server.js MASUK_NAMA=1): cookie ukp_nama "kunci|Nama Tampil" untuk akun tanpa sandi → "Masuk sebagai Rina"
@@ -1596,7 +1598,7 @@
         kirimKini.hidden = !(i.status === 'tersambung' && i.aktif && !i.tulisDitolak && !i.akunBeda);
         keluarServer.hidden = !i.server || !!i.akunBeda; // saat akun berbeda, tombol Keluar ada di banner
         const bantuNama = fieldNama.querySelector('#pg-tim-nama-bantu');
-        if (bantuNama) bantuNama.textContent = i.server ? (namaTampilAkun(i.akun) ? 'Untuk sapaan Beranda. Di dasbor admin tim, Anda tampil sebagai ' + tampilAkun + '.' : 'Untuk sapaan Beranda. Di dasbor admin tim, Anda tampil dengan nama akun server (' + i.akun + ').') : 'Tampil di dasbor pemimpin tim dan sapaan Beranda.';
+        if (bantuNama) bantuNama.textContent = i.server ? (namaTampilAkun(i.akun) ? 'Untuk sapaan Beranda. Di dasbor admin tim, Anda tampil sebagai ' + tampilAkun + '.' : 'Untuk sapaan Beranda. Di dasbor admin tim, Anda tampil dengan nama akun server (' + i.akun + ').') : 'Tampil di dasbor pemimpin tim dan sapaan Beranda. Nama ini hanya tersimpan di perangkat ini. Tidak ada akun.';
       }
       gambarTim();
       const dengar = () => { if (!statusTim.isConnected) { document.removeEventListener('ukp:tim', dengar); return; } gambarTim(); };

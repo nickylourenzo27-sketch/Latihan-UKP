@@ -3438,7 +3438,7 @@ html body:has(#main .soal-bersama) .toast { top: calc(56px + env(safe-area-inset
 }
 @media (min-width: 1280px) { main > .page { margin-inline: auto; } }
 
-/* (3) kepala tunggal gaya referensi: [✕] "Latihan UKP · Soal 7 dari 10 · 24:30" … "6 orang: Nicky, Mia, …" [aksi] [Menu] */
+/* (3) kepala tunggal gaya referensi: [✕] "Latihan UKP · Soal 7 dari 10 · 24:30" … "6 orang: Rina, Budi, …" [aksi] [Menu] */
 .fokus-bar:is(.ada-tengah, .ada-menu) { display: flex; align-items: center; gap: var(--s-2); overflow: visible; }
 .fokus-bar:is(.ada-tengah, .ada-menu) > .fokus-judul { flex: 1 1 auto; }
 .fokus-bar.ada-tengah > .fokus-judul { flex: 0 1 auto; text-align: left; }
@@ -4232,6 +4232,91 @@ main > .page { margin-inline: auto; }
 /* toast HP tidak lagi memesan ruang bar bawah saat bar itu tersembunyi (pengunjung, sambutan) */
 @media (max-width: 599px) { body:not([data-mode]):has(#bottomnav[hidden]):not(:has(:is(.sticky-actions, .nav-topik, .hasil-mini):not([hidden]))) .toast { bottom: calc(var(--s-4) + env(safe-area-inset-bottom, 0px)); } }
 
+/* ===== v9.2 G3 · evaluasi tim (skor tim baku, menu Lainnya, baris "Anda"), ujian tim, Beranda/profil ===== */
+.eval-skor-tim .bar-mini { width: 100%; }
+.eval-skor-tim-ket { margin: 0; }
+.eval-orang > li { grid-template-columns: minmax(0, 10em) 5.5em minmax(60px, 1fr) auto; }
+.eval-peringkat > li { grid-template-columns: 1.5em minmax(0, 10em) 5.5em minmax(60px, 1fr) auto; }
+.eval-topik { display: block; max-width: 16em; white-space: nowrap; }
+.eval-tempo-topik { min-width: 0; max-width: 18em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--fw-reg, 400); }
+.eval-tempo, .eval-tempo-lama { min-width: 0; max-width: 100%; }
+.eval-tempo-lama > li { min-width: 0; max-width: 100%; }
+.eval-tempo-lama .eval-tempo-topik { flex: 0 1 auto; }
+.eval-tempo-lama .btn { max-width: 100%; min-width: 0; }
+.eval-aksi { align-items: center; }
+.eval-menu { position: relative; }
+.eval-menu > summary { list-style: none; cursor: pointer; gap: var(--s-1); }
+.eval-menu > summary::-webkit-details-marker { display: none; }
+.eval-menu[open] > summary svg { transform: rotate(180deg); }
+.eval-menu-isi { position: absolute; z-index: 20; bottom: calc(100% + 6px); right: 0; min-width: 16rem; width: max-content; max-width: calc(100vw - 32px); display: grid; padding: 6px; border: 1px solid var(--line); border-radius: var(--r-md, 12px); background: var(--surface); box-shadow: 0 8px 24px rgb(0 0 0 / .16); }
+.eval-menu-butir { display: flex; align-items: center; gap: var(--s-2); width: 100%; min-height: 44px; padding: 0 var(--s-3); border: 0; border-radius: 8px; background: none; color: var(--text); font: inherit; text-align: left; text-decoration: none; white-space: nowrap; cursor: pointer; }
+.eval-menu-butir:hover, .eval-menu-butir:focus-visible { background: var(--surface-2, rgb(127 127 127 / .12)); }
+.eval-menu-butir[data-k="hapus-sesi"] { color: var(--attn); }
+.eval-anda { display: block; font-weight: var(--fw-semi, 600); font-variant-numeric: tabular-nums; }
+.eval-anda[data-hasil="benar"] { color: var(--ok, inherit); }
+.eval-anda[data-hasil="salah"] { color: var(--attn); }
+.eval-hasilku { font-size: 1.125rem; font-weight: var(--fw-semi, 600); }
+@media (max-width: 1023px) {
+  /* ruang bawah: bar bawah HP tidak menutupi tombol terakhir evaluasi */
+  .eval-tim .eval-aksi { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (max-width: 599px) {
+  .eval-menu-isi { left: auto; right: 0; min-width: min(16rem, calc(100vw - 32px)); }
+  .eval-topik { max-width: 9em; }
+}
+
+/* ---- v9.2 G2: layar room yang mudah dipahami (lobi, dialog, HP anggota). Kelas: body[data-room-tamu] · .skor-tim-batas ·
+   .daftar-masuk · .legenda-masuk · .kerangka · .identitas-room · .catatan-daftar · .lobi-lain · .baris-lalu · .catatan-ubah ·
+   .baris-tidak-tahu · .dlg-lalu-room · .cek-hasil ---- */
+body[data-room-tamu] #kop-profil.kop-masuk { display: none; }
+.skor-tim-batas { justify-self: start; margin-left: calc(var(--garis, 60) * 1%); transform: translateX(-50%); font-size: 11px; line-height: 1.2; color: var(--muted); white-space: nowrap; }
+.skor-tim-saya { font-size: var(--fs-small, .875rem); font-weight: 600; }
+.pembuka-utama { margin: 0; font-size: var(--fs-body, 1rem); font-weight: 600; }
+.kartu-pembuka > p { margin: 0; }
+.daftar-masuk .inisial-room .nama { display: inline; }
+.daftar-masuk .inisial-room > li:not([data-on]) .nama { color: var(--muted); }
+.legenda-masuk { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 0; }
+.legenda-masuk .titik-room + .titik-room, .legenda-masuk .titik-room:nth-of-type(2) { margin-left: var(--s-3); }
+.baris-siap { font-size: var(--fs-body, 1rem); }
+.identitas-room { margin: 0; font-size: var(--fs-body, 1rem); }
+.identitas-room .sep { padding-inline: 4px; color: var(--muted); }
+.catatan-daftar { margin: 0; padding: var(--s-2) var(--s-3); border-radius: var(--r-md); background: var(--warn-soft); color: var(--ink); font-size: var(--fs-small, .875rem); }
+.lobi-lain { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-4); }
+.lobi-lain .tautan-tombol { min-height: 44px; text-align: left; }
+.nama-room.kerangka { min-height: 56px; border-color: transparent; background: var(--surface-2); cursor: default; animation: g2-denyut 1.4s ease-in-out infinite alternate; }
+@keyframes g2-denyut { from { opacity: .55; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .nama-room.kerangka { animation: none; } }
+.baris-lalu { display: flex; margin: 0 0 calc(var(--s-2) * -1); }
+.baris-lalu .btn { padding-inline: var(--s-2); }
+.catatan-ubah { margin: 0; font-weight: 600; }
+.baris-yakin { scroll-margin-block: 96px 120px; }
+.baris-tidak-tahu { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); }
+.bar-bawah-room[data-langkah="yakin"] > :first-child { color: var(--primary-strong, var(--primary)); }
+.slot-paham { display: grid; gap: 4px; justify-items: start; }
+.slot-paham > .meta { margin: 0; }
+.halaman-room .pelajari-lagi, .dlg-lalu-room .pelajari-lagi { display: none; }
+.dlg-lalu-room .daftar-lalu .row-link { min-height: 56px; gap: var(--s-3); }
+.dlg-lalu-room .tanda-lalu { display: inline-flex; flex: none; color: var(--attn); }
+.dlg-lalu-room [data-hasil="benar"] .tanda-lalu { color: var(--ok); }
+.dlg-lalu-room [data-hasil="kosong"] .tanda-lalu { color: var(--muted); }
+.dlg-lalu-room .judul-lalu { margin: 0; font-size: 1.0625rem; }
+.dlg-lalu-room .ringkas-lalu { margin: 0; }
+.dlg-lalu-room .dlg-foot .btn-primary { flex: 1 1 auto; }
+.cek-hasil { display: flex; align-items: center; gap: var(--s-2); margin: 0; }
+/* v9.2 G2 (lanjutan): lembar "Soal sebelumnya" — kaki "Kembali ke soal N" selalu terlihat; kode soal tidak terpisah dari titiknya */
+.dlg-lalu-room .dlg-body { max-height: calc(88dvh - 140px); }
+.dlg-lalu-room .lembar-lalu > .btn-ghost { justify-self: start; }
+.kode-soal-room { white-space: nowrap; }
+.identitas-room { display: grid; justify-items: start; gap: 0; }
+.identitas-room > p { margin: 0; }
+.room-masuk-nama { white-space: nowrap; }
+.slot-rekap:empty { display: none; }
+/* v9.2 G2: di HP sempit (< 400 px) tombol Menu di kop latihan room cukup ikon, supaya "Soal 1 dari 10 · sisa 21:00" tetap utuh */
+@media (max-width: 399px) {
+  .bar-room .fokus-menu > summary.menu-lebih-teks > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .bar-room .fokus-menu > summary.menu-lebih-teks { padding-inline: 10px; }
+  .bar-room .fokus-judul { font-size: 13px; }
+}
 /* ---- v9.1 K1: lihat lagi soal sebelumnya + teks waktu sesi ----
    Tombol "Soal sebelumnya" (.aksi-lihat-lagi) di kiri bar aksi soal; < 600 px ikon saja (aria-label tetap). Mode lihat lagi
    (section.lihat-lagi) menggantikan tampilan soal berjalan di tempat yang sama: pita keterangan (.lihat-pita, gaya banner info),
@@ -4282,3 +4367,102 @@ main > .page { margin-inline: auto; }
 @media (max-width: 599px) { .fokus-penanda-lihat { margin-right: 4px; padding-inline: 6px; } }
 /* C: "waktu sesi habis" bukan tanda bahaya (latihan boleh dilanjutkan) → warna teks redup */
 .waktu-sesi[data-habis] { color: var(--muted); }
+
+/* ---- v9.2 G1: papan dan jalannya latihan bersama yang mudah dipahami ----
+   Papan: kalimat arahan (.papan-arahan), kepala kolom (.papan-kepala = baris papan tanpa isi, sehingga memakai grid yang sama di setiap lebar)
+   tepat di atas tombol; kolom berlebar tetap (--kol-j/--kol-y/--kol-k) agar kepala dan tombol sejajar. Baris yang sudah menjawab dari HP:
+   .papan-jauh ("Sudah menjawab dari HP" + Ubah) menggantikan tombol; baris HP terputus: tombol .papan-isi. Tombol keyakinan bertuliskan lengkap
+   (.yk-panjang) di ≥ 1100 px, huruf (.yk-pendek) di bawahnya. Bilah bawah: .aksi-ket ("Aktif setelah ada yang menjawab"), "Buka kunci jawaban"
+   tetap berwarna utama saat belum aktif. Hasil: .status-baris satu fakta per baris. Pintasan papan ketik dilipat (.pintasan-papan). */
+.soal-bersama { --pb: 36px; --pg: 4px; --kol-gap: var(--s-3); --kol-j: calc(4 * var(--pb) + 3 * var(--pg)); --kol-y: calc(3 * var(--pb) + 2 * var(--pg)); --kol-k: 6.5rem; }
+@media (min-width: 700px) and (pointer: fine) { .soal-bersama { --pb: 32px; } }
+@media (min-width: 1100px) { .soal-bersama:not(.soal-bersama-ujian) { --yk-w: 3.5rem; --kol-y: calc(3 * var(--yk-w) + 2 * var(--pg)); } }
+@media (max-width: 699px) { .soal-bersama { --kol-gap: 6px; --kol-k: 3.5rem; } }
+@media (max-width: 399px) { .soal-bersama { --kol-gap: 5px; --kol-k: 3.25rem; } }
+@media (max-width: 374px) { .soal-bersama { --pb: 32px; --kol-gap: 4px; --kol-k: 3rem; } }
+/* 320 px: kelompok tombol boleh turun baris; kepala kolom tidak lagi sejajar, jadi disembunyikan (label tombol tetap terbaca pembaca layar) */
+@media (max-width: 339px) { .soal-bersama { --pb: 36px; } .soal-bersama .papan-baris .papan-sel > .papan-pilihan { flex-wrap: wrap; row-gap: 4px; } .soal-bersama .papan-kepala { display: none; } .papan-sel { min-width: 0; } }
+.soal-bersama-ujian { --kol-y: auto; }
+.papan-kop { flex-direction: column; align-items: flex-start; gap: 2px; }
+.papan-arahan { margin: 0; font-size: var(--fs-small); font-weight: var(--fw-med); line-height: 1.4; color: var(--ink); }
+.papan-arahan[hidden] { display: none; }
+/* kepala kolom: grid yang sama dengan .papan-baris di setiap lebar (lihat juga aturan ≥ 700 px di akhir blok ini) */
+.papan-kepala { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto auto; grid-template-areas: "no nama pilihan hasil"; align-items: end; gap: 0 var(--s-2); padding: 2px 4px 0; }
+.papan-kepala > .papan-no { grid-area: no; } .papan-kepala > .papan-nama { grid-area: nama; } .papan-kepala > .papan-pilihan { grid-area: pilihan; }
+@media (pointer: coarse) { .papan-kepala { grid-template-columns: 0 minmax(0, 1fr) auto auto; column-gap: 0; } }
+.papan-kol { display: block; font-size: var(--fs-12, .75rem); font-weight: var(--fw-semi); line-height: 1.2; color: var(--muted); white-space: nowrap; }
+.papan-sel { grid-area: pilihan; display: flex; align-items: center; min-width: calc(var(--kol-j) + var(--kol-y) + var(--kol-k) + 2 * var(--kol-gap)); }
+.soal-bersama .papan-sel > .papan-pilihan, .soal-bersama .papan-kepala > .papan-pilihan { display: flex; flex-wrap: nowrap; justify-content: flex-start; align-items: center; gap: var(--kol-gap); }
+.soal-bersama .papan-tombol, .soal-bersama .papan-kol-jawab { flex: none; width: var(--kol-j); gap: var(--pg); }
+.soal-bersama .papan-yakin, .soal-bersama .papan-kol-yakin { flex: none; width: var(--kol-y); margin-left: 0; padding-left: 0; border-left: 0; gap: var(--pg); }
+.soal-bersama .papan-kosong-wadah, .soal-bersama .papan-kol-kosong { flex: none; width: var(--kol-k); }
+.soal-bersama .papan-opsi, .soal-bersama .papan-yk { width: var(--pb); min-width: var(--pb); height: var(--pb); min-height: var(--pb); }
+.soal-bersama .papan-kosong { width: var(--pb); min-width: var(--pb); margin-left: 0; }
+.yk-panjang { display: none; }
+@media (min-width: 1100px) {
+  .soal-bersama:not(.soal-bersama-ujian) .papan-yk { width: var(--yk-w); min-width: var(--yk-w); font-family: var(--font-ui); font-size: var(--fs-small); }
+  .soal-bersama .yk-panjang { display: inline; }
+  .soal-bersama .yk-pendek { display: none; }
+}
+@media (max-width: 699px) {
+  .papan-kol-kosong { white-space: normal; }
+  .papan-kepala { grid-template-columns: minmax(0, 1fr); grid-template-areas: "pilihan"; padding: 2px 2px 0; }
+  .papan-kepala > .papan-no, .papan-kepala > .papan-nama { display: none; }
+  .papan-sel { min-width: 0; }
+}
+/* baris yang sudah menjawab dari HP: tombol disembunyikan sampai "Ubah"; baris HP terputus: dilipat di balik satu tombol teks */
+.papan-baris[data-jauh-tutup] .papan-pilihan, .papan-baris[data-tertutup] .papan-pilihan { display: none; }
+.papan-jauh { display: inline-flex; align-items: center; gap: 6px; min-height: var(--pb); font-size: var(--fs-small); font-weight: var(--fw-med); color: var(--ok); }
+.papan-jauh[hidden], .papan-sel > .papan-isi[hidden] { display: none; }
+.papan-jauh svg { width: 16px; height: 16px; flex: none; }
+.papan-jauh .papan-ubah { min-height: 32px; padding-inline: 6px; font-size: var(--fs-small); text-decoration: underline; }
+.papan-sel > .papan-isi { display: inline-flex; justify-content: flex-start; min-height: var(--pb); padding-inline: 0; font-size: var(--fs-small); font-weight: var(--fw-med); text-decoration: underline; white-space: normal; text-align: left; }
+.papan-baris[data-jauh] { box-shadow: inset 3px 0 0 var(--ok); }
+.papan-baris[data-jauh] .papan-opsi, .papan-baris[data-jauh] .papan-yk { opacity: 1; }
+/* tinggi baris rata di papan room (status di bawah nama) */
+@media (min-width: 700px) { .soal-bersama .papan-bersama[data-room] .papan-daftar > .papan-baris { min-height: 44px; } }
+/* bilah bawah: tombol utama selalu berwarna utama; keterangan di sampingnya selama belum aktif */
+.aksi-ket { font-size: var(--fs-meta); line-height: 1.3; color: var(--muted); max-width: 12rem; text-align: right; }
+.aksi-ket[hidden] { display: none; }
+.aksi-bersama .btn-primary.aksi-buka-kunci[aria-disabled="true"], .aksi-bersama .btn-primary.aksi-buka-kunci[aria-disabled="true"]:is(:hover, :active) { background: var(--primary-fill); border-color: var(--primary-fill); color: var(--primary-ink); cursor: not-allowed; }
+@media (max-width: 699px) { .aksi-ket { flex: 1 1 0; min-width: 0; max-width: none; font-size: var(--fs-12, .75rem); } }
+/* hasil setelah kunci jawaban dibuka: satu fakta per baris; judul netral; ikon hanya bila semua benar atau semua salah */
+.status-bersama .status-baris { display: block; margin-top: 2px; }
+.umpan .status.status-bersama > span > strong { color: var(--ink); }
+/* pintasan papan ketik: tautan kecil yang membuka baris pintasan */
+.pintasan-papan { font-size: var(--fs-meta); }
+.pintasan-papan > summary { display: inline-flex; align-items: center; min-height: 32px; color: var(--muted); text-decoration: underline; cursor: pointer; list-style: none; }
+.pintasan-papan > summary::-webkit-details-marker { display: none; }
+.pintasan-papan[open] > summary { color: var(--ink); }
+.pintasan-papan > .petunjuk-kbd { margin-top: 4px; }
+.pintasan-papan:not([open]) > .petunjuk-kbd { display: none; }
+/* kolom nama berlebar sama di setiap baris dan di kepala kolom (bukan hasil ukur isi tiap baris), agar kepala tepat di atas tombol */
+@media (min-width: 700px) {
+  .soal-bersama .papan-baris, .soal-bersama .papan-kepala { grid-template-columns: 18px max(6rem, min(14rem, calc(100% - var(--kol-j) - var(--kol-y) - var(--kol-k) - 2 * var(--kol-gap) - 7rem))) auto minmax(0, 1fr); grid-template-areas: "no nama pilihan hasil"; }
+}
+/* HP: bilah bawah satu baris (hitungan boleh membungkus ke 2–3 baris kecil; tombol utama tidak terpotong); keterangan tombol pindah ke hitungan */
+.aksi-ket-hp { display: none; }
+@media (max-width: 699px) {
+  .aksi-bersama > .aksi-meta { flex: 1 1 0; min-width: 0; }
+  .aksi-bersama > .aksi-meta > span { white-space: normal; text-overflow: clip; overflow: visible; }
+  .aksi-bersama > .aksi-meta > .aksi-ket-hp:not([hidden]) { display: block; font-size: var(--fs-12, .75rem); font-weight: var(--fw-reg, 400); color: var(--muted); }
+  .aksi-bersama > .aksi-kanan { flex: 0 0 auto; }
+  .aksi-bersama .aksi-kanan > .aksi-ket { display: none; }
+  .aksi-bersama .aksi-kanan > .btn-primary { white-space: nowrap; flex: none; }
+}
+/* v9.2 G1 (lanjutan): hasil sebagian benar sebagian salah → garis panel bernada info (bukan hijau "benar") */
+.umpan[data-hasil="sebagian"]::before { background: var(--info); }
+
+/* ---- v9.2 G2 (lanjutan V10): "Ingin ikut" di lobi pemimpin, nama dipakai di 2 perangkat, batang "kunci jawaban" ---- */
+.ingin-ikut { display: grid; gap: var(--s-2); margin: 0; padding: 0; list-style: none; }
+.ingin-ikut > li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); padding: var(--s-2) var(--s-3); border-radius: var(--r-md); background: var(--warn-soft); }
+.ingin-ikut-teks { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.ingin-ikut > li.meta { background: none; padding: 0; }
+.nama-dua { color: var(--attn); font-weight: 600; }
+.batang-tim > li { grid-template-columns: 1.25rem minmax(0, 1fr) 1.75rem 6.25rem; }
+.batang-tim .tanda-kunci { white-space: nowrap; }
+
+/* ---- v9.2 V7: papan, status "tidak menjawab" satu baris di layar lebar ---- */
+@media (min-width: 1100px) {
+  .soal-bersama .papan-hasil, .soal-bersama .papan-hasil-teks { white-space: nowrap; }
+}

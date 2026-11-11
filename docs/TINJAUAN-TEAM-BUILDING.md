@@ -4,7 +4,7 @@ Tanggal: 10 November 2026 · Untuk: Nicky (pemilik produk) · Dasar: tiga tinjau
 
 ## Tujuan
 
-Latihan UKP B menjadi kegiatan yang mempererat enam rekan kerja (Nicky, Mia, Novia, Jessie, Melva, Alfi), bukan sekadar alat ukur perorangan. Patokannya empat hal: **tim melawan soal** (bukan orang melawan orang), **saling mengajar**, **rasa aman saat salah**, dan **kesederhanaan** setara aplikasi referensi (satu layar, daftar nama, A B C D + Y R N).
+Latihan UKP B menjadi kegiatan yang mempererat enam rekan kerja, bukan sekadar alat ukur perorangan. Patokannya empat hal: **tim melawan soal** (bukan orang melawan orang), **saling mengajar**, **rasa aman saat salah**, dan **kesederhanaan** setara aplikasi referensi (satu layar, daftar nama, A B C D + Y R N).
 
 ## Putusan
 
@@ -15,10 +15,10 @@ Catatan jujur: privasi di room hanya berlaku di tingkat **tampilan**. Semua angg
 ## Lima perubahan terpenting
 
 1. **Peringkat mati, skor tim menjadi angka utama.** Semua layar room dibuka dengan "Tim 41/60 benar · 68% · garis lulus 60". Hasil sendiri hanya tampil di HP pemiliknya. Peringkat hanya ada di laptop pemimpin sebagai sakelar yang mati secara bawaan, dan tidak pernah dikirim ke room.
-2. **Tidak menyebut siapa yang salah.** Kalimat "Mia jelaskan ke Novia dan Alfi" diganti menjadi "Mia jelaskan kenapa B · C menggoda 2 orang". Nama hanya muncul dalam peran positif, yaitu penjelas.
+2. **Tidak menyebut siapa yang salah.** Kalimat "Budi jelaskan ke Sari dan Hadi" diganti menjadi "Budi jelaskan kenapa B · C menggoda 2 orang". Nama hanya muncul dalam peran positif, yaitu penjelas.
 3. **Satu konsep, satu tombol.** Di beranda hanya ada satu kartu "Tim UKP Tingkat B" dengan satu tombol utama, "Mulai latihan bersama". Room adalah wadahnya, bukan fitur keempat. Layar pemimpin meniru foto referensi: daftar nama dengan status, dan baris anggota yang offline bisa diisi dari laptop. Dengan begitu, latihan satu laptop dan latihan room menjadi satu layar.
 4. **Ritual pembuka dan penutup yang pendek.** Pembukanya lobi dengan tombol "Siap" dan satu kartu ("Sesi ke-7 · Hadir 5 dari 6 · Minggu lalu tim 58%"). Penutupnya rekap tim dengan ucapan terima kasih kepada penjelas, lalu disalin ke grup WhatsApp.
-5. **Apresiasi yang terkait dengan bantuan nyata.** Setelah penjelasan, HP orang yang tadinya keliru menampilkan tombol "Paham, makasih Mia". Rekap mencatat "Terima kasih untuk Mia (3), Jessie (2)", tanpa papan kumulatif.
+5. **Apresiasi yang terkait dengan bantuan nyata.** Setelah penjelasan, HP orang yang tadinya keliru menampilkan tombol "Paham, makasih Budi". Rekap mencatat "Terima kasih untuk Budi (3), Yoga (2)", tanpa papan kumulatif.
 
 ## Masuk v8.2
 
@@ -26,7 +26,7 @@ Ada tujuh tambahan, semuanya berupa field baru pada dokumen hadir, jawaban, stat
 
 1. Skor tim sebagai kop, dengan garis 60.
 2. Lobi "Siap" dan kartu pembuka.
-3. Kehadiran berupa deretan inisial, plus toast "Jessie bergabung" dan "Tim lengkap".
+3. Kehadiran berupa deretan inisial, plus toast "Yoga bergabung" dan "Tim lengkap".
 4. Tombol "Paham, makasih" untuk penjelas.
 5. Cadangan: pemimpin mengisi untuk anggota yang offline, ditambah tombol "Pindah ke satu layar".
 6. Rekap penutup tim.

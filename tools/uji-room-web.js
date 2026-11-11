@@ -42,7 +42,7 @@ const initRelai = relai => {
   }
   const foto = async (o, apa) => { if (!dirGambar) return; fs.mkdirSync(dirGambar, { recursive: true }); try { await o.page.screenshot({ path: path.join(dirGambar, String(++n).padStart(2, '0') + '-' + o.nama.toLowerCase() + '-' + apa + '.png') }); } catch (e) {} };
   const baris = (page, nama) => page.locator('.papan-baris', { has: page.locator('.papan-nama', { hasText: nama }) });
-  let nicky, mia, novia;
+  let nicky, mita, nora;
   try {
     // 1. pemimpin membuat room dari layar Room tim
     nicky = await buka('Nicky', URL0 + '#room', { width: 1366, height: 768 }, { profil: { nama: 'Nicky', tingkat: 'B', onboardingSelesai: true } });
@@ -51,8 +51,8 @@ const initRelai = relai => {
     await foto(nicky, 'room-kosong');
     await nicky.page.click('.halaman-room .room-utama');
     await nicky.page.waitForSelector('dialog[open] .room-buat', { timeout: 8000 });
-    // v9.1: tanpa nama tim bawaan → daftar anggota diawali nama pemimpin; anggota diketik di kolom "Nama anggota"
-    for (const nm of ['Mia', 'Novia']) { await nicky.page.fill('dialog[open] .isian-baris input', nm); await nicky.page.press('dialog[open] .isian-baris input', 'Enter'); }
+    // v9.2: daftar awal hanya nama pemimpin; anggota ditulis satu per satu (Enter)
+    for (const n of ['Mita', 'Nora']) { await nicky.page.fill('dialog[open] input[placeholder="mis. Budi"]', n); await nicky.page.press('dialog[open] input[placeholder="mis. Budi"]', 'Enter'); }
     await foto(nicky, 'dialog-buat');
     await nicky.page.click('dialog[open] .room-buat');
     const msBuat = await tunggu(nicky.page, () => UKP.ruang.info() && UKP.ruang.status().tersambung, null, 15000);
@@ -70,7 +70,7 @@ const initRelai = relai => {
     async function gabung(nama) {
       const t0 = Date.now();
       const o = await buka(nama, tautan, { width: 390, height: 844 }, null);
-      const msNama = await tunggu(o.page, () => { const h = document.querySelector('.halaman-room h1'); return h && /Gabung room/.test(h.textContent) && document.querySelectorAll('.nama-room').length >= 2; }, null, 20000);
+      const msNama = await tunggu(o.page, () => { const h = document.querySelector('.halaman-room h1'); return h && /Gabung room/.test(h.textContent) && document.querySelectorAll('.nama-room:not(.kerangka)').length >= 2; }, null, 20000);
       await foto(o, 'gabung');
       cek(nama + ': layar gabung dengan nama room (tanpa onboarding)', msNama >= 0, { ms: Date.now() - t0, judul: await o.page.evaluate(() => (document.querySelector('.halaman-room h1') || document.querySelector('h1') || {}).textContent || location.hash) });
       await o.page.click('.nama-room:has-text("' + nama + '")');
@@ -83,9 +83,9 @@ const initRelai = relai => {
       await o.page.click('.room-siap');
       return o;
     }
-    mia = await gabung('Mia'); novia = await gabung('Novia');
-    const msSiap = await tunggu(nicky.page, () => /Siap: (Mia, Novia|Novia, Mia) \(2\/\d\)/.test((document.querySelector('.lobi-room') || {}).innerText || ''), null, 10000);
-    cek('pemimpin melihat dua anggota siap', msSiap >= 0, { ms: msSiap, teks: await nicky.page.evaluate(() => ((document.querySelector('.lobi-room') || {}).innerText || '').split('\n').filter(x => /Siap|Hadir/.test(x)).join(' | ')) });
+    mita = await gabung('Mita'); nora = await gabung('Nora');
+    const msSiap = await tunggu(nicky.page, () => /2 orang sudah siap: (Mita, Nora|Nora, Mita)/.test((document.querySelector('.lobi-room') || {}).innerText || ''), null, 10000);
+    cek('pemimpin melihat dua anggota siap', msSiap >= 0, { ms: msSiap, teks: await nicky.page.evaluate(() => ((document.querySelector('.lobi-room') || {}).innerText || '').split('\n').filter(x => /siap|masuk/i.test(x)).join(' | ')) });
     await foto(nicky, 'lobi');
 
     // 3. pemimpin memulai latihan bersama 10 soal dari lobi
@@ -98,61 +98,61 @@ const initRelai = relai => {
     cek('pemimpin: papan latihan tampil', msPapan >= 0, { ms: msPapan, baris: await nicky.page.evaluate(() => document.querySelectorAll('.papan-baris').length) });
     const soal1 = await nicky.page.evaluate(() => { const el = document.querySelector('.soal'); const s = el && UKP.konten.soal(el.dataset.id); return s ? { id: s.id, kunci: s.kunci } : null; });
     const salah = soal1 ? ['A', 'B', 'C', 'D'].find(x => x !== soal1.kunci) : 'A';
-    for (const o of [mia, novia]) {
+    for (const o of [mita, nora]) {
       const ms = await tunggu(o.page, () => document.querySelectorAll('.huruf-besar').length === 4, null, 12000);
       cek(o.nama + ': soal tampil di HP', ms >= 0, { ms });
     }
-    await foto(mia, 'menjawab');
-    // 4. anggota menjawab: Mia benar dan yakin, Novia salah dan ragu
-    await mia.page.click('.huruf-besar[data-huruf="' + (soal1 ? soal1.kunci : 'A') + '"]'); await mia.page.click('.yakin-room[data-yakin="yakin"]');
-    await novia.page.click('.huruf-besar[data-huruf="' + salah + '"]'); await novia.page.click('.yakin-room[data-yakin="ragu"]');
-    await foto(mia, 'terkirim');
+    await foto(mita, 'menjawab');
+    // 4. anggota menjawab: Mita benar dan yakin, Nora salah dan ragu
+    await mita.page.click('.huruf-besar[data-huruf="' + (soal1 ? soal1.kunci : 'A') + '"]'); await mita.page.click('.yakin-room[data-yakin="yakin"]');
+    await nora.page.click('.huruf-besar[data-huruf="' + salah + '"]'); await nora.page.click('.yakin-room[data-yakin="ragu"]');
+    await foto(mita, 'terkirim');
     const msJauh = await tunggu(nicky.page, () => document.querySelectorAll('.papan-baris[data-jauh]').length >= 2, null, 10000);
-    const pap = await nicky.page.evaluate(() => [...document.querySelectorAll('.papan-baris')].map(li => ({ nama: li.querySelector('.papan-nama').firstChild.textContent.trim(), jauh: li.hasAttribute('data-jauh'), status: (li.querySelector('.papan-status:not([hidden])') || {}).textContent || null, tekan: li.querySelectorAll('[aria-pressed="true"]').length })));
-    cek('pemimpin: baris Mia dan Novia terisi dari HP', msJauh >= 0, { ms: msJauh });
-    cek('pemimpin: huruf jawaban HP belum terlihat sebelum kunci', pap.filter(x => x.jauh).every(x => x.tekan === 0 && /sudah menjawab/.test(x.status || '')), pap.filter(x => x.jauh));
+    const pap = await nicky.page.evaluate(() => [...document.querySelectorAll('.papan-baris')].map(li => ({ nama: li.querySelector('.papan-nama').firstChild.textContent.trim(), jauh: li.hasAttribute('data-jauh'), status: (li.querySelector('.papan-jauh:not([hidden]), .papan-status:not([hidden])') || {}).textContent || null, tekan: li.querySelectorAll('[aria-pressed="true"]').length })));
+    cek('pemimpin: baris Mita dan Nora terisi dari HP', msJauh >= 0, { ms: msJauh });
+    cek('pemimpin: huruf jawaban HP belum terlihat sebelum kunci', pap.filter(x => x.jauh).every(x => x.tekan === 0 && /sudah menjawab/i.test(x.status || '')), pap.filter(x => x.jauh));
     await foto(nicky, 'papan-terisi');
     // 5. pemimpin membuka kunci
-    await nicky.page.locator('.aksi-kanan .btn-primary', { hasText: 'Lihat kunci' }).click();
-    for (const o of [mia, novia]) {
+    await nicky.page.locator('.aksi-kanan .btn-primary', { hasText: 'Buka kunci jawaban' }).click();
+    for (const o of [mita, nora]) {
       const ms = await tunggu(o.page, () => !!document.querySelector('.hasil-room'), null, 10000);
       cek(o.nama + ': hasil soal tampil di HP', ms >= 0, { ms, kop: await o.page.evaluate(() => (document.querySelector('.skor-tim-teks') || {}).textContent || null), judul: await o.page.evaluate(() => { const h = document.querySelector('.hasil-room'); return h ? h.innerText.split('\n')[0] : null; }) });
     }
-    await foto(mia, 'hasil'); await foto(novia, 'hasil'); await foto(nicky, 'kunci');
-    const teksMia = await mia.page.evaluate(() => document.querySelector('#main').innerText);
-    cek('HP Mia: tidak menyebut Novia (yang salah)', !/Novia/.test(teksMia));
+    await foto(mita, 'hasil'); await foto(nora, 'hasil'); await foto(nicky, 'kunci');
+    const teksMita = await mita.page.evaluate(() => document.querySelector('#main').innerText);
+    cek('HP Mita: tidak menyebut Nora (yang salah)', !/Nora/.test(teksMita));
     const statusPemimpin = await nicky.page.evaluate(() => document.querySelector('#main').innerText);
-    cek('laptop pemimpin: menyebut nama (kalimat v8.1)', /Novia/.test(statusPemimpin) && /Mia/.test(statusPemimpin));
-    if (await novia.page.locator('.room-paham').count()) { await novia.page.click('.room-paham'); cek('Novia: tombol Paham ada dan diketuk', true); } else cek('Novia: tombol Paham ada', false);
+    cek('laptop pemimpin: menyebut nama (kalimat v8.1)', /Nora/.test(statusPemimpin) && /Mita/.test(statusPemimpin));
+    if (await nora.page.locator('.room-paham').count()) { await nora.page.click('.room-paham'); cek('Nora: tombol Paham ada dan diketuk', true); } else cek('Nora: tombol Paham ada', false);
     // 6. lanjut ke soal 2
     await tidur(1000);
     await nicky.page.locator('.aksi-kanan .btn-primary').first().click();
-    const msSoal2 = await tunggu(mia.page, () => /Soal 2\/\d+/.test((document.querySelector('.fokus-bar') || {}).innerText || '') && document.querySelectorAll('.huruf-besar').length === 4, null, 10000);
-    cek('Mia: soal 2 tampil setelah pemimpin Lanjut', msSoal2 >= 0, { ms: msSoal2 });
-    // 7. pemimpin mengakhiri sesi dari Menu
+    const msSoal2 = await tunggu(mita.page, () => /Soal 2 dari \d+/.test((document.querySelector('.fokus-bar') || {}).innerText || '') && document.querySelectorAll('.huruf-besar').length === 4, null, 10000);
+    cek('Mita: soal 2 tampil setelah pemimpin Lanjut', msSoal2 >= 0, { ms: msSoal2 });
+    // 7. pemimpin mengakhiri latihan dari Menu (v9.2: "Akhiri latihan dan lihat hasil")
     await nicky.page.click('.fokus-menu summary'); await tidur(200);
-    await nicky.page.locator('.fokus-menu .menu-lebih-isi button', { hasText: 'Selesai sekarang' }).click(); await tidur(300);
+    await nicky.page.locator('.fokus-menu .menu-lebih-isi button', { hasText: 'Akhiri latihan dan lihat hasil' }).click(); await tidur(300);
     if (await nicky.page.locator('dialog[open] .btn-primary').count()) await nicky.page.locator('dialog[open] .btn-primary').first().click();
-    const msRekap = await tunggu(mia.page, () => { const r = document.querySelector('.rekap-room'); return r && /skor tim/.test(r.innerText); }, null, 20000);
-    cek('Mia: rekap penutup tampil', msRekap >= 0, { ms: msRekap, teks: await mia.page.evaluate(() => ((document.querySelector('.rekap-room') || {}).innerText || '').replace(/\n+/g, ' | ').slice(0, 160)) });
-    await foto(mia, 'rekap'); await foto(nicky, 'evaluasi');
-    const sesiDiHp = await mia.page.evaluate(() => (UKP.belajar.sesiBersama() || []).map(x => ({ sumber: x.sumber || null, n: (x.soal || []).length, tim: !!x.tim })));
-    cek('Mia: rekaman sesi tersimpan di HP', sesiDiHp.length === 1 && sesiDiHp[0].sumber === 'room', sesiDiHp);
+    const msRekap = await tunggu(mita.page, () => { const r = document.querySelector('.rekap-room'); return r && /Skor tim/i.test(r.innerText); }, null, 20000);
+    cek('Mita: rekap penutup tampil', msRekap >= 0, { ms: msRekap, teks: await mita.page.evaluate(() => ((document.querySelector('.rekap-room') || {}).innerText || '').replace(/\n+/g, ' | ').slice(0, 160)) });
+    await foto(mita, 'rekap'); await foto(nicky, 'evaluasi');
+    const sesiDiHp = await mita.page.evaluate(() => (UKP.belajar.sesiBersama() || []).map(x => ({ sumber: x.sumber || null, n: (x.soal || []).length, tim: !!x.tim })));
+    cek('Mita: rekaman sesi tersimpan di HP', sesiDiHp.length === 1 && sesiDiHp[0].sumber === 'room', sesiDiHp);
     // 8. pemimpin menutup room; anggota keluar; tautan lama tidak lagi membuka room
     await nicky.page.evaluate(() => UKP.go('room')); await nicky.page.waitForSelector('.lobi-room', { timeout: 10000 * LAMBAT });
     const menu = nicky.page.locator('.menu-room > summary').first(); await menu.click(); await tidur(200);
     await nicky.page.locator('.menu-room button', { hasText: 'Tutup room' }).first().click();
     await nicky.page.waitForSelector('dialog[open] .btn-danger', { timeout: 8000 }); await foto(nicky, 'dialog-tutup');
     await nicky.page.click('dialog[open] .btn-danger');
-    const msTutup = await tunggu(mia.page, () => !UKP.ruang.info(), null, 12000);
-    cek('Mia: keluar otomatis saat room ditutup', msTutup >= 0, { ms: msTutup });
-    await foto(mia, 'ditutup');
+    const msTutup = await tunggu(mita.page, () => !UKP.ruang.info(), null, 12000);
+    cek('Mita: keluar otomatis saat room ditutup', msTutup >= 0, { ms: msTutup });
+    await foto(mita, 'ditutup');
     await tidur(1500);
     const tamu = await buka('Tamu', tautan, { width: 390, height: 844 }, null);
     const msTak = await tunggu(tamu.page, () => /tidak ditemukan|sudah ditutup|belum dibuka/i.test((document.querySelector('#main') || {}).innerText || ''), null, 15000);
     cek('tautan room yang sudah ditutup: layar berkata tidak ditemukan atau ditutup', msTak >= 0, { ms: msTak, teks: await tamu.page.evaluate(() => ((document.querySelector('#main') || {}).innerText || '').replace(/\n+/g, ' | ').slice(0, 200)) });
     await foto(tamu, 'tautan-lama');
-  } catch (e) { cek('skrip berjalan sampai akhir', false, String((e && e.message) || e).slice(0, 300)); for (const o of [nicky, mia, novia]) if (o) await foto(o, 'galat'); }
+  } catch (e) { cek('skrip berjalan sampai akhir', false, String((e && e.message) || e).slice(0, 300)); for (const o of [nicky, mita, nora]) if (o) await foto(o, 'galat'); }
   cek('tanpa galat halaman', galatHalaman.length === 0, galatHalaman.slice(0, 5));
   const lulus = hasil.filter(x => x.ok).length;
   console.log(lulus + ' lulus, ' + gagal + ' gagal' + (RELAI ? ' (broker lokal)' : ' (jalur publik)'));

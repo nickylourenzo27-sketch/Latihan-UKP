@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '9.1';
+  UKP.versi = '9.2';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   UKP.modul = UKP.modul || {};          // kode -> modul konten
@@ -1382,7 +1382,7 @@
   // bar mode fokus: UKP.c.fokusBar({ judul?, p?, onKeluar, label?, labelKeluar?, aksi?, tengah?, menu?, labelMenu? }) → .fokus-bar
   //   el.atur(teks, p, aksiKanan) · v8.2: el.aturTengah(isi) · el.aturMenu(item)
   //   Kepala tunggal v8.2 (gaya referensi "Latihan UKP · Soal 7 dari 10 · 24:30 | 6 orang: … | Menu"):
-  //   - tengah: string | simpul | daftar simpul (mis. "6 orang: Nicky, Mia, …"). Dibuat span.fokus-tengah (elipsis, title = teksnya);
+  //   - tengah: string | simpul | daftar simpul (mis. "6 orang: Nicky, Mita, …"). Dibuat span.fokus-tengah (elipsis, title = teksnya);
   //     bila ada, judul rata kiri. Di layar < 600 px .fokus-tengah disembunyikan (taruh info wajib di judul). null/'' = tanpa tengah.
   //   - menu: [{ teks, ikon?, onclick?, view?, params?, bahaya? }] → tombol "Menu" di paling kanan (details.menu-lebih.fokus-menu,
   //     lewat UKP.c.menuLebih): Esc menutup dan fokus kembali ke tombol; item bahaya: true diberi kelas .bahaya (warna peringatan).

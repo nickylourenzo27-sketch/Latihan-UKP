@@ -17,10 +17,10 @@ function contoh() {
   const e = (p, s, o, b, hariLalu, t) => ({ p, s, k: s.split('-')[0], t: t || 'A2.5', o, b, d: 30, w: KINI - hariLalu * HARI, m: 'latih' });
   return {
     profil: { nama: 'Nicky', tingkat: 'B' },
-    bersama: { aktif: true, peserta: ['Nicky', 'Mia', 'Novia', 'Rara'] },
+    bersama: { aktif: true, peserta: ['Nicky', 'Mita', 'Nora', 'Rara'] },
     jawabanBersama: [
-      e('Mia', 'A2-001', 'A', 1, 9), e('Mia', 'A2-002', 'B', 0, 8), e('Mia', 'A2-003', 'C', 0, 2), e('mia', 'B7-004', 'D', 1, 1, 'B7.1'), e('Mia', 'A2-005', '-', 0, 0),
-      e('Nicky', 'A2-001', 'A', 1, 3), e('Novia', 'A2-001', 'B', 0, 12),
+      e('Mita', 'A2-001', 'A', 1, 9), e('Mita', 'A2-002', 'B', 0, 8), e('Mita', 'A2-003', 'C', 0, 2), e('mita', 'B7-004', 'D', 1, 1, 'B7.1'), e('Mita', 'A2-005', '-', 0, 0),
+      e('Nicky', 'A2-001', 'A', 1, 3), e('Nora', 'A2-001', 'B', 0, 12),
       e('Tamu', 'A2-001', 'A', 1, 1),
     ],
     jawaban: [], simulasi: [],
@@ -30,16 +30,16 @@ function contoh() {
 describe('dasbor tim: peserta latihan bersama (lokal)', () => {
   it('pesertaDari: urutan daftar peserta, nama tanpa peduli kapital, peserta tanpa jawaban ikut', () => {
     const r = X.pesertaDari(contoh(), KINI);
-    assert.deepEqual(J(r.map(x => x.nama)), ['Nicky', 'Mia', 'Novia', 'Rara', 'Tamu']);
-    const mia = r[1];
-    assert.equal(mia.n, 5); assert.equal(mia.benar, 2);
-    assert.equal(mia.n7, 3); assert.equal(mia.benar7, 1);
-    assert.equal(mia.terakhir, KINI);
+    assert.deepEqual(J(r.map(x => x.nama)), ['Nicky', 'Mita', 'Nora', 'Rara', 'Tamu']);
+    const mita = r[1];
+    assert.equal(mita.n, 5); assert.equal(mita.benar, 2);
+    assert.equal(mita.n7, 3); assert.equal(mita.benar7, 1);
+    assert.equal(mita.terakhir, KINI);
     assert.deepEqual([r[3].n, r[3].terakhir], [0, null]);
   });
   it('dokDari: skema ringkasan tim, jawaban terbaru dulu, null untuk nama tak dikenal', () => {
-    const d = X.dokDari(contoh(), 'MIA', KINI);
-    assert.equal(d.nama, 'Mia'); assert.equal(d.sumber, 'lokal'); assert.equal(d.tingkat, 'B');
+    const d = X.dokDari(contoh(), 'MITA', KINI);
+    assert.equal(d.nama, 'Mita'); assert.equal(d.sumber, 'lokal'); assert.equal(d.tingkat, 'B');
     assert.equal(d.latihan.total, 5); assert.equal(d.latihan.benar, 2);
     assert.equal(d.latihan.akurasi7, 33);
     assert.deepEqual(J(d.simulasi), []);
@@ -50,15 +50,15 @@ describe('dasbor tim: peserta latihan bersama (lokal)', () => {
     assert.ok(X.dokDari(contoh(), 'Rara', KINI), 'peserta terdaftar tanpa jawaban tetap punya dokumen');
   });
   it('normalLokal: id lokal:, sumber lokal, akurasi 0–100 apa adanya, jawaban ternormalkan, topik lemah dari kunci topik', () => {
-    const d = X.dokDari(contoh(), 'Mia', KINI);
+    const d = X.dokDari(contoh(), 'Mita', KINI);
     d.latihan.akurasi7 = 1; d.latihan.perTopikLemah = [{ topik: 'A2.5', n: 4, benar: 1 }];
-    const n = X.normalLokal(d, 'Mia');
-    assert.equal(n.id, 'lokal:Mia'); assert.equal(n.sumber, 'lokal'); assert.equal(X.sumberTeks(n), 'lokal');
+    const n = X.normalLokal(d, 'Mita');
+    assert.equal(n.id, 'lokal:Mita'); assert.equal(n.sumber, 'lokal'); assert.equal(X.sumberTeks(n), 'lokal');
     assert.equal(n.akurasi7, 1);
     assert.equal(n.jawaban.length, 5); assert.ok(n.jawaban.every(j => j.w < 1e11), 'w ms → detik');
     assert.equal(n.topikLemah[0].id, 'A2.5');
-    assert.ok(X.adalahLokal('lokal:Mia') && !X.adalahLokal('kode-mia'));
-    assert.equal(X.normalLokal(null, 'Mia'), null);
+    assert.ok(X.adalahLokal('lokal:Mita') && !X.adalahLokal('kode-mita'));
+    assert.equal(X.normalLokal(null, 'Mita'), null);
   });
   it('ringkasan tim dan kode hasil tidak membaca s.jawabanBersama', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'js', 'tim.js'), 'utf8');
@@ -71,11 +71,11 @@ describe('dasbor tim: peserta latihan bersama (lokal)', () => {
 function sesiContoh() {
   const j = (o, k, b) => ({ o, k, b });
   return {
-    id: 'sb-1', mulai: KINI - 12 * 60000, selesai: KINI, tingkat: 'B', peserta: ['Nicky', 'Mia', 'Novia'], anggaranDetik: 1500, sumber: 'latih',
+    id: 'sb-1', mulai: KINI - 12 * 60000, selesai: KINI, tingkat: 'B', peserta: ['Nicky', 'Mita', 'Nora'], anggaranDetik: 1500, sumber: 'latih',
     soal: [
-      { id: 'B8-001', kode: 'B8', topik: 'B8.4', kunci: 'B', detik: 40, jawaban: { Nicky: j('B', 'yakin', 1), Mia: j('A', 'yakin', 0), Novia: j('-', null, 0) } },
-      { id: 'B8-002', kode: 'B8', topik: 'B8.4', kunci: 'C', detik: 50, jawaban: { Nicky: j('C', 'ragu', 1), Mia: j('C', 'menebak', 1), Novia: j('D', null, 0) } },
-      { id: 'B7-003', kode: 'B7', topik: 'B7.1', kunci: 'A', detik: 30, jawaban: { Nicky: j('A', null, 1), Mia: 'A', Novia: { o: '=1+1', k: 'aneh' } } },
+      { id: 'B8-001', kode: 'B8', topik: 'B8.4', kunci: 'B', detik: 40, jawaban: { Nicky: j('B', 'yakin', 1), Mita: j('A', 'yakin', 0), Nora: j('-', null, 0) } },
+      { id: 'B8-002', kode: 'B8', topik: 'B8.4', kunci: 'C', detik: 50, jawaban: { Nicky: j('C', 'ragu', 1), Mita: j('C', 'menebak', 1), Nora: j('D', null, 0) } },
+      { id: 'B7-003', kode: 'B7', topik: 'B7.1', kunci: 'A', detik: 30, jawaban: { Nicky: j('A', null, 1), Mita: 'A', Nora: { o: '=1+1', k: 'aneh' } } },
     ],
   };
 }
@@ -83,7 +83,7 @@ describe('dasbor tim: evaluasi sesi latihan bersama (v8.0)', () => {
   it('evaluasiLokal: angka per peserta, urut benar lalu urutan peserta, menit dari mulai–selesai', () => {
     const ev = J(X.evaluasiLokal(sesiContoh()));
     assert.equal(ev.nSoal, 3); assert.equal(ev.nPeserta, 3); assert.equal(ev.menit, 12);
-    assert.deepEqual(ev.peserta.map(p => p.nama), ['Nicky', 'Mia', 'Novia']);
+    assert.deepEqual(ev.peserta.map(p => p.nama), ['Nicky', 'Mita', 'Nora']);
     const [ni, mi, no] = ev.peserta;
     assert.deepEqual([ni.benar, ni.dijawab, ni.kosong, ni.akurasi], [3, 3, 0, 100]);
     assert.deepEqual([mi.benar, mi.yakinSalah, mi.menebakBenar], [2, 1, 1]);
@@ -94,8 +94,8 @@ describe('dasbor tim: evaluasi sesi latihan bersama (v8.0)', () => {
   it('evaluasiLokal: soal (nBenar/nSalah/nKosong), tersulit, topik tim n ≥ 3', () => {
     const ev = J(X.evaluasiLokal(sesiContoh()));
     assert.deepEqual(ev.soal.map(q => [q.id, q.nBenar, q.nSalah, q.nKosong]), [['B8-001', 1, 1, 1], ['B8-002', 2, 1, 0], ['B7-003', 2, 0, 1]]);
-    assert.equal(ev.soal[2].perPeserta.Mia.b, 1, 'bentuk lama { nama: huruf } dinilai dari kunci');
-    assert.deepEqual(ev.soal[2].perPeserta.Novia, { o: '-', k: null, b: 0 });
+    assert.equal(ev.soal[2].perPeserta.Mita.b, 1, 'bentuk lama { nama: huruf } dinilai dari kunci');
+    assert.deepEqual(ev.soal[2].perPeserta.Nora, { o: '-', k: null, b: 0 });
     assert.deepEqual(ev.tersulit.map(q => q.id), ['B8-001', 'B8-002', 'B7-003']);
     assert.deepEqual(ev.topikTim.map(t => [t.topik, t.n, t.benar, t.akurasi]), [['B8.4', 6, 3, 50], ['B7.1', 3, 2, 67]]);
   });
@@ -108,14 +108,14 @@ describe('dasbor tim: evaluasi sesi latihan bersama (v8.0)', () => {
     const csv = X.csvSesi(sesiContoh(), X.evaluasiLokal(sesiContoh())).replace(/^\uFEFF/, '');
     const baris = csv.trim().split('\r\n');
     assert.equal(baris.length, 4);
-    assert.equal(baris[0], 'id;kode;topik;kunci;Nicky;Mia;Novia');
+    assert.equal(baris[0], 'id;kode;topik;kunci;Nicky;Mita;Nora');
     assert.equal(baris[1], 'B8-001;B8;B8.4;B;B (yakin);A (yakin);kosong');
     assert.equal(baris[3], 'B7-003;B7;B7.1;A;A;A;kosong');
   });
   it('dokDari: k keyakinan (v8.0) tidak dibaca sebagai kode kelompok dan ikut jawaban', () => {
     const s = contoh();
-    s.jawabanBersama.push({ p: 'Mia', s: 'A2-009', k: 'yakin', t: 'A2.5', o: 'B', b: 0, d: 20, w: KINI + 1000, m: 'latih', sesi: 'sb-1' });
-    const d = X.dokDari(s, 'Mia', KINI);
+    s.jawabanBersama.push({ p: 'Mita', s: 'A2-009', k: 'yakin', t: 'A2.5', o: 'B', b: 0, d: 20, w: KINI + 1000, m: 'latih', sesi: 'sb-1' });
+    const d = X.dokDari(s, 'Mita', KINI);
     assert.equal(d.latihan.perKelompok.yakin, undefined);
     assert.equal(d.latihan.perKelompok.A2.n, 5);
     assert.equal(d.jawaban[0].k, 'yakin');
@@ -128,21 +128,21 @@ const UKP2 = muatInti(['core.js'].concat(DATA, ['learn.js', 'views-tim.js']));
 const X2 = UKP2.views.tim._uji, L2 = UKP2.belajar;
 function sesiUjian() {
   const ids = UKP2.konten.soalSet('TO-B-2026-11').slice(0, 5);
-  const pola = { Mia: 'BBBB-', Novia: 'BSSB-', Alfi: 'B----' }; // B benar, S salah, - kosong
+  const pola = { Mita: 'BBBB-', Nora: 'BSSB-', Aldi: 'B----' }; // B benar, S salah, - kosong
   const soal = ids.map((so, i) => {
     const jawaban = {};
-    Object.keys(pola).forEach(n => { const c = pola[n][i]; const o = c === 'B' ? so.kunci : c === 'S' ? (so.kunci === 'A' ? 'B' : 'A') : '-'; jawaban[n] = { o, k: n === 'Mia' && i === 1 ? 'ragu' : null, b: c === 'B' ? 1 : 0 }; });
+    Object.keys(pola).forEach(n => { const c = pola[n][i]; const o = c === 'B' ? so.kunci : c === 'S' ? (so.kunci === 'A' ? 'B' : 'A') : '-'; jawaban[n] = { o, k: n === 'Mita' && i === 1 ? 'ragu' : null, b: c === 'B' ? 1 : 0 }; });
     return { id: so.id, kode: so.kode, topik: so.topik, kunci: so.kunci, detik: 0, jawaban };
   });
-  return { id: 'sb-u', mulai: KINI - 3600000, selesai: KINI, tingkat: 'B', peserta: ['Mia', 'Novia', 'Alfi'], anggaranDetik: 11 * 60, sumber: 'ujiantim',
-    tempo: 'ujian', detikPerSoal: 126, mode: 'ujian', judul: 'Try Out B 1–5', ujianId: 'utx', bahas: {}, waktuPeserta: { Mia: 600 }, soal };
+  return { id: 'sb-u', mulai: KINI - 3600000, selesai: KINI, tingkat: 'B', peserta: ['Mita', 'Nora', 'Aldi'], anggaranDetik: 11 * 60, sumber: 'ujiantim',
+    tempo: 'ujian', detikPerSoal: 126, mode: 'ujian', judul: 'Try Out B 1–5', ujianId: 'utx', bahas: {}, waktuPeserta: { Mita: 600 }, soal };
 }
 describe('dasbor tim: evaluasi tim v8.1', () => {
   it('csvSesi mode ujian: enam baris skor per orang di atas baris soal, kolom peserta sama', () => {
     const s = sesiUjian(); const ev = L2.evaluasiSesi(s);
     const baris = X2.csvSesi(s, ev).replace(/^﻿/, '').trim().split('\r\n');
     assert.equal(baris.length, 1 + 6 + 5);
-    assert.equal(baris[0], 'id;kode;topik;kunci;Mia;Novia;Alfi');
+    assert.equal(baris[0], 'id;kode;topik;kunci;Mita;Nora;Aldi');
     assert.equal(baris[1], 'skor;;;;80;40;20');
     assert.equal(baris[2], 'lulus;;;;ya;kurang 1 soal;kurang 2 soal');
     assert.deepEqual(baris.slice(3, 7), ['benar;;;;4;2;1', 'salah;;;;0;2;0', 'kosong;;;;1;1;4', 'ragu;;;;1;0;0']);
@@ -158,7 +158,8 @@ describe('dasbor tim: evaluasi tim v8.1', () => {
     assert.equal(X2.menitSesi(L2.evaluasiSesi(s), s), 11);
     const lat = Object.assign({}, s, { mode: 'latihan', judul: null });
     const rl = J(X2.ringkasSesi(lat, L2.evaluasiSesi(lat)));
-    assert.equal(rl.jenis, 'Latihan'); assert.match(rl.meta, /^5 soal · 3 orang · rata-rata 47% benar$/);
+    assert.equal(rl.jenis, 'Latihan bersama'); assert.match(rl.meta, /^5 soal · 3 orang · skor tim \d+%$/);  // v9.2 G3: skor tim (benar ÷ jawaban yang masuk), bukan rata-rata atas semua slot
+    { const ev = L2.evaluasiSesi(lat); const t = X2.angkaTim(lat, ev); assert.ok(t.dijawab > 0); assert.equal(rl.meta, '5 soal · 3 orang · skor tim ' + Math.round(t.benar / t.dijawab * 100) + '%'); }
     assert.equal(X2.menitSesi(L2.evaluasiSesi(lat), lat), 60);
   });
   it('kalimatTempo: lewat dari tempo ujian dan masih di dalam tempo', () => {
@@ -170,14 +171,14 @@ describe('dasbor tim: evaluasi tim v8.1', () => {
     assert.equal(X2.kalimatTempo(null), null);
   });
   it('siapaMemilih: per opsi menurut urutan peserta, kunci ditandai, kosong di akhir', () => {
-    const q = { kunci: 'B', perPeserta: { Nicky: { o: 'A' }, Mia: { o: 'B' }, Novia: { o: 'B', k: 'ragu' }, Melva: { o: '-' }, Alfi: { o: 'C' } } };
-    assert.equal(X2.siapaMemilih(q, ['Nicky', 'Mia', 'Novia', 'Melva', 'Alfi']), 'A: Nicky · B: Mia, Novia (ragu) (kunci) · C: Alfi · kosong: Melva');
-    assert.equal(X2.siapaMemilih({ kunci: 'D', perPeserta: { Mia: { o: 'A' } } }, ['Mia']), 'A: Mia · D: tidak ada (kunci)');
+    const q = { kunci: 'B', perPeserta: { Nicky: { o: 'A' }, Mita: { o: 'B' }, Nora: { o: 'B', k: 'ragu' }, Mega: { o: '-' }, Aldi: { o: 'C' } } };
+    assert.equal(X2.siapaMemilih(q, ['Nicky', 'Mita', 'Nora', 'Mega', 'Aldi']), 'A: Nicky · B: Mita, Nora (ragu) (kunci jawaban) · C: Aldi · tidak menjawab: Mega');
+    assert.equal(X2.siapaMemilih({ kunci: 'D', perPeserta: { Mita: { o: 'A' } } }, ['Mita']), 'A: Mita · D: tidak ada (kunci jawaban)');
   });
   it('jawaban ujian tim (m: ujian) berlabel "Ujian tim" di detail peserta lokal', () => {
     assert.equal(X2.MODE_JAWAB.ujian, 'Ujian tim');
-    const s = contoh(); s.jawabanBersama.push({ p: 'Mia', s: 'A2-010', k: 'ragu', t: 'A2.5', o: 'C', b: 0, d: 0, w: KINI + 2000, m: 'ujian', sesi: 'sb-u' });
-    const d = X.dokDari(s, 'Mia', KINI);
+    const s = contoh(); s.jawabanBersama.push({ p: 'Mita', s: 'A2-010', k: 'ragu', t: 'A2.5', o: 'C', b: 0, d: 0, w: KINI + 2000, m: 'ujian', sesi: 'sb-u' });
+    const d = X.dokDari(s, 'Mita', KINI);
     assert.equal(d.jawaban[0].m, 'ujian');
     const jw = J(X.normalJawaban(d.jawaban));
     assert.equal(jw[0].m, 'ujian'); assert.equal(jw[1].m, 'latihan');
@@ -187,8 +188,8 @@ describe('dasbor tim: evaluasi tim v8.1', () => {
 // v8.2 B3: evaluasi versi anggota (U1) dan rekap tim (T6) — pembantu murni
 describe('v8.2 evaluasi room: versi anggota dan rekap tanpa skor per nama', () => {
   const X3 = UKP.views.tim._uji;
-  const sesi = (lain) => Object.assign({ id: 'sb-r1', mulai: new Date(2026, 10, 9, 19, 30).getTime(), selesai: new Date(2026, 10, 9, 20, 0).getTime(), peserta: ['Nicky', 'Mia', 'Novia', 'Alfi'],
-    soal: ['A1-001', 'A1-002'].map((id, i) => ({ id, kode: 'A1', topik: '', kunci: 'B', jawaban: { Nicky: { o: 'B', b: 1 }, Mia: { o: i ? 'C' : 'B', b: i ? 0 : 1 }, Novia: { o: 'C', b: 0 }, Alfi: { o: i ? 'A' : '-', b: 0 } } })), sumber: 'room' }, lain || {});
+  const sesi = (lain) => Object.assign({ id: 'sb-r1', mulai: new Date(2026, 10, 9, 19, 30).getTime(), selesai: new Date(2026, 10, 9, 20, 0).getTime(), peserta: ['Nicky', 'Mita', 'Nora', 'Aldi'],
+    soal: ['A1-001', 'A1-002'].map((id, i) => ({ id, kode: 'A1', topik: '', kunci: 'B', jawaban: { Nicky: { o: 'B', b: 1 }, Mita: { o: i ? 'C' : 'B', b: i ? 0 : 1 }, Nora: { o: 'C', b: 0 }, Aldi: { o: i ? 'A' : '-', b: 0 } } })), sumber: 'room' }, lain || {});
   it('versiAnggota: opsi.anggota menang; rekaman room di perangkat tanpa room tuan = anggota; rekaman lokal = pemandu', () => {
     assert.equal(X3.versiAnggota(sesi(), null), true);
     assert.equal(X3.versiAnggota(sesi({ sumber: 'latih' }), null), false);
@@ -197,24 +198,34 @@ describe('v8.2 evaluasi room: versi anggota dan rekap tanpa skor per nama', () =
   });
   it('angkaTim: sesi.tim bila ada, selain itu dari jawaban terisi (kosong tidak dihitung)', () => {
     const ev = UKP.views.tim._uji.evaluasiLokal(sesi());
-    assert.deepEqual(J(X3.angkaTim(sesi(), ev)), { benar: 3, dijawab: 7 });
-    assert.deepEqual(J(X3.angkaTim(sesi({ tim: { benar: 14, dijawab: 18 } }), ev)), { benar: 14, dijawab: 18 });
+    assert.deepEqual(J(X3.angkaTim(sesi(), ev)), { benar: 3, dijawab: 7, tidak: 1 });   // v9.2 G3: tidak = kali tidak menjawab (disebut terpisah)
+    assert.deepEqual(J(X3.angkaTim(sesi({ tim: { benar: 14, dijawab: 18 } }), ev)), { benar: 14, dijawab: 18, tidak: 0 });
+  });
+  it('v9.2 G3 satu cara hitung: skor tim sama di daftar latihan, rekap, dan angkaTim (benar ÷ jawaban yang masuk; tidak menjawab terpisah)', () => {
+    const s = sesi(); const ev = X3.evaluasiLokal(s); const t = X3.angkaTim(s, ev);
+    assert.deepEqual([t.benar, t.dijawab, t.tidak], [3, 7, 1]);
+    const p = Math.round(3 / 7 * 100);
+    assert.match(J(X3.ringkasSesi(s, ev)).meta, new RegExp('skor tim ' + p + '%$'));
+    assert.ok(J(X3.rekapAnggota(s, ev)).includes('Skor tim ' + p + '% · 3 dari 7 jawaban benar · 1 kali tidak menjawab'));
+    assert.ok(!/akurasi tim/i.test(J(X3.rekapAnggota(s, ev)).join('\n')));
   });
   it('sebaranTanpaNama: hitungan per opsi tanpa nama', () => {
     const ev = X3.evaluasiLokal(sesi()); const t = X3.sebaranTanpaNama(ev.soal[1]);
     assert.equal(t, 'A 1 · B 1 · C 2');
-    assert.ok(!/Mia|Novia|Nicky|Alfi/.test(t));
+    assert.ok(!/Mita|Nora|Nicky|Aldi/.test(t));
   });
   it('rekapAnggota: tiga baris T6, terima kasih urut abjad tanpa nol, tanpa skor per nama', () => {
-    const s = sesi({ tim: { benar: 3, dijawab: 7, hadir: 4, terimaKasih: { Mia: 3, Alfi: 0, Jessie: 2 }, bahasLagi: ['A1-002'] } });
+    const s = sesi({ tim: { benar: 3, dijawab: 7, hadir: 4, terimaKasih: { Mita: 3, Aldi: 0, Jeni: 2 }, bahasLagi: ['A1-002'] } });
     const r = J(X3.rekapAnggota(s, X3.evaluasiLokal(s)));
-    assert.equal(r.length, 3);
-    assert.equal(r[0], 'Malam ini: 4 orang · 2 soal · skor tim 43%');
-    assert.equal(r[1], 'Terima kasih untuk penjelas: Jessie (2), Mia (3)');
-    assert.equal(r[2], 'Bahas lagi minggu depan: A1-002');
-    assert.equal(X3.teksTerimaKasih(sesi({ tim: { terimaKasih: { Mia: 0 } } })), null);
+    // v9.2 G3: skor tim baku di baris sendiri; soal bahas lagi bersama nama topik (tanpa konten di uji: nama kelompok bila ada)
+    assert.equal(r.length, 4);
+    assert.equal(r[0], 'Malam ini: latihan bersama 2 soal · 4 orang ikut');
+    assert.equal(r[1], 'Skor tim 43% · 3 dari 7 jawaban benar · 1 kali tidak menjawab');
+    assert.equal(r[2], 'Menerima ucapan terima kasih: Jeni 2 kali, Mita 3 kali');
+    assert.match(r[3], /^Perlu dibahas lagi: A1-002( · .+)?$/);
+    assert.equal(X3.teksTerimaKasih(sesi({ tim: { terimaKasih: { Mita: 0 } } })), null);
     const tanpaTim = J(X3.rekapAnggota(sesi(), X3.evaluasiLokal(sesi())));
-    assert.deepEqual(tanpaTim.slice(1), ['Bahas lagi minggu depan: A1-002']); // tanpa sesi.tim: tanpa terima kasih; A1-002 punya 3 jawaban salah
-    assert.ok(!/Nicky \d|Mia \d|Novia \d/.test(tanpaTim.join('\n')));
+    assert.equal(tanpaTim.length, 3); assert.match(tanpaTim[2], /^Perlu dibahas lagi: A1-002/); // tanpa sesi.tim: tanpa terima kasih; A1-002 punya 3 jawaban salah
+    assert.ok(!/Nicky \d|Mita \d|Nora \d/.test(tanpaTim.join('\n')));
   });
 });

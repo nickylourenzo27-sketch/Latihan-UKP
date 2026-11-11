@@ -152,11 +152,14 @@
     return s;
   };
   // cek nama baru untuk daftar peserta → { nama, galat } (galat berupa kalimat untuk pengguna, null bila sah)
+  const NAMA_TERLARANG = new Set(Object.getOwnPropertyNames(Object.prototype).concat(['prototype']).map(x => x.toLowerCase()));
   L.cekNamaPeserta = function (v, daftar) {
     const nama = L.rapikanNamaPeserta(v);
     daftar = Array.isArray(daftar) ? daftar : L.siapBersama().bersama.peserta;
     if (!nama) return { nama, galat: 'Isi nama dulu.' };
     if (nama.length > L.MAKS_NAMA_PESERTA) return { nama, galat: 'Nama paling panjang ' + L.MAKS_NAMA_PESERTA + ' karakter.' };
+    // v9.2 (V9 R2): nama yang sama dengan properti bawaan objek merusak rekaman per nama (sama dengan validNama di js/ruang.js)
+    if (NAMA_TERLARANG.has(nama.toLowerCase())) return { nama, galat: 'Nama itu tidak bisa dipakai.' };
     if (daftar.some(x => kunciNama(x) === nama.toLowerCase())) return { nama, galat: nama + ' sudah ada di daftar.' };
     if (daftar.length >= L.MAKS_PESERTA) return { nama, galat: 'Paling banyak ' + L.MAKS_PESERTA + ' orang.' };
     return { nama, galat: null };
@@ -184,7 +187,7 @@
   // kode kelompok entri: v8.0 kd; entri v7.9 menyimpan kode di k (sebelum k menjadi keyakinan)
   const kodeEntri = e => String((e && (e.kd || (typeof e.k === 'string' && !yakinSah(e.k) ? e.k : ''))) || String((e && e.s) || '').split('-')[0] || '');
   L.kodeEntriBersama = kodeEntri;
-  // perPeserta = { 'Nicky': { o: 'B', k: 'yakin' }, 'Mia': { o: '-', k: null } } (bentuk lama { 'Nicky': 'D' } tetap diterima) → satu entri
+  // perPeserta = { 'Nicky': { o: 'B', k: 'yakin' }, 'Mita': { o: '-', k: null } } (bentuk lama { 'Nicky': 'D' } tetap diterima) → satu entri
   // per peserta { p, s, kd, t, o, b, d, w, m, k (keyakinan|null), sesi (id sesi|null) }; nama = profil.nama → juga catatJawaban (sekali,
   // dengan keyakinan seperti latihan biasa). info = { sesi: 'sb-…' }
   L.catatJawabanBersama = function (soal, perPeserta, detik, info) {
@@ -310,6 +313,30 @@
     UKP.store.save();
     return salinJSON(x);
   };
+  // v9.2 G1: tulisan baku skor tim (satu cara menghitung): benar ÷ jawaban yang masuk → "Skor tim 60% · 3 dari 5 jawaban benar"; '' bila belum ada jawaban
+  L.teksSkorTim = function (t) {
+    const b = Math.max(0, Math.round(Number(t && t.benar) || 0)), d = Math.max(0, Math.round(Number(t && t.dijawab) || 0));
+    return d ? 'Skor tim ' + Math.round(Math.min(b, d) / d * 100) + '% · ' + Math.min(b, d) + ' dari ' + d + ' jawaban benar' : '';
+  };
+  // v9.2 G1 (anggota yang menyusul): tambah nama ke latihan bersama yang masih berjalan → nama yang dipakai (ejaan rekaman bila sudah ada) | null.
+  // Hanya sesi yang belum ditutup; nama dirapikan dan dicek (unik tanpa peduli kapital, ≤ MAKS_PESERTA). Soal yang sudah tercatat tidak diubah
+  L.tambahPesertaSesi = function (id, nama) {
+    const s = UKP.store.get(); const x = sesiDari(s, id); if (!x || x.selesai) return null;
+    if (!Array.isArray(x.peserta)) x.peserta = [];
+    const ada = x.peserta.find(n => kunciNama(n) === kunciNama(nama)); if (ada) return ada;
+    const c = L.cekNamaPeserta(nama, x.peserta); if (c.galat) return null;
+    x.peserta.push(c.nama); UKP.store.save();
+    return c.nama;
+  };
+  // v9.2 (V9 T1): patokan daftar room saat latihan room dimulai disimpan di rekaman sesi (sekali; tidak ditimpa) → patokan yang berlaku | null.
+  // Yang ada di daftar room sekarang, tidak ada di patokan, dan belum ada di peserta = anggota yang menyusul
+  L.roomAwalSesi = function (id, daftar) {
+    const s = UKP.store.get(); const x = sesiDari(s, id); if (!x) return null;
+    if (Array.isArray(x.roomAwal)) return x.roomAwal.slice();
+    if (!Array.isArray(daftar)) return null;
+    x.roomAwal = daftar.filter(n => typeof n === 'string' && n).slice(0, 24); UKP.store.save();
+    return x.roomAwal.slice();
+  };
   L.sesiBersama = () => salinJSON(daftarSesi().filter(x => x && typeof x.id === 'string')).reverse();
   L.sesiBersamaDari = id => { const x = sesiDari(null, id); return x ? salinJSON(x) : null; };
   // v8.2 V3: salinan rekaman room yang dihapus anggota diingat (ukp.tim.tolakSesi) agar tidak masuk lagi saat tersambung ulang
@@ -351,29 +378,34 @@
     const nSoal = daftarSoal.length, nPeserta = peserta.length;
     const mulai = Number(sesi.mulai), selesai = Number(sesi.selesai);
     const menit = isFinite(mulai) && isFinite(selesai) && selesai > 0 && selesai >= mulai && nSoal ? Math.max(1, Math.round((selesai - mulai) / 60000)) : 0;
-    const ambil = (q, nama) => { const j = (q.jawaban && (q.jawaban[nama] || q.jawaban[Object.keys(q.jawaban).find(n => kunciNama(n) === kunciNama(nama))])) || null; const { o, k } = jawabPeserta(j); return { o, k, b: o !== '-' && o === q.kunci ? 1 : 0 }; };
+    // v9.2 (V9 S1): rekaman per nama tanpa kunci untuk nama itu = orang itu belum ikut saat soal itu (anggota yang menyusul):
+    // tidak dihitung sama sekali untuk soal itu (bukan "tidak menjawab", bukan penyebut). Rekaman tanpa jawaban per nama tetap seperti dulu
+    const ikutSoal = (q, nama) => { const jw = isObjL(q.jawaban) ? q.jawaban : null; if (!jw || !Object.keys(jw).length) return true; return Object.keys(jw).some(n => Object.prototype.hasOwnProperty.call(jw, n) && kunciNama(n) === kunciNama(nama)); };
+    const ambil = (q, nama) => { const jw = isObjL(q.jawaban) ? q.jawaban : {}; const kn = Object.keys(jw).find(n => kunciNama(n) === kunciNama(nama)); const j = kn != null ? jw[kn] : null; const { o, k } = jawabPeserta(j); return { o, k, b: o !== '-' && o === q.kunci ? 1 : 0 }; };
     const soal = daftarSoal.map(q => {
       const perPeserta = {}; let nBenar = 0, nSalah = 0, nKosong = 0;
-      peserta.forEach(n => { const j = ambil(q, n); perPeserta[n] = j; if (j.b) nBenar++; else if (j.o === '-') nKosong++; else nSalah++; });
+      peserta.forEach(n => { if (!ikutSoal(q, n)) return; const j = ambil(q, n); perPeserta[n] = j; if (j.b) nBenar++; else if (j.o === '-') nKosong++; else nSalah++; });
       return { id: q.id, kode: q.kode || String(q.id).split('-')[0], topik: q.topik || '', kunci: q.kunci || '', nBenar, nSalah, nKosong, perPeserta };
     });
     const urutTopik = (a, b) => a.benar / a.n - b.benar / b.n || b.n - a.n || (a.topik < b.topik ? -1 : a.topik > b.topik ? 1 : 0);
     const hasilP = peserta.map((nama, urut) => {
-      let benar = 0, dijawab = 0, yakinSalah = 0, raguBenar = 0, menebakBenar = 0; const perT = {};
+      let benar = 0, dijawab = 0, ikut = 0, yakinSalah = 0, raguBenar = 0, menebakBenar = 0; const perT = {};
       soal.forEach(q => {
-        const j = q.perPeserta[nama]; if (j.o !== '-') dijawab++; if (j.b) benar++;
+        const j = q.perPeserta[nama]; if (!j) return; ikut++; if (j.o !== '-') dijawab++; if (j.b) benar++;
         if (j.k === 'yakin' && !j.b && j.o !== '-') yakinSalah++;
         if (j.k === 'ragu' && j.b) raguBenar++;
         if (j.k === 'menebak' && j.b) menebakBenar++;
         if (q.topik) { const t = perT[q.topik] = perT[q.topik] || { topik: q.topik, n: 0, benar: 0 }; t.n++; if (j.b) t.benar++; }
       });
       const topikLemah = Object.values(perT).filter(t => t.benar < t.n).sort(urutTopik).slice(0, 3);
-      return { nama, benar, dijawab, kosong: nSoal - dijawab, akurasi: nSoal ? Math.round(benar / nSoal * 100) : null, yakinSalah, raguBenar, menebakBenar, topikLemah, _u: urut };
+      // ikut = soal yang ia ikuti (penyebut "benar b dari ikut soal"); yang tidak ia jawab = tidak benar, disebut terpisah (kosong)
+      return { nama, benar, dijawab, ikut, kosong: ikut - dijawab, akurasi: ikut ? Math.round(benar / ikut * 100) : null, yakinSalah, raguBenar, menebakBenar, topikLemah, _u: urut };
     }).sort((a, b) => b.benar - a.benar || a._u - b._u).map(x => { delete x._u; return x; });
-    const tersulit = soal.map((q, i) => ({ q, i })).filter(x => x.q.nBenar < nPeserta)
+    const tersulit = soal.map((q, i) => ({ q, i })).filter(x => x.q.nBenar < x.q.nBenar + x.q.nSalah + x.q.nKosong)
       .sort((a, b) => a.q.nBenar - b.q.nBenar || b.q.nSalah - a.q.nSalah || a.i - b.i).slice(0, 5).map(x => x.q);
     const perTim = {};
-    soal.forEach(q => { if (!q.topik) return; const t = perTim[q.topik] = perTim[q.topik] || { topik: q.topik, n: 0, benar: 0 }; t.n += nPeserta; t.benar += q.nBenar; });
+    // v9.2 (V9 S2): penyebut topik tim = jawaban yang masuk (satu cara menghitung, sama dengan skor tim)
+    soal.forEach(q => { if (!q.topik) return; const t = perTim[q.topik] = perTim[q.topik] || { topik: q.topik, n: 0, benar: 0 }; t.n += q.nBenar + q.nSalah; t.benar += q.nBenar; });
     const topikTim = Object.values(perTim).filter(t => t.n >= 3 && t.benar < t.n).sort(urutTopik).slice(0, 5)
       .map(t => ({ topik: t.topik, n: t.n, benar: t.benar, akurasi: Math.round(t.benar / t.n * 100) }));
     // v8.1: detik per soal ikut di soal[]; mode, judul, tempo, skor (mode ujian), triase (urutan bahas)
@@ -478,21 +510,31 @@
     const nBenar = benar.length, nSalah = salah.length, nKosong = kosong.length;
     const yakinSalah = salah.filter(n => j[n].k === 'yakin');
     const belumMantap = benar.filter(n => j[n].k === 'ragu' || j[n].k === 'menebak');
+    // v9.2 G1 (satu cara menghitung): kelas dinilai dari yang MENJAWAB (benar ÷ jawaban yang masuk); yang tidak menjawab disebut terpisah
+    const nJawab = nBenar + nSalah;
     let kelas;
-    if (N && nBenar === N) kelas = belumMantap.length ? 'rapuh' : 'dikuasai';
-    else if (nBenar === 0 || nBenar / N < 0.5) kelas = 'tersandung';
+    if (nJawab && nSalah === 0) kelas = belumMantap.length ? 'rapuh' : 'dikuasai';
+    else if (nBenar === 0 || nBenar / nJawab < 0.5) kelas = 'tersandung';
     else kelas = 'terbelah';
     const hit = n => { const k = Object.keys(hitung).find(x => kunciNama(x) === kunciNama(n)); return k != null ? Number(hitung[k]) || 0 : 0; };
-    const pilih = (calon, utamakanYakin) => calon.slice().sort((a, b) =>
-      (utamakanYakin ? (j[b].k === 'yakin' ? 1 : 0) - (j[a].k === 'yakin' ? 1 : 0) : 0) || hit(a) - hit(b) || nama.indexOf(a) - nama.indexOf(b))[0] || null;
+    // penjelas: yang yakin diutamakan, yang Nebak dihindari bila ada orang benar lain; lalu rotasi (hitungPenjelas), lalu urutan
+    const pilih = (calon, utamakanYakin) => { const bukanNebak = calon.filter(n => j[n].k !== 'menebak'); return (bukanNebak.length ? bukanNebak : calon).slice().sort((a, b) =>
+      (utamakanYakin ? (j[b].k === 'yakin' ? 1 : 0) - (j[a].k === 'yakin' ? 1 : 0) : 0) || hit(a) - hit(b) || nama.indexOf(a) - nama.indexOf(b))[0] || null; };
+    // pemimpin (opsi.pemimpin) yang tidak menjawab tidak disebut di daftar "tidak menjawab" untuk kalimat pembahas
+    const pemimpin = typeof opsi.pemimpin === 'string' ? opsi.pemimpin : null;
+    const tidakMenjawab = kosong.filter(n => !(pemimpin && kunciNama(n) === kunciNama(pemimpin)));
     let penjelas = null, kepada = [], label, saran;
-    if (kelas === 'dikuasai') { label = 'Dikuasai'; saran = 'Lanjut'; }
-    else if (kelas === 'rapuh') { label = 'Benar semua, belum mantap'; penjelas = pilih(belumMantap, false); saran = penjelas + ', jelaskan singkat alasanmu'; }
-    else {
-      kepada = nama.filter(n => !j[n].b);
-      label = kelas === 'terbelah' ? 'Terbelah ' + nBenar + '–' + (N - nBenar) : nBenar === 0 ? 'Semua belum tepat' : 'Hanya ' + nBenar + ' dari ' + N + ' benar';
+    if (kelas === 'dikuasai') { label = 'Semua benar'; saran = 'Lanjut'; }
+    else if (kelas === 'rapuh') {
+      label = 'Semua benar, tapi ada yang ragu';
+      const ragu = belumMantap.filter(n => j[n].k === 'ragu');
+      penjelas = pilih(ragu.length ? ragu : benar, !ragu.length); saran = penjelas + ', jelaskan singkat alasanmu';
+    } else {
+      // yang dijelaskan hanya orang yang menjawab SALAH; yang tidak menjawab terpisah (tidakMenjawab)
+      kepada = salah.slice();
+      label = !nJawab ? 'Tidak ada yang menjawab' : kelas === 'terbelah' ? 'Tim terbagi' : 'Banyak yang salah';
       if (nBenar === 0) saran = 'Baca pembahasan bersama';
-      else { penjelas = pilih(benar, true); saran = nBenar === 1 && kepada.length > 1 ? 'Hanya ' + penjelas + ' yang benar: ' + penjelas + ' jelaskan ke semua' : penjelas + ' jelaskan ke ' + L.gabungNama(kepada); }
+      else { penjelas = pilih(benar, true); saran = penjelas + ' jelaskan ke ' + L.gabungNama(kepada); }
     }
     // opsi salah terbanyak (seri: lebih banyak yang yakin, lalu huruf)
     const hitO = {}; salah.forEach(n => { const o = j[n].o; hitO[o] = hitO[o] || { n: 0, y: 0 }; hitO[o].n++; if (j[n].k === 'yakin') hitO[o].y++; });
@@ -504,12 +546,15 @@
       const teks = typeof ms === 'string' && ms.trim() ? L.potongTeks(ms, L.MAKS_TEKS_ALASAN) : null;
       if (tag || teks) alasan = { opsi: opsiKeliru, tag, label: tag ? (L.LABEL_JEBAKAN[tag] || tag.replace(/-/g, ' ')) : null, teks };
     }
-    return { kelas, N, nBenar, nSalah, nKosong, label, saran, penjelas, kepada, yakinSalah, belumMantap, opsiKeliru, alasan, prioritas: L.PRIORITAS_KELAS[kelas] };
+    // v9.2 (V9 S5): soal yang tidak dijawab siapa pun tidak masuk urutan bahas (prioritas 0); kelas tetap (layar lain memetakannya)
+    return { kelas, N, nJawab, nBenar, nSalah, nKosong, label, saran, penjelas, kepada, tidakMenjawab, yakinSalah, belumMantap, opsiKeliru, alasan, prioritas: nJawab ? L.PRIORITAS_KELAS[kelas] : 0 };
   };
   // jawaban satu soal rekaman sesi per peserta (nama tanpa peduli kapital) → { nama: jawaban|null }
   function perPesertaSoal(q, peserta) {
     const jw = isObjL(q.jawaban) ? q.jawaban : {}; const per = {};
-    (peserta.length ? peserta : Object.keys(jw)).forEach(n => { const k = Object.keys(jw).find(x => kunciNama(x) === kunciNama(n)); per[n] = k != null ? jw[k] : null; });
+    // v9.2 (V9 S1): rekaman per nama → nama tanpa kunci di soal itu belum ikut (tidak dimasukkan ke per)
+    const perNama = Object.keys(jw).length > 0;
+    (peserta.length ? peserta : Object.keys(jw)).forEach(n => { const k = Object.keys(jw).find(x => kunciNama(x) === kunciNama(n)); if (k == null && perNama) return; per[n] = k != null ? jw[k] : null; });
     return per;
   }
   const pesertaSesi = sesi => (Array.isArray(sesi.peserta) ? sesi.peserta : []).filter(x => typeof x === 'string' && x);
@@ -582,25 +627,27 @@
       const sk = ev.skor || []; const rata = sk.length ? sk.reduce((a, x) => a + x.skor, 0) / sk.length : 0;
       baris.push(ev.nSoal + ' soal · rata-rata skor ' + desimal(rata) + ' · ' + sk.filter(x => x.lulus).length + ' dari ' + sk.length + ' lulus (batas ' + L.BATAS_LULUS + ')');
       orang = sk.slice().sort((a, b) => b.skor - a.skor).map(x => x.nama + ' ' + desimal(x.skor) + (x.lulus ? ' lulus' : ' (kurang ' + x.kurang + ' soal)'));
-    } else if (tim && Number.isInteger(tim.akurasi)) {
-      const hadir = Number.isInteger(tim.hadir) && tim.hadir > 0 ? ' · ' + tim.hadir + ' dari ' + ev.nPeserta + ' hadir' : '';
-      baris.push(ev.nSoal + ' soal · skor tim ' + tim.akurasi + '%' + hadir + (ev.menit ? ' · ' + ev.menit + ' menit' : ''));
-      orang = ev.peserta.map(p => p.nama + ' ' + p.benar + '/' + ev.nSoal);
     } else {
-      const tot = ev.nSoal * ev.nPeserta, totB = ev.peserta.reduce((a, p) => a + p.benar, 0);
-      baris.push(ev.nSoal + ' soal · akurasi tim ' + (tot ? Math.round(totB / tot * 100) : 0) + '%' + (ev.menit ? ' · ' + ev.menit + ' menit' : ''));
-      orang = ev.peserta.map(p => p.nama + ' ' + p.benar + '/' + ev.nSoal);
+      // v9.2 G1 satu cara menghitung: skor tim = benar ÷ jawaban yang masuk; yang tidak menjawab disebut terpisah
+      let benar = 0, dijawab = 0, tidak = 0;
+      ev.soal.forEach(q => { benar += q.nBenar; dijawab += q.nBenar + q.nSalah; tidak += q.nKosong; });
+      if (tim && Number.isInteger(tim.benar) && Number.isInteger(tim.dijawab) && tim.dijawab > 0) { benar = tim.benar; dijawab = tim.dijawab; }
+      const ikut = tim && Number.isInteger(tim.hadir) && tim.hadir > 0 ? tim.hadir + ' dari ' + ev.nPeserta + ' orang ikut' : ev.nPeserta + ' orang';
+      baris.push(ev.nSoal + ' soal · ' + ikut + (ev.menit ? ' · ' + ev.menit + ' menit' : ''));
+      baris.push(dijawab ? L.teksSkorTim({ benar, dijawab }) + (tidak && !dariRoom ? ' · ' + tidak + ' kali tidak menjawab' : '') : 'Belum ada jawaban yang masuk.');
+      orang = ev.peserta.map(p => p.nama + ' benar ' + p.benar + ' dari ' + (p.ikut != null ? p.ikut : ev.nSoal) + ' soal');
     }
     if (dariRoom) { /* tanpa baris per orang */ }
-    else if (!orang.length) baris.push('Belum ada peserta.');
+    else if (!orang.length) baris.push('Belum ada anggota.');
     else if (orang.length <= 7) orang.forEach(o => baris.push(o));
     else for (let i = 0; i < orang.length; i += 3) baris.push(orang.slice(i, i + 3).join(' · '));
     if (tim) {
       const tk = isObjL(tim.terimaKasih) ? tim.terimaKasih : {};
       const nm = Object.keys(tk).filter(n => Math.round(Number(tk[n])) > 0).sort((a, b) => a.localeCompare(b, 'id', { sensitivity: 'base' }));
-      if (nm.length) baris.push('Terima kasih untuk penjelas: ' + nm.map(n => n + ' (' + Math.round(Number(tk[n])) + ')').join(', '));
+      if (nm.length) baris.push('Terima kasih untuk ' + L.gabungNama(nm.map((n, i) => (i ? n + ' ' : n + ' yang membantu menjelaskan ') + Math.round(Number(tk[n])) + ' soal')));
       const bl = Array.isArray(tim.bahasLagi) ? tim.bahasLagi.filter(x => typeof x === 'string' && x).slice(0, 10) : [];
-      if (bl.length) baris.push('Bahas lagi: ' + bl.join(', '));
+      // kode soal selalu didampingi nama topiknya
+      if (bl.length) baris.push('Bahas lagi: ' + bl.map(id => { const q = soalSesi(sesi).find(x => x.id === id); const so = K.soal(id); const tp = (q && q.topik) || (so && so.topik); return tp ? id + ' (' + namaTopik(tp) + ')' : id; }).join(', '));
     }
     const topik = [];
     ev.topikTim.forEach(t => { if (topik.length < 3 && !topik.includes(t.topik)) topik.push(t.topik); });

@@ -261,6 +261,7 @@
         h('div', { class: 'ob-merek' }, UKP.c.merek({ ukuran: 40 })),
         h('h1', null, 'Selamat datang di MABAR UKP'),
         h('p', { class: 'lead' }, 'Lima pertanyaan singkat (± 1 menit) untuk menyusun target dan menit belajar harian Anda. Semua bisa diubah di Pengaturan.'),
+        h('p', { class: 'small muted', 'data-k': 'ob-tanpa-akun' }, 'Tanpa akun. Nama dan kemajuan Anda disimpan di peramban ini saja.'),
         h('div', { class: 'field' }, h('label', { for: 'ob-nama' }, 'Nama Anda'),
           h('input', { class: 'input', id: 'ob-nama', type: 'text', autocomplete: 'name', required: true, minlength: 2, maxlength: 40, value: draft.nama, 'aria-describedby': 'ob-nama-bantu ob-nama-galat',
             oninput: e => { draft.nama = e.target.value; e.target.removeAttribute('aria-invalid'); const g = page.querySelector('#ob-nama-galat'); if (g) g.hidden = true; },
@@ -827,6 +828,17 @@
         if (kartu.length) blokTim = h('div', { class: 'stack-sm beranda-tim-aktif' }, kartu);
       } catch (e) { console.error(e); }
     }
+    // v9.2 G3: selama perangkat berada di room (pemimpin atau anggota/tamu), blok ini selalu punya jalan kembali ke room sebagai tombol utama.
+    // kartuRoom() biasanya sudah memuatnya (.room-utama); bila tidak ada (modul room belum termuat / gagal), tombol cadangan ditambahkan.
+    try {
+      const r = UKP.ruang; const i = r && typeof r.info === 'function' ? r.info() : null;
+      if (i && !(blokTim && blokTim.querySelector('.room-utama'))) {
+        const namaR = i.namaRoom || 'Room tim';
+        const kembali = h('button', { type: 'button', class: 'btn btn-primary btn-lg btn-block room-utama', 'data-k': 'kembali-room', onclick: () => UKP.go('room') }, ikon('tim', null, true), 'Kembali ke room');
+        const kartu = h('section', { class: 'card kartu-room kartu-room-cadangan', 'aria-label': 'Room tim' }, h('p', { class: 'small' }, 'Anda masih di room ', h('strong', null, namaR), '.'), kembali);
+        blokTim = blokTim ? h('div', { class: 'stack-sm' }, kartu, blokTim) : kartu;
+      }
+    } catch (e) { console.error(e); }
     const wadahTim = blokTim ? h('div', { class: 'beranda-tim', 'data-k': 'blok-tim' }, blokTim) : null;
     if (wadahTim) duo.appendChild(h('section', { class: 'beranda-bagian bagian-mabar', 'aria-labelledby': 'mabar-judul' }, h('h2', { class: 'bagian-judul', id: 'mabar-judul' }, 'Mode mabar'), wadahTim));
     // D3.4 Lanjutkan belajar (isi latihan pribadi, tidak dilipat)

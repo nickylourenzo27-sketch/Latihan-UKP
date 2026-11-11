@@ -138,7 +138,7 @@ function instans(jar, urls, opsi) {
   const diterima = [];
   const lokal = new Map();
   const belajar = { terimaSesiRoom: x => { diterima.push(x); return 'baru'; }, sesiBersamaDari: id => (lokal.has(id) ? JSON.parse(JSON.stringify(lokal.get(id))) : null) };
-  const api = R.buatInstans(Object.assign({ WebSocket: jar.WS, crypto: globalThis.crypto, store, belajar, lokasi: { origin: 'https://contoh.github.io', pathname: '/Latihan-UKP/', hostname: 'contoh.github.io' } }, opsi.env || {}));
+  const api = (opsi.R || R).buatInstans(Object.assign({ WebSocket: jar.WS, crypto: globalThis.crypto, store, belajar, lokasi: { origin: 'https://contoh.github.io', pathname: '/Latihan-UKP/', hostname: 'contoh.github.io' } }, opsi.env || {}));
   api.RELAI = urls.slice(); Object.assign(api.KONFIG, KONFIG_UJI, opsi.konfig || {});
   const peristiwa = { status: [], state: [], jawaban: [], hadir: [], sesi: [], indeks: [], peran: [] };
   Object.keys(peristiwa).forEach(n => api.on(n, x => peristiwa[n].push(x)));
@@ -249,8 +249,8 @@ describe('ruang: kripto', () => {
     const kode = kodeBaru(globalThis.crypto);
     const a = Kripto(globalThis.crypto, R.KONFIG.iterasi), b = Kripto(globalThis.crypto, R.KONFIG.iterasi);
     const ka = await a.kunci(kode), kb = await b.kunci(kode);
-    const c = await a.enkripsi(ka, 'ukp1/x/s', JSON.stringify({ halo: 'Mia — jawaban B' }));
-    assert.equal(await b.dekripsi(kb, 'ukp1/x/s', c), '{"halo":"Mia — jawaban B"}');
+    const c = await a.enkripsi(ka, 'ukp1/x/s', JSON.stringify({ halo: 'Mita — jawaban B' }));
+    assert.equal(await b.dekripsi(kb, 'ukp1/x/s', c), '{"halo":"Mita — jawaban B"}');
   });
   it('kode salah, topik lain (AAD), muatan dirusak, atau terlalu pendek → gagal senyap (null)', async () => {
     const kr = Kripto(globalThis.crypto, 2000);
@@ -280,19 +280,19 @@ describe('ruang: kripto', () => {
 // ======================================================================================
 describe('ruang: validasi protokol (murni)', () => {
   const amp = (x) => Object.assign({ v: 1, t: 1700000000000, urut: 5, d: 'ab12cd34ef56', nama: 'Nicky' }, x);
-  const stateBaik = () => amp({ urut: 1700000000000, tuan: 'Nicky', room: { nama: 'Tim B', peserta: ['Nicky', 'Mia'], tingkat: 'B' }, versiApp: '8.1.0', aktivitas: { jenis: 'latihan', id: 'sb-1', soalIds: ['A1-104', 'B6-126'], idx: 1, fase: 'kunci', mulaiSoal: 1, detikPerSoal: 126, akhirSesi: null, hasilSoal: { soalId: 'B6-126', per: { Mia: { o: 'A', k: 'yakin', b: 1 } } } } });
+  const stateBaik = () => amp({ urut: 1700000000000, tuan: 'Nicky', room: { nama: 'Tim B', peserta: ['Nicky', 'Mita'], tingkat: 'B' }, versiApp: '8.1.0', aktivitas: { jenis: 'latihan', id: 'sb-1', soalIds: ['A1-104', 'B6-126'], idx: 1, fase: 'kunci', mulaiSoal: 1, detikPerSoal: 126, akhirSesi: null, hasilSoal: { soalId: 'B6-126', per: { Mita: { o: 'A', k: 'yakin', b: 1 } } } } });
   it('validState menerima state sah dan menolak bentuk rusak', () => {
     assert.ok(P.validState(stateBaik()));
     const rusak = [
-      s => { s.tuan = 'Mia'; }, s => { s.room.peserta = Array.from({ length: 13 }, (_, i) => 'P' + i); }, s => { s.aktivitas.soalIds = Array.from({ length: 121 }, (_, i) => 'A1-' + (100 + i)); s.aktivitas.idx = 0; s.aktivitas.hasilSoal = null; },
-      s => { s.aktivitas.idx = 2; }, s => { s.aktivitas.fase = 'x'; }, s => { s.aktivitas.hasilSoal.per.Mia.o = 'E'; }, s => { s.aktivitas.soalIds[0] = '../x'; }, s => { s.v = 2; }, s => { s.nama = 'x'.repeat(25); s.tuan = s.nama; },
+      s => { s.tuan = 'Mita'; }, s => { s.room.peserta = Array.from({ length: 13 }, (_, i) => 'P' + i); }, s => { s.aktivitas.soalIds = Array.from({ length: 121 }, (_, i) => 'A1-' + (100 + i)); s.aktivitas.idx = 0; s.aktivitas.hasilSoal = null; },
+      s => { s.aktivitas.idx = 2; }, s => { s.aktivitas.fase = 'x'; }, s => { s.aktivitas.hasilSoal.per.Mita.o = 'E'; }, s => { s.aktivitas.soalIds[0] = '../x'; }, s => { s.v = 2; }, s => { s.nama = 'x'.repeat(25); s.tuan = s.nama; },
       s => { s.aktivitas = { jenis: 'ujian', id: 'ut1', kode: 'K', judul: null, mulai: 10, akhir: 5, status: 'jalan' }; },
     ];
     rusak.forEach((f, i) => { const s = stateBaik(); f(s); assert.equal(P.validState(s), null, 'kasus ' + i); });
     assert.ok(P.validState(Object.assign(stateBaik(), { aktivitas: { jenis: 'ujian', id: 'ut1', kode: 'UKPU1.B84.x', judul: 'TO', mulai: 1, akhir: 2, status: 'selesai' } })));
   });
   it('validJawaban: peta opsi/keyakinan, batas 400, detik', () => {
-    const j = amp({ nama: 'Mia', aktivitas: 'sb-1', j: { 'A1-104': 'B', 'B6-126': '-' }, k: { 'A1-104': 'ragu' }, selesai: false, detik: null });
+    const j = amp({ nama: 'Mita', aktivitas: 'sb-1', j: { 'A1-104': 'B', 'B6-126': '-' }, k: { 'A1-104': 'ragu' }, selesai: false, detik: null });
     assert.ok(P.validJawaban(j));
     assert.ok(P.validJawaban(Object.assign({}, j, { aktivitas: null, j: {}, k: {} })));
     assert.equal(P.validJawaban(Object.assign({}, j, { j: { 'A1-104': 'E' } })), null);
@@ -304,10 +304,10 @@ describe('ruang: validasi protokol (murni)', () => {
   it('validHadir, validIndeks (≤ 30), validSesi', () => {
     assert.ok(P.validHadir(amp({ online: true, peran: 'tuan' })));
     assert.equal(P.validHadir(amp({ online: 'ya' })), null);
-    const e = { id: 'sb-1', t: 1, mode: 'latihan', judul: null, nSoal: 20, peserta: ['Mia'] };
+    const e = { id: 'sb-1', t: 1, mode: 'latihan', judul: null, nSoal: 20, peserta: ['Mita'] };
     assert.ok(P.validIndeks(amp({ daftar: [e] })));
     assert.equal(P.validIndeks(amp({ daftar: Array.from({ length: 31 }, () => e) })), null);
-    const sesi = { id: 'sb-1', mulai: 1, selesai: 2, tingkat: 'B', peserta: ['Mia'], anggaranDetik: 126, soal: [{ id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D', detik: 30, jawaban: { Mia: { o: 'D', k: 'yakin', b: 1 } } }], sumber: 'latih' };
+    const sesi = { id: 'sb-1', mulai: 1, selesai: 2, tingkat: 'B', peserta: ['Mita'], anggaranDetik: 126, soal: [{ id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D', detik: 30, jawaban: { Mita: { o: 'D', k: 'yakin', b: 1 } } }], sumber: 'latih' };
     assert.ok(P.validSesi(amp({ sesi })));
     assert.equal(P.validSesi(amp({ sesi: Object.assign({}, sesi, { soal: [{ id: 'x y', jawaban: {} }] }) })), null);
     assert.equal(P.validSesi(amp({ sesi: Object.assign({}, sesi, { peserta: [42] }) })), null);
@@ -409,7 +409,7 @@ describe('ruang: alur room penuh di relai tiruan', () => {
     const jar = buatJaringan(); const urls = opsi.urls || ['ws://r1', 'ws://r2'];
     urls.forEach(u => jar.relaiBaru(u));
     const nicky = instans(jar, urls, opsi.nicky);
-    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim UKP B', peserta: ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi'], tingkat: 'B' });
+    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim UKP B', peserta: ['Nicky', 'Mita', 'Nora', 'Jeni', 'Mega', 'Aldi'], tingkat: 'B' });
     await tunggu(() => nicky.api.status().tersambung);
     return { jar, urls, nicky, kode };
   }
@@ -425,107 +425,107 @@ describe('ruang: alur room penuh di relai tiruan', () => {
     assert.equal(nicky.simpan.s.ruang.kode, kode); assert.equal(nicky.simpan.s.ruang.peran, 'tuan');
     const r1 = jar.relai.get('ws://r1');
     await tunggu(() => Array.from(r1.retained.keys()).some(t => t.endsWith('/s')));
-    for (const [t, m] of r1.retained) { assert.match(t, /^ukp1\/[0-9a-f]{24}\//); const s = Buffer.from(m).toString('latin1'); assert.ok(!/Nicky|Tim UKP|Mia/.test(s + t)); }
-    const st = nicky.api.state(); assert.equal(st.tuan, 'Nicky'); assert.deepEqual(st.room.peserta, ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi']); assert.equal(st.aktivitas, null);
+    for (const [t, m] of r1.retained) { assert.match(t, /^ukp1\/[0-9a-f]{24}\//); const s = Buffer.from(m).toString('latin1'); assert.ok(!/Nicky|Tim UKP|Mita/.test(s + t)); }
+    const st = nicky.api.state(); assert.equal(st.tuan, 'Nicky'); assert.deepEqual(st.room.peserta, ['Nicky', 'Mita', 'Nora', 'Jeni', 'Mega', 'Aldi']); assert.equal(st.aktivitas, null);
     assert.ok(jar.relai.get('ws://r2').retained.size > 0, 'tuan menerbitkan ke semua relai');
   });
 
   it('dua anggota bergabung: gabung() memberi state, kehadiran terlihat oleh tuan', async () => {
     const { jar, urls, nicky, kode } = await siapkanRoom();
-    const { o: mia, st } = await gabungkan(jar, urls, formatKode(kode).toLowerCase(), 'Mia');
-    const { o: novia } = await gabungkan(jar, urls, nicky.api.info().tautan, 'Novia');
+    const { o: mita, st } = await gabungkan(jar, urls, formatKode(kode).toLowerCase(), 'Mita');
+    const { o: nora } = await gabungkan(jar, urls, nicky.api.info().tautan, 'Nora');
     assert.equal(st.tuan, 'Nicky'); assert.equal(st.room.nama, 'Tim UKP B');
-    assert.equal(mia.api.info().peran, 'anggota'); assert.equal(mia.simpan.s.ruang.namaRoom, 'Tim UKP B');
-    await tunggu(() => ['Nicky', 'Mia', 'Novia'].every(n => nicky.api.status().online.includes(n)));
-    await tunggu(() => mia.api.status().online.includes('Nicky'));
-    assert.equal(mia.api.status().relai.length, 1, 'anggota hanya memakai satu relai');
+    assert.equal(mita.api.info().peran, 'anggota'); assert.equal(mita.simpan.s.ruang.namaRoom, 'Tim UKP B');
+    await tunggu(() => ['Nicky', 'Mita', 'Nora'].every(n => nicky.api.status().online.includes(n)));
+    await tunggu(() => mita.api.status().online.includes('Nicky'));
+    assert.equal(mita.api.status().relai.length, 1, 'anggota hanya memakai satu relai');
     assert.equal(nicky.api.status().relai.length, 2, 'tuan memakai semua relai');
-    assert.ok(novia.peristiwa.hadir.some(h => h.nama === 'Nicky' && h.online));
+    assert.ok(nora.peristiwa.hadir.some(h => h.nama === 'Nicky' && h.online));
   });
 
   it('latihan: mulaiLatihan → jawaban hidup dua anggota → bukaKunci → aturSoal', async () => {
     const { jar, urls, nicky, kode } = await siapkanRoom();
-    const { o: mia } = await gabungkan(jar, urls, kode, 'Mia');
-    const { o: novia } = await gabungkan(jar, urls, kode, 'Novia');
+    const { o: mita } = await gabungkan(jar, urls, kode, 'Mita');
+    const { o: nora } = await gabungkan(jar, urls, kode, 'Nora');
     const soal = ['A1-104', 'B6-126', 'A3-144'];
     const s1 = nicky.api.mulaiLatihan({ id: 'sb-100', soalIds: soal, detikPerSoal: 126, akhirSesi: Date.now() + 378000 });
     assert.equal(s1.aktivitas.fase, 'jawab');
-    await tunggu(() => mia.api.state().aktivitas && novia.api.state().aktivitas);
-    assert.deepEqual(mia.api.state().aktivitas.soalIds, soal);
-    assert.ok(mia.api.kirimJawaban({ aktivitas: 'sb-100', soalId: 'A1-104', o: 'D', k: 'yakin' }));
-    assert.ok(novia.api.kirimJawaban({ aktivitas: 'sb-100', soalId: 'A1-104', o: 'A' }));
-    assert.ok(novia.api.kirimJawaban({ aktivitas: 'sb-100', soalId: 'A1-104', k: 'menebak' }));
-    assert.equal(mia.api.kirimJawaban({ aktivitas: 'sb-lain', soalId: 'A1-104', o: 'D' }), false);
-    assert.equal(mia.api.kirimJawaban({ aktivitas: 'sb-100', soalId: 'C9-001', o: 'D' }), false, 'soal di luar aktivitas');
-    await tunggu(() => { const j = nicky.api.jawabanSemua(); return j.Mia && j.Novia && j.Novia.k['A1-104'] === 'menebak'; });
+    await tunggu(() => mita.api.state().aktivitas && nora.api.state().aktivitas);
+    assert.deepEqual(mita.api.state().aktivitas.soalIds, soal);
+    assert.ok(mita.api.kirimJawaban({ aktivitas: 'sb-100', soalId: 'A1-104', o: 'D', k: 'yakin' }));
+    assert.ok(nora.api.kirimJawaban({ aktivitas: 'sb-100', soalId: 'A1-104', o: 'A' }));
+    assert.ok(nora.api.kirimJawaban({ aktivitas: 'sb-100', soalId: 'A1-104', k: 'menebak' }));
+    assert.equal(mita.api.kirimJawaban({ aktivitas: 'sb-lain', soalId: 'A1-104', o: 'D' }), false);
+    assert.equal(mita.api.kirimJawaban({ aktivitas: 'sb-100', soalId: 'C9-001', o: 'D' }), false, 'soal di luar aktivitas');
+    await tunggu(() => { const j = nicky.api.jawabanSemua(); return j.Mita && j.Nora && j.Nora.k['A1-104'] === 'menebak'; });
     const j = nicky.api.jawabanSemua();
-    assert.deepEqual([j.Mia.j['A1-104'], j.Mia.k['A1-104'], j.Novia.j['A1-104']], ['D', 'yakin', 'A']);
-    assert.ok(nicky.peristiwa.jawaban.some(e => e.nama === 'Mia' && e.aktivitas === 'sb-100'));
-    await tunggu(() => mia.api.jawabanSemua().Novia, 2000, 'anggota melihat jawaban anggota lain');
-    nicky.api.bukaKunci('A1-104', { Mia: { o: 'D', k: 'yakin', b: 1 }, Novia: { o: 'A', k: 'menebak', b: 0 } });
-    await tunggu(() => mia.api.state().aktivitas.fase === 'kunci');
-    assert.deepEqual(mia.api.state().aktivitas.hasilSoal, { soalId: 'A1-104', per: { Mia: { o: 'D', k: 'yakin', b: 1 }, Novia: { o: 'A', k: 'menebak', b: 0 } }, penjelas: null });
+    assert.deepEqual([j.Mita.j['A1-104'], j.Mita.k['A1-104'], j.Nora.j['A1-104']], ['D', 'yakin', 'A']);
+    assert.ok(nicky.peristiwa.jawaban.some(e => e.nama === 'Mita' && e.aktivitas === 'sb-100'));
+    await tunggu(() => mita.api.jawabanSemua().Nora, 2000, 'anggota melihat jawaban anggota lain');
+    nicky.api.bukaKunci('A1-104', { Mita: { o: 'D', k: 'yakin', b: 1 }, Nora: { o: 'A', k: 'menebak', b: 0 } });
+    await tunggu(() => mita.api.state().aktivitas.fase === 'kunci');
+    assert.deepEqual(mita.api.state().aktivitas.hasilSoal, { soalId: 'A1-104', per: { Mita: { o: 'D', k: 'yakin', b: 1 }, Nora: { o: 'A', k: 'menebak', b: 0 } }, penjelas: null });
     nicky.api.aturSoal(1);
-    await tunggu(() => novia.api.state().aktivitas.idx === 1);
-    const a = novia.api.state().aktivitas; assert.equal(a.fase, 'jawab'); assert.equal(a.hasilSoal, null);
+    await tunggu(() => nora.api.state().aktivitas.idx === 1);
+    const a = nora.api.state().aktivitas; assert.equal(a.fase, 'jawab'); assert.equal(a.hasilSoal, null);
     assert.equal(nicky.api.aturSoal(9), false);
   });
 
   it('ujian: mulaiUjian → kirimSelesai → tutupUjian → akhiriAktivitas (cuplikan) → dokumen anggota dikosongkan', async () => {
     const { jar, urls, nicky, kode } = await siapkanRoom();
-    const { o: mia } = await gabungkan(jar, urls, kode, 'Mia');
-    const { o: novia } = await gabungkan(jar, urls, kode, 'Novia');
+    const { o: mita } = await gabungkan(jar, urls, kode, 'Mita');
+    const { o: nora } = await gabungkan(jar, urls, kode, 'Nora');
     const mulai = Date.now();
     nicky.api.mulaiUjian({ id: 'utabc123', kode: 'UKPU1.B84.utabc123.VE8.A1~h8', judul: 'Try Out B 1–40', mulai, akhir: mulai + 84 * 60000 });
-    await tunggu(() => mia.api.state().aktivitas && novia.api.state().aktivitas);
-    assert.equal(mia.api.state().aktivitas.status, 'jalan');
-    assert.ok(mia.api.kirimSelesai('utabc123', { jawaban: { 'A1-104': 'D', 'A3-144': 'B' }, ragu: ['A3-144'], detik: 1800 }));
-    assert.ok(novia.api.kirimSelesai('utabc123', { jawaban: { 'A1-104': 'A' }, detik: 2400.4 }));
-    await tunggu(() => { const j = nicky.api.jawabanSemua(); return j.Mia && j.Mia.selesai && j.Novia && j.Novia.selesai; });
+    await tunggu(() => mita.api.state().aktivitas && nora.api.state().aktivitas);
+    assert.equal(mita.api.state().aktivitas.status, 'jalan');
+    assert.ok(mita.api.kirimSelesai('utabc123', { jawaban: { 'A1-104': 'D', 'A3-144': 'B' }, ragu: ['A3-144'], detik: 1800 }));
+    assert.ok(nora.api.kirimSelesai('utabc123', { jawaban: { 'A1-104': 'A' }, detik: 2400.4 }));
+    await tunggu(() => { const j = nicky.api.jawabanSemua(); return j.Mita && j.Mita.selesai && j.Nora && j.Nora.selesai; });
     const j = nicky.api.jawabanSemua();
-    assert.deepEqual(j.Mia.k, { 'A3-144': 'ragu' }); assert.equal(j.Mia.detik, 1800); assert.equal(j.Novia.detik, 2400);
-    nicky.api.tutupUjian(); await tunggu(() => mia.api.state().aktivitas.status === 'selesai');
-    assert.equal(mia.api.kirimJawaban({ aktivitas: 'utabc123', soalId: 'A1-104', o: 'B' }), false, 'ujian ditutup');
+    assert.deepEqual(j.Mita.k, { 'A3-144': 'ragu' }); assert.equal(j.Mita.detik, 1800); assert.equal(j.Nora.detik, 2400);
+    nicky.api.tutupUjian(); await tunggu(() => mita.api.state().aktivitas.status === 'selesai');
+    assert.equal(mita.api.kirimJawaban({ aktivitas: 'utabc123', soalId: 'A1-104', o: 'B' }), false, 'ujian ditutup');
     const cuplik = nicky.api.akhiriAktivitas();
-    assert.equal(cuplik.aktivitas.id, 'utabc123'); assert.deepEqual(Object.keys(cuplik.jawaban).sort(), ['Mia', 'Novia']);
-    await tunggu(() => mia.api.state().aktivitas === null);
-    assert.deepEqual(Object.keys(nicky.api.jawabanSemua('utabc123')).sort(), ['Mia', 'Novia'], 'tuan tetap menyimpan jawaban di memori');
+    assert.equal(cuplik.aktivitas.id, 'utabc123'); assert.deepEqual(Object.keys(cuplik.jawaban).sort(), ['Mita', 'Nora']);
+    await tunggu(() => mita.api.state().aktivitas === null);
+    assert.deepEqual(Object.keys(nicky.api.jawabanSemua('utabc123')).sort(), ['Mita', 'Nora'], 'tuan tetap menyimpan jawaban di memori');
     // anggota mengosongkan dokumen retained setelah aktivitas berakhir
     const r1 = jar.relai.get('ws://r1');
-    await tunggu(() => nicky.peristiwa.jawaban.some(e => e.nama === 'Mia' && e.aktivitas === null), 2000);
+    await tunggu(() => nicky.peristiwa.jawaban.some(e => e.nama === 'Mita' && e.aktivitas === null), 2000);
     assert.ok(r1.retained.size > 0);
   });
 
   it('terbitkanSesi: rekaman sampai ke anggota lewat terimaSesiRoom + indeks; anggota terlambat juga menerimanya', async () => {
     const { jar, urls, nicky, kode } = await siapkanRoom();
-    const { o: mia } = await gabungkan(jar, urls, kode, 'Mia');
-    const sesi = { id: 'sb-1700000000000', mulai: 1700000000000, selesai: 1700000900000, tingkat: 'B', peserta: ['Nicky', 'Mia'], anggaranDetik: 252, mode: 'latihan', judul: null, soal: [{ id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D', detik: 80, jawaban: { Nicky: { o: 'D', k: 'yakin', b: 1 }, Mia: { o: 'A', k: null, b: 0 } } }], sumber: 'latih' };
+    const { o: mita } = await gabungkan(jar, urls, kode, 'Mita');
+    const sesi = { id: 'sb-1700000000000', mulai: 1700000000000, selesai: 1700000900000, tingkat: 'B', peserta: ['Nicky', 'Mita'], anggaranDetik: 252, mode: 'latihan', judul: null, soal: [{ id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D', detik: 80, jawaban: { Nicky: { o: 'D', k: 'yakin', b: 1 }, Mita: { o: 'A', k: null, b: 0 } } }], sumber: 'latih' };
     assert.equal(nicky.api.terbitkanSesi({ id: 'x y' }), false);
-    assert.equal(mia.api.terbitkanSesi(sesi), false, 'anggota tidak menerbitkan sesi');
+    assert.equal(mita.api.terbitkanSesi(sesi), false, 'anggota tidak menerbitkan sesi');
     assert.ok(nicky.api.terbitkanSesi(sesi));
-    await tunggu(() => mia.diterima.length === 1);
-    assert.deepEqual(mia.diterima[0], sesi);
-    await tunggu(() => mia.api.riwayat().length === 1);
-    assert.deepEqual(mia.api.riwayat()[0], { id: 'sb-1700000000000', t: 1700000900000, mode: 'latihan', judul: null, nSoal: 1, peserta: ['Nicky', 'Mia'], akurasiTim: 50, nHadir: null });
-    assert.ok(mia.peristiwa.indeks.length >= 1 && mia.peristiwa.sesi.length === 1);
-    const { o: alfi } = await gabungkan(jar, urls, kode, 'Alfi');
-    await tunggu(() => alfi.diterima.length === 1 && alfi.api.riwayat().length === 1);
-    assert.deepEqual(await alfi.api.mintaSesi('sb-1700000000000'), sesi);
-    assert.equal(await alfi.api.mintaSesi('sb-tidak-ada'), null);
+    await tunggu(() => mita.diterima.length === 1);
+    assert.deepEqual(mita.diterima[0], sesi);
+    await tunggu(() => mita.api.riwayat().length === 1);
+    assert.deepEqual(mita.api.riwayat()[0], { id: 'sb-1700000000000', t: 1700000900000, mode: 'latihan', judul: null, nSoal: 1, peserta: ['Nicky', 'Mita'], akurasiTim: 50, nHadir: null });
+    assert.ok(mita.peristiwa.indeks.length >= 1 && mita.peristiwa.sesi.length === 1);
+    const { o: aldi } = await gabungkan(jar, urls, kode, 'Aldi');
+    await tunggu(() => aldi.diterima.length === 1 && aldi.api.riwayat().length === 1);
+    assert.deepEqual(await aldi.api.mintaSesi('sb-1700000000000'), sesi);
+    assert.equal(await aldi.api.mintaSesi('sb-tidak-ada'), null);
     assert.ok(nicky.api.hapusSesi('sb-1700000000000'));
-    await tunggu(() => mia.api.riwayat().length === 0);
+    await tunggu(() => mita.api.riwayat().length === 0);
   });
 
   it('anggota yang bergabung terlambat mendapat state retained (aktivitas berjalan) dan jawaban retained', async () => {
     const { jar, urls, nicky, kode } = await siapkanRoom();
-    const { o: mia } = await gabungkan(jar, urls, kode, 'Mia');
+    const { o: mita } = await gabungkan(jar, urls, kode, 'Mita');
     nicky.api.mulaiLatihan({ id: 'sb-200', soalIds: ['A1-104', 'B6-126'], detikPerSoal: 126 });
-    await tunggu(() => mia.api.state().aktivitas);
-    mia.api.kirimJawaban({ aktivitas: 'sb-200', soalId: 'A1-104', o: 'C' });
-    await tunggu(() => nicky.api.jawabanSemua().Mia);
-    const { o: jessie, st } = await gabungkan(jar, urls, kode, 'Jessie');
+    await tunggu(() => mita.api.state().aktivitas);
+    mita.api.kirimJawaban({ aktivitas: 'sb-200', soalId: 'A1-104', o: 'C' });
+    await tunggu(() => nicky.api.jawabanSemua().Mita);
+    const { o: jeni, st } = await gabungkan(jar, urls, kode, 'Jeni');
     assert.equal(st.aktivitas.id, 'sb-200');
-    await tunggu(() => jessie.api.jawabanSemua().Mia && jessie.api.jawabanSemua().Mia.j['A1-104'] === 'C');
+    await tunggu(() => jeni.api.jawabanSemua().Mita && jeni.api.jawabanSemua().Mita.j['A1-104'] === 'C');
   });
 
   it('tuan putus, retained hilang, tersambung lagi → menerbitkan ulang state, indeks, dan rekaman sesi', async () => {
@@ -542,131 +542,131 @@ describe('ruang: alur room penuh di relai tiruan', () => {
     r1.hidupkan();
     await tunggu(() => nicky.api.status().tersambung, 3000);
     await tunggu(() => { const ks = Array.from(r1.retained.keys()).map(t => t.split('/').slice(2).join('/')); return ks.includes('s') && ks.includes('i') && ks.includes('r/sb-5'); }, 3000);
-    const { o: melva, st } = await gabungkan(jar, ['ws://r1'], kode, 'Melva');
+    const { o: mega, st } = await gabungkan(jar, ['ws://r1'], kode, 'Mega');
     assert.equal(st.aktivitas.id, 'sb-300');
-    await tunggu(() => melva.diterima.length === 1 && melva.api.riwayat().length === 1);
+    await tunggu(() => mega.diterima.length === 1 && mega.api.riwayat().length === 1);
   });
 
   it('ambilAlih: anggota menjadi tuan, tuan lama turun menjadi anggota', async () => {
     const { jar, urls, nicky, kode } = await siapkanRoom();
-    const { o: mia } = await gabungkan(jar, urls, kode, 'Mia');
-    assert.equal(mia.api.aturSoal(0), false);
-    const s = mia.api.ambilAlih();
-    assert.equal(s.tuan, 'Mia'); assert.equal(mia.api.info().peran, 'tuan');
+    const { o: mita } = await gabungkan(jar, urls, kode, 'Mita');
+    assert.equal(mita.api.aturSoal(0), false);
+    const s = mita.api.ambilAlih();
+    assert.equal(s.tuan, 'Mita'); assert.equal(mita.api.info().peran, 'tuan');
     await tunggu(() => nicky.api.info().peran === 'anggota');
-    assert.ok(nicky.peristiwa.peran.some(p => p.peran === 'anggota' && p.tuan === 'Mia'));
+    assert.ok(nicky.peristiwa.peran.some(p => p.peran === 'anggota' && p.tuan === 'Mita'));
     assert.equal(nicky.simpan.s.ruang.peran, 'anggota');
     assert.equal(nicky.api.mulaiLatihan({ id: 'sb-9', soalIds: ['A1-104'], detikPerSoal: 60 }), false);
-    assert.ok(mia.api.mulaiLatihan({ id: 'sb-9', soalIds: ['A1-104'], detikPerSoal: 60 }));
+    assert.ok(mita.api.mulaiLatihan({ id: 'sb-9', soalIds: ['A1-104'], detikPerSoal: 60 }));
     await tunggu(() => nicky.api.state().aktivitas && nicky.api.state().aktivitas.id === 'sb-9');
-    await tunggu(() => nicky.api.status().relai.length === 1 && mia.api.status().relai.length === 2);
+    await tunggu(() => nicky.api.status().relai.length === 1 && mita.api.status().relai.length === 2);
   });
 
   it('dua relai: anggota di relai berbeda bertemu lewat tuan; pesan ganda dideduplikasi', async () => {
     const { jar, urls, nicky, kode } = await siapkanRoom();
-    const { o: mia } = await gabungkan(jar, ['ws://r1'], kode, 'Mia');
-    const { o: novia } = await gabungkan(jar, ['ws://r2'], kode, 'Novia');
-    assert.equal(mia.api.status().relai[0].url, 'ws://r1'); assert.equal(novia.api.status().relai[0].url, 'ws://r2');
+    const { o: mita } = await gabungkan(jar, ['ws://r1'], kode, 'Mita');
+    const { o: nora } = await gabungkan(jar, ['ws://r2'], kode, 'Nora');
+    assert.equal(mita.api.status().relai[0].url, 'ws://r1'); assert.equal(nora.api.status().relai[0].url, 'ws://r2');
     nicky.api.mulaiLatihan({ id: 'sb-400', soalIds: ['A1-104'], detikPerSoal: 126 });
-    await tunggu(() => mia.api.state().aktivitas && novia.api.state().aktivitas);
-    assert.equal(mia.peristiwa.state.filter(s => s.aktivitas && s.aktivitas.id === 'sb-400').length, 1);
-    novia.api.kirimJawaban({ aktivitas: 'sb-400', soalId: 'A1-104', o: 'B' });
-    await tunggu(() => mia.api.jawabanSemua().Novia, 2000, 'jawaban Novia (r2) diteruskan tuan ke Mia (r1)');
+    await tunggu(() => mita.api.state().aktivitas && nora.api.state().aktivitas);
+    assert.equal(mita.peristiwa.state.filter(s => s.aktivitas && s.aktivitas.id === 'sb-400').length, 1);
+    nora.api.kirimJawaban({ aktivitas: 'sb-400', soalId: 'A1-104', o: 'B' });
+    await tunggu(() => mita.api.jawabanSemua().Nora, 2000, 'jawaban Nora (r2) diteruskan tuan ke Mita (r1)');
     await tidur(150);
-    assert.equal(nicky.peristiwa.jawaban.filter(e => e.nama === 'Novia').length, 1, 'tuan menerima sekali walau ada gema dari r1');
-    assert.equal(mia.peristiwa.jawaban.filter(e => e.nama === 'Novia').length, 1);
+    assert.equal(nicky.peristiwa.jawaban.filter(e => e.nama === 'Nora').length, 1, 'tuan menerima sekali walau ada gema dari r1');
+    assert.equal(mita.peristiwa.jawaban.filter(e => e.nama === 'Nora').length, 1);
     // ulangi muatan mentah yang sama → diabaikan
-    const r2 = jar.relai.get('ws://r2'); const tA = Array.from(r2.retained.keys()).find(t => t.includes('/a/' + slugUntuk(kode, 'Novia')));
+    const r2 = jar.relai.get('ws://r2'); const tA = Array.from(r2.retained.keys()).find(t => t.includes('/a/' + slugUntuk(kode, 'Nora')));
     r2.terbit(tA, r2.retained.get(tA), false); await tidur(100);
-    assert.equal(nicky.peristiwa.jawaban.filter(e => e.nama === 'Novia').length, 1);
+    assert.equal(nicky.peristiwa.jawaban.filter(e => e.nama === 'Nora').length, 1);
   });
 
   it('pesan sampah, kode salah, skema salah, topik tertukar, dan nama palsu diabaikan diam-diam', async () => {
     const { jar, urls, nicky, kode } = await siapkanRoom({ urls: ['ws://r1'] });
-    const { o: mia } = await gabungkan(jar, ['ws://r1'], kode, 'Mia');
-    const r1 = jar.relai.get('ws://r1'); const n0 = mia.peristiwa.state.length, j0 = nicky.peristiwa.jawaban.length;
+    const { o: mita } = await gabungkan(jar, ['ws://r1'], kode, 'Mita');
+    const r1 = jar.relai.get('ws://r1'); const n0 = mita.peristiwa.state.length, j0 = nicky.peristiwa.jawaban.length;
     const aw = (await muatanUntuk(kode, 's', {})).awalan;
     r1.terbit(aw + '/s', nodeCrypto.randomBytes(80), false);                                   // sampah
     const salah = await muatanUntuk('ABCDEFGHJKMNPQ', 's', { v: 1 }); r1.terbit(aw + '/s', salah.muatan, false);  // kode lain
     const skema = await muatanUntuk(kode, 's', { v: 1, t: Date.now(), urut: Date.now() + 9e6, d: 'abcd', nama: 'Nicky', tuan: 'Nicky', room: 'rusak' }); r1.terbit(skema.topik, skema.muatan, true);
     const tukar = await muatanUntuk(kode, 's', nicky.api.state()); r1.terbit(aw + '/a/' + slugUntuk(kode, 'Nicky'), tukar.muatan, false);   // muatan state di topik jawaban
-    const palsu = await muatanUntuk(kode, 'a/' + slugUntuk(kode, 'Mia'), { v: 1, t: Date.now(), urut: 1, d: 'abcd', nama: 'Novia', aktivitas: null, j: {}, k: {}, selesai: false, detik: null });
+    const palsu = await muatanUntuk(kode, 'a/' + slugUntuk(kode, 'Mita'), { v: 1, t: Date.now(), urut: 1, d: 'abcd', nama: 'Nora', aktivitas: null, j: {}, k: {}, selesai: false, detik: null });
     r1.terbit(palsu.topik, palsu.muatan, false);                                               // nama tidak cocok dengan slug topik
     const json = await muatanUntuk(kode, 's', 'bukan json'); r1.terbit(json.topik, json.muatan, false);
     r1.terbit(aw + '/s', new Uint8Array(0), false);                                            // kosong
     await tidur(200);
-    assert.equal(mia.peristiwa.state.length, n0); assert.equal(nicky.peristiwa.jawaban.length, j0);
-    assert.equal(mia.api.state().room.nama, 'Tim UKP B');
-    assert.ok(mia.api.status().tersambung);
+    assert.equal(mita.peristiwa.state.length, n0); assert.equal(nicky.peristiwa.jawaban.length, j0);
+    assert.equal(mita.api.state().room.nama, 'Tim UKP B');
+    assert.ok(mita.api.status().tersambung);
   });
 
   it('paket terlalu besar (> 256 KB) menutup sambungan; klien tersambung lagi dan tetap berfungsi', async () => {
     const { jar, nicky, kode } = await siapkanRoom({ urls: ['ws://r1'] });
-    const { o: mia } = await gabungkan(jar, ['ws://r1'], kode, 'Mia');
+    const { o: mita } = await gabungkan(jar, ['ws://r1'], kode, 'Mita');
     const r1 = jar.relai.get('ws://r1'); const aw = (await muatanUntuk(kode, 's', {})).awalan;
     const sebelum = r1.terima.length;
-    r1.terbit(aw + '/a/' + slugUntuk(kode, 'Mia'), nodeCrypto.randomBytes(260 * 1024), false);
+    r1.terbit(aw + '/a/' + slugUntuk(kode, 'Mita'), nodeCrypto.randomBytes(260 * 1024), false);
     await tunggu(() => r1.terima.length > sebelum + 1, 3000, 'kedua klien menyambung ulang');
-    await tunggu(() => mia.api.status().tersambung && nicky.api.status().tersambung, 3000);
+    await tunggu(() => mita.api.status().tersambung && nicky.api.status().tersambung, 3000);
     nicky.api.aturRoom({ nama: 'Tim B baru' });
-    await tunggu(() => mia.api.state().room.nama === 'Tim B baru');
+    await tunggu(() => mita.api.state().room.nama === 'Tim B baru');
   });
 
   it('anti-banjir: lebih dari 20 pesan per detik di satu topik dibuang', async () => {
     const { jar, nicky, kode } = await siapkanRoom({ urls: ['ws://r1'], nicky: { konfig: { banjirPerDetik: 20 } } });
     nicky.api.mulaiLatihan({ id: 'sb-500', soalIds: ['A1-104'], detikPerSoal: 126 });
-    const r1 = jar.relai.get('ws://r1'); const slug = slugUntuk(kode, 'Jessie');
+    const r1 = jar.relai.get('ws://r1'); const slug = slugUntuk(kode, 'Jeni');
     const pesan = [];
     const t0 = Math.ceil(Date.now() / 1000) * 1000 + 50; while (Date.now() < t0) await tidur(5);   // awal detik baru
-    for (let i = 0; i < 40; i++) pesan.push(await muatanUntuk(kode, 'a/' + slug, { v: 1, t: Date.now(), urut: i + 1, d: 'beef', nama: 'Jessie', aktivitas: 'sb-500', j: { 'A1-104': 'A' }, k: {}, selesai: false, detik: null }));
+    for (let i = 0; i < 40; i++) pesan.push(await muatanUntuk(kode, 'a/' + slug, { v: 1, t: Date.now(), urut: i + 1, d: 'beef', nama: 'Jeni', aktivitas: 'sb-500', j: { 'A1-104': 'A' }, k: {}, selesai: false, detik: null }));
     const mulai = Date.now(); pesan.forEach(p => r1.terbit(p.topik, p.muatan, false));
     await tidur(300);
-    const n = nicky.peristiwa.jawaban.filter(e => e.nama === 'Jessie').length;
+    const n = nicky.peristiwa.jawaban.filter(e => e.nama === 'Jeni').length;
     assert.ok(Date.now() - mulai < 2000);
     assert.ok(n >= 1 && n <= 21, 'diterima ' + n + ' dari 40');
   });
 
   it('anggota tidak bisa mengubah state: API menolak, state palsu (nama ≠ tuan atau urut lama) diabaikan', async () => {
     const { jar, nicky, kode } = await siapkanRoom({ urls: ['ws://r1'] });
-    const { o: mia } = await gabungkan(jar, ['ws://r1'], kode, 'Mia');
-    for (const f of [() => mia.api.aturRoom({ nama: 'X' }), () => mia.api.mulaiLatihan({ id: 'sb-1', soalIds: ['A1-104'] }), () => mia.api.bukaKunci('A1-104', {}), () => mia.api.mulaiUjian({ id: 'u1', kode: 'K', akhir: Date.now() }), () => mia.api.akhiriAktivitas(), () => mia.api.hapusSesi('x')]) assert.ok(!f());
+    const { o: mita } = await gabungkan(jar, ['ws://r1'], kode, 'Mita');
+    for (const f of [() => mita.api.aturRoom({ nama: 'X' }), () => mita.api.mulaiLatihan({ id: 'sb-1', soalIds: ['A1-104'] }), () => mita.api.bukaKunci('A1-104', {}), () => mita.api.mulaiUjian({ id: 'u1', kode: 'K', akhir: Date.now() }), () => mita.api.akhiriAktivitas(), () => mita.api.hapusSesi('x')]) assert.ok(!f());
     const r1 = jar.relai.get('ws://r1'); const st = nicky.api.state();
-    const palsu1 = Object.assign({}, st, { nama: 'Mia', urut: st.urut + 10, room: { nama: 'Dibajak', peserta: [], tingkat: null } });
+    const palsu1 = Object.assign({}, st, { nama: 'Mita', urut: st.urut + 10, room: { nama: 'Dibajak', peserta: [], tingkat: null } });
     const palsu2 = Object.assign({}, st, { d: 'beef01', urut: st.urut - 10, room: { nama: 'Lama', peserta: [], tingkat: null } });
     for (const x of [palsu1, palsu2]) { const m = await muatanUntuk(kode, 's', x); r1.terbit(m.topik, m.muatan, true); }
     await tidur(200);
-    assert.equal(mia.api.state().room.nama, 'Tim UKP B'); assert.equal(nicky.api.state().room.nama, 'Tim UKP B');
+    assert.equal(mita.api.state().room.nama, 'Tim UKP B'); assert.equal(nicky.api.state().room.nama, 'Tim UKP B');
   });
 
   it('last will: anggota terputus tidak wajar → tuan melihatnya offline; keluar() rapi → offline + s.ruang dikosongkan', async () => {
     const { jar, nicky, kode } = await siapkanRoom({ urls: ['ws://r1'] });
-    const { o: mia } = await gabungkan(jar, ['ws://r1'], kode, 'Mia');
-    const { o: novia } = await gabungkan(jar, ['ws://r1'], kode, 'Novia');
-    await tunggu(() => nicky.api.status().online.includes('Mia') && nicky.api.status().online.includes('Novia'));
-    mia.api.KONFIG.jedaSambung = [5000]; mia.api.KONFIG.jitter = 0;   // jangan cepat kembali
+    const { o: mita } = await gabungkan(jar, ['ws://r1'], kode, 'Mita');
+    const { o: nora } = await gabungkan(jar, ['ws://r1'], kode, 'Nora');
+    await tunggu(() => nicky.api.status().online.includes('Mita') && nicky.api.status().online.includes('Nora'));
+    mita.api.KONFIG.jedaSambung = [5000]; mita.api.KONFIG.jitter = 0;   // jangan cepat kembali
     const r1 = jar.relai.get('ws://r1');
-    r1.putuskan(k => !!(k.will && k.will.topik.endsWith('/h/' + slugUntuk(kode, 'Mia'))));
-    await tunggu(() => nicky.peristiwa.hadir.some(h => h.nama === 'Mia' && !h.online), 2000);
-    assert.ok(!nicky.api.status().online.includes('Mia'));
-    await novia.api.keluar();
-    assert.equal(novia.simpan.s.ruang, null); assert.equal(novia.api.info(), null);
-    await tunggu(() => !nicky.api.status().online.includes('Novia'), 2000);
+    r1.putuskan(k => !!(k.will && k.will.topik.endsWith('/h/' + slugUntuk(kode, 'Mita'))));
+    await tunggu(() => nicky.peristiwa.hadir.some(h => h.nama === 'Mita' && !h.online), 2000);
+    assert.ok(!nicky.api.status().online.includes('Mita'));
+    await nora.api.keluar();
+    assert.equal(nora.simpan.s.ruang, null); assert.equal(nora.api.info(), null);
+    await tunggu(() => !nicky.api.status().online.includes('Nora'), 2000);
   });
 
   it('anggota berpindah ke relai berikutnya bila relai pertama mati', async () => {
     const { jar, urls, kode } = await siapkanRoom();
     jar.relai.get('ws://r1').matikan();
-    const { o: mia, st } = await gabungkan(jar, urls, kode, 'Mia');
+    const { o: mita, st } = await gabungkan(jar, urls, kode, 'Mita');
     assert.ok(st && st.tuan === 'Nicky');
-    assert.deepEqual(mia.api.status().relai.map(r => ({ url: r.url, status: r.status })), [{ url: 'ws://r2', status: 'tersambung' }]);
+    assert.deepEqual(mita.api.status().relai.map(r => ({ url: r.url, status: r.status })), [{ url: 'ws://r2', status: 'tersambung' }]);
   });
 
   it('selisihJam: anggota memperkirakan jam tuan', async () => {
     const { jar, nicky, kode } = await siapkanRoom({ urls: ['ws://r1'], nicky: { env: { now: () => Date.now() + 7000 } } });
-    const { o: mia } = await gabungkan(jar, ['ws://r1'], kode, 'Mia');
+    const { o: mita } = await gabungkan(jar, ['ws://r1'], kode, 'Mita');
     nicky.api.aturRoom({ nama: 'Tim jam' });
-    await tunggu(() => mia.api.state().room.nama === 'Tim jam');
-    const s = mia.api.selisihJam(); assert.ok(s > 6800 && s <= 7000, String(s));
+    await tunggu(() => mita.api.state().room.nama === 'Tim jam');
+    const s = mita.api.selisihJam(); assert.ok(s > 6800 && s <= 7000, String(s));
     assert.equal(nicky.api.selisihJam(), 0);
   });
 
@@ -675,20 +675,20 @@ describe('ruang: alur room penuh di relai tiruan', () => {
     const tanpaSubtle = instans(jar, ['ws://r1'], { env: { crypto: { getRandomValues: b => b } } }).api;
     const st = tanpaSubtle.status(); assert.equal(st.tersedia, false); assert.match(st.alasan, /https/);
     assert.throws(() => tanpaSubtle.buat({ nama: 'Nicky' }), /https/);
-    await assert.rejects(tanpaSubtle.gabung('ABCD-EFGHJ-KMNPQ', 'Mia'), /https/);
+    await assert.rejects(tanpaSubtle.gabung('ABCD-EFGHJ-KMNPQ', 'Mita'), /https/);
     const claude = instans(jar, ['ws://r1'], { env: { lokasi: { hostname: 'claude.ai', origin: 'https://claude.ai', pathname: '/' } } }).api;
     assert.match(claude.status().alasan, /claude\.ai/);
     const tanpaWS = R.buatInstans({ crypto: globalThis.crypto, WebSocket: 'bukan', store: { get: () => ({}), save() {} } });
     assert.equal(tanpaWS.status().tersedia, false);
     const ok = instans(jar, ['ws://r1']).api;
-    await assert.rejects(ok.gabung('ABCD', 'Mia'), /tidak valid/);
+    await assert.rejects(ok.gabung('ABCD', 'Mita'), /tidak valid/);
     await assert.rejects(ok.gabung('ABCD-EFGHJ-KMNPQ', ''), /Nama/);
   });
 
   it('status: semua relai gagal → alasan jelas dan tetap mencoba', async () => {
     const { jar, nicky, kode } = await siapkanRoom({ urls: ['ws://r1'] });
     const mati = instans(jar, ['ws://tidak-ada']);
-    mati.api.gabung(kode, 'Mia');
+    mati.api.gabung(kode, 'Mita');
     await tunggu(() => /terhubung/.test(mati.api.status().alasan || ''), 3000);
     assert.ok(!/relai|enkripsi|MQTT/i.test(mati.api.status().alasan));
     assert.ok(mati.api.status().relai[0].galat, 'galat terakhir tercatat untuk diagnosis');
@@ -710,7 +710,7 @@ describe('ruang: alur room penuh di relai tiruan', () => {
     await tunggu(() => ulang.api.status().tersambung);
     assert.ok(ulang.api.aturSoal(0));
     await tunggu(() => !ulang.api.status().calon, 3000, 'masa calon tuan selesai');
-    const { st } = await gabungkan(jar, ['ws://r1'], kode, 'Mia');
+    const { st } = await gabungkan(jar, ['ws://r1'], kode, 'Mita');
     assert.equal(st.aktivitas.id, 'sb-600');
   });
 });
@@ -728,7 +728,7 @@ describe('ruang: tahap 2 (B0)', () => {
     const jar = buatJaringan(); const urls = opsi.urls || ['ws://r1'];
     urls.forEach(u => jar.relaiBaru(u));
     const nicky = instans(jar, urls, opsi.nicky);
-    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim UKP B', peserta: ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi'], tingkat: 'B' });
+    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim UKP B', peserta: ['Nicky', 'Mita', 'Nora', 'Jeni', 'Mega', 'Aldi'], tingkat: 'B' });
     await tunggu(() => nicky.api.status().tersambung);
     const masuk = async (nama, o) => { const x = instans(jar, (o && o.urls) || urls, o); await x.api.gabung(kode, nama); return x; };
     return { jar, urls, nicky, kode, masuk, r1: jar.relai.get(urls[0]) };
@@ -741,7 +741,7 @@ describe('ruang: tahap 2 (B0)', () => {
     const nH = Array.from(r1.retained.keys()).filter(t => t.includes('/h/')).length;
     const tamu = instans(jar, ['ws://r1']);
     const t0 = Date.now(); const st = await tamu.api.intip(formatKode(kode).toLowerCase());
-    assert.equal(st.room.nama, 'Tim UKP B'); assert.deepEqual(st.room.peserta, ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi']); assert.equal(st.tuan, 'Nicky');
+    assert.equal(st.room.nama, 'Tim UKP B'); assert.deepEqual(st.room.peserta, ['Nicky', 'Mita', 'Nora', 'Jeni', 'Mega', 'Aldi']); assert.equal(st.tuan, 'Nicky');
     assert.ok(Date.now() - t0 < 1500, 'cepat: ' + (Date.now() - t0) + ' ms');
     assert.equal(tamu.api.info(), null, 'tidak bergabung'); assert.equal(tamu.simpan.s.ruang, undefined, 's.ruang tidak disentuh');
     const conn = r1.terima.filter(p => p.will === null || !p.will);
@@ -759,63 +759,63 @@ describe('ruang: tahap 2 (B0)', () => {
 
   it('adopsi dokumen jawaban sendiri setelah muat ulang: jawaban lama tidak tertimpa (juga bila mengetuk sebelum retained tiba)', async () => {
     const { jar, nicky, kode, masuk, r1 } = await siapkan();
-    const mia = await masuk('Mia');
+    const mita = await masuk('Mita');
     nicky.api.mulaiLatihan({ id: 'sb-ad1', soalIds: SOAL, detikPerSoal: 60 });
-    await tunggu(() => mia.api.state().aktivitas);
-    mia.api.kirimJawaban({ aktivitas: 'sb-ad1', soalId: 'A1-104', o: 'B', k: 'yakin' });
-    mia.api.kirimPaham('A1-104');
-    await tunggu(() => { const j = nicky.api.jawabanSemua().Mia; return j && j.j['A1-104'] === 'B' && j.paham['A1-104'] === 1; });
+    await tunggu(() => mita.api.state().aktivitas);
+    mita.api.kirimJawaban({ aktivitas: 'sb-ad1', soalId: 'A1-104', o: 'B', k: 'yakin' });
+    mita.api.kirimPaham('A1-104');
+    await tunggu(() => { const j = nicky.api.jawabanSemua().Mita; return j && j.j['A1-104'] === 'B' && j.paham['A1-104'] === 1; });
     // muat ulang: instans baru dengan s.ruang yang sama; mengetuk SEBELUM tersambung (dokumen lama belum terlihat)
-    const salinan = JSON.parse(JSON.stringify(mia.simpan.s)); mia.api.KONFIG.jedaSambung = [60000]; mia.api._putuskanSemua(); mia.api._rt().koneksi.forEach(k => k.henti(false));
-    const mia2 = instans(jar, ['ws://r1']); mia2.simpan.s = salinan;
-    assert.ok(mia2.api.pulihkan());
-    assert.ok(mia2.api.kirimJawaban({ aktivitas: 'sb-ad1', soalId: 'B6-126', o: 'C' }));
-    await tunggu(() => { const j = nicky.api.jawabanSemua().Mia; return j && j.j['B6-126'] === 'C' && j.j['A1-104'] === 'B'; }, 3000, 'tuan melihat gabungan jawaban lama + baru');
-    const dok = nicky.api.jawabanSemua().Mia;
+    const salinan = JSON.parse(JSON.stringify(mita.simpan.s)); mita.api.KONFIG.jedaSambung = [60000]; mita.api._putuskanSemua(); mita.api._rt().koneksi.forEach(k => k.henti(false));
+    const mita2 = instans(jar, ['ws://r1']); mita2.simpan.s = salinan;
+    assert.ok(mita2.api.pulihkan());
+    assert.ok(mita2.api.kirimJawaban({ aktivitas: 'sb-ad1', soalId: 'B6-126', o: 'C' }));
+    await tunggu(() => { const j = nicky.api.jawabanSemua().Mita; return j && j.j['B6-126'] === 'C' && j.j['A1-104'] === 'B'; }, 3000, 'tuan melihat gabungan jawaban lama + baru');
+    const dok = nicky.api.jawabanSemua().Mita;
     assert.deepEqual([dok.k, dok.paham], [{ 'A1-104': 'yakin' }, { 'A1-104': 1 }]);
-    const ret = await bacaRetained(r1, kode, 'a/' + slugUntuk(kode, 'Mia'));
+    const ret = await bacaRetained(r1, kode, 'a/' + slugUntuk(kode, 'Mita'));
     assert.deepEqual(ret.j, { 'A1-104': 'B', 'B6-126': 'C' }, 'retained di relai memuat keduanya');
     // muat ulang kedua: tersambung dulu, baru mengetuk → dokumen diadopsi utuh
-    const salinan2 = JSON.parse(JSON.stringify(mia2.simpan.s)); mia2.api._rt().koneksi.forEach(k => k.henti(false));
-    const mia3 = instans(jar, ['ws://r1']); mia3.simpan.s = salinan2; mia3.api.pulihkan();
-    await tunggu(() => mia3.api.status().tersambung && mia3.api._rt().dokSaya);
-    assert.deepEqual(mia3.api._rt().dokSaya.j, { 'A1-104': 'B', 'B6-126': 'C' });
-    mia3.api.kirimJawaban({ aktivitas: 'sb-ad1', soalId: 'A3-144', o: 'A' });
-    await tunggu(() => { const j = nicky.api.jawabanSemua().Mia; return j && Object.keys(j.j).length === 3; });
+    const salinan2 = JSON.parse(JSON.stringify(mita2.simpan.s)); mita2.api._rt().koneksi.forEach(k => k.henti(false));
+    const mita3 = instans(jar, ['ws://r1']); mita3.simpan.s = salinan2; mita3.api.pulihkan();
+    await tunggu(() => mita3.api.status().tersambung && mita3.api._rt().dokSaya);
+    assert.deepEqual(mita3.api._rt().dokSaya.j, { 'A1-104': 'B', 'B6-126': 'C' });
+    mita3.api.kirimJawaban({ aktivitas: 'sb-ad1', soalId: 'A3-144', o: 'A' });
+    await tunggu(() => { const j = nicky.api.jawabanSemua().Mita; return j && Object.keys(j.j).length === 3; });
   });
 
   it('nama ganda: dua perangkat bernama sama → hadir().ganda; satu perangkat → false; entri hadir lengkap', async () => {
     const { nicky, masuk } = await siapkan();
-    const mia1 = await masuk('Mia'); const novia = await masuk('Novia');
-    await tunggu(() => nicky.api.hadir().Mia && nicky.api.hadir().Mia.online && nicky.api.hadir().Novia);
-    assert.equal(nicky.api.hadir().Mia.ganda, false);
-    const mia2 = await masuk('mia');
-    await tunggu(() => nicky.api.hadir().Mia && nicky.api.hadir().Mia.ganda, 2000, 'tuan melihat nama ganda');
-    await tunggu(() => mia1.api.hadir().Mia && mia1.api.hadir().Mia.ganda, 2000, 'perangkat pertama juga tahu');
+    const mita1 = await masuk('Mita'); const nora = await masuk('Nora');
+    await tunggu(() => nicky.api.hadir().Mita && nicky.api.hadir().Mita.online && nicky.api.hadir().Nora);
+    assert.equal(nicky.api.hadir().Mita.ganda, false);
+    const mita2 = await masuk('mita');
+    await tunggu(() => nicky.api.hadir().Mita && nicky.api.hadir().Mita.ganda, 2000, 'tuan melihat nama ganda');
+    await tunggu(() => mita1.api.hadir().Mita && mita1.api.hadir().Mita.ganda, 2000, 'perangkat pertama juga tahu');
     const h = nicky.api.hadir();
-    assert.equal(h.Novia.ganda, false); assert.equal(h.Novia.online, true); assert.equal(h.Novia.siap, false);
-    assert.deepEqual(Object.keys(h.Novia).sort(), ['ganda', 'nama', 'online', 'peran', 'siap', 'siapId', 't']);
+    assert.equal(h.Nora.ganda, false); assert.equal(h.Nora.online, true); assert.equal(h.Nora.siap, false);
+    assert.deepEqual(Object.keys(h.Nora).sort(), ['ganda', 'nama', 'online', 'peran', 'siap', 'siapId', 't']);
     assert.ok(nicky.peristiwa.hadir.some(e => e.ganda === true));
-    await mia2.api.keluar();
-    await tunggu(() => !nicky.api.hadir().Mia.ganda, 2000, 'ganda hilang setelah satu perangkat keluar');
-    assert.ok(novia);
+    await mita2.api.keluar();
+    await tunggu(() => !nicky.api.hadir().Mita.ganda, 2000, 'ganda hilang setelah satu perangkat keluar');
+    assert.ok(nora);
   });
 
   it('tutup(): anggota online menerima penutupan dan keluar; retained dihapus kecuali batu nisan s; intip → null', async () => {
     const { jar, nicky, kode, masuk, r1 } = await siapkan();
-    const mia = await masuk('Mia');
+    const mita = await masuk('Mita');
     nicky.api.mulaiLatihan({ id: 'sb-t1', soalIds: SOAL, detikPerSoal: 60 });
-    await tunggu(() => mia.api.state().aktivitas);
-    mia.api.kirimJawaban({ aktivitas: 'sb-t1', soalId: 'A1-104', o: 'B' });
+    await tunggu(() => mita.api.state().aktivitas);
+    mita.api.kirimJawaban({ aktivitas: 'sb-t1', soalId: 'A1-104', o: 'B' });
     nicky.api.terbitkanSesi({ id: 'sb-lama', mulai: 1, selesai: 2, peserta: ['Nicky'], soal: [{ id: 'A1-104', kunci: 'D', jawaban: { Nicky: { o: 'D', k: null, b: 1 } } }] });
     await tunggu(() => Array.from(r1.retained.keys()).some(t => t.includes('/a/')) && Array.from(r1.retained.keys()).some(t => t.includes('/r/')));
-    let tutupMia = 0; mia.api.on('tutup', () => tutupMia++);
-    assert.equal(await mia.api.tutup(), false, 'anggota tidak bisa menutup');
+    let tutupMita = 0; mita.api.on('tutup', () => tutupMita++);
+    assert.equal(await mita.api.tutup(), false, 'anggota tidak bisa menutup');
     assert.equal(await nicky.api.tutup(), true);
     assert.equal(nicky.api.info(), null); assert.equal(nicky.simpan.s.ruang, null);
-    await tunggu(() => tutupMia === 1 && mia.api.info() === null, 2000, 'anggota keluar');
-    assert.equal(mia.simpan.s.ruang, null);
-    assert.ok(mia.peristiwa.state.some(s => s.ditutup === true));
+    await tunggu(() => tutupMita === 1 && mita.api.info() === null, 2000, 'anggota keluar');
+    assert.equal(mita.simpan.s.ruang, null);
+    assert.ok(mita.peristiwa.state.some(s => s.ditutup === true));
     const sisa = () => Array.from(r1.retained.keys()).map(t => t.split('/').slice(2).join('/'));
     await tunggu(() => sisa().join() === 's', 2000, 'hanya batu nisan yang tersisa: ' + sisa());
     await tidur(100); assert.deepEqual(sisa(), ['s'], 'tidak ada kehadiran/last will yang muncul lagi');
@@ -827,34 +827,34 @@ describe('ruang: tahap 2 (B0)', () => {
   it('kirimSelesai: ragu berupa larik boolean sejajar soal (latihan dan ujian lewat bacaKode), indeks, atau id', async () => {
     const belajarUji = { terimaSesiRoom: () => 'baru', sesiBersamaDari: () => null, ujianTim: { bacaKode: () => ({ soalIds: ['A1-001', 'A1-002', 'A1-003'] }) } };
     const { nicky, masuk } = await siapkan();
-    const mia = await masuk('Mia', { env: { belajar: belajarUji } });
+    const mita = await masuk('Mita', { env: { belajar: belajarUji } });
     nicky.api.mulaiLatihan({ id: 'sb-rg', soalIds: SOAL, detikPerSoal: 60 });
-    await tunggu(() => mia.api.state().aktivitas);
-    assert.ok(mia.api.kirimSelesai('sb-rg', { jawaban: ['A', 'B', null], ragu: [false, true, false], detik: 30 }));
-    await tunggu(() => nicky.api.jawabanSemua().Mia && nicky.api.jawabanSemua().Mia.selesai);
-    assert.deepEqual(nicky.api.jawabanSemua().Mia.k, { 'B6-126': 'ragu' });
-    assert.deepEqual(nicky.api.jawabanSemua().Mia.j, { 'A1-104': 'A', 'B6-126': 'B', 'A3-144': '-' });
+    await tunggu(() => mita.api.state().aktivitas);
+    assert.ok(mita.api.kirimSelesai('sb-rg', { jawaban: ['A', 'B', null], ragu: [false, true, false], detik: 30 }));
+    await tunggu(() => nicky.api.jawabanSemua().Mita && nicky.api.jawabanSemua().Mita.selesai);
+    assert.deepEqual(nicky.api.jawabanSemua().Mita.k, { 'B6-126': 'ragu' });
+    assert.deepEqual(nicky.api.jawabanSemua().Mita.j, { 'A1-104': 'A', 'B6-126': 'B', 'A3-144': '-' });
     const m = Date.now(); nicky.api.mulaiUjian({ id: 'utrg1', kode: 'UKPU1.KODE', judul: 'U', mulai: m, akhir: m + 60000 });
-    await tunggu(() => mia.api.state().aktivitas && mia.api.state().aktivitas.id === 'utrg1');
-    assert.ok(mia.api.kirimSelesai('utrg1', { jawaban: { 'A1-001': 'C' }, ragu: [true, false, true] }));
-    await tunggu(() => nicky.api.jawabanSemua('utrg1').Mia);
-    assert.deepEqual(nicky.api.jawabanSemua('utrg1').Mia.k, { 'A1-001': 'ragu', 'A1-003': 'ragu' });
-    assert.ok(mia.api.kirimSelesai('utrg1', { jawaban: ['A', 'B', 'C'], ragu: [1, 'A1-001'] }));
-    await tunggu(() => nicky.api.jawabanSemua('utrg1').Mia.j['A1-003'] === 'C');
-    assert.deepEqual(nicky.api.jawabanSemua('utrg1').Mia.k, { 'A1-001': 'ragu', 'A1-002': 'ragu' });
+    await tunggu(() => mita.api.state().aktivitas && mita.api.state().aktivitas.id === 'utrg1');
+    assert.ok(mita.api.kirimSelesai('utrg1', { jawaban: { 'A1-001': 'C' }, ragu: [true, false, true] }));
+    await tunggu(() => nicky.api.jawabanSemua('utrg1').Mita);
+    assert.deepEqual(nicky.api.jawabanSemua('utrg1').Mita.k, { 'A1-001': 'ragu', 'A1-003': 'ragu' });
+    assert.ok(mita.api.kirimSelesai('utrg1', { jawaban: ['A', 'B', 'C'], ragu: [1, 'A1-001'] }));
+    await tunggu(() => nicky.api.jawabanSemua('utrg1').Mita.j['A1-003'] === 'C');
+    assert.deepEqual(nicky.api.jawabanSemua('utrg1').Mita.k, { 'A1-001': 'ragu', 'A1-002': 'ragu' });
   });
 
   it('U7 state basi: laptop pemimpin lama dibuka setelah ambil alih, relai lambat 3 dtk → tidak menimpa; turun menjadi anggota', async () => {
     const { jar, nicky, kode, masuk, r1 } = await siapkan({ nicky: { konfig: { tungguCalonMs: 5000 } } });
-    const mia = await masuk('Mia');
+    const mita = await masuk('Mita');
     nicky.api.mulaiLatihan({ id: 'sb-u7', soalIds: SOAL, detikPerSoal: 60 });
-    await tunggu(() => mia.api.state().aktivitas);
+    await tunggu(() => mita.api.state().aktivitas);
     const laptopLama = JSON.parse(JSON.stringify(nicky.simpan.s));
     nicky.api.KONFIG.jedaSambung = [600000]; nicky.api._rt().koneksi.forEach(k => k.henti(false));   // laptop ditutup
     await tidur(30);
-    const s = mia.api.ambilAlih(); assert.equal(s.tuan, 'Mia');
-    mia.api.aturSoal(2);
-    await tunggu(() => { const x = mia.api.state(); return x.aktivitas.idx === 2; });
+    const s = mita.api.ambilAlih(); assert.equal(s.tuan, 'Mita');
+    mita.api.aturSoal(2);
+    await tunggu(() => { const x = mita.api.state(); return x.aktivitas.idx === 2; });
     await tidur(50);
     r1.lambat = 3000;
     const lama = instans(jar, ['ws://r1'], { konfig: { tungguCalonMs: 5000 } }); lama.simpan.s = laptopLama;
@@ -864,21 +864,21 @@ describe('ruang: tahap 2 (B0)', () => {
     assert.ok(lokal && lokal.aktivitas.idx === 1);
     await tunggu(() => lama.api.info().peran === 'anggota', 6000, 'turun menjadi anggota');
     assert.equal(lama.api.status().calon, false);
-    assert.equal(lama.api.state().tuan, 'Mia'); assert.equal(lama.api.state().aktivitas.idx, 2);
-    assert.ok(lama.peristiwa.peran.some(p => p.peran === 'anggota' && p.tuan === 'Mia'));
+    assert.equal(lama.api.state().tuan, 'Mita'); assert.equal(lama.api.state().aktivitas.idx, 2);
+    assert.ok(lama.peristiwa.peran.some(p => p.peran === 'anggota' && p.tuan === 'Mita'));
     r1.lambat = 0;
     const ret = await bacaRetained(r1, kode, 's');
-    assert.equal(ret.tuan, 'Mia'); assert.equal(ret.aktivitas.idx, 2);
-    const jessie = instans(jar, ['ws://r1']); const st = await jessie.api.gabung(kode, 'Jessie');
-    assert.equal(st.tuan, 'Mia'); assert.equal(st.aktivitas.idx, 2);
-    assert.equal(mia.api.info().peran, 'tuan');
+    assert.equal(ret.tuan, 'Mita'); assert.equal(ret.aktivitas.idx, 2);
+    const jeni = instans(jar, ['ws://r1']); const st = await jeni.api.gabung(kode, 'Jeni');
+    assert.equal(st.tuan, 'Mita'); assert.equal(st.aktivitas.idx, 2);
+    assert.equal(mita.api.info().peran, 'tuan');
   });
 
   it('versiBeda: versi aplikasi anggota berbeda dari state; tuan memperbarui versiApp saat mengubah state', async () => {
     const { nicky, masuk } = await siapkan({ nicky: { env: { versi: '8.2' } } });
-    const sama = await masuk('Mia', { env: { versi: '8.2' } });
-    const beda = await masuk('Novia', { env: { versi: '8.1' } });
-    const tanpa = await masuk('Alfi', { env: { versi: null } });
+    const sama = await masuk('Mita', { env: { versi: '8.2' } });
+    const beda = await masuk('Nora', { env: { versi: '8.1' } });
+    const tanpa = await masuk('Aldi', { env: { versi: null } });
     assert.equal(nicky.api.state().versiApp, '8.2');
     assert.equal(sama.api.status().versiBeda, false); assert.equal(beda.api.status().versiBeda, true); assert.equal(tanpa.api.status().versiBeda, false);
     assert.equal(nicky.api.status().versiBeda, false);
@@ -891,89 +891,89 @@ describe('ruang: tahap 2 (B0)', () => {
 
   it('lobi + siap: bukaLobi idempoten, siap terlihat ≤ 2 dtk, bertahan setelah sambung ulang dan detak, reset saat lobi berganti, kosong saat mulai', async () => {
     const { nicky, masuk, r1 } = await siapkan();
-    const mia = await masuk('Mia'); const jessie = await masuk('Jessie');
-    assert.equal(mia.api.kirimSiap(true), false, 'tanpa lobi');
+    const mita = await masuk('Mita'); const jeni = await masuk('Jeni');
+    assert.equal(mita.api.kirimSiap(true), false, 'tanpa lobi');
     const s1 = nicky.api.bukaLobi(); assert.match(s1.lobi.id, /^l[0-9a-z]+$/);
     assert.equal(nicky.api.bukaLobi().lobi.id, s1.lobi.id, 'idempoten');
-    await tunggu(() => mia.api.state().lobi && mia.api.state().lobi.id === s1.lobi.id);
-    const t0 = Date.now(); assert.ok(mia.api.kirimSiap(true));
-    await tunggu(() => nicky.api.hadir().Mia && nicky.api.hadir().Mia.siap, 2000);
+    await tunggu(() => mita.api.state().lobi && mita.api.state().lobi.id === s1.lobi.id);
+    const t0 = Date.now(); assert.ok(mita.api.kirimSiap(true));
+    await tunggu(() => nicky.api.hadir().Mita && nicky.api.hadir().Mita.siap, 2000);
     assert.ok(Date.now() - t0 < 2000);
-    assert.equal(nicky.api.hadir().Mia.siapId, s1.lobi.id); assert.equal(nicky.api.hadir().Jessie.siap, false);
-    assert.equal(mia.simpan.s.ruang.siap, s1.lobi.id);
+    assert.equal(nicky.api.hadir().Mita.siapId, s1.lobi.id); assert.equal(nicky.api.hadir().Jeni.siap, false);
+    assert.equal(mita.simpan.s.ruang.siap, s1.lobi.id);
     const siapNicky = () => Object.values(nicky.api.hadir()).filter(h => h.siap).length;
     assert.equal(siapNicky(), 1);
-    // sambung ulang: relai memutus Mia → dokumen hadir terbit lagi dengan siap
+    // sambung ulang: relai memutus Mita → dokumen hadir terbit lagi dengan siap
     const n0 = nicky.peristiwa.hadir.length;
-    r1.putuskan(k => !!(k.will && k.will.topik.endsWith('/h/' + slugUntuk(nicky.api.info().kode, 'Mia'))));
-    await tunggu(() => nicky.peristiwa.hadir.slice(n0).some(h => h.nama === 'Mia' && h.online && h.siap), 3000, 'siap terkirim ulang setelah sambung ulang');
-    await tunggu(() => nicky.api.hadir().Mia.online && nicky.api.hadir().Mia.siap, 2000);
-    const ret = await bacaRetained(r1, nicky.api.info().kode, 'h/' + slugUntuk(nicky.api.info().kode, 'Mia'));
+    r1.putuskan(k => !!(k.will && k.will.topik.endsWith('/h/' + slugUntuk(nicky.api.info().kode, 'Mita'))));
+    await tunggu(() => nicky.peristiwa.hadir.slice(n0).some(h => h.nama === 'Mita' && h.online && h.siap), 3000, 'siap terkirim ulang setelah sambung ulang');
+    await tunggu(() => nicky.api.hadir().Mita.online && nicky.api.hadir().Mita.siap, 2000);
+    const ret = await bacaRetained(r1, nicky.api.info().kode, 'h/' + slugUntuk(nicky.api.info().kode, 'Mita'));
     assert.equal(ret.siap, s1.lobi.id, 'retained h/ memuat siap');
     const n1 = nicky.peristiwa.hadir.length; await tidur(500);
-    assert.ok(nicky.peristiwa.hadir.slice(n1).some(h => h.nama === 'Mia' && h.siap), 'detak membawa siap');
+    assert.ok(nicky.peristiwa.hadir.slice(n1).some(h => h.nama === 'Mita' && h.siap), 'detak membawa siap');
     // lobi baru → hitungan 0
     const s2 = nicky.api.bukaLobi({ baru: true }); assert.notEqual(s2.lobi.id, s1.lobi.id);
-    await tunggu(() => mia.api.state().lobi.id === s2.lobi.id);
-    assert.equal(siapNicky(), 0); assert.equal(mia.api._rt().siap, null);
-    jessie.api.kirimSiap(true); await tunggu(() => siapNicky() === 1);
-    jessie.api.kirimSiap(false); await tunggu(() => siapNicky() === 0);
+    await tunggu(() => mita.api.state().lobi.id === s2.lobi.id);
+    assert.equal(siapNicky(), 0); assert.equal(mita.api._rt().siap, null);
+    jeni.api.kirimSiap(true); await tunggu(() => siapNicky() === 1);
+    jeni.api.kirimSiap(false); await tunggu(() => siapNicky() === 0);
     // "Mulai sekarang" saat 0 siap; lobi otomatis kosong
     const s3 = nicky.api.mulaiLatihan({ id: 'sb-lobi', soalIds: SOAL, detikPerSoal: 60 });
     assert.equal(s3.lobi, null);
-    await tunggu(() => mia.api.state().aktivitas && mia.api.state().lobi === null);
+    await tunggu(() => mita.api.state().aktivitas && mita.api.state().lobi === null);
     nicky.api.bukaLobi(); assert.ok(nicky.api.state().lobi); assert.equal(nicky.api.tutupLobi().lobi, null);
-    assert.equal(mia.api.bukaLobi(), false, 'anggota tidak membuka lobi');
+    assert.equal(mita.api.bukaLobi(), false, 'anggota tidak membuka lobi');
   });
 
   it('paham + penjelas + tim: bukaKunci membawa penjelas dan skor tim; penjelas tidak sah ditolak; kirimPaham ke dokumen jawaban', async () => {
     const { nicky, masuk } = await siapkan();
-    const mia = await masuk('Mia'); const novia = await masuk('Novia');
+    const mita = await masuk('Mita'); const nora = await masuk('Nora');
     nicky.api.mulaiLatihan({ id: 'sb-pj', soalIds: SOAL, detikPerSoal: 60 });
-    await tunggu(() => mia.api.state().aktivitas && novia.api.state().aktivitas);
-    const per = n => { const o = {}; ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi'].forEach((x, i) => { o[x] = { o: i < n ? 'D' : 'A', k: null, b: i < n ? 1 : 0 }; }); return o; };
+    await tunggu(() => mita.api.state().aktivitas && nora.api.state().aktivitas);
+    const per = n => { const o = {}; ['Nicky', 'Mita', 'Nora', 'Jeni', 'Mega', 'Aldi'].forEach((x, i) => { o[x] = { o: i < n ? 'D' : 'A', k: null, b: i < n ? 1 : 0 }; }); return o; };
     // penjelas tidak sah: b = 0, tidak ada di per, atau nama rusak → false, state tetap
     const urut0 = nicky.api.state().urut;
-    assert.equal(nicky.api.bukaKunci('A1-104', per(5), { penjelas: 'Alfi' }), false);
+    assert.equal(nicky.api.bukaKunci('A1-104', per(5), { penjelas: 'Aldi' }), false);
     assert.equal(nicky.api.bukaKunci('A1-104', per(5), { penjelas: 'Budi' }), false);
     assert.equal(nicky.api.bukaKunci('A1-104', per(5), { penjelas: ' x ' }), false);
     assert.equal(nicky.api.bukaKunci('A1-104', per(5), { tim: { benar: 7, dijawab: 6 } }), false);
     assert.equal(nicky.api.state().urut, urut0); assert.equal(nicky.api.state().aktivitas.fase, 'jawab');
-    const s = nicky.api.bukaKunci('A1-104', per(5), { penjelas: 'mia', tim: { benar: 5, dijawab: 6 } });
-    assert.equal(s.aktivitas.hasilSoal.penjelas, 'Mia', 'ejaan mengikuti per');
-    await tunggu(() => novia.api.state().aktivitas.fase === 'kunci');
-    assert.equal(novia.api.state().aktivitas.hasilSoal.penjelas, 'Mia'); assert.deepEqual(novia.api.state().aktivitas.tim, { benar: 5, dijawab: 6 });
-    assert.ok(novia.api.kirimPaham('A1-104')); assert.equal(novia.api.kirimPaham('C9-999'), false);
-    await tunggu(() => nicky.api.pahamSemua().Novia);
-    assert.deepEqual(nicky.api.pahamSemua(), { Novia: { 'A1-104': 1 } }); assert.deepEqual(nicky.api.penjelasSemua(), { 'A1-104': 'Mia' });
-    assert.deepEqual(novia.api.penjelasSemua('sb-pj'), { 'A1-104': 'Mia' });
+    const s = nicky.api.bukaKunci('A1-104', per(5), { penjelas: 'mita', tim: { benar: 5, dijawab: 6 } });
+    assert.equal(s.aktivitas.hasilSoal.penjelas, 'Mita', 'ejaan mengikuti per');
+    await tunggu(() => nora.api.state().aktivitas.fase === 'kunci');
+    assert.equal(nora.api.state().aktivitas.hasilSoal.penjelas, 'Mita'); assert.deepEqual(nora.api.state().aktivitas.tim, { benar: 5, dijawab: 6 });
+    assert.ok(nora.api.kirimPaham('A1-104')); assert.equal(nora.api.kirimPaham('C9-999'), false);
+    await tunggu(() => nicky.api.pahamSemua().Nora);
+    assert.deepEqual(nicky.api.pahamSemua(), { Nora: { 'A1-104': 1 } }); assert.deepEqual(nicky.api.penjelasSemua(), { 'A1-104': 'Mita' });
+    assert.deepEqual(nora.api.penjelasSemua('sb-pj'), { 'A1-104': 'Mita' });
     // tim bertahan melewati aturSoal; kunci tanpa tim mempertahankan nilai; 3 soal 5/6, 3/6, 6/6 → 14/18
-    nicky.api.aturSoal(1); await tunggu(() => mia.api.state().aktivitas.idx === 1);
-    assert.deepEqual(mia.api.state().aktivitas.tim, { benar: 5, dijawab: 6 });
+    nicky.api.aturSoal(1); await tunggu(() => mita.api.state().aktivitas.idx === 1);
+    assert.deepEqual(mita.api.state().aktivitas.tim, { benar: 5, dijawab: 6 });
     nicky.api.bukaKunci('B6-126', per(3), { penjelas: 'Nicky' }); assert.deepEqual(nicky.api.state().aktivitas.tim, { benar: 5, dijawab: 6 });
     nicky.api.bukaKunci('B6-126', per(3), { penjelas: 'Nicky', tim: { benar: 8, dijawab: 12 } });
     nicky.api.aturSoal(2); nicky.api.bukaKunci('A3-144', per(6), { tim: { benar: 14, dijawab: 18 } });
-    await tunggu(() => mia.api.state().aktivitas.idx === 2 && mia.api.state().aktivitas.fase === 'kunci');
-    assert.deepEqual(mia.api.state().aktivitas.tim, { benar: 14, dijawab: 18 }); assert.equal(mia.api.state().aktivitas.hasilSoal.penjelas, null);
-    assert.deepEqual(nicky.api.penjelasSemua(), { 'A1-104': 'Mia', 'B6-126': 'Nicky' });
+    await tunggu(() => mita.api.state().aktivitas.idx === 2 && mita.api.state().aktivitas.fase === 'kunci');
+    assert.deepEqual(mita.api.state().aktivitas.tim, { benar: 14, dijawab: 18 }); assert.equal(mita.api.state().aktivitas.hasilSoal.penjelas, null);
+    assert.deepEqual(nicky.api.penjelasSemua(), { 'A1-104': 'Mita', 'B6-126': 'Nicky' });
     // validator: penjelas dengan b = 0 di state dari kabel ditolak
-    const st = nicky.api.state(); st.aktivitas.hasilSoal.per.Alfi.b = 0; st.aktivitas.hasilSoal.penjelas = 'Alfi'; assert.equal(P.validState(st), null);
+    const st = nicky.api.state(); st.aktivitas.hasilSoal.per.Aldi.b = 0; st.aktivitas.hasilSoal.penjelas = 'Aldi'; assert.equal(P.validState(st), null);
     st.aktivitas.hasilSoal.penjelas = 'Tidak Ada'; assert.equal(P.validState(st), null);
     st.aktivitas.hasilSoal.penjelas = 'Nicky'; assert.ok(P.validState(st));
   });
 
   it('rekaman meloloskan tim dan diisiPemimpin; entri indeks membawa akurasiTim dan nHadir', async () => {
     const { nicky, masuk } = await siapkan();
-    const mia = await masuk('Mia');
-    const tim = { benar: 14, dijawab: 18, akurasi: 78, hadir: 5, terimaKasih: { Jessie: 2, Mia: 3 }, bahasLagi: ['B6-126'] };
-    const sesi = { id: 'sb-tim1', mulai: 1700000000000, selesai: 1700000600000, peserta: ['Nicky', 'Mia'], mode: 'latihan', soal: [{ id: 'A1-104', kunci: 'D', jawaban: { Nicky: { o: 'D', k: null, b: 1 }, Mia: { o: 'A', k: null, b: 0 } } }], tim, diisiPemimpin: { Mia: ['A1-104'] } };
+    const mita = await masuk('Mita');
+    const tim = { benar: 14, dijawab: 18, akurasi: 78, hadir: 5, terimaKasih: { Jeni: 2, Mita: 3 }, bahasLagi: ['B6-126'] };
+    const sesi = { id: 'sb-tim1', mulai: 1700000000000, selesai: 1700000600000, peserta: ['Nicky', 'Mita'], mode: 'latihan', soal: [{ id: 'A1-104', kunci: 'D', jawaban: { Nicky: { o: 'D', k: null, b: 1 }, Mita: { o: 'A', k: null, b: 0 } } }], tim, diisiPemimpin: { Mita: ['A1-104'] } };
     assert.ok(nicky.api.terbitkanSesi(sesi));
     assert.ok(nicky.api.terbitkanSesi({ id: 'sb-tim0', mulai: 1600000000000, selesai: 1600000000001, peserta: ['Nicky'], soal: [], tim: 'rusak' }), 'tim bukan objek dibuang, rekaman tetap sah');
-    await tunggu(() => mia.diterima.length === 2 && mia.api.riwayat().length === 2);
-    const r = mia.diterima.find(x => x.id === 'sb-tim1');
-    assert.deepEqual(r.tim, tim); assert.deepEqual(r.diisiPemimpin, { Mia: ['A1-104'] });
-    assert.equal(mia.diterima.find(x => x.id === 'sb-tim0').tim, undefined);
-    const e = mia.api.riwayat();
+    await tunggu(() => mita.diterima.length === 2 && mita.api.riwayat().length === 2);
+    const r = mita.diterima.find(x => x.id === 'sb-tim1');
+    assert.deepEqual(r.tim, tim); assert.deepEqual(r.diisiPemimpin, { Mita: ['A1-104'] });
+    assert.equal(mita.diterima.find(x => x.id === 'sb-tim0').tim, undefined);
+    const e = mita.api.riwayat();
     assert.deepEqual([e[0].id, e[0].akurasiTim, e[0].nHadir], ['sb-tim1', 78, 5]);
     assert.deepEqual([e[1].akurasiTim, e[1].nHadir], [null, null]);
     assert.equal(P.entriIndeks({ id: 'x', mulai: 1, peserta: [], soal: [], tim: { benar: 3, dijawab: 4 } }).akurasiTim, 75);
@@ -995,15 +995,15 @@ describe('ruang: tahap 2 (B0)', () => {
     const ix = P.validIndeks(Object.assign({}, amp, { daftar: [{ id: 'sb-1', t, mode: 'latihan', judul: null, nSoal: 1, peserta: ['Nicky'] }] }));
     assert.deepEqual([ix.daftar[0].akurasiTim, ix.daftar[0].nHadir], [null, null]);
     assert.equal(P.validIndeks(Object.assign({}, amp, { daftar: [{ id: 'sb-1', t, mode: 'latihan', judul: null, nSoal: 1, peserta: [], akurasiTim: 101 }] })), null);
-    // lewat kabel: dokumen jawaban dan hadir format lama dari "Jessie" diterima tuan
+    // lewat kabel: dokumen jawaban dan hadir format lama dari "Jeni" diterima tuan
     const { nicky, kode, r1 } = await siapkan();
     nicky.api.mulaiLatihan({ id: 'sb-lama', soalIds: SOAL, detikPerSoal: 60 });
-    const slug = slugUntuk(kode, 'Jessie'); const tt = Date.now();
-    const mj = await muatanUntuk(kode, 'a/' + slug, { v: 1, t: tt, urut: 1, d: 'beef01', nama: 'Jessie', aktivitas: 'sb-lama', j: { 'A1-104': 'C' }, k: {}, selesai: false, detik: null });
-    const mh = await muatanUntuk(kode, 'h/' + slug, { v: 1, t: tt, urut: 2, d: 'beef01', nama: 'Jessie', online: true, peran: 'anggota' });
+    const slug = slugUntuk(kode, 'Jeni'); const tt = Date.now();
+    const mj = await muatanUntuk(kode, 'a/' + slug, { v: 1, t: tt, urut: 1, d: 'beef01', nama: 'Jeni', aktivitas: 'sb-lama', j: { 'A1-104': 'C' }, k: {}, selesai: false, detik: null });
+    const mh = await muatanUntuk(kode, 'h/' + slug, { v: 1, t: tt, urut: 2, d: 'beef01', nama: 'Jeni', online: true, peran: 'anggota' });
     r1.terbit(mj.topik, mj.muatan, true); r1.terbit(mh.topik, mh.muatan, true);
-    await tunggu(() => nicky.api.jawabanSemua().Jessie && nicky.api.hadir().Jessie);
-    assert.deepEqual(nicky.api.jawabanSemua().Jessie.paham, {}); assert.equal(nicky.api.hadir().Jessie.siap, false);
+    await tunggu(() => nicky.api.jawabanSemua().Jeni && nicky.api.hadir().Jeni);
+    assert.deepEqual(nicky.api.jawabanSemua().Jeni.paham, {}); assert.equal(nicky.api.hadir().Jeni.siap, false);
   });
 
   it('ujiRelai: tiap relai diuji paralel tanpa bergabung; relai mati, menolak, dan diam dilaporkan dengan alasan', async () => {
@@ -1025,7 +1025,7 @@ describe('ruang: tahap 2 (B0)', () => {
 // ======================================================================================
 // v8.2 B0b: jalur publik sungguhan — kredensial per jalur, batu nisan, pemilihan jalur menurut tempat state berada
 describe('ruang: jalur dan batu nisan (B0b)', () => {
-  const PES = ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi'];
+  const PES = ['Nicky', 'Mita', 'Nora', 'Jeni', 'Mega', 'Aldi'];
   async function tuanDi(jar, urls, opsi) {
     const nicky = instans(jar, urls, opsi);
     const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim UKP B', peserta: PES, tingkat: 'B' });
@@ -1050,67 +1050,67 @@ describe('ruang: jalur dan batu nisan (B0b)', () => {
     const { nicky, kode } = await tuanDi(jar, L);
     assert.deepEqual(jalur(nicky), ['ws://k1'], 'status tanpa sandi');
     assert.equal((await instans(jar, L).api.intip(kode)).tuan, 'Nicky');
-    const mia = instans(jar, L); const st = await mia.api.gabung(kode, 'Mia'); assert.equal(st.tuan, 'Nicky');
+    const mita = instans(jar, L); const st = await mita.api.gabung(kode, 'Mita'); assert.equal(st.tuan, 'Nicky');
     const k1 = jar.relai.get('ws://k1');
     assert.ok(k1.terima.length >= 3 && k1.terima.every(p => p.username === 'public' && Buffer.from(p.password).toString() === 'public'));
     assert.ok(jar.soket.every(w => w.url === 'ws://k1' && !w.url.includes('#')));
-    const h = await mia.api.ujiRelai();
+    const h = await mita.api.ujiRelai();
     assert.deepEqual(h.map(x => [x.url, x.ok]), [['ws://k1', true]]);
-    mia.api.RELAI = ['ws://k1#public:public', 'ws://k1', 'ws://k1#public:salah'];
-    const h2 = await mia.api.ujiRelai(); mia.api.RELAI = L;
+    mita.api.RELAI = ['ws://k1#public:public', 'ws://k1', 'ws://k1#public:salah'];
+    const h2 = await mita.api.ujiRelai(); mita.api.RELAI = L;
     assert.deepEqual(h2.map(x => x.ok), [true, false, false]); assert.match(h2[1].alasan, /kode 5/);
     assert.ok(h2.every(x => x.url === 'ws://k1'));
-    const tanpa = instans(jar, ['ws://k1']); tanpa.api.gabung(kode, 'Novia');
+    const tanpa = instans(jar, ['ws://k1']); tanpa.api.gabung(kode, 'Nora');
     await tunggu(() => (tanpa.api.status().relai[0] || {}).galat, 2000); assert.match(tanpa.api.status().relai[0].galat, /CONNACK 5/);
   });
 
   it('batu nisan: tutup() tetap tertutup walau relai menunda hapus retained; intip null; anggota terlambat (pulihkan/gabung) keluar tanpa kehadiran', async () => {
     const jar = buatJaringan(); const r1 = jar.relaiBaru('ws://r1'); r1.tundaHapus = 600;
     const { nicky, kode } = await tuanDi(jar, ['ws://r1']);
-    const mia = instans(jar, ['ws://r1']); await mia.api.gabung(kode, 'Mia');
+    const mita = instans(jar, ['ws://r1']); await mita.api.gabung(kode, 'Mita');
     nicky.api.mulaiLatihan({ id: 'sb-n1', soalIds: ['A1-104'], detikPerSoal: 60 });
-    await tunggu(() => mia.api.state().aktivitas);
-    mia.api.kirimJawaban({ aktivitas: 'sb-n1', soalId: 'A1-104', o: 'B' });
-    await tunggu(() => nicky.api.jawabanSemua().Mia);
-    const salinanMia = JSON.parse(JSON.stringify(mia.simpan.s)); mia.api.KONFIG.jedaSambung = [600000]; mia.api._rt().koneksi.forEach(k => k.henti(false));   // Mia offline saat penutupan
+    await tunggu(() => mita.api.state().aktivitas);
+    mita.api.kirimJawaban({ aktivitas: 'sb-n1', soalId: 'A1-104', o: 'B' });
+    await tunggu(() => nicky.api.jawabanSemua().Mita);
+    const salinanMita = JSON.parse(JSON.stringify(mita.simpan.s)); mita.api.KONFIG.jedaSambung = [600000]; mita.api._rt().koneksi.forEach(k => k.henti(false));   // Mita offline saat penutupan
     assert.equal(await nicky.api.tutup(), true);
     const t0 = Date.now(); assert.equal(await instans(jar, ['ws://r1']).api.intip(kode), null, 'intip null walau hapus belum berlaku');
     assert.ok(Date.now() - t0 < 600 && Array.from(r1.retained.keys()).some(t => t.includes('/a/')), 'hapus memang masih tertunda saat intip');
     // anggota terlambat lewat pulihkan
-    const mia2 = instans(jar, ['ws://r1']); mia2.simpan.s = salinanMia; let tutup = 0; mia2.api.on('tutup', () => tutup++);
-    assert.ok(mia2.api.pulihkan());
-    await tunggu(() => tutup === 1 && mia2.api.info() === null, 2000);
-    assert.equal(mia2.simpan.s.ruang, null);
+    const mita2 = instans(jar, ['ws://r1']); mita2.simpan.s = salinanMita; let tutup = 0; mita2.api.on('tutup', () => tutup++);
+    assert.ok(mita2.api.pulihkan());
+    await tunggu(() => tutup === 1 && mita2.api.info() === null, 2000);
+    assert.equal(mita2.simpan.s.ruang, null);
     // gabung ke room bernisan → null cepat
-    const alfi = instans(jar, ['ws://r1']); const t1 = Date.now(); const st = await alfi.api.gabung(kode, 'Alfi');
-    assert.equal(st, null); assert.ok(Date.now() - t1 < 1000, String(Date.now() - t1)); assert.equal(alfi.api.info(), null);
+    const aldi = instans(jar, ['ws://r1']); const t1 = Date.now(); const st = await aldi.api.gabung(kode, 'Aldi');
+    assert.equal(st, null); assert.ok(Date.now() - t1 < 1000, String(Date.now() - t1)); assert.equal(aldi.api.info(), null);
     await tidur(700);
     const sisa = Array.from(r1.retained.keys()).map(t => t.split('/').slice(2).join('/'));
-    assert.deepEqual(sisa, ['s'], 'tanpa kehadiran baru dari Mia/Alfi: ' + sisa);
+    assert.deepEqual(sisa, ['s'], 'tanpa kehadiran baru dari Mita/Aldi: ' + sisa);
     assert.equal((await bacaRetained(r1, kode, 's')).ditutup, true);
   });
 
   it('relai pertama mati (menggantung): intip lalu gabung langsung ke jalur yang benar tanpa menunggu batasSambungMs', async () => {
     const jar = buatJaringan(); jar.relaiBaru('ws://mati').tanpaConnack = true; jar.relaiBaru('ws://r2');
     const { kode } = await tuanDi(jar, ['ws://r2']);
-    const mia = instans(jar, ['ws://mati', 'ws://r2'], { konfig: { batasSambungMs: 2000 } });
-    const t0 = Date.now(); const st = await mia.api.intip(kode); const msIntip = Date.now() - t0;
+    const mita = instans(jar, ['ws://mati', 'ws://r2'], { konfig: { batasSambungMs: 2000 } });
+    const t0 = Date.now(); const st = await mita.api.intip(kode); const msIntip = Date.now() - t0;
     assert.equal(st.tuan, 'Nicky'); assert.ok(msIntip < 600, 'intip ' + msIntip);
     const n0 = jar.soket.filter(w => w.url === 'ws://mati').length;
-    const t1 = Date.now(); const st2 = await mia.api.gabung(kode, 'Mia'); const msGabung = Date.now() - t1;
+    const t1 = Date.now(); const st2 = await mita.api.gabung(kode, 'Mita'); const msGabung = Date.now() - t1;
     assert.equal(st2.tuan, 'Nicky'); assert.ok(msGabung < 600, 'gabung ' + msGabung);
-    assert.deepEqual(jalur(mia), ['ws://r2']);
+    assert.deepEqual(jalur(mita), ['ws://r2']);
     assert.equal(jar.soket.filter(w => w.url === 'ws://mati').length, n0, 'gabung tidak mencoba jalur mati');
   });
 
   it('tuan hanya menjangkau jalur ke-2, anggota menjangkau semua → anggota berakhir di jalur ke-2 (pemilihan internal gabung)', async () => {
     const jar = buatJaringan(); const r1 = jar.relaiBaru('ws://r1'); jar.relaiBaru('ws://r2');
     const { nicky, kode } = await tuanDi(jar, ['ws://r2']);
-    const mia = instans(jar, ['ws://r1', 'ws://r2']);
-    const st = await mia.api.gabung(kode, 'Mia');
-    assert.equal(st.tuan, 'Nicky'); assert.deepEqual(jalur(mia), ['ws://r2']);
-    assert.equal(mia.simpan.s.ruang.relai, 'ws://r2');
-    await tunggu(() => nicky.api.status().online.includes('Mia'));
+    const mita = instans(jar, ['ws://r1', 'ws://r2']);
+    const st = await mita.api.gabung(kode, 'Mita');
+    assert.equal(st.tuan, 'Nicky'); assert.deepEqual(jalur(mita), ['ws://r2']);
+    assert.equal(mita.simpan.s.ruang.relai, 'ws://r2');
+    await tunggu(() => nicky.api.status().online.includes('Mita'));
     assert.ok(!Array.from(r1.retained.keys()).some(t => t.includes('/h/')), 'pemilihan jalur tidak membuat kehadiran');
   });
 
@@ -1118,11 +1118,11 @@ describe('ruang: jalur dan batu nisan (B0b)', () => {
     const jar = buatJaringan(); const r1 = jar.relaiBaru('ws://r1'); jar.relaiBaru('ws://r2');
     const { kode } = await tuanDi(jar, ['ws://r1', 'ws://r2']);
     r1.lambat = 80;   // r1 lebih lambat mengirim retained
-    const mia = instans(jar, ['ws://r1', 'ws://r2']);
-    assert.equal((await mia.api.intip(kode)).tuan, 'Nicky');
+    const mita = instans(jar, ['ws://r1', 'ws://r2']);
+    assert.equal((await mita.api.intip(kode)).tuan, 'Nicky');
     r1.lambat = 0;
-    await mia.api.gabung(kode, 'Mia');
-    assert.deepEqual(jalur(mia), ['ws://r1']);
+    await mita.api.gabung(kode, 'Mita');
+    assert.deepEqual(jalur(mita), ['ws://r1']);
     // urut lebih besar menang atas urutan daftar: r1 berisi state lama
     const jar2 = buatJaringan(); jar2.relaiBaru('ws://r1'); jar2.relaiBaru('ws://r2');
     const t2 = await tuanDi(jar2, ['ws://r1', 'ws://r2']);
@@ -1130,34 +1130,34 @@ describe('ruang: jalur dan batu nisan (B0b)', () => {
     t2.nicky.api.aturRoom({ nama: 'Baru' });
     await tidur(50);
     const r1b = jar2.relai.get('ws://r1'); const ts = Array.from(r1b.retained.keys()).find(t => t.endsWith('/s')); r1b.retained.set(ts, sLama);
-    const novia = instans(jar2, ['ws://r1', 'ws://r2']); const st = await novia.api.intip(t2.kode);
+    const nora = instans(jar2, ['ws://r1', 'ws://r2']); const st = await nora.api.intip(t2.kode);
     assert.equal(st.room.nama, 'Baru');
-    await novia.api.gabung(t2.kode, 'Novia'); assert.deepEqual(jalur(novia), ['ws://r2']);
+    await nora.api.gabung(t2.kode, 'Nora'); assert.deepEqual(jalur(nora), ['ws://r2']);
   });
 
   it('pulihkan() anggota memakai jalur tersimpan; jalur tersambung tanpa state → pindah; tanpa state di mana pun → tidak berputar tanpa henti', async () => {
     const jar = buatJaringan(); const r1 = jar.relaiBaru('ws://r1'); jar.relaiBaru('ws://r2');
     const { nicky, kode } = await tuanDi(jar, ['ws://r1', 'ws://r2']);
-    const mia = instans(jar, ['ws://r1', 'ws://r2']); await mia.api.gabung(kode, 'Mia');
-    assert.equal(mia.simpan.s.ruang.relai, 'ws://r1');
-    const salinan = JSON.parse(JSON.stringify(mia.simpan.s)); salinan.ruang.relai = 'ws://r2'; mia.api._rt().koneksi.forEach(k => k.henti(false));
-    const mia2 = instans(jar, ['ws://r1', 'ws://r2']); mia2.simpan.s = salinan; mia2.api.pulihkan();
-    await tunggu(() => mia2.api.status().tersambung);
-    assert.deepEqual(jalur(mia2), ['ws://r2'], 'mulai dari jalur tersimpan');
+    const mita = instans(jar, ['ws://r1', 'ws://r2']); await mita.api.gabung(kode, 'Mita');
+    assert.equal(mita.simpan.s.ruang.relai, 'ws://r1');
+    const salinan = JSON.parse(JSON.stringify(mita.simpan.s)); salinan.ruang.relai = 'ws://r2'; mita.api._rt().koneksi.forEach(k => k.henti(false));
+    const mita2 = instans(jar, ['ws://r1', 'ws://r2']); mita2.simpan.s = salinan; mita2.api.pulihkan();
+    await tunggu(() => mita2.api.status().tersambung);
+    assert.deepEqual(jalur(mita2), ['ws://r2'], 'mulai dari jalur tersimpan');
     assert.equal(jar.soket.filter(w => w.url === 'ws://r1').length >= 1, true);
     // jalur tersimpan r1 kini tanpa state (retained hilang, tuan tidak lagi di r1) → pindah ke r2
     nicky.api.RELAI = ['ws://r2']; nicky.api._rt().koneksi.forEach(k => { if (k.urlTetap === 'ws://r1') k.henti(); }); nicky.api._rt().koneksi = nicky.api._rt().koneksi.filter(k => k.urlTetap !== 'ws://r1');
     r1.retained.clear();
-    const s3 = JSON.parse(JSON.stringify(mia2.simpan.s)); s3.ruang.relai = 'ws://r1'; mia2.api._rt().koneksi.forEach(k => k.henti(false));
-    const mia3 = instans(jar, ['ws://r1', 'ws://r2']); mia3.simpan.s = s3; mia3.api.pulihkan();
-    await tunggu(() => jalur(mia3)[0] === 'ws://r1' && mia3.api.status().tersambung, 2000, 'mula-mula di r1');
-    await tunggu(() => jalur(mia3)[0] === 'ws://r2' && mia3.api.status().tersambung, 2000, 'pindah ke r2');
-    await tunggu(() => mia3.simpan.s.ruang.relai === 'ws://r2' && nicky.api.status().online.includes('Mia'), 2000);
+    const s3 = JSON.parse(JSON.stringify(mita2.simpan.s)); s3.ruang.relai = 'ws://r1'; mita2.api._rt().koneksi.forEach(k => k.henti(false));
+    const mita3 = instans(jar, ['ws://r1', 'ws://r2']); mita3.simpan.s = s3; mita3.api.pulihkan();
+    await tunggu(() => jalur(mita3)[0] === 'ws://r1' && mita3.api.status().tersambung, 2000, 'mula-mula di r1');
+    await tunggu(() => jalur(mita3)[0] === 'ws://r2' && mita3.api.status().tersambung, 2000, 'pindah ke r2');
+    await tunggu(() => mita3.simpan.s.ruang.relai === 'ws://r2' && nicky.api.status().online.includes('Mita'), 2000);
     assert.ok(!Array.from(r1.retained.keys()).some(t => t.includes('/h/')), 'tidak ada kehadiran di jalur tanpa state');
     // tanpa state di mana pun: tetap tersambung, putaran berikutnya dengan jeda bertahap
     const jar2 = buatJaringan(); jar2.relaiBaru('ws://a'); jar2.relaiBaru('ws://b');
     const sepi = instans(jar2, ['ws://a', 'ws://b'], { konfig: { jedaSambung: [500, 1000] } });
-    sepi.simpan.s = { ruang: { kode, nama: 'Mia', peran: 'anggota', namaRoom: 'Tim', dibuat: 1, state: null, indeks: null } };
+    sepi.simpan.s = { ruang: { kode, nama: 'Mita', peran: 'anggota', namaRoom: 'Tim', dibuat: 1, state: null, indeks: null } };
     sepi.api.pulihkan();
     await tidur(1200);
     const n = jar2.soket.length;
@@ -1171,17 +1171,17 @@ describe('ruang: integrasi dengan js/core.js dan js/learn.js', () => {
   const U = muat(['core.js', 'learn.js', 'ruang.js']);
   it('modul termuat tanpa DOM; store normal() mempertahankan s.ruang', () => {
     assert.equal(typeof U.ruang.buat, 'function');
-    const n = U.store.normal({ profil: { tingkat: 'B' }, ruang: { kode: 'ABCDEFGHJKMNPQ', nama: 'Mia', peran: 'anggota', namaRoom: 'Tim', dibuat: 1 } });
-    assert.deepEqual(n.ruang, { kode: 'ABCDEFGHJKMNPQ', nama: 'Mia', peran: 'anggota', namaRoom: 'Tim', dibuat: 1 });
+    const n = U.store.normal({ profil: { tingkat: 'B' }, ruang: { kode: 'ABCDEFGHJKMNPQ', nama: 'Mita', peran: 'anggota', namaRoom: 'Tim', dibuat: 1 } });
+    assert.deepEqual(n.ruang, { kode: 'ABCDEFGHJKMNPQ', nama: 'Mita', peran: 'anggota', namaRoom: 'Tim', dibuat: 1 });
     assert.equal(U.store.normal({ profil: {} }).ruang, undefined);
   });
   it('terimaSesiRoom: sisip urut, sumber room, idempoten, tidak menimpa rekaman lokal, pangkas ≤ 60', () => {
     const L = U.belajar;
-    const id = L.mulaiSesiBersama(['Nicky', 'Mia'], ['A1-104'], 0);
-    L.catatSoalSesi(id, { id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D' }, { Nicky: 'D', Mia: 'A' }, 30); L.akhiriSesiBersama(id);
+    const id = L.mulaiSesiBersama(['Nicky', 'Mita'], ['A1-104'], 0);
+    L.catatSoalSesi(id, { id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D' }, { Nicky: 'D', Mita: 'A' }, 30); L.akhiriSesiBersama(id);
     const lokal = L.sesiBersamaDari(id);
     assert.equal(L.terimaSesiRoom(Object.assign({}, lokal, { peserta: ['X'] })), null, 'rekaman lokal tidak ditimpa');
-    const r = { id: 'sb-1000', mulai: 1000, selesai: 2000, tingkat: 'B', peserta: ['Nicky', 'Mia'], anggaranDetik: 126, soal: [{ id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D', detik: 30, jawaban: { Nicky: { o: 'D', k: null, b: 1 }, Mia: { o: 'A', k: null, b: 0 } } }], sumber: 'latih' };
+    const r = { id: 'sb-1000', mulai: 1000, selesai: 2000, tingkat: 'B', peserta: ['Nicky', 'Mita'], anggaranDetik: 126, soal: [{ id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D', detik: 30, jawaban: { Nicky: { o: 'D', k: null, b: 1 }, Mita: { o: 'A', k: null, b: 0 } } }], sumber: 'latih' };
     assert.equal(L.terimaSesiRoom(r), 'baru');
     assert.equal(L.terimaSesiRoom(r), 'sama');
     assert.equal(L.terimaSesiRoom(Object.assign({}, r, { selesai: 3000 })), 'diperbarui');
@@ -1193,7 +1193,7 @@ describe('ruang: integrasi dengan js/core.js dan js/learn.js', () => {
     assert.ok(L.evaluasiSesi(L.sesiBersamaDari('sb-x69')).nSoal === 1);
   });
   // ---------- v8.2 B0: js/learn.js ----------
-  const PES = ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi'];
+  const PES = ['Nicky', 'Mita', 'Nora', 'Jeni', 'Mega', 'Aldi'];
   function sesiTim() {   // 3 soal: 5/6, 3/6 (3 salah), 6/6 benar
     const jw = (kunci, nBenar, salahKosong) => { const o = {}; PES.forEach((n, i) => { const opsi = i < nBenar ? kunci : (salahKosong && i === PES.length - 1 ? '-' : 'A'); o[n] = { o: opsi, k: null, b: opsi === kunci ? 1 : 0 }; }); return o; };
     return { id: 'sb-tim', mulai: 1700000000000, selesai: 1700001500000, tingkat: 'B', peserta: PES.slice(), mode: 'latihan', sumber: 'latih',
@@ -1201,19 +1201,19 @@ describe('ruang: integrasi dengan js/core.js dan js/learn.js', () => {
   }
   it('timDariSesi: skor tim, hadir, terima kasih (paham × penjelas), bahas lagi (≥ 3 salah)', () => {
     const L = U.belajar; const sesi = sesiTim();
-    const paham = { Novia: { paham: { 'B6-126': 1, 'A1-104': 1 } }, Alfi: { 'B6-126': 1, 'A1-104': 1 }, Jessie: { 'B6-126': 1 }, Mia: { 'A1-104': 1, 'C9-999': 1 }, Melva: { 'A3-144': 0 } };
-    const t = L.timDariSesi(sesi, { paham, penjelas: { 'A1-104': 'mia', 'B6-126': 'Nicky' } });
+    const paham = { Nora: { paham: { 'B6-126': 1, 'A1-104': 1 } }, Aldi: { 'B6-126': 1, 'A1-104': 1 }, Jeni: { 'B6-126': 1 }, Mita: { 'A1-104': 1, 'C9-999': 1 }, Mega: { 'A3-144': 0 } };
+    const t = L.timDariSesi(sesi, { paham, penjelas: { 'A1-104': 'mita', 'B6-126': 'Nicky' } });
     assert.deepEqual([t.benar, t.dijawab, t.akurasi], [14, 18, 78]);
     assert.equal(t.hadir, 6);
-    assert.deepEqual(t.terimaKasih, { Mia: 2, Nicky: 3 }, 'Mia berterima kasih ke diri sendiri dan soal di luar rekaman diabaikan; ejaan dari peserta');
-    assert.deepEqual(Object.keys(t.terimaKasih), ['Mia', 'Nicky']);
+    assert.deepEqual(t.terimaKasih, { Mita: 2, Nicky: 3 }, 'Mita berterima kasih ke diri sendiri dan soal di luar rekaman diabaikan; ejaan dari peserta');
+    assert.deepEqual(Object.keys(t.terimaKasih), ['Mita', 'Nicky']);
     assert.deepEqual(t.bahasLagi, ['B6-126']);
-    assert.equal(L.timDariSesi(sesi, { hadir: ['Mia', 'mia', 'Novia'] }).hadir, 2);
+    assert.equal(L.timDariSesi(sesi, { hadir: ['Mita', 'mita', 'Nora'] }).hadir, 2);
     assert.equal(L.timDariSesi(sesi, { hadir: 5 }).hadir, 5);
     assert.deepEqual(L.timDariSesi(sesi).terimaKasih, {});
     // penjelas dari rekaman (soal[i].penjelas) dan dokumen jawaban room apa adanya
-    const s2 = sesiTim(); s2.soal[0].penjelas = 'Jessie';
-    assert.deepEqual(L.timDariSesi(s2, { paham: { Alfi: { v: 1, nama: 'Alfi', j: {}, k: {}, paham: { 'A1-104': 1 } } } }).terimaKasih, { Jessie: 1 });
+    const s2 = sesiTim(); s2.soal[0].penjelas = 'Jeni';
+    assert.deepEqual(L.timDariSesi(s2, { paham: { Aldi: { v: 1, nama: 'Aldi', j: {}, k: {}, paham: { 'A1-104': 1 } } } }).terimaKasih, { Jeni: 1 });
     const kosong = L.timDariSesi(sesiTim(), { batasSalah: 4 }); assert.deepEqual(kosong.bahasLagi, []);
     assert.deepEqual(L.timDariSesi(null), { benar: 0, dijawab: 0, akurasi: null, hadir: 0, terimaKasih: {}, bahasLagi: [] });
     const sk = sesiTim(); sk.soal = sk.soal.slice(0, 1); sk.soal[0].jawaban = { Nicky: { o: '-', k: null, b: 0 } };
@@ -1221,35 +1221,36 @@ describe('ruang: integrasi dengan js/core.js dan js/learn.js', () => {
   });
   it('rekapSesi dengan sesi.tim: baris terima kasih (abjad, tanpa nol) dan bahas lagi; rekaman room tanpa skor per nama', () => {
     const L = U.belajar; const sesi = sesiTim();
-    sesi.tim = { benar: 14, dijawab: 18, akurasi: 78, hadir: 5, terimaKasih: { Mia: 3, Jessie: 2, Alfi: 0 }, bahasLagi: ['B6-126', 'A1-104'] };
+    sesi.tim = { benar: 14, dijawab: 18, akurasi: 78, hadir: 5, terimaKasih: { Mita: 3, Jeni: 2, Aldi: 0 }, bahasLagi: ['B6-126', 'A1-104'] };
     const lokal = L.rekapSesi(sesi);
-    assert.match(lokal, /3 soal · skor tim 78% · 5 dari 6 hadir/);
-    assert.match(lokal, /\nTerima kasih untuk penjelas: Jessie \(2\), Mia \(3\)\n/);
-    assert.match(lokal, /\nBahas lagi: B6-126, A1-104\n/);
-    assert.match(lokal, /\nNicky 3\/3\n/, 'rekaman lokal pemimpin tetap memuat baris per nama');
+    // v9.2 G1: tulisan baku skor tim, "orang ikut", terima kasih berkalimat, kode soal + nama topik
+    assert.match(lokal, /3 soal · 5 dari 6 orang ikut/); assert.match(lokal, /\nSkor tim 78% · 14 dari 18 jawaban benar/);
+    assert.match(lokal, /\nTerima kasih untuk Jeni yang membantu menjelaskan 2 soal dan Mita 3 soal\n/);
+    assert.match(lokal, /\nBahas lagi: B6-126 \([^)]+\), A1-104 \([^)]+\)\n/);
+    assert.match(lokal, /\nNicky benar 3 dari 3 soal\n/, 'rekaman lokal pemimpin tetap memuat baris per nama');
     const room = L.rekapSesi(Object.assign({}, sesi, { sumber: 'room' }));
     for (const n of PES) assert.ok(!new RegExp('(^|\\n)' + n + ' \\d').test(room), 'tanpa skor per nama: ' + n);
     assert.ok(!/\d\/3/.test(room));
-    assert.match(room, /Terima kasih untuk penjelas: Jessie \(2\), Mia \(3\)/);
+    assert.match(room, /Terima kasih untuk Jeni yang membantu menjelaskan 2 soal dan Mita 3 soal/);
     const tanpaTk = L.rekapSesi(Object.assign({}, sesi, { tim: { akurasi: 78, terimaKasih: {}, bahasLagi: [] } }));
     assert.ok(!/Terima kasih/.test(tanpaTk) && !/Bahas lagi/.test(tanpaTk));
     const tanpaTim = L.rekapSesi(sesiTim());
-    assert.ok(!/Terima kasih|Bahas lagi|skor tim/.test(tanpaTim)); assert.match(tanpaTim, /akurasi tim 78%/);
+    assert.ok(!/Terima kasih|Bahas lagi|akurasi tim/.test(tanpaTim)); assert.match(tanpaTim, /Skor tim 78% · 14 dari 18 jawaban benar/);
     const ujianRoom = L.rekapSesi(Object.assign(sesiTim(), { mode: 'ujian', sumber: 'room' }));
     assert.match(ujianRoom, /rata-rata skor/); assert.ok(!/(^|\n)Nicky \d/.test(ujianRoom));
   });
   it('simpanBersamaAktif/bersamaAktif membawa field room; ujianTim.kumpul menerima sumber room', () => {
     const L = U.belajar;
-    const id = L.mulaiSesiBersama(['Nicky', 'Mia'], ['A1-104'], 0);
+    const id = L.mulaiSesiBersama(['Nicky', 'Mita'], ['A1-104'], 0);
     assert.equal(L.simpanBersamaAktif({ sesiId: id, soalIds: ['A1-104'], idx: 0, room: 'ABCDEFGHJKMNPQ' }).room, 'ABCDEFGHJKMNPQ');
     assert.equal(L.bersamaAktif().room, 'ABCDEFGHJKMNPQ');
     assert.equal(L.simpanBersamaAktif({ sesiId: id, soalIds: ['A1-104'], room: 1 }).room, 1);
     assert.equal(L.simpanBersamaAktif({ sesiId: id, soalIds: ['A1-104'] }).room, null);
     assert.equal(L.bersamaAktif().room, null);
     const UT = L.ujianTim;
-    UT.susun({ soalIds: ['A1-104', 'B6-126'], menit: 10, peserta: ['Nicky', 'Mia'] }); UT.mulai();
-    assert.ok(UT.kumpul('Mia', { jawaban: ['A', '-'], ragu: [false, true], detik: 60, sumber: 'room' }));
-    assert.equal(U.store.get().ujianTim.terkumpul.Mia.sumber, 'room');
+    UT.susun({ soalIds: ['A1-104', 'B6-126'], menit: 10, peserta: ['Nicky', 'Mita'] }); UT.mulai();
+    assert.ok(UT.kumpul('Mita', { jawaban: ['A', '-'], ragu: [false, true], detik: 60, sumber: 'room' }));
+    assert.equal(U.store.get().ujianTim.terkumpul.Mita.sumber, 'room');
     assert.ok(UT.kumpul('Nicky', { jawaban: ['B'], sumber: 'lain' })); assert.equal(U.store.get().ujianTim.terkumpul.Nicky.sumber, 'ketik');
     UT.batal();
   });
@@ -1260,33 +1261,229 @@ describe('ruang: perbaikan pemeriksa V3', () => {
   it('jeda(): tab yang kehilangan kunci berhenti tersambung tanpa keluar (simpanan tetap, tanpa kabar offline); pulihkan() menyambung lagi', async () => {
     const jar = buatJaringan(); jar.relaiBaru('ws://v1');
     const nicky = instans(jar, ['ws://v1']);
-    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim', peserta: ['Nicky', 'Mia'], tingkat: 'B' });
+    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim', peserta: ['Nicky', 'Mita'], tingkat: 'B' });
     await tunggu(() => nicky.api.status().tersambung);
-    const mia = instans(jar, ['ws://v1']); await mia.api.gabung(kode, 'Mia');
-    await tunggu(() => nicky.api.hadir().Mia && nicky.api.hadir().Mia.online);
-    assert.equal(mia.api.jeda(), true);
-    assert.equal(mia.api.info(), null);
-    assert.equal(mia.api.status().tersambung, false);
-    assert.equal(mia.simpan.s.ruang && mia.simpan.s.ruang.kode, kode, 'simpanan room tetap (bukan keluar)');
+    const mita = instans(jar, ['ws://v1']); await mita.api.gabung(kode, 'Mita');
+    await tunggu(() => nicky.api.hadir().Mita && nicky.api.hadir().Mita.online);
+    assert.equal(mita.api.jeda(), true);
+    assert.equal(mita.api.info(), null);
+    assert.equal(mita.api.status().tersambung, false);
+    assert.equal(mita.simpan.s.ruang && mita.simpan.s.ruang.kode, kode, 'simpanan room tetap (bukan keluar)');
     await new Promise(r => setTimeout(r, 150));
-    assert.ok(nicky.api.hadir().Mia.online, 'jeda tidak mengirim kabar offline');
-    assert.equal(mia.api.jeda(), false, 'jeda kedua tanpa sambungan → false');
-    assert.equal(mia.api.pulihkan(), true);
-    await tunggu(() => mia.api.status().tersambung && mia.api.state() && mia.api.state().tuan === 'Nicky');
+    assert.ok(nicky.api.hadir().Mita.online, 'jeda tidak mengirim kabar offline');
+    assert.equal(mita.api.jeda(), false, 'jeda kedua tanpa sambungan → false');
+    assert.equal(mita.api.pulihkan(), true);
+    await tunggu(() => mita.api.status().tersambung && mita.api.state() && mita.api.state().tuan === 'Nicky');
     nicky.api.mulaiLatihan({ id: 'sb-v3', soalIds: ['A1-104'], detikPerSoal: 60 });
-    await tunggu(() => mia.api.state().aktivitas && mia.api.state().aktivitas.id === 'sb-v3');
+    await tunggu(() => mita.api.state().aktivitas && mita.api.state().aktivitas.id === 'sb-v3');
   });
   it('learn.js: salinan rekaman room yang dihapus anggota tidak diterima lagi saat tersambung ulang; rekaman lokal tidak masuk daftar tolak', () => {
     const mem = new Map(); const ls = { getItem: k => (mem.has(k) ? mem.get(k) : null), setItem: (k, v) => mem.set(k, String(v)), removeItem: k => mem.delete(k) };
     const U2 = muat(['core.js', 'learn.js'], { localStorage: ls }); const L = U2.belajar;
-    const r = { id: 'sb-2000', mulai: 2000, selesai: 3000, tingkat: 'B', peserta: ['Nicky', 'Mia'], soal: [{ id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D', jawaban: { Nicky: { o: 'D', k: null, b: 1 }, Mia: { o: 'A', k: null, b: 0 } } }], sumber: 'latih' };
+    const r = { id: 'sb-2000', mulai: 2000, selesai: 3000, tingkat: 'B', peserta: ['Nicky', 'Mita'], soal: [{ id: 'A1-104', kode: 'A1', topik: 'A1.1', kunci: 'D', jawaban: { Nicky: { o: 'D', k: null, b: 1 }, Mita: { o: 'A', k: null, b: 0 } } }], sumber: 'latih' };
     assert.equal(L.terimaSesiRoom(r), 'baru');
     assert.equal(L.hapusSesiBersama('sb-2000'), true);
     assert.equal(L.sesiDitolak('sb-2000'), true);
     assert.equal(L.terimaSesiRoom(r), null, 'tidak masuk lagi');
     assert.equal(L.sesiBersamaDari('sb-2000'), null);
     assert.equal(L.terimaSesiRoom(Object.assign({}, r, { id: 'sb-2001' })), 'baru', 'rekaman room lain tetap diterima');
-    const id = L.mulaiSesiBersama(['Nicky', 'Mia'], ['A1-104'], 0); L.akhiriSesiBersama(id);
+    const id = L.mulaiSesiBersama(['Nicky', 'Mita'], ['A1-104'], 0); L.akhiriSesiBersama(id);
     L.hapusSesiBersama(id); assert.equal(L.sesiDitolak(id), false, 'rekaman lokal pemimpin tidak masuk daftar tolak');
+  });
+});
+
+// ======================================================================================
+// v9.2 G3: aktivitas.peserta (opsional) + aturPesertaLatihan; kompatibel dua arah dengan versi 9.0
+// ======================================================================================
+// "versi 9.0": sumber js/ruang.js yang sama dengan ketiga tambahan G3 dibuang (validator tanpa field, tanpa fungsi baru)
+function muatRuangLama() {
+  let src = fs.readFileSync(path.join(__dirname, '..', 'js', 'ruang.js'), 'utf8');
+  const buang = (pola, nama) => { const n = src.length; src = src.replace(pola, ''); assert.ok(src.length < n, 'tambahan G3 tidak ditemukan: ' + nama); };
+  buang(/, peserta: bersihPeserta\(a\.peserta\)/, 'validator');
+  buang(', peserta: bersihPeserta(Array.isArray(o.peserta) ? o.peserta.map(rapikanNama) : null)', 'mulaiLatihan');
+  buang(/\n    \/\/ v9\.2 G3: perbarui peserta[\s\S]*?\n    \};/, 'aturPesertaLatihan');
+  // intip v9.0: tanpa online dan tanpa intipRinci (pilihJalur tanpa opsi.hadir berperilaku seperti dulu)
+  { const n = src.length; src = src.replace(/    \/\/ v9\.2 G3: state hasil intip[\s\S]*?\n    function onlineDariHadir\(m\) \{[\s\S]*?\n    \}\n/, `    api.intip = function (kode) {
+      const c = cekTersedia(); if (!c.tersedia) return Promise.reject(new Error(c.alasan));
+      const k = normalKode(kode); if (!k) return Promise.reject(new Error('Kode room tidak valid.'));
+      if (rt && rt.kode === k && rt.state) return Promise.resolve(rt.state.ditutup ? null : salin(rt.state));
+      return pilihJalur(k).then(x => (x && !x.ditutup ? salin(x.state) : null), () => null);
+    };
+`); assert.ok(src.length < n, 'intip G3 tidak ditemukan'); }
+  assert.ok(!/bersihPeserta\(a\.peserta\)|aturPesertaLatihan|intipRinci/.test(src));
+  const ctx = { console, Date, Math, JSON, setTimeout: unrefT(setTimeout), clearTimeout, setInterval: unrefT(setInterval), clearInterval, crypto: globalThis.crypto, TextEncoder, TextDecoder };
+  ctx.window = ctx; vm.createContext(ctx); vm.runInContext(src, ctx, { filename: 'ruang-9.0.js' });
+  return ctx.UKP.ruang;
+}
+describe('ruang: peserta latihan (v9.2 G3)', () => {
+  const SOAL = ['A1-104', 'B6-126', 'A3-144'];
+  const TIM = ['Nicky', 'Mita', 'Nora', 'Jeni', 'Mega', 'Aldi'];
+  async function siapkan(opsiTuan) {
+    const jar = buatJaringan(); const urls = ['ws://r1', 'ws://r2']; urls.forEach(u => jar.relaiBaru(u));
+    const nicky = instans(jar, urls, opsiTuan);
+    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim UKP B', peserta: TIM, tingkat: 'B' });
+    await tunggu(() => nicky.api.status().tersambung);
+    const masuk = async (nama, o) => { const x = instans(jar, urls, o); await x.api.gabung(kode, nama); return x; };
+    return { jar, nicky, kode, masuk };
+  }
+
+  it('validator: opsional (tanpa field → null), nama tidak sah dan ganda dibuang, paling banyak 12, bukan larik → null; pesan tidak pernah ditolak', () => {
+    const t = Date.now();
+    const st = peserta => { const a = { jenis: 'latihan', id: 'sb-1', soalIds: SOAL, idx: 0, fase: 'jawab', mulaiSoal: t, detikPerSoal: 60, akhirSesi: null, hasilSoal: null, tim: null }; if (peserta !== undefined) a.peserta = peserta; return { v: 1, t, urut: t, d: 'abcdef', nama: 'Nicky', tuan: 'Nicky', room: { nama: 'Tim', peserta: ['Nicky'], tingkat: 'B' }, versiApp: '9.0', aktivitas: a, lobi: null }; };
+    const pes = x => { const v = P.validState(st(x)); assert.ok(v, 'state tetap sah: ' + JSON.stringify(x)); return v.aktivitas.peserta; };
+    assert.equal(pes(undefined), null);
+    assert.equal(pes(null), null);
+    assert.deepEqual(pes(['Mita', 'Nora']), ['Mita', 'Nora']);
+    assert.deepEqual(pes(['Mita', ' Nora', '', 'x'.repeat(25), 7, null, { n: 1 }, 'Bad\u0007', 'mita', 'MITA', 'Jeni']), ['Mita', 'Jeni']);
+    const banyak = Array.from({ length: 15 }, (_, i) => 'Orang ' + (i + 1));
+    assert.deepEqual(pes(banyak), banyak.slice(0, 12));
+    assert.equal(pes('Mita'), null); assert.equal(pes({ 0: 'Mita' }), null); assert.equal(pes([]), null); assert.equal(pes(['', ' ']), null);
+    // ujian tidak membawa peserta
+    const u = P.validAktivitas({ jenis: 'ujian', id: 'u-1', kode: 'X', judul: null, mulai: t, akhir: t + 1, status: 'jalan', peserta: ['Mita'] });
+    assert.equal(u.peserta, undefined);
+  });
+
+  it('bolak-balik lewat relai tiruan: mulaiLatihan({ peserta }) → anggota menerima; aturPesertaLatihan memperbarui; bertahan melewati bukaKunci dan aturSoal', async () => {
+    const { nicky, masuk } = await siapkan();
+    const mita = await masuk('Mita');
+    const s1 = nicky.api.mulaiLatihan({ id: 'sb-p1', soalIds: SOAL, detikPerSoal: 60, peserta: ['Mita', '  Nora  ', 'mita', 'Jes\u0000sie'] });
+    assert.deepEqual(s1.aktivitas.peserta, ['Mita', 'Nora', 'Jes sie']);
+    await tunggu(() => mita.api.state().aktivitas && mita.api.state().aktivitas.id === 'sb-p1');
+    assert.deepEqual(mita.api.state().aktivitas.peserta, ['Mita', 'Nora', 'Jes sie']);
+    assert.equal(mita.api.aturPesertaLatihan(['Mita']), false, 'anggota tidak bisa mengubah');
+    const s2 = nicky.api.aturPesertaLatihan(['Mita', 'Nora', 'Jeni']);
+    assert.deepEqual(s2.aktivitas.peserta, ['Mita', 'Nora', 'Jeni']);
+    await tunggu(() => (mita.api.state().aktivitas.peserta || []).length === 3, 2000, 'anggota menerima daftar baru');
+    nicky.api.bukaKunci('A1-104', { Mita: { o: 'D', k: 'yakin', b: 1 } }, { tim: { benar: 1, dijawab: 1 } });
+    await tunggu(() => mita.api.state().aktivitas.fase === 'kunci');
+    assert.deepEqual(mita.api.state().aktivitas.peserta, ['Mita', 'Nora', 'Jeni']);
+    nicky.api.aturSoal(1);
+    await tunggu(() => mita.api.state().aktivitas.idx === 1);
+    assert.deepEqual(mita.api.state().aktivitas.peserta, ['Mita', 'Nora', 'Jeni']);
+    assert.deepEqual(nicky.simpan.s.ruang.state.aktivitas.peserta, ['Mita', 'Nora', 'Jeni'], 'tersimpan untuk pulihkan()');
+    // null menghapus daftar; argumen bukan larik ditolak
+    assert.equal(nicky.api.aturPesertaLatihan('Mita'), false);
+    assert.equal(nicky.api.aturPesertaLatihan(null).aktivitas.peserta, null);
+    await tunggu(() => mita.api.state().aktivitas.peserta === null);
+    // tanpa peserta di mulaiLatihan → null; tanpa latihan berjalan atau saat ujian → false
+    assert.equal(nicky.api.mulaiLatihan({ id: 'sb-p2', soalIds: SOAL, detikPerSoal: 60 }).aktivitas.peserta, null);
+    nicky.api.akhiriAktivitas();
+    assert.equal(nicky.api.aturPesertaLatihan(['Mita']), false, 'tidak ada latihan berjalan');
+    nicky.api.mulaiUjian({ id: 'u-p', kode: 'KODE', akhir: Date.now() + 60000 });
+    assert.equal(nicky.api.aturPesertaLatihan(['Mita']), false, 'ujian tidak punya peserta latihan');
+  });
+
+  it('kompatibel: HP versi 9.0 ikut room yang dipimpin versi baru (field diabaikan, alur latihan utuh)', async () => {
+    const lama = muatRuangLama();
+    assert.equal(typeof lama.buatInstans({}).aturPesertaLatihan, 'undefined', 'versi lama memang tanpa fungsi baru');
+    const { nicky, masuk } = await siapkan();
+    const hpLama = await masuk('Mita', { R: lama });
+    assert.equal(hpLama.api.info().peran, 'anggota');
+    nicky.api.mulaiLatihan({ id: 'sb-k1', soalIds: SOAL, detikPerSoal: 60, peserta: ['Mita', 'Nora'] });
+    await tunggu(() => hpLama.api.state().aktivitas && hpLama.api.state().aktivitas.id === 'sb-k1', 2000, 'HP lama menerima latihan');
+    assert.equal(hpLama.api.state().aktivitas.peserta, undefined, 'validator lama membuang field');
+    nicky.api.aturPesertaLatihan(['Mita', 'Nora', 'Jeni']);
+    assert.ok(hpLama.api.kirimJawaban({ aktivitas: 'sb-k1', soalId: 'A1-104', o: 'B', k: 'ragu' }));
+    await tunggu(() => nicky.api.jawabanSemua().Mita && nicky.api.jawabanSemua().Mita.j['A1-104'] === 'B', 2000, 'jawaban HP lama sampai');
+    nicky.api.bukaKunci('A1-104', { Mita: { o: 'B', k: 'ragu', b: 1 } }, { penjelas: 'Mita', tim: { benar: 1, dijawab: 1 } });
+    await tunggu(() => hpLama.api.state().aktivitas.fase === 'kunci');
+    assert.equal(hpLama.api.state().aktivitas.hasilSoal.penjelas, 'Mita');
+    nicky.api.aturSoal(2);
+    await tunggu(() => hpLama.api.state().aktivitas.idx === 2);
+  });
+
+  it('kompatibel: pemimpin versi 9.0 memimpin HP versi baru (peserta dibaca null, alur latihan utuh)', async () => {
+    const lama = muatRuangLama();
+    const { nicky, masuk } = await siapkan({ R: lama });
+    const hpBaru = await masuk('Mita');
+    nicky.api.mulaiLatihan({ id: 'sb-k2', soalIds: SOAL, detikPerSoal: 60, peserta: ['Mita'] });
+    await tunggu(() => hpBaru.api.state().aktivitas && hpBaru.api.state().aktivitas.id === 'sb-k2', 2000, 'HP baru menerima latihan');
+    assert.equal(hpBaru.api.state().aktivitas.peserta, null, 'pesan lama tanpa field → null');
+    assert.ok(hpBaru.api.kirimJawaban({ aktivitas: 'sb-k2', soalId: 'A1-104', o: 'C' }));
+    await tunggu(() => nicky.api.jawabanSemua().Mita && nicky.api.jawabanSemua().Mita.j['A1-104'] === 'C', 2000, 'jawaban HP baru sampai ke pemimpin lama');
+    nicky.api.bukaKunci('A1-104', { Mita: { o: 'C', k: null, b: 0 } }, { tim: { benar: 0, dijawab: 1 } });
+    await tunggu(() => hpBaru.api.state().aktivitas.fase === 'kunci');
+    assert.deepEqual(hpBaru.api.state().aktivitas.tim, { benar: 0, dijawab: 1 });
+    assert.equal(hpBaru.api.state().aktivitas.peserta, null);
+  });
+});
+
+// v9.2 G3 (permintaan G2): intip membawa `online`; intipRinci membedakan room ditutup dari room tidak ada
+describe('ruang: intip online + intipRinci (v9.2 G3)', () => {
+  async function siapkan() {
+    const jar = buatJaringan(); jar.relaiBaru('ws://r1'); jar.relaiBaru('ws://r2');
+    const nicky = instans(jar, ['ws://r1', 'ws://r2']);
+    const kode = nicky.api.buat({ nama: 'Nicky', namaRoom: 'Tim UKP B', peserta: ['Nicky', 'Mita', 'Nora'], tingkat: 'B' });
+    await tunggu(() => nicky.api.status().tersambung);
+    const r1 = jar.relai.get('ws://r1');
+    await tunggu(() => Array.from(r1.retained.keys()).some(t => t.endsWith('/s')) && Array.from(r1.retained.keys()).some(t => t.includes('/h/')));
+    return { jar, nicky, kode, r1 };
+  }
+  const urut = a => (Array.isArray(a) ? a.slice().sort() : a);
+
+  it('online berisi pemimpin dan anggota yang tersambung; anggota yang keluar hilang; intip tidak meninggalkan kehadiran', async () => {
+    const { jar, nicky, kode, r1 } = await siapkan();
+    const mita = instans(jar, ['ws://r1', 'ws://r2']); await mita.api.gabung(kode, 'Mita');
+    await tunggu(() => nicky.api.status().online.includes('Mita'));
+    const sebelum = Array.from(r1.retained.keys()).sort();
+    const tamu = instans(jar, ['ws://r1', 'ws://r2']);
+    const t0 = Date.now(); const st = await tamu.api.intip(kode); const lama = Date.now() - t0;
+    assert.equal(st.tuan, 'Nicky'); assert.deepEqual(urut(st.online), ['Mita', 'Nicky']);
+    assert.ok(lama < 1500, 'cepat: ' + lama + ' ms');
+    const rinci = await tamu.api.intipRinci(kode);
+    assert.equal(rinci.ditutup, false); assert.deepEqual(urut(rinci.online), ['Mita', 'Nicky']); assert.deepEqual(urut(rinci.state.online), ['Mita', 'Nicky']);
+    await tidur(80);
+    assert.deepEqual(Array.from(r1.retained.keys()).sort(), sebelum, 'intip tidak menerbitkan apa pun (tanpa kehadiran/last will)');
+    assert.equal(tamu.api.info(), null); assert.ok(!nicky.api.status().online.some(n => /tamu/i.test(n)));
+    assert.equal(r1.klien.size, 2, 'sambungan intip diputus (tersisa Nicky dan Mita)');
+    await mita.api.keluar();
+    await tunggu(() => !nicky.api.status().online.includes('Mita'));
+    assert.deepEqual((await tamu.api.intip(kode)).online, ['Nicky'], 'Mita keluar → tidak online');
+  });
+
+  it('kehadiran basi (lebih lama dari hadirBasiMs) tidak dihitung; pemimpin terputus tidak wajar (last will) → online kosong []', async () => {
+    const { jar, nicky, kode } = await siapkan();
+    const tamu = instans(jar, ['ws://r1', 'ws://r2'], { konfig: { hadirBasiMs: 1 } });
+    await tidur(20);
+    assert.deepEqual((await tamu.api.intip(kode)).online, [], 'retained terlalu lama → bukan online');
+    // pemimpin putus tidak wajar di kedua jalur → last will online:false; state tetap ada
+    nicky.api.jeda && nicky.api.jeda();
+    await tidur(100);
+    const t2 = instans(jar, ['ws://r1', 'ws://r2']);
+    const x = await t2.api.intipRinci(kode);
+    assert.ok(x.state, 'room tetap ditemukan'); assert.equal(x.ditutup, false); assert.ok(Array.isArray(x.online));
+  });
+
+  it('intipRinci: room hidup, room bernisan, room tidak ada, jalur mati; intip lama tetap state atau null', async () => {
+    const { jar, nicky, kode } = await siapkan();
+    const tamu = instans(jar, ['ws://r1', 'ws://r2']);
+    const hidup = await tamu.api.intipRinci(kode);
+    assert.equal(hidup.state.room.nama, 'Tim UKP B'); assert.equal(hidup.ditutup, false); assert.deepEqual(hidup.online, ['Nicky']);
+    const takAda = await tamu.api.intipRinci('ABCD-EFGHJ-KMNPQ');
+    assert.deepEqual(json(takAda), { state: null, ditutup: false, online: null });
+    const mati = instans(jar, ['ws://tidak-ada']);
+    assert.deepEqual(json(await mati.api.intipRinci(kode)), { state: null, ditutup: false, online: null }, 'jalur mati → tidak diketahui');
+    assert.equal(await mati.api.intip(kode), null);
+    await assert.rejects(tamu.api.intipRinci('ABCD'), /tidak valid/);
+    await nicky.api.tutup();
+    const nisan = await tamu.api.intipRinci(kode);
+    assert.deepEqual(json(nisan), { state: null, ditutup: true, online: null });
+    assert.equal(await tamu.api.intip(kode), null, 'intip lama: room ditutup → null');
+  });
+
+  it('kabel tidak berubah: HP versi 9.0 tetap bisa intip room versi baru dan sebaliknya (online hanya tambahan di sisi pembaca)', async () => {
+    const lama = muatRuangLama();
+    const { jar, kode } = await siapkan();
+    const tamuLama = instans(jar, ['ws://r1', 'ws://r2'], { R: lama });
+    const st = await tamuLama.api.intip(kode); assert.equal(st.tuan, 'Nicky'); assert.equal(st.online, undefined);
+    // pemimpin 9.0 → intip versi baru membaca online dari kehadiran format lama
+    const jar2 = buatJaringan(); jar2.relaiBaru('ws://q1');
+    const pLama = instans(jar2, ['ws://q1'], { R: lama });
+    const k2 = pLama.api.buat({ nama: 'Rina', namaRoom: 'Tim Lama', peserta: ['Rina'], tingkat: 'A' });
+    await tunggu(() => pLama.api.status().tersambung);
+    await tunggu(() => Array.from(jar2.relai.get('ws://q1').retained.keys()).some(t => t.includes('/h/')));
+    const baru = instans(jar2, ['ws://q1']);
+    const x = await baru.api.intipRinci(k2);
+    assert.equal(x.state.tuan, 'Rina'); assert.deepEqual(x.online, ['Rina']);
   });
 });

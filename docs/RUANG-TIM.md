@@ -40,7 +40,7 @@ Kode room terdiri dari 14 karakter tanpa huruf yang mirip (tanpa 0/O, 1/I/L), di
 ## 4. Alur pemimpin (Nicky)
 
 ### 4.1 Membuat room (sekali saja)
-1. **Beranda → blok Tim → "Buat room tim".** Bila tim lokal sudah pernah diisi (`Nicky, Mia, Novia, Jessie, Melva, Alfi`), daftar itu langsung terpakai.
+1. **Beranda → blok Tim → "Buat room tim".** Bila tim lokal sudah pernah diisi, daftar itu langsung terpakai.
 2. Dialog **Buat room tim**: *Nama room* (bawaan "Tim UKP B"), *Anggota* (chip nama, bisa ditambah atau dihapus, maks. 12), *Tingkat* (B). Tombol **Buat room**.
 3. Layar **Room siap**: kode besar, tombol **Bagikan ke WhatsApp** (berbagi bawaan HP, atau `wa.me` di laptop) dan **Salin tautan**. Teks undangan:
    > Room MABAR UKP "Tim UKP B". Buka tautan ini di HP, lalu ketuk nama Anda: https://nickylourenzo27-sketch.github.io/Latihan-UKP/#room/K7QM-3XRTA-9HWPE
@@ -67,18 +67,18 @@ Kode room terdiri dari 14 karakter tanpa huruf yang mirip (tanpa 0/O, 1/I/L), di
 2. Semua HP menampilkan **"Ujian tim dimulai"**.
 3. **Ruang ujian** di laptop menampilkan tiap orang: "belum mulai" → "sedang mengerjakan · 12/40 terisi" → "sudah mengumpulkan · 38/40". Jawaban anggota masuk sendiri tanpa menempel kode. Tempel kode jawaban (v8.1) tetap tersedia sebagai cadangan.
 4. **Nilai sekarang** (atau otomatis menawarkan saat waktu habis) membuat Hasil ujian tim, yang diterbitkan ke room, lalu aktivitas room berakhir. Tepat satu tombol primer di ruang ujian ("Nilai sekarang"); cadangan kode jawaban ada di lipatan "Pakai kode jawaban".
-5. Hasil di laptop pemandu: skor per orang (urutan peserta, bukan peringkat), per kelompok, matriks soal × orang (tetap terbuka, sesuai keinginan Nicky), urutan bahas dengan kalimat penjelas bernama ("Hanya Jessie yang benar: Jessie jelaskan ke semua"). Peringkat **mati sebagai bawaan**; sakelar "Tampilkan peringkat" hanya di laptop pemandu, diingat di perangkat itu, dan tidak pernah dikirim ke room.
+5. Hasil di laptop pemandu: skor per orang (urutan peserta, bukan peringkat), per kelompok, matriks soal × orang (tetap terbuka, sesuai keinginan Nicky), urutan bahas dengan kalimat penjelas bernama ("Hanya Yoga yang benar: Yoga jelaskan ke semua"). Peringkat **mati sebagai bawaan**; sakelar "Tampilkan peringkat" hanya di laptop pemandu, diingat di perangkat itu, dan tidak pernah dikirim ke room.
 
-## 5. Alur anggota (Mia di HP)
+## 5. Alur anggota (Budi di HP)
 
 ### 5.1 Pertama kali: buka tautan → ketuk nama
 - Tautan `#room/<kode>` **tidak melewati onboarding 5 langkah**. Layar tunggal:
   > **Gabung room "Tim UKP B"** · Tingkat B
-  > Siapa Anda?  [Nicky] [Mia] [Novia] [Jessie] [Melva] [Alfi]  [Nama lain…]
+  > Siapa Anda?  [Nicky] [Budi] [Sari] [Yoga] [Tika] [Hadi]  [Nama lain…]
   > (ketuk nama → layar "Sebelum masuk" sekali saja → **Mengerti**)
-- Nama diambil dari room. Nama yang sedang online di perangkat lain diberi keterangan "sedang dipakai di perangkat lain"; mengetuknya memunculkan "Mia sudah masuk di perangkat lain" dengan pilihan **Ini saya, masuk di sini** atau **Pilih nama lain**.
+- Nama diambil dari room. Nama yang sedang online di perangkat lain diberi keterangan "sedang dipakai di perangkat lain"; mengetuknya memunculkan "Budi sudah masuk di perangkat lain" dengan pilihan **Ini saya, masuk di sini** atau **Pilih nama lain**.
 - Layar **Sebelum masuk** (sekali per room): "Jawaban dan hasil latihan Anda terlihat oleh anggota room. Siapa pun yang memegang tautan room bisa masuk, jadi jangan teruskan tautan ke luar tim."
-- Masuk menyetel nama profil dan tingkat dari room dan menandai onboarding selesai, lalu membuka lobi. Pengunjung baru yang masuk lewat tautan tidak terlempar ke onboarding saat membuka Beranda, ujian, atau hasil (diuji). Bila perangkat sudah punya profil dengan nama lain, aplikasi bertanya: "Masuk sebagai Mia? Nama profil Anda tetap …".
+- Masuk menyetel nama profil dan tingkat dari room dan menandai onboarding selesai, lalu membuka lobi. Pengunjung baru yang masuk lewat tautan tidak terlempar ke onboarding saat membuka Beranda, ujian, atau hasil (diuji). Bila perangkat sudah punya profil dengan nama lain, aplikasi bertanya: "Masuk sebagai Budi? Nama profil Anda tetap …".
 - Pembukaan berikutnya: website langsung tersambung ke room. Beranda menampilkan blok Tim dengan "Tim UKP B · 5 online".
 
 ### 5.2 Saat pemimpin memulai latihan
@@ -86,9 +86,9 @@ HP berpindah ke **layar latihan room** (tanpa navigasi aplikasi, satu kolom):
 1. Soal (kode, stem, opsi A–D sebagai teks), lalu **tombol besar A B C D** dan baris **Y R N** ("Seberapa yakin?"), serta **Tidak tahu**.
 2. Ketuk huruf: jawaban langsung terkirim. Ketuk Y/R/N untuk melengkapi. Jawaban masih bisa diganti sampai kunci dibuka.
 3. Status di bar bawah: **"Jawaban terkirim · menunggu kunci (4/6 sudah menjawab)"**. Bila sambungan putus: "Belum terkirim · menyambung ulang…" (jawaban dikirim ulang otomatis).
-4. Setelah kunci: **Benar** atau **Salah · kunci B**, **sebaran jawaban tim tanpa nama** ("A 1 · B 3 · D 2"), penjelas yang menyebut orang yang **benar** ("Mia jelaskan kenapa B"; nama yang salah tidak pernah tampil di HP), dan **pembahasan** soal (bisa dilipat).
+4. Setelah kunci: **Benar** atau **Salah · kunci B**, **sebaran jawaban tim tanpa nama** ("A 1 · B 3 · D 2"), penjelas yang menyebut orang yang **benar** ("Budi jelaskan kenapa B"; nama yang salah tidak pernah tampil di HP), dan **pembahasan** soal (bisa dilipat).
 5. "Menunggu soal berikutnya…" sampai pemimpin menekan Lanjut.
-6. Di akhir: **"Sesi selesai · Lihat evaluasi"**. Jawaban Mia juga tercatat di Kemajuan pribadinya.
+6. Di akhir: **"Sesi selesai · Lihat evaluasi"**. Jawaban Budi juga tercatat di Kemajuan pribadinya.
 
 ### 5.3 Saat pemimpin memulai ujian tim
 1. Kartu penuh layar: **"Ujian tim dimulai · Try Out B 1–40 · 40 soal · sisa 1:23:40"**, dengan tombol **Mulai mengerjakan**.
@@ -105,10 +105,10 @@ Semua anggota bisa membuka **Riwayat room** di lobi, lalu Evaluasi tim atau Hasi
 | Keadaan | Yang terjadi | Teks UI |
 |---|---|---|
 | **Anggota terlambat** | Saat tersambung, HP langsung menerima keadaan room (soal yang sedang berjalan, fase jawab atau kunci, sisa waktu). Soal yang sudah lewat tidak bisa dijawab lagi. | "Anda bergabung di soal 6 dari 20." |
-| **Sinyal anggota putus** | Jawaban yang belum terkirim disimpan dan dikirim ulang begitu tersambung. Sambung ulang otomatis (1 → 2 → 5 → 10 → 20 dtk). Di papan pemimpin, titik orang itu menjadi abu-abu setelah ±1,5 menit tanpa kabar, dan pemimpin bisa mengetuk untuknya. | HP: "Menyambung ulang… jawaban Anda aman." Papan: "Mia offline" |
+| **Sinyal anggota putus** | Jawaban yang belum terkirim disimpan dan dikirim ulang begitu tersambung. Sambung ulang otomatis (1 → 2 → 5 → 10 → 20 dtk). Di papan pemimpin, titik orang itu menjadi abu-abu setelah ±1,5 menit tanpa kabar, dan pemimpin bisa mengetuk untuknya. | HP: "Menyambung ulang… jawaban Anda aman." Papan: "Budi offline" |
 | **Laptop pemimpin ditutup atau tertidur** | Keadaan terakhir tetap ada di relai, jadi HP tetap menampilkan soal terakhir. Lima menit tanpa kabar dari pemimpin memunculkan pesan di HP. Saat laptop dibuka lagi, aplikasi menawarkan **Lanjutkan latihan di room** (melanjutkan dari soal yang sama) atau **Akhiri**. | HP: "Pemimpin sedang tidak terhubung. Tunggu, atau minta salah satu anggota mengambil alih." |
-| **Dua perangkat mengaku pemimpin** | Keadaan room hanya diterima bila nomor urutnya naik. Perangkat yang menekan **Jadikan perangkat ini pemimpin** (Menu, dengan konfirmasi) menerbitkan keadaan baru. Pemimpin lama yang melihatnya otomatis turun menjadi anggota. | Pemimpin lama: "Novia sekarang memimpin room dari perangkatnya." |
-| **Nama yang sama di dua HP** | Kedua HP akan saling menimpa jawaban. Layar gabung memperingatkan bila nama itu sedang online. | "Mia sudah masuk di perangkat lain." · Ini saya, masuk di sini · Pilih nama lain |
+| **Dua perangkat mengaku pemimpin** | Keadaan room hanya diterima bila nomor urutnya naik. Perangkat yang menekan **Jadikan perangkat ini pemimpin** (Menu, dengan konfirmasi) menerbitkan keadaan baru. Pemimpin lama yang melihatnya otomatis turun menjadi anggota. | Pemimpin lama: "Sari sekarang memimpin room dari perangkatnya." |
+| **Nama yang sama di dua HP** | Kedua HP akan saling menimpa jawaban. Layar gabung memperingatkan bila nama itu sedang online. | "Budi sudah masuk di perangkat lain." · Ini saya, masuk di sini · Pilih nama lain |
 | **Versi aplikasi berbeda** | Keadaan room membawa versi aplikasi pemimpin. Bila berbeda, tampil spanduk dengan tombol **Muat ulang**. Soal yang tidak ada di perangkat itu tidak bisa ditampilkan. | "Versi aplikasi Anda (8.1) berbeda dengan pemimpin (8.2). Muat ulang agar soal sama." |
 | **Room dibuka di claude.ai (Artifact) atau server tim ber-CSP** | Koneksi keluar diblokir di sana, sehingga room tidak tersedia. Blok Tim di Beranda berganti ke **Mulai latihan bersama** (satu layar); ujian tim dengan kode jawaban v8.1 tetap berjalan. | "Room online hanya tersedia di website tim." (tautan ke situs, tab baru) |
 | **Halaman dibuka lewat `file://` atau `http://` non-lokal** | WebCrypto tidak tersedia, jadi room dinyatakan tidak tersedia. | sama seperti di atas |
@@ -122,7 +122,7 @@ Semua anggota bisa membuka **Riwayat room** di lobi, lalu Evaluasi tim atau Hasi
 | Tempat | Teks |
 |---|---|
 | Blok Tim, belum ada room | **Latihan bersama tim** · "Sekali saja. Tautannya dibagikan ke grup WA." · [Buat room tim] · Sudah punya tautan? Tempel di sini · Latihan satu layar · Ujian tim · Riwayat tim |
-| Blok Tim, pemandu di room | **Tim UKP B** · "Nicky, Mia sedang di room" · [Mulai latihan bersama] · Ujian tim · Riwayat tim · Bagikan tautan |
+| Blok Tim, pemandu di room | **Tim UKP B** · "Nicky, Budi sedang di room" · [Mulai latihan bersama] · Ujian tim · Riwayat tim · Bagikan tautan |
 | Blok Tim, anggota di room | **Tim UKP B** · [Masuk room] (saat aktivitas berjalan: [Ikut latihan sekarang] / [Ikut ujian tim]) |
 | Blok Tim, aktivitas berjalan (pemandu) | "Latihan bersama sedang berjalan · soal 7 dari 20" · [Kembali ke latihan], atau "Ujian tim sedang berjalan" · [Buka ruang ujian] |
 | Blok Tim, room tidak tersedia | **Latihan bersama tim** · [Mulai latihan bersama] (satu layar) · "Room online hanya tersedia di website tim." |
@@ -145,7 +145,7 @@ Semua anggota bisa membuka **Riwayat room** di lobi, lalu Evaluasi tim atau Hasi
 ## 9. Tata letak sesi (menjawab "susunan layout masih kacau")
 
 Diagnosis lengkapnya ada di `scratchpad/v82/audit-tata-letak.md` (T1–T13). Dampaknya pada room:
-- **Semua layar sesi** (latihan perorangan, latihan bersama, layar room anggota, Evaluasi) memakai mode fokus sungguhan di desktop. Sidebar dan topbar disembunyikan, dan hanya ada **satu kepala**: kiri "Room Tim UKP B · Soal 7 dari 10 · 24:30", tengah "6 orang: Nicky, Mia, …", kanan **Menu**. Kolom isi terpusat dengan lebar tetap: 760 px untuk perorangan, 960 px untuk bersama dan Evaluasi. Ini meniru foto referensi.
+- **Semua layar sesi** (latihan perorangan, latihan bersama, layar room anggota, Evaluasi) memakai mode fokus sungguhan di desktop. Sidebar dan topbar disembunyikan, dan hanya ada **satu kepala**: kiri "Room Tim UKP B · Soal 7 dari 10 · 24:30", tengah "6 orang: Nicky, Budi, …", kanan **Menu**. Kolom isi terpusat dengan lebar tetap: 760 px untuk perorangan, 960 px untuk bersama dan Evaluasi. Ini meniru foto referensi.
 - **Bar bawah satu baris**, berisi hitungan "4/6 menjawab" dan satu tombol utama. "Ke menu" dan "Selesai sekarang" pindah ke Menu.
 - **Papan 6 orang**: tombol mulai tepat sesudah nama (kolom nama maks. 16 rem) dengan garis bantu antar-baris.
 - **Kunci otomatis** tidak lagi menggeser tombol di bawah kursor: tampil hitung mundur 2 dtk dan tombol **Tahan**, lalu tombol utama ditahan 800 ms.

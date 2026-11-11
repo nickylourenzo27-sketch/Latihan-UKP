@@ -105,12 +105,12 @@
     + '.umpan .keyakinan-tadi .seg button{flex:0 0 auto;min-height:32px;padding:2px 10px;font-size:var(--fs-caption,.8125rem)}'
     + '@media (pointer:coarse){.umpan .keyakinan-tadi .seg button{min-height:36px}}');
   // Momen 2: kombinasi keyakinan × hasil → [nada pill, ikon, judul, keterangan] (tampilan saja; penilaian tidak berubah)
-  const LABEL_YAKIN = { yakin: 'Yakin', ragu: 'Ragu', menebak: 'Menebak' };
+  const LABEL_YAKIN = { yakin: 'Yakin', ragu: 'Ragu', menebak: 'Nebak' }; // v9.2 G1: istilah baku Yakin · Ragu · Nebak
   function komboYakin(yk, benar) {
     if (!LABEL_YAKIN[yk]) return null;
     if (yk === 'yakin') return benar ? ['ok', null, 'Yakin dan benar', 'keyakinan Anda tepat.'] : ['attn', 'peringatan', 'Yakin tetapi keliru', 'soal paling berharga untuk diulang.'];
     if (yk === 'ragu') return benar ? ['info', null, 'Ragu tetapi benar', 'baca alasannya agar lain kali yakin.'] : ['netral', null, 'Ragu dan keliru', 'pelajari kalimat inti di bawah.'];
-    return benar ? ['warn', null, 'Menebak dan benar', 'beruntung, ulang besok.'] : ['netral', null, 'Menebak dan keliru', 'wajar; pelajari pembahasannya.'];
+    return benar ? ['warn', null, 'Nebak dan benar', 'beruntung, ulang besok.'] : ['netral', null, 'Nebak dan keliru', 'wajar; pelajari pembahasannya.'];
   }
   UKP.c.komboYakin = komboYakin;
   // elemen kombinasi di kop panel umpan (dipakai UKP.c.umpan dan penanda susulan "Tadi Anda" pada jawab langsung)
@@ -145,7 +145,7 @@
     const wrap = h('div', { class: 'soal' + (opsi.bersama && Array.isArray(opsi.bersama.peserta) && opsi.bersama.peserta.length && mode === 'belajar' && !hanyaBaca && !opsi.ringkas ? ' soal-bersama' + (opsi.bersama.mode === 'ujian' ? ' soal-bersama-ujian' : '') : ''), 'data-id': soal.id, 'data-baru': mode !== 'ujian' && !hanyaBaca && gerak() ? '' : null });
     if (wrap.hasAttribute('data-baru')) { const lepasBaru = () => wrap.removeAttribute('data-baru'); wrap.addEventListener('animationend', e => { if (e.target === wrap) lepasBaru(); }); setTimeout(lepasBaru, 600); }
     const ringkas = !!opsi.ringkas && mode === 'belajar' && !hanyaBaca;
-    // latihan bersama (v7.9, papan v8.0; opsi.bersama = { peserta: ['Nicky', 'Mia', 'Novia'] }): satu layar untuk beberapa orang. Opsi A–D
+    // latihan bersama (v7.9, papan v8.0; opsi.bersama = { peserta: ['Nicky', 'Mita', 'Nora'] }): satu layar untuk beberapa orang. Opsi A–D
     // di soal hanya tampilan; papan "Jawaban tiap orang" di bawahnya berisi satu baris per orang: A B C D · Y R N (yakin, ragu, menebak) · –
     // (tidak menjawab). Pintasan: 1–9 memilih baris, lalu A–D / Y R N / - untuk baris itu; Enter = Lihat kunci / Lanjut. Kunci dibuka otomatis
     // hanya bila semua orang punya huruf DAN keyakinan (atau "–"); selain itu lewat "Lihat kunci". Chip nama di opsi muncul setelah kunci
@@ -265,21 +265,23 @@
     function tandaiHasil() {
       const kl = labels[soal.kunci];
       if (bersama) {
-        if (kl) { kl.dataset.hasil = 'kunci'; tanda(kl, 'Kunci', 'check'); }
+        if (kl) { kl.dataset.hasil = 'kunci'; tanda(kl, 'Kunci jawaban', 'check'); }
         new Set(pesertaB.map(n => jb[n]).filter(v => v && v !== '-' && v !== soal.kunci)).forEach(k => { if (labels[k]) { labels[k].dataset.hasil = 'salah'; tanda(labels[k], 'Salah', 'x'); } });
         return;
       }
-      if (kl) { kl.dataset.hasil = 'kunci'; tanda(kl, langsung && dipilih === soal.kunci ? 'Benar' : 'Kunci', 'check'); }
+      if (kl) { kl.dataset.hasil = 'kunci'; tanda(kl, langsung && dipilih === soal.kunci ? 'Benar' : 'Kunci jawaban', 'check'); }
       if (dipilih && dipilih !== soal.kunci && labels[dipilih]) { labels[dipilih].dataset.hasil = 'salah'; tanda(labels[dipilih], 'Jawaban Anda', 'x'); }
     }
     tandaiDipilih();
     // ---------- latihan bersama: papan "Jawaban tiap orang" (v8.0: A B C D · Y R N · – per baris) ----------
     // jb[nama] = 'A'–'D' | '-' (tidak menjawab); yb[nama] = 'yakin' | 'ragu' | 'menebak'; aktif = indeks baris tujuan pintasan keyboard
-    const jb = {}; const yb = {}; const rb = {}; const barisP = {}; let papan = null, btnKunci = null, hitungEl = null, aktif = 0, tBuka = null;
+    const jb = {}; const yb = {}; const rb = {}; const barisP = {}; let papan = null, btnKunci = null, ketKunci = null, ketKunciHp = null, hitungEl = null, aktif = 0, tBuka = null;
     // v8.2 B2 papan jarak jauh (room tim): sumberB[nama] = 'hp' (diisi dari HP lewat wrap.isiJauh; huruf disembunyikan sampai kunci) |
     // 'papan' (diketuk di layar ini); hadirB = { nama: 'online' | 'offline' } dari wrap.aturHadir (null = tanpa status, satu layar);
     // bukaIsi[nama] = baris offline yang dibuka lewat "isi untuk <nama>"
-    const sumberB = {}; let hadirB = null; const bukaIsi = {};
+    // v9.2 G1: hadirB = { nama: 'online' | 'belum' (belum pernah membuka HP) | 'terputus' (sempat masuk lalu HP terputus) };
+    // bukaUbah[nama] = baris yang sudah menjawab dari HP dibuka lewat "Ubah" untuk ditimpa
+    const sumberB = {}; let hadirB = null; const bukaIsi = {}; const bukaUbah = {};
     const namaPemandu = bersama ? String((opsi.bersama && opsi.bersama.namaPemandu) || '').trim() : '';
     // isi awal papan (v8.1): mode ujian { nama: { o, ragu } }; mode latihan (lanjutkan sesi) { nama: { o, k } }; nama tanpa peduli kapital
     if (bersama && opsi.bersama.awal && typeof opsi.bersama.awal === 'object') {
@@ -296,41 +298,60 @@
     // nilai yang tampak di papan (baris HP sebelum kunci tidak menampakkan huruf) → dasar sakelar ketukan ulang
     const tampakJ = n => sumberB[n] === 'hp' ? undefined : jb[n]; const tampakY = n => sumberB[n] === 'hp' ? undefined : yb[n];
     const pemimpinB = bersama ? (() => { let nm = ''; try { nm = String(UKP.store.get().profil.nama || '').replace(/\s+/g, ' ').trim().toLowerCase(); } catch (e) {} return nm ? pesertaB.find(n => n.toLowerCase() === nm) || null : null; })() : null;
-    const YRN = [['Y', 'yakin', 'Yakin'], ['R', 'ragu', 'Ragu'], ['N', 'menebak', 'Menebak']];
+    const YRN = [['Y', 'yakin', 'Yakin'], ['R', 'ragu', 'Ragu'], ['N', 'menebak', 'Nebak']];
     const lengkap = n => ujianB ? !!jb[n] : jb[n] === '-' || (!!jb[n] && !!yb[n]);
     const nSudah = () => pesertaB.filter(n => jb[n]).length;
     const barisAktif = () => pesertaB[aktif] || pesertaB[0] || null;
     // setelah baris lengkap: pindah ke baris berikutnya yang belum lengkap (berputar); tetap bila semua lengkap
+    // v9.2 (V9 S4): baris yang jawabannya datang dari HP (juga yang belum memilih keyakinan) dilewati baris aktif dan pintasan papan ketik
+    // sampai "Ubah" diketuk di baris itu; huruf HP tidak pernah tampil sebelum kunci jawaban dibuka
+    const kunciHp = n => sumberB[n] === 'hp' && !!jb[n] && !bukaUbah[n];
+    const bisaAktif = n => !lengkap(n) && !kunciHp(n);
     function majuAktif(dari) {
-      for (let i = 1; i <= pesertaB.length; i++) { const j = (dari + i) % pesertaB.length; if (!lengkap(pesertaB[j])) { aktif = j; return; } }
+      for (let i = 1; i <= pesertaB.length; i++) { const j = (dari + i) % pesertaB.length; if (bisaAktif(pesertaB[j])) { aktif = j; return; } }
     }
-    if (bersama && !lengkap(pesertaB[0])) aktif = 0; else if (bersama) majuAktif(0);
+    if (bersama && bisaAktif(pesertaB[0])) aktif = 0; else if (bersama) majuAktif(0);
+    // v9.2 G1 papan yang bisa dibaca orang baru: kalimat arahan di atas papan, kepala kolom ("Jawaban", "Seberapa yakin", "Tidak menjawab")
+    // tepat di atas tombolnya (legenda pojok dihapus), nomor untuk semua baris (pintasan 1–9 dan 0 = baris ke-10)
+    let arahanEl = null;
     if (bersama) {
       const jid = 'papan-' + uid;
+      arahanEl = ujianB ? null : h('p', { class: 'papan-arahan' }, 'Ketuk jawaban tiap orang.');
+      const kepala = h('div', { class: 'papan-kepala', 'aria-hidden': 'true' }, h('span', { class: 'papan-no' }), h('span', { class: 'papan-nama' }),
+        h('span', { class: 'papan-pilihan' }, h('span', { class: 'papan-kol papan-kol-jawab' }, 'Jawaban'),
+          h('span', { class: 'papan-kol papan-kol-yakin' }, ujianB ? 'Ragu' : 'Seberapa yakin'), h('span', { class: 'papan-kol papan-kol-kosong' }, 'Tidak menjawab')));
       papan = h('div', { class: 'papan-bersama', role: 'group', 'aria-labelledby': jid },
-        h('div', { class: 'papan-kop' }, h('span', { class: 'papan-judul', id: jid }, 'Jawaban tiap orang'),
-          h('span', { class: 'papan-legenda', 'aria-hidden': 'true' }, ujianB ? 'R ragu · – kosong' : 'Y yakin · R ragu · N menebak')),
+        h('div', { class: 'papan-kop' }, h('span', { class: 'papan-judul', id: jid }, 'Jawaban tiap orang'), arahanEl),
+        kepala,
         h('ul', { class: 'papan-daftar' }, pesertaB.map((nama, i) => {
           const nid = 'papan-' + uid + '-' + i;
           const pilihBaris = () => { aktif = i; };
           const tombol = HURUF.filter(k => labels[k]).map(v => h('button', { type: 'button', class: 'papan-opsi', 'data-opsi': v, 'aria-pressed': 'false', 'aria-label': 'Jawaban ' + v, onclick: () => { pilihBaris(); beriJawaban(nama, tampakJ(nama) === v ? null : v, false); } }, v));
-          const tombolY = ujianB ? [] : YRN.map(([t, v, lbl]) => h('button', { type: 'button', class: 'papan-yk', 'data-yakin': v, 'aria-pressed': 'false', 'aria-label': lbl, title: lbl, onclick: () => { pilihBaris(); beriYakin(nama, tampakY(nama) === v ? null : v, false); } }, t));
+          const tombolY = ujianB ? [] : YRN.map(([t, v, lbl]) => h('button', { type: 'button', class: 'papan-yk', 'data-yakin': v, 'aria-pressed': 'false', 'aria-label': lbl, title: lbl, onclick: () => { pilihBaris(); beriYakin(nama, tampakY(nama) === v ? null : v, false); } },
+            h('span', { class: 'yk-pendek', 'aria-hidden': 'true' }, t), h('span', { class: 'yk-panjang', 'aria-hidden': 'true' }, lbl)));
           const kosong = h('button', { type: 'button', class: 'papan-opsi papan-kosong', 'data-opsi': '-', 'aria-pressed': 'false', 'aria-label': 'Tidak menjawab', title: 'Tidak menjawab', onclick: () => { pilihBaris(); beriJawaban(nama, tampakJ(nama) === '-' ? null : '-', false); } }, '–');
           const hasilEl = h('span', { class: 'papan-hasil', hidden: true });
           // v8.1 papan mode ujian: tombol "Ragu" (aria-pressed) menggantikan Y R N
           const tombolRagu = ujianB ? h('button', { type: 'button', class: 'papan-ragu', 'aria-pressed': 'false', 'aria-keyshortcuts': 'R', 'aria-label': 'Ragu ' + nama, title: 'Tandai ragu', onclick: () => { pilihBaris(); beriRagu(nama, !rb[nama], false); } }, 'Ragu') : null;
-          // v8.2 B2: status room di bawah nama ("sudah menjawab", "belum", "offline", "diisi Nicky") + tautan "isi untuk <nama>"
+          // status room di bawah nama ("belum menjawab", "belum membuka HP", "HP terputus", "diisi <pemimpin>")
           const statusEl = h('span', { class: 'papan-status', hidden: true });
-          const isiEl = ujianB ? null : h('button', { type: 'button', class: 'btn btn-text btn-sm papan-isi', hidden: true, 'aria-expanded': 'false', onclick: () => { bukaIsi[nama] = !bukaIsi[nama]; gambarPapan(); if (bukaIsi[nama]) { const t = barisP[nama].tombol[0]; if (t) fokus(t); } } }, 'isi untuk ' + nama);
+          // v9.2 G1: baris HP terputus dilipat di balik "HP terputus. Ketuk jawaban <nama> di sini" (di tempat tombol, tinggi baris tetap)
+          const isiEl = ujianB ? null : h('button', { type: 'button', class: 'btn btn-text btn-sm papan-isi', hidden: true, 'aria-expanded': 'false', onclick: () => { bukaIsi[nama] = true; gambarPapan(); const t = barisP[nama].tombol[0]; if (t) fokus(t); } }, 'HP terputus. Ketuk jawaban ' + nama + ' di sini');
+          // v9.2 G1: baris yang sudah menjawab dari HP: tombol disembunyikan, "Sudah menjawab dari HP" + "Ubah" (huruf tetap rahasia sampai kunci dibuka)
+          const jauhTeks = h('span', { class: 'papan-jauh-teks' }, 'Sudah menjawab dari HP');
+          const jauhEl = ujianB ? null : h('span', { class: 'papan-jauh', hidden: true }, ikon('check', null, true), jauhTeks,
+            h('button', { type: 'button', class: 'btn btn-text btn-sm papan-ubah', 'aria-label': 'Ubah jawaban ' + nama, onclick: () => { bukaUbah[nama] = true; aktif = i; gambarPapan(); const t = barisP[nama].tombol[0]; if (t) fokus(t); } }, 'Ubah'));
           const li = h('li', { class: 'papan-baris' },
-            h('span', { class: 'papan-no', 'aria-hidden': 'true' }, i < 9 ? String(i + 1) : ''),
+            h('span', { class: 'papan-no', 'aria-hidden': 'true' }, String(i + 1)),
             h('span', { class: 'papan-nama', id: nid, title: nama }, nama),
-            h('span', { class: 'papan-pilihan' },
-              h('span', { class: 'papan-tombol', role: 'group', 'aria-label': 'Jawaban ' + nama }, tombol),
-              ujianB ? tombolRagu : h('span', { class: 'papan-yakin', role: 'group', 'aria-label': 'Keyakinan ' + nama }, tombolY),
-              kosong),
+            h('span', { class: 'papan-sel' },
+              h('span', { class: 'papan-pilihan' },
+                h('span', { class: 'papan-tombol', role: 'group', 'aria-label': 'Jawaban ' + nama }, tombol),
+                ujianB ? tombolRagu : h('span', { class: 'papan-yakin', role: 'group', 'aria-label': 'Keyakinan ' + nama }, tombolY),
+                h('span', { class: 'papan-kosong-wadah' }, kosong)),
+              jauhEl, isiEl),
             hasilEl);
-          barisP[nama] = { li, tombol: tombol.concat(kosong), tombolY, tombolRagu, hasilEl, statusEl, isiEl };
+          barisP[nama] = { li, tombol: tombol.concat(kosong), tombolY, tombolRagu, hasilEl, statusEl, isiEl, jauhEl, jauhTeks };
           return li;
         })));
     }
@@ -338,13 +359,13 @@
     const samaN = (a, b) => !!a && !!b && String(a).toLowerCase() === String(b).toLowerCase();
     // status room satu baris (K3: nama penjawab tetap disebut di layar pemandu; huruf HP tidak disebut sebelum kunci)
     function statusBaris(n, jauh) {
-      if (ujianB) return null;
-      if (jauh) return { teks: jb[n] !== '-' && !yb[n] ? '✓ menjawab · belum yakin' : '✓ sudah menjawab', nada: 'ok' };
-      if (!hadirB) return null;
-      if (jb[n] && sumberB[n] === 'papan' && !samaN(n, pemandu())) return { teks: 'diisi ' + (pemandu() || 'pemandu'), nada: 'info' };
-      if (terkunci || samaN(n, pemandu())) return null;
-      if (hadirB[n] === 'offline') return { teks: 'offline', nada: 'mati' };
-      if (hadirB[n] === 'online' && !jb[n]) return { teks: 'belum', nada: 'netral' };
+      if (ujianB || terkunci || !hadirB) return null;
+      if (jauh) return bukaUbah[n] ? { teks: 'sudah menjawab dari HP · ketuk untuk mengganti', nada: 'ok' } : null;
+      if (samaN(n, pemandu())) return null;
+      if (jb[n] && sumberB[n] === 'papan') return { teks: 'diisi ' + (pemandu() || 'pemimpin'), nada: 'info' };
+      if (hadirB[n] === 'terputus') return { teks: 'HP terputus', nada: 'mati' };
+      if (hadirB[n] === 'belum') return { teks: 'belum membuka HP', nada: 'mati' };
+      if (!jb[n]) return { teks: 'belum menjawab', nada: 'netral' };
       return null;
     }
     function gambarPapan() {
@@ -356,24 +377,26 @@
         // v8.2 B2: baris dari HP sebelum kunci → huruf dan keyakinan tidak dinyalakan (tombol tetap bisa diketuk untuk menimpa)
         const jauh = !terkunci && sumberB[n] === 'hp' && !!jb[n];
         b.li.toggleAttribute('data-jauh', jauh);
+        const tutupJauh = jauh && !bukaUbah[n];
+        b.li.toggleAttribute('data-jauh-tutup', tutupJauh);
+        if (b.jauhEl) { const u = b.jauhEl.querySelector('.papan-ubah'); if (u) u.disabled = terkunci; b.jauhEl.hidden = !tutupJauh; b.jauhTeks.textContent = jb[n] !== '-' && !yb[n] ? 'Sudah menjawab dari HP (belum pilih keyakinan)' : 'Sudah menjawab dari HP'; }
         b.tombol.forEach(t => { t.setAttribute('aria-pressed', String(!jauh && jb[n] === t.dataset.opsi)); if (terkunci) t.disabled = true; });
         b.tombolY.forEach(t => { t.setAttribute('aria-pressed', String(!jauh && yb[n] === t.dataset.yakin)); if (terkunci) t.disabled = true; });
         const st = b.statusEl ? statusBaris(n, jauh) : null;
         // elemen status dan "isi untuk" baru dipasang saat pertama dibutuhkan (papan satu layar tetap berisi nama saja)
-        if (b.statusEl && !b.statusEl.isConnected && (st || hadirB)) { const nm = b.li.querySelector('.papan-nama'); if (nm) nm.append(...[b.statusEl, b.isiEl].filter(Boolean)); }
-        if (b.statusEl && b.statusEl.isConnected) {
-          b.statusEl.textContent = st ? st.teks : ''; b.statusEl.hidden = !st; if (st) b.statusEl.dataset.nada = st.nada; else delete b.statusEl.dataset.nada;
-          const offline = !terkunci && !!hadirB && hadirB[n] === 'offline' && !jauh;
-          const tutupIsi = offline && !bukaIsi[n] && !(jb[n] && sumberB[n] === 'papan');
-          b.li.toggleAttribute('data-offline', offline);
-          b.li.toggleAttribute('data-tertutup', tutupIsi);
-          if (b.isiEl) { b.isiEl.disabled = terkunci; b.isiEl.hidden = !offline || !!(jb[n] && sumberB[n] === 'papan'); b.isiEl.setAttribute('aria-expanded', String(!tutupIsi)); b.isiEl.textContent = tutupIsi ? 'isi untuk ' + n : 'tutup isian ' + n; }
-        }
+        if (b.statusEl && !b.statusEl.isConnected && (st || hadirB)) { const nm = b.li.querySelector('.papan-nama'); if (nm) nm.append(b.statusEl); }
+        if (b.statusEl && b.statusEl.isConnected) { b.statusEl.textContent = st ? st.teks : ''; b.statusEl.hidden = !st; if (st) b.statusEl.dataset.nada = st.nada; else delete b.statusEl.dataset.nada; }
+        // v9.2 G1: hanya baris yang sempat masuk lalu HP terputus yang dilipat; yang belum pernah membuka HP tampil seperti baris biasa
+        const terputus = !terkunci && !!hadirB && hadirB[n] === 'terputus' && !jauh;
+        const tutupIsi = terputus && !bukaIsi[n] && !(jb[n] && sumberB[n] === 'papan');
+        b.li.toggleAttribute('data-offline', terputus);
+        b.li.toggleAttribute('data-tertutup', tutupIsi);
+        if (b.isiEl) { b.isiEl.hidden = !tutupIsi; b.isiEl.disabled = terkunci; }
         if (b.tombolRagu) { b.tombolRagu.setAttribute('aria-pressed', String(!!rb[n])); b.li.toggleAttribute('data-ragu', !!rb[n]); }
         if (terkunci) {
           const v = jb[n]; const hs = v === '-' ? 'kosong' : v === soal.kunci ? 'benar' : 'salah';
           b.li.dataset.hasil = hs; b.hasilEl.hidden = false;
-          b.hasilEl.replaceChildren(hs === 'kosong' ? null : ikon(hs === 'benar' ? 'check' : 'x', null, true), h('span', { class: 'papan-hasil-teks' }, hs === 'benar' ? 'benar' : hs === 'salah' ? 'salah' : 'kosong'));
+          b.hasilEl.replaceChildren(hs === 'kosong' ? null : ikon(hs === 'benar' ? 'check' : 'x', null, true), h('span', { class: 'papan-hasil-teks' }, hs === 'benar' ? 'benar' : hs === 'salah' ? 'salah' : 'tidak menjawab'));
         }
       });
       // chip nama di opsi hanya setelah kunci dibuka (bernada benar/salah)
@@ -384,7 +407,11 @@
         wadah.hidden = !nm.length;
       }
       if (btnKunci) { if (nSudah()) btnKunci.removeAttribute('aria-disabled'); else btnKunci.setAttribute('aria-disabled', 'true'); }
+      if (ketKunci) ketKunci.hidden = terkunci || nSudah() > 0;
+      if (ketKunciHp) ketKunciHp.hidden = terkunci || nSudah() > 0;
       if (hitungEl && !terkunci) hitungEl.textContent = teksHitung();
+      if (arahanEl) { arahanEl.textContent = hadirB ? 'Anggota yang memegang HP menjawab sendiri. Ketuk tombol hanya untuk yang tidak memegang HP.' : 'Ketuk jawaban tiap orang.'; arahanEl.hidden = terkunci; }
+      if (papan) papan.toggleAttribute('data-room', !!hadirB);
     }
     let tUmumB = null; // pengumuman papan: hanya yang terakhir yang dibacakan (pengumuman tertunda sebelumnya dibatalkan)
     const umumkanBersama = (t, dariKeyboard) => { if (!live) return; live.textContent = ''; clearTimeout(tUmumB); tUmumB = setTimeout(() => { live.textContent = t; }, dariKeyboard ? 30 : 60); };
@@ -392,7 +419,7 @@
     function setelahUbah(nama, dariKeyboard, kalimat) {
       if (galatPilih) galatPilih.hidden = true;
       const i = pesertaB.indexOf(nama);
-      if (lengkap(nama) && i === aktif) majuAktif(i);
+      if (!bisaAktif(nama) && i === aktif) majuAktif(i);
       gambarPapan();
       clearTimeout(tBuka);
       const semua = pesertaB.every(lengkap);
@@ -401,7 +428,7 @@
       // v8.2 B2 (audit T5): semua lengkap → hitung mundur 2 dtk dengan tombol "Tahan" (bukan buka seketika); perubahan apa pun mengulang
       hentikanHitung();
       const bisaHitung = semua && !ditahan && !dijeda && !!btnKunci;
-      umumkanBersama(kalimat + (semua ? ' Semua sudah menjawab.' + (bisaHitung ? ' Kunci dibuka dalam 2 detik. Tekan Tahan untuk menunda.' : '') : lengkap(nama) && !lengkap(barisAktif()) ? ' Berikutnya: ' + barisAktif() + '.' : ''), dariKeyboard);
+      umumkanBersama(kalimat + (semua ? ' Semua sudah menjawab.' + (bisaHitung ? ' Kunci jawaban dibuka dalam 2 detik. Tekan Tahan untuk menunda.' : '') : lengkap(nama) && !lengkap(barisAktif()) ? ' Berikutnya: ' + barisAktif() + '.' : ''), dariKeyboard);
       if (bisaHitung) mulaiHitung();
       else if (semua && !btnKunci && !dijeda) tBuka = setTimeout(() => { if (!terkunci && !dijeda && pesertaB.every(lengkap) && wrap.isConnected) bukaKunci(); }, 350);
     }
@@ -411,9 +438,9 @@
     let dijeda = false;
     const btnTahan = bersama && !ujianB ? h('button', { type: 'button', class: 'btn btn-ghost aksi-tahan', hidden: true, onclick: () => tahan() }, 'Tahan') : null;
     function teksHitung() {
-      if (tHitung) return 'Semua sudah menjawab · kunci dibuka dalam ' + sisaHitung + ' dtk';
-      if (ditahan && pesertaB.every(lengkap)) return 'Kunci ditahan · tekan Lihat kunci bila siap';
-      return nSudah() + ' dari ' + pesertaB.length + ' sudah menjawab';
+      if (tHitung) return 'Semua sudah menjawab. Kunci jawaban dibuka dalam ' + sisaHitung + ' detik.';
+      if (ditahan && pesertaB.every(lengkap)) return 'Kunci jawaban ditahan. Tekan Buka kunci jawaban bila siap.';
+      return nSudah() + ' dari ' + pesertaB.length + ' orang sudah menjawab';
     }
     function mulaiHitung() {
       if (terkunci || ditahan || dijeda || !wrap.isConnected) return;
@@ -435,7 +462,7 @@
       if (!tHitung) return;
       const fokusDi = document.activeElement === btnTahan;
       ditahan = true; hentikanHitung();
-      umumkanBersama('Kunci ditahan. Tekan Lihat kunci bila siap.', false);
+      umumkanBersama('Kunci jawaban ditahan. Tekan Buka kunci jawaban bila siap.', false);
       if (fokusDi && btnKunci) fokus(btnKunci);
     }
     // v9.1 K1: wrap.jedaPapan(true) → hitung mundur dihentikan dan tidak dimulai lagi; isian (papan maupun HP) tetap tercatat.
@@ -464,14 +491,16 @@
       if (sumberB[nama] === 'hp' && jb[nama] === O && (yb[nama] || null) === K) return false;
       jb[nama] = O; if (K) yb[nama] = K; else delete yb[nama]; sumberB[nama] = 'hp';
       if (bukaIsi[nama]) delete bukaIsi[nama];
+      delete bukaUbah[nama];
       setelahUbah(nama, false, nama + ' sudah menjawab.');
       return true;
     }
-    // wrap.aturHadir({ nama: 'online' | 'offline' } | null): status per baris; null = papan satu layar (tanpa status, semua tombol tampil)
+    // wrap.aturHadir({ nama: 'online' | 'belum' | 'terputus' } | null): status per baris; null = papan satu layar (tanpa status, semua tombol tampil).
+    // Nilai lama 'offline' dibaca 'terputus'
     function aturHadir(peta) {
       if (!bersama || ujianB) return;
       if (!peta || typeof peta !== 'object') hadirB = null;
-      else { hadirB = {}; pesertaB.forEach(n => { const k = Object.keys(peta).find(x => samaN(x, n)); if (k && (peta[k] === 'online' || peta[k] === 'offline')) hadirB[n] = peta[k]; }); }
+      else { hadirB = {}; pesertaB.forEach(n => { const k = Object.keys(peta).find(x => samaN(x, n)); const v = k ? (peta[k] === 'offline' ? 'terputus' : peta[k]) : null; if (v === 'online' || v === 'belum' || v === 'terputus') hadirB[n] = v; }); }
       gambarPapan();
     }
     // v = 'A'–'D' | '-' (tidak menjawab) | null (hapus)
@@ -482,6 +511,7 @@
       if (v) jb[nama] = v; else delete jb[nama];
       if (v === '-' && !ujianB) delete yb[nama];
       if (v) sumberB[nama] = 'papan'; else delete sumberB[nama];
+      delete bukaUbah[nama];
       const tambahan = ujianB ? (rb[nama] ? ', ragu' : '') : (yb[nama] ? ', ' + LABEL_YAKIN[yb[nama]].toLowerCase() : '');
       setelahUbah(nama, dariKeyboard, nama + (v === '-' ? (ujianB ? ': kosong' + tambahan + '.' : ' tidak menjawab.') : v ? ': ' + v + tambahan + '.' : ': jawaban dihapus.'));
     }
@@ -494,15 +524,18 @@
     // v = 'yakin' | 'ragu' | 'menebak' | null (lepas); memilih keyakinan pada baris "–" menghapus tanda tidak menjawab
     function beriYakin(nama, v, dariKeyboard) {
       if (!bersama || terkunci || !nama || !barisP[nama]) return;
+      // menimpa baris HP (setelah Ubah): huruf HP dibuang dulu agar tidak pernah tampil sebelum kunci dibuka
+      if (sumberB[nama] === 'hp') { delete jb[nama]; delete yb[nama]; delete sumberB[nama]; delete bukaUbah[nama]; }
       if (LABEL_YAKIN[v]) { yb[nama] = v; if (jb[nama] === '-') delete jb[nama]; } else delete yb[nama];
-      if (sumberB[nama] === 'hp') { if (jb[nama]) sumberB[nama] = 'papan'; else delete sumberB[nama]; }
       setelahUbah(nama, dariKeyboard, nama + ': ' + (yb[nama] ? LABEL_YAKIN[yb[nama]].toLowerCase() : 'keyakinan dilepas') + '.');
     }
     // pintasan papan (dipakai di kartu soal dan di judul tepat di atasnya); true bila ditangani
     function pintasBersama(e) {
       if (!bersama || terkunci || !e.key || e.key.length !== 1) return false;
       const k = e.key.toUpperCase();
-      if (/^[1-9]$/.test(k) && Number(k) <= pesertaB.length) { e.preventDefault(); aktif = Number(k) - 1; gambarPapan(); umumkanBersama('Baris ' + barisAktif() + '.', true); return true; }
+      // 1–9 = baris 1–9, 0 = baris ke-10 (v9.2 G1); baris ke-11 dan ke-12 tanpa pintasan nomor
+      if (/^[0-9]$/.test(k)) { const ix = k === '0' ? 9 : Number(k) - 1; if (ix < pesertaB.length) { e.preventDefault(); aktif = ix; gambarPapan(); umumkanBersama('Baris ' + barisAktif() + '.', true); return true; } return false; }
+      if (!ujianB && kunciHp(barisAktif()) && (k === '-' || (HURUF.includes(k) && labels[k]) || ['Y', 'R', 'N', 'M'].includes(k))) { e.preventDefault(); umumkanBersama(barisAktif() + ' sudah menjawab dari HP. Ketuk Ubah di baris itu untuk mengganti.', true); return true; }
       if (k === '-') { e.preventDefault(); const n = barisAktif(); beriJawaban(n, tampakJ(n) === '-' ? null : '-', true); return true; }
       if (ujianB) {
         if (k === 'R') { e.preventDefault(); const n = barisAktif(); beriRagu(n, !rb[n], true); return true; }
@@ -521,14 +554,16 @@
       if (!petunjuk) return;
       petunjuk.replaceChildren(...(terkunci ? [h('span', null, kbd('Enter'), ' lanjut'), segTadi ? h('span', null, kbd('Y'), kbd('R'), kbd('M'), ' tadi yakin · ragu · menebak') : null].filter(Boolean)
         : ujianB ? [h('span', null, kbd('1'), '–', kbd(String(Math.min(9, pesertaB.length))), ' pilih orang'), h('span', null, kbd('A'), '–', kbd('D'), ' jawaban'), h('span', null, kbd('R'), ' ragu'), h('span', null, kbd('-'), ' kosong')]
-        : bersama ? [h('span', null, kbd('1'), '–', kbd(String(Math.min(9, pesertaB.length))), ' pilih orang'), h('span', null, kbd('A'), '–', kbd('D'), ' jawaban'), h('span', null, kbd('Y'), kbd('R'), kbd('N'), ' keyakinan'), h('span', null, kbd('-'), ' tidak menjawab'), h('span', null, kbd('Enter'), ' lihat kunci')]
-        : langsung ? [h('span', null, kbd('A'), '–', kbd('D'), ' jawab'), segAwal ? h('span', null, kbd('Y'), kbd('R'), kbd('M'), ' yakin · ragu · menebak') : null, bisaTidakTahu ? h('span', null, kbd('T'), ' tidak tahu') : null].filter(Boolean)
-        : [h('span', null, kbd('A'), '–', kbd('D'), ' pilih'), segYakin && !segYakin.hidden ? h('span', null, kbd('Y'), kbd('R'), kbd('M'), ' yakin · ragu · menebak') : null, h('span', null, kbd('Enter'), ringkas ? ' berikutnya' : ' periksa'), bisaTidakTahu ? h('span', null, kbd('T'), ' tidak tahu') : null].filter(Boolean)));
+        : bersama ? [h('span', null, kbd('1'), '–', kbd(String(Math.min(9, pesertaB.length))), pesertaB.length >= 10 ? [' dan ', kbd('0')] : null, ' pilih orang'), h('span', null, kbd('A'), '–', kbd('D'), ' jawaban'), h('span', null, kbd('Y'), kbd('R'), kbd('N'), ' Yakin · Ragu · Nebak'), h('span', null, kbd('-'), ' tidak menjawab'), h('span', null, kbd('Enter'), ' buka kunci jawaban')]
+        : langsung ? [h('span', null, kbd('A'), '–', kbd('D'), ' jawab'), segAwal ? h('span', null, kbd('Y'), kbd('R'), kbd('M'), ' yakin · ragu · nebak') : null, bisaTidakTahu ? h('span', null, kbd('T'), ' tidak tahu') : null].filter(Boolean)
+        : [h('span', null, kbd('A'), '–', kbd('D'), ' pilih'), segYakin && !segYakin.hidden ? h('span', null, kbd('Y'), kbd('R'), kbd('M'), ' yakin · ragu · nebak') : null, h('span', null, kbd('Enter'), ringkas ? ' berikutnya' : ' periksa'), bisaTidakTahu ? h('span', null, kbd('T'), ' tidak tahu') : null].filter(Boolean)));
     }
     gambarPetunjuk();
     // jawab langsung: "Tidak tahu" sebagai tombol kecil tepat di bawah opsi (tanpa bar aksi sebelum menjawab)
     const barisTidakTahu = langsung && bisaTidakTahu ? h('p', { class: 'tidak-tahu-baris' }, h('button', { type: 'button', class: 'btn btn-text btn-sm', 'aria-keyshortcuts': 'T', onclick: () => tidakTahu() }, 'Tidak tahu')) : null;
-    wrap.append(kop, kutipan, stem, fs, papan, segAwal, barisTidakTahu, segYakin, petunjuk);
+    // v9.2 G1: di papan bersama petunjuk papan ketik dilipat di balik tautan kecil "Pintasan papan ketik"
+    const petunjukWadah = bersama && petunjuk ? h('details', { class: 'pintasan-papan' }, h('summary', null, 'Pintasan papan ketik'), petunjuk) : petunjuk;
+    wrap.append(kop, kutipan, stem, fs, papan, segAwal, barisTidakTahu, segYakin, petunjukWadah);
     // catatan verifikasi: tidak dirender selama simulasi berjalan (mode ujian); di latihan dan ulas sebagai lipatan "Catatan sumber"
     if (soal.verifikasi === '◐' && !(mode === 'ujian' && !hanyaBaca) && !ujianB) {
       const cat = UKP.rapikanCatatan(soal.peringatan) || 'Sebagian ketentuan soal ini belum dicek ulang ke teks peraturan.';
@@ -550,7 +585,11 @@
       if (ujianB) { /* v8.1 papan mode ujian: tanpa bar aksi (pemanggil menggambar navigasinya sendiri) */ }
       else if (bersama) {
         hitungEl = h('span', { class: 'aksi-hitung', id: 'hitung-' + uid });
-        btnKunci = h('button', { type: 'button', class: 'btn btn-primary', 'aria-disabled': 'true', 'aria-keyshortcuts': 'Enter', 'aria-describedby': 'hitung-' + uid, onclick: () => bukaKunci() }, 'Lihat kunci');
+        // v9.2 G1: "Buka kunci jawaban" selalu berwarna utama; selama belum ada jawaban tidak aktif, dengan keterangan di sampingnya
+        ketKunci = h('span', { class: 'aksi-ket', id: 'ket-kunci-' + uid }, 'Aktif setelah ada yang menjawab');
+        // HP: keterangan yang sama sebagai baris kedua hitungan (bilah aksi tetap satu baris)
+        ketKunciHp = h('span', { class: 'aksi-ket-hp' }, 'Tombol aktif setelah ada yang menjawab');
+        btnKunci = h('button', { type: 'button', class: 'btn btn-primary aksi-buka-kunci', 'aria-disabled': 'true', 'aria-keyshortcuts': 'Enter', 'aria-describedby': 'hitung-' + uid + ' ket-kunci-' + uid, onclick: () => bukaKunci() }, 'Buka kunci jawaban');
         isiAksiBersama(btnKunci); gambarPapan();
       } else if (opsi.onLewati) aksi.appendChild(h('button', { type: 'button', class: 'btn btn-text', onclick: () => opsi.onLewati() }, 'Lewati'));
       if (aksiKiri && !bersama && !ujianB) aksi.prepend(aksiKiri);
@@ -569,9 +608,9 @@
     function isiAksiBersama(primer) {
       aksi.classList.add('aksi-bersama');
       const kiri = typeof opsi.onKeMenu === 'function' ? h('button', { type: 'button', class: 'btn btn-ghost aksi-menu', onclick: () => opsi.onKeMenu() }, 'Ke menu') : null;
-      const meta = h('p', { class: 'aksi-meta' }, opsi.metaBersama ? h('span', { class: 'aksi-info' }, opsi.metaBersama) : null, hitungEl);
+      const meta = h('p', { class: 'aksi-meta' }, opsi.metaBersama ? h('span', { class: 'aksi-info' }, opsi.metaBersama) : null, hitungEl, terkunci ? null : ketKunciHp);
       const akhir = typeof opsi.onSelesaiSekarang === 'function' ? h('button', { type: 'button', class: 'btn aksi-selesai', onclick: () => opsi.onSelesaiSekarang() }, 'Selesai sekarang') : null;
-      aksi.replaceChildren(...[aksiKiri, kiri, meta, h('span', { class: 'aksi-kanan' }, akhir, terkunci ? null : btnTahan, primer)].filter(Boolean));
+      aksi.replaceChildren(...[aksiKiri, kiri, meta, h('span', { class: 'aksi-kanan' }, akhir, terkunci ? null : btnTahan, terkunci ? null : ketKunci, primer)].filter(Boolean));
       aksi.hidden = false;
     }
     function periksa() {
@@ -656,24 +695,21 @@
       let kartu = null;
       if (!benarP && jawabP !== '-' && !opsi.tanpaLog) { const k = daftarKartu().find(x => x.id === kid); if (k) kartu = { id: kid, baru: !adaSebelum, perubahan: (k.dekTambahan || []).includes('perubahan-2025-2026') }; }
       const panel = UKP.c.umpan(soal, jawabP, detik, { kartu, konteks, langsung: true });
-      const nBenar = pesertaB.filter(n => per[n].benar).length; const N = pesertaB.length;
-      const salah = pesertaB.filter(n => jb[n] !== '-' && !per[n].benar); const kosong = pesertaB.filter(n => jb[n] === '-');
-      const hasil = nBenar === N ? 'benar' : 'salah';
-      // "Salah: Mia (B, yakin), Novia (C)": keyakinan hanya disebut bila yakin tetapi salah
-      const ket = 'Kunci ' + soal.kunci + ' · ' + (nBenar === N ? 'Semua benar' : [salah.length ? 'Salah: ' + salah.map(n => n + ' (' + jb[n] + (yb[n] === 'yakin' ? ', yakin' : '') + ')').join(', ') : '', kosong.length ? 'Tidak menjawab: ' + kosong.join(', ') : ''].filter(Boolean).join(' · '));
-      const ikonSt = ikon(hasil === 'benar' ? 'cek-lingkar' : 'x-lingkar', 'status-ikon'); ikonSt.setAttribute('data-hasil', hasil);
-      const stBaru = h('p', { class: 'status blok status-besar status-bersama', tabindex: '-1' }, ikonSt, h('span', null, h('strong', { 'data-hasil': hasil }, 'Benar ' + nBenar + ' dari ' + N), h('span', { class: 'status-ket' }, ket)));
-      panel.dataset.hasil = hasil;
+      // v9.2 G1: satu fakta per baris ("Jawaban benar: B" · "3 dari 5 yang menjawab benar" · "Salah: …" · "Tidak menjawab: …"), lalu kalimat pembahas
+      const tri = hitungTriase(per);
+      const hb = UKP.c.hasilBersama(soal, pesertaB, per, { tri, pemimpin: pemandu() || null, jam: true, sudahLanjut: () => sudahLanjut || !wrap.isConnected });
+      const stBaru = hb.status; triEl = hb.triase; tBahas = hb.tBahas; mulaiBahas = hb.mulaiBahas;
+      panel.dataset.hasil = hb.hasil;
       const stLama = panel.querySelector('.status'); if (stLama) stLama.replaceWith(stBaru); else panel.prepend(stBaru);
-      // v8.1 penjelas dan triase tepat di bawah "Benar X dari N" (L.triaseSoal); kelas 'dikuasai' = satu baris, pembahasan dilipat
-      const tri = buatTriase(per, panel, stBaru);
+      if (triEl) stBaru.after(triEl);
+      if (tri && tri.kelas === 'dikuasai') { const sisa = [...panel.children].filter(x => x !== stBaru && x !== triEl); if (sisa.length) { const lip = h('details', { class: 'lipat triase-lipat blok' }, h('summary', null, 'Pembahasan')); sisa.forEach(x => lip.appendChild(x)); panel.appendChild(lip); } }
       // v8.2 B2: kait setelah kunci + triase (room: bukaKunci dengan penjelas); sumber = { nama: 'hp' | 'papan' } baris yang terisi
       if (typeof opsi.bersama.onKunci === 'function') { try { opsi.bersama.onKunci({ per, tri: tri || null, sumber: Object.assign({}, sumberB) }); } catch (e) { console.error(e); } }
       cadanganUmpan();
       umpan.replaceChildren(panel);
       intiEl = stBaru;
-      live.textContent = 'Benar ' + nBenar + ' dari ' + N + '. ' + ket.replace(/ · /g, '. ') + '.' + (tri && tri.kelas !== 'dikuasai' ? ' ' + tri.saran + '.' : '');
-      if (hitungEl) hitungEl.textContent = 'Benar ' + nBenar + ' dari ' + N;
+      live.textContent = hb.teks;
+      if (hitungEl) hitungEl.textContent = hb.ringkas;
       // v8.2 B2 (audit T5): tombol utama dan Enter ditahan 800 ms sesudah kunci terbuka, agar ketukan ganda tidak melompati pembahasan
       const tahanSampai = Date.now() + 800;
       const lanjut = h('button', { type: 'button', class: 'btn btn-primary', 'aria-disabled': 'true', onclick: () => { if (sudahLanjut || Date.now() < tahanSampai) return; sudahLanjut = true; clearInterval(tBahas); tBahas = null; if (opsi.onLanjut) opsi.onLanjut(benarP, jawabP, detik, ykP); } }, opsi.labelLanjut || 'Lanjut', ikon('chevron-kanan'));
@@ -687,34 +723,11 @@
     // "Bahas m:ss" (sejak kunci dibuka sampai Lanjut; tidak untuk 'dikuasai'), "Kenapa C keliru: <label> — <teks>", "Yakin tapi salah: …".
     // opsi.bersama.hitungPenjelas = { nama: n } (dipegang pemanggil untuk rotasi penjelas); opsi.bersama.onTriase(hasil) setelah dihitung
     let triEl = null, tBahas = null, mulaiBahas = 0;
-    function buatTriase(per, panel, stEl) {
+    function hitungTriase(per) {
       const L = UKP.belajar; if (!L || typeof L.triaseSoal !== 'function' || opsi.bersama.triase === false) return null;
       let tri = null;
-      try { tri = L.triaseSoal(soal, per, { urutan: pesertaB, hitungPenjelas: opsi.bersama.hitungPenjelas || {} }); } catch (e) { console.error(e); return null; }
-      if (!tri) return null;
-      if (typeof opsi.bersama.onTriase === 'function') { try { opsi.bersama.onTriase(tri); } catch (e) { console.error(e); } }
-      const NADA = { dikuasai: 'ok', rapuh: 'info', terbelah: 'warn', tersandung: 'attn' };
-      const pillT = teks => h('span', { class: 'pill', 'data-tone': NADA[tri.kelas] || null }, teks);
-      if (tri.kelas === 'dikuasai') {
-        triEl = h('div', { class: 'triase-bersama blok', 'data-kelas': tri.kelas }, h('p', { class: 'triase-baris' }, pillT('Dikuasai'), h('span', { class: 'triase-saran' }, 'lanjut')));
-        // pembahasan dilipat (tetap bisa dibuka)
-        const sisa = [...panel.children].filter(x => x !== stEl);
-        if (sisa.length) { const lip = h('details', { class: 'lipat triase-lipat blok' }, h('summary', null, 'Pembahasan')); sisa.forEach(x => lip.appendChild(x)); panel.appendChild(lip); }
-      } else {
-        const jam = h('span', { class: 'triase-bahas', role: 'timer', 'aria-live': 'off', title: 'Lama pembahasan soal ini' }, 'Bahas 0:00');
-        const al = tri.alasan;
-        triEl = h('div', { class: 'triase-bersama blok', 'data-kelas': tri.kelas },
-          h('p', { class: 'triase-baris' }, pillT(tri.label), h('strong', { class: 'triase-saran' }, tri.saran), jam),
-          al && (al.label || al.teks) ? h('p', { class: 'triase-alasan' }, h('span', { class: 'triase-ket' }, 'Kenapa ' + al.opsi + ' keliru: '), [al.label, al.teks].filter(Boolean).join(' — ')) : null,
-          tri.yakinSalah && tri.yakinSalah.length ? h('p', { class: 'triase-yakin' }, h('span', { class: 'triase-ket' }, 'Yakin tapi salah: '), tri.yakinSalah.join(', ')) : null);
-        mulaiBahas = Date.now();
-        const tik = () => {
-          if (sudahLanjut || !wrap.isConnected) { clearInterval(tBahas); tBahas = null; return; }
-          const d = Math.floor((Date.now() - mulaiBahas) / 1000); jam.textContent = 'Bahas ' + Math.floor(d / 60) + ':' + String(d % 60).padStart(2, '0');
-        };
-        tBahas = setInterval(tik, 1000);
-      }
-      stEl.after(triEl);
+      try { tri = L.triaseSoal(soal, per, { urutan: pesertaB, hitungPenjelas: opsi.bersama.hitungPenjelas || {}, pemimpin: pemandu() || null }); } catch (e) { console.error(e); return null; }
+      if (tri && typeof opsi.bersama.onTriase === 'function') { try { opsi.bersama.onTriase(tri); } catch (e) { console.error(e); } }
       return tri;
     }
     wrap.detikBahas = () => mulaiBahas ? Math.round((Date.now() - mulaiBahas) / 1000) : 0;
@@ -869,6 +882,52 @@
   // kalimat inti · jejak hitung (terbuka di desktop) · dasar hukum · mengapa opsi lain keliru · kaki (sebab + waktu)
   // opsiU: { kartu: {id, baru, perubahan} | null, konteks, hanyaBaca, keyakinan: 'yakin'|'ragu'|'menebak'|null } — teks kartu otomatis
   // hanya bila kartu benar-benar dibuat; keyakinan (Momen 2) tampil sebagai kombinasi di kop (status), tanpa mengubah penilaian
+  // v9.2 G1: hasil satu soal latihan bersama setelah kunci jawaban dibuka, dipakai papan (bukaKunci) dan mode lihat lagi (views-belajar).
+  // UKP.c.hasilBersama(soal, nama[], per { nama: { opsi|o, keyakinan|k } }, { tri, jam, sudahLanjut() }) →
+  //   { status (p.status-bersama), triase (div.triase-bersama | null), hasil 'benar'|'salah'|'sebagian', teks (pembaca layar), ringkas ("3 dari 5 yang menjawab benar"), tBahas, mulaiBahas }
+  // Satu cara menghitung: yang dihitung hanya yang menjawab; yang tidak menjawab ditulis terpisah. Ikon silang hanya bila tak ada yang benar.
+  const NADA_KELAS = { dikuasai: 'ok', rapuh: 'info', terbelah: 'warn', tersandung: 'attn' };
+  UKP.c.hasilBersama = function (soal, nama, per, o) {
+    o = o || {}; per = per || {}; nama = Array.isArray(nama) && nama.length ? nama : Object.keys(per);
+    const kunci = soal.kunci;
+    const jw = n => { const x = per[n] || {}; const v = typeof x === 'string' ? x : (x.opsi != null ? x.opsi : x.o); return v && v !== '-' ? String(v).toUpperCase() : '-'; };
+    const benar = nama.filter(n => jw(n) === kunci), salah = nama.filter(n => jw(n) !== '-' && jw(n) !== kunci);
+    // v9.2 (V9 S3): pemimpin yang tidak menjawab tidak disebut (tri.tidakMenjawab sudah tanpa pemimpin; cadangan: o.pemimpin)
+    const pem = String(o.pemimpin || '').toLowerCase();
+    const kosong = o.tri && Array.isArray(o.tri.tidakMenjawab) ? o.tri.tidakMenjawab.filter(n => nama.includes(n) || nama.some(x => x.toLowerCase() === String(n).toLowerCase()))
+      : nama.filter(n => jw(n) === '-' && !(pem && n.toLowerCase() === pem));
+    const nJawab = benar.length + salah.length;
+    const hasil = nJawab && !salah.length ? 'benar' : nJawab && !benar.length ? 'salah' : 'sebagian';
+    const ringkas = nJawab ? benar.length + ' dari ' + nJawab + ' yang menjawab benar' : 'Tidak ada yang menjawab';
+    const baris = [ringkas, salah.length ? 'Salah: ' + salah.map(n => n + ' (' + jw(n) + ')').join(', ') : null, kosong.length ? 'Tidak menjawab: ' + kosong.join(', ') : null].filter(Boolean);
+    let ikonSt = null;
+    if (hasil !== 'sebagian') { ikonSt = ikon(hasil === 'benar' ? 'cek-lingkar' : 'x-lingkar', 'status-ikon'); ikonSt.setAttribute('data-hasil', hasil); }
+    const status = h('p', { class: 'status blok status-besar status-bersama', tabindex: '-1', 'data-hasil': hasil }, ikonSt,
+      h('span', null, h('strong', null, 'Jawaban benar: ' + kunci), baris.map(t => h('span', { class: 'status-ket status-baris' }, t))));
+    const tri = o.tri || null; let triase = null, tBahas = null, mulaiBahas = 0;
+    // v9.2 (V9 S5): tidak ada yang menjawab → tanpa pil dan tanpa "Waktu bahas" (baris status sudah menyebutnya)
+    if (tri && tri.nJawab !== 0) {
+      if (tri.kelas === 'dikuasai') triase = h('div', { class: 'triase-bersama blok', 'data-kelas': tri.kelas }, h('p', { class: 'triase-baris' }, h('span', { class: 'triase-saran' }, 'Lanjut ke soal berikutnya.')));
+      else {
+        const jam = o.jam ? h('span', { class: 'triase-bahas', role: 'timer', 'aria-live': 'off', title: 'Lama pembahasan soal ini' }, 'Waktu bahas 0:00') : null;
+        const al = tri.alasan;
+        triase = h('div', { class: 'triase-bersama blok', 'data-kelas': tri.kelas },
+          h('p', { class: 'triase-baris' }, h('span', { class: 'pill', 'data-tone': NADA_KELAS[tri.kelas] || null }, tri.label), h('strong', { class: 'triase-saran' }, tri.saran), jam),
+          al && (al.label || al.teks) ? h('p', { class: 'triase-alasan' }, h('span', { class: 'triase-ket' }, 'Kenapa ' + al.opsi + ' keliru: '), [al.label, al.teks].filter(Boolean).join(' — ')) : null,
+          tri.yakinSalah && tri.yakinSalah.length ? h('p', { class: 'triase-yakin' }, h('span', { class: 'triase-ket' }, 'Yakin tapi salah: '), tri.yakinSalah.join(', ')) : null);
+        if (jam) {
+          mulaiBahas = Date.now();
+          const tik = () => {
+            if ((typeof o.sudahLanjut === 'function' && o.sudahLanjut()) || !jam.isConnected && Date.now() - mulaiBahas > 5000) { clearInterval(tBahas); return; }
+            const d = Math.floor((Date.now() - mulaiBahas) / 1000); jam.textContent = 'Waktu bahas ' + Math.floor(d / 60) + ':' + String(d % 60).padStart(2, '0');
+          };
+          tBahas = setInterval(tik, 1000);
+        }
+      }
+    }
+    const teks = 'Jawaban benar: ' + kunci + '. ' + baris.join('. ') + '.' + (tri && tri.kelas !== 'dikuasai' && tri.nJawab !== 0 ? ' ' + tri.saran + '.' : '');
+    return { status, triase, hasil, teks, ringkas, tBahas, mulaiBahas };
+  };
   UKP.c.umpan = function (soal, dipilih, detik, opsiU) {
     opsiU = opsiU || {};
     const tidakTahu = dipilih === '-';
@@ -878,7 +937,7 @@
     const hasil = benar ? 'benar' : tidakTahu ? 'info' : 'salah';
     let ket = '';
     if (benar) ket = '';
-    else if (kosong) ket = 'Kunci ' + soal.kunci + '.';
+    else if (kosong) ket = 'Kunci jawaban ' + soal.kunci + '.';
     else if (tag === 'angka-usang') ket = 'Jawaban ' + dipilih + ' memakai ketentuan lama; menurut ketentuan yang berlaku kuncinya ' + soal.kunci + '.';
     else ket = 'Jawaban Anda ' + dipilih + '; kunci ' + soal.kunci + '.';
     // jawab langsung (v7.7): baris pertama besar "Benar" / "Salah · kunci B"; keterangan hanya untuk jawaban berketentuan lama
@@ -887,7 +946,7 @@
     if (langsung) {
       const teksKunci = !benar && soal.opsi && soal.opsi[soal.kunci] != null ? String(soal.opsi[soal.kunci]).trim() : '';
       const kunciRingkas = teksKunci.length > 160 ? teksKunci.slice(0, Math.max(100, teksKunci.lastIndexOf(' ', 160))).replace(/[\s,.;:]+$/, '') + ' …' : teksKunci;
-      ket = [kunciRingkas ? 'Kunci ' + soal.kunci + ': ' + kunciRingkas.replace(/[.]+$/, '') + '.' : '', tag === 'angka-usang' ? 'Jawaban ' + dipilih + ' memakai ketentuan lama.' : ''].filter(Boolean).join(' ');
+      ket = [kunciRingkas ? 'Kunci jawaban ' + soal.kunci + ': ' + kunciRingkas.replace(/[.]+$/, '') + '.' : '', tag === 'angka-usang' ? 'Jawaban ' + dipilih + ' memakai ketentuan lama.' : ''].filter(Boolean).join(' ');
     }
     const judulStatus = langsung ? (benar ? 'Benar' : (tidakTahu ? 'Belum tahu' : kosong ? 'Tidak dijawab' : 'Salah') + (/^Kunci [A-D]: /.test(ket) ? '' : ' · kunci ' + soal.kunci))
       : benar ? 'Benar.' : tidakTahu ? 'Belum tahu.' : kosong ? 'Tidak dijawab.' : 'Kurang tepat.';
@@ -898,7 +957,7 @@
     const komboEl = kombo ? elKombo(opsiU.keyakinan, benar) : null;
     const status = h('p', { class: 'status blok' + (langsung ? ' status-besar' : ''), tabindex: langsung ? '-1' : null }, ikonStatus, h('span', null, h('strong', { 'data-hasil': hasil }, judulStatus), ket ? h('span', { class: 'status-ket' }, ' ' + ket) : null, komboEl));
     // kalimat inti (fokus setelah Periksa; Enter di sini = Lanjut)
-    const inti = h('p', { class: 'inti blok', tabindex: '-1' }, (pb.inti || '').trim() || ket || (langsung ? 'Kunci ' + soal.kunci + '.' : judulStatus));
+    const inti = h('p', { class: 'inti blok', tabindex: '-1' }, (pb.inti || '').trim() || ket || (langsung ? 'Kunci jawaban ' + soal.kunci + '.' : judulStatus));
     const salahLain = HURUF.filter(k => k !== soal.kunci && pb.mengapaSalah && pb.mengapaSalah[k]);
     let jejak = null;
     if (pb.jejakHitung && pb.jejakHitung.length) {
