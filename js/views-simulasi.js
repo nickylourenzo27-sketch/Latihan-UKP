@@ -233,8 +233,8 @@
     const pesertaTim = () => {
       const pr = pemanduRoom() && UTI().pesertaRoom ? UTI().pesertaRoom() : null; if (pr && pr.length) return pr;
       const b = L.siapBersama(UKP.store.get()).bersama; if (b.peserta.length) return b.peserta.slice();
-      const out = []; [L.rapikanNamaPeserta(s.profil.nama)].concat(L.TIM_BAWAAN || []).forEach(n => { if (n && !out.some(x => x.toLowerCase() === n.toLowerCase())) out.push(n); });
-      return out.slice(0, L.MAKS_PESERTA || 12);
+      // v9.1 K1: daftar kosong → hanya nama profil sendiri (tanpa nama tim bawaan)
+      const pem = L.rapikanNamaPeserta(s.profil.nama); return pem ? [pem] : [];
     };
     const kartuTim = h('section', { class: 'card kartu-tim-sim', 'aria-labelledby': 'sim-tim-j' });
     const timRingkas = h('p', { class: 'meta tim-ringkas', 'aria-live': 'polite' });

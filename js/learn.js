@@ -169,8 +169,9 @@
     arr.length = 0; Array.prototype.push.apply(arr, sisa);
     return arr;
   }
-  // v8.0: nama tim bawaan (sakelar latihan bersama dinyalakan pada daftar kosong; "Tambah cepat" di UKP.c.aturBersama)
-  L.TIM_BAWAAN = ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi'];
+  // v8.0: nama tim bawaan. v9.1 K1: kosong — tidak ada nama orang yang tertanam di kode (situs dibuka orang di luar tim).
+  // Properti dipertahankan agar kode lama tetap jalan; daftar yang sudah tersimpan (s.bersama.peserta, daftar room) dipakai apa adanya
+  L.TIM_BAWAAN = [];
   L.YAKIN_BERSAMA = ['yakin', 'ragu', 'menebak'];
   const yakinSah = v => L.YAKIN_BERSAMA.includes(v) ? v : null;
   // satu nilai jawaban peserta (bentuk lama 'B' | bentuk baru { o, k } | dari papan { opsi, keyakinan }) → { o, k }

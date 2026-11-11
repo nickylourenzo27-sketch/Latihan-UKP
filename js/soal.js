@@ -400,13 +400,15 @@
       if (ujianB) { umumkanBersama(kalimat + (semua ? ' Semua sudah terisi.' : lengkap(nama) && !lengkap(barisAktif()) ? ' Berikutnya: ' + barisAktif() + '.' : ''), dariKeyboard); return; }
       // v8.2 B2 (audit T5): semua lengkap → hitung mundur 2 dtk dengan tombol "Tahan" (bukan buka seketika); perubahan apa pun mengulang
       hentikanHitung();
-      const bisaHitung = semua && !ditahan && !!btnKunci;
+      const bisaHitung = semua && !ditahan && !dijeda && !!btnKunci;
       umumkanBersama(kalimat + (semua ? ' Semua sudah menjawab.' + (bisaHitung ? ' Kunci dibuka dalam 2 detik. Tekan Tahan untuk menunda.' : '') : lengkap(nama) && !lengkap(barisAktif()) ? ' Berikutnya: ' + barisAktif() + '.' : ''), dariKeyboard);
       if (bisaHitung) mulaiHitung();
-      else if (semua && !btnKunci) tBuka = setTimeout(() => { if (!terkunci && pesertaB.every(lengkap) && wrap.isConnected) bukaKunci(); }, 350);
+      else if (semua && !btnKunci && !dijeda) tBuka = setTimeout(() => { if (!terkunci && !dijeda && pesertaB.every(lengkap) && wrap.isConnected) bukaKunci(); }, 350);
     }
     // ---- v8.2 B2 hitung mundur kunci otomatis + "Tahan" ----
     let tHitung = null, sisaHitung = 0, ditahan = false;
+    // v9.1 K1: dijeda = pemandu sedang melihat lagi soal lama (wrap.jedaPapan): isian tetap masuk, tetapi kunci tidak dibuka otomatis
+    let dijeda = false;
     const btnTahan = bersama && !ujianB ? h('button', { type: 'button', class: 'btn btn-ghost aksi-tahan', hidden: true, onclick: () => tahan() }, 'Tahan') : null;
     function teksHitung() {
       if (tHitung) return 'Semua sudah menjawab · kunci dibuka dalam ' + sisaHitung + ' dtk';
@@ -414,10 +416,10 @@
       return nSudah() + ' dari ' + pesertaB.length + ' sudah menjawab';
     }
     function mulaiHitung() {
-      if (terkunci || ditahan || !wrap.isConnected) return;
+      if (terkunci || ditahan || dijeda || !wrap.isConnected) return;
       sisaHitung = 2; if (btnTahan) btnTahan.hidden = false; aksi.setAttribute('data-hitung', '');
       tHitung = setInterval(() => {
-        if (terkunci || !wrap.isConnected || !pesertaB.every(lengkap)) { hentikanHitung(); return; }
+        if (terkunci || dijeda || !wrap.isConnected || !pesertaB.every(lengkap)) { hentikanHitung(); return; }
         sisaHitung--;
         if (sisaHitung <= 0) { hentikanHitung(); bukaKunci(); return; }
         if (hitungEl) hitungEl.textContent = teksHitung();
@@ -435,6 +437,16 @@
       ditahan = true; hentikanHitung();
       umumkanBersama('Kunci ditahan. Tekan Lihat kunci bila siap.', false);
       if (fokusDi && btnKunci) fokus(btnKunci);
+    }
+    // v9.1 K1: wrap.jedaPapan(true) → hitung mundur dihentikan dan tidak dimulai lagi; isian (papan maupun HP) tetap tercatat.
+    // wrap.jedaPapan(false) → bila semua sudah lengkap (dan tidak ditahan), hitung mundur 2 dtk dimulai seperti biasa; → true bila dimulai
+    function jedaPapan(v) {
+      if (!bersama || ujianB) return false;
+      v = !!v; if (v === dijeda) return false; dijeda = v;
+      if (v) { hentikanHitung(); return false; }
+      if (!terkunci && !ditahan && btnKunci && pesertaB.every(lengkap)) { mulaiHitung(); return !!tHitung; }
+      if (hitungEl && !terkunci) hitungEl.textContent = teksHitung();
+      return false;
     }
     // ---- v8.2 B2 papan jarak jauh (room tim) ----
     // wrap.isiJauh(nama, { o: 'A'–'D' | '-', k } | null): jawaban dari HP anggota. Diabaikan setelah kunci, untuk nama di luar peserta,
@@ -528,6 +540,8 @@
     const umpan = h('div', null);
     const live = h('p', { class: 'visually-hidden', role: 'status' });
     const aksi = h('div', { class: 'sticky-actions' });
+    // v9.1 K1: opsi.aksiKiri = simpul (mis. tombol "Soal sebelumnya") di sisi kiri bar aksi, di semua keadaan (sebelum dan sesudah menjawab)
+    const aksiKiri = !hanyaBaca && mode === 'belajar' && opsi.aksiKiri && opsi.aksiKiri.nodeType ? opsi.aksiKiri : null;
     if (hanyaBaca) {
       // ulas: langsung terkunci, kunci & jawaban ditandai, tanpa Periksa
       kunci(); tandaiHasil();
@@ -539,6 +553,7 @@
         btnKunci = h('button', { type: 'button', class: 'btn btn-primary', 'aria-disabled': 'true', 'aria-keyshortcuts': 'Enter', 'aria-describedby': 'hitung-' + uid, onclick: () => bukaKunci() }, 'Lihat kunci');
         isiAksiBersama(btnKunci); gambarPapan();
       } else if (opsi.onLewati) aksi.appendChild(h('button', { type: 'button', class: 'btn btn-text', onclick: () => opsi.onLewati() }, 'Lewati'));
+      if (aksiKiri && !bersama && !ujianB) aksi.prepend(aksiKiri);
       aksi.hidden = !aksi.childNodes.length;
       wrap.append(umpan, live, aksi);
     } else if (mode === 'belajar') {
@@ -547,6 +562,7 @@
       aksi.appendChild(btnPeriksa);
       if (bisaTidakTahu) aksi.appendChild(h('button', { type: 'button', class: 'btn btn-ghost btn-text', 'aria-keyshortcuts': 'T', onclick: tidakTahu }, 'Tidak tahu'));
       if (opsi.onLewati) aksi.appendChild(h('button', { type: 'button', class: 'btn btn-text', onclick: () => opsi.onLewati() }, 'Lewati'));
+      if (aksiKiri) aksi.prepend(aksiKiri);
       wrap.append(umpan, live, aksi);
     }
     // bar aksi mode bersama (meniru papan referensi): kiri "Ke menu" · tengah meta + hitungan · kanan "Selesai sekarang" + tombol utama
@@ -555,7 +571,7 @@
       const kiri = typeof opsi.onKeMenu === 'function' ? h('button', { type: 'button', class: 'btn btn-ghost aksi-menu', onclick: () => opsi.onKeMenu() }, 'Ke menu') : null;
       const meta = h('p', { class: 'aksi-meta' }, opsi.metaBersama ? h('span', { class: 'aksi-info' }, opsi.metaBersama) : null, hitungEl);
       const akhir = typeof opsi.onSelesaiSekarang === 'function' ? h('button', { type: 'button', class: 'btn aksi-selesai', onclick: () => opsi.onSelesaiSekarang() }, 'Selesai sekarang') : null;
-      aksi.replaceChildren(...[kiri, meta, h('span', { class: 'aksi-kanan' }, akhir, terkunci ? null : btnTahan, primer)].filter(Boolean));
+      aksi.replaceChildren(...[aksiKiri, kiri, meta, h('span', { class: 'aksi-kanan' }, akhir, terkunci ? null : btnTahan, primer)].filter(Boolean));
       aksi.hidden = false;
     }
     function periksa() {
@@ -607,7 +623,7 @@
       intiEl = (langsung && panel.querySelector('.status')) || panel.querySelector('.inti');
       const kombo = komboYakin(yk, benar);
       live.textContent = (benar ? 'Benar.' : jawab === '-' ? 'Belum tahu. Kunci ' + soal.kunci + '.' : 'Kurang tepat. Jawaban Anda ' + jawab + ', kunci ' + soal.kunci + '.') + (kombo ? ' ' + kombo[2] + '.' : '');
-      aksi.replaceChildren(...tombolSetelah(benar, jawab, detik, yk)); aksi.hidden = false;
+      aksi.replaceChildren(...[aksiKiri].concat(tombolSetelah(benar, jawab, detik, yk)).filter(Boolean)); aksi.hidden = false;
       gambarPetunjuk();
       // fokus ke kalimat inti (dibaca pembaca layar), Lanjut tetap di urutan Tab berikutnya; Enter pada kalimat inti = Lanjut
       fokus(intiEl || aksi.querySelector('button'));
@@ -621,7 +637,7 @@
     }
     // latihan bersama: buka kunci (peserta tanpa jawaban dicatat '-'); hasil per orang di papan dan chip, status kelompok di panel
     function bukaKunci() {
-      if (!bersama || ujianB || terkunci) return;
+      if (!bersama || ujianB || terkunci || dijeda) return;
       clearTimeout(tBuka); hentikanHitung();
       if (!nSudah()) { if (galatPilih) { galatPilih.textContent = 'Catat jawaban minimal satu orang dulu.'; galatPilih.hidden = false; } return; }
       pesertaB.forEach(n => { if (!jb[n]) jb[n] = '-'; if (jb[n] === '-') delete yb[n]; });
@@ -798,6 +814,8 @@
     // · wrap.terkunci() · wrap.tahanKunci() (sama dengan tombol Tahan)
     wrap.isiJauh = bersama && !ujianB ? isiJauh : null; wrap.aturHadir = bersama && !ujianB ? aturHadir : null;
     wrap.sumberBersama = bersama && !ujianB ? () => Object.assign({}, sumberB) : null; wrap.terkunci = () => terkunci; wrap.tahanKunci = bersama && !ujianB ? tahan : null;
+    // v9.1 K1: wrap.jedaPapan(bool) · wrap.dijeda() (mode lihat lagi di runner Latih)
+    wrap.jedaPapan = bersama && !ujianB ? jedaPapan : null; wrap.dijeda = () => dijeda;
     // v8.1 papan mode ujian: wrap.raguBersama() → { nama: bool } (semua peserta)
     wrap.raguBersama = ujianB ? () => { const o = {}; pesertaB.forEach(n => { o[n] = !!rb[n]; }); return o; } : null;
     // setelah terpasang: fokus fieldset opsi agar pintasan A–D langsung berfungsi (mode ulas: hanya bila diminta).

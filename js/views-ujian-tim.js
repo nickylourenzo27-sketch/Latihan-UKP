@@ -232,7 +232,8 @@
     const iid = U.id('nama');
     const galat = h('p', { class: 'galat small', role: 'alert', hidden: true, id: iid + '-g' });
     const input = h('input', { class: 'input', id: iid, type: 'text', maxlength: String(L.MAKS_NAMA_PESERTA || 24), autocomplete: 'name', autocapitalize: 'words', spellcheck: 'false', enterkeyhint: 'go', value: namaProfil(), 'aria-describedby': iid + '-g' });
-    const saran = (L.TIM_BAWAAN || []).map(nm => h('button', { type: 'button', class: 'chip', onclick: () => { input.value = nm; galat.hidden = true; input.removeAttribute('aria-invalid'); } }, nm));
+    // v9.1 K1: saran nama hanya dari daftar peserta yang pernah disimpan di perangkat ini (tanpa nama tim bawaan)
+    const saran = ((L.siapBersama ? L.siapBersama(UKP.store.get()).bersama.peserta : []) || []).slice(0, 12).map(nm => h('button', { type: 'button', class: 'chip', onclick: () => { input.value = nm; galat.hidden = true; input.removeAttribute('aria-invalid'); } }, nm));
     function mulai() {
       const nama = L.rapikanNamaPeserta(input.value);
       if (!nama) { galat.textContent = 'Tulis nama Anda agar pemimpin tahu jawaban siapa.'; galat.hidden = false; input.setAttribute('aria-invalid', 'true'); input.focus(); return; }

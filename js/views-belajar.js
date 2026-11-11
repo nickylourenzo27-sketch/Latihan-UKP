@@ -715,7 +715,7 @@
     const umumkan = t => { if (UKP.umumkan) UKP.umumkan(t); };
     const kabar = () => { UKP.store.save(); if (o.onUbah) { try { o.onUbah({ aktif: b.aktif, peserta: b.peserta.slice() }); } catch (e) { console.error(e); } } gambar(); };
     const galat = h('p', { class: 'galat small', id: id + '-galat', role: 'alert', hidden: true });
-    const input = h('input', { class: 'input', id: id + '-nama', type: 'text', maxlength: String(L.MAKS_NAMA_PESERTA), autocomplete: 'off', autocapitalize: 'words', spellcheck: 'false', enterkeyhint: 'done', placeholder: 'Tambah nama', 'aria-describedby': id + '-galat' });
+    const input = h('input', { class: 'input', id: id + '-nama', type: 'text', maxlength: String(L.MAKS_NAMA_PESERTA), autocomplete: 'off', autocapitalize: 'words', spellcheck: 'false', enterkeyhint: 'done', placeholder: 'Nama anggota', 'aria-describedby': id + '-galat' });
     const setGalat = t => { galat.textContent = t || ''; galat.hidden = !t; if (t) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid'); };
     function tambah(nama, dariSaran) {
       const c = L.cekNamaPeserta(nama, b.peserta);
@@ -740,17 +740,17 @@
     // v8.2 B2: dipakai juga oleh segmen "Sendiri | Bersama" di saringan Latih (opsi tanpaSakelar menyembunyikan sakelar)
     function aturAktif(v) {
       b.aktif = !!v;
-      // v8.0: daftar kosong → diisi nama tim bawaan (UKP.belajar.TIM_BAWAAN); nama pemimpin di depan bila belum termasuk
+      // v8.0: daftar kosong → diisi nama tim bawaan. v9.1 K1: tanpa nama bawaan; daftar kosong diawali nama profil sendiri (bila ada)
       let diisi = false;
       if (b.aktif && !b.peserta.length) {
         const pem = L.rapikanNamaPeserta(s.profil && s.profil.nama);
         const bawaan = Array.isArray(L.TIM_BAWAAN) ? L.TIM_BAWAAN : [];
-        if (pem && !L.cekNamaPeserta(pem, bawaan).galat) b.peserta.push(pem);
+        if (pem && !L.cekNamaPeserta(pem, b.peserta).galat) b.peserta.push(pem);
         bawaan.forEach(n => { if (!L.cekNamaPeserta(n, b.peserta).galat) b.peserta.push(L.rapikanNamaPeserta(n)); });
-        diisi = b.peserta.length > 0;
+        diisi = b.peserta.length > 1;
       }
       pesanIsi = diisi;
-      kabar(); if (!o.tanpaSakelar) umumkan(b.aktif ? 'Latihan bersama menyala.' + (diisi ? ' Daftar diisi nama tim: ' + b.peserta.join(', ') + '.' : '') : 'Latihan bersama mati.');
+      kabar(); if (!o.tanpaSakelar) umumkan(b.aktif ? 'Latihan bersama menyala.' + (diisi ? ' Daftar diisi nama tim: ' + b.peserta.join(', ') + '.' : b.peserta.length <= 1 ? ' Tambahkan nama anggota tim Anda.' : '') : 'Latihan bersama mati.');
     }
     if (o.tanpaSakelar) sw.hidden = true;
     // v8.1 tempo latihan bersama: Ujian (2,1 mnt/soal, sama dengan UKP; bawaan) · Longgar (2,5 mnt/soal); disimpan di s.bersama.tempo
@@ -770,8 +770,10 @@
       daftar.replaceChildren(...b.peserta.map((n, i) => h('li', { class: 'bersama-chip' }, h('span', { class: 'bersama-nama', title: n }, n),
         h('button', { type: 'button', class: 'bersama-hapus', 'aria-label': 'Hapus ' + n, title: 'Hapus ' + n, onclick: () => hapus(n) }, UKP.icon('x', null, true)))));
       daftar.hidden = !daftar.childNodes.length;
-      // "Tambah cepat": nama pemimpin dan nama tim bawaan yang belum masuk daftar
-      const calon = [pem].concat(Array.isArray(L.TIM_BAWAAN) ? L.TIM_BAWAAN : []).filter((n, i, a) => n && a.findIndex(x => x && x.toLowerCase() === n.toLowerCase()) === i && !L.cekNamaPeserta(n, b.peserta).galat);
+      // "Tambah cepat": nama pemimpin dan nama yang pernah disimpan di perangkat ini (peserta sesi bersama terdahulu) yang belum masuk
+      // daftar. v9.1 K1: tanpa nama tim bawaan
+      const pernah = []; try { (L.sesiBersama ? L.sesiBersama() : []).slice(0, 10).forEach(x => (x && Array.isArray(x.peserta) ? x.peserta : []).forEach(n => pernah.push(n))); } catch (e) {}
+      const calon = [pem].concat(Array.isArray(L.TIM_BAWAAN) ? L.TIM_BAWAAN : [], pernah).filter((n, i, a) => n && a.findIndex(x => x && x.toLowerCase() === n.toLowerCase()) === i && !L.cekNamaPeserta(n, b.peserta).galat);
       const cid = id + '-cepat';
       cepat.replaceChildren(...(calon.length ? [h('span', { class: 'meta', id: cid }, 'Tambah cepat:'), h('ul', { class: 'bersama-daftar', 'aria-labelledby': cid }, calon.map(n => {
         const anda = pem && n.toLowerCase() === pem.toLowerCase();
@@ -779,7 +781,7 @@
       }))] : []));
       cepat.hidden = !calon.length;
       const nIn = sw.querySelector('input'); if (nIn) nIn.checked = b.aktif;
-      catatan.textContent = b.aktif && !b.peserta.length ? 'Tambahkan minimal satu nama agar latihan bersama dipakai.'
+      catatan.textContent = b.aktif && b.peserta.length <= 1 ? 'Tambahkan nama anggota tim Anda.'
         : b.peserta.length >= L.MAKS_PESERTA ? 'Daftar penuh (' + L.MAKS_PESERTA + ' orang).'
         : b.aktif ? (pesanIsi ? 'Daftar diisi nama tim; ubah bila perlu. ' : '') + b.peserta.length + ' orang. Urutan daftar = urutan baris di papan jawaban.' : 'Mati: latihan mencatat jawaban Anda saja.';
       pesanIsi = false;
@@ -805,7 +807,7 @@
     const sesi = L.sesiBersamaDari ? L.sesiBersamaDari(ba.sesiId) : null; if (!sesi) return null;
     const n = ba.soalIds.length; const no = Math.min(n, (ba.idx || 0) + 1); const sisaMnt = Math.max(0, Math.ceil((ba.sisaDetik || 0) / 60));
     const jid = 'lanjut-bersama-' + Math.random().toString(36).slice(2, 6);
-    const meta = [ba.ulang ? 'ulang · soal ' + no + ' dari ' + n : 'soal ' + no + ' dari ' + n, (sesi.peserta || []).length + ' orang', ba.sisaDetik > 0 ? 'sisa ' + sisaMnt + ' mnt' : 'waktu habis'].join(' · ');
+    const meta = [ba.ulang ? 'ulang · soal ' + no + ' dari ' + n : 'soal ' + no + ' dari ' + n, (sesi.peserta || []).length + ' orang', ba.sisaDetik > 0 ? 'sisa ' + sisaMnt + ' mnt' : 'waktu sesi habis'].join(' · ');
     const akhiri = () => {
       const isi = Array.isArray(sesi.soal) && sesi.soal.length;
       if (L.simpanBersamaAktif) L.simpanBersamaAktif(null);
@@ -1023,7 +1025,7 @@
         });
       }
       const waktuEl = peserta ? h('span', { class: 'waktu-sesi', role: 'timer', 'aria-live': 'off' }) : null;
-      const fmtSisa = d => d <= 0 ? 'waktu habis' : Math.floor(d / 60) + ' mnt ' + String(Math.floor(d % 60)).padStart(2, '0') + ' dtk';
+      const fmtSisa = d => d <= 0 ? 'waktu sesi habis' : Math.floor(d / 60) + ' mnt ' + String(Math.floor(d % 60)).padStart(2, '0') + ' dtk';
       // sisa waktu dihitung dari titik mulai hitung (sesi baru: anggaran penuh; lanjutan: sisa yang tersimpan)
       const sisaAwal = lanjut ? Math.max(0, Number(lanjut.sisaDetik) || 0) : anggaranSesi; const tHitung = Date.now();
       const sisaSesi = () => Math.ceil(sisaAwal - (Date.now() - tHitung) / 1000);
@@ -1187,6 +1189,7 @@
         : (oj.ulang ? 'Ulang · soal ' : 'Soal ') + no + ' dari ' + dari + ' · ' + nBenar + ' benar';
       let pertama = true;
       function gambar() {
+        tutupLihat(true);
         hentikanTempo(); area.innerHTML = '';
         if (idx >= daftar.length) { selesai(); return; }
         const soal = daftar[idx]; const anggaran = soal.anggaranDetik || 150; const no = idx;
@@ -1227,10 +1230,11 @@
             kunciTerbuka = true; simpanAktif();
           } : null,
           onKeMenu: peserta && !adaMenuKop ? keMenu : null, onSelesaiSekarang: peserta && !adaMenuKop ? selesaiSekarang : null, metaBersama,
+          aksiKiri: soalSelesai().length ? tombolLihat() : null,
           onPeriksa: (b, jawab, detik, keyakinan) => { hentikanTempo(); riwayat.push({ soal, benar: !!b, jawab, detik, ulang: !!oj.ulang, keyakinan: keyakinan || null }); kop.atur(peserta ? null : judulKop(no + 1, benar + (b ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, peserta ? undefined : [tautanAtur()]); }, onKeyakinan: v => { const r = riwayat[riwayat.length - 1]; if (r && r.soal === soal) r.keyakinan = v || null; },
           onLanjut: (b) => { if (b) benar++; if (peserta && sesiId && triKini && triKini.kelas !== 'dikuasai' && L.tandaiBahas) L.tandaiBahas(sesiId, soal.id, true); idx++; if (lajuEl) lajuEl.removeAttribute('data-henti'); gambar(); if (idx < daftar.length) simpanAktif(); } });
         area.append(h('h1', { class: 'visually-hidden' }, (oj.ulang ? 'Putaran ulang, soal ' : 'Soal ') + (no + 1) + ' dari ' + dari), el);
-        elKini = peserta ? el : null; soalKini = peserta ? soal : null;
+        elKini = peserta ? el : null; soalKini = peserta ? soal : null; wrapKini = el;
         if (diRoom && siar) { siar.soal(idx); isiPapanJauh(); }
         if (tempoEl) {
           let sisa = anggaran;
@@ -1245,6 +1249,7 @@
         UKP.fokusNanti(area.querySelector('h1'));
       }
       function selesai() {
+        tutupLihat(true);
         hentikanTempo(); area.innerHTML = ''; kop.remove(); if (skorEl) skorEl.remove(); modeFokus(false); elKini = null; soalKini = null;
         const menit = Math.max(1, Math.round((Date.now() - mulaiWaktu) / 60000));
         if (idx > 0) UKP.hadir.catat('HADIR', menit);
@@ -1333,6 +1338,142 @@
             h('div', { class: 'list-rows' }, salahSoal.map(r => { const salah = peserta.filter(n => r.per[n] && !r.per[n].benar).map(n => n + ' (' + (r.per[n].opsi === '-' ? '–' : r.per[n].opsi) + ')');
               return h('button', { type: 'button', class: 'row-link baris-tombol', 'aria-haspopup': 'dialog', onclick: () => bukaSoal(r) }, h('span', { class: 'kode' }, r.soal.id.split('-').pop()), h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, pendek(r.soal.stem, 110)), h('span', { class: 'row-meta' }, h('span', { class: 'meta' }, h('span', { class: 'kode' }, r.soal.id), h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), 'kunci ' + r.soal.kunci, h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), 'salah: ' + salah.join(', ')))), ikon('chevron-kanan', 'chev', true)); })) }) : null);
         UKP.fokus(area.querySelector('h1')); window.scrollTo({ top: 0 });
+      }
+      // ================= v9.1 K1: MODE LIHAT LAGI (kembali melihat soal yang sudah selesai) =================
+      // Tombol "Soal sebelumnya" (kiri bar aksi, opsi aksiKiri UKP.c.soal) membuka soal-soal yang sudah selesai di tempat yang sama, hanya
+      // baca. Soal berjalan TIDAK dibuat ulang: .latih-area disembunyikan (tetap terpasang), jadi papan, isian HP (isiJauh), laju, waktu,
+      // dan baris aktif tetap; papan dijeda (wrap.jedaPapan) agar kunci tidak terbuka sendiri; pintasan papan tidak bisa mengenainya karena
+      // fokus tidak mungkin berada di elemen tersembunyi. Tidak ada yang dikirim ke room. Data: latihan bersama → rekaman sesi
+      // (L.sesiBersamaDari, tetap ada setelah muat ulang + Lanjutkan); latihan pribadi → riwayat putaran ini.
+      let wrapKini = null, lihat = null; // lihat = { el, pos, gulir, judul, kini }
+      const nomorDari = id => { const i = daftar.findIndex(x => x && x.id === id); return i >= 0 ? i + 1 : null; };
+      function soalSelesai() {
+        const kini = daftar[idx] ? daftar[idx].id : null;
+        if (peserta) {
+          const sesi = sesiId && L.sesiBersamaDari ? L.sesiBersamaDari(sesiId) : null;
+          if (sesi && Array.isArray(sesi.soal)) {
+            // rotasi penjelas diputar ulang dengan urutan yang sama seperti saat kunci dibuka (lihat pemulihan sesiLama di atas)
+            const hp = {}; const out = [];
+            sesi.soal.forEach(q => {
+              const so = q && K.soal(q.id); if (!so) return; const per = {};
+              Object.keys(q.jawaban || {}).forEach(n => { const x = q.jawaban[n] || {}; per[n] = { opsi: x.o || '-', keyakinan: x.k || null, benar: !!x.b }; });
+              let tri = null;
+              if (L.triaseSoal) { try { tri = L.triaseSoal(so, per, { urutan: sesi.peserta || peserta, hitungPenjelas: hp }); if (tri && tri.penjelas) hp[tri.penjelas] = (hp[tri.penjelas] || 0) + 1; } catch (e) { tri = null; } }
+              if (q.id !== kini) out.push({ soal: so, q, tri, peserta: sesi.peserta && sesi.peserta.length ? sesi.peserta : peserta, nomor: nomorDari(q.id) });
+            });
+            return out;
+          }
+          return riwayatB.filter(r => r.soal.id !== kini).map(r => { const jw = {}; Object.keys(r.per).forEach(n => { const x = r.per[n]; jw[n] = { o: x.opsi || '-', k: x.keyakinan || null, b: x.benar ? 1 : 0 }; }); return { soal: r.soal, q: { id: r.soal.id, kunci: r.soal.kunci, detik: r.detik || 0, jawaban: jw }, tri: null, peserta, nomor: nomorDari(r.soal.id) }; });
+        }
+        return riwayat.filter(r => r.soal.id !== kini).map(r => ({ soal: r.soal, r, nomor: nomorDari(r.soal.id) }));
+      }
+      function tombolLihat() {
+        return h('button', { type: 'button', class: 'btn btn-ghost aksi-lihat-lagi', 'aria-label': 'Soal sebelumnya', title: 'Lihat lagi soal yang sudah selesai', onclick: () => bukaLihat() },
+          ikon('back', null, true), h('span', { class: 'aksi-lihat-label' }, 'Soal sebelumnya'));
+      }
+      const NADA_TRI = { dikuasai: 'ok', rapuh: 'info', terbelah: 'warn', tersandung: 'attn' };
+      // isi satu soal latihan bersama: "Benar X dari N" + keterangan (sama dengan saat kunci dibuka), triase (tanpa stopwatch), jawaban tiap orang
+      function isiLihatBersama(it) {
+        const so = it.soal, q = it.q; const kunci = q.kunci || so.kunci;
+        const nama = (it.peserta && it.peserta.length ? it.peserta : Object.keys(q.jawaban || {}));
+        const jOf = n => { const jw = q.jawaban || {}; const k = Object.keys(jw).find(x => samaNamaR(x, n)); const x = k != null ? jw[k] || {} : {}; return { o: x.o || '-', k: x.o && x.o !== '-' ? x.k || null : null, b: x.b ? 1 : 0 }; };
+        const N = nama.length; const nBenar = nama.filter(n => jOf(n).b).length;
+        const salah = nama.filter(n => jOf(n).o !== '-' && !jOf(n).b); const kosong = nama.filter(n => jOf(n).o === '-');
+        const hasil = nBenar === N ? 'benar' : 'salah';
+        const ket = 'Kunci ' + kunci + ' · ' + (nBenar === N ? 'Semua benar' : [salah.length ? 'Salah: ' + salah.map(n => n + ' (' + jOf(n).o + (jOf(n).k === 'yakin' ? ', yakin' : '') + ')').join(', ') : '', kosong.length ? 'Tidak menjawab: ' + kosong.join(', ') : ''].filter(Boolean).join(' · '));
+        const ikonSt = ikon(hasil === 'benar' ? 'cek-lingkar' : 'x-lingkar', 'status-ikon'); ikonSt.setAttribute('data-hasil', hasil);
+        const st = h('p', { class: 'status blok status-besar status-bersama' }, ikonSt, h('span', null, h('strong', { 'data-hasil': hasil }, 'Benar ' + nBenar + ' dari ' + N), h('span', { class: 'status-ket' }, ket)));
+        const tri = it.tri; let triEl = null;
+        if (tri) {
+          const pillT = teks => h('span', { class: 'pill', 'data-tone': NADA_TRI[tri.kelas] || null }, teks);
+          const al = tri.alasan;
+          triEl = tri.kelas === 'dikuasai' ? h('div', { class: 'triase-bersama blok', 'data-kelas': tri.kelas }, h('p', { class: 'triase-baris' }, pillT('Dikuasai'), h('span', { class: 'triase-saran' }, 'lanjut')))
+            : h('div', { class: 'triase-bersama blok', 'data-kelas': tri.kelas },
+              h('p', { class: 'triase-baris' }, pillT(tri.label), h('strong', { class: 'triase-saran' }, tri.saran)),
+              al && (al.label || al.teks) ? h('p', { class: 'triase-alasan' }, h('span', { class: 'triase-ket' }, 'Kenapa ' + al.opsi + ' keliru: '), [al.label, al.teks].filter(Boolean).join(' — ')) : null,
+              tri.yakinSalah && tri.yakinSalah.length ? h('p', { class: 'triase-yakin' }, h('span', { class: 'triase-ket' }, 'Yakin tapi salah: '), tri.yakinSalah.join(', ')) : null);
+        }
+        const hasilSel = j => j.o === '-' ? 'kosong' : j.b ? 'benar' : 'salah';
+        const daftarJ = h('ul', { class: 'eval-dlg-jawab lihat-jawab', 'aria-label': 'Jawaban tiap orang' }, nama.map(n => { const j = jOf(n); const hs = hasilSel(j);
+          return h('li', { 'data-hasil': hs }, h('span', { class: 'eval-dlg-nama', title: n }, n), h('span', { class: 'eval-sel', 'data-hasil': hs }, j.o === '-' ? '–' : j.o),
+            h('span', { class: 'meta' }, (hs === 'kosong' ? 'tidak menjawab' : hs) + (j.k ? ' · ' + ({ yakin: 'yakin', ragu: 'ragu', menebak: 'menebak' }[j.k] || '') : ''))); }));
+        const el = UKP.c.soal(so, { hanyaBaca: true, denganUmpan: true, fokus: false, jawabanAwal: '-', detik: q.detik || 0, konteks: 'ulas', tanpaTutor: true, tanpaLog: true });
+        const stLama = el.querySelector('.umpan .status'); if (stLama) stLama.replaceWith(st); else { const u = el.querySelector('.umpan'); if (u) u.prepend(st); }
+        if (triEl) st.after(triEl);
+        const fsEl = el.querySelector('fieldset.opsi'); if (fsEl) fsEl.after(h('div', { class: 'lihat-papan stack-xs' }, h('p', { class: 'eyebrow' }, 'Jawaban tiap orang'), daftarJ)); else el.prepend(daftarJ);
+        return el;
+      }
+      function isiLihatPribadi(it) {
+        const r = it.r; const so = r.soal; const LBL = { yakin: 'yakin', ragu: 'ragu', menebak: 'menebak' };
+        const el = UKP.c.soal(so, { hanyaBaca: true, denganUmpan: true, fokus: false, jawabanAwal: r.jawab, detik: r.detik || 0, konteks: 'ulas', tanpaTutor: true, tanpaLog: true });
+        const teks = r.jawab === '-' ? 'Anda memilih "Tidak tahu".' : 'Jawaban Anda ' + r.jawab + (r.benar ? ', benar' : ', kunci ' + so.kunci) + (r.keyakinan && LBL[r.keyakinan] ? ' · ' + LBL[r.keyakinan] : '') + '.';
+        const fsEl = el.querySelector('fieldset.opsi'); const p = h('p', { class: 'meta lihat-jawaban-sendiri' }, teks);
+        if (fsEl) fsEl.after(p); else el.prepend(p);
+        return el;
+      }
+      function gambarLihat(fokusJudul) {
+        if (!lihat) return;
+        const arr = soalSelesai(); if (!arr.length) { tutupLihat(); return; }
+        lihat.pos = Math.max(0, Math.min(arr.length - 1, lihat.pos));
+        const it = arr[lihat.pos]; const noKini = idx + 1; const berjalan = idx < daftar.length;
+        const judulTeks = 'Melihat lagi soal ' + (it.nomor || '?') + ' dari ' + dari;
+        const jid = 'lihat-judul-' + Math.random().toString(36).slice(2, 6);
+        const judul = h('h1', { class: 'lihat-judul', id: jid, tabindex: '-1' }, judulTeks);
+        const isi = peserta ? isiLihatBersama(it) : isiLihatPribadi(it);
+        // tautan yang meninggalkan layar latihan (topik, peta formulir) tidak ditampilkan selama sesi berjalan
+        isi.querySelectorAll('.pelajari-lagi, .tautan-formulir').forEach(x => x.remove());
+        const sebelum = h('button', { type: 'button', class: 'btn lihat-sebelum', 'aria-label': 'Soal sebelumnya yang sudah selesai', disabled: lihat.pos === 0 ? true : null, onclick: () => geserLihat(-1) }, ikon('back', null, true), h('span', { class: 'lihat-nav-label' }, 'Sebelumnya'));
+        const berikut = h('button', { type: 'button', class: 'btn lihat-berikut', 'aria-label': 'Soal berikutnya yang sudah selesai', disabled: lihat.pos >= arr.length - 1 ? true : null, onclick: () => geserLihat(1) }, h('span', { class: 'lihat-nav-label' }, 'Berikutnya'), ikon('chevron-kanan', null, true));
+        const kembali = h('button', { type: 'button', class: 'btn btn-primary btn-lg lihat-kembali', 'aria-keyshortcuts': 'Escape', onclick: () => tutupLihat() }, 'Kembali ke soal ' + noKini, ikon('chevron-kanan'));
+        lihat.el.setAttribute('aria-labelledby', jid);
+        lihat.el.replaceChildren(
+          h('div', { class: 'lihat-pita' }, ikon('jam', 'lihat-pita-ikon', true), h('div', { class: 'lihat-pita-teks' }, judul, berjalan ? h('p', { class: 'lihat-pita-ket' }, 'Soal ' + noKini + ' masih berjalan.') : null)),
+          isi,
+          h('div', { class: 'sticky-actions lihat-aksi' }, h('span', { class: 'lihat-nav' }, sebelum, h('span', { class: 'meta lihat-posisi' }, (lihat.pos + 1) + ' / ' + arr.length), berikut), kembali));
+        if (fokusJudul !== false) { window.scrollTo({ top: 0 }); UKP.fokus(judul); }
+        if (UKP.umumkan) UKP.umumkan('Melihat lagi soal ' + (it.nomor || '?') + '.');
+      }
+      function geserLihat(d) {
+        if (!lihat) return; const arr = soalSelesai(); const baru = lihat.pos + d; if (baru < 0 || baru >= arr.length) return;
+        const fokusDi = document.activeElement; const kelas = fokusDi && fokusDi.classList && (fokusDi.classList.contains('lihat-sebelum') ? 'lihat-sebelum' : fokusDi.classList.contains('lihat-berikut') ? 'lihat-berikut' : null);
+        lihat.pos = baru; gambarLihat(!kelas);
+        if (kelas) { window.scrollTo({ top: 0 }); const b = lihat.el.querySelector('.' + kelas); const alt = lihat.el.querySelector(kelas === 'lihat-sebelum' ? '.lihat-berikut' : '.lihat-sebelum'); UKP.fokus(b && !b.disabled ? b : alt && !alt.disabled ? alt : lihat.el.querySelector('.lihat-kembali')); }
+      }
+      function bukaLihat() {
+        if (lihat || !page.isConnected) return;
+        const arr = soalSelesai(); if (!arr.length) return;
+        lihat = { el: h('section', { class: 'lihat-lagi stack' }), pos: arr.length - 1, gulir: window.scrollY };
+        if (wrapKini && typeof wrapKini.jedaPapan === 'function') wrapKini.jedaPapan(true);
+        lihat.penanda = h('span', { class: 'pill fokus-penanda-lihat', 'data-tone': 'info' }, ikon('jam', null, true), 'melihat lagi');
+        const jd = kop.querySelector('.fokus-judul .fokus-baris') || kop.querySelector('.fokus-judul'); if (jd) jd.prepend(lihat.penanda);
+        kop.setAttribute('data-lihat', '');
+        page.classList.add('sedang-lihat');
+        area.after(lihat.el);
+        gambarLihat(true);
+        area.hidden = true;
+        if (skorEl) skorEl.toggleAttribute('data-lihat', true);
+        document.addEventListener('keydown', tombolLihatKey);
+      }
+      function tutupLihat(diam) {
+        if (!lihat) return;
+        const l = lihat; lihat = null;
+        document.removeEventListener('keydown', tombolLihatKey);
+        l.el.remove(); if (l.penanda) l.penanda.remove(); kop.removeAttribute('data-lihat'); page.classList.remove('sedang-lihat');
+        if (skorEl) skorEl.removeAttribute('data-lihat');
+        area.hidden = false;
+        if (diam) return; // gambar()/selesai(): soal berjalan segera diganti, jadi jeda papannya tidak perlu dilepas
+        const mulaiHitung = wrapKini && typeof wrapKini.jedaPapan === 'function' ? wrapKini.jedaPapan(false) : false;
+        window.scrollTo({ top: l.gulir || 0 });
+        const h1 = area.querySelector('h1'); if (h1) UKP.fokus(h1);
+        if (UKP.umumkan) UKP.umumkan('Kembali ke soal ' + (idx + 1) + '.' + (mulaiHitung ? ' Semua sudah menjawab. Kunci dibuka dalam 2 detik.' : ''));
+      }
+      function tombolLihatKey(e) {
+        if (!lihat || !lihat.el.isConnected) { document.removeEventListener('keydown', tombolLihatKey); return; }
+        if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
+        if (document.querySelector('dialog[open]')) return;
+        const t = e.target; if (t && t.closest && t.closest('input, textarea, select, [contenteditable="true"], details.menu-lebih[open]')) return;
+        if (e.key === 'Escape') { e.preventDefault(); tutupLihat(); return; }
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { if (t && t.closest && t.closest('.fokus-bar')) return; e.preventDefault(); geserLihat(e.key === 'ArrowLeft' ? -1 : 1); }
       }
       if (peserta) gambarSkor();
       if (roomNiat && !sambungRoom()) { if (lanjut) tungguRoom(); else { roomNiat = false; UKP.toast('Room tidak tersambung. Latihan berjalan di satu layar.'); } }
@@ -1464,7 +1605,8 @@
     // v8.2 B2 (audit T3): segmen besar "Sendiri | Bersama · N orang" di atas kartu saringan; rincian peserta dan tempo hanya saat Bersama.
     // Perangkat di room: pemandu → tombol "Mulai latihan bersama di room" (params room); anggota → ajakan "Masuk room" alih-alih papan
     const sBer = L.siapBersama(UKP.store.get()).bersama;
-    const nOrang = () => { const p = L.siapBersama(UKP.store.get()).bersama.peserta.length; return p || (Array.isArray(L.TIM_BAWAAN) ? L.TIM_BAWAAN.length : 0); };
+    // v9.1 K1: tanpa nama bawaan; daftar kosong dihitung 1 (nama profil sendiri dimasukkan saat Bersama dipilih) atau 0 tanpa nama profil
+    const nOrang = () => { const p = L.siapBersama(UKP.store.get()).bersama.peserta.length; return p || (L.rapikanNamaPeserta(s.profil && s.profil.nama) ? 1 : 0) || (Array.isArray(L.TIM_BAWAAN) ? L.TIM_BAWAAN.length : 0); };
     const peranR = peranRoom();
     modeLatih = params.bersama || (sBer.aktif && sBer.peserta.length) ? 'bersama' : 'sendiri';
     const pintuUjian = h('p', { class: 'pintu-ujian-tim small' }, h('a', { href: UKP.href ? UKP.href('simulasi', { tim: 1 }) : '#simulasi', class: 'tautan', onclick: e => { e.preventDefault(); UKP.go('simulasi', { tim: 1 }); } }, ikon('tim', null, true), 'Ujian tim: kunci dan nilai di akhir'));

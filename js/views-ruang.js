@@ -487,11 +487,14 @@
     o = o || {}; let daftar = (awal || []).slice(0, 12); const wajib = o.wajib ? kunciNama(o.wajib) : null;
     const wadah = h('div', { class: 'chip-row editor-nama', role: 'list', 'aria-label': o.label || 'Anggota' });
     const iid = UKP.util.id('nama');
-    const input = h('input', { class: 'input', id: iid, type: 'text', maxlength: '24', autocomplete: 'off', autocapitalize: 'words', enterkeyhint: 'done', placeholder: 'Tambah nama' });
+    const input = h('input', { class: 'input', id: iid, type: 'text', maxlength: '24', autocomplete: 'off', autocapitalize: 'words', enterkeyhint: 'done', placeholder: 'Nama anggota' });
     const galat = h('p', { class: 'galat small', role: 'alert', hidden: true });
+    // v9.1 K1: keterangan pendek selama daftar belum berisi anggota lain
+    const ket = h('p', { class: 'meta editor-nama-ket' }, 'Tambahkan nama anggota tim Anda.');
     function gambar() {
       wadah.replaceChildren(...daftar.map(n => h('span', { class: 'chip chip-nama', role: 'listitem' }, n,
         kunciNama(n) === wajib ? null : h('button', { type: 'button', class: 'icon-btn sm', 'aria-label': 'Hapus ' + n, onclick: () => { daftar = daftar.filter(x => x !== n); gambar(); } }, UKP.icon('x')))));
+      wadah.hidden = !daftar.length; ket.hidden = daftar.length > 1;
     }
     function tambah() {
       const c = fn(L, 'cekNamaPeserta') ? L.cekNamaPeserta(input.value, daftar) : { nama: rapikan(input.value), galat: rapikan(input.value) ? null : 'Isi nama dulu.' };
@@ -501,15 +504,16 @@
     input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); tambah(); } });
     gambar();
     const el = h('div', { class: 'field' }, h('span', { class: 'label' }, o.label || 'Anggota'), wadah,
-      h('div', { class: 'isian-baris' }, h('label', { class: 'visually-hidden', for: iid }, 'Nama anggota baru'), input, h('button', { type: 'button', class: 'btn', onclick: tambah }, UKP.icon('tambah', null, true), 'Tambah')), galat);
+      h('div', { class: 'isian-baris' }, h('label', { class: 'visually-hidden', for: iid }, 'Nama anggota'), input, h('button', { type: 'button', class: 'btn', onclick: tambah }, UKP.icon('tambah', null, true), 'Tambah')), ket, galat);
     el.nilai = () => daftar.slice();
     return el;
   }
   function tingkatProfil() { return aman(() => UKP.store.get().profil.tingkat, 'B') || 'B'; }
   function anggotaAwal() {
     const s = UKP.store.get(); if (fn(L, 'siapBersama')) L.siapBersama(s);
-    const p = s.bersama && Array.isArray(s.bersama.peserta) && s.bersama.peserta.length ? s.bersama.peserta : (L.TIM_BAWAAN || []);
-    return p.slice(0, 12);
+    // v9.1 K1: tanpa daftar tersimpan → diawali nama profil sendiri (bila ada); tidak ada nama tim bawaan
+    if (s.bersama && Array.isArray(s.bersama.peserta) && s.bersama.peserta.length) return s.bersama.peserta.slice(0, 12);
+    const pem = rapikan(s.profil && s.profil.nama); return pem ? [pem] : [];
   }
   UI.dialogBuat = function () {
     const r = R();
@@ -858,7 +862,9 @@
       const st = lokal.intip || null;
       const namaR = st && st.room && st.room.nama ? st.room.nama : null;
       const tingkat = st && st.room && st.room.tingkat ? st.room.tingkat : null;
-      const daftar = st && pesertaRoom(st).length ? pesertaRoom(st) : (L.TIM_BAWAAN || []);
+      // v9.1 K1: tanpa daftar nama dari room → tanpa chip nama, langsung kolom "Ketik nama Anda" (tidak ada nama tim bawaan)
+      const daftar = st && pesertaRoom(st).length ? pesertaRoom(st) : [];
+      const ketikLangsung = !daftar.length;
       const onlineIntip = st && Array.isArray(st.online) ? st.online : [];
       const ingat = lsBaca('ukp.tim.namaRoom', {});
       const namaIngat = ingat && ingat[kodeParam] ? ingat[kodeParam] : null;
@@ -907,11 +913,12 @@
       const inp = h('input', { class: 'input', id: iid, type: 'text', maxlength: '24', autocomplete: 'name', autocapitalize: 'words', enterkeyhint: 'go', value: lokal.namaLainTeks || '' });
       const kirimLain = () => { const n = rapikan(inp.value); lokal.namaLainTeks = inp.value; if (!n) { lokal.galat = 'Tulis nama Anda dulu.'; gambar(true); return; } pilihNama(n); };
       inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); kirimLain(); } });
+      inp.addEventListener('input', () => { lokal.namaLainTeks = inp.value; });
       node.appendChild(h('section', { class: 'card stack pilih-nama', 'aria-labelledby': 'siapa-j' },
         h('h2', { class: 'card-title', id: 'siapa-j' }, 'Siapa Anda?'),
-        h('div', { class: 'grid-nama-room', role: 'group', 'aria-labelledby': 'siapa-j' }, tombolNama,
+        ketikLangsung ? null : h('div', { class: 'grid-nama-room', role: 'group', 'aria-labelledby': 'siapa-j' }, tombolNama,
           lokal.namaLain ? null : h('button', { type: 'button', class: 'nama-room lain', disabled: lokal.gabungJalan ? true : null, onclick: () => { lokal.namaLain = true; gambar(true); setTimeout(() => { const x = page.querySelector('#' + iid); if (x) x.focus(); }, 30); } }, h('span', { class: 'nama' }, 'Nama lain…'))),
-        lokal.namaLain ? h('div', { class: 'field' }, h('label', { for: iid }, 'Nama Anda'), h('div', { class: 'isian-baris' }, inp, h('button', { type: 'button', class: 'btn btn-primary', disabled: lokal.gabungJalan ? true : null, onclick: kirimLain }, 'Masuk room'))) : null,
+        lokal.namaLain || ketikLangsung ? h('div', { class: 'field' }, h('label', { for: iid }, ketikLangsung ? 'Ketik nama Anda' : 'Nama Anda'), h('div', { class: 'isian-baris' }, inp, h('button', { type: 'button', class: 'btn btn-primary', disabled: lokal.gabungJalan ? true : null, onclick: kirimLain }, 'Masuk room'))) : null,
         lokal.gabungJalan ? h('p', { class: 'small', role: 'status' }, 'Menghubungkan ke room…') : null,
         galat));
       node.appendChild(h('p', { class: 'meta' }, 'Nama diingat di perangkat ini, jadi lain kali tidak perlu memilih lagi.'));

@@ -4231,3 +4231,54 @@ main > .page { margin-inline: auto; }
 .topbar[data-tamu] .chip-tingkat[data-tingkat] { display: none; }
 /* toast HP tidak lagi memesan ruang bar bawah saat bar itu tersembunyi (pengunjung, sambutan) */
 @media (max-width: 599px) { body:not([data-mode]):has(#bottomnav[hidden]):not(:has(:is(.sticky-actions, .nav-topik, .hasil-mini):not([hidden]))) .toast { bottom: calc(var(--s-4) + env(safe-area-inset-bottom, 0px)); } }
+
+/* ---- v9.1 K1: lihat lagi soal sebelumnya + teks waktu sesi ----
+   Tombol "Soal sebelumnya" (.aksi-lihat-lagi) di kiri bar aksi soal; < 600 px ikon saja (aria-label tetap). Mode lihat lagi
+   (section.lihat-lagi) menggantikan tampilan soal berjalan di tempat yang sama: pita keterangan (.lihat-pita, gaya banner info),
+   isi hanya baca, bar bawah lengket (.lihat-aksi: Sebelumnya · posisi · Berikutnya | Kembali ke soal N). Kop diberi penanda kecil
+   (.fokus-penanda-lihat). Soal berjalan tetap terpasang tetapi tersembunyi ([hidden] pada .latih-area). */
+.aksi-lihat-lagi { flex: none; min-height: 44px; gap: 6px; }
+.sticky-actions > .aksi-lihat-lagi { flex: none; }
+.sticky-actions:not(.aksi-bersama) > .aksi-lihat-lagi { margin-right: auto; }
+.aksi-lihat-lagi svg { width: 18px; height: 18px; }
+@media (max-width: 599px) {
+  .aksi-lihat-lagi { min-width: 44px; padding-inline: 10px; }
+  .aksi-lihat-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+}
+@media (max-width: 699px) { .aksi-bersama > .aksi-lihat-lagi { order: -2; min-height: 44px; } }
+.lihat-lagi { gap: var(--s-3); }
+.lihat-pita {
+  display: flex; align-items: flex-start; gap: var(--s-3); padding: var(--s-3) var(--s-4);
+  background: var(--info-soft); border: var(--garis); border-left: var(--penanda) solid var(--info); border-radius: var(--r-sm); color: var(--ink);
+}
+.lihat-pita-ikon { flex: none; width: 22px; height: 22px; margin-top: 3px; color: var(--info); }
+.lihat-pita-teks { min-width: 0; }
+.lihat-judul { margin: 0; font-size: var(--fs-h1); line-height: var(--lh-h1, 1.2); font-weight: var(--fw-semi); font-variant-numeric: tabular-nums; }
+.lihat-judul:focus { outline: none; }
+.lihat-judul:focus-visible { outline: 2px solid var(--focus, var(--primary)); outline-offset: 4px; border-radius: var(--r-xs, 2px); }
+.lihat-pita-ket { margin: 2px 0 0; font-size: var(--fs-small); color: var(--muted); }
+.lihat-papan { margin-block: var(--s-2); }
+.lihat-jawab { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.lihat-jawab .eval-dlg-nama { max-width: 12em; }
+.lihat-jawab .meta { white-space: nowrap; }
+.lihat-papan > .eyebrow { margin: 0; }
+.lihat-jawaban-sendiri { margin: var(--s-2) 0 0; }
+.sticky-actions.lihat-aksi { flex-wrap: nowrap; justify-content: space-between; gap: var(--s-2) var(--s-3); }
+.lihat-nav { display: flex; align-items: center; gap: var(--s-2); min-width: 0; }
+.lihat-nav > .btn { min-height: 44px; flex: none; }
+.lihat-nav svg { width: 18px; height: 18px; }
+.lihat-posisi { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sticky-actions.lihat-aksi > .lihat-kembali { flex: none; }
+@media (max-width: 599px) {
+  .sticky-actions.lihat-aksi { flex-wrap: wrap; row-gap: var(--s-2); }
+  .lihat-nav { flex: 1 1 100%; justify-content: space-between; }
+  .sticky-actions.lihat-aksi > .lihat-kembali { flex: 1 1 100%; }
+  .lihat-judul { font-size: var(--fs-h2); line-height: var(--lh-h2); }
+}
+@media (max-width: 379px) { .lihat-nav-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; } .lihat-nav > .btn { min-width: 44px; } }
+/* penanda kecil di kop (layar proyektor): "melihat lagi" di depan nomor soal berjalan */
+.fokus-penanda-lihat { flex: none; margin-right: var(--s-2); vertical-align: 1px; }
+.fokus-penanda-lihat svg { width: 14px; height: 14px; }
+@media (max-width: 599px) { .fokus-penanda-lihat { margin-right: 4px; padding-inline: 6px; } }
+/* C: "waktu sesi habis" bukan tanda bahaya (latihan boleh dilanjutkan) → warna teks redup */
+.waktu-sesi[data-habis] { color: var(--muted); }

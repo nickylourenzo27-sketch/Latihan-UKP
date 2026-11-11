@@ -51,6 +51,8 @@ const initRelai = relai => {
     await foto(nicky, 'room-kosong');
     await nicky.page.click('.halaman-room .room-utama');
     await nicky.page.waitForSelector('dialog[open] .room-buat', { timeout: 8000 });
+    // v9.1: tanpa nama tim bawaan → daftar anggota diawali nama pemimpin; anggota diketik di kolom "Nama anggota"
+    for (const nm of ['Mia', 'Novia']) { await nicky.page.fill('dialog[open] .isian-baris input', nm); await nicky.page.press('dialog[open] .isian-baris input', 'Enter'); }
     await foto(nicky, 'dialog-buat');
     await nicky.page.click('dialog[open] .room-buat');
     const msBuat = await tunggu(nicky.page, () => UKP.ruang.info() && UKP.ruang.status().tersambung, null, 15000);

@@ -236,8 +236,9 @@ describe('v8.0: sesi latihan bersama', () => {
     assert.deepEqual(JSON.parse(JSON.stringify(L.evaluasiSesi(null))), { nSoal: 0, nPeserta: 0, menit: 0, peserta: [], soal: [], tersulit: [], topikTim: [],
       mode: 'latihan', judul: null, tempo: null, skor: null, triase: { daftar: [], nDikuasai: 0, perKelas: { dikuasai: 0, rapuh: 0, terbelah: 0, tersandung: 0 } } });
   });
-  it('TIM_BAWAAN berisi enam nama tim', () => {
-    assert.deepEqual(JSON.parse(JSON.stringify(L.TIM_BAWAAN)), ['Nicky', 'Mia', 'Novia', 'Jessie', 'Melva', 'Alfi']);
+  it('TIM_BAWAAN larik kosong (v9.1: tidak ada nama tim yang tertanam di kode)', () => {
+    assert.ok(Array.isArray(L.TIM_BAWAAN));
+    assert.deepEqual(JSON.parse(JSON.stringify(L.TIM_BAWAAN)), []);
   });
 });
 
