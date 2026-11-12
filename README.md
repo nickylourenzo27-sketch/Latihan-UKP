@@ -209,6 +209,12 @@ Setiap soal yang sudah dibahas, dilatih bersama, atau diujikan diganti soal baru
 - **Perbaikan soal lama.** Catatan yang tersisa dari penulis dan pemeriksa soal baru ditindaklanjuti dalam satu putaran lagi, tiap perbaikan diuji pemeriksa kedua. Stem diperjelas: A1-007, A3-097, A4-116, A4-129, B7-083, B8-072, B8-074 dan B8-085. Diberi tanda ◐ karena naskah pendukungnya belum ada di pustaka naskah: A3-109, A3-115 dan A3-116. Selebihnya pembaruan rujukan, antara lain PMK 81/2024 Pasal 241 sampai 246 dan Pasal 370 sampai 374, PMK 74/2024, dan PMK 78/2024 Pasal 63 sampai 65. Jumlah soal bertanda: 62 di modul Tingkat B dan Etika, 8 di modul Tingkat C. Soal try out tidak berubah stem, opsi, maupun kuncinya.
 <!-- isi-951:selesai -->
 
+<!-- isi-952:mulai -->
+### Perbaikan v9.5.2
+
+- **Ringkasan waktu di Simulasi.** Ujian tim selalu memakai waktu. Ringkasan kini menulis menitnya saat "Kerjakan sebagai tim" menyala, walaupun "Tanpa batas waktu" sebelumnya dinyalakan, dan kartu Ujian tim memberi catatan singkat tentang hal itu. Pada simulasi sendiri, isian Menit disembunyikan selama "Tanpa batas waktu" menyala.
+<!-- isi-952:selesai -->
+
 ## Isi saat ini (status 9 November 2026, v7.8)
 
 | | Jumlah |

@@ -302,6 +302,7 @@
             typeof UKP.c.aturBersama === 'function' ? h('button', { type: 'button', class: 'btn btn-sm btn-ghost btn-text tim-ubah', onclick: ubahPeserta }, 'Ubah anggota') : null),
           UKP.c.segmen({ id: 'sim-cara', label: 'Cara menjawab', aktif: cfg.cara, penuh: true, opsi: [{ nilai: 'papan', label: 'Satu layar', sub: 'dicatat pemimpin' }, { nilai: 'perangkat', label: 'Perangkat masing-masing', sub: pemanduRoom() ? 'lewat room' : 'pakai kode' }], onPilih: v => { cfg.cara = v; } }),
           timRingkas,
+          cfg.tanpaWaktu ? h('p', { class: 'small muted tim-catatan-waktu' }, 'Ujian tim selalu memakai waktu. Pilihan Tanpa batas waktu hanya berlaku untuk simulasi sendiri.') : null,
           h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary btn-lg tim-mulai', onclick: mulaiTim, disabled: peserta.length ? null : true }, UKP.icon('play'), 'Mulai ujian tim'))) : null);
       perbaruiRingkasTim();
       if (fokusSel) { const el = kartuTim.querySelector(fokusSel); if (el) el.focus(); }
@@ -334,15 +335,19 @@
     const aturan = () => h('details', { class: 'lipat aturan-sim' }, h('summary', null, 'Aturan simulasi'),
       h('ul', { style: { listStyle: 'none', margin: '0', padding: '0', display: 'grid', gap: '8px' } }, [['calc', 'Kalkulator, pencarian, dan Tutor nonaktif selama simulasi.'], ['check', 'Jawaban tersimpan otomatis.'], ['jam', 'Waktu tetap berjalan saat Anda keluar dari halaman.'], ['flag', 'Tandai soal ragu, lalu kembali lewat daftar soal.']].map(([ik, t]) => h('li', { class: 'small', style: { display: 'flex', gap: '8px', alignItems: 'flex-start' } }, h('span', { 'aria-hidden': 'true', style: { display: 'inline-grid', color: 'var(--muted)', marginTop: '2px' } }, UKP.icon(ik, null, true)), t))),
       h('p', { class: 'meta petunjuk-kbd' }, 'Pintasan: ', UKP.c.kbd('←'), ' ', UKP.c.kbd('→'), ' soal · ', UKP.c.kbd('R'), ' ragu · ', UKP.c.kbd('G'), ' daftar soal · ', UKP.c.kbd('A'), '–', UKP.c.kbd('D'), ' jawab'));
+    // v9.5.2: "Tanpa batas waktu" hanya berlaku untuk simulasi sendiri. Ujian tim selalu berwaktu (mulaiTim menyetel tanpaWaktu = false),
+    // jadi ringkasan tidak menulis "tanpa batas waktu" saat sakelar ujian tim menyala, dan isian Menit disembunyikan saat tidak dipakai.
+    const tanpaAktif = () => !!cfg.tanpaWaktu && !(cfg.tim && UT);
+    function terapkanTanpa() { const t = tanpaAktif(); ['#sim-m', '#sim-m-to'].forEach(sel => { const inp = kartu.querySelector(sel); const f = inp && inp.closest ? inp.closest('.field') : null; if (f) f.hidden = t; }); }
     function gambarRingkas() {
       const [m, n] = perkiraan();
-      metaHP.textContent = (cfg.tanpaWaktu && !cfg.tim ? 'tanpa batas waktu' : m + ' mnt') + ' · ' + n + ' soal · batas ' + lulusBatas;
+      metaHP.textContent = (tanpaAktif() ? 'tanpa batas waktu' : m + ' mnt') + ' · ' + n + ' soal · batas ' + lulusBatas;
       perbaruiRingkasTim(); stickyMulai.hidden = !!(cfg.tim && UT); metaHP.hidden = !!(cfg.tim && UT);
       if (!kolomDua) return;
       // kolom sempit (±330 px): fakta sebagai dl.fakta tiga baris, bukan tiga tile yang memecah "±100" dan "mnt"; format tidak diulang (sudah di segmen)
       const fakta = (dt, dd) => h('div', null, h('dt', null, dt), h('dd', null, dd));
       ringkas.replaceChildren(h('div', { class: 'card-head' }, h('div', { class: 'card-head-teks' }, h('h2', { class: 'card-title', id: 'sim-ringkas-j' }, 'Ringkasan'))),
-        h('dl', { class: 'fakta ringkas-fakta' }, fakta('Waktu', cfg.tanpaWaktu ? 'tanpa batas waktu' : m + ' menit'), fakta('Soal', n + ' soal'), fakta('Batas lulus', 'skor ' + lulusBatas)),
+        h('dl', { class: 'fakta ringkas-fakta' }, fakta('Waktu', tanpaAktif() ? 'tanpa batas waktu' : m + ' menit'), fakta('Soal', n + ' soal'), fakta('Batas lulus', 'skor ' + lulusBatas)),
         cfg.tim && UT ? null : tombolMulai(true), aturan());
     }
     function gambar(fokusSel) {
@@ -375,8 +380,8 @@
         kartu.append(h('div', { class: 'form-grid dua' }, h('div', { class: 'field' }, h('label', { for: 'sim-j' }, 'Jumlah soal'), h('input', { class: 'input angka', id: 'sim-j', type: 'number', inputmode: 'numeric', min: 5, max: 120, value: cfg.jumlah, oninput: e => { cfg.jumlah = U.clamp(Number(e.target.value) || 20, 5, 120); gambarRingkas(); } })), h('div', { class: 'field' }, h('label', { for: 'sim-m' }, 'Menit'), h('div', { class: 'input-grup' }, h('input', { class: 'input angka', id: 'sim-m', type: 'number', inputmode: 'numeric', min: 5, max: 300, value: cfg.menitKustom, oninput: e => { cfg.menitKustom = U.clamp(Number(e.target.value) || 50, 5, 300); gambarRingkas(); } }), h('span', { class: 'imbuh', 'aria-hidden': 'true' }, 'mnt')))),
           h('div', { class: 'field' }, h('label', { for: 'sim-kode2' }, 'Kelompok (opsional)'), h('select', { class: 'select', id: 'sim-kode2', onchange: e => { cfg.kodeKustom = e.target.value || ''; gambarRingkas(); } }, h('option', { value: '', selected: !cfg.kodeKustom ? true : null }, 'Semua kelompok Tingkat ' + tingkat), semuaKel.map(k => opsiKel(k, cfg.kodeKustom, false)))));
       }
-      if (!cfg.tim || !UT) kartu.append(sw('sim-tanpa', 'Tanpa batas waktu', 'Untuk kebutuhan aksesibilitas. Jawaban tetap dinilai; waktu terpakai tidak dinilai.', cfg.tanpaWaktu, e => { cfg.tanpaWaktu = e.target.checked; gambarRingkas(); }));
-      gambarTim(); gambarRingkas();
+      if (!cfg.tim || !UT) kartu.append(sw('sim-tanpa', 'Tanpa batas waktu', 'Untuk kebutuhan aksesibilitas. Jawaban tetap dinilai; waktu terpakai tidak dinilai.', cfg.tanpaWaktu, e => { cfg.tanpaWaktu = e.target.checked; terapkanTanpa(); gambarRingkas(); }));
+      terapkanTanpa(); gambarTim(); gambarRingkas();
       if (fokusSel) { const el = kartu.querySelector(fokusSel) || kartuTim.querySelector(fokusSel); if (el) el.focus(); }
     }
     gambar();
