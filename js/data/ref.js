@@ -890,7 +890,7 @@ UKP.registerRef({
     { istilah: "Metode persediaan fiskal", singkatan: null, definisi: "Persediaan dinilai berdasarkan harga perolehan dengan metode rata-rata atau FIFO secara taat asas; LIFO tidak diperkenankan.", kelompok: ["B7"], dasar: "Pasal 10 ayat (6) UU PPh" },
     { istilah: "Kurs tengah Bank Indonesia", singkatan: null, definisi: "Kurs yang umumnya dipakai pembukuan sesuai SAK untuk menjabarkan pos moneter valuta asing pada tanggal neraca; berbeda dengan kurs KMK yang dipakai untuk menghitung DPP dan pajak terutang.", kelompok: ["B7"], dasar: "PP 94/2010 Pasal 9" },
     { istilah: "Selisih kurs terealisasi dan belum terealisasi", singkatan: null, definisi: "Terealisasi: timbul saat piutang/utang valas dilunasi dengan kurs yang berbeda dari kurs pencatatan awal. Belum terealisasi: timbul saat pos moneter valas dijabarkan ulang dengan kurs tengah BI (kurs penutup) pada akhir periode. Secara fiskal keduanya diakui mengikuti sistem pembukuan yang taat asas sesuai SAK, kecuali yang terkait penghasilan final atau bukan objek. Jebakan ujian: selisih kurs diukur dengan kurs pembukuan (kurs transaksi/kurs tengah BI); kurs KMK masuk ke selisih kurs hanya pada bagian valas yang dilunasi dengan pajak rupiah (PPh dipotong atau PPN yang ditagih dalam valas): pajak (kurs KMK) − bagian valas (kurs buku). Saat setor pajak tidak timbul selisih kurs.", kelompok: ["B7", "C9"], dasar: "Pasal 4 ayat (1) huruf l, 6 ayat (1) huruf e UU PPh; PP 94/2010 Pasal 9" },
-    { istilah: "Sisa lebih organisasi nirlaba", singkatan: null, definisi: "Selisih lebih yang diterima badan nirlaba bidang pendidikan dan/atau litbang; bukan objek PPh bila ditanamkan kembali dalam bentuk sarana dan prasarana paling lama 4 tahun.", kelompok: ["B6", "B7"], dasar: "Pasal 4 ayat (3) huruf m UU PPh" },
+    { istilah: "Sisa lebih organisasi nirlaba", singkatan: null, definisi: "Selisih lebih penghasilan (selain penghasilan yang dikenai PPh final dan bukan objek PPh) dikurangi biaya, yang diterima atau diperoleh badan atau lembaga nirlaba yang terdaftar pada instansi yang membidanginya. Bidang pendidikan dan/atau litbang: dikecualikan dari objek PPh sebesar yang digunakan untuk pembangunan dan/atau pengadaan sarana dan prasarana pendidikan/litbang di Indonesia paling lama 4 tahun sejak diterima atau diperoleh (termasuk yang dialokasikan dalam dana abadi yang memenuhi persyaratan tertentu). Badan atau lembaga sosial dan/atau keagamaan: dikecualikan bila ditanamkan kembali dalam bentuk sarana dan prasarana sosial dan keagamaan dan/atau ditempatkan sebagai dana abadi, paling lama 4 tahun sejak diperoleh.", kelompok: ["B6", "B7"], dasar: "Pasal 4 ayat (3) huruf m dan huruf p UU PPh; Pasal 14 dan Pasal 16 PP 55/2022" },
     { istilah: "Pembukuan bahasa Inggris dan dolar AS", singkatan: null, definisi: "Pembukuan dalam bahasa Inggris dan satuan USD bagi WP tertentu (antara lain PMA, KKKS migas, kontrak karya, BUT) setelah memperoleh izin atau memberitahukan DJP melalui Coretax.", kelompok: ["B7", "C9"], dasar: "Pasal 28 ayat (8) UU KUP; PMK 123/PMK.03/2019; PER-8/PJ/2025" },
 
     // ---- Tambahan: PBB-P5L ----
@@ -967,7 +967,7 @@ UKP.registerRef({
     { angka: "5 bulan", kalimat: "Jangka waktu pengujian pemeriksaan lengkap; terfokus 3 bulan, spesifik 1 bulan.", dasar: "PMK 15/2025", berlakuSejak: "2025-02-14", kelompok: "A2" },
     { angka: "5 hari kerja", kalimat: "Batas tanggapan tertulis WP atas SPHP (sebelumnya 7 hari kerja).", dasar: "PMK 15/2025 Pasal 18", berlakuSejak: "2025-02-14", kelompok: "A2" },
     { angka: "12 bulan", kalimat: "Batas DJP memutus keberatan sejak surat keberatan diterima; lewat dari itu keberatan dianggap dikabulkan.", dasar: "Pasal 26 ayat (1) dan (5) UU KUP", kelompok: "A2" },
-    { angka: "21 hari", kalimat: "Surat Paksa diterbitkan setelah lewat 21 hari sejak Surat Teguran disampaikan.", dasar: "Pasal 8 UU PPSP; PMK 61/2023 Pasal 6 ayat (2)", berlakuSejak: "2023-06-12", kelompok: "A2" },
+    { angka: "21 hari", kalimat: "Surat Paksa diterbitkan setelah lewat 21 hari sejak Surat Teguran disampaikan.", dasar: "PMK 61/2023 Pasal 6 ayat (2); Pasal 8 ayat (1) UU PPSP (syarat Surat Paksa)", berlakuSejak: "2023-06-12", kelompok: "A2" },
     { angka: "Rp100 juta", kalimat: "Utang pajak minimum (dan diragukan itikad baiknya) agar Penanggung Pajak dapat disandera.", dasar: "Pasal 33 UU PPSP; PMK 61/2023 Pasal 64 ayat (1)", berlakuSejak: "2023-06-12", kelompok: "A2" },
     { angka: "10 tahun", kalimat: "Lama penyimpanan buku, catatan, dan dokumen dasar pembukuan di Indonesia.", dasar: "Pasal 28 ayat (11) UU KUP", kelompok: "A2" },
     { angka: "Rp60 juta", kalimat: "Batas atas lapisan pertama tarif PPh OP 5% sejak Tahun Pajak 2022 (sebelumnya Rp50 juta).", dasar: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU HPP", berlakuSejak: "2022-01-01", kelompok: "A1" },
@@ -1299,13 +1299,13 @@ UKP.registerRef({
     ],
     ppsp: [   // garis waktu penagihan berurutan
       ["0 · Jatuh tempo SKPKB/STP/SKPKBT/SK Keberatan/Putusan", "Pasal 9 ayat (3), (3a) UU KUP", "1 bulan (usaha kecil/daerah tertentu 2 bulan)"],
-      ["1 · Surat Teguran", "PMK 61/2023 Pasal 6; Pasal 8 UU PPSP", "> 7 hari sejak jatuh tempo"],
-      ["2 · Surat Paksa diberitahukan Jurusita Pajak", "Pasal 8 UU PPSP; PMK 61/2023", "> 21 hari sejak Surat Teguran"],
-      ["3 · SPMP / penyitaan", "Pasal 12 UU PPSP", "> 2 × 24 jam sejak Surat Paksa"],
+      ["1 · Surat Teguran", "PMK 61/2023 Pasal 6 ayat (1); Pasal 8 ayat (2) UU PPSP", "> 7 hari sejak jatuh tempo"],
+      ["2 · Surat Paksa diberitahukan Jurusita Pajak", "PMK 61/2023 Pasal 6 ayat (2); Pasal 8 ayat (1) UU PPSP", "> 21 hari sejak Surat Teguran disampaikan"],
+      ["3 · SPMP / penyitaan", "PMK 61/2023 Pasal 6 ayat (3); Pasal 12 UU PPSP", "> 2 × 24 jam sejak Surat Paksa diberitahukan"],
       ["4 · Pengumuman lelang", "Pasal 26 UU PPSP; PMK 61/2023 Pasal 6 ayat (4)", "> 14 hari sejak penyitaan"],
       ["5 · Lelang barang sitaan (uang tunai, deposito, saham, obligasi, dan piutang dijual/dipindahbukukan tanpa lelang)", "Pasal 25–26 UU PPSP; PMK 61/2023 Pasal 6 ayat (5)–(6) dan Pasal 52", "> 14 hari sejak pengumuman"],
       ["Penagihan seketika dan sekaligus", "Pasal 6 UU PPSP", "tanpa menunggu jatuh tempo"],
-      ["Penyanderaan: utang ≥ Rp100 juta + itikad baik diragukan", "Pasal 33–34 UU PPSP; PMK 61/2023", "paling cepat 14 hari setelah Surat Paksa; maks 6 + 6 bulan"],
+      ["Penyanderaan: utang ≥ Rp100 juta + itikad baik diragukan", "Pasal 33–34 UU PPSP; PMK 61/2023 Pasal 6 ayat (9) dan (10)", "setelah Pencegahan; setelah lewat 14 hari sejak Surat Paksa hanya bila daluwarsa penagihan kurang dari 2 tahun, ada tanda badan akan dibubarkan, atau ada tanda pailit; maks 6 + 6 bulan"],
       ["Pencegahan ke luar negeri", "Pasal 29–30 UU PPSP; PMK 61/2023 Pasal 56 ayat (4), Pasal 60 ayat (4)", "maks 6 + 6 bulan"],
       ["Gugatan atas pelaksanaan penagihan", "Pasal 40 UU 14/2002", "14 hari"],
       ["Daluwarsa penagihan (tertangguh a.l. Surat Paksa, pengakuan utang)", "Pasal 22 UU KUP", "5 tahun"]

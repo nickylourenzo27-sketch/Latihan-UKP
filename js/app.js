@@ -23,10 +23,11 @@
   // dengan params lain (mis. "Latihan bersama" → latih { atur: 1, bersama: 1 }, kunci 'latih-bersama' = alias Mode mabar).
   const ALIAS_MATERI = ['belajar', 'kelompok', 'topik', 'lembar', 'cakupan'];
   const ALIAS_MABAR = ['ujiantim', 'tim', 'latih-bersama'];
+  const ALIAS_LATIH = ['bank'];  // v9.5: halaman Bank soal menyalakan tab Latihan
   // kop ≥ 1024: Simulasi · Mode mabar · Latihan · Materi · Kalkulator · [Lainnya]
-  const KOP_NAV = [['simulasi', 'Simulasi', 'sim'], ['room', 'Mode mabar', 'tim', ALIAS_MABAR], ['latih', 'Latihan', 'pen'], ['tingkat', 'Materi', 'book', ALIAS_MATERI], ['kalkulator', 'Kalkulator', 'calc']];
+  const KOP_NAV = [['simulasi', 'Simulasi', 'sim'], ['room', 'Mode mabar', 'tim', ALIAS_MABAR], ['latih', 'Latihan', 'pen', ALIAS_LATIH], ['tingkat', 'Materi', 'book', ALIAS_MATERI], ['kalkulator', 'Kalkulator', 'calc']];
   // bar bawah < 1024: Beranda · Latih · Mabar · Materi · [Lainnya]
-  const TAB_BAWAH = [['beranda', 'Beranda', 'home', ['sesi']], ['latih', 'Latih', 'pen'], ['room', 'Mabar', 'tim', ALIAS_MABAR], ['tingkat', 'Materi', 'book', ALIAS_MATERI]];
+  const TAB_BAWAH = [['beranda', 'Beranda', 'home', ['sesi']], ['latih', 'Latih', 'pen', ALIAS_LATIH], ['room', 'Mabar', 'tim', ALIAS_MABAR], ['tingkat', 'Materi', 'book', ALIAS_MATERI]];
   // panel "Lainnya" (≥ 1024) dan lembar "Lainnya" (< 1024): kelompok yang sama; lembar HP menambah Simulasi dan Kalkulator
   // (keduanya punya tautan kop di desktop) dan tidak mengulang tujuan yang sudah menjadi tab bar bawah
   const GRUP_LAINNYA = [

@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '9.4.5';
+  UKP.versi = '9.5.0';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
@@ -281,6 +281,7 @@
     ujianTim: null,         // ujian tim aktif di perangkat pemimpin (UKP.belajar.ujianTim)
     lembarJawab: null,      // lembar jawab pribadi di HP anggota (UKP.belajar.lembarJawab)
     bersamaAktif: null,     // sesi latihan bersama yang belum selesai, untuk dilanjutkan (UKP.belajar.bersamaAktif)
+    pakai: {},              // v9.5 buku pemakaian soal: { idSoal: [tanda, hari] } (UKP.belajar.pakai; bentuk di rapikanPakai)
   });
   const isObj = x => x != null && typeof x === 'object' && !Array.isArray(x);
   const punya = (o, k) => o != null && Object.prototype.hasOwnProperty.call(o, k);
@@ -298,6 +299,23 @@
       else if (typeof dv === 'number') { if (typeof v !== 'number' || !isFinite(v)) o[k] = dv; }
       else if (typeof v !== typeof dv) o[k] = dv;
     }
+    return o;
+  }
+  // v9.5 buku pemakaian: entri [tanda, hari]; tanda bit 1 sendiri, 2 bersama, 4 ujian (1..7), hari = floor(ms / 86400000) bilangan bulat ≥ 0.
+  // Entri berbentuk salah dibuang; lebih dari BATAS_PAKAI entri → yang hari terakhirnya paling lama dibuang (urutan sisa tetap)
+  const BATAS_PAKAI = 8000;
+  function rapikanPakai(p) {
+    const o = {}; if (!isObj(p)) return o;
+    const ent = [];
+    for (const k of Object.keys(p)) {
+      const v = p[k];
+      if (KUNCI_BAHAYA.has(k) || !k || k.length > 40 || !Array.isArray(v) || v.length !== 2) continue;
+      if (!Number.isInteger(v[0]) || v[0] < 1 || v[0] > 7 || !Number.isInteger(v[1]) || v[1] < 0) continue;
+      ent.push([k, v[0], v[1]]);
+    }
+    let simpan = null;
+    if (ent.length > BATAS_PAKAI) simpan = new Set(ent.map((e, i) => [e[2], i]).sort((a, b) => b[0] - a[0] || a[1] - b[1]).slice(0, BATAS_PAKAI).map(x => x[1]));
+    ent.forEach((e, i) => { if (!simpan || simpan.has(i)) o[e[0]] = [e[1], e[2]]; });
     return o;
   }
   // normalisasi data dari localStorage, impor, atau tab lain: default lengkap, tipe benar, tanpa __proto__
@@ -345,7 +363,20 @@
     if (!(isObj(o.ujianTim) && typeof o.ujianTim.id === 'string' && Array.isArray(o.ujianTim.soalIds) && Array.isArray(o.ujianTim.peserta))) o.ujianTim = null;
     if (!(isObj(o.lembarJawab) && Array.isArray(o.lembarJawab.jawaban))) o.lembarJawab = null;
     if (!(isObj(o.bersamaAktif) && typeof o.bersamaAktif.sesiId === 'string' && Array.isArray(o.bersamaAktif.soalIds))) o.bersamaAktif = null;
+    o.pakai = rapikanPakai(o.pakai);  // v9.5
     return o;
+  }
+  // v9.5 migrasi buku pemakaian: data lama (tanpa field pakai) → UKP.belajar.pakai.bangunDariRiwayat sekali, lalu disimpan.
+  // core.js dimuat sebelum learn.js, jadi migrasi yang tertunda dijalankan lagi oleh learn.js (UKP.store.migrasiPakai)
+  let migrasiPakaiTunda = false;
+  const perluMigrasiPakai = d => isObj(d) && !isObj(d.pakai);
+  function migrasiPakai() {
+    if (!migrasiPakaiTunda || !state) return false;
+    const P = UKP.belajar && UKP.belajar.pakai; if (!P || typeof P.bangunDariRiwayat !== 'function') return false;
+    migrasiPakaiTunda = false;
+    try { state.pakai = rapikanPakai(P.bangunDariRiwayat(state)); } catch (e) { state.pakai = {}; }
+    save();
+    return true;
   }
   let state = null; let penyimpananOK = true;
   let dasarRaw = null;   // JSON terakhir yang diketahui sama dengan isi localStorage (dasar gabung tiga arah)
@@ -358,6 +389,7 @@
     try { raw = localStorage.getItem(KEY); } catch (e) { penyimpananOK = false; }
     if (raw) { try { d = JSON.parse(raw); } catch (e) { d = null; try { localStorage.setItem(KEY + '.rusak', raw); } catch (e2) {} } }
     state = normal(d); dasarRaw = raw || JSON.stringify(state);
+    if (perluMigrasiPakai(d)) { migrasiPakaiTunda = true; migrasiPakai(); }  // v9.5
     return state;
   }
   function tulis(tanpaGabung) {
@@ -372,7 +404,7 @@
   // tulis segera (dipakai saat tab disembunyikan/ditutup dan oleh simulasi)
   function flush() { if (state) tulis(); }
   UKP.store = {
-    get: load, save, flush, normal,
+    get: load, save, flush, normal, rapikanPakai, migrasiPakai, BATAS_PAKAI,
     get ok() { return penyimpananOK; },
     reset() { load(); isiUlang(DEFAULT()); try { localStorage.removeItem(KEY + '.rusak'); } catch (e) {} tulis(true); },
     ekspor() { const s = load(); s.eksporTerakhir = Date.now(); save(); return JSON.stringify({ aplikasi: 'pelatih-ukp', versi: UKP.versi, diekspor: new Date().toISOString(), data: s }, null, 1); },
@@ -383,7 +415,9 @@
       if (isObj(o) && o.aplikasi != null && o.aplikasi !== 'pelatih-ukp') throw new Error('Berkas ini bukan ekspor MABAR UKP.');
       const d = isObj(o) && isObj(o.data) ? o.data : o;
       if (!isObj(d) || !isObj(d.profil)) throw new Error('Isinya bukan ekspor MABAR UKP yang utuh. Salin ulang dari perangkat asal.');
-      load(); isiUlang(normal(d)); tulis(true);
+      load(); isiUlang(normal(d));
+      if (perluMigrasiPakai(d)) { migrasiPakaiTunda = true; migrasiPakai(); }  // v9.5: ekspor lama tanpa buku pemakaian
+      tulis(true);
       return true;
     },
   };
@@ -402,6 +436,8 @@
     if (out.length && out.every(x => isObj(x) && typeof x.pada === 'number')) out.sort((p, q) => p.pada - q.pada);
     return out;
   }
+  // v9.5 entri buku pemakaian yang juga diubah tab lain: tanda digabung (OR), hari terakhir diambil yang paling baru
+  const gabungPakai = (a, m) => Array.isArray(a) && Array.isArray(m) && a.length === 2 && m.length === 2 ? [(a[0] | m[0]), Math.max(a[1], m[1])] : a;
   function gabung(kita, mereka, dasar) {
     for (const k of Object.keys(kita)) {
       if (KUNCI_BAHAYA.has(k)) continue;
@@ -411,7 +447,7 @@
       else if (isObj(a) && isObj(m) && isObj(b)) {
         for (const ek of new Set(Object.keys(a).concat(Object.keys(b)))) {
           if (KUNCI_BAHAYA.has(ek) || sama(a[ek], b[ek])) continue;
-          if (punya(a, ek)) m[ek] = a[ek]; else delete m[ek];
+          if (punya(a, ek)) m[ek] = k === 'pakai' ? gabungPakai(a[ek], m[ek]) : a[ek]; else delete m[ek];
         }
       } else mereka[k] = a;
     }
@@ -422,7 +458,9 @@
     if (!state || raw == null || raw === dasarRaw) return false;
     let d; try { d = JSON.parse(raw); } catch (e) { return false; }
     let dasar = null; if (dasarRaw) { try { dasar = normal(JSON.parse(dasarRaw)); } catch (e) {} }
-    const baru = gabung(state, normal(d), dasar);
+    // v9.5: tab versi lama menulis tanpa field pakai → buku pemakaian tab ini dipertahankan (bukan dikosongkan)
+    const mereka = normal(d); if (perluMigrasiPakai(d)) mereka.pakai = state.pakai;
+    const baru = gabung(state, mereka, dasar);
     // pekerjaan yang sedang berjalan di tab ini tetap milik tab ini
     const v = UKP.sekarang ? UKP.sekarang().view : null;
     const sa = state.simulasiAktif, se = state.sesiAktif;
@@ -432,7 +470,7 @@
     return true;
   }
   // view tampilan yang aman dirender ulang; view kerja (simulasi, sesi, latih, ulang, kasus, …) tidak diganggu
-  const RENDER_ULANG_AMAN = ['beranda', 'tingkat', 'belajar', 'kelompok', 'kemajuan', 'rencana', 'info-ujian', 'profesi', 'pengaturan', 'strategi', 'formulir', 'lembar', 'cakupan'];
+  const RENDER_ULANG_AMAN = ['beranda', 'tingkat', 'belajar', 'kelompok', 'kemajuan', 'rencana', 'info-ujian', 'profesi', 'pengaturan', 'strategi', 'formulir', 'lembar', 'cakupan', 'bank'];  // v9.5: + bank
   let tundaRender = false, tundaToast = false, toastSinkronTerakhir = 0, renderSinkronTerakhir = 0, renderSinkronTimer = null;
   // render ulang akibat tab lain: paling sering sekali per 2 detik (cegah saling-picu antar-tab yang sama-sama terlihat)
   function renderSinkron() {
@@ -751,7 +789,7 @@
   // menuju halaman sambutan (mulai tanpa params)
   const paramsMulai = view => (!view || view === 'beranda' || view === 'mulai') ? {} : { isi: 1 };
   UKP.paramsMulai = paramsMulai;
-  const TOKEN = { beranda: 'beranda', belajar: 'belajar', latih: 'latih', ulang: 'ulang', kalkulator: 'kalkulator', simulasi: 'simulasi', kasus: 'kasus', rencana: 'rencana', kemajuan: 'kemajuan', referensi: 'referensi', 'info-ujian': 'infoujian', profesi: 'profesi', pengaturan: 'pengaturan', strategi: 'strategi', tutor: 'tutor', mulai: 'mulai', tingkat: 'tingkat', kelompok: 'kelompok', topik: 'topik', formulir: 'formulir', lembar: 'lembar', cakupan: 'cakupan', tim: 'tim', ujiantim: 'ujiantim', lj: 'lj', room: 'room' };
+  const TOKEN = { beranda: 'beranda', belajar: 'belajar', latih: 'latih', ulang: 'ulang', kalkulator: 'kalkulator', simulasi: 'simulasi', kasus: 'kasus', rencana: 'rencana', kemajuan: 'kemajuan', referensi: 'referensi', 'info-ujian': 'infoujian', profesi: 'profesi', pengaturan: 'pengaturan', strategi: 'strategi', tutor: 'tutor', mulai: 'mulai', tingkat: 'tingkat', kelompok: 'kelompok', topik: 'topik', formulir: 'formulir', lembar: 'lembar', cakupan: 'cakupan', tim: 'tim', ujiantim: 'ujiantim', lj: 'lj', room: 'room', bank: 'bank' };  // v9.5: + #bank (Bank soal)
   const DARI_TOKEN = Object.create(null); for (const k in TOKEN) DARI_TOKEN[TOKEN[k]] = k;
   // token hash (#infoujian, #topik/A2.8) atau nama view mentah (#info-ujian) → nama view; selain itu null
   function viewDariToken(tok) {

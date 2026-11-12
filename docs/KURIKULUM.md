@@ -236,3 +236,31 @@ Celah sedang diisi di `js/data/mu-*.js`; nilai `cakupan` di `cakupan.js` diperba
 - **Cakupan bertingkat, tetapi tidak simetris.** Dokumen mencantumkan Bea Meterai di ketiga tingkat (B dan C hanya satu butir: objek, tarif, saat dan pihak terutang), KUP di B 12 butir dan di C hanya 5 butir (STP/SKP, pembetulan/keberatan, sanksi, PPSP), serta PPh OP di B 3 butir dan di C 1 butir. Bobot sesi Tingkat C untuk KUP umum dan PPh OP dapat diturunkan, sejalan dengan laporan peserta lulus C ("KUP itu sedikit").
 - **Hal yang tidak tercantum sebagai butir:** pajak minimum global/GMT (hanya GIR sebagai objek AEoI), pajak tangguhan (masuk lewat rekonsiliasi fiskal), PPh Pasal 15 (tidak disebut di Pot/Put mana pun), dan etika profesi (E, memang bukan UKP). Materi aplikasi untuk hal ini tetap dipertahankan karena laporan peserta atau keterkaitan butir; di tampilan `#cakupan` hal ini tidak muncul sebagai butir.
 - **Tanda ◐ yang diperbarui** di bagian 3: C9 (rincian resmi kini terbaca: PPh Badan Tingkat C subjek Transaksi Internasional), B7.5 organisasi nirlaba (butir resmi B dan C), dan B8.5 SPPT/SKP/STP PBB (butir resmi C.5.3) tidak lagi bertanda ◐; B6.8 fasilitas, B7.7 pajak tangguhan, dan C9.6 GloBE tetap ◐ dengan alasan baru yang disebut di barisnya.
+
+### 4.6 Salinan PDF dan peta soal ke butir (v9.5.0)
+
+**Salinan PDF.** Pada November 2026 tim menerima salinan PDF 13 halaman dari dokumen yang sama. Salinan ini lebih bersih daripada salinan gambar pertama, dan `js/data/cakupan.js` kini mengikutinya kata demi kata (tiap tingkat ditranskripsi ulang lalu diperiksa pemeriksa kedua):
+
+- Tingkat B bernomor 1 sampai 8 tanpa lompatan. Baris 4 adalah PBB-P5L dengan 8 butir (ID `B.4.1` sampai `B.4.8`), dan baris 7 adalah PPh Badan dengan 17 butir (ID `B.7.1` sampai `B.7.17`). Kejanggalan nomor 1, 2, dan 3 pada bagian 4.4 hanya berlaku untuk salinan pertama; ID lama `B.PBB.n` dan ID PPh Badan `B.4.n` tidak dipakai lagi.
+- Tingkat A: satu kata dibetulkan (PPh OP butir 5, "PPh Final"). Tingkat C: sama persis.
+- Butir daun sekarang: A 99, B 140, C 125 (364 butir). Lima butir PBB-P5L Tingkat B yang baru: subjek dan klasifikasi objek, pendaftaran dan pendataan objek, penetapan NJOP, ketetapan dan penagihan, serta upaya hukum PBB. Dua di antaranya bernilai "sebagian": pendataan objek oleh DJP dan peninjauan kembali PBB belum punya materi khusus.
+
+**Peta soal ke butir.** `js/data/peta-butir.js` memetakan tiap soal ke butir daun untuk tiap tingkat soal itu (paling banyak dua butir per tingkat). Pemetaan dikerjakan per modul oleh pemeta pertama, lalu pemeriksa kedua membaca peta per butir dan memetakan ulang 25 soal acak (ketidakcocokan 0 sampai 8 persen, semuanya dibetulkan atau dicatat). Soal yang pada suatu tingkat tidak punya butir yang cocok dicatat di `luar`. Soal pengganti memakai peta soal sumbernya.
+
+**Hasil evaluasi Tingkat B (sebelum soal baru v9.5.0).**
+
+| Mata ujian | Butir daun | Soal terpeta | Butir tanpa soal | Butir dengan kurang dari 4 soal |
+|---|---:|---:|---:|---:|
+| Akuntansi Perpajakan | 5 | 123 | 0 | 0 |
+| Bea Meterai | 1 | 69 | 0 | 0 |
+| KUP, PPSP, PP | 12 | 218 | 0 | 0 |
+| PBB-P5L | 8 | 108 | 0 | 0 |
+| PPh Orang Pribadi | 3 | 38 | 0 | 0 |
+| PPh Potong/Pungut | 39 | 192 | 6 | 16 |
+| PPh Badan | 17 | 163 | 0 | 1 |
+| PPN dan SPT Masa PPN | 55 | 159 | 12 | 32 |
+| **Semua** | **140** | **992** | **18** | **49** |
+
+- Dari 1.150 soal bertingkat B, 992 terpeta ke butir Tingkat B dan 158 berada di luar daftar: 69 soal Etika (bukan mata ujian UKP), 55 soal PPh Orang Pribadi (daftar Tingkat B hanya memuat norma penghitungan, penghasilan keluarga, dan PTKP, tarif, serta PPh terutang), 19 soal Bea Meterai (pelunasan, pemeteraian kemudian, sanksi), 8 soal bagi hasil PBB, 4 soal PPh Potong/Pungut, 2 soal pajak minimum global, dan 1 soal KUP.
+- Seratus soal try out Tingkat B (November 2026) seluruhnya jatuh di dalam daftar butir Tingkat B. Ini sejalan dengan keterangan peserta bahwa soal ujian tidak keluar dari daftar.
+- Butir yang tipis hampir semuanya di PPh Potong/Pungut (PPh Pasal 21 dan butir subjek Orang Pribadi) dan PPN (rincian objek, DPP, tarif, faktur, dan butir subjek Orang Pribadi). Gelombang soal baru v9.5.0 mengisinya: lihat README bagian Bank soal.

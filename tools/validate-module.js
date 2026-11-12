@@ -94,6 +94,20 @@ soal.forEach((s, i) => {
     }
   }
 });
+// v9.5 soal pengganti: kembaranDari = id soal asli di modul yang sama (bukan dirinya, dan soal itu sendiri bukan soal pengganti); sejak = versi masuk
+const soalPeta = new Map(soal.filter(s => s && typeof s.id === 'string').map(s => [s.id, s]));
+soal.forEach((s, i) => {
+  const p = `soal[${i}](${s.id})`;
+  if (s.kembaranDari !== undefined) {
+    const r = s.kembaranDari;
+    if (typeof r !== 'string' || !r) errors.push(`${p}: kembaranDari harus id soal (string)`);
+    else if (r === s.id) errors.push(`${p}: kembaranDari menunjuk dirinya sendiri`);
+    else if (!r.startsWith(kode + '-')) errors.push(`${p}: kembaranDari "${r}" di luar modul ${kode} (harus soal di modul yang sama)`);
+    else if (!soalPeta.has(r)) errors.push(`${p}: kembaranDari "${r}" tidak ada di modul`);
+    else if (soalPeta.get(r).kembaranDari !== undefined) errors.push(`${p}: kembaranDari "${r}" adalah soal pengganti (harus menunjuk soal asli)`);
+  }
+  if (s.sejak !== undefined && !(typeof s.sejak === 'string' && /^\d+\.\d+\.\d+$/.test(s.sejak))) errors.push(`${p}: sejak "${s.sejak}" tidak valid (pola "9.5.0")`);
+});
 for (const t of topikIds) if ((perTopik[t] || 0) < 4) warns.push(`topik ${t}: hanya ${perTopik[t] || 0} soal (target ≥ 4)`);
 const nKasusGaya = soal.filter(s => s.jenis === 'kasus' || (s.stem || '').length >= 220).length;
 if (soal.length && nKasusGaya / soal.length < 0.5) warns.push(`hanya ${nKasusGaya}/${soal.length} soal bergaya kasus (stem ≥ 220 karakter atau jenis kasus); target ≥ 50% (docs/GAYA-SOAL.md)`);

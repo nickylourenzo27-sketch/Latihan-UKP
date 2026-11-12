@@ -969,6 +969,9 @@
     const topik = K.topik(soal.topik);
     const bisaPelajari = topik && UKP.link && !['sesi', 'diagnosis', 'cek', 'tutor', 'simulasi'].includes(opsiU.konteks) && !(typeof UKP.simulasiBerjalan === 'function' && UKP.simulasiBerjalan());
     const pelajariEl = bisaPelajari ? h('p', { class: 'small blok pelajari-lagi' }, UKP.link(['Pelajari lagi: ' + topik.id + ' ' + topik.judul, ikon('chevron-kanan', null, true)], 'topik', { id: topik.id })) : null;
+    // v9.5 soal pengganti: satu baris kecil setelah kunci dibuka (panel umpan hanya dibuat setelah menjawab atau saat ulas)
+    const asliId = typeof soal.kembaranDari === 'string' && soal.kembaranDari && soal.kembaranDari !== soal.id ? soal.kembaranDari : null;
+    const penggantiEl = asliId ? h('p', { class: 'tiny muted blok soal-pengganti-info' }, 'Soal pengganti untuk ' + asliId) : null;
     const infoKartu = opsiU.kartu && opsiU.kartu.baru ? opsiU.kartu : null;
     // "Yakin tetapi keliru": baris kartu ditonjolkan tepat di bawah kop (bukan di kaki panel)
     const kartuDitonjolkan = !!(kombo && opsiU.keyakinan === 'yakin' && !benar);
@@ -1016,6 +1019,7 @@
       cite,
       langsung ? null : lipatSalah,
       formulirEl,
+      penggantiEl,
       pelajariEl,
       detik > 240 && benar ? h('p', { class: 'tiny muted blok' }, 'Benar, tetapi memakan ' + U.menitDetik(detik) + '. Di ujian anggaran per soal ± 2,5 menit; cari jalan pintas hitung di jejak di atas.') : null,
       kaki,

@@ -116,7 +116,7 @@ describe('v9.4.4: kredit pajak luar negeri ditulis per jenis penghasilan untuk t
 
 describe('v9.4.4: tanda perlu cek dan keutuhan bank soal', () => {
   it('jumlah soal tetap 1.494 dan tiap soal bertanda punya peringatan', () => {
-    assert.equal(peta.size, 1494);
+    assert.equal([...peta.values()].filter(s => !s.sejak).length, 1494, 'jumlah soal lama (tanpa field sejak)');
     for (const s of peta.values()) {
       assert.ok(s.verifikasi === '✅' || s.verifikasi === '◐', s.id);
       if (s.verifikasi === '◐') assert.ok(typeof s.peringatan === 'string' && s.peringatan.length > 30, s.id + ' berperingatan');

@@ -1294,7 +1294,7 @@ textarea.input.mono { font-size: 1rem !important; }
   border-color: transparent; box-shadow: inset 0 0 0 1px var(--line-strong);
 }
 .seg button:active { color: var(--ink); }
-.seg button:focus-visible { outline: 2px solid var(--focus); outline-offset: 0; z-index: var(--z-naik); }
+.seg button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; z-index: var(--z-naik); } /* v9.5: cincin di luar tombol, beda dari tanda terpilih (garis di dalam) */
 .seg button:disabled { color: var(--ink-faint); background: transparent; cursor: not-allowed; }
 .seg button small { display: block; font-family: var(--font-ui); font-size: var(--fs-12); font-weight: var(--fw-reg); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
@@ -4708,3 +4708,59 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
    ("tidak menjawab"). Dulu nama dan keterangan menyusut sebanding; kini keterangan yang lebih dulu turun baris, dan nama
    baru dipotong (elipsis) bila memang tidak muat. */
 .eval-dlg-jawab > li > .meta { flex: 1 1 0; min-width: min-content; }
+
+/* ===== v9.5 Bank soal ===== */
+/* Latih: field "Pilih soal" (seg tiga pilihan + baris hitungan + tautan) */
+.field-bank .hitung-bank { margin: 0; font-variant-numeric: tabular-nums; }
+.field-bank .tautan-bank, .field-bank .catatan-butir { margin: 0; }
+.field-bank .tautan-bank svg, .baris-bank svg { width: 14px; height: 14px; vertical-align: -2px; }
+.latih-chip .chip-butir { max-width: 100%; text-align: left; }
+/* v9.5 tinjauan: tiga pilihan "Pilih soal" disusun menurun di HP sempit (tidak terbagi 2 + 1) */
+@media (max-width: 479px) {
+  .seg.seg-bank { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .seg.seg-bank button { padding-left: 34px; text-align: left; text-wrap: wrap; }
+  /* tanda centang untuk pilihan terpilih (seperti .seg.bersub), supaya tidak tertukar dengan cincin fokus */
+  .seg.seg-bank button:is([aria-pressed="true"])::before {
+    content: ""; position: absolute; left: 12px; top: 50%; width: 14px; height: 14px; margin-top: -7px; background: var(--primary);
+    -webkit-mask: var(--ikon-cek) center / 14px no-repeat; mask: var(--ikon-cek) center / 14px no-repeat;
+  }
+}
+/* halaman #bank */
+.halaman-bank .bank-rincian { display: grid; gap: var(--s-1); max-width: 28rem; margin: 0; }
+.halaman-bank .bank-rincian li { display: flex; justify-content: space-between; gap: var(--s-3); padding: var(--s-1) 0; border-bottom: 1px solid var(--line-subtle, var(--line)); }
+.halaman-bank .bank-versi, .halaman-bank .bank-tunggu, .halaman-bank .meta { margin: 0; }
+/* batang tiga bagian: belum dipakai (viz-1), pengganti siap (viz-2), sudah dipakai (viz-redam) */
+.bank-batang { display: flex; gap: 2px; height: 8px; min-width: 0; border-radius: 4px; overflow: hidden; background: var(--trek); }
+.bank-batang > span { display: block; flex: 0 1 0; min-width: 4px; }
+.bank-batang > [data-bagian="baru"], .bank-legenda [data-bagian="baru"]::before { background: var(--viz-1); }
+.bank-batang > [data-bagian="pengganti"], .bank-legenda [data-bagian="pengganti"]::before { background: var(--viz-2); }
+.bank-batang > [data-bagian="pakai"], .bank-legenda [data-bagian="pakai"]::before { background: var(--viz-redam); }
+.bank-legenda { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3); margin: 0; padding: 0; list-style: none; font-size: var(--fs-12, .75rem); color: var(--muted); }
+.bank-legenda li::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 2px; vertical-align: -1px; }
+.bank-kel-daftar { display: grid; gap: 0; margin: 0; }
+.bank-kel { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nama latih" "batang batang" "angka angka"; gap: var(--s-1) var(--s-3); align-items: center; padding: var(--s-3) 0; border-bottom: 1px solid var(--line); }
+.bank-kel-nama { grid-area: nama; font-weight: var(--fw-semi); min-width: 0; overflow-wrap: break-word; }  /* v9.5: patah setelah garis miring (<wbr>), bukan di tengah kata */
+.bank-kel .bank-batang { grid-area: batang; }
+.bank-kel-angka { grid-area: angka; font-variant-numeric: tabular-nums; }
+.bank-kel-latih { grid-area: latih; }
+@media (min-width: 900px) {
+  .bank-kel { grid-template-columns: minmax(15rem, 1.6fr) minmax(6rem, .8fr) minmax(0, 1.5fr) auto; grid-template-areas: "nama batang angka latih"; }
+}
+.bank-mu-kop { display: inline-flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3); align-items: baseline; }
+.bank-butir-daftar { display: grid; margin: 0; }
+.bank-butir-baris { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s-1) var(--s-3); align-items: center; padding: var(--s-2) 0; border-bottom: 1px solid var(--line); }
+.bank-butir-teks { grid-column: 1 / -1; display: flex; gap: var(--s-2); min-width: 0; font-size: var(--fs-small); }
+.bank-butir-no { flex: none; color: var(--muted); }
+.bank-butir-baris > .meta, .bank-butir-baris > .pill { justify-self: start; }
+@media (min-width: 900px) {
+  .bank-butir-baris { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .bank-butir-teks { grid-column: auto; }
+  .bank-butir-baris[data-kosong] .bank-butir-teks { grid-column: 1 / 3; }
+}
+/* Cakupan materi: jumlah soal per butir + tautan Latih */
+.cakupan-soal { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-1) var(--s-2); margin: var(--s-1) 0 0; }
+/* pembahasan: baris "Soal pengganti untuk ..." */
+.umpan .soal-pengganti-info { margin: 0; }
+.baris-bank { margin: 0; color: var(--muted); }
+/* v9.5 tinjauan: chip tingkat di kop tidak ikut menyusut (judul ringkas yang memendek); sebelumnya "UKP B" menimpa ikon pesan di halaman berjudul panjang */
+.topbar .chip-tingkat[data-tingkat] { flex: none; }

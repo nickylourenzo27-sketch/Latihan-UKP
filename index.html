@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/app.css?v=2856f86195f1">
+<link rel="stylesheet" href="css/app.css?v=99690370c5a0">
 <!--ARTIFACT-HEAD-END-->
 </head>
 <body>
@@ -43,7 +43,7 @@
    aplikasi belum siap (koneksi lambat, berkas gagal diunduh, cache lama) — menampilkan panel pemulihan: muat ulang, bersihkan cache,
    salin laporan. Progres belajar (localStorage) tidak pernah disentuh. js/app.js memanggil window.__ukpMuat.siap() setelah render pertama. */
 (function () {
-  var W = window, D = document, TOTAL = 30, mulai = Date.now(), terakhirNaik = mulai, nTerakhir = 0, galat = [], siap = false, panel = false, detak;
+  var W = window, D = document, TOTAL = 32, mulai = Date.now(), terakhirNaik = mulai, nTerakhir = 0, galat = [], siap = false, panel = false, detak;
   function skrip() { try { return performance.getEntriesByType('resource').filter(function (r) { return r.initiatorType === 'script'; }).length; } catch (e) { return 0; } }
   function nama(u) { return String(u || '').replace(/[?#].*$/, '').split('/').slice(-2).join('/'); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -105,36 +105,38 @@
   }, 500);
 })();
 </script>
-<script src="js/core.js?v=2856f86195f1"></script>
-<script src="js/akses.js?v=2856f86195f1"></script>
-<script src="js/data/ref.js?v=2856f86195f1"></script>
-<script src="js/data/formulir.js?v=2856f86195f1"></script>
-<script src="js/data/cakupan.js?v=2856f86195f1"></script>
-<script src="js/data/mu-A1.js?v=2856f86195f1"></script>
-<script src="js/data/mu-A2.js?v=2856f86195f1"></script>
-<script src="js/data/mu-A3.js?v=2856f86195f1"></script>
-<script src="js/data/mu-A4.js?v=2856f86195f1"></script>
-<script src="js/data/mu-A5.js?v=2856f86195f1"></script>
-<script src="js/data/mu-B6.js?v=2856f86195f1"></script>
-<script src="js/data/mu-B7.js?v=2856f86195f1"></script>
-<script src="js/data/mu-B8.js?v=2856f86195f1"></script>
-<script src="js/data/mu-C9.js?v=2856f86195f1"></script>
-<script src="js/data/mu-C10.js?v=2856f86195f1"></script>
-<script src="js/data/mu-E.js?v=2856f86195f1"></script>
-<script src="js/kalkulator.js?v=2856f86195f1"></script>
-<script src="js/viz.js?v=2856f86195f1"></script>
-<script src="js/learn.js?v=2856f86195f1"></script>
-<script src="js/tim.js?v=2856f86195f1"></script>
-<script src="js/ruang.js?v=2856f86195f1"></script>
-<script src="js/soal.js?v=2856f86195f1"></script>
-<script src="js/views-home.js?v=2856f86195f1"></script>
-<script src="js/views-belajar.js?v=2856f86195f1"></script>
-<script src="js/views-simulasi.js?v=2856f86195f1"></script>
-<script src="js/views-ujian-tim.js?v=2856f86195f1"></script>
-<script src="js/views-alat.js?v=2856f86195f1"></script>
-<script src="js/views-tim.js?v=2856f86195f1"></script>
-<script src="js/views-ruang.js?v=2856f86195f1"></script>
-<script src="js/app.js?v=2856f86195f1"></script>
+<script src="js/core.js?v=99690370c5a0"></script>
+<script src="js/akses.js?v=99690370c5a0"></script>
+<script src="js/data/ref.js?v=99690370c5a0"></script>
+<script src="js/data/formulir.js?v=99690370c5a0"></script>
+<script src="js/data/cakupan.js?v=99690370c5a0"></script>
+<script src="js/data/peta-butir.js?v=99690370c5a0"></script>
+<script src="js/data/mu-A1.js?v=99690370c5a0"></script>
+<script src="js/data/mu-A2.js?v=99690370c5a0"></script>
+<script src="js/data/mu-A3.js?v=99690370c5a0"></script>
+<script src="js/data/mu-A4.js?v=99690370c5a0"></script>
+<script src="js/data/mu-A5.js?v=99690370c5a0"></script>
+<script src="js/data/mu-B6.js?v=99690370c5a0"></script>
+<script src="js/data/mu-B7.js?v=99690370c5a0"></script>
+<script src="js/data/mu-B8.js?v=99690370c5a0"></script>
+<script src="js/data/mu-C9.js?v=99690370c5a0"></script>
+<script src="js/data/mu-C10.js?v=99690370c5a0"></script>
+<script src="js/data/mu-E.js?v=99690370c5a0"></script>
+<script src="js/kalkulator.js?v=99690370c5a0"></script>
+<script src="js/viz.js?v=99690370c5a0"></script>
+<script src="js/learn.js?v=99690370c5a0"></script>
+<script src="js/tim.js?v=99690370c5a0"></script>
+<script src="js/ruang.js?v=99690370c5a0"></script>
+<script src="js/soal.js?v=99690370c5a0"></script>
+<script src="js/views-home.js?v=99690370c5a0"></script>
+<script src="js/views-belajar.js?v=99690370c5a0"></script>
+<script src="js/views-simulasi.js?v=99690370c5a0"></script>
+<script src="js/views-ujian-tim.js?v=99690370c5a0"></script>
+<script src="js/views-alat.js?v=99690370c5a0"></script>
+<script src="js/views-tim.js?v=99690370c5a0"></script>
+<script src="js/views-ruang.js?v=99690370c5a0"></script>
+<script src="js/views-bank.js?v=99690370c5a0"></script>
+<script src="js/app.js?v=99690370c5a0"></script>
 <!--ARTIFACT-BODY-END-->
 </body>
 </html>

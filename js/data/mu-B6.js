@@ -232,7 +232,7 @@ UKP.register({
         "Pasal 9 ayat (1) yang paling sering diuji: pembagian laba, biaya kepentingan pribadi pemegang saham, pembentukan cadangan (kecuali bank, sewa guna usaha, asuransi, penjaminan, pertambangan, kehutanan, limbah industri), sumbangan dan hibah (kecuali zakat/sumbangan keagamaan wajib dan sumbangan PP 93/2010), PPh, sanksi administrasi dan pidana pajak, serta jumlah yang melebihi kewajaran kepada pihak afiliasi.",
         "Sejak Tahun Pajak 2022 (UU HPP), natura dan kenikmatan kepada pegawai dapat dibiayakan sepanjang berkaitan dengan 3M; koreksi positif hanya untuk biaya kepentingan pribadi pemegang saham/pihak lain yang tidak terkait usaha.",
         "Biaya promosi dan entertainment hanya dapat dikurangkan bila dibuatkan daftar nominatif (nama, NPWP, alamat, tanggal, bentuk dan jenis biaya, jumlah, PPh yang dipotong) yang dilampirkan pada SPT (PMK 02/PMK.03/2010; SE-27/PJ.22/1986).",
-        "Piutang nyata-nyata tidak dapat ditagih boleh dibiayakan bila: dibebankan dalam laba rugi komersial, daftar piutang diserahkan ke DJP, dan penagihannya diserahkan ke PN/PUPN atau ada perjanjian tertulis pembebasan utang atau dipublikasikan atau ada pengakuan debitur (syarat terakhir dikecualikan untuk debitur kecil) (Pasal 6 ayat (1) huruf h; PMK 207/PMK.010/2015).",
+        "Piutang nyata-nyata tidak dapat ditagih boleh dibiayakan bila: dibebankan dalam laba rugi komersial, daftar piutang diserahkan ke DJP, dan penagihannya diserahkan ke PN/PUPN atau ada perjanjian tertulis pembebasan utang atau dipublikasikan atau ada pengakuan debitur (syarat terakhir dikecualikan untuk debitur kecil) (Pasal 6 ayat (1) huruf h UU PPh; Pasal 19 PP 55/2022; PMK 207/PMK.010/2015).",
         "Sumbangan bencana nasional, litbang, infrastruktur sosial, fasilitas pendidikan, dan pembinaan olahraga dapat dibiayakan paling tinggi 5% dari penghasilan neto fiskal tahun pajak sebelumnya dan tidak boleh menyebabkan rugi (PP 93/2010).",
         "DER paling tinggi 4:1 (rata-rata saldo akhir bulan utang berbunga dibanding modal termasuk pinjaman tanpa bunga dari pihak afiliasi); biaya pinjaman yang dapat dibebankan = (4 × modal ÷ utang) × biaya pinjaman (PMK 169/PMK.010/2015)."
       ],
@@ -263,7 +263,7 @@ UKP.register({
         { pasal: "Pasal 9 ayat (1) dan (2) UU PPh", catatan: "biaya yang tidak dapat dikurangkan; pengeluaran bermanfaat > 1 tahun" },
         { pasal: "Pasal 18 ayat (1) UU PPh; PMK 169/PMK.010/2015", catatan: "DER 4:1" },
         {
-          pasal: "PMK 02/PMK.03/2010; PMK 207/PMK.010/2015; PMK 81/PMK.03/2009 s.t.d.d. PMK 219/PMK.011/2012",
+          pasal: "PMK 02/PMK.03/2010; Pasal 19 PP 55/2022 dan PMK 207/PMK.010/2015; PMK 81/PMK.03/2009 s.t.d.d. PMK 219/PMK.011/2012",
           catatan: "promosi, piutang tak tertagih, cadangan"
         },
         { pasal: "PP 93/2010", catatan: "sumbangan yang dapat dikurangkan" }
@@ -879,7 +879,7 @@ UKP.register({
         },
         jebakan: "Petakan setiap penghasilan ke tiga keranjang: tarif umum, final, bukan objek — baru jumlahkan."
       },
-      dasarHukum: [{ pasal: "Pasal 4 ayat (1) dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 34/2017 (sewa tanah dan/atau bangunan)", berlakuSejak: "2018-01-02" }, { pasal: "PP 131/2000", berlakuSejak: "2001-01-01" }, { pasal: "PP 14/1997", berlakuSejak: null }, { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }],
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 34/2017 (sewa tanah dan/atau bangunan)", berlakuSejak: "2018-01-02" }, { pasal: "PP 131/2000", berlakuSejak: "2001-01-01" }, { pasal: "PP 14/1997", berlakuSejak: null }, { pasal: "Pasal 244 PMK 81/2024 (PPh final 0,1% penjualan saham di bursa efek)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
@@ -1136,11 +1136,7 @@ UKP.register({
         },
         jebakan: "Daftar nominatif adalah syarat formal: tanpa itu, biaya ditolak seluruhnya untuk bagian yang tidak tercantum."
       },
-      dasarHukum: [
-        { pasal: "PMK 02/PMK.03/2010", berlakuSejak: "2010-01-05" },
-        { pasal: "SE-27/PJ.22/1986", berlakuSejak: "1986-09-23" },
-        { pasal: "Pasal 6 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }
-      ],
+      dasarHukum: [{ pasal: "PMK 02/PMK.03/2010", berlakuSejak: "2010-01-05" }, { pasal: "SE-27/PJ.22/1986", berlakuSejak: "1986-06-14" }, { pasal: "Pasal 6 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
@@ -1218,12 +1214,7 @@ UKP.register({
       kesulitan: 2,
       stem: "PT Sumber Elektrik (perusahaan dagang, bukan bank atau lembaga pembiayaan) pada akhir 2025 menghapus empat piutang yang masing-masing bernilai di atas batas debitur kecil. Seluruhnya telah dibebankan dalam laba rugi komersial dan dicantumkan dalam daftar piutang yang dilampirkan pada SPT. Bukti tambahan: piutang (1) perkara penagihannya telah diserahkan ke Pengadilan Negeri; (2) telah dipublikasikan dalam penerbitan umum; (3) ada perjanjian tertulis pembebasan utang dengan debitur; (4) hanya didukung tiga surat tagihan yang tidak dijawab debitur. Piutang yang TIDAK dapat dibebankan sebagai biaya fiskal adalah ...",
       kataKualifikasi: ["tidak"],
-      opsi: {
-        A: "Piutang (4) yang hanya didukung surat tagihan tanpa jawaban debitur",
-        B: "Piutang (1) yang perkaranya telah diserahkan ke Pengadilan Negeri",
-        C: "Piutang (2) yang telah dipublikasikan dalam penerbitan umum",
-        D: "Piutang (3) yang memiliki perjanjian tertulis pembebasan utang"
-      },
+      opsi: { A: "Piutang (4) yang hanya didukung surat tagihan tanpa jawaban debitur", B: "Piutang (1) yang perkaranya telah diserahkan ke Pengadilan Negeri", C: "Piutang (2) yang telah dipublikasikan dalam penerbitan umum", D: "Piutang (3) yang memiliki perjanjian tertulis pembebasan utang" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "lupa-pasal" },
       pembahasan: {
@@ -1236,7 +1227,7 @@ UKP.register({
         },
         jebakan: "Syarat ketiga bersifat alternatif (cukup salah satu), syarat pertama dan kedua kumulatif."
       },
-      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf h UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 207/PMK.010/2015", berlakuSejak: "2015-11-11" }],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf h UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 19 PP 55/2022", berlakuSejak: "2022-12-20" }, { pasal: "PMK 207/PMK.010/2015", berlakuSejak: "2015-11-11" }],
       anggaranDetik: 140,
       verifikasi: "✅"
     },
@@ -2263,14 +2254,15 @@ UKP.register({
       tingkat: ["B", "C"],
       jenis: "baris-spt",
       kesulitan: 1,
+      peringatan: "Latar diubah ke Tahun Pajak 2024 agar cocok dengan formulir 1771 lama (Pasal 138 huruf a PER-11/PJ/2025). Padanan Coretax (Lampiran 2 Bagian A) sudah dicocokkan ke Lampiran PER-11/PJ/2025. Lampiran formulir 1771 lama tidak ada di pustaka, jadi penomoran 1771-V dan 1771-VI belum dicocokkan ke naskah.",
       formulirRef: "1771.l5.1",
-      stem: "Saat menyiapkan SPT Tahunan PPh Badan PT Arta Graha Tahun Pajak 2025, staf pajak harus melaporkan susunan pemegang saham beserta modal disetor masing-masing, serta daftar direksi dan komisaris. Menurut peta formulir 1771 yang diajarkan, data tersebut dilaporkan pada ...",
+      stem: "Saat menyiapkan SPT Tahunan PPh Badan PT Arta Graha Tahun Pajak 2024, staf pajak harus melaporkan susunan pemegang saham beserta modal disetor masing-masing, serta daftar direksi dan komisaris. Menurut peta formulir 1771 yang diajarkan, data tersebut dilaporkan pada ...",
       kataKualifikasi: [],
       opsi: { A: "Lampiran 1771-VI", B: "Lampiran 1771-I", C: "Lampiran 1771-V", D: "Lampiran khusus 3A" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "Dalam format 1771 yang diajarkan, 1771-V memuat daftar pemegang saham/pemilik modal dan susunan pengurus serta komisaris. Format 1771 itu hanya dipakai untuk Tahun Pajak sampai 2024 (Pasal 138 huruf a PER-11/PJ/2025). Untuk Tahun Pajak 2025 di soal ini, SPT PPh Badan Coretax (Lampiran PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026) memuat data yang sama pada Lampiran 2 Daftar Kepemilikan Bagian A.",
+        inti: "Dalam format 1771 yang diajarkan, 1771-V memuat daftar pemegang saham/pemilik modal dan susunan pengurus serta komisaris. SPT Tahun Pajak 2024 di soal ini masih memakai format 1771 lama (Pasal 138 huruf a PER-11/PJ/2025). Untuk Tahun Pajak 2025 ke atas, SPT PPh Badan Coretax (Lampiran PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026) memuat data yang sama pada Lampiran 2 Daftar Kepemilikan Bagian A.",
         jejakHitung: [],
         mengapaSalah: {
           A: "1771-VI memuat penyertaan modal pada perusahaan afiliasi serta utang-piutang dengan pemegang saham/afiliasi (di Coretax menjadi Lampiran 2 Bagian B).",
@@ -2281,7 +2273,7 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "Pasal 3 ayat (1) UU KUP; petunjuk pengisian SPT 1771", berlakuSejak: "2008-01-01" }, { pasal: "PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026, Lampiran: petunjuk pengisian Lampiran 2 Daftar Kepemilikan SPT PPh Badan", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 138 huruf a PER-11/PJ/2025 (format 1771 PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 hanya untuk Tahun Pajak sampai 2024)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 60,
-      verifikasi: "✅"
+      verifikasi: "◐"
     },
     {
       id: "B6-053",
@@ -3679,36 +3671,29 @@ UKP.register({
       tingkat: ["B", "C"],
       jenis: "prosedur",
       kesulitan: 1,
-      kutipan: "Pasal 11 ayat (1) dan ayat (2) UU KUP (parafrase): Atas permohonan Wajib Pajak, kelebihan pembayaran pajak dikembalikan, dengan ketentuan bahwa apabila ternyata Wajib Pajak mempunyai utang pajak, langsung diperhitungkan untuk melunasi lebih dahulu utang pajak tersebut. Pengembalian kelebihan pembayaran pajak dilakukan paling lama 1 (satu) bulan sejak permohonan pengembalian diterima sehubungan dengan diterbitkannya Surat Ketetapan Pajak Lebih Bayar.",
+      kutipan: "Pasal 11 ayat (1) dan ayat (2) UU KUP beserta Penjelasan ayat (2) (parafrase): Atas permohonan Wajib Pajak, kelebihan pembayaran pajak sebagaimana dimaksud dalam Pasal 17, Pasal 17B, Pasal 17C, atau Pasal 17D dikembalikan, dengan ketentuan bahwa apabila ternyata Wajib Pajak mempunyai utang pajak, langsung diperhitungkan untuk melunasi lebih dahulu utang pajak tersebut. Pengembalian dilakukan paling lama 1 (satu) bulan sejak permohonan pengembalian diterima sehubungan dengan diterbitkannya Surat Ketetapan Pajak Lebih Bayar Pasal 17 ayat (1), atau sejak diterbitkannya Surat Ketetapan Pajak Lebih Bayar Pasal 17 ayat (2) dan Pasal 17B (dihitung sejak tanggal penerbitan).",
       stem: "PT Bintang Kimia Utama menerima SKPLB PPh Badan Tahun Pajak 2025 sebesar Rp480.000.000 pada 5 Oktober 2026 setelah pemeriksaan atas permohonan restitusinya. Pada saat itu perusahaan masih memiliki STP bunga keterlambatan setor PPh Pasal 25 Rp12.500.000 yang telah jatuh tempo dan tidak diajukan permohonan apa pun, sedangkan SKPKB PPN Masa Maret 2024 Rp70.000.000 telah dilunasi pada Juli 2026. Berdasarkan kutipan tersebut, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Seluruh Rp480.000.000 ditransfer ke rekening perusahaan, sedangkan STP Rp12.500.000 ditagih terpisah melalui tindakan penagihan",
-        B: "Rp397.500.000 ditransfer setelah diperhitungkan dengan STP Rp12.500.000 dan SKPKB PPN Rp70.000.000",
-        C: "Rp467.500.000 ditransfer setelah diperhitungkan dengan STP Rp12.500.000, paling lama 1 bulan sejak permohonan terkait SKPLB diterima",
-        D: "Rp467.500.000 ditransfer setelah diperhitungkan dengan STP, paling lama 12 bulan sejak SKPLB diterbitkan"
-      },
+      opsi: { A: "Seluruh Rp480.000.000 ditransfer ke rekening perusahaan, sedangkan STP Rp12.500.000 ditagih terpisah melalui tindakan penagihan", B: "Rp397.500.000 ditransfer setelah diperhitungkan dengan STP Rp12.500.000 dan SKPKB PPN Rp70.000.000", C: "Rp467.500.000 ditransfer setelah diperhitungkan dengan STP Rp12.500.000, paling lama 1 bulan sejak SKPLB diterbitkan", D: "Rp467.500.000 ditransfer setelah diperhitungkan dengan STP, paling lama 12 bulan sejak SKPLB diterbitkan" },
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Kelebihan pembayaran lebih dahulu dipakai melunasi utang pajak yang masih ada (STP Rp12.500.000); SKPKB PPN yang sudah lunas tidak lagi menjadi utang pajak. Sisanya dikembalikan paling lama 1 bulan sejak permohonan pengembalian diterima sehubungan dengan terbitnya SKPLB; bila terlambat, Wajib Pajak berhak atas imbalan bunga.",
+        inti: "Kelebihan pembayaran lebih dahulu dipakai melunasi utang pajak yang masih ada (STP Rp12.500.000); SKPKB PPN yang sudah lunas tidak lagi menjadi utang pajak. SKPLB ini terbit setelah pemeriksaan atas permohonan restitusi, jadi merupakan SKPLB Pasal 17B: sisanya dikembalikan paling lama 1 bulan sejak tanggal penerbitan SKPLB (Pasal 11 ayat (2) dan Penjelasan ayat (2) huruf b UU KUP). Jangka 1 bulan sejak permohonan pengembalian diterima hanya untuk SKPLB Pasal 17 ayat (1). Bila terlambat, Wajib Pajak berhak atas imbalan bunga (Pasal 11 ayat (3)).",
         jejakHitung: [
           ["SKPLB", "Rp480.000.000"],
           ["Utang pajak yang belum dilunasi", "STP Rp12.500.000"],
           ["Ditransfer = 480.000.000 − 12.500.000", "Rp467.500.000"],
-          ["Jangka pengembalian", "paling lama 1 bulan (terlambat → imbalan bunga Pasal 11 ayat (3))"]
+          ["Jenis SKPLB", "Pasal 17B (setelah pemeriksaan atas permohonan restitusi)"],
+          ["Jangka pengembalian", "paling lama 1 bulan sejak tanggal penerbitan SKPLB (terlambat → imbalan bunga Pasal 11 ayat (3))"]
         ],
         mengapaSalah: {
           A: "Pasal 11 ayat (1) mewajibkan kelebihan pembayaran langsung diperhitungkan untuk melunasi utang pajak lebih dahulu.",
           B: "SKPKB PPN sudah dilunasi sehingga tidak lagi menjadi utang pajak.",
-          D: "Dua belas bulan adalah jangka penerbitan SKP atas permohonan restitusi (Pasal 17B), bukan jangka pengembalian setelah SKPLB terbit."
+          D: "Dua belas bulan adalah jangka penerbitan SKP atas permohonan restitusi (Pasal 17B ayat (1)), bukan jangka pengembalian setelah SKPLB terbit; pengembalian paling lama 1 bulan sejak SKPLB diterbitkan."
         },
-        jebakan: "Bedakan jangka penerbitan SKP (12 bulan) dari jangka pengembalian uang setelah SKPLB terbit (1 bulan)."
+        jebakan: "Bedakan jangka penerbitan SKP (12 bulan sejak permohonan lengkap) dari jangka pengembalian uang (1 bulan). Titik awal 1 bulan pun berbeda: SKPLB Pasal 17B dihitung sejak tanggal penerbitan, sedangkan SKPLB Pasal 17 ayat (1) sejak permohonan pengembalian diterima."
       },
-      dasarHukum: [
-        { pasal: "Pasal 11 ayat (1)–(3) dan Pasal 17B UU KUP", berlakuSejak: "2008-01-01" },
-        { pasal: "Pasal 28A UU PPh", berlakuSejak: "2009-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1)–(3) beserta Penjelasan ayat (2) huruf b dan Pasal 17B UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 28A UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 110,
       verifikasi: "✅"
     },
@@ -4137,7 +4122,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Pasal 5 ayat (3): bunga (kecuali yang berkenaan dengan usaha perbankan) dan royalti yang dibayar BUT kepada kantor pusat tidak dapat dibiayakan. Pengiriman laba ke kantor pusat adalah pembagian laba (Pasal 9 ayat (1) huruf a), bukan biaya. Alokasi biaya administrasi kantor pusat yang berkaitan dengan kegiatan BUT boleh dibebankan (Pasal 5 ayat (2)).",
+        inti: "Pasal 5 ayat (3) huruf b: royalti dan bunga (kecuali yang berkenaan dengan usaha perbankan) yang dibayar BUT kepada kantor pusat tidak boleh dibebankan sebagai biaya. Pengiriman laba ke kantor pusat adalah pembagian laba (Pasal 9 ayat (1) huruf a), bukan biaya. Alokasi biaya administrasi kantor pusat yang berkaitan dengan usaha atau kegiatan BUT boleh dibebankan, besarnya ditetapkan Direktur Jenderal Pajak (Pasal 5 ayat (3) huruf a); stem menyatakan alokasi itu dihitung sesuai ketentuan.",
         jejakHitung: [
           ["Laba komersial", "Rp900.000.000"],
           ["+ Bunga kepada kantor pusat (bukan usaha perbankan)", "Rp180.000.000"],
@@ -4147,16 +4132,13 @@ UKP.register({
           ["PKP = 900 + 180 + 240 + 300 (juta)", "Rp1.620.000.000"]
         ],
         mengapaSalah: {
-          A: "Ikut mengoreksi alokasi biaya administrasi kantor pusat Rp120.000.000, padahal Pasal 5 ayat (2) membolehkannya sepanjang berkaitan dengan kegiatan BUT.",
+          A: "Ikut mengoreksi alokasi biaya administrasi kantor pusat Rp120.000.000, padahal Pasal 5 ayat (3) huruf a membolehkannya sepanjang berkaitan dengan usaha atau kegiatan BUT dan besarnya sesuai ketetapan Direktur Jenderal Pajak.",
           C: "Lupa mengoreksi pengiriman laba Rp300.000.000; BUT tidak dapat membebankan ‘dividen’ kepada kantor pusatnya karena itu pembagian laba.",
-          D: "Menganggap bunga kepada kantor pusat dapat dibiayakan; pengecualian Pasal 5 ayat (3) hanya untuk bunga yang berkenaan dengan usaha perbankan."
+          D: "Menganggap bunga kepada kantor pusat dapat dibiayakan; pengecualian Pasal 5 ayat (3) huruf b angka 3 hanya untuk bunga yang berkenaan dengan usaha perbankan."
         },
         jebakan: "Memukul rata semua pembebanan kantor pusat: alokasi biaya administrasi boleh, sedangkan royalti, jasa, bunga, dan pengiriman laba tidak."
       },
-      dasarHukum: [
-        { pasal: "Pasal 5 ayat (2) dan ayat (3) UU PPh", berlakuSejak: "2001-01-01" },
-        { pasal: "Pasal 9 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 5 ayat (3) huruf a dan huruf b UU PPh", berlakuSejak: "2001-01-01" }, { pasal: "Pasal 9 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -4200,31 +4182,28 @@ UKP.register({
       jenis: "klasifikasi",
       kesulitan: 2,
       laporanUjian: ["B-2026-10", "C-2026-10"],
-      kutipan: "Pasal 3 ayat (1) huruf a dan huruf c UU PPh (parafrase): Yang tidak termasuk subjek pajak adalah kantor perwakilan negara asing; serta organisasi internasional yang ditetapkan dengan Peraturan Menteri Keuangan, dengan syarat Indonesia menjadi anggota organisasi tersebut dan organisasi tersebut tidak menjalankan usaha atau kegiatan lain untuk memperoleh penghasilan dari Indonesia selain memberikan pinjaman kepada pemerintah yang dananya berasal dari iuran para anggota.",
-      stem: "Pada Oktober 2026 kantor konsultan Anda diminta memetakan status subjek pajak empat pihak di Jakarta: (1) Kedutaan Besar Negara Valmora, yang hubungan diplomatiknya dengan Indonesia berdasarkan asas timbal balik; (2) kantor perwakilan Norrsken Handel AB, perusahaan swasta dari Negara Svenmark, yang mempromosikan produk serta menegosiasikan dan menandatangani kontrak penjualan atas nama kantor pusatnya; (3) Lembaga Pangan Kawasan Asia, organisasi internasional yang telah ditetapkan dengan Peraturan Menteri Keuangan, Indonesia menjadi anggotanya, dan kegiatannya di Indonesia hanya memberikan pinjaman kepada pemerintah dari iuran anggota; serta (4) Dewan Karet Antarbangsa, organisasi yang Indonesia menjadi anggotanya tetapi belum ditetapkan dengan Peraturan Menteri Keuangan, dan kantornya di Jakarta menjual jasa riset pasar dan pelatihan berbayar kepada perusahaan swasta Indonesia. Berdasarkan kutipan tersebut, pihak yang merupakan subjek pajak penghasilan adalah ...",
+      kutipan: "Pasal 3 ayat (1) huruf a dan huruf c serta ayat (2) UU PPh (parafrase): Yang tidak termasuk subjek pajak adalah kantor perwakilan negara asing; serta organisasi internasional dengan syarat Indonesia menjadi anggota organisasi tersebut dan organisasi tersebut tidak menjalankan usaha atau kegiatan lain untuk memperoleh penghasilan dari Indonesia selain memberikan pinjaman kepada pemerintah yang dananya berasal dari iuran para anggota. Organisasi internasional yang tidak termasuk subjek pajak itu ditetapkan dengan Keputusan Menteri Keuangan.",
+      stem: "Pada Oktober 2026 kantor konsultan Anda diminta memetakan status subjek pajak empat pihak di Jakarta: (1) Kedutaan Besar Negara Valmora, yang hubungan diplomatiknya dengan Indonesia berdasarkan asas timbal balik; (2) kantor perwakilan Norrsken Handel AB, perusahaan swasta dari Negara Svenmark, yang mempromosikan produk serta menegosiasikan dan menandatangani kontrak penjualan atas nama kantor pusatnya; (3) Lembaga Pangan Kawasan Asia, organisasi internasional yang telah ditetapkan Menteri Keuangan sebagai organisasi internasional yang tidak termasuk subjek pajak, Indonesia menjadi anggotanya, dan kegiatannya di Indonesia hanya memberikan pinjaman kepada pemerintah dari iuran anggota; serta (4) Dewan Karet Antarbangsa, organisasi yang Indonesia menjadi anggotanya tetapi belum ditetapkan Menteri Keuangan, dan kantornya di Jakarta menjual jasa riset pasar dan pelatihan berbayar kepada perusahaan swasta Indonesia. Berdasarkan kutipan tersebut, pihak yang merupakan subjek pajak penghasilan adalah ...",
       kataKualifikasi: [],
       opsi: { A: "(2) saja", B: "(2) dan (4)", C: "(1), (2), dan (4)", D: "(3) dan (4)" },
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "Kedutaan (kantor perwakilan negara asing) dan organisasi internasional yang memenuhi seluruh syarat Pasal 3 ayat (1) huruf c dikecualikan. Kantor perwakilan perusahaan swasta asing yang menandatangani kontrak atas nama kantor pusat adalah BUT, sedangkan organisasi yang belum ditetapkan Menteri Keuangan dan menjual jasa di Indonesia tidak memenuhi syarat pengecualian.",
+        inti: "Kedutaan (kantor perwakilan negara asing, Pasal 3 ayat (1) huruf a) dan organisasi internasional yang memenuhi syarat Pasal 3 ayat (1) huruf c serta ditetapkan dengan Keputusan Menteri Keuangan (Pasal 3 ayat (2)) dikecualikan. Kantor perwakilan perusahaan swasta asing yang menandatangani kontrak atas nama kantor pusat adalah BUT, sedangkan organisasi yang belum ditetapkan Menteri Keuangan dan menjual jasa di Indonesia tidak memenuhi syarat pengecualian.",
         jejakHitung: [
           ["(1) Kedutaan Besar Negara Valmora", "bukan subjek (Ps. 3 ayat (1) huruf a)"],
           ["(2) Kantor perwakilan perusahaan swasta asing", "subjek pajak luar negeri melalui BUT (Ps. 2 ayat (5))"],
-          ["(3) Organisasi internasional yang memenuhi syarat", "bukan subjek (Ps. 3 ayat (1) huruf c)"],
+          ["(3) Organisasi internasional yang memenuhi syarat dan sudah ditetapkan", "bukan subjek (Ps. 3 ayat (1) huruf c dan ayat (2))"],
           ["(4) Organisasi belum ditetapkan dan menjual jasa", "subjek pajak"]
         ],
         mengapaSalah: {
-          A: "Menganggap setiap organisasi internasional yang beranggotakan Indonesia otomatis dikecualikan; pengecualian mensyaratkan penetapan Menteri Keuangan dan tidak ada kegiatan memperoleh penghasilan dari Indonesia selain pinjaman kepada pemerintah dari iuran anggota.",
+          A: "Menganggap setiap organisasi internasional yang beranggotakan Indonesia otomatis dikecualikan; pengecualian mensyaratkan tidak ada kegiatan memperoleh penghasilan dari Indonesia selain pinjaman kepada pemerintah dari iuran anggota (Pasal 3 ayat (1) huruf c) dan penetapan Menteri Keuangan (Pasal 3 ayat (2)).",
           C: "Kedutaan adalah kantor perwakilan negara asing yang dikecualikan Pasal 3 ayat (1) huruf a; jangan disamakan dengan kantor perwakilan perusahaan asing.",
           D: "Pihak (3) memenuhi seluruh syarat pengecualian, sedangkan kantor perwakilan Norrsken yang menandatangani kontrak atas nama kantor pusat justru merupakan BUT."
         },
         jebakan: "Frasa ‘kantor perwakilan’ dipakai untuk dua hal berbeda: perwakilan negara asing (bukan subjek) dan perwakilan perusahaan asing (BUT)."
       },
-      dasarHukum: [
-        { pasal: "Pasal 3 ayat (1) huruf a dan huruf c UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "Pasal 2 ayat (5) UU PPh", berlakuSejak: "2009-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a dan huruf c serta ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 2 ayat (5) UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -5310,24 +5289,31 @@ UKP.register({
     {
       id: "B6-146",
       topik: "B6.2",
-      tingkat: [ "B", "C" ],
+      tingkat: ["B", "C"],
       jenis: "hitung",
       kesulitan: 2,
       kutipan: "UU PPh Pasal 4 ayat (3) huruf a s.t.d.t.d. UU 7/2021 (dikutip try out): Yang dikecualikan dari objek pajak adalah: ... harta hibahan yang diterima oleh keluarga sedarah dalam garis keturunan lurus satu derajat, badan keagamaan, badan pendidikan, badan sosial termasuk yayasan, koperasi, atau orang pribadi yang menjalankan usaha mikro dan kecil, sepanjang tidak ada hubungan dengan usaha, pekerjaan, kepemilikan, atau penguasaan di antara pihak-pihak yang bersangkutan.",
       stem: "Koperasi Ortax Sejahtera merupakan Wajib Pajak badan dalam negeri. Pada Tahun Pajak 2026 koperasi menerima: 1. hibah uang Rp200.000.000 dari PT Ortax Agro Lestari yang tidak memiliki hubungan usaha, pekerjaan, kepemilikan, atau penguasaan dengan koperasi; 2. dividen Rp80.000.000 dari PT Ortax Manufaktur (badan dalam negeri) dengan kepemilikan 2%; 3. bunga deposito Rp30.000.000; 4. hadiah undian Rp20.000.000; 5. hibah sebidang tanah senilai Rp150.000.000 dari salah satu pengurus koperasi. Berdasarkan Pasal 4 ayat (3) UU PPh, jumlah penghasilan Koperasi Ortax Sejahtera yang dikecualikan dari objek PPh adalah ...",
-      kataKualifikasi: [ "kecuali" ],
+      kataKualifikasi: [],
       opsi: { A: "Rp330.000.000,00", B: "Rp280.000.000,00", C: "Rp430.000.000,00", D: "Rp200.000.000,00" },
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
         inti: "Koperasi termasuk penerima harta hibahan yang dikecualikan sepanjang tidak ada hubungan usaha, pekerjaan, kepemilikan, atau penguasaan, sehingga hibah dari PT Ortax Agro Lestari dikecualikan (Rp200.000.000). Dividen dari badan dalam negeri yang diterima koperasi dikecualikan tanpa syarat kepemilikan (Rp80.000.000). Hibah tanah dari pengurus tidak dikecualikan karena ada hubungan pekerjaan/penguasaan, sedangkan bunga deposito dan hadiah undian adalah objek yang dikenai PPh final.",
-        jejakHitung: [ [ "Hibah dari PT tanpa hubungan (dikecualikan)", "Rp200.000.000" ], [ "Dividen dalam negeri (dikecualikan)", "Rp80.000.000" ], [ "Bunga deposito, hadiah undian, hibah dari pengurus", "objek (bukan dikecualikan)" ], [ "Jumlah dikecualikan", "Rp280.000.000" ] ],
-        mengapaSalah: { A: "Menyamakan penghasilan yang dikenai PPh final (bunga deposito dan hadiah undian) dengan penghasilan yang dikecualikan.", C: "Mengabaikan hubungan pekerjaan/penguasaan antara pengurus dan koperasi pada hibah tanah.", D: "Menganggap dividen objek karena kepemilikan di bawah 25% (aturan lama sebelum UU 11/2020)." },
+        jejakHitung: [
+          ["Hibah dari PT tanpa hubungan (dikecualikan)", "Rp200.000.000"],
+          ["Dividen dalam negeri (dikecualikan)", "Rp80.000.000"],
+          ["Bunga deposito, hadiah undian, hibah dari pengurus", "objek (bukan dikecualikan)"],
+          ["Jumlah dikecualikan", "Rp280.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Menyamakan penghasilan yang dikenai PPh final (bunga deposito dan hadiah undian) dengan penghasilan yang dikecualikan.",
+          C: "Mengabaikan hubungan pekerjaan/penguasaan antara pengurus dan koperasi pada hibah tanah.",
+          D: "Menganggap dividen objek karena kepemilikan di bawah 25% (aturan lama sebelum UU 11/2020)."
+        },
         jebakan: "Bedakan \"dikecualikan dari objek\" dengan \"objek yang dikenai PPh final\"."
       },
-      dasarHukum: [
-        { pasal: "UU PPh Pasal 4 ayat (1), ayat (2) huruf a dan b, ayat (3) huruf a angka 2 dan huruf f angka 1 huruf b) s.t.d.t.d. UU 6/2023", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU PPh Pasal 4 ayat (1), ayat (2) huruf a dan b, ayat (3) huruf a angka 2 dan huruf f angka 1 huruf b) s.t.d.t.d. UU 6/2023", berlakuSejak: null }],
       anggaranDetik: 150,
       verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 94, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
@@ -5356,6 +5342,4128 @@ UKP.register({
       anggaranDetik: 120,
       verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 97, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
+    },
+    {
+      id: "B6-148",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kutipan: "UU PPh Pasal 11 ayat (3): Penyusutan dimulai pada bulan dilakukannya pengeluaran, kecuali untuk harta yang masih dalam proses pengerjaan, penyusutannya dimulai pada bulan selesainya pengerjaan harta tersebut. Penjelasan ayat (3): Penyusutan dimulai pada bulan dilakukannya pengeluaran atau pada bulan selesainya pengerjaan suatu harta sehingga penyusutan pada tahun pertama dihitung secara pro-rata.",
+      stem: "PT Sinar Lestari Pangan, produsen makanan ringan, membeli satu unit mesin pengemas otomatis pada 14 Mei 2026 dengan harga perolehan Rp240.000.000 dan langsung memakainya untuk produksi pada bulan yang sama. Mesin tersebut termasuk Harta Berwujud Bukan Bangunan Kelompok 2. Untuk penyusutan fiskal, perseroan secara taat asas memakai metode saldo menurun. Berapakah beban penyusutan fiskal mesin tersebut untuk Tahun Pajak 2026?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp60.000.000,00", B: "Rp35.000.000,00", C: "Rp20.000.000,00", D: "Rp40.000.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Kelompok 2 bermasa manfaat 8 tahun dengan tarif saldo menurun 25% (UU PPh Pasal 11 ayat (6); PMK 72/2023 Pasal 2 ayat (3)). Penyusutan dimulai pada bulan dilakukannya pengeluaran, yaitu Mei 2026, dan tahun pertama dihitung secara prorata, sehingga bulan penyusutan 2026 adalah Mei sampai Desember (8 bulan).",
+        jejakHitung: [
+          ["Tarif saldo menurun Kelompok 2", "25%"],
+          ["Bulan penyusutan 2026 (Mei sampai Desember)", "8 bulan"],
+          ["Penyusutan = 25% × Rp240.000.000 × 8/12", "Rp40.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Menyusutkan setahun penuh (25% × Rp240.000.000) tanpa prorata, padahal penyusutan tahun pertama dihitung sejak bulan pengeluaran.",
+          B: "Tidak menghitung bulan Mei sebagai bulan penyusutan (hanya 7 bulan), padahal penyusutan dimulai pada bulan dilakukannya pengeluaran walaupun pembelian terjadi pada pertengahan bulan.",
+          C: "Memakai tarif garis lurus Kelompok 2 (12,5%), padahal perseroan memakai metode saldo menurun dengan tarif 25%."
+        },
+        jebakan: "Bulan pengeluaran dihitung penuh walaupun pembelian terjadi di tengah bulan; tarif saldo menurun adalah dua kali tarif garis lurus kelompok yang sama."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 11 ayat (2), ayat (3), dan ayat (6) beserta Penjelasan Pasal 11 ayat (3) s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PMK 72/2023 Pasal 2 ayat (2) dan ayat (3) serta Pasal 5 ayat (1)", berlakuSejak: null }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-126",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-149",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "Ibu Sekar, seorang arsitek, mendirikan perseroan perorangan PT Sekar Rancang Ruang dan mendaftarkannya sebagai Wajib Pajak pada Maret 2024. Perseroan menyerahkan jasa perancangan arsitektur yang dikerjakan Ibu Sekar sendiri, dan sejak 2024 menyetor PPh final 0,5% berdasarkan PP 55/2022. Peredaran bruto 2025 sebesar Rp2,1 miliar dan 2026 diperkirakan Rp2,4 miliar. Ibu Sekar tidak memiliki usaha atau perseroan perorangan lain, dan perseroan tidak pernah memilih tarif umum. Perlakuan PPh atas penghasilan usaha perseroan untuk Tahun Pajak 2026 dan 2027 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tarif Pasal 17 ayat (1) huruf b sejak PP 20/2026 berlaku pada 22 April 2026, karena perseroan perorangan yang didirikan tenaga ahli langsung dikecualikan", B: "PPh final 0,5% sampai akhir Tahun Pajak 2026 berdasarkan ketentuan peralihan PP 20/2026; mulai Tahun Pajak 2027 tarif Pasal 17 ayat (1) huruf b", C: "PPh final 0,5% sampai akhir Tahun Pajak 2027, karena jangka waktu 4 Tahun Pajak sejak tahun terdaftar (2024 sampai 2027) belum berakhir", D: "PPh final 0,5% untuk 2026 dan 2027 selama peredaran bruto tidak melebihi Rp4,8 miliar, karena perseroan perorangan tetap subjek PPh final" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "angka-usang", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Sejak PP 20/2026 (berlaku 22 April 2026), perseroan perorangan yang didirikan orang pribadi berkeahlian khusus yang menyerahkan jasa sejenis jasa pekerjaan bebas, misalnya arsitek, tidak termasuk Wajib Pajak yang dikenai PPh final (PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57 ayat (2) huruf b jo. Pasal 56 ayat (4) huruf a). Namun perseroan perorangan seperti itu yang sudah dikenai PPh final berdasarkan PP 55/2022 dapat tetap dikenai PPh final sampai akhir Tahun Pajak 2026 (PP 20/2026 Pasal II angka 1 huruf f). PT Sekar Rancang Ruang sudah memakai PPh final sejak 2024, sehingga 2026 masih PPh final 0,5% dan mulai 2027 dikenai tarif umum Pasal 17 ayat (1) huruf b.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Melupakan ketentuan peralihan Pasal II angka 1 huruf f PP 20/2026: perseroan perorangan tenaga ahli yang sudah dikenai PPh final berdasarkan PP 55/2022 masih dapat memakainya sampai akhir Tahun Pajak 2026.",
+          C: "Jangka waktu 4 Tahun Pajak bagi perseroan perorangan berasal dari Pasal 59 PP 55/2022 yang sudah dihapus PP 20/2026; bagi perseroan perorangan tenaga ahli, peralihan dibatasi sampai akhir Tahun Pajak 2026.",
+          D: "Omzet di bawah Rp4,8 miliar tidak cukup: perseroan perorangan yang didirikan tenaga ahli untuk jasa sejenis pekerjaan bebas dikecualikan dari PPh final (Pasal 57 ayat (2) huruf b), kecuali selama masa peralihan sampai akhir 2026."
+        },
+        jebakan: "Bedakan perseroan perorangan tenaga ahli yang baru didirikan setelah PP 20/2026 (langsung tarif umum) dari yang sudah memakai PPh final berdasarkan PP 55/2022 (peralihan sampai akhir 2026)."
+      },
+      dasarHukum: [{ pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 56 ayat (4) huruf a dan Pasal 57 ayat (1) huruf b dan ayat (2) huruf b", berlakuSejak: "2026-04-22" }, { pasal: "PP 20/2026 Pasal II angka 1 huruf f (ketentuan peralihan)", berlakuSejak: "2026-04-22" }, { pasal: "PP 55/2022 Pasal 59 ayat (1) huruf b (sebelum dihapus PP 20/2026)", berlakuSejak: null }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-127",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-150",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kutipan: "UU PPh Pasal 4 ayat (3) huruf f angka 1: dividen yang berasal dari dalam negeri yang diterima atau diperoleh Wajib Pajak: a) orang pribadi dalam negeri sepanjang dividen tersebut diinvestasikan di wilayah Negara Kesatuan Republik Indonesia dalam jangka waktu tertentu; dan/atau b) badan dalam negeri;",
+      stem: "PT Mitra Logam Perkasa (Wajib Pajak badan dalam negeri, distributor baja ringan) membukukan laba komersial sebelum pajak Tahun Pajak 2026 sebesar Rp2.340.000.000. Di dalamnya terdapat bunga deposito Rp60.000.000 yang telah dipotong PPh final, dividen Rp95.000.000 dari PT Arunika Beton (Wajib Pajak badan dalam negeri) atas kepemilikan saham sebesar 8%, dan keuntungan penjualan kendaraan operasional Rp40.000.000. Tidak terdapat koreksi fiskal lainnya, termasuk atas biaya. Penghasilan neto fiskal yang dikenai tarif umum adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp2.185.000.000,00", B: "Rp2.245.000.000,00", C: "Rp2.145.000.000,00", D: "Rp2.280.000.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "final-nonfinal", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Bunga deposito telah dikenai PPh final sehingga dikeluarkan dari penghasilan yang dikenai tarif umum. Dividen dalam negeri yang diterima Wajib Pajak badan dalam negeri dikecualikan dari objek pajak tanpa syarat persentase kepemilikan, sehingga kepemilikan 8% tidak mengubah perlakuannya dan dividen juga dikeluarkan. Keuntungan penjualan kendaraan operasional adalah objek PPh tarif umum (Pasal 4 ayat (1) huruf d) dan tetap.",
+        jejakHitung: [
+          ["Laba komersial", "Rp2.340.000.000"],
+          ["Koreksi negatif bunga deposito (final)", "(Rp60.000.000)"],
+          ["Koreksi negatif dividen dalam negeri (bukan objek)", "(Rp95.000.000)"],
+          ["Keuntungan penjualan kendaraan", "tetap (tidak dikoreksi)"],
+          ["Penghasilan neto fiskal", "Rp2.185.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Hanya mengeluarkan dividen dan lupa mengeluarkan bunga deposito yang sudah dikenai PPh final.",
+          C: "Ikut mengeluarkan keuntungan penjualan kendaraan, padahal keuntungan karena penjualan harta adalah objek PPh tarif umum.",
+          D: "Hanya mengeluarkan bunga deposito dan lupa bahwa dividen dalam negeri yang diterima badan dalam negeri dikecualikan dari objek pajak, berapa pun persentase kepemilikannya."
+        },
+        jebakan: "Sejak UU HPP, pengecualian dividen dalam negeri bagi badan dalam negeri tidak lagi mensyaratkan kepemilikan minimal; keluarkan pula penghasilan final, tetapi biarkan keuntungan penjualan harta."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 4 ayat (1) huruf d, ayat (2) huruf a, dan ayat (3) huruf f angka 1 s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "UU PPh Pasal 6 ayat (1) dan Pasal 17", berlakuSejak: null }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-128",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-151",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Selama Tahun Pajak 2026, empat Wajib Pajak dalam negeri menerima penghasilan atau harta berikut. Penerimaan yang dikecualikan dari objek PPh bagi penerimanya adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dividen Rp150.000.000 dari PT dalam negeri yang diterima Tuan Bima dan seluruhnya dipakai untuk biaya liburan ke luar negeri", B: "Mobil yang dihibahkan Tuan Darto kepada keponakannya, Nona Rani, karyawan swasta yang tidak memiliki hubungan usaha dengannya", C: "Bagian laba Rp210.000.000 yang diterima Ibu Wulan sebagai sekutu dari Firma Wulan & Rekan, firma jasa desain interior", D: "Bunga obligasi korporasi Rp85.000.000 yang diterima PT Lestari Dana dari penerbit obligasi dalam negeri" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "final-nonfinal" },
+      pembahasan: {
+        inti: "Bagian laba yang diterima anggota dari firma dikecualikan dari objek pajak (UU PPh Pasal 4 ayat (3) huruf i), karena laba firma sudah dikenai pajak di tingkat firma sebagai badan. Dividen orang pribadi yang tidak diinvestasikan, hibah kepada keponakan, dan bunga obligasi tetap merupakan objek pajak.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Dividen dalam negeri bagi orang pribadi dalam negeri hanya dikecualikan sepanjang diinvestasikan di wilayah Indonesia dalam jangka waktu tertentu (Pasal 4 ayat (3) huruf f angka 1 huruf a)); dividen yang dipakai untuk liburan tetap objek pajak.",
+          B: "Pengecualian harta hibahan (Pasal 4 ayat (3) huruf a angka 2) bagi orang pribadi hanya untuk keluarga sedarah dalam garis keturunan lurus satu derajat; keponakan adalah garis menyamping, sehingga hibah itu objek pajak walaupun tidak ada hubungan usaha.",
+          D: "Bunga obligasi adalah objek pajak (Pasal 4 ayat (1) huruf f) yang dapat dikenai pajak bersifat final (Pasal 4 ayat (2) huruf a); dikenai PPh final tidak sama dengan dikecualikan dari objek pajak."
+        },
+        jebakan: "Pengecualian Pasal 4 ayat (3) huruf i berlaku bagi anggota koperasi, perseroan komanditer yang modalnya tidak terbagi atas saham, persekutuan, perkumpulan, firma, dan kongsi; dividen dari PT diatur tersendiri di huruf f dengan syarat investasi bagi orang pribadi."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 4 ayat (3) huruf a angka 2, huruf f angka 1, dan huruf i s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "UU PPh Pasal 4 ayat (1) huruf f dan ayat (2) huruf a s.t.d.t.d. UU 6/2023", berlakuSejak: null }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      kembaranDari: "B6-129",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-152",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kutipan: "PER-11/PJ/2025 Pasal 115 ayat (2): Dasar penghitungan atas Pajak Penghasilan terutang sebagaimana dimaksud pada ayat (1) dihitung dengan cara mengurangkan dari jumlah penghasilan neto fiskal menurut Surat Pemberitahuan Tahunan Pajak Penghasilan Tahun Pajak yang lalu dengan penghasilan tidak teratur yang dilaporkan dalam Surat Pemberitahuan Tahunan tersebut.",
+      stem: "PT Cakra Baja Mandiri (produsen rangka baja, peredaran bruto 2025 Rp95.000.000.000) menyampaikan SPT Tahunan PPh Badan Tahun Pajak 2025 tepat waktu dengan data: 1. penghasilan neto fiskal Rp4.750.000.000, termasuk keuntungan penjualan mesin produksi bekas Rp350.000.000 yang bukan merupakan penghasilan dari kegiatan usaha pokok; 2. tidak ada sisa kompensasi kerugian fiskal; 3. PPh Pasal 22 dan PPh Pasal 23 yang dapat dikreditkan Rp236.000.000; 4. tarif PPh Badan 22%. Berapakah angsuran PPh Pasal 25 per bulan untuk Tahun Pajak 2026 (dibulatkan ke rupiah penuh)?",
+      kataKualifikasi: ["bukan"],
+      opsi: { A: "Rp67.416.667,00", B: "Rp80.666.667,00", C: "Rp87.083.333,00", D: "Rp61.000.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Keuntungan dari pengalihan harta (capital gain) yang bukan penghasilan dari kegiatan usaha pokok tidak termasuk penghasilan teratur, sehingga dikurangkan dari penghasilan neto fiskal sebagai dasar penghitungan angsuran (PER-11/PJ/2025 Pasal 113 ayat (5) huruf b dan Pasal 115). Angsuran = (PPh terutang atas penghasilan teratur dikurangi kredit PPh 22 dan 23) dibagi 12. Fasilitas Pasal 31E tidak relevan karena peredaran bruto Rp95 miliar.",
+        jejakHitung: [
+          ["Dasar = Rp4.750.000.000 − Rp350.000.000", "Rp4.400.000.000"],
+          ["PPh = 22% × Rp4.400.000.000", "Rp968.000.000"],
+          ["Dikurangi kredit PPh 22 dan 23 (Rp236.000.000)", "Rp732.000.000"],
+          ["Angsuran = Rp732.000.000 ÷ 12", "Rp61.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Tidak mengeluarkan keuntungan penjualan mesin (penghasilan tidak teratur): (22% × Rp4.750.000.000 − Rp236.000.000) ÷ 12.",
+          B: "Mengeluarkan penghasilan tidak teratur, tetapi lupa mengurangkan kredit PPh 22 dan PPh 23: Rp968.000.000 ÷ 12.",
+          C: "Tidak mengeluarkan penghasilan tidak teratur dan tidak mengurangkan kredit pajak: (22% × Rp4.750.000.000) ÷ 12."
+        },
+        jebakan: "Capital gain dari penjualan aset yang bukan usaha pokok adalah penghasilan tidak teratur dan dikeluarkan dari dasar angsuran; kredit pajak tetap dikurangkan sebelum dibagi 12."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 25 ayat (1) dan ayat (6) huruf b s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 Pasal 113 ayat (2) huruf b, ayat (4), dan ayat (5) huruf b serta Pasal 115", berlakuSejak: null }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-130",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-153",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Griya Rasa Nusantara, perseroan terbatas yang didirikan oleh tiga pemegang saham, terdaftar sebagai Wajib Pajak pada Agustus 2024 dan sejak itu menyetor PPh final 0,5% berdasarkan PP 55/2022 atas usaha kateringnya. Peredaran bruto 2025 sebesar Rp2,6 miliar dan 2026 diperkirakan Rp3,1 miliar. Perseroan tidak pernah memberitahukan pilihan tarif umum dan tidak memperoleh fasilitas Pasal 31A. Perlakuan PPh atas penghasilan usahanya untuk Tahun Pajak 2026 dan 2027 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "PPh final 0,5% untuk 2026 karena jangka waktu 3 Tahun Pajak (2024 sampai 2026) belum berakhir; mulai 2027 tarif Pasal 17 ayat (1) huruf b dengan fasilitas Pasal 31E", B: "Tarif Pasal 17 ayat (1) huruf b dengan fasilitas Pasal 31E untuk 2026 dan 2027, karena PP 20/2026 mengeluarkan perseroan terbatas biasa dari PPh final", C: "PPh final 0,5% untuk 2026 dan 2027 karena jangka waktu bagi Wajib Pajak badan adalah 4 Tahun Pajak sejak tahun terdaftar (2024 sampai 2027)", D: "PPh final 0,5% untuk 2026 dan 2027 tanpa batas jangka waktu, karena peredaran brutonya tetap di bawah Rp4,8 miliar setahun" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Setelah PP 20/2026 (berlaku 22 April 2026), Wajib Pajak badan yang dapat dikenai PPh final 0,5% hanya perseroan perorangan yang didirikan oleh 1 orang dan koperasi (Pasal 57 ayat (1) huruf b). Namun perseroan terbatas lain yang jangka waktu PPh final menurut PP 55/2022 belum berakhir dapat tetap dikenai PPh final sampai jangka waktu itu berakhir (PP 20/2026 Pasal II angka 1 huruf e). Jangka waktu bagi perseroan terbatas adalah 3 Tahun Pajak sejak tahun terdaftar (PP 55/2022 Pasal 59 ayat (1) huruf c dan ayat (2) huruf a), yaitu 2024 sampai 2026. Jadi 2026 masih PPh final 0,5%, dan mulai 2027 dikenai tarif Pasal 17 ayat (1) huruf b dengan fasilitas Pasal 31E karena peredaran brutonya jauh di bawah Rp50 miliar.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Melupakan ketentuan peralihan Pasal II angka 1 huruf e PP 20/2026: perseroan terbatas yang jangka waktunya belum berakhir tetap dapat memakai PPh final sampai jangka waktu itu berakhir (akhir 2026).",
+          C: "Jangka waktu 4 Tahun Pajak berlaku bagi koperasi, persekutuan komanditer, firma, BUMDes, dan perseroan perorangan; bagi perseroan terbatas hanya 3 Tahun Pajak.",
+          D: "Batas peredaran bruto Rp4,8 miliar bukan satu-satunya syarat; perseroan terbatas hanya dapat memakai PPh final selama sisa jangka waktu menurut PP 55/2022."
+        },
+        jebakan: "Hitung jangka waktu PPh final per bentuk badan sejak tahun terdaftar (PT: 3 Tahun Pajak), lalu terapkan peralihan PP 20/2026 yang membiarkan jangka waktu yang belum berakhir berjalan sampai selesai."
+      },
+      dasarHukum: [{ pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57 ayat (1) huruf b", berlakuSejak: "2026-04-22" }, { pasal: "PP 20/2026 Pasal II angka 1 huruf e (ketentuan peralihan)", berlakuSejak: "2026-04-22" }, { pasal: "PP 55/2022 Pasal 59 ayat (1) huruf c dan ayat (2) huruf a (sebelum dihapus PP 20/2026)", berlakuSejak: null }, { pasal: "UU PPh Pasal 17 ayat (1) huruf b dan Pasal 31E", berlakuSejak: null }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-131",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-154",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Bumi Niaga Sentosa, distributor alat tulis, memiliki dua gudang. Gudang Blok A dipakai sendiri untuk kegiatan distribusi, sedangkan Gudang Blok B disewakan seluruhnya kepada pihak lain dan atas sewanya penyewa memotong PPh final. Pada 2026: pendapatan sewa Gudang Blok B Rp640.000.000 dicatat sebagai pendapatan lain-lain; penyusutan Gudang Blok B Rp96.000.000 dan premi asuransi Gudang Blok B Rp24.000.000 dicatat dalam beban usaha; biaya pemeliharaan Gudang Blok A Rp38.000.000 juga dicatat dalam beban usaha. Koreksi fiskal yang tepat adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "hanya pendapatan sewa yang dikoreksi negatif Rp640.000.000,00; seluruh biaya gudang tetap dibebankan karena kedua gudang tercatat sebagai aset usaha", B: "pendapatan sewa dikoreksi negatif Rp640.000.000,00 dan seluruh biaya kedua gudang Rp158.000.000,00 dikoreksi positif sebagai biaya terkait gudang", C: "pendapatan sewa dikoreksi negatif Rp640.000.000,00 dan biaya Gudang Blok B Rp120.000.000,00 dikoreksi positif; pemeliharaan Gudang Blok A tidak dikoreksi", D: "tidak ada koreksi karena PPh final atas sewa sudah dipotong penyewa, sehingga pendapatan sewa dan seluruh biaya gudang tetap digabung" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "final-nonfinal" },
+      pembahasan: {
+        inti: "Penghasilan dari persewaan tanah dan/atau bangunan dikenai PPh final (UU PPh Pasal 4 ayat (2) huruf d) dan tidak digabung dengan penghasilan tarif umum, sehingga pendapatan sewa dikoreksi negatif. Biaya untuk mendapatkan, menagih, dan memelihara penghasilan yang pengenaan pajaknya bersifat final tidak boleh dikurangkan (PP 94/2010 Pasal 13 huruf a angka 2), sehingga penyusutan dan asuransi Gudang Blok B (Rp96.000.000 + Rp24.000.000) dikoreksi positif. Pemeliharaan Gudang Blok A berkaitan dengan usaha distribusi yang dikenai tarif umum sehingga tidak dikoreksi.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Biaya untuk penghasilan final (penyusutan dan asuransi Gudang Blok B) tidak boleh dikurangkan walaupun gudangnya aset perusahaan (PP 94/2010 Pasal 13 huruf a angka 2).",
+          B: "Pemeliharaan Gudang Blok A berkaitan dengan penghasilan tarif umum dari usaha distribusi, sehingga tetap boleh dibebankan.",
+          D: "Penghasilan final tidak digabung dengan penghasilan tarif umum; pendapatan sewa dan biaya yang terkait dengannya harus dipisahkan."
+        },
+        jebakan: "Pisahkan biaya menurut penghasilan yang dilayaninya: biaya aset yang menghasilkan penghasilan final dikoreksi positif, biaya aset yang dipakai untuk usaha tarif umum tetap dibebankan."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 4 ayat (2) huruf d dan Pasal 6 ayat (1) huruf a", berlakuSejak: null }, { pasal: "PP 94/2010 Pasal 13 huruf a angka 2", berlakuSejak: null }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-132",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-155",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      kutipan: "UU PPh Pasal 6 ayat (2): Apabila penghasilan bruto setelah pengurangan sebagaimana dimaksud pada ayat (1) didapat kerugian, kerugian tersebut dikompensasikan dengan penghasilan mulai tahun pajak berikutnya berturut-turut sampai dengan 5 (lima) tahun.",
+      stem: "Tuan Hendra Wiratama, Wajib Pajak orang pribadi dalam negeri yang menjalankan usaha bengkel mobil di Malang, menyelenggarakan pembukuan dan tidak memakai tarif PPh final 0,5%. Ia berstatus tidak kawin tanpa tanggungan pada 1 Januari 2026, menikah pada 14 Juni 2026, dan masih memiliki sisa kerugian fiskal Tahun Pajak 2020 yang belum habis dikompensasikan. PT Samudra Kemas Nusantara, Wajib Pajak badan dalam negeri dengan 4 orang direksi, memiliki sisa kerugian fiskal Tahun Pajak 2023 yang belum terkompensasi. Keduanya memperoleh penghasilan neto fiskal positif pada Tahun Pajak 2026. Pernyataan yang tepat mengenai pengurangan dalam menghitung Penghasilan Kena Pajak Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tuan Hendra mengurangkan PTKP status kawin tanpa tanggungan dan tidak dapat lagi mengompensasikan kerugian 2020; PT Samudra Kemas Nusantara tidak memperoleh PTKP tetapi dapat mengompensasikan kerugian 2023", B: "Tuan Hendra mengurangkan PTKP status tidak kawin tanpa tanggungan dan dapat mengompensasikan kerugian 2020; PT Samudra Kemas Nusantara tidak memperoleh PTKP tetapi dapat mengompensasikan kerugian 2023", C: "Tuan Hendra mengurangkan PTKP status tidak kawin tanpa tanggungan dan tidak dapat lagi mengompensasikan kerugian 2020; PT Samudra Kemas Nusantara tidak memperoleh PTKP tetapi dapat mengompensasikan kerugian 2023", D: "Tuan Hendra mengurangkan PTKP status tidak kawin tanpa tanggungan dan tidak dapat lagi mengompensasikan kerugian 2020; PT Samudra Kemas Nusantara dapat mengurangkan PTKP keempat direksinya dan kerugian 2023" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "PTKP hanya diberikan kepada orang pribadi sebagai Wajib Pajak dalam negeri (UU PPh Ps. 6 ayat (3), Ps. 7 ayat (1)) dan besarnya ditentukan oleh keadaan pada awal tahun pajak (Ps. 7 ayat (2)); Tuan Hendra pada 1 Januari 2026 tidak kawin, sehingga memakai PTKP TK/0 walaupun menikah pada Juni 2026. Kerugian fiskal dikompensasikan mulai tahun pajak berikutnya berturut-turut sampai dengan 5 tahun (Ps. 6 ayat (2)): kerugian 2020 hanya dapat dikompensasikan dengan penghasilan 2021 sampai 2025, sedangkan kerugian 2023 masih dapat dikompensasikan sampai 2028. Badan tidak memperoleh PTKP berapa pun jumlah direksinya.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Status PTKP ditentukan menurut keadaan awal tahun pajak (Ps. 7 ayat (2)); perkawinan pada Juni 2026 baru memengaruhi PTKP Tahun Pajak 2027.",
+          B: "Kerugian 2020 hanya dapat dikompensasikan sampai Tahun Pajak 2025 (5 tahun berturut-turut mulai 2021), sehingga tidak dapat lagi dikurangkan pada 2026.",
+          D: "Badan tidak memperoleh PTKP; PTKP direksi diperhitungkan dalam PPh orang pribadi masing-masing direksi."
+        },
+        jebakan: "Hitung jendela kompensasi: kerugian tahun X dikompensasikan dengan penghasilan tahun X+1 sampai X+5. PTKP mengikuti keadaan 1 Januari, bukan keadaan akhir tahun."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 6 ayat (2) dan (3), Pasal 7 ayat (1) dan (2) s.t.d.t.d. UU 6/2023", berlakuSejak: null }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      kembaranDari: "B6-133",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-156",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kutipan: "UU PPh Pasal 9 ayat (1) huruf k: sanksi administrasi berupa bunga, denda, dan kenaikan serta sanksi pidana berupa denda yang berkenaan dengan pelaksanaan ketentuan peraturan perundang-undangan di bidang perpajakan.",
+      stem: "PT Arunika Pangan Lestari, produsen makanan beku di Sidoarjo, membukukan laba komersial sebelum pajak Tahun Pajak 2026 sebesar Rp4.250.000.000. Dalam laporan laba rugi terdapat: 1. sanksi bunga dan denda dalam STP PPh Pasal 21 Rp18.500.000 yang dibebankan sebagai biaya; 2. sumbangan untuk perayaan hari jadi kecamatan yang tidak memenuhi syarat sumbangan yang dapat dikurangkan menurut PP 93/2010 Rp32.000.000; 3. penghasilan sewa ruko yang telah dikenai PPh final Rp210.000.000; 4. penyusutan komersial Rp340.000.000; 5. penyusutan fiskal Rp395.000.000. Penghasilan neto fiskal sebelum kompensasi kerugian adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp4.145.500.000,00", B: "Rp4.245.500.000,00", C: "Rp4.003.500.000,00", D: "Rp4.035.500.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "final-nonfinal", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Sanksi bunga dan denda dalam STP (Ps. 9 ayat (1) huruf k) dan sumbangan yang tidak memenuhi syarat PP 93/2010 (Ps. 9 ayat (1) huruf g) tidak boleh dikurangkan, sehingga dikoreksi positif. Penghasilan sewa ruko yang telah dikenai PPh final (Ps. 4 ayat (2) huruf d) dikeluarkan dari penghitungan (koreksi negatif). Penyusutan fiskal lebih besar Rp55.000.000 daripada penyusutan komersial, sehingga selisihnya dikoreksi negatif.",
+        jejakHitung: [
+          ["Laba komersial", "Rp4.250.000.000"],
+          ["Koreksi positif: Rp18.500.000 + Rp32.000.000", "Rp50.500.000"],
+          ["Koreksi negatif: sewa ruko final", "(Rp210.000.000)"],
+          ["Koreksi negatif: Rp395.000.000 − Rp340.000.000", "(Rp55.000.000)"],
+          ["Penghasilan neto fiskal", "Rp4.035.500.000"]
+        ],
+        mengapaSalah: {
+          A: "Membalik arah koreksi selisih penyusutan (dikoreksi positif Rp55.000.000), padahal penyusutan fiskal lebih besar daripada komersial.",
+          B: "Tidak mengeluarkan penghasilan sewa ruko Rp210.000.000 yang telah dikenai PPh final.",
+          C: "Menganggap sumbangan perayaan hari jadi kecamatan boleh dikurangkan sehingga tidak dikoreksi positif."
+        },
+        jebakan: "Selisih penyusutan: fiskal > komersial → koreksi negatif; fiskal < komersial → koreksi positif."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 4 ayat (2) huruf d, Pasal 9 ayat (1) huruf g dan k, Pasal 11 s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PP 93/2010 (sumbangan yang dapat dikurangkan; berlaku sejak Tahun Pajak 2010, Pasal 10)", berlakuSejak: "2010-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-134",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-157",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      kutipan: "UU PPh Pasal 18 ayat (4) huruf a: Wajib Pajak mempunyai penyertaan modal langsung atau tidak langsung paling rendah 25% (dua puluh lima persen) pada Wajib Pajak lain; hubungan antara Wajib Pajak dengan penyertaan paling rendah 25% (dua puluh lima persen) pada dua Wajib Pajak atau lebih; atau hubungan di antara dua Wajib Pajak atau lebih yang disebut terakhir;",
+      stem: "Tuan Darmawan memiliki 35% saham PT Cakra Logam Presisi dan 20% saham PT Bintang Rekayasa Teknik. Tidak ada pemegang saham lain yang memiliki saham pada kedua perseroan sekaligus, dan di antara PT Cakra Logam Presisi dan PT Bintang Rekayasa Teknik tidak terdapat kepemilikan saham satu sama lain. Ditinjau dari unsur kepemilikan atau penyertaan modal saja menurut Pasal 18 ayat (4) huruf a UU PPh, hubungan antara PT Cakra Logam Presisi dan PT Bintang Rekayasa Teknik adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tidak terdapat hubungan istimewa karena penyertaan paling rendah 25% oleh pihak yang sama hanya ada pada satu perseroan", B: "Terdapat hubungan istimewa karena kedua perseroan dimiliki oleh pemegang saham yang sama, berapa pun besar penyertaannya", C: "Terdapat hubungan istimewa karena jumlah penyertaan Tuan Darmawan pada kedua perseroan 55%, melebihi ambang 25%", D: "Terdapat hubungan istimewa karena cukup salah satu penyertaan Tuan Darmawan mencapai paling rendah 25%" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-hitung", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Hubungan istimewa di antara dua Wajib Pajak yang sama-sama dimiliki pihak yang sama hanya dianggap ada bila pihak itu mempunyai penyertaan paling rendah 25% pada dua Wajib Pajak atau lebih (Ps. 18 ayat (4) huruf a; PMK 172/2023 Ps. 2 ayat (4) huruf b). Tuan Darmawan memiliki 35% di PT Cakra Logam Presisi (hubungan istimewa antara Tuan Darmawan dan perseroan itu), tetapi hanya 20% di PT Bintang Rekayasa Teknik, sehingga dari unsur kepemilikan tidak terdapat hubungan istimewa di antara kedua perseroan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Ambang paling rendah 25% berlaku pada setiap perseroan; kepemilikan oleh orang yang sama tanpa memenuhi ambang tidak cukup.",
+          C: "Penyertaan pada dua perseroan berbeda tidak dijumlahkan; ambang 25% diuji pada masing-masing perseroan.",
+          D: "Satu penyertaan 35% hanya menimbulkan hubungan istimewa antara Tuan Darmawan dan PT Cakra Logam Presisi, bukan dengan PT Bintang Rekayasa Teknik."
+        },
+        jebakan: "Pola sister company mensyaratkan penyertaan paling rendah 25% pada setiap perseroan oleh pihak yang sama."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 18 ayat (4) huruf a beserta Penjelasan s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PMK 172/2023 Pasal 2 ayat (4)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      kembaranDari: "B6-135",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-158",
+      topik: "B6.8",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Rimba Serat Nusantara, Wajib Pajak badan dalam negeri penerima fasilitas tax allowance berdasarkan PP 78/2019, pada 2025 menanamkan modal berupa aktiva tetap berwujud dalam keadaan baru yang tercantum dalam izin dasar pemberian fasilitas: tanah pabrik Rp2.400.000.000, bangunan pabrik Rp7.200.000.000, dan mesin produksi Rp6.400.000.000, seluruhnya dimiliki dan digunakan untuk kegiatan usaha utama. Pada tahun yang sama perusahaan juga membeli rumah tinggal direksi di Pontianak Rp1.000.000.000 yang tidak digunakan untuk kegiatan usaha utama. Besarnya pengurangan penghasilan neto per tahun dari fasilitas tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp680.000.000,00 selama 6 tahun", B: "Rp800.000.000,00 selama 6 tahun", C: "Rp850.000.000,00 selama 6 tahun", D: "Rp4.800.000.000,00 sekaligus pada tahun pertama" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Pengurangan penghasilan neto sebesar 30% dari jumlah nilai penanaman modal berupa aktiva tetap berwujud termasuk tanah yang digunakan untuk kegiatan usaha utama, dibebankan selama 6 tahun masing-masing 5% per tahun (PP 78/2019 Ps. 3 ayat (1) huruf a; Ps. 4 ayat (1) huruf c). Rumah tinggal direksi tidak digunakan untuk kegiatan usaha utama sehingga tidak masuk dasar fasilitas.",
+        jejakHitung: [
+          ["Nilai investasi untuk kegiatan usaha utama (tanah + bangunan + mesin)", "Rp16.000.000.000"],
+          ["Pengurangan per tahun = 5% × Rp16.000.000.000", "Rp800.000.000"],
+          ["Total 6 tahun (30%)", "Rp4.800.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengeluarkan tanah dari dasar fasilitas (5% × Rp13.600.000.000), padahal tanah termasuk.",
+          C: "Memasukkan rumah tinggal direksi (5% × Rp17.000.000.000), padahal aktiva itu tidak digunakan untuk kegiatan usaha utama.",
+          D: "Total 30% (Rp4,8 miliar) tidak dibebankan sekaligus, tetapi 5% per tahun selama 6 tahun."
+        },
+        jebakan: "Dasar fasilitas: aktiva tetap berwujud termasuk tanah, hanya yang dimiliki dan digunakan untuk kegiatan usaha utama; 5% per tahun selama 6 tahun."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 31A", berlakuSejak: null }, { pasal: "PP 78/2019 Pasal 3 ayat (1) huruf a dan Pasal 4 ayat (1)", berlakuSejak: "2019-12-13" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-137",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-159",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      kutipan: "UU PPh Pasal 2 ayat (3) huruf b: badan yang didirikan atau bertempat kedudukan di Indonesia, kecuali unit tertentu dari badan pemerintah yang memenuhi kriteria: 1. pembentukannya berdasarkan ketentuan peraturan perundang-undangan; 2. pembiayaannya bersumber dari Anggaran Pendapatan dan Belanja Negara atau Anggaran Pendapatan dan Belanja Daerah; 3. penerimaannya dimasukkan dalam anggaran Pemerintah Pusat atau Pemerintah Daerah; dan 4. pembukuannya diperiksa oleh aparat pengawasan fungsional negara;",
+      stem: "Pemerintah Kabupaten Tanjung Arum membentuk Unit Pelaksana Teknis Pengelola Pasar Induk berdasarkan peraturan bupati. Biaya operasional unit itu dibiayai dari APBD dan pembukuannya diperiksa oleh inspektorat daerah. Unit tersebut menyewakan kios dan los kepada pedagang; seluruh uang sewa dikelola dan digunakan sendiri oleh unit dan tidak dimasukkan dalam anggaran Pemerintah Daerah. Kepala unit berpendapat bahwa sebagai unit pemerintah daerah, unit tersebut tidak termasuk subjek pajak. Berdasarkan Pasal 2 UU Pajak Penghasilan, status unit tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Bukan subjek pajak, karena unit itu dibentuk berdasarkan peraturan perundang-undangan dan dibiayai dari APBD", B: "Bukan subjek pajak, karena pembukuannya diperiksa oleh aparat pengawasan fungsional sehingga diawasi negara", C: "Subjek pajak badan dalam negeri hanya apabila penerimaan sewanya dalam setahun melebihi Rp4,8 miliar", D: "Subjek pajak badan dalam negeri, karena kriteria pengecualian bersifat kumulatif dan penerimaannya tidak masuk anggaran daerah" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Badan yang didirikan atau bertempat kedudukan di Indonesia adalah subjek pajak dalam negeri; pengecualian hanya untuk unit tertentu dari badan pemerintah yang memenuhi keempat kriteria Pasal 2 ayat (3) huruf b UU PPh, yang dirangkai dengan kata \"dan\" sehingga bersifat kumulatif. Unit pengelola pasar ini tidak memenuhi kriteria angka 3 karena penerimaan sewanya tidak dimasukkan dalam anggaran Pemerintah Daerah, sehingga tetap subjek pajak badan dalam negeri. Penjelasan Pasal 2 ayat (1) huruf b juga menegaskan bahwa unit tertentu badan pemerintah yang menjalankan usaha atau melakukan kegiatan untuk memperoleh penghasilan merupakan subjek pajak.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Dua kriteria saja tidak cukup; keempat kriteria harus dipenuhi, dan kriteria penerimaan masuk anggaran daerah tidak terpenuhi.",
+          B: "Pemeriksaan oleh aparat pengawasan fungsional hanya salah satu dari empat kriteria kumulatif.",
+          C: "Status subjek pajak badan tidak bergantung pada besarnya penerimaan; batas Rp4,8 miliar berkaitan dengan peredaran bruto tertentu, bukan syarat subjek pajak."
+        },
+        jebakan: "Kriteria pengecualian unit tertentu badan pemerintah bersifat kumulatif: satu kriteria tidak terpenuhi berarti tetap subjek pajak."
+      },
+      dasarHukum: [{ pasal: "UU KUP Pasal 1 angka 3 s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "UU PPh Pasal 2 ayat (1) huruf b dan ayat (3) huruf b beserta Penjelasan s.t.d.t.d. UU 6/2023", berlakuSejak: null }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      kembaranDari: "B6-138",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-160",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kutipan: "Penjelasan UU PPh Pasal 18 ayat (4) huruf a: Hubungan istimewa dianggap ada apabila terdapat hubungan kepemilikan yang berupa penyertaan modal sebesar 25% (dua puluh lima persen) atau lebih secara langsung ataupun tidak langsung.",
+      stem: "PT Garuda Investama Mandiri memiliki 70% saham PT Sentosa Baja Utama, dan PT Sentosa Baja Utama memiliki 30% saham PT Lestari Galvanis Prima. PT Garuda Investama Mandiri tidak memiliki saham PT Lestari Galvanis Prima secara langsung, dan tidak ada pemegang saham lain yang menghubungkan kedua perseroan itu. Ditinjau dari unsur kepemilikan atau penyertaan modal saja menurut Pasal 18 ayat (4) huruf a UU PPh, hubungan antara PT Garuda Investama Mandiri dan PT Lestari Galvanis Prima adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Terdapat hubungan istimewa karena penyertaan tidak langsung PT Garuda Investama Mandiri sebesar 40% (70% − 30%)", B: "Terdapat hubungan istimewa karena setiap mata rantai penyertaan (70% dan 30%) masing-masing paling rendah 25%", C: "Tidak terdapat hubungan istimewa karena penyertaan tidak langsung PT Garuda Investama Mandiri hanya 21% (70% × 30%)", D: "Terdapat hubungan istimewa karena penyertaan tidak langsung dihitung penuh 30% (100% × 30%) sebab anak usahanya dikendalikan" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-baca", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Penyertaan tidak langsung dihitung dengan mengalikan persentase kepemilikan pada setiap mata rantai (contoh Penjelasan Pasal 18 ayat (4) huruf a: 50% × 50% = 25%). Penyertaan tidak langsung PT Garuda Investama Mandiri pada PT Lestari Galvanis Prima = 70% × 30% = 21%, di bawah ambang 25%. Hubungan istimewa karena kepemilikan memang ada antara PT Garuda Investama Mandiri dan PT Sentosa Baja Utama (70%) serta antara PT Sentosa Baja Utama dan PT Lestari Galvanis Prima (30%), tetapi tidak antara PT Garuda Investama Mandiri dan PT Lestari Galvanis Prima.",
+        jejakHitung: [
+          ["Penyertaan langsung PT Garuda Investama Mandiri pada PT Sentosa Baja Utama", "70%"],
+          ["Penyertaan PT Sentosa Baja Utama pada PT Lestari Galvanis Prima", "30%"],
+          ["Penyertaan tidak langsung = 70% × 30%", "21%"],
+          ["Dibandingkan ambang Pasal 18 ayat (4) huruf a", "21% < 25% → tidak ada hubungan istimewa karena kepemilikan"]
+        ],
+        mengapaSalah: {
+          A: "Penyertaan tidak langsung dihitung dengan perkalian, bukan pengurangan persentase.",
+          B: "Ambang 25% diuji pada penyertaan langsung atau tidak langsung antara kedua pihak yang ditanyakan; dua mata rantai yang masing-masing ≥ 25% tidak otomatis menghasilkan penyertaan tidak langsung ≥ 25%.",
+          D: "Penjelasan Pasal 18 ayat (4) huruf a mengalikan persentase setiap mata rantai; kepemilikan mayoritas atas anak usaha tidak membuat penyertaannya dihitung 100%."
+        },
+        jebakan: "Penyertaan tidak langsung = perkalian persentase berantai; hasil di bawah 25% berarti belum ada hubungan istimewa karena kepemilikan, walaupun tiap mata rantai ≥ 25%."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 18 ayat (4) huruf a beserta Penjelasan s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PMK 172/2023 Pasal 2 ayat (4)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-139",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-161",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Cahaya Tekstil Mandiri, Wajib Pajak badan dalam negeri yang bukan perseroan terbuka dan tidak memakai tarif PPh final 0,5%, memiliki peredaran bruto Tahun Pajak 2026 sebesar Rp15.000.000.000. Penghasilan Kena Pajak hasil penghitungan sebelum pembulatan Rp912.345.678. PPh terutang Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: ["bukan", "tidak"],
+      opsi: { A: "Rp168.601.356,00", B: "Rp168.601.481,00", C: "Rp100.357.950,00", D: "Rp200.715.900,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-hitung", C: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "PKP dibulatkan ke bawah dalam ribuan rupiah penuh menjadi Rp912.345.000 (UU PPh Ps. 17 ayat (4)). Peredaran bruto melebihi Rp4,8 miliar tetapi tidak melebihi Rp50 miliar, sehingga hanya PKP dari bagian peredaran bruto sampai Rp4,8 miliar (4,8/15 × PKP) yang mendapat pengurangan tarif 50% (tarif efektif 11%); sisa PKP dikenai tarif 22% (Ps. 31E ayat (1) beserta Penjelasan; Ps. 17 ayat (1) huruf b).",
+        jejakHitung: [
+          ["PKP dibulatkan ke bawah", "Rp912.345.000"],
+          ["PKP fasilitas = 4,8/15 × Rp912.345.000", "Rp291.950.400"],
+          ["PPh fasilitas = 50% × 22% × Rp291.950.400", "Rp32.114.544"],
+          ["PKP nonfasilitas = Rp912.345.000 − Rp291.950.400", "Rp620.394.600"],
+          ["PPh nonfasilitas = 22% × Rp620.394.600", "Rp136.486.812"],
+          ["PPh terutang", "Rp168.601.356"]
+        ],
+        mengapaSalah: {
+          B: "Tidak membulatkan PKP ke bawah dalam ribuan rupiah penuh sebelum menghitung pajak (hasil Rp168.601.481,29).",
+          C: "Menerapkan tarif 11% atas seluruh PKP, padahal fasilitas hanya untuk PKP dari bagian peredaran bruto sampai Rp4,8 miliar.",
+          D: "Menerapkan tarif 22% atas seluruh PKP tanpa fasilitas Pasal 31E."
+        },
+        jebakan: "Urutan: bulatkan PKP ke bawah, bagi PKP menurut proporsi peredaran bruto Rp4,8 miliar, lalu terapkan 11% dan 22%."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 17 ayat (1) huruf b dan ayat (4)", berlakuSejak: null }, { pasal: "UU PPh Pasal 31E ayat (1) beserta Penjelasan", berlakuSejak: null }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-140",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-162",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Lintang Plastindo, distributor bahan kemasan plastik yang tidak menyalurkan kredit, membukukan laba sebelum pajak Tahun 2026 sebesar Rp3.450.000.000. Dalam laporan laba rugi terdapat: beban pembentukan cadangan piutang tak tertagih menurut SAK Rp85.000.000; biaya liburan keluarga pemegang saham yang bukan pegawai Rp42.000.000; pendapatan bunga deposito yang telah dipotong PPh final Rp64.000.000; serta penyusutan komersial Rp310.000.000, sedangkan penyusutan menurut ketentuan Pasal 11 UU PPh hanya Rp275.000.000. Tidak ada koreksi fiskal lain. Penghasilan kena pajak PT Lintang Plastindo Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: ["bukan"],
+      opsi: { A: "Rp3.478.000.000,00", B: "Rp3.612.000.000,00", C: "Rp3.548.000.000,00", D: "Rp3.463.000.000,00" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "final-nonfinal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Cadangan piutang tak tertagih hanya boleh dibebankan oleh bank, badan usaha lain yang menyalurkan kredit, sewa guna usaha dengan hak opsi, pembiayaan konsumen, dan anjak piutang; distributor tidak termasuk, sehingga cadangannya dikoreksi positif (Pasal 9 ayat (1) huruf c). Biaya keperluan pribadi pemegang saham juga dikoreksi positif (Pasal 9 ayat (1) huruf b). Penyusutan fiskal lebih kecil daripada penyusutan komersial, sehingga selisihnya dikoreksi positif. Bunga deposito yang telah dikenai PPh final dikeluarkan dari penghasilan yang dikenai tarif umum (koreksi negatif).",
+        jejakHitung: [
+          ["Koreksi positif = Rp85 jt + Rp42 jt + (Rp310 jt − Rp275 jt)", "Rp162.000.000"],
+          ["Koreksi negatif = bunga deposito (final)", "Rp64.000.000"],
+          ["PKP = Rp3.450 jt + Rp162 jt − Rp64 jt", "Rp3.548.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Membalik arah koreksi penyusutan: selisih Rp35 jt dikurangkan, padahal penyusutan fiskal lebih kecil (Rp3.450 jt + Rp127 jt − Rp35 jt − Rp64 jt).",
+          B: "Tidak mengeluarkan bunga deposito yang telah dikenai PPh final (Rp3.450 jt + Rp162 jt).",
+          D: "Menganggap distributor boleh membentuk cadangan piutang sehingga cadangan Rp85 jt tidak dikoreksi (Rp3.450 jt + Rp42 jt + Rp35 jt − Rp64 jt)."
+        },
+        jebakan: "Arah koreksi penyusutan bergantung pada mana yang lebih besar: penyusutan fiskal lebih kecil berarti koreksi positif. Pengecualian cadangan piutang hanya untuk usaha yang menyalurkan kredit dan sejenisnya."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 4 ayat (2) huruf a, Pasal 6 ayat (1) huruf b, Pasal 9 ayat (1) huruf b dan c, Pasal 11 s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-141",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-163",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      kutipan: "UU PPh Pasal 4 ayat (2) huruf a: \"Penghasilan di bawah ini dapat dikenai pajak bersifat final: a. penghasilan berupa bunga deposito dan tabungan lainnya, bunga obligasi dan surat utang negara, bunga atau diskonto surat berharga jangka pendek yang diperdagangkan di pasar uang, dan bunga simpanan yang dibayarkan oleh koperasi kepada anggota koperasi orang pribadi;\"",
+      stem: "PT Garda Niaga Sentosa, perusahaan perdagangan suku cadang, membukukan laba komersial sebelum pajak Tahun Pajak 2026 sebesar Rp1.275.000.000. Laba itu memuat pendapatan bunga obligasi korporasi (jumlah bruto) Rp56.000.000 yang telah dipotong PPh final, keuntungan selisih kurs atas piutang dagang dalam dolar AS Rp22.000.000, dan pendapatan bunga atas pinjaman uang kepada pemasok Rp18.000.000. Tidak terdapat koreksi fiskal lainnya. Penghasilan neto fiskal yang dikenai tarif umum adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp1.201.000.000,00", B: "Rp1.179.000.000,00", C: "Rp1.275.000.000,00", D: "Rp1.219.000.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "final-nonfinal", B: "salah-klasifikasi", C: "final-nonfinal" },
+      pembahasan: {
+        inti: "Bunga obligasi termasuk penghasilan yang dapat dikenai PPh final (Pasal 4 ayat (2) huruf a); karena telah dipotong PPh final, bunga itu dikeluarkan dari penghasilan yang dikenai tarif umum. Keuntungan selisih kurs dan bunga pinjaman kepada pemasok adalah objek PPh biasa (Pasal 4 ayat (1)) yang sudah termasuk dalam laba, sehingga tidak dikoreksi.",
+        jejakHitung: [
+          ["Laba komersial", "Rp1.275.000.000"],
+          ["Koreksi negatif bunga obligasi (final)", "(Rp56.000.000)"],
+          ["Selisih kurs dan bunga pinjaman", "tetap (tarif umum)"],
+          ["Penghasilan neto fiskal", "Rp1.219.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Ikut mengeluarkan bunga pinjaman kepada pemasok seolah final, padahal bunga itu objek PPh biasa (dipotong PPh Pasal 23, tidak final).",
+          B: "Mengeluarkan juga keuntungan selisih kurs dan bunga pinjaman yang merupakan objek tarif umum.",
+          C: "Tidak mengeluarkan bunga obligasi yang telah dikenai PPh final."
+        },
+        jebakan: "Tidak semua bunga final: bunga obligasi dan deposito final, tetapi bunga pinjaman biasa dikenai tarif umum."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 4 ayat (1) dan ayat (2) huruf a; Pasal 6 ayat (1) s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "PP 91/2021 Pasal 2 ayat (1)–(3)", berlakuSejak: null }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-142",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-164",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      kutipan: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 56 ayat (2) dan (3): \"(2) Tarif Pajak Penghasilan yang bersifat final sebagaimana dimaksud pada ayat (1) sebesar 0,5% (nol koma lima persen). (3) Tidak termasuk penghasilan dari usaha yang dikenai Pajak Penghasilan yang bersifat final sebagaimana dimaksud pada ayat (1) sebagai berikut: ... c. penghasilan yang telah dikenai Pajak Penghasilan yang bersifat final dengan ketentuan peraturan perundang-undangan perpajakan tersendiri; dan d. penghasilan yang dikecualikan sebagai objek pajak.\"",
+      stem: "Koperasi Konsumen Tunas Mandiri adalah Wajib Pajak badan berbentuk koperasi yang terdaftar pada Mei 2023 dan sejak itu dikenai PPh bersifat final berdasarkan PP Nomor 55 Tahun 2022 (kini s.t.d.d. PP Nomor 20 Tahun 2026) dengan tarif 0,5%. Peredaran bruto usaha Tahun Pajak 2025 sebesar Rp2.100.000.000. Pada Tahun Pajak 2026 koperasi menerima: 1. peredaran bruto dari penjualan barang di toko koperasi Rp2.350.000.000; 2. bunga deposito di bank umum yang telah dipotong PPh final Rp45.000.000; dan 3. hibah uang dari sebuah yayasan yang tidak memiliki hubungan usaha, pekerjaan, kepemilikan, atau penguasaan dengan koperasi Rp75.000.000. Berapakah PPh final 0,5% atas peredaran bruto koperasi untuk Tahun Pajak 2026?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp11.750.000,00", B: "Rp11.975.000,00", C: "Rp12.350.000,00", D: "Rp9.250.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "final-nonfinal", C: "salah-hitung", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Koperasi yang terdaftar sebelum PP 20/2026 berlaku dan jangka waktu PPh finalnya menurut PP 55/2022 berakhir pada Tahun Pajak 2024 sampai 2029 (terdaftar 2023, empat Tahun Pajak 2023 sampai 2026) tetap dikenai PPh final sampai Tahun Pajak 2029 (Pasal II angka 1 huruf b PP 20/2026), sehingga Tahun Pajak 2026 tercakup; peredaran bruto 2025 Rp2,1 miliar tidak melebihi Rp4,8 miliar. Dasar pengenaan tidak memuat penghasilan yang telah dikenai PPh final tersendiri (bunga deposito) dan penghasilan yang dikecualikan dari objek pajak (hibah yang memenuhi syarat Pasal 4 ayat (3) huruf a angka 2 UU PPh). Bagian peredaran bruto Rp500 juta yang tidak dikenai PPh hanya berlaku bagi orang pribadi.",
+        jejakHitung: [
+          ["Jangka waktu: terdaftar 2023, berakhir TP 2026 menurut PP 55/2022, diperpanjang PP 20/2026 s.d. TP 2029", "TP 2026 tercakup"],
+          ["Uji batas: peredaran bruto TP 2025", "Rp2.100.000.000 < Rp4.800.000.000"],
+          ["Dasar pengenaan (bunga deposito dan hibah dikeluarkan)", "Rp2.350.000.000"],
+          ["PPh final = 0,5% × Rp2.350.000.000", "Rp11.750.000"]
+        ],
+        mengapaSalah: {
+          B: "Ikut memasukkan bunga deposito yang telah dikenai PPh final tersendiri: 0,5% × Rp2.395.000.000.",
+          C: "Ikut memasukkan bunga deposito dan hibah yang dikecualikan dari objek pajak: 0,5% × Rp2.470.000.000.",
+          D: "Mengurangkan Rp500.000.000 yang hanya berlaku bagi Wajib Pajak orang pribadi: 0,5% × Rp1.850.000.000."
+        },
+        jebakan: "Dua kelompok dikeluarkan dari dasar pengenaan: penghasilan yang sudah final tersendiri dan penghasilan bukan objek. Fasilitas Rp500 juta (Pasal 60 ayat (2)) khusus orang pribadi; koperasi memakai Pasal 60 ayat (5) huruf a."
+      },
+      dasarHukum: [{ pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 56 ayat (2)–(3), Pasal 57 ayat (1) huruf b, Pasal 58 ayat (1) huruf a, Pasal 60 ayat (2) dan (5)", berlakuSejak: "2022-12-20" }, { pasal: "PP 20/2026 Pasal II angka 1 huruf b", berlakuSejak: "2026-04-22" }, { pasal: "UU PPh Pasal 4 ayat (3) huruf a angka 2 s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-143",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-165",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Laporan laba rugi PT Samudra Pangan Lestari Tahun 2026 memuat beban berikut: sumbangan uang kepada panitia perayaan hari jadi kampung Rp27.500.000, yang bukan sumbangan menurut Pasal 6 ayat (1) huruf i sampai m UU PPh dan bukan zakat atau sumbangan keagamaan yang sifatnya wajib; pelunasan PPh Pasal 29 Tahun Pajak 2025 yang dicatat sebagai beban Rp46.000.000; sanksi bunga dalam STP PPh Pasal 23 Rp8.400.000; PBB-P2 atas gedung kantor Rp12.000.000; dan gaji pegawai Rp1.150.000.000. Koreksi fiskal positif atas data tersebut adalah ...",
+      kataKualifikasi: ["bukan"],
+      opsi: { A: "Rp93.900.000,00", B: "Rp81.900.000,00", C: "Rp35.900.000,00", D: "Rp73.500.000,00" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Sumbangan yang bukan sumbangan menurut Pasal 6 ayat (1) huruf i sampai m dan bukan zakat atau sumbangan keagamaan wajib (Pasal 9 ayat (1) huruf g), Pajak Penghasilan perusahaan sendiri termasuk PPh Pasal 29 (Pasal 9 ayat (1) huruf h), dan sanksi administrasi berupa bunga (Pasal 9 ayat (1) huruf k) tidak boleh dikurangkan. PBB-P2 adalah pajak selain Pajak Penghasilan yang boleh dibiayakan (Pasal 6 ayat (1) huruf a angka 9), dan gaji pegawai merupakan biaya untuk mendapatkan, menagih, dan memelihara penghasilan.",
+        jejakHitung: [
+          ["Sumbangan bukan Pasal 6 ayat (1) huruf i sampai m", "Rp27.500.000"],
+          ["PPh Pasal 29 yang dibebankan", "Rp46.000.000"],
+          ["Sanksi bunga STP", "Rp8.400.000"],
+          ["PBB-P2 dan gaji pegawai", "tidak dikoreksi"],
+          ["Jumlah koreksi positif", "Rp81.900.000"]
+        ],
+        mengapaSalah: {
+          A: "Ikut mengoreksi PBB-P2, padahal pajak selain PPh boleh dibiayakan (Rp81,9 jt + Rp12 jt).",
+          C: "Tidak mengoreksi PPh Pasal 29 yang dibebankan (Rp27,5 jt + Rp8,4 jt).",
+          D: "Menganggap sanksi bunga STP boleh dikurangkan (Rp27,5 jt + Rp46 jt)."
+        },
+        jebakan: "Yang dilarang adalah Pajak Penghasilan; pajak lain seperti PBB boleh dibiayakan. Sanksi pajak dalam bentuk apa pun dikoreksi positif."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 6 ayat (1) huruf a angka 9 dan Pasal 9 ayat (1) huruf g, h, k s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-144",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-166",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      kutipan: "PMK 74/2024 Pasal 4 ayat (2) dan ayat (9): \"(2) Pembentukan cadangan piutang tak tertagih sebagaimana dimaksud pada ayat (1) merupakan biaya yang diperoleh dari nilai tercatat cadangan piutang tak tertagih pada akhir Tahun Pajak dikurangi dengan cadangan piutang tak tertagih awal. ... (9) Dalam hal hasil penghitungan biaya sebagaimana dimaksud pada ayat (2) bernilai lebih kecil dari nol, nilai tersebut diakui sebagai penghasilan pada Tahun Pajak berjalan.\"",
+      stem: "PT Arta Kendaraan Finance adalah perusahaan pembiayaan konsumen yang terdaftar dan diawasi Otoritas Jasa Keuangan. Pada akhir Tahun Pajak 2026, nilai cadangan piutang tak tertagih menurut SAK lebih besar daripada nilai batasan tertentu dalam Lampiran PMK 74/2024. Setelah nilai tercatat cadangan akhir Tahun Pajak ditentukan, hasil pengurangannya dengan cadangan piutang tak tertagih awal ternyata lebih kecil dari nol. Menurut PMK 74/2024, perlakuan yang tepat adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "nilai tercatat akhir memakai nilai SAK karena lebih besar; hasil yang lebih kecil dari nol dianggap nol sehingga tidak ada biaya maupun penghasilan.", B: "nilai tercatat akhir memakai nilai batasan tertentu karena lebih kecil; hasil yang lebih kecil dari nol diakui sebagai penghasilan pada Tahun Pajak 2026.", C: "nilai tercatat akhir memakai nilai batasan tertentu karena lebih kecil; hasil yang lebih kecil dari nol dibawa sebagai pengurang biaya cadangan Tahun Pajak 2027.", D: "perusahaan pembiayaan konsumen tidak boleh membentuk cadangan; piutangnya hanya dapat dibebankan saat nyata-nyata tidak dapat ditagih." },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Perusahaan pembiayaan konsumen yang terdaftar dan diawasi OJK termasuk Wajib Pajak yang boleh membentuk cadangan piutang tak tertagih (Pasal 2 ayat (3) dan Pasal 3 ayat (3) dan (6) PMK 74/2024). Nilai tercatat akhir Tahun Pajak memakai nilai yang lebih kecil antara nilai SAK dan nilai batasan tertentu (Pasal 4 ayat (5)), sehingga di sini dipakai nilai batasan tertentu. Biaya = nilai tercatat akhir dikurangi cadangan awal (Pasal 4 ayat (2)); bila hasilnya lebih kecil dari nol, nilai itu diakui sebagai penghasilan pada Tahun Pajak berjalan (Pasal 4 ayat (9)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Memakai nilai yang lebih besar, padahal ketentuan meminta nilai yang lebih kecil; hasil negatif juga tidak dinolkan, melainkan diakui sebagai penghasilan.",
+          C: "Tidak ada mekanisme membawa hasil negatif ke tahun berikutnya; hasil negatif diakui sebagai penghasilan pada Tahun Pajak berjalan.",
+          D: "Perusahaan pembiayaan konsumen justru termasuk Wajib Pajak yang boleh membentuk cadangan menurut Pasal 2 ayat (3) PMK 74/2024."
+        },
+        jebakan: "Dua langkah: nilai tercatat akhir = nilai terkecil antara SAK dan batasan; biaya = akhir − awal, dan bila negatif menjadi penghasilan tahun berjalan."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 9 ayat (1) huruf c angka 1 s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "PMK 74/2024 Pasal 2 ayat (3), Pasal 3 ayat (3) dan ayat (6), Pasal 4 ayat (2), (5), dan (9), Pasal 12", berlakuSejak: "2024-10-18" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      kembaranDari: "B6-145",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-167",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kutipan: "UU PPh Pasal 4 ayat (3) huruf a angka 2: \"Yang dikecualikan dari objek pajak adalah: ... harta hibahan yang diterima oleh keluarga sedarah dalam garis keturunan lurus satu derajat, badan keagamaan, badan pendidikan, badan sosial termasuk yayasan, koperasi, atau orang pribadi yang menjalankan usaha mikro dan kecil, sepanjang tidak ada hubungan dengan usaha, pekerjaan, kepemilikan, atau penguasaan di antara pihak-pihak yang bersangkutan;\"",
+      stem: "Yayasan Cahaya Pustaka, badan sosial berbentuk yayasan yang merupakan Wajib Pajak badan dalam negeri, pada Tahun Pajak 2026 menerima: 1. hibah uang Rp350.000.000 dari PT Arunika Logistik yang tidak memiliki hubungan usaha, pekerjaan, kepemilikan, atau penguasaan dengan yayasan; 2. dividen Rp64.000.000 dari PT Bayu Semesta (badan dalam negeri) dengan kepemilikan saham 1%; 3. bunga tabungan bank Rp12.000.000; 4. sewa aula milik yayasan Rp30.000.000; 5. hibah peralatan komputer senilai Rp90.000.000 dari CV Mitra Aksara, rekanan yang selama ini memasok buku untuk yayasan. Berdasarkan Pasal 4 ayat (3) UU PPh, jumlah penerimaan yayasan yang dikecualikan dari objek PPh adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp414.000.000,00", B: "Rp456.000.000,00", C: "Rp504.000.000,00", D: "Rp350.000.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "final-nonfinal", C: "salah-baca", D: "angka-usang" },
+      pembahasan: {
+        inti: "Yayasan termasuk penerima harta hibahan yang dikecualikan sepanjang tidak ada hubungan usaha, pekerjaan, kepemilikan, atau penguasaan, sehingga hibah dari PT Arunika Logistik dikecualikan (Rp350.000.000). Dividen dari badan dalam negeri yang diterima Wajib Pajak badan dalam negeri dikecualikan tanpa syarat kepemilikan (Rp64.000.000). Hibah komputer dari CV Mitra Aksara tidak dikecualikan karena ada hubungan usaha (rekanan pemasok). Bunga tabungan dan sewa aula adalah objek PPh yang dikenai PPh final, bukan penghasilan yang dikecualikan.",
+        jejakHitung: [
+          ["Hibah dari PT tanpa hubungan (dikecualikan)", "Rp350.000.000"],
+          ["Dividen dalam negeri (dikecualikan)", "Rp64.000.000"],
+          ["Bunga tabungan, sewa aula, hibah dari rekanan", "objek (bukan dikecualikan)"],
+          ["Jumlah dikecualikan", "Rp414.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Menyamakan penghasilan yang dikenai PPh final (bunga tabungan dan sewa aula) dengan penghasilan yang dikecualikan dari objek.",
+          C: "Mengabaikan hubungan usaha antara CV Mitra Aksara sebagai pemasok dan yayasan pada hibah komputer.",
+          D: "Menganggap dividen objek karena kepemilikan di bawah 25% (syarat lama sebelum UU 11/2020)."
+        },
+        jebakan: "Bedakan \"dikecualikan dari objek\" dengan \"objek yang dikenai PPh final\", dan uji syarat tidak ada hubungan usaha pada setiap hibah."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 4 ayat (2) huruf a dan d, ayat (3) huruf a angka 2 s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "UU PPh Pasal 4 ayat (3) huruf f angka 1 huruf b) s.t.d.t.d. UU 6/2023", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-146",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-168",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 1,
+      kutipan: "UU PPh Pasal 2 ayat (3) huruf b: \"badan yang didirikan atau bertempat kedudukan di Indonesia, kecuali unit tertentu dari badan pemerintah yang memenuhi kriteria: 1. pembentukannya berdasarkan ketentuan peraturan perundang-undangan; 2. pembiayaannya bersumber dari Anggaran Pendapatan dan Belanja Negara atau Anggaran Pendapatan dan Belanja Daerah; 3. penerimaannya dimasukkan dalam anggaran Pemerintah Pusat atau Pemerintah Daerah; dan 4. pembukuannya diperiksa oleh aparat pengawasan fungsional negara;\"",
+      stem: "Unit Pengelola Pasar Rakyat Kota Sukamaju dibentuk berdasarkan Peraturan Wali Kota Sukamaju untuk mengelola tiga pasar tradisional. Gaji pegawai dan biaya operasionalnya dianggarkan dalam APBD Kota Sukamaju, dan pembukuannya diperiksa oleh Inspektorat Kota. Namun, seluruh pendapatan sewa kios dan los yang dipungut unit ini disimpan di rekening unit sendiri dan dipakai langsung untuk perbaikan pasar, tanpa disetorkan ke kas daerah dan tanpa dimasukkan dalam APBD. Berdasarkan Pasal 2 ayat (3) huruf b UU Pajak Penghasilan, status unit ini sebagai subjek pajak adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dikecualikan dari Subjek Pajak Badan karena dibentuk dengan peraturan, dibiayai APBD, dan diperiksa Inspektorat; pengelolaan penerimaan tidak menentukan.", B: "Dikecualikan dari Subjek Pajak Badan karena merupakan bagian dari pemerintah daerah, sehingga setiap unit pemerintah daerah bukan subjek pajak.", C: "Tetap menjadi Subjek Pajak Badan karena penerimaannya tidak dimasukkan dalam anggaran Pemerintah Daerah, sehingga kriteria kumulatif tidak terpenuhi.", D: "Tetap menjadi Subjek Pajak Badan karena pembukuannya diperiksa Inspektorat Kota, bukan oleh Direktorat Jenderal Pajak atau akuntan publik." },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Unit tertentu dari badan pemerintah dikecualikan dari subjek pajak hanya bila memenuhi keempat kriteria secara kumulatif: dibentuk berdasarkan peraturan perundang-undangan, dibiayai APBN/APBD, penerimaannya dimasukkan dalam anggaran pemerintah pusat/daerah, dan pembukuannya diperiksa aparat pengawasan fungsional negara. Kriteria pertama, kedua, dan keempat terpenuhi, tetapi pendapatan sewa kios dikelola sendiri dan tidak dimasukkan dalam APBD, sehingga kriteria ketiga gagal dan unit tetap Subjek Pajak Badan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Kriteria bersifat kumulatif (\"dan\"); kegagalan kriteria penerimaan masuk anggaran sudah cukup untuk menggugurkan pengecualian.",
+          B: "Undang-undang tidak mengecualikan setiap unit pemerintah; hanya unit tertentu yang memenuhi keempat kriteria.",
+          D: "Pemeriksaan oleh Inspektorat justru memenuhi kriteria keempat (aparat pengawasan fungsional negara); alasan itu tidak membuat unit menjadi subjek pajak."
+        },
+        jebakan: "Uji keempat kriteria satu per satu; satu kriteria yang gagal membuat unit tetap Subjek Pajak Badan."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 2 ayat (3) huruf b s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-147",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-169",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      kutipan: "Pasal 2 ayat (3) huruf b UU PPh: subjek pajak dalam negeri adalah badan yang didirikan atau bertempat kedudukan di Indonesia, kecuali unit tertentu dari badan pemerintah yang memenuhi kriteria: 1. pembentukannya berdasarkan ketentuan peraturan perundang-undangan; 2. pembiayaannya bersumber dari Anggaran Pendapatan dan Belanja Negara atau Anggaran Pendapatan dan Belanja Daerah; 3. penerimaannya dimasukkan dalam anggaran Pemerintah Pusat atau Pemerintah Daerah; dan 4. pembukuannya diperiksa oleh aparat pengawasan fungsional negara.",
+      stem: "Pada November 2026 kantor konsultan pajak Anda menelaah tiga unit milik Pemerintah Kabupaten Lembah Hijau: (1) Dinas Perhubungan, dibentuk dengan peraturan daerah, seluruh belanjanya dari APBD, seluruh retribusi parkir tepi jalan yang dipungutnya disetor ke kas daerah dan dianggarkan dalam APBD, serta pembukuannya diperiksa Inspektorat; (2) Unit Pengelola Wisata Telaga Biru, dibentuk dengan peraturan bupati dan memperoleh modal awal dari APBD, tetapi uang tiket dan sewa kios disimpan di rekening unit untuk membiayai kegiatannya sendiri dan tidak dimasukkan dalam APBD, sedangkan pembukuannya diperiksa Inspektorat; (3) Badan Penanggulangan Bencana Daerah, dibentuk dengan peraturan daerah, dibiayai APBD dan dana hibah dari APBN, hasil lelang barang inventaris bekasnya disetor ke kas daerah dan masuk APBD, serta pembukuannya diperiksa Inspektorat. Berdasarkan kutipan tersebut, entitas yang merupakan subjek pajak badan dalam negeri adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Unit Pengelola Wisata Telaga Biru, karena penerimaannya tidak dimasukkan dalam APBD", B: "Dinas Perhubungan, karena memungut retribusi parkir dari masyarakat", C: "Badan Penanggulangan Bencana Daerah, karena sebagian dananya dari hibah APBN", D: "Tidak ada, karena ketiganya unit pemerintah daerah yang dibentuk dengan peraturan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Unit pemerintah hanya dikecualikan dari subjek pajak bila keempat kriteria Pasal 2 ayat (3) huruf b terpenuhi seluruhnya. Unit Telaga Biru tidak memasukkan penerimaannya ke APBD (kriteria 3 gagal), sehingga tetap subjek pajak badan; Penjelasan Pasal 2 juga menegaskan unit pemerintah yang menjalankan usaha untuk memperoleh penghasilan merupakan subjek pajak. Dinas Perhubungan dan BPBD memenuhi keempat kriteria.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Retribusi parkir disetor seluruhnya ke kas daerah dan dianggarkan dalam APBD; Dinas Perhubungan memenuhi keempat kriteria sehingga dikecualikan. Memungut retribusi tidak menggugurkan pengecualian.",
+          C: "Kriteria kedua berbunyi APBN atau APBD; pembiayaan dari APBD ditambah hibah APBN tetap memenuhi kriteria itu, dan kriteria lain juga terpenuhi.",
+          D: "Dibentuk dengan peraturan baru satu dari empat kriteria kumulatif; Unit Telaga Biru gagal pada kriteria penerimaan masuk anggaran pemerintah daerah."
+        },
+        jebakan: "Jangan berhenti pada status 'milik pemda' atau pada satu kriteria; periksa keempat kriteria satu per satu, terutama ke mana penerimaan unit itu masuk."
+      },
+      dasarHukum: [{ pasal: "Pasal 2 ayat (3) huruf b UU PPh dan penjelasannya", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-001",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-170",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Arunika Data Solusi didirikan dengan akta notaris tanggal 29 Desember 2025. Keputusan pengesahan badan hukumnya terbit 6 Januari 2026, perseroan terdaftar dan memperoleh NPWP melalui Coretax pada 3 Februari 2026, dan kontrak jasa pertamanya baru menghasilkan pendapatan pada Mei 2026. Selama 29 sampai 31 Desember 2025 perseroan belum menjalankan kegiatan apa pun. Dalam rapat direksi, seorang komisaris berpendapat bahwa perseroan baru menjadi subjek pajak pada 2026 karena semua dokumen dan kegiatannya baru ada pada tahun itu. Saat dimulainya kewajiban pajak subjektif perseroan yang tepat adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Sejak 6 Januari 2026 saat status badan hukum diperoleh, sehingga perseroan baru menjadi subjek pajak dalam Tahun Pajak 2026", B: "Sejak 29 Desember 2025 saat perseroan didirikan, sehingga perseroan sudah menjadi subjek pajak dalam Tahun Pajak 2025", C: "Sejak 3 Februari 2026 saat NPWP diterbitkan, sehingga perseroan baru menjadi subjek pajak dalam Tahun Pajak 2026", D: "Sejak Mei 2026 saat penghasilan pertama diperoleh, sehingga perseroan baru menjadi subjek pajak dalam Tahun Pajak 2026" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 2A ayat (2) UU PPh: kewajiban pajak subjektif badan dimulai pada saat badan didirikan atau bertempat kedudukan di Indonesia, yaitu tanggal akta pendirian 29 Desember 2025. Karena itu perseroan sudah menjadi subjek pajak badan dalam negeri sejak Tahun Pajak 2025, walaupun belum ada kegiatan, NPWP, atau penghasilan pada tahun itu.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pasal 2A ayat (2) memakai saat badan didirikan, bukan saat pengesahan badan hukum diterbitkan.",
+          C: "NPWP adalah sarana administrasi; kewajiban subjektif tidak menunggu pendaftaran.",
+          D: "Mencampuradukkan kewajiban subjektif dengan kewajiban objektif yang timbul saat ada penghasilan."
+        },
+        jebakan: "Tanggal pendirian yang jatuh di akhir tahun membuat badan sudah menjadi subjek pajak pada tahun pajak itu; jangan menggeser ke tahun berikutnya karena dokumen administrasi atau penghasilan baru muncul kemudian."
+      },
+      dasarHukum: [{ pasal: "Pasal 2A ayat (2) UU PPh (UU 10/1994)", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-002",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-171",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      laporanUjian: ["B-2026-10"],
+      stem: "Kantor konsultan Anda memetakan status subjek pajak beberapa pihak yang menerima penghasilan di Indonesia sepanjang Tahun Pajak 2026. Pihak-pihak berikut dikecualikan dari subjek pajak berdasarkan Pasal 3 UU PPh, KECUALI ...",
+      kataKualifikasi: ["kecuali"],
+      opsi: { A: "Kantor konsulat jenderal Negara Valdoria di Medan, yaitu kantor perwakilan negara asing", B: "Organisasi internasional yang ditetapkan Menteri Keuangan, Indonesia menjadi anggotanya, dan di Indonesia hanya memberi pinjaman kepada pemerintah dari iuran anggota", C: "Pejabat perwakilan organisasi internasional yang dikecualikan tersebut, berkewarganegaraan Indonesia, dan hanya menerima gaji dari organisasi itu", D: "Juru masak warga negara asing yang diperbantukan kepada duta besar, bekerja dan tinggal bersamanya, tanpa penghasilan lain, dengan asas timbal balik" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 3 ayat (1) huruf d hanya mengecualikan pejabat perwakilan organisasi internasional yang bukan warga negara Indonesia dan tidak menjalankan usaha, kegiatan, atau pekerjaan lain untuk memperoleh penghasilan dari Indonesia. Pejabat berkewarganegaraan Indonesia tidak memenuhi syarat itu sehingga tetap subjek pajak.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Kantor perwakilan negara asing dikecualikan berdasarkan Pasal 3 ayat (1) huruf a.",
+          B: "Memenuhi syarat Pasal 3 ayat (1) huruf c: Indonesia anggota dan kegiatannya hanya memberi pinjaman kepada pemerintah dari iuran anggota.",
+          D: "Orang yang diperbantukan kepada pejabat diplomatik, bekerja pada dan tinggal bersama mereka, bukan WNI, tanpa penghasilan lain, dengan timbal balik, dikecualikan berdasarkan Pasal 3 ayat (1) huruf b."
+        },
+        jebakan: "Pengecualian bagi orang pribadi dalam Pasal 3 selalu mensyaratkan bukan warga negara Indonesia; status organisasi yang dikecualikan tidak menular kepada pejabat berkewarganegaraan Indonesia."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a sampai d UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      kembaranDari: "B6-004",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-172",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "CV Prima Karya Bersama, persekutuan komanditer yang didirikan dan berkedudukan di Semarang, memiliki 3% saham PT Lintas Pangan Nusantara (badan dalam negeri, bukan perusahaan terbuka). Pada Juli 2026 CV menerima dividen tunai Rp180.000.000 yang dibagikan dari saldo laba ditahan tahun 2022 sampai 2024. Bagian keuangan PT Lintas Pangan menanyakan apakah harus memotong pajak, sedangkan sekutu aktif CV berencana menyimpan dana dividen itu di rekening bank di luar negeri. Perlakuan PPh yang tepat atas dividen tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dikenai PPh final 10% sebesar Rp18.000.000 karena CV bukan badan hukum sehingga diperlakukan seperti penerima orang pribadi", B: "Dipotong PPh Pasal 23 15% sebesar Rp27.000.000 karena kepemilikan di bawah 25%, dan dapat dikreditkan oleh CV", C: "Bukan objek hanya bila diinvestasikan di Indonesia; karena disimpan di luar negeri, dikenai PPh final 10% sebesar Rp18.000.000", D: "Bukan objek PPh bagi CV tanpa syarat kepemilikan atau investasi, tidak dipotong PPh Pasal 23, dan dikoreksi negatif dalam rekonsiliasi fiskal CV" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", C: "salah-baca" },
+      pembahasan: {
+        inti: "Perseroan komanditer termasuk badan (Penjelasan Pasal 2 ayat (1) huruf b UU PPh). Dividen dari dalam negeri yang diterima badan dalam negeri dikecualikan dari objek pajak tanpa syarat kepemilikan atau investasi (Pasal 4 ayat (3) huruf f angka 1 butir b), sehingga tidak dipotong PPh Pasal 23 (Pasal 23 ayat (4) huruf c) dan dikeluarkan dari laba fiskal CV.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "CV adalah badan menurut UU PPh walaupun bukan badan hukum; perlakuan dividen orang pribadi (final 10% bila tidak diinvestasikan) tidak berlaku.",
+          B: "Syarat kepemilikan paling sedikit 25% dan pemotongan PPh Pasal 23 15% atas dividen ke badan adalah aturan sebelum UU Cipta Kerja.",
+          C: "Syarat investasi di Indonesia hanya berlaku bagi penerima orang pribadi dalam negeri (butir a); bagi badan dalam negeri pengecualiannya tanpa syarat."
+        },
+        jebakan: "Bentuk CV yang bukan badan hukum dan rencana menyimpan dana di luar negeri adalah pengalih perhatian; yang menentukan adalah penerima termasuk badan dalam negeri."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf f angka 1 butir b UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 23 ayat (4) huruf c UU PPh", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-005",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-173",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "Selain pendapatan usaha pokok, PT Sentra Kemas Indonesia (badan dalam negeri, produsen kemasan, peredaran bruto 2025 Rp86 miliar) membukukan pendapatan lain-lain Tahun Pajak 2025 berikut: bunga deposito rupiah Rp150.000.000; sewa sebagian gudang kepada perusahaan logistik Rp360.000.000; royalti atas desain kemasan yang dipakai perusahaan lain (dipotong PPh Pasal 23) Rp270.000.000; keuntungan penjualan sebidang tanah kosong yang bukan persediaan Rp410.000.000 (PPh atas pengalihannya sudah disetor sebelum akta ditandatangani); laba selisih kurs atas pelunasan utang dalam dolar AS Rp55.000.000; penggantian dari perusahaan asuransi atas mesin yang rusak terbakar Rp115.000.000; dan dividen dari PT dalam negeri yang 5% sahamnya dimiliki perseroan Rp175.000.000. Jumlah pendapatan lain-lain yang digabung dalam penghasilan neto fiskal dan dikenai tarif umum adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp615.000.000", B: "Rp850.000.000", C: "Rp440.000.000", D: "Rp800.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", D: "final-nonfinal" },
+      pembahasan: {
+        inti: "Yang dikenai tarif umum hanya royalti, laba selisih kurs, dan penggantian asuransi atas mesin. Bunga deposito, sewa gudang, dan pengalihan tanah dikenai PPh final sehingga tidak digabung, sedangkan dividen dalam negeri yang diterima badan dalam negeri dikecualikan dari objek pajak.",
+        jejakHitung: [
+          ["Bunga deposito (PPh final 20%, PP 131/2000)", "dikeluarkan"],
+          ["Sewa gudang (PPh final 10%, PP 34/2017)", "dikeluarkan"],
+          ["Penjualan tanah (PPh final 2,5% dari bruto, PP 34/2016)", "dikeluarkan"],
+          ["Dividen dalam negeri ke badan dalam negeri (bukan objek)", "dikeluarkan"],
+          ["Royalti + selisih kurs + penggantian asuransi = 270.000.000 + 55.000.000 + 115.000.000", "Rp440.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Memasukkan dividen Rp175.000.000 yang dikecualikan dari objek pajak.",
+          B: "Memasukkan keuntungan penjualan tanah Rp410.000.000 yang sudah dikenai PPh final atas pengalihan tanah.",
+          D: "Memasukkan sewa gudang Rp360.000.000 yang dikenai PPh final Pasal 4 ayat (2)."
+        },
+        jebakan: "Petakan tiap pos ke tiga keranjang (tarif umum, final, bukan objek) sebelum menjumlahkan; penggantian asuransi kerugian atas harta badan tetap objek tarif umum."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 34/2017 (sewa tanah dan/atau bangunan)", berlakuSejak: "2018-01-02" }, { pasal: "PP 131/2000", berlakuSejak: "2001-01-01" }, { pasal: "PP 34/2016", berlakuSejak: "2016-09-07" }, { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-006",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-174",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Lembaga Riset Agraria Nusantara, badan nirlaba di bidang penelitian dan pengembangan yang telah terdaftar pada instansi yang membidanginya, memperoleh sisa lebih Tahun 2025 sebesar Rp1.250.000.000. Pengurus merencanakan pembangunan rumah kaca percobaan, tetapi ragu seluruh dana akan terpakai tepat waktu. Agar sisa lebih tersebut dikecualikan dari objek PPh, jangka waktu paling lama penggunaannya dan perlakuan atas bagian yang tidak digunakan adalah ...",
+      kataKualifikasi: ["paling lama"],
+      opsi: { A: "2 tahun sejak sisa lebih diperoleh; bagian yang tidak digunakan diakui sebagai objek PPh pada akhir tahun pajak setelah jangka itu berakhir", B: "4 tahun sejak sisa lebih diperoleh; bagian yang tidak digunakan menjadi objek PPh Tahun Pajak 2025 dengan membetulkan SPT Tahun Pajak 2025", C: "4 bulan setelah akhir Tahun Pajak 2025; bagian yang tidak digunakan diakui sebagai objek PPh dalam SPT Tahunan Tahun Pajak 2025", D: "4 tahun sejak sisa lebih diperoleh; bagian yang tidak digunakan diakui sebagai objek PPh pada akhir tahun pajak setelah jangka itu berakhir" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-baca" },
+      pembahasan: {
+        inti: "Sisa lebih badan nirlaba pendidikan atau litbang yang terdaftar dikecualikan dari objek bila digunakan untuk sarana dan prasarana paling lama 4 tahun sejak diperoleh (Pasal 4 ayat (3) huruf m UU PPh; Pasal 4 ayat (1) PMK 68/PMK.03/2020). Bagian yang tidak digunakan diakui sebagai objek PPh pada akhir Tahun Pajak setelah jangka 4 tahun berakhir dan dilaporkan sebagai koreksi fiskal (Pasal 7 PMK 68/PMK.03/2020).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Jangka 2 tahun tidak dikenal untuk ketentuan ini.",
+          B: "Jangka waktunya benar, tetapi PMK 68/PMK.03/2020 mengakui sisa lebih yang tidak digunakan pada akhir Tahun Pajak setelah 4 tahun berakhir, bukan dengan membetulkan SPT tahun perolehan.",
+          C: "Mencampur tenggat SPT Tahunan badan (4 bulan) dengan jangka penggunaan sisa lebih (4 tahun)."
+        },
+        jebakan: "Angka 4 muncul sebagai 4 bulan (SPT badan) dan 4 tahun (sisa lebih); baca satuannya, lalu ingat kapan bagian yang tidak terpakai menjadi objek."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf m UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 68/PMK.03/2020", berlakuSejak: "2020-06-16" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      kembaranDari: "B6-007",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-175",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Sepanjang 2025 PT Cakra Baja Utama (badan dalam negeri, peredaran bruto Rp80 miliar) mencatat penerimaan berikut di luar pendapatan usaha: sebidang tanah yang diserahkan investor baru sebagai setoran modal dan ditukar dengan saham baru senilai Rp1.500.000.000; hibah satu unit forklift dari Tuan Hendra, pemegang 60% saham perseroan, senilai Rp275.000.000; penggantian asuransi atas truk perseroan yang hilang Rp160.000.000; pembebasan sisa utang dagang oleh pemasok bijih besi Rp95.000.000; dan dividen dari PT dalam negeri yang 8% sahamnya dimiliki perseroan Rp140.000.000. Jumlah penerimaan tersebut yang merupakan objek PPh (tidak dikecualikan dari objek pajak) adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp2.030.000.000", B: "Rp530.000.000", C: "Rp255.000.000", D: "Rp670.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Harta, termasuk tanah, yang diterima badan sebagai pengganti saham dan dividen dalam negeri yang diterima badan dalam negeri dikecualikan dari objek. Hibah dari pemegang saham kepada PT, penggantian asuransi atas harta, dan pembebasan utang adalah objek.",
+        jejakHitung: [
+          ["Tanah sebagai setoran modal pengganti saham (Pasal 4 ayat (3) huruf c)", "bukan objek"],
+          ["Dividen dalam negeri ke badan dalam negeri (Pasal 4 ayat (3) huruf f)", "bukan objek"],
+          ["Hibah forklift dari pemegang saham 60%", "Rp275.000.000"],
+          ["Penggantian asuransi atas truk", "Rp160.000.000"],
+          ["Pembebasan utang dagang (Pasal 4 ayat (1) huruf k)", "Rp95.000.000"],
+          ["Jumlah objek = 275.000.000 + 160.000.000 + 95.000.000", "Rp530.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Memasukkan tanah Rp1.500.000.000 yang diterima sebagai pengganti saham; pengecualian Pasal 4 ayat (3) huruf c mencakup harta, bukan hanya setoran tunai.",
+          C: "Mengeluarkan hibah Rp275.000.000; PT tidak termasuk penerima hibah yang dikecualikan, dan ada hubungan kepemilikan antara pemberi dan penerima.",
+          D: "Memasukkan dividen dalam negeri Rp140.000.000 yang dikecualikan dari objek bagi badan dalam negeri."
+        },
+        jebakan: "Setoran modal dalam bentuk harta tetap bukan objek, sedangkan hibah dari pemegang saham kepada PT tetap objek; jangan tertukar karena keduanya datang dari pemilik."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (3) huruf a angka 2 dan huruf c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-008",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-176",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Bahari Tekstil Mandiri (bukan pengembang real estat, peredaran bruto di atas Rp50 miliar) menjual bangunan kantor lama beserta tanahnya di Cirebon kepada PT Laras Properti, yang tidak mempunyai hubungan istimewa dengannya, pada 14 Oktober 2025 seharga Rp3.600.000.000. Nilai sisa buku bangunan (komersial dan fiskal sama) Rp1.450.000.000 dan harga perolehan tanah Rp2.550.000.000, sehingga perseroan membukukan rugi penjualan Rp400.000.000. Direktur keuangan berpendapat tidak ada PPh yang terutang karena transaksi ini rugi. Perlakuan PPh yang tepat atas transaksi tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "PPh final 2,5% × Rp3.600.000.000 = Rp90.000.000 disetor sendiri sebelum akta ditandatangani; rugi Rp400.000.000 dikoreksi positif dan PPh final tidak dikreditkan", B: "Tidak terutang PPh karena transaksi rugi; rugi Rp400.000.000 dikompensasikan dengan laba usaha dalam SPT Tahunan PPh Badan 2025", C: "PPh final 2,5% × Rp3.600.000.000 = Rp90.000.000 dapat dikreditkan dalam SPT Tahunan, dan rugi Rp400.000.000 tetap mengurangi penghasilan neto fiskal", D: "PPh final 2,5% × nilai buku Rp4.000.000.000 = Rp100.000.000 disetor sendiri sebelum akta ditandatangani; rugi Rp400.000.000 dikoreksi positif" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pengalihan hak atas tanah dan/atau bangunan oleh Wajib Pajak yang bukan pengembang dikenai PPh final 2,5% dari jumlah bruto nilai pengalihan, tidak bergantung pada untung atau rugi, dan wajib disetor sendiri sebelum akta ditandatangani. Karena final, hasil transaksi tidak digabung dengan penghasilan tarif umum: rugi Rp400.000.000 dikoreksi positif dan PPh finalnya tidak dikreditkan.",
+        jejakHitung: [
+          ["Dasar = jumlah bruto nilai pengalihan", "Rp3.600.000.000"],
+          ["PPh final 2,5% × Rp3.600.000.000", "Rp90.000.000"],
+          ["Rugi komersial = 3.600.000.000 − (1.450.000.000 + 2.550.000.000)", "−Rp400.000.000 (koreksi positif)"]
+        ],
+        mengapaSalah: {
+          B: "PPh final dihitung dari jumlah bruto, bukan dari laba, sehingga tetap terutang walaupun transaksi rugi; rugi atas penghasilan final tidak boleh digabung dengan penghasilan tarif umum.",
+          C: "PPh final tidak dapat dikreditkan, dan rugi dari transaksi yang dikenai PPh final tidak mengurangi penghasilan neto fiskal.",
+          D: "Dasar pengenaan adalah nilai yang sesungguhnya diterima (Rp3.600.000.000), bukan nilai buku tanah dan bangunan."
+        },
+        jebakan: "Pada PPh final atas pengalihan tanah dan bangunan, rugi tidak menghapus pajak; dasarnya bruto nilai pengalihan, dan rugi komersialnya justru dikoreksi positif."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (2) huruf d UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 34/2016", berlakuSejak: "2016-09-07" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-009",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-177",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-09",
+      stem: "Data untuk soal vignette V-B6-09: PT Arunika Logam Presisi (produsen komponen logam presisi, Tahun Pajak 2025) mencatat laba komersial sebelum pajak Rp3.420.000.000. Di dalamnya termasuk bunga deposito Rp95.000.000 dan dividen dari PT dalam negeri yang 15% sahamnya dimiliki perusahaan Rp240.000.000. Beban yang dicatat antara lain: entertainment klien Rp90.000.000 (daftar nominatif yang dilampirkan pada SPT hanya mencakup Rp65.000.000); sumbangan tunai untuk panitia perayaan hari jadi kota Rp18.000.000; sanksi bunga dalam STP Rp9.000.000; beban pembentukan cadangan piutang tak tertagih Rp45.000.000; dan makan siang bersama seluruh pegawai di kantin pabrik Rp150.000.000. Penyusutan komersial Rp280.000.000, sedangkan penyusutan fiskal Rp310.000.000. Penghasilan neto fiskal PT Arunika Logam Presisi Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp3.302.000.000", B: "Rp3.152.000.000", C: "Rp3.107.000.000", D: "Rp3.212.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "angka-usang", C: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Koreksi positif: entertainment tanpa daftar nominatif, sumbangan yang bukan jenis Pasal 6 ayat (1) huruf i sampai m, sanksi bunga STP, dan cadangan piutang (perusahaan bukan bank atau lembaga pembiayaan). Koreksi negatif: bunga deposito (PPh final), dividen dalam negeri yang diterima badan dalam negeri (bukan objek, tanpa syarat kepemilikan), dan selisih penyusutan karena penyusutan fiskal lebih besar daripada komersial. Makan siang seluruh pegawai adalah natura yang dapat dibiayakan.",
+        jejakHitung: [
+          ["Koreksi positif = 25 (entertainment 90 − 65) + 18 + 9 + 45 (juta)", "Rp97.000.000"],
+          ["Koreksi negatif = 95 (bunga deposito) + 240 (dividen) + 30 (penyusutan 310 − 280) (juta)", "Rp365.000.000"],
+          ["Neto fiskal = 3.420.000.000 + 97.000.000 − 365.000.000", "Rp3.152.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengoreksi positif makan siang pegawai Rp150.000.000; sejak UU HPP biaya natura dan kenikmatan dapat dikurangkan (Pasal 6 ayat (1) huruf n).",
+          C: "Membiayakan cadangan piutang tak tertagih Rp45.000.000; bagi perusahaan non-bank pembentukan cadangan tidak boleh dikurangkan (Pasal 9 ayat (1) huruf c).",
+          D: "Memperlakukan selisih penyusutan Rp30.000.000 sebagai koreksi positif, padahal penyusutan fiskal lebih besar sehingga koreksinya negatif."
+        },
+        jebakan: "Arah koreksi penyusutan bergantung pada mana yang lebih besar; dividen dalam negeri yang diterima badan dalam negeri bukan objek tanpa melihat persentase kepemilikan."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) huruf c, g, dan k UU PPh", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 4 ayat (2) dan ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 6 ayat (1) huruf n UU PPh (UU HPP); PP 55/2022 Pasal 23 ayat (2)", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-010",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-178",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-09",
+      laporanUjian: ["B-2026-10"],
+      stem: "Lanjutan V-B6-09: penghasilan neto fiskal PT Arunika Logam Presisi Tahun Pajak 2025 Rp3.152.000.000. Sisa kerugian fiskal yang belum dikompensasikan berasal dari Tahun Pajak 2019 Rp175.000.000 dan Tahun Pajak 2020 Rp240.000.000. Peredaran bruto 2025, termasuk penghasilan yang dikenai PPh final dan yang bukan objek pajak, Rp32.000.000.000. Perusahaan bukan perseroan terbuka dan tidak memakai PPh final PP 55/2022. PPh badan terutang Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp592.592.000", B: "Rp556.979.500", C: "Rp640.640.000", D: "Rp673.400.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "angka-usang" },
+      pembahasan: {
+        inti: "Kerugian 2019 hanya dapat dikompensasikan sampai Tahun Pajak 2024 sehingga hangus; kerugian 2020 masih dapat dikompensasikan pada 2025 (tahun kelima). PKP Rp2.912.000.000, lalu Pasal 31E wajib diterapkan karena peredaran bruto Rp32 miliar tidak melebihi Rp50 miliar.",
+        jejakHitung: [
+          ["PKP = 3.152.000.000 − 240.000.000 (rugi 2020)", "Rp2.912.000.000"],
+          ["PKP fasilitas = 4,8 ÷ 32 × 2.912.000.000", "Rp436.800.000"],
+          ["PKP non-fasilitas = 2.912.000.000 − 436.800.000", "Rp2.475.200.000"],
+          ["11% × 436.800.000", "Rp48.048.000"],
+          ["22% × 2.475.200.000", "Rp544.544.000"],
+          ["PPh terutang", "Rp592.592.000"]
+        ],
+        mengapaSalah: {
+          B: "Ikut mengompensasikan rugi 2019 Rp175.000.000 yang sudah melewati 5 tahun (2020 sampai 2024): PKP 2.737.000.000.",
+          C: "Tidak menerapkan Pasal 31E (22% × 2.912.000.000), padahal fasilitas itu berlaku bagi peredaran bruto sampai Rp50 miliar.",
+          D: "Memakai tarif lama 25% dan 12,5% dari era sebelum 2020."
+        },
+        jebakan: "Kerugian tahun X dapat dikompensasikan sampai tahun X+5; untuk Tahun Pajak 2025, kerugian 2020 masih boleh, kerugian 2019 tidak."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 17 ayat (1) huruf b dan Pasal 31E ayat (1) UU PPh", berlakuSejak: "2022-01-01" }, { pasal: "SE-02/PJ/2015", berlakuSejak: "2015-01-09" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-011",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-179",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-09",
+      laporanUjian: ["B-2026-10"],
+      stem: "Lanjutan V-B6-09: PPh badan terutang PT Arunika Logam Presisi Tahun Pajak 2025 Rp592.592.000. Selama 2025 tercatat: PPh Pasal 22 impor bahan baku Rp96.000.000; PPh Pasal 23 atas jasa pemesinan yang dipotong pelanggan (bukti potong BPPU) Rp27.032.000; angsuran PPh Pasal 25 Januari sampai Desember masing-masing Rp31.000.000; PPh final atas bunga deposito yang dipotong bank Rp19.000.000; dan sanksi bunga STP yang telah dibayar Rp9.000.000. PPh Pasal 29 yang harus dilunasi sebelum SPT Tahunan disampaikan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp78.560.000", B: "Rp88.560.000", C: "Rp145.608.000", D: "Rp97.560.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "final-nonfinal", B: "salah-klasifikasi", C: "lupa-pasal" },
+      pembahasan: {
+        inti: "Kredit pajak hanya PPh 22, PPh 23, dan angsuran PPh 25. PPh final bunga deposito tidak dapat dikreditkan, dan sanksi administrasi berupa bunga tidak boleh dikreditkan dengan pajak terutang (Pasal 28 ayat (2) UU PPh).",
+        jejakHitung: [
+          ["Kredit = 96.000.000 + 27.032.000 + 12 × 31.000.000", "Rp495.032.000"],
+          ["PPh 29 = 592.592.000 − 495.032.000", "Rp97.560.000"]
+        ],
+        mengapaSalah: {
+          A: "Ikut mengkreditkan PPh final bunga deposito Rp19.000.000.",
+          B: "Ikut mengkreditkan sanksi bunga STP Rp9.000.000; sanksi bukan pembayaran pajak terutang dan tidak boleh dikreditkan.",
+          C: "Memakai PPh terutang tanpa Pasal 31E (22% × 2.912.000.000 = 640.640.000)."
+        },
+        jebakan: "Bukti pembayaran yang ada belum tentu kredit pajak: PPh final dan sanksi administrasi dikeluarkan dari daftar kredit."
+      },
+      dasarHukum: [{ pasal: "Pasal 28 ayat (1) dan ayat (2) serta Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) UU PPh; PP 131/2000", berlakuSejak: "2001-01-01" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      kembaranDari: "B6-012",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-180",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-B6-09",
+      stem: "Lanjutan V-B6-09: PT Arunika Logam Presisi (peredaran bruto 2025 Rp32.000.000.000, termasuk penghasilan final dan bukan objek) menyampaikan SPT Tahunan PPh Badan Tahun Pajak 2025 pada 18 Maret 2026 dengan penghasilan neto fiskal Rp3.152.000.000, kompensasi kerugian Tahun Pajak 2020 Rp240.000.000 yang menghabiskan sisa kerugian tersebut (kerugian 2019 sudah tidak dapat dikompensasikan dan tidak ada sisa kerugian lain), PPh terutang Rp592.592.000, PPh Pasal 22 Rp96.000.000, PPh Pasal 23 Rp27.032.000, dan PPh Pasal 25 yang dibayar Rp372.000.000. Angsuran PPh Pasal 25 Masa Desember 2025 Rp31.000.000. Tidak ada penghasilan tidak teratur dan tidak ada permohonan pengurangan angsuran. Besarnya angsuran PPh Pasal 25 untuk Masa Pajak Maret 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp31.000.000", B: "Rp39.130.000", C: "Rp43.200.000", D: "Rp47.534.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "SPT 2025 memuat kompensasi kerugian, sehingga dasar angsuran 2026 adalah penghasilan neto tahun lalu dikurangi sisa kerugian yang masih dapat dikompensasikan pada tahun berjalan (contoh Penjelasan Pasal 25 ayat (6): neto 120 juta dikurangi sisa kerugian 30 juta). Sisa itu nol karena rugi 2020 habis dipakai pada 2025 dan rugi 2019 hangus, jadi dasarnya neto penuh dengan tarif seperti PPh terutang (Pasal 31E tetap berlaku). Angsuran Desember hanya dipakai untuk bulan-bulan sebelum SPT disampaikan (Januari dan Februari 2026); SPT disampaikan pada Maret, sehingga Masa Maret sudah memakai angsuran baru.",
+        jejakHitung: [
+          ["Sisa kerugian yang masih dapat dikompensasikan pada 2026", "Rp0"],
+          ["PKP fasilitas = 4,8 ÷ 32 × 3.152.000.000", "Rp472.800.000"],
+          ["PPh = 11% × 472.800.000 + 22% × 2.679.200.000 = 52.008.000 + 589.424.000", "Rp641.432.000"],
+          ["Dikurangi PPh 22 dan 23 = 641.432.000 − 123.032.000", "Rp518.400.000"],
+          ["Angsuran = 518.400.000 ÷ 12 (berlaku sejak Masa Maret 2026)", "Rp43.200.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai angsuran Desember 2025 untuk Masa Maret, padahal angsuran Desember hanya berlaku untuk bulan-bulan sebelum bulan SPT disampaikan.",
+          B: "Membagi PPh terutang setelah kompensasi: (592.592.000 − 123.032.000) ÷ 12; kerugian yang sudah habis dipakai pada 2025 tidak lagi mengurangi dasar angsuran 2026.",
+          D: "Tidak menerapkan Pasal 31E: (22% × 3.152.000.000 − 123.032.000) ÷ 12."
+        },
+        jebakan: "Dua hal sekaligus: dasar angsuran setelah kompensasi kerugian (bukan PPh terutang di SPT) dan bulan mulai berlakunya angsuran baru (bulan SPT disampaikan, bukan selalu April)."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1), (2), dan (6) huruf a UU PPh beserta Penjelasannya", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 113 ayat (2) huruf a dan Pasal 114; menggantikan KEP-537/PJ/2000", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-013",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-182",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Sagara Pangan Lestari (produsen makanan beku) membukukan biaya Tahun Pajak 2025 berikut: paket bingkisan hari raya berupa peralatan rumah tangga untuk seluruh 120 pegawai Rp60.000.000; sewa apartemen untuk kepala pabrik (pegawai tetap, bukan pemegang saham) Rp9.000.000 per bulan selama 12 bulan; keanggotaan pusat kebugaran untuk direktur keuangan (pegawai tetap, bukan pemegang saham) Rp24.000.000; biaya pengobatan pribadi istri seorang pemegang saham yang tidak bekerja di perusahaan Rp35.000.000; dan biaya renovasi rumah pribadi pemegang saham yang sama Rp50.000.000. Bukti pengeluaran lengkap dan PPh Pasal 21 atas natura pegawai telah dipotong sesuai ketentuan. Total koreksi fiskal positif atas pos-pos tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp277.000.000", B: "Rp193.000.000", C: "Rp109.000.000", D: "Rp85.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Sejak Tahun Pajak 2022 biaya natura dan kenikmatan kepada pegawai dapat dikurangkan sepanjang untuk mendapatkan, menagih, dan memelihara penghasilan, terlepas dari perlakuannya bagi penerima. Yang dikoreksi hanya biaya untuk kepentingan pribadi pemegang saham (Pasal 9 ayat (1) huruf b): pengobatan istri dan renovasi rumah pemegang saham.",
+        jejakHitung: [
+          ["Bingkisan seluruh pegawai Rp60.000.000", "dapat dibiayakan"],
+          ["Apartemen kepala pabrik 12 × 9.000.000 = 108.000.000", "dapat dibiayakan"],
+          ["Pusat kebugaran direktur keuangan Rp24.000.000", "dapat dibiayakan"],
+          ["Kepentingan pribadi pemegang saham = 35.000.000 + 50.000.000", "koreksi positif Rp85.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai aturan sebelum UU HPP: seluruh natura pegawai ikut dikoreksi (60 + 108 + 24 + 85 juta).",
+          B: "Menganggap apartemen kepala pabrik sebagai kepentingan pribadi, padahal itu kenikmatan bagi pegawai yang dapat dibiayakan (108 + 85 juta).",
+          C: "Menganggap keanggotaan pusat kebugaran direktur sebagai kepentingan pribadi, padahal penerimanya pegawai (24 + 85 juta)."
+        },
+        jebakan: "Bedakan penerima: natura kepada pegawai dapat dibiayakan; biaya untuk pemegang saham yang bukan pegawai dan keluarganya adalah kepentingan pribadi pemegang saham."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf n dan Pasal 9 ayat (1) huruf b UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "PP 55/2022 Pasal 23 ayat (2) (natura dan kenikmatan)", berlakuSejak: "2022-12-20" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-015",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-183",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kutipan: "PP 93/2010 Pasal 2: Sumbangan dan/atau biaya sebagaimana dimaksud dalam Pasal 1 dapat dikurangkan dari penghasilan bruto dengan syarat: a. Wajib Pajak mempunyai penghasilan neto fiskal berdasarkan Surat Pemberitahuan Tahunan Pajak Penghasilan Tahun Pajak sebelumnya; b. pemberian sumbangan dan/atau biaya tidak menyebabkan rugi pada Tahun Pajak sumbangan diberikan; ... Pasal 3: Besarnya nilai sumbangan dan/atau biaya pembangunan infrastruktur sosial yang dapat dikurangkan dari penghasilan bruto sebagaimana dimaksud dalam Pasal 1 untuk 1 (satu) tahun dibatasi tidak melebihi 5% (lima persen) dari penghasilan neto fiskal Tahun Pajak sebelumnya.",
+      stem: "PT Bentang Kriya Nusantara memperoleh penghasilan neto fiskal Tahun Pajak 2024 Rp1.600.000.000. Pada 2025 perusahaan memberikan: sumbangan fasilitas pendidikan berupa peralatan laboratorium yang dibeli khusus untuk disumbangkan kepada sebuah SMK melalui lembaga pendidikannya, senilai harga perolehan Rp65.000.000; sumbangan pembinaan olahraga bulu tangkis prestasi melalui lembaga pembinaan olahraga Rp30.000.000; dan sumbangan untuk pentas seni warga di kantor kelurahan Rp15.000.000. Para penerima tidak mempunyai hubungan istimewa dengan perusahaan, bukti sah, dan lembaga penerima ber-NPWP. Penghasilan neto fiskal 2025 sebelum memperhitungkan seluruh sumbangan Rp1.800.000.000. Berdasarkan kutipan tersebut, koreksi fiskal positif atas sumbangan 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp30.000.000", B: "Rp20.000.000", C: "Rp15.000.000", D: "Rp110.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Sumbangan fasilitas pendidikan dan pembinaan olahraga termasuk jenis PP 93/2010, tetapi jumlahnya dibatasi 5% dari neto fiskal tahun sebelumnya (Rp80.000.000). Kelebihan Rp15.000.000 dan sumbangan pentas seni yang bukan jenis PP 93/2010 (Pasal 9 ayat (1) huruf g) dikoreksi positif.",
+        jejakHitung: [
+          ["Batas = 5% × 1.600.000.000 (neto fiskal 2024)", "Rp80.000.000"],
+          ["Sumbangan jenis PP 93/2010 = 65.000.000 + 30.000.000", "Rp95.000.000"],
+          ["Kelebihan = 95.000.000 − 80.000.000", "Rp15.000.000"],
+          ["Sumbangan pentas seni (bukan jenis PP 93/2010)", "Rp15.000.000"],
+          ["Koreksi positif", "Rp30.000.000"],
+          ["Uji tidak menimbulkan rugi: 1.800.000.000 − 80.000.000 > 0", "terpenuhi"]
+        ],
+        mengapaSalah: {
+          B: "Menghitung batas dari neto fiskal tahun berjalan (5% × 1.800.000.000 = 90.000.000), sehingga kelebihan hanya Rp5.000.000.",
+          C: "Membiayakan seluruh sumbangan pendidikan dan olahraga tanpa batas 5%; hanya sumbangan pentas seni yang dikoreksi.",
+          D: "Menolak seluruh sumbangan, padahal sumbangan fasilitas pendidikan dan pembinaan olahraga dapat dikurangkan dalam batas PP 93/2010."
+        },
+        jebakan: "Batas 5% memakai neto fiskal tahun pajak SEBELUMNYA dan berlaku untuk jumlah seluruh sumbangan jenis PP 93/2010 dalam satu tahun."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf i–m UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 9 ayat (1) huruf g UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 93/2010 Pasal 1 sampai Pasal 3 (berlaku sejak Tahun Pajak 2010, Pasal 10)", berlakuSejak: "2010-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-016",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-184",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Cahaya Niaga Elektrika (distributor peralatan listrik, bukan bank atau lembaga pembiayaan) pada akhir 2025 menghapus empat piutang usaha yang masing-masing bernilai jauh di atas batas piutang debitur kecil. Keempatnya telah dibebankan sebagai biaya dalam laporan laba rugi komersial. Keterangan tambahan: piutang (1) telah dipublikasikan dalam surat kabar nasional, tetapi tidak dicantumkan dalam daftar piutang tak tertagih yang diserahkan kepada Direktorat Jenderal Pajak; piutang (2) disertai surat pengakuan debitur bahwa utangnya telah dihapuskan untuk jumlah tertentu; piutang (3) perkara penagihannya telah diserahkan ke Pengadilan Negeri dan belum diputus; piutang (4) disertai perjanjian tertulis pembebasan utang dengan debitur. Piutang (2), (3), dan (4) dicantumkan dalam daftar piutang yang diserahkan kepada Direktorat Jenderal Pajak. Piutang yang TIDAK dapat dibebankan sebagai biaya fiskal adalah ...",
+      kataKualifikasi: ["tidak"],
+      opsi: { A: "Piutang (3), karena perkaranya belum diputus Pengadilan Negeri", B: "Piutang (2), karena pengakuan debitur bukan bukti penghapusan", C: "Piutang (1), karena tidak dicantumkan dalam daftar piutang ke DJP", D: "Piutang (4), karena pembebasan utang wajib melalui putusan hakim" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Tiga syarat Pasal 6 ayat (1) huruf h: (1) dibebankan dalam laba rugi komersial dan (2) daftar piutang diserahkan kepada DJP bersifat kumulatif, sedangkan (3) bukti penagihan atau penghapusan cukup salah satu: perkara diserahkan ke Pengadilan Negeri atau instansi piutang negara, perjanjian tertulis penghapusan atau pembebasan, publikasi, atau pengakuan debitur. Piutang (1) punya bukti publikasi tetapi gagal syarat daftar piutang.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Syaratnya perkara penagihan telah diserahkan ke Pengadilan Negeri; tidak perlu menunggu putusan.",
+          B: "Pengakuan debitur bahwa utangnya telah dihapuskan untuk jumlah tertentu adalah salah satu bukti yang diakui.",
+          D: "Perjanjian tertulis pembebasan utang antara kreditur dan debitur sudah cukup; tidak perlu putusan pengadilan."
+        },
+        jebakan: "Bukti alternatif yang kuat (publikasi) tidak menolong bila syarat kumulatif, yaitu penyerahan daftar piutang kepada DJP, tidak dipenuhi."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf h UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 55/2022 Pasal 19", berlakuSejak: "2022-12-20" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-017",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-186",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Wiratama Investindo menjalankan usaha perdagangan bahan bangunan dan memegang saham beberapa perusahaan. Penghasilan Tahun Pajak 2025: penjualan bahan bangunan (tarif umum) Rp13.500.000.000; dividen dari anak perusahaan berbentuk PT dalam negeri Rp3.000.000.000; dan bunga deposito yang dikenai PPh final Rp1.500.000.000. Biaya gaji direksi dan administrasi kantor pusat Rp900.000.000 dipakai bersama untuk seluruh kegiatan dan tidak dapat dipisahkan; perusahaan membebankan seluruhnya dalam penghitungan penghasilan neto. Koreksi fiskal positif atas biaya bersama tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp75.000.000", B: "Rp300.000.000", C: "Rp225.000.000", D: "Rp0" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Biaya untuk penghasilan yang bukan objek pajak dan yang dikenai PPh final tidak boleh dikurangkan; biaya bersama yang tidak dapat dipisahkan dialokasikan secara proporsional terhadap total penghasilan. Dividen dari PT dalam negeri yang diterima badan dalam negeri bukan objek, bunga deposito final.",
+        jejakHitung: [
+          ["Total penghasilan = 13.500.000.000 + 3.000.000.000 + 1.500.000.000", "Rp18.000.000.000"],
+          ["Penghasilan bukan objek dan final = 3.000.000.000 + 1.500.000.000", "Rp4.500.000.000"],
+          ["Alokasi = 4.500.000.000 ÷ 18.000.000.000 × 900.000.000", "Rp225.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Hanya mengalokasikan ke bunga deposito final (1,5/18 × 900.000.000); dividen bukan objek juga tidak boleh dibebani biaya.",
+          B: "Memakai penyebut penghasilan tarif umum saja (4,5/13,5 × 900.000.000), bukan total penghasilan.",
+          D: "Mengabaikan larangan membebankan biaya untuk penghasilan bukan objek dan penghasilan final."
+        },
+        jebakan: "Pembilang mencakup penghasilan final DAN bukan objek; penyebutnya total seluruh penghasilan."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) dan Pasal 9 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 94/2010 Pasal 27 ayat (1) dan (2) (pembukuan terpisah; biaya bersama yang tidak dapat dipisahkan dialokasikan secara proporsional)", berlakuSejak: "2010-12-30" }, { pasal: "PP 94/2010 Pasal 13 huruf a (biaya untuk penghasilan bukan objek dan yang dikenai PPh final tidak boleh dikurangkan)", berlakuSejak: "2010-12-30" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-019",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-188",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-B6-10",
+      kutipan: "Pasal 11 ayat (3) UU PPh: Penyusutan dimulai pada bulan dilakukannya pengeluaran, kecuali untuk harta yang masih dalam proses pengerjaan, penyusutannya dimulai pada bulan selesainya pengerjaan harta tersebut.",
+      stem: "Data untuk soal vignette V-B6-10: PT Ranah Boga Nusantara (PKP, produsen makanan beku, Tahun Pajak 2026) membangun gedung penyimpanan berpendingin permanen. Pembangunan dimulai Maret 2026 dengan biaya dikeluarkan bertahap Maret sampai Agustus, total Rp4.800.000.000. Pengerjaan gedung selesai September 2026, tetapi gedung baru mulai dipakai Oktober 2026; perusahaan tidak mengajukan permohonan persetujuan Direktur Jenderal Pajak untuk memulai penyusutan pada bulan penggunaan. Perusahaan memakai masa manfaat 20 tahun. Berdasarkan kutipan tersebut, penyusutan fiskal gedung Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp80.000.000", B: "Rp200.000.000", C: "Rp160.000.000", D: "Rp60.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Gedung adalah harta dalam proses pengerjaan, sehingga penyusutan dimulai pada bulan selesainya pengerjaan (September 2026), bukan bulan pengeluaran pertama dan bukan bulan mulai dipakai: 4 bulan × tarif 5% bangunan permanen.",
+        jejakHitung: [
+          ["Penyusutan setahun = 5% × 4.800.000.000", "Rp240.000.000"],
+          ["Bulan September sampai Desember 2026", "4 bulan"],
+          ["Penyusutan 2026 = 240.000.000 × 4/12", "Rp80.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Mulai dari bulan pengeluaran pertama (Maret, 10 bulan), padahal harta dalam pengerjaan mulai disusutkan pada bulan selesainya.",
+          C: "Memakai tarif 10% bangunan tidak permanen (480.000.000 × 4/12), padahal gedungnya permanen.",
+          D: "Mulai dari bulan dipakai (Oktober, 3 bulan); memulai pada bulan penggunaan hanya boleh dengan persetujuan Direktur Jenderal Pajak (Pasal 11 ayat (4))."
+        },
+        jebakan: "Bulan selesainya pengerjaan ikut dihitung; bulan mulai dipakai baru relevan bila ada persetujuan DJP."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (3), (4), dan (6) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 72/2023", berlakuSejak: "2023-07-17" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-021",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-189",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-10",
+      stem: "Lanjutan V-B6-10: Pada 2026 PT Ranah Boga Nusantara memperoleh tiga harta baru: gedung penyimpanan berpendingin permanen Rp4.800.000.000 yang selesai dikerjakan September 2026 (masa manfaat 20 tahun; penyusutan dimulai bulan selesainya pengerjaan); forklift yang menurut lampiran PMK 72/2023 termasuk Kelompok 2, dibeli 14 April 2026 Rp360.000.000 dengan metode saldo menurun; dan laptop Kelompok 1 yang dibeli 8 Juni 2026 Rp96.000.000 dengan metode garis lurus. Total penyusutan fiskal ketiga harta itu untuk Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp241.500.000", B: "Rp127.750.000", C: "Rp161.500.000", D: "Rp354.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Hitung per harta dengan tarif kelompok dan metode masing-masing, pro rata sejak bulan perolehan (gedung sejak bulan selesainya pengerjaan).",
+        jejakHitung: [
+          ["Gedung = 5% × 4.800.000.000 × 4/12 (September sampai Desember)", "Rp80.000.000"],
+          ["Forklift = 25% (saldo menurun Kelompok 2) × 360.000.000 × 9/12 (April sampai Desember)", "Rp67.500.000"],
+          ["Laptop = 25% (garis lurus Kelompok 1) × 96.000.000 × 7/12 (Juni sampai Desember)", "Rp14.000.000"],
+          ["Total", "Rp161.500.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai tarif 10% untuk gedung permanen (160.000.000 untuk 4 bulan).",
+          B: "Memakai tarif garis lurus 12,5% untuk forklift (33.750.000), padahal metode yang dipilih saldo menurun 25%.",
+          D: "Menghitung setahun penuh untuk ketiga harta (240 + 90 + 24 juta)."
+        },
+        jebakan: "Tiap harta punya tiga variabel: kelompok, metode, dan jumlah bulan; satu saja keliru, totalnya meleset."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1), (2), (3), (6) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 72/2023 dan lampirannya", berlakuSejak: "2023-07-17" }],
+      anggaranDetik: 190,
+      verifikasi: "✅",
+      kembaranDari: "B6-022",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-190",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-10",
+      stem: "Lanjutan V-B6-10: PT Ranah Boga Nusantara menjual mesin pengemas lama pada 18 Agustus 2026 seharga Rp410.000.000 kepada pihak yang tidak mempunyai hubungan istimewa. Karena penyusutan fiskal mesin itu lebih cepat daripada penyusutan komersialnya, nilai sisa buku fiskal mesin pada saat dijual Rp150.000.000, sedangkan nilai sisa buku komersialnya Rp230.000.000. Laporan laba rugi mencatat laba penjualan aset Rp180.000.000. Koreksi fiskal atas transaksi penjualan mesin tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Koreksi negatif Rp80.000.000", B: "Koreksi negatif Rp180.000.000 karena laba penjualan harta bukan objek PPh", C: "Koreksi negatif Rp410.000.000 karena penjualan mesin dikenai PPh final", D: "Koreksi positif Rp80.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "final-nonfinal" },
+      pembahasan: {
+        inti: "Laba fiskal = harga jual − nilai sisa buku fiskal = Rp260.000.000, lebih besar dari laba komersial Rp180.000.000, sehingga dikoreksi positif Rp80.000.000.",
+        jejakHitung: [
+          ["Laba komersial = 410.000.000 − 230.000.000", "Rp180.000.000"],
+          ["Laba fiskal = 410.000.000 − 150.000.000", "Rp260.000.000"],
+          ["Koreksi = 260.000.000 − 180.000.000", "positif Rp80.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Arah koreksi terbalik: laba fiskal lebih besar dari laba komersial, jadi koreksinya positif.",
+          B: "Keuntungan karena penjualan harta adalah objek PPh (Pasal 4 ayat (1) huruf d).",
+          C: "Penjualan mesin tidak termasuk penghasilan yang dikenai PPh final menurut Pasal 4 ayat (2)."
+        },
+        jebakan: "Bila nilai sisa buku fiskal lebih kecil dari nilai sisa buku komersial, laba fiskalnya lebih besar dan koreksinya positif."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf d dan Pasal 11 ayat (8) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-023",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-191",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-10",
+      stem: "Lanjutan V-B6-10: PT Ranah Boga Nusantara (PKP) menjual mesin pengemas lama yang semula dipakai untuk produksi (bukan barang dagangan) seharga Rp410.000.000 pada 18 Agustus 2026; laba penjualan menurut pembukuan Rp180.000.000. Pajak Masukan atas pembelian mesin tersebut dahulu telah dikreditkan, dan mesin bukan Barang Kena Pajak yang tergolong mewah. PPN yang terutang dan wajib dibuatkan Faktur Pajak atas penyerahan mesin tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp45.100.000", B: "Rp49.200.000", C: "Rp19.800.000", D: "Tidak terutang PPN karena mesin bukan barang dagangan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Penyerahan aktiva yang menurut tujuan semula tidak untuk diperjualbelikan tetap terutang PPN karena Pajak Masukannya dapat dikreditkan (Pasal 16D); untuk BKP bukan barang mewah, PPN = 12% × DPP nilai lain 11/12 × harga jual.",
+        jejakHitung: [
+          ["DPP nilai lain = 11/12 × 410.000.000", "Rp375.833.333"],
+          ["PPN = 12% × 11/12 × 410.000.000", "Rp45.100.000"],
+          ["Setara 11% × 410.000.000", "Rp45.100.000"]
+        ],
+        mengapaSalah: {
+          B: "Mengabaikan DPP nilai lain 11/12 (12% × 410.000.000).",
+          C: "Memakai laba penjualan sebagai DPP (11% × 180.000.000), padahal DPP penyerahan adalah harga jual.",
+          D: "Melupakan Pasal 16D UU PPN: aktiva yang Pajak Masukannya dapat dikreditkan tetap terutang PPN saat diserahkan."
+        },
+        jebakan: "Laba penjualan relevan untuk PPh, sedangkan PPN dihitung dari harga jual."
+      },
+      dasarHukum: [{ pasal: "Pasal 16D UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-024",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-192",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Griya Kantor Sentosa membeli gedung kantor permanen (tidak termasuk tanah) pada 9 Mei 2026 seharga Rp9.600.000.000. Menurut pembukuan, masa manfaat sebenarnya gedung itu 40 tahun, tetapi perusahaan memilih menyusutkan gedung dengan masa manfaat 20 tahun sesuai kelompok bangunan permanen dan menerapkannya secara taat asas. Penyusutan fiskal Tahun Pajak 2026 atas gedung tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp160.000.000", B: "Rp480.000.000", C: "Rp640.000.000", D: "Rp320.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Bangunan permanen bermasa manfaat lebih dari 20 tahun boleh disusutkan dengan masa manfaat 20 tahun atau masa manfaat sebenarnya, secara taat asas. Perusahaan memilih 20 tahun (5%), dihitung pro rata sejak bulan perolehan (Mei sampai Desember).",
+        jejakHitung: [
+          ["Setahun = 5% × 9.600.000.000", "Rp480.000.000"],
+          ["Mei sampai Desember", "8 bulan"],
+          ["Penyusutan 2026 = 480.000.000 × 8/12", "Rp320.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai masa manfaat sebenarnya 40 tahun (240.000.000 × 8/12), padahal perusahaan memilih 20 tahun.",
+          B: "Menghitung setahun penuh padahal gedung diperoleh Mei.",
+          C: "Memakai tarif bangunan tidak permanen 10%."
+        },
+        jebakan: "Pilihan 20 tahun atau masa manfaat sebenarnya ada pada Wajib Pajak; baca pilihan yang disebut di stem."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (6a) UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "PMK 72/2023", berlakuSejak: "2023-07-17" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-025",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-193",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "CV Andalas Cetak Prima membeli mesin cetak digital Kelompok 1 pada Juli 2022 seharga Rp96.000.000 dan memakai metode saldo menurun secara taat asas sejak tahun perolehan, dengan penyusutan tahun pertama dihitung pro rata. Tidak ada penjualan, penghapusan, atau penambahan atas mesin tersebut sampai akhir 2026. Penyusutan fiskal mesin untuk Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp4.500.000", B: "Rp0", C: "Rp9.000.000", D: "Rp12.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Masa manfaat 4 tahun dimulai Juli 2022 dan berakhir pada 2026, sehingga 2026 adalah tahun akhir masa manfaat: nilai sisa buku disusutkan sekaligus (sama dengan contoh mesin Juli 2009 di Penjelasan Pasal 11 ayat (3)).",
+        jejakHitung: [
+          ["2022: 6/12 × 50% × 96.000.000", "Rp24.000.000"],
+          ["2023: 50% × 72.000.000", "Rp36.000.000"],
+          ["2024: 50% × 36.000.000", "Rp18.000.000"],
+          ["2025: 50% × 18.000.000", "Rp9.000.000"],
+          ["2026 (akhir masa manfaat): sisa buku disusutkan sekaligus", "Rp9.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Tetap memakai 50% × nilai sisa buku; pada akhir masa manfaat sisa buku disusutkan sekaligus.",
+          B: "Menganggap masa manfaat berakhir 2025, padahal tahun pertama hanya 6 bulan sehingga masa manfaat baru berakhir 2026.",
+          D: "Memakai garis lurus 25% × 96.000.000 untuk sisa 6 bulan, padahal metode yang dipilih saldo menurun."
+        },
+        jebakan: "Bila tahun pertama pro rata, saldo menurun berakhir pada tahun kalender kelima, dan sisa bukunya dibebankan sekaligus pada tahun itu."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (2), ayat (3), dan ayat (6) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-026",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-194",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "PT Lembah Tenun Mandiri, yang telah beroperasi komersial sejak 2018, pada 2026 menambah modal dasar dan menerbitkan saham baru. Untuk itu perusahaan mengeluarkan biaya akta perubahan anggaran dasar, persetujuan perubahan, dan jasa konsultan hukum Rp85.000.000. Perlakuan fiskal yang diperbolehkan atas biaya perluasan modal tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tidak boleh dibebankan karena berkaitan dengan setoran modal dari pemegang saham", B: "Dibebankan pada tahun terjadinya pengeluaran atau diamortisasi menurut Pasal 11A ayat (2)", C: "Disusutkan sebagai harta berwujud Kelompok 1 selama 4 tahun dengan tarif 25%", D: "Hanya boleh diamortisasi selama masa manfaatnya, tanpa pilihan dibebankan sekaligus" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 11A ayat (3) UU PPh: pengeluaran untuk biaya pendirian dan biaya perluasan modal dibebankan pada tahun terjadinya pengeluaran atau diamortisasi sesuai ayat (2).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Biaya perluasan modal secara tegas boleh dibebankan menurut Pasal 11A ayat (3); yang bukan biaya adalah setoran modalnya, bukan biaya untuk menerbitkannya.",
+          C: "Biaya perluasan modal bukan harta berwujud, sehingga tidak disusutkan menurut Pasal 11.",
+          D: "Pasal 11A ayat (3) memberi pilihan dibebankan sekaligus pada tahun terjadinya pengeluaran."
+        },
+        jebakan: "Biaya pendirian dan biaya perluasan modal sama perlakuannya: ada pilihan beban sekaligus, berbeda dengan harta tak berwujud lain."
+      },
+      dasarHukum: [{ pasal: "Pasal 11A ayat (3) UU PPh", berlakuSejak: "2001-01-01" }],
+      anggaranDetik: 80,
+      verifikasi: "✅",
+      kembaranDari: "B6-027",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-195",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      kutipan: "Pasal 6 ayat (2) UU PPh: Apabila penghasilan bruto setelah pengurangan sebagaimana dimaksud pada ayat (1) didapat kerugian, kerugian tersebut dikompensasikan dengan penghasilan mulai tahun pajak berikutnya berturut-turut sampai dengan 5 (lima) tahun.",
+      stem: "Riwayat penghasilan neto fiskal PT Bahari Nusa Perkapalan: 2021 rugi Rp450.000.000; 2022 laba Rp110.000.000; 2023 rugi Rp160.000.000; 2024 laba Rp90.000.000; 2025 laba Rp70.000.000; dan 2026 laba Rp650.000.000 (sebelum kompensasi). Perusahaan tidak memperoleh fasilitas kompensasi kerugian lebih lama, dan kerugian dikompensasikan mulai dari yang terlama. Berdasarkan kutipan tersebut, Penghasilan Kena Pajak Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp490.000.000", B: "Rp240.000.000", C: "Rp310.000.000", D: "Rp650.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Rugi 2021 masih dapat dikompensasikan sampai 2026 (lima tahun sesudah tahun rugi) dengan sisa Rp180.000.000; rugi 2023 Rp160.000.000 masih utuh; keduanya terserap pada 2026.",
+        jejakHitung: [
+          ["Rugi 2021 terpakai 2022, 2024, 2025 = 110 + 90 + 70 (juta)", "Rp270.000.000"],
+          ["Sisa rugi 2021 (batas 2026)", "Rp180.000.000"],
+          ["Rugi 2023 (batas 2028)", "Rp160.000.000"],
+          ["PKP 2026 = 650.000.000 − 180.000.000 − 160.000.000", "Rp310.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Menganggap rugi 2021 hangus setelah 2025 (menghitung tahun rugi sebagai tahun pertama).",
+          B: "Lupa bahwa laba 2025 Rp70.000.000 sudah menyerap sebagian rugi 2021 (sisa dianggap Rp250.000.000).",
+          D: "Tidak mengompensasikan kerugian sama sekali."
+        },
+        jebakan: "Lima tahun dihitung mulai tahun pajak SESUDAH tahun rugi: rugi 2021 dapat dipakai 2022 sampai 2026."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-028",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-196",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Cendana Rasa Utama membukukan rugi komersial Tahun Pajak 2026 Rp450.000.000. Dalam rekonsiliasi fiskal terdapat koreksi positif Rp180.000.000 (biaya promosi tanpa daftar nominatif, sumbangan yang tidak memenuhi syarat, dan selisih penyusutan) serta koreksi negatif Rp35.000.000 (penghasilan sewa sebagian lantai gedung yang telah dikenai PPh final). Jumlah kerugian yang dapat dikompensasikan ke tahun berikutnya dan tahun pajak terakhir pemanfaatannya adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp450.000.000, sampai Tahun Pajak 2031", B: "Rp305.000.000, sampai Tahun Pajak 2031", C: "Rp305.000.000, sampai Tahun Pajak 2030", D: "Rp235.000.000, sampai Tahun Pajak 2031" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Yang dikompensasikan adalah rugi fiskal setelah koreksi, berlaku lima tahun sesudah tahun rugi (2027 sampai 2031).",
+        jejakHitung: [
+          ["Rugi komersial", "−Rp450.000.000"],
+          ["+ koreksi positif", "+Rp180.000.000"],
+          ["− koreksi negatif", "−Rp35.000.000"],
+          ["Rugi fiskal", "−Rp305.000.000"],
+          ["Masa kompensasi", "2027 sampai 2031"]
+        ],
+        mengapaSalah: {
+          A: "Memakai rugi komersial, bukan rugi fiskal.",
+          C: "Menghitung tahun rugi sebagai tahun pertama masa kompensasi.",
+          D: "Menambahkan penghasilan sewa yang dikenai PPh final, padahal penghasilan final dikeluarkan (koreksi negatif) sehingga rugi fiskal membesar."
+        },
+        jebakan: "Koreksi negatif memperbesar rugi fiskal; koreksi positif memperkecilnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-029",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-197",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Lintas Samudra Rekayasa (Wajib Pajak badan dalam negeri) pada Tahun Pajak 2025 memperoleh laba usaha dalam negeri, laba neto dari cabangnya di Negara Q, dan rugi usaha dari cabangnya di Negara R. Perusahaan juga masih memiliki sisa kerugian fiskal dalam negeri Tahun Pajak 2021 yang belum terkompensasi. Pernyataan berikut tentang penghitungan Penghasilan Kena Pajak 2025 benar, KECUALI ...",
+      kataKualifikasi: ["kecuali"],
+      opsi: { A: "Sisa kerugian fiskal 2021 dapat dikompensasikan dengan penghasilan neto 2025, dan bagian yang tidak terpakai sampai Tahun Pajak 2026 tidak dapat dikompensasikan lagi", B: "Rugi usaha cabang di Negara R dapat dikurangkan lebih dulu dari laba neto cabang di Negara Q sebelum laba itu digabungkan dengan penghasilan dalam negeri", C: "Laba neto cabang di Negara Q digabungkan dengan penghasilan dalam negeri pada Tahun Pajak 2025, yaitu Tahun Pajak diperolehnya penghasilan usaha tersebut", D: "Pajak yang dibayar cabang di Negara Q dikreditkan dengan batas yang dihitung tersendiri untuk penghasilan usaha dari Negara Q, terpisah dari negara lain" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Dalam menghitung Penghasilan Kena Pajak, Wajib Pajak dalam negeri tidak dapat memperhitungkan kerugian usaha dari cabang di luar negeri (Pasal 4 ayat (3) PMK 192/PMK.03/2018). Rugi cabang di Negara R tidak boleh mengurangi laba cabang di Negara Q maupun penghasilan dalam negeri; tiga pernyataan lain benar.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Benar: kerugian 2021 dikompensasikan berturut-turut sampai 5 tahun, yaitu 2022 sampai 2026 (Pasal 6 ayat (2) UU PPh); sisa sesudah 2026 hangus.",
+          C: "Benar: penghasilan usaha cabang luar negeri digabungkan sebesar penghasilan neto pada Tahun Pajak diperolehnya (Pasal 4 ayat (2) huruf a dan Pasal 5 ayat (2) huruf a PMK 192/PMK.03/2018).",
+          D: "Benar: PPh luar negeri yang dapat dikreditkan dihitung per jenis penghasilan untuk tiap negara atau yurisdiksi (Pasal 6 ayat (2) PMK 192/PMK.03/2018)."
+        },
+        jebakan: "Laba dan rugi dari dua negara berbeda tidak saling diimbangi. Lampiran PMK 192/PMK.03/2018 hanya membolehkan kerugian dari harta atau kegiatan yang berhubungan efektif dengan suatu cabang diperhitungkan terhadap penghasilan neto cabang itu sendiri, bukan cabang di negara lain."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018 Pasal 4, Pasal 5, dan Pasal 6 ayat (2)", berlakuSejak: "2018-12-31" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-030",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-198",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "PT Prima Komponen Otomotif memperoleh fasilitas Pajak Penghasilan berdasarkan PP 78/2019 atas penanaman modal pabrik baru yang dibangun di dalam kawasan industri. Perusahaan tidak memenuhi kriteria tambahan lain (energi baru dan terbarukan, biaya infrastruktur, bahan baku dalam negeri, tenaga kerja, penelitian dan pengembangan, atau ekspor). Pada tahun pajak kedua sejak mulai berproduksi komersial perusahaan menderita kerugian fiskal. Menurut PP 78/2019, kerugian tahun itu dapat dikompensasikan paling lama ...",
+      kataKualifikasi: ["paling lama"],
+      opsi: { A: "5 tahun, karena tambahan jangka waktu hanya untuk kerugian tahun pajak pertama", B: "6 tahun, yaitu 5 tahun ditambah 1 tahun karena memperoleh fasilitas", C: "10 tahun, yaitu batas tertinggi kompensasi bagi setiap penerima fasilitas", D: "7 tahun, yaitu 5 tahun ditambah 1 tahun fasilitas dan 1 tahun lokasi" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 3 ayat (1) huruf d PP 78/2019 memberi tambahan 1 tahun untuk penanaman modal yang dilakukan (angka 1) dan tambahan 1 tahun bila penanaman modal dilakukan di kawasan industri dan/atau kawasan berikat (angka 2). Tambahan itu berlaku atas kerugian tahun pajak pertama sampai ketiga sejak produksi komersial (ayat (2)), sehingga kerugian tahun kedua dikompensasikan 5 + 1 + 1 = 7 tahun.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Ayat (2) mencakup kerugian tahun pajak pertama, kedua, dan/atau ketiga sejak produksi komersial, jadi tahun kedua tetap mendapat tambahan.",
+          B: "Melupakan tambahan 1 tahun karena lokasi di kawasan industri (angka 2).",
+          C: "10 tahun adalah batas tertinggi bila banyak kriteria terpenuhi, bukan jangka otomatis."
+        },
+        jebakan: "Hitung tambahan per kriteria yang benar-benar dipenuhi; batas 10 tahun hanya plafon."
+      },
+      dasarHukum: [{ pasal: "PP 78/2019 Pasal 3 ayat (1) huruf d dan ayat (2)", berlakuSejak: "2019-12-13" }, { pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 80,
+      verifikasi: "✅",
+      kembaranDari: "B6-031",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-199",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Cakra Logistik Mandiri selama Tahun Pajak 2025 memiliki dokumen berikut: BPPU PPh Pasal 23 atas sewa truk miliknya 2% × Rp750.000.000 = Rp15.000.000; bukti potong PPh Pasal 4 ayat (2) atas sewa gudang miliknya 10% × Rp450.000.000 = Rp45.000.000; dokumen impor (PIB) yang memuat PPh Pasal 22 impor yang dipungut Rp30.000.000; bukti potong PPh final atas bunga deposito 20% × Rp60.000.000 = Rp12.000.000; dan BPPU PPh Pasal 23 atas bunga pinjaman yang diberikannya kepada perusahaan lain 15% × Rp100.000.000 = Rp15.000.000. Jumlah kredit pajak yang dapat dikurangkan dalam SPT Tahunan PPh Badan 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp60.000.000", B: "Rp117.000.000", C: "Rp30.000.000", D: "Rp72.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "final-nonfinal", C: "salah-klasifikasi", D: "final-nonfinal" },
+      pembahasan: {
+        inti: "Kredit pajak menurut Pasal 28 ayat (1) UU PPh meliputi PPh Pasal 22 impor dan PPh Pasal 23 (sewa truk dan bunga pinjaman). PPh atas sewa gudang (PP 34/2017) dan bunga deposito bersifat final sehingga tidak dikreditkan.",
+        jejakHitung: [
+          ["PPh 23 sewa truk", "Rp15.000.000"],
+          ["PPh 22 impor", "Rp30.000.000"],
+          ["PPh 23 bunga pinjaman", "Rp15.000.000"],
+          ["Jumlah kredit pajak", "Rp60.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Menjumlahkan seluruh dokumen, termasuk PPh final sewa gudang dan bunga deposito.",
+          C: "Hanya mengkreditkan PPh Pasal 23 dan melupakan PPh Pasal 22 impor yang juga kredit pajak (Pasal 28 ayat (1) huruf b).",
+          D: "Ikut mengkreditkan PPh final bunga deposito Rp12.000.000."
+        },
+        jebakan: "Sewa truk (harta bergerak) dipotong PPh 23 tidak final, sedangkan sewa gudang (bangunan) dikenai PPh final; bedakan objek sewanya sebelum menjumlahkan."
+      },
+      dasarHukum: [{ pasal: "Pasal 28 ayat (1) huruf b dan c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) huruf a dan d UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 34/2017", berlakuSejak: "2018-01-02" }, { pasal: "PP 131/2000 s.t.d.d. PP 123/2015", berlakuSejak: "2001-01-01" }, { pasal: "PER-11/PJ/2025 (BPPU)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      kembaranDari: "B6-032",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-200",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Arunika Teknologi Global (peredaran bruto di atas Rp50 miliar) Tahun Pajak 2025 memperoleh penghasilan neto dalam negeri Rp3.000.000.000. Dari Negara P ia memperoleh penghasilan usaha cabang (neto) Rp1.200.000.000 dengan pajak dibayar di sana Rp360.000.000 dan bunga Rp400.000.000 dengan pajak dipotong Rp40.000.000; dari Negara Q royalti Rp600.000.000 dengan pajak dipotong Rp150.000.000; dari Negara R rugi usaha Rp250.000.000. Pajak luar negeri tersebut tidak melebihi jumlah menurut P3B yang berlaku dan tidak ada penghasilan yang dikenai PPh final. PKP Rp5.200.000.000 (rugi Negara R tidak digabung) dan PPh terutang Rp1.144.000.000. Jumlah PPh Pasal 24 yang dapat dikreditkan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp484.000.000", B: "Rp550.000.000", C: "Rp436.000.000", D: "Rp381.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Batas kredit dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018), jadi penghasilan usaha dan bunga dari Negara P diuji sendiri-sendiri. Kredit tiap pos = jumlah paling sedikit antara pajak luar negeri dan (penghasilan ÷ PKP) × PPh terutang (Pasal 6 ayat (4)); rugi Negara R tidak diperhitungkan (Pasal 4 ayat (3)).",
+        jejakHitung: [
+          ["Batas P usaha = 1.200/5.200 × 1.144.000.000", "Rp264.000.000"],
+          ["Kredit P usaha = min(360.000.000; 264.000.000)", "Rp264.000.000"],
+          ["Batas P bunga = 400/5.200 × 1.144.000.000", "Rp88.000.000"],
+          ["Kredit P bunga = min(40.000.000; 88.000.000)", "Rp40.000.000"],
+          ["Batas Q royalti = 600/5.200 × 1.144.000.000", "Rp132.000.000"],
+          ["Kredit Q = min(150.000.000; 132.000.000)", "Rp132.000.000"],
+          ["Total PPh Pasal 24", "Rp436.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Menggabungkan usaha dan bunga Negara P dalam satu batas (1.600/5.200 × 1.144.000.000 = 352.000.000, kredit P 352.000.000) lalu menambah Q 132.000.000; hasilnya sama dengan memakai batas keseluruhan.",
+          B: "Mengkreditkan seluruh pajak luar negeri yang dibayar (360 + 40 + 150 juta) tanpa batas.",
+          D: "Mengurangkan rugi Negara R dari penghasilan usaha Negara P (batas 950/5.200 × 1.144.000.000 = 209.000.000), padahal rugi luar negeri tidak diperhitungkan."
+        },
+        jebakan: "Kelebihan pajak usaha di Negara P (Rp96.000.000) dan royalti di Negara Q (Rp18.000.000) tidak dapat dikreditkan, dibiayakan, atau direstitusi (Pasal 7 PMK 192/PMK.03/2018); kelonggaran batas bunga Negara P tidak boleh dipakai untuk menutupnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 24 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018 Pasal 4 ayat (3), Pasal 6 ayat (2) dan (4), Pasal 7", berlakuSejak: "2018-12-31" }],
+      anggaranDetik: 190,
+      verifikasi: "✅",
+      kembaranDari: "B6-033",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-201",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      stem: "SPT Tahunan PPh Badan Tahun Pajak 2025 PT Graha Nusa Kemasan berstatus lebih bayar Rp1.240.000.000 dengan permintaan pengembalian dan diterima secara lengkap oleh DJP pada 17 April 2026. Perusahaan tidak memenuhi syarat pengembalian pendahuluan, tidak sedang dilakukan pemeriksaan bukti permulaan, dan DJP melakukan pemeriksaan atas permohonan itu. Menurut Pasal 17B UU KUP dan cara hitung \"N bulan sejak tanggal X\" yang menghitung tanggal X sebagai hari pertama, pernyataan yang tepat tentang batas waktu penerbitan surat ketetapan pajak dan akibatnya adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Paling lambat 16 April 2027; bila terlewati tanpa keputusan, permohonan dianggap dikabulkan dan SKPLB diterbitkan paling lama 1 bulan setelah jangka waktu berakhir", B: "Paling lambat 16 Oktober 2026; bila terlewati tanpa keputusan, permohonan dianggap dikabulkan dan SKPLB diterbitkan paling lama 1 bulan setelah jangka waktu berakhir", C: "Paling lambat 16 April 2027; bila terlewati tanpa keputusan, permohonan dianggap ditolak dan perusahaan dapat mengajukan keberatan atas penolakan tersebut", D: "Paling lambat 16 Mei 2026, karena lebih bayar PPh badan selalu diselesaikan dalam 1 bulan seperti pengembalian pendahuluan kelebihan pembayaran pajak" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 17B ayat (1) UU KUP: setelah pemeriksaan, DJP harus menerbitkan surat ketetapan pajak paling lama 12 bulan sejak permohonan (SPT lengkap) diterima. 12 bulan sejak 17 April 2026 berakhir 16 April 2027. Ayat (2): bila terlampaui tanpa keputusan, permohonan dianggap dikabulkan dan SKPLB diterbitkan paling lama 1 bulan setelah jangka waktu berakhir.",
+        jejakHitung: [
+          ["SPT lebih bayar diterima lengkap", "17 April 2026"],
+          ["12 bulan sejak 17 April 2026 (hari terakhir)", "16 April 2027"]
+        ],
+        mengapaSalah: {
+          B: "Memakai 6 bulan, padahal jangka Pasal 17B adalah 12 bulan.",
+          C: "Akibat lewat waktu menurut Pasal 17B ayat (2) adalah dianggap dikabulkan, bukan ditolak.",
+          D: "Jangka 1 bulan milik pengembalian pendahuluan bagi Wajib Pajak yang memenuhi syarat; perusahaan ini tidak memenuhi syarat dan diperiksa."
+        },
+        jebakan: "Penjelasan Pasal 17B ayat (1): \"surat permohonan telah diterima secara lengkap\" adalah SPT yang telah diisi lengkap, jadi jangka dihitung dari tanggal SPT lengkap diterima, bukan dari batas akhir penyampaian SPT."
+      },
+      dasarHukum: [{ pasal: "Pasal 17B ayat (1) dan (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 28A UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-034",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-202",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      kutipan: "Pasal 31E ayat (1) UU PPh: Wajib Pajak badan dalam negeri dengan peredaran bruto sampai dengan Rp50.000.000.000,00 (lima puluh miliar rupiah) mendapat fasilitas berupa pengurangan tarif sebesar 50% (lima puluh persen) dari tarif sebagaimana dimaksud dalam Pasal 17 ayat (1) huruf b dan ayat (2a) yang dikenakan atas Penghasilan Kena Pajak dari bagian peredaran bruto sampai dengan Rp4.800.000.000,00 (empat miliar delapan ratus juta rupiah).",
+      stem: "CV Tenun Lestari Abadi (usaha perdagangan kain) terdaftar sebagai Wajib Pajak pada 2021 dan sejak itu memakai PPh final 0,5% sampai jangka waktu 4 Tahun Pajak untuk CV berakhir; CV belum pernah memilih tarif umum sebelumnya. Pada Tahun Pajak 2025 peredaran brutonya Rp3.750.000.000 dan Penghasilan Kena Pajak Rp415.000.000. Berdasarkan kutipan tersebut, PPh badan terutang Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp18.750.000", B: "Rp91.300.000", C: "Rp45.650.000", D: "Rp51.875.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "angka-usang" },
+      pembahasan: {
+        inti: "CV yang terdaftar 2021 dikenai PPh final sejak Tahun Pajak terdaftar selama 4 Tahun Pajak, yaitu 2021 sampai 2024 (PP 23/2018 Pasal 5; PP 55/2022 Pasal 69 ayat (1) huruf b). Tahun Pajak 2025 memakai tarif umum dengan Pasal 31E; karena peredaran bruto tidak melebihi Rp4,8 miliar, seluruh PKP dikenai 50% × 22% = 11%.",
+        jejakHitung: [
+          ["Jangka PPh final CV terdaftar 2021", "2021 sampai 2024 (berakhir)"],
+          ["Peredaran bruto 2025 ≤ Rp4,8 miliar", "seluruh PKP mendapat fasilitas"],
+          ["PPh = 11% × 415.000.000", "Rp45.650.000"]
+        ],
+        mengapaSalah: {
+          A: "Tetap memakai PPh final 0,5% × peredaran bruto (0,5% × 3.750.000.000) padahal jangka 4 Tahun Pajak sudah berakhir pada 2024.",
+          B: "Memakai tarif 22% atas seluruh PKP tanpa Pasal 31E.",
+          D: "Memakai 12,5% (50% × tarif lama 25%)."
+        },
+        jebakan: "Jangka 4 Tahun Pajak dihitung sejak Tahun Pajak terdaftar, termasuk tahun terdaftar itu sendiri; jangan menghitung 2022 sampai 2025."
+      },
+      dasarHukum: [{ pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 23/2018 Pasal 5 (jangka waktu PPh final)", berlakuSejak: "2018-07-01" }, { pasal: "PP 55/2022 Pasal 69 ayat (1) huruf b", berlakuSejak: "2022-12-20" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-035",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-203",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 3,
+      stem: "Pada November 2026 empat Wajib Pajak menanyakan apakah dapat dikenai PPh final 0,5% atas omzet untuk Tahun Pajak 2026. Peredaran bruto masing-masing (dan seluruh usaha pendirinya) di bawah Rp4,8 miliar, tidak ada yang pernah memilih tarif umum, dan tidak ada yang menjual jasa sejenis pekerjaan bebas: (1) Koperasi Serba Usaha Karya Bersama, terdaftar dan langsung memakai PPh final sejak 2020; (2) perseroan perorangan milik seorang pembuat roti, didirikan dan terdaftar Agustus 2026; (3) Firma Bangun Sentosa (perdagangan bahan bangunan), terdaftar 2024 dan memakai PPh final sejak tahun itu; (4) PT Sinar Logam Utama (bukan perseroan perorangan), didirikan dan terdaftar Mei 2026. Menurut PP 55/2022 s.t.d.d. PP 20/2026, yang dapat dikenai PPh final 0,5% untuk Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Hanya (2)", B: "(2) dan (3)", C: "(1), (2), dan (3)", D: "(2), (3), dan (4)" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "angka-usang" },
+      pembahasan: {
+        inti: "Sejak PP 20/2026 subjek PPh final 0,5% hanya orang pribadi, perseroan perorangan yang didirikan 1 orang, dan koperasi (Pasal 57 ayat (1)). Butir (2) termasuk subjek baru. Butir (3) firma yang jangka 4 Tahun Pajaknya (2024 sampai 2027) belum berakhir saat PP 20/2026 berlaku tetap dapat memakai sampai jangka itu berakhir (Pasal II angka 1 huruf e). Butir (1) koperasi terdaftar 2020 sudah habis jangkanya pada 2023, sehingga tidak tercakup peralihan koperasi yang jangkanya berakhir 2024 sampai 2029 (Pasal II angka 1 huruf b). Butir (4) PT baru bukan lagi subjek.",
+        jejakHitung: [
+          ["(1) Koperasi terdaftar 2020: 4 Tahun Pajak", "2020 sampai 2023 (habis, di luar peralihan 2024 sampai 2029)"],
+          ["(2) Perseroan perorangan, pendiri bukan pekerja bebas", "subjek Pasal 57 ayat (1) huruf b"],
+          ["(3) Firma terdaftar 2024: 4 Tahun Pajak", "2024 sampai 2027 (belum berakhir, peralihan huruf e)"],
+          ["(4) PT terdaftar Mei 2026", "bukan subjek; tidak ada jangka PP 55/2022 yang berjalan"],
+          ["Yang dapat memakai PPh final 2026", "(2) dan (3)"]
+        ],
+        mengapaSalah: {
+          A: "Melupakan ketentuan peralihan bagi firma yang jangka waktu PP 55/2022-nya belum berakhir pada saat PP 20/2026 berlaku.",
+          C: "Menganggap semua koperasi tetap boleh; peralihan koperasi hanya bagi yang jangkanya berakhir pada Tahun Pajak 2024 sampai 2029, sedangkan koperasi terdaftar 2020 berakhir pada 2023.",
+          D: "Memakai daftar subjek lama (PT termasuk); sejak PP 20/2026 PT yang baru terdaftar tidak lagi dapat dikenai PPh final."
+        },
+        jebakan: "Untuk badan lama, uji dua hal: kapan jangka waktunya berakhir menurut PP 55/2022 (dihitung sejak Tahun Pajak terdaftar) dan apakah keadaan itu masuk salah satu huruf ketentuan peralihan PP 20/2026."
+      },
+      dasarHukum: [{ pasal: "PP 55/2022 Pasal 57 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" }, { pasal: "PP 20/2026 Pasal II angka 1 huruf b dan huruf e (ketentuan peralihan)", berlakuSejak: "2026-04-22" }, { pasal: "PP 55/2022 Pasal 59 dan Pasal 69 ayat (1) huruf b", berlakuSejak: "2022-12-20" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-036",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-204",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Rasa Nusa Boga (bukan perseroan perorangan, usaha kedai makanan) terdaftar sejak 2024 dan sejak itu membayar PPh final 0,5% PP 55/2022. Peredaran bruto 2025 Rp620.000.000. Omzet Januari sampai Juni 2026 berjumlah Rp300.000.000, dan pada Juli 2026, setelah PP 20/2026 berlaku, omzetnya Rp95.000.000. Seluruh pembelinya orang pribadi sehingga tidak ada pemotongan, dan perusahaan belum pernah memberitahukan memilih tarif umum. PPh atas omzet Masa Pajak Juli 2026 yang harus disetor sendiri adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp0, karena omzet kumulatif 2026 belum melebihi Rp500.000.000", B: "Rp950.000", C: "Tidak ada PPh final; omzet masuk penghitungan PPh badan tarif umum dengan Pasal 31E", D: "Rp475.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", C: "lupa-pasal" },
+      pembahasan: {
+        inti: "PT yang terdaftar 2024 mempunyai jangka PPh final 3 Tahun Pajak sejak tahun terdaftar (2024 sampai 2026). Jangka itu belum berakhir saat PP 20/2026 berlaku, sehingga PT tetap dapat dikenai PPh final sampai jangka berakhir (PP 20/2026 Pasal II angka 1 huruf e). PPh Juli 2026 = 0,5% × Rp95.000.000, tanpa bagian omzet tidak kena pajak.",
+        jejakHitung: [
+          ["Jangka PPh final PT terdaftar 2024", "2024 sampai 2026"],
+          ["PPh final = 0,5% × 95.000.000", "Rp475.000"]
+        ],
+        mengapaSalah: {
+          A: "Bagian peredaran bruto Rp500 juta yang tidak dikenai pajak hanya untuk Wajib Pajak orang pribadi (Pasal 60 ayat (2) PP 55/2022).",
+          B: "Memakai tarif 1% PP 46/2013.",
+          C: "Mengabaikan ketentuan peralihan PP 20/2026 bagi PT yang jangka waktunya belum berakhir."
+        },
+        jebakan: "PP 20/2026 mengeluarkan PT dari daftar subjek baru, tetapi PT lama yang jangkanya masih berjalan tetap memakai PPh final sampai jangka itu habis."
+      },
+      dasarHukum: [{ pasal: "PP 20/2026 Pasal II angka 1 huruf e (ketentuan peralihan)", berlakuSejak: "2026-04-22" }, { pasal: "PP 55/2022 Pasal 59 dan Pasal 60", berlakuSejak: "2022-12-20" }, { pasal: "PMK 164/2023", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-037",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-205",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Delta Agro Niaga Tahun Pajak 2025 membukukan penjualan neto (setelah retur dan potongan) Rp48.000.000.000, bunga deposito yang dikenai PPh final Rp1.200.000.000, dan dividen dari PT anak dalam negeri yang dikecualikan dari objek pajak Rp1.800.000.000. Setelah rekonsiliasi fiskal, Penghasilan Kena Pajak Rp3.200.000.000. Dengan definisi peredaran bruto menurut SE-02/PJ/2015 (termasuk penghasilan final dan yang dikecualikan dari objek pajak), PPh badan terutang Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp668.800.000", B: "Rp352.000.000", C: "Rp704.000.000", D: "Rp800.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "angka-usang" },
+      pembahasan: {
+        inti: "Peredaran bruto untuk Pasal 31E = 48 + 1,2 + 1,8 = Rp51 miliar, melebihi Rp50 miliar, sehingga fasilitas Pasal 31E tidak berlaku dan seluruh PKP dikenai tarif 22%.",
+        jejakHitung: [
+          ["Peredaran bruto = 48.000.000.000 + 1.200.000.000 + 1.800.000.000", "Rp51.000.000.000"],
+          ["Batas Pasal 31E", "Rp50.000.000.000 (terlampaui)"],
+          ["PPh = 22% × 3.200.000.000", "Rp704.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai penjualan saja (Rp48 miliar) sebagai peredaran bruto, sehingga Pasal 31E diterapkan dengan PKP fasilitas 4,8/48 × 3.200.000.000 = 320.000.000 (11% × 320.000.000 + 22% × 2.880.000.000).",
+          B: "Menerapkan 11% atas seluruh PKP seolah peredaran bruto tidak melebihi Rp4,8 miliar.",
+          D: "Memakai tarif lama 25%."
+        },
+        jebakan: "Definisi peredaran bruto yang luas dapat membuat Wajib Pajak kehilangan fasilitas Pasal 31E sama sekali, bukan hanya mengecilkan proporsi."
+      },
+      dasarHukum: [{ pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 17 ayat (1) huruf b UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "SE-02/PJ/2015", berlakuSejak: "2015-01-09" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-038",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-206",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Samudra Kimia Tbk pada Tahun Pajak 2025: 45% saham disetor tercatat dan diperdagangkan di BEI, dimiliki 1.480 pihak yang masing-masing memiliki kurang dari 5% saham disetor, tetapi seluruh kondisi itu hanya terpenuhi selama 160 hari kalender; laporan dari biro administrasi efek dilampirkan pada SPT. Peredaran bruto Rp620.000.000.000 dan PKP Rp8.000.000.000. Kredit pajak 2025: PPh Pasal 22 impor Rp420.000.000, PPh Pasal 23 yang dipotong pelanggan Rp95.000.000, dan angsuran PPh Pasal 25 Rp900.000.000; selain itu penyewa memotong PPh final atas sewa gedung miliknya Rp60.000.000. PPh Pasal 29 PT Samudra Kimia Tbk Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp345.000.000", B: "Rp105.000.000", C: "Rp285.000.000", D: "Rp585.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "final-nonfinal", D: "angka-usang" },
+      pembahasan: {
+        inti: "Syarat penurunan tarif perseroan terbuka harus dipenuhi paling singkat 183 hari kalender dalam satu Tahun Pajak (Pasal 65 ayat (2) huruf c PP 55/2022). Karena hanya 160 hari, tarif yang berlaku 22% (Pasal 65 ayat (5)). PPh 29 = PPh terutang dikurangi PPh 22, 23, dan 25; PPh final sewa gedung tidak dikreditkan.",
+        jejakHitung: [
+          ["Uji syarat: 45% ≥ 40%; 1.480 ≥ 300; < 5%; 160 < 183 hari", "tidak terpenuhi"],
+          ["PPh terutang = 22% × 8.000.000.000", "Rp1.760.000.000"],
+          ["Kredit = 420.000.000 + 95.000.000 + 900.000.000", "Rp1.415.000.000"],
+          ["PPh 29 = 1.760.000.000 − 1.415.000.000", "Rp345.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Menerapkan tarif 19% padahal syarat 183 hari tidak terpenuhi (1.520.000.000 − 1.415.000.000).",
+          C: "Ikut mengkreditkan PPh final sewa gedung Rp60.000.000 (1.760.000.000 − 1.475.000.000).",
+          D: "Memakai tarif lama 25% (2.000.000.000 − 1.415.000.000)."
+        },
+        jebakan: "Ketiga syarat kepemilikan bisa terpenuhi tetapi tetap gagal karena lamanya kurang dari 183 hari; periksa semua syarat, termasuk lamanya."
+      },
+      dasarHukum: [{ pasal: "Pasal 17 ayat (1) huruf b dan ayat (2b) UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "PP 55/2022 Pasal 65 (ketentuan perseroan terbuka)", berlakuSejak: "2022-12-20" }, { pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      kembaranDari: "B6-039",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-207",
+      topik: "B6.8",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Serat Andalas Lestari, produsen pulp di Riau, ditetapkan memperoleh fasilitas Pajak Penghasilan untuk penanaman modal di bidang usaha tertentu berdasarkan PP 78/2019 dan mulai berproduksi komersial pada Maret 2026. Realisasi penanaman modal sampai saat itu: tanah lokasi pabrik Rp30.000.000.000, bangunan pabrik Rp62.000.000.000, mesin produksi Rp88.000.000.000, serta lisensi teknologi pemutihan pulp (aktiva tidak berwujud) Rp24.000.000.000. Seluruh aktiva digunakan untuk Kegiatan Usaha Utama. Besarnya pengurangan penghasilan neto berdasarkan fasilitas tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp9.000.000.000 per tahun selama 6 tahun", B: "Rp10.200.000.000 per tahun selama 6 tahun", C: "Rp7.500.000.000 per tahun selama 6 tahun", D: "Rp54.000.000.000 sekaligus pada Tahun Pajak 2026" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pengurangan penghasilan neto tax allowance sebesar 30% dari nilai Penanaman Modal berupa aktiva tetap berwujud termasuk tanah yang digunakan untuk Kegiatan Usaha Utama, dibebankan 5% per tahun selama 6 tahun. Lisensi teknologi adalah aktiva tidak berwujud sehingga tidak masuk dasar fasilitas ini (aktiva tidak berwujud hanya mendapat amortisasi dipercepat).",
+        jejakHitung: [
+          ["Dasar = tanah 30 + bangunan 62 + mesin 88 (miliar)", "Rp180.000.000.000"],
+          ["Jumlah fasilitas = 30% × 180.000.000.000", "Rp54.000.000.000"],
+          ["Per tahun = 5% × 180.000.000.000", "Rp9.000.000.000 × 6 tahun"]
+        ],
+        mengapaSalah: {
+          B: "Memasukkan lisensi teknologi (aktiva tidak berwujud) ke dasar: 5% × 204 miliar. Dasar fasilitas hanya aktiva tetap berwujud.",
+          C: "Mengeluarkan tanah dari dasar: 5% × 150 miliar. Tanah justru termasuk nilai Penanaman Modal.",
+          D: "Fasilitas 30% dibebankan bertahap 5% per tahun selama 6 tahun, bukan sekaligus."
+        },
+        jebakan: "Dua batas dasar tax allowance: tanah ikut walaupun tidak disusutkan, sedangkan aktiva tidak berwujud tidak ikut walaupun dibeli dalam rangka penanaman modal yang sama."
+      },
+      dasarHukum: [{ pasal: "Pasal 31A UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 78/2019 Pasal 3 ayat (1) huruf a dan huruf b beserta Penjelasannya", berlakuSejak: "2019-12-13" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-040",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-208",
+      topik: "B6.8",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Baja Ringan Cakrawala menyelenggarakan program pemagangan bagi 12 siswa SMK jurusan teknik pengelasan di bengkel pelatihan khusus yang terpisah dari lini produksi. Perjanjian kerja sama dengan SMK dan surat keterangan fiskal telah dilampirkan pada pemberitahuan melalui sistem OSS sebelum program dimulai, dan seluruh syarat PMK 128/2019 lainnya terpenuhi. Biaya 2026 yang dibukukan: honor instruktur Rp96.000.000, bahan praktik Rp74.000.000, dan uang saku peserta Rp54.000.000, termasuk Rp4.500.000 untuk seorang peserta yang merupakan anak kandung direktur utama. Laba fiskal sebelum fasilitas jauh melebihi jumlah tambahan pengurangan. Jumlah pengurangan penghasilan bruto paling tinggi atas program tersebut adalah ...",
+      kataKualifikasi: ["paling tinggi"],
+      opsi: { A: "Rp448.000.000", B: "Rp443.500.000", C: "Rp663.000.000", D: "Rp224.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Super deduction vokasi terdiri atas pengurangan 100% dari seluruh biaya ditambah tambahan pengurangan paling tinggi 100%. Tambahan tidak diberikan atas uang saku (pembayaran menurut Pasal 4 huruf d) kepada peserta yang mempunyai hubungan keluarga sedarah garis lurus satu derajat dengan direksi (Pasal 5 huruf e PMK 128/2019); biaya itu tetap dibebankan 100%.",
+        jejakHitung: [
+          ["Biaya riil = 96 + 74 + 54 (juta)", "Rp224.000.000"],
+          ["Biaya yang berhak tambahan = 224.000.000 − 4.500.000", "Rp219.500.000"],
+          ["Tambahan pengurangan 100%", "Rp219.500.000"],
+          ["Jumlah paling tinggi = 224.000.000 + 219.500.000", "Rp443.500.000"]
+        ],
+        mengapaSalah: {
+          A: "Memberi tambahan 100% atas seluruh biaya (2 × 224 juta), termasuk uang saku anak direktur utama yang dikecualikan.",
+          C: "Memakai pola litbang (tambahan 200%): 224 juta + 2 × 219,5 juta.",
+          D: "Hanya membebankan biaya riil tanpa tambahan pengurangan, padahal syarat fasilitas terpenuhi."
+        },
+        jebakan: "Pengecualian hubungan keluarga hanya memotong tambahan pengurangan atas biaya peserta yang bersangkutan; biaya riilnya tetap boleh dikurangkan 100%."
+      },
+      dasarHukum: [{ pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29B ayat (1) (super deduction vokasi)", berlakuSejak: "2019-06-26" }, { pasal: "PMK 128/PMK.010/2019 Pasal 2 ayat (1) dan (2), Pasal 4 huruf d, Pasal 5 huruf e, Pasal 7 ayat (1)", berlakuSejak: "2019-09-09" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-041",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-209",
+      topik: "B6.8",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "PT Farmasi Tirta Medika memiliki unit yang di dalam perusahaan disebut \"Divisi Litbang\". Sepanjang 2026 seluruh kegiatan unit itu berupa kendali mutu selama produksi komersial, termasuk pengujian rutin atas setiap batch tablet yang dihasilkan pabrik. Direksi ingin memanfaatkan fasilitas pengurangan penghasilan bruto (super deduction) litbang menurut PMK 81/2024 atas biaya unit tersebut. Pengurangan penghasilan bruto yang dapat dimanfaatkan atas biaya kegiatan itu adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "300% dari biaya (100% biaya ditambah tambahan pengurangan paling tinggi 200%)", B: "200% dari biaya (100% biaya ditambah tambahan pengurangan 100%)", C: "150% dari biaya (100% biaya ditambah tambahan pengurangan 50%)", D: "100% dari biaya sebagai biaya usaha biasa, tanpa tambahan pengurangan" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
+      pembahasan: {
+        inti: "Tambahan pengurangan litbang (paling tinggi 200% di atas 100% biaya) hanya untuk penelitian dan pengembangan tertentu. Kendali mutu selama produksi komersial, termasuk pengujian rutin terhadap hasil produksi, termasuk kegiatan yang tidak diberikan tambahan pengurangan (PMK 81/2024 Pasal 434 ayat (2) huruf b). Biayanya tetap dapat dikurangkan sebagai biaya usaha biasa sebesar jumlah yang dikeluarkan, tanpa tambahan; nama unit \"Litbang\" tidak menentukan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Plafon 300% hanya untuk litbang tertentu; kendali mutu dikecualikan dari tambahan pengurangan.",
+          B: "200% adalah plafon super deduction vokasi (PMK 128/2019), bukan untuk kegiatan ini.",
+          C: "Tambahan 50% hanya bila litbang menghasilkan paten atau hak PVT yang terdaftar di kementerian hukum; kegiatan ini bukan litbang tertentu."
+        },
+        jebakan: "Yang diuji adalah substansi kegiatan, bukan nama unit: kendali mutu, perbaikan rutin produk, dan riset pemasaran tidak mendapat tambahan pengurangan."
+      },
+      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 432 ayat (1) dan (2), Pasal 434 ayat (2) huruf b (mencabut PMK 153/PMK.010/2020)", berlakuSejak: "2025-01-01" }, { pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29C ayat (1) (super deduction litbang, plafon 300%)", berlakuSejak: "2019-06-26" }],
+      anggaranDetik: 80,
+      verifikasi: "✅",
+      kembaranDari: "B6-042",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-210",
+      topik: "B6.8",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Katoda Energi Nusantara (industri pionir baterai kendaraan listrik, perseroan tertutup, peredaran bruto di atas Rp50 miliar, bukan bagian grup multinasional yang terkena pajak minimum global) merealisasikan penanaman modal baru Rp720.000.000.000. Berdasarkan PMK 130/2020, perseroan memperoleh pengurangan PPh badan 100% untuk 5 tahun pajak, yaitu Tahun Pajak 2021 sampai 2025, sejak produksi komersial. Pada Tahun Pajak 2026 Penghasilan Kena Pajak dari Kegiatan Usaha Utama Rp13.600.000.000 dan seluruh persyaratan tetap dipenuhi. PPh badan terutang Tahun Pajak 2026 setelah fasilitas adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp0", B: "Rp2.244.000.000", C: "Rp1.496.000.000", D: "Rp2.992.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Penanaman modal baru Rp720 miliar (paling sedikit Rp500 miliar dan kurang dari Rp1 triliun) mendapat pengurangan 100% selama 5 tahun pajak. Setelah itu berlaku masa transisi 2 tahun pajak berikutnya dengan pengurangan 50% (pasca-pengurangan 100%). Tahun Pajak 2026 adalah tahun transisi pertama.",
+        jejakHitung: [
+          ["PPh sebelum fasilitas = 22% × 13.600.000.000", "Rp2.992.000.000"],
+          ["Pengurangan transisi 50%", "Rp1.496.000.000"],
+          ["PPh terutang 2026", "Rp1.496.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Masih memakai pengurangan 100% yang sudah berakhir pada Tahun Pajak 2025.",
+          B: "Memakai pengurangan transisi 25%, padahal 25% hanya untuk penanaman modal yang mendapat pengurangan 50% (kurang dari Rp500 miliar).",
+          D: "Melupakan masa transisi 2 tahun sehingga langsung memakai tarif penuh."
+        },
+        jebakan: "Besarnya pengurangan transisi mengikuti kelas penanaman modal: pasca-100% transisinya 50%, pasca-50% transisinya 25%."
+      },
+      dasarHukum: [{ pasal: "PMK 130/PMK.010/2020 Pasal 2 ayat (3) huruf a, ayat (4) huruf a, dan ayat (6) huruf a s.t.d.d. PMK 69/2024", berlakuSejak: "2020-10-09" }, { pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29 ayat (1)", berlakuSejak: "2019-06-26" }, { pasal: "Pasal 18 ayat (3) huruf e dan ayat (4) UU 25/2007 s.t.d.t.d. UU 6/2023 (Penanaman Modal)", berlakuSejak: "2022-12-30" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      kembaranDari: "B6-043",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-211",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      stem: "PT Gemilang Logistik Sentosa (tahun buku kalender) membayar angsuran PPh Pasal 25 Masa Desember 2025 sebesar Rp27.500.000. SPT Tahunan PPh Badan Tahun Pajak 2025 disampaikan lebih awal, yaitu pada 17 Februari 2026, dan menghasilkan angsuran baru Rp21.500.000 per bulan. Tidak ada kompensasi kerugian, penghasilan tidak teratur, surat ketetapan pajak, atau keputusan lain dari DJP. Angsuran PPh Pasal 25 yang harus dibayar untuk Masa Pajak Maret 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp21.500.000, sesuai angsuran menurut SPT Tahunan 2025", B: "Rp27.500.000, karena angsuran baru baru berlaku mulai Masa April 2026", C: "Rp24.500.000, rata-rata angsuran lama dan angsuran baru", D: "Rp27.500.000, karena penurunan angsuran harus dimohonkan ke KPP" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-hitung", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Angsuran Desember tahun lalu hanya dipakai untuk bulan-bulan SEBELUM SPT Tahunan disampaikan (Pasal 25 ayat (2) UU PPh). SPT 2025 disampaikan 17 Februari 2026, sehingga sejak itu angsuran dihitung menurut Pasal 25 ayat (1) dari SPT tersebut; Masa Maret 2026 sudah memakai angsuran baru Rp21.500.000.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "April adalah batas akhir bagi SPT yang disampaikan pada batas waktu; bila SPT disampaikan lebih awal, angsuran baru berlaku sejak penyampaian itu (contoh Penjelasan Pasal 25 ayat (2): SPT Februari, hanya Januari yang memakai angsuran Desember).",
+          C: "Tidak ada mekanisme rata-rata angsuran.",
+          D: "Permohonan pengurangan (Pasal 25 ayat (6) huruf f) dipakai untuk mengubah angsuran dalam tahun berjalan karena perubahan usaha; angsuran baru dari SPT Tahunan berlaku dengan sendirinya menurut Pasal 25 ayat (1)."
+        },
+        jebakan: "Patokan Pasal 25 ayat (2) adalah tanggal SPT benar-benar disampaikan, bukan batas waktu 30 April."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1) dan ayat (2) UU PPh beserta Penjelasannya", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      kembaranDari: "B6-044",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-212",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Sinar Kemasan Mandiri menyampaikan SPT Tahunan PPh Badan Tahun Pajak 2025 tepat waktu pada 27 Maret 2026 dengan PPh terutang Rp486.000.000. Kredit pajak dalam SPT: PPh Pasal 22 atas impor bahan baku Rp96.000.000, PPh Pasal 23 yang dipotong pelanggan Rp54.000.000, PPh Pasal 24 atas penghasilan cabang luar negeri yang boleh dikreditkan Rp30.000.000, dan angsuran PPh Pasal 25 Rp240.000.000. Selain itu, penyewa gudang memotong PPh final Pasal 4 ayat (2) Rp18.000.000. Tidak ada kompensasi kerugian dan penghasilan tidak teratur. Besarnya angsuran PPh Pasal 25 per bulan untuk Masa Pajak Mei 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp5.500.000", B: "Rp28.000.000", C: "Rp24.000.000", D: "Rp25.500.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "final-nonfinal" },
+      pembahasan: {
+        inti: "Angsuran = (PPh terutang tahun lalu − PPh 21/22/23 yang dipotong atau dipungut − PPh 24 yang boleh dikreditkan) ÷ 12. Angsuran PPh 25 tahun lalu tidak dikurangkan, dan PPh final Pasal 4 ayat (2) bukan kredit pajak.",
+        jejakHitung: [
+          ["Dasar = 486.000.000 − 96.000.000 − 54.000.000 − 30.000.000", "Rp306.000.000"],
+          ["Angsuran per bulan = 306.000.000 ÷ 12", "Rp25.500.000"]
+        ],
+        mengapaSalah: {
+          A: "Ikut mengurangkan angsuran PPh 25 tahun 2025: (306 − 240) juta ÷ 12.",
+          B: "Lupa mengurangkan PPh 24 yang boleh dikreditkan: (486 − 96 − 54) juta ÷ 12.",
+          C: "Ikut mengurangkan PPh final sewa gudang: (306 − 18) juta ÷ 12."
+        },
+        jebakan: "Pengurang dasar angsuran hanya PPh 21, 22, 23, dan 24; PPh 25 tahun lalu dan PPh final tidak termasuk."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 226 ayat (1)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-045",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-213",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      stem: "PT Rasa Kopi Priangan membayar angsuran PPh Pasal 25 tahun 2026 sebesar Rp40.000.000 per bulan berdasarkan SPT Tahunan 2025 (PPh terutang Rp480.000.000, tanpa kredit PPh Pasal 22, 23, atau 24). Pada Agustus 2026 harga kopi ekspor turun dan proyeksi PPh terutang Tahun Pajak 2026 yang didukung laporan keuangan sementara menjadi Rp372.000.000. SPT Tahunan dua tahun terakhir dan SPT Masa PPN tiga masa terakhir telah disampaikan. Langkah yang sesuai ketentuan atas angsuran bulan-bulan berikutnya adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Mengajukan permohonan pengurangan angsuran ke KPP, karena proyeksi PPh terutang 2026 lebih rendah daripada dasar angsuran", B: "Tetap membayar Rp40.000.000 per bulan, karena proyeksi tidak kurang dari 75% dasar angsuran (Rp372.000.000 ≥ Rp360.000.000)", C: "Menurunkan sendiri angsuran menjadi Rp31.000.000 per bulan mulai Masa Agustus 2026 tanpa permohonan ke KPP", D: "Mengajukan permohonan pengurangan angsuran ke KPP, karena proyeksi kurang dari 80% dasar angsuran (Rp372.000.000 < Rp384.000.000)" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Permohonan pengurangan angsuran hanya dapat diajukan bila setelah 3 bulan atau lebih tahun pajak berjalan PPh yang akan terutang kurang dari 75% dari PPh terutang yang menjadi dasar angsuran (PER-11/PJ/2025 Pasal 119 ayat (1)). Proyeksi Rp372.000.000 adalah 77,5% dari Rp480.000.000, tidak kurang dari batas Rp360.000.000, sehingga syarat tidak terpenuhi dan angsuran tetap Rp40.000.000.",
+        jejakHitung: [
+          ["Batas = 75% × 480.000.000", "Rp360.000.000"],
+          ["Proyeksi 2026", "Rp372.000.000 (77,5%) ≥ batas → tidak memenuhi"]
+        ],
+        mengapaSalah: {
+          A: "Penurunan saja tidak cukup; syaratnya proyeksi kurang dari 75% dasar angsuran.",
+          C: "Perubahan angsuran karena perubahan usaha memerlukan permohonan dan keputusan DJP (kepala KPP); menurunkan sendiri membuat angsuran kurang bayar.",
+          D: "Ambangnya 75%, bukan 80%."
+        },
+        jebakan: "Ambang pengurangan 75% (turun), sedangkan 125% adalah ambang penghitungan kembali bila usaha meningkat (Pasal 120)."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (6) huruf f UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 119 ayat (1) (pengurangan angsuran PPh Pasal 25; menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-046",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-214",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Kantor konsultan menyusun memo angsuran PPh Pasal 25 tahun 2026 untuk empat klien badan: PT yang baru terdaftar pada 2026 (bukan bank, BUMN, BUMD, Wajib Pajak masuk bursa, atau Wajib Pajak lain yang wajib membuat laporan keuangan berkala, dan bukan hasil restrukturisasi usaha), PT Tbk nonbank, PT yang baru terdaftar pada Juni 2026 sebagai hasil perubahan bentuk usaha dari CV, dan PT hasil penggabungan usaha pada 2026. Pernyataan berikut sesuai Pasal 25 ayat (7) UU PPh dan PMK 81/2024, KECUALI ...",
+      kataKualifikasi: ["kecuali"],
+      opsi: { A: "Angsuran PT yang baru terdaftar pada 2026 (bukan Wajib Pajak tertentu dan bukan hasil restrukturisasi) untuk tahun pajak berjalan ditetapkan nihil", B: "Angsuran PT Tbk dihitung dari laporan keuangan triwulanan ke bursa atau OJK dan berlaku untuk 3 masa pajak setelah periode yang dilaporkan", C: "Angsuran PT hasil perubahan bentuk usaha dari CV untuk sisa tahun pajak berjalan ditetapkan nihil karena berstatus Wajib Pajak baru", D: "Angsuran PT hasil penggabungan usaha pada sisa tahun berjalan sebesar jumlah angsuran seluruh Wajib Pajak yang bergabung" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        inti: "Wajib Pajak baru hasil perubahan bentuk badan usaha pada tahun pajak berjalan tidak berangsuran nihil: angsurannya ditetapkan sebesar angsuran bulan terakhir sebelum perubahan bentuk (PMK 81/2024 Pasal 236 ayat (4)). Angsuran nihil (Pasal 237) hanya untuk Wajib Pajak baru selain Wajib Pajak tertentu (Pasal 235) dan selain hasil penggabungan, peleburan, pengambilalihan, pemekaran, atau perubahan bentuk (Pasal 236).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Benar: Wajib Pajak baru selain yang diatur Pasal 235 dan Pasal 236 angsurannya pada tahun pajak berjalan ditetapkan nihil (PMK 81/2024 Pasal 237).",
+          B: "Benar: Wajib Pajak masuk bursa selain bank memakai laporan keuangan yang disampaikan setiap 3 bulan kepada bursa dan/atau OJK, dan angsurannya berlaku untuk 3 masa pajak setelah periode yang dilaporkan (PMK 81/2024 Pasal 228 ayat (1) dan (5)).",
+          D: "Benar: angsuran Wajib Pajak baru hasil penggabungan, peleburan, atau pengambilalihan usaha pada sisa tahun berjalan adalah penjumlahan angsuran seluruh Wajib Pajak terkait sebelum penggabungan (PMK 81/2024 Pasal 236 ayat (1))."
+        },
+        jebakan: "Status \"Wajib Pajak baru\" tidak otomatis berarti angsuran nihil: hasil restrukturisasi dan perubahan bentuk usaha meneruskan angsuran yang sudah ada."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 228 ayat (1) dan (5), Pasal 235, Pasal 236 ayat (1) dan (4), Pasal 237 (mencabut PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-047",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-215",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      kutipan: "Pasal 18 ayat (4) UU PPh: Hubungan istimewa sebagaimana dimaksud pada ayat (3) sampai dengan ayat (3d), Pasal 9 ayat (1) huruf f, dan Pasal 10 ayat (1) dianggap ada apabila: a. Wajib Pajak mempunyai penyertaan modal langsung atau tidak langsung paling rendah 25% (dua puluh lima persen) pada Wajib Pajak lain; hubungan antara Wajib Pajak dengan penyertaan paling rendah 25% (dua puluh lima persen) pada dua Wajib Pajak atau lebih; atau hubungan di antara dua Wajib Pajak atau lebih yang disebut terakhir; b. Wajib Pajak menguasai Wajib Pajak lainnya atau dua atau lebih Wajib Pajak berada di bawah penguasaan yang sama baik langsung maupun tidak langsung; atau c. terdapat hubungan keluarga baik sedarah maupun semenda dalam garis keturunan lurus dan/atau ke samping satu derajat.",
+      stem: "Data kepemilikan saham pada 2026: PT Kirana Agro memiliki 60% saham PT Lestari Pangan; PT Lestari Pangan memiliki 50% saham PT Mentari Sawit; Nyonya Sari memiliki 35% saham PT Nirmala Boga dan 20% saham PT Oryza Niaga. Tidak ada direksi atau komisaris yang sama, tidak ada penguasaan melalui manajemen atau teknologi, tidak ada hubungan keluarga di antara para pemegang saham, dan tidak ada pihak yang secara komersial atau finansial diketahui atau menyatakan diri berada dalam satu grup usaha yang sama. Berdasarkan kutipan tersebut, pasangan yang TIDAK memiliki hubungan istimewa adalah ...",
+      kataKualifikasi: ["tidak"],
+      opsi: { A: "PT Kirana Agro dan PT Mentari Sawit", B: "PT Lestari Pangan dan PT Mentari Sawit", C: "Nyonya Sari dan PT Nirmala Boga", D: "PT Nirmala Boga dan PT Oryza Niaga" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Dua Wajib Pajak berhubungan istimewa karena pemilik yang sama hanya bila pemilik itu mempunyai penyertaan paling rendah 25% pada KEDUANYA. Penyertaan Nyonya Sari pada PT Oryza Niaga hanya 20%, sehingga PT Nirmala Boga dan PT Oryza Niaga tidak berhubungan istimewa karena kepemilikan, dan tidak ada penguasaan, hubungan keluarga, atau pernyataan satu grup usaha.",
+        jejakHitung: [
+          ["Kirana → Mentari tidak langsung = 60% × 50%", "30% ≥ 25% → istimewa"],
+          ["Lestari → Mentari", "50% ≥ 25% → istimewa"],
+          ["Sari → Nirmala", "35% ≥ 25% → istimewa"],
+          ["Sari → Oryza", "20% < 25% → Nirmala–Oryza tidak istimewa"]
+        ],
+        mengapaSalah: {
+          A: "Penyertaan tidak langsung dihitung berantai (60% × 50% = 30%), seperti contoh Penjelasan Pasal 18 ayat (4) huruf a; 30% sudah melampaui ambang 25%.",
+          B: "Kepemilikan langsung 50% melampaui ambang 25%.",
+          C: "Hubungan kepemilikan dapat terjadi antara orang pribadi dan badan (Penjelasan Pasal 18 ayat (4) huruf a); penyertaan 35% melampaui ambang."
+        },
+        jebakan: "Memiliki saham di dua perusahaan belum tentu membuat keduanya berhubungan istimewa: penyertaan pemilik pada masing-masing perusahaan harus paling rendah 25%. Sebaliknya, kepemilikan berantai yang hasil kalinya paling rendah 25% sudah cukup."
+      },
+      dasarHukum: [{ pasal: "Pasal 18 ayat (4) UU PPh dan penjelasannya", berlakuSejak: "2009-01-01" }, { pasal: "PP 55/2022 Pasal 33 (hubungan istimewa karena kepemilikan atau penyertaan modal, penguasaan, dan hubungan keluarga)", berlakuSejak: "2022-12-20" }, { pasal: "PMK 172/2023 Pasal 2 ayat (4) (kepemilikan paling rendah 25%) dan ayat (5) (penguasaan, termasuk satu grup usaha yang sama)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-048",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-216",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
+      stem: "PT Kencana Furnitur Jaya (perseroan tertutup, peredaran bruto 2025 Rp240 miliar) membeli kayu olahan dari PT Kencana Timber senilai Rp14.500.000.000 pada 2025. Kedua perseroan masing-masing 70% sahamnya dimiliki PT Kencana Investama. Analisis kesebandingan dengan metode perbandingan harga antarpihak independen menunjukkan harga wajar pembelian yang sebanding Rp11.800.000.000. Harga beli tersebut masih di bawah harga jual produk jadi PT Kencana Furnitur Jaya. Bila DJP menentukan kembali biaya berdasarkan Pasal 18 ayat (3) UU PPh, tambahan PPh badan PT Kencana Furnitur Jaya (sebelum sanksi) akibat koreksi tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp0", B: "Rp594.000.000", C: "Rp297.000.000", D: "Rp675.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "angka-usang" },
+      pembahasan: {
+        inti: "Pembelian dari pihak afiliasi di atas harga wajar membuat biaya terlalu besar. DJP menentukan kembali harga pokok pembelian ke harga wajar, sehingga selisihnya menjadi koreksi positif biaya Rp2.700.000.000 yang dikenai tarif 22%.",
+        jejakHitung: [
+          ["Koreksi primer = 14.500.000.000 − 11.800.000.000", "Rp2.700.000.000"],
+          ["Tambahan PPh = 22% × 2.700.000.000", "Rp594.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Harga beli yang masih di bawah harga jual produk tidak membuktikan kewajaran; ukuran PKKU adalah harga transaksi independen yang sebanding.",
+          C: "Memakai 11% (fasilitas Pasal 31E), padahal peredaran bruto Rp240 miliar jauh di atas Rp50 miliar.",
+          D: "Memakai tarif lama 25%."
+        },
+        jebakan: "Koreksi harga transfer tidak hanya untuk penjualan di bawah harga wajar; pembelian di atas harga wajar dari afiliasi juga dikoreksi karena membesarkan biaya."
+      },
+      dasarHukum: [{ pasal: "Pasal 18 ayat (3) dan (4) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 172/2023", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-049",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-217",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
+      stem: "PT Mitra Agro Lestari (produsen pakan ternak; bukan entitas induk grup usaha, dan entitas induknya badan dalam negeri) mencatat peredaran bruto Tahun Pajak 2024 Rp48,5 miliar, terdiri atas penjualan Rp47,2 miliar dan penghasilan luar usaha Rp1,3 miliar. Transaksi dengan pihak afiliasi pada 2024: pembelian bahan baku Rp17 miliar, pembayaran royalti merek kepada induk Rp4,6 miliar, dan bunga pinjaman kepada perusahaan sekelompok Rp3,2 miliar. Pada 2025 royalti naik menjadi Rp5,6 miliar, sedangkan transaksi lain tetap. Seluruh pihak afiliasi berkedudukan di Indonesia. Menurut PMK 172/2023, kewajiban PT Mitra Agro Lestari terkait dokumentasi penentuan harga transfer untuk Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Wajib menyelenggarakan Dokumen Induk dan Dokumen Lokal karena royalti dan bunga kepada afiliasi bila dijumlahkan melebihi Rp5 miliar", B: "Tidak wajib menyelenggarakan Dokumen Induk dan Dokumen Lokal, tetapi transaksi afiliasinya tetap wajib menerapkan Prinsip Kewajaran dan Kelaziman Usaha", C: "Wajib menyelenggarakan Dokumen Induk dan Dokumen Lokal karena royalti tahun 2025 sebesar Rp5,6 miliar melebihi ambang Rp5 miliar", D: "Tidak wajib menyelenggarakan dokumen apa pun dan transaksi afiliasinya tidak perlu diuji dengan Prinsip Kewajaran dan Kelaziman Usaha" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Ambang Dokumen Induk dan Dokumen Lokal diuji dengan data tahun pajak sebelumnya (untuk Tahun Pajak 2025: data 2024): peredaran bruto lebih dari Rp50 miliar, atau transaksi afiliasi barang berwujud lebih dari Rp20 miliar, atau lebih dari Rp5 miliar untuk MASING-MASING jasa, bunga, pemanfaatan barang tidak berwujud, atau transaksi afiliasi lainnya, atau ada afiliasi di yurisdiksi bertarif lebih rendah. Data 2024 PT Mitra Agro Lestari tidak melampaui satu pun ambang, sehingga untuk Tahun Pajak 2025 tidak wajib Dokumen Induk dan Dokumen Lokal. Pasal 16 ayat (7): Wajib Pajak yang tidak wajib dokumentasi tetap wajib menerapkan Prinsip Kewajaran dan Kelaziman Usaha (Pasal 3). Royalti 2025 Rp5,6 miliar baru memicu kewajiban untuk Tahun Pajak 2026.",
+        jejakHitung: [
+          ["Peredaran bruto 2024 = 47,2 + 1,3 miliar", "Rp48,5 miliar ≤ Rp50 miliar"],
+          ["Barang berwujud 2024", "Rp17 miliar ≤ Rp20 miliar"],
+          ["Royalti 2024 (barang tidak berwujud)", "Rp4,6 miliar ≤ Rp5 miliar"],
+          ["Bunga 2024", "Rp3,2 miliar ≤ Rp5 miliar"],
+          ["Kesimpulan Tahun Pajak 2025", "tidak wajib Dokumen Induk dan Dokumen Lokal; PKKU tetap berlaku"]
+        ],
+        mengapaSalah: {
+          A: "Ambang Rp5 miliar berlaku untuk masing-masing jenis transaksi (jasa, bunga, pemanfaatan barang tidak berwujud, lainnya), bukan jumlah gabungan; royalti Rp4,6 miliar dan bunga Rp3,2 miliar masing-masing di bawah ambang.",
+          C: "Ambang diuji dengan nilai tahun pajak sebelumnya. Royalti 2025 Rp5,6 miliar baru menentukan kewajiban untuk Tahun Pajak 2026.",
+          D: "Pasal 16 ayat (7) PMK 172/2023: Wajib Pajak yang tidak wajib dokumentasi tetap wajib menerapkan Prinsip Kewajaran dan Kelaziman Usaha (Pasal 3)."
+        },
+        jebakan: "Dua jebakan sekaligus: tahun data (tahun pajak sebelumnya) dan kata \"masing-masing\" pada ambang Rp5 miliar. Tidak wajib dokumentasi tidak sama dengan bebas dari prinsip kewajaran."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 3 ayat (1), Pasal 16 ayat (3), (4), (5), dan (7)", berlakuSejak: "2023-12-29" }, { pasal: "Pasal 18 ayat (3) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-050",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-218",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Surya Kencana Holding (badan dalam negeri, peredaran bruto 2025 Rp72 miliar, tarif umum) memiliki 36% saham PT Bahari Pangan (badan dalam negeri, tidak tercatat di bursa) dan mencatatnya dengan metode ekuitas. Laba komersial sebelum pajak Tahun Pajak 2025 Rp6.400.000.000, di dalamnya termasuk: (1) bagian laba PT Bahari Pangan menurut metode ekuitas Rp700.000.000; dan (2) laba penjualan 6% saham PT Bahari Pangan kepada pihak yang tidak berhubungan istimewa Rp900.000.000, yaitu harga jual Rp1.800.000.000 dikurangi nilai tercatat metode ekuitas Rp900.000.000. Karena PT Bahari Pangan merugi pada tahun-tahun sebelumnya, nilai tercatat itu lebih rendah daripada harga perolehan saham yang dijual, yaitu Rp1.500.000.000. Dividen tunai dari PT Bahari Pangan Rp350.000.000 dicatat mengurangi nilai penyertaan (tidak melalui laba rugi). Tidak ada koreksi fiskal lain. PPh badan terutang PT Surya Kencana Holding Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp1.254.000.000", B: "Rp1.056.000.000", C: "Rp1.122.000.000", D: "Rp1.408.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "final-nonfinal", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Secara fiskal penyertaan dicatat sebesar harga perolehan. Bagian laba metode ekuitas belum terealisasi sehingga bukan penghasilan (koreksi negatif). Keuntungan penjualan saham yang tidak tercatat di bursa adalah objek tarif umum (Pasal 4 ayat (1) huruf d) dan dihitung dari harga perolehan (Pasal 10 ayat (1)): Rp1.800.000.000 − Rp1.500.000.000 = Rp300.000.000, lebih kecil Rp600.000.000 daripada laba komersial, sehingga ada koreksi negatif. Dividen dari badan dalam negeri bukan objek (Pasal 4 ayat (3) huruf f) dan tidak melalui laba rugi, jadi tidak dikoreksi.",
+        jejakHitung: [
+          ["Bagian laba metode ekuitas (bukan penghasilan fiskal)", "koreksi negatif Rp700.000.000"],
+          ["Laba fiskal penjualan saham = 1.800.000.000 − 1.500.000.000", "Rp300.000.000"],
+          ["Koreksi negatif = 900.000.000 − 300.000.000", "Rp600.000.000"],
+          ["Dividen Rp350.000.000 (bukan objek, tidak di laba rugi)", "tanpa koreksi"],
+          ["Neto fiskal = 6.400.000.000 − 700.000.000 − 600.000.000", "Rp5.100.000.000"],
+          ["PPh = 22% × 5.100.000.000", "Rp1.122.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengeluarkan bagian laba ekuitas tetapi tetap memakai laba penjualan komersial yang dihitung dari nilai tercatat metode ekuitas: 22% × 5.700.000.000.",
+          B: "Menganggap seluruh laba penjualan saham final atau bukan objek sehingga Rp900.000.000 ikut dikeluarkan (22% × 4.800.000.000); PPh final 0,1% hanya untuk penjualan saham di bursa efek.",
+          D: "Tidak melakukan koreksi apa pun: bagian laba metode ekuitas ikut dipajaki dan laba penjualan memakai nilai tercatat (22% × 6.400.000.000)."
+        },
+        jebakan: "Bila investee merugi, nilai tercatat metode ekuitas bisa lebih rendah daripada harga perolehan sehingga laba fiskal penjualan saham justru lebih kecil dari laba komersial: koreksinya negatif, bukan positif."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf d dan ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 10 ayat (1) UU PPh (harga perolehan)", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 18 ayat (4) huruf a UU PPh (kepemilikan 36% → hubungan istimewa)", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 190,
+      verifikasi: "✅",
+      kembaranDari: "B6-051",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-220",
+      topik: "B6.11",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kutipan: "Pasal 3 ayat (3) huruf c UU KUP: \"untuk Surat Pemberitahuan Tahunan Pajak Penghasilan Wajib Pajak badan, paling lama 4 (empat) bulan setelah akhir Tahun Pajak.\" Pasal 3 ayat (4): \"Wajib Pajak dapat memperpanjang jangka waktu penyampaian Surat Pemberitahuan Tahunan Pajak Penghasilan sebagaimana dimaksud pada ayat (3) untuk paling lama 2 (dua) bulan dengan cara menyampaikan pemberitahuan secara tertulis atau dengan cara lain kepada Direktur Jenderal Pajak yang ketentuannya diatur dengan atau berdasarkan Peraturan Menteri Keuangan.\"",
+      stem: "PT Tirta Samudra Perkasa memakai tahun buku 1 April 2025 sampai 31 Maret 2026. Pada 20 Juli 2026 perusahaan menyampaikan pemberitahuan perpanjangan penyampaian SPT Tahunan PPh Badan untuk tahun buku tersebut, disertai penghitungan sementara pajak terutang; menurut penghitungan itu tidak ada kekurangan pembayaran. SPT Tahunan berstatus nihil baru disampaikan lewat Coretax pada 12 Oktober 2026. Berdasarkan kutipan tersebut, batas akhir penyampaian SPT dan sanksi administrasinya adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "31 Juli 2026; denda Rp1.000.000", B: "30 September 2026; denda Rp100.000", C: "30 September 2026; tanpa denda karena SPT nihil", D: "30 September 2026; denda Rp1.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
+      pembahasan: {
+        inti: "Batas 4 bulan dihitung dari akhir tahun buku (31 Maret 2026) sehingga jatuh pada 31 Juli 2026. Pemberitahuan perpanjangan disampaikan sebelum batas itu dan disertai penghitungan sementara, sehingga batas bergeser paling lama 2 bulan menjadi 30 September 2026. SPT disampaikan 12 Oktober 2026, melewati batas perpanjangan, sehingga dikenai denda Pasal 7 ayat (1) untuk SPT Tahunan PPh badan Rp1.000.000, walaupun nihil.",
+        jejakHitung: [
+          ["Akhir tahun buku", "31 Maret 2026"],
+          ["+ 4 bulan (Pasal 3 ayat (3) huruf c)", "31 Juli 2026"],
+          ["+ perpanjangan paling lama 2 bulan (Pasal 3 ayat (4))", "30 September 2026"],
+          ["Disampaikan 12 Oktober 2026", "terlambat"],
+          ["Denda Pasal 7 ayat (1), SPT Tahunan badan", "Rp1.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengabaikan pemberitahuan perpanjangan yang sah; batas 31 Juli 2026 hanya berlaku tanpa perpanjangan.",
+          B: "Rp100.000 adalah denda SPT Tahunan PPh orang pribadi, bukan badan.",
+          C: "Pasal 7 ayat (1) mengenakan denda atas keterlambatan penyampaian SPT, tidak bergantung pada status SPT; SPT nihil yang terlambat tetap didenda."
+        },
+        jebakan: "Perpanjangan menggeser batas, tetapi SPT yang melewati batas perpanjangan tetap didenda; status nihil tidak menghapus denda."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (3) huruf c, ayat (4), dan ayat (5) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-055",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-221",
+      topik: "B6.11",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Lintas Niaga Prima menyampaikan SPT Tahunan PPh Badan Tahun Pajak 2025 pada 24 April 2026 dan PPh Pasal 29-nya telah dilunasi sebelum SPT disampaikan. Sebelum ada pemeriksaan, perusahaan menemukan sumbangan yang tidak memenuhi syarat sebagai pengurang penghasilan bruto, sehingga PPh terutang bertambah Rp126.500.000. Kekurangan itu disetor pada 14 Agustus 2026, sedangkan SPT pembetulan baru disampaikan lewat Coretax pada 3 September 2026. Untuk soal ini, anggap tarif bunga per bulan Pasal 8 ayat (2) UU KUP yang berlaku pada awal penghitungan sanksi 0,92%. Sanksi administrasi atas pembetulan tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp5.819.000", B: "Rp4.655.200", C: "Rp10.120.000", D: "Rp3.491.400" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "angka-usang", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Pembetulan SPT Tahunan yang membuat utang pajak lebih besar dikenai bunga Pasal 8 ayat (2) sejak batas akhir penyampaian SPT (30 April 2026) sampai TANGGAL PEMBAYARAN (14 Agustus 2026), bukan sampai tanggal pembetulan; bagian bulan dihitung penuh. Bulan pertama mulai 1 Mei 2026, sehingga 14 Agustus 2026 jatuh pada bulan keempat.",
+        jejakHitung: [
+          ["30 April 2026 → 14 Agustus 2026", "3 bulan 14 hari → 4 bulan"],
+          ["Bunga = 126.500.000 × 0,92% × 4", "Rp4.655.200"]
+        ],
+        mengapaSalah: {
+          A: "Menghitung bunga sampai tanggal SPT pembetulan (3 September 2026, 5 bulan): 126.500.000 × 0,92% × 5. Pasal 8 ayat (2) menghitung sampai tanggal pembayaran.",
+          C: "Memakai bunga flat 2% per bulan (126.500.000 × 2% × 4), yang sudah diganti tarif bunga per bulan dari Menteri Keuangan sejak UU Cipta Kerja.",
+          D: "Membulatkan ke bawah menjadi 3 bulan, padahal bagian bulan dihitung penuh 1 bulan."
+        },
+        jebakan: "Ujung penghitungan bunga pembetulan adalah tanggal pembayaran; bila setor lebih dulu lalu SPT pembetulan menyusul, bunga berhenti pada tanggal setor."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (2) dan ayat (2b) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02" }, { pasal: "KMK tarif bunga bulanan (KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026)", berlakuSejak: "2026-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-056",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-222",
+      topik: "B6.11",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      stem: "Pada Oktober 2026 seorang konsultan meninjau riwayat penyampaian SPT Tahunan PPh Badan empat klien yang wajib menyelenggarakan pembukuan. Setiap klien yang SPT-nya terlambat sudah menerima Surat Teguran sebelum SPT itu disampaikan. Menurut Pasal 3 ayat (7) UU KUP, SPT dianggap tidak disampaikan pada kondisi-kondisi berikut, KECUALI ...",
+      kataKualifikasi: ["kecuali"],
+      opsi: { A: "SPT Tahun Pajak 2025 PT Anggrek disampaikan setelah DJP menerbitkan surat ketetapan pajak untuk tahun pajak itu", B: "SPT lebih bayar Tahun Pajak 2021 PT Bakung disampaikan pada Agustus 2025 setelah ditegur secara tertulis", C: "SPT lebih bayar Tahun Pajak 2023 PT Cempaka disampaikan pada Agustus 2025 setelah ditegur secara tertulis", D: "SPT Tahun Pajak 2025 PT Dahlia disampaikan tanpa laporan keuangan yang wajib dilampirkan" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 3 ayat (7) UU KUP: SPT dianggap tidak disampaikan bila tidak ditandatangani, tidak sepenuhnya dilampiri keterangan atau dokumen yang disyaratkan, SPT lebih bayar disampaikan setelah 3 tahun sesudah berakhirnya Tahun Pajak dan Wajib Pajak telah ditegur secara tertulis, atau disampaikan setelah DJP melakukan pemeriksaan atau menerbitkan surat ketetapan pajak. SPT lebih bayar Tahun Pajak 2023 yang disampaikan Agustus 2025 baru sekitar 1 tahun 8 bulan setelah akhir Tahun Pajak 2023, sehingga belum memenuhi syarat 3 tahun: SPT itu terlambat (denda Pasal 7) tetapi tetap dianggap disampaikan.",
+        jejakHitung: [
+          ["Tahun Pajak 2021 berakhir 31 Desember 2021; 3 tahun sesudahnya", "31 Desember 2024 → Agustus 2025 sudah lewat"],
+          ["Tahun Pajak 2023 berakhir 31 Desember 2023; 3 tahun sesudahnya", "31 Desember 2026 → Agustus 2025 belum lewat"]
+        ],
+        mengapaSalah: {
+          A: "SPT yang disampaikan setelah DJP menerbitkan surat ketetapan pajak dianggap tidak disampaikan (Pasal 3 ayat (7) huruf d).",
+          B: "SPT lebih bayar Tahun Pajak 2021 disampaikan lebih dari 3 tahun sesudah 31 Desember 2021 dan Wajib Pajak telah ditegur secara tertulis, sehingga dianggap tidak disampaikan (huruf c).",
+          D: "SPT yang tidak sepenuhnya dilampiri dokumen yang disyaratkan dianggap tidak disampaikan (huruf b)."
+        },
+        jebakan: "Huruf c menuntut dua syarat sekaligus: lewat 3 tahun sesudah berakhirnya Tahun Pajak DAN sudah ditegur. Teguran saja, tanpa lewat 3 tahun, hanya berujung denda keterlambatan."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 110,
+      verifikasi: "✅",
+      kembaranDari: "B6-057",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-223",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Sinar Kemasan Nusantara (produsen kemasan plastik, badan dalam negeri bukan perseroan terbuka, terdaftar 2017, tidak pernah memakai PPh final UMKM) melaporkan data Tahun Pajak 2025: penjualan neto Rp19.200.000.000; bunga deposito Rp800.000.000 (PPh final Rp160.000.000 dipotong bank); dividen dari PT anak dalam negeri Rp4.000.000.000; dan Penghasilan Kena Pajak setelah rekonsiliasi fiskal Rp1.850.000.000. Kredit dan pembayaran pajak 2025: PPh 22 impor bahan baku Rp95.000.000; PPh 23 yang dipotong pelanggan Rp21.000.000; dan angsuran PPh 25 Rp180.000.000. PPh Pasal 29 Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp111.000.000", B: "Rp60.125.000", C: "Lebih bayar Rp89.700.000", D: "Rp70.300.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "final-nonfinal" },
+      pembahasan: {
+        inti: "Peredaran bruto Pasal 31E mencakup penghasilan usaha dan luar usaha, termasuk penghasilan yang dikenai PPh final dan yang bukan objek (SE-02/PJ/2015): Rp24 miliar ≤ Rp50 miliar, sehingga fasilitas wajib diterapkan. PKP fasilitas = 4,8/24 × PKP; bagian itu dikenai 11%, sisanya 22%. Kredit pajak hanya PPh 22, PPh 23, dan PPh 25; PPh final bunga deposito tidak dikreditkan.",
+        jejakHitung: [
+          ["Peredaran bruto = 19.200.000.000 + 800.000.000 + 4.000.000.000", "Rp24.000.000.000"],
+          ["PKP fasilitas = 4,8/24 × 1.850.000.000", "Rp370.000.000"],
+          ["11% × 370.000.000", "Rp40.700.000"],
+          ["22% × 1.480.000.000", "Rp325.600.000"],
+          ["PPh terutang", "Rp366.300.000"],
+          ["Kredit = 95.000.000 + 21.000.000 + 180.000.000", "Rp296.000.000"],
+          ["PPh 29 = 366.300.000 − 296.000.000", "Rp70.300.000"]
+        ],
+        mengapaSalah: {
+          A: "Tidak menerapkan Pasal 31E: 22% × 1.850.000.000 = 407.000.000, dikurangi kredit 296.000.000.",
+          B: "Menghitung peredaran bruto hanya dari penjualan Rp19,2 miliar sehingga porsi fasilitas 4,8/19,2: PPh 356.125.000 − 296.000.000.",
+          C: "Ikut mengkreditkan PPh final bunga deposito Rp160.000.000: 366.300.000 − 456.000.000."
+        },
+        jebakan: "Penghasilan final dan bukan objek tidak masuk PKP, tetapi masuk peredaran bruto Pasal 31E dan memperkecil porsi fasilitas; PPh finalnya tidak dapat dikreditkan."
+      },
+      dasarHukum: [{ pasal: "Pasal 17 ayat (1) huruf b dan Pasal 31E ayat (1) UU PPh", berlakuSejak: "2022-01-01" }, { pasal: "SE-02/PJ/2015", berlakuSejak: "2015-01-09" }, { pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-059",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-224",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Bentang Energi Tbk pada Tahun Pajak 2025 mencatatkan dan memperdagangkan 43% saham disetornya di Bursa Efek Indonesia. Saham yang diperdagangkan itu dimiliki 1.250 pihak yang masing-masing memiliki kurang dari 5% saham ditempatkan dan disetor penuh; jumlah ini tidak termasuk perseroan sendiri dan pihak yang berhubungan istimewa dengannya. Sisa 57% saham, yang tidak diperdagangkan di bursa, dimiliki pemegang saham pengendali. Kondisi tersebut terpenuhi selama 214 hari kalender dalam Tahun Pajak 2025, dan perseroan menyampaikan laporan pemenuhan persyaratan kepada DJP. PKP Rp24.000.000.000. Kredit pajak 2025: PPh 22 Rp650.000.000; PPh 23 Rp410.000.000; PPh 24 Rp280.000.000 (sudah di bawah batas maksimum yang dihitung per jenis penghasilan untuk tiap negara); dan angsuran PPh 25 Rp3.100.000.000. PPh Pasal 29 Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp120.000.000", B: "Rp840.000.000", C: "Rp360.000.000", D: "Rp400.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "angka-usang", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Penurunan tarif 3% bagi perseroan terbuka mensyaratkan paling sedikit 40% saham disetor diperdagangkan di bursa Indonesia, saham itu dimiliki paling sedikit 300 pihak yang masing-masing memiliki kurang dari 5%, dipenuhi paling singkat 183 hari kalender dalam satu tahun pajak, dan dilaporkan kepada DJP. Semua syarat terpenuhi (43%, 1.250 pihak, 214 hari, laporan disampaikan). Saham pengendali 57% yang tidak diperdagangkan tidak menggugurkan syarat, karena batas kurang dari 5% berlaku bagi para pemilik saham yang diperdagangkan, dan pihak berhubungan istimewa memang tidak dihitung. Tarif 22% − 3% = 19%.",
+        jejakHitung: [
+          ["Uji syarat: 43% ≥ 40%; 1.250 ≥ 300 pihak; 214 ≥ 183 hari; laporan disampaikan", "terpenuhi → tarif 19%"],
+          ["PPh terutang = 19% × 24.000.000.000", "Rp4.560.000.000"],
+          ["Kredit = 650 + 410 + 280 + 3.100 (juta)", "Rp4.440.000.000"],
+          ["PPh 29 = 4.560.000.000 − 4.440.000.000", "Rp120.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Memakai tarif 22% karena menganggap kepemilikan 57% oleh pengendali menggugurkan fasilitas (5.280.000.000 − 4.440.000.000); batas kurang dari 5% berlaku bagi pemilik saham yang diperdagangkan.",
+          C: "Memakai tarif lama perseroan terbuka 20% (25% − 5%): 4.800.000.000 − 4.440.000.000.",
+          D: "Tidak mengkreditkan PPh 24 Rp280.000.000 yang sudah dalam batas maksimum (4.560.000.000 − 4.160.000.000)."
+        },
+        jebakan: "Adanya pemegang saham pengendali tidak otomatis menggugurkan tarif 19%: uji 40% saham yang diperdagangkan, 300 pihak di dalamnya yang masing-masing di bawah 5%, 183 hari, dan pelaporan."
+      },
+      dasarHukum: [{ pasal: "Pasal 17 ayat (1) huruf b dan ayat (2b) UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "PP 55/2022 Pasal 65 (ketentuan penurunan tarif perseroan terbuka)", berlakuSejak: "2022-12-20" }, { pasal: "Pasal 24, Pasal 28 ayat (1), dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      kembaranDari: "B6-060",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-225",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Agro Pakan Sentosa (badan dalam negeri, bukan perseroan terbuka) memiliki 70% saham PT Benih Unggul (badan dalam negeri, tidak tercatat di bursa) sehingga keduanya berhubungan istimewa. Data Tahun Pajak 2025: penjualan bruto Rp49.300.000.000; retur dan potongan penjualan Rp2.500.000.000; dividen tunai dari PT Benih Unggul Rp900.000.000; bunga deposito Rp300.000.000 (PPh final Rp60.000.000 dipotong bank). Setelah dividen dan bunga deposito dikeluarkan dalam rekonsiliasi fiskal, PKP Rp3.200.000.000. Kredit pajak: PPh 22 Rp240.000.000, PPh 23 Rp75.000.000, dan angsuran PPh 25 Rp300.000.000. PPh Pasal 29 Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp89.000.000", B: "Rp53.800.000", C: "Lebih bayar Rp6.200.000", D: "Rp241.900.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "final-nonfinal", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Peredaran bruto Pasal 31E dihitung setelah retur dan potongan penjualan, termasuk dividen (bukan objek) dan bunga deposito (final): Rp46,8 miliar + Rp0,9 miliar + Rp0,3 miliar = Rp48 miliar, tidak melebihi Rp50 miliar, sehingga fasilitas Pasal 31E wajib diterapkan. Dividen dari anak perusahaan dalam negeri bukan objek dan tidak masuk PKP; PPh final bunga deposito tidak dikreditkan.",
+        jejakHitung: [
+          ["Peredaran bruto = 49.300.000.000 − 2.500.000.000 + 900.000.000 + 300.000.000", "Rp48.000.000.000"],
+          ["PKP fasilitas = 4,8/48 × 3.200.000.000", "Rp320.000.000"],
+          ["11% × 320.000.000 + 22% × 2.880.000.000", "Rp35.200.000 + Rp633.600.000"],
+          ["PPh terutang", "Rp668.800.000"],
+          ["Kredit = 240.000.000 + 75.000.000 + 300.000.000", "Rp615.000.000"],
+          ["PPh 29 = 668.800.000 − 615.000.000", "Rp53.800.000"]
+        ],
+        mengapaSalah: {
+          A: "Tidak mengurangkan retur dan potongan penjualan sehingga peredaran bruto Rp50,5 miliar dan Pasal 31E dianggap gugur: 22% × 3.200.000.000 − 615.000.000.",
+          C: "Ikut mengkreditkan PPh final bunga deposito Rp60.000.000: 668.800.000 − 675.000.000.",
+          D: "Memajaki dividen dari anak perusahaan (PKP 4.100.000.000 dengan Pasal 31E: PPh 856.900.000, dikurangi kredit), padahal dividen dalam negeri yang diterima badan dalam negeri bukan objek."
+        },
+        jebakan: "Dividen afiliasi bukan objek tetapi ikut dihitung dalam peredaran bruto Pasal 31E; sebaliknya retur dan potongan penjualan mengurangi peredaran bruto. Hitung peredaran bruto neto sebelum menguji batas Rp50 miliar."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 31E ayat (1) UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" }, { pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-061",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-226",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Arunika Investama (badan dalam negeri, peredaran bruto di atas Rp50 miliar, tarif umum) memiliki penyertaan pada tiga perusahaan dalam negeri yang tidak tercatat di bursa: 30% PT Delta Mineral (metode ekuitas), 15% PT Eka Farma (metode biaya), dan 40% PT Fajar Logistik (metode ekuitas). Laba komersial sebelum pajak Tahun Pajak 2025 Rp8.200.000.000 sudah memuat: bagian laba PT Delta Mineral menurut metode ekuitas Rp550.000.000; dividen tunai dari PT Eka Farma Rp320.000.000 yang diakui sebagai pendapatan; rugi penurunan nilai (impairment) penyertaan pada PT Eka Farma Rp180.000.000; bagian rugi PT Fajar Logistik menurut metode ekuitas Rp260.000.000; dan royalti dari PT Delta Mineral atas penggunaan merek Rp150.000.000 (dipotong PPh 23 Rp22.500.000). Tidak ada koreksi fiskal lain. PPh badan terutang PT Arunika Investama Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp1.669.800.000", B: "Rp1.779.800.000", C: "Rp1.676.400.000", D: "Rp1.709.400.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pos metode ekuitas belum terealisasi: bagian laba bukan penghasilan (koreksi negatif) dan bagian rugi tidak dapat dibiayakan (koreksi positif). Rugi penurunan nilai penyertaan juga belum terealisasi, karena kerugian atas harta baru dapat dikurangkan saat harta dijual atau dialihkan, dan pada hakikatnya merupakan pencadangan (koreksi positif). Dividen dari badan dalam negeri bukan objek tanpa syarat persentase kepemilikan (koreksi negatif). Royalti dari afiliasi tetap objek tarif umum; PPh 23-nya menjadi kredit pajak.",
+        jejakHitung: [
+          ["Koreksi negatif: bagian laba ekuitas + dividen = 550.000.000 + 320.000.000", "Rp870.000.000"],
+          ["Koreksi positif: bagian rugi ekuitas + impairment = 260.000.000 + 180.000.000", "Rp440.000.000"],
+          ["Royalti dari PT Delta Mineral (objek)", "tanpa koreksi"],
+          ["Neto fiskal = 8.200.000.000 − 870.000.000 + 440.000.000", "Rp7.770.000.000"],
+          ["PPh = 22% × 7.770.000.000", "Rp1.709.400.000"]
+        ],
+        mengapaSalah: {
+          A: "Tidak mengoreksi rugi penurunan nilai penyertaan Rp180.000.000 (22% × 7.590.000.000).",
+          B: "Memajaki dividen karena kepemilikan hanya 15%; syarat kepemilikan 25% sudah dihapus sejak UU Cipta Kerja (22% × 8.090.000.000).",
+          C: "Ikut mengeluarkan royalti dari afiliasi seolah bukan objek (22% × 7.620.000.000)."
+        },
+        jebakan: "Pisahkan pos penyertaan yang belum terealisasi (bagian laba atau rugi ekuitas, impairment) dari dividen (bukan objek) dan dari transaksi lain dengan afiliasi seperti royalti (tetap objek)."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf h dan ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 6 ayat (1) huruf d dan Pasal 9 ayat (1) huruf c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 23 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 190,
+      verifikasi: "✅",
+      kembaranDari: "B6-062",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-227",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kutipan: "Pasal 10 ayat (1) UU PPh: Harga perolehan atau harga penjualan dalam hal terjadi jual beli harta yang tidak dipengaruhi hubungan istimewa sebagaimana dimaksud dalam Pasal 18 ayat (4) adalah jumlah yang sesungguhnya dikeluarkan atau diterima, sedangkan apabila terdapat hubungan istimewa adalah jumlah yang seharusnya dikeluarkan atau diterima.",
+      stem: "PT Prakarsa Investama memiliki 30% saham PT Lintas Pangan dan 60% saham PT Lintas Distribusi. Pada Agustus 2025 PT Lintas Pangan menjual seluruh penyertaannya berupa 15% saham PT Bumi Keramik (perseroan dalam negeri yang sahamnya tidak diperdagangkan di bursa) kepada PT Lintas Distribusi seharga Rp3.200.000.000. Saham itu diperoleh pada 2021 dengan harga Rp2.500.000.000, sehingga PT Lintas Pangan membukukan laba penjualan penyertaan Rp700.000.000. Penilai independen menetapkan nilai pasar wajar saham tersebut pada tanggal transaksi Rp4.600.000.000. Berdasarkan kutipan tersebut, koreksi fiskal positif atas laba PT Lintas Pangan dan tambahan PPh badan (tarif 22%; peredaran bruto di atas Rp50 miliar sehingga tanpa Pasal 31E) adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Koreksi positif Rp2.100.000.000; tambahan PPh Rp462.000.000", B: "Koreksi positif Rp2.800.000.000; tambahan PPh Rp616.000.000", C: "Tidak ada koreksi karena kepemilikan PT Prakarsa Investama di PT Lintas Pangan hanya 30%", D: "Koreksi positif Rp1.400.000.000; tambahan PPh Rp308.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", C: "lupa-pasal" },
+      pembahasan: {
+        inti: "PT Prakarsa Investama memiliki paling rendah 25% saham pada PT Lintas Pangan (30%) dan PT Lintas Distribusi (60%), sehingga kedua anak perusahaan itu berhubungan istimewa (Pasal 18 ayat (4) huruf a: hubungan di antara dua Wajib Pajak yang sama-sama dimiliki paling rendah 25% oleh pihak yang sama). Harga jual fiskal adalah jumlah yang seharusnya diterima, yaitu nilai pasar Rp4,6 miliar. Keuntungan fiskal Rp2,1 miliar; karena laba komersial Rp700 juta sudah masuk laba, koreksi positifnya hanya selisihnya, Rp1,4 miliar.",
+        jejakHitung: [
+          ["Penyertaan 30% dan 60% oleh pihak yang sama (masing-masing ≥ 25%)", "PT Lintas Pangan dan PT Lintas Distribusi berhubungan istimewa"],
+          ["Keuntungan fiskal = 4.600.000.000 − 2.500.000.000", "Rp2.100.000.000"],
+          ["Laba komersial yang sudah dibukukan = 3.200.000.000 − 2.500.000.000", "Rp700.000.000"],
+          ["Koreksi positif = 2.100.000.000 − 700.000.000", "Rp1.400.000.000"],
+          ["Tambahan PPh = 22% × 1.400.000.000", "Rp308.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Menjadikan seluruh keuntungan fiskal Rp2,1 miliar sebagai koreksi, padahal laba komersial Rp700 juta sudah termasuk dalam laba sebelum pajak; koreksi hanya selisih antara angka fiskal dan angka komersial.",
+          B: "Menjumlahkan keuntungan fiskal dan laba komersial (2.100.000.000 + 700.000.000); penjumlahan hanya tepat bila hasil komersialnya rugi, sedangkan di sini komersialnya laba.",
+          C: "Pasal 18 ayat (4) huruf a juga mencakup hubungan di antara dua Wajib Pajak yang masing-masing dimiliki paling rendah 25% oleh pihak yang sama; tidak disyaratkan kepemilikan di atas 50%."
+        },
+        jebakan: "Koreksi bergerak dari angka komersial ke angka fiskal: bila keduanya laba, koreksinya adalah selisih; bila komersial rugi dan fiskal laba, koreksinya adalah jumlah keduanya. Ambang hubungan istimewa karena kepemilikan adalah 25%, bukan mayoritas."
+      },
+      dasarHukum: [{ pasal: "Pasal 10 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 18 ayat (3) dan ayat (4) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (1) huruf d UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-063",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-228",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Arunika Teknik Global (badan dalam negeri) pada Tahun Pajak 2025 memperoleh laba usaha dari cabangnya di Negara K, royalti dari pemegang lisensi di Negara K, dan bunga pinjaman dari anak perusahaannya di Negara L, sedangkan cabangnya di Negara M menderita rugi. Atas laba cabang dan royalti telah dibayar pajak di Negara K, dan atas bunga telah dipotong pajak di Negara L. Manajer pajak meminta rumusan yang benar untuk menyusun penghitungan kredit PPh Pasal 24 dalam SPT Tahunan PPh Badan. Pernyataan yang paling tepat adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Batas kredit dihitung sendiri-sendiri untuk laba cabang Negara K, royalti dari Negara K, dan bunga dari Negara L, masing-masing sebesar jumlah paling sedikit antara pajak luar negeri dan batas maksimum; rugi cabang Negara M tidak diperhitungkan dalam Penghasilan Kena Pajak; kelebihan pajak luar negeri di atas batas tidak dapat diperhitungkan, dibebankan sebagai biaya, atau direstitusi.", B: "Batas kredit dihitung per negara, sehingga laba cabang dan royalti dari Negara K digabung dalam satu batas maksimum dan bunga dari Negara L dihitung tersendiri; rugi cabang Negara M tidak diperhitungkan dalam Penghasilan Kena Pajak; kelebihan pajak luar negeri di atas batas tidak dapat diperhitungkan, dibebankan sebagai biaya, atau direstitusi.", C: "Batas kredit dihitung sendiri-sendiri untuk laba cabang Negara K, royalti dari Negara K, dan bunga dari Negara L, masing-masing sebesar jumlah paling sedikit antara pajak luar negeri dan batas maksimum; rugi cabang Negara M tidak diperhitungkan dalam Penghasilan Kena Pajak; kelebihan pajak luar negeri di atas batas boleh dibebankan sebagai biaya pada tahun yang sama.", D: "Batas kredit dihitung sendiri-sendiri untuk laba cabang Negara K, royalti dari Negara K, dan bunga dari Negara L, masing-masing sebesar jumlah paling sedikit antara pajak luar negeri dan batas maksimum; rugi cabang Negara M dikurangkan lebih dulu dari penghasilan Negara K dan Negara L; kelebihan pajak luar negeri di atas batas tidak dapat diperhitungkan, dibebankan sebagai biaya, atau direstitusi." },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 6 ayat (2) PMK 192/PMK.03/2018 menghitung PPh luar negeri yang dapat dikreditkan per jenis penghasilan untuk tiap negara atau yurisdiksi, sehingga laba usaha dan royalti dari Negara K masing-masing punya batas sendiri, begitu pula bunga dari Negara L. Kredit adalah jumlah paling sedikit antara pajak luar negeri dan jumlah tertentu (penghasilan jenis itu dari negara itu ÷ PKP × PPh terutang) menurut Pasal 6 ayat (4). Rugi cabang luar negeri tidak dapat diperhitungkan dalam menghitung PKP (Pasal 4 ayat (3)), dan kelebihan pajak luar negeri tidak dapat diperhitungkan, dibiayakan, atau direstitusi (Pasal 7).",
+        jejakHitung: [
+          ["Laba usaha cabang Negara K", "batas kredit tersendiri"],
+          ["Royalti dari Negara K", "batas kredit tersendiri (jenis penghasilan berbeda walau negaranya sama)"],
+          ["Bunga dari Negara L", "batas kredit tersendiri"],
+          ["Rugi cabang Negara M", "tidak diperhitungkan dalam PKP"],
+          ["Pajak luar negeri di atas batas", "hangus: tidak dikreditkan, tidak dibiayakan, tidak direstitusi"]
+        ],
+        mengapaSalah: {
+          B: "Menggabungkan laba usaha dan royalti dari Negara K dalam satu batas (per country), padahal PMK 192/PMK.03/2018 memisahkan per jenis penghasilan untuk tiap negara.",
+          C: "Pasal 7 PMK 192/PMK.03/2018 melarang kelebihan pajak luar negeri dibebankan sebagai biaya atau pengurang penghasilan.",
+          D: "Pasal 4 ayat (3) PMK 192/PMK.03/2018: kerugian usaha cabang di luar negeri tidak dapat diperhitungkan dalam menghitung PKP, sehingga tidak boleh mengurangi penghasilan negara lain."
+        },
+        jebakan: "Pemisahan berlaku dua lapis: per negara dan per jenis penghasilan. Dua penghasilan dari negara yang sama belum tentu satu batas. Bandingkan juga perlakuan rugi dan kelebihan kredit pada tiap opsi."
+      },
+      dasarHukum: [{ pasal: "Pasal 24 ayat (1) dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018 Pasal 4 ayat (3), Pasal 6 ayat (2) dan ayat (4), dan Pasal 7", berlakuSejak: "2018-12-31" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-064",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-229",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Sarana Kemasindo (tahun buku kalender) membangun gudang permanen sejak Juli 2025; pengerjaannya selesai November 2025, tetapi gudang baru dipakai untuk menyimpan barang pada Februari 2026. Mesin cetak dibeli dan dibayar lunas pada Oktober 2025, lalu dipasang dan pertama kali dipakai berproduksi pada Desember 2025. Perusahaan tidak mengajukan permohonan penetapan saat mulainya penyusutan kepada Direktur Jenderal Pajak. Menurut Pasal 11 ayat (3) dan ayat (4) UU PPh, saat mulai penyusutan fiskal kedua harta itu dan banyaknya bulan penyusutan pada Tahun Pajak 2025 yang paling tepat adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Gudang mulai Juli 2025 (6 bulan); mesin cetak mulai Oktober 2025 (3 bulan)", B: "Gudang mulai Desember 2025 (1 bulan); mesin cetak mulai November 2025 (2 bulan)", C: "Gudang mulai November 2025 (2 bulan); mesin cetak mulai Oktober 2025 (3 bulan)", D: "Gudang mulai Februari 2026 (tanpa penyusutan 2025); mesin cetak mulai Desember 2025 (1 bulan)" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 11 ayat (3) UU PPh: penyusutan dimulai pada bulan dilakukannya pengeluaran, kecuali harta yang masih dalam proses pengerjaan, yang penyusutannya dimulai pada bulan selesainya pengerjaan. Gudang (harta dalam pengerjaan) mulai November 2025; mesin cetak (dibayar lunas) mulai Oktober 2025. Memulai pada bulan harta digunakan atau mulai menghasilkan hanya boleh dengan persetujuan Direktur Jenderal Pajak (ayat (4); Pasal 5 ayat (1) huruf b dan ayat (4) PMK 72/2023), yang di sini tidak dimohonkan.",
+        jejakHitung: [
+          ["Gudang: harta dalam pengerjaan, selesai November 2025", "mulai November 2025 → November dan Desember = 2 bulan"],
+          ["Mesin cetak: pengeluaran (lunas) Oktober 2025", "mulai Oktober 2025 → Oktober sampai Desember = 3 bulan"],
+          ["Bulan pemakaian (Februari 2026 dan Desember 2025)", "hanya relevan bila ada persetujuan DJP"]
+        ],
+        mengapaSalah: {
+          A: "Memakai bulan pengeluaran pertama untuk gudang; harta yang masih dalam pengerjaan disusutkan mulai bulan selesainya pengerjaan, bukan bulan pembangunan dimulai.",
+          B: "Memulai pada bulan berikutnya; bulan selesainya pengerjaan dan bulan pengeluaran itu sendiri sudah dihitung.",
+          D: "Memulai pada bulan harta dipakai atau mulai berproduksi hanya boleh dengan persetujuan Direktur Jenderal Pajak, sedangkan perusahaan tidak mengajukan permohonan."
+        },
+        jebakan: "Kasus memuat tiga bulan untuk tiap harta (mulai dibangun atau dibayar, selesai, dipakai). Tanpa persetujuan DJP, yang menentukan hanya bulan pengeluaran atau bulan selesainya pengerjaan, dan bulan itu ikut dihitung."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (3) dan ayat (4) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 72/2023 Pasal 5 ayat (1) dan ayat (4)", berlakuSejak: "2023-07-17" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-065",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-230",
+      topik: "B6.11",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      kutipan: "Pasal 19 ayat (3) UU KUP: Dalam hal Wajib Pajak diperbolehkan menunda penyampaian Surat Pemberitahuan Tahunan dan ternyata penghitungan sementara pajak yang terutang sebagaimana dimaksud dalam Pasal 3 ayat (5) kurang dari jumlah pajak yang sebenarnya terutang atas kekurangan pembayaran pajak tersebut, Wajib Pajak dikenai sanksi administratif berupa bunga sebesar tarif bunga per bulan yang ditetapkan oleh Menteri Keuangan yang dihitung sejak berakhirnya batas waktu penyampaian Surat Pemberitahuan Tahunan sebagaimana dimaksud dalam Pasal 3 ayat (3) huruf b dan huruf c sampai dengan tanggal dibayarnya kekurangan pembayaran tersebut dan dikenakan paling lama 24 (dua puluh empat) bulan serta bagian dari bulan dihitung penuh 1 (satu) bulan.",
+      stem: "PT Bintang Logistik Samudra (tahun buku kalender) pada 27 April 2026 menyampaikan pemberitahuan perpanjangan penyampaian SPT Tahunan PPh Badan 2025 melalui Coretax, dilampiri penghitungan sementara (PPh Pasal 29 sementara Rp185.000.000), laporan keuangan sementara, dan bukti pelunasan Rp185.000.000 yang dibayar 24 April 2026. Setelah audit selesai, PPh Pasal 29 menurut SPT definitif ternyata Rp297.400.000; kekurangannya dilunasi 19 Mei 2026, sedangkan SPT definitif baru disampaikan 15 Juni 2026. Anggap tarif bunga per bulan yang berlaku pada awal penghitungan sanksi: tarif menurut Pasal 19 ayat (4) UU KUP (suku bunga acuan dibagi 12) 0,53% dan tarif untuk sanksi Pasal 9 ayat (2a) 0,95%. Berdasarkan kutipan tersebut, sanksi administratif yang akan ditagih dengan STP adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Bunga Rp1.191.440", B: "Bunga Rp595.720", C: "Bunga Rp1.067.800", D: "Tidak ada sanksi karena kekurangan dilunasi sebelum SPT disampaikan dalam masa perpanjangan" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pemberitahuan perpanjangan yang lengkap menggeser batas penyampaian SPT sampai 30 Juni 2026, sehingga SPT 15 Juni 2026 tepat waktu dan tidak ada denda. Namun penghitungan sementara lebih kecil dari pajak sebenarnya, sehingga atas kekurangan Rp112.400.000 dikenai bunga Pasal 19 ayat (3) dengan tarif ayat (4) (suku bunga acuan dibagi 12), dihitung sejak berakhirnya batas waktu semula 30 April 2026 sampai tanggal dibayarnya kekurangan (19 Mei 2026), bukan sampai tanggal SPT disampaikan.",
+        jejakHitung: [
+          ["Batas dengan perpanjangan = 30 April 2026 + 2 bulan", "30 Juni 2026 → SPT 15 Juni tepat waktu"],
+          ["Kekurangan = 297.400.000 − 185.000.000", "Rp112.400.000"],
+          ["Sejak 30 April sampai pelunasan 19 Mei 2026", "19 hari → 1 bulan"],
+          ["Bunga = 112.400.000 × 0,53% × 1", "Rp595.720"]
+        ],
+        mengapaSalah: {
+          A: "Menghitung bunga sampai tanggal SPT disampaikan (15 Juni 2026, 2 bulan); Pasal 19 ayat (3) menghitung sampai tanggal dibayarnya kekurangan, yaitu 19 Mei 2026 (1 bulan).",
+          C: "Memakai tarif sanksi Pasal 9 ayat (2a) (suku bunga acuan ditambah 5%); bunga atas kekurangan akibat penghitungan sementara diatur khusus Pasal 19 ayat (3) dengan tarif ayat (4).",
+          D: "Perpanjangan hanya menunda penyampaian SPT, bukan pembayaran; kekurangan dari penghitungan sementara tetap dikenai bunga sejak batas waktu semula 30 April 2026."
+        },
+        jebakan: "Ada tiga tanggal setelah 30 April (pelunasan, penyampaian SPT, batas perpanjangan). Bunga berhenti pada tanggal dibayarnya kekurangan, dan tarifnya tanpa tambahan 5%."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (3) huruf c, ayat (4), dan ayat (5) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 19 ayat (3) dan ayat (4) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02" }, { pasal: "PMK 81/2024 (pemberitahuan perpanjangan SPT Tahunan)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-066",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-231",
+      topik: "B6.11",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kutipan: "Pasal 29 UU PPh: Apabila pajak yang terutang untuk suatu tahun pajak ternyata lebih besar daripada kredit pajak sebagaimana dimaksud dalam Pasal 28 ayat (1), kekurangan pembayaran pajak yang terutang harus dilunasi sebelum Surat Pemberitahuan Tahunan Pajak Penghasilan disampaikan.",
+      stem: "Pada 24 April 2026 staf pajak PT Cipta Mebel Rayon menyiapkan SPT Tahunan PPh Badan 2025 di Coretax. Penghitungan menunjukkan kurang bayar Rp62.500.000, sedangkan saldo Deposit Pajak perusahaan Rp70.000.000. Direktur utama, sebagai pengurus yang terdaftar sebagai penanggung jawab akun badan, telah menunjuk staf pajak itu melalui Coretax untuk menandatangani dokumen elektronik perusahaan, dan staf tersebut sudah memiliki kode otorisasi DJP atas namanya. Berdasarkan kutipan tersebut dan tata cara SPT elektronik di Coretax, urutan langkah yang paling tepat adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Buat konsep SPT dan lengkapi lampiran → lunasi PPh Pasal 29 Rp62.500.000 memakai saldo Deposit Pajak → staf pajak yang ditunjuk menandatangani dengan kode otorisasi DJP miliknya → kirim SPT dan simpan Bukti Penerimaan Elektronik", B: "Buat konsep SPT dan lengkapi lampiran → staf pajak yang ditunjuk menandatangani dan mengirim SPT berstatus kurang bayar → saldo Deposit Pajak dipakai melunasi PPh Pasal 29 paling lambat akhir bulan berikutnya → simpan Bukti Penerimaan Elektronik", C: "Pakai saldo Deposit Pajak untuk menyetor angsuran PPh Pasal 25 Masa April 2026 sebesar Rp62.500.000 → buat konsep SPT dan lengkapi lampiran → staf pajak yang ditunjuk menandatangani → kirim SPT", D: "Buat konsep SPT dan lengkapi lampiran → lunasi PPh Pasal 29 memakai saldo Deposit Pajak → direktur utama sendiri wajib menandatangani karena orang yang ditunjuk tidak boleh menandatangani SPT Tahunan badan → kirim SPT" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Kekurangan PPh menurut SPT Tahunan wajib lunas sebelum SPT disampaikan dan tidak melebihi batas waktu penyampaian (Pasal 29 UU PPh; Pasal 95 ayat (1) PMK 81/2024). Pembayaran boleh memakai Deposit Pajak (Pasal 103 ayat (1) PMK 81/2024), dan yang dilunasi adalah PPh Pasal 29, bukan angsuran PPh Pasal 25. Dokumen elektronik badan ditandatangani dengan Sertifikat Elektronik atau Kode Otorisasi milik wakil Wajib Pajak atau orang pribadi lain yang ditunjuk wakil (Pasal 10 ayat (2) PMK 81/2024), sehingga staf pajak yang sudah ditunjuk boleh menandatangani.",
+        jejakHitung: [
+          ["1. Konsep SPT dan lampiran", "kurang bayar Rp62.500.000"],
+          ["2. Pelunasan PPh Pasal 29 dengan Deposit Pajak (saldo Rp70.000.000)", "lunas sebelum SPT dikirim; sisa deposit Rp7.500.000"],
+          ["3. Tanda tangan elektronik orang yang ditunjuk pengurus", "kode otorisasi DJP milik staf pajak"],
+          ["4. Kirim SPT", "Bukti Penerimaan Elektronik; batas 30 April 2026"]
+        ],
+        mengapaSalah: {
+          B: "Pasal 29 UU PPh dan Pasal 95 ayat (1) PMK 81/2024 mewajibkan pelunasan sebelum SPT disampaikan, bukan sesudahnya.",
+          C: "Kekurangan pajak tahunan dilunasi sebagai PPh Pasal 29, bukan sebagai angsuran PPh Pasal 25 masa berjalan.",
+          D: "Pasal 10 ayat (2) huruf b PMK 81/2024 membolehkan orang pribadi selain wakil Wajib Pajak yang ditunjuk wakil untuk menandatangani dokumen elektronik badan."
+        },
+        jebakan: "Urutan bayar, tanda tangan, kirim tetap sama; yang berubah adalah sarana bayar (Deposit Pajak) dan penanda tangan (orang yang sudah ditunjuk pengurus). Jangan menolak penunjukan yang sah hanya karena penanda tangannya bukan direktur."
+      },
+      dasarHukum: [{ pasal: "Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 3 ayat (1) dan ayat (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 10 ayat (2), Pasal 95 ayat (1), dan Pasal 103 ayat (1) PMK 81/2024", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-067",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-232",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-11",
+      laporanUjian: ["B-2026-10"],
+      stem: "Data untuk soal vignette V-B6-11: PT Prima Atap Nusantara (distributor genteng metal dan pipa baja, badan dalam negeri terdaftar 2012, PKP, tahun buku kalender, tidak pernah memakai PPh final UMKM) Tahun Pajak 2025: pegawai tetap 72 orang; total aset Rp27.000.000.000; penjualan neto Rp46.850.000.000; PPN keluaran Rp5.153.500.000 dan PPN masukan Rp4.610.000.000; bunga deposito Rp250.000.000 (PPh final dipotong bank); dividen dari PT anak dalam negeri Rp900.000.000; dan laba komersial sebelum pajak Rp3.420.000.000 (sudah termasuk bunga dan dividen). Beban yang tercatat antara lain gaji Rp5.800.000.000 (PPh 21 yang dipotong dari gaji pegawai Rp190.000.000), PBB gudang Rp38.000.000, sanksi bunga STP PPh Pasal 21 Rp42.000.000, dan PPh Pasal 29 Tahun Pajak 2024 yang dibukukan sebagai beban Rp96.000.000. Sisa kerugian fiskal yang belum dikompensasikan: Tahun Pajak 2019 Rp210.000.000 dan Tahun Pajak 2022 Rp180.000.000. PPh badan terutang Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp490.160.000", B: "Rp465.652.000", C: "Rp421.762.000", D: "Rp473.594.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pilah data: jumlah pegawai, aset, PPN, gaji, dan PPh 21 pegawai tidak memengaruhi PKP; PBB adalah pajak selain PPh yang boleh dibiayakan. Koreksi positif: sanksi bunga (Pasal 9 ayat (1) huruf k) dan PPh yang dibebankan (huruf h). Koreksi negatif: bunga deposito (PPh final) dan dividen dari dalam negeri (bukan objek). Rugi 2019 hanya dapat dikompensasikan sampai 2024, sedangkan rugi 2022 masih dapat dipakai. Peredaran bruto (tanpa PPN, termasuk penghasilan final dan bukan objek) Rp48 miliar, sehingga Pasal 31E berlaku.",
+        jejakHitung: [
+          ["Koreksi positif = 42.000.000 + 96.000.000", "Rp138.000.000"],
+          ["Koreksi negatif = 250.000.000 + 900.000.000", "Rp1.150.000.000"],
+          ["Neto fiskal = 3.420.000.000 + 138.000.000 − 1.150.000.000", "Rp2.408.000.000"],
+          ["PKP = 2.408.000.000 − 180.000.000 (rugi 2022; rugi 2019 kedaluwarsa)", "Rp2.228.000.000"],
+          ["Peredaran bruto = 46.850.000.000 + 250.000.000 + 900.000.000", "Rp48.000.000.000"],
+          ["PKP fasilitas = 4,8/48 × 2.228.000.000", "Rp222.800.000"],
+          ["11% × 222.800.000 + 22% × 2.005.200.000", "Rp24.508.000 + Rp441.144.000"],
+          ["PPh terutang", "Rp465.652.000"]
+        ],
+        mengapaSalah: {
+          A: "Memasukkan PPN keluaran ke peredaran bruto (Rp53,15 miliar > Rp50 miliar) sehingga tanpa Pasal 31E: 22% × 2.228.000.000.",
+          C: "Ikut mengompensasikan rugi 2019 yang masa kompensasinya berakhir 2024 (PKP Rp2.018.000.000).",
+          D: "Mengoreksi positif PBB Rp38.000.000, padahal pajak selain PPh dapat dibiayakan (PKP menjadi Rp2.266.000.000)."
+        },
+        jebakan: "Kasus panjang sengaja memuat data yang tidak dipakai. Hitung masa kompensasi tiap tahun rugi (5 tahun berturut-turut sejak tahun berikutnya), dan ingat bahwa PPh yang dibebankan dikoreksi, sedangkan PBB tidak."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a dan ayat (2), Pasal 9 ayat (1) huruf h dan huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 31E ayat (1) UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-068",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-233",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-11",
+      laporanUjian: ["B-2026-10"],
+      stem: "Lanjutan V-B6-11: PT Prima Atap Nusantara memiliki PPh badan terutang Tahun Pajak 2025 Rp465.652.000, dihitung dari penghasilan neto fiskal Rp2.408.000.000 dikurangi kompensasi sisa kerugian Tahun Pajak 2022 Rp180.000.000 (sisa kerugian itu habis terpakai pada 2025, dan kerugian 2019 sudah tidak dapat dikompensasikan), dengan peredaran bruto Rp48.000.000.000 (Pasal 31E berlaku). Selama 2025 tercatat: PPh Pasal 22 impor (tidak final) atas impor barang dagangan Rp88.000.000; PPh Pasal 23 atas jasa pemasangan yang dipotong pelanggan (BPPU atas nama perusahaan) Rp30.996.000; angsuran PPh Pasal 25 yang dibayar Rp150.000.000; PPh Pasal 21 yang dipotong dari gaji pegawai Rp190.000.000; PPh Pasal 23 yang dipotong perusahaan atas sewa alat berat dari vendor Rp13.200.000; PPh final bunga deposito Rp50.000.000; dan PPN kurang bayar setahun Rp543.500.000. SPT disampaikan 22 April 2026 tanpa permohonan pengurangan angsuran dan tanpa penghasilan tidak teratur. PPh Pasal 29 dan angsuran PPh Pasal 25 per bulan mulai Masa April 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "PPh 29 Rp196.656.000; angsuran Rp28.888.000", B: "PPh 29 Rp183.456.000; angsuran Rp30.923.000", C: "PPh 29 Rp196.656.000; angsuran Rp16.388.000", D: "PPh 29 Rp196.656.000; angsuran Rp32.023.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Kredit pajak hanya pajak atas penghasilan perusahaan sendiri yang dipungut atau dipotong pihak lain (PPh 22 impor, PPh 23 dari pelanggan) dan PPh 25 yang dibayar; PPh yang dipotong perusahaan dari pihak lain (PPh 21 pegawai, PPh 23 vendor), PPh final, dan PPN tidak dikreditkan. Karena SPT 2025 memuat kompensasi kerugian, angsuran 2026 dihitung dari penghasilan neto 2025 dikurangi kompensasi kerugian yang masih dapat dipakai pada 2026 (Pasal 25 ayat (6) huruf a UU PPh; Pasal 114 PER-11/PJ/2025 dan petunjuk Lampiran 6). Sisa itu nol, sehingga dasarnya penghasilan neto penuh, dikenai tarif dengan Pasal 31E, dikurangi PPh 22 dan 23 tahun lalu, lalu dibagi 12.",
+        jejakHitung: [
+          ["Kredit = 88.000.000 + 30.996.000 + 150.000.000", "Rp268.996.000"],
+          ["PPh 29 = 465.652.000 − 268.996.000", "Rp196.656.000"],
+          ["Kompensasi kerugian yang masih dapat dipakai pada 2026", "Rp0"],
+          ["Dasar angsuran = penghasilan neto 2025", "Rp2.408.000.000"],
+          ["PKP fasilitas = 4,8/48 × 2.408.000.000", "Rp240.800.000"],
+          ["PPh = 11% × 240.800.000 + 22% × 2.167.200.000 = 26.488.000 + 476.784.000", "Rp503.272.000"],
+          ["Dikurangi PPh 22 dan 23 = 503.272.000 − 118.996.000", "Rp384.276.000"],
+          ["Angsuran = 384.276.000 ÷ 12 (mulai Masa April 2026)", "Rp32.023.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai PPh terutang setelah kompensasi: (465.652.000 − 118.996.000) ÷ 12. Bila SPT tahun lalu memuat kompensasi kerugian, dasar angsuran adalah penghasilan neto dikurangi kompensasi yang masih dapat dipakai tahun berjalan, yang di sini nol.",
+          B: "Mengkreditkan PPh 23 yang dipotong perusahaan atas sewa alat dari vendor Rp13.200.000 (itu kredit pajak milik vendor): PPh 29 Rp183.456.000 dan angsuran (503.272.000 − 132.196.000) ÷ 12.",
+          C: "Membagi PPh 29 dengan 12; rumus angsuran memakai PPh atas dasar angsuran dikurangi PPh 22, 23, dan 24, bukan PPh 29."
+        },
+        jebakan: "Bedakan posisi perusahaan sebagai pihak yang dipotong (kredit pajak) dan sebagai pemotong (bukan kredit pajak). Kompensasi kerugian yang sudah habis tidak lagi mengurangi dasar angsuran tahun berikutnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1), ayat (2), dan ayat (6) huruf a; Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 22 ayat (1) huruf a UU PPh (PPh Pasal 22 impor)", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 232 ayat (4) (angsuran memperhitungkan fasilitas Pasal 31E)", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 113 ayat (2) huruf a dan Pasal 114 serta Lampiran (petunjuk pengisian Lampiran 6 dan Lampiran 7 SPT PPh Badan)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-069",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-234",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      stem: "Pada 2026 Tuan Henrik, warga negara Negara T, menjabat konsul pada Konsulat Jenderal Negara T di Medan dan tinggal di Indonesia sepanjang tahun; Negara T memberikan perlakuan timbal balik kepada pejabat konsuler Indonesia. Penghasilannya hanya gaji dari pemerintah Negara T. Ia membawa Nona Ilse, juga warga negara Negara T, yang diperbantukan kepadanya sebagai juru masak pribadi; Nona Ilse bekerja padanya, tinggal bersamanya di rumah dinas, dan tidak menerima penghasilan lain di Indonesia. Konsulat juga mempekerjakan Tuan Bayu (WNI, bertempat tinggal di Medan) sebagai sopir dengan gaji bulanan, dan konsulat tidak menjalankan usaha di Indonesia. Pernyataan yang paling tepat menurut Pasal 3 ayat (1) UU PPh adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Konsulat Jenderal Negara T bukan subjek pajak; Tuan Henrik dan Nona Ilse tidak termasuk subjek pajak; Tuan Bayu juga dikecualikan sebagai subjek pajak karena bekerja pada kantor perwakilan negara asing.", B: "Konsulat Jenderal Negara T bukan subjek pajak; Tuan Henrik tidak termasuk subjek pajak, tetapi Nona Ilse menjadi subjek pajak karena pengecualian hanya berlaku bagi pejabat konsulat; Tuan Bayu merupakan subjek pajak dalam negeri.", C: "Konsulat Jenderal Negara T bukan subjek pajak; Tuan Henrik dan Nona Ilse tidak termasuk subjek pajak karena syarat Pasal 3 ayat (1) huruf b terpenuhi; Tuan Bayu merupakan subjek pajak dalam negeri.", D: "Konsulat Jenderal Negara T bukan subjek pajak; Tuan Henrik dan Nona Ilse menjadi subjek pajak dalam negeri karena bertempat tinggal di Indonesia lebih dari 183 hari; Tuan Bayu merupakan subjek pajak dalam negeri." },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Kantor perwakilan negara asing dikecualikan tanpa syarat (Pasal 3 ayat (1) huruf a). Huruf b mengecualikan pejabat perwakilan diplomatik dan konsulat serta orang-orang yang diperbantukan kepada mereka yang bekerja pada dan bertempat tinggal bersama mereka, dengan syarat bukan WNI, di Indonesia tidak menerima penghasilan di luar jabatan atau pekerjaannya, dan ada perlakuan timbal balik. Tuan Henrik dan Nona Ilse memenuhi semua syarat itu. Tuan Bayu adalah WNI yang bertempat tinggal di Indonesia, sehingga tetap subjek pajak dalam negeri.",
+        jejakHitung: [
+          ["Konsulat (huruf a)", "bukan subjek pajak, tanpa syarat"],
+          ["Tuan Henrik: bukan WNI, hanya gaji jabatan, ada timbal balik", "dikecualikan (huruf b)"],
+          ["Nona Ilse: diperbantukan, bekerja pada dan tinggal bersama konsul, bukan WNI, tanpa penghasilan lain", "dikecualikan (huruf b)"],
+          ["Tuan Bayu: WNI, bertempat tinggal di Indonesia", "subjek pajak dalam negeri"]
+        ],
+        mengapaSalah: {
+          A: "Pengecualian huruf b mensyaratkan bukan WNI dan bekerja pada serta tinggal bersama pejabat; bekerja pada kantor perwakilan tidak membuat WNI dikecualikan.",
+          B: "Huruf b juga mencakup orang-orang yang diperbantukan kepada pejabat yang bekerja pada dan bertempat tinggal bersama mereka, seperti Nona Ilse.",
+          D: "Pasal 3 ayat (1) mengecualikan pihak-pihak itu dari subjek pajak walaupun mereka tinggal di Indonesia lebih dari 183 hari; uji 183 hari Pasal 2 ayat (3) tidak berlaku bagi yang dikecualikan."
+        },
+        jebakan: "Pengecualian huruf b tidak hanya untuk pejabat: orang yang diperbantukan juga tercakup bila bekerja pada dan tinggal bersama pejabat, bukan WNI, dan tanpa penghasilan lain di Indonesia. Kewarganegaraan menjadi pembeda bagi staf lokal."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a dan b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 2 ayat (3) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-070",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-235",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kutipan: "Pasal 2 ayat (7) UU KUP: Direktur Jenderal Pajak setelah melakukan pemeriksaan harus memberikan keputusan atas permohonan penghapusan Nomor Pokok Wajib Pajak dalam jangka waktu 6 (enam) bulan untuk Wajib Pajak orang pribadi atau 12 (dua belas) bulan untuk Wajib Pajak badan, sejak tanggal permohonan diterima secara lengkap.",
+      stem: "RUPS PT Mitra Pangan Lestari (PKP, tahun buku kalender) memutuskan pembubaran perseroan pada 15 Mei 2026, dan likuidator menyelesaikan likuidasi pada 31 Juli 2026. Pada 3 Agustus 2026 likuidator mengajukan permohonan penghapusan NPWP melalui Coretax, tetapi dokumen yang menunjukkan perseroan telah dibubarkan baru diunggah pada 19 Agustus 2026, dan pada tanggal itu permohonan dinyatakan diterima secara lengkap. Berdasarkan kutipan tersebut dan Pasal 47 PMK 81/2024, pernyataan yang paling tepat mengenai keputusan penghapusan NPWP adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Keputusan diterbitkan berdasarkan hasil pemeriksaan paling lama 18 Februari 2027; bila jangka waktu itu terlampaui tanpa keputusan, permohonan dianggap dikabulkan dan surat keputusan penghapusan terbit paling lama 1 bulan kemudian", B: "Keputusan diterbitkan berdasarkan hasil pemeriksaan paling lama 2 Agustus 2027; bila jangka waktu itu terlampaui tanpa keputusan, permohonan dianggap dikabulkan dan surat keputusan penghapusan terbit paling lama 1 bulan kemudian", C: "Keputusan diterbitkan berdasarkan hasil pemeriksaan paling lama 18 Agustus 2027; bila jangka waktu itu terlampaui tanpa keputusan, permohonan dianggap dikabulkan dan surat keputusan penghapusan terbit paling lama 1 bulan kemudian", D: "Keputusan diterbitkan berdasarkan hasil pemeriksaan paling lama 18 Agustus 2027; bila jangka waktu itu terlampaui tanpa keputusan, permohonan dianggap ditolak sehingga likuidator harus mengajukan permohonan penghapusan yang baru" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Untuk Wajib Pajak badan, keputusan penghapusan NPWP diterbitkan berdasarkan hasil pemeriksaan paling lama 12 bulan sejak permohonan diterima secara lengkap (Pasal 2 ayat (7) UU KUP; Pasal 47 ayat (3) dan ayat (4) PMK 81/2024). Permohonan baru lengkap pada 19 Agustus 2026; tanggal itu hari pertama, sehingga hari terakhir jangka waktu 18 Agustus 2027. Bila terlampaui tanpa keputusan, permohonan dianggap dikabulkan dan KPP harus menerbitkan surat keputusan penghapusan paling lama 1 bulan setelah jangka waktu berakhir (Pasal 47 ayat (5)).",
+        jejakHitung: [
+          ["Jenis Wajib Pajak", "badan → 12 bulan (orang pribadi 6 bulan)"],
+          ["Titik awal", "permohonan diterima lengkap 19 Agustus 2026 (bukan 3 Agustus 2026)"],
+          ["Hari terakhir = sehari sebelum 19 Agustus 2027", "18 Agustus 2027"],
+          ["Bila terlampaui", "dianggap dikabulkan; SK terbit paling lama 1 bulan setelahnya"]
+        ],
+        mengapaSalah: {
+          A: "Enam bulan adalah jangka waktu untuk Wajib Pajak orang pribadi, bukan badan.",
+          B: "Jangka waktu dihitung sejak permohonan diterima secara lengkap (19 Agustus 2026), bukan sejak permohonan pertama kali diajukan (3 Agustus 2026).",
+          D: "Pasal 47 ayat (5) PMK 81/2024 menentukan permohonan dianggap dikabulkan, bukan ditolak, bila jangka waktu terlampaui tanpa keputusan."
+        },
+        jebakan: "Kasus memuat empat tanggal (RUPS, selesai likuidasi, permohonan diajukan, permohonan lengkap); jangka keputusan dihitung dari permohonan lengkap. Akibat diamnya KPP adalah fiktif positif."
+      },
+      dasarHukum: [{ pasal: "Pasal 2 ayat (6) huruf b dan ayat (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 81/2024 Pasal 46 ayat (2) huruf a dan Pasal 47 ayat (3), ayat (4), dan ayat (5)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-071",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-236",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      stem: "Nordvik Engineering AS, badan yang berkedudukan di Negara N, menugaskan lima insinyurnya memberikan jasa konsultasi teknik dan pelatihan operator kepada PT Gemilang Baja Prima di Cilegon sejak 9 Februari sampai 14 Mei 2026 (95 hari); Nordvik tidak mempunyai kegiatan lain di Indonesia dalam 12 bulan itu. P3B Indonesia dan Negara N menetapkan bahwa laba usaha perusahaan Negara N hanya dikenai pajak di Negara N kecuali diperoleh melalui BUT, bahwa BUT jasa timbul bila jasa diberikan lebih dari 120 hari dalam periode 12 bulan, dan tidak memuat pasal tersendiri tentang imbalan jasa teknik. Sebelum pembayaran, Nordvik menyerahkan Formulir DGT yang disahkan pejabat berwenang Negara N, dan PT Gemilang telah memeriksanya serta memperoleh tanda terima melalui Coretax dengan hasil seluruh syarat terpenuhi. Pada 10 Juni 2026 PT Gemilang membayar imbalan jasa Rp1.200.000.000 kepada Nordvik dan Rp350.000.000 kepada Nordvik atas suku cadang yang dikirim langsung dari Negara N dan diimpor sendiri oleh PT Gemilang. Pajak penghasilan yang wajib dipotong PT Gemilang atas kedua pembayaran itu adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "PPh Pasal 23 sebesar 2% × Rp1.200.000.000 = Rp24.000.000; pembayaran suku cadang tidak dipotong PPh", B: "Tidak ada PPh yang dipotong, baik atas imbalan jasa maupun atas pembayaran suku cadang", C: "PPh Pasal 26 sebesar 20% × Rp1.200.000.000 = Rp240.000.000; pembayaran suku cadang tidak dipotong PPh", D: "PPh Pasal 26 sebesar 20% × Rp1.550.000.000 = Rp310.000.000 atas kedua pembayaran" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Menurut Pasal 2 ayat (5) huruf m UU PPh, jasa lebih dari 60 hari dalam 12 bulan membentuk BUT, tetapi P3B dapat menetapkan jangka waktu penentuan BUT yang berbeda (Pasal 2 ayat (6) huruf d PMK 112/2025). Dengan ambang P3B 120 hari, jasa 95 hari tidak membentuk BUT, sehingga imbalan jasa adalah laba usaha yang hanya dipajaki di Negara N. Karena Formulir DGT sah dan syarat terpenuhi, PT Gemilang memotong sesuai P3B (Pasal 2 ayat (5) PMK 112/2025), yaitu tidak memotong PPh Pasal 26 atas imbalan jasa. Harga suku cadang adalah pembelian barang dari luar negeri, bukan objek PPh Pasal 26; atas impornya PT Gemilang sendiri dipungut PPh Pasal 22 impor di pabean.",
+        jejakHitung: [
+          ["Masa jasa 95 hari: > 60 hari (UU PPh), tetapi ≤ 120 hari (P3B)", "tidak ada BUT menurut P3B"],
+          ["Imbalan jasa kepada Wajib Pajak luar negeri tanpa BUT", "laba usaha, hanya dipajaki di Negara N"],
+          ["Formulir DGT sah dan terekam di Coretax", "pemotongan mengikuti P3B → PPh Pasal 26 Rp0"],
+          ["Harga suku cadang", "pembelian barang → bukan objek PPh Pasal 26"]
+        ],
+        mengapaSalah: {
+          A: "Ambang 60 hari UU PPh dikesampingkan oleh ambang 120 hari P3B; tanpa BUT, Nordvik bukan penerima PPh Pasal 23.",
+          C: "Tarif 20% Pasal 26 hanya berlaku bila manfaat P3B tidak dapat diterapkan; di sini Formulir DGT sah dan P3B memberi hak pemajakan atas laba usaha hanya kepada Negara N.",
+          D: "Selain imbalan jasa yang dilindungi P3B, pembayaran harga barang dari luar negeri tidak termasuk jenis penghasilan yang dipotong PPh Pasal 26."
+        },
+        jebakan: "Bandingkan masa jasa dengan ambang P3B yang tertulis di soal, bukan dengan angka hafalan 60 atau 90 hari. Begitu BUT tidak terbentuk menurut P3B dan Formulir DGT sah, imbalan jasa tidak dipotong; harga barang memang bukan objek PPh Pasal 26."
+      },
+      dasarHukum: [{ pasal: "Pasal 2 ayat (5) huruf m UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 Pasal 2 ayat (4), ayat (5), dan ayat (6) (penerapan P3B dan Formulir DGT)", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 190,
+      verifikasi: "✅",
+      kembaranDari: "B6-072",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-237",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      laporanUjian: ["B-2026-10"],
+      stem: "Pada September 2026 sebuah kantor konsultan pajak di Semarang diminta menilai status subjek Pajak Penghasilan empat pihak untuk Tahun Pajak 2026. Di antara pihak-pihak berikut, yang merupakan subjek pajak badan dalam negeri adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Kantor kedutaan besar negara sahabat di Jakarta yang hanya menjalankan fungsi perwakilan diplomatik negaranya", B: "Organisasi internasional yang ditetapkan Menteri Keuangan, Indonesia menjadi anggotanya, dan satu-satunya kegiatannya di Indonesia adalah memberi pinjaman kepada pemerintah dari iuran anggota", C: "Asosiasi pengusaha mebel yang didirikan dan berkedudukan di Jepara, seluruh dananya berasal dari iuran anggota, dan tidak menjalankan usaha apa pun", D: "Balai latihan kerja milik pemerintah provinsi yang dibentuk dengan peraturan gubernur, dibiayai APBD, seluruh penerimaannya masuk APBD, dan pembukuannya diperiksa inspektorat" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Badan mencakup perkumpulan, baik yang melakukan usaha maupun yang tidak (Pasal 1 angka 3 UU KUP), dan menurut Penjelasan Pasal 2 ayat (1) huruf b UU PPh pengertian perkumpulan termasuk asosiasi. Asosiasi yang didirikan di Indonesia adalah subjek pajak badan dalam negeri (Pasal 2 ayat (3) huruf b) walaupun tidak berusaha; sumber dananya menyangkut objek pajak, bukan status subjek.",
+        jejakHitung: [
+          ["Asosiasi pengusaha (perkumpulan) didirikan di Indonesia", "badan → subjek pajak badan dalam negeri"],
+          ["Kedutaan besar negara sahabat", "kantor perwakilan negara asing → bukan subjek (Pasal 3 ayat (1) huruf a)"],
+          ["Organisasi internasional yang hanya memberi pinjaman kepada pemerintah dari iuran anggota", "bukan subjek (Pasal 3 ayat (1) huruf c)"],
+          ["Balai latihan kerja yang memenuhi empat kriteria", "dikecualikan (Pasal 2 ayat (3) huruf b)"]
+        ],
+        mengapaSalah: {
+          A: "Kantor perwakilan negara asing tidak termasuk subjek pajak (Pasal 3 ayat (1) huruf a UU PPh).",
+          B: "Memberi pinjaman kepada pemerintah dari iuran anggota justru satu-satunya kegiatan yang dibolehkan Pasal 3 ayat (1) huruf c angka 2; organisasi itu tetap bukan subjek pajak.",
+          D: "Unit pemerintah yang memenuhi keempat kriteria kumulatif Pasal 2 ayat (3) huruf b dikecualikan dari subjek pajak badan dalam negeri."
+        },
+        jebakan: "Pengecoh B menguji bunyi syarat: organisasi internasional tidak boleh menjalankan usaha atau kegiatan lain untuk memperoleh penghasilan dari Indonesia \"selain memberikan pinjaman kepada pemerintah yang dananya berasal dari iuran para anggota\". Pinjaman semacam itu tidak menggugurkan pengecualian."
+      },
+      dasarHukum: [{ pasal: "Pasal 1 angka 3 UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 2 ayat (1) huruf b beserta Penjelasannya dan ayat (3) huruf b, Pasal 3 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 80,
+      verifikasi: "✅",
+      kembaranDari: "B6-073",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-238",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Sinar Cakrawala Kimia (badan dalam negeri, peredaran bruto Rp210 miliar, tarif umum) mencatat pendapatan lain-lain Tahun Pajak 2025 berikut, seluruhnya sudah termasuk dalam laba komersial: (1) pengembalian PBB-P2 Tahun 2023 yang dahulu dibebankan sebagai biaya Rp32.000.000; (2) imbalan bunga atas keterlambatan pengembalian kelebihan pembayaran pajak Rp14.000.000; (3) pengembalian kelebihan PPh Badan Tahun Pajak 2023 berdasarkan SKPLB yang dibukukan sebagai pendapatan Rp185.000.000; (4) sumbangan tunai dari pemasok bahan baku utamanya Rp240.000.000; (5) laba selisih kurs yang belum direalisasi atas utang usaha dalam yen Rp55.000.000; (6) sewa sebagian lantai gedung kantornya kepada PT Arunika Data (badan dalam negeri) Rp210.000.000 yang telah dipotong PPh final; (7) penggantian asuransi atas forklift yang hilang Rp95.000.000; (8) dividen dari PT Kimia Hilir Nusantara, perseroan dalam negeri yang 10% sahamnya dimiliki PT Sinar, Rp420.000.000; dan (9) pembebasan utang usaha oleh pemasok kemasan Rp67.000.000. Perusahaan menyelenggarakan pembukuan sesuai SAK secara taat asas. Jumlah koreksi fiskal negatif atas pendapatan lain-lain tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp815.000.000", B: "Rp861.000.000", C: "Rp1.055.000.000", D: "Rp630.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Yang dikeluarkan dari penghasilan neto hanya pengembalian PPh Badan (PPh tidak boleh dibiayakan, sehingga pengembaliannya bukan penerimaan kembali pajak yang telah dibebankan sebagai biaya), sewa bangunan yang dikenai PPh final, dan dividen dalam negeri yang diterima badan dalam negeri (bukan objek tanpa syarat persentase kepemilikan). Pengembalian PBB yang dahulu dibiayakan, imbalan bunga, sumbangan dari pemasok, selisih kurs, penggantian asuransi, dan pembebasan utang adalah objek PPh tarif umum.",
+        jejakHitung: [
+          ["(3) Pengembalian PPh Badan (Pasal 9 ayat (1) huruf h; Pasal 4 ayat (1) huruf e)", "bukan penghasilan → −Rp185.000.000"],
+          ["(6) Sewa bangunan (PPh final, Pasal 4 ayat (2))", "−Rp210.000.000"],
+          ["(8) Dividen dalam negeri diterima badan dalam negeri (Pasal 4 ayat (3) huruf f angka 1)", "−Rp420.000.000"],
+          ["(1), (2), (4), (5), (7), (9)", "objek tarif umum → tanpa koreksi"],
+          ["Koreksi negatif = 185.000.000 + 210.000.000 + 420.000.000", "Rp815.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Menganggap pengembalian PBB dan imbalan bunga bukan objek (+Rp46.000.000); keduanya objek menurut Pasal 4 ayat (1) huruf e dan huruf r.",
+          C: "Menganggap sumbangan dari pemasok bukan objek (+Rp240.000.000); perseroan bukan penerima yang dikecualikan Pasal 4 ayat (3) huruf a, dan pemasok utama mempunyai hubungan usaha dengan PT Sinar.",
+          D: "Membiarkan pengembalian PPh Badan sebagai penghasilan (−Rp185.000.000); Pasal 4 ayat (1) huruf e hanya menjadikan objek pengembalian pajak yang dahulu dibebankan sebagai biaya, padahal PPh tidak boleh dibiayakan."
+        },
+        jebakan: "Uji setiap pengembalian pajak dengan pertanyaan: dahulu dibiayakan atau tidak? PBB dibiayakan sehingga pengembaliannya objek; PPh tidak dibiayakan sehingga pengembaliannya bukan penghasilan. Dividen dalam negeri tetap bukan objek walaupun kepemilikan hanya 10%."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf e, k, l, dan r UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (3) huruf a dan huruf f angka 1 UU PPh", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 9 ayat (1) huruf h UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) UU PPh; PP 34/2017", berlakuSejak: "2018-01-02" }, { pasal: "PP 94/2010 (selisih kurs diakui mengikuti pembukuan sesuai SAK yang taat asas)", berlakuSejak: "2010-12-30" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-074",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-239",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      kutipan: "Pasal 18 PMK 18/PMK.03/2021: Dividen yang dibagikan berasal dari badan usaha di luar negeri yang sahamnya diperdagangkan di bursa efek sebagaimana dimaksud dalam Pasal 17 ayat (3) huruf a dikecualikan dari objek PPh sebesar Dividen yang diinvestasikan di wilayah Negara Kesatuan Republik Indonesia dalam jangka waktu tertentu. Pasal 21 ayat (1): Selain memenuhi persyaratan sebagaimana dimaksud dalam Pasal 17 ayat (2), Dividen yang dibagikan berasal dari badan usaha di luar negeri yang sahamnya tidak diperdagangkan di bursa efek sebagaimana dimaksud dalam Pasal 17 ayat (3) huruf b, harus diinvestasikan di wilayah Negara Kesatuan Republik Indonesia dalam jangka waktu tertentu, paling sedikit sebesar 30% (tiga puluh persen) dari Laba Setelah Pajak.",
+      stem: "PT Prima Logam Sejahtera (badan dalam negeri) memiliki 3% saham Orient Metals Ltd., badan di Negara K yang sahamnya diperdagangkan di bursa efek Negara K. Pada Mei 2026 PT Prima menerima dividen Rp2.400.000.000 setelah dipotong pajak di Negara K. Direksi memutuskan Rp1.500.000.000 diinvestasikan di wilayah Indonesia dalam bentuk dan jangka waktu yang memenuhi ketentuan, sedangkan sisanya dipakai untuk melunasi utang kepada bank di Singapura. Berdasarkan kutipan tersebut, rumusan yang paling tepat untuk memo kepada direksi adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Seluruh dividen Rp2.400.000.000 menjadi objek PPh, karena dana yang diinvestasikan di Indonesia kurang dari dividen yang diterima; pengecualian hanya berlaku bila seluruh dividen diinvestasikan.", B: "Dividen yang diinvestasikan Rp1.500.000.000 dikecualikan dari objek PPh dan selisihnya Rp900.000.000 dikenai PPh, karena dividen dari badan yang sahamnya diperdagangkan di bursa dikecualikan sebesar yang diinvestasikan.", C: "Seluruh dividen Rp2.400.000.000 dikecualikan dari objek PPh tanpa syarat investasi, karena diterima Wajib Pajak badan dalam negeri, sama dengan dividen yang berasal dari badan dalam negeri.", D: "Dividen hanya dikecualikan bila yang diinvestasikan paling sedikit 30% dari laba setelah pajak Orient Metals sesuai proporsi kepemilikan; bila syarat itu dipenuhi, seluruh dividen Rp2.400.000.000 dikecualikan." },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Untuk dividen dari badan usaha luar negeri yang sahamnya diperdagangkan di bursa efek, pengecualian diberikan sebesar dividen yang diinvestasikan di Indonesia dalam jangka waktu tertentu (Pasal 18 PMK 18/PMK.03/2021). Bila yang diinvestasikan kurang dari dividen yang diterima, bagian yang diinvestasikan tetap dikecualikan dan selisihnya dikenai PPh (Pasal 19 dan Pasal 20). Syarat 30% dari laba setelah pajak hanya untuk badan yang sahamnya tidak diperdagangkan di bursa (Pasal 21).",
+        jejakHitung: [
+          ["Asal dividen", "badan luar negeri, saham diperdagangkan di bursa"],
+          ["Dikecualikan (diinvestasikan di Indonesia)", "Rp1.500.000.000"],
+          ["Objek PPh = 2.400.000.000 − 1.500.000.000", "Rp900.000.000"],
+          ["Pajak Negara K atas bagian yang dikecualikan", "tidak dapat dikreditkan, dibiayakan, atau direstitusi (Pasal 4 ayat (3) huruf f angka 8 UU PPh)"]
+        ],
+        mengapaSalah: {
+          A: "Pasal 19 PMK 18/PMK.03/2021 mengatur justru keadaan investasi kurang dari dividen: bagian yang diinvestasikan tetap dikecualikan; hanya selisihnya yang dikenai PPh (Pasal 20).",
+          C: "Pengecualian tanpa syarat investasi hanya untuk dividen dari dalam negeri yang diterima badan dalam negeri; dividen luar negeri bersyarat investasi di Indonesia.",
+          D: "Syarat paling sedikit 30% dari laba setelah pajak berlaku untuk badan luar negeri yang sahamnya tidak diperdagangkan di bursa; lagi pula pengecualian hanya sebesar dividen yang diinvestasikan, bukan seluruh dividen."
+        },
+        jebakan: "Tandai dulu \"diperdagangkan di bursa\" atau \"tidak diperdagangkan di bursa\"; lalu ingat bahwa pengecualian dividen luar negeri tidak bersifat semua atau tidak sama sekali: yang diinvestasikan dikecualikan, sisanya objek."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf f angka 2 dan angka 3 UU PPh (UU 11/2020 jo. UU 6/2023)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17 sampai dengan Pasal 21 PMK 18/PMK.03/2021", berlakuSejak: "2021-02-17" }, { pasal: "Pasal 370 dan Pasal 372 PMK 81/2024 (pemenuhan kriteria investasi dan laporan realisasi)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-075",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-240",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kutipan: "PP 34/2017 Pasal 2 ayat (3): Penghasilan sebagaimana dimaksud pada ayat (1), tidak termasuk penghasilan yang diterima atau diperoleh dari jasa pelayanan penginapan beserta akomodasinya. Pasal 3 ayat (2) dan ayat (3): Pemotong pajak meliputi badan pemerintah, subjek pajak badan dalam negeri, penyelenggara kegiatan, bentuk usaha tetap, kerja sama operasi, perwakilan perusahaan luar negeri lainnya, dan orang pribadi sebagai wajib pajak dalam negeri yang ditunjuk oleh Direktur Jenderal Pajak; dalam hal Penyewa bukan sebagai pemotong pajak, Pajak Penghasilan yang terutang wajib dibayar sendiri oleh orang pribadi atau badan yang menerima atau memperoleh penghasilan. Pasal 4 ayat (2): Jumlah bruto nilai persewaan termasuk biaya perawatan, biaya pemeliharaan, biaya keamanan, biaya layanan, dan biaya fasilitas lainnya, baik yang perjanjiannya dibuat secara terpisah maupun yang disatukan.",
+      stem: "PT Graha Niaga Lestari (badan dalam negeri, tarif umum, peredaran bruto di atas Rp50 miliar) mengelola satu menara perkantoran dan satu hotel. Pada Juni 2026 perusahaan menerima (seluruh nilai belum termasuk PPN): (1) dari CV Sinar Logam (badan dalam negeri) sewa ruang kantor Rp180.000.000 dan biaya keamanan serta kebersihan yang ditagih dengan perjanjian terpisah Rp24.000.000; (2) dari Ny. Ratna, orang pribadi yang tidak ditunjuk sebagai pemotong, sewa kios di lobi Rp45.000.000; (3) dari PT Expo Raya selaku penyelenggara kegiatan, sewa aula untuk pameran Rp70.000.000; dan (4) dari PT Batara Konsultan, pembayaran kamar hotel untuk tamu-tamunya Rp60.000.000. Penyewa (1) dan (3) telah memotong PPh dan memberikan bukti potong. Berdasarkan kutipan tersebut, PPh final yang wajib dibayar sendiri oleh PT Graha untuk Masa Juni 2026, batas penyetorannya, dan perlakuan penerimaan tersebut dalam rekonsiliasi fiskal adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp4.500.000 paling lambat 15 Juli 2026; penghasilan sewa Rp319.000.000 menjadi koreksi negatif, dan PPh final atas seluruh sewa dikreditkan dalam SPT Tahunan", B: "Rp4.500.000 paling lambat 15 Juli 2026; penerimaan Rp379.000.000, termasuk pembayaran kamar hotel, dikeluarkan dari penghasilan neto fiskal sebagai sewa yang dikenai PPh final", C: "Rp11.500.000 (sewa dari Ny. Ratna dan PT Expo Raya) paling lambat 15 Juli 2026; penghasilan sewa Rp319.000.000 dikeluarkan dari penghasilan neto fiskal", D: "Rp4.500.000 paling lambat 15 Juli 2026; penghasilan sewa Rp319.000.000, termasuk biaya keamanan dan kebersihan, dikeluarkan dari penghasilan neto fiskal, sedangkan pembayaran kamar hotel dikenai tarif umum" },
+      kunci: "D",
+      jebakanOpsi: { A: "final-nonfinal", B: "salah-klasifikasi", C: "lupa-pasal" },
+      pembahasan: {
+        inti: "Hanya penyewa orang pribadi yang tidak ditunjuk sebagai pemotong yang tidak memotong, sehingga PT Graha membayar sendiri 10% × Rp45.000.000 = Rp4.500.000 paling lambat tanggal 15 bulan berikutnya. Biaya keamanan dan kebersihan termasuk jumlah bruto nilai persewaan walaupun perjanjiannya terpisah. Penerimaan dari jasa penginapan bukan penghasilan persewaan menurut PP 34/2017, sehingga tetap dikenai tarif umum dan tidak dikeluarkan dari rekonsiliasi.",
+        jejakHitung: [
+          ["(1) CV Sinar Logam: 10% × (180.000.000 + 24.000.000)", "Rp20.400.000 dipotong penyewa"],
+          ["(2) Ny. Ratna (bukan pemotong): 10% × 45.000.000", "Rp4.500.000 dibayar sendiri"],
+          ["(3) PT Expo Raya (penyelenggara kegiatan): 10% × 70.000.000", "Rp7.000.000 dipotong penyewa"],
+          ["(4) Kamar hotel", "jasa penginapan → tarif umum"],
+          ["Batas setor", "15 Juli 2026 (Pasal 94 ayat (2) PMK 81/2024)"],
+          ["Koreksi negatif = 204.000.000 + 45.000.000 + 70.000.000", "Rp319.000.000"]
+        ],
+        mengapaSalah: {
+          A: "PPh final tidak dapat dikreditkan; pelunasannya bersifat final.",
+          B: "Pasal 2 ayat (3) PP 34/2017 mengecualikan penghasilan dari jasa pelayanan penginapan beserta akomodasinya; pembayaran kamar hotel Rp60.000.000 tetap penghasilan tarif umum.",
+          C: "Penyelenggara kegiatan termasuk pemotong pajak menurut Pasal 3 ayat (2) PP 34/2017, sehingga PT Graha tidak membayar sendiri atas sewa aula."
+        },
+        jebakan: "Siapa pemotongnya menentukan siapa yang menyetor, tetapi sifat finalnya sama. Jangan ikut mengeluarkan penerimaan hotel: menyediakan kamar adalah jasa penginapan, bukan persewaan bangunan."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 34/2017 Pasal 2 ayat (3), Pasal 3, dan Pasal 4", berlakuSejak: "2018-01-02" }, { pasal: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      kembaranDari: "B6-076",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-241",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Amanah Boga Nusantara (badan dalam negeri yang seluruh sahamnya dimiliki pemeluk agama Islam; peredaran bruto Rp72 miliar; tarif umum) melaporkan laba komersial sebelum pajak Tahun Pajak 2025 Rp6.250.000.000. Beban yang tercatat antara lain: tunjangan PPh Pasal 21 dalam bentuk uang yang dicantumkan dalam slip gaji seluruh pegawai Rp210.000.000; PPh Pasal 21 atas gaji para manajer yang ditanggung perusahaan tanpa dicantumkan sebagai tunjangan Rp84.000.000; zakat perusahaan yang dibayarkan kepada lembaga amil zakat yang disahkan pemerintah, dengan bukti pembayaran yang sah, Rp150.000.000; biaya pelatihan pegawai Rp65.000.000; sumbangan kepada panitia festival budaya kecamatan Rp35.000.000; biaya renovasi rumah pribadi komisaris yang juga pemegang saham Rp70.000.000; angsuran PPh Pasal 25 yang dibukukan dalam beban umum dan administrasi Rp300.000.000; PBB Rp28.000.000; serta sanksi bunga STP PPN Rp12.000.000. PPh Pasal 21 yang dipotong dari gaji pegawai selama 2025 Rp310.000.000. PPh badan terutang Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp1.485.220.000", B: "Rp1.518.220.000", C: "Rp1.531.420.000", D: "Rp1.466.740.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Dapat dikurangkan: tunjangan PPh dalam bentuk uang sebagai bagian gaji (Pasal 6 ayat (1) huruf a angka 2); PPh 21 manajer yang ditanggung perusahaan, karena merupakan penggantian dalam bentuk kenikmatan bagi penerimanya (Lampiran PMK 168/2023 contoh I.4) dan biaya kenikmatan boleh dikurangkan (Pasal 6 ayat (1) huruf n; PMK 66/2023 Pasal 2 ayat (1)); zakat kepada lembaga amil zakat yang disahkan pemerintah oleh badan dalam negeri milik pemeluk Islam (Pasal 9 ayat (1) huruf g; PP 60/2010 Pasal 1 ayat (1) huruf a); biaya pelatihan (Pasal 6 ayat (1) huruf g); serta PBB (Pasal 6 ayat (1) huruf a angka 9). Dikoreksi positif: sumbangan festival (Pasal 9 ayat (1) huruf g), biaya pribadi pemegang saham (huruf b), angsuran PPh Pasal 25 milik perusahaan sendiri (huruf h), dan sanksi bunga (huruf k).",
+        jejakHitung: [
+          ["Koreksi positif = 35.000.000 + 70.000.000 + 300.000.000 + 12.000.000", "Rp417.000.000"],
+          ["Tunjangan PPh, PPh 21 ditanggung (kenikmatan), zakat, pelatihan, PBB", "tidak dikoreksi"],
+          ["Neto fiskal = 6.250.000.000 + 417.000.000", "Rp6.667.000.000"],
+          ["Peredaran bruto Rp72 miliar > Rp50 miliar", "tanpa Pasal 31E"],
+          ["PPh = 22% × 6.667.000.000", "Rp1.466.740.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengoreksi positif PPh 21 yang ditanggung Rp84.000.000 menurut perlakuan lama: 22% × 6.751.000.000. Kini PPh yang ditanggung pemberi kerja adalah kenikmatan bagi pegawai yang biayanya dapat dikurangkan.",
+          B: "Mengoreksi zakat Rp150.000.000 (dan PPh 21 yang ditanggung): 22% × 6.901.000.000. Zakat kepada lembaga amil zakat yang disahkan pemerintah oleh badan dalam negeri milik pemeluk Islam dikecualikan dari larangan Pasal 9 ayat (1) huruf g.",
+          C: "Mengoreksi tunjangan PPh Rp210.000.000 (dan PPh 21 yang ditanggung): 22% × 6.961.000.000. Tunjangan dalam bentuk uang yang dicantumkan sebagai bagian gaji adalah biaya gaji yang dapat dikurangkan."
+        },
+        jebakan: "Larangan Pasal 9 ayat (1) huruf h hanya untuk PPh yang terutang oleh perusahaan sendiri: angsuran PPh Pasal 25 dikoreksi, sedangkan PPh 21 pegawai yang ditanggung adalah kenikmatan bagi pegawai. PPh 21 yang dipotong dari gaji pegawai bukan beban tambahan perusahaan."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a angka 2 dan angka 9 serta huruf g UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (1) huruf n UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 9 ayat (1) huruf b, g, h, dan k UU PPh beserta Penjelasan huruf h", berlakuSejak: "2009-01-01" }, { pasal: "PMK 66/2023 Pasal 2 ayat (1) dan ayat (7)", berlakuSejak: "2023-07-01" }, { pasal: "PMK 168/2023 Lampiran contoh I.4 (PPh 21 ditanggung pemberi kerja sebagai kenikmatan)", berlakuSejak: "2024-01-01" }, { pasal: "PP 60/2010 Pasal 1 ayat (1) huruf a", berlakuSejak: "2010-08-20" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-077",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-242",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Konsultan meninjau rekonsiliasi fiskal Tahun Pajak 2025 empat klien yang membebankan pembentukan cadangan dalam laporan laba rugi: PT Asuransi Umum Bahari (cadangan teknis usaha asuransi), PT Dana Kredit Mandiri, perusahaan pembiayaan konsumen (cadangan kerugian piutang pembiayaan), PT Rimba Tanam Lestari, pemegang izin usaha hutan tanaman (cadangan biaya penanaman kembali), dan PT Nikel Timur Perkasa, perusahaan pertambangan (cadangan penurunan nilai piutang usaha kepada pembeli bijih). Rumusan memo yang paling tepat menurut Pasal 9 ayat (1) huruf c UU PPh adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Cadangan ketiga klien pertama termasuk pengecualian Pasal 9 ayat (1) huruf c dan dapat dikurangkan sepanjang memenuhi persyaratan tertentu; cadangan piutang PT Nikel Timur Perkasa dikoreksi positif karena pengecualian bagi usaha pertambangan hanya cadangan biaya reklamasi.", B: "Cadangan keempat klien dapat dikurangkan sepanjang memenuhi persyaratan tertentu, karena usaha asuransi, pembiayaan konsumen, kehutanan, dan pertambangan seluruhnya termasuk usaha yang dikecualikan dari larangan pembentukan cadangan.", C: "Cadangan ketiga klien pertama dapat dikurangkan seluruhnya tanpa persyaratan apa pun karena disebut langsung dalam undang-undang; cadangan piutang PT Nikel Timur Perkasa dikoreksi positif karena pertambangan hanya dikecualikan untuk cadangan reklamasi.", D: "Hanya cadangan PT Asuransi Umum Bahari dan PT Rimba Tanam Lestari yang dapat dikurangkan; pengecualian cadangan piutang tak tertagih hanya untuk usaha bank, sehingga cadangan PT Dana Kredit Mandiri dan PT Nikel Timur Perkasa dikoreksi positif." },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 9 ayat (1) huruf c melarang pembentukan atau pemupukan dana cadangan, kecuali cadangan piutang tak tertagih untuk bank dan badan usaha lain yang menyalurkan kredit, sewa guna usaha dengan hak opsi, pembiayaan konsumen, dan anjak piutang; cadangan usaha asuransi; cadangan penjaminan LPS; cadangan biaya reklamasi untuk usaha pertambangan; cadangan biaya penanaman kembali untuk usaha kehutanan; dan cadangan penutupan tempat pembuangan limbah untuk usaha pengolahan limbah industri, yang memenuhi persyaratan tertentu. Pengecualian bagi pertambangan terikat pada jenis cadangannya (reklamasi), bukan pada bidang usahanya; piutang usaha perusahaan tambang baru dapat dibiayakan bila nyata-nyata tidak dapat ditagih (Pasal 6 ayat (1) huruf h).",
+        jejakHitung: [
+          ["Asuransi: cadangan usaha asuransi", "dikecualikan (angka 2), dengan persyaratan tertentu"],
+          ["Pembiayaan konsumen: cadangan piutang tak tertagih", "dikecualikan (angka 1; PMK 74/2024)"],
+          ["Hutan tanaman: cadangan penanaman kembali", "dikecualikan (angka 5), dengan persyaratan tertentu"],
+          ["Pertambangan: cadangan penurunan nilai piutang usaha", "bukan cadangan reklamasi → koreksi positif"]
+        ],
+        mengapaSalah: {
+          B: "Pengecualian untuk pertambangan hanya cadangan biaya reklamasi; cadangan piutang usaha perusahaan tambang tetap dilarang.",
+          C: "Cadangan yang dikecualikan tetap harus memenuhi persyaratan tertentu (antara lain batasan cadangan piutang menurut PMK 74/2024), tidak dapat dikurangkan tanpa syarat.",
+          D: "Pengecualian cadangan piutang tak tertagih tidak hanya untuk bank; perusahaan pembiayaan konsumen disebut tegas dalam angka 1."
+        },
+        jebakan: "Baca pengecualian per pasangan \"jenis cadangan + jenis usaha\". Perusahaan tambang yang membentuk cadangan piutang tidak terlindungi oleh pengecualian reklamasi."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) huruf c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 74/2024 (cadangan piutang tak tertagih yang boleh dikurangkan)", berlakuSejak: "2024-10-18" }, { pasal: "Pasal 6 ayat (1) huruf h UU PPh; PMK 207/PMK.010/2015", berlakuSejak: "2015-11-11" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      kembaranDari: "B6-078",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-243",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Kencana Farma Distribusi (badan dalam negeri, peredaran bruto Rp95 miliar, tarif umum) menerapkan PSAK 116 untuk dua sewa tanpa hak opsi. Kantor cabang di Medan disewa dari pemilik gedung dengan sewa untuk tahun 2025 Rp420.000.000 yang dibayar Januari 2025 (PPh final 10% Rp42.000.000 dipotong PT Kencana); laporan laba rugi 2025 mencatat penyusutan aset hak-guna kantor Rp380.000.000 dan beban bunga liabilitas sewa Rp70.000.000. Sepuluh mobil boks disewa dari PT Mitra Sarana Finance, perusahaan pembiayaan, dengan sewa guna usaha tanpa hak opsi; sewa yang terutang untuk 2025 Rp240.000.000 (PPh Pasal 23 Rp4.800.000 dipotong), sedangkan laporan laba rugi mencatat penyusutan aset hak-guna Rp200.000.000 dan beban bunga Rp25.000.000. Saldo liabilitas sewa akhir 2025 Rp1.650.000.000. Laba komersial sebelum pajak 2025 Rp2.400.000.000 dan tidak ada koreksi lain. PPh badan terutang Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp528.000.000", B: "Rp548.900.000", C: "Rp531.300.000", D: "Rp524.700.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Secara fiskal penyewa dalam sewa tanpa hak opsi membebankan sewa yang dibayar atau terutang untuk tahun berjalan, bukan penyusutan aset hak-guna dan bunga liabilitas sewa. Kantor: beban komersial Rp450.000.000 dibanding sewa Rp420.000.000 (koreksi positif Rp30.000.000); mobil boks: beban komersial Rp225.000.000 dibanding sewa Rp240.000.000 (koreksi negatif Rp15.000.000). Koreksi neto positif Rp15.000.000.",
+        jejakHitung: [
+          ["Kantor: (380.000.000 + 70.000.000) − 420.000.000", "+Rp30.000.000"],
+          ["Mobil boks: (200.000.000 + 25.000.000) − 240.000.000", "−Rp15.000.000"],
+          ["Neto fiskal = 2.400.000.000 + 30.000.000 − 15.000.000", "Rp2.415.000.000"],
+          ["PPh = 22% × 2.415.000.000", "Rp531.300.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengikuti beban PSAK 116 apa adanya (22% × 2.400.000.000); perlakuan fiskal penyewa mengikuti sewa yang dibayar atau terutang untuk tahun berjalan.",
+          B: "Hanya mengoreksi seluruh beban bunga Rp95.000.000 tanpa mengganti penyusutan aset hak-guna dengan sewa fiskal (22% × 2.495.000.000).",
+          D: "Membalik arah kedua koreksi (22% × 2.385.000.000); bila beban komersial lebih besar dari sewa fiskal koreksinya positif, dan sebaliknya."
+        },
+        jebakan: "Hitung koreksi per sewa: satu sewa bisa positif dan sewa lain negatif. PPh final, PPh Pasal 23 yang dipotong PT Kencana sebagai penyewa, dan saldo liabilitas sewa adalah data pengalih."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a angka 3 dan Pasal 9 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "KMK 1169/KMK.01/1991 Pasal 17 ayat (2) (sewa guna usaha tanpa hak opsi)", berlakuSejak: "1991-01-19" }, { pasal: "PP 94/2010 (penghitungan penghasilan kena pajak berdasarkan pembukuan)", berlakuSejak: "2010-12-30" }],
+      anggaranDetik: 190,
+      verifikasi: "✅",
+      kembaranDari: "B6-079",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-244",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "Truk pengangkut milik PT Samudra Pakan Ternak (tahun buku kalender, tarif umum) rusak total dalam kecelakaan pada 18 Maret 2025. Saat itu nilai sisa buku fiskal truk Rp210.000.000, sedangkan nilai buku komersialnya Rp290.000.000 (penyusutan 2025 sampai saat kecelakaan sama secara komersial dan fiskal). Perusahaan asuransi membayar ganti rugi Rp350.000.000 pada Juni 2025, sehingga laporan laba rugi mencatat keuntungan Rp60.000.000; biaya derek dan penanganan bangkai truk Rp8.000.000 dibebankan. Pada 14 Oktober 2025 perusahaan membeli dan melunasi mesin pembuat pelet (Kelompok 3) Rp1.280.000.000 ditambah PPN yang dapat dikreditkan; secara fiskal mesin disusutkan dengan metode garis lurus, sedangkan secara komersial dengan garis lurus 10 tahun (penyusutan komersial 2025 Rp32.000.000). Total koreksi fiskal atas kedua peristiwa tersebut untuk Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Koreksi positif Rp72.000.000", B: "Koreksi positif Rp92.000.000", C: "Koreksi negatif Rp68.000.000", D: "Koreksi positif Rp32.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Pasal 11 ayat (8): penggantian asuransi dibukukan sebagai penghasilan dan nilai sisa buku fiskal sebagai kerugian, sehingga keuntungan fiskal Rp140.000.000 lebih besar Rp80.000.000 dari keuntungan komersial. Mesin baru disusutkan sejak bulan pengeluaran (Oktober) dengan garis lurus Kelompok 3: 6,25% × 3/12 = Rp20.000.000, lebih kecil Rp12.000.000 dari penyusutan komersial. Keduanya koreksi positif.",
+        jejakHitung: [
+          ["Keuntungan fiskal = 350.000.000 − 210.000.000", "Rp140.000.000"],
+          ["Keuntungan komersial = 350.000.000 − 290.000.000", "Rp60.000.000 → koreksi +Rp80.000.000"],
+          ["Penyusutan fiskal mesin = 1.280.000.000 × 6,25% × 3/12", "Rp20.000.000"],
+          ["Selisih penyusutan = 32.000.000 − 20.000.000", "+Rp12.000.000"],
+          ["Total koreksi", "positif Rp92.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai tarif saldo menurun 12,5% (Rp40.000.000) padahal metode fiskal yang dipilih garis lurus 6,25%.",
+          C: "Membalik arah koreksi asuransi: nilai sisa buku fiskal lebih kecil dari nilai buku komersial, sehingga keuntungan fiskal lebih besar (koreksi positif).",
+          D: "Menyusutkan mesin setahun penuh (Rp80.000.000) padahal pengeluaran terjadi Oktober sehingga hanya 3 bulan."
+        },
+        jebakan: "Biaya derek dan PPN adalah data pengalih. Arah koreksi ditentukan perbandingan nilai sisa buku fiskal dengan nilai buku komersial dan perbandingan penyusutan fiskal dengan penyusutan komersial."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1), (3), (6), dan (8) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 72/2023", berlakuSejak: "2023-07-17" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-080",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-245",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Sejak 1 Juli 2024 PT Lintas Data Andalas menyewa server dan perangkat jaringan (golongan I, Kelompok 1) dari PT Arta Leasing Indonesia, perusahaan pembiayaan, dengan sewa guna usaha dengan hak opsi selama 2 tahun. Pada 2025 PT Lintas membayar angsuran Rp384.000.000 (bagian pokok Rp330.000.000 dan bunga Rp54.000.000); dalam laporan keuangan sesuai PSAK 116 tercatat penyusutan aset hak-guna Rp260.000.000 dan beban bunga Rp54.000.000. Selain itu, kontrak sewa guna usaha dengan hak opsi atas satu truk (Kelompok 2) berakhir 31 Desember 2024, dan pada 3 Januari 2025 PT Lintas melunasi nilai sisa Rp120.000.000 untuk menggunakan hak opsi membeli; secara fiskal truk disusutkan dengan metode garis lurus. Jumlah yang dapat dibebankan secara fiskal oleh PT Lintas atas kedua barang modal tersebut untuk Tahun Pajak 2025, dan perlakuan PPh Pasal 23 atas angsuran server, adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp329.000.000 (penyusutan aset hak-guna dan bunga sesuai PSAK 116 ditambah penyusutan truk); PPh Pasal 23 tidak dipotong", B: "Rp399.000.000 (seluruh angsuran server ditambah penyusutan truk dari nilai sisa); PPh Pasal 23 tidak dipotong", C: "Rp399.000.000 (seluruh angsuran server ditambah penyusutan truk); PPh Pasal 23 2% × Rp384.000.000 = Rp7.680.000 wajib dipotong", D: "Rp69.000.000 (bagian bunga ditambah penyusutan truk); PPh Pasal 23 15% × Rp54.000.000 = Rp8.100.000 wajib dipotong" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Menurut KMK 1169/KMK.01/1991, selama masa sewa guna usaha dengan hak opsi lessee tidak menyusutkan barang modal, dan seluruh pembayaran sewa guna usaha (kecuali atas tanah) dapat dibiayakan sepanjang memenuhi Pasal 3 (golongan I paling singkat 2 tahun). Setelah hak opsi membeli digunakan, lessee menyusutkan barang modal dengan dasar nilai sisa. Pembayaran sewa guna usaha dengan hak opsi tidak dipotong PPh Pasal 23.",
+        jejakHitung: [
+          ["Server: masa 2 tahun ≥ minimum golongan I", "memenuhi Pasal 3 KMK 1169/KMK.01/1991"],
+          ["Biaya fiskal server = angsuran pokok + bunga", "Rp384.000.000"],
+          ["Penyusutan truk = 120.000.000 × 12,5% × 12/12", "Rp15.000.000"],
+          ["Jumlah biaya fiskal = 384.000.000 + 15.000.000", "Rp399.000.000"],
+          ["PPh 23 atas angsuran server", "tidak dipotong (Pasal 23 ayat (4) huruf b UU PPh)"]
+        ],
+        mengapaSalah: {
+          A: "Penyusutan aset hak-guna adalah perlakuan akuntansi; secara fiskal lessee membebankan angsuran sewa guna usaha, bukan penyusutan.",
+          C: "Pasal 23 ayat (4) huruf b mengecualikan sewa yang dibayarkan sehubungan dengan sewa guna usaha dengan hak opsi.",
+          D: "Seluruh angsuran (pokok dan bunga) dapat dibiayakan, dan bagian bunga dalam sewa guna usaha dengan hak opsi tidak dipotong PPh Pasal 23."
+        },
+        jebakan: "Dua tahap berbeda: selama masa sewa guna usaha yang dibiayakan angsurannya; setelah opsi beli digunakan barulah ada penyusutan, dengan dasar nilai sisa."
+      },
+      dasarHukum: [{ pasal: "KMK 1169/KMK.01/1991 Pasal 3 dan Pasal 16", berlakuSejak: "1991-01-19" }, { pasal: "Pasal 23 ayat (4) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 11 ayat (1), (3), dan (6) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-081",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-246",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-12",
+      laporanUjian: ["B-2026-10"],
+      stem: "Data untuk soal vignette V-B6-12: Grup Cakrawala (tahun buku kalender) terdiri atas PT Cakrawala Keramik Tbk (industri ubin keramik) dan anak usahanya, PT Cakrawala Niaga Bangunan (95% sahamnya dimiliki PT Cakrawala Keramik Tbk). PT Cakrawala Keramik Tbk melakukan penawaran umum perdana dan sahamnya mulai tercatat di BEI pada 14 Juli 2025. Sejak tanggal itu sampai 31 Desember 2025, 43% saham disetornya diperdagangkan di BEI dan dimiliki 1.640 pihak yang masing-masing memiliki kurang dari 5%, dan laporan kepemilikan dari biro administrasi efek tersedia. Peredaran brutonya Rp612 miliar. Laba komersial sebelum pajak Rp38.400.000.000 sudah memuat dividen tunai dari PT Cakrawala Niaga Bangunan Rp2.500.000.000, bunga deposito Rp800.000.000 (PPh final Rp160.000.000), biaya entertainment tanpa daftar nominatif Rp450.000.000, dan sanksi bunga STP Rp120.000.000. Kredit pajak 2025: PPh Pasal 22 impor Rp2.950.000.000, PPh Pasal 23 yang dipotong pelanggan Rp310.000.000, dan angsuran PPh Pasal 25 Rp4.200.000.000. PPh Pasal 29 PT Cakrawala Keramik Tbk Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Lebih bayar Rp682.700.000", B: "Kurang bayar Rp937.400.000", C: "Kurang bayar Rp387.400.000", D: "Kurang bayar Rp227.400.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "final-nonfinal" },
+      pembahasan: {
+        inti: "Tarif 19% (Pasal 17 ayat (2b) UU PPh dan Pasal 65 PP 55/2022) mensyaratkan 40% saham di BEI, paling sedikit 300 pihak, masing-masing kurang dari 5%, dan semua itu dipenuhi paling singkat 183 hari kalender dalam satu Tahun Pajak. Saham baru tercatat 14 Juli 2025, sehingga kondisi itu hanya terpenuhi 171 hari (14 Juli sampai 31 Desember 2025). Syarat jangka waktu gagal, maka tarif 22%. Dividen dari anak usaha dalam negeri bukan objek, bunga deposito sudah final; entertainment tanpa daftar nominatif dan sanksi dikoreksi positif. PPh final tidak dikreditkan.",
+        jejakHitung: [
+          ["Lama kondisi terpenuhi: 14 Juli s.d. 31 Desember 2025", "171 hari < 183 hari → tarif 22%"],
+          ["Neto fiskal = 38.400.000.000 − 2.500.000.000 − 800.000.000 + 450.000.000 + 120.000.000", "Rp35.670.000.000"],
+          ["PPh = 22% × 35.670.000.000", "Rp7.847.400.000"],
+          ["Kredit = 2.950.000.000 + 310.000.000 + 4.200.000.000", "Rp7.460.000.000"],
+          ["PPh 29 = 7.847.400.000 − 7.460.000.000", "kurang bayar Rp387.400.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai tarif 19% (PPh Rp6.777.300.000) seolah semua syarat terpenuhi; padahal kondisi kepemilikan hanya berlangsung 171 hari, kurang dari 183 hari kalender.",
+          B: "Tidak mengeluarkan dividen Rp2.500.000.000 dari anak usaha dalam negeri yang bukan objek pajak bagi badan dalam negeri (neto Rp38.170.000.000).",
+          D: "Mengkreditkan PPh final bunga deposito Rp160.000.000; PPh final bukan kredit pajak Pasal 28."
+        },
+        jebakan: "Status Tbk dan persentase 43% belum cukup; hitung lama kondisi terpenuhi sejak tanggal pencatatan. Peredaran bruto Rp612 miliar menutup Pasal 31E."
+      },
+      dasarHukum: [{ pasal: "Pasal 17 ayat (1) huruf b dan ayat (2b) UU PPh", berlakuSejak: "2022-01-01" }, { pasal: "PP 55/2022 Pasal 65 (penurunan tarif perseroan terbuka)", berlakuSejak: "2022-12-20" }, { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 28 dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-082",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-247",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-12",
+      laporanUjian: ["B-2026-10"],
+      stem: "Lanjutan V-B6-12: PT Cakrawala Niaga Bangunan (95% dimiliki PT Cakrawala Keramik Tbk; badan dalam negeri bukan perseroan terbuka, PKP, terdaftar 2012, tidak pernah memakai PPh final peredaran bruto tertentu) pada Tahun Pajak 2025 mencatat penjualan neto bahan bangunan Rp46.650.000.000 (PPN keluaran yang dipungut Rp5.131.500.000 tidak termasuk), penghasilan sewa gudang kepada badan usaha Rp900.000.000 (PPh final dipotong penyewa), bunga deposito Rp250.000.000 (PPh final dipotong bank), dan laba selisih kurs atas piutang dagang dalam dolar AS Rp200.000.000. Laba komersial sebelum pajak Rp3.200.000.000 sudah memuat seluruh penghasilan tersebut, PPh Pasal 29 Tahun Pajak 2024 yang dibukukan sebagai beban Rp100.000.000, dan sanksi bunga STP Rp50.000.000. Dividen yang dibagikan kepada pemegang saham tidak dibebankan dalam laba rugi. PPh badan terutang PT Cakrawala Niaga Bangunan Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp484.000.000", B: "Rp459.800.000", C: "Rp700.150.000", D: "Rp242.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "final-nonfinal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Peredaran bruto Pasal 31E = seluruh penghasilan usaha dan luar usaha, termasuk penghasilan yang dikenai PPh final dan yang bukan objek, tanpa PPN (SE-02/PJ/2015): Rp48 miliar, tidak melebihi Rp50 miliar, sehingga fasilitas wajib diterapkan. Neto fiskal mengeluarkan sewa gudang dan bunga deposito (final) dan mengoreksi PPh badan serta sanksi yang dibebankan. Fasilitas berlaku atas 4,8/48 = 10% PKP.",
+        jejakHitung: [
+          ["Peredaran bruto = 46.650.000.000 + 900.000.000 + 250.000.000 + 200.000.000", "Rp48.000.000.000 (≤ Rp50 miliar)"],
+          ["Neto fiskal = 3.200.000.000 − 900.000.000 − 250.000.000 + 100.000.000 + 50.000.000", "Rp2.200.000.000"],
+          ["PKP fasilitas = 4,8/48 × 2.200.000.000", "Rp220.000.000"],
+          ["11% × 220.000.000", "Rp24.200.000"],
+          ["22% × 1.980.000.000", "Rp435.600.000"],
+          ["PPh terutang", "Rp459.800.000"]
+        ],
+        mengapaSalah: {
+          A: "Memasukkan PPN keluaran ke peredaran bruto (Rp53.131.500.000) sehingga Pasal 31E dianggap gugur: 22% × 2.200.000.000.",
+          C: "Tidak mengeluarkan sewa gudang dan bunga deposito yang sudah dikenai PPh final (neto Rp3.350.000.000), lalu menerapkan Pasal 31E atas neto itu.",
+          D: "Mengenakan 11% atas seluruh PKP; tarif 11% atas seluruh PKP hanya bila peredaran bruto tidak melebihi Rp4,8 miliar."
+        },
+        jebakan: "Penghasilan final tetap masuk peredaran bruto Pasal 31E tetapi keluar dari PKP; PPN keluaran tidak termasuk peredaran bruto."
+      },
+      dasarHukum: [{ pasal: "Pasal 31E ayat (1) UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" }, { pasal: "Pasal 4 ayat (2) dan Pasal 9 ayat (1) huruf h dan huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 17 ayat (1) huruf b UU PPh", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-083",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-248",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-12",
+      laporanUjian: ["B-2026-10"],
+      stem: "Lanjutan V-B6-12: PPh badan terutang PT Cakrawala Niaga Bangunan Tahun Pajak 2025 Rp459.800.000. Dokumen pajak 2025 yang terkumpul: BPPU PPh Pasal 22 dari PT Wahana Konstruksi (Persero), sebuah BUMN, atas penjualan bahan bangunan pada September 2025 dengan harga jual Rp1.240.000.000 tidak termasuk PPN (tarif pungutan 1,5%); bukti pungutan PPh Pasal 22 impor ubin granit Rp96.000.000; BPPU PPh Pasal 23 dari pelanggan atas jasa angkutan Rp7.800.000; bukti setor angsuran PPh Pasal 25 Masa Januari sampai Desember 2025 seluruhnya Rp300.000.000 (angsuran Masa Desember disetor 14 Januari 2026); bukti potong PPh final atas sewa gudang Rp90.000.000 dan bunga deposito Rp50.000.000; SPT Masa PPh Pasal 21 atas gaji pegawai yang dipotong perusahaan Rp64.000.000; serta pembayaran STP bunga Rp50.000.000. PPh Pasal 29 PT Cakrawala Niaga Bangunan Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Lebih bayar Rp26.600.000", B: "Lebih bayar Rp12.600.000", C: "Lebih bayar Rp102.600.000", D: "Kurang bayar Rp37.400.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "final-nonfinal" },
+      pembahasan: {
+        inti: "Kredit pajak Pasal 28 ayat (1) hanya PPh yang dipungut atau dipotong pihak lain atas penghasilan perusahaan sendiri (PPh 22 BUMN dan impor, PPh 23 dari pelanggan) serta angsuran PPh 25 Tahun Pajak 2025, termasuk angsuran Masa Desember yang disetor Januari 2026. PPh final, PPh 21 yang dipotong dari pegawai (kredit pajak milik pegawai), dan sanksi administrasi (Pasal 28 ayat (2)) tidak dikreditkan.",
+        jejakHitung: [
+          ["PPh 22 BUMN = 1,5% × harga jual tanpa PPN 1.240.000.000", "Rp18.600.000"],
+          ["Kredit = 18.600.000 + 96.000.000 + 7.800.000 + 300.000.000", "Rp422.400.000"],
+          ["PPh 29 = 459.800.000 − 422.400.000", "kurang bayar Rp37.400.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengkreditkan PPh 21 Rp64.000.000 yang dipotong perusahaan dari gaji pegawai; itu kredit pajak pegawai, bukan kredit pajak perusahaan.",
+          B: "Mengkreditkan pembayaran STP bunga Rp50.000.000; Pasal 28 ayat (2) melarang sanksi administrasi dikreditkan.",
+          C: "Mengkreditkan PPh final sewa gudang dan bunga deposito Rp140.000.000."
+        },
+        jebakan: "Angsuran Masa Desember yang disetor Januari tetap angsuran Tahun Pajak 2025. Bedakan PPh yang dipotong DARI perusahaan (kredit) dengan PPh yang dipotong OLEH perusahaan (bukan kredit)."
+      },
+      dasarHukum: [{ pasal: "Pasal 22 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 51/2025 Pasal 2 ayat (1) huruf c dan Pasal 3 ayat (1) huruf b (PPh Pasal 22 BUMN sejak 1 Agustus 2025)", berlakuSejak: "2025-08-01" }, { pasal: "Pasal 28 ayat (1) dan ayat (2) serta Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-084",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-249",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      kasusId: "V-B6-12",
+      stem: "Lanjutan V-B6-12: PT Cakrawala Keramik Tbk adalah emiten yang sejak sahamnya tercatat di BEI pada 14 Juli 2025 wajib menyampaikan laporan keuangan setiap tiga bulan kepada bursa dan OJK. Karena syarat jangka waktu 183 hari tidak terpenuhi, SPT Tahunan 2025-nya memakai tarif 22% dengan PPh terutang Rp7.847.400.000, kredit PPh Pasal 22 Rp2.950.000.000, dan PPh Pasal 23 Rp310.000.000. Direktur keuangan berpendapat bahwa karena tidak memperoleh tarif 19%, perusahaan diperlakukan sama dengan Wajib Pajak badan umum dalam menghitung angsuran PPh Pasal 25 tahun 2026. Pernyataan yang paling tepat mengenai pendapat itu adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Keliru; sebagai Wajib Pajak masuk bursa, angsuran dihitung dari laporan keuangan triwulanan, yaitu tarif Pasal 17 atas penghasilan neto sejak awal tahun dikurangi PPh 22, PPh 23, dan angsuran yang seharusnya dibayar, untuk 3 Masa Pajak berikutnya.", B: "Benar; angsuran 2026 dihitung dari SPT Tahunan 2025, yaitu Rp7.847.400.000 dikurangi kredit PPh 22 dan PPh 23 lalu dibagi 12, karena dasar laporan keuangan berkala hanya berlaku bagi emiten yang memperoleh tarif 19%.", C: "Keliru; sebagai Wajib Pajak masuk bursa, angsuran dihitung dari laporan keuangan triwulanan dengan penghasilan neto yang tetap memuat dividen dari anak usaha dan bunga deposito sebagaimana tercatat dalam laporan laba rugi.", D: "Keliru; sebagai Wajib Pajak masuk bursa, angsuran dihitung dari laporan keuangan triwulanan, tetapi hasil penghitungannya dibagi 12 dan berlaku sama untuk setiap Masa Pajak sampai akhir Tahun Pajak 2026." },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 25 ayat (7) huruf b UU PPh memberi wewenang kepada Menteri Keuangan mengatur angsuran Wajib Pajak masuk bursa. PMK 81/2024 Pasal 226 ayat (2) mengecualikan Wajib Pajak masuk bursa dari rumus SPT tahun lalu, dan Pasal 228 menetapkan dasarnya laporan keuangan yang disampaikan setiap 3 bulan kepada bursa dan/atau OJK: tarif Pasal 17 atas penghasilan neto sejak awal tahun (tanpa penghasilan final dan bukan objek) dikurangi PPh 22 dan 23 serta PPh 25 yang seharusnya dibayar, dan hasilnya angsuran untuk 3 Masa Pajak setelah periode laporan. Status itu tidak bergantung pada terpenuhinya syarat tarif 19%.",
+        jejakHitung: [
+          ["Status 2026", "Wajib Pajak masuk bursa (tarif 19% atau 22% tidak relevan)"],
+          ["Dasar angsuran (PMK 81/2024 Pasal 228 ayat (1))", "laporan keuangan triwulanan kepada bursa/OJK"],
+          ["Pengurang (Pasal 228 ayat (2))", "PPh 22 dan 23 sejak awal tahun + PPh 25 yang seharusnya dibayar"],
+          ["Berlaku (Pasal 228 ayat (5))", "3 Masa Pajak setelah periode yang dilaporkan"]
+        ],
+        mengapaSalah: {
+          B: "Pasal 226 ayat (2) PMK 81/2024 mengecualikan seluruh Wajib Pajak masuk bursa dari rumus SPT tahun lalu dibagi 12; tidak ada kaitannya dengan tarif 19%.",
+          C: "Pasal 228 ayat (3) huruf b mengeluarkan penghasilan yang dikenai PPh final dan bukan objek (bunga deposito, dividen dalam negeri) dari penghasilan neto dasar angsuran.",
+          D: "Hasil penghitungan dari laporan triwulanan adalah angsuran untuk 3 Masa Pajak setelah periode laporan, lalu dihitung ulang dengan laporan berikutnya; tidak dibagi 12."
+        },
+        jebakan: "Syarat tarif 19% dan status Wajib Pajak masuk bursa adalah dua hal berbeda; data SPT 2025 sengaja diberikan untuk memancing rumus umum."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (7) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 226 ayat (2) dan Pasal 228 (mencabut PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-085",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-250",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-13",
+      stem: "Data untuk soal vignette V-B6-13: PT Bima Presisi Komponen (industri suku cadang kendaraan, badan dalam negeri, tahun buku kalender, peredaran bruto setiap tahun di atas Rp50 miliar, tanpa fasilitas penanaman modal) memiliki riwayat penghasilan neto fiskal: 2019 rugi Rp900.000.000; 2020 rugi Rp1.400.000.000; 2021 laba Rp350.000.000; 2022 laba Rp200.000.000; 2023 rugi Rp1.300.000.000; dan 2024 laba Rp150.000.000. Kompensasi selalu dimulai dari kerugian yang paling lama. Untuk Tahun Pajak 2025, laba komersial sebelum pajak Rp1.950.000.000, koreksi positif Rp320.000.000 (sanksi bunga STP dan PPh badan yang dibebankan), dan koreksi negatif Rp170.000.000 (bunga deposito yang dikenai PPh final). Sisa kerugian yang masih dapat dikompensasikan ke Tahun Pajak 2026 dan tahun terakhir pemakaiannya adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp800.000.000, dapat dipakai sampai Tahun Pajak 2028", B: "Rp600.000.000, dapat dipakai sampai Tahun Pajak 2028", C: "Rp750.000.000, dapat dipakai sampai Tahun Pajak 2028", D: "Nihil, karena seluruh rugi 2023 sudah terpakai pada Tahun Pajak 2025" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Kerugian dikompensasikan mulai tahun berikutnya sampai 5 tahun, dan kerugian tertua dipakai lebih dulu. Rugi 2019 (dapat dipakai 2020 sampai 2024) terserap laba 2021, 2022, dan 2024 dan sisanya Rp200.000.000 hangus akhir 2024. Pada 2025, rugi 2020 dipakai penuh pada tahun terakhirnya, lalu rugi 2023 menyerap sisa neto fiskal, sehingga rugi 2023 tersisa Rp600.000.000 untuk 2026 sampai 2028.",
+        jejakHitung: [
+          ["Rugi 2019: 900 − 350 (2021) − 200 (2022) − 150 (2024), dalam juta", "sisa Rp200.000.000 hangus akhir 2024"],
+          ["Neto fiskal 2025 = 1.950.000.000 + 320.000.000 − 170.000.000", "Rp2.100.000.000"],
+          ["Kompensasi rugi 2020 (tahun terakhir 2025)", "−Rp1.400.000.000"],
+          ["Kompensasi rugi 2023", "−Rp700.000.000 → PKP nihil"],
+          ["Sisa rugi 2023 = 1.300.000.000 − 700.000.000", "Rp600.000.000 (sampai 2028)"]
+        ],
+        mengapaSalah: {
+          A: "Menganggap sisa rugi 2019 Rp200.000.000 masih dapat dipakai pada 2025; batas terakhirnya Tahun Pajak 2024.",
+          C: "Memakai laba komersial Rp1.950.000.000, bukan penghasilan neto fiskal Rp2.100.000.000.",
+          D: "Memakai rugi 2023 lebih dulu pada 2025 sehingga sebagian rugi 2020 dibiarkan hangus; soal menyatakan kompensasi dimulai dari kerugian paling lama."
+        },
+        jebakan: "Buat tabel per tahun asal kerugian dengan kolom tahun terakhir; urutan pemakaian menentukan berapa yang hangus dan berapa yang tersisa."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-086",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-251",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 1,
+      kasusId: "V-B6-13",
+      stem: "Lanjutan V-B6-13: dalam SPT Tahunan PPh Badan Tahun Pajak 2025, PT Bima Presisi Komponen harus melaporkan rugi neto fiskal per tahun asal (2019, 2020, dan 2023) beserta distribusi kompensasinya untuk setiap tahun pajak, termasuk jumlah yang dikompensasikan pada Tahun Pajak 2025 (Rp2.100.000.000) dan sisa rugi 2023 yang akan dikompensasikan pada Tahun Pajak berjalan 2026 (Rp600.000.000), yang juga menjadi pengurang dalam penghitungan angsuran PPh Pasal 25. Menurut susunan SPT Tahunan PPh Badan dalam PER-11/PJ/2025, rincian distribusi tersebut diisi pada ...",
+      kataKualifikasi: [],
+      opsi: { A: "Lampiran 1B (rekonsiliasi laporan keuangan manufaktur) sebagai penyesuaian fiskal negatif atas laba komersial", B: "Lampiran 6 (angsuran PPh tahun pajak berjalan), karena sisa rugi dipakai menghitung angsuran 2026", C: "Lampiran 7 (penghitungan kompensasi kerugian fiskal); jumlah tahun berjalan dipindahkan ke Lampiran 6", D: "Lampiran 4 (penghasilan yang dikenai PPh final dan yang tidak termasuk objek pajak)" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "final-nonfinal" },
+      pembahasan: {
+        inti: "Untuk Tahun Pajak 2025 SPT Tahunan PPh Badan memakai susunan PER-11/PJ/2025 (format 1771 lama hanya sampai Tahun Pajak 2024, Pasal 138 huruf a). Pasal 85 ayat (1) huruf b angka 7 menyebut Lampiran 7 - Penghitungan Kompensasi Kerugian Fiskal. Menurut petunjuk pengisiannya, Lampiran 7 memuat laba (rugi) neto fiskal per tahun dan distribusi kompensasi untuk setiap tahun, termasuk kolom Tahun Pajak ini dan Tahun Pajak berjalan. Jumlah Tahun Pajak ini dibawa ke induk (pengurang neto fiskal), sedangkan jumlah Tahun Pajak berjalan dipindahkan ke Lampiran 6 angka 2 untuk menghitung angsuran.",
+        jejakHitung: [
+          ["Lampiran 1B (rekonsiliasi manufaktur)", "laba komersial → neto fiskal Rp2.100.000.000"],
+          ["Lampiran 7", "rugi 2019, 2020, 2023 dan distribusinya; Tahun Pajak ini Rp2.100.000.000; Tahun Pajak berjalan Rp600.000.000"],
+          ["Lampiran 6 angka 2", "menerima jumlah kompensasi Tahun Pajak berjalan dari Lampiran 7"]
+        ],
+        mengapaSalah: {
+          A: "Rekonsiliasi hanya memuat penyesuaian fiskal laba tahun berjalan; kompensasi kerugian dihitung setelah penghasilan neto fiskal dan punya lampiran sendiri.",
+          B: "Lampiran 6 hanya menerima jumlah kompensasi Tahun Pajak berjalan yang dipindahkan dari Lampiran 7; rincian per tahun asal tidak diisi di sana.",
+          D: "Lampiran 4 memuat penghasilan yang dikenai PPh final dan yang bukan objek pajak, bukan kerugian."
+        },
+        jebakan: "Sisa rugi yang memengaruhi angsuran tidak membuat Lampiran 6 menjadi tempat rinciannya; Lampiran 6 hanya mengambil angka dari Lampiran 7."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 85 ayat (1) huruf b angka 6 dan angka 7, Pasal 138 huruf a, serta Lampiran (petunjuk pengisian Lampiran 6 dan Lampiran 7 SPT PPh Badan)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 80,
+      verifikasi: "✅",
+      formulirRef: "1771.2A.1",
+      kembaranDari: "B6-087",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-252",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B6-13",
+      stem: "Lanjutan V-B6-13: penghasilan neto fiskal PT Bima Presisi Komponen Tahun Pajak 2025 Rp2.100.000.000 seluruhnya terserap kompensasi kerugian (rugi 2020 Rp1.400.000.000 yang tahun terakhirnya 2025, dan sebagian rugi 2023 Rp700.000.000) sehingga PPh terutang 2025 nihil; sisa rugi 2023 Rp600.000.000 masih dapat dikompensasikan sampai Tahun Pajak 2028. Kredit pajak 2025: PPh Pasal 22 impor Rp96.000.000 dan PPh Pasal 23 Rp42.000.000; angsuran PPh Pasal 25 yang dibayar selama 2025 Rp48.000.000. SPT Tahunan 2025 disampaikan 24 April 2026 dengan status lebih bayar. Dengan ketentuan angsuran bagi Wajib Pajak yang berhak atas kompensasi kerugian (Pasal 25 ayat (6) huruf a UU PPh dan PER-11/PJ/2025), angsuran PPh Pasal 25 per bulan yang dihitung berdasarkan SPT Tahunan 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp12.000.000", B: "Nihil", C: "Rp27.000.000", D: "Rp16.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Bagi Wajib Pajak yang berhak atas kompensasi kerugian, dasar angsuran adalah penghasilan neto fiskal tahun lalu dikurangi kompensasi kerugian (PER-11/PJ/2025 Pasal 114 ayat (2)); menurut petunjuk pengisian lampirannya, yang dikurangkan adalah sisa kerugian yang masih dapat dikompensasikan pada tahun berikutnya. Rugi 2020 sudah berakhir pada 2025 sehingga tidak ikut; hanya sisa rugi 2023 Rp600.000.000. Hasilnya dikenai tarif, dikurangi PPh 22, 23, dan 24 tahun lalu, lalu dibagi 12; angsuran tidak otomatis nihil walaupun PPh terutang 2025 nihil.",
+        jejakHitung: [
+          ["Dasar = 2.100.000.000 − 600.000.000", "Rp1.500.000.000"],
+          ["PPh = 22% × 1.500.000.000", "Rp330.000.000"],
+          ["Dikurangi PPh 22 dan 23 = 330.000.000 − 138.000.000", "Rp192.000.000"],
+          ["Angsuran = 192.000.000 ÷ 12", "Rp16.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Ikut mengurangkan angsuran PPh 25 tahun 2025 Rp48.000.000: (192.000.000 − 48.000.000) ÷ 12; angsuran tahun lalu bukan pengurang dalam rumus angsuran.",
+          B: "Memakai rumus umum (PPh terutang 2025 nihil); Pasal 25 ayat (6) huruf a dan PER-11/PJ/2025 Pasal 114 memberi penghitungan khusus bagi Wajib Pajak yang berhak atas kompensasi kerugian.",
+          C: "Tidak mengurangkan sisa rugi Rp600.000.000 yang masih dapat dikompensasikan pada 2026: (22% × 2.100.000.000 − 138.000.000) ÷ 12."
+        },
+        jebakan: "Yang dikurangkan hanya sisa kerugian yang masih hidup pada tahun angsuran; rugi yang tahun terakhirnya 2025 tidak ikut, dan PPh 25 tahun lalu tidak pernah menjadi pengurang."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1) dan ayat (6) huruf a UU PPh beserta Penjelasannya", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 113 ayat (2) huruf a dan Pasal 114 serta Lampiran (petunjuk pengisian Lampiran 6 dan Lampiran 7 SPT PPh Badan); menggantikan KEP-537/PJ/2000", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-088",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-253",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Arunika Kemasan, yang masih memiliki sisa kerugian fiskal Tahun Pajak 2024 Rp1.750.000.000, menggabungkan diri ke dalam PT Arunika Plastindo pada 1 Oktober 2026 dengan memakai nilai buku setelah memperoleh persetujuan Direktur Jenderal Pajak, lalu bubar tanpa likuidasi. PT Arunika Plastindo sendiri masih memiliki sisa kerugian fiskal Tahun Pajak 2021 Rp600.000.000 yang belum terpakai sampai akhir Tahun Pajak 2025. Pernyataan yang paling tepat mengenai kompensasi kerugian setelah penggabungan adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "PT Arunika Plastindo masih dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2021 sampai Tahun Pajak 2026, tetapi sisa kerugian PT Arunika Kemasan tidak dapat dikompensasikan oleh PT Arunika Plastindo.", B: "PT Arunika Plastindo masih dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2021 sampai Tahun Pajak 2026, dan sisa kerugian PT Arunika Kemasan ikut dapat dikompensasikan karena penggabungan memakai nilai buku.", C: "PT Arunika Plastindo tidak dapat lagi mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2021 karena batasnya Tahun Pajak 2025, dan sisa kerugian PT Arunika Kemasan juga tidak dapat dikompensasikan.", D: "PT Arunika Plastindo masih dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2021 sampai Tahun Pajak 2026, dan sisa kerugian PT Arunika Kemasan dapat dikompensasikan sampai Tahun Pajak 2029." },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Penggabungan dengan nilai buku (PMK 81/2024 Pasal 392 ayat (2) dan ayat (3) huruf a; Pasal 392 diubah PMK 1/2026 hanya pada ayat (7) dan (8)) memindahkan harta pada nilai buku, tetapi Wajib Pajak penerima harta tidak boleh mengompensasikan kerugian atau sisa kerugian badan yang mengalihkan harta (Pasal 402 ayat (1)). Kerugian milik penerima sendiri tetap mengikuti Pasal 6 ayat (2) UU PPh: rugi 2021 dapat dipakai 2022 sampai 2026.",
+        jejakHitung: [
+          ["Rugi PT Arunika Plastindo 2021", "dapat dipakai 2022 s.d. 2026"],
+          ["Rugi PT Arunika Kemasan 2024", "tidak dapat dikompensasikan penerima (Pasal 402 ayat (1))"],
+          ["Syarat penerima (Pasal 392 ayat (3) huruf a)", "sisa rugi penerima Rp600 juta < Rp1,75 miliar"]
+        ],
+        mengapaSalah: {
+          B: "Nilai buku hanya mengatur nilai pengalihan harta; Pasal 402 ayat (1) PMK 81/2024 justru melarang kompensasi kerugian badan yang mengalihkan harta.",
+          C: "Rugi 2021 dikompensasikan lima tahun mulai 2022, yaitu sampai 2026, bukan 2025.",
+          D: "Larangan Pasal 402 ayat (1) berlaku penuh; sisa jangka lima tahun rugi 2024 (2025 s.d. 2029) tidak berpindah ke penerima."
+        },
+        jebakan: "Pisahkan dua pertanyaan: tahun terakhir rugi milik sendiri (hitung lima tahun mulai tahun berikutnya) dan nasib rugi badan yang bergabung (larangan Pasal 402)."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) dan Pasal 10 ayat (3) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 392 ayat (2) dan ayat (3) huruf a serta Pasal 402 ayat (1)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 1/2026 Pasal I angka 2 (perubahan Pasal 392 ayat (7) dan ayat (8) PMK 81/2024)", berlakuSejak: "2026-01-22" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-092",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-254",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Sinar Lintas Energi mengelola SPBU bermerek swasta dan bertindak sebagai penyalur BBM dari PT Petro Andalan Niaga, importir BBM swasta yang bukan PT Pertamina (Persero) atau anak usahanya; di lokasi yang sama perusahaan juga mengelola minimarket dan jasa ganti oli. Data Tahun Pajak 2025: penjualan BBM Rp45.600.000.000 dengan harga tebus BBM tanpa PPN Rp44.000.000.000, dan atas penebusan itu importir memungut PPh Pasal 22 0,3% = Rp132.000.000; pendapatan minimarket dan jasa ganti oli Rp2.400.000.000. Laba komersial sebelum pajak Rp1.240.000.000 terdiri atas laba segmen BBM Rp800.000.000 (setelah biaya langsung SPBU) dan laba segmen minimarket dan jasa ganti oli Rp440.000.000; tidak ada biaya bersama, tidak ada penghasilan lain, dan tidak ada koreksi lain. Angsuran PPh Pasal 25 yang dibayar selama 2025 Rp60.000.000. Status PPh Pasal 29 PT Sinar Lintas Energi Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Kurang bayar Rp67.160.000", B: "Lebih bayar Rp100.040.000", C: "Kurang bayar Rp31.960.000", D: "Lebih bayar Rp11.600.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "final-nonfinal", B: "final-nonfinal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "PPh Pasal 22 atas penjualan BBM oleh importir kepada penyalur/agen bersifat final (PMK 81/2024 Pasal 225 ayat (2) untuk Januari sampai Juli 2025 dan PMK 51/2025 Pasal 10 ayat (2) sejak 1 Agustus 2025), sehingga laba segmen BBM dikeluarkan dari PKP dan PPh 22-nya tidak dikreditkan. Peredaran bruto Pasal 31E tetap memuat penjualan BBM (SE-02/PJ/2015): Rp48 miliar, tidak melebihi Rp50 miliar, sehingga fasilitas berlaku atas PKP minimarket dan jasa ganti oli dengan porsi 4,8/48.",
+        jejakHitung: [
+          ["PKP = laba minimarket dan jasa ganti oli (laba BBM final dikeluarkan)", "Rp440.000.000"],
+          ["Peredaran bruto = 45.600.000.000 + 2.400.000.000", "Rp48.000.000.000 → Pasal 31E berlaku"],
+          ["PKP fasilitas = 4,8/48 × 440.000.000", "Rp44.000.000"],
+          ["PPh = 11% × 44.000.000 + 22% × 396.000.000", "Rp91.960.000"],
+          ["PPh 29 = 91.960.000 − 60.000.000 (PPh 22 final tidak dikreditkan)", "kurang bayar Rp31.960.000"]
+        ],
+        mengapaSalah: {
+          A: "Memperlakukan PPh 22 BBM sebagai kredit dan laba BBM sebagai objek tarif umum: PKP Rp1.240.000.000 dengan Pasal 31E (PPh Rp259.160.000) − 132.000.000 − 60.000.000.",
+          B: "Mengeluarkan laba BBM sebagai penghasilan final tetapi tetap mengkreditkan PPh 22-nya: 91.960.000 − 132.000.000 − 60.000.000.",
+          D: "Menghitung peredaran bruto tanpa penjualan BBM (Rp2,4 miliar, tidak melebihi Rp4,8 miliar) sehingga seluruh PKP dikenai 11%: 48.400.000 − 60.000.000."
+        },
+        jebakan: "Sifat PPh 22 BBM bergantung pada posisi pembeli (penyalur/agen: final; selain itu: kredit), bukan pada merek pemasoknya; tarif 0,3% untuk SPBU yang membeli selain dari Pertamina tetap final bagi penyalur. Penghasilan final tetap dihitung dalam peredaran bruto Pasal 31E."
+      },
+      dasarHukum: [{ pasal: "Pasal 22 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 218 dan Pasal 225 ayat (2) (PPh Pasal 22 BBM Januari sampai Juli 2025)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 51/2025 Pasal 3 ayat (1) huruf c dan Pasal 10 ayat (2) (sejak 1 Agustus 2025)", berlakuSejak: "2025-08-01" }, { pasal: "Pasal 31E UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" }, { pasal: "Pasal 28 dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-093",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-256",
+      topik: "B6.8",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "PT Rotan Lestari Mebelindo, industri furnitur rotan padat karya di Cirebon yang rata-rata mempekerjakan 640 tenaga kerja Indonesia, memperoleh fasilitas pengurangan penghasilan neto bagi industri padat karya (investment allowance, PP 94/2010 s.t.d.d. PP 45/2019; pelaksanaannya PMK 81/2024) atas penanaman modal baru berupa aktiva tetap berwujud untuk kegiatan usaha utama senilai Rp36.500.000.000, termasuk tanah pabrik Rp6.500.000.000. Pabrik mulai berproduksi komersial pada 2026. Besarnya pengurangan penghasilan neto dari fasilitas tersebut yang dimanfaatkan dalam SPT Tahunan PPh Badan Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp3.650.000.000", B: "Rp21.900.000.000", C: "Rp3.000.000.000", D: "Rp1.825.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Investment allowance industri padat karya: pengurangan penghasilan neto 60% dari jumlah penanaman modal berupa aktiva tetap berwujud termasuk tanah, dibebankan selama 6 tahun sejak Tahun Pajak saat mulai berproduksi komersial, masing-masing 10% per tahun. Untuk Tahun Pajak 2026 (tahun pertama) yang dimanfaatkan 10% × Rp36.500.000.000.",
+        jejakHitung: [
+          ["Total fasilitas = 60% × 36.500.000.000", "Rp21.900.000.000"],
+          ["Tahun Pajak 2026 = 10% × 36.500.000.000 (21.900.000.000 ÷ 6)", "Rp3.650.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Rp21.900.000.000 adalah jumlah seluruh fasilitas 60%; fasilitas itu dibebankan bertahap 10% per tahun selama 6 tahun, bukan sekaligus.",
+          C: "Mengeluarkan tanah dari dasar fasilitas (10% × 30.000.000.000); Pasal 423 ayat (2) PMK 81/2024 justru menyebut aktiva tetap berwujud termasuk tanah.",
+          D: "Memakai pola tax allowance PP 78/2019 (30%, 5% per tahun); fasilitas industri padat karya 60%, 10% per tahun."
+        },
+        jebakan: "Tax allowance (30%, 5% × 6 tahun) dan investment allowance padat karya (60%, 10% × 6 tahun) sama-sama memasukkan tanah, tetapi persentasenya berbeda; yang dimanfaatkan per tahun hanya sepersepuluh nilai investasi."
+      },
+      dasarHukum: [{ pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29A (investment allowance industri padat karya)", berlakuSejak: "2019-06-26" }, { pasal: "PMK 81/2024 Pasal 423 ayat (2) dan ayat (3) (menggantikan PMK 16/PMK.010/2020)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      kembaranDari: "B6-096",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-257",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kutipan: "Pasal 9 ayat (2a) UU KUP: Pembayaran atau penyetoran pajak sebagaimana dimaksud pada ayat (1), yang dilakukan setelah tanggal jatuh tempo pembayaran atau penyetoran pajak, dikenai sanksi administratif berupa bunga sebesar tarif bunga per bulan yang ditetapkan oleh Menteri Keuangan yang dihitung sejak berakhirnya tanggal jatuh tempo pembayaran sampai dengan tanggal pembayaran, dan dikenakan paling lama 24 (dua puluh empat) bulan serta bagian dari bulan dihitung penuh 1 (satu) bulan.",
+      stem: "PT Lembah Hijau Agrindo wajib membayar angsuran PPh Pasal 25 Masa Agustus 2026 sebesar Rp62.000.000. Bagian keuangan lupa membuat kode billing, sehingga angsuran itu baru dibayar pada Kamis, 22 Oktober 2026, dan NTPN terbit pada hari yang sama; perusahaan tidak menyampaikan SPT Masa PPh Pasal 25 secara terpisah. Anggap tarif bunga per bulan yang ditetapkan Menteri Keuangan untuk periode tersebut: Pasal 19 ayat (1) UU KUP 0,56% dan Pasal 9 ayat (2a) UU KUP 0,98%. Batas penyetoran PPh Pasal 25 adalah tanggal 15 bulan berikutnya, batas pelaporan SPT Masa 20 hari setelah Masa Pajak berakhir (bergeser ke hari kerja berikutnya bila jatuh pada hari libur), dan pembayaran PPh Pasal 25 yang telah mendapat validasi dianggap sebagai pelaporan pada tanggal pembayaran. Berdasarkan kutipan tersebut, sanksi administrasi yang dapat ditagih dengan STP adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Bunga Rp607.600 dan denda Rp100.000 karena SPT Masa PPh Pasal 25 terlambat", B: "Bunga Rp1.215.200 dan denda Rp100.000 karena SPT Masa PPh Pasal 25 terlambat", C: "Bunga Rp1.215.200 tanpa denda karena pembayaran dianggap sebagai pelaporan SPT Masa", D: "Bunga Rp694.400 dan denda Rp100.000 karena SPT Masa PPh Pasal 25 terlambat" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Jatuh tempo setor Masa Agustus 2026 adalah Selasa, 15 September 2026. Bunga Pasal 9 ayat (2a) dihitung sejak 16 September 2026 sampai 22 Oktober 2026: 1 bulan lebih 7 hari, dihitung 2 bulan; 0,98% × 2 × Rp62.000.000 = Rp1.215.200. Pembayaran tervalidasi dianggap sebagai pelaporan SPT Masa PPh Pasal 25 pada 22 Oktober 2026, padahal batas lapor 20 September 2026 (Minggu) bergeser ke Senin, 21 September 2026; SPT Masa terlambat sehingga dikenai denda Rp100.000 (Pasal 7 ayat (1) UU KUP).",
+        jejakHitung: [
+          ["Jatuh tempo setor (PMK 81/2024 Pasal 94 ayat (2))", "15 September 2026 (Selasa)"],
+          ["16 September → 22 Oktober 2026", "1 bulan 7 hari → 2 bulan"],
+          ["Bunga = 62.000.000 × 0,98% × 2", "Rp1.215.200"],
+          ["Batas lapor 20 September 2026 (Minggu) → 21 September 2026; dianggap lapor 22 Oktober 2026", "terlambat → denda Rp100.000"]
+        ],
+        mengapaSalah: {
+          A: "Keterlambatan 16 September sampai 22 Oktober melewati satu bulan penuh; sisa 7 hari dihitung satu bulan lagi, jadi 2 bulan, bukan 1 bulan.",
+          C: "Ketentuan \"dianggap sebagai pelaporan\" menetapkan tanggal lapor sama dengan tanggal bayar (22 Oktober 2026), bukan menghapus keterlambatan; tanggal itu melewati batas lapor 21 September 2026 sehingga denda Pasal 7 ayat (1) tetap dikenakan.",
+          D: "Tarif 0,56% adalah tarif Pasal 19 ayat (1) (tanpa uplift); keterlambatan penyetoran pajak masa memakai tarif Pasal 9 ayat (2a) yang ditambah uplift 5%."
+        },
+        jebakan: "Pada PPh Pasal 25, tanggal bayar sekaligus menjadi tanggal lapor: bila pembayaran baru terjadi setelah batas lapor, yang timbul bukan hanya bunga keterlambatan setor tetapi juga denda keterlambatan SPT Masa."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2a) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 81/2024 Pasal 94 ayat (2), Pasal 171 ayat (1) dan ayat (10), dan Pasal 173", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      kembaranDari: "B6-097",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-258",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      kutipan: "Penjelasan Pasal 18 ayat (4) huruf c UU PPh: Yang dimaksud dengan “hubungan keluarga sedarah dalam garis keturunan lurus satu derajat” adalah ayah, ibu, dan anak, sedangkan “hubungan keluarga sedarah dalam garis keturunan ke samping satu derajat” adalah saudara. Yang dimaksud dengan “keluarga semenda dalam garis keturunan lurus satu derajat” adalah mertua dan anak tiri, sedangkan “hubungan keluarga semenda dalam garis keturunan ke samping satu derajat” adalah ipar.",
+      stem: "Tim pajak PT Gemilang Kayu Nusantara memetakan transaksi tahun 2026 berikut: (1) Nyonya Ratih, pemegang saham PT Gemilang, menyewakan ruko pribadinya kepada Dimas, anak tirinya; (2) Nyonya Ratih menjual mobil pribadinya kepada Laras, keponakannya (anak dari kakak kandung Nyonya Ratih); (3) PT Gemilang, pemilik 50% saham PT Mega Panel, menjual kayu olahan kepada PT Cahaya Interior, yang 60% sahamnya dimiliki PT Mega Panel; dan (4) PT Gemilang menjual mesin kepada PT Rimba Furnitur, yang 20% sahamnya dimiliki PT Gemilang, tanpa ada pengurus, pemegang saham lain, atau teknologi yang sama di antara keduanya. Berdasarkan kutipan tersebut dan Pasal 18 ayat (4) UU PPh, transaksi yang dilakukan antarpihak yang mempunyai hubungan istimewa adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "(1), (2), dan (3)", B: "(1) saja", C: "(1), (3), dan (4)", D: "(1) dan (3)" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-baca" },
+      pembahasan: {
+        inti: "Anak tiri adalah keluarga semenda dalam garis keturunan lurus satu derajat, sehingga (1) berhubungan istimewa. Keponakan berada di luar batas satu derajat, sehingga (2) tidak. Pada (3), PT Gemilang memiliki penyertaan tidak langsung 50% × 60% = 30% pada PT Cahaya; penyertaan langsung atau tidak langsung paling rendah 25% menimbulkan hubungan istimewa. Pada (4), penyertaan 20% di bawah 25% dan tidak ada penguasaan, sehingga tidak berhubungan istimewa.",
+        jejakHitung: [
+          ["(1) Anak tiri", "semenda lurus satu derajat → istimewa"],
+          ["(2) Keponakan", "bukan satu derajat → tidak"],
+          ["(3) Penyertaan tidak langsung = 50% × 60%", "30% ≥ 25% → istimewa"],
+          ["(4) Penyertaan langsung 20%, tanpa penguasaan", "< 25% → tidak"]
+        ],
+        mengapaSalah: {
+          A: "Keponakan (anak saudara kandung) tidak termasuk keluarga satu derajat; satu derajat ke samping hanya saudara dan ipar.",
+          B: "Mengabaikan penyertaan tidak langsung: Pasal 18 ayat (4) huruf a menghitung penyertaan langsung maupun tidak langsung, dan 50% × 60% = 30% sudah mencapai batas 25%.",
+          C: "Penyertaan 20% belum mencapai batas paling rendah 25%, dan soal menyatakan tidak ada penguasaan melalui manajemen atau teknologi."
+        },
+        jebakan: "Batas 25% berlaku untuk penyertaan langsung maupun tidak langsung (dikalikan berjenjang), sedangkan batas keluarga adalah satu derajat: anak tiri dan mertua (lurus), saudara dan ipar (ke samping)."
+      },
+      dasarHukum: [{ pasal: "Pasal 18 ayat (4) huruf a dan huruf c UU PPh beserta penjelasannya", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-098",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-259",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
+      stem: "PT Andalan Baja Utama (PKP, peredaran bruto 2025 Rp180 miliar, tarif umum) memiliki 40% saham PT Andalan Rangka Konstruksi. Pada Agustus 2025 PT Andalan Baja menyerahkan baja ringan kepada PT Andalan Rangka seharga Rp8.400.000.000 (belum termasuk PPN) dan membuat faktur pajak dengan DPP nilai lain 11/12 × Rp8.400.000.000 dan tarif 12%. Dalam pemeriksaan tahun 2026, pemeriksa menunjukkan dengan data pembanding independen bahwa harga pasar wajar barang tersebut pada saat penyerahan Rp10.200.000.000, dan Wajib Pajak menerima koreksi itu. Baja ringan bukan barang yang tergolong mewah. Tambahan pokok PPh badan dan pokok PPN bagi PT Andalan Baja akibat koreksi tersebut (tanpa sanksi) adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "PPh Rp396.000.000; PPN Rp216.000.000", B: "PPh Rp363.000.000; PPN Rp198.000.000", C: "PPh Rp396.000.000; PPN Rp198.000.000", D: "PPh Rp396.000.000; tidak ada koreksi PPN karena pembeli telah mengkreditkan PPN sesuai faktur" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Penyertaan langsung 40% menimbulkan hubungan istimewa menurut Pasal 18 ayat (4) huruf a UU PPh dan Pasal 2 ayat (2) huruf a UU PPN. PPh: penghasilan ditentukan kembali sebesar harga wajar, sehingga selisih Rp1.800.000.000 dikenai tarif 22% (peredaran bruto di atas Rp50 miliar, tanpa Pasal 31E). PPN: harga jual yang dipengaruhi hubungan istimewa dihitung atas dasar harga pasar wajar, lalu DPP nilai lain 11/12 dengan tarif 12% untuk barang yang tidak tergolong mewah.",
+        jejakHitung: [
+          ["Selisih harga wajar = 10.200.000.000 − 8.400.000.000", "Rp1.800.000.000"],
+          ["Tambahan PPh = 22% × 1.800.000.000", "Rp396.000.000"],
+          ["Tambahan DPP PPN = 11/12 × 1.800.000.000", "Rp1.650.000.000"],
+          ["Tambahan PPN = 12% × 1.650.000.000", "Rp198.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengabaikan DPP nilai lain 11/12 untuk barang yang tidak tergolong mewah: 12% × 1.800.000.000.",
+          B: "Menerapkan DPP nilai lain 11/12 pada koreksi PPh (22% × 1.650.000.000); nilai lain hanya untuk PPN, sedangkan koreksi PPh atas selisih penuh.",
+          D: "Pasal 2 ayat (1) UU PPN mewajibkan harga jual yang dipengaruhi hubungan istimewa dihitung atas dasar harga pasar wajar; pengkreditan oleh pembeli tidak menghapus kekurangan PPN penjual."
+        },
+        jebakan: "Satu koreksi harga transfer berdampak pada dua jenis pajak dengan dasar berbeda: PPh atas selisih penuh, PPN atas 11/12 selisih dengan tarif 12%."
+      },
+      dasarHukum: [{ pasal: "Pasal 18 ayat (3) dan ayat (4) huruf a UU PPh; PMK 172/2023", berlakuSejak: "2023-12-29" }, { pasal: "Pasal 2 ayat (1) dan ayat (2) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024 Pasal 3 (DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 190,
+      verifikasi: "✅",
+      kembaranDari: "B6-099",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-260",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
+      stem: "PT Sentosa Farma Distribusi (peredaran bruto Rp410 miliar, tarif umum) membebankan biaya jasa grup tahun 2025 sebesar Rp5.350.000.000 yang dibayar kepada PT Sentosa Group Indonesia (badan dalam negeri, pemilik 70% sahamnya); PPh Pasal 23 telah dipotong. Hasil analisis tahapan pendahuluan dan kewajaran menunjukkan: (a) jasa pemasaran digital dan pengelolaan gudang benar-benar diterima, dibutuhkan, dan bermanfaat, tetapi ditagih Rp3.400.000.000, padahal harga wajarnya menurut pembanding independen Rp3.000.000.000; (b) Rp1.250.000.000 merupakan biaya jasa sehubungan dengan pencatatan saham PT Sentosa Group di bursa efek dan rapat umum pemegang saham PT Sentosa Group; dan (c) Rp700.000.000 merupakan jasa penagihan piutang yang juga sepenuhnya dikerjakan sendiri oleh divisi penagihan PT Sentosa Farma. Tidak ada koreksi fiskal lain. Koreksi fiskal positif atas biaya jasa grup dan tambahan PPh badan PT Sentosa Farma adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Koreksi positif Rp1.950.000.000; tambahan PPh Rp429.000.000", B: "Koreksi positif Rp1.100.000.000; tambahan PPh Rp242.000.000", C: "Koreksi positif Rp2.350.000.000; tambahan PPh Rp517.000.000", D: "Koreksi positif Rp5.350.000.000; tambahan PPh Rp1.177.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Biaya jasa intra-grup hanya dapat dibebankan bila lulus tahapan pendahuluan (jasa nyata diberikan, dibutuhkan, bermanfaat, bukan shareholder activity, bukan duplikasi) dan harganya wajar. Biaya pencatatan saham dan RUPS induk adalah shareholder activity, jasa penagihan yang dikerjakan sendiri adalah duplikasi, dan jasa yang bermanfaat hanya dapat dibebankan sebesar harga wajarnya, sehingga kelebihan Rp400.000.000 juga dikoreksi.",
+        jejakHitung: [
+          ["(a) Kelebihan atas harga wajar = 3.400.000.000 − 3.000.000.000", "Rp400.000.000"],
+          ["(b) Shareholder activity", "Rp1.250.000.000"],
+          ["(c) Duplikasi", "Rp700.000.000"],
+          ["Koreksi positif = 400.000.000 + 1.250.000.000 + 700.000.000", "Rp2.350.000.000"],
+          ["Tambahan PPh = 22% × 2.350.000.000", "Rp517.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Hanya mengoreksi (b) dan (c); jasa yang lulus tahapan pendahuluan tetap harus diuji kewajaran harganya, sehingga kelebihan Rp400.000.000 di atas harga wajar ikut dikoreksi.",
+          B: "Menganggap biaya pencatatan saham dan RUPS induk dapat dibebankan; Pasal 13 ayat (2) huruf a PMK 172/2023 menggolongkannya sebagai shareholder activity.",
+          D: "Menolak seluruh biaya, padahal jasa pemasaran dan pergudangan lulus tahapan pendahuluan dan tetap dapat dibebankan sebesar harga wajarnya Rp3.000.000.000."
+        },
+        jebakan: "Pengujian jasa intra-grup dua lapis: lulus tahapan pendahuluan (ada, dibutuhkan, bermanfaat, bukan shareholder activity, bukan duplikasi) lalu harga harus wajar; lulus lapis pertama belum berarti seluruh tagihan dapat dibebankan."
+      },
+      dasarHukum: [{ pasal: "Pasal 18 ayat (3) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 172/2023 Pasal 13 dan Pasal 14 (jasa intra-grup)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-100",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-261",
+      topik: "B6.11",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      kutipan: "Pasal 8 ayat (4) dan ayat (5) UU KUP: (4) Walaupun Direktur Jenderal Pajak telah melakukan pemeriksaan, dengan syarat Direktur Jenderal Pajak belum menyampaikan surat pemberitahuan hasil pemeriksaan, Wajib Pajak dengan kesadaran sendiri dapat mengungkapkan dalam laporan tersendiri tentang ketidakbenaran pengisian Surat Pemberitahuan yang telah disampaikan sesuai dengan keadaan yang sebenarnya, dan proses pemeriksaan tetap dilanjutkan. (5) Pajak yang kurang dibayar yang timbul sebagai akibat dari pengungkapan ketidakbenaran pengisian Surat Pemberitahuan sebagaimana dimaksud pada ayat (4) harus dilunasi oleh Wajib Pajak sebelum laporan tersendiri disampaikan beserta sanksi administrasi berupa bunga sebesar tarif bunga per bulan yang ditetapkan oleh Menteri Keuangan dari pajak yang kurang dibayar, yang dihitung sejak: a. batas waktu penyampaian Surat Pemberitahuan Tahunan berakhir sampai dengan tanggal pembayaran, untuk pengungkapan ketidakbenaran pengisian Surat Pemberitahuan Tahunan; atau b. jatuh tempo pembayaran berakhir sampai dengan tanggal pembayaran untuk pengungkapan ketidakbenaran pengisian Surat Pemberitahuan Masa dan dikenakan paling lama 24 (dua puluh empat) bulan, serta bagian dari bulan dihitung penuh 1 (satu) bulan.",
+      stem: "PT Bahari Pangan Lestari memakai tahun buku 1 Juli sampai dengan 30 Juni dan sedang menjalani pemeriksaan atas SPT Tahunan PPh Badan untuk tahun buku 1 Juli 2024 sampai dengan 30 Juni 2025, yang disampaikan pada 27 Oktober 2025. Pada Senin, 19 Oktober 2026, sebelum surat pemberitahuan hasil pemeriksaan disampaikan, perusahaan menyampaikan laporan tersendiri yang mengungkapkan penjualan limbah produksi yang belum dilaporkan sehingga PPh badan kurang dibayar Rp175.000.000, dan kekurangan itu dilunasi pada hari yang sama. Anggap tarif bunga Pasal 8 ayat (5a) ((suku bunga acuan + 10%) ÷ 12) yang berlaku 1,38% per bulan, sedangkan tarif Pasal 8 ayat (2b) ((suku bunga acuan + 5%) ÷ 12) 0,96% per bulan. Berdasarkan kutipan tersebut, sanksi yang harus dilunasi bersama pengungkapan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Bunga Rp38.640.000", B: "Bunga Rp28.980.000", C: "Bunga Rp20.160.000", D: "Denda Rp175.000.000 (100% dari pajak yang kurang dibayar)" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pengungkapan ketidakbenaran pengisian SPT Tahunan saat pemeriksaan, sebelum SPHP, dikenai bunga Pasal 8 ayat (5) dengan tarif ayat (5a) (uplift 10%), dihitung sejak batas waktu penyampaian SPT Tahunan berakhir. Untuk tahun buku yang berakhir 30 Juni 2025, batasnya 4 bulan setelah akhir Tahun Pajak, yaitu 31 Oktober 2025. Dari 1 November 2025 sampai 19 Oktober 2026: 11 bulan lebih 19 hari, dihitung 12 bulan.",
+        jejakHitung: [
+          ["Akhir Tahun Pajak (tahun buku)", "30 Juni 2025"],
+          ["Batas waktu SPT Tahunan badan (4 bulan setelah akhir Tahun Pajak)", "31 Oktober 2025"],
+          ["1 November 2025 → 19 Oktober 2026", "11 bulan 19 hari → 12 bulan (≤ 24)"],
+          ["Bunga = 175.000.000 × 1,38% × 12", "Rp28.980.000"]
+        ],
+        mengapaSalah: {
+          A: "Menghitung sejak berakhirnya tahun buku 30 Juni 2025 (16 bulan); titik awal Pasal 8 ayat (5) huruf a adalah berakhirnya batas waktu penyampaian SPT Tahunan, yaitu 31 Oktober 2025.",
+          C: "Memakai tarif pembetulan sukarela Pasal 8 ayat (2b) (0,96% × 12 bulan); pengungkapan saat pemeriksaan memakai tarif ayat (5a) dengan uplift 10%.",
+          D: "Denda 100% adalah sanksi pengungkapan ketidakbenaran perbuatan saat pemeriksaan bukti permulaan (Pasal 8 ayat (3a)), bukan pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan."
+        },
+        jebakan: "Untuk tahun buku yang tidak sama dengan tahun kalender, batas SPT Tahunan badan dihitung 4 bulan setelah akhir tahun buku, bukan 30 April; bunga Pasal 8 ayat (5) dimulai dari batas itu, bukan dari akhir tahun buku."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (4) UU KUP (UU HPP)", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 8 ayat (5) dan ayat (5a) UU KUP (diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 1 angka 8 dan Pasal 3 ayat (3) huruf c UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-103",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-262",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Karya Cetak Mandiri (WP badan dalam negeri) pada 9 September 2026 menukarkan satu mesin cetak offset miliknya dengan satu mesin potong kertas milik CV Prima Kemasan. Kedua pihak tidak mempunyai hubungan istimewa dan tidak ada tambahan pembayaran tunai. Karena perbedaan metode penyusutan, nilai sisa buku komersial mesin cetak Rp410.000.000, sedangkan nilai sisa buku fiskalnya Rp365.000.000. Harga pasar mesin cetak maupun mesin potong pada tanggal pertukaran masing-masing Rp590.000.000. Menurut UU PPh, keuntungan pengalihan mesin cetak yang diakui secara fiskal oleh PT Karya Cetak dan harga perolehan mesin potong sebagai dasar penyusutan fiskal adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Keuntungan Rp0; harga perolehan mesin potong Rp365.000.000", B: "Keuntungan Rp180.000.000; harga perolehan mesin potong Rp590.000.000", C: "Keuntungan Rp225.000.000; harga perolehan mesin potong Rp365.000.000", D: "Keuntungan Rp225.000.000; harga perolehan mesin potong Rp590.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Pasal 10 ayat (2) UU PPh: dalam tukar-menukar harta, nilai perolehan dan nilai penjualan adalah jumlah yang seharusnya dikeluarkan atau diterima berdasarkan harga pasar. Keuntungan fiskal adalah harga pasar dikurangi nilai sisa buku fiskal (bukan komersial), dan mesin potong dicatat sebesar harga pasarnya.",
+        jejakHitung: [
+          ["Nilai penjualan mesin cetak (harga pasar)", "Rp590.000.000"],
+          ["− Nilai sisa buku fiskal", "(Rp365.000.000)"],
+          ["Keuntungan fiskal", "Rp225.000.000"],
+          ["Harga perolehan mesin potong (harga pasar)", "Rp590.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Mencatat pertukaran sebesar nilai buku tanpa keuntungan tidak sesuai Pasal 10 ayat (2); nilai buku hanya dipakai bila ada ketentuan khusus seperti pengalihan dalam rangka restrukturisasi yang disetujui.",
+          B: "Memakai nilai sisa buku komersial (590.000.000 − 410.000.000); keuntungan fiskal dihitung dari nilai sisa buku fiskal.",
+          C: "Bila keuntungan diakui atas dasar harga pasar, harga perolehan harta pengganti juga harga pasar; mencampur dua dasar tidak konsisten dengan Pasal 10 ayat (2)."
+        },
+        jebakan: "Dua jebakan sekaligus: mengikuti pencatatan nilai buku dan memakai nilai sisa buku komersial, padahal keuntungan fiskal memakai nilai sisa buku fiskal dan harga pasar."
+      },
+      dasarHukum: [{ pasal: "Pasal 10 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 11 ayat (8) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-104",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-263",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kutipan: "Pasal 10 ayat (5) UU PPh: Apabila terjadi pengalihan harta sebagaimana dimaksud dalam Pasal 4 ayat (3) huruf c, maka dasar penilaian harta bagi badan yang menerima pengalihan sama dengan nilai pasar dari harta tersebut. Penjelasan Pasal 4 ayat (1) huruf d UU PPh: Dalam hal terjadi pengalihan harta sebagai pengganti saham atau penyertaan modal, keuntungan berupa selisih antara harga pasar dari harta yang diserahkan dan nilai bukunya merupakan penghasilan.",
+      stem: "PT Prakarsa Logistik (WP badan dalam negeri) menyetorkan modal kepada PT Prakarsa Armada, anak perusahaan yang baru didirikan, dalam bentuk lima unit truk trailer, dan menerima saham PT Prakarsa Armada dengan nilai nominal Rp1.450.000.000 (harta yang diterima sebagai pengganti saham sebagaimana dimaksud Pasal 4 ayat (3) huruf c UU PPh). Penyetoran ini bukan bagian dari penggabungan, peleburan, pemekaran, atau pengambilalihan usaha. Harga perolehan truk-truk itu Rp1.600.000.000 dengan akumulasi penyusutan fiskal sampai saat penyetoran Rp980.000.000, sedangkan harga pasarnya menurut penilai independen Rp1.450.000.000. Berdasarkan kutipan tersebut, penghasilan yang wajib diakui PT Prakarsa Logistik dan dasar penyusutan truk bagi PT Prakarsa Armada adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Penghasilan Rp830.000.000; dasar penyusutan Rp1.450.000.000", B: "Penghasilan Rp0; dasar penyusutan Rp620.000.000", C: "Penghasilan Rp830.000.000; dasar penyusutan Rp620.000.000", D: "Kerugian Rp150.000.000; dasar penyusutan Rp1.450.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Nilai sisa buku fiskal truk = harga perolehan dikurangi akumulasi penyusutan fiskal = Rp620.000.000. Penyetoran harta sebagai pengganti saham dinilai dengan harga pasar: PT Prakarsa Logistik mengakui keuntungan sebesar harga pasar dikurangi nilai bukunya, dan PT Prakarsa Armada menyusutkan truk dari nilai pasar (Pasal 10 ayat (5)).",
+        jejakHitung: [
+          ["Nilai sisa buku fiskal = 1.600.000.000 − 980.000.000", "Rp620.000.000"],
+          ["Keuntungan = 1.450.000.000 − 620.000.000", "Rp830.000.000"],
+          ["Dasar penyusutan PT Prakarsa Armada (nilai pasar)", "Rp1.450.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Nilai buku hanya dapat dipakai dalam restrukturisasi yang memenuhi syarat; setoran modal dalam bentuk harta biasa dinilai dengan harga pasar sehingga menimbulkan keuntungan.",
+          C: "Pasal 10 ayat (5) menetapkan dasar penilaian bagi badan penerima sebesar nilai pasar, bukan nilai sisa buku pihak yang mengalihkan.",
+          D: "Membandingkan harga pasar dengan harga perolehan (1.450.000.000 − 1.600.000.000); keuntungan dihitung atas nilai buku setelah dikurangi akumulasi penyusutan."
+        },
+        jebakan: "Menganggap setoran modal dalam bentuk harta netral pajak seperti penggabungan bernilai buku, atau lupa bahwa yang dibandingkan dengan harga pasar adalah nilai sisa buku, bukan harga perolehan."
+      },
+      dasarHukum: [{ pasal: "Pasal 10 ayat (5) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (1) huruf d UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-105",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-264",
+      topik: "B6.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Lintas Niaga Sejahtera (WP badan dalam negeri) pada 7 Oktober 2026 menjual satu forklift bekas kepada PT Graha Investama, pemegang 35% saham PT Lintas, seharga Rp95.000.000. Nilai sisa buku fiskal forklift Rp70.000.000, sedangkan nilai sisa buku komersialnya Rp82.000.000, sehingga laporan keuangan PT Lintas mencatat laba penjualan aset Rp13.000.000. Harga pasar wajar forklift sejenis antarpihak independen pada tanggal itu Rp180.000.000. Koreksi fiskal yang tepat atas transaksi ini dalam SPT Tahunan PPh Badan PT Lintas adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Koreksi positif Rp110.000.000", B: "Tidak ada koreksi karena harga sudah disepakati dalam perjanjian jual beli", C: "Koreksi positif Rp85.000.000", D: "Koreksi positif Rp97.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-hitung" },
+      pembahasan: {
+        inti: "PT Graha memiliki 35% saham PT Lintas sehingga keduanya berhubungan istimewa (Pasal 18 ayat (4) huruf a). Menurut Pasal 10 ayat (1), harga penjualan adalah jumlah yang seharusnya diterima, yaitu harga pasar Rp180.000.000. Laba fiskal = 180.000.000 − 70.000.000 = Rp110.000.000; dibandingkan laba komersial Rp13.000.000, koreksi positifnya Rp97.000.000 (gabungan selisih harga Rp85.000.000 dan selisih nilai sisa buku Rp12.000.000).",
+        jejakHitung: [
+          ["Laba fiskal = 180.000.000 − 70.000.000", "Rp110.000.000"],
+          ["Laba komersial = 95.000.000 − 82.000.000", "Rp13.000.000"],
+          ["Koreksi positif = 110.000.000 − 13.000.000", "Rp97.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp110.000.000 adalah laba fiskal, bukan selisih yang dikoreksi; laba komersial Rp13.000.000 sudah masuk laporan keuangan.",
+          B: "Jual beli antarpihak yang mempunyai hubungan istimewa dinilai dengan jumlah yang seharusnya diterima; kesepakatan dalam perjanjian tidak menghapus ketentuan Pasal 10 ayat (1).",
+          C: "Hanya mengoreksi selisih harga (180.000.000 − 95.000.000); perbedaan nilai sisa buku komersial dan fiskal (82.000.000 − 70.000.000) juga menambah laba fiskal."
+        },
+        jebakan: "Besar koreksi adalah laba fiskal dikurangi laba komersial, bukan laba fiskal itu sendiri dan bukan hanya selisih harga."
+      },
+      dasarHukum: [{ pasal: "Pasal 10 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 18 ayat (3) dan (4) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B6-106",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-265",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      kasusId: "V-B6-14",
+      laporanUjian: ["C-2026-10"],
+      stem: "Data untuk soal vignette V-B6-14: Kestrel Geoservices Ltd, badan yang berkedudukan di Negara Norvalia (belum memiliki P3B dengan Indonesia), menandatangani kontrak dengan PT Bumi Andalas Energi pada Selasa, 21 Januari 2025 untuk jasa interpretasi data seismik dan pelatihan analis di kantor PT Bumi Andalas di Balikpapan. Lima geolog Kestrel mulai bekerja di lokasi pada Senin, 10 Februari 2025 dan hadir terus-menerus sampai kontrak berakhir 31 Juli 2026; hari ke-61 kehadiran jatuh pada 11 April 2025. Kestrel mendaftarkan BUT-nya di Coretax dan memperoleh NPWP pada 27 Mei 2025. Data Tahun Pajak 2025 BUT: peredaran usaha Rp9.600.000.000 dan laba komersial Rp750.000.000 setelah dibebani (i) bunga pinjaman dari kantor pusat Rp150.000.000, (ii) imbalan jasa manajemen kepada kantor pusat Rp210.000.000, (iii) alokasi biaya administrasi kantor pusat yang berkaitan dengan kegiatan BUT dan besarnya sesuai ketentuan Direktur Jenderal Pajak Rp95.000.000, serta (iv) pengiriman laba ke kantor pusat pada Oktober 2025 yang dicatat staf sebagai ‘beban kantor pusat’ Rp260.000.000. Pada Juni 2026 BUT menanamkan kembali 35% laba setelah pajak 2025 dalam bentuk pembelian aktiva tetap untuk kegiatannya di Indonesia, dan sisanya dikirim ke kantor pusat. Dengan menganggap berlaku penafsiran (sejalan dengan Commentary Model OECD/PBB) bahwa pemberian jasa yang melampaui batas 60 hari dalam 12 bulan menjadikan seluruh kegiatan sejak hari pertama sebagai kegiatan melalui BUT, kewajiban pajak subjektif BUT Kestrel di Indonesia dimulai pada ...",
+      kataKualifikasi: [],
+      opsi: { A: "11 April 2025, saat jumlah hari kehadiran melampaui 60 hari", B: "10 Februari 2025, saat pemberian jasa di Indonesia mulai dilakukan", C: "27 Mei 2025, saat BUT terdaftar dan memperoleh NPWP di Coretax", D: "21 Januari 2025, saat kontrak jasa ditandatangani dengan PT Bumi Andalas" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 2A ayat (3) UU PPh: kewajiban subjektif subjek pajak luar negeri yang menjalankan usaha atau melakukan kegiatan melalui BUT dimulai saat ia menjalankan usaha atau melakukan kegiatan sebagaimana dimaksud Pasal 2 ayat (5). Jasa diberikan lebih dari 60 hari dalam 12 bulan (Pasal 2 ayat (5) huruf m), dan menurut premis stem seluruh kegiatan sejak hari pertama adalah kegiatan melalui BUT. Periode pemberian jasa dimulai saat jasa mulai dilakukan (Pasal 8 ayat (3) huruf a PMK 35/PMK.03/2019), yaitu 10 Februari 2025.",
+        jejakHitung: [
+          ["10 sampai 28 Februari 2025", "19 hari"],
+          ["1 sampai 31 Maret 2025", "31 hari (kumulatif 50)"],
+          ["1 sampai 10 April 2025", "10 hari (kumulatif 60)"],
+          ["11 April 2025", "hari ke-61: batas 60 hari terlampaui"],
+          ["Premis stem: melampaui 60 hari berarti kegiatan sejak hari pertama melalui BUT", "BUT ada sejak 10 Februari 2025"],
+          ["Awal kewajiban subjektif", "10 Februari 2025"]
+        ],
+        mengapaSalah: {
+          A: "Hari ke-61 hanya menandai terpenuhinya batas waktu; menurut premis stem, kegiatan sejak hari pertama sudah merupakan kegiatan melalui BUT, dan Pasal 2A ayat (3) mengaitkan awal kewajiban dengan saat kegiatan itu dijalankan.",
+          C: "Pendaftaran dan NPWP adalah kewajiban administratif yang timbul karena kewajiban subjektif sudah ada; tanggal NPWP tidak menentukan awal kewajiban subjektif.",
+          D: "Penandatanganan kontrak belum merupakan pemberian jasa di Indonesia; periode pemberian jasa dimulai saat jasa mulai dilakukan di lokasi."
+        },
+        jebakan: "Menyamakan awal kewajiban subjektif dengan tanggal kontrak, tanggal NPWP, atau hari ke-61; tanpa premis dalam stem, sebagian pembaca menunjuk hari ke-61."
+      },
+      dasarHukum: [{ pasal: "Pasal 2A ayat (3) UU PPh (UU 10/1994)", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 2 ayat (5) huruf m UU PPh", berlakuSejak: "2001-01-01" }, { pasal: "PMK 35/PMK.03/2019 Pasal 4 ayat (2) huruf b dan Pasal 8 ayat (1) dan ayat (3) huruf a", berlakuSejak: "2019-04-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-107",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-266",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-B6-14",
+      laporanUjian: ["C-2026-10"],
+      stem: "Lanjutan V-B6-14: BUT Kestrel Geoservices Ltd (kantor pusat di Negara Norvalia, belum memiliki P3B dengan Indonesia) tidak menjalankan usaha perbankan. Laba komersial Tahun Pajak 2025 Rp750.000.000 sudah dikurangi (i) bunga pinjaman dari kantor pusat Rp150.000.000, (ii) imbalan jasa manajemen kepada kantor pusat Rp210.000.000, (iii) alokasi biaya administrasi kantor pusat yang berkaitan dengan kegiatan BUT dan besarnya sesuai ketentuan Direktur Jenderal Pajak Rp95.000.000, dan (iv) pengiriman laba ke kantor pusat yang dicatat sebagai ‘beban kantor pusat’ Rp260.000.000. Tidak ada koreksi fiskal lain dan tidak ada sisa kerugian. Penghasilan Kena Pajak BUT Kestrel Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp1.465.000.000", B: "Rp1.110.000.000", C: "Rp1.220.000.000", D: "Rp1.370.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 5 ayat (3) huruf b UU PPh: imbalan jasa manajemen dan bunga (kecuali yang berkenaan dengan usaha perbankan) yang dibayar BUT kepada kantor pusat tidak boleh dibebankan. Pengiriman laba ke kantor pusat adalah pembagian laba (Pasal 9 ayat (1) huruf a), bukan biaya. Alokasi biaya administrasi kantor pusat yang berkaitan dengan kegiatan BUT dan besarnya sesuai ketentuan Direktur Jenderal Pajak boleh dibebankan (Pasal 5 ayat (3) huruf a).",
+        jejakHitung: [
+          ["Laba komersial", "Rp750.000.000"],
+          ["+ Bunga kepada kantor pusat (bukan usaha perbankan)", "Rp150.000.000"],
+          ["+ Imbalan jasa manajemen kepada kantor pusat", "Rp210.000.000"],
+          ["+ Pengiriman laba yang dicatat sebagai beban", "Rp260.000.000"],
+          ["Alokasi biaya administrasi kantor pusat", "tidak dikoreksi"],
+          ["PKP = 750 + 150 + 210 + 260 (juta)", "Rp1.370.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Ikut mengoreksi alokasi biaya administrasi kantor pusat Rp95.000.000, padahal Pasal 5 ayat (3) huruf a membolehkannya sepanjang berkaitan dengan kegiatan BUT dan besarnya sesuai ketentuan.",
+          B: "Lupa mengoreksi pengiriman laba Rp260.000.000; pengiriman laba ke kantor pusat adalah pembagian laba yang tidak boleh dikurangkan (Pasal 9 ayat (1) huruf a).",
+          C: "Menganggap bunga kepada kantor pusat dapat dibebankan; pengecualian Pasal 5 ayat (3) huruf b angka 3 hanya untuk bunga yang berkenaan dengan usaha perbankan."
+        },
+        jebakan: "Memukul rata semua pembebanan kantor pusat: alokasi biaya administrasi boleh, sedangkan royalti, imbalan jasa manajemen, bunga, dan pengiriman laba tidak."
+      },
+      dasarHukum: [{ pasal: "Pasal 5 ayat (3) huruf a dan huruf b UU PPh", berlakuSejak: "2001-01-01" }, { pasal: "Pasal 9 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-108",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-267",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      kasusId: "V-B6-14",
+      laporanUjian: ["C-2026-10"],
+      kutipan: "Pasal 26 ayat (4) UU PPh: \"Penghasilan Kena Pajak sesudah dikurangi pajak dari suatu bentuk usaha tetap di Indonesia dikenai pajak sebesar 20% (dua puluh persen), kecuali penghasilan tersebut ditanamkan kembali di Indonesia, yang ketentuannya diatur lebih lanjut dengan atau berdasarkan Peraturan Menteri Keuangan.\" Pasal 1 ayat (3) PMK 14/PMK.03/2011: \"Pengecualian dari pengenaan Pajak Penghasilan sebagaimana dimaksud pada ayat (2) diberikan apabila seluruh Penghasilan Kena Pajak sesudah dikurangi Pajak Penghasilan dari suatu Bentuk Usaha Tetap ditanamkan kembali di Indonesia dalam bentuk: ... c. pembelian aktiva tetap yang digunakan oleh Bentuk Usaha Tetap untuk menjalankan usaha Bentuk Usaha Tetap atau melakukan kegiatan Bentuk Usaha Tetap di Indonesia; ...\" Pasal 31E ayat (1) UU PPh: \"Wajib Pajak badan dalam negeri dengan peredaran bruto sampai dengan Rp50.000.000.000,00 (lima puluh miliar rupiah) mendapat fasilitas berupa pengurangan tarif sebesar 50% (lima puluh persen) dari tarif sebagaimana dimaksud dalam Pasal 17 ayat (1) huruf b dan ayat (2a) yang dikenakan atas Penghasilan Kena Pajak dari bagian peredaran bruto sampai dengan Rp4.800.000.000,00 (empat miliar delapan ratus juta rupiah).\"",
+      stem: "Lanjutan V-B6-14: PKP BUT Kestrel Geoservices Ltd (kantor pusat di Negara Norvalia, belum memiliki P3B dengan Indonesia) Tahun Pajak 2025 Rp1.370.000.000 dan peredaran usahanya Rp9.600.000.000; tidak ada penghasilan yang dikenai PPh final. Staf akuntansi BUT berpendapat fasilitas Pasal 31E dapat dipakai karena peredaran usaha di bawah Rp50 miliar. Pada Juni 2026 BUT menanamkan kembali 35% laba setelah pajak 2025 dalam bentuk pembelian aktiva tetap untuk kegiatannya di Indonesia, dan sisanya dikirim ke kantor pusat. Berdasarkan kutipan tersebut, jumlah PPh badan dan PPh Pasal 26 ayat (4) yang terutang atas BUT Kestrel untuk Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp515.120.000", B: "Rp440.318.000", C: "Rp454.840.000", D: "Rp575.400.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        inti: "BUT adalah subjek pajak luar negeri, sehingga fasilitas Pasal 31E (khusus Wajib Pajak badan dalam negeri) tidak berlaku: PPh badan 22% × PKP. Norvalia belum memiliki P3B, sehingga laba setelah PPh dikenai PPh Pasal 26 ayat (4) 20%. Pengecualian hanya diberikan bila SELURUH laba setelah pajak ditanamkan kembali (Pasal 1 ayat (3) PMK 14/PMK.03/2011); penanaman kembali 35% tidak mengurangi dasar.",
+        jejakHitung: [
+          ["PPh badan = 22% × 1.370.000.000", "Rp301.400.000"],
+          ["Laba setelah PPh = 1.370.000.000 − 301.400.000", "Rp1.068.600.000"],
+          ["Penanaman kembali hanya 35% (bukan seluruhnya)", "dasar tidak dikurangi"],
+          ["PPh 26 ayat (4) = 20% × 1.068.600.000", "Rp213.720.000"],
+          ["Jumlah = 301.400.000 + 213.720.000", "Rp515.120.000"]
+        ],
+        mengapaSalah: {
+          B: "Mengurangi dasar branch profit tax dengan bagian yang ditanamkan kembali (20% × 65% × 1.068.600.000 = Rp138.918.000); pengecualian hanya bila seluruh laba setelah pajak ditanamkan kembali.",
+          C: "Menerapkan Pasal 31E (PPh Rp226.050.000 dan branch profit tax Rp228.790.000), padahal fasilitas itu hanya untuk Wajib Pajak badan dalam negeri.",
+          D: "Branch profit tax dihitung dari PKP sebelum dikurangi PPh badan (20% × 1.370.000.000 = Rp274.000.000)."
+        },
+        jebakan: "Dua pancingan sekaligus: peredaran usaha yang kecil memancing Pasal 31E, dan penanaman kembali sebagian memancing pengurangan dasar branch profit tax. Baca subjek yang berhak dan kata \"seluruh\" dalam kutipan."
+      },
+      dasarHukum: [{ pasal: "Pasal 26 ayat (4) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 14/PMK.03/2011 Pasal 1 ayat (3)", berlakuSejak: "2011-01-24" }, { pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 17 ayat (1) huruf b UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-109",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-268",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kutipan: "Pasal 3 ayat (1) huruf a dan huruf c UU PPh: \"Yang tidak termasuk subjek pajak sebagaimana dimaksud dalam Pasal 2 adalah: a. kantor perwakilan negara asing; ... c. organisasi-organisasi internasional dengan syarat: 1. Indonesia menjadi anggota organisasi tersebut; dan 2. tidak menjalankan usaha atau kegiatan lain untuk memperoleh penghasilan dari Indonesia selain memberikan pinjaman kepada pemerintah yang dananya berasal dari iuran para anggota;\" Pasal 3 ayat (2): \"Organisasi internasional yang tidak termasuk subjek pajak sebagaimana dimaksud pada ayat (1) huruf c ditetapkan dengan Keputusan Menteri Keuangan.\"",
+      stem: "Pada September 2026 sebuah kantor konsultan di Surabaya menerima permintaan memetakan status subjek PPh empat pihak: (1) Konsulat Jenderal Negara Ardenia di Surabaya, yang mengurus visa dan perlindungan warga negaranya berdasarkan hubungan timbal balik; (2) cabang Halvorsen Marine ASA, perusahaan swasta dari Negara Skarvia, yang menjual dan menyimpan suku cadang kapal di gudangnya di Surabaya; (3) Badan Kerja Sama Perikanan Samudra, organisasi internasional yang telah ditetapkan Menteri Keuangan dan Indonesia menjadi anggotanya, tetapi sejak 2026 kantornya di Jakarta juga menjual jasa konsultansi pengelolaan pelabuhan kepada perusahaan swasta Indonesia; serta (4) Dana Irigasi Antarnegara, organisasi internasional yang telah ditetapkan Menteri Keuangan, Indonesia menjadi anggotanya, dan kegiatannya di Indonesia hanya memberikan pinjaman kepada pemerintah dari iuran anggota. Berdasarkan kutipan tersebut, pihak yang merupakan subjek pajak penghasilan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "(2) saja", B: "(2), (3), dan (4)", C: "(2) dan (3)", D: "(1), (2), dan (3)" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Konsulat jenderal adalah kantor perwakilan negara asing (Pasal 3 ayat (1) huruf a), sehingga bukan subjek pajak. Organisasi internasional dikecualikan hanya bila Indonesia menjadi anggota DAN tidak menjalankan usaha atau kegiatan lain untuk memperoleh penghasilan dari Indonesia selain pinjaman kepada pemerintah dari iuran anggota (huruf c). Penetapan Menteri Keuangan tidak menyelamatkan organisasi yang menjual jasa komersial di Indonesia. Cabang perusahaan swasta asing adalah BUT (Pasal 2 ayat (5) huruf b).",
+        jejakHitung: [
+          ["(1) Konsulat Jenderal Negara Ardenia", "bukan subjek (Ps. 3 ayat (1) huruf a)"],
+          ["(2) Cabang perusahaan swasta asing", "subjek pajak luar negeri melalui BUT (Ps. 2 ayat (5) huruf b)"],
+          ["(3) Organisasi internasional yang menjual jasa konsultansi", "syarat huruf c angka 2 tidak terpenuhi: subjek pajak"],
+          ["(4) Organisasi internasional yang hanya memberi pinjaman kepada pemerintah dari iuran", "bukan subjek (Ps. 3 ayat (1) huruf c)"]
+        ],
+        mengapaSalah: {
+          A: "Menganggap penetapan Menteri Keuangan dan keanggotaan Indonesia sudah cukup; syarat kedua Pasal 3 ayat (1) huruf c (tidak memperoleh penghasilan lain dari Indonesia) tidak dipenuhi pihak (3).",
+          B: "Pihak (4) memenuhi seluruh syarat pengecualian: pemberian pinjaman kepada pemerintah dari iuran anggota justru kegiatan yang dikecualikan oleh huruf c angka 2.",
+          D: "Konsulat jenderal adalah kantor perwakilan negara asing yang dikecualikan Pasal 3 ayat (1) huruf a; jangan disamakan dengan cabang perusahaan asing."
+        },
+        jebakan: "Penetapan Menteri Keuangan bukan satu-satunya syarat: organisasi internasional yang memperoleh penghasilan komersial dari Indonesia tetap subjek pajak."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a dan huruf c dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 2 ayat (5) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-110",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-269",
+      topik: "B6.1",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
+      stem: "Halcyon Turbines plc, berkedudukan di Negara Westmarch (belum memiliki P3B dengan Indonesia), memiliki BUT di Batam yang menjual dan merawat generator diesel industri. Data Tahun Pajak 2025, seluruhnya berupa penghasilan neto setelah biaya yang berkaitan: (1) laba penjualan dan perawatan generator yang dijalankan BUT Rp3.200.000.000; (2) laba kantor pusat dari penjualan langsung generator diesel industri sejenis kepada PT Galangan Riau Sejahtera di Batam tanpa melibatkan BUT Rp500.000.000; (3) bunga yang diterima kantor pusat dari PT Karya Mesin Kepri atas pinjaman yang dananya berasal dari kas BUT dan ditatausahakan oleh BUT sehingga terdapat hubungan efektif dengan harta BUT Rp180.000.000; dan (4) royalti yang diterima kantor pusat dari PT Cahaya Pesisir atas lisensi merek dagang yang dimiliki dan dikelola sendiri oleh kantor pusat tanpa kaitan dengan harta maupun kegiatan BUT Rp220.000.000. Penghasilan neto yang menjadi objek pajak BUT Halcyon Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp3.700.000.000", B: "Rp4.100.000.000", C: "Rp3.880.000.000", D: "Rp3.200.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 5 ayat (1) UU PPh: objek pajak BUT meliputi penghasilan dari usaha atau kegiatan BUT dan dari harta yang dimiliki atau dikuasainya (huruf a), penghasilan kantor pusat dari penjualan barang atau pemberian jasa di Indonesia yang sejenis dengan yang dijalankan BUT (huruf b), dan penghasilan Pasal 26 yang diterima kantor pusat sepanjang terdapat hubungan efektif dengan harta atau kegiatan BUT (huruf c). Royalti tanpa hubungan efektif tetap penghasilan kantor pusat yang dipotong PPh Pasal 26.",
+        jejakHitung: [
+          ["(1) Kegiatan BUT", "Rp3.200.000.000"],
+          ["(2) Penjualan sejenis oleh kantor pusat (huruf b)", "Rp500.000.000"],
+          ["(3) Bunga yang berhubungan efektif dengan harta BUT (huruf c)", "Rp180.000.000"],
+          ["(4) Royalti tanpa hubungan efektif", "bukan penghasilan BUT (PPh 26 atas kantor pusat)"],
+          ["Penghasilan neto BUT = 3.200 + 500 + 180 (juta)", "Rp3.880.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Lupa bunga yang berhubungan efektif dengan harta BUT (Pasal 5 ayat (1) huruf c); dananya berasal dari dan ditatausahakan oleh BUT.",
+          B: "Royalti atas merek yang dikelola sendiri oleh kantor pusat tanpa kaitan dengan BUT tidak memenuhi uji hubungan efektif, sehingga tetap penghasilan kantor pusat yang dipotong PPh Pasal 26.",
+          D: "Hanya laba kegiatan BUT; lupa penjualan barang sejenis oleh kantor pusat (huruf b) dan penghasilan yang berhubungan efektif (huruf c)."
+        },
+        jebakan: "Penghasilan kantor pusat dari Indonesia tidak otomatis masuk BUT; ujinya barang atau jasa sejenis, atau hubungan efektif dengan harta atau kegiatan BUT, apa pun jenis penghasilannya."
+      },
+      dasarHukum: [{ pasal: "Pasal 5 ayat (1) huruf a, b, dan c UU PPh", berlakuSejak: "2001-01-01" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-111",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-272",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Gita Suara Nusantara (badan dalam negeri, penyelenggara layanan musik digital berlangganan) memperoleh lisensi katalog rekaman dari Marlowe Sound Holdings Ltd yang berkedudukan di Negara Caldora (mitra P3B; tarif royalti menurut P3B 15%). Marlowe tidak mempunyai BUT di Indonesia, bukan pihak afiliasi, merupakan pemilik manfaat, dan Formulir DGT yang sah telah disampaikan serta diproses melalui portal wajib pajak sebelum pembayaran. Perjanjian memuat klausul gross-up: royalti dinaikkan sedemikian rupa sehingga setelah dipotong PPh Pasal 26 Marlowe tetap menerima bersih USD34.000; seluruh royalti bruto dicatat sebagai beban royalti dan PPh Pasal 26 dipotong dari royalti bruto tersebut. Royalti dibayar dan PPh dipotong pada Rabu, 7 Oktober 2026; kurs KMK yang berlaku dan kurs tengah BI pada tanggal itu sama, Rp16.300 per USD. Lisensi dipakai untuk menghasilkan pendapatan langganan yang dikenai tarif umum. PPh Pasal 26 yang wajib dipotong dan biaya royalti yang dapat dikurangkan PT Gita adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "PPh Pasal 26 Rp97.800.000; biaya royalti Rp652.000.000", B: "PPh Pasal 26 Rp83.130.000; biaya royalti Rp637.330.000", C: "PPh Pasal 26 Rp97.800.000; biaya royalti Rp554.200.000, sedangkan PPh yang ditanggung dikoreksi positif", D: "PPh Pasal 26 Rp138.550.000; biaya royalti Rp692.750.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Formulir DGT sah dan Marlowe pemilik manfaat, sehingga PPh Pasal 26 dipotong dengan tarif P3B 15% (PMK 112/2025). Dengan gross-up, royalti bruto = neto ÷ (1 − tarif) = USD40.000; PPh Pasal 26 dipotong dari bruto itu dan merupakan pajak penerima. Seluruh royalti bruto adalah biaya untuk mendapatkan, menagih, dan memelihara penghasilan (Pasal 6 ayat (1) huruf a). Berbeda dengan PPh yang ditanggung tanpa gross-up, yang termasuk PPh yang tidak dapat dibiayakan (Pasal 9 ayat (1) huruf h).",
+        jejakHitung: [
+          ["Tarif (Formulir DGT sah, pemilik manfaat)", "15% (P3B)"],
+          ["Royalti bruto = 34.000 ÷ (1 − 15%)", "USD40.000"],
+          ["PPh 26 = 15% × 40.000 = USD6.000 × 16.300", "Rp97.800.000"],
+          ["Biaya royalti = 40.000 × 16.300", "Rp652.000.000"],
+          ["Diterima Marlowe = 40.000 − 6.000", "USD34.000 (sesuai perjanjian)"]
+        ],
+        mengapaSalah: {
+          B: "Menghitung PPh 26 dari jumlah bersih USD34.000 seolah tanpa gross-up (USD5.100), lalu membiayakan jumlah bersih ditambah pajak itu; dengan klausul gross-up dasar pemotongan adalah royalti bruto USD40.000.",
+          C: "Itu perlakuan PPh ditanggung tanpa gross-up; perjanjian ini memakai gross-up sehingga seluruh royalti bruto adalah biaya dan pajaknya pajak penerima.",
+          D: "Memakai tarif 20% Pasal 26 (bruto USD42.500, pajak USD8.500) padahal Formulir DGT sah dan Marlowe pemilik manfaat, sehingga tarif P3B 15% berlaku."
+        },
+        jebakan: "Bedakan gross-up (pajak masuk ke dalam royalti bruto dan seluruh bruto menjadi biaya) dengan PPh 26 yang ditanggung tanpa gross-up (tidak dapat dibiayakan); tarif pemotong juga bergantung pada Formulir DGT."
+      },
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf h UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (penerapan P3B, Form DGT; menggantikan PER-25/PJ/2018 yang berlaku s.d. 30 Desember 2025)", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-114",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-273",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      stem: "Pada September 2026 PT Andalas Mekatronika melakukan empat pembayaran kepada pihak luar negeri yang tidak mempunyai BUT di Indonesia: (1) Rp1.500.000.000 kepada Kraussberg Anlagen GmbH (Negara Tirolia) atas pembelian satu unit mesin CNC yang dikirim dari Tirolia dan diimpor sendiri oleh PT Andalas, dengan PPh Pasal 22 impor dilunasi saat impor; (2) Rp450.000.000 kepada Vestby Engineering AS (Negara Norvia, mitra P3B; Formulir DGT sah; P3B tidak memuat pasal khusus jasa teknik) atas jasa perancangan sistem otomasi yang seluruhnya dikerjakan di Norvia; (3) Rp600.000.000 kepada Halvard Finance Ltd (Negara Caldoria, mitra P3B dengan tarif bunga 10%; Formulir DGT sah dan Halvard pemilik manfaat) atas bunga pinjaman; dan (4) Rp250.000.000 kepada Petronel Design Inc. (Negara Lusitara, belum memiliki P3B dengan Indonesia) atas royalti lisensi desain cetakan. Jumlah PPh Pasal 26 yang wajib dipotong PT Andalas atas keempat pembayaran tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp170.000.000", B: "Rp110.000.000", C: "Rp410.000.000", D: "Rp200.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "PPh Pasal 26 dikenakan atas penghasilan seperti bunga, royalti, dan imbalan jasa yang diterima Wajib Pajak luar negeri tanpa BUT; pembayaran harga barang yang diimpor bukan objek PPh Pasal 26. Dengan Formulir DGT sah, pemotong menerapkan P3B: laba usaha (jasa tanpa BUT) hanya dipajaki di negara domisili, dan bunga dipotong dengan tarif P3B. Tanpa P3B, royalti dipotong 20%.",
+        jejakHitung: [
+          ["(1) Pembelian mesin CNC (barang impor)", "bukan objek PPh 26; PPh 22 impor saat impor"],
+          ["(2) Jasa perancangan, P3B, Formulir DGT sah, tanpa BUT", "Rp0 (laba usaha dipajaki di Norvia)"],
+          ["(3) Bunga, tarif P3B = 10% × 600.000.000", "Rp60.000.000"],
+          ["(4) Royalti tanpa P3B = 20% × 250.000.000", "Rp50.000.000"],
+          ["Jumlah PPh 26", "Rp110.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Memotong bunga Halvard dengan tarif 20% (Rp120.000.000), padahal Formulir DGT sah dan Halvard pemilik manfaat sehingga tarif P3B 10% berlaku.",
+          C: "Ikut memotong 20% atas pembelian mesin (Rp300.000.000) di samping bunga dan royalti yang sudah benar (Rp110.000.000); harga barang yang diimpor dari luar negeri bukan objek PPh Pasal 26.",
+          D: "Memotong 20% atas jasa perancangan Vestby (Rp90.000.000); dengan Formulir DGT sah dan tanpa BUT, hak pemajakan laba usaha ada di Norvia."
+        },
+        jebakan: "Setiap pembayaran ke luar negeri diuji tersendiri: apakah objek Pasal 26, apakah ada P3B, dan apakah Formulir DGT sah. Pembelian barang impor tidak dipotong PPh Pasal 26."
+      },
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) dan Pasal 32A UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (penerapan P3B, Form DGT; menggantikan PER-25/PJ/2018 yang berlaku s.d. 30 Desember 2025)", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-115",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-274",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Lembah Teh Wangi (badan dalam negeri terdaftar 2014, tahun buku kalender, tidak pernah memakai PPh final UMKM, bukan perseroan terbuka) melaporkan data Tahun Pajak 2025: penjualan teh kemasan Rp21.600.000.000; penghasilan sewa gudang kepada pihak lain Rp600.000.000 (PPh final 10% dipotong penyewa Rp60.000.000); bunga deposito Rp400.000.000 (PPh final 20% Rp80.000.000); dan dividen dari PT anak dalam negeri Rp1.400.000.000. Penghasilan Kena Pajak setelah seluruh koreksi fiskal Rp2.000.000.000 dan tidak ada sisa kerugian. Dokumen pajak 2025: PPh Pasal 22 impor mesin pengemas Rp55.000.000; BPPU PPh Pasal 23 dari pelanggan atas jasa pengemasan Rp18.000.000; angsuran PPh Pasal 25 Rp210.000.000; dan bukti potong PPh Pasal 21 Rp96.000.000 yang dibuat PT Lembah Teh Wangi atas gaji karyawannya. PPh Pasal 29 Tahun Pajak 2025 PT Lembah Teh Wangi adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Kurang bayar Rp113.000.000", B: "Kurang bayar Rp17.000.000", C: "Lebih bayar Rp63.000.000", D: "Kurang bayar Rp157.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Peredaran bruto Pasal 31E mencakup penghasilan usaha, penghasilan yang dikenai PPh final, dan penghasilan yang dikecualikan dari objek pajak (SE-02/PJ/2015): Rp24 miliar, masih di bawah Rp50 miliar, sehingga fasilitas 50% tarif berlaku atas PKP × 4,8/24. Kredit pajak hanya PPh Pasal 22, 23, dan 25 milik PT Lembah Teh Wangi (Pasal 28 ayat (1)); PPh final dan PPh Pasal 21 yang dipotong perusahaan dari gaji karyawan tidak dikreditkan.",
+        jejakHitung: [
+          ["Peredaran bruto = 21.600 + 600 + 400 + 1.400 (juta)", "Rp24.000.000.000"],
+          ["PKP berfasilitas = 4,8 ÷ 24 × 2.000.000.000", "Rp400.000.000"],
+          ["11% × 400.000.000", "Rp44.000.000"],
+          ["22% × 1.600.000.000", "Rp352.000.000"],
+          ["PPh terutang", "Rp396.000.000"],
+          ["Kredit = 55.000.000 + 18.000.000 + 210.000.000", "Rp283.000.000"],
+          ["PPh 29 = 396.000.000 − 283.000.000", "Rp113.000.000 kurang bayar"]
+        ],
+        mengapaSalah: {
+          B: "Ikut mengkreditkan PPh Pasal 21 Rp96.000.000; itu pajak milik karyawan yang dipotong perusahaan sebagai pemotong, bukan kredit pajak perusahaan.",
+          C: "Mengenakan 11% atas seluruh PKP (Rp220.000.000); fasilitas hanya untuk bagian PKP dari peredaran bruto sampai Rp4,8 miliar.",
+          D: "Mengabaikan Pasal 31E (22% × 2.000.000.000 = Rp440.000.000) padahal peredaran bruto hanya Rp24 miliar."
+        },
+        jebakan: "Bukti potong yang dibuat perusahaan sebagai pemotong (PPh 21, PPh 26) sering disangka kredit pajak perusahaan; peredaran bruto untuk uji Pasal 31E juga memasukkan penghasilan final dan bukan objek."
+      },
+      dasarHukum: [{ pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "SE-02/PJ/2015", berlakuSejak: "2015-01-09" }, { pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-116",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-275",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Samudra Niaga Persada Tbk (tahun buku kalender, peredaran bruto 2025 Rp410 miliar) sepanjang Tahun Pajak 2025 memenuhi seluruh syarat penurunan tarif perseroan terbuka: 41% saham disetor tercatat dan diperdagangkan di Bursa Efek Indonesia, dimiliki 960 pihak yang masing-masing menguasai kurang dari 5%, keadaan itu berlangsung 250 hari kalender, dan laporan pemenuhan syarat telah disampaikan kepada DJP. Penghasilan neto fiskal 2025 sebelum kompensasi kerugian Rp7.450.000.000. Sisa kerugian fiskal yang belum dikompensasikan: Tahun Pajak 2020 Rp650.000.000 dan Tahun Pajak 2023 Rp900.000.000. Kredit pajak 2025: PPh Pasal 22 Rp185.000.000, PPh Pasal 23 Rp72.000.000, dan PPh Pasal 25 Rp690.000.000. PPh Pasal 29 Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp297.500.000", B: "Rp233.000.000", C: "Rp174.000.000", D: "Rp351.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "angka-usang", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Syarat perseroan terbuka terpenuhi, sehingga tarif 19% (22% − 3%). Kerugian Tahun Pajak 2020 dapat dikompensasikan mulai 2021 berturut-turut sampai dengan 5 tahun, yaitu sampai Tahun Pajak 2025; jadi 2025 adalah tahun terakhir pemakaiannya dan kerugian itu belum hangus. Kerugian 2023 juga dikompensasikan.",
+        jejakHitung: [
+          ["Rugi 2020 (jangka 2021–2025)", "masih dapat dipakai pada TP 2025"],
+          ["PKP = 7.450.000.000 − 650.000.000 − 900.000.000", "Rp5.900.000.000"],
+          ["PPh = 19% × 5.900.000.000", "Rp1.121.000.000"],
+          ["Kredit = 185 + 72 + 690 (juta)", "Rp947.000.000"],
+          ["PPh 29 = 1.121.000.000 − 947.000.000", "Rp174.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Menganggap rugi 2020 sudah hangus (menghitung 5 tahun termasuk tahun terjadinya rugi), sehingga PKP Rp6.550.000.000; padahal 2025 masih tahun kelima pemakaiannya.",
+          B: "Memakai tarif 20% (25% − 5%), angka usang dari era tarif badan 25%.",
+          D: "Memakai tarif umum 22% padahal seluruh syarat penurunan tarif perseroan terbuka terpenuhi."
+        },
+        jebakan: "Hitung jangka kompensasi mulai tahun sesudah rugi: rugi 2020 berakhir pada Tahun Pajak 2025, bukan 2024. Tarif Tbk 19%, bukan 20%."
+      },
+      dasarHukum: [{ pasal: "Pasal 17 ayat (2b) UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "PP 55/2022 (ketentuan perseroan terbuka)", berlakuSejak: "2022-12-20" }, { pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-117",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-276",
+      topik: "B6.2",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Arunika Graha Investama adalah perusahaan induk berbentuk perseroan terbatas dalam negeri (tarif umum, peredaran bruto di atas Rp50 miliar). Dalam laba komersial Tahun Pajak 2025 tercatat: (1) dividen dari PT Arunika Pangan Lestari, perseroan dalam negeri yang 30% sahamnya dimiliki PT Arunika, Rp3.200.000.000; (2) dividen dari PT Bank Mandala Raya Tbk atas kepemilikan 2% saham, Rp180.000.000; (3) pembagian hasil sebagai pemegang unit penyertaan reksa dana berbentuk kontrak investasi kolektif Rp520.000.000; (4) bunga pinjaman yang diberikan kepada PT Arunika Pangan Lestari Rp750.000.000 (dipotong PPh Pasal 23 15%); dan (5) keuntungan penjualan 20% saham PT Delta Kemas Utama, perseroan yang tidak tercatat di bursa, kepada pembeli independen Rp900.000.000. Dalam rekonsiliasi fiskal, jumlah koreksi negatif atas penghasilan yang bukan objek pajak adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp3.900.000.000", B: "Rp3.720.000.000", C: "Rp4.800.000.000", D: "Rp3.380.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "angka-usang", C: "final-nonfinal", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Bukan objek: dividen dari dalam negeri yang diterima badan dalam negeri tanpa syarat persentase kepemilikan (Rp3.200.000.000 + Rp180.000.000) dan bagian laba yang diterima pemegang unit penyertaan kontrak investasi kolektif (Rp520.000.000). Bunga pinjaman kepada anak usaha dan keuntungan penjualan saham yang tidak tercatat di bursa tetap objek dengan tarif umum.",
+        jejakHitung: [
+          ["(1) Dividen DN, kepemilikan 30%", "Rp3.200.000.000 → bukan objek"],
+          ["(2) Dividen DN, kepemilikan 2%", "Rp180.000.000 → bukan objek"],
+          ["(3) Bagian laba pemegang unit penyertaan KIK", "Rp520.000.000 → bukan objek"],
+          ["(4) Bunga pinjaman ke anak usaha", "objek (PPh 23 dikreditkan)"],
+          ["(5) Keuntungan saham non-bursa", "objek tarif umum"],
+          ["Koreksi negatif", "Rp3.900.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Memakai syarat lama kepemilikan paling rendah 25%, sehingga dividen dari kepemilikan 2% dianggap objek; sejak UU Cipta Kerja dividen dalam negeri yang diterima badan dalam negeri bukan objek tanpa syarat kepemilikan.",
+          C: "Ikut mengeluarkan keuntungan penjualan saham yang tidak tercatat di bursa seolah-olah penghasilan final; keuntungan itu objek tarif umum.",
+          D: "Lupa bahwa bagian laba yang diterima pemegang unit penyertaan kontrak investasi kolektif dikecualikan dari objek (Pasal 4 ayat (3) huruf i)."
+        },
+        jebakan: "Syarat kepemilikan 25% untuk dividen dalam negeri sudah dihapus; jangan pula menganggap semua penghasilan dari afiliasi atau dari saham bukan objek."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf f angka 1 butir b UU PPh (UU Cipta Kerja)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 4 ayat (3) huruf i UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-118",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-277",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      kutipan: "Pasal 9 ayat (1) huruf f UU PPh: untuk menentukan besarnya Penghasilan Kena Pajak tidak boleh dikurangkan \"jumlah yang melebihi kewajaran yang dibayarkan kepada pemegang saham atau kepada pihak yang mempunyai hubungan istimewa sebagai imbalan sehubungan dengan pekerjaan yang dilakukan.\" Penjelasannya: \"Jumlah wajar sebagaimana dimaksud dalam ayat ini merupakan jumlah yang tidak melebihi dari jumlah yang seharusnya dikeluarkan oleh pemberi kerja sebagai imbalan sehubungan dengan pekerjaan jika dilakukan oleh pihak yang tidak mempunyai hubungan istimewa.\"",
+      stem: "Nyonya Melati Kusuma memiliki 65% saham PT Samudra Rasa Nusantara (badan dalam negeri, produsen bumbu, tarif umum, peredaran bruto Rp85 miliar) dan menjabat direktur utama. Sepanjang 2025 perusahaan membebankan: (1) gaji Nyonya Melati Rp110.000.000 per bulan, sedangkan survei remunerasi independen untuk jabatan setara menunjukkan Rp70.000.000 per bulan; (2) gaji Tuan Fajar Pratama, kepala laboratorium yang memiliki 8% saham dan tidak mempunyai hubungan keluarga dengan pemegang saham lain, Rp45.000.000 per bulan, sedangkan imbalan wajar untuk jabatan setara Rp30.000.000 per bulan; dan (3) gaji Tuan Gilang Saputra, direktur keuangan profesional yang tidak memiliki saham dan tidak mempunyai hubungan keluarga atau hubungan istimewa lain, Rp60.000.000 per bulan sesuai kontrak hasil negosiasi dan setara imbalan pasar. Seluruh pekerjaan nyata dilakukan, gaji dibayar tunai, dan PPh Pasal 21-nya telah dipotong. Berdasarkan kutipan tersebut, koreksi fiskal positif dan tambahan PPh badan Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Koreksi Rp480.000.000; tambahan PPh Rp105.600.000", B: "Koreksi Rp660.000.000; tambahan PPh Rp145.200.000", C: "Koreksi Rp1.860.000.000; tambahan PPh Rp409.200.000", D: "Tidak ada koreksi, karena gaji uang atas pekerjaan nyata adalah biaya Pasal 6 ayat (1) huruf a" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 9 ayat (1) huruf f berlaku untuk imbalan kepada pemegang saham, berapa pun persentase sahamnya, dan kepada pihak yang berhubungan istimewa. Kelebihan di atas jumlah wajar atas gaji Nyonya Melati (65%) dan Tuan Fajar (8%) dikoreksi positif; gaji Tuan Gilang yang bukan pemegang saham, tidak berhubungan istimewa, dan setara harga pasar tidak dikoreksi.",
+        jejakHitung: [
+          ["Kelebihan gaji Nyonya Melati = (110 − 70) juta × 12", "Rp480.000.000"],
+          ["Kelebihan gaji Tuan Fajar (pemegang saham 8%) = (45 − 30) juta × 12", "Rp180.000.000"],
+          ["Gaji Tuan Gilang (pihak independen, wajar)", "tidak dikoreksi"],
+          ["Koreksi positif", "Rp660.000.000"],
+          ["Tambahan PPh = 22% × 660.000.000", "Rp145.200.000"]
+        ],
+        mengapaSalah: {
+          A: "Menganggap Tuan Fajar tidak tercakup karena sahamnya di bawah 25%; Pasal 9 ayat (1) huruf f menyebut \"pemegang saham\" tanpa batas persentase, sehingga kelebihan gajinya juga dikoreksi.",
+          C: "Mengoreksi seluruh gaji Nyonya Melati dan Tuan Fajar; yang tidak boleh dibiayakan hanya bagian yang melebihi kewajaran.",
+          D: "Pasal 6 ayat (1) huruf a tidak meniadakan Pasal 9 ayat (1) huruf f; imbalan kepada pemegang saham yang melebihi kewajaran tetap tidak boleh dikurangkan, walaupun PPh Pasal 21-nya telah dipotong."
+        },
+        jebakan: "Ambang 25% adalah ukuran hubungan istimewa karena kepemilikan; untuk pemegang saham, Pasal 9 ayat (1) huruf f berlaku tanpa ambang. Yang dikoreksi hanya kelebihan di atas jumlah wajar."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) huruf f UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 18 ayat (4) huruf a dan huruf c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (1) huruf a UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-119",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-278",
+      topik: "B6.10",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
+      stem: "PT Karya Logam Presisi (produsen suku cadang, tarif umum, peredaran bruto Rp210 miliar) membeli ingot aluminium dari PT Sentra Aluminium Mandiri. Pemegang saham kedua perseroan berbeda, tidak ada hubungan kepemilikan langsung maupun tidak langsung, dan tidak ada hubungan keluarga di antara para pemegang saham. Namun, Nyonya Ratna Widjaja menjabat direktur utama PT Karya sekaligus direktur PT Sentra, dan dialah yang menyetujui harga dalam kontrak pasokan di antara keduanya. Pada 2025 PT Karya membeli 180.000 kg ingot seharga Rp61.500 per kg (belum termasuk PPN); seluruh ingot telah dipakai dan produknya terjual pada 2025, sehingga seluruh pembelian menjadi harga pokok penjualan. Analisis kesebandingan menunjukkan harga wajar transaksi independen yang sebanding Rp54.000 per kg. Bila DJP menerapkan Pasal 18 ayat (3) UU PPh, koreksi dan tambahan PPh badan PT Karya Tahun Pajak 2025 (sebelum sanksi) adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tidak ada koreksi, karena tanpa kepemilikan paling rendah 25% atau hubungan keluarga tidak ada hubungan istimewa", B: "Koreksi positif Rp11.070.000.000; tambahan PPh Rp2.435.400.000", C: "Koreksi positif Rp1.350.000.000, tetapi tanpa tambahan PPh karena kelebihan harga sudah dipajaki sebagai penghasilan PT Sentra", D: "Koreksi positif Rp1.350.000.000; tambahan PPh Rp297.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Hubungan istimewa juga timbul karena penguasaan melalui manajemen walaupun tidak ada kepemilikan (Pasal 18 ayat (4) huruf b); PMK 172/2023 Pasal 2 ayat (5) huruf d menegaskannya bila orang yang sama terlibat dalam pengambilan keputusan manajerial pada dua pihak. DJP menentukan kembali pengurangan (harga pokok) PT Karya sebesar harga wajar; kelebihan harga beli dikoreksi positif.",
+        jejakHitung: [
+          ["Hubungan istimewa", "penguasaan melalui manajemen (direktur yang sama menetapkan harga)"],
+          ["Koreksi = (61.500 − 54.000) × 180.000", "Rp1.350.000.000"],
+          ["Tambahan PPh = 22% × 1.350.000.000", "Rp297.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengabaikan hubungan istimewa karena penguasaan melalui manajemen atau teknologi, yang tidak mensyaratkan kepemilikan.",
+          B: "Mengoreksi seluruh nilai pembelian; yang dikoreksi hanya selisih antara harga transaksi dan harga wajar.",
+          C: "Pasal 18 ayat (3) menentukan kembali penghasilan dan pengurangan Wajib Pajak yang bertransaksi; pemajakan di pihak lawan transaksi dalam negeri tidak menghapus koreksi biaya pada PT Karya."
+        },
+        jebakan: "Jangan berhenti pada angka kepemilikan 25%: periksa juga penguasaan melalui manajemen. Koreksi pada pembeli menyangkut biaya (pengurangan), bukan penghasilan."
+      },
+      dasarHukum: [{ pasal: "Pasal 18 ayat (3) dan ayat (4) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 172/2023", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-120",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-279",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Bahari Cipta Digital (badan dalam negeri, tarif umum, peredaran bruto setiap tahun di atas Rp50 miliar) membukukan rugi komersial Tahun Pajak 2025 Rp950.000.000. Di dalam rugi itu termasuk kerugian penjualan saham yang diperdagangkan di Bursa Efek Indonesia Rp300.000.000 (PPh final 0,1% dari nilai transaksi penjualan telah dipotong), pendapatan bunga deposito Rp180.000.000 (PPh final 20% telah dipotong bank), serta sanksi denda dan bunga dalam STP PPN Rp35.000.000. Tidak ada koreksi fiskal lain dan tidak ada sisa kerugian tahun-tahun sebelumnya. Untuk Tahun Pajak 2026, penghasilan neto fiskal sebelum kompensasi kerugian Rp1.400.000.000. PPh badan terutang Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp133.100.000", B: "Rp99.000.000", C: "Rp172.700.000", D: "Rp308.000.000, karena rugi 2025 timbul dari transaksi saham sehingga tidak dapat dikompensasikan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Yang dikompensasikan adalah rugi fiskal. Kerugian saham bursa berkaitan dengan transaksi yang dikenai PPh final sehingga dikeluarkan (koreksi positif), sanksi administrasi dikoreksi positif, dan bunga deposito yang dikenai PPh final dikeluarkan (koreksi negatif). Rugi fiskal 2025 Rp795.000.000 dikompensasikan pada 2026.",
+        jejakHitung: [
+          ["Rugi komersial 2025", "(Rp950.000.000)"],
+          ["+ Kerugian saham bursa (transaksi PPh final)", "Rp300.000.000"],
+          ["+ Sanksi denda dan bunga STP", "Rp35.000.000"],
+          ["− Bunga deposito (PPh final)", "(Rp180.000.000)"],
+          ["Rugi fiskal 2025 (dapat dipakai s.d. 2030)", "(Rp795.000.000)"],
+          ["PKP 2026 = 1.400.000.000 − 795.000.000", "Rp605.000.000"],
+          ["PPh = 22% × 605.000.000", "Rp133.100.000"]
+        ],
+        mengapaSalah: {
+          B: "Mengompensasikan rugi komersial Rp950.000.000 (PKP Rp450.000.000); yang dikompensasikan rugi fiskal setelah koreksi.",
+          C: "Lupa mengeluarkan bunga deposito yang dikenai PPh final, sehingga rugi fiskal dihitung Rp615.000.000 (PKP Rp785.000.000).",
+          D: "Rugi fiskal tetap dapat dikompensasikan menurut Pasal 6 ayat (2); yang dikeluarkan hanya kerugian saham bursa yang terkait transaksi PPh final."
+        },
+        jebakan: "Penghasilan final di dalam rugi komersial justru memperbesar rugi fiskal, sedangkan kerugian atas transaksi yang dikenai PPh final dan sanksi memperkecilnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) UU PPh; PP 94/2010 Pasal 13 huruf a", berlakuSejak: "2010-12-30" }, { pasal: "Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-121",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-280",
+      topik: "B6.9",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Cakra Kabel Nusantara (produsen kabel, tahun buku kalender, tarif umum, peredaran bruto di atas Rp50 miliar) menyampaikan SPT Tahunan PPh Badan 2025 pada 18 Maret 2026. Penghasilan neto fiskal 2025 Rp6.400.000.000 tanpa kompensasi kerugian; di dalamnya termasuk keuntungan selisih kurs Rp900.000.000 atas piutang pinjaman dalam dolar Amerika Serikat kepada salah satu pemasok, yang bukan merupakan penghasilan dari kegiatan usaha pokok perusahaan. PPh terutang Rp1.408.000.000; kredit PPh Pasal 22 Rp210.000.000 dan PPh Pasal 23 Rp58.000.000; angsuran PPh Pasal 25 yang dibayar selama 2025 Rp780.000.000 (Masa Desember 2025 Rp65.000.000); dan PPh Pasal 29 Rp360.000.000. Tidak ada permohonan pengurangan angsuran dan tidak ada surat ketetapan pajak. Angsuran PPh Pasal 25 untuk Masa Pajak Juni 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp95.000.000", B: "Rp13.500.000", C: "Rp65.000.000", D: "Rp78.500.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-baca" },
+      pembahasan: {
+        inti: "Keuntungan selisih kurs atas piutang valuta asing yang bukan penghasilan usaha pokok tidak termasuk penghasilan teratur (PER-11/PJ/2025 Pasal 113 ayat (5) huruf a), sehingga dikeluarkan dari dasar angsuran: PPh dihitung ulang atas penghasilan neto dikurangi penghasilan tidak teratur, dikurangi PPh 22 dan 23 (bukan PPh 25), lalu dibagi 12. SPT disampaikan Maret 2026, jadi Masa Juni 2026 memakai angsuran baru.",
+        jejakHitung: [
+          ["Penghasilan teratur = 6.400.000.000 − 900.000.000", "Rp5.500.000.000"],
+          ["PPh atas penghasilan teratur = 22% × 5.500.000.000", "Rp1.210.000.000"],
+          ["− PPh 22 dan PPh 23", "(Rp268.000.000)"],
+          ["Dasar angsuran setahun", "Rp942.000.000"],
+          ["Angsuran per bulan = 942.000.000 ÷ 12", "Rp78.500.000"]
+        ],
+        mengapaSalah: {
+          A: "Tidak mengeluarkan penghasilan tidak teratur: (1.408.000.000 − 268.000.000) ÷ 12.",
+          B: "Ikut mengurangkan PPh 25 tahun lalu: (1.210.000.000 − 268.000.000 − 780.000.000) ÷ 12; dasar angsuran hanya dikurangi PPh 21, 22, 23, dan 24.",
+          C: "Angsuran Desember 2025 hanya berlaku untuk bulan-bulan sebelum SPT disampaikan; Masa Juni 2026 sudah memakai angsuran baru."
+        },
+        jebakan: "Selisih kurs atas utang atau piutang di luar usaha pokok termasuk penghasilan tidak teratur; jangan dibiarkan menaikkan angsuran tahun berikutnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1), (2), dan (6) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 Pasal 113 ayat (4) dan (5) serta Pasal 115 (sebelumnya diatur dalam KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-123",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-281",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Arunika Kemasan Prima (badan dalam negeri, tahun buku kalender, peredaran bruto Rp112 miliar, bukan perseroan terbuka, bukan bank atau lembaga pembiayaan) melaporkan laba komersial sebelum pajak Tahun Pajak 2025 Rp5.200.000.000. Pos yang perlu ditelaah: (1) PPh Pasal 26 atas royalti kepada pemberi lisensi luar negeri yang ditanggung perusahaan tanpa klausul gross-up dan dicatat sebagai beban Rp85.000.000; (2) bingkisan natura berupa paket sembako Lebaran untuk seluruh pegawai Rp140.000.000; (3) sumbangan untuk panitia festival budaya kecamatan (bukan jenis sumbangan PP 93/2010) Rp45.000.000; (4) sanksi bunga STP Rp15.000.000; (5) keuntungan selisih kurs belum terealisasi atas piutang USD yang dijabarkan dengan kurs tengah BI akhir tahun secara taat asas Rp110.000.000; (6) beban penyisihan piutang ragu-ragu Rp75.000.000; (7) bunga deposito Rp200.000.000 (PPh final Rp40.000.000); (8) dividen dari perseroan dalam negeri (kepemilikan 5%) Rp250.000.000; serta (9) sewa sebagian lantai gedung kantor kepada pihak lain Rp360.000.000 (PPh final 10% Rp36.000.000) dengan penyusutan bagian gedung yang disewakan Rp55.000.000. Tidak ada sisa kerugian. Kredit pajak: PPh Pasal 22 Rp150.000.000, PPh Pasal 23 Rp48.000.000, dan PPh Pasal 25 Rp640.000.000. PPh Pasal 29 Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp112.300.000", B: "Rp219.100.000", C: "Rp188.300.000", D: "Rp176.200.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "final-nonfinal", B: "angka-usang", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Koreksi positif: PPh 26 yang ditanggung pemberi penghasilan, sumbangan di luar PP 93/2010, sanksi, penyisihan piutang (bukan bank), dan penyusutan gedung yang menghasilkan penghasilan final. Koreksi negatif: bunga deposito dan sewa (final) serta dividen dalam negeri (bukan objek). Natura bingkisan pegawai dapat dibiayakan sejak UU HPP, dan keuntungan selisih kurs yang diakui taat asas tetap penghasilan, jadi keduanya tidak dikoreksi. PPh final tidak dikreditkan.",
+        jejakHitung: [
+          ["Koreksi positif = 85 + 45 + 15 + 75 + 55 (juta)", "Rp275.000.000"],
+          ["Koreksi negatif = 200 + 250 + 360 (juta)", "Rp810.000.000"],
+          ["Natura bingkisan; selisih kurs taat asas", "tidak dikoreksi"],
+          ["Neto fiskal = 5.200.000.000 + 275.000.000 − 810.000.000", "Rp4.665.000.000"],
+          ["PPh = 22% × 4.665.000.000", "Rp1.026.300.000"],
+          ["Kredit = 150 + 48 + 640 (juta)", "Rp838.000.000"],
+          ["PPh 29 = 1.026.300.000 − 838.000.000", "Rp188.300.000"]
+        ],
+        mengapaSalah: {
+          A: "Ikut mengkreditkan PPh final deposito dan sewa (Rp76.000.000); PPh final tidak dapat dikreditkan.",
+          B: "Mengoreksi positif bingkisan natura Rp140.000.000 menurut ketentuan sebelum UU HPP; kini natura dapat dibiayakan pemberi kerja (Pasal 6 ayat (1) huruf n).",
+          D: "Lupa mengoreksi penyusutan bagian gedung yang disewakan (Rp55.000.000), padahal biaya untuk mendapatkan penghasilan final tidak boleh dikurangkan."
+        },
+        jebakan: "Pisahkan beda tetap, penghasilan final, dan bukan objek sebelum menjumlah; biaya yang melekat pada penghasilan final ikut dikeluarkan."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) dan Pasal 9 ayat (1) UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "PP 93/2010 (sumbangan; berlaku sejak Tahun Pajak 2010, Pasal 10)", berlakuSejak: "2010-01-01" }, { pasal: "PP 94/2010", berlakuSejak: "2010-12-30" }, { pasal: "Pasal 28 dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 240,
+      verifikasi: "✅",
+      kembaranDari: "B6-124",
+      sejak: "9.5.0"
+    },
+    {
+      id: "B6-282",
+      topik: "B6.5",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      stem: "PT Selaras Rotan Nusantara (badan dalam negeri terdaftar 2014, tahun buku kalender, tidak memakai PPh final UMKM, bukan perseroan terbuka) pada 2025 mengoperasikan kantor cabang pemasaran di Negara Lumeria. Cabang tersebut belum membukukan penjualan dan biaya operasionalnya menimbulkan rugi usaha Rp420.000.000. Peredaran bruto perusahaan Tahun Pajak 2025 Rp42.000.000.000, yaitu penjualan rotan olahan di dalam negeri Rp32.000.000.000 ditambah penghasilan yang dikenai PPh final dan penghasilan bukan objek pajak Rp10.000.000.000. Penghasilan neto fiskal kegiatan dalam negeri sebelum kompensasi kerugian Rp3.150.000.000; setelah digabung dengan rugi cabang, laba dalam laporan keuangan menjadi Rp2.730.000.000. Masih ada sisa kerugian fiskal dalam negeri Tahun Pajak 2020 yang belum dikompensasikan Rp350.000.000. PPh badan terutang Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp653.400.000", B: "Rp580.800.000", C: "Rp493.680.000", D: "Rp569.800.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Kerugian usaha cabang di luar negeri tidak dapat diperhitungkan dalam menghitung Penghasilan Kena Pajak (PMK 192/PMK.03/2018 Pasal 4 ayat (3)). Rugi fiskal dalam negeri 2020 dapat dikompensasikan 2021 sampai dengan 2025, jadi masih dipakai pada 2025. Pasal 31E diterapkan dengan peredaran bruto yang memuat penghasilan final dan bukan objek: Rp42 miliar ≤ Rp50 miliar, bagian berfasilitas 4,8/42.",
+        jejakHitung: [
+          ["Rugi cabang Lumeria (usaha di luar negeri)", "tidak diperhitungkan"],
+          ["Rugi 2020 (jangka kompensasi 2021–2025)", "dikompensasikan Rp350.000.000"],
+          ["PKP = 3.150.000.000 − 350.000.000", "Rp2.800.000.000"],
+          ["PKP berfasilitas = 4,8 ÷ 42 × 2.800.000.000", "Rp320.000.000"],
+          ["11% × 320.000.000", "Rp35.200.000"],
+          ["22% × 2.480.000.000", "Rp545.600.000"],
+          ["PPh terutang", "Rp580.800.000"]
+        ],
+        mengapaSalah: {
+          A: "Menganggap rugi 2020 sudah hangus sehingga PKP Rp3.150.000.000; padahal 2025 masih tahun kelima kompensasinya.",
+          C: "Mengurangkan rugi cabang Lumeria dari penghasilan dalam negeri (PKP Rp2.380.000.000); kerugian usaha cabang di luar negeri tidak boleh diperhitungkan.",
+          D: "Menghitung proporsi Pasal 31E dengan penjualan dalam negeri saja (4,8 ÷ 32 = 15%); peredaran bruto Pasal 31E mencakup penghasilan final dan bukan objek."
+        },
+        jebakan: "Dua jenis rugi, dua perlakuan: rugi fiskal dalam negeri tahun lalu dikompensasikan, sedangkan rugi usaha cabang luar negeri tidak mengurangi penghasilan dalam negeri."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018 (kerugian usaha di luar negeri)", berlakuSejak: "2018-12-31" }, { pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "SE-02/PJ/2015", berlakuSejak: "2015-01-09" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B6-125",
+      sejak: "9.5.0"
     }
   ],
   kartu: [
@@ -5429,8 +9537,8 @@ UKP.register({
     { id: "KT-B6-68", topik: "B6.1", tipe: "pasal", depan: "Awal kewajiban subjektif BUT?", belakang: "Saat mulai menjalankan usaha atau kegiatan melalui BUT", dasar: "Pasal 2A ayat (3) UU PPh (UU 10/1994)", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-69", topik: "B6.1", tipe: "definisi", depan: "Bolehkah BUT memakai fasilitas Pasal 31E?", belakang: "Tidak; Pasal 31E khusus Wajib Pajak badan dalam negeri", dasar: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-70", topik: "B6.1", tipe: "pasal", depan: "Pembayaran BUT ke kantor pusat yang tidak dapat dibiayakan?", belakang: "Royalti, jasa manajemen/lain, bunga (kecuali perbankan), dan pengiriman laba", dasar: "Pasal 5 ayat (3) dan Pasal 9 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-71", topik: "B6.1", tipe: "pasal", depan: "Biaya administrasi kantor pusat bagi BUT?", belakang: "Dapat dibebankan sepanjang berkaitan dengan usaha atau kegiatan BUT", dasar: "Pasal 5 ayat (2) UU PPh", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-72", topik: "B6.1", tipe: "definisi", depan: "Syarat organisasi internasional bukan subjek pajak?", belakang: "Ditetapkan Menkeu, Indonesia anggota, tanpa usaha selain pinjaman pemerintah dari iuran", dasar: "Pasal 3 ayat (1) huruf c UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-71", topik: "B6.1", tipe: "pasal", depan: "Biaya administrasi kantor pusat bagi BUT?", belakang: "Dapat dibebankan sepanjang berkaitan dengan usaha atau kegiatan BUT; besarnya ditetapkan Direktur Jenderal Pajak", dasar: "Pasal 5 ayat (3) huruf a UU PPh", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-72", topik: "B6.1", tipe: "definisi", depan: "Syarat organisasi internasional bukan subjek pajak?", belakang: "Ditetapkan Menkeu, Indonesia anggota, tanpa usaha selain pinjaman pemerintah dari iuran", dasar: "Pasal 3 ayat (1) huruf c dan ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-73", topik: "B6.6", tipe: "angka", depan: "Kurs untuk Rupiah PPh 26 atas pembayaran valas?", belakang: "Kurs KMK saat terutang/pemotongan; bukan kurs BI atau kurs setor", dasar: "KMK nilai kurs mingguan", berlakuSejak: null, menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-74", topik: "B6.6", tipe: "pasal", depan: "PPh 26 yang dipotong perusahaan atas pembayaran ke luar negeri?", belakang: "Pajak milik penerima; bukan kredit pajak perusahaan pemotong", dasar: "Pasal 26 ayat (1) dan Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-75", topik: "B6.3", tipe: "prosedur", depan: "Royalti ke luar negeri dengan klausul gross-up?", belakang: "Bruto = neto ÷ (1 − tarif); seluruh bruto dapat dibiayakan", dasar: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf h UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },

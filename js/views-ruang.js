@@ -759,6 +759,8 @@
     const sid = a.hasilSoal.soalId; const t = bacaTercatat(a.id);
     if (a.tim && typeof a.tim.dijawab === 'number' && !t.tim.some(x => x.ke === a.idx + 1)) t.tim.push({ ke: a.idx + 1, benar: a.tim.benar, dijawab: a.tim.dijawab });
     if (Object.prototype.hasOwnProperty.call(t.ids, sid)) { lsTulis(KT, t); return; }
+    // v9.5 buku pemakaian: kunci soal ini sudah dibuka di HP anggota (sekali per soal) = dibahas bersama
+    if (typeof sid === 'string' && L && L.pakai && fn(L.pakai, 'catat')) { try { L.pakai.catat(sid, 'bersama'); } catch (e) { console.error(e); } }
     const soal = K && K.soal ? K.soal(sid) : null;
     const dariPer = ambilDari(a.hasilSoal.per, i.nama); const draf = bacaDraf(a.id)[sid];
     const o = dariPer && dariPer.o ? dariPer.o : draf && draf.o ? draf.o : null;
@@ -776,8 +778,11 @@
     if (!o || !soal || !fn(L, 'catatJawaban')) return;
     const mulai = Number(a.mulaiSoal) || 0; const w = draf && draf.w ? draf.w + selisih() : 0;
     const detik = mulai && w > mulai ? Math.min(3600, (w - mulai) / 1000) : 0;
-    try { L.catatJawaban(soal, o, detik, 'latih'); if (k && o !== '-' && fn(L, 'aturKeyakinan')) L.aturKeyakinan(soal.id, 'latih', k); } catch (e) { console.error(e); }
+    // v9.5: jawaban di room dicatat sebagai latihan bersama di buku pemakaian, bukan latihan sendiri
+    const catatJ = () => L.catatJawaban(soal, o, detik, 'latih');
+    try { if (L.pakai && fn(L.pakai, 'sebagai')) L.pakai.sebagai('bersama', catatJ); else catatJ(); if (k && o !== '-' && fn(L, 'aturKeyakinan')) L.aturKeyakinan(soal.id, 'latih', k); } catch (e) { console.error(e); }
   }
+  UI._catatKemajuan = catatKemajuan;  // v9.5: untuk uji perilaku titik catat anggota room (test/v950.test.js)
   // spanduk versi berbeda (U7.2) dan tab lain, di puncak halaman yang sedang tampil
   function pasangSpanduk() {
     let page = null; try { page = document.querySelector('#main > .page'); } catch (e) { return; }
@@ -1315,7 +1320,7 @@
       const alasan = r ? aman(() => r.tersedia().alasan, '') : '';
       return { node: h('div', { class: 'stack' }, kop('Room tim', { lead: alasanAwam(alasan) }),
         h('section', { class: 'card stack-sm' }, h('p', null, 'Latihan bersama tetap bisa dipakai di satu layar: semua orang menjawab, Anda mengetuk jawaban tiap orang.'),
-          h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary', onclick: () => UKP.go('latih', { atur: 1 }) }, UKP.icon('play', null, true), 'Mulai latihan bersama'), UKP.link('Ujian tim dengan kode jawaban', 'ujiantim', null, 'btn')),
+          h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-primary', onclick: () => UKP.go('latih', { atur: 1 }) }, UKP.icon('play', null, true), 'Mulai latihan bersama'), UKP.link('Ujian tim dengan kode jawaban', 'ujiantim', null, 'btn'), UKP.views.bank ? UKP.link('Bank soal', 'bank', null, 'btn btn-ghost') : null),  // v9.5
           /claude/i.test(String(alasan)) ? h('p', { class: 'meta' }, 'Website tim: ', h('a', { href: SITUS_TIM, target: '_blank', rel: 'noopener' }, SITUS_TIM.replace(/^https:\/\//, ''))) : null)) };
     }
     function isianTautan(label) {
@@ -1350,7 +1355,7 @@
           h('h2', { class: 'card-title' }, 'Memimpin latihan?'),
           h('button', { type: 'button', class: 'btn btn-primary btn-lg btn-block room-utama', onclick: () => UI.dialogBuat() }, UKP.icon('tim', null, true), 'Buat room tim'),
           h('p', { class: 'meta' }, 'Sekali saja. Tautannya dibagikan ke grup WA.')),
-        h('p', { class: 'small' }, UKP.link('Latihan bersama satu layar', 'latih', { atur: 1 }))) };
+        h('p', { class: 'small' }, UKP.link('Latihan bersama satu layar', 'latih', { atur: 1 }), UKP.views.bank ? [' · ', UKP.link('Bank soal', 'bank')] : null)) };  // v9.5
     }
     function layarMemulihkan() {
       return { node: h('div', { class: 'stack' }, kop('Menghubungkan ke room…'),
@@ -1654,7 +1659,8 @@
           gantiBilaBeda(slotAksi, [
             h('button', { type: 'button', class: 'btn btn-primary btn-lg btn-block room-utama', onclick: () => UI.dialogMulaiLatihan() }, UKP.icon('play', null, true), 'Mulai latihan bersama'),
             h('div', { class: 'lobi-lain' }, h('button', { type: 'button', class: 'btn room-undang', onclick: () => UI.dialogBagikan() }, UKP.icon('chat', null, true), 'Undang anggota'),
-              h('button', { type: 'button', class: 'tautan-tombol room-ujian-tim', onclick: () => UKP.go('simulasi', { tim: 1, room: 1 }) }, 'Ujian tim (kunci jawaban dibuka di akhir)'))]);
+              h('button', { type: 'button', class: 'tautan-tombol room-ujian-tim', onclick: () => UKP.go('simulasi', { tim: 1, room: 1 }) }, 'Ujian tim (kunci jawaban dibuka di akhir)'),
+              UKP.views.bank ? h('button', { type: 'button', class: 'tautan-tombol room-bank', onclick: () => UKP.go('bank') }, 'Bank soal') : null)]);  // v9.5
           return;
         }
         // anggota: siapa saya · (belum di daftar) · tombol Saya siap

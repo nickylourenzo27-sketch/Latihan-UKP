@@ -99,12 +99,12 @@ describe('v9.4.5: temuan uji ulang tanpa kunci', () => {
 });
 
 describe('v9.4.5: jumlah soal bertanda', () => {
-  it('tersisa paling banyak 57 soal bertanda di modul Tingkat B dan Etika dan 8 di modul Tingkat C', () => {
+  it('tersisa paling banyak 59 soal bertanda (sejak v9.5.0) di modul Tingkat B dan Etika dan 8 di modul Tingkat C', () => {
     const tanda = k => semua.find(m => m.meta.kode === k).soal.filter(s => s.verifikasi === '◐').length;
     const b = ['A1', 'A2', 'A3', 'A4', 'A5', 'B6', 'B7', 'B8', 'E'].reduce((a, k) => a + tanda(k), 0), c = tanda('C9') + tanda('C10');
-    assert.ok(b <= 57, 'Tingkat B dan Etika: ' + b); assert.ok(c <= 8, 'Tingkat C: ' + c);
+    assert.ok(b <= 59, 'Tingkat B dan Etika: ' + b); assert.ok(c <= 8, 'Tingkat C: ' + c);
   });
   it('jumlah soal tetap 1.494', () => {
-    assert.equal(peta.size, 1494);
+    assert.equal([...peta.values()].filter(s => !s.sejak).length, 1494, 'jumlah soal lama (tanpa field sejak)');
   });
 });

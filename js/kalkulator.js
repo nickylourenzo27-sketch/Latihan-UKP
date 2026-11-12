@@ -943,7 +943,7 @@
     input: [
       { key: 'terbit', label: 'Tanggal terbit SKP/STP', tipe: 'tanggal', default: '2026-07-01' },
       { key: 'usahaKecil', label: 'WP usaha kecil / daerah tertentu (jatuh tempo 2 bulan)', tipe: 'boolean', default: false },
-      { key: 'utang', label: 'Jumlah utang pajak', tipe: 'uang', default: 150000000, min: 0, bantu: 'Pencegahan dan penyanderaan hanya bila utang ≥ Rp100 juta dan diragukan itikad baiknya.' }
+      { key: 'utang', label: 'Jumlah utang pajak', tipe: 'uang', default: 150000000, min: 0, bantu: 'Pencegahan dan penyanderaan hanya bila utang ≥ Rp100 juta dan diragukan itikad baiknya. Penyanderaan setelah lewat 14 hari sejak Surat Paksa hanya bila hak menagih akan daluwarsa kurang dari 2 tahun, ada tanda badan akan dibubarkan, atau ada tanda pailit; selain itu menunggu pencegahan.' }
     ],
     hitung: function (v) {
       const dh = ['Pasal 9 ayat (3) UU KUP', 'UU PPSP Pasal 8, 12, 25, 26, 33', 'PMK 61/2023'];
@@ -970,7 +970,7 @@
         ['SPMP/penyitaan: setelah 2 × 24 jam sejak Surat Paksa', tgl(sita)],
         ['Pengumuman lelang: paling singkat 14 hari setelah penyitaan', tgl(umum)],
         ['Lelang: paling singkat 14 hari setelah pengumuman', tgl(lelang)],
-        ['Penyanderaan (utang ≥ Rp100 juta): paling cepat 14 hari setelah Surat Paksa', bisaSandera ? tgl(sandera) : 'tidak memenuhi syarat'],
+        ['Penyanderaan (utang ≥ Rp100 juta, hanya dalam keadaan Pasal 6 ayat (10) PMK 61/2023): setelah lewat 14 hari sejak Surat Paksa', bisaSandera ? tgl(sandera) : 'tidak memenuhi syarat'],
         ['Daluwarsa penagihan: 5 tahun sejak terbit (dapat tertangguh)', tgl(dalu)]
       ];
       const asumsi = ['Setiap tindakan diasumsikan dilakukan pada hari pertama yang diperbolehkan dan utang belum dilunasi.',

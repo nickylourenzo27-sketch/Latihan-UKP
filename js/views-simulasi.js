@@ -24,23 +24,27 @@
   function kelompokkanVignette(arr) { const out = []; const seen = new Set(); for (const x of arr) { if (seen.has(x.id)) continue; const grp = x.kasusId ? arr.filter(y => y.kasusId === x.kasusId).sort((p, q) => posAsli(p) - posAsli(q)) : [x]; grp.forEach(y => { seen.add(y.id); out.push(y); }); } return out; }
   // kelompok di luar tingkat target (dan E): seluruh soal kelompok itu, tanpa saring tingkat
   const poolKode = (kode, tingkat) => K.soalKelompok(kode, K.kelompok(tingkat).includes(kode) ? tingkat : undefined);
+  // v9.5 ambil n soal satu unit: urutBank cara 'baru' (belum dipakai dulu) bila tersedia, selain itu acak seperti dulu
+  const ambilUnit = (pool, n, akar) => L && typeof L.ambilBank === 'function' ? L.ambilBank(pool, n, akar) : U.ambil(pool, n);
   function susunAttempt(cfg) {
     const s = UKP.store.get(); const tingkat = cfg.tingkat || s.profil.tingkat; const fmt = formatUjian();
     let soal = [], menit, perKel = {}, bagianTO = null;
+    const akar = new Set();  // v9.5 akar keluarga yang sudah terpilih (paket try out tetap apa adanya)
     if (cfg.format === 'USKP') {
       const pool = poolKode(cfg.kode, tingkat); const n = Math.min(40, pool.length);
-      soal = U.ambil(pool, n); menit = cfg.menit || (UKP.modul[cfg.kode] && UKP.modul[cfg.kode].meta.durasiUSKP) || 90; perKel[cfg.kode] = n;
+      soal = ambilUnit(pool, n, akar); menit = cfg.menit || (UKP.modul[cfg.kode] && UKP.modul[cfg.kode].meta.durasiUSKP) || 90; perKel[cfg.kode] = soal.length;
     } else if (cfg.format === 'UKP') {
       const kel = K.kelompok(tingkat); const target = (fmt.UKP[tingkat] || {}).soalPerkiraan || 60;
       if (UKP.belajar && typeof UKP.belajar.kuotaSoal === 'function') {
         // semua tingkat: kuota per unit UKP.belajar.kuotaSoal (A/B tanpa pengali = bobot dasar; C berpengali laporan) — kuota A2 dipecah menjadi A2.10 (× pengali 'A2.10') dan A2 lain (× pengali A2) —
         // dengan pembagian sisa terbesar sehingga jumlah tepat soalPerkiraan; tiap kelompok yang punya soal mendapat ≥ 1; soal unit sekelompok diacak bersama
         const perKode = {}; const nUnit = {};
-        UKP.belajar.kuotaSoal(tingkat, target, { min1: true }).forEach(u => { if (!u.n) return; perKode[u.kode] = (perKode[u.kode] || []).concat(U.ambil(u.soal, u.n)); nUnit[u.kode] = (nUnit[u.kode] || 0) + 1; });
+        // v9.5: kuota per unit tetap; di dalam unit soal diambil lewat urutBank cara 'baru' (satu keluarga satu soal di seluruh ujian)
+        UKP.belajar.kuotaSoal(tingkat, target, { min1: true, keluarga: true }).forEach(u => { if (!u.n) return; perKode[u.kode] = (perKode[u.kode] || []).concat(ambilUnit(u.soal, u.n, akar)); nUnit[u.kode] = (nUnit[u.kode] || 0) + 1; });
         kel.forEach(k => { const ambil = perKode[k] || []; perKel[k] = ambil.length; soal = soal.concat(nUnit[k] > 1 ? U.acak(ambil) : ambil); });
       } else {
         const bobotKel = (UKP.belajar && UKP.belajar.bobotKelompok) ? UKP.belajar.bobotKelompok(tingkat) : null; const bobot = kel.map(k => (bobotKel && typeof bobotKel[k] === 'number') ? bobotKel[k] : (((UKP.modul[k].meta.perkiraanBobotSoal || {})[tingkat]) || 1 / kel.length)); const tot = bobot.reduce((a, b) => a + b, 0);
-        kel.forEach((k, i) => { const pool = K.soalKelompok(k, tingkat); const n = Math.min(pool.length, Math.max(1, Math.round(target * bobot[i] / tot))); const ambil = U.ambil(pool, n); perKel[k] = ambil.length; soal = soal.concat(ambil); });
+        kel.forEach((k, i) => { const pool = K.soalKelompok(k, tingkat); const n = Math.min(pool.length, Math.max(1, Math.round(target * bobot[i] / tot))); const ambil = ambilUnit(pool, n, akar); perKel[k] = ambil.length; soal = soal.concat(ambil); });
       }
       menit = (fmt.UKP[tingkat] || {}).menit || 180;
       if (cfg.terbagi) { const setengah = Math.ceil(soal.length / 2); soal = cfg.bagian === 2 ? soal.slice(setengah) : soal.slice(0, setengah); menit = Math.round(menit / 2); }
@@ -52,7 +56,7 @@
       soal = semua.slice(dari - 1, sampai); bagianTO = dari > 1 || sampai < semua.length ? dari + '–' + sampai : null;
       menit = cfg.menit || (bagianTO ? menitTempo(soal.length, (p && p.tingkat) || tingkat) : ((p && fmt.UKP[p.tingkat]) || {}).menit) || Math.max(5, Math.round(soal.length * 2.1)); soal.forEach(x => { perKel[x.kode] = (perKel[x.kode] || 0) + 1; });
     } else { // kustom
-      const pool = cfg.kode ? poolKode(cfg.kode, tingkat) : K.semuaSoal(tingkat); soal = U.ambil(pool, Math.min(cfg.jumlah || 20, pool.length)); menit = cfg.menit || Math.round(soal.length * 2.5); soal.forEach(x => { perKel[x.kode] = (perKel[x.kode] || 0) + 1; });
+      const pool = cfg.kode ? poolKode(cfg.kode, tingkat) : K.semuaSoal(tingkat); soal = ambilUnit(pool, Math.min(cfg.jumlah || 20, pool.length), akar); menit = cfg.menit || Math.round(soal.length * 2.5); soal.forEach(x => { perKel[x.kode] = (perKel[x.kode] || 0) + 1; });
     }
     const urut = cfg.format === 'UKP' ? kelompokkanVignette(soal) : cfg.format === 'tryout' ? soal : kelompokkanVignette(U.acak(soal));
     // UKP komprehensif tidak punya kode kelompok (label "UKP Tingkat A", bukan "UKP A1")
@@ -91,6 +95,7 @@
       }
     }
     s.simulasi.push(rekam); if (s.simulasi.length > 60) s.simulasi.shift();
+    if (L && L.pakai) L.pakai.catatBanyak(a.soalIds, 'ujian', rekam.selesai, true);  // v9.5 buku pemakaian: semua soal simulasi diujikan
     s.simulasiAktif = null;
     const akhir = a.tanpaWaktu ? Date.now() : Math.min(Date.now(), a.akhir);
     UKP.hadir.catat('HADIR', Math.max(1, Math.min(a.menit, Math.round((akhir - a.mulai) / 60000))));
@@ -130,6 +135,7 @@
     s.simulasiAktif = { id: U.id('sim'), format: 'tim', tingkat, kode: null, menit, tanpaWaktu: false, soalIds: ids, jawaban: {}, ragu: [], detik: {}, mulai: kini, akhir, posisi: 0, perKel, selesai: null, terbagi: null,
       tim: { ujianId: String(c.ujianId || ''), judul: String(c.judul || 'Ujian tim').slice(0, 80), nama: L.rapikanNamaPeserta ? L.rapikanNamaPeserta(c.nama).slice(0, 24) : String(c.nama || '') } };
     if (c.room) s.simulasiAktif.tim.room = 1;
+    if (L && L.pakai) L.pakai.catatBanyak(ids, 'ujian', kini, true);  // v9.5: soal ujian tim sudah terlihat di HP ini sejak dimulai
     UKP.store.save();
     // v9.3.2 B2: kabar awal ke room — dokumen jawaban (bentuk lama, isi kosong) terbit sekarang sehingga laptop pemimpin langsung
     // menulis "sedang mengerjakan · 0/N terisi" walau belum ada jawaban. Tanpa o dan k: isi dokumen tidak berubah, hanya diterbitkan.
@@ -209,6 +215,7 @@
       h('p', { class: 'meta' }, 'Skor Anda sudah dihitung di perangkat ini; pemimpin menggabungkan hasil tim.'));
   }
   UKP.simulasiTim = { mulai: mulaiPercobaanTim, tokenDari, kartuKirim: kartuKirimTim, teksKirim: teksKirimWA, menitTempo };
+  UKP.simulasiTim._murni = { susunAttempt, nilaiDanRekam };  // v9.5: untuk uji perilaku (test/v950.test.js)
 
   // ================= PRA-UJIAN =================
   const fmtSkor = x => UKP.fmt.angka(x, x % 1 ? 1 : 0);

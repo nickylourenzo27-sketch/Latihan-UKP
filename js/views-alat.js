@@ -644,6 +644,7 @@
     const hariDari = ts => (U.hariDari ? U.hariDari(ts) : U.iso(new Date(ts)));
     const nRangkaian = UKP.hadir.rangkaian();
     page.appendChild(UKP.c.kop({ judul: 'Kemajuan', lead: 'Lihat topik yang masih lemah dan kesalahan yang berulang, lalu latih langsung dari sini.' }));
+    if (UKP.views.bank && typeof UKP.c.barisBank === 'function') { const bb = UKP.c.barisBank(tingkat); if (bb) page.appendChild(bb); }  // v9.5 satu baris Bank soal
     const ctaLatih = () => h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-sm', onclick: () => UKP.go('latih', { n: 10, mulai: true }) }, UKP.icon('pen', null, true), 'Latih 10 soal'));
     const bk = L.bukuKesalahan(tingkat, 60);
     const nLencana = LENCANA.filter(([id]) => s.lencana[id]).length;
@@ -2140,7 +2141,7 @@
       (f.bagian || []).forEach(b => (b.baris || []).forEach(x => indeks.push({ jenis: 'Baris SPT', teks: x.kode + ' ' + x.label, sub: f.id + ' · ' + b.nama + (x.pasal ? ' · ' + x.pasal : ''), view: 'formulir', params: { baris: x.kode } })));
     });
     K.semuaKelompok().forEach(k => { const m = UKP.modul[k]; indeks.push({ jenis: 'Lembar angka', teks: 'Lembar angka ' + k + ' ' + m.meta.nama, sub: 'tarif, angka, dan batas waktu', view: 'lembar', params: { kode: k } }); (Array.isArray(m.meta.lembarRingkas) ? m.meta.lembarRingkas : []).forEach(r => { if (r && r.label) indeks.push({ jenis: 'Angka ' + k, teks: r.label, sub: String(r.nilai == null ? '' : r.nilai).slice(0, 90), view: 'lembar', params: { kode: k } }); }); });
-    [['Hari Ini', 'beranda'], ['Belajar · peta materi', 'tingkat'], ['Cakupan materi resmi BPPK · daftar periksa butir', 'cakupan'], ['Latih soal', 'latih'], ['Ulang kartu', 'ulang'], ['Studi kasus', 'kasus'], ['Simulasi ujian', 'simulasi'], ['Kalkulator pajak', 'kalkulator'], ['Referensi · glosarium dan peraturan', 'referensi'], ['Rencana belajar', 'rencana'], ['Kemajuan', 'kemajuan'], ['Info ujian', 'info-ujian'], ['Tutor AI', 'tutor'], ['Pengaturan', 'pengaturan'], ['Strategi PG', 'strategi'], ['Etika & Profesi', 'profesi'], ['Peta formulir SPT · baris demi baris', 'formulir'], ['Lembar angka · hafalan cepat', 'lembar']].forEach(([t, v]) => indeks.push({ jenis: 'Halaman', teks: t, view: v }));
+    [['Hari Ini', 'beranda'], ['Belajar · peta materi', 'tingkat'], ['Cakupan materi resmi BPPK · daftar periksa butir', 'cakupan'], ['Latih soal', 'latih'], ['Bank soal · soal baru dan soal pengganti', 'bank'], ['Ulang kartu', 'ulang'], ['Studi kasus', 'kasus'], ['Simulasi ujian', 'simulasi'], ['Kalkulator pajak', 'kalkulator'], ['Referensi · glosarium dan peraturan', 'referensi'], ['Rencana belajar', 'rencana'], ['Kemajuan', 'kemajuan'], ['Info ujian', 'info-ujian'], ['Tutor AI', 'tutor'], ['Pengaturan', 'pengaturan'], ['Strategi PG', 'strategi'], ['Etika & Profesi', 'profesi'], ['Peta formulir SPT · baris demi baris', 'formulir'], ['Lembar angka · hafalan cepat', 'lembar']].forEach(([t, v]) => indeks.push({ jenis: 'Halaman', teks: t, view: v }));
     const sinonim = UKP.sinonim || SINONIM_CARI;
     // frasa utuh (tidak menempel pada huruf/angka lain), mis. "globe" cocok dengan "(GloBE)" tetapi tidak dengan "globex"
     const escRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

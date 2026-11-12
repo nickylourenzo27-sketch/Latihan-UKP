@@ -56,6 +56,66 @@
     tingkatDari(kode) { return kode[0] === 'E' ? null : kode[0]; },
   };
 
+  // ---------- v9.5 keluarga soal (soal asli + soal pengganti, field kembaranDari) dan peta butir cakupan ----------
+  // Indeks dibangun sekali per isi data (tanda tangan = kode modul + jumlah soal), urutan berkas: urutanKelompok lalu modul lain.
+  let idxKeluarga = null;
+  function indeksKeluarga() {
+    const kodes = (UKP.urutanKelompok || []).filter(k => UKP.modul[k]).concat(Object.keys(UKP.modul).filter(k => !(UKP.urutanKelompok || []).includes(k)));
+    const tanda = kodes.map(k => k + ':' + ((UKP.modul[k] && UKP.modul[k].soal) || []).length).join('|');
+    if (idxKeluarga && idxKeluarga.tanda === tanda) return idxKeluarga;
+    const urut = [], peta = new Map(), anak = new Map();
+    for (const k of kodes) for (const x of (UKP.modul[k].soal || [])) { if (!x || typeof x.id !== 'string' || peta.has(x.id)) continue; peta.set(x.id, x); urut.push(x); }
+    for (const x of urut) { const r = akarSoal(x); if (r === x.id) continue; if (!anak.has(r)) anak.set(r, []); anak.get(r).push(x); }
+    idxKeluarga = { tanda, urut, peta, anak }; return idxKeluarga;
+  }
+  // akar = kembaranDari (string tidak kosong, bukan dirinya sendiri) atau id soal itu sendiri
+  const akarSoal = x => x && typeof x.kembaranDari === 'string' && x.kembaranDari && x.kembaranDari !== x.id ? x.kembaranDari : (x && x.id) || null;
+  K.akar = function (idAtauSoal) {
+    if (idAtauSoal && typeof idAtauSoal === 'object') { const x = indeksKeluarga().peta.get(idAtauSoal.id) || idAtauSoal; return akarSoal(x); }
+    if (typeof idAtauSoal !== 'string' || !idAtauSoal) return null;
+    const x = indeksKeluarga().peta.get(idAtauSoal); return x ? akarSoal(x) : idAtauSoal;
+  };
+  // [asli, ...pengganti] (objek soal, urutan berkas); soal asli yang tidak ada di data tidak ikut
+  K.keluarga = function (id) {
+    const r = K.akar(id); if (!r) return [];
+    const I = indeksKeluarga(); const asli = I.peta.get(r);
+    return (asli ? [asli] : []).concat(I.anak.get(r) || []);
+  };
+  K.penggantiDari = function (id) { const r = K.akar(id); return r ? (indeksKeluarga().anak.get(r) || []).slice() : []; };
+  K.adaPengganti = function () { return indeksKeluarga().anak.size > 0; };
+  // ID butir DAUN cakupan resmi (lintas tingkat), dibangun sekali per objek UKP.cakupanResmi
+  let idxDaun = null;
+  function daunCakupan() {
+    const C = UKP.cakupanResmi; if (!C || !C.tingkat) return new Set();
+    if (idxDaun && idxDaun.sumber === C) return idxDaun.set;
+    const set = new Set();
+    const telusur = arr => { for (const b of arr || []) { if (!b) continue; if (Array.isArray(b.anak) && b.anak.length) telusur(b.anak); else if (typeof b.id === 'string') set.add(b.id); } };
+    for (const t of Object.keys(C.tingkat)) for (const m of (C.tingkat[t].mataUjian || [])) for (const sj of (m.subjek || [])) telusur(sj.butir);
+    idxDaun = { sumber: C, set }; return set;
+  }
+  const petaButir = () => { const P = UKP.petaButir; return P && isObjK(P.peta) ? P.peta : null; };
+  const isObjK = x => x != null && typeof x === 'object' && !Array.isArray(x);
+  // ID butir daun dari js/data/peta-butir.js; ID yang tidak ada di cakupan.js diabaikan diam-diam
+  K.butirSoal = function (id) {
+    const P = petaButir(); const v = P && typeof id === 'string' && Object.prototype.hasOwnProperty.call(P, id) ? P[id] : null;
+    if (!Array.isArray(v)) return [];
+    const daun = daunCakupan(); return v.filter((b, i) => typeof b === 'string' && daun.has(b) && v.indexOf(b) === i);
+  };
+  K.adaPetaButir = function () { const P = petaButir(); return !!P && Object.keys(P).some(id => K.butirSoal(id).length > 0); };
+  // indeks balik butir → soal (urutan berkas), dibangun ulang bila peta, cakupan, atau data soal berganti
+  let idxButir = null;
+  K.soalButir = function (idButir, tingkat) {
+    const P = petaButir(); if (!P || typeof idButir !== 'string') return [];
+    const I = indeksKeluarga(); const tanda = I.tanda + '#' + Object.keys(P).length;
+    if (!idxButir || idxButir.peta !== P || idxButir.daun !== daunCakupan() || idxButir.tanda !== tanda) {
+      const balik = new Map();
+      for (const x of I.urut) for (const b of K.butirSoal(x.id)) { if (!balik.has(b)) balik.set(b, []); balik.get(b).push(x); }
+      idxButir = { peta: P, daun: daunCakupan(), tanda, balik };
+    }
+    const arr = idxButir.balik.get(idButir) || [];
+    return tingkat ? arr.filter(x => (x.tingkat || []).includes(tingkat)) : arr.slice();
+  };
+
   // ---------- log jawaban & statistik ----------
   const L = UKP.belajar = {};
   // konteks 'simulasi' + opsi kosong ('-') tidak dicatat (bukan kesalahan); skor simulasi dihitung di views
@@ -68,8 +128,134 @@
     s.jawaban.push({ soal: soal.id, topik: soal.topik, kode: soal.kode, benar, opsi: opsiDipilih, tag, detik: Math.round(detik || 0), konteks, pada: Date.now() });
     if (s.jawaban.length > 6000) s.jawaban.splice(0, s.jawaban.length - 6000);
     if (!benar && konteks !== 'simulasi') L.kartuOtomatisDariSoal(soal, opsiDipilih);
+    P.catat(soal.id, jenisPaksa || (konteks === 'simulasi' ? 'ujian' : 'sendiri'), Date.now(), true);  // v9.5 buku pemakaian
     UKP.store.save();
     return benar;
+  };
+
+  // ---------- v9.5 buku pemakaian soal (s.pakai = { idSoal: [tanda, hari] }, bentuk dan batas di js/core.js rapikanPakai) ----------
+  // tanda: bit 1 dilatih sendiri, 2 dibahas atau dilatih bersama, 4 diujikan; hari = Math.floor(ms / 86400000) terakhir dipakai
+  const BIT_PAKAI = { sendiri: 1, bersama: 2, ujian: 4 };
+  const ID_BAHAYA = new Set(['__proto__', 'constructor', 'prototype']);
+  const hariPakai = ms => Math.floor((typeof ms === 'number' && isFinite(ms) ? ms : Date.now()) / 86400000);
+  let jenisPaksa = null;   // jenis untuk catatJawaban yang dipanggil dari dalam pencatat bersama (bukan latihan sendiri)
+  const P = L.pakai = {};
+  const bukuPakai = s => { if (!s.pakai || typeof s.pakai !== 'object' || Array.isArray(s.pakai)) s.pakai = {}; return s.pakai; };
+  const idPakaiSah = id => typeof id === 'string' && !!id && id.length <= 40 && !ID_BAHAYA.has(id);
+  // catat satu soal; tanpaSimpan = true bila pemanggil menyimpan sendiri. → true bila id dan jenis sah
+  P.catat = function (idSoal, jenis, ms, tanpaSimpan) {
+    const bit = BIT_PAKAI[jenis]; if (!bit || !idPakaiSah(idSoal)) return false;
+    const s = UKP.store.get(); const buku = bukuPakai(s); const lama = buku[idSoal]; const hari = hariPakai(ms);
+    const baru = Array.isArray(lama) ? [(lama[0] | 0) | bit, Math.max(lama[1] | 0, hari)] : [bit, hari];
+    if (Array.isArray(lama) && lama[0] === baru[0] && lama[1] === baru[1]) return true;
+    buku[idSoal] = baru;
+    if (!lama && Object.keys(buku).length > UKP.store.BATAS_PAKAI) s.pakai = UKP.store.rapikanPakai(buku);
+    if (!tanpaSimpan) UKP.store.save();
+    return true;
+  };
+  // catat banyak soal sekaligus (satu kali simpan) → jumlah yang tercatat
+  P.catatBanyak = function (ids, jenis, ms, tanpaSimpan) {
+    let n = 0; for (const id of Array.isArray(ids) ? ids : []) if (P.catat(id, jenis, ms, true)) n++;
+    if (n && !tanpaSimpan) UKP.store.save();
+    return n;
+  };
+  // jalankan fn dengan catatJawaban dicatat sebagai jenis ini (mis. jawaban anggota room = 'bersama', bukan latihan sendiri)
+  P.sebagai = function (jenis, fn) { const lama = jenisPaksa; jenisPaksa = BIT_PAKAI[jenis] ? jenis : lama; try { return fn(); } finally { jenisPaksa = lama; } };
+  P.status = function (idSoal) {
+    const s = UKP.store.get(); const v = idPakaiSah(idSoal) && s.pakai && Object.prototype.hasOwnProperty.call(s.pakai, idSoal) ? s.pakai[idSoal] : null;
+    if (!Array.isArray(v)) return null;
+    return { sendiri: !!(v[0] & 1), bersama: !!(v[0] & 2), ujian: !!(v[0] & 4), hari: v[1] };
+  };
+  P.sudah = idSoal => !!P.status(idSoal);
+  // bangun buku dari riwayat yang sudah ada (migrasi data lama; dipanggil js/core.js) → objek pakai baru (state tidak diubah)
+  P.bangunDariRiwayat = function (state) {
+    const st = state && typeof state === 'object' ? state : {}; const o = {};
+    const tambah = (id, jenis, ms) => {
+      const bit = BIT_PAKAI[jenis]; if (!bit || !idPakaiSah(id)) return;
+      const hari = Math.max(0, hariPakai(Number(ms) > 0 ? Number(ms) : 0)); const lama = o[id];
+      o[id] = lama ? [lama[0] | bit, Math.max(lama[1], hari)] : [bit, hari];
+    };
+    for (const j of Array.isArray(st.jawaban) ? st.jawaban : []) if (j && typeof j === 'object') tambah(j.soal, j.konteks === 'simulasi' ? 'ujian' : 'sendiri', j.pada);
+    // jawabanBersama: bersama; entri m 'ujian' (ditulis UT.nilai) = ujian
+    for (const e of Array.isArray(st.jawabanBersama) ? st.jawabanBersama : []) if (e && typeof e === 'object') tambah(e.s, e.m === 'ujian' ? 'ujian' : 'bersama', e.w);
+    for (const x of Array.isArray(st.sesiBersama) ? st.sesiBersama : []) {
+      if (!x || typeof x !== 'object' || !Array.isArray(x.soal)) continue;
+      const jenis = x.mode === 'ujian' ? 'ujian' : 'bersama'; const ms = Number(x.selesai) || Number(x.mulai) || 0;
+      for (const q of x.soal) if (q && typeof q === 'object') tambah(q.id, jenis, ms);
+    }
+    for (const r of Array.isArray(st.simulasi) ? st.simulasi : []) if (r && typeof r === 'object' && r.selesai && Array.isArray(r.soalIds)) for (const id of r.soalIds) tambah(id, 'ujian', r.selesai);
+    const u = st.ujianTim; if (u && typeof u === 'object' && u.mulai && Array.isArray(u.soalIds)) for (const id of u.soalIds) tambah(id, 'ujian', u.mulai);
+    return UKP.store.rapikanPakai(o);
+  };
+  // kelas satu keluarga untuk anggota di daftar (lihat urutBank): { akar, kelas: 'baru'|'pengganti'|'ulang', calon, hari (terakhir dipakai, −1 = belum), salah }
+  function kelasKeluarga(akar, anggota, salah) {
+    const ids = new Set(K.keluarga(akar).map(x => x.id)); anggota.forEach(x => ids.add(x.id));
+    let hari = -1, dipakai = false, adaSalah = false;
+    ids.forEach(id => { const st = P.status(id); if (st) { dipakai = true; if (st.hari > hari) hari = st.hari; } if (salah && salah.has(id)) adaSalah = true; });
+    if (!dipakai) return { akar, kelas: 'baru', calon: anggota.find(x => x.id === akar) || anggota[0], hari, salah: adaSalah };
+    const belum = anggota.find(x => !P.sudah(x.id));
+    if (belum) return { akar, kelas: 'pengganti', calon: belum, hari, salah: adaSalah };
+    let calon = anggota[0]; anggota.forEach(x => { if (P.status(x.id).hari < P.status(calon.id).hari) calon = x; });
+    return { akar, kelas: 'ulang', calon, hari, salah: adaSalah };
+  }
+  // kelompokkan daftar soal per keluarga (urutan kemunculan, id ganda dibuang) → [[akar, [soal…]]]
+  function grupKeluarga(daftar) {
+    const g = new Map(); const lihat = new Set();
+    for (const x of Array.isArray(daftar) ? daftar : []) {
+      if (!x || typeof x.id !== 'string' || lihat.has(x.id)) continue; lihat.add(x.id);
+      const r = K.akar(x) || x.id; if (!g.has(r)) g.set(r, []); g.get(r).push(x);
+    }
+    return [...g.entries()];
+  }
+  // ringkasan daftar soal untuk Bank soal dan pengaturan Latih
+  P.ringkas = function (daftarSoal) {
+    const arr = (Array.isArray(daftarSoal) ? daftarSoal : []).filter(x => x && typeof x.id === 'string');
+    const r = { total: arr.length, baru: 0, penggantiSiap: 0, terpakai: 0, bersama: 0, ujian: 0, sendiri: 0 };
+    for (const [akar, ang] of grupKeluarga(arr)) { const k = kelasKeluarga(akar, ang, null).kelas; if (k === 'baru') r.baru++; else if (k === 'pengganti') r.penggantiSiap++; }
+    for (const x of arr) { const st = P.status(x.id); if (!st) continue; r.terpakai++; if (st.bersama) r.bersama++; if (st.ujian) r.ujian++; if (st.sendiri) r.sendiri++; }
+    return r;
+  };
+  // v9.5 soal pengganti yang belum dipakai tetapi belum dapat giliran (satu soal per keluarga): soal belum dipakai di luar angka baru dan pengganti siap
+  P.menunggu = r => r && typeof r === 'object' ? Math.max(0, (r.total | 0) - (r.terpakai | 0) - (r.baru | 0) - (r.penggantiSiap | 0)) : 0;
+  // susun sesi dari bank: satu soal per keluarga; kelas baru (belum ada anggota dipakai), pengganti (ada yang dipakai dan ada anggota di pool
+  // yang belum), ulang (semua anggota di pool sudah dipakai). opsi = { cara: 'campur'|'baru'|'pengganti', salah: Set id, acak: fn, acakAkhir }
+  L.urutBank = function (pool, n, opsi) {
+    opsi = opsi && typeof opsi === 'object' ? opsi : {};
+    const acak = typeof opsi.acak === 'function' ? opsi.acak : U.acak;
+    const salah = opsi.salah && typeof opsi.salah.has === 'function' ? opsi.salah : new Set(Array.isArray(opsi.salah) ? opsi.salah : []);
+    const cara = opsi.cara === 'baru' || opsi.cara === 'pengganti' ? opsi.cara : 'campur';
+    const kelas = { baru: [], pengganti: [], ulang: [] };
+    for (const [akar, ang] of grupKeluarga(pool)) { const k = kelasKeluarga(akar, ang, salah); kelas[k.kelas].push(k); }
+    // acak dalam kelas; pengganti dan ulang: keluarga yang terakhir dijawab salah dulu, lalu yang paling lama tidak dipakai (sort stabil)
+    const urutKelas = arr => acak(arr).slice().sort((a, b) => (b.salah - a.salah) || (a.hari - b.hari));
+    const B = acak(kelas.baru).slice(), G = urutKelas(kelas.pengganti), R = urutKelas(kelas.ulang);
+    const semua = B.length + G.length + R.length;
+    const N = n == null || n === '' || !(Number(n) >= 0) ? semua : Math.min(semua, Math.floor(Number(n)));
+    const hasil = [];
+    const ambil = (arr, k) => { while (k > 0 && arr.length && hasil.length < N) { hasil.push(arr.shift()); k--; } };
+    if (cara === 'campur') {
+      const nBaru = Math.round(N * 0.7); ambil(B, nBaru); ambil(G, N - nBaru);
+      ambil(B, N); ambil(G, N); ambil(R, N);
+    } else if (cara === 'baru') { ambil(B, N); ambil(G, N); ambil(R, N); }
+    else { ambil(G, N); ambil(B, N); ambil(R, N); }
+    const soal = hasil.map(k => k.calon);
+    return opsi.acakAkhir === false ? soal : acak(soal).slice();
+  };
+  // v9.5 ambil n soal satu unit ujian berkuota (Simulasi pribadi, Ujian tim): urutBank cara 'baru'. akar = Set akar keluarga yang sudah
+  // terpilih di unit lain (dilewati, lalu ditambah akar hasil ini) sehingga satu keluarga satu soal berlaku untuk seluruh ujian
+  L.ambilBank = function (pool, n, akar, opsi) {
+    const sudah = akar && typeof akar.has === 'function' ? akar : new Set();
+    const sisa = (Array.isArray(pool) ? pool : []).filter(x => x && typeof x.id === 'string' && !sudah.has(K.akar(x) || x.id));
+    const hasil = L.urutBank(sisa, n, Object.assign({ cara: 'baru' }, opsi || {}));
+    if (typeof sudah.add === 'function') hasil.forEach(x => sudah.add(K.akar(x) || x.id));
+    return hasil;
+  };
+  // v9.5 salah terakhir per soal (Set id): jawaban terakhir di riwayat pribadi salah (bukan "Tidak tahu" yang kosong di simulasi)
+  L.idSalahTerakhir = function (s) {
+    s = s || UKP.store.get(); const akhir = new Map();
+    for (const j of Array.isArray(s.jawaban) ? s.jawaban : []) if (j && typeof j.soal === 'string') akhir.set(j.soal, j.benar);
+    const out = new Set(); akhir.forEach((b, id) => { if (b === false) out.add(id); });
+    return out;
   };
   // penanda keyakinan susulan (jawab langsung: "Tadi Anda: Yakin · Ragu · Menebak" di panel pembahasan): perbarui field keyakinan pada
   // entri jawaban TERAKHIR untuk soal itu (konteks sama bila diberikan). v = 'yakin' | 'ragu' | 'menebak' | null (null = lepas penanda).
@@ -204,11 +390,12 @@
       s.jawabanBersama.push({ p, s: soal.id, kd: soal.kode || String(soal.id).split('-')[0], t: soal.topik || '', o, b: o !== '-' && o === soal.kunci ? 1 : 0, d, w: kini, m: 'latih', k, sesi });
       n++;
       if (!pemimpinTercatat && pemimpin && kn === pemimpin && o !== '-') {
-        pemimpinTercatat = true; L.catatJawaban(soal, o, d, 'latih');
+        pemimpinTercatat = true; P.sebagai('bersama', () => L.catatJawaban(soal, o, d, 'latih'));  // v9.5: bukan latihan sendiri
         if (k) { const arr = s.jawaban; const j = arr[arr.length - 1]; if (j && j.soal === soal.id && j.konteks === 'latih') j.keyakinan = k; }
       }
     }
     pangkasBersama(s.jawabanBersama, kini);
+    P.catat(soal.id, 'bersama', kini, true);  // v9.5 buku pemakaian: kunci soal ini sudah dibuka bersama
     UKP.store.save();
     return n;
   };
@@ -305,6 +492,7 @@
     if (!Array.isArray(x.soal)) x.soal = [];
     const i = x.soal.findIndex(q => q && q.id === soal.id);
     if (i >= 0) { if (x.soal[i] && x.soal[i].bahasDetik != null) ent.bahasDetik = x.soal[i].bahasDetik; x.soal[i] = ent; } else x.soal.push(ent);
+    P.catat(soal.id, x.mode === 'ujian' ? 'ujian' : 'bersama', Date.now(), true);  // v9.5 buku pemakaian
     UKP.store.save();
     return true;
   };
@@ -975,7 +1163,8 @@
   };
   UT.mulai = function () {
     const u = utAktif(); if (!u) return null;
-    if (!u.mulai) { u.mulai = Date.now(); u.akhir = u.mulai + u.menit * 60000; UKP.store.save(); }
+    // v9.5: semua soal ujian dihitung diujikan saat ujian dimulai (soal sudah terlihat anggota walau tidak dijawab)
+    if (!u.mulai) { u.mulai = Date.now(); u.akhir = u.mulai + u.menit * 60000; P.catatBanyak(u.soalIds, 'ujian', u.mulai, true); UKP.store.save(); }
     return salinJSON(u);
   };
   // opsi 'A'–'D' | '-' (kosong ditandai) | null (hapus)
@@ -1329,7 +1518,9 @@
       if (sisa.length) unit.push({ kunci: k, kode: k, topik: null, sisa: true, bobot: b * sisa.length / semua.length * (typeof pk[k] === 'number' ? pk[k] : 1), soal: sisa });
     });
     const kec = opsi.kecuali instanceof Set ? opsi.kecuali : null;
-    const kap = unit.map(u => kec ? u.soal.filter(x => !kec.has(x.id)).length : u.soal.length);
+    // v9.5 opsi.keluarga: kapasitas unit = banyak keluarga (soal asli + soal pengganti dihitung satu), untuk ujian satu keluarga satu soal
+    const kapUnit = arr => opsi.keluarga ? new Set(arr.map(x => K.akar(x) || x.id)).size : arr.length;
+    const kap = unit.map(u => kapUnit(kec ? u.soal.filter(x => !kec.has(x.id)) : u.soal));
     const jatah = bagiSisaTerbesar(unit.map(u => u.bobot), n, kap, !!opsi.acak);
     if (opsi.min1) {
       // kelompok tanpa kursi mengambil satu kursi dari unit yang paling berlebih terhadap kuotanya (jumlah tetap n)
@@ -1498,7 +1689,9 @@
     let soal = [];
     // target dengan pengali laporan (Tingkat C): soal kelompok/topik yang dilaporkan sering muncul lebih mungkin terpilih
     const pengaliSesi = (UKP.bobotLaporan || {})[tingkat] || null;
-    const tambah = (arr, n) => { for (const x of acakBerbobot(arr, pengaliSesi)) { if (soal.length >= nSoal || n <= 0) break; if (soal.some(y => y.id === x.id)) continue; soal.push(x); n--; } };
+    // v9.5: satu keluarga (soal asli + soal pengganti) paling banyak satu soal per sesi
+    const sekeluarga = x => { const r = K.akar(x); return soal.some(y => y.id === x.id || K.akar(y) === r); };
+    const tambah = (arr, n) => { for (const x of acakBerbobot(arr, pengaliSesi)) { if (soal.length >= nSoal || n <= 0) break; if (sekeluarga(x)) continue; soal.push(x); n--; } };
     if (pengaliSesi) {
       // Tingkat berpengali (C): topik hari ini maksimal 50% (kilat/lelah: soal keliru maksimal 50%); sisanya kuota per unit L.kuotaSoal
       // (bobotKelompok, A2.10 terpisah dari A2 lain) dengan pembagian sisa terbesar berundi; soal topik hari ini tidak diambil lagi lewat kuota.
@@ -1508,9 +1701,9 @@
       for (const u of L.kuotaSoal(tingkat, nSoal - soal.length, { acak: true, kecuali: terpilih })) {
         if (!u.n) continue; const diUnit = new Set(u.soal.map(x => x.id)); let k = u.n;
         const urut = U.acak(prioritas.filter(x => diUnit.has(x.id))).concat(U.acak(poolLemah.filter(x => diUnit.has(x.id))), acakBerbobot(u.soal, pengaliSesi));
-        for (const x of urut) { if (k <= 0) break; if (terpilih.has(x.id)) continue; terpilih.add(x.id); kuota.push(x); k--; }
+        for (const x of urut) { if (k <= 0) break; if (terpilih.has(x.id) || kuota.some(y => K.akar(y) === K.akar(x))) continue; terpilih.add(x.id); kuota.push(x); k--; }
       }
-      for (const x of U.acak(kuota)) { if (soal.length >= nSoal) break; soal.push(x); }
+      for (const x of U.acak(kuota)) { if (soal.length >= nSoal) break; if (!sekeluarga(x)) soal.push(x); }
       tambah(poolSemua, nSoal);
     }
     else if (lelah || ukuran === 'kilat') { tambah(prioritas, Math.ceil(nSoal / 2)); tambah(poolLemah, nSoal); tambah(poolSemua, nSoal); }
@@ -1802,4 +1995,6 @@
     if (baru.length) UKP.store.save();
     return baru;
   };
+  // v9.5: migrasi buku pemakaian yang tertunda (state dimuat sebelum learn.js), lihat js/core.js migrasiPakai
+  if (UKP.store && typeof UKP.store.migrasiPakai === 'function') UKP.store.migrasiPakai();
 })(typeof window !== 'undefined' ? window : globalThis);

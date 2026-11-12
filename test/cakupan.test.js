@@ -74,16 +74,16 @@ describe('cakupan materi resmi: struktur', () => {
       assert.ok(m.subjek.length >= 1 && m.subjek.every(s => s.butir.length >= 1), t + ' ' + m.nama + ': subjek/butir kosong');
     });
   });
-  it('Tingkat B memuat 8 mata ujian yang disusun ulang (PPh Badan dari baris "4 PBB-P5L", PBB-P5L dari Tingkat C)', () => {
+  it('Tingkat B memuat 8 mata ujian bernomor 1 sampai 8 (PBB-P5L 8 butir di baris 4, PPh Badan 17 butir di baris 7)', () => {
     const B = C.tingkat.B.mataUjian;
-    assert.deepEqual(B.map(m => m.namaNormal), ['Akuntansi Perpajakan', 'Bea Meterai', 'KUP, PPSP, PP', 'PBB-P5L', 'PPh Badan', 'PPh Orang Pribadi', 'PPh Potong/Pungut', 'PPN dan SPT Masa PPN']);
+    assert.deepEqual(B.map(m => m.namaNormal), ['Akuntansi Perpajakan', 'Bea Meterai', 'KUP, PPSP, PP', 'PBB-P5L', 'PPh Orang Pribadi', 'PPh Potong/Pungut', 'PPh Badan', 'PPN dan SPT Masa PPN']);
+    assert.deepEqual(B.map(m => m.no), ['1', '2', '3', '4', '5', '6', '7', '8'], 'nomor tercetak berurutan');
     const badan = B.find(m => m.namaNormal === 'PPh Badan'), pbb = B.find(m => m.namaNormal === 'PBB-P5L');
-    assert.equal(badan.no, '4'); assert.equal(badan.namaTercetak, 'PBB-P5L'); assert.equal(badan.subjek[0].butir.length, 17);
-    assert.equal(pbb.no, null); assert.equal(pbb.kelompok, 'B8');
-    const pbbC = C.tingkat.C.mataUjian.find(m => m.namaNormal === 'PBB-P5L');
-    assert.deepEqual(pbb.subjek[0].butir.map(b => b.teks), pbbC.subjek[0].butir.map(b => b.teks));
-    pbb.subjek[0].butir.forEach(b => assert.ok(b.catatan.includes('diambil dari daftar Tingkat C')));
-    assert.deepEqual(B.map(m => m.no), ['1', '2', '3', null, '4', '5', '6', '8'], 'nomor tercetak dipertahankan (6 lalu 8)');
+    assert.equal(badan.kelompok, 'B6'); assert.equal(badan.subjek[0].butir.length, 17); assert.equal(badan.subjek[0].butir[0].id, 'B.7.1');
+    assert.equal(pbb.kelompok, 'B8'); assert.deepEqual(pbb.subjek[0].butir.map(b => b.id), ['B.4.1', 'B.4.2', 'B.4.3', 'B.4.4', 'B.4.5', 'B.4.6', 'B.4.7', 'B.4.8']);
+    // tiga butir PBB-P5L Tingkat C juga tercetak di Tingkat B dengan teks yang sama
+    const pbbC = C.tingkat.C.mataUjian.find(m => m.namaNormal === 'PBB-P5L'); const teksB = new Set(pbb.subjek[0].butir.map(b => b.teks));
+    pbbC.subjek[0].butir.forEach(b => assert.ok(teksB.has(b.teks), 'butir PBB Tingkat C tidak ada di Tingkat B: ' + b.teks));
   });
   it('nama subjek hanya null (Tingkat A) atau tiga subjek resmi', () => {
     for (const t of ['A', 'B', 'C']) for (const m of C.tingkat[t].mataUjian) for (const s of m.subjek) {

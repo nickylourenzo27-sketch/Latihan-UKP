@@ -817,6 +817,7 @@
         ? 'Kunci jawaban ujian itu sudah terbuka di HP ini, jadi lembarnya tampil dengan jawaban saat dikunci. Jawaban di lembar ini dihapus.'
         : 'Jawaban dan tanda ragu di lembar ini dihapus. Lembar untuk ujian itu dimulai kosong.', { ya: 'Ganti ujian', bahaya: true })) { UKP.umumkan('Lembar jawab tidak diubah.'); return; }
       lj.ujianId = info.id; lj.judul = info.judul; lj.n = info.soalIds.length; inN.value = lj.n;
+      if (L.pakai) L.pakai.catatBanyak(info.soalIds, 'ujian', Date.now(), true);  // v9.5: lembar jawab ujian ini dimulai (disimpan oleh simpan())
       if (rc.aksi === 'pulihkan') pulihkan(b); else if (rc.aksi === 'kosong') { lj.jawaban = []; lj.ragu = []; }
       { const lama = bacaTinjau(); const sama = lama && lama.ujianId === info.id && lama.soalIds.length === info.soalIds.length;
         if (!(rc.aksi === 'tetap' && sama)) tulisTinjau(b ? { ujianId: info.id, soalIds: info.soalIds.slice(0, 200), dikunci: true, t: b.t } : { ujianId: info.id, soalIds: info.soalIds.slice(0, 200), dikunci: false }); }

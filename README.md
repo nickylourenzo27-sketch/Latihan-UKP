@@ -177,6 +177,31 @@ Keputusan pemimpin tim 12 November 2026: jangka waktu yang dihitung dari suatu t
   dan penjelasan tanggal menurut contoh Penjelasan undang-undang.
 - Sisa soal bertanda: 65 (57 di modul Tingkat B dan Etika, 8 di modul Tingkat C).
 
+## Bank soal (v9.5.0)
+
+Setiap soal yang sudah dibahas, dilatih bersama, atau diujikan diganti soal baru bila soal penggantinya sudah ditulis.
+
+- **Yang dicatat.** Buku pemakaian `pakai` di progres (`{ idSoal: [tanda, hari] }`): dilatih sendiri, dibahas atau dilatih bersama (Latihan bersama, Mode mabar, HP anggota room saat kunci dibuka), dan diujikan (Ujian tim sejak dimulai, simulasi tim, lembar jawab, Simulasi pribadi saat selesai). Data lama dibangun sekali dari riwayat. Catatan ada di perangkat ini dan ikut ekspor progres.
+- **Soal pengganti.** Soal baru dengan field `kembaranDari` (id soal asli di modul yang sama) dan `sejak` (versi masuk). Satu soal asli beserta penggantinya disebut keluarga. Di pembahasan soal pengganti muncul baris kecil "Soal pengganti untuk ..." setelah kunci dibuka.
+- **Cara sesi disusun.** `UKP.belajar.urutBank`: satu keluarga paling banyak satu soal per sesi. Latih memakai pilihan **Pilih soal**: Campur (bawaan, kira-kira 70% belum dipakai dan 30% pengganti), Belum pernah dipakai, atau Pengganti soal lama; yang terakhir dijawab salah dan yang paling lama tidak dipakai didahulukan saat diulang. Simulasi pribadi dan Ujian tim tetap memakai kuota per kelompok dan topik, tetapi di tiap unit soal yang belum dipakai diambil lebih dulu dan satu keluarga satu soal berlaku untuk seluruh ujian. Paket try out tetap apa adanya. Sesi harian hanya memakai aturan satu keluarga satu soal.
+- **Halaman Bank soal** (`#bank`, `js/views-bank.js`). Angka untuk tingkat target (jumlah soal, belum pernah dipakai, pengganti siap, sudah dipakai beserta rinciannya), tombol "Mulai latihan soal baru" dan "Latih soal pengganti", daftar per kelompok dengan batang tiga bagian, dan lipatan per butir materi resmi. Pintu masuk: pengaturan Latih, Room, menu cari, dan Kemajuan.
+- **Butir materi resmi.** `js/data/peta-butir.js` menghubungkan soal ke butir daun di `js/data/cakupan.js`. Latih menerima saringan `butir=`, dan halaman Cakupan materi menampilkan jumlah soal serta tautan Latih per butir. Selama peta kosong, bagian ini menampilkan "Peta butir belum tersedia" dan Cakupan materi tampil seperti dulu.
+- **Hanya butir resmi.** Pilihan "Hanya butir resmi Tingkat X" di saringan lanjutan Latih (parameter `resmi=1`, juga untuk latihan bersama) hanya memakai soal yang punya butir daun tingkat target; halaman Bank soal menyebut berapa soal tingkat itu di luar daftar butir resmi dan menautkan ke latihan ini. Saringan diabaikan selama peta kosong atau saat `butir=` dipakai.
+
+<!-- isi-950:mulai -->
+### Isi v9.5.0
+
+- **Cakupan materi resmi.** `js/data/cakupan.js` disalin ulang dari PDF "Cakupan Materi Uji Kompetensi Perpajakan" (November 2026): butir daun Tingkat A 99, Tingkat B 140, Tingkat C 125. Tingkat B bernomor 1 sampai 8: Akuntansi Perpajakan, Bea Meterai, KUP, PBB-P5L, PPh Orang Pribadi, PPh Potong/Pungut, PPh Badan, dan PPN.
+- **Peta soal ke butir.** Tiap soal dipetakan ke butir daun resmi lalu diperiksa pemeriksa kedua. Dari 2.031 soal Tingkat B di luar Etika, 102 berada di luar daftar butir resmi. Dari 140 butir daun Tingkat B, 0 belum punya soal dan 5 punya kurang dari 4 soal. Seratus soal try out Tingkat B seluruhnya jatuh di dalam daftar resmi.
+- **Soal baru.** 970 soal baru (jumlah soal menjadi 2.464): 844 soal pengganti untuk soal yang sudah ada, termasuk 94 pengganti soal try out, dan 126 soal untuk butir materi yang soalnya tipis. Per kelompok: PPh Orang Pribadi 59, KUP, PPSP, PP 91, PPh Potong/Pungut 173, PPN 237, Bea Meterai 85, PPh Badan 128, Akuntansi Perpajakan 97, PBB-P5L 100.
+- **Cara soal baru dibuat.** Penulis menulis soal dengan kutipan naskah peraturan sebagai bukti, pengerja kedua menjawab tanpa melihat kunci, lalu pemeriksa menilai tiap soal: terima, perbaiki, atau tolak. Hanya soal yang lolos yang masuk. Soal pengganti menguji hal yang sama dengan soal aslinya memakai kasus dan angka lain, dan kunci jawabannya disebar merata di empat huruf.
+- **Perbaikan soal lama dari catatan penulis soal baru.** Penulis dan pemeriksa soal baru membaca ulang naskah peraturan untuk tiap soal sumber. Catatan mereka ditindaklanjuti dalam empat putaran, dan tiap perbaikan diuji pemeriksa kedua. Soal try out tidak berubah stem, opsi, maupun kuncinya.
+- **Kunci yang berubah (3 soal).** A4-104 (B menjadi C; konsinyasi: Pasal 1A ayat (1) huruf g UU PPN sudah dihapus, dan menurut Pasal 24 ayat (1) PP 44/2022 penyerahan bagi consignor terjadi saat piutang atau penghasilan diakui atau faktur penjualan terbit, bukan saat barang dititipkan). B7-080 (C menjadi D; konsinyasi, dasar yang sama dengan A4-104). B8-077 (B menjadi D; areal kawasan perhutanan yang dimanfaatkan sepenuhnya secara sah oleh pihak lain tidak dikenakan PBB Sektor Perhutanan (Pasal 4 ayat (5) PMK 186/PMK.03/2019)).
+- **Rumusan yang diperjelas tanpa mengubah kunci.** Stem: A1-084, A1-085, A1-096, A2-049, A2-050, A2-051, A2-095, A3-003, A3-075, A5-062, A5-067, B6-052, B6-110, B7-088 dan B8-001. Opsi: A2-076, B6-094 dan B8-002. Isinya antara lain: bingkisan hari raya (hanya Idulfitri, Natal, Nyepi, Waisak, dan Imlek yang termasuk bingkisan hari besar keagamaan, dengan syarat diterima seluruh pegawai), penyanderaan menurut Pasal 6 ayat (10) PMK 61/2023, soal baris SPT yang memakai formulir lama untuk Tahun Pajak 2025 ke atas, pihak yang membayar bea meterai menurut Pasal 9 ayat (6) UU 10/2020, dan pilihan jawaban tanggal yang berselisih satu hari.
+- **Tanda perlu cek.** B6-052 dan B7-088 diberi tanda ◐ karena naskah pendukungnya belum ada di pustaka naskah. Jumlah soal bertanda: 59 di modul Tingkat B dan Etika, 8 di modul Tingkat C.
+- **Rujukan yang diperbarui.** Huruf Pasal 4A ayat (3) UU PPN dan Pasal 13 ayat (3) UU KUP, kutipan pasal di modul PPN yang diganti salinan persis naskah, rujukan KMK 624/KMK.04/1994 dan KMK 282/KMK.04/1997 yang sudah dicabut PMK 81/2024, serta sisa lebih badan sosial dan keagamaan (Pasal 4 ayat (3) huruf p UU PPh dan Pasal 16 PP 55/2022).
+<!-- isi-950:selesai -->
+
 ## Isi saat ini (status 9 November 2026, v7.8)
 
 | | Jumlah |
@@ -375,6 +400,7 @@ js/views-home.js      onboarding, Hari Ini, runner sesi, Bukti Sesi
 js/views-belajar.js   peta materi, kelompok, topik, latih, ulang, studi kasus, strategi
 js/views-simulasi.js  simulasi CAT, hasil, ulas
 js/views-alat.js      kalkulator, rencana, kemajuan, referensi, info ujian, pengaturan, tutor, cari
+js/views-bank.js      halaman Bank soal (#bank, v9.5)
 js/app.js             shell, navigasi, pintasan, layar masuk tim, boot
 js/akses.js           gerbang akses tim: konfigurasi sandi (hash) + SHA-256 cadangan
 js/tim.js             dasbor tim: ringkasan, kirim ke server tim (api/*) atau db, jalur langsung (room), kode hasil
@@ -382,6 +408,7 @@ js/views-tim.js       Dasbor tim (#tim, #tim/<id>), mode Langsung, CSV, jawaban 
 js/kalkulator.js      mesin 19 kalkulator (murni; diuji di test/)
 js/data/ref.js        data referensi (ujian, peraturan, KMK bunga, glosarium, angka hari ini, perubahan)
 js/data/mu-<KODE>.js  modul konten per kelompok materi (topik, soal, kartu, kasus, tips)
+js/data/peta-butir.js peta soal ke butir cakupan materi resmi (v9.5)
 docs/                 SPESIFIKASI.md (spesifikasi final), KURIKULUM.md, SKEMA-*.md, riset & desain
 tools/                validate-module.js, shot.js (uji browser), build-artifact.js, akses-sandi.js (ganti sandi tim)
 test/                 kalkulator.test.js (node --test test/)

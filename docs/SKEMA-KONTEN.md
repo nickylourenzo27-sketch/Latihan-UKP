@@ -96,3 +96,37 @@ UKP.register({
 - `kutipan` (string, opsional) pada soal: kutipan/parafrase setia 1–4 kalimat pasal yang relevan, ditampilkan sebagai kotak kutipan sebelum stem.
 - `laporanUjian` (string[], opsional) pada soal: kode laporan peserta yang butirnya diarahkan soal ini, format `"<Tingkat>-<YYYY>-<MM>"`, mis. `["C-2026-10"]` atau `["B-2026-10", "C-2026-10"]`. Kode yang dipakai: `"B-2026-10"` (laporan UKP Tingkat B, Oktober 2026) dan `"C-2026-10"` (laporan peserta lulus UKP Tingkat C, 28 Oktober 2026); butirnya di `docs/PENGALAMAN-UJIAN.md`. Dipakai Latih › "Butir laporan peserta" (Semua / Tingkat B / Tingkat C) dan tombol "Latih butir laporan" di Info Ujian; bila belum ada soal bertanda untuk suatu tingkat, Latih memakai saringan gaya UKP nyata. Hanya tandai soal yang benar-benar menguji butir laporan itu; field ini tidak mengubah `tingkat` soal. Validator: harus array string tidak kosong dan tiap kode cocok pola `^[ABC]-\d{4}-(0[1-9]|1[0-2])$` (galat bila tidak); kode ganda diberi peringatan.
 - Target soal per modul: ≥ 40 (A5 dan E ≥ 24); ≥ 50% bergaya kasus praktik; ≥ 2 vignette; ≥ 3 soal berkutipan.
+
+## Soal pengganti (v9.5.0)
+Setiap soal yang sudah dibahas, dilatih bersama, atau diujikan sebaiknya punya soal baru yang menguji hal yang sama dengan data lain. Soal baru itu disebut **soal pengganti** dan ditulis di modul yang sama dengan dua field opsional:
+- `kembaranDari` (string, opsional): id soal asli yang digantikan, mis. `"A1-034"`. Aturan: id itu ada di **modul yang sama**, bukan id soal itu sendiri, dan soal yang dirujuk **tidak** punya `kembaranDari` (akar selalu soal asli; jangan merantai pengganti ke pengganti). Satu soal asli boleh punya lebih dari satu pengganti. Soal pengganti memakai id baru dengan pola biasa (`"A1-201"`), punya semua field wajib soal, dan sebaiknya bertopik sama dengan soal aslinya.
+- `sejak` (string, opsional): versi aplikasi saat soal masuk, pola `^\d+\.\d+\.\d+$`, mis. `"9.5.0"`. Boleh dipakai pada soal apa pun, tidak hanya soal pengganti.
+
+Istilah: **keluarga** = satu soal asli beserta semua penggantinya; **akar** keluarga = id soal asli. Aplikasi menyusun sesi dengan paling banyak satu soal per keluarga dan mendahulukan keluarga yang belum dipakai atau soal pengganti yang belum dipakai (`UKP.belajar.urutBank`, `UKP.konten.akar/keluarga/penggantiDari`). Di antarmuka pakai istilah "soal pengganti".
+
+Validator (`node tools/validate-module.js`) memberi galat bila `kembaranDari` bukan string, menunjuk dirinya sendiri, menunjuk soal di modul lain, menunjuk id yang tidak ada, atau menunjuk soal yang juga soal pengganti; dan bila `sejak` tidak cocok pola.
+
+```js
+{ id: "A1-201", kembaranDari: "A1-034", sejak: "9.5.0", topik: "A1.4", tingkat: ["A", "B", "C"], /* field soal lain seperti biasa */ }
+```
+
+## Peta butir cakupan — `js/data/peta-butir.js` (v9.5.0)
+Menghubungkan tiap soal dengan butir **daun** cakupan materi resmi (`js/data/cakupan.js`, butir tanpa `anak`). Skrip klasik, dimuat di `index.html` setelah `js/data/cakupan.js` dan terdaftar di `sw.js`:
+
+```js
+(function () {
+  'use strict';
+  var P = {
+    versi: 1,
+    peta: { "A1-001": ["A.3.1", "B.5.3"] },   // id soal → ID butir DAUN di js/data/cakupan.js (boleh lintas tingkat)
+    luar: { "E-001": "alasan singkat" }        // soal di luar cakupan resmi → alasan
+  };
+  if (typeof UKP !== 'undefined') UKP.petaButir = P;
+  if (typeof module !== 'undefined' && module.exports) module.exports = P;
+})();
+```
+
+- `peta`: kunci = id soal yang ada di `js/data/mu-*.js`; nilai = larik ID butir daun. Satu soal boleh dipetakan ke beberapa butir di tingkat berbeda.
+- `luar`: soal yang sengaja tidak dipetakan karena di luar cakupan resmi, dengan alasan singkat. Satu soal tidak muncul di `peta` dan `luar` sekaligus.
+- Berkas boleh kosong (`peta: {}`, `luar: {}`). Aplikasi tetap berjalan bila peta kosong, bila soal tidak ada di peta, dan bila ID butir tidak ada di cakupan (diabaikan diam-diam). Pembacaan lewat `UKP.konten.butirSoal(id)` dan `UKP.konten.soalButir(idButir, tingkat)`.
+- Dipakai di antarmuka (v9.5.0): halaman Bank soal (`#bank`, lipatan "Per butir materi resmi"), saringan `butir=<ID butir>` di Latih (pool = soal yang dipetakan ke butir itu untuk tingkat butirnya), dan jumlah soal serta tautan Latih per butir di halaman Cakupan materi. Soal yang masuk di versi berjalan (`sejak` sama dengan `UKP.versi`) dihitung di Bank soal sebagai "N soal baru di versi ini".

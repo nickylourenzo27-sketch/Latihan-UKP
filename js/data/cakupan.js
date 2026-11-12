@@ -1,8 +1,10 @@
-/* Cakupan materi resmi Uji Kompetensi Perpajakan (USKP/UKP) — dokumen "CAKUPAN MATERI UJI KOMPETENSI PERPAJAKAN"
-   yang dibagikan peserta di Threads (@mdutaa, Okt 2026) sebagai materi resmi KLC/BPPK. Transkripsi setia per tingkat →
-   mata ujian → subjek → butir bertingkat (penomoran tercetak di field nomor), dipetakan ke ID topik aplikasi dengan
+/* Cakupan materi resmi Uji Kompetensi Perpajakan (USKP/UKP): dokumen "CAKUPAN MATERI UJI KOMPETENSI PERPAJAKAN"
+   (materi resmi KLC/BPPK). Sejak v9.5.0 transkripsi mengikuti salinan PDF 13 halaman yang lebih bersih (November 2026);
+   salinan pertama (Oktober 2026) berasal dari gambar yang dibagikan peserta di Threads. Transkripsi setia per tingkat,
+   mata ujian, subjek, dan butir bertingkat (penomoran tercetak di field nomor), dipetakan ke ID topik aplikasi dengan
    nilai cakupan hasil pemeriksaan isi modul (penuh = ada materi dan soal; sebagian = hanya disinggung; belum = tidak ada).
    Pada butir induk, topik = gabungan topik anak dan cakupan = rangkuman anak. Kejanggalan cetak: lihat catatanDokumen.
+   Peta soal ke butir daun ada di js/data/peta-butir.js.
    Skrip klasik (tanpa build): menyetel UKP.cakupanResmi di peramban dan module.exports di Node. */
 (function () {
   'use strict';
@@ -10,17 +12,16 @@
     sumber: {
       judul: "CAKUPAN MATERI UJI KOMPETENSI PERPAJAKAN",
       penerbit: "BPPK / KLC Kemenkeu",
-      dibagikan: "Threads @mdutaa, Okt 2026",
+      dibagikan: "Salinan PDF 13 halaman dari pemimpin tim, November 2026; salinan pertama dari Threads @mdutaa, Oktober 2026",
       kutipan: "materi resmi yang di-share KLC … yang keluar di soal gak melebar dari situ",
-      catatan: "Dokumen 13 halaman (tabel No | Mata Ujian | Subjek | Materi) yang dibagikan peserta sebagai materi resmi dari KLC/BPPK; halaman yang diterima tidak memuat kop, tanggal, atau nomor dokumen, sehingga status resminya bersandar pada keterangan peserta. Transkripsi setia kata demi kata (ejaan asli dipertahankan, mis. \"Kontruksi\", \"Cooperation\"); nilai cakupan adalah penilaian aplikasi per 30 Oktober 2026 berdasarkan pemeriksaan isi modul (ringkasan, poin kunci, soal, kartu), bukan bagian dokumen."
+      catatan: "Dokumen 13 halaman (tabel No | Mata Ujian | Subjek | Materi) yang beredar sebagai materi resmi dari KLC/BPPK; salinan yang diterima tidak memuat kop, tanggal, atau nomor dokumen, sehingga status resminya bersandar pada keterangan peserta. Sejak v9.5.0 transkripsi dicocokkan kata demi kata dengan salinan PDF yang lebih bersih: Tingkat B kini memuat 8 butir PBB-P5L pada baris 4 dan PPh Badan pada baris 7, dan satu kata di Tingkat A dibetulkan. Ejaan asli dipertahankan (mis. \"Kontruksi\", \"Cooperation\"). Nilai cakupan adalah penilaian aplikasi berdasarkan pemeriksaan isi modul (ringkasan, poin kunci, soal, kartu), bukan bagian dokumen."
     },
     catatanDokumen: [
-      "Tingkat B: baris \"4 PBB-P5L\" berisi 17 butir materi PPh Badan (\"Yang menjadi Subjek Pajak DN dan Subjek Pajak LN\" s.d. \"SPT Tahunan PPh Badan\"). Butir itu dicatat sebagai mata ujian PPh Badan (no \"4\", namaTercetak \"PBB-P5L\"); Tingkat B tidak memuat baris berlabel \"PPh Badan\".",
-      "Tingkat B: butir PBB-P5L tidak tercetak. Mata ujian PBB-P5L Tingkat B memakai 3 butir PBB-P5L dari Tingkat C (no null, ID \"B.PBB.n\", sumberButir \"C.5\").",
-      "Tingkat B: nomor mata ujian melompat dari 6 (PPh Pot/Put) ke 8 (PPN dan SPT PPN); field no mempertahankan nomor tercetak, field urut 1–8 untuk tampilan.",
+      "Salinan pertama (gambar, Oktober 2026) menaruh 17 butir PPh Badan pada baris \"4 PBB-P5L\" Tingkat B, tidak memuat butir PBB-P5L Tingkat B, dan melompat dari nomor 6 ke 8. Salinan PDF (November 2026) mencetak Tingkat B bernomor 1 sampai 8: baris 4 PBB-P5L dengan 8 butir (ID \"B.4.1\" sampai \"B.4.8\") dan baris 7 PPh Badan dengan 17 butir (ID \"B.7.1\" sampai \"B.7.17\"). Transkripsi mengikuti salinan PDF; ID lama \"B.PBB.n\" dan ID PPh Badan \"B.4.n\" tidak dipakai lagi.",
+      "Tingkat A, PPh OP butir 5: salinan PDF mencetak \"Penghasilan yang Dikenakan PPh Final\"; salinan pertama terbaca \"Pajak Final\".",
       "Tingkat B: subjek Orang Pribadi pada PPh Pot/Put tercetak sebagai lanjutan baris 6 di halaman berikutnya tanpa nomor/nama mata ujian baru.",
       "Tingkat B, PPN subjek Badan Dalam Negeri: sub-butir 3.a dan 3.d tercetak bernomor 4), 5), 6); penomoran asli dipertahankan (ID mis. \"B.8.3.a.4\").",
-      "Tingkat C, PPN subjek Badan Dalam Negeri: sub-butir Objek PPN tercetak rata a–l, termasuk judul \"Penyerahan di dalam Daerah Pabean atas:\" (a) dan \"Ekspor\" (g) sebagai butir sendiri; dipertahankan apa adanya sehingga dua judul itu ikut terhitung sebagai butir daun.",
+      "Tingkat C, PPN subjek Badan Dalam Negeri: sub-butir Objek PPN tercetak rata a sampai l, termasuk judul \"Penyerahan di dalam Daerah Pabean atas:\" (a) dan \"Ekspor\" (g) sebagai butir sendiri; dipertahankan apa adanya sehingga dua judul itu ikut terhitung sebagai butir daun.",
       "Tingkat C, Akuntansi Perpajakan subjek Transaksi Internasional: butir 9 mengulang butir 4 (hanya beda koma); keduanya dipertahankan.",
       "Tanda kutip sisa (\") di akhir beberapa butir (Tingkat A 4.4.d dan 4.7.g, Tingkat B PPh Pot/Put 7.g, Tingkat C Pajak Internasional 7.b dan PPN subjek Orang Pribadi 1.f) dihapus dari teks; tercatat di transkripsi.",
       "Ejaan tercetak dipertahankan: \"Kontruksi\" (konstruksi), \"Controlled Foreign Cooperation Rules\" (maksudnya Corporation/CFC), \"Biaya Dibayar di Muka\" (B) vs \"Biaya Dibayar Dimuka\" (C), \"Perhitungan\" vs \"Penghitungan\". Spasi ganda pada \"berdasarkan  Permintaan\" dirapikan.",
@@ -69,7 +70,7 @@
                 { id: "A.3.2", nomor: "2", teks: "Saat dimulai dan berakhirnya Kewajiban Pajak Subjektif Orang Pribadi termasuk WBT (Warisan Belum Terbagi)", topik: ["A1.1"], cakupan: "penuh", catatan: "", anak: [] },
                 { id: "A.3.3", nomor: "3", teks: "Pihak yang Dikecualikan Subjek Pajak Orang Pribadi (Pasal 3 UU PPh)", topik: ["A1.1"], cakupan: "penuh", catatan: "", anak: [] },
                 { id: "A.3.4", nomor: "4", teks: "Objek Pajak Orang Pribadi dan Penghasilan yang Dikenakan Pajak", topik: ["A1.2"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "A.3.5", nomor: "5", teks: "Penghasilan yang Dikenakan Pajak Final termasuk PPh Final bagi Wajib Pajak yang Memiliki Peredaran Bruto Tertentu", topik: ["A1.2","A1.10"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "A.3.5", nomor: "5", teks: "Penghasilan yang Dikenakan PPh Final termasuk PPh Final bagi Wajib Pajak yang Memiliki Peredaran Bruto Tertentu", topik: ["A1.2","A1.10"], cakupan: "penuh", catatan: "", anak: [] },
                 { id: "A.3.6", nomor: "6", teks: "Penghasilan Orang Pribadi yang Dikecualikan dari Objek Pajak", topik: ["A1.2"], cakupan: "penuh", catatan: "", anak: [] },
                 { id: "A.3.7", nomor: "7", teks: "Biaya-biaya yang Boleh dan Tidak Boleh Dikurangkan", topik: ["A1.3"], cakupan: "penuh", catatan: "", anak: [] },
                 { id: "A.3.8", nomor: "8", teks: "Norma Penghitungan Penghasilan Neto", topik: ["A1.4"], cakupan: "penuh", catatan: "", anak: [] },
@@ -241,41 +242,22 @@
             ]
           },
           {
-            no: null, urut: 4, nama: "PBB-P5L", namaNormal: "PBB-P5L", kelompok: "B8", sumberButir: "C.5", catatan: "Label \"4 PBB-P5L\" tercetak di Tingkat B, tetapi butir di bawahnya adalah materi PPh Badan; butir tidak tercetak di bagian B; diambil dari daftar Tingkat C.",
+            no: "4", urut: 4, nama: "PBB-P5L", namaNormal: "PBB-P5L", kelompok: "B8",
             subjek: [
               { nama: "Badan Dalam Negeri", butir: [
-                { id: "B.PBB.1", nomor: "1", teks: "Subjek dan Objek Pajak yang dikecualikan/tidak dikenakan PBB", topik: ["B8.1","B8.2"], cakupan: "penuh", catatan: "butir tidak tercetak di bagian B; diambil dari daftar Tingkat C", anak: [] },
-                { id: "B.PBB.2", nomor: "2", teks: "Pengenaan PBB (NJOPTKP, NJKP, Tarif, PBB Terutang)", topik: ["B8.3","B8.4"], cakupan: "penuh", catatan: "butir tidak tercetak di bagian B; diambil dari daftar Tingkat C", anak: [] },
-                { id: "B.PBB.3", nomor: "3", teks: "Upaya Hukum non keberatan (Pembetulan, Pengurangan PBB, Pengurangan Denda Administrasi PBB, Pembatalan SPPT, SKP PBB, dan STP PBB yang tidak benar)", topik: ["B8.6","B8.5"], cakupan: "penuh", catatan: "butir tidak tercetak di bagian B; diambil dari daftar Tingkat C. B8.6 (judul diperluas) kini memuat pembetulan SPPT/SKP/STP, pengurangan PBB Pasal 19, pengurangan denda administratif PBB, dan pengurangan/pembatalan SPPT, SKP, STP PBB yang tidak benar (soal B8-104–B8-108, sebagian ◐; kartu KT-B8-65–68).", anak: [] }
+                { id: "B.4.1", nomor: "1", teks: "Subjek Pajak, Wajib Pajak, dan klasifikasi objek pajak", topik: ["B8.1","B8.4"], cakupan: "penuh", catatan: "B8.1: subjek pajak dan penetapan wajib pajak (Pasal 4 UU PBB), sektor PBB-P5L; B8.4: klasifikasi areal objek per sektor menurut PMK 186/2019 s.t.d.d. PMK 234/2022 (soal B8-003, B8-072).", anak: [] },
+                { id: "B.4.2", nomor: "2", teks: "Subjek dan Objek Pajak yang dikecualikan/tidak dikenakan PBB", topik: ["B8.1","B8.2"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.4.3", nomor: "3", teks: "Pendaftaran, Pelaporan, dan Pendataan Objek Pajak", topik: ["B8.1"], cakupan: "sebagian", catatan: "Pendaftaran dan pelaporan dengan SPOP/LSPOP (Pasal 9, batas 30 hari) dibahas di B8.1 (soal B8-072); pendataan objek oleh DJP (tata cara pendataan, identifikasi dan verifikasi lapangan) belum punya ringkasan maupun soal tersendiri.", anak: [] },
+                { id: "B.4.4", nomor: "4", teks: "Penetapan NJOP (Penilaian, Tahun Pajak dan saat terutang pajak)", topik: ["B8.3","B8.4","B8.1"], cakupan: "penuh", catatan: "B8.3: NJOP ditetapkan tiap tiga tahun (Pasal 6); B8.4: penilaian NJOP bumi dan bangunan per sektor; B8.1: keadaan objek 1 Januari tahun pajak sebagai saat yang menentukan pajak terutang (soal B8-003).", anak: [] },
+                { id: "B.4.5", nomor: "5", teks: "Pengenaan PBB (NJOPTKP, NJKP, Tarif, PBB Terutang)", topik: ["B8.3","B8.4"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.4.6", nomor: "6", teks: "Ketetapan dan Penagihan Pajak (SPPT, SKP PBB, STP PBB)", topik: ["B8.5","B8.7"], cakupan: "penuh", catatan: "B8.5: SPPT, SKP PBB (denda 25%), STP PBB (denda 2% sebulan) dan jatuh temponya; B8.7: penagihan dengan Surat Teguran, Surat Paksa, penyitaan, dan lelang.", anak: [] },
+                { id: "B.4.7", nomor: "7", teks: "Upaya Hukum PBB (Keberatan, Gugatan, Banding, Peninjauan Kembali)", topik: ["B8.6","B8.7"], cakupan: "sebagian", catatan: "Keberatan (Pasal 15 dan 16 UU PBB) dan banding ke Pengadilan Pajak dibahas di B8.6; gugatan atas pelaksanaan penagihan (14 hari, Pasal 40 ayat (2) UU 14/2002) hanya ada di tabel dasar hukum modul, kartu KT-B8-61 (B8.7), kasus K-B8-02 dan K-B8-06, serta soal B8-039 dan B8-096, tanpa ringkasan topik tersendiri; Peninjauan Kembali ke Mahkamah Agung belum ada sama sekali.", anak: [] },
+                { id: "B.4.8", nomor: "8", teks: "Upaya Hukum non keberatan (Pembetulan, Pengurangan PBB, Pengurangan Denda Administrasi PBB, Pembatalan SPPT, SKP PBB, dan STP PBB yang tidak benar)", topik: ["B8.6","B8.5"], cakupan: "penuh", catatan: "B8.6 (judul diperluas) kini memuat pembetulan SPPT/SKP/STP, pengurangan PBB Pasal 19, pengurangan denda administratif PBB, dan pengurangan/pembatalan SPPT, SKP, STP PBB yang tidak benar (soal B8-104–B8-108, sebagian ◐; kartu KT-B8-65–68).", anak: [] }
               ] }
             ]
           },
           {
-            no: "4", urut: 5, nama: "PPh Badan", namaNormal: "PPh Badan", kelompok: "B6", namaTercetak: "PBB-P5L", catatan: "Materi ini tercetak di baris \"4 PBB-P5L\" Tingkat B; isinya materi PPh Badan sehingga dicatat sebagai mata ujian PPh Badan. Tingkat B tidak memuat baris berlabel \"PPh Badan\".",
-            subjek: [
-              { nama: "Badan Dalam Negeri", butir: [
-                { id: "B.4.1", nomor: "1", teks: "Yang menjadi Subjek Pajak DN dan Subjek Pajak LN", topik: ["B6.1","C9.1"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.2", nomor: "2", teks: "Saat dimulai dan berakhirnya Kewajiban Pajak Subjektif Badan", topik: ["B6.1"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.3", nomor: "3", teks: "Pihak yang Dikecualikan Subjek Pajak Badan", topik: ["B6.1"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.4", nomor: "4", teks: "Objek Pajak Badan, Penghasilan yang Dikenakan Pajak, dan Penghasilan Objek Pajak Bentuk Usaha Tetap", topik: ["B6.2","C9.1"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.5", nomor: "5", teks: "Penghasilan yang Dikenakan PPh Final Badan termasuk PPh Final bagi Wajib Pajak yang Memiliki Peredaran Bruto Tertentu", topik: ["B6.2","B6.7"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.6", nomor: "6", teks: "Penghasilan yang Dikecualikan dari Objek Pajak Badan", topik: ["B6.2"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.7", nomor: "7", teks: "Biaya-biaya yang Boleh dan Tidak Boleh Dikurangkan Badan", topik: ["B6.3"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.8", nomor: "8", teks: "Harga Perolehan dan Pengalihan Harta, Penilaian dan Pemakaian Persediaan", topik: ["B6.4","B7.2","B7.3","B7.8"], cakupan: "penuh", catatan: "Persediaan (B7.2), pengalihan harta lewat penjualan (B6.4/B7.3), dan restrukturisasi (B7.8); Pasal 10 lengkap (hubungan istimewa, tukar-menukar, restrukturisasi, hibah, inbreng, persediaan) ditambahkan di B6.4 (soal B6-104–B6-106; kartu KT-B6-65–67).", anak: [] },
-                { id: "B.4.9", nomor: "9", teks: "Hubungan Istimewa", topik: ["B6.10"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.10", nomor: "10", teks: "Penyusutan dan Amortisasi Fiskal", topik: ["B6.4"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.11", nomor: "11", teks: "Kompensasi Kerugian", topik: ["B6.5"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.12", nomor: "12", teks: "Perhitungan PTKP, Tarif, dan PPh Terutang Badan", topik: ["B6.7"], cakupan: "penuh", catatan: "PTKP tidak berlaku bagi wajib pajak badan; penilaian atas tarif dan PPh terutang.", anak: [] },
-                { id: "B.4.13", nomor: "13", teks: "Penghitungan Penghasilan Kena Pajak dan Penyesuaian Fiskal Badan", topik: ["B6.3","B7.6"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.14", nomor: "14", teks: "Pelunasan Pajak Tahun Berjalan dan Kredit Pajak Badan", topik: ["B6.6"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.15", nomor: "15", teks: "Penghitungan Pajak Akhir Tahun dan Angsuran PPh Pasal 25 Badan", topik: ["B6.9","B6.6"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.16", nomor: "16", teks: "Fasilitas selain Pasal 31 E (non-PMA dan BUT)", topik: ["B6.8"], cakupan: "penuh", catatan: "", anak: [] },
-                { id: "B.4.17", nomor: "17", teks: "SPT Tahunan PPh Badan", topik: ["B6.11"], cakupan: "penuh", catatan: "", anak: [] }
-              ] }
-            ]
-          },
-          {
-            no: "5", urut: 6, nama: "PPh OP", namaNormal: "PPh Orang Pribadi", kelompok: "A1",
+            no: "5", urut: 5, nama: "PPh OP", namaNormal: "PPh Orang Pribadi", kelompok: "A1",
             subjek: [
               { nama: "Orang Pribadi", butir: [
                 { id: "B.5.1", nomor: "1", teks: "Norma Penghitungan Penghasilan Neto", topik: ["A1.4"], cakupan: "penuh", catatan: "", anak: [] },
@@ -285,7 +267,7 @@
             ]
           },
           {
-            no: "6", urut: 7, nama: "PPh Pot/Put", namaNormal: "PPh Potong/Pungut", kelompok: "A3", catatan: "Setelah baris 6 nomor mata ujian tercetak melompat ke 8; tidak ada baris bernomor 7.",
+            no: "6", urut: 6, nama: "PPh Pot/Put", namaNormal: "PPh Potong/Pungut", kelompok: "A3", catatan: "Subjek Orang Pribadi tercetak sebagai lanjutan baris 6 di halaman berikutnya, tanpa nomor dan nama mata ujian baru.",
             subjek: [
               { nama: "Badan Dalam Negeri", butir: [
                 { id: "B.6.1", nomor: "1", teks: "Pemotong PPh 21 dan pengecualiannya", topik: ["A3.1"], cakupan: "penuh", catatan: "", anak: [] },
@@ -337,6 +319,30 @@
                 ] },
                 { id: "B.6.22", nomor: "2", teks: "Hak dan kewajiban penerima penghasilan yang dipotong pajak", topik: ["A3.9","A3.2"], cakupan: "penuh", catatan: "A3.9: hak penerima (bukti potong, kredit pajak, pengembalian lebih potong, keberatan atas pemotongan pihak ketiga) dan kewajibannya (NIK/NPWP, status PTKP, lapor SPT Tahunan) (soal A3-122; kartu KT-A3-77).", anak: [] },
                 { id: "B.6.23", nomor: "3", teks: "Tata cara pemotongan, penyetoran dan pelaporan PPh Pasal 4 Ayat (2)", topik: ["A3.7","A3.9"], cakupan: "penuh", catatan: "", anak: [] }
+              ] }
+            ]
+          },
+          {
+            no: "7", urut: 7, nama: "PPh Badan", namaNormal: "PPh Badan", kelompok: "B6",
+            subjek: [
+              { nama: "Badan Dalam Negeri", butir: [
+                { id: "B.7.1", nomor: "1", teks: "Yang menjadi Subjek Pajak DN dan Subjek Pajak LN", topik: ["B6.1","C9.1"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.2", nomor: "2", teks: "Saat dimulai dan berakhirnya Kewajiban Pajak Subjektif Badan", topik: ["B6.1"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.3", nomor: "3", teks: "Pihak yang Dikecualikan Subjek Pajak Badan", topik: ["B6.1"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.4", nomor: "4", teks: "Objek Pajak Badan, Penghasilan yang Dikenakan Pajak, dan Penghasilan Objek Pajak Bentuk Usaha Tetap", topik: ["B6.2","C9.1"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.5", nomor: "5", teks: "Penghasilan yang Dikenakan PPh Final Badan termasuk PPh Final bagi Wajib Pajak yang Memiliki Peredaran Bruto Tertentu", topik: ["B6.2","B6.7"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.6", nomor: "6", teks: "Penghasilan yang Dikecualikan dari Objek Pajak Badan", topik: ["B6.2"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.7", nomor: "7", teks: "Biaya-biaya yang Boleh dan Tidak Boleh Dikurangkan Badan", topik: ["B6.3"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.8", nomor: "8", teks: "Harga Perolehan dan Pengalihan Harta, Penilaian dan Pemakaian Persediaan", topik: ["B6.4","B7.2","B7.3","B7.8"], cakupan: "penuh", catatan: "Persediaan (B7.2), pengalihan harta lewat penjualan (B6.4/B7.3), dan restrukturisasi (B7.8); Pasal 10 lengkap (hubungan istimewa, tukar-menukar, restrukturisasi, hibah, inbreng, persediaan) ditambahkan di B6.4 (soal B6-104–B6-106; kartu KT-B6-65–67).", anak: [] },
+                { id: "B.7.9", nomor: "9", teks: "Hubungan Istimewa", topik: ["B6.10"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.10", nomor: "10", teks: "Penyusutan dan Amortisasi Fiskal", topik: ["B6.4"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.11", nomor: "11", teks: "Kompensasi Kerugian", topik: ["B6.5"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.12", nomor: "12", teks: "Perhitungan PTKP, Tarif, dan PPh Terutang Badan", topik: ["B6.7"], cakupan: "penuh", catatan: "PTKP tidak berlaku bagi wajib pajak badan; penilaian atas tarif dan PPh terutang.", anak: [] },
+                { id: "B.7.13", nomor: "13", teks: "Penghitungan Penghasilan Kena Pajak dan Penyesuaian Fiskal Badan", topik: ["B6.3","B7.6"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.14", nomor: "14", teks: "Pelunasan Pajak Tahun Berjalan dan Kredit Pajak Badan", topik: ["B6.6"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.15", nomor: "15", teks: "Penghitungan Pajak Akhir Tahun dan Angsuran PPh Pasal 25 Badan", topik: ["B6.9","B6.6"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.16", nomor: "16", teks: "Fasilitas selain Pasal 31 E (non-PMA dan BUT)", topik: ["B6.8"], cakupan: "penuh", catatan: "", anak: [] },
+                { id: "B.7.17", nomor: "17", teks: "SPT Tahunan PPh Badan", topik: ["B6.11"], cakupan: "penuh", catatan: "", anak: [] }
               ] }
             ]
           },
@@ -577,7 +583,7 @@
             ]
           },
           {
-            no: "8", urut: 8, nama: "PPh Pot/Put", namaNormal: "PPh Potong/Pungut", kelompok: "A3", kelompokLain: ["C9","C10"],
+            no: "8", urut: 8, nama: "PPh Pot/Put", namaNormal: "PPh Potong/Pungut", kelompok: "A3", kelompokLain: ["C9", "C10"],
             subjek: [
               { nama: "Badan Dalam Negeri", butir: [
                 { id: "C.8.1", nomor: "1", teks: "Penghasilan yang menjadi objek pemotongan PPh 21 dan pengecualiannya", topik: ["A3.1"], cakupan: "penuh", catatan: "", anak: [] },
