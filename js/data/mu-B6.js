@@ -362,7 +362,7 @@ UKP.register({
         "Penghasilan final dan bukan objek tidak dapat dipakai untuk menyerap kerugian, karena sudah dikeluarkan dari penghasilan neto fiskal.",
         "Kerugian usaha di luar negeri tidak dapat dikompensasikan dengan penghasilan dalam negeri maupun penghasilan dari negara lain (PMK 192/PMK.03/2018).",
         "Fasilitas tax allowance (PP 78/2019) memberikan kompensasi lebih lama dari 5 tahun tetapi paling lama 10 tahun; rincian tambahan tahun mengikuti kriteria lokasi, tenaga kerja, belanja litbang, dan bahan baku lokal.",
-        "Kerugian dilaporkan dan dilacak per tahun asal pada lampiran kompensasi kerugian SPT 1771 (lampiran khusus 2A pada format lama)."
+        "Kerugian dilaporkan dan dilacak per tahun asal pada Lampiran 7 (Penghitungan Kompensasi Kerugian Fiskal) SPT Tahunan PPh Badan menurut PER-11/PJ/2025 mulai Tahun Pajak 2025; format 1771 lama (lampiran khusus 2A) hanya dipakai untuk SPT sampai Tahun Pajak 2024."
       ],
       poinKunci: [
         { label: "Jangka kompensasi umum", nilai: "5 tahun berturut-turut", dasar: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "1984-01-01" },
@@ -539,7 +539,7 @@ UKP.register({
       ],
       dasarHukum: [
         { pasal: "Pasal 31A UU PPh; PP 78/2019", catatan: "tax allowance" },
-        { pasal: "Pasal 18 ayat (5) UU 25/2007 (Penanaman Modal); PMK 130/PMK.010/2020 s.t.d.d. PMK 69/2024", catatan: "tax holiday" },
+        { pasal: "Pasal 18 ayat (3) huruf e dan ayat (4) UU 25/2007 s.t.d.t.d. UU 6/2023 (Penanaman Modal); PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29; PMK 130/PMK.010/2020 s.t.d.d. PMK 69/2024 Pasal 2", catatan: "tax holiday" },
         {
           pasal: "PP 94/2010 s.t.d.d. PP 45/2019 (pasal sisipan 29A–29C); PMK 128/PMK.010/2019; PMK 81/2024 (litbang; menggantikan PMK 153/PMK.010/2020)",
           catatan: "investment allowance padat karya, super deduction vokasi dan litbang"
@@ -599,7 +599,7 @@ UKP.register({
         ]
       },
       verifikasi: "◐",
-      peringatan: "PMK 215/PMK.03/2018 dan KEP-537/PJ/2000 sudah dicabut (PMK 81/2024 sejak 1 Januari 2025; PER-11/PJ/2025 sejak 22 Mei 2025). Butir Wajib Pajak tertentu di ringkasan mengikuti ulasan sumber sekunder atas PMK 81/2024 (antara lain IKPI, yang menyebut Pasal 227–229). Rumusan lama PMK 255/PMK.03/2008 (bank dan sewa guna usaha dengan hak opsi memakai laporan keuangan triwulanan terakhir yang disetahunkan) tidak berlaku lagi, dan sewa guna usaha dengan hak opsi tidak disebut dalam Pasal 25 ayat (7) UU PPh. Menurut ulasan itu angsuran bank dihitung dari laporan keuangan yang disampaikan kepada Otoritas Jasa Keuangan sejak awal tahun pajak sampai masa yang dilaporkan, sedangkan Wajib Pajak masuk bursa memakai laporan keuangan berkala. Ambang pengurangan 75% menurut pemberitaan DDTCNews dimuat ulang dalam PER-11/PJ/2025 (disebut Pasal 119 ayat (1)); rumus angsuran bagi Wajib Pajak yang berhak atas kompensasi kerugian (kartu KT-B6-60: penghasilan neto tahun lalu dikurangi sisa kerugian yang masih dapat dikompensasikan pada tahun berjalan; bila sisa itu habis, dasarnya neto penuh, bukan PPh terutang setelah kompensasi) mengikuti Pasal 25 ayat (6) huruf a UU PPh dan contoh Penjelasannya, tetapi nomor pasal rinciannya dalam PER-11/PJ/2025 belum dicek. Naskah PMK 81/2024 dan PER-11/PJ/2025 serta nomor pasalnya belum dibaca langsung."
+      peringatan: "Sudah dicocokkan dengan naskah: angsuran Wajib Pajak tertentu (PMK 81/2024 Pasal 226 sampai Pasal 237, mencabut PMK 215/PMK.03/2018), rumus kompensasi kerugian (PER-11/PJ/2025 Pasal 114 serta petunjuk Lampiran 6 dan 7 SPT PPh Badan: dasar angsuran dikurangi kompensasi untuk tahun pajak berjalan), syarat pengurangan 75% (PER-11/PJ/2025 Pasal 119 ayat (1)), dan batas setor tanggal 15 (PMK 81/2024 Pasal 94 ayat (2)). Belum dicocokkan: butir pembayaran PPh 25 di Coretax yang dianggap sebagai penyampaian SPT Masa."
     },
     {
       id: "B6.10",
@@ -611,7 +611,7 @@ UKP.register({
         "Hubungan istimewa (Pasal 18 ayat (4)) terjadi bila: (a) kepemilikan langsung atau tidak langsung paling rendah 25%, atau hubungan antara dua WP atau lebih yang sama-sama dimiliki paling rendah 25% oleh pihak yang sama; (b) penguasaan melalui manajemen atau teknologi walaupun tanpa kepemilikan, termasuk bila para pihak secara komersial atau finansial diketahui atau menyatakan diri berada dalam satu grup usaha yang sama (PP 55/2022 Pasal 33; PMK 172/2023 Pasal 2 ayat (5)); (c) hubungan keluarga sedarah atau semenda dalam garis lurus dan/atau ke samping satu derajat.",
         "Kepemilikan tidak langsung dihitung berantai: A memiliki 50% B dan B memiliki 50% C → A memiliki 25% C secara tidak langsung (berhubungan istimewa).",
         "DJP berwenang menentukan kembali penghasilan dan biaya transaksi afiliasi berdasarkan prinsip kewajaran dan kelaziman usaha (PKKU/arm's length) (Pasal 18 ayat (3)); selisihnya menjadi koreksi positif dan dapat diikuti penyesuaian sekunder (selisih diperlakukan sebagai dividen) menurut PMK 172/2023.",
-        "Dokumentasi penentuan harga transfer (Ikhtisar, Dokumen Induk, Dokumen Lokal; Laporan per Negara bagi grup besar) wajib menurut ambang PMK 172/2023, harus tersedia paling lama 4 bulan setelah akhir tahun pajak, dan ikhtisarnya dilampirkan pada SPT Tahunan.",
+        "Dokumentasi penentuan harga transfer wajib menurut ambang PMK 172/2023 (Pasal 16 ayat (3) dan (4)): Dokumen Induk dan Dokumen Lokal harus tersedia paling lama 4 bulan setelah akhir tahun pajak dan ikhtisarnya dilampirkan pada SPT Tahunan PPh Badan; Laporan per Negara bagi grup besar harus tersedia paling lama 12 bulan setelah akhir tahun pajak dan dilampirkan pada SPT Tahunan tahun pajak berikutnya.",
         "Transaksi afiliasi dan pernyataan dokumentasi dilaporkan pada lampiran transaksi hubungan istimewa SPT 1771 (lampiran khusus 3A/3A-1/3A-2 format lama); penyertaan modal dan utang-piutang dengan pemegang saham/afiliasi pada 1771-VI."
       ],
       poinKunci: [
@@ -647,7 +647,7 @@ UKP.register({
         langkah: [["60% × 50%", "30%"], ["Ambang Pasal 18 ayat (4) huruf a", "≥ 25% → berhubungan istimewa"]]
       },
       verifikasi: "◐",
-      peringatan: "Ambang kewajiban dokumentasi TP pada PMK 172/2023 (peredaran bruto Rp50 miliar; transaksi afiliasi barang berwujud Rp20 miliar, selain barang berwujud Rp5 miliar; afiliasi di negara bertarif lebih rendah) diambil dari pengetahuan peneliti dan satu sumber sekunder menyebut angka berbeda; cek teks PMK."
+      peringatan: "Ambang dokumentasi TP sudah dicocokkan dengan PMK 172/2023 Pasal 16 ayat (3) dan (4): peredaran bruto tahun sebelumnya lebih dari Rp50 miliar; transaksi afiliasi barang berwujud lebih dari Rp20 miliar atau selain barang berwujud masing-masing lebih dari Rp5 miliar; afiliasi di yurisdiksi bertarif lebih rendah; Laporan per Negara bila peredaran bruto konsolidasi paling sedikit Rp11 triliun. Rujukan PP 55/2022 Pasal 33 dan penyesuaian sekunder belum dicocokkan dengan naskah."
     },
     {
       id: "B6.11",
@@ -658,7 +658,7 @@ UKP.register({
       ringkasan: [
         "Batas penyampaian SPT Tahunan PPh Badan paling lama 4 bulan setelah akhir tahun pajak (30 April untuk tahun buku kalender; tahun buku Juli–Juni → 31 Oktober); dapat diperpanjang paling lama 2 bulan dengan pemberitahuan disertai penghitungan sementara dan bukti pelunasan (Pasal 3 ayat (3) huruf c dan ayat (4)–(5) UU KUP).",
         "Terlambat menyampaikan SPT Tahunan PPh Badan dikenai denda Rp1.000.000 (Pasal 7 ayat (1) UU KUP); kurang bayar yang dilunasi setelah batas waktu dikenai bunga Pasal 9 ayat (2b) (tarif acuan + 5% dibagi 12 per bulan, maks 24 bulan).",
-        "Peta formulir (format 1771 yang diajarkan): Induk (PKP, PPh terutang, kredit, PPh 29/28A, angsuran PPh 25 tahun berikutnya); I rekonsiliasi fiskal; II HPP dan biaya usaha; III kredit pajak dalam negeri (PPh 22, 23); IV PPh final dan penghasilan bukan objek; V pemegang saham dan pengurus/komisaris; VI penyertaan modal serta utang-piutang afiliasi; lampiran khusus 1A penyusutan/amortisasi, 2A kompensasi kerugian, 3A transaksi hubungan istimewa/dokumentasi TP, 4A fasilitas penanaman modal, 5A cabang, 6A PPh 26 ayat (4) BUT, 7A kredit PPh 24, 8A transkrip laporan keuangan.",
+        "Peta formulir (format 1771 yang diajarkan): Induk (PKP, PPh terutang, kredit, PPh 29/28A, angsuran PPh 25 tahun berikutnya); I rekonsiliasi fiskal; II HPP dan biaya usaha; III kredit pajak dalam negeri (PPh 22, 23); IV PPh final dan penghasilan bukan objek; V pemegang saham dan pengurus/komisaris; VI penyertaan modal serta utang-piutang afiliasi; lampiran khusus 1A penyusutan/amortisasi, 2A kompensasi kerugian, 3A transaksi hubungan istimewa/dokumentasi TP, 4A fasilitas penanaman modal, 5A cabang, 6A PPh 26 ayat (4) BUT, 7A kredit PPh 24, 8A transkrip laporan keuangan. Format ini hanya untuk Tahun Pajak sampai 2024 (Pasal 138 huruf a PER-11/PJ/2025). Sejak Tahun Pajak 2025 (PER-11/PJ/2025 Pasal 85, Coretax): Lampiran 1A–1L rekonsiliasi per sektor; 2 daftar kepemilikan (pemegang saham, pengurus, penyertaan, utang-piutang afiliasi); 3 PPh dipotong/dipungut pihak lain dan kredit PPh 24; 4 penghasilan final dan bukan objek; 6 angsuran PPh 25 tahun berjalan (ke induk Bagian G); 7 kompensasi kerugian; 9 penyusutan/amortisasi; 10A–10D hubungan istimewa dan dokumentasi TP; 11A biaya tertentu; 12A PPh 26 ayat (4); 13A–13C fasilitas.",
         "Dokumen yang dilampirkan: laporan keuangan (diaudit bila diwajibkan), daftar nominatif promosi/entertainment, daftar piutang yang dihapuskan, ikhtisar dokumentasi TP bila wajib, laporan utang swasta luar negeri/DER bila wajib.",
         "SPT dianggap tidak disampaikan bila tidak ditandatangani, tidak sepenuhnya dilampiri keterangan/dokumen yang disyaratkan, SPT lebih bayar disampaikan setelah 3 tahun dan WP telah ditegur, atau disampaikan setelah DJP melakukan pemeriksaan/menerbitkan SKP (Pasal 3 ayat (7) UU KUP).",
         "Pembetulan sukarela yang menyebabkan kurang bayar dikenai bunga Pasal 8 ayat (2) (acuan + 5%)/12 per bulan sejak jatuh tempo SPT sampai pembayaran; sejak PER-12/PJ/2026 pembetulan di Coretax memperhitungkan pembayaran yang telah terjadi."
@@ -692,7 +692,7 @@ UKP.register({
         langkah: [["Akhir tahun buku", "30 Juni 2026"], ["+ 4 bulan", "31 Oktober 2026"], ["+ perpanjangan 2 bulan", "31 Desember 2026"]]
       },
       verifikasi: "◐",
-      peringatan: "Penomoran lampiran memakai format 1771 yang diajarkan (PER-30/PJ/2013 s.t.d.d. PER-02/PJ/2019). Sejak SPT Tahun Pajak 2025, formulir disampaikan lewat Coretax (PER-11/PJ/2025) dengan struktur lampiran yang direkayasa ulang; pemetaan nama lampiran Coretax belum diverifikasi ke teks primer."
+      peringatan: "Penomoran lampiran memakai format 1771 yang diajarkan (PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017), yang menurut Pasal 138 huruf a PER-11/PJ/2025 hanya dipakai untuk Tahun Pajak sampai 2024; lampiran formulir lama itu belum dicocokkan ke naskah. Sejak SPT Tahun Pajak 2025, formulir disampaikan lewat Coretax dengan struktur lampiran baru (Pasal 85 ayat (1) dan Lampiran PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026), antara lain: Lampiran 2 Daftar Kepemilikan (pemegang saham, pengurus dan komisaris, serta penyertaan dan utang-piutang afiliasi), Lampiran 6 angsuran PPh tahun berjalan, Lampiran 7 kompensasi kerugian fiskal, Lampiran 10A daftar transaksi yang dipengaruhi hubungan istimewa, dan Lampiran 10D ikhtisar dokumen induk dan dokumen lokal. Pemetaan lampiran lainnya belum dicocokkan satu per satu."
     }
   ],
   soal: [
@@ -1116,10 +1116,9 @@ UKP.register({
         },
         jebakan: "Kompensasi kerugian yang habis pada tahun lalu tidak lagi mengurangi dasar angsuran tahun berjalan, jadi PPh terutang di SPT tidak dapat langsung dibagi 12; PPh 25 tahun lalu juga tidak dikurangkan."
       },
-      dasarHukum: [{ pasal: "Pasal 25 ayat (1), (2), dan (6) huruf a UU PPh beserta Penjelasannya", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 (penghitungan angsuran dalam hal tertentu; dahulu KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1), (2), dan (6) huruf a UU PPh beserta Penjelasannya", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 94 ayat (2) dan Pasal 232 ayat (4)", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 113 ayat (2) huruf a dan Pasal 114 serta Lampiran (petunjuk pengisian Lampiran 6 dan Lampiran 7 SPT PPh Badan); menggantikan KEP-537/PJ/2000", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 180,
-      verifikasi: "◐",
-      peringatan: "Dasar angsuran mengikuti Pasal 25 ayat (6) huruf a UU PPh, contoh Penjelasannya, dan bagian penghitungan angsuran pada SPT Tahunan: penghasilan neto dikurangi sisa kerugian yang masih dapat dikompensasikan pada tahun berjalan. Karena sisa kerugian habis pada 2025, dasarnya neto penuh. Kunci sebelumnya (Rp22.000.000) memakai PPh terutang setelah kompensasi. Naskah PER-11/PJ/2025 belum dibuka langsung."
+      verifikasi: "✅"
     },
     {
       id: "B6-014",
@@ -1945,12 +1944,7 @@ UKP.register({
       kesulitan: 3,
       stem: "PT Kimia Hijau Nusantara memperoleh fasilitas tax allowance (PP 78/2019) atas penanaman modal baru di bidang industri yang ditetapkan. Realisasi aktiva tetap berwujud untuk kegiatan usaha utama sampai saat mulai berproduksi komersial pada 2025: tanah Rp40.000.000.000, bangunan pabrik Rp70.000.000.000, dan mesin Rp90.000.000.000. Besarnya pengurangan penghasilan neto per tahun berdasarkan fasilitas tersebut adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp10.000.000.000 per tahun selama 6 tahun",
-        B: "Rp60.000.000.000 sekaligus pada Tahun Pajak 2025",
-        C: "Rp8.000.000.000 per tahun selama 6 tahun",
-        D: "Rp12.000.000.000 per tahun selama 5 tahun"
-      },
+      opsi: { A: "Rp10.000.000.000 per tahun selama 6 tahun", B: "Rp60.000.000.000 sekaligus pada Tahun Pajak 2025", C: "Rp8.000.000.000 per tahun selama 6 tahun", D: "Rp12.000.000.000 per tahun selama 5 tahun" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
@@ -1967,10 +1961,9 @@ UKP.register({
         },
         jebakan: "Tanah tidak disusutkan, tetapi ikut dasar tax allowance."
       },
-      dasarHukum: [{ pasal: "Pasal 31A UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12" }],
+      dasarHukum: [{ pasal: "Pasal 31A UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 78/2019 Pasal 3 ayat (1) huruf a dan ayat (4) huruf a", berlakuSejak: "2019-12-12" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Persentase 30% dan 5% × 6 tahun berkeyakinan tinggi; rincian syarat bidang usaha dan saat mulai pembebanan perlu dicek ke PP 78/2019 dan peraturan pelaksananya."
+      verifikasi: "✅"
     },
     {
       id: "B6-041",
@@ -1985,21 +1978,21 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
         inti: "Super deduction vokasi memberi pengurangan penghasilan bruto paling tinggi 200% dari biaya: 100% biaya riil ditambah tambahan pengurangan 100%.",
-        jejakHitung: [["Biaya riil (100%)", "Rp300.000.000"], ["Tambahan pengurangan (100%)", "Rp300.000.000"], ["Total paling tinggi (200%)", "Rp600.000.000"]],
+        jejakHitung: [
+          ["Biaya riil (100%)", "Rp300.000.000"],
+          ["Tambahan pengurangan (100%)", "Rp300.000.000"],
+          ["Total paling tinggi (200%)", "Rp600.000.000"]
+        ],
         mengapaSalah: {
           A: "Hanya membiayakan biaya riil tanpa tambahan.",
           C: "Memakai plafon 300% milik litbang.",
           D: "Memakai 150% yang tidak dikenal untuk fasilitas ini."
         },
-        jebakan: "Vokasi 200%, litbang 300% — keduanya 'paling tinggi', bergantung syarat."
+        jebakan: "Vokasi 200%, litbang 300%: keduanya 'paling tinggi', bergantung syarat. Pemberitahuan untuk memperoleh tambahan pengurangan disampaikan melalui sistem OSS dengan melampirkan perjanjian kerja sama dan surat keterangan fiskal (PMK 128/PMK.010/2019 Pasal 7 ayat (1)), bukan lewat Coretax."
       },
-      dasarHukum: [
-        { pasal: "PP 94/2010 s.t.d.d. PP 45/2019 (super deduction vokasi)", berlakuSejak: "2019-06-26" },
-        { pasal: "PMK 128/PMK.010/2019", berlakuSejak: "2019-09-09" }
-      ],
+      dasarHukum: [{ pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29B ayat (1) (super deduction vokasi)", berlakuSejak: "2019-06-26" }, { pasal: "PMK 128/PMK.010/2019 Pasal 2 ayat (1) dan (2), Pasal 4, Pasal 7 ayat (1)", berlakuSejak: "2019-09-09" }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Plafon 200% berkeyakinan tinggi; syarat administrasi (perjanjian kerja sama, pemberitahuan via Coretax) dan perubahan PMK 128/2019 belum dicek ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-042",
@@ -2022,10 +2015,9 @@ UKP.register({
         },
         jebakan: "Tambahan 200% tidak otomatis penuh; diberikan bertahap sesuai capaian."
       },
-      dasarHukum: [{ pasal: "PMK 81/2024 (ketentuan pengurangan penghasilan bruto atas kegiatan penelitian dan pengembangan tertentu di Indonesia; mencabut PMK 153/PMK.010/2020)", berlakuSejak: "2025-01-01" }, { pasal: "PP 94/2010 s.t.d.d. PP 45/2019 (super deduction litbang, plafon 300%)", berlakuSejak: "2019-06-26" }],
+      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 432 ayat (1) sampai ayat (3) (mencabut PMK 153/PMK.010/2020)", berlakuSejak: "2025-01-01" }, { pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29C ayat (1) (super deduction litbang, plafon 300%)", berlakuSejak: "2019-06-26" }],
       anggaranDetik: 80,
-      verifikasi: "◐",
-      peringatan: "PMK 153/PMK.010/2020 dicabut dan digantikan PMK 81/2024 sejak 1 Januari 2025; plafon 300% (100% + tambahan paling tinggi 200%) berkeyakinan tinggi. Nomor pasal dan rincian tambahan dalam PMK 81/2024 belum dicek ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-043",
@@ -2052,13 +2044,9 @@ UKP.register({
         },
         jebakan: "Tax holiday punya tiga tahap: masa pengurangan, masa transisi, lalu tarif normal."
       },
-      dasarHukum: [
-        { pasal: "PMK 130/PMK.010/2020 s.t.d.d. PMK 69/2024", berlakuSejak: "2020-10-09" },
-        { pasal: "Pasal 18 ayat (5) UU 25/2007 (Penanaman Modal)", berlakuSejak: "2007-04-26" }
-      ],
+      dasarHukum: [{ pasal: "PMK 130/PMK.010/2020 Pasal 2 ayat (3) huruf b, ayat (5), dan ayat (6) huruf b s.t.d.d. PMK 69/2024", berlakuSejak: "2020-10-09" }, { pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29 ayat (1)", berlakuSejak: "2019-06-26" }, { pasal: "Pasal 18 ayat (3) huruf e dan ayat (4) UU 25/2007 s.t.d.t.d. UU 6/2023 (Penanaman Modal)", berlakuSejak: "2022-12-30" }],
       anggaranDetik: 160,
-      verifikasi: "◐",
-      peringatan: "Besaran 50%/25% dan masa transisi 2 tahun berkeyakinan tinggi; perubahan PMK 69/2024 dan interaksi dengan PMK 136/2024 (pajak minimum global) belum dicek ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-044",
@@ -2150,19 +2138,18 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "Tarif 0,75% dari peredaran bruto bulanan hanya untuk WP orang pribadi pengusaha tertentu (OPPT); badan baru tidak memakai skema itu.",
+        inti: "Tarif 0,75% dari peredaran bruto bulanan hanya untuk Wajib Pajak orang pribadi pengusaha tertentu (Pasal 25 ayat (7) huruf c UU PPh; PMK 81/2024 Pasal 234 ayat (1)). Wajib Pajak badan yang baru terdaftar tidak memakai skema itu: bila ia bank, Wajib Pajak masuk bursa, BUMN, BUMD, atau Wajib Pajak Lainnya, angsurannya mengikuti Pasal 227 sampai Pasal 229 (PMK 81/2024 Pasal 235); bila hasil penggabungan, peleburan, pengambilalihan, pemekaran, atau perubahan bentuk usaha, mengikuti Pasal 236; selain itu angsurannya pada tahun pajak berjalan ditetapkan nihil (PMK 81/2024 Pasal 237).",
         jejakHitung: [],
         mengapaSalah: {
-          A: "Benar: angsuran bank dihitung dari laporan keuangan yang disampaikan kepada OJK, bukan dari SPT Tahunan tahun lalu (Pasal 25 ayat (7) UU PPh; peraturan pelaksanaannya kini PMK 81/2024, yang mencabut PMK 215/PMK.03/2018).",
-          C: "Benar: BUMN/BUMD memakai RKAP yang disahkan RUPS.",
-          D: "Benar: emiten dan WP wajib lapkeu berkala memakai laporan berkala terakhir."
+          A: "Benar: dasar angsuran bank adalah laporan keuangan yang disampaikan kepada OJK, berupa laporan posisi keuangan dan laporan laba rugi sejak awal tahun pajak sampai masa pajak yang dilaporkan (PMK 81/2024 Pasal 227 ayat (1); PMK 81/2024 mencabut PMK 215/PMK.03/2018).",
+          C: "Benar: angsuran BUMN dan BUMD (selain yang merupakan bank, Wajib Pajak masuk bursa, atau Wajib Pajak Lainnya) dihitung dari penghasilan neto fiskal menurut Rencana Kerja dan Anggaran tahun pajak bersangkutan yang telah disahkan RUPS (PMK 81/2024 Pasal 229 ayat (1)).",
+          D: "Benar: Wajib Pajak masuk bursa dan Wajib Pajak Lainnya memakai laporan keuangan yang disampaikan setiap 3 bulan kepada bursa dan/atau OJK; angsurannya berlaku untuk 3 masa pajak setelah periode yang dilaporkan (PMK 81/2024 Pasal 228 ayat (1) dan (5))."
         },
-        jebakan: "Skema OPPT sering dicampur dengan badan baru — keduanya diatur berbeda."
+        jebakan: "Skema OPPT sering dicampur dengan badan baru, padahal keduanya diatur berbeda: OPPT membayar 0,75% dari peredaran bruto bulanan tiap tempat usaha, sedangkan badan baru biasa (bukan Wajib Pajak tertentu dan bukan hasil restrukturisasi) angsurannya nihil pada tahun pajak berjalan."
       },
-      dasarHukum: [{ pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 (ketentuan penghitungan angsuran PPh Pasal 25; mencabut PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 226 ayat (2), Pasal 227 sampai Pasal 229, Pasal 234 ayat (1), Pasal 235 sampai Pasal 237 (mencabut PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Kunci (skema 0,75% hanya untuk OPPT) berkeyakinan tinggi; PMK 215/PMK.03/2018 telah dicabut PMK 81/2024 sejak 1 Januari 2025 dan nomor pasal penggantinya belum dicek ke teks primer. Opsi A sudah diganti dari rumusan PMK 255/PMK.03/2008 (laporan keuangan triwulanan terakhir yang disetahunkan) menjadi rumusan laporan keuangan yang disampaikan kepada OJK menurut ulasan sumber sekunder atas PMK 81/2024 (IKPI, disebut Pasal 227); naskahnya belum dibaca langsung."
+      verifikasi: "✅"
     },
     {
       id: "B6-048",
@@ -2248,10 +2235,9 @@ UKP.register({
         },
         jebakan: "Satu ambang terlampaui sudah cukup untuk mewajibkan dokumentasi; ambang nilai diuji dengan data tahun pajak sebelumnya, bukan tahun berjalan."
       },
-      dasarHukum: [{ pasal: "Pasal 18 ayat (3) UU PPh; PMK 172/2023", berlakuSejak: "2023-12-29" }],
+      dasarHukum: [{ pasal: "Pasal 18 ayat (3) UU PPh; PMK 172/2023 Pasal 16 ayat (3), (4), dan (5), Pasal 18 ayat (1), dan Pasal 19 ayat (1) dan (2)", berlakuSejak: "2023-12-29" }],
       anggaranDetik: 170,
-      verifikasi: "◐",
-      peringatan: "Ambang Rp50 miliar/Rp20 miliar/Rp5 miliar berasal dari PMK 213/2016 yang diyakini dipertahankan PMK 172/2023; satu sumber sekunder menyebut angka berbeda — cek teks PMK 172/2023."
+      verifikasi: "✅"
     },
     {
       id: "B6-051",
@@ -2303,22 +2289,18 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "1771-V memuat daftar pemegang saham/pemilik modal dan susunan pengurus serta komisaris.",
+        inti: "Dalam format 1771 yang diajarkan, 1771-V memuat daftar pemegang saham/pemilik modal dan susunan pengurus serta komisaris. Pada SPT PPh Badan Coretax (Lampiran PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026) data yang sama dilaporkan pada Lampiran 2 Daftar Kepemilikan Bagian A.",
         jejakHitung: [],
         mengapaSalah: {
-          A: "1771-VI memuat penyertaan modal pada perusahaan afiliasi serta utang-piutang dengan pemegang saham/afiliasi.",
+          A: "1771-VI memuat penyertaan modal pada perusahaan afiliasi serta utang-piutang dengan pemegang saham/afiliasi (di Coretax menjadi Lampiran 2 Bagian B).",
           B: "1771-I adalah penghitungan penghasilan neto fiskal (rekonsiliasi).",
           D: "Lampiran khusus 3A untuk transaksi hubungan istimewa dan pernyataan dokumentasi TP."
         },
-        jebakan: "V = siapa pemilik dan pengurusnya; VI = hubungan keuangan dengan afiliasi."
+        jebakan: "V = siapa pemilik dan pengurusnya; VI = hubungan keuangan dengan afiliasi. Di Coretax keduanya digabung dalam Lampiran 2 Daftar Kepemilikan (Bagian A dan Bagian B), jadi nomor lampiran 1771 lama tidak muncul di formulir Coretax."
       },
-      dasarHukum: [
-        { pasal: "Pasal 3 ayat (1) UU KUP; petunjuk pengisian SPT 1771", berlakuSejak: "2008-01-01" },
-        { pasal: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) UU KUP; petunjuk pengisian SPT 1771", berlakuSejak: "2008-01-01" }, { pasal: "PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026, Lampiran: petunjuk pengisian Lampiran 2 Daftar Kepemilikan SPT PPh Badan", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 60,
-      verifikasi: "◐",
-      peringatan: "Nomor lampiran mengikuti format 1771 yang diajarkan; nama lampiran pada formulir Coretax (PER-11/PJ/2025) dapat berbeda."
+      verifikasi: "✅"
     },
     {
       id: "B6-053",
@@ -2327,30 +2309,29 @@ UKP.register({
       jenis: "baris-spt",
       kesulitan: 2,
       formulirRef: "1771.l4.1",
-      stem: "PT Rimba Kayu Utama menerima bunga deposito bruto Rp150.000.000 pada 2025 (PPh final 20% sebesar Rp30.000.000 telah dipotong bank) dan bunga itu sudah termasuk dalam laba komersial yang menjadi titik awal rekonsiliasi fiskal. Dalam SPT 1771, perlakuan pelaporan yang tepat adalah ...",
+      stem: "PT Rimba Kayu Utama menerima bunga deposito bruto Rp150.000.000 pada 2025 (PPh final 20% sebesar Rp30.000.000 telah dipotong bank) dan bunga itu sudah termasuk dalam laba komersial yang menjadi titik awal rekonsiliasi fiskal. Menurut peta formulir 1771 yang diajarkan, perlakuan pelaporan yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Dilaporkan pada Lampiran 1771-IV sebagai penghasilan final dan dikoreksi negatif pada Lampiran 1771-I",
-        B: "Dilaporkan pada Lampiran 1771-III sebagai kredit pajak dalam negeri sebesar Rp30.000.000",
-        C: "Cukup dilaporkan pada Lampiran 1771-I sebagai penghasilan dari luar usaha tanpa koreksi",
-        D: "Dilaporkan pada Lampiran 1771-II sebagai pengurang biaya usaha"
-      },
+      opsi: { A: "Dilaporkan pada Lampiran 1771-IV sebagai penghasilan final dan dikoreksi negatif pada Lampiran 1771-I", B: "Dilaporkan pada Lampiran 1771-III sebagai kredit pajak dalam negeri sebesar Rp30.000.000", C: "Cukup dilaporkan pada Lampiran 1771-I sebagai penghasilan dari luar usaha tanpa koreksi", D: "Dilaporkan pada Lampiran 1771-II sebagai pengurang biaya usaha" },
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "final-nonfinal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Penghasilan final dilaporkan di 1771-IV (bersama PPh finalnya) dan dikeluarkan dari laba fiskal lewat koreksi negatif di 1771-I.",
-        jejakHitung: [],
+        inti: "Bunga deposito dikenai PPh final 20% dari jumlah bruto (Pasal 2 huruf c angka 1 PP 131/2000 s.t.d.d. PP 123/2015), jadi tidak ikut dalam penghasilan kena pajak tarif umum. Pada peta 1771 yang diajarkan, penghasilan final dan PPh finalnya dilaporkan di 1771-IV, lalu dikeluarkan dari laba fiskal lewat koreksi negatif di 1771-I.",
+        jejakHitung: [
+          ["PPh final bunga deposito", "20% × Rp150.000.000 = Rp30.000.000"],
+          ["Peta 1771 yang diajarkan", "1771-IV (penghasilan dan PPh final) + koreksi negatif di 1771-I"],
+          ["Padanan Coretax (PER-11/PJ/2025, Tahun Pajak 2025)", "Lampiran 4 Bagian A; kolom \"Dikenakan PPh Bersifat Final\" di Lampiran 1; jumlahnya ke Induk Bagian C angka 2"]
+        ],
         mengapaSalah: {
-          B: "1771-III hanya untuk kredit pajak PPh 22/23; PPh final tidak dapat dikreditkan.",
-          C: "Tanpa koreksi negatif, bunga deposito terkena pajak dua kali.",
-          D: "1771-II adalah rincian HPP dan biaya, bukan tempat penghasilan."
+          B: "Lampiran kredit pajak (1771-III; di Coretax Lampiran 3) hanya memuat PPh atas penghasilan yang tidak final; PPh final tidak dapat dikreditkan.",
+          C: "Tanpa dikeluarkan dari laba fiskal, bunga deposito terkena pajak dua kali: PPh final dan PPh tarif umum.",
+          D: "1771-II adalah rincian HPP dan biaya, bukan tempat penghasilan; bunga tidak mengurangi biaya usaha."
         },
-        jebakan: "Satu transaksi bisa muncul di dua lampiran: sebagai penghasilan final (IV) dan sebagai koreksi (I)."
+        jebakan: "Satu transaksi muncul di dua tempat: sebagai penghasilan final (1771-IV) dan sebagai pengurang laba komersial (1771-I). Di formulir Coretax Tahun Pajak 2025, pengurangnya diisi pada kolom \"Dikenakan PPh Bersifat Final\" di Lampiran 1, karena kolom penyesuaian fiskal negatif justru untuk unsur di luar penghasilan final dan bukan objek."
       },
-      dasarHukum: [{ pasal: "Pasal 4 ayat (2) UU PPh; PP 131/2000", berlakuSejak: "2001-01-01" }, { pasal: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 4 ayat (2) UU PPh; Pasal 2 huruf c angka 1 PP 131/2000 s.t.d.d. PP 123/2015", berlakuSejak: "2015-12-28" }, { pasal: "Pasal 138 huruf a PER-11/PJ/2025 (format 1771 PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 hanya untuk Tahun Pajak sampai 2024)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 85 ayat (1) dan Lampiran huruf H PER-11/PJ/2025 (padanan Coretax: Lampiran 4 dan Lampiran 1)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 110,
       verifikasi: "◐",
-      peringatan: "Nomor lampiran mengikuti format 1771 yang diajarkan; struktur Coretax (PER-11/PJ/2025) belum diverifikasi ke teks primer."
+      peringatan: "Padanan Coretax (Lampiran 4 Bagian A dan kolom penghasilan final di Lampiran 1) sudah dicocokkan ke Pasal 85 dan Lampiran huruf H PER-11/PJ/2025. Format 1771 lama (induk, Lampiran I–VI, lampiran khusus 1A–8A) menurut Pasal 138 huruf a PER-11/PJ/2025 hanya dipakai untuk Tahun Pajak sampai 2024 (PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017); lampiran formulir lama itu tidak ada di pustaka, jadi penomoran lama belum dicocokkan ke naskah."
     },
     {
       id: "B6-054",
@@ -2365,19 +2346,22 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "Lampiran khusus 1A berisi daftar penyusutan dan amortisasi fiskal.",
-        jejakHitung: [],
+        inti: "Pada peta 1771 yang diajarkan, lampiran khusus 1A berisi daftar penyusutan dan amortisasi fiskal. Di formulir Coretax Tahun Pajak 2025 (PER-11/PJ/2025) padanannya adalah Lampiran 9 - Daftar Penyusutan dan Amortisasi Fiskal.",
+        jejakHitung: [
+          ["Peta 1771 yang diajarkan", "lampiran khusus 1A"],
+          ["Padanan Coretax", "Lampiran 9 (diisi bila induk Bagian H angka 21 huruf e dijawab \"Ya\")"]
+        ],
         mengapaSalah: {
-          A: "2A untuk kompensasi kerugian.",
-          C: "1771-VI untuk penyertaan modal dan utang-piutang afiliasi.",
+          A: "2A untuk kompensasi kerugian (di Coretax: Lampiran 7).",
+          C: "1771-VI untuk penyertaan modal dan utang-piutang afiliasi (di Coretax: Lampiran 2 Bagian B).",
           D: "8A adalah transkrip kutipan elemen laporan keuangan."
         },
-        jebakan: "Urutan lampiran khusus: 1A penyusutan, 2A kompensasi rugi, 3A hubungan istimewa, 4A fasilitas, 5A cabang, 6A BUT, 7A PPh 24, 8A transkrip."
+        jebakan: "Urutan lampiran khusus format lama: 1A penyusutan, 2A kompensasi rugi, 3A hubungan istimewa, 4A fasilitas, 5A cabang, 6A BUT, 7A PPh 24, 8A transkrip. Di Coretax nomornya berubah: penyusutan menjadi Lampiran 9, kompensasi kerugian Lampiran 7, hubungan istimewa Lampiran 10A sampai 10D."
       },
-      dasarHukum: [{ pasal: "Pasal 11 dan 11A UU PPh; petunjuk pengisian SPT 1771", berlakuSejak: "2009-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 11 dan Pasal 11A UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 138 huruf a PER-11/PJ/2025 (format 1771 PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 hanya untuk Tahun Pajak sampai 2024)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 85 ayat (1) huruf b angka 9 dan Lampiran huruf H PER-11/PJ/2025 (padanan Coretax: Lampiran 9)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 60,
       verifikasi: "◐",
-      peringatan: "Nomor lampiran mengikuti format 1771 yang diajarkan; nama lampiran Coretax dapat berbeda."
+      peringatan: "Padanan Coretax (Lampiran 9) sudah dicocokkan ke Pasal 85 dan Lampiran huruf H PER-11/PJ/2025. Format 1771 lama (induk, Lampiran I–VI, lampiran khusus 1A–8A) menurut Pasal 138 huruf a PER-11/PJ/2025 hanya dipakai untuk Tahun Pajak sampai 2024 (PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017); lampiran formulir lama itu tidak ada di pustaka, jadi penomoran lama belum dicocokkan ke naskah."
     },
     {
       id: "B6-055",
@@ -2485,28 +2469,27 @@ UKP.register({
       formulirRef: "1771.3A.1",
       stem: "PT Sarana Kimia Utama pada 2025 membeli bahan baku dari perusahaan afiliasi Rp18 miliar, membayar jasa manajemen kepada induk Rp6 miliar, dan memiliki pinjaman tanpa bunga dari pemegang saham Rp3 miliar. Perusahaan juga wajib menyelenggarakan dokumentasi TP. Menurut peta formulir 1771 yang diajarkan, pelaporan yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Seluruhnya pada Lampiran 1771-V karena semua transaksi menyangkut pemegang saham",
-        B: "Transaksi afiliasi dan dokumentasi TP pada lampiran khusus 3A; utang kepada pemegang saham pada 1771-VI",
-        C: "Transaksi afiliasi pada Lampiran 1771-III dan pinjaman pemegang saham pada Lampiran 1771-II",
-        D: "Cukup diungkapkan dalam catatan atas laporan keuangan tanpa lampiran khusus SPT"
-      },
+      opsi: { A: "Seluruhnya pada Lampiran 1771-V karena semua transaksi menyangkut pemegang saham", B: "Transaksi afiliasi dan dokumentasi TP pada lampiran khusus 3A; utang kepada pemegang saham pada 1771-VI", C: "Transaksi afiliasi pada Lampiran 1771-III dan pinjaman pemegang saham pada Lampiran 1771-II", D: "Cukup diungkapkan dalam catatan atas laporan keuangan tanpa lampiran khusus SPT" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Transaksi hubungan istimewa dan pernyataan/ikhtisar dokumentasi TP dilaporkan pada lampiran khusus 3A (beserta 3A-1/3A-2); utang-piutang dengan pemegang saham/afiliasi pada 1771-VI.",
-        jejakHitung: [],
+        inti: "Pada peta 1771 yang diajarkan, transaksi hubungan istimewa dan pernyataan/ikhtisar dokumentasi TP dilaporkan pada lampiran khusus 3A (beserta 3A-1/3A-2), sedangkan utang-piutang dengan pemegang saham/afiliasi pada 1771-VI. Di formulir Coretax Tahun Pajak 2025 padanannya: Lampiran 10A dan 10B (transaksi hubungan istimewa), 10D (ikhtisar dokumen induk dan dokumen lokal), dan Lampiran 2 Bagian B (utang dari pemilik modal atau perusahaan afiliasi).",
+        jejakHitung: [
+          ["Pembelian bahan baku afiliasi dan jasa manajemen induk", "3A (Coretax: Lampiran 10A dan 10B)"],
+          ["Dokumentasi TP", "3A-1/3A-2 (Coretax: Lampiran 10D)"],
+          ["Pinjaman pemegang saham", "1771-VI (Coretax: Lampiran 2 Bagian B)"]
+        ],
         mengapaSalah: {
-          A: "1771-V hanya daftar pemegang saham dan pengurus.",
+          A: "1771-V hanya daftar pemegang saham dan pengurus (di Coretax: Lampiran 2 Bagian A).",
           C: "1771-III untuk kredit pajak; 1771-II untuk HPP dan biaya.",
-          D: "Pengungkapan transaksi afiliasi adalah bagian wajib SPT badan."
+          D: "Pengungkapan transaksi afiliasi adalah bagian wajib SPT badan; di Coretax induk Bagian H angka 21 mewajibkan Lampiran 10A sampai 10C bila ada transaksi hubungan istimewa."
         },
-        jebakan: "Pinjaman tanpa bunga dari pemegang saham juga relevan untuk DER (dihitung sebagai modal)."
+        jebakan: "Pinjaman pemegang saham dicatat di dua tempat yang berbeda fungsi: daftar utang-piutang afiliasi (1771-VI; Coretax Lampiran 2 Bagian B) dan, bila relevan, penghitungan biaya pinjaman/DER (Coretax Lampiran 11B)."
       },
-      dasarHukum: [{ pasal: "Pasal 18 ayat (3) UU PPh; PMK 172/2023", berlakuSejak: "2023-12-29" }, { pasal: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 18 ayat (3) UU PPh; PMK 172/2023", berlakuSejak: "2023-12-29" }, { pasal: "Pasal 138 huruf a PER-11/PJ/2025 (format 1771 PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 hanya untuk Tahun Pajak sampai 2024)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 85 ayat (1) dan Lampiran huruf H PER-11/PJ/2025 (padanan Coretax: Lampiran 10A–10D dan Lampiran 2 Bagian B)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 110,
       verifikasi: "◐",
-      peringatan: "Nomor lampiran (3A, 3A-1, 3A-2, VI) mengikuti format 1771 yang diajarkan; nama lampiran Coretax belum diverifikasi."
+      peringatan: "Padanan Coretax (Lampiran 10A–10D dan Lampiran 2 Bagian B) sudah dicocokkan ke Pasal 85 dan Lampiran huruf H PER-11/PJ/2025. Format 1771 lama (induk, Lampiran I–VI, lampiran khusus 1A–8A) menurut Pasal 138 huruf a PER-11/PJ/2025 hanya dipakai untuk Tahun Pajak sampai 2024 (PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017); lampiran formulir lama itu tidak ada di pustaka, jadi penomoran lama belum dicocokkan ke naskah."
     },
     {
       id: "B6-059",
@@ -2802,40 +2785,30 @@ UKP.register({
       tingkat: ["B", "C"],
       jenis: "prosedur",
       kesulitan: 2,
-      kutipan: "Pasal 29 UU PPh: Apabila pajak yang terutang untuk suatu Tahun Pajak ternyata lebih besar daripada kredit pajak sebagaimana dimaksud dalam Pasal 28 ayat (1), kekurangan pajak yang terutang harus dilunasi selambat-lambatnya sebelum Surat Pemberitahuan Tahunan disampaikan.",
+      kutipan: "Pasal 29 UU PPh: Apabila pajak yang terutang untuk suatu tahun pajak ternyata lebih besar daripada kredit pajak sebagaimana dimaksud dalam Pasal 28 ayat (1), kekurangan pembayaran pajak yang terutang harus dilunasi sebelum Surat Pemberitahuan Tahunan Pajak Penghasilan disampaikan.",
       stem: "Pada 27 April 2026 staf pajak PT Delta Rekayasa menyiapkan SPT Tahunan PPh Badan 2025 di Coretax. Hasil penghitungan menunjukkan kurang bayar Rp96.000.000; BPPU PPh 23 dari pelanggan sudah tampil sebagai data pra-isi. Direktur utama terdaftar sebagai penanggung jawab akun badan, sedangkan staf pajak belum ditunjuk sebagai wakil atau kuasa. Berdasarkan kutipan tersebut dan tata cara SPT elektronik di Coretax, urutan langkah yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Buat konsep SPT dan lengkapi lampiran (termasuk memeriksa pra-isi BPPU) → buat kode billing PPh Pasal 29 badan dan lunasi sampai memperoleh NTPN (atau memakai saldo deposit pajak) → penanggung jawab menandatangani dengan kode otorisasi DJP/sertifikat elektronik → kirim SPT dan simpan Bukti Penerimaan Elektronik",
-        B: "Buat konsep SPT dan lengkapi lampiran → penanggung jawab menandatangani dan mengirim SPT berstatus kurang bayar → lunasi PPh Pasal 29 paling lambat tanggal 15 bulan berikutnya → simpan Bukti Penerimaan Elektronik",
-        C: "Buat kode billing PPh Pasal 25 Masa April 2026 dan lunasi kekurangan Rp96.000.000 dengan kode itu → buat konsep SPT → penanggung jawab menandatangani → kirim SPT",
-        D: "Buat konsep SPT dan lengkapi lampiran → lunasi PPh Pasal 29 → staf pajak menandatangani dengan akun pribadinya walaupun belum ditunjuk sebagai wakil atau kuasa → kirim SPT"
-      },
+      opsi: { A: "Buat konsep SPT dan lengkapi lampiran (termasuk memeriksa pra-isi BPPU) → buat kode billing PPh Pasal 29 badan dan lunasi sampai memperoleh NTPN (atau memakai saldo deposit pajak) → penanggung jawab menandatangani dengan kode otorisasi DJP/sertifikat elektronik → kirim SPT dan simpan Bukti Penerimaan Elektronik", B: "Buat konsep SPT dan lengkapi lampiran → penanggung jawab menandatangani dan mengirim SPT berstatus kurang bayar → lunasi PPh Pasal 29 paling lambat tanggal 15 bulan berikutnya → simpan Bukti Penerimaan Elektronik", C: "Buat kode billing PPh Pasal 25 Masa April 2026 dan lunasi kekurangan Rp96.000.000 dengan kode itu → buat konsep SPT → penanggung jawab menandatangani → kirim SPT", D: "Buat konsep SPT dan lengkapi lampiran → lunasi PPh Pasal 29 → staf pajak menandatangani dengan akun pribadinya walaupun belum ditunjuk sebagai wakil atau kuasa → kirim SPT" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "PPh Pasal 29 wajib lunas sebelum SPT disampaikan, dengan jenis setoran PPh Pasal 29 (bukan angsuran PPh 25), lalu SPT ditandatangani secara elektronik oleh pihak yang berwenang mewakili badan.",
+        inti: "PPh Pasal 29 wajib lunas sebelum SPT disampaikan dan tidak melewati batas waktu penyampaian SPT (Pasal 29 UU PPh; Pasal 95 ayat (1) PMK 81/2024), disetor sebagai PPh Pasal 29 (bukan angsuran PPh 25) atau dibayar memakai Deposit Pajak (Pasal 103 ayat (1) PMK 81/2024). SPT badan lalu ditandatangani secara elektronik dengan Sertifikat Elektronik atau Kode Otorisasi milik wakil Wajib Pajak atau orang yang ditunjuk wakil (Pasal 10 ayat (2) PMK 81/2024).",
         jejakHitung: [
           ["1. Konsep SPT dan periksa pra-isi BPPU", "kredit PPh 23 sesuai bukti potong"],
-          ["2. Kode billing PPh Pasal 29 badan (KAP-KJS 411126-200) → NTPN", "lunas sebelum SPT dikirim"],
-          ["3. Tanda tangan elektronik penanggung jawab", "kode otorisasi DJP atau sertifikat elektronik"],
-          ["4. Kirim SPT", "BPE terbit; batas 30 April 2026"]
+          ["2. Kode billing jenis setoran PPh Pasal 29 badan → NTPN (atau Deposit Pajak)", "lunas sebelum SPT dikirim"],
+          ["3. Tanda tangan elektronik penanggung jawab (wakil Wajib Pajak)", "Kode Otorisasi DJP atau Sertifikat Elektronik"],
+          ["4. Kirim SPT", "bukti penerimaan terbit; batas 30 April 2026"]
         ],
         mengapaSalah: {
-          B: "Pasal 29 mewajibkan pelunasan sebelum SPT disampaikan; tanggal 15 adalah batas setor pajak masa.",
-          C: "Kekurangan PPh tahunan disetor dengan jenis setoran PPh Pasal 29, bukan sebagai angsuran PPh 25 masa berjalan.",
-          D: "SPT badan ditandatangani pengurus atau wakil/kuasa yang sah; SPT yang tidak ditandatangani pihak berwenang dianggap tidak disampaikan (Pasal 3 ayat (7) UU KUP)."
+          B: "Pasal 29 UU PPh dan Pasal 95 ayat (1) PMK 81/2024 mewajibkan pelunasan sebelum SPT disampaikan; tanggal 15 bulan berikutnya adalah batas setor pajak masa.",
+          C: "Kekurangan PPh tahunan disetor sebagai PPh Pasal 29, bukan sebagai angsuran PPh 25 masa berjalan.",
+          D: "Dokumen elektronik badan ditandatangani dengan Sertifikat Elektronik atau Kode Otorisasi milik wakil Wajib Pajak atau orang yang ditunjuk wakil (Pasal 10 ayat (2) PMK 81/2024); SPT yang tidak ditandatangani pihak berwenang dianggap tidak disampaikan (Pasal 3 ayat (7) huruf a UU KUP)."
         },
-        jebakan: "Urutan bayar–tanda tangan–kirim adalah inti soal implementasi; pengecoh memindahkan pembayaran, memakai kode setoran yang salah, atau penanda tangan yang tidak berwenang."
+        jebakan: "Urutan bayar–tanda tangan–kirim adalah inti soal implementasi; pengecoh memindahkan pembayaran, memakai jenis setoran yang salah, atau penanda tangan yang tidak berwenang."
       },
-      dasarHukum: [
-        { pasal: "Pasal 29 UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "Pasal 3 ayat (1) dan ayat (7) UU KUP", berlakuSejak: "2008-01-01" },
-        { pasal: "PMK 81/2024; PER-11/PJ/2025", berlakuSejak: "2025-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 3 ayat (1) dan ayat (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (5) dan (6), Pasal 10 ayat (2), Pasal 95 ayat (1), dan Pasal 103 ayat (1) PMK 81/2024", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 140,
-      verifikasi: "◐",
-      peringatan: "Kewajiban melunasi PPh 29 sebelum SPT disampaikan dan tanda tangan oleh pihak berwenang berkeyakinan tinggi; nama langkah/menu Coretax, fitur saldo deposit pajak, dan kode KAP-KJS 411126-200 belum dicek ke teks primer PMK 81/2024 dan PER-11/PJ/2025."
+      verifikasi: "✅"
     },
     {
       id: "B6-068",
@@ -2909,10 +2882,9 @@ UKP.register({
         },
         jebakan: "Dalam kasus panjang, bedakan posisi perusahaan sebagai pihak yang dipotong (kredit pajak) dan sebagai pemotong (bukan kredit pajak). Kompensasi kerugian yang habis pada tahun lalu tidak lagi mengurangi dasar angsuran tahun berjalan, jadi PPh terutang di SPT tidak dapat langsung dipakai."
       },
-      dasarHukum: [{ pasal: "Pasal 25 ayat (1), (2), dan (6) huruf a UU PPh beserta Penjelasannya; Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 22 ayat (1) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 (ketentuan PPh Pasal 22 untuk Januari–Juli 2025) dan PMK 51/2025 (sejak 1 Agustus 2025): pemungutan PPh Pasal 22 oleh industri tertentu atas penjualan kepada distributor; PMK 34/PMK.010/2017 dicabut PMK 81/2024 per 1 Januari 2025" }, { pasal: "PER-11/PJ/2025 (penghitungan angsuran dalam hal tertentu; dahulu KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1), (2), dan (6) huruf a UU PPh beserta Penjelasannya; Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 22 ayat (1) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 217 ayat (1) huruf d dan Pasal 225 ayat (1) (PPh Pasal 22 industri tertentu atas penjualan kepada distributor, tidak final; berlaku Januari sampai Juli 2025; PMK 34/PMK.010/2017 dicabut PMK 81/2024)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 51/2025 Pasal 2 ayat (1) huruf d (pemungut PPh Pasal 22 industri semen, kertas, baja, otomotif, dan farmasi atas penjualan kepada distributor)", berlakuSejak: "2025-08-01" }, { pasal: "PMK 81/2024 Pasal 232 ayat (4) (angsuran memperhitungkan fasilitas Pasal 31E)", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 113 ayat (2) huruf a dan Pasal 114 serta Lampiran (petunjuk pengisian Lampiran 6 dan Lampiran 7 SPT PPh Badan); menggantikan KEP-537/PJ/2000", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 180,
-      verifikasi: "◐",
-      peringatan: "Dasar angsuran mengikuti Pasal 25 ayat (6) huruf a UU PPh, contoh Penjelasannya, dan bagian penghitungan angsuran pada SPT Tahunan: penghasilan neto dikurangi sisa kerugian yang masih dapat dikompensasikan pada tahun berjalan. Karena sisa rugi 2020 habis pada 2025, dasarnya neto penuh. Kunci sebelumnya (angsuran Rp15.000.000) memakai PPh terutang setelah kompensasi. Naskah PER-11/PJ/2025 belum dibuka langsung."
+      verifikasi: "✅"
     },
     {
       id: "B6-070",
@@ -2962,12 +2934,7 @@ UKP.register({
       kutipan: "Pasal 2 ayat (6) dan ayat (7) UU KUP (parafrase): Penghapusan NPWP dilakukan oleh Direktur Jenderal Pajak antara lain apabila Wajib Pajak badan dilikuidasi karena penghentian atau penggabungan usaha. Direktur Jenderal Pajak setelah melakukan pemeriksaan harus menerbitkan keputusan atas permohonan penghapusan NPWP dalam jangka waktu 6 (enam) bulan untuk Wajib Pajak orang pribadi atau 12 (dua belas) bulan untuk Wajib Pajak badan, sejak tanggal permohonan diterima secara lengkap.",
       stem: "RUPS PT Andalan Ritel Nusantara (PKP, tahun buku kalender) memutuskan pembubaran perseroan pada 30 Juni 2026. Likuidator menyelesaikan likuidasi pada 30 September 2026 dan melunasi seluruh utang pajak yang tercatat, lalu pada 14 Oktober 2026 mengajukan permohonan penghapusan NPWP dan pencabutan pengukuhan PKP melalui Coretax; permohonan dinyatakan lengkap pada hari itu. Dua tempat kegiatan usaha yang memiliki NITKU sudah ditutup sejak Agustus 2026. Berdasarkan kutipan tersebut, pernyataan yang paling tepat mengenai keputusan penghapusan NPWP adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 14 Oktober 2027 (12 bulan sejak permohonan lengkap)",
-        B: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 14 April 2027 (6 bulan sejak permohonan lengkap)",
-        C: "DJP wajib menerbitkan keputusan paling lambat 14 Oktober 2027 tanpa pemeriksaan, karena likuidasi telah selesai dan utang pajak telah dilunasi",
-        D: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 30 Juni 2027 (12 bulan sejak RUPS memutuskan pembubaran)"
-      },
+      opsi: { A: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 14 Oktober 2027 (12 bulan sejak permohonan lengkap)", B: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 14 April 2027 (6 bulan sejak permohonan lengkap)", C: "DJP wajib menerbitkan keputusan paling lambat 14 Oktober 2027 tanpa pemeriksaan, karena likuidasi telah selesai dan utang pajak telah dilunasi", D: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 30 Juni 2027 (12 bulan sejak RUPS memutuskan pembubaran)" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
@@ -2985,14 +2952,9 @@ UKP.register({
         },
         jebakan: "Kasus pembubaran memuat tiga tanggal (RUPS, selesai likuidasi, permohonan lengkap); jangka keputusan selalu dihitung dari permohonan lengkap."
       },
-      dasarHukum: [
-        { pasal: "Pasal 2 ayat (6) dan ayat (7) UU KUP", berlakuSejak: "2008-01-01" },
-        { pasal: "Pasal 2A ayat (2) UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PMK 81/2024 (pendaftaran dan penghapusan NPWP di Coretax)", berlakuSejak: "2025-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 2 ayat (6) huruf b dan ayat (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 2A ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 46 ayat (2) huruf a dan Pasal 47 ayat (3) dan ayat (4)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 130,
-      verifikasi: "◐",
-      peringatan: "Jangka 6/12 bulan dan kewajiban pemeriksaan sebelum keputusan berasal dari UU KUP dan berkeyakinan tinggi; penomoran ayat (6)–(7) serta alur menu penghapusan NPWP dan pencabutan PKP di Coretax menurut PMK 81/2024 belum dicek ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-072",
@@ -3191,7 +3153,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Tunjangan PPh yang menjadi bagian gaji, PPh 21 direksi yang ditanggung perusahaan, zakat kepada BAZNAS oleh badan milik pemeluk Islam, beasiswa, dan PBB dapat dikurangkan. Sejak PMK 66/2023, PPh 21 yang ditanggung pemberi kerja adalah kenikmatan bagi penerimanya sehingga dapat dibiayakan seperti tunjangan PPh (penjelasan DJP). Yang dikoreksi positif: sumbangan perayaan, biaya pribadi pemegang saham, dan sanksi pajak.",
+        inti: "Dapat dikurangkan: tunjangan PPh dalam bentuk uang sebagai bagian gaji (UU PPh Pasal 6 ayat (1) huruf a angka 2); PPh 21 direksi yang ditanggung perusahaan, karena merupakan penggantian dalam bentuk kenikmatan bagi penerimanya (Lampiran PMK 168/2023 contoh I.4) dan biaya natura/kenikmatan boleh dikurangkan (Pasal 6 ayat (1) huruf n; PMK 66/2023 Pasal 2 ayat (1)); zakat kepada BAZNAS oleh badan dalam negeri milik pemeluk Islam (Pasal 9 ayat (1) huruf g; PP 60/2010 Pasal 1 ayat (1) huruf a); beasiswa (Pasal 6 ayat (1) huruf g); serta PBB dan pajak kendaraan (Pasal 6 ayat (1) huruf a angka 9). Larangan Pasal 9 ayat (1) huruf h hanya untuk PPh yang terutang oleh Wajib Pajak sendiri. Dikoreksi positif: sumbangan perayaan (huruf g), biaya pribadi pemegang saham (huruf b), dan sanksi bunga (huruf k).",
         jejakHitung: [
           ["Koreksi positif = 50.000.000 + 60.000.000 + 9.000.000", "Rp119.000.000"],
           ["PPh 21 direksi yang ditanggung (kenikmatan)", "tidak dikoreksi"],
@@ -3200,16 +3162,15 @@ UKP.register({
           ["PPh = 22% × 4.119.000.000", "Rp906.180.000"]
         ],
         mengapaSalah: {
-          A: "Mengoreksi positif PPh 21 direksi yang ditanggung Rp96.000.000 menurut aturan lama (PER-16/PJ/2016): 22% × 4.215.000.000. Sejak PMK 66/2023 PPh yang ditanggung pemberi kerja adalah kenikmatan yang dapat dibiayakan.",
+          A: "Mengoreksi positif PPh 21 direksi yang ditanggung Rp96.000.000 menurut perlakuan lama (PER-16/PJ/2016): 22% × 4.215.000.000. Sekarang PPh yang ditanggung pemberi kerja adalah kenikmatan bagi pegawai yang biayanya dapat dikurangkan (Pasal 6 ayat (1) huruf n).",
           B: "Mengoreksi zakat Rp120.000.000 (dan PPh 21 yang ditanggung): 22% × 4.335.000.000. Zakat kepada badan amil zakat resmi oleh badan dalam negeri milik pemeluk Islam dikecualikan dari larangan Pasal 9 ayat (1) huruf g.",
-          C: "Mengoreksi tunjangan PPh Rp180.000.000 (dan PPh 21 yang ditanggung): 22% × 4.395.000.000. Tunjangan yang dicantumkan sebagai bagian gaji adalah biaya gaji yang dapat dikurangkan."
+          C: "Mengoreksi tunjangan PPh Rp180.000.000 (dan PPh 21 yang ditanggung): 22% × 4.395.000.000. Tunjangan dalam bentuk uang yang dicantumkan sebagai bagian gaji adalah biaya gaji yang dapat dikurangkan."
         },
-        jebakan: "Aturan lama membedakan tunjangan PPh (boleh dibiayakan) dan PPh ditanggung (tidak boleh); sejak PMK 66/2023 keduanya menjadi penghasilan pegawai dan dapat dibiayakan. PPh 21 yang dipotong dari gaji pegawai sama sekali bukan beban perusahaan."
+        jebakan: "Aturan lama membedakan tunjangan PPh (boleh dibiayakan) dan PPh ditanggung (tidak boleh). Sejak natura dan/atau kenikmatan boleh dibiayakan (berlaku 1 Januari 2022 atau awal tahun buku 2022, PMK 66/2023 Pasal 2 ayat (7)), keduanya dapat dibiayakan. PPh 21 yang dipotong dari gaji pegawai bukan beban tambahan perusahaan."
       },
-      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a dan g UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 9 ayat (1) huruf b, g, dan k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 66/2023 (natura dan/atau kenikmatan)", berlakuSejak: "2023-07-01" }, { pasal: "PP 60/2010 (zakat dan sumbangan keagamaan wajib yang dapat dikurangkan)" }],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a angka 2 dan angka 9 serta huruf g UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (1) huruf n UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 9 ayat (1) huruf b, g, h, dan k UU PPh beserta Penjelasan huruf h", berlakuSejak: "2009-01-01" }, { pasal: "PMK 66/2023 Pasal 2 ayat (1) dan ayat (7)", berlakuSejak: "2023-07-01" }, { pasal: "PMK 168/2023 Lampiran contoh I.4 (PPh 21 ditanggung pemberi kerja sebagai kenikmatan)", berlakuSejak: "2024-01-01" }, { pasal: "PP 60/2010 Pasal 1 ayat (1) huruf a", berlakuSejak: "2010-08-20" }],
       anggaranDetik: 200,
-      verifikasi: "◐",
-      peringatan: "Kunci dipindah dari A ke D mengikuti penjelasan DJP (Juli 2023, diberitakan DDTCNews) dan FAQ PMK 66/2023: PPh 21 yang ditanggung pemberi kerja adalah kenikmatan yang menjadi penghasilan pegawai dan dapat dibiayakan. Bunyi pasal PMK 66/2023, PMK 168/2023, dan PP 55/2022 tentang hal ini belum dibaca langsung; bila perlakuan lama (tidak boleh dibiayakan) ternyata masih berlaku, jawabannya Rp927.300.000 (opsi A)."
+      verifikasi: "✅"
     },
     {
       id: "B6-078",
@@ -3494,10 +3455,9 @@ UKP.register({
         },
         jebakan: "Data PPh terutang dan kredit 2025 sengaja diberikan untuk memancing rumus umum; status emiten mengubah dasar penghitungan."
       },
-      dasarHukum: [{ pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 (angsuran Wajib Pajak tertentu; menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 226 ayat (2) dan Pasal 228 (mencabut PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 130,
-      verifikasi: "◐",
-      peringatan: "PMK 215/PMK.03/2018 dicabut PMK 81/2024 sejak 1 Januari 2025. Dasar laporan keuangan berkala bagi Wajib Pajak masuk bursa mengikuti rumusan PMK 215/PMK.03/2018; ulasan IKPI menyebut rumusan itu dimuat dalam Pasal 228 PMK 81/2024 (laporan keuangan triwulanan ke bursa dan/atau OJK), tetapi bunyi dan nomor pasalnya belum dicek ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-086",
@@ -3544,37 +3504,28 @@ UKP.register({
       kesulitan: 1,
       kasusId: "V-B6-05",
       formulirRef: "1771.2A.1",
-      stem: "Melanjutkan data PT Garuda Mekatronika (V-B6-05): dalam SPT Tahunan PPh Badan Tahun Pajak 2025, perusahaan harus merinci kerugian per tahun asal (2019, 2020, dan 2023), jumlah yang dikompensasikan pada 2025, sisa yang hangus, dan sisa yang dibawa ke tahun berikutnya. Menurut peta formulir 1771 yang diajarkan, rincian tersebut dilaporkan pada ...",
+      stem: "Melanjutkan data PT Garuda Mekatronika (V-B6-05): dalam SPT Tahunan PPh Badan Tahun Pajak 2025, perusahaan harus melaporkan rugi neto fiskal per tahun asal (2019, 2020, dan 2023) beserta distribusi kompensasinya per tahun pajak, termasuk jumlah yang dikompensasikan pada 2025 sebagai pengurang penghasilan neto. Menurut struktur SPT Tahunan PPh Badan dalam PER-11/PJ/2025, rincian tersebut dilaporkan pada ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Lampiran 1771-I sebagai koreksi fiskal negatif atas laba komersial",
-        B: "Lampiran khusus 1A bersama daftar penyusutan dan amortisasi",
-        C: "Lampiran khusus 2A (daftar kompensasi kerugian); jumlahnya dibawa ke induk SPT",
-        D: "Lampiran 1771-IV bersama penghasilan yang dikenai PPh final dan bukan objek"
-      },
+      opsi: { A: "Lampiran 1 (rekonsiliasi laporan keuangan) sebagai penyesuaian fiskal negatif atas laba komersial", B: "Lampiran 9 (daftar penyusutan dan amortisasi fiskal) bersama rincian harta", C: "Lampiran 7 (penghitungan kompensasi kerugian fiskal); jumlahnya dibawa ke induk SPT", D: "Lampiran 4 (penghasilan yang dikenai PPh final dan yang tidak termasuk objek pajak)" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "final-nonfinal" },
       pembahasan: {
-        inti: "Kompensasi kerugian bukan koreksi fiskal; ia dihitung setelah penghasilan neto fiskal (1771-I), dirinci per tahun asal pada lampiran khusus 2A, lalu jumlahnya mengurangi penghasilan neto di induk untuk menghasilkan PKP.",
+        inti: "Untuk Tahun Pajak 2025 SPT Tahunan PPh Badan memakai struktur PER-11/PJ/2025 (Coretax); format 1771 lama hanya untuk SPT sampai Tahun Pajak 2024 (Pasal 138 huruf a). Kompensasi kerugian bukan penyesuaian fiskal: dihitung setelah penghasilan neto fiskal, dirinci per tahun asal pada Lampiran 7 - Penghitungan Kompensasi Kerugian Fiskal (Pasal 85 ayat (1) huruf b angka 7), lalu jumlahnya mengurangi penghasilan neto di induk untuk menghasilkan PKP.",
         jejakHitung: [
-          ["1771-I", "laba komersial → penghasilan neto fiskal Rp2.400.000.000"],
-          ["Lampiran khusus 2A", "rincian rugi 2019, 2020, 2023; kompensasi 2025 Rp2.400.000.000"],
-          ["Induk", "PKP = neto fiskal − kompensasi = nihil"]
+          ["Lampiran 1 (rekonsiliasi)", "laba komersial → penghasilan neto fiskal Rp2.400.000.000"],
+          ["Lampiran 7", "rugi neto fiskal 2019, 2020, 2023 dan distribusi kompensasinya; kompensasi Tahun Pajak 2025 Rp2.400.000.000"],
+          ["Induk Bagian D angka 8 dan 9", "PKP = neto fiskal − kompensasi = nihil"]
         ],
         mengapaSalah: {
-          A: "Koreksi fiskal hanya untuk beda tetap dan beda waktu laba tahun berjalan; kompensasi kerugian tahun lalu bukan koreksi.",
-          B: "Lampiran 1A memuat penyusutan dan amortisasi, bukan kerugian.",
-          D: "Lampiran IV memuat penghasilan final dan bukan objek."
+          A: "Penyesuaian fiskal di rekonsiliasi hanya untuk beda tetap dan beda waktu laba tahun berjalan; kompensasi kerugian tahun lalu bukan penyesuaian fiskal dan punya lampiran sendiri.",
+          B: "Lampiran 9 memuat daftar penyusutan dan amortisasi fiskal, bukan kerugian.",
+          D: "Lampiran 4 memuat penghasilan yang dikenai PPh final dan yang tidak termasuk objek pajak."
         },
-        jebakan: "Urutan di SPT: 1771-I (neto fiskal) → 2A (kompensasi) → induk (PKP); menaruh kompensasi di 1771-I membuat rugi tidak terlacak per tahun asal."
+        jebakan: "Format 1771 lama menaruh rincian ini di lampiran khusus 2A; untuk SPT Tahun Pajak 2025 namanya Lampiran 7, dan jumlah kompensasi tahun pajak ini dipindahkan ke Induk Bagian D angka 8. Urutannya tetap: rekonsiliasi (neto fiskal) → kompensasi kerugian → induk (PKP)."
       },
-      dasarHukum: [
-        { pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PER-11/PJ/2025 (SPT Tahunan PPh Badan di Coretax)", berlakuSejak: "2025-05-22" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 85 ayat (1) huruf b angka 7 dan Pasal 138 huruf a", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 80,
-      verifikasi: "◐",
-      peringatan: "Nama dan penomoran lampiran mengikuti format 1771 yang diajarkan (PER-30/PJ/2013 s.t.d.d. PER-02/PJ/2019); padanan lampiran kompensasi kerugian di Coretax menurut PER-11/PJ/2025 belum diverifikasi ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-088",
@@ -3603,10 +3554,9 @@ UKP.register({
         },
         jebakan: "Angsuran PPh 25 tahun lalu (Rp60.000.000) tidak pernah dikurangkan dalam rumus angsuran; yang dikurangkan hanya PPh 22, 23, dan 24."
       },
-      dasarHukum: [{ pasal: "Pasal 25 ayat (1) dan ayat (6) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 (penghitungan angsuran PPh Pasal 25 dalam hal tertentu; menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1) dan ayat (6) huruf a UU PPh beserta Penjelasannya", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 113 ayat (2) huruf a dan Pasal 114 serta Lampiran (petunjuk pengisian Lampiran 6 dan Lampiran 7 SPT PPh Badan); menggantikan KEP-537/PJ/2000", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 180,
-      verifikasi: "◐",
-      peringatan: "KEP-537/PJ/2000 dicabut PER-11/PJ/2025 sejak 22 Mei 2025. Rumus angsuran bagi Wajib Pajak yang berhak atas kompensasi kerugian (penghasilan neto tahun lalu dikurangi sisa kerugian yang masih dapat dikompensasikan pada tahun berjalan) bersandar pada Pasal 25 ayat (6) huruf a UU PPh dan contoh dalam Penjelasannya, sehingga kunci tidak bergantung pada KEP-537/PJ/2000; nomor pasal rinciannya dalam PER-11/PJ/2025 belum dicek ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-089",
@@ -3618,12 +3568,7 @@ UKP.register({
       formulirRef: "1771.l1.9",
       stem: "Data untuk soal ini dan dua soal berikutnya (V-B6-06): PT Baterai Hijau Nusantara (badan dalam negeri, industri baterai di kawasan industri) memperoleh fasilitas tax allowance PP 78/2019 dan mulai berproduksi komersial Januari 2024. Realisasi penanaman modal untuk kegiatan usaha utama: tanah Rp30.000.000.000, bangunan pabrik Rp80.000.000.000, dan mesin produksi Rp150.000.000.000; selain itu dibeli kendaraan dinas direksi Rp2.000.000.000 yang tidak digunakan untuk kegiatan usaha utama. Penghasilan neto Tahun Pajak 2025 setelah penyesuaian fiskal positif dan negatif tetapi sebelum fasilitas (Lampiran 1771-I angka 5 − 6 + 7 − 8) Rp25.000.000.000, dan perusahaan masih memiliki kerugian fiskal Tahun Pajak 2024. Besarnya pengurangan penghasilan neto 2025 dari fasilitas tersebut dan tempat pelaporannya menurut peta formulir 1771 yang diajarkan adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp13.100.000.000 (5% × Rp262 miliar, termasuk kendaraan direksi) pada baris fasilitas penanaman modal Lampiran 1771-I (angka 9)",
-        B: "Rp78.000.000.000 sekaligus pada Tahun Pajak 2025 sehingga timbul kerugian baru",
-        C: "Rp13.000.000.000 digabungkan ke dalam penyesuaian fiskal negatif (angka 8) Lampiran 1771-I",
-        D: "Rp13.000.000.000 (5% × Rp260 miliar) pada baris fasilitas penanaman modal Lampiran 1771-I (angka 9), dirinci pada lampiran khusus 4A"
-      },
+      opsi: { A: "Rp13.100.000.000 (5% × Rp262 miliar, termasuk kendaraan direksi) pada baris fasilitas penanaman modal Lampiran 1771-I (angka 9)", B: "Rp78.000.000.000 sekaligus pada Tahun Pajak 2025 sehingga timbul kerugian baru", C: "Rp13.000.000.000 digabungkan ke dalam penyesuaian fiskal negatif (angka 8) Lampiran 1771-I", D: "Rp13.000.000.000 (5% × Rp260 miliar) pada baris fasilitas penanaman modal Lampiran 1771-I (angka 9), dirinci pada lampiran khusus 4A" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
@@ -3641,13 +3586,10 @@ UKP.register({
         },
         jebakan: "Jangan memasukkan aset non-usaha utama ke dasar fasilitas, dan jangan mengubah pengurangan bertahap menjadi beban sekaligus."
       },
-      dasarHukum: [
-        { pasal: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12" },
-        { pasal: "PER-11/PJ/2025 (SPT Tahunan PPh Badan di Coretax)", berlakuSejak: "2025-05-22" }
-      ],
+      dasarHukum: [{ pasal: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12" }, { pasal: "PER-11/PJ/2025 (SPT Tahunan PPh Badan di Coretax)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 160,
       verifikasi: "◐",
-      peringatan: "Angka 30% dan 5% × 6 tahun berkeyakinan tinggi; penempatan baris fasilitas penanaman modal (Lampiran 1771-I angka 9 dan lampiran khusus 4A) mengikuti format 1771 yang diajarkan (peta formulir) dan padanannya di Coretax (PER-11/PJ/2025) belum diverifikasi."
+      peringatan: "Angka sudah dicocokkan ke PP 78/2019 Pasal 3 ayat (1) huruf a: Rp13 miliar benar. Yang belum pasti hanya letak pelaporan: untuk Tahun Pajak 2025 berlaku SPT Coretax PER-11/PJ/2025 (format lama hanya sampai Tahun Pajak 2024), dan di sana pengurangan ini diisi di Lampiran 13A lalu dipindah ke Induk Bagian D angka 5 (sebelum kompensasi kerugian angka 8), bukan 1771-I angka 9 dan lampiran khusus 4A. Menunggu keputusan pembaruan peta formulir 1771."
     },
     {
       id: "B6-090",
@@ -3730,34 +3672,26 @@ UKP.register({
       kesulitan: 2,
       stem: "PT Sinar Logam Abadi, yang masih memiliki sisa kerugian fiskal Tahun Pajak 2023 Rp2.400.000.000, menggabungkan diri ke dalam PT Sinar Baja Utama pada 1 Juli 2026 dengan memakai nilai buku berdasarkan persetujuan Direktur Jenderal Pajak, lalu bubar tanpa likuidasi. PT Sinar Baja Utama sendiri memiliki sisa kerugian fiskal Tahun Pajak 2022 Rp1.000.000.000. Pernyataan yang paling tepat mengenai kompensasi kerugian setelah penggabungan adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "PT Sinar Baja Utama tetap dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2022 sampai Tahun Pajak 2027, tetapi sisa kerugian PT Sinar Logam Abadi yang menggabungkan diri tidak dapat dikompensasikan oleh PT Sinar Baja Utama.",
-        B: "PT Sinar Baja Utama tetap dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2022 sampai Tahun Pajak 2027, dan sisa kerugian PT Sinar Logam Abadi ikut dapat dikompensasikan oleh PT Sinar Baja Utama karena penggabungan memakai nilai buku.",
-        C: "PT Sinar Baja Utama tetap dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2022 sampai Tahun Pajak 2026, tetapi sisa kerugian PT Sinar Logam Abadi yang menggabungkan diri tidak dapat dikompensasikan oleh PT Sinar Baja Utama.",
-        D: "PT Sinar Baja Utama tetap dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2022 sampai Tahun Pajak 2027, dan sisa kerugian PT Sinar Logam Abadi dapat dikompensasikan oleh PT Sinar Baja Utama sepanjang tidak melewati lima tahun sejak kerugian itu timbul."
-      },
+      opsi: { A: "PT Sinar Baja Utama tetap dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2022 sampai Tahun Pajak 2027, tetapi sisa kerugian PT Sinar Logam Abadi yang menggabungkan diri tidak dapat dikompensasikan oleh PT Sinar Baja Utama.", B: "PT Sinar Baja Utama tetap dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2022 sampai Tahun Pajak 2027, dan sisa kerugian PT Sinar Logam Abadi ikut dapat dikompensasikan oleh PT Sinar Baja Utama karena penggabungan memakai nilai buku.", C: "PT Sinar Baja Utama tetap dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2022 sampai Tahun Pajak 2026, tetapi sisa kerugian PT Sinar Logam Abadi yang menggabungkan diri tidak dapat dikompensasikan oleh PT Sinar Baja Utama.", D: "PT Sinar Baja Utama tetap dapat mengompensasikan sisa kerugiannya sendiri dari Tahun Pajak 2022 sampai Tahun Pajak 2027, dan sisa kerugian PT Sinar Logam Abadi dapat dikompensasikan oleh PT Sinar Baja Utama sepanjang tidak melewati lima tahun sejak kerugian itu timbul." },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Penggabungan dengan nilai buku memindahkan harta pada nilai sisa buku, tetapi kerugian atau sisa kerugian badan yang menggabungkan diri tidak dapat dikompensasikan oleh badan penerima penggabungan. Kerugian milik badan penerima sendiri tetap mengikuti Pasal 6 ayat (2): rugi 2022 dapat dipakai 2023–2027.",
+        inti: "Penggabungan dengan nilai buku (PMK 81/2024 Pasal 392 ayat (2) dan ayat (3) huruf a) memindahkan harta pada nilai buku, tetapi penerima harta tidak boleh mengompensasikan kerugian atau sisa kerugian badan yang menggabungkan diri (Pasal 402 ayat (1)). Kerugian milik badan penerima sendiri tetap mengikuti UU PPh Pasal 6 ayat (2): rugi 2022 dapat dipakai 2023–2027.",
         jejakHitung: [
           ["Rugi PT Sinar Baja Utama 2022", "dapat dipakai 2023–2027"],
-          ["Rugi PT Sinar Logam Abadi 2023", "tidak dapat dialihkan ke penerima penggabungan"]
+          ["Rugi PT Sinar Logam Abadi 2023", "tidak dapat dikompensasikan oleh penerima penggabungan"],
+          ["Syarat penerima (Ps. 392 ayat (3) huruf a)", "sisa rugi penerima Rp1 miliar < Rp2,4 miliar"]
         ],
         mengapaSalah: {
-          B: "Nilai buku hanya mengatur nilai pengalihan harta; tidak memindahkan hak kompensasi kerugian.",
+          B: "Nilai buku hanya mengatur nilai pengalihan harta; Pasal 402 ayat (1) PMK 81/2024 melarang kompensasi kerugian badan yang mengalihkan harta.",
           C: "Rugi 2022 dapat dikompensasikan lima tahun mulai 2023, yaitu sampai 2027.",
-          D: "Larangan pemindahan kerugian berlaku penuh, tidak dibatasi lima tahun."
+          D: "Larangan Pasal 402 ayat (1) berlaku penuh, tidak dibatasi lima tahun."
         },
-        jebakan: "Opsi membedakan dua hal: tahun terakhir rugi milik sendiri (2027) dan nasib rugi badan yang bergabung (tidak dapat dikompensasikan)."
+        jebakan: "Sejak 1 Januari 2025 ketentuan nilai buku ada di PMK 81/2024 (PMK 52/PMK.010/2017 dicabut). Opsi membedakan dua hal: tahun terakhir rugi milik sendiri (2027) dan nasib rugi badan yang bergabung (tidak dapat dikompensasikan)."
       },
-      dasarHukum: [
-        { pasal: "Pasal 6 ayat (2) dan Pasal 10 ayat (3) UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PMK 52/PMK.010/2017 s.t.d.d. PMK 56/PMK.010/2021 (penggunaan nilai buku dalam penggabungan usaha)" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) dan Pasal 10 ayat (3) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 392 ayat (2) dan ayat (3) huruf a serta Pasal 402 ayat (1)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 140,
-      verifikasi: "◐",
-      peringatan: "Larangan kompensasi kerugian badan yang menggabungkan diri dalam penggabungan dengan nilai buku berasal dari pengetahuan peneliti tentang PMK 52/PMK.010/2017 s.t.d.d. PMK 56/PMK.010/2021; pasal dan rincian persyaratannya belum dicek ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-093",
@@ -3892,10 +3826,9 @@ UKP.register({
         },
         jebakan: "Dua fasilitas sering tertukar: tax allowance 30% (5% × 6 tahun) dan investment allowance padat karya 60% (10% × 6 tahun)."
       },
-      dasarHukum: [{ pasal: "PP 94/2010 s.t.d.d. PP 45/2019 (investment allowance industri padat karya)" }, { pasal: "PMK 16/PMK.010/2020 (pelaksanaan investment allowance)" }],
+      dasarHukum: [{ pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29A (investment allowance industri padat karya)", berlakuSejak: "2019-06-26" }, { pasal: "PMK 81/2024 Pasal 423 ayat (2) dan ayat (3) (menggantikan PMK 16/PMK.010/2020)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 90,
-      verifikasi: "◐",
-      peringatan: "Fasilitas investment allowance padat karya (60% dibebankan 10% per tahun selama 6 tahun; syarat tenaga kerja) berasal dari pengetahuan peneliti tentang PP 45/2019 dan PMK 16/PMK.010/2020 dan belum dicek ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-097",
@@ -4050,23 +3983,24 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-baca" },
       pembahasan: {
-        inti: "Induk SPT 1771 memuat ringkasan PKP, PPh terutang, kredit pajak, PPh 29/28A, dan angsuran PPh Pasal 25 untuk tahun pajak berikutnya; angsuran itu berlaku sejak bulan SPT disampaikan, paling lambat sejak bulan batas waktu penyampaian SPT.",
+        inti: "Induk SPT 1771 memuat ringkasan PKP, PPh terutang, kredit pajak, PPh 29/28A, dan angsuran PPh Pasal 25 untuk tahun pajak berikutnya; angsuran itu berlaku sejak bulan SPT disampaikan, paling lambat sejak bulan batas waktu penyampaian SPT (Pasal 25 ayat (2) UU PPh). Di formulir Coretax Tahun Pajak 2025, angsuran dihitung di Lampiran 6 (Angsuran PPh Tahun Pajak Berjalan) lalu dipindahkan ke Induk Bagian G.",
         jejakHitung: [
           ["Sumber angka", "PPh terutang 2025 − PPh 22 − PPh 23, dibagi 12"],
-          ["Tempat pelaporan", "induk SPT, bagian angsuran PPh 25 tahun berikutnya"],
+          ["Tempat pelaporan (peta 1771)", "induk SPT, bagian angsuran PPh 25 tahun berikutnya"],
+          ["Padanan Coretax", "Lampiran 6 angka 7 → Induk Bagian G"],
           ["Mulai berlaku", "bulan SPT disampaikan, paling lambat Masa April 2026"]
         ],
         mengapaSalah: {
-          A: "Lampiran III hanya merinci kredit pajak dalam negeri yang dipotong atau dipungut pihak lain.",
+          A: "Lampiran III hanya merinci kredit pajak yang dipotong atau dipungut pihak lain.",
           B: "Lampiran 2A khusus kompensasi kerugian.",
           C: "Lampiran I memuat laba komersial dan koreksi fiskal, bukan angsuran."
         },
-        jebakan: "Angsuran tahun berikutnya adalah keluaran SPT (di induk), bukan rincian lampiran."
+        jebakan: "Angsuran tahun berikutnya adalah keluaran SPT (di induk), bukan rincian lampiran kredit atau rekonsiliasi. Di Coretax angka itu dihitung di Lampiran 6 dan hasilnya tetap dibawa ke induk (Bagian G)."
       },
-      dasarHukum: [{ pasal: "Pasal 25 ayat (1) dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 (SPT Tahunan PPh Badan di Coretax)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1) dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 138 huruf a PER-11/PJ/2025 (format 1771 PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 hanya untuk Tahun Pajak sampai 2024)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 85 ayat (1) dan Lampiran huruf H PER-11/PJ/2025 (padanan Coretax: Lampiran 6 dan Induk Bagian G)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 75,
       verifikasi: "◐",
-      peringatan: "Peta induk dan lampiran mengikuti format 1771 yang diajarkan; letak isian angsuran PPh 25 pada formulir Coretax (PER-11/PJ/2025) belum diverifikasi ke teks primer."
+      peringatan: "Padanan Coretax (Lampiran 6 dipindahkan ke Induk Bagian G) sudah dicocokkan ke Lampiran huruf H PER-11/PJ/2025. Format 1771 lama (induk, Lampiran I–VI, lampiran khusus 1A–8A) menurut Pasal 138 huruf a PER-11/PJ/2025 hanya dipakai untuk Tahun Pajak sampai 2024 (PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017); lampiran formulir lama itu tidak ada di pustaka, jadi penomoran lama belum dicocokkan ke naskah."
     },
     {
       id: "B6-102",
@@ -4081,28 +4015,26 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Lampiran 1771-III memuat PPh yang dipotong atau dipungut pihak lain di dalam negeri dan dapat dikreditkan: PPh 22 (termasuk impor dan bendahara) dan PPh 23. PPh final dilaporkan di Lampiran IV, PPh 24 di lampiran kredit pajak luar negeri (7A), dan PPh 25 di induk sebagai pajak yang dibayar sendiri. Jumlah Lampiran 1771-III dipindahkan ke induk baris 7a.",
+        inti: "Pada peta 1771 yang diajarkan, Lampiran 1771-III memuat PPh yang dipotong atau dipungut pihak lain di dalam negeri dan dapat dikreditkan: PPh 22 (termasuk impor dan bendahara) dan PPh 23. PPh final dilaporkan di Lampiran IV, PPh 24 di lampiran khusus 7A, dan PPh 25 di induk sebagai pajak yang dibayar sendiri. Di formulir Coretax Tahun Pajak 2025 angka Rp152.000.000 ini adalah jumlah Lampiran 3 Bagian B; Lampiran 3 juga memuat Bagian A untuk kredit PPh 24.",
         jejakHitung: [
           ["PPh 23 jasa teknik", "Rp36.000.000"],
           ["PPh 22 bendahara", "Rp21.000.000"],
           ["PPh 22 impor", "Rp95.000.000"],
-          ["Jumlah Lampiran 1771-III", "Rp152.000.000"],
-          ["Tidak masuk: PPh final Rp170.000.000; PPh 24 Rp40.000.000; PPh 25 Rp120.000.000", "Lampiran IV, 7A, dan induk"]
+          ["Jumlah Lampiran 1771-III (Coretax: Lampiran 3 Bagian B)", "Rp152.000.000"],
+          ["Tidak masuk: PPh final Rp170.000.000; PPh 24 Rp40.000.000; PPh 25 Rp120.000.000", "Lampiran IV, 7A, dan induk"],
+          ["Padanan Coretax untuk kredit pajak seluruhnya", "Lampiran 3 Bagian B Rp152.000.000 + Bagian A Rp40.000.000 = Rp192.000.000 → Induk Bagian E angka 13"]
         ],
         mengapaSalah: {
-          A: "Menambahkan PPh 24 Rp40.000.000; kredit pajak luar negeri dilaporkan pada lampiran tersendiri.",
+          A: "Menambahkan PPh 24 Rp40.000.000; kredit pajak luar negeri bukan PPh yang dipotong/dipungut pihak lain di dalam negeri (format lama: lampiran khusus 7A; Coretax: Lampiran 3 Bagian A).",
           B: "Menambahkan PPh final Rp170.000.000; PPh final bukan kredit pajak.",
           D: "Melewatkan PPh 22 impor Rp95.000.000; pungutan impor juga kredit pajak dalam negeri."
         },
-        jebakan: "Pisahkan bukti per lampiran sebelum menjumlah: III (PPh 22/23 dalam negeri), IV (final), 7A (PPh 24), induk (PPh 25)."
+        jebakan: "Pisahkan bukti per lampiran sebelum menjumlah: III (PPh 22/23 dalam negeri), IV (final), 7A (PPh 24), induk (PPh 25). Di Coretax PPh 24 ikut Lampiran 3 (Bagian A), sehingga jumlah kredit pajak Lampiran 3 menjadi Rp192.000.000; jangan tertukar dengan jumlah Bagian B."
       },
-      dasarHukum: [
-        { pasal: "Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PER-11/PJ/2025 (SPT Tahunan PPh Badan di Coretax)", berlakuSejak: "2025-05-22" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 138 huruf a PER-11/PJ/2025 (format 1771 PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 hanya untuk Tahun Pajak sampai 2024)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 85 ayat (1) huruf b angka 3 dan Lampiran huruf H PER-11/PJ/2025 (padanan Coretax: Lampiran 3 Bagian A dan B)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 150,
       verifikasi: "◐",
-      peringatan: "Pemetaan lampiran mengikuti format 1771 yang diajarkan; di Coretax bukti potong elektronik tampil sebagai data pra-isi dan struktur lampirannya menurut PER-11/PJ/2025 belum diverifikasi."
+      peringatan: "Padanan Coretax (Lampiran 3 Bagian B Rp152.000.000; Bagian A untuk PPh 24) sudah dicocokkan ke Lampiran huruf H PER-11/PJ/2025. Format 1771 lama (induk, Lampiran I–VI, lampiran khusus 1A–8A) menurut Pasal 138 huruf a PER-11/PJ/2025 hanya dipakai untuk Tahun Pajak sampai 2024 (PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017); lampiran formulir lama itu tidak ada di pustaka, jadi penomoran lama belum dicocokkan ke naskah."
     },
     {
       id: "B6-103",
@@ -4220,12 +4152,7 @@ UKP.register({
       laporanUjian: ["C-2026-10"],
       stem: "Data untuk soal ini dan dua soal berikutnya (V-B6-07): Lysberg Prosess AS, badan yang berkedudukan di Negara Fennoria (belum memiliki P3B dengan Indonesia), mengirim empat insinyurnya untuk memberikan jasa konsultansi optimasi proses dan pelatihan operator di kilang PT Samudra Petrokimia, Cilegon. Para insinyur mulai bekerja di lokasi pada Senin, 3 Maret 2025 dan hadir terus-menerus sampai kontrak berakhir 31 Agustus 2026; hari ke-61 kehadiran jatuh pada 2 Mei 2025. Lysberg mendaftarkan BUT-nya di Coretax dan memperoleh NPWP pada 16 Juni 2025, lalu menerbitkan tagihan pertama pada 30 Juni 2025. Data Tahun Pajak 2025 BUT: peredaran usaha Rp12.000.000.000 dan laba komersial Rp900.000.000 setelah dibebani (i) bunga pinjaman dari kantor pusat Rp180.000.000, (ii) royalti perangkat lunak simulasi proses milik kantor pusat Rp240.000.000, (iii) alokasi biaya administrasi kantor pusat yang berkaitan dengan kegiatan BUT dan dihitung sesuai ketentuan Rp120.000.000, serta (iv) pengiriman laba semester I 2025 ke kantor pusat yang dicatat staf sebagai ‘beban dividen kantor pusat’ Rp300.000.000. Seluruh laba setelah pajak 2025 dikirim ke kantor pusat dan tidak ditanamkan kembali di Indonesia. Dengan menganggap berlaku penafsiran (sejalan dengan Commentary Model OECD/PBB) bahwa kehadiran jasa yang melampaui batas 60 hari dalam 12 bulan menjadikan seluruh kegiatan sejak hari pertama sebagai kegiatan melalui BUT, kewajiban pajak subjektif BUT Lysberg di Indonesia dimulai pada ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "30 Juni 2025, saat tagihan pertama diterbitkan kepada PT Samudra Petrokimia",
-        B: "16 Juni 2025, saat BUT terdaftar dan memperoleh NPWP di Coretax",
-        C: "3 Maret 2025, saat mulai menjalankan kegiatan di Indonesia melalui BUT",
-        D: "1 Januari 2026, tahun pajak berikutnya setelah syarat BUT terpenuhi"
-      },
+      opsi: { A: "30 Juni 2025, saat tagihan pertama diterbitkan kepada PT Samudra Petrokimia", B: "16 Juni 2025, saat BUT terdaftar dan memperoleh NPWP di Coretax", C: "3 Maret 2025, saat mulai menjalankan kegiatan di Indonesia melalui BUT", D: "1 Januari 2026, tahun pajak berikutnya setelah syarat BUT terpenuhi" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
@@ -4244,13 +4171,9 @@ UKP.register({
         },
         jebakan: "Menyamakan awal kewajiban subjektif dengan tanggal NPWP, tanggal tagihan pertama, atau awal tahun pajak berikutnya; tanpa premis dalam stem, sebagian pembaca Pasal 2A ayat (3) menunjuk hari ke-61 (2 Mei 2025)."
       },
-      dasarHukum: [
-        { pasal: "Pasal 2A ayat (3) UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "Pasal 2 ayat (5) huruf m UU PPh", berlakuSejak: "2001-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 2A ayat (3) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 2 ayat (5) huruf m UU PPh", berlakuSejak: "2001-01-01" }, { pasal: "PMK 35/PMK.03/2019 Pasal 4 ayat (2) huruf b dan Pasal 8 ayat (1) dan ayat (3) huruf a", berlakuSejak: "2019-04-01" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Pasal 2A ayat (3) UU PPh menyebut kewajiban subjektif dimulai saat mulai menjalankan usaha atau kegiatan melalui BUT. Bahwa BUT jasa yang melampaui batas 60 hari dianggap ada sejak hari pertama kegiatan adalah penafsiran yang lazim (sejalan dengan Commentary Model OECD/PBB), tetapi tidak dirumuskan eksplisit dalam UU; cek PMK 35/PMK.03/2019 dan sumber resmi sebelum dijadikan rujukan mutlak. Karena itu penafsiran tersebut kini dinyatakan sebagai premis dalam stem, dan hari ke-61 (2 Mei 2025) tidak lagi menjadi opsi, sehingga kunci tidak bergantung pada pilihan penafsiran peserta."
+      verifikasi: "✅"
     },
     {
       id: "B6-108",
@@ -4942,7 +4865,7 @@ UKP.register({
     {
       id: "B6-127",
       topik: "B6.7",
-      tingkat: [ "B", "C" ],
+      tingkat: ["B", "C"],
       jenis: "kasus",
       kesulitan: 3,
       stem: "Ibu Rina, seorang dokter, mendirikan perseroan perorangan PT Ortax Klinik Sehat dan mendaftarkannya pada Juni 2026. Perseroan menyerahkan jasa pemeriksaan kesehatan yang dilakukan Ibu Rina sendiri, dengan peredaran bruto diperkirakan Rp1,2 miliar setahun. Ia mendengar bahwa perseroan perorangan masih boleh memakai PPh final sampai akhir 2026. Analisis yang tepat adalah ...",
@@ -4953,17 +4876,16 @@ UKP.register({
       pembahasan: {
         inti: "Perseroan perorangan masih dapat memakai PPh final 0,5%, kecuali yang didirikan oleh orang pribadi berkeahlian khusus yang menyerahkan jasa sejenis jasa pekerjaan bebas, misalnya dokter (PP 55/2022 s.t.d.d. PP 20/2026 Ps. 57 ayat (2) huruf b jo. Ps. 56 ayat (4)). Peralihan sampai akhir Tahun Pajak 2026 hanya berlaku bagi perseroan perorangan tersebut yang sudah dikenai PPh final berdasarkan PP 55/2022. PT Ortax Klinik Sehat baru terdaftar Juni 2026, setelah PP 20/2026 berlaku 22 April 2026, sehingga langsung memakai tarif umum.",
         jejakHitung: [],
-        mengapaSalah: { A: "Tidak semua perseroan perorangan wajib tarif umum; perseroan perorangan selain yang didirikan ahli untuk jasa sejenis pekerjaan bebas masih dapat memakai PPh final 0,5% (Ps. 57 ayat (1)).", C: "Ketentuan peralihan sampai akhir 2026 hanya bagi perseroan perorangan dimaksud yang sudah memakai PPh final sebelum PP 20/2026 berlaku; perseroan ini baru terdaftar Juni 2026.", D: "Omzet di bawah Rp4,8 miliar tidak cukup; perseroan perorangan yang didirikan dokter untuk jasa sejenis pekerjaan bebas dikecualikan dari PPh final (Ps. 57 ayat (2) huruf b)." },
+        mengapaSalah: {
+          A: "Tidak semua perseroan perorangan wajib tarif umum; perseroan perorangan selain yang didirikan ahli untuk jasa sejenis pekerjaan bebas masih dapat memakai PPh final 0,5% (Ps. 57 ayat (1)).",
+          C: "Ketentuan peralihan sampai akhir 2026 hanya bagi perseroan perorangan dimaksud yang sudah memakai PPh final sebelum PP 20/2026 berlaku; perseroan ini baru terdaftar Juni 2026.",
+          D: "Omzet di bawah Rp4,8 miliar tidak cukup; perseroan perorangan yang didirikan dokter untuk jasa sejenis pekerjaan bebas dikecualikan dari PPh final (Ps. 57 ayat (2) huruf b)."
+        },
         jebakan: "Bandingkan setiap opsi dengan dasar hukum: PP 55/2022 s.t.d.d. PP 20/2026 Pasal 56 ayat (4)."
       },
-      dasarHukum: [
-        { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 56 ayat (4)", berlakuSejak: "2026-04-22" },
-        { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57 ayat (1) huruf b dan ayat (2) huruf b", berlakuSejak: "2026-04-22" },
-        { pasal: "PP 20/2026 Pasal II angka 1 huruf f (ketentuan peralihan)", berlakuSejak: "2026-04-22" }
-      ],
+      dasarHukum: [{ pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 56 ayat (4)", berlakuSejak: "2026-04-22" }, { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57 ayat (1) huruf b dan ayat (2) huruf b", berlakuSejak: "2026-04-22" }, { pasal: "PP 20/2026 Pasal II angka 1 huruf f (ketentuan peralihan)", berlakuSejak: "2026-04-22" }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Pengecoh tidak tersedia di sumber; alasan opsi A, C, D disusun dari penjelasan. · Opsi A kosong di sumber dan teks opsi D bercampur dengan sisa teks opsi A (\"... 20/2026 berlaku wajib memakai tarif umum Pasal 17\"). Opsi A disusun ulang dari sisa teks itu; opsi D dipotong sampai \"Rp4,8 miliar setahun\".",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 5, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -4995,26 +4917,27 @@ UKP.register({
     {
       id: "B6-129",
       topik: "B6.2",
-      tingkat: [ "B", "C" ],
+      tingkat: ["B", "C"],
       jenis: "klasifikasi",
       kesulitan: 1,
       stem: "Penerimaan berikut yang dikecualikan dari objek PPh bagi penerimanya adalah ...",
-      kataKualifikasi: [ "kecuali" ],
+      kataKualifikasi: ["kecuali"],
       opsi: { A: "Bagian laba yang diterima anggota perseroan komanditer yang modalnya tidak terbagi atas saham", B: "Hibah berupa kendaraan yang diterima PT dari orang pribadi pemegang saham mayoritasnya", C: "Imbalan bunga yang diterima PT dari DJP atas keterlambatan restitusi", D: "Keuntungan selisih kurs yang diperoleh PT atas pelunasan utang valuta asing" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Yang dikecualikan dari objek pajak antara lain bagian laba atau sisa hasil usaha yang diterima anggota dari perseroan komanditer yang modalnya tidak terbagi atas saham, persekutuan, perkumpulan, firma, kongsi, termasuk pemegang unit penyertaan kontrak investasi kolektif (UU PPh Ps. 4 ayat (3) huruf i). Bagian laba anggota CV termasuk huruf i.",
+        inti: "Bagian laba yang diterima anggota dari perseroan komanditer yang modalnya tidak terbagi atas saham dikecualikan dari objek pajak (UU PPh Pasal 4 ayat (3) huruf i). Hibah kepada PT dari pemegang sahamnya, imbalan bunga dari DJP, dan keuntungan selisih kurs tetap merupakan objek pajak.",
         jejakHitung: [],
-        mengapaSalah: { B: "Hibah dikecualikan dari objek hanya bila tidak ada hubungan usaha, pekerjaan, kepemilikan, atau penguasaan; hibah dari pemegang saham mayoritas ada hubungan kepemilikan sehingga tetap objek.", C: "Imbalan bunga merupakan bunga yang termasuk objek PPh (Ps. 4 ayat (1) huruf f).", D: "Keuntungan selisih kurs mata uang asing adalah objek PPh (Ps. 4 ayat (1) huruf l)." },
-        jebakan: "Bandingkan setiap opsi dengan dasar hukum: UU PPh Pasal 4 ayat (3) huruf c, f, g, dan i s.t.d.t.d. UU 6/2023."
+        mengapaSalah: {
+          B: "Pengecualian harta hibahan (Pasal 4 ayat (3) huruf a angka 2) hanya untuk keluarga sedarah lurus satu derajat, badan keagamaan, badan pendidikan, badan sosial termasuk yayasan, koperasi, atau orang pribadi usaha mikro dan kecil, dan sepanjang tidak ada hubungan usaha, pekerjaan, kepemilikan, atau penguasaan. PT bukan penerima yang disebut dan pemberinya pemegang saham mayoritas, sehingga hibah itu objek pajak.",
+          C: "Imbalan bunga menurut UU KUP disebut tegas sebagai objek pajak (Pasal 4 ayat (1) huruf r).",
+          D: "Keuntungan selisih kurs mata uang asing adalah objek pajak (Pasal 4 ayat (1) huruf l)."
+        },
+        jebakan: "Pengecualian Pasal 4 ayat (3) huruf i berlaku untuk bagian laba anggota koperasi, CV yang modalnya tidak terbagi atas saham, persekutuan, perkumpulan, firma, kongsi, dan pemegang unit penyertaan KIK; dividen dari PT diatur tersendiri di huruf f."
       },
-      dasarHukum: [
-        { pasal: "UU PPh Pasal 4 ayat (3) huruf c, f, g, dan i s.t.d.t.d. UU 6/2023", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU PPh Pasal 4 ayat (3) huruf a angka 2 dan huruf i s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "UU PPh Pasal 4 ayat (1) huruf l dan huruf r s.t.d.t.d. UU 6/2023", berlakuSejak: null }],
       anggaranDetik: 90,
-      verifikasi: "◐",
-      peringatan: "Pengecoh tidak tersedia di sumber; alasan opsi B, C, D disusun sendiri dari UU PPh Ps. 4. · Opsi A (kunci) kosong di sumber; dilengkapi dari penjelasan (bagian laba anggota CV yang modalnya tidak terbagi atas saham, Ps. 4 ayat (3) huruf i).",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 10, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -5046,28 +4969,27 @@ UKP.register({
     {
       id: "B6-131",
       topik: "B6.7",
-      tingkat: [ "B", "C" ],
+      tingkat: ["B", "C"],
       jenis: "kasus",
       kesulitan: 2,
       stem: "PT Ortax Kreasi, perseroan terbatas dengan beberapa pemegang saham (bukan perseroan perorangan), terdaftar sebagai WP pada 2023 dan sejak itu memakai PPh final 0,5% dengan peredaran bruto sekitar Rp3 miliar per tahun. Untuk Tahun Pajak 2026, perlakuan PPh-nya adalah ...",
-      kataKualifikasi: [ "bukan" ],
+      kataKualifikasi: ["bukan"],
       opsi: { A: "Tetap PPh final 0,5% karena peredaran brutonya belum melebihi Rp4,8 miliar setahun", B: "PPh final 0,5% sampai akhir Tahun Pajak 2026 berdasarkan ketentuan peralihan PP 20/2026", C: "Tarif umum Pasal 17 ayat (1) huruf b dengan fasilitas Pasal 31E karena jangka waktunya telah berakhir", D: "Tarif umum Pasal 17 ayat (1) huruf b tanpa fasilitas Pasal 31E karena sebelumnya pernah memakai PPh final" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "Setelah PP 20/2026 (berlaku 22 April 2026), WP yang dapat dikenai PPh final 0,5% hanya WP orang pribadi, perseroan perorangan yang didirikan oleh 1 orang, dan koperasi. PT lain yang jangka waktunya belum berakhir hanya melanjutkan sampai jangka waktu menurut PP 55/2022 berakhir, yaitu 3 Tahun Pajak sejak tahun terdaftar (2023–2025). Mulai 2026 PT Ortax Kreasi dikenai tarif Ps. 17 ayat (1) huruf b (22%) dengan fasilitas Ps. 31E karena peredaran brutonya tidak melebihi Rp50 miliar; dengan bruto sekitar Rp3 miliar seluruh PKP-nya memperoleh pengurangan 50% × 22%.",
         jejakHitung: [],
-        mengapaSalah: { A: "Batas peredaran bruto bukan satu-satunya syarat; jangka waktu PPh final PT (3 Tahun Pajak, 2023–2025) telah berakhir.", B: "Peralihan PP 20/2026 bagi PT hanya sampai jangka waktu menurut PP 55/2022 berakhir, yaitu akhir 2025, bukan akhir 2026.", D: "Pernah memakai PPh final tidak menghapus hak atas fasilitas Pasal 31E bila syarat peredaran bruto terpenuhi." },
+        mengapaSalah: {
+          A: "Batas peredaran bruto bukan satu-satunya syarat; jangka waktu PPh final PT (3 Tahun Pajak, 2023–2025) telah berakhir.",
+          B: "Peralihan PP 20/2026 bagi PT hanya sampai jangka waktu menurut PP 55/2022 berakhir, yaitu akhir 2025, bukan akhir 2026.",
+          D: "Pernah memakai PPh final tidak menghapus hak atas fasilitas Pasal 31E bila syarat peredaran bruto terpenuhi."
+        },
         jebakan: "Bandingkan setiap opsi dengan dasar hukum: PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57 ayat (1) dan Pasal II angka 1 huruf a, e, dan f."
       },
-      dasarHukum: [
-        { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57 ayat (1) dan Pasal II angka 1 huruf a, e, dan f", berlakuSejak: "2026-04-22" },
-        { pasal: "PP 55/2022 Pasal 59 ayat (1) dan ayat (2) huruf a (sebelum dihapus PP 20/2026)", berlakuSejak: null },
-        { pasal: "UU PPh Pasal 17 ayat (1) huruf b dan Pasal 31E", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57 ayat (1) dan Pasal II angka 1 huruf a, e, dan f", berlakuSejak: "2026-04-22" }, { pasal: "PP 55/2022 Pasal 59 ayat (1) dan ayat (2) huruf a (sebelum dihapus PP 20/2026)", berlakuSejak: null }, { pasal: "UU PPh Pasal 17 ayat (1) huruf b dan Pasal 31E", berlakuSejak: null }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Pengecoh tidak tersedia di sumber; alasan opsi A, B, D disusun dari penjelasan. · Opsi C (kunci) terpotong di sumber (\"jangka waktunya telah hat\"); dilengkapi \"telah berakhir\" sesuai penjelasan.",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 15, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -5149,7 +5071,7 @@ UKP.register({
     {
       id: "B6-135",
       topik: "B6.10",
-      tingkat: [ "B", "C" ],
+      tingkat: ["B", "C"],
       jenis: "konsep",
       kesulitan: 2,
       kutipan: "UU PPh Pasal 18 ayat (4) huruf a (dikutip try out): a. Wajib Pajak mempunyai penyertaan modal langsung atau tidak langsung paling rendah 25% (dua puluh lima persen) pada Wajib Pajak lain; hubungan antara Wajib Pajak dengan penyertaan paling rendah 25% (dua puluh lima persen) pada dua Wajib Pajak atau lebih; atau hubungan di antara dua Wajib Pajak atau lebih yang disebut terakhir;",
@@ -5161,16 +5083,16 @@ UKP.register({
       pembahasan: {
         inti: "Hubungan istimewa karena kepemilikan dianggap ada bukan hanya antara pemegang saham dan perseroan dengan penyertaan paling rendah 25%, tetapi juga di antara dua Wajib Pajak atau lebih yang sama-sama dimiliki paling rendah 25% oleh Wajib Pajak yang sama. Ambang yang dipakai \"paling rendah 25%\", sehingga 25% sudah memenuhi; PT Ortax Manufaktur dan PT Ortax Services mempunyai hubungan istimewa meskipun tidak saling memiliki saham dan tidak ada penguasaan manajemen.",
         jejakHitung: [],
-        mengapaSalah: { A: "Mengabaikan hubungan di antara dua Wajib Pajak yang sama-sama dimiliki paling rendah 25% oleh pihak yang sama.", B: "Ambangnya paling rendah 25%, sehingga kepemilikan tepat 25% sudah memenuhi.", C: "Unsur kepemilikan sudah cukup; penguasaan manajemen tidak disyaratkan." },
+        mengapaSalah: {
+          A: "Mengabaikan hubungan di antara dua Wajib Pajak yang sama-sama dimiliki paling rendah 25% oleh pihak yang sama.",
+          B: "Ambangnya paling rendah 25%, sehingga kepemilikan tepat 25% sudah memenuhi.",
+          C: "Unsur kepemilikan sudah cukup; penguasaan manajemen tidak disyaratkan."
+        },
         jebakan: "Pola \"sister company\": dua perusahaan yang masing-masing dimiliki ≥ 25% oleh pihak yang sama mempunyai hubungan istimewa."
       },
-      dasarHukum: [
-        { pasal: "UU PPh Pasal 18 ayat (4) huruf a beserta Penjelasan s.t.d.t.d. UU 6/2023", berlakuSejak: null },
-        { pasal: "PMK 172/2023 Pasal 2 ayat (4)", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU PPh Pasal 18 ayat (4) huruf a beserta Penjelasan s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PMK 172/2023 Pasal 2 ayat (4)", berlakuSejak: "2023-12-29" }],
       anggaranDetik: 90,
-      verifikasi: "◐",
-      peringatan: "Catatan sumber menulis \"> 25%\" padahal ambangnya ≥ 25%; ditulis ≥ 25%. · Opsi D (kunci) terpotong di sumber (\"oleh pihak yang hk\"); dilengkapi \"pihak yang sama\".",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 36, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -5198,10 +5120,10 @@ UKP.register({
         },
         jebakan: "Bandingkan setiap opsi dengan dasar hukum: PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29B ayat (1)."
       },
-      dasarHukum: [{ pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29B ayat (1)", berlakuSejak: null }, { pasal: "PMK 128/PMK.010/2019 Pasal 2 ayat (2) dan (3), Pasal 4, Pasal 5 huruf e dan g, Pasal 7 ayat (1)", berlakuSejak: null }],
+      dasarHukum: [{ pasal: "PP 94/2010 s.t.d.d. PP 45/2019 Pasal 29B ayat (1)", berlakuSejak: "2019-06-26" }, { pasal: "PMK 128/PMK.010/2019 Pasal 2 ayat (2) dan (3), Pasal 4, Pasal 5 huruf e dan g, Pasal 7 ayat (1)", berlakuSejak: "2019-09-09" }],
       anggaranDetik: 150,
       verifikasi: "◐",
-      peringatan: "Pengecoh tidak tersedia di sumber; alasan opsi A, C, dan D disusun dari angka (130 = semua biaya; 110 = termasuk honorarium anak direktur utama; 200 = total 200%). · Rincian biaya hilang dari stem sumber try out. Angkanya diambil dari langkah hitung (Rp60 jt + Rp25 jt + Rp15 jt berhak; jamuan Rp20 jt dan honorarium anak direktur utama Rp10 jt dikeluarkan); jenis tiap biaya dipasangkan penyunting mengikuti urutan jenis biaya dalam penjelasan (fasilitas fisik khusus, instruktur, barang/bahan) karena pasangan aslinya tidak diketahui. Perlu konfirmasi dari rekaman asli. Opsi B dan C bercampur di sumber; C ditetapkan Rp110.000.000,00.",
+      peringatan: "Kunci B sudah dicocokkan ke PMK 128/PMK.010/2019 (Pasal 4: jenis biaya berhak tambahan; Pasal 5 huruf e: honorarium peserta yang berhubungan keluarga dengan direksi dikecualikan; jamuan tidak termasuk Pasal 4). Yang belum pasti hanya kesetiaan pada try out asli: rincian biaya hilang dari stem sumber sehingga pasangan jenis biaya dan angka disusun penyunting, opsi B dan C bercampur di sumber (C ditetapkan Rp110.000.000,00), dan pengecoh disusun dari angka. Perlu konfirmasi dari rekaman asli.",
       sumber: { set: "TO-B-2026-11", no: 43, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -5411,10 +5333,10 @@ UKP.register({
     {
       id: "B6-145",
       topik: "B6.3",
-      tingkat: [ "B", "C" ],
+      tingkat: ["B", "C"],
       jenis: "konsep",
       kesulitan: 2,
-      kutipan: "PMK 74/2024 Pasal 4 ayat (2) dan (5) (dikutip try out): (2) Pembentukan cadangan piutang tak tertagih ... merupakan biaya yang diperoleh dari nilai tercatat cadangan piutang tak tertagih pada akhir Tahun Pajak dikurangi dengan cadangan piutang tak tertagih awal. ... (5) Nilai tercatat cadangan piutang tak tertagih pada akhir Tahun Pajak ... harus menggunakan nilai yang lebih kecil antara: a. nilai yang dihitung berdasarkan standar akuntansi ...; dan b. batasan tertentu.",
+      kutipan: "PMK 74/2024 Pasal 4 ayat (2) dan ayat (5): (2) Pembentukan cadangan piutang tak tertagih ... merupakan biaya yang diperoleh dari nilai tercatat cadangan piutang tak tertagih pada akhir Tahun Pajak dikurangi dengan cadangan piutang tak tertagih awal. ... (5) Nilai tercatat cadangan piutang tak tertagih pada akhir Tahun Pajak ... harus menggunakan nilai yang lebih kecil antara: a. nilai yang dihitung berdasarkan standar akuntansi keuangan yang berlaku di Indonesia; atau b. nilai batasan tertentu ...",
       stem: "PT Bank Ortax, bank yang terdaftar dan diawasi Otoritas Jasa Keuangan, membentuk cadangan piutang tak tertagih. Menurut PMK 74/2024, besarnya pembentukan cadangan piutang tak tertagih yang boleh dikurangkan dari penghasilan bruto dalam satu Tahun Pajak adalah ...",
       kataKualifikasi: [],
       opsi: { A: "seluruh saldo cadangan piutang tak tertagih akhir Tahun Pajak menurut SAK tanpa memperhitungkan saldo awal.", B: "jumlah piutang yang nyata-nyata tidak dapat ditagih dan telah dihapuskan dalam pembukuan selama Tahun Pajak.", C: "nilai yang lebih besar antara nilai menurut SAK dan batasan tertentu, dikurangi cadangan awal Tahun Pajak.", D: "nilai tercatat cadangan akhir Tahun Pajak (nilai terkecil antara SAK dan batasan tertentu) dikurangi cadangan piutang tak tertagih awal Tahun Pajak." },
@@ -5423,16 +5345,16 @@ UKP.register({
       pembahasan: {
         inti: "Bank yang terdaftar dan diawasi OJK termasuk Wajib Pajak yang boleh membentuk cadangan piutang tak tertagih. Pembentukan cadangan yang boleh dikurangkan adalah nilai tercatat cadangan pada akhir Tahun Pajak dikurangi cadangan awal, dengan nilai tercatat akhir Tahun Pajak memakai nilai yang lebih kecil antara nilai menurut SAK dan nilai batasan tertentu.",
         jejakHitung: [],
-        mengapaSalah: { A: "Mengabaikan saldo awal; yang dibebankan adalah selisih nilai tercatat akhir dikurangi cadangan awal.", B: "Menerapkan cara penghapusan piutang nyata-nyata tidak tertagih (Pasal 6 ayat (1) huruf h UU PPh), bukan pembentukan cadangan bank.", C: "Memakai nilai yang lebih besar antara SAK dan batasan tertentu, padahal ketentuan meminta nilai yang lebih kecil." },
+        mengapaSalah: {
+          A: "Mengabaikan saldo awal; yang dibebankan adalah selisih nilai tercatat akhir dikurangi cadangan awal.",
+          B: "Menerapkan cara penghapusan piutang nyata-nyata tidak tertagih (Pasal 6 ayat (1) huruf h UU PPh), bukan pembentukan cadangan bank.",
+          C: "Memakai nilai yang lebih besar antara SAK dan batasan tertentu, padahal ketentuan meminta nilai yang lebih kecil."
+        },
         jebakan: "Dua langkah: (1) nilai tercatat akhir = nilai terkecil (SAK, batasan); (2) beban = akhir − awal."
       },
-      dasarHukum: [
-        { pasal: "UU PPh Pasal 9 ayat (1) huruf c angka 1 s.t.d.t.d. UU 6/2023", berlakuSejak: null },
-        { pasal: "PMK 74/2024 Pasal 2 ayat (3), Pasal 3 ayat (6), Pasal 4 ayat (1), (2), dan (5)", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU PPh Pasal 9 ayat (1) huruf c angka 1 s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PMK 74/2024 Pasal 2 ayat (3), Pasal 3 ayat (1) dan ayat (6), Pasal 4 ayat (1), (2), dan (5), Pasal 12", berlakuSejak: "2024-10-18" }],
       anggaranDetik: 90,
-      verifikasi: "◐",
-      peringatan: "Baris kelompok dan seluruh stem soal tidak ada di sumber (PDF hanya memuat opsi); stem direkonstruksi dari pembahasan dan kutipan PMK 74/2024. Opsi D terpotong setelah \"dikurangi\"; dilengkapi \"cadangan piutang tak tertagih awal Tahun Pajak\". Kelompok B6 diduga dari materi (bisa juga B7).",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 93, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -5538,7 +5460,7 @@ UKP.register({
     { id: "KT-B6-49", topik: "B6.4", tipe: "prosedur", depan: "Perlakuan fiskal lessee sewa guna usaha dengan hak opsi?", belakang: "Tidak menyusutkan; seluruh angsuran dibiayakan; tidak dipotong PPh 23", dasar: "KMK 1169/KMK.01/1991; Pasal 23 ayat (4) huruf b UU PPh", berlakuSejak: "1991-01-19", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-50", topik: "B6.4", tipe: "pasal", depan: "Harta terbakar lalu diganti asuransi?", belakang: "Nilai sisa buku fiskal menjadi kerugian; ganti rugi asuransi menjadi penghasilan", dasar: "Pasal 11 ayat (8) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-51", topik: "B6.5", tipe: "prosedur", depan: "Urutan pemakaian sisa kerugian fiskal?", belakang: "Kerugian tertua lebih dulu; sisa setelah tahun kelima hangus", dasar: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-52", topik: "B6.5", tipe: "definisi", depan: "Sisa rugi badan yang menggabungkan diri (penggabungan nilai buku)?", belakang: "Tidak dapat dikompensasikan oleh badan penerima penggabungan", dasar: "PMK 52/PMK.010/2017 s.t.d.d. PMK 56/PMK.010/2021", berlakuSejak: null, menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-52", topik: "B6.5", tipe: "definisi", depan: "Sisa rugi badan yang menggabungkan diri (penggabungan nilai buku)?", belakang: "Tidak dapat dikompensasikan oleh badan penerima penggabungan", dasar: "Pasal 402 ayat (1) PMK 81/2024 (menggantikan PMK 52/PMK.010/2017 s.t.d.d. PMK 56/PMK.010/2021)", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-53", topik: "B6.6", tipe: "pasal", depan: "SKPLB terbit saat Wajib Pajak masih punya utang pajak?", belakang: "Diperhitungkan dulu dengan utang pajak; sisanya dikembalikan paling lama 1 bulan", dasar: "Pasal 11 ayat (1)–(2) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-54", topik: "B6.6", tipe: "definisi", depan: "Sifat PPh 22 BBM bagi penyalur/agen dan bagi pembeli pemakai?", belakang: "Final bagi penyalur/agen; kredit pajak bagi pembeli pemakai", dasar: "PMK 51/2025 Pasal 10 ayat (2) (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-55", topik: "B6.6", tipe: "angka", depan: "PPh 22 bendahara atas pembelian sampai Rp2.000.000?", belakang: "Tidak dipungut bila tidak lebih dari Rp2.000.000 (tidak termasuk PPN, bukan pembayaran yang dipecah); di atasnya dipungut 1,5% dan menjadi kredit penjual", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },

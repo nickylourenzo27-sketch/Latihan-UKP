@@ -45,7 +45,7 @@ UKP.register({
       { label: "Pemeteraian kemudian (tidak/kurang dibayar)", nilai: "Rp10.000 + sanksi 100% = Rp20.000 per dokumen", dasar: "UU 10/2020 Ps. 17–18", berlakuSejak: "2021-01-01" },
       { label: "Pemeteraian kemudian alat bukti (semula bukan objek)", nilai: "Rp10.000 tanpa sanksi", dasar: "UU 10/2020 Ps. 17–18", berlakuSejak: "2021-01-01" },
       { label: "Dokumen luar negeri dilunasi paling lambat saat digunakan", nilai: "Rp10.000 tanpa sanksi", dasar: "UU 10/2020 Ps. 8(1)e, 18", berlakuSejak: "2021-01-01" },
-      { label: "Pengesahan pemeteraian kemudian", nilai: "pejabat yang ditetapkan Menteri; menurut PMK 78/2024 Pejabat Pos (◐ perlu cek naskah resmi)", dasar: "UU 10/2020 Ps. 1; PMK 78/2024", berlakuSejak: "2024-11-01" },
+      { label: "Pengesahan pemeteraian kemudian", nilai: "pejabat yang ditetapkan Menteri: Pejabat Pos (bila dibayar dengan meterai tempel) atau Pejabat DJP (meterai tempel, meterai elektronik, dan/atau SSP)", dasar: "UU 10/2020 Ps. 1; PMK 78/2024 Ps. 51", berlakuSejak: "2024-11-01" },
       { label: "Daluwarsa", nilai: "5 tahun sejak saat terutang (bea meterai dan sanksi)", dasar: "UU 10/2020 Ps. 23", berlakuSejak: "2021-01-01" },
       { label: "Larangan pejabat", nilai: "pejabat (antara lain hakim, panitera, notaris, PPAT) tidak dibenarkan menerima atau menyimpan dokumen belum lunas (◐ rincian pejabat perlu cek naskah resmi)", dasar: "UU 10/2020 Ps. 21", berlakuSejak: "2021-01-01" },
       { label: "Pidana memalsu/memakai meterai palsu", nilai: "penjara maks. 7 tahun, denda maks. Rp500 juta", dasar: "UU 10/2020 Ps. 24–25", berlakuSejak: "2021-01-01" },
@@ -231,7 +231,7 @@ UKP.register({
         "Pemeteraian kemudian adalah pemeteraian yang memerlukan pengesahan dari pejabat yang ditetapkan Menteri (Pasal 1 UU 10/2020); dilakukan atas dokumen yang bea meterainya tidak atau kurang dibayar dan atas dokumen yang digunakan sebagai alat bukti di pengadilan (Pasal 17).",
         "Jumlah yang dibayar (Pasal 18): dokumen yang bea meterainya tidak atau kurang dibayar — bea meterai terutang Rp10.000 ditambah sanksi administratif 100%; dokumen yang semula bukan objek lalu diajukan sebagai alat bukti (misalnya kuitansi Rp3.000.000) — cukup Rp10.000 tanpa sanksi. Dokumen yang bea meterainya sudah lunas tidak perlu dimeteraikan ulang saat diajukan sebagai alat bukti.",
         "Dokumen yang dibuat di luar negeri dilunasi dengan meterai atau SSP paling lambat saat digunakan di Indonesia (saat terutangnya), tanpa sanksi; bila sudah digunakan tanpa dilunasi, dokumen itu menjadi dokumen yang bea meterainya tidak dibayar sehingga pelunasannya disertai sanksi 100%.",
-        "PMK 78/2024 menunjuk Pejabat Pos (pejabat PT Pos Indonesia) untuk melayani dan mengesahkan pemeteraian kemudian; bila kekurangan bea meterai ditemukan melalui pemeriksaan, DJP menerbitkan surat ketetapan pajak sebesar bea meterai yang kurang dibayar ditambah sanksi 100% (Pasal 19 UU 10/2020), lalu dokumennya disahkan Pejabat DJP.",
+        "PMK 78/2024 Pasal 51 menetapkan dua pengesah pemeteraian kemudian: Pejabat Pos (pejabat PT Pos Indonesia) untuk pembayaran dengan meterai tempel, dan Pejabat DJP untuk pembayaran dengan meterai tempel, meterai elektronik, dan/atau SSP; SSP dipakai antara lain untuk pemeteraian kemudian lebih dari 50 dokumen (Pasal 42). Bila kekurangan bea meterai ditemukan melalui pemeriksaan, DJP menerbitkan surat ketetapan pajak sebesar bea meterai yang kurang dibayar ditambah sanksi 100% (Pasal 19 UU 10/2020), lalu atas permintaan pihak terutang dokumennya disahkan Pejabat DJP (Pasal 53 PMK 78/2024).",
         "Daluwarsa: bea meterai yang terutang kedaluwarsa setelah 5 tahun sejak saat terutang (Pasal 23 UU 10/2020) dan berlaku untuk semua dokumen; setelah lewat, bea meterai dan sanksinya tidak dapat ditagih, tetapi menurut penjelasan UU dokumen itu tetap harus dimeteraikan kemudian bila akan dijadikan alat bukti di pengadilan.",
         "Hakim, panitera, jurusita, notaris, PPAT, aparatur sipil negara, dan pejabat negara tidak dibenarkan menerima, mempertimbangkan, menyimpan, melekatkan, membuat salinan, atau memberi keterangan pada dokumen yang bea meterainya tidak atau kurang dibayar (Pasal 21); pelanggarannya dikenai sanksi administratif menurut peraturan kepegawaian."
       ],
@@ -239,7 +239,7 @@ UKP.register({
         { label: "Sanksi pemeteraian kemudian", nilai: "100% dari bea meterai terutang", dasar: "Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" },
         { label: "Total per dokumen yang lewat saat terutang", nilai: "Rp10.000 + Rp10.000 = Rp20.000", dasar: "Pasal 5 dan 18 UU 10/2020", berlakuSejak: "2021-01-01" },
         { label: "Daluwarsa", nilai: "5 tahun sejak saat terutang", dasar: "Pasal 23 UU 10/2020", berlakuSejak: "2021-01-01" },
-        { label: "Pengesahan pemeteraian kemudian", nilai: "Pejabat Pos; Pejabat DJP bila kekurangan ditetapkan dengan SKP", dasar: "Pasal 1 UU 10/2020; PMK 78/2024", berlakuSejak: "2024-11-01" },
+        { label: "Pengesahan pemeteraian kemudian", nilai: "Pejabat Pos (dibayar dengan meterai tempel); Pejabat DJP (meterai tempel, meterai elektronik, SSP, atau setelah SKP/STP)", dasar: "Pasal 1 UU 10/2020; PMK 78/2024", berlakuSejak: "2024-11-01" },
         { label: "Dokumen luar negeri dilunasi paling lambat saat digunakan", nilai: "hanya Rp10.000, tanpa sanksi", dasar: "Pasal 8 ayat (1) huruf e dan Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" },
         { label: "Dokumen bukan objek yang diajukan sebagai alat bukti", nilai: "Rp10.000, tanpa sanksi", dasar: "Pasal 3 ayat (1) huruf b, Pasal 17, dan Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }
       ],
@@ -485,7 +485,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-009", topik: "A5.1", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 2,
+      id: "A5-009",
+      topik: "A5.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
       stem: "Dalam rapat koordinasi pascabencana banjir bandang 2026, pemerintah daerah, yayasan keagamaan, dan bank penyalur kredit mendata dokumen yang mungkin memperoleh fasilitas pembebasan bea meterai. Dokumen berikut termasuk kelompok yang dapat diberikan fasilitas pembebasan berdasarkan Pasal 22 UU 10/2020, kecuali ...",
       kataKualifikasi: ["kecuali"],
       opsi: { A: "Akta pengalihan hak atas tanah dan bangunan dalam rangka percepatan pemulihan sosial ekonomi akibat bencana alam", B: "Dokumen pengalihan hak atas tanah untuk kegiatan keagamaan dan sosial yang tidak bersifat komersial", C: "Perjanjian kredit konsumtif antara bank umum dan nasabah perorangan", D: "Dokumen yang terkait pelaksanaan perjanjian internasional yang mengikat Indonesia" },
@@ -494,13 +498,16 @@ UKP.register({
       pembahasan: {
         inti: "Pembebasan Pasal 22 terbatas pada dokumen penanganan bencana alam, keagamaan/sosial nonkomersial, program pemerintah dan kebijakan lembaga moneter/jasa keuangan, serta perjanjian internasional; perjanjian kredit konsumtif biasa tetap terutang.",
         jejakHitung: [],
-        mengapaSalah: { A: "Termasuk kelompok dokumen penanganan bencana alam yang dapat dibebaskan", B: "Termasuk kelompok kegiatan keagamaan dan sosial nonkomersial", D: "Perjanjian internasional adalah salah satu kelompok yang dapat dibebaskan" },
+        mengapaSalah: {
+          A: "Termasuk kelompok dokumen penanganan bencana alam yang dapat dibebaskan",
+          B: "Termasuk kelompok kegiatan keagamaan dan sosial nonkomersial",
+          D: "Perjanjian internasional adalah salah satu kelompok yang dapat dibebaskan"
+        },
         jebakan: "Pembebasan bersifat fasilitas yang 'dapat diberikan' dan rinciannya diatur dengan peraturan pemerintah tersendiri (bukan PP 86/2021, yang mengatur pengadaan meterai); berbeda dari pengecualian objek Pasal 7."
       },
-      dasarHukum: [ { pasal: "Pasal 22 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 7 UU 10/2020 (pembanding: dokumen bukan objek)", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 22 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 7 UU 10/2020 (pembanding: dokumen bukan objek)", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 90,
-      verifikasi: "◐",
-      peringatan: "Daftar kelompok dokumen yang dapat dibebaskan menurut Pasal 22 ditulis dari ingatan teks UU 10/2020 dan belum dicek ke naskah resmi; peraturan pemerintah pelaksananya belum dibaca langsung."
+      verifikasi: "✅"
     },
     {
       id: "A5-031", topik: "A5.1", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2,
@@ -1346,28 +1353,37 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-056", topik: "A5.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3,
-      kutipan: "Pasal 1, 17, dan 18 UU 10/2020 (parafrase): pemeteraian kemudian adalah pemeteraian yang memerlukan pengesahan dari pejabat yang ditetapkan Menteri; pemeteraian kemudian dilakukan atas dokumen yang bea meterainya tidak atau kurang dibayar dan atas dokumen yang digunakan sebagai alat bukti di pengadilan; atas dokumen yang bea meterainya tidak atau kurang dibayar, yang dibayar adalah bea meterai yang terutang ditambah sanksi administratif 100%.",
-      stem: "Dalam reviu internal 19 Oktober 2026, PT Mahakarya Properti menemukan 46 surat perjanjian sewa unit apartemen yang ditandatangani sepanjang 2025 tanpa meterai. Setiap perjanjian dibuat 2 rangkap asli; perusahaan memegang satu rangkap, dan rangkap lainnya dipegang penyewa. Belum ada pemeriksaan DJP, dan para pihak tidak memperjanjikan lain tentang pembebanan meterai. Direksi ingin melunasi secara sukarela dengan satu kali pembayaran melalui kode billing, tanpa menempel meterai tempel satu per satu. Berdasarkan kutipan tersebut, urutan langkah yang paling sesuai bagi PT Mahakarya Properti adalah ...",
+      id: "A5-056",
+      topik: "A5.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      kutipan: "Pasal 17 dan 18 UU 10/2020 serta Pasal 42, 43, 49, dan 51 PMK 78/2024 (parafrase): pemeteraian kemudian dilakukan atas dokumen yang bea meterainya tidak atau kurang dibayar, sebesar bea meterai yang terutang ditambah sanksi administratif 100%; pembayaran dengan Surat Setoran Pajak dipakai antara lain untuk pemeteraian kemudian lebih dari 50 dokumen, dengan membuat daftar dokumen dan melekatkan bukti setor yang telah divalidasi NTPN; Pejabat Pos mengesahkan pemeteraian kemudian yang dibayar dengan meterai tempel, sedangkan Pejabat DJP mengesahkan yang dibayar dengan meterai tempel, meterai elektronik, dan/atau Surat Setoran Pajak.",
+      stem: "Dalam reviu internal 19 Oktober 2026, PT Mahakarya Properti menemukan 56 surat perjanjian sewa unit apartemen yang ditandatangani sepanjang 2025 tanpa meterai. Setiap perjanjian dibuat 2 rangkap asli; perusahaan memegang satu rangkap, dan rangkap lainnya dipegang penyewa. Belum ada pemeriksaan DJP, dan para pihak tidak memperjanjikan lain tentang pembebanan meterai. Direksi ingin melunasi secara sukarela dengan satu kali pembayaran melalui kode billing, tanpa menempel meterai tempel satu per satu. Berdasarkan kutipan tersebut, urutan langkah yang paling sesuai bagi PT Mahakarya Properti adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Membuat kode billing bea meterai Rp460.000 tanpa sanksi karena pelunasan dilakukan sukarela sebelum pemeriksaan, membayarnya, lalu menyimpan bukti setor bersama arsip perjanjian tanpa pengesahan",
-        B: "Menghitung pokok 46 × Rp10.000 = Rp460.000 ditambah sanksi 100% Rp460.000; membuat kode billing bea meterai Rp920.000 dan membayarnya; lalu mengajukan perjanjian beserta bukti setor kepada pejabat yang ditetapkan Menteri (Pejabat Pos) untuk disahkan sebagai pemeteraian kemudian",
-        C: "Menghitung 92 rangkap (milik perusahaan dan penyewa) × (Rp10.000 + Rp10.000) = Rp1.840.000; membuat kode billing dan membayarnya; lalu mengajukan perjanjian beserta bukti setor kepada Pejabat Pos untuk disahkan",
-        D: "Menghitung Rp920.000 dan membayarnya dengan kode billing, lalu meminta notaris yang menyusun format perjanjian membubuhkan cap pengesahan pemeteraian kemudian pada tiap perjanjian"
-      },
+      opsi: { A: "Membuat kode billing bea meterai Rp560.000 tanpa sanksi karena pelunasan dilakukan sukarela sebelum pemeriksaan, membayarnya, lalu menyimpan bukti setor bersama arsip perjanjian tanpa pengesahan", B: "Menghitung pokok 56 × Rp10.000 = Rp560.000 ditambah sanksi 100% Rp560.000; membayar Rp1.120.000 dengan kode billing; membuat daftar dokumen dan melekatkan bukti setor bervalidasi NTPN; lalu meminta Pejabat DJP membubuhkan cap pemeteraian kemudian", C: "Menghitung 112 rangkap (milik perusahaan dan penyewa) × (Rp10.000 + Rp10.000) = Rp2.240.000; membayarnya dengan kode billing; membuat daftar dokumen; lalu meminta Pejabat DJP membubuhkan cap pemeteraian kemudian", D: "Menghitung Rp1.120.000 dan membayarnya dengan kode billing; membuat daftar dokumen; lalu mengajukan perjanjian beserta bukti setor kepada Pejabat Pos untuk dibubuhi cap pemeteraian kemudian" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Perjanjian yang tidak dilunasi saat ditandatangani tetap dikenai sanksi 100% walaupun dilunasi sukarela sebelum pemeriksaan. Pembayaran dapat memakai SSP dengan kode billing, tetapi pemeteraian kemudian baru sah setelah disahkan pejabat yang ditetapkan Menteri, yaitu Pejabat Pos menurut PMK 78/2024. Perusahaan hanya menanggung rangkap yang diterimanya.",
-        jejakHitung: [ ["Rangkap yang terutang oleh perusahaan (Pasal 9)", "46 dokumen"], ["Pokok 46 × Rp10.000", "Rp460.000"], ["Sanksi 100%", "Rp460.000"], ["Kode billing", "Rp920.000"], ["Langkah akhir", "pengesahan oleh Pejabat Pos"] ],
-        mengapaSalah: { A: "Pelunasan sukarela tidak menghapus sanksi 100% atas dokumen yang tidak dilunasi pada saat terutang, dan pemeteraian kemudian wajib disahkan pejabat yang ditetapkan Menteri", C: "Rangkap yang dipegang penyewa terutang oleh penyewa (Pasal 9), bukan oleh perusahaan", D: "Notaris bukan pejabat pengesah pemeteraian kemudian" },
-        jebakan: "Frasa 'sukarela sebelum pemeriksaan' memancing peserta menghapus sanksi; sanksi 100% melekat begitu saat terutang terlewati tanpa pelunasan."
+        inti: "Perjanjian yang tidak dilunasi saat ditandatangani tetap dikenai sanksi 100% walaupun dilunasi sukarela sebelum pemeriksaan (Pasal 18 UU 10/2020; Pasal 49 huruf a PMK 78/2024). Karena dokumennya lebih dari 50, pembayaran boleh memakai SSP dengan kode billing (Pasal 42 huruf a PMK 78/2024), disertai daftar dokumen dan bukti setor bervalidasi NTPN (Pasal 43 ayat (1)). Pemeteraian kemudian yang dibayar dengan SSP disahkan Pejabat DJP (Pasal 51 ayat (4)). Perusahaan hanya menanggung rangkap yang diterimanya (Pasal 9 ayat (2) UU 10/2020).",
+        jejakHitung: [
+          ["Rangkap yang terutang oleh perusahaan (Pasal 9 ayat (2))", "56 dokumen"],
+          ["Syarat SSP: lebih dari 50 dokumen (Pasal 42 huruf a PMK 78/2024)", "terpenuhi"],
+          ["Pokok 56 × Rp10.000", "Rp560.000"],
+          ["Sanksi 100%", "Rp560.000"],
+          ["Kode billing", "Rp1.120.000"],
+          ["Langkah akhir", "cap pemeteraian kemudian oleh Pejabat DJP"]
+        ],
+        mengapaSalah: {
+          A: "Pelunasan sukarela tidak menghapus sanksi 100% atas dokumen yang tidak dilunasi pada saat terutang, dan pemeteraian kemudian wajib disahkan pejabat yang ditetapkan Menteri",
+          C: "Rangkap yang dipegang penyewa terutang oleh penyewa (Pasal 9 ayat (2)), bukan oleh perusahaan",
+          D: "Pejabat Pos hanya mengesahkan pemeteraian kemudian yang dibayar dengan meterai tempel (Pasal 51 ayat (2) PMK 78/2024); pembayaran dengan SSP disahkan Pejabat DJP"
+        },
+        jebakan: "Dua pancingan: frasa 'sukarela sebelum pemeriksaan' memancing peserta menghapus sanksi, dan 'Pejabat Pos' terdengar benar karena memang pengesah pemeteraian kemudian, tetapi hanya untuk pembayaran dengan meterai tempel. SSP untuk pemeteraian kemudian hanya tersedia bila dokumennya lebih dari 50 (atau meterai tempel dan elektronik tidak dapat digunakan)."
       },
-      dasarHukum: [ { pasal: "Pasal 1, Pasal 9, Pasal 17, dan Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "PMK 78/2024 (pemeteraian kemudian, Pejabat Pos)", berlakuSejak: "2024-11-01" } ],
+      dasarHukum: [{ pasal: "Pasal 1 angka 6, Pasal 9, Pasal 17, dan Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 42, Pasal 43, Pasal 49, dan Pasal 51 PMK 78/2024", berlakuSejak: "2024-11-01" }],
       anggaranDetik: 180,
-      verifikasi: "◐",
-      peringatan: "Tata cara pengesahan oleh Pejabat Pos dan pelunasan pemeteraian kemudian dengan SSP/kode billing menurut PMK 78/2024 diambil dari ringkasan sekunder dan belum dicek ke naskah resmi PMK; rincian lampiran (misalnya daftar dokumen) dan kanal pengesahan dapat berbeda. Pokok, sanksi 100%, dan pihak terutang sudah sesuai UU 10/2020."
+      verifikasi: "✅"
     },
     {
       id: "A5-057", topik: "A5.1", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A5-04",
@@ -1693,23 +1709,36 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-075", topik: "A5.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, kasusId: "V-A5-06",
-      kutipan: "Pasal 21 UU 10/2020 (parafrase): hakim, panitera, jurusita, notaris, pejabat pembuat akta tanah, aparatur sipil negara, dan pejabat negara tidak dibenarkan menerima, mempertimbangkan, atau menyimpan dokumen yang bea meterainya tidak atau kurang dibayar. Pasal 1 (parafrase): pemeteraian kemudian adalah pemeteraian yang memerlukan pengesahan dari pejabat yang ditetapkan oleh Menteri.",
+      id: "A5-075",
+      topik: "A5.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kasusId: "V-A5-06",
+      kutipan: "Pasal 21 ayat (1) UU 10/2020 beserta penjelasannya (parafrase): pejabat yang berwenang, antara lain hakim, panitera, jurusita, notaris, pejabat pembuat akta tanah, pegawai aparatur sipil negara, anggota TNI/Polri, dan pejabat negara, dilarang menerima, mempertimbangkan, atau menyimpan dokumen yang bea meterainya tidak atau kurang dibayar. Pasal 1 angka 6 (parafrase): pemeteraian kemudian adalah pemeteraian yang memerlukan pengesahan dari pejabat yang ditetapkan oleh Menteri.",
       stem: "Lanjutan data PT Mitra Bangun. Kuasa hukum PT Mitra Bangun mengusulkan agar alat bukti diajukan dulu pada sidang 18 November 2026, sedangkan kekurangan bea meterai sebesar Rp150.000 dilunasi setelah putusan bila PT Mitra Bangun menang. Berdasarkan kutipan tersebut, langkah yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: { A: "Membayar Rp150.000 sebelum sidang dengan kode billing, lalu memperoleh pengesahan pemeteraian kemudian dari Pejabat Pos, karena hakim tidak dibenarkan mempertimbangkan dokumen yang bea meterainya belum dilunasi", B: "Mengajukan alat bukti terlebih dahulu pada sidang 18 November 2026 dan membayar Rp150.000 setelah putusan, karena larangan Pasal 21 hanya berlaku bagi notaris dan PPAT, bukan bagi hakim", C: "Membayar Rp150.000 sebelum sidang dengan kode billing, lalu meminta panitera pengadilan negeri mengesahkan pemeteraian kemudian pada saat alat bukti didaftarkan dalam persidangan", D: "Cukup menempelkan meterai tempel Rp10.000 pada setiap dokumen sebelum sidang tanpa pengesahan pejabat mana pun, karena meterai tempel sekaligus melunasi pokok dan sanksinya" },
+      opsi: { A: "Melunasi Rp150.000 sebelum sidang, yaitu bea meterai dengan meterai tempel dan sanksi administratif dengan kode billing (SSP), lalu memperoleh pengesahan pemeteraian kemudian dari Pejabat DJP, karena hakim tidak dibenarkan mempertimbangkan dokumen yang bea meterainya belum dilunasi", B: "Mengajukan alat bukti terlebih dahulu pada sidang 18 November 2026 dan membayar Rp150.000 setelah putusan, karena larangan Pasal 21 hanya berlaku bagi notaris dan PPAT, bukan bagi hakim", C: "Melunasi Rp150.000 sebelum sidang, yaitu bea meterai dengan meterai tempel dan sanksi administratif dengan kode billing (SSP), lalu meminta panitera pengadilan negeri mengesahkan pemeteraian kemudian pada saat alat bukti didaftarkan dalam persidangan", D: "Cukup menempelkan meterai tempel Rp10.000 pada setiap dokumen sebelum sidang tanpa pengesahan pejabat mana pun, karena meterai tempel sekaligus melunasi pokok dan sanksinya" },
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "Pemeteraian kemudian harus dituntaskan sebelum alat bukti diajukan: pembayaran pokok (dan sanksi bila ada), lalu pengesahan oleh pejabat yang ditetapkan Menteri. Tanpa itu, hakim dan panitera tidak dibenarkan menerima atau mempertimbangkan dokumen tersebut.",
-        jejakHitung: [],
-        mengapaSalah: { B: "Pasal 21 juga mencakup hakim, panitera, dan jurusita", C: "Pengesahan dilakukan pejabat yang ditetapkan Menteri (Pejabat Pos menurut PMK 78/2024), bukan panitera", D: "Dokumen yang lewat saat terutang dilunasi pokok + sanksi melalui pemeteraian kemudian yang wajib disahkan" },
-        jebakan: "Pemeteraian kemudian bukan sekadar membayar; dokumen baru sah setelah disahkan pejabat yang ditetapkan Menteri."
+        inti: "Pemeteraian kemudian harus dituntaskan sebelum alat bukti diajukan: bea meterai dibayar dengan meterai (tempel atau elektronik), sanksi administratif dibayar dengan SSP (Pasal 50 PMK 78/2024), lalu pembayaran disahkan pejabat yang ditetapkan Menteri. Karena ada sanksi yang dibayar dengan SSP, pengesahnya Pejabat DJP (Pasal 51 ayat (4) dan (5)); Pejabat Pos hanya mengesahkan pembayaran dengan meterai tempel. Tanpa itu, hakim dan panitera dilarang menerima atau mempertimbangkan dokumen tersebut (Pasal 21 UU 10/2020).",
+        jejakHitung: [
+          ["Bea meterai 11 dokumen × Rp10.000 (meterai tempel)", "Rp110.000"],
+          ["Sanksi 100% atas 4 dokumen yang lewat saat terutang (SSP/kode billing)", "Rp40.000"],
+          ["Jumlah dilunasi", "Rp150.000"],
+          ["Pengesah", "Pejabat DJP (Pasal 51 ayat (4) PMK 78/2024)"]
+        ],
+        mengapaSalah: {
+          B: "Penjelasan Pasal 21 ayat (1) UU 10/2020 menyebut hakim, panitera, dan jurusita sebagai pejabat yang berwenang; larangan berlaku sebelum dokumen diterima atau dipertimbangkan",
+          C: "Pengesahan dilakukan pejabat yang ditetapkan Menteri, yaitu Pejabat Pos atau Pejabat DJP (Pasal 51 ayat (1) PMK 78/2024), bukan panitera",
+          D: "Sanksi administratif dibayar dengan SSP, bukan dengan meterai tempel (Pasal 50 ayat (2) PMK 78/2024), dan pemeteraian kemudian baru sah setelah disahkan pejabat"
+        },
+        jebakan: "Pemeteraian kemudian bukan sekadar membayar: pokok dibayar dengan meterai, sanksi dengan SSP, lalu disahkan pejabat. Kode billing (SSP) untuk pokok hanya dipakai bila lebih dari 50 dokumen atau meterai tidak dapat digunakan (Pasal 42 PMK 78/2024)."
       },
-      dasarHukum: [ { pasal: "Pasal 1, Pasal 17, Pasal 18, dan Pasal 21 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "PMK 78/2024 (pengesahan pemeteraian kemudian)", berlakuSejak: "2024-11-01" } ],
+      dasarHukum: [{ pasal: "Pasal 1 angka 6, Pasal 17, Pasal 18, dan Pasal 21 ayat (1) UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 42, Pasal 50, dan Pasal 51 PMK 78/2024", berlakuSejak: "2024-11-01" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Pejabat Pos sebagai pejabat pengesahan pemeteraian kemudian dan pembayaran dengan kode billing menurut PMK 78/2024 diambil dari ringkasan sekunder dan belum dicek ke naskah resmi PMK; ketentuan Pasal 1, 17, 18, dan 21 UU 10/2020 sudah sesuai."
+      verifikasi: "✅"
     },
     {
       id: "A5-076", topik: "A5.3", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 2,
@@ -1832,7 +1861,13 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-083", topik: "A5.4", tingkat: ["A", "B", "C"], jenis: "baris-spt", kesulitan: 2, kasusId: "V-A5-07", formulirRef: "BM.induk.2",
+      id: "A5-083",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 2,
+      kasusId: "V-A5-07",
+      formulirRef: "BM.induk.2",
       stem: "Lanjutan data PT Kasir Awan Indonesia (bea meterai Masa Oktober 2026 atas 18.500 dokumen objek). Dalam peta logis SPT Masa Bea Meterai, induk SPT memuat baris 2 (jumlah dokumen dan bea meterai yang dipungut), baris 3 (bea meterai yang disetor), dan baris 4 (kurang atau lebih setor). Pemungut telah menyetor Rp185.000.000 dengan kode billing pada Jumat, 13 November 2026, sebelum menyampaikan SPT. Isian baris 2 sampai 4 yang tepat adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Baris 2: 23.710 dokumen, Rp237.100.000; baris 3: Rp185.000.000; baris 4: kurang setor Rp52.100.000", B: "Baris 2: 18.500 dokumen, Rp185.000.000; baris 3: Rp185.000.000; baris 4: nihil", C: "Baris 2: 18.640 dokumen, Rp186.400.000; baris 3: Rp185.000.000; baris 4: kurang setor Rp1.400.000", D: "Baris 2: 18.500 dokumen, Rp185.000.000; baris 3: nihil; baris 4: kurang setor Rp185.000.000" },
@@ -1840,14 +1875,23 @@ UKP.register({
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "Baris dokumen dan bea meterai dipungut hanya memuat dokumen objek (18.500; Rp185.000.000). Setoran tepat waktu sebesar jumlah yang sama dicantumkan pada baris disetor, sehingga selisihnya nihil.",
-        jejakHitung: [ ["Baris 2: dokumen objek", "18.500"], ["Baris 2: bea meterai dipungut 18.500 × Rp10.000", "Rp185.000.000"], ["Baris 3: disetor 13 November 2026", "Rp185.000.000"], ["Baris 4: selisih baris 2 − baris 3", "nihil"] ],
-        mengapaSalah: { A: "Memasukkan 5.210 dokumen tepat Rp5.000.000 yang bukan objek ke baris 2", C: "Memasukkan 140 dokumen batal yang tidak pernah terutang", D: "Setoran dengan kode billing sebelum pelaporan dicantumkan sebagai bea meterai yang telah disetor" },
+        jejakHitung: [
+          ["Baris 2: dokumen objek", "18.500"],
+          ["Baris 2: bea meterai dipungut 18.500 × Rp10.000", "Rp185.000.000"],
+          ["Baris 3: disetor 13 November 2026", "Rp185.000.000"],
+          ["Baris 4: selisih baris 2 − baris 3", "nihil"]
+        ],
+        mengapaSalah: {
+          A: "Memasukkan 5.210 dokumen tepat Rp5.000.000 yang bukan objek ke baris 2",
+          C: "Memasukkan 140 dokumen batal yang tidak pernah terutang",
+          D: "Setoran dengan kode billing sebelum pelaporan dicantumkan sebagai bea meterai yang telah disetor"
+        },
         jebakan: "Dokumen bukan objek dan dokumen batal tidak masuk SPT Masa; angka disetor diambil dari setoran yang sudah dilakukan."
       },
-      dasarHukum: [ { pasal: "PMK 78/2024 (SPT Masa Bea Meterai pemungut)", berlakuSejak: "2024-11-01" }, { pasal: "PER-11/PJ/2025 (bentuk SPT Masa Bea Meterai di Coretax)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 10–11 UU 10/2020", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 78 ayat (2) dan Lampiran huruf F PER-11/PJ/2025 (isi dan format SPT Masa Bea Meterai)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 60, Pasal 61 huruf c, dan Pasal 63 ayat (1) PMK 78/2024", berlakuSejak: "2024-11-01" }, { pasal: "Pasal 3 ayat (2) huruf g, Pasal 8 ayat (1) huruf c, Pasal 10-11 UU 10/2020", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 150,
       verifikasi: "◐",
-      peringatan: "Nomor baris mengikuti peta logis SPT Masa Bea Meterai di js/data/formulir.js (BM.induk.2–4); tata letak formulir Coretax menurut PER-11/PJ/2025 belum dicek ke formulir resmi. Substansi angkanya (dokumen objek, bea meterai dipungut, disetor) mengikuti UU 10/2020 dan PMK 78/2024."
+      peringatan: "Substansi angka (18.500 dokumen objek, Rp185.000.000) sudah sesuai UU 10/2020 dan PMK 78/2024. Namun induk resmi SPT Masa Bea Meterai (Lampiran huruf F PER-11/PJ/2025) tidak memuat baris 'bea meterai yang disetor': Bagian D angka 1 'kurang atau (lebih) disetor' diisi sebesar JUMLAH kolom c Bagian C (Rp185.000.000). Baris 3 dan 4 di stem mengikuti peta logis formulir.js, bukan formulir resmi; stem dan opsi perlu disusun ulang mengikuti Bagian B sampai D."
     },
     {
       id: "A5-084",
@@ -1933,22 +1977,36 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-087", topik: "A5.4", tingkat: ["A", "B", "C"], jenis: "baris-spt", kesulitan: 2, formulirRef: "BM.l1.1",
-      stem: "Bank Anugerah Jaya, pemungut bea meterai atas cek, bilyet giro, dan tanda terima pembayaran digital, mengisi lampiran SPT Masa Bea Meterai Masa November 2026 yang merinci jumlah dokumen dan bea meterai per jenis dokumen. Data November 2026: 30 buku cek dan 18 buku bilyet giro diserahkan kepada nasabah (masing-masing 25 lembar); 4.120 tanda terima pembayaran digital bernilai lebih dari Rp5.000.000; dan 6.900 tanda terima bernilai Rp5.000.000 ke bawah. Isian baris 'cek dan bilyet giro' serta baris 'dokumen yang menyatakan jumlah uang' pada lampiran tersebut adalah ...",
+      id: "A5-087",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 2,
+      formulirRef: "BM.l1.1",
+      stem: "Bank Anugerah Jaya, pemungut bea meterai atas cek, bilyet giro, dan tanda terima pembayaran digital, menyusun rincian jumlah dokumen dan bea meterai yang dipungut berdasarkan objek bea meterai untuk SPT Masa Bea Meterai Masa November 2026. Data November 2026: bank menerima dari perusahaan percetakan pemegang izin pembuatan Meterai Percetakan 30 buku cek dan 18 buku bilyet giro (masing-masing 25 lembar) yang telah dibubuhi Meterai Percetakan; sampai 30 November 2026 baru 20 buku cek dan 10 buku bilyet giro di antaranya yang diserahkan kepada nasabah. Bank juga menyerahkan 4.120 tanda terima pembayaran digital bernilai lebih dari Rp5.000.000 dan 6.900 tanda terima bernilai Rp5.000.000 ke bawah. Isian baris 'cek dan bilyet giro' serta baris 'dokumen yang menyatakan jumlah uang' pada rincian tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Cek dan bilyet giro: 48 buku, Rp480.000; dokumen jumlah uang: 4.120 dokumen, Rp41.200.000", B: "Cek dan bilyet giro: 1.200 lembar, Rp12.000.000; dokumen jumlah uang: 4.120 dokumen, Rp41.200.000", C: "Cek dan bilyet giro: 1.200 lembar, Rp12.000.000; dokumen jumlah uang: 11.020 dokumen, Rp110.200.000", D: "Cek dan bilyet giro: 750 lembar, Rp7.500.000; dokumen jumlah uang: 4.120 dokumen, Rp41.200.000" },
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Cek dan bilyet giro dihitung per lembar: (30 + 18) × 25 = 1.200 lembar × Rp10.000. Dokumen jumlah uang hanya yang lebih dari Rp5.000.000: 4.120 × Rp10.000.",
-        jejakHitung: [ ["Cek 30 × 25", "750 lembar"], ["Bilyet giro 18 × 25", "450 lembar"], ["Cek dan bilyet giro 1.200 × Rp10.000", "Rp12.000.000"], ["Tanda terima > Rp5 juta 4.120 × Rp10.000", "Rp41.200.000"], ["Total dipungut", "Rp53.200.000"] ],
-        mengapaSalah: { A: "Satuan cek dan bilyet giro adalah lembar, bukan buku", C: "Tanda terima Rp5.000.000 ke bawah bukan objek", D: "Bilyet giro juga surat berharga yang bea meterainya dipungut bank" },
-        jebakan: "Dua satuan berbeda dalam satu lampiran: lembar untuk surat berharga, dokumen untuk tanda terima."
+        inti: "Cek dan bilyet giro dihitung per lembar dan dipungut pada saat bank menerima cek dan bilyet giro yang telah dibubuhi Meterai Percetakan dari pemegang izin (Pasal 61 huruf a PMK 78/2024), bukan saat diserahkan kepada nasabah: (30 + 18) × 25 = 1.200 lembar × Rp10.000. Dokumen jumlah uang dipungut saat diserahkan dan hanya yang bernilai lebih dari Rp5.000.000: 4.120 × Rp10.000.",
+        jejakHitung: [
+          ["Cek diterima dari percetakan 30 × 25", "750 lembar"],
+          ["Bilyet giro diterima dari percetakan 18 × 25", "450 lembar"],
+          ["Cek dan bilyet giro 1.200 × Rp10.000", "Rp12.000.000"],
+          ["Tanda terima > Rp5 juta 4.120 × Rp10.000", "Rp41.200.000"],
+          ["Total dipungut", "Rp53.200.000"]
+        ],
+        mengapaSalah: {
+          A: "Satuan cek dan bilyet giro adalah lembar (tiap lembar satu surat berharga), bukan buku",
+          C: "Tanda terima bernilai Rp5.000.000 ke bawah bukan objek bea meterai (Pasal 3 ayat (2) huruf g UU 10/2020)",
+          D: "Hanya menghitung (20 + 10) × 25 = 750 lembar yang sudah diserahkan kepada nasabah; pemungutan atas cek dan bilyet giro dilakukan saat bank menerimanya dari pemegang izin Meterai Percetakan"
+        },
+        jebakan: "Saat pemungutan berbeda per jenis dokumen: cek dan bilyet giro saat diterima dari percetakan (Meterai Percetakan), tanda terima saat diserahkan kepada pihak yang terutang. Cek dan bilyet giro yang bea meterainya telah dipungut tetapi tidak digunakan diselesaikan dengan pembetulan SPT Masa (Pasal 66 ayat (1) huruf b PMK 78/2024)."
       },
-      dasarHukum: [ { pasal: "Pasal 3 ayat (2) huruf d dan g, Pasal 10–11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "PMK 78/2024; PER-11/PJ/2025 (SPT Masa Bea Meterai)", berlakuSejak: "2025-05-22" } ],
+      dasarHukum: [{ pasal: "Pasal 3 ayat (2) huruf d dan g, Pasal 10–11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 34 ayat (2), Pasal 55 ayat (2), dan Pasal 61 PMK 78/2024", berlakuSejak: "2024-11-01" }, { pasal: "Pasal 78 ayat (2) PER-11/PJ/2025 (isi SPT Masa Bea Meterai)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Rincian per jenis dokumen mengikuti peta logis lampiran SPT Masa Bea Meterai di js/data/formulir.js (BM.l1.1); tata letak lampiran Coretax menurut PER-11/PJ/2025 belum dicek ke formulir resmi. Perhitungan jumlah dokumen dan bea meterai mengikuti UU 10/2020."
+      verifikasi: "✅"
     },
     {
       id: "A5-088",
@@ -2063,22 +2121,29 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-093", topik: "A5.5", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 3,
+      id: "A5-093",
+      topik: "A5.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 3,
       stem: "Kuitansi pembayaran ganti rugi Rp35.000.000 yang diterima Tuan Haikal pada 4 Agustus 2021 tidak pernah dibubuhi meterai. Pada November 2026 Tuan Haikal akan mengajukannya sebagai alat bukti dalam gugatan perdata. Pernyataan yang paling tepat mengenai kuitansi tersebut adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "Kewajiban bea meterai dan sanksinya atas kuitansi tersebut telah daluwarsa sejak 4 Agustus 2026, sehingga kuitansi dapat langsung diajukan sebagai alat bukti tanpa pemeteraian kemudian.", B: "Kewajiban bea meterai dan sanksinya atas kuitansi tersebut belum daluwarsa karena jangka waktu 5 tahun dihitung sejak kuitansi akan diajukan ke pengadilan, sehingga harus dibayar Rp20.000.", C: "Kewajiban bea meterai atas kuitansi tersebut telah daluwarsa sejak 4 Agustus 2026, tetapi sanksi 100% tidak mengenal daluwarsa sehingga Rp10.000 tetap ditagih bersama pemeteraian kemudian.", D: "Kewajiban bea meterai dan sanksinya atas kuitansi tersebut telah daluwarsa sejak 4 Agustus 2026, tetapi kuitansi tetap harus dimeteraikan kemudian sebelum diajukan sebagai alat bukti di pengadilan." },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
-        inti: "Pasal 23: kewajiban bea meterai dan sanksinya daluwarsa 5 tahun sejak saat terutang (4 Agustus 2021 → 4 Agustus 2026). Namun dokumen yang akan dijadikan alat bukti di pengadilan tetap harus dimeteraikan kemudian.",
+        inti: "Pasal 23 UU 10/2020: bea meterai yang terutang kedaluwarsa 5 tahun sejak saat terutang (kuitansi terutang saat diserahkan 4 Agustus 2021, sehingga kedaluwarsa pada Agustus 2026). Namun Penjelasan Pasal 3 ayat (1) huruf b menegaskan dokumen yang bea meterainya belum dibayar lunas tetapi telah kedaluwarsa tetap harus dimeteraikan kemudian saat akan dijadikan alat bukti di pengadilan.",
         jejakHitung: [],
-        mengapaSalah: { A: "Daluwarsa menghapus penagihan, tetapi dokumen yang akan menjadi alat bukti tetap harus dimeteraikan kemudian", B: "Daluwarsa dihitung sejak saat terutang kuitansi, yaitu saat diserahkan 4 Agustus 2021", C: "Pasal 23 mencakup kewajiban pemenuhan bea meterai maupun sanksi administratifnya" },
-        jebakan: "Dua rezim berbeda: daluwarsa menghapus tagihan atas dokumen perdata, sedangkan pengajuan sebagai alat bukti menuntut pemeteraian kemudian."
+        mengapaSalah: {
+          A: "Kedaluwarsa menghapus tagihan atas kuitansi sebagai dokumen perdata, tetapi dokumen yang akan menjadi alat bukti tetap harus dimeteraikan kemudian (Penjelasan Pasal 3 ayat (1) huruf b)",
+          B: "Kedaluwarsa dihitung sejak saat terutang kuitansi, yaitu saat diserahkan 4 Agustus 2021 (Pasal 8 ayat (1) huruf c dan Pasal 23), bukan sejak akan diajukan ke pengadilan",
+          C: "Pemeteraian kemudian atas dokumen yang digunakan sebagai alat bukti hanya sebesar bea meterai yang terutang, tanpa sanksi (Pasal 18 ayat (1) huruf b UU 10/2020 dan Pasal 49 huruf c PMK 78/2024); sanksi 100% hanya melekat pada pemeteraian kemudian atas dokumen yang tidak atau kurang dibayar"
+        },
+        jebakan: "Dua rezim berbeda: kedaluwarsa menghapus tagihan atas dokumen perdata, sedangkan pengajuan sebagai alat bukti menimbulkan kewajiban pemeteraian kemudian tersendiri (bea meterai yang berlaku saat pemeteraian kemudian, tanpa sanksi)."
       },
-      dasarHukum: [ { pasal: "Pasal 23 UU 10/2020 beserta penjelasannya", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 3 ayat (1) huruf b dan Pasal 17 UU 10/2020", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) huruf c dan Pasal 23 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 3 ayat (1) huruf b beserta penjelasannya, Pasal 17 ayat (1) huruf b, dan Pasal 18 ayat (1) huruf b UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 49 huruf c PMK 78/2024", berlakuSejak: "2024-11-01" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Kewajiban tetap memeteraikan kemudian dokumen yang telah daluwarsa bila akan dijadikan alat bukti bersumber dari penjelasan UU 10/2020 menurut ringkasan sekunder dan belum dicek ke naskah resmi; jumlah yang dibayar dalam keadaan ini sengaja tidak ditanyakan."
+      verifikasi: "✅"
     },
     {
       id: "A5-094", topik: "A5.5", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 1,
@@ -2098,8 +2163,12 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-095", topik: "A5.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3,
-      kutipan: "Pasal 19 UU 10/2020 (parafrase): pihak yang terutang yang tidak atau kurang membayar bea meterai diterbitkan surat ketetapan pajak sesuai ketentuan peraturan perundang-undangan di bidang ketentuan umum dan tata cara perpajakan, sebesar bea meterai yang tidak atau kurang dibayar ditambah sanksi administratif 100% (Pasal 18 ayat (2)). Pasal 25 ayat (1) dan (3) UU KUP (parafrase): wajib pajak dapat mengajukan keberatan atas surat ketetapan pajak dalam jangka waktu 3 bulan sejak tanggal dikirim, dengan mengemukakan jumlah pajak yang terutang menurut penghitungan wajib pajak disertai alasan yang jelas.",
+      id: "A5-095",
+      topik: "A5.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      kutipan: "Pasal 19 UU 10/2020 (parafrase): pihak yang terutang yang tidak atau kurang membayar bea meterai diterbitkan surat ketetapan pajak sesuai ketentuan peraturan perundang-undangan di bidang ketentuan umum dan tata cara perpajakan, sebesar bea meterai yang tidak atau kurang dibayar ditambah sanksi administratif 100% (Pasal 18 ayat (2)). Pasal 25 ayat (1) sampai (3) UU KUP (parafrase): wajib pajak dapat mengajukan keberatan atas surat ketetapan pajak secara tertulis dengan mengemukakan jumlah pajak yang terutang menurut penghitungan wajib pajak disertai alasan, dalam jangka waktu 3 bulan sejak tanggal dikirim surat ketetapan pajak.",
       stem: "Hasil pemeriksaan bea meterai atas PT Panca Usaha dituangkan dalam surat ketetapan pajak yang dikirim 5 Oktober 2026 sebesar Rp1.240.000 (62 dokumen × Rp10.000 ditambah sanksi 100%). PT Panca Usaha berpendapat 20 dokumen di antaranya adalah surat jalan pengiriman barang yang bukan objek, sedangkan 42 dokumen lainnya memang kuitansi di atas Rp5.000.000 yang tidak bermeterai. Berdasarkan kutipan tersebut, prosedur yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "Mengajukan keberatan melalui Coretax paling lambat 5 Januari 2027 dengan mengemukakan bea meterai terutang menurut penghitungan PT Panca Usaha atas 42 dokumen sebesar Rp420.000, sehingga jumlah ketetapan menurut PT Panca Usaha beserta sanksi 100% menjadi Rp840.000", B: "Mengajukan keberatan melalui Coretax paling lambat 5 Januari 2027 dengan mengemukakan bea meterai terutang menurut penghitungan PT Panca Usaha atas 42 dokumen sebesar Rp420.000, sedangkan sanksi 100% gugur seluruhnya karena keberatan diajukan sehingga jumlah ketetapan menurut PT Panca Usaha Rp420.000", C: "Mengajukan keberatan melalui Coretax paling lambat 5 November 2026 dengan mengemukakan bea meterai terutang menurut penghitungan PT Panca Usaha atas 42 dokumen sebesar Rp420.000, sehingga jumlah ketetapan menurut PT Panca Usaha beserta sanksi 100% menjadi Rp840.000", D: "Langsung mengajukan gugatan ke Pengadilan Pajak paling lambat 30 hari sejak surat ketetapan dikirim" },
@@ -2107,14 +2176,24 @@ UKP.register({
       jebakanOpsi: { B: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Surat ketetapan bea meterai diterbitkan menurut tata cara UU KUP (Pasal 19 UU 10/2020), sehingga diuji melalui keberatan dalam 3 bulan sejak dikirim (5 Januari 2027) dengan mengemukakan bea meterai terutang menurut WP: 42 dokumen × Rp10.000 = Rp420.000. Sanksi 100% melekat pada bea meterai yang tidak dibayar, sehingga jumlah ketetapan menurut WP Rp840.000.",
-        jejakHitung: [ ["Dokumen objek menurut WP", "62 − 20 = 42"], ["Bea meterai terutang menurut WP 42 × Rp10.000", "Rp420.000"], ["Sanksi 100% (Pasal 18 ayat (2))", "Rp420.000"], ["Jumlah ketetapan menurut WP", "Rp840.000"], ["Batas keberatan 3 bulan sejak 5 Oktober 2026", "5 Januari 2027"] ],
-        mengapaSalah: { B: "Pengajuan keberatan tidak menghapus sanksi 100% atas dokumen yang diakui tidak dibayar; sanksi itu mengikuti pokoknya (Pasal 18 ayat (2) dan Pasal 19 UU 10/2020)", C: "Jangka waktu keberatan 3 bulan sejak surat ketetapan dikirim, bukan 1 bulan", D: "Sengketa jumlah ketetapan ditempuh dengan keberatan; gugatan untuk pelaksanaan penagihan atau keputusan tertentu" },
+        jejakHitung: [
+          ["Dokumen objek menurut WP", "62 − 20 = 42"],
+          ["Bea meterai terutang menurut WP 42 × Rp10.000", "Rp420.000"],
+          ["Sanksi 100% (Pasal 18 ayat (2))", "Rp420.000"],
+          ["Jumlah ketetapan menurut WP", "Rp840.000"],
+          ["Batas keberatan 3 bulan sejak 5 Oktober 2026", "5 Januari 2027"]
+        ],
+        mengapaSalah: {
+          B: "Pengajuan keberatan tidak menghapus sanksi 100% atas dokumen yang diakui tidak dibayar; sanksi itu mengikuti pokoknya (Pasal 18 ayat (2) dan Pasal 19 UU 10/2020)",
+          C: "Jangka waktu keberatan 3 bulan sejak surat ketetapan dikirim, bukan 1 bulan",
+          D: "Sengketa jumlah ketetapan ditempuh dengan keberatan; gugatan untuk pelaksanaan penagihan atau keputusan tertentu"
+        },
         jebakan: "Yang dikemukakan dalam keberatan adalah pajak terutang menurut WP (pokok atas 42 dokumen); sanksi 100% atas dokumen yang diakui tetap mengikuti pokok tersebut."
       },
-      dasarHukum: [ { pasal: "Pasal 19 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 25 ayat (1) dan (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 7 huruf a UU 10/2020 (surat jalan bukan objek)", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 19 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 25 ayat (1), ayat (2), dan ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (1) dan Pasal 10 ayat (2) PMK 118/2024", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 7 huruf a UU 10/2020 (surat jalan bukan objek)", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 180,
       verifikasi: "◐",
-      peringatan: "Rujukan Pasal 19 UU 10/2020 kepada UU KUP untuk penerbitan surat ketetapan dicocokkan dengan teks pasal dari sumber sekunder, tetapi penerapan prosedur keberatan Pasal 25 UU KUP atas surat ketetapan bea meterai belum dicek ke naskah resmi atau PMK keberatan; jangka waktu keberatan 3 bulan dan kewajiban mengemukakan jumlah menurut WP mengikuti Pasal 25 UU KUP, sedangkan kanal pengajuan mengikuti PMK keberatan era Coretax."
+      peringatan: "Prosedur keberatan atas surat ketetapan bea meterai sudah dicocokkan ke Pasal 19 UU 10/2020, Pasal 25 ayat (1) sampai (3) UU KUP, dan Pasal 9 serta Pasal 10 ayat (2) PMK 118/2024. Yang belum pasti hanya cara menghitung batas '3 bulan sejak 5 Oktober 2026' (5 Januari 2027 atau sehari sebelumnya), yang sedang ditanyakan ke pengguna."
     },
     {
       id: "A5-096", topik: "A5.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A5-08",
@@ -2134,7 +2213,13 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-097", topik: "A5.6", tingkat: ["B", "C"], jenis: "baris-spt", kesulitan: 3, kasusId: "V-A5-08", formulirRef: "1771.l1.7",
+      id: "A5-097",
+      topik: "A5.6",
+      tingkat: ["B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 3,
+      kasusId: "V-A5-08",
+      formulirRef: "1771.l1.7",
       stem: "Lanjutan data PT Prima Kencana. Pada 2026 PT Prima Kencana melunasi ketetapan bea meterai hasil pemeriksaan (pokok Rp600.000 dan sanksi Rp600.000) dan membukukan seluruhnya sebagai beban umum. Pada tahun yang sama perusahaan membeli dan memakai 3.400 meterai elektronik untuk dokumen operasional (Rp34.000.000) yang dibebankan sebagai biaya administrasi, serta membayar STP bunga keterlambatan setor PPh Pasal 21 sebesar Rp2.150.000 yang dibebankan sebagai beban lain-lain. Dalam lampiran perhitungan penghasilan neto fiskal SPT Tahunan PPh Badan 2026, jumlah penyesuaian fiskal positif yang timbul dari ketiga transaksi tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp3.350.000", B: "Rp2.750.000", C: "Rp600.000", D: "Rp37.350.000" },
@@ -2142,14 +2227,23 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
         inti: "Sanksi administrasi berupa bunga, denda, dan kenaikan tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k UU PPh): sanksi bea meterai Rp600.000 + bunga STP Rp2.150.000. Pokok bea meterai dan pembelian meterai elektronik adalah pajak selain PPh yang berkaitan dengan usaha sehingga dapat dibebankan.",
-        jejakHitung: [ ["Sanksi 100% bea meterai", "Rp600.000"], ["Bunga STP PPh Pasal 21", "Rp2.150.000"], ["Penyesuaian fiskal positif (unsur sanksi administrasi)", "Rp2.750.000"], ["Pokok bea meterai dan meterai elektronik operasional", "dapat dibebankan → tidak dikoreksi"] ],
-        mengapaSalah: { A: "Ikut mengoreksi pokok bea meterai Rp600.000; pokok bea meterai adalah pajak selain PPh yang dapat dibebankan", C: "Tidak mengoreksi bunga STP; bunga dalam STP juga sanksi administrasi yang tidak dapat dikurangkan", D: "Mengoreksi seluruh beban bea meterai termasuk meterai elektronik untuk dokumen operasional" },
+        jejakHitung: [
+          ["Sanksi 100% bea meterai", "Rp600.000"],
+          ["Bunga STP PPh Pasal 21", "Rp2.150.000"],
+          ["Penyesuaian fiskal positif (unsur sanksi administrasi)", "Rp2.750.000"],
+          ["Pokok bea meterai dan meterai elektronik operasional", "dapat dibebankan → tidak dikoreksi"]
+        ],
+        mengapaSalah: {
+          A: "Ikut mengoreksi pokok bea meterai Rp600.000; pokok bea meterai adalah pajak selain PPh yang dapat dibebankan",
+          C: "Tidak mengoreksi bunga STP; bunga dalam STP juga sanksi administrasi yang tidak dapat dikurangkan",
+          D: "Mengoreksi seluruh beban bea meterai termasuk meterai elektronik untuk dokumen operasional"
+        },
         jebakan: "Pisahkan pokok bea meterai (biaya) dari sanksinya (bukan biaya) meskipun dibayar dengan satu setoran."
       },
-      dasarHukum: [ { pasal: "Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (1) huruf a UU PPh (pajak selain PPh sebagai biaya)", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (1) huruf a UU PPh (pajak selain PPh sebagai biaya)", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 180,
       verifikasi: "◐",
-      peringatan: "Kode baris mengikuti peta logis Lampiran I SPT 1771 di js/data/formulir.js (1771.l1.7, penyesuaian fiskal positif); letak isian pada lampiran SPT PPh Badan Coretax (PER-11/PJ/2025) belum dicek. Perlakuan fiskalnya mengikuti Pasal 6 dan Pasal 9 UU PPh."
+      peringatan: "Perlakuan fiskal sudah dicocokkan ke Pasal 6 ayat (1) huruf a angka 9 dan Pasal 9 ayat (1) huruf k UU PPh. Lampiran PER-11/PJ/2025 (Coretax) menempatkan penyesuaian fiskal positif pada kolom PENYESUAIAN FISKAL POSITIF di tiap akun Lampiran 1A sampai 1L (Rekonsiliasi Laporan Keuangan) dengan kode FPO-08 untuk sanksi administratif, bukan pada satu baris. Kode 1771.l1.7 di formulir.js masih memakai susunan Lampiran I lama dan belum disesuaikan."
     },
     {
       id: "A5-098", topik: "A5.6", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 2,
@@ -2241,7 +2335,12 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-102", topik: "A5.6", tingkat: ["A", "B", "C"], jenis: "baris-spt", kesulitan: 1, formulirRef: "1770.l1.3",
+      id: "A5-102",
+      topik: "A5.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 1,
+      formulirRef: "1770.l1.3",
       stem: "Tuan Hasan, pengusaha toko bahan bangunan yang menyelenggarakan pembukuan, pada 2026 membayar pemeteraian kemudian atas 14 kuitansi pemasok sebesar Rp280.000 (pokok Rp140.000 dan sanksi Rp140.000) dan mencatat seluruhnya sebagai biaya administrasi usaha. Dalam lampiran perhitungan penghasilan neto SPT Tahunan PPh Orang Pribadi 1770 tahun pajak 2026, perlakuan atas transaksi ini adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Penyesuaian fiskal positif Rp280.000", B: "Penyesuaian fiskal positif Rp140.000", C: "Tidak ada penyesuaian fiskal karena seluruhnya biaya administrasi usaha", D: "Penyesuaian fiskal negatif Rp140.000" },
@@ -2249,19 +2348,27 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
         inti: "Sanksi 100% bea meterai tidak dapat dikurangkan sehingga dikoreksi positif Rp140.000; pokok bea meterai Rp140.000 tetap menjadi biaya.",
-        jejakHitung: [ ["Pokok bea meterai (biaya)", "Rp140.000"], ["Sanksi 100% (bukan biaya)", "Rp140.000"], ["Penyesuaian fiskal positif", "Rp140.000"] ],
-        mengapaSalah: { A: "Pokok bea meterai adalah pajak selain PPh yang dapat dibebankan; hanya sanksinya yang dikoreksi", C: "Sanksi administrasi perpajakan tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k UU PPh)", D: "Sanksi yang telah dibebankan dikoreksi menambah penghasilan neto (positif), bukan mengurangi" },
+        jejakHitung: [
+          ["Pokok bea meterai (biaya)", "Rp140.000"],
+          ["Sanksi 100% (bukan biaya)", "Rp140.000"],
+          ["Penyesuaian fiskal positif", "Rp140.000"]
+        ],
+        mengapaSalah: {
+          A: "Pokok bea meterai adalah pajak selain PPh yang dapat dibebankan; hanya sanksinya yang dikoreksi",
+          C: "Sanksi administrasi perpajakan tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k UU PPh)",
+          D: "Sanksi yang telah dibebankan dikoreksi menambah penghasilan neto (positif), bukan mengurangi"
+        },
         jebakan: "Satu pembayaran pemeteraian kemudian memuat dua unsur dengan perlakuan fiskal berbeda."
       },
-      dasarHukum: [ { pasal: "Pasal 9 ayat (1) huruf k dan Pasal 6 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) huruf k dan Pasal 6 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 75,
       verifikasi: "◐",
-      peringatan: "Kode baris mengikuti peta logis Lampiran 1770-I di js/data/formulir.js (1770.l1.3, penyesuaian fiskal positif); letak isian pada lampiran SPT PPh OP Coretax (PER-11/PJ/2025) belum dicek. Perlakuan fiskalnya mengikuti Pasal 6 dan Pasal 9 UU PPh."
+      peringatan: "Perlakuan fiskal sudah dicocokkan ke Pasal 6 ayat (1) huruf a angka 9 dan Pasal 9 ayat (1) huruf k UU PPh. Lampiran PER-11/PJ/2025 (Coretax) menempatkan penyesuaian fiskal positif pada Kolom (7) di tiap akun Lampiran 3A-1 (Dagang) Rekonsiliasi Laporan Keuangan dengan kode FPO-08 untuk sanksi administratif, bukan pada satu baris. Kode 1770.l1.3 di formulir.js masih memakai susunan Lampiran 1770-I lama dan belum disesuaikan."
     },
     {
       id: "A5-103",
       topik: "A5.2",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "kasus",
       kesulitan: 2,
       stem: "Ortax XYZ Pte. Ltd. (Singapura) dan PT Ortax Distributor menandatangani perjanjian distribusi di Singapura pada 10 Februari 2026; masing-masing memegang satu naskah. Pada 5 Maret 2026, PT Ortax Distributor melampirkan naskahnya dalam permohonan kredit modal kerja kepada Bank Ortax Nusantara di Jakarta. Ortax XYZ Pte. Ltd. tidak pernah menggunakan naskahnya di Indonesia. Analisis yang tepat atas Bea Meterai perjanjian tersebut adalah ...",
@@ -2272,17 +2379,16 @@ UKP.register({
       pembahasan: {
         inti: "Untuk dokumen objek Bea Meterai yang dibuat di luar negeri, Bea Meterai terutang saat dokumen digunakan di Indonesia dan terutang oleh pihak yang menerima manfaat atas dokumen. Utang timbul saat PT Ortax Distributor memakai naskahnya untuk permohonan kredit di Jakarta; naskah Ortax XYZ Pte. Ltd. tidak digunakan di Indonesia sehingga tidak terutang.",
         jejakHitung: [],
-        mengapaSalah: { A: "Penandatanganan di Singapura belum menimbulkan utang Bea Meterai; dokumen luar negeri terutang saat digunakan di Indonesia (Ps. 8 ayat (1) huruf e).", B: "Dokumen yang dibuat di luar negeri tetap menjadi objek Bea Meterai bila digunakan di Indonesia.", C: "Untuk dokumen luar negeri, yang terutang adalah pihak penerima manfaat (Ps. 9 ayat (5)), yaitu PT Ortax Distributor; naskah Ortax XYZ tidak pernah digunakan di Indonesia." },
+        mengapaSalah: {
+          A: "Penandatanganan di Singapura belum menimbulkan utang Bea Meterai; dokumen luar negeri terutang saat digunakan di Indonesia (Ps. 8 ayat (1) huruf e).",
+          B: "Dokumen yang dibuat di luar negeri tetap menjadi objek Bea Meterai bila digunakan di Indonesia.",
+          C: "Untuk dokumen luar negeri, yang terutang adalah pihak penerima manfaat (Ps. 9 ayat (5)), yaitu PT Ortax Distributor; naskah Ortax XYZ tidak pernah digunakan di Indonesia."
+        },
         jebakan: "Bandingkan setiap opsi dengan dasar hukum: UU 10/2020 Pasal 3 ayat (2) huruf a."
       },
-      dasarHukum: [
-        { pasal: "UU 10/2020 Pasal 3 ayat (2) huruf a", berlakuSejak: "2021-01-01" },
-        { pasal: "UU 10/2020 Pasal 8 ayat (1) huruf e", berlakuSejak: "2021-01-01" },
-        { pasal: "UU 10/2020 Pasal 9 ayat (5)", berlakuSejak: "2021-01-01" }
-      ],
+      dasarHukum: [{ pasal: "UU 10/2020 Pasal 3 ayat (2) huruf a", berlakuSejak: "2021-01-01" }, { pasal: "UU 10/2020 Pasal 8 ayat (1) huruf e", berlakuSejak: "2021-01-01" }, { pasal: "UU 10/2020 Pasal 9 ayat (5)", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Ujung opsi D rusak OCR (\"Tun tet ae Ab\"); dilengkapi \"atas dokumen\" sesuai pembahasan.",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 4, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     }
   ],
@@ -2315,7 +2421,7 @@ UKP.register({
     { id: "KT-A5-26", topik: "A5.5", tipe: "angka", depan: "Daluwarsa kewajiban bea meterai dan sanksinya?", belakang: "5 tahun sejak saat terutang", dasar: "Pasal 23 UU 10/2020", berlakuSejak: "2021-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A5-27", topik: "A5.5", tipe: "angka", depan: "Pemeteraian kemudian dokumen objek yang tidak dilunasi pada saat terutang?", belakang: "Rp20.000 per dokumen (Rp10.000 + sanksi 100%)", dasar: "Pasal 17 dan 18 UU 10/2020", berlakuSejak: "2021-01-01", menggantikan: "Pokok + sanksi 200% (UU 13/1985)", dekTambahan: [] },
     { id: "KT-A5-28", topik: "A5.5", tipe: "definisi", depan: "Pemeteraian kemudian tanpa sanksi berlaku untuk?", belakang: "Dokumen semula bukan objek yang diajukan sebagai alat bukti di pengadilan", dasar: "Pasal 17 dan 18 UU 10/2020", berlakuSejak: "2021-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A5-29", topik: "A5.5", tipe: "prosedur", depan: "Pelaksana pengesahan pemeteraian kemudian?", belakang: "Pejabat yang ditetapkan Menteri: Pejabat Pos; Pejabat DJP bila lewat SKP", dasar: "Pasal 1 UU 10/2020; PMK 78/2024", berlakuSejak: "2024-11-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A5-29", topik: "A5.5", tipe: "prosedur", depan: "Pelaksana pengesahan pemeteraian kemudian?", belakang: "Pejabat yang ditetapkan Menteri: Pejabat Pos bila dibayar dengan meterai tempel; Pejabat DJP bila dibayar dengan meterai tempel, meterai elektronik, atau SSP, termasuk setelah SKP/STP", dasar: "Pasal 1 UU 10/2020; Pasal 51 dan 53 PMK 78/2024", berlakuSejak: "2024-11-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A5-30", topik: "A5.6", tipe: "angka", depan: "Sanksi administratif bea meterai bagi pihak terutang?", belakang: "100% dari bea meterai yang terutang", dasar: "Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01", menggantikan: "200% (UU 13/1985)", dekTambahan: [] },
     { id: "KT-A5-31", topik: "A5.6", tipe: "definisi", depan: "Tidak membubuhkan meterai: pidana atau perjanjian batal?", belakang: "Bukan keduanya; akibatnya administratif, perjanjian tetap sah", dasar: "Pasal 17 dan 18 UU 10/2020", berlakuSejak: "2021-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A5-32", topik: "A5.6", tipe: "pasal", depan: "Perbuatan yang diancam pidana dalam UU Bea Meterai?", belakang: "Memalsu meterai; memakai atau mengedarkan meterai palsu atau bekas", dasar: "Pasal 24–26 UU 10/2020", berlakuSejak: "2021-01-01", menggantikan: null, dekTambahan: [] },

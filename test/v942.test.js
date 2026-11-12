@@ -38,11 +38,11 @@ describe('v9.4.2: kunci yang dibetulkan tetap pada jawaban barunya', () => {
       assert.equal(Object.keys(s.jebakanOpsi).sort().join(''), lain);
     });
   }
-  it('soal yang kuncinya mengikuti sumber sekunder bertanda perlu cek dan berperingatan', () => {
+  it('soal yang dulu mengikuti sumber sekunder: sejak v9.4.3 sudah dicocokkan ke naskah, atau tetap bertanda dengan peringatan', () => {
     for (const id of ['A2-006', 'A2-087', 'A4-076', 'A1-082', 'B6-013', 'B7-044', 'B6-069']) {
       const s = soal(id);
-      assert.equal(s.verifikasi, '◐', id);
-      assert.ok(s.peringatan && s.peringatan.length > 40, id + ' berperingatan');
+      if (s.verifikasi === '◐') assert.ok(s.peringatan && s.peringatan.length > 40, id + ' berperingatan');
+      else { assert.equal(s.verifikasi, '✅', id); assert.equal(s.peringatan, undefined, id + ' tanpa peringatan'); }
     }
   });
 });

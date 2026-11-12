@@ -814,10 +814,16 @@ describe('bpt', () => {
   it('seluruh laba ditanamkan kembali → nihil', () => {
     assert.equal(utama(ok(H('bpt', { ditanamKembali: 780000000 }))).nilai, 0);
   });
-  it('sebagian ditanamkan kembali', () => {
-    assert.equal(utama(ok(H('bpt', { ditanamKembali: 280000000 }))).nilai, 100000000);
+  it('sebagian ditanamkan kembali → tidak mengurangi dasar (PMK 14/PMK.03/2011 Pasal 1 ayat (3))', () => {
+    const r = ok(H('bpt', { ditanamKembali: 280000000 }));
+    assert.equal(utama(r).nilai, 156000000);
+    assert.equal(nilai(r, 'Dasar BPT'), 780000000);
+    assert.ok(r.peringatan.some(x => /sebagian/.test(x)));
   });
-  it('ditanam kembali melebihi laba → dibatasi + peringatan', () => {
+  it('soal A3-100: PKP Rp6 M, tarif 22%, P3B 10%, tanam kembali Rp1,68 M (sebagian) → Rp468.000.000', () => {
+    assert.equal(utama(ok(H('bpt', { pkp: 6000000000, tarifBadan: 22, tarifP3b: 10, ditanamKembali: 1680000000 }))).nilai, 468000000);
+  });
+  it('ditanam kembali melebihi laba → dianggap seluruhnya + peringatan', () => {
     const r = ok(H('bpt', { ditanamKembali: 900000000 }));
     assert.equal(utama(r).nilai, 0); assert.ok(r.peringatan.length > 0);
   });

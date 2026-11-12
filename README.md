@@ -116,6 +116,25 @@ Rilis ini menjawab empat hal dari tim: banyak anggota tidak langsung tersambung,
 - **Kalkulator PPh badan dan PPh orang pribadi** menghitung angsuran PPh 25 dengan rumus yang sama. Kalkulator badan mendapat dua isian baru: kompensasi kerugian yang sudah dikurangkan dalam PKP, dan sisa kerugian yang masih dapat dikompensasikan tahun berikutnya. Tanpa kompensasi kerugian hasilnya tidak berubah. Angka kalkulator kini sama dengan jawaban kasus K-B6-01 (Rp28.791.333) dan K-B6-04 (Rp37.426.800).
 - `test/v942.test.js` mengunci sembilan kunci yang dibetulkan pada putaran 4 sampai 7 dan rumus angsuran di kalkulator, supaya suntingan berikutnya tidak mengembalikan jawaban lama tanpa sengaja.
 
+## Soal dicocokkan dengan naskah peraturan resmi (v9.4.3)
+
+Sejak 12 November 2026 naskah peraturan bisa dibuka langsung dari situs resmi (JDIH Kementerian Keuangan dan pajak.go.id; salinan naskah dari
+perpajakan.ddtc.co.id untuk peraturan lama). Sekitar 165 naskah diunduh ke pustaka lokal, termasuk Susunan Dalam Satu Naskah Undang-Undang Perpajakan
+edisi 2023 terbitan DJP. Soal bertanda perlu cek (◐) di modul Tingkat B dicocokkan satu per satu dengan bunyi pasalnya. Tiap putusan membawa kutipan
+naskah yang dicek otomatis ada di berkas naskah, lalu diuji pemeriksa kedua.
+
+- 277 soal bertanda di modul A1 sampai B8 dan Etika diperiksa: tanda dicabut pada 216 soal, 61 soal tetap bertanda dengan peringatan yang lebih tepat
+  (kebanyakan karena bersandar pada Kode Etik dan Standar Profesi IKPI, atau tata letak formulir Coretax, yang naskahnya tidak tersedia).
+- 46 soal berubah kunci, opsi, atau stem. Lima berpindah huruf kunci: A3-088 (C), A3-100 (C), A3-131 (A), B8-028 (A), B8-061 (B).
+  E-032 dan E-036 tetap berhuruf D tetapi isinya berubah: jasa di luar klasifikasi izin dikenai pembekuan izin selama 3 bulan (Pasal 24 ayat (4) PMK 55/2026), bukan peringatan.
+- Keputusan putaran sebelumnya yang dulu bersandar pada sumber sekunder (74 klaim) diuji ke naskah: 61 cocok, termasuk semua yang pernah memindah kunci
+  (bunga Pasal 8 ayat (5) UU KUP, tenggat lapor PKP Pasal 17 PMK 164/2023, angsuran PPh Pasal 25 bila ada kompensasi kerugian, Pajak Masukan sedan).
+- Tabel rujukan (info ujian, daftar peraturan, angka kunci, glosarium, tabel angka) dicocokkan dalam tujuh bagian; 140 baris dibetulkan.
+- Kalkulator pajak laba cabang BUT mengikuti Pasal 1 ayat (3) PMK 14/PMK.03/2011: pengecualian hanya bila seluruh laba setelah pajak ditanamkan kembali.
+- Soal try out tidak berubah stem, opsi, maupun kuncinya.
+
+Yang belum: soal Tingkat C (modul C9 dan C10, 109 soal bertanda) dan penyelarasan lanjutan materi, kartu, serta peta formulir menyusul di rilis berikutnya.
+
 ## Isi saat ini (status 9 November 2026, v7.8)
 
 | | Jumlah |

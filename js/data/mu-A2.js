@@ -33,7 +33,7 @@ UKP.register({
       { sebelum: "PMK 189/PMK.03/2020 tentang tata cara penagihan", sesudah: "PMK 61/2023: rangkaian teguran, Surat Paksa, SPMP, lelang, pencegahan, penyanderaan disesuaikan", dasar: "PMK 61/2023", berlakuSejak: "2023-06-12" },
       { sebelum: "NPWP 15 digit dan NPWP cabang", sesudah: "NIK sebagai NPWP bagi OP penduduk, NPWP 16 digit, NITKU untuk tempat kegiatan usaha (pengganti NPWP cabang)", dasar: "Pasal 2 ayat (1a) UU KUP; PMK 112/2022 jo. PMK 136/2023", berlakuSejak: "2024-07-01" },
       { sebelum: "Pembinaan organisasi, administrasi, dan keuangan Pengadilan Pajak oleh Kementerian Keuangan", sesudah: "Wajib dialihkan ke Mahkamah Agung paling lambat 31 Desember 2026; Perpres pengalihan masih dalam harmonisasi per Oktober 2026", dasar: "Putusan MK 26/PUU-XXI/2023", berlakuSejak: "2023-05-25" },
-      { sebelum: "Petunjuk teknis akses informasi keuangan: PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024; belum ada pelaporan aset kripto (CARF) oleh PJAK", sesudah: "Baru menurut PMK 108/2025: Lembaga Simpanan mencakup pengelola uang elektronik tertentu/penyelenggara jasa pembayaran (e-wallet) dan mata uang digital bank sentral; PJAK menjadi pelapor CARF (data 2026, paling lambat 30 April 2027, dipertukarkan mulai 2027) dan laporan nihil tetap wajib; informasi yang tercatat s.d. 31 Desember 2025 tetap mengikuti rezim lama. Dimuat dalam PMK 108/2025 tetapi belum dibandingkan dengan rezim lama (◐): tenggat LJK diawasi OJK ke OJK paling lambat 1 Agustus, OJK ke DJP 31 Agustus, LJK lainnya/entitas lain ke DJP 30 April", dasar: "PMK 108/2025", berlakuSejak: "2026-01-01" }
+      { sebelum: "Petunjuk teknis akses informasi keuangan: PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024; belum ada pelaporan aset kripto (CARF) oleh PJAK", sesudah: "Baru menurut PMK 108/2025: Lembaga Simpanan mencakup pengelola uang elektronik tertentu/penyelenggara jasa pembayaran (e-wallet) dan mata uang digital bank sentral; PJAK menjadi pelapor CARF (data 2026, paling lambat 30 April 2027, dipertukarkan mulai 2027) dan laporan nihil tetap wajib; informasi yang tercatat s.d. 31 Desember 2025 tetap mengikuti rezim lama. Dimuat dalam PMK 108/2025 tetapi belum dibandingkan dengan rezim lama (◐): tenggat laporan CRS LJK diawasi OJK ke OJK paling lambat 1 Agustus, OJK ke DJP 31 Agustus, laporan CRS LJK lainnya/entitas lain ke DJP 30 April, dan laporan domestik semua pelapor langsung ke DJP 30 April", dasar: "PMK 108/2025", berlakuSejak: "2026-01-01" }
     ],
     lembarRingkas: [
       { label: "Setor pajak masa", nilai: "tgl 15 bulan berikutnya; hari libur → hari kerja berikutnya", dasar: "PMK 81/2024 Ps. 94 ayat (2) dan Ps. 100", berlakuSejak: "2025-01-01" },
@@ -139,8 +139,7 @@ UKP.register({
         jawaban: "31 Desember 2026",
         langkah: [["Bulan batas terlampaui", "Agustus 2026 (anggap tahun buku kalender 2026)"], ["Tenggat", "akhir tahun buku saat batas terlampaui (PMK 164/2023)"], ["Batas lapor", "31 Desember 2026; PPN dipungut mulai Masa Januari 2027"]]
       },
-      verifikasi: "◐",
-      peringatan: "Rincian Pasal 2 ayat (4a) dan (9) UU KUP (5 tahun ke belakang; 6/12 bulan keputusan) bersumber dari teks UU yang belum dibaca ulang langsung pada riset ini; angka NIK/NITKU dan Rp4,8 miliar terverifikasi. Tenggat akhir tahun buku mengikuti PMK 164/2023 Pasal 17 menurut keterangan resmi DJP dan soal try out November 2026; naskah PMK belum dibuka langsung."
+      verifikasi: "✅"
     },
     {
       id: "A2.3", slug: "pembayaran-pelaporan", judul: "Pembayaran, pelaporan SPT, perpanjangan, dan pembetulan",
@@ -369,7 +368,7 @@ UKP.register({
       estimasiMenit: 12, jenisDominan: ["prosedur", "konsep"],
       ringkasan: [
         "Permohonan restitusi atas SPT lebih bayar diproses dengan pemeriksaan; DJP wajib menerbitkan SKP paling lama 12 bulan sejak permohonan diterima lengkap; lewat waktu permohonan dianggap dikabulkan dan SKPLB terbit paling lama 1 bulan kemudian (Pasal 17B).",
-        "Pengembalian pendahuluan tanpa pemeriksaan, melalui penelitian (sejak 1 Mei 2026 diatur PMK 28 Tahun 2026 yang mencabut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021): Pasal 17C (WP kriteria tertentu/patuh), Pasal 17D (WP persyaratan tertentu: OP tanpa usaha berapa pun, OP usaha ≤ Rp100 juta, badan ≤ Rp1 miliar, PKP dengan lebih bayar ≤ Rp1 miliar dan jumlah penyerahan ≤ Rp4,2 miliar untuk suatu Masa Pajak; sebelumnya PKP ≤ Rp5 miliar), dan PKP berisiko rendah (Pasal 9 ayat (4c) UU PPN). Sejak PMK 28/2026, PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah. Keputusan berupa SKPPKP.",
+        "Pengembalian pendahuluan tanpa pemeriksaan, melalui penelitian (sejak 1 Mei 2026 diatur PMK 28 Tahun 2026 yang mencabut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021): Pasal 17C (WP kriteria tertentu/patuh), Pasal 17D (WP persyaratan tertentu: OP tanpa usaha berapa pun, OP usaha ≤ Rp100 juta, badan dengan peredaran usaha ≤ Rp50 miliar dan lebih bayar ≤ Rp1 miliar, PKP dengan lebih bayar ≤ Rp1 miliar dan jumlah penyerahan ≤ Rp4,2 miliar untuk suatu Masa Pajak; sebelumnya PKP ≤ Rp5 miliar), dan PKP berisiko rendah (Pasal 9 ayat (4c) UU PPN). Sejak PMK 28/2026, PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah. Keputusan berupa SKPPKP.",
         "Bila setelah pengembalian pendahuluan terbit SKPKB, WP Pasal 17C/17D dikenai kenaikan 100% dari kekurangan pajak (Pasal 17C ayat (5) dan 17D ayat (5)), sedangkan PKP berisiko rendah dikenai bunga Pasal 13 ayat (2).",
         "Kelebihan pembayaran dikembalikan paling lama 1 bulan sejak permohonan (SKPLB/keputusan); lewat 1 bulan, pemerintah memberi imbalan bunga (Pasal 11 ayat (3)) sejak berakhirnya 1 bulan sampai pengembalian, tarif KMK uplift 0%.",
         "Imbalan bunga Pasal 27B diberikan bila keberatan, banding, PK, atau permohonan Pasal 36 dikabulkan sehingga ada kelebihan pembayaran, paling lama 24 bulan.",
@@ -377,7 +376,7 @@ UKP.register({
       ],
       poinKunci: [
         { label: "Putusan restitusi Ps. 17B", nilai: "12 bulan; lewat → dikabulkan, SKPLB 1 bulan", dasar: "Pasal 17B ayat (1)–(2) UU KUP", berlakuSejak: "2008-01-01" },
-        { label: "Ambang Ps. 17D", nilai: "OP usaha ≤ Rp100 jt · badan ≤ Rp1 M · PKP: LB ≤ Rp1 M dan penyerahan ≤ Rp4,2 M per Masa Pajak", dasar: "PMK 28 Tahun 2026", berlakuSejak: "2026-05-01" },
+        { label: "Ambang Ps. 17D", nilai: "OP usaha ≤ Rp100 jt · badan: peredaran ≤ Rp50 M dan LB ≤ Rp1 M · PKP: LB ≤ Rp1 M dan penyerahan ≤ Rp4,2 M per Masa Pajak", dasar: "PMK 28 Tahun 2026 Pasal 9 ayat (2)", berlakuSejak: "2026-05-01" },
         { label: "PKP persyaratan tertentu", nilai: "tidak lagi diperlakukan sebagai PKP berisiko rendah (Ps. 9 ayat (4c) UU PPN)", dasar: "PMK 28 Tahun 2026", berlakuSejak: "2026-05-01" },
         { label: "Pengembalian setelah SKPLB", nilai: "1 bulan; terlambat → imbalan bunga Ps. 11(3)", dasar: "Pasal 11 ayat (2)–(3) UU KUP", berlakuSejak: "2008-01-01" },
         { label: "Tarif imbalan bunga Okt 2026", nilai: "0,59% per bulan (uplift 0%), maks 24 bulan", dasar: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
@@ -401,7 +400,7 @@ UKP.register({
         langkah: [["Permohonan lengkap", "14 Mei 2026"], ["Jangka waktu Ps. 17B", "12 bulan"], ["Batas", "14 Mei 2027"]]
       },
       verifikasi: "◐",
-      peringatan: "Batas PKP Pasal 17D (lebih bayar ≤ Rp1 miliar dan penyerahan ≤ Rp4,2 miliar per Masa Pajak), tanggal berlaku 1 Mei 2026, dan pencabutan PMK 39/2018 s.t.d.d. PMK 209/2021 terverifikasi dari ringkasan resmi PMK 28 Tahun 2026 (pajak.go.id) ✅; nomor pasal dan ketentuan peralihan PMK 28/2026 belum dibaca dari teks ◐. Media melaporkan batas peredaran usaha badan Rp50 miliar ◐ (belum dicek ke teks). Sanksi kenaikan 100% bersumber dari riset 02b bertanda [P]."
+      peringatan: "Sudah dicocokkan ke naskah: batas Pasal 17D (Pasal 9 ayat (2) PMK 28 Tahun 2026, termasuk peredaran usaha badan ≤ Rp50 miliar), berlaku 1 Mei 2026 (Pasal 27), ketentuan peralihan (Pasal 25 huruf d: permohonan sebelum 1 Mei 2026 diselesaikan berdasarkan PMK 39/PMK.03/2018 s.t.d.t.d. PMK 119 Tahun 2024), kenaikan 100% (Pasal 17C ayat (5) dan 17D ayat (5) UU KUP), serta imbalan bunga Pasal 11 ayat (3) dan (3a) UU KUP. Tarif imbalan bunga Oktober 2026 (KMK 47/MK/EF.2/2026) belum dicocokkan ke naskah ◐."
     },
     {
       id: "A2.10", slug: "ppsp-penagihan", judul: "Penagihan Pajak dengan Surat Paksa",
@@ -483,32 +482,32 @@ UKP.register({
       estimasiMenit: 14, jenisDominan: ["prosedur", "klasifikasi"],
       ringkasan: [
         "UU 9/2017 menetapkan Perppu 1/2017 (berlaku sejak 8 Mei 2017) menjadi undang-undang. DJP berwenang mendapatkan akses informasi keuangan untuk kepentingan perpajakan dari lembaga jasa keuangan (LJK) sektor perbankan, pasar modal, perasuransian, LJK lainnya, dan/atau entitas lain yang dikategorikan sebagai lembaga keuangan menurut standar pertukaran informasi keuangan internasional. Aksesnya dua jalur: laporan otomatis tahunan dari LJK, dan permintaan informasi dan/atau bukti atau keterangan (IBK) oleh DJP yang wajib dipenuhi LJK, termasuk atas rekening yang tidak masuk laporan tahunan.",
-        "LJK menyampaikan dua laporan: laporan sesuai standar internasional (CRS/AEoI) untuk setiap rekening yang wajib dilaporkan, dan laporan untuk kepentingan perpajakan domestik atas rekening yang dikelola selama satu tahun kalender. Isinya paling sedikit identitas pemegang rekening, nomor rekening, identitas LJK, saldo atau nilai rekening, dan penghasilan yang terkait dengan rekening. LJK di bawah pengawasan OJK melapor melalui OJK; LJK lainnya dan entitas lain langsung ke DJP. LJK wajib menjalankan prosedur identifikasi rekening (uji tuntas) dan tidak boleh melayani pembukaan rekening baru atau transaksi baru terkait rekening bagi nasabah yang menolak mematuhi ketentuan identifikasi.",
-        "Pasal 35 ayat (2) dan Pasal 35A UU KUP, Pasal 40 dan 41 UU Perbankan, Pasal 47 UU Pasar Modal, Pasal 17, 27, dan 29 UU Perdagangan Berjangka Komoditi, serta Pasal 41 dan 42 UU Perbankan Syariah tidak berlaku sepanjang berkaitan dengan akses informasi keuangan untuk kepentingan perpajakan: rahasia bank tidak dapat dijadikan alasan menolak, dan tidak diperlukan lagi permintaan tertulis Menteri Keuangan per bank per nasabah. Di luar itu Pasal 35 UU KUP tetap berlaku bagi pihak ketiga lain (akuntan publik, notaris, konsultan pajak, kantor administrasi) dalam pemeriksaan, penagihan, atau penyidikan atas permintaan tertulis Direktur Jenderal Pajak, dan Pasal 35A tetap mewajibkan instansi pemerintah, lembaga, asosiasi, dan pihak lain (ILAP) memberikan data dan informasi perpajakan (PP 31/2012). Informasi yang diterima DJP adalah data perpajakan yang dirahasiakan menurut Pasal 34 UU KUP dan menjadi basis data untuk penelitian, pemeriksaan (lihat A2.5), penagihan, penyidikan, dan pelaksanaan perjanjian internasional.",
+        "LJK menyampaikan dua laporan: laporan sesuai standar internasional (CRS/AEoI) untuk setiap rekening yang wajib dilaporkan, dan laporan untuk kepentingan perpajakan domestik atas rekening yang dikelola selama satu tahun kalender. Isinya paling sedikit identitas pemegang rekening, nomor rekening, identitas LJK, saldo atau nilai rekening, dan penghasilan yang terkait dengan rekening. Laporan CRS dari LJK di bawah pengawasan OJK disampaikan melalui OJK, sedangkan laporan CRS dari LJK lainnya dan entitas lain langsung ke DJP; laporan domestik disampaikan semua pelapor, termasuk bank, langsung ke DJP melalui Portal Wajib Pajak. LJK wajib menjalankan prosedur identifikasi rekening (uji tuntas) dan tidak boleh melayani pembukaan rekening baru atau transaksi baru terkait rekening bagi nasabah yang menolak mematuhi ketentuan identifikasi.",
+        "Pasal 35 ayat (2) dan Pasal 35A UU KUP, Pasal 40 dan 41 UU Perbankan, Pasal 47 UU Pasar Modal, Pasal 17, 27, dan 55 UU Perdagangan Berjangka Komoditi, serta Pasal 41 dan 42 UU Perbankan Syariah tidak berlaku sepanjang berkaitan dengan akses informasi keuangan untuk kepentingan perpajakan: rahasia bank tidak dapat dijadikan alasan menolak, dan tidak diperlukan lagi permintaan tertulis Menteri Keuangan per bank per nasabah. Di luar itu Pasal 35 UU KUP tetap berlaku bagi pihak ketiga lain (akuntan publik, notaris, konsultan pajak, kantor administrasi) dalam pemeriksaan, penagihan, atau penyidikan atas permintaan tertulis Direktur Jenderal Pajak, dan Pasal 35A tetap mewajibkan instansi pemerintah, lembaga, asosiasi, dan pihak lain (ILAP) memberikan data dan informasi perpajakan (PP 31/2012). Informasi yang diterima DJP adalah data perpajakan yang dirahasiakan menurut Pasal 34 UU KUP dan menjadi basis data untuk penelitian, pemeriksaan (lihat A2.5), penagihan, penyidikan, dan pelaksanaan perjanjian internasional.",
         "Ancaman pidana UU 9/2017: pimpinan dan/atau pegawai LJK yang tidak menyampaikan laporan, tidak melaksanakan prosedur identifikasi, atau tidak memberikan IBK dipidana kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000; LJK yang tidak menyampaikan laporan dipidana denda paling banyak Rp1.000.000.000; setiap orang yang membuat pernyataan palsu atau menyembunyikan atau mengurangkan informasi yang sebenarnya dipidana kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000. Jangan tertukar dengan UU KUP: ILAP yang tidak memenuhi Pasal 35A diancam Pasal 41C, pihak ketiga Pasal 35 yang tidak memberi keterangan atau bukti diancam Pasal 41A, dan penghalang penyidikan diancam Pasal 41B.",
-        "PMK 108/2025 (diundangkan 31 Desember 2025, berlaku 1 Januari 2026) mencabut PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024. Lembaga Simpanan kini mencakup pengelola uang elektronik tertentu/penyelenggara jasa pembayaran (e-wallet) dan mata uang digital bank sentral; penyedia jasa aset kripto (PJAK) menjadi pelapor CARF dengan uji tuntas dan laporan tahunan. Laporan domestik memuat rekening orang pribadi di Lembaga Simpanan bila saldo/nilai agregat per lembaga per 31 Desember paling sedikit Rp1.000.000.000, sedangkan rekening entitas serta rekening pada Lembaga Kustodian dan Entitas Investasi dilaporkan tanpa batas saldo. Tenggat: LJK di bawah OJK ke OJK paling lambat 1 Agustus, OJK ke DJP paling lambat 31 Agustus; LJK lainnya/entitas lain langsung ke DJP paling lambat 30 April; laporan nihil tetap wajib. Peralihan: informasi yang tercatat sampai 31 Desember 2025 masih mengikuti ketentuan lama; CARF pertama untuk data 2026 disampaikan paling lambat 30 April 2027 dan dipertukarkan mulai 2027 (pertukaran internasional CRS, CARF, CbCR, dan GIR: lihat C10.8).",
+        "PMK 108/2025 (diundangkan 31 Desember 2025, berlaku 1 Januari 2026) mencabut PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024. Lembaga Simpanan kini mencakup pengelola uang elektronik tertentu/penyelenggara jasa pembayaran (e-wallet) dan mata uang digital bank sentral; penyedia jasa aset kripto (PJAK) menjadi pelapor CARF dengan uji tuntas dan laporan tahunan. Laporan domestik memuat rekening orang pribadi di Lembaga Simpanan bila saldo/nilai agregat per lembaga per 31 Desember paling sedikit Rp1.000.000.000, sedangkan rekening entitas serta rekening pada Lembaga Kustodian dan Entitas Investasi dilaporkan tanpa batas saldo. Tenggat laporan CRS: LJK di bawah OJK ke OJK paling lambat 1 Agustus, OJK ke DJP paling lambat 31 Agustus; LJK lainnya/entitas lain langsung ke DJP paling lambat 30 April. Laporan domestik: semua pelapor, termasuk bank, langsung ke DJP paling lambat 30 April. Tenggat yang jatuh pada hari Sabtu, Minggu, atau hari libur bergeser ke hari kerja berikutnya (1 Agustus 2027 jatuh pada hari Minggu); laporan nihil tetap wajib. Peralihan: prosedur identifikasi atas informasi yang tercatat sampai 31 Desember 2025 dan laporan yang disampaikan sampai 30 September 2026 masih mengikuti ketentuan lama; CARF pertama untuk data 2026 disampaikan paling lambat 30 April 2027 dan dipertukarkan mulai 2027 (pertukaran internasional CRS, CARF, CbCR, dan GIR: lihat C10.8).",
         "Contoh kasus 1: Dalam pemeriksaan PT Gemilang, DJP meminta rekening koran direktur utamanya kepada Bank Prima. Bank menolak dengan alasan rahasia bank dan meminta surat Menteri Keuangan. Penolakan itu tidak berdasar: untuk akses informasi keuangan, rahasia bank dan Pasal 35 ayat (2) UU KUP tidak berlaku, sehingga bank wajib memberikan IBK; pimpinan atau pegawai yang tetap menolak terancam kurungan paling lama 1 tahun atau denda paling banyak Rp1 miliar.",
         "Contoh kasus 2: Per 31 Desember 2026, CV Sinar Logam memiliki giro Rp50.000.000 di Bank Sejahtera (diawasi OJK), dan Nyonya Lili memiliki rekening efek senilai Rp300.000.000 pada Lembaga Kustodian. Keduanya masuk laporan domestik data 2026 karena rekening entitas dan rekening kustodian tidak mengenal batas saldo; ambang Rp1 miliar hanya untuk rekening orang pribadi di Lembaga Simpanan."
       ],
       poinKunci: [
-        { label: "Dua jalur akses", nilai: "laporan otomatis tahunan LJK + permintaan IBK oleh DJP", dasar: "Pasal 2 UU 9/2017; ketentuan IBK (nomor pasal ◐)", berlakuSejak: "2017-05-08" },
+        { label: "Dua jalur akses", nilai: "laporan otomatis tahunan LJK + permintaan IBK oleh DJP", dasar: "Pasal 2 ayat (2) dan Pasal 4 UU 9/2017", berlakuSejak: "2017-05-08" },
         { label: "Isi minimal laporan", nilai: "identitas pemegang, nomor rekening, identitas LJK, saldo/nilai, penghasilan terkait rekening", dasar: "Pasal 2 ayat (3) UU 9/2017", berlakuSejak: "2017-05-08" },
-        { label: "Saluran laporan", nilai: "LJK diawasi OJK → melalui OJK; LJK lainnya/entitas lain → langsung ke DJP", dasar: "Pasal 2 UU 9/2017; PMK 108/2025", berlakuSejak: "2017-05-08" },
-        { label: "Nasabah menolak identifikasi", nilai: "tidak boleh dilayani pembukaan rekening baru atau transaksi baru", dasar: "UU 9/2017, larangan melayani nasabah (nomor pasal ◐)", berlakuSejak: "2017-05-08" },
+        { label: "Saluran laporan", nilai: "laporan CRS: LJK diawasi OJK → melalui OJK, LJK lainnya/entitas lain → langsung ke DJP; laporan domestik: semua pelapor → langsung ke DJP (Portal Wajib Pajak)", dasar: "Pasal 3 ayat (1) UU 9/2017; Pasal 9 ayat (1) dan Pasal 36 ayat (2) PMK 108/2025", berlakuSejak: "2017-05-08" },
+        { label: "Nasabah menolak identifikasi", nilai: "tidak boleh dilayani pembukaan rekening baru atau transaksi baru", dasar: "Pasal 2 ayat (6) UU 9/2017; Pasal 14 PMK 108/2025", berlakuSejak: "2017-05-08" },
         { label: "Rahasia bank", nilai: "tidak berlaku untuk akses informasi keuangan; tanpa permintaan tertulis Menkeu per nasabah", dasar: "Pasal 8 UU 9/2017", berlakuSejak: "2017-05-08" },
         { label: "Pidana pimpinan/pegawai LJK", nilai: "kurungan ≤ 1 tahun atau denda ≤ Rp1 miliar", dasar: "UU 9/2017 Pasal 7", berlakuSejak: "2017-05-08" },
         { label: "Pidana LJK · pernyataan palsu", nilai: "denda ≤ Rp1 miliar · kurungan ≤ 1 tahun atau denda ≤ Rp1 miliar", dasar: "UU 9/2017 Pasal 7", berlakuSejak: "2017-05-08" },
         { label: "Pasal 35 · 35A UU KUP", nilai: "pihak ketiga atas permintaan tertulis Dirjen (pemeriksaan, penagihan, penyidikan) · ILAP wajib memberi data (PP 31/2012)", dasar: "Pasal 35, 35A, 41A, 41C UU KUP", berlakuSejak: "2008-01-01" },
         { label: "Ambang laporan domestik", nilai: "OP di Lembaga Simpanan: agregat per lembaga per 31 Des ≥ Rp1 miliar; entitas, Lembaga Kustodian, Entitas Investasi tanpa batas", dasar: "PMK 108/2025", berlakuSejak: "2026-01-01" },
-        { label: "Tenggat laporan", nilai: "diawasi OJK → OJK 1 Agustus; OJK → DJP 31 Agustus; LJK lainnya/entitas lain → DJP 30 April", dasar: "PMK 108/2025", berlakuSejak: "2026-01-01" },
+        { label: "Tenggat laporan", nilai: "laporan CRS: diawasi OJK → OJK 1 Agustus, OJK → DJP 31 Agustus; LJK lainnya/entitas lain → DJP 30 April; laporan domestik: semua pelapor → DJP 30 April; hari libur → hari kerja berikutnya", dasar: "Pasal 11 ayat (5) sampai (7) dan Pasal 37 ayat (1) PMK 108/2025", berlakuSejak: "2026-01-01" },
         { label: "Laporan nihil", nilai: "tetap wajib bila tidak ada rekening atau transaksi yang wajib dilaporkan", dasar: "PMK 108/2025", berlakuSejak: "2026-01-01" },
         { label: "CARF (PJAK) dan peralihan", nilai: "data 2026 dilaporkan ≤ 30 April 2027, dipertukarkan mulai 2027; informasi s.d. 31 Des 2025 rezim lama", dasar: "PMK 108/2025", berlakuSejak: "2026-01-01" }
       ],
       dasarHukum: [
         { pasal: "UU 9/2017 (penetapan Perppu 1/2017) Pasal 2", catatan: "kewenangan DJP, dua jenis laporan LJK, isi minimal laporan, saluran OJK atau langsung, prosedur identifikasi rekening" },
-        { pasal: "UU 9/2017 (IBK; larangan melayani nasabah) ◐", catatan: "permintaan IBK; larangan melayani nasabah yang menolak identifikasi; nomor pasal belum dicocokkan dengan teks resmi" },
-        { pasal: "UU 9/2017 Pasal 7 (ketentuan pidana)", catatan: "pidana pimpinan/pegawai LJK dan LJK; pidana pernyataan palsu; nomor pasal belum dicocokkan dengan teks resmi" },
-        { pasal: "UU 9/2017 (data perpajakan dirahasiakan ◐; Pasal 8 pengesampingan kerahasiaan)", catatan: "informasi sebagai data perpajakan yang dirahasiakan (nomor pasal belum dicocokkan dengan teks resmi); Pasal 8: ketentuan kerahasiaan UU KUP, Perbankan, Pasar Modal, PBK, dan Perbankan Syariah tidak berlaku untuk akses ini" },
+        { pasal: "UU 9/2017 Pasal 4 (IBK) dan Pasal 2 ayat (6) (larangan melayani nasabah)", catatan: "DJP berwenang meminta informasi dan/atau bukti atau keterangan yang wajib dipenuhi LJK; LJK tidak boleh melayani pembukaan rekening baru atau transaksi baru bagi nasabah yang menolak identifikasi" },
+        { pasal: "UU 9/2017 Pasal 7 (ketentuan pidana)", catatan: "ayat (1) pidana pimpinan/pegawai LJK; ayat (2) pidana LJK; ayat (3) pidana pernyataan palsu" },
+        { pasal: "UU 9/2017 Pasal 2 ayat (8), Pasal 4 ayat (3), dan Pasal 8", catatan: "kewajiban merahasiakan LJK tidak berlaku dalam pelaksanaan UU ini (Pasal 2 ayat (8)); informasi menjadi basis data perpajakan DJP (Pasal 4 ayat (3)); Pasal 8: ketentuan kerahasiaan UU KUP, Perbankan, Pasar Modal, PBK, dan Perbankan Syariah tidak berlaku untuk akses ini" },
         { pasal: "Pasal 34, 35, dan 35A UU KUP; PP 31/2012", catatan: "kerahasiaan data WP; keterangan pihak ketiga atas permintaan tertulis Dirjen; kewajiban ILAP" },
         { pasal: "Pasal 41A, 41B, dan 41C UU KUP", catatan: "pidana pihak ketiga Pasal 35, penghalang penyidikan, dan ILAP Pasal 35A" },
         { pasal: "PMK 108/2025", catatan: "petunjuk teknis akses informasi keuangan (CRS dan CARF); mencabut PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024 sejak 1 Januari 2026" }
@@ -518,16 +517,16 @@ UKP.register({
         { teks: "Mengira DJP masih perlu permintaan tertulis Menteri Keuangan per bank per nasabah (Pasal 35 ayat (2) UU KUP) — tidak berlaku untuk akses informasi keuangan sejak UU 9/2017", tagSebab: "angka-usang" },
         { teks: "Mencampur laporan otomatis tahunan dengan permintaan IBK — IBK diminta di luar laporan dan tetap wajib dipenuhi walau laporan tahunan sudah disampaikan", tagSebab: "salah-klasifikasi" },
         { teks: "Ambang Rp1 miliar diterapkan pada rekening entitas, rekening kustodian, atau laporan CRS — ambang itu hanya untuk rekening orang pribadi di Lembaga Simpanan pada laporan domestik", tagSebab: "salah-klasifikasi" },
-        { teks: "Tenggat 30 April dipakai untuk bank di bawah OJK — bank melapor ke OJK paling lambat 1 Agustus; 30 April untuk LJK lainnya/entitas lain yang melapor langsung ke DJP", tagSebab: "salah-baca" },
+        { teks: "Saluran dan tenggat laporan CRS dipakai untuk laporan domestik: bank di bawah OJK menyampaikan laporan CRS ke OJK paling lambat 1 Agustus, tetapi laporan domestik semua pelapor, termasuk bank, langsung ke DJP paling lambat 30 April", tagSebab: "salah-baca" },
         { teks: "Data 2025 diproses dengan PMK 108/2025 atau dilaporkan sebagai CARF — informasi yang tercatat sampai 31 Desember 2025 masih rezim lama, dan CARF dimulai dari data 2026", tagSebab: "salah-baca" }
       ],
       contohSoal: {
         stem: "Per 31 Desember 2026 Tuan Hendra memiliki tabungan Rp400.000.000 dan deposito Rp650.000.000 di Bank Mandala, serta tabungan Rp900.000.000 di Bank Citra; kedua bank diawasi OJK. Rekening mana yang wajib dimuat dalam laporan domestik data 2026, dan kapan bank menyampaikannya?",
-        jawaban: "Hanya rekening di Bank Mandala (agregat Rp1.050.000.000); disampaikan ke OJK paling lambat 1 Agustus 2027",
-        langkah: [["Agregat di Bank Mandala", "Rp400.000.000 + Rp650.000.000 = Rp1.050.000.000 ≥ Rp1 miliar → dilaporkan"], ["Agregat di Bank Citra", "Rp900.000.000 < Rp1 miliar → tidak dilaporkan (agregasi per lembaga, bukan lintas bank)"], ["Tenggat LJK diawasi OJK", "ke OJK paling lambat 1 Agustus 2027; OJK ke DJP paling lambat 31 Agustus 2027"]]
+        jawaban: "Hanya rekening di Bank Mandala (agregat Rp1.050.000.000); Bank Mandala menyampaikan laporan domestik langsung ke DJP melalui Portal Wajib Pajak paling lambat 30 April 2027",
+        langkah: [["Agregat di Bank Mandala", "Rp400.000.000 + Rp650.000.000 = Rp1.050.000.000 ≥ Rp1 miliar → dilaporkan"], ["Agregat di Bank Citra", "Rp900.000.000 < Rp1 miliar → tidak dilaporkan (agregasi per lembaga, bukan lintas bank)"], ["Tenggat laporan domestik", "langsung ke DJP paling lambat 30 April 2027, juga bagi bank yang diawasi OJK; jalur OJK 1 Agustus hanya untuk laporan CRS"]]
       },
       verifikasi: "◐",
-      peringatan: "Teks PMK 108/2025 tidak terbaca langsung: cakupan Lembaga Simpanan (termasuk e-wallet dan mata uang digital bank sentral), ambang Rp1 miliar, tenggat 1 Agustus/31 Agustus/30 April, laporan nihil, CARF, dan ketentuan peralihan diambil dari ringkasan JDIH Kemenkeu, FAQ DJP, IKPI, dan DDTC yang saling konsisten. Nomor pasal UU 9/2017: Pasal 2 (akses dan laporan), Pasal 7 (ketentuan pidana), dan Pasal 8 (pengesampingan Pasal 35 ayat (2)/35A UU KUP dan kerahasiaan sektor keuangan) dicocokkan dengan cuplikan teks resmi (JDIH Kemenkeu, DDTC); Pasal 5 memberi wewenang Menteri Keuangan bertukar informasi dengan otoritas negara lain, Pasal 9 menjadi dasar PMK petunjuk teknis. Nomor pasal untuk IBK, larangan melayani nasabah, dan kerahasiaan data belum dicocokkan (◐)"
+      peringatan: "Sudah dicocokkan dengan naskah UU 9/2017 (Pasal 2, 3, 4, 7, 8, 10) dan PMK 108/2025 (Pasal 9, 11, 14, 18, 22, 24, 33, 35, 36, 37, 59, 61): saluran dan tenggat laporan CRS berbeda dari laporan domestik, ambang Rp1 miliar, laporan nihil, CARF, dan peralihan. Belum pasti: tanggal pengundangan PMK 108/2025 (kosong pada naskah JDIH yang diunduh) dan rincian Lembaga Simpanan baru (e-wallet, mata uang digital bank sentral) yang belum dibandingkan dengan rezim lama."
     }
   ],
   soal: [
@@ -640,8 +639,7 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "Pasal 2 ayat (2) UU KUP; Pasal 3A UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 164/2023 Pasal 17 dan 18", berlakuSejak: "2023-12-29" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Tenggat akhir tahun buku mengikuti PMK 164/2023 Pasal 17 menurut keterangan resmi DJP dan soal try out November 2026; naskah PMK belum dibuka langsung."
+      verifikasi: "✅"
     },
     {
       id: "A2-007", topik: "A2.2", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1,
@@ -660,7 +658,11 @@ UKP.register({
       anggaranDetik: 60, verifikasi: "✅"
     },
     {
-      id: "A2-008", topik: "A2.2", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A2-008",
+      topik: "A2.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       stem: "CV Makmur Jaya beroperasi sebagai distributor sejak 1 Maret 2019 dan sejak tanggal itu sudah memenuhi syarat subjektif dan objektif, tetapi tidak pernah mendaftarkan diri. Berdasarkan data pihak ketiga, DJP menerbitkan NPWP secara jabatan pada 10 Agustus 2026. Menurut Pasal 2 UU KUP, kewajiban perpajakan CV Makmur Jaya yang dapat ditagih dimulai sejak ...",
       kataKualifikasi: [],
       opsi: { A: "1 Maret 2019, saat syarat subjektif dan objektif terpenuhi", B: "10 Agustus 2021, yaitu paling lama 5 tahun sebelum NPWP jabatan diterbitkan", C: "1 Januari 2026, awal Tahun Pajak saat NPWP diterbitkan", D: "10 Agustus 2026, tanggal NPWP jabatan diterbitkan" },
@@ -668,16 +670,29 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Kewajiban WP yang diberi NPWP secara jabatan dimulai sejak syarat subjektif dan objektif terpenuhi, tetapi dibatasi paling lama 5 tahun sebelum NPWP diterbitkan.",
-        jejakHitung: [["Syarat terpenuhi", "1 Maret 2019"], ["NPWP jabatan", "10 Agustus 2026"], ["Batas mundur 5 tahun", "10 Agustus 2021"], ["Mulai kewajiban = yang lebih akhir", "10 Agustus 2021"]],
-        mengapaSalah: { A: "Mengabaikan batas 5 tahun.", C: "Kewajiban tidak menunggu tahun NPWP terbit.", D: "NPWP jabatan justru menagih kewajiban ke belakang." },
+        jejakHitung: [
+          ["Syarat terpenuhi", "1 Maret 2019"],
+          ["NPWP jabatan", "10 Agustus 2026"],
+          ["Batas mundur 5 tahun", "10 Agustus 2021"],
+          ["Mulai kewajiban = yang lebih akhir", "10 Agustus 2021"]
+        ],
+        mengapaSalah: {
+          A: "Mengabaikan batas 5 tahun.",
+          C: "Kewajiban tidak menunggu tahun NPWP terbit.",
+          D: "NPWP jabatan justru menagih kewajiban ke belakang."
+        },
         jebakan: "Ambil tanggal yang lebih akhir antara saat syarat terpenuhi dan 5 tahun sebelum NPWP jabatan."
       },
-      dasarHukum: [{ pasal: "Pasal 2 ayat (4) dan (4a) UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "Batas 5 tahun Pasal 2 ayat (4a) UU KUP berasal dari teks UU yang tidak terbaca langsung dalam riset proyek; cek ulang ke teks konsolidasi."
+      dasarHukum: [{ pasal: "Pasal 2 ayat (4) dan (4a) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 81/2024 Pasal 70 ayat (1)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
-      id: "A2-009", topik: "A2.2", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A2-009",
+      topik: "A2.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       stem: "PT Cahaya Pratama telah selesai likuidasi dan mengajukan permohonan penghapusan NPWP yang diterima lengkap pada 2 Februari 2026. Pada hari yang sama, ahli waris almarhumah Ny. Rina (orang pribadi, tanpa warisan belum terbagi) juga mengajukan penghapusan NPWP almarhumah. Setelah melakukan pemeriksaan, DJP wajib menerbitkan keputusan atas permohonan PT Cahaya Pratama paling lambat ...",
       kataKualifikasi: ["paling lambat"],
       opsi: { A: "2 Agustus 2026", B: "2 Februari 2027", C: "2 Mei 2026", D: "2 Februari 2028" },
@@ -685,13 +700,21 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-hitung" },
       pembahasan: {
         inti: "Keputusan penghapusan NPWP paling lama 6 bulan untuk WP orang pribadi dan 12 bulan untuk WP badan sejak permohonan diterima lengkap.",
-        jejakHitung: [["Permohonan lengkap", "2 Februari 2026"], ["Jangka waktu badan", "12 bulan"], ["Batas keputusan", "2 Februari 2027"]],
-        mengapaSalah: { A: "6 bulan berlaku untuk orang pribadi (permohonan Ny. Rina).", C: "3 bulan adalah tenggat keberatan, bukan keputusan penghapusan NPWP.", D: "24 bulan tidak dikenal untuk keputusan ini." },
+        jejakHitung: [
+          ["Permohonan lengkap", "2 Februari 2026"],
+          ["Jangka waktu badan", "12 bulan"],
+          ["Batas keputusan", "2 Februari 2027"]
+        ],
+        mengapaSalah: {
+          A: "6 bulan berlaku untuk orang pribadi (permohonan Ny. Rina).",
+          C: "3 bulan adalah tenggat keberatan, bukan keputusan penghapusan NPWP.",
+          D: "24 bulan tidak dikenal untuk keputusan ini."
+        },
         jebakan: "Dua permohonan di stem sengaja disandingkan: bedakan OP 6 bulan dan badan 12 bulan."
       },
-      dasarHukum: [{ pasal: "Pasal 2 ayat (6) dan (9) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 90, verifikasi: "◐",
-      peringatan: "Jangka 6/12 bulan berasal dari teks Pasal 2 ayat (9) UU KUP yang tidak terbaca langsung dalam riset proyek; cek ulang."
+      dasarHukum: [{ pasal: "Pasal 2 ayat (6) dan (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 81/2024 Pasal 29 ayat (4) dan Pasal 47 ayat (4)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅"
     },
     {
       id: "A2-010", topik: "A2.3", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
@@ -1011,7 +1034,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-025", topik: "A2.5", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3,
+      id: "A2-025",
+      topik: "A2.5",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
       stem: "Tuan Hartono disidik atas dugaan tindak pidana Pasal 39 ayat (1) huruf d UU KUP (menyampaikan SPT yang isinya tidak benar) dengan kerugian pada pendapatan negara Rp500.000.000. Untuk kepentingan penerimaan negara ia mengajukan permohonan kepada Menteri Keuangan agar Menteri Keuangan meminta Jaksa Agung menghentikan penyidikan. Menurut Pasal 44B UU KUP sebagaimana diubah UU HPP, jumlah yang harus ia lunasi adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp2.500.000.000", B: "Rp1.000.000.000", C: "Rp2.000.000.000", D: "Rp1.500.000.000" },
@@ -1019,13 +1046,21 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
         inti: "Penghentian penyidikan Pasal 44B: kerugian pendapatan negara ditambah denda 1 kali (Pasal 38), 3 kali (Pasal 39), atau 4 kali (Pasal 39A).",
-        jejakHitung: [["Kerugian pendapatan negara", "Rp500.000.000"], ["Denda 3 × (Pasal 39)", "Rp1.500.000.000"], ["Jumlah dilunasi", "Rp2.000.000.000"]],
-        mengapaSalah: { A: "Pengali 4 kali untuk Pasal 39A (faktur fiktif).", B: "Pengali 1 kali untuk Pasal 38 (kealpaan).", D: "Hanya denda 3 kali tanpa pokok kerugian." },
+        jejakHitung: [
+          ["Kerugian pendapatan negara", "Rp500.000.000"],
+          ["Denda 3 × (Pasal 39)", "Rp1.500.000.000"],
+          ["Jumlah dilunasi", "Rp2.000.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Pengali 4 kali untuk Pasal 39A (faktur fiktif).",
+          B: "Pengali 1 kali untuk Pasal 38 (kealpaan).",
+          D: "Hanya denda 3 kali tanpa pokok kerugian."
+        },
         jebakan: "Pengali mengikuti pasal pidana yang disangkakan, dan pokok kerugian tetap dibayar."
       },
       dasarHukum: [{ pasal: "Pasal 44B ayat (1) dan (2) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 39 ayat (1) huruf d UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "Pengali 1/3/4 kali Pasal 44B (UU HPP) dari pengetahuan regulasi; riset proyek menandai pidana ◐. Cek teks konsolidasi UU KUP."
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-026",
@@ -1197,26 +1232,33 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A2-034", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A2-034",
+      topik: "A2.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       stem: "CV Anugerah mengajukan permohonan pengurangan sanksi administratif dalam STP berdasarkan Pasal 36 ayat (1) huruf a. Keputusan atas permohonan pertama yang menolak permohonan itu dikirim 10 Juli 2026. CV Anugerah ingin mencoba lagi. Pernyataan yang tepat tentang permohonan berikutnya adalah ...",
       kataKualifikasi: ["paling lama", "paling banyak"],
-      opsi: {
-        A: "Permohonan kedua paling lama 10 Oktober 2026; setelah itu tidak dapat diajukan permohonan ketiga",
-        B: "Permohonan kedua paling lama 10 Agustus 2026; permohonan ketiga masih dapat diajukan",
-        C: "Permohonan kedua paling lama 10 Januari 2027, mengikuti jangka waktu keputusan 6 bulan",
-        D: "Permohonan kedua paling lama 10 Oktober 2026; permohonan ketiga dapat diajukan bila ada bukti baru"
-      },
+      opsi: { A: "Permohonan kedua paling lama 10 Oktober 2026; setelah itu tidak dapat diajukan permohonan ketiga", B: "Permohonan kedua paling lama 10 Agustus 2026; permohonan ketiga masih dapat diajukan", C: "Permohonan kedua paling lama 10 Januari 2027, mengikuti jangka waktu keputusan 6 bulan", D: "Permohonan kedua paling lama 10 Oktober 2026; permohonan ketiga dapat diajukan bila ada bukti baru" },
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
         inti: "Permohonan Pasal 36 ayat (1) huruf a–c paling banyak 2 kali; permohonan kedua paling lama 3 bulan sejak keputusan pertama dikirim.",
-        jejakHitung: [["Keputusan pertama dikirim", "10 Juli 2026"], ["+ 3 bulan", "10 Oktober 2026"]],
-        mengapaSalah: { B: "1 bulan tidak dikenal; dan permohonan dibatasi 2 kali.", C: "6 bulan adalah jangka waktu DJP memberi keputusan, bukan tenggat permohonan kedua.", D: "Batas 2 kali tidak dapat ditembus dengan bukti baru." },
+        jejakHitung: [
+          ["Keputusan pertama dikirim", "10 Juli 2026"],
+          ["+ 3 bulan", "10 Oktober 2026"]
+        ],
+        mengapaSalah: {
+          B: "1 bulan tidak dikenal; dan permohonan dibatasi 2 kali.",
+          C: "6 bulan adalah jangka waktu DJP memberi keputusan, bukan tenggat permohonan kedua.",
+          D: "Batas 2 kali tidak dapat ditembus dengan bukti baru."
+        },
         jebakan: "Dua kesempatan, jeda paling lama 3 bulan."
       },
-      dasarHukum: [{ pasal: "Pasal 36 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" }],
-      anggaranDetik: 100, verifikasi: "◐",
-      peringatan: "Batas 2 kali dan tenggat 3 bulan permohonan kedua bersumber dari ringkasan PMK 118/2024 (riset ✅/◐); titik hitung 'dikirim' perlu dicek ke teks PMK."
+      dasarHukum: [{ pasal: "Pasal 36 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 24 ayat (1) dan (3) PMK 118/2024 (tidak diubah PMK 71/2026)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "◐",
+      peringatan: "Batas 2 kali dan tenggat 3 bulan sejak keputusan pertama dikirim sudah dicocokkan dengan Pasal 24 ayat (1) dan (3) PMK 118/2024 (tidak diubah PMK 71/2026). Yang belum pasti hanya cara menghitung '3 bulan sejak 10 Juli 2026': jatuh 10 Oktober atau 9 Oktober 2026 (sedang ditanyakan ke pengguna)."
     },
     {
       id: "A2-035",
@@ -1250,26 +1292,30 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-036", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 2,
+      id: "A2-036",
+      topik: "A2.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
       stem: "Pada 9 November 2026 PT Fajar Sentosa mengajukan permohonan fasilitas penghapusan sanksi administratif berdasarkan PMK 71/2026 jo. KEP-239/PJ/2026 atas: (1) STP bunga Pasal 9 ayat (2a) Rp4.200.000 yang pokok pajaknya sudah lunas; dan (2) denda Pasal 25 ayat (9) Rp18.000.000 karena keberatannya ditolak dan tidak dibanding. Pernyataan yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Keduanya dapat dihapus 100% karena diajukan sebelum 31 Desember 2026",
-        B: "Hanya sanksi (1) yang dapat dihapus 100%; denda keberatan (2) tidak termasuk fasilitas",
-        C: "Keduanya hanya dapat dikurangi 50%",
-        D: "Tidak ada yang dapat dihapus karena fasilitas baru berlaku pada 2027"
-      },
+      opsi: { A: "Keduanya dapat dihapus 100% karena diajukan sebelum 31 Desember 2026", B: "Hanya sanksi (1) yang dapat dihapus 100%; denda keberatan (2) tidak termasuk fasilitas", C: "Keduanya hanya dapat dikurangi 50%", D: "Tidak ada yang dapat dihapus karena fasilitas baru berlaku pada 2027" },
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
-        inti: "Fasilitas PMK 71/2026 menghapus 100% sanksi administratif yang dimohonkan sampai 31 Desember 2026 (bertahap mengecil hingga 30 Juni 2027), tetapi tidak mencakup sanksi yang timbul dari keberatan, banding, atau PK; pokok tetap dibayar.",
+        inti: "Pasal 27A PMK 118/2024 s.t.d.d. PMK 71/2026 menjadi dasar pengurangan atau penghapusan sanksi administratif atas permohonan yang diajukan paling lama 2 tahun sejak PMK 71/2026 berlaku, dan KEP-239/PJ/2026 (berlaku 8 Oktober 2026) merinci sanksi yang mendapat fasilitas, termasuk sanksi dalam STP yang pokoknya sudah atau akan dibayar sampai 30 Juni 2027; besaran dan tahapannya diatur dalam Lampiran KEP tersebut. Namun Pasal 21A huruf b mengecualikan sanksi dalam STP yang diterbitkan berdasarkan Pasal 25 ayat (9), Pasal 27 ayat (5d), dan Pasal 27 ayat (5f) UU KUP, sehingga denda keberatan (2) tidak dapat dimohonkan pengurangan atau penghapusan.",
         jejakHitung: [],
-        mengapaSalah: { A: "Denda Pasal 25 ayat (9) berasal dari keberatan sehingga dikecualikan.", C: "Pengurangan 50% adalah tahap kuartal I 2027.", D: "PMK 71/2026 berlaku 2 Oktober 2026 dan tahap 100% berjalan sampai 31 Desember 2026." },
-        jebakan: "Fasilitas sanksi bukan pemutihan dan tidak menyentuh sanksi sengketa."
+        mengapaSalah: {
+          A: "Denda Pasal 25 ayat (9) dikecualikan oleh Pasal 21A huruf b PMK 118/2024 s.t.d.d. PMK 71/2026, apa pun tanggal permohonannya.",
+          C: "Sanksi (2) sama sekali tidak dapat dimohonkan pengurangan atau penghapusan, jadi pernyataan 'keduanya' keliru.",
+          D: "PMK 71/2026 berlaku 2 Oktober 2026 dan KEP-239/PJ/2026 berlaku sejak ditetapkan 8 Oktober 2026, jadi permohonan 9 November 2026 sudah berada dalam periode fasilitas."
+        },
+        jebakan: "Pengecualian sanksi sengketa (Pasal 25 ayat (9), Pasal 27 ayat (5d) dan (5f)) ada di PMK 71/2026 sendiri, bukan hanya di KEP; fasilitas juga hanya untuk sanksi yang belum dibayar (Diktum KEEMPAT huruf d KEP-239/PJ/2026)."
       },
-      dasarHukum: [{ pasal: "PMK 71/2026", berlakuSejak: "2026-10-02" }, { pasal: "KEP-239/PJ/2026", berlakuSejak: "2026-10-08" }, { pasal: "Pasal 36 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "Rincian PMK 71/2026 dan KEP-239/PJ/2026 bersumber dari ringkasan berita (riset 02b bertanda [W]); teks peraturan belum dibaca langsung."
+      dasarHukum: [{ pasal: "Pasal 21A dan Pasal 27A PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" }, { pasal: "KEP-239/PJ/2026 Diktum KESATU sampai KEEMPAT", berlakuSejak: "2026-10-08" }, { pasal: "Pasal 36 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "◐",
+      peringatan: "Dicocokkan: Pasal 21A huruf b dan Pasal 27A PMK 118/2024 s.t.d.d. PMK 71/2026 serta batang tubuh KEP-239/PJ/2026 (salinan DDTC): sanksi (1) termasuk fasilitas, denda Pasal 25 ayat (9) dikecualikan. Belum pasti: besaran penghapusan 100% dan tahapannya diatur di Lampiran KEP-239/PJ/2026, yang tidak tersedia di pustaka (salinan DDTC tanpa lampiran)."
     },
     {
       id: "A2-037",
@@ -1360,8 +1406,7 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "Pasal 14 ayat (1) huruf d UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 14 ayat (4) UU KUP (denda faktur 1%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "PMK 131/2024", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Penerapan denda 1% atas DPP nilai lain 11/12 mengikuti bunyi 'dari Dasar Pengenaan Pajak'; praktik Coretax atas penyerahan non-mewah belum dikonfirmasi riset."
+      verifikasi: "✅"
     },
     {
       id: "A2-041",
@@ -1456,21 +1501,35 @@ UKP.register({
       anggaranDetik: 60, verifikasi: "✅"
     },
     {
-      id: "A2-045", topik: "A2.9", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 3,
+      id: "A2-045",
+      topik: "A2.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 3,
       stem: "Data permohonan pengembalian pendahuluan sebagai WP persyaratan tertentu: (1) Tuan Yudi, pegawai tanpa usaha, SPT Tahunan PPh 2025 lebih bayar Rp14.500.000; (2) Ny. Lina, pedagang (OP berusaha), SPT Tahunan PPh 2025 lebih bayar Rp135.000.000; (3) PT Pelita (peredaran usaha 2025 Rp30 miliar), SPT Tahunan PPh Badan 2025 lebih bayar Rp850.000.000; (4) PT Samudera (PKP eksportir), SPT Masa PPN Agustus 2026 dengan jumlah penyerahan Rp6.500.000.000 (seluruhnya ekspor dengan PEB) dan lebih bayar Rp800.000.000. Semua SPT disampaikan tepat waktu. Berdasarkan ketentuan pengembalian pendahuluan yang berlaku bagi masing-masing SPT, yang memenuhi batas WP persyaratan tertentu (Pasal 17D) adalah ...",
       kataKualifikasi: [],
       opsi: { A: "(1), (3), dan (4)", B: "(1) dan (3) saja", C: "(1), (2), (3), dan (4)", D: "(1) saja" },
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Batas Pasal 17D: OP tanpa usaha berapa pun; OP berusaha ≤ Rp100 juta; badan ≤ Rp1 miliar (batas lebih bayar OP dan badan tidak berubah). Untuk SPT Masa PPN sejak 1 Mei 2026 berlaku PMK 28 Tahun 2026: PKP harus memenuhi dua batas untuk suatu Masa Pajak, yaitu lebih bayar ≤ Rp1 miliar dan jumlah penyerahan ≤ Rp4,2 miliar; batas lama PKP Rp5 miliar (PMK 209/2021) tidak berlaku lagi.",
-        jejakHitung: [["(1) OP tanpa usaha", "memenuhi (tanpa batas jumlah)"], ["(2) OP berusaha Rp135 jt > Rp100 jt", "tidak"], ["(3) badan Rp850 jt ≤ Rp1 M", "memenuhi"], ["(4) PKP Masa Agustus 2026: lebih bayar Rp800 jt ≤ Rp1 M", "terpenuhi"], ["(4) penyerahan Rp6,5 M > Rp4,2 M per Masa Pajak", "tidak memenuhi"]],
-        mengapaSalah: { A: "Memakai batas PKP lama (lebih bayar ≤ Rp5 miliar, PMK 209/2021) atau hanya menguji lebih bayar; untuk Masa Agustus 2026 PMK 28/2026 juga membatasi jumlah penyerahan Rp4,2 miliar per Masa Pajak, sedangkan penyerahan PT Samudera Rp6,5 miliar.", C: "Ny. Lina melewati batas Rp100 juta untuk OP berusaha, dan PT Samudera melewati batas penyerahan Rp4,2 miliar.", D: "Badan juga dapat menjadi WP persyaratan tertentu; PT Pelita memenuhi batas lebih bayar Rp1 miliar." },
-        jebakan: "Sejak 1 Mei 2026 uji PKP memakai dua angka per Masa Pajak (lebih bayar dan penyerahan); lebih bayar di bawah Rp1 miliar belum cukup."
+        inti: "Ambang WP persyaratan tertentu (Pasal 17D UU KUP) dinilai menurut ketentuan yang berlaku bagi SPT masing-masing. SPT Tahunan 2025 (1) sampai (3) disampaikan tepat waktu, yaitu paling lambat 31 Maret 2026 (OP) dan 30 April 2026 (badan), sebelum PMK 28 Tahun 2026 berlaku 1 Mei 2026, sehingga diselesaikan berdasarkan PMK 39/PMK.03/2018 s.t.d.t.d. PMK 119 Tahun 2024 (Pasal 25 huruf d PMK 28/2026): OP tanpa usaha berapa pun; OP berusaha lebih bayar ≤ Rp100 juta; badan lebih bayar ≤ Rp1 miliar (Pasal 9 ayat (2) sebagaimana diubah PMK 209/PMK.03/2021). SPT Masa PPN Agustus 2026 tunduk pada Pasal 9 ayat (2) huruf d PMK 28 Tahun 2026: jumlah penyerahan ≤ Rp4,2 miliar dan lebih bayar ≤ Rp1 miliar untuk suatu Masa Pajak; batas lama PKP Rp5 miliar tidak berlaku lagi.",
+        jejakHitung: [
+          ["(1) OP tanpa usaha", "memenuhi (tanpa batas jumlah)"],
+          ["(2) OP berusaha Rp135 jt > Rp100 jt", "tidak"],
+          ["(3) badan: lebih bayar Rp850 jt ≤ Rp1 M (aturan lama; peredaran Rp30 M juga ≤ Rp50 M menurut PMK 28/2026)", "memenuhi"],
+          ["(4) PKP Masa Agustus 2026: lebih bayar Rp800 jt ≤ Rp1 M", "terpenuhi"],
+          ["(4) penyerahan Rp6,5 M > Rp4,2 M per Masa Pajak", "tidak memenuhi"]
+        ],
+        mengapaSalah: {
+          A: "Memakai batas PKP lama (lebih bayar ≤ Rp5 miliar, PMK 209/2021) atau hanya menguji lebih bayar; untuk Masa Agustus 2026 Pasal 9 ayat (2) huruf d PMK 28/2026 juga membatasi jumlah penyerahan Rp4,2 miliar per Masa Pajak, sedangkan penyerahan PT Samudera Rp6,5 miliar.",
+          C: "Ny. Lina melewati batas Rp100 juta untuk OP berusaha, dan PT Samudera melewati batas penyerahan Rp4,2 miliar.",
+          D: "Badan juga dapat menjadi WP persyaratan tertentu; lebih bayar PT Pelita Rp850 juta tidak melebihi Rp1 miliar."
+        },
+        jebakan: "Tanggal penyampaian SPT menentukan aturannya: SPT Tahunan 2025 yang tepat waktu masih memakai PMK 39/2018 s.t.d.t.d. PMK 119/2024, sedangkan SPT Masa Agustus 2026 memakai PMK 28/2026 dengan dua angka per Masa Pajak (lebih bayar dan penyerahan); lebih bayar di bawah Rp1 miliar belum cukup."
       },
-      dasarHukum: [{ pasal: "Pasal 17D UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 28 Tahun 2026 (mencabut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021)", berlakuSejak: "2026-05-01" }],
-      anggaranDetik: 150, verifikasi: "◐",
-      peringatan: "Batas PKP (lebih bayar ≤ Rp1 miliar dan penyerahan ≤ Rp4,2 miliar per Masa Pajak, sejak 1 Mei 2026) terverifikasi dari ringkasan resmi PMK 28 Tahun 2026 ✅. Batas OP berusaha Rp100 juta dan badan Rp1 miliar mengikuti PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021 dan pemberitaan PMK 28/2026; batas peredaran usaha badan yang diberitakan (Rp50 miliar) serta nomor pasal PMK 28/2026 belum dibaca dari teks ◐."
+      dasarHukum: [{ pasal: "Pasal 17D UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 3 ayat (3) huruf b dan c UU KUP (batas penyampaian SPT Tahunan)", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2) PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021 (berlaku bagi SPT yang disampaikan sebelum 1 Mei 2026)", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 9 ayat (2), Pasal 25 huruf d, dan Pasal 27 PMK 28 Tahun 2026 (mencabut PMK 39/PMK.03/2018 s.t.d.t.d. PMK 119 Tahun 2024)", berlakuSejak: "2026-05-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A2-046",
@@ -1497,10 +1556,9 @@ UKP.register({
         },
         jebakan: "Imbalan bunga mulai setelah jatah 1 bulan DJP habis."
       },
-      dasarHukum: [{ pasal: "Pasal 11 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 11 ayat (3) UU KUP (imbalan bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK tarif bunga bulanan (uplift 0%)", berlakuSejak: "2026-10-01" }],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 11 ayat (3) dan (3a) UU KUP (imbalan bunga; tarif suku bunga acuan dibagi 12 tanpa uplift; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51 Tahun 2026, Diktum KELIMA (tarif bunga per bulan periode selanjutnya ditetapkan Direktur Strategi Stabilisasi Ekonomi atas nama Menteri Keuangan)", berlakuSejak: "2026-02-12" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Ketentuan imbalan bunga Pasal 11 ayat (3) bertanda ◐ dalam riset; tarif bulan November 2026 belum terbit saat penyusunan sehingga dinyatakan sebagai asumsi soal."
+      verifikasi: "✅"
     },
     {
       id: "A2-047",
@@ -1522,16 +1580,15 @@ UKP.register({
           ["Jumlah SKPKB", "Rp100.000.000"]
         ],
         mengapaSalah: {
-          B: "Bunga Pasal 13 ayat (2) berlaku untuk PKP berisiko rendah, bukan WP 17C/17D.",
+          B: "Bunga Pasal 13 ayat (2) adalah sanksi SKPKB biasa; setelah pengembalian pendahuluan, bunga itu hanya menggantikan kenaikan bagi PKP berisiko rendah atas PPN (Pasal 9 ayat (4f) UU PPN), bukan bagi WP Pasal 17C/17D.",
           C: "75% milik Pasal 13 ayat (3).",
-          D: "Pengembalian pendahuluan tidak menghapus hak DJP memeriksa."
+          D: "Pengembalian pendahuluan tidak menghapus hak DJP memeriksa (Pasal 17D ayat (4))."
         },
         jebakan: "Jalur cepat restitusi dibayar mahal bila ternyata keliru."
       },
       dasarHukum: [{ pasal: "Pasal 17C ayat (5) dan 17D ayat (5) UU KUP", berlakuSejak: "2008-01-01" }],
       anggaranDetik: 100,
-      verifikasi: "◐",
-      peringatan: "Kenaikan 100% Pasal 17C/17D bersumber dari riset 02b bertanda [P]; nomor ayat perlu dicek ke teks konsolidasi UU KUP."
+      verifikasi: "✅"
     },
     {
       id: "A2-048", topik: "A2.9", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2,
@@ -1624,48 +1681,60 @@ UKP.register({
       anggaranDetik: 120, verifikasi: "✅"
     },
     {
-      id: "A2-053", topik: "A2.10", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1, laporanUjian: ["C-2026-10"],
+      id: "A2-053",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      laporanUjian: ["C-2026-10"],
       stem: "Jurusita Pajak dapat melakukan penagihan seketika dan sekaligus terhadap Penanggung Pajak tanpa menunggu tanggal jatuh tempo pembayaran apabila terdapat keadaan tertentu. Keadaan berikut termasuk alasan penagihan seketika dan sekaligus, kecuali ...",
       kataKualifikasi: ["kecuali"],
-      opsi: {
-        A: "Penanggung Pajak akan meninggalkan Indonesia untuk selama-lamanya",
-        B: "Penanggung Pajak memindahtangankan barang yang dimiliki atau dikuasai untuk menghentikan atau mengecilkan kegiatan usaha",
-        C: "Wajib Pajak mengajukan keberatan atas SKPKB yang belum jatuh tempo",
-        D: "Terdapat tanda-tanda badan usaha akan dibubarkan, digabungkan, atau dimekarkan"
-      },
+      opsi: { A: "Penanggung Pajak akan meninggalkan Indonesia untuk selama-lamanya", B: "Penanggung Pajak memindahtangankan barang yang dimiliki atau dikuasai untuk menghentikan atau mengecilkan kegiatan usaha", C: "Wajib Pajak mengajukan keberatan atas SKPKB yang belum jatuh tempo", D: "Terdapat tanda-tanda badan usaha akan dibubarkan, digabungkan, atau dimekarkan" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Alasan penagihan seketika dan sekaligus menyangkut risiko hilangnya jaminan pelunasan (meninggalkan Indonesia, memindahtangankan harta, pembubaran/penggabungan, pembubaran oleh negara, penyitaan pihak ketiga/kepailitan); mengajukan keberatan adalah hak WP dan justru menangguhkan sebagian pembayaran.",
+        inti: "Alasan penagihan seketika dan sekaligus menyangkut risiko hilangnya jaminan pelunasan: Penanggung Pajak akan meninggalkan Indonesia untuk selama-lamanya, memindahtangankan barang untuk menghentikan atau mengecilkan kegiatan usaha, ada tanda-tanda badan akan dibubarkan, digabungkan, dimekarkan, dipindahtangankan, atau diubah bentuknya, badan akan dibubarkan oleh negara, serta penyitaan oleh pihak ketiga atau tanda-tanda kepailitan (Pasal 20 ayat (2) UU KUP; Pasal 12 PMK 61/2023). Mengajukan keberatan adalah hak Wajib Pajak dan tidak termasuk dalam daftar itu.",
         jejakHitung: [],
-        mengapaSalah: { A: "Termasuk alasan Pasal 6 UU PPSP.", B: "Termasuk alasan Pasal 6 UU PPSP.", D: "Termasuk alasan Pasal 6 UU PPSP." },
-        jebakan: "Keberatan bukan tanda niat menghindari pelunasan."
+        mengapaSalah: {
+          A: "Termasuk alasan Pasal 20 ayat (2) huruf a UU KUP dan Pasal 12 huruf a PMK 61/2023.",
+          B: "Termasuk alasan Pasal 20 ayat (2) huruf b UU KUP dan Pasal 12 huruf b PMK 61/2023.",
+          D: "Termasuk alasan Pasal 20 ayat (2) huruf c UU KUP dan Pasal 12 huruf c PMK 61/2023."
+        },
+        jebakan: "Keberatan bukan tanda niat menghindari pelunasan dan tidak ada dalam daftar alasan penagihan seketika dan sekaligus."
       },
-      dasarHukum: [{ pasal: "Pasal 6 UU PPSP", berlakuSejak: "2000-08-02" }, { pasal: "PMK 61/2023", berlakuSejak: "2023-06-12" }],
-      anggaranDetik: 60, verifikasi: "◐",
-      peringatan: "Daftar alasan seketika-sekaligus bertanda ◐ dalam riset (teks UU PPSP tidak terbaca langsung)."
+      dasarHukum: [{ pasal: "Pasal 20 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 12 PMK 61/2023", berlakuSejak: "2023-06-12" }],
+      anggaranDetik: 60,
+      verifikasi: "✅"
     },
     {
-      id: "A2-054", topik: "A2.10", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "A2-054",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       stem: "Berdasarkan SPMP, Jurusita menyita dari PT Sinar Laut: (1) tanah dan bangunan gudang; (2) deposito Rp250.000.000 di bank; (3) dua unit truk. Utang pajak tidak juga dilunasi. Pernyataan yang tepat tentang tindak lanjut atas barang sitaan adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Seluruh barang, termasuk deposito, dijual melalui lelang setelah lewat 14 hari sejak pengumuman lelang",
-        B: "Deposito dipindahbukukan untuk melunasi utang tanpa lelang; gudang dan truk dilelang setelah pengumuman lelang (paling cepat lewat 14 hari sejak penyitaan) dan pelaksanaan lelang (lewat 14 hari sejak pengumuman)",
-        C: "Lelang gudang dan truk dapat langsung dilakukan tanpa pengumuman bila nilainya melebihi Rp100 juta",
-        D: "Gudang dan truk dilelang setelah lewat 2 × 24 jam sejak penyitaan"
-      },
+      opsi: { A: "Seluruh barang, termasuk deposito, dijual melalui lelang setelah lewat 14 hari sejak pengumuman lelang", B: "Deposito dipindahbukukan untuk melunasi utang tanpa lelang; gudang dan truk dilelang setelah pengumuman lelang (paling cepat lewat 14 hari sejak penyitaan) dan pelaksanaan lelang (lewat 14 hari sejak pengumuman)", C: "Lelang gudang dan truk dapat langsung dilakukan tanpa pengumuman bila nilainya melebihi Rp100 juta", D: "Gudang dan truk dilelang setelah lewat 2 × 24 jam sejak penyitaan" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
         inti: "Barang tertentu (uang tunai, deposito, saham, obligasi, piutang) dipindahbukukan/dijual tanpa lelang; barang lain dilelang dengan urutan sita → lewat 14 hari → pengumuman lelang → lewat 14 hari → lelang.",
-        jejakHitung: [["Penyitaan", "hari ke-0"], ["Pengumuman lelang", "setelah lewat 14 hari"], ["Lelang", "setelah lewat 14 hari sejak pengumuman"]],
-        mengapaSalah: { A: "Deposito tidak dilelang.", C: "Pengumuman lelang wajib; tidak ada pengecualian karena nilai.", D: "2 × 24 jam adalah jeda Surat Paksa ke penyitaan." },
+        jejakHitung: [
+          ["Penyitaan", "hari ke-0"],
+          ["Pengumuman lelang", "setelah lewat 14 hari"],
+          ["Lelang", "setelah lewat 14 hari sejak pengumuman"]
+        ],
+        mengapaSalah: {
+          A: "Deposito tidak dilelang.",
+          C: "Pengumuman lelang wajib; tidak ada pengecualian karena nilai.",
+          D: "2 × 24 jam adalah jeda Surat Paksa ke penyitaan."
+        },
         jebakan: "Urutan angka: 7 – 21 – 2×24 jam – 14 – 14."
       },
-      dasarHukum: [{ pasal: "Pasal 25 dan 26 UU PPSP", berlakuSejak: "2000-08-02" }, { pasal: "PMK 61/2023", berlakuSejak: "2023-06-12" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "Jeda 14 + 14 hari dan perlakuan barang tertentu bertanda ◐ dalam riset (teks UU PPSP Pasal 25–26 tidak terbaca langsung)."
+      dasarHukum: [{ pasal: "Pasal 6 ayat (3) sampai (6), Pasal 50 ayat (1), dan Pasal 52 ayat (1) PMK 61/2023", berlakuSejak: "2023-06-12" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-055", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10"],
@@ -1929,26 +1998,34 @@ UKP.register({
       anggaranDetik: 120, verifikasi: "✅"
     },
     {
-      id: "A2-067", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "A2-067",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       stem: "Berdasarkan SPMP, Jurusita Pajak menyita dua truk milik CV Nusa Bahari pada Kamis, 8 Oktober 2026. CV Nusa Bahari menilai penyitaan itu cacat prosedur karena Surat Paksa tidak pernah diberitahukan secara sah, dan ingin menempuh upaya hukum agar truknya tidak segera dilelang. Kuasa hukumnya menyiapkan empat ringkasan yang hanya berbeda pada satu frasa. Ringkasan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat", "paling lama"],
-      opsi: {
-        A: "Gugatan ke Pengadilan Pajak paling lama 22 Oktober 2026; gugatan tidak menunda pelaksanaan penagihan, tetapi penggugat dapat memohon agar tindak lanjut pelaksanaan penagihan ditunda sampai ada putusan; putusan paling lama 6 bulan sejak Surat Gugatan diterima",
-        B: "Gugatan ke Pengadilan Pajak paling lama 22 Oktober 2026; gugatan dengan sendirinya menunda pelaksanaan penagihan sampai ada putusan; putusan paling lama 6 bulan sejak Surat Gugatan diterima",
-        C: "Gugatan ke Pengadilan Pajak paling lama 7 November 2026; gugatan tidak menunda pelaksanaan penagihan, tetapi penggugat dapat memohon agar tindak lanjut pelaksanaan penagihan ditunda sampai ada putusan; putusan paling lama 6 bulan sejak Surat Gugatan diterima",
-        D: "Gugatan ke Pengadilan Pajak paling lama 22 Oktober 2026; gugatan tidak menunda pelaksanaan penagihan, tetapi penggugat dapat memohon agar tindak lanjut pelaksanaan penagihan ditunda sampai ada putusan; putusan paling lama 12 bulan sejak Surat Gugatan diterima"
-      },
+      opsi: { A: "Gugatan ke Pengadilan Pajak paling lama 22 Oktober 2026; gugatan tidak menunda pelaksanaan penagihan, tetapi penggugat dapat memohon agar tindak lanjut pelaksanaan penagihan ditunda sampai ada putusan; putusan paling lama 6 bulan sejak Surat Gugatan diterima", B: "Gugatan ke Pengadilan Pajak paling lama 22 Oktober 2026; gugatan dengan sendirinya menunda pelaksanaan penagihan sampai ada putusan; putusan paling lama 6 bulan sejak Surat Gugatan diterima", C: "Gugatan ke Pengadilan Pajak paling lama 7 November 2026; gugatan tidak menunda pelaksanaan penagihan, tetapi penggugat dapat memohon agar tindak lanjut pelaksanaan penagihan ditunda sampai ada putusan; putusan paling lama 6 bulan sejak Surat Gugatan diterima", D: "Gugatan ke Pengadilan Pajak paling lama 22 Oktober 2026; gugatan tidak menunda pelaksanaan penagihan, tetapi penggugat dapat memohon agar tindak lanjut pelaksanaan penagihan ditunda sampai ada putusan; putusan paling lama 12 bulan sejak Surat Gugatan diterima" },
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Pelaksanaan SPMP adalah objek gugatan (Pasal 23 ayat (2) huruf a UU KUP) yang diajukan paling lama 14 hari sejak tanggal pelaksanaan penagihan. Gugatan tidak menunda penagihan, tetapi penggugat dapat memohon penundaan tindak lanjut penagihan selama sengketa diperiksa (Pasal 43 UU 14/2002). Putusan gugatan paling lama 6 bulan sejak Surat Gugatan diterima dan dapat diperpanjang 3 bulan.",
-        jejakHitung: [["Pelaksanaan penyitaan", "8 Oktober 2026"], ["+ 14 hari", "22 Oktober 2026"], ["Putusan gugatan", "6 bulan (+3) sejak Surat Gugatan diterima"]],
-        mengapaSalah: { B: "Gugatan tidak menunda penagihan dengan sendirinya; penundaan tindak lanjut harus dimohonkan.", C: "30 hari berlaku untuk gugatan atas keputusan selain pelaksanaan penagihan.", D: "12 bulan (+3) adalah jangka putusan banding." },
+        jejakHitung: [
+          ["Pelaksanaan penyitaan", "8 Oktober 2026"],
+          ["+ 14 hari", "22 Oktober 2026"],
+          ["Putusan gugatan", "6 bulan (+3) sejak Surat Gugatan diterima"]
+        ],
+        mengapaSalah: {
+          B: "Gugatan tidak menunda penagihan dengan sendirinya; penundaan tindak lanjut harus dimohonkan.",
+          C: "30 hari berlaku untuk gugatan atas keputusan selain pelaksanaan penagihan.",
+          D: "12 bulan (+3) adalah jangka putusan banding."
+        },
         jebakan: "Gugatan atas penagihan: 14 hari, tidak otomatis menunda, putusan 6 bulan — tiga angka yang mudah tertukar dengan banding."
       },
-      dasarHukum: [{ pasal: "Pasal 23 ayat (2) huruf a UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 40 ayat (2), Pasal 43, dan Pasal 81 ayat (2)–(3) UU 14/2002", berlakuSejak: "2002-04-12" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "Ketentuan bahwa gugatan tidak menunda penagihan dan dapat dimohonkan penundaan tindak lanjutnya (Pasal 43 UU 14/2002) disusun dari pengetahuan teks UU; riset proyek hanya mengonfirmasi tenggat 14/30 hari dan jangka putusan 6 bulan (+3)."
+      dasarHukum: [{ pasal: "Pasal 23 ayat (2) huruf a UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 40 ayat (2), Pasal 43 ayat (1) dan (2), serta Pasal 81 ayat (2) dan (4) UU 14/2002", berlakuSejak: "2002-04-12" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-068", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10"],
@@ -2064,50 +2141,66 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A2-073", topik: "A2.2", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A2-073",
+      topik: "A2.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       kutipan: "Pasal 2 ayat (8) dan (9) UU KUP (parafrase setia): Pencabutan pengukuhan Pengusaha Kena Pajak dilakukan oleh Direktur Jenderal Pajak antara lain apabila diajukan permohonan pencabutan oleh Pengusaha Kena Pajak. Direktur Jenderal Pajak setelah melakukan pemeriksaan harus memberikan keputusan atas permohonan pencabutan pengukuhan Pengusaha Kena Pajak dalam jangka waktu 6 bulan sejak tanggal permohonan diterima secara lengkap.",
       stem: "CV Anggrek Jaya dikukuhkan sebagai PKP sejak 2022 atas permohonan sendiri. Peredaran brutonya turun menjadi Rp1,6 miliar pada 2025 sehingga CV memenuhi kriteria pengusaha kecil, lalu mengajukan permohonan pencabutan pengukuhan PKP melalui Portal Wajib Pajak yang diterima lengkap pada Rabu, 11 Februari 2026. Selama Februari–Juli 2026 CV tetap menjual barang kepada pelanggan yang sama dan belum menerima keputusan apa pun. Sebagai pembanding, permohonan penghapusan NPWP badan diputus paling lama 12 bulan. Berdasarkan kutipan, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat", "paling lama"],
-      opsi: {
-        A: "Keputusan atas permohonan paling lama 11 Februari 2027; sejak permohonan diterima lengkap CV tidak lagi wajib membuat faktur pajak dan menyampaikan SPT Masa PPN",
-        B: "Keputusan atas permohonan paling lama 11 Agustus 2026; sejak permohonan diterima lengkap CV tidak lagi wajib membuat faktur pajak, memungut PPN, maupun menyampaikan SPT Masa PPN karena tinggal menunggu keputusan",
-        C: "Keputusan atas permohonan paling lama 11 Agustus 2026 setelah dilakukan pemeriksaan; selama pengukuhan belum dicabut CV tetap wajib membuat faktur pajak, memungut PPN, dan menyampaikan SPT Masa PPN",
-        D: "Keputusan atas permohonan paling lama 11 Agustus 2026 tanpa perlu pemeriksaan; status PKP berakhir otomatis sejak tanggal permohonan diterima lengkap"
-      },
+      opsi: { A: "Keputusan atas permohonan paling lama 11 Februari 2027; sejak permohonan diterima lengkap CV tidak lagi wajib membuat faktur pajak dan menyampaikan SPT Masa PPN", B: "Keputusan atas permohonan paling lama 11 Agustus 2026; sejak permohonan diterima lengkap CV tidak lagi wajib membuat faktur pajak, memungut PPN, maupun menyampaikan SPT Masa PPN karena tinggal menunggu keputusan", C: "Keputusan atas permohonan paling lama 11 Agustus 2026 setelah dilakukan pemeriksaan; selama pengukuhan belum dicabut CV tetap wajib membuat faktur pajak, memungut PPN, dan menyampaikan SPT Masa PPN", D: "Keputusan atas permohonan paling lama 11 Agustus 2026 tanpa perlu pemeriksaan; status PKP berakhir otomatis sejak tanggal permohonan diterima lengkap" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
         inti: "Pencabutan pengukuhan PKP atas permohonan diputus setelah pemeriksaan paling lama 6 bulan sejak permohonan diterima lengkap (11 Agustus 2026). Status PKP baru berakhir dengan keputusan pencabutan, sehingga selama menunggu CV tetap memenuhi seluruh kewajiban PKP.",
-        jejakHitung: [["Permohonan diterima lengkap", "Rabu, 11 Februari 2026"], ["Jangka keputusan pencabutan PKP", "6 bulan, setelah pemeriksaan"], ["Batas keputusan", "11 Agustus 2026"], ["Status selama menunggu", "tetap PKP: faktur, pungut PPN, SPT Masa PPN"]],
-        mengapaSalah: { A: "12 bulan adalah jangka keputusan penghapusan NPWP badan (Pasal 2 ayat (7)), bukan pencabutan PKP; kewajiban PKP juga belum berhenti.", B: "Tanggal benar, tetapi permohonan tidak menghentikan status PKP; kewajiban berhenti setelah keputusan pencabutan.", D: "Kutipan menyebut keputusan diberikan setelah pemeriksaan; tidak ada pencabutan otomatis sejak permohonan diterima." },
+        jejakHitung: [
+          ["Permohonan diterima lengkap", "Rabu, 11 Februari 2026"],
+          ["Jangka keputusan pencabutan PKP", "6 bulan, setelah pemeriksaan"],
+          ["Batas keputusan", "11 Agustus 2026"],
+          ["Status selama menunggu", "tetap PKP: faktur, pungut PPN, SPT Masa PPN"]
+        ],
+        mengapaSalah: {
+          A: "12 bulan adalah jangka keputusan penghapusan NPWP badan (Pasal 2 ayat (7)), bukan pencabutan PKP; kewajiban PKP juga belum berhenti.",
+          B: "Tanggal benar, tetapi permohonan tidak menghentikan status PKP; kewajiban berhenti setelah keputusan pencabutan.",
+          D: "Kutipan menyebut keputusan diberikan setelah pemeriksaan; tidak ada pencabutan otomatis sejak permohonan diterima."
+        },
         jebakan: "Data pembanding 12 bulan sengaja disisipkan: 6/12 bulan berlaku untuk penghapusan NPWP orang pribadi/badan, sedangkan pencabutan PKP 6 bulan."
       },
-      dasarHukum: [{ pasal: "Pasal 2 ayat (6)–(9) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 81/2024 (layanan administrasi melalui Portal Wajib Pajak)", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "Jangka 6 bulan Pasal 2 ayat (9) UU KUP bersumber dari teks UU yang belum dibaca ulang langsung dalam riset proyek (sama dengan peringatan topik A2.2); tata cara teknis pencabutan PKP dalam PMK 81/2024 belum diverifikasi."
+      dasarHukum: [{ pasal: "Pasal 2 ayat (6)–(9) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 81/2024 Pasal 67, Pasal 68 ayat (3)–(5), dan Pasal 70 ayat (6)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
-      id: "A2-074", topik: "A2.3", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
-      kutipan: "Pasal 6 ayat (5) UU KUP (parafrase setia): Surat Pemberitahuan dianggap tidak disampaikan apabila: a. tidak ditandatangani; b. tidak sepenuhnya dilampiri keterangan dan/atau dokumen yang dipersyaratkan; c. menyatakan lebih bayar dan disampaikan setelah 3 tahun sesudah berakhirnya Masa Pajak, Bagian Tahun Pajak, atau Tahun Pajak, dan Wajib Pajak telah ditegur secara tertulis; atau d. disampaikan setelah Direktur Jenderal Pajak melakukan pemeriksaan atau Wajib Pajak diterbitkan surat ketetapan pajak.",
+      id: "A2-074",
+      topik: "A2.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kutipan: "Pasal 3 ayat (7) UU KUP: Surat Pemberitahuan dianggap tidak disampaikan apabila: a. Surat Pemberitahuan tidak ditandatangani sebagaimana dimaksud pada ayat (1); b. Surat Pemberitahuan tidak sepenuhnya dilampiri keterangan dan/atau dokumen sebagaimana dimaksud pada ayat (6); c. Surat Pemberitahuan yang menyatakan lebih bayar disampaikan setelah 3 (tiga) tahun sesudah berakhirnya Masa Pajak, bagian Tahun Pajak atau Tahun Pajak, dan Wajib Pajak telah ditegur secara tertulis; atau d. Surat Pemberitahuan disampaikan setelah Direktur Jenderal Pajak melakukan pemeriksaan atau menerbitkan surat ketetapan pajak.",
       stem: "PT Lumbung Pangan (tahun buku kalender) membereskan kewajiban SPT yang tertinggal: (i) SPT Tahunan PPh Badan 2021 yang menyatakan lebih bayar Rp85.000.000 belum pernah disampaikan; KPP telah menegur secara tertulis pada Maret 2026, dan SPT itu disampaikan lewat Coretax pada 10 Oktober 2026; (ii) SPT Tahunan PPh Badan 2024 baru disampaikan 5 Oktober 2026, padahal SP2 pemeriksaan atas tahun pajak itu telah disampaikan 1 September 2026; (iii) SPT Masa PPh Unifikasi Masa Agustus 2026 disampaikan lengkap dan ditandatangani elektronik pada 25 September 2026. Berdasarkan kutipan, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "(i) dan (ii) dianggap tidak disampaikan; (iii) tetap dianggap disampaikan walaupun terlambat, sehingga hanya dikenai denda Pasal 7 ayat (1) sebesar Rp100.000",
-        B: "(i) dan (ii) dianggap tidak disampaikan; (iii) juga dianggap tidak disampaikan karena disampaikan setelah batas waktu 20 hari",
-        C: "Hanya (ii) yang dianggap tidak disampaikan; (i) tetap diproses sebagai permohonan restitusi karena lebih bayar 2021 belum melewati daluwarsa penetapan 5 tahun; (iii) dikenai denda Rp100.000",
-        D: "(i) dan (ii) dianggap tidak disampaikan; (iii) tetap dianggap disampaikan walaupun terlambat, sehingga hanya dikenai denda Pasal 7 ayat (1) sebesar Rp500.000"
-      },
+      opsi: { A: "(i) dan (ii) dianggap tidak disampaikan; (iii) tetap dianggap disampaikan walaupun terlambat, sehingga hanya dikenai denda Pasal 7 ayat (1) sebesar Rp100.000", B: "(i) dan (ii) dianggap tidak disampaikan; (iii) juga dianggap tidak disampaikan karena disampaikan setelah batas waktu 20 hari", C: "Hanya (ii) yang dianggap tidak disampaikan; (i) tetap diproses sebagai permohonan restitusi karena lebih bayar 2021 belum melewati daluwarsa penetapan 5 tahun; (iii) dikenai denda Rp100.000", D: "(i) dan (ii) dianggap tidak disampaikan; (iii) tetap dianggap disampaikan walaupun terlambat, sehingga hanya dikenai denda Pasal 7 ayat (1) sebesar Rp500.000" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "SPT lebih bayar 2021 disampaikan lebih dari 3 tahun setelah Tahun Pajak berakhir dan setelah ditegur (huruf c); SPT 2024 disampaikan setelah pemeriksaan dimulai (huruf d). Keterlambatan semata tidak membuat SPT dianggap tidak disampaikan; SPT Masa PPh Unifikasi yang terlambat cukup didenda Rp100.000.",
-        jejakHitung: [["(i) Akhir Tahun Pajak 2021 + 3 tahun", "31 Desember 2024 < 10 Oktober 2026; sudah ditegur → huruf c"], ["(ii) SPT 5 Oktober 2026 setelah SP2 1 September 2026", "huruf d"], ["(iii) Batas lapor Masa Agustus 2026", "20 hari setelah masa berakhir; 25 September tetap terlambat walau bergeser ke hari kerja"], ["Denda SPT Masa selain PPN", "Rp100.000"]],
-        mengapaSalah: { B: "Terlambat bukan salah satu kriteria Pasal 6 ayat (5); SPT terlambat tetap sah dan dikenai denda.", C: "Kutipan huruf c memakai batas 3 tahun ditambah teguran, bukan daluwarsa penetapan 5 tahun.", D: "Rp500.000 adalah denda SPT Masa PPN; SPT Masa PPh Unifikasi didenda Rp100.000." },
-        jebakan: "Dua batas waktu bersaing: 3 tahun (SPT lebih bayar yang ditegur) versus 5 tahun (daluwarsa penetapan)."
+        inti: "SPT lebih bayar 2021 disampaikan lebih dari 3 tahun setelah Tahun Pajak berakhir dan setelah ditegur (Pasal 3 ayat (7) huruf c UU KUP); SPT 2024 disampaikan setelah pemeriksaan dimulai (huruf d). Keterlambatan semata tidak membuat SPT dianggap tidak disampaikan; SPT Masa PPh Unifikasi yang terlambat cukup didenda Rp100.000 (Pasal 7 ayat (1)).",
+        jejakHitung: [
+          ["(i) Akhir Tahun Pajak 2021 + 3 tahun", "31 Desember 2024 < 10 Oktober 2026; sudah ditegur → huruf c"],
+          ["(ii) SPT 5 Oktober 2026 setelah SP2 1 September 2026", "huruf d"],
+          ["(iii) Batas lapor Masa Agustus 2026", "20 September 2026 (Minggu) bergeser ke Senin, 21 September 2026; 25 September tetap terlambat"],
+          ["Denda SPT Masa selain PPN", "Rp100.000"]
+        ],
+        mengapaSalah: {
+          B: "Terlambat bukan salah satu kriteria Pasal 3 ayat (7) UU KUP; SPT terlambat tetap sah dan dikenai denda.",
+          C: "Kutipan huruf c memakai batas 3 tahun ditambah teguran, bukan daluwarsa penetapan 5 tahun.",
+          D: "Rp500.000 adalah denda SPT Masa PPN; SPT Masa PPh Unifikasi didenda Rp100.000."
+        },
+        jebakan: "Dua batas waktu bersaing: 3 tahun (SPT lebih bayar yang ditegur) versus 5 tahun (daluwarsa penetapan). Kriteria SPT dianggap tidak disampaikan ada di Pasal 3 ayat (7), bukan Pasal 6."
       },
-      dasarHukum: [{ pasal: "Pasal 6 ayat (5) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 3 ayat (3) huruf a UU KUP; PMK 81/2024 Pasal 171", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 150, verifikasi: "◐",
-      peringatan: "Nomor ayat dan rincian kriteria SPT dianggap tidak disampaikan (Pasal 6 ayat (5) UU KUP) disusun dari pengetahuan teks UU; riset proyek tidak memuat kutipan pasal ini."
+      dasarHukum: [{ pasal: "Pasal 3 ayat (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 3 ayat (3) huruf a UU KUP; PMK 81/2024 Pasal 171 ayat (1) dan Pasal 173", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A2-075", topik: "A2.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"],
@@ -2256,10 +2349,9 @@ UKP.register({
         },
         jebakan: "Ada dua titik waktu: 12 bulan (permohonan dianggap dikabulkan) dan 1 bulan sesudahnya (batas terbit SKPLB). Imbalan bunga keterlambatan SKPLB dihitung dari titik kedua."
       },
-      dasarHukum: [{ pasal: "Pasal 17B ayat (1) dan (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 17B ayat (3) UU KUP (imbalan bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026 (imbalan bunga uplift 0%)", berlakuSejak: null }],
+      dasarHukum: [{ pasal: "Pasal 17B ayat (1) dan (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 17B ayat (3) UU KUP (imbalan bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17B ayat (6) dan (7) UU KUP (paling lama 24 bulan, bagian bulan penuh; tarif suku bunga acuan dibagi 12)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51 Tahun 2026, Diktum KELIMA (tarif bunga per bulan periode selanjutnya ditetapkan Direktur Strategi Stabilisasi Ekonomi atas nama Menteri Keuangan)", berlakuSejak: "2026-02-12" }],
       anggaranDetik: 160,
-      verifikasi: "◐",
-      peringatan: "Titik awal imbalan bunga Pasal 17B ayat (3) (sejak berakhirnya jangka waktu 1 bulan penerbitan SKPLB pada ayat (2)) disimpulkan dari bunyi Pasal 17B UU KUP dan kutipan ketentuan imbalan bunga PMK 81/2024 serta PMK pendahulunya di hasil pencarian; naskah resmi UU dan PMK (termasuk perubahan PMK 81/2024 oleh PMK 1/2026) belum dibuka langsung. Tarif 0,60% dan 1,02% adalah asumsi soal."
+      verifikasi: "✅"
     },
     {
       id: "A2-081",
@@ -2314,26 +2406,36 @@ UKP.register({
       anggaranDetik: 90, verifikasi: "✅"
     },
     {
-      id: "A2-083", topik: "A2.9", tingkat: ["A", "B", "C"], jenis: "baris-spt", kesulitan: 1, kasusId: "V-A2-06", formulirRef: "1771.induk.10",
+      id: "A2-083",
+      topik: "A2.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 1,
+      kasusId: "V-A2-06",
+      formulirRef: "1771.induk.10",
       stem: "Data untuk soal vignette V-A2-06: PT Sentra Boga Utama (tahun buku kalender, peredaran bruto 2025 Rp46 miliar, bukan WP kriteria tertentu, bukan PKP berisiko rendah) menyampaikan SPT Tahunan PPh Badan 2025 tepat waktu pada 20 April 2026. Isinya: PPh terutang Rp1.160.000.000; kredit pajak PPh Pasal 22 impor Rp310.000.000, PPh Pasal 23 Rp90.000.000, dan angsuran PPh Pasal 25 12 × Rp116.000.000; seluruh bukti potong/pungut dilampirkan. Direksi ingin kelebihan pembayaran dikembalikan tanpa didahului pemeriksaan. Pada baris pilihan atas PPh lebih bayar di induk SPT 1771, isian yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Lebih bayar Rp632.000.000 dimohon direstitusikan melalui pemeriksaan (Pasal 17B), karena badan tidak dapat memperoleh pengembalian pendahuluan",
-        B: "Lebih bayar Rp632.000.000 dimohon dikembalikan dengan SKPPKP Pasal 17C, karena SPT disampaikan tepat waktu",
-        C: "Lebih bayar Rp632.000.000 dimohon dikembalikan dengan SKPPKP Pasal 17D, karena lebih bayar badan tidak melebihi Rp1 miliar",
-        D: "Lebih bayar Rp632.000.000 dimohon dikembalikan sebagai pengembalian pendahuluan PKP berisiko rendah (Pasal 9 ayat (4c) UU PPN)"
-      },
+      opsi: { A: "Lebih bayar Rp632.000.000 dimohon direstitusikan melalui pemeriksaan (Pasal 17B), karena badan tidak dapat memperoleh pengembalian pendahuluan", B: "Lebih bayar Rp632.000.000 dimohon dikembalikan dengan SKPPKP Pasal 17C, karena SPT disampaikan tepat waktu", C: "Lebih bayar Rp632.000.000 dimohon dikembalikan dengan SKPPKP Pasal 17D, karena lebih bayar badan tidak melebihi Rp1 miliar", D: "Lebih bayar Rp632.000.000 dimohon dikembalikan sebagai pengembalian pendahuluan PKP berisiko rendah (Pasal 9 ayat (4c) UU PPN)" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Kredit pajak Rp1.792.000.000 melebihi PPh terutang Rp1.160.000.000 sehingga lebih bayar Rp632.000.000. Badan dengan lebih bayar paling banyak Rp1 miliar memenuhi ambang WP persyaratan tertentu Pasal 17D sehingga dapat memilih pengembalian pendahuluan tanpa pemeriksaan (SKPPKP).",
-        jejakHitung: [["Kredit pajak = 310 jt + 90 jt + (12 × 116 jt)", "Rp1.792.000.000"], ["Lebih bayar = 1.792.000.000 − 1.160.000.000", "Rp632.000.000"], ["Ambang Pasal 17D untuk badan", "≤ Rp1.000.000.000 → memenuhi"], ["Isian baris pilihan lebih bayar", "dikembalikan dengan SKPPKP Pasal 17D"]],
-        mengapaSalah: { A: "Pasal 17B memang tersedia, tetapi didahului pemeriksaan; badan dengan lebih bayar ≤ Rp1 miliar dapat memakai Pasal 17D.", B: "Pasal 17C khusus WP kriteria tertentu yang ditetapkan DJP; satu SPT tepat waktu tidak cukup.", D: "Pengembalian pendahuluan PKP berisiko rendah hanya untuk PPN, bukan PPh Badan." },
-        jebakan: "Bagi badan yang diuji adalah jumlah lebih bayar (≤ Rp1 miliar), bukan PPh terutang atau besarnya kredit pajak; peredaran bruto Rp46 miliar juga masih di bawah batas peredaran usaha badan yang diberitakan untuk PMK 28/2026 (Rp50 miliar ◐)."
+        inti: "Kredit pajak Rp1.792.000.000 melebihi PPh terutang Rp1.160.000.000 sehingga lebih bayar Rp632.000.000. Badan dengan lebih bayar paling banyak Rp1 miliar memenuhi ambang WP persyaratan tertentu Pasal 17D sehingga dapat memilih pengembalian pendahuluan tanpa pemeriksaan (SKPPKP) dengan mengisi kolom pengembalian pendahuluan dalam SPT.",
+        jejakHitung: [
+          ["Kredit pajak = 310 jt + 90 jt + (12 × 116 jt)", "Rp1.792.000.000"],
+          ["Lebih bayar = 1.792.000.000 − 1.160.000.000", "Rp632.000.000"],
+          ["Ambang Pasal 17D untuk badan", "≤ Rp1.000.000.000 → memenuhi"],
+          ["Isian baris pilihan lebih bayar", "dikembalikan dengan SKPPKP Pasal 17D"]
+        ],
+        mengapaSalah: {
+          A: "Pasal 17B memang tersedia, tetapi didahului pemeriksaan; badan dengan lebih bayar ≤ Rp1 miliar dapat memakai Pasal 17D.",
+          B: "Pasal 17C khusus WP kriteria tertentu yang ditetapkan DJP; satu SPT tepat waktu tidak cukup.",
+          D: "Pengembalian pendahuluan PKP berisiko rendah hanya untuk PPN, bukan PPh Badan."
+        },
+        jebakan: "Bagi badan yang diuji adalah jumlah lebih bayar (≤ Rp1 miliar), bukan PPh terutang atau besarnya kredit pajak. SPT ini disampaikan 20 April 2026 sehingga masih diselesaikan berdasarkan PMK 39/PMK.03/2018 s.t.d.t.d. PMK 119 Tahun 2024 (Pasal 25 huruf d PMK 28 Tahun 2026); untuk SPT yang disampaikan sejak 1 Mei 2026 badan juga harus memiliki peredaran usaha ≤ Rp50 miliar, dan peredaran Rp46 miliar tetap memenuhi."
       },
-      dasarHukum: [{ pasal: "Pasal 17B, 17C, dan 17D UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 28 Tahun 2026 (pengembalian pendahuluan; mencabut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021)", berlakuSejak: "2026-05-01" }, { pasal: "PER-11/PJ/2025 (bentuk SPT Tahunan PPh Badan)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "SPT disampaikan 20 April 2026, sebelum PMK 28 Tahun 2026 berlaku (1 Mei 2026); batas lebih bayar badan Rp1 miliar sama menurut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021 maupun PMK 28/2026, dan peredaran Rp46 miliar di bawah batas peredaran badan yang diberitakan untuk PMK 28/2026 (Rp50 miliar), sehingga jawaban tidak bergantung pada ketentuan mana yang diterapkan; nomor pasal, batas peredaran, dan ketentuan peralihan PMK 28/2026 belum dibaca dari teks ◐. Label baris pilihan lebih bayar pada induk SPT 1771 versi Coretax (PER-11/PJ/2025) belum dicek langsung; formulirRef mengacu ke baris 1771.induk.10 (kurang/lebih bayar dan pilihan atas lebih bayar) di peta formulir proyek."
+      dasarHukum: [{ pasal: "Pasal 17B, 17C, dan 17D UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2) huruf c dan Pasal 10 ayat (1) PMK 39/PMK.03/2018 s.t.d.t.d. PMK 119 Tahun 2024 (berlaku bagi SPT yang disampaikan sebelum 1 Mei 2026)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 9 ayat (2) huruf c dan Pasal 25 huruf d PMK 28 Tahun 2026", berlakuSejak: "2026-05-01" }, { pasal: "PER-11/PJ/2025 (bentuk SPT Tahunan PPh Badan)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-084",
@@ -2396,8 +2498,7 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "Pasal 17C ayat (5) dan 17D ayat (5) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (2) UU KUP", berlakuSejak: "2020-11-02" }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Kenaikan 100% Pasal 17C/17D bersumber dari riset 02b bertanda [P]; nomor ayat perlu dicek ke teks konsolidasi UU KUP."
+      verifikasi: "✅"
     },
     {
       id: "A2-086", topik: "A2.1", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
@@ -2449,32 +2550,38 @@ UKP.register({
         },
         jebakan: "Satu angka batas (Rp4,8 miliar) memicu dua akibat: kewajiban PPN (lapor paling lambat akhir tahun buku, pungut mulai tahun buku berikutnya) dan PPh (tarif umum mulai tahun pajak berikutnya)."
       },
-      dasarHukum: [{ pasal: "Pasal 2 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 164/2023 Pasal 17 dan 18", berlakuSejak: "2023-12-29" }, { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 (batas peredaran bruto PPh final)", berlakuSejak: "2026-04-22" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 2 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 164/2023 Pasal 17 dan 18", berlakuSejak: "2023-12-29" }, { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57 ayat (2) huruf e dan ayat (4), Pasal 58 ayat (1)", berlakuSejak: "2026-04-22" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 160,
-      verifikasi: "◐",
-      peringatan: "Ketentuan bahwa PPh final 0,5% tetap dipakai sampai akhir tahun pajak saat peredaran bruto melampaui Rp4,8 miliar disimpulkan dari pengujian batas atas tahun sebelumnya (riset 02a B.6); pasal PP 55/2022 yang mengaturnya belum dikutip langsung. Tenggat akhir tahun buku mengikuti PMK 164/2023 Pasal 17 menurut keterangan resmi DJP dan soal try out November 2026; naskah PMK belum dibuka langsung."
+      verifikasi: "✅"
     },
     {
-      id: "A2-088", topik: "A2.3", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1,
+      id: "A2-088",
+      topik: "A2.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
       stem: "PT Bahtera Niaga (tahun buku kalender) memotong PPh Pasal 21 Masa Oktober 2026. Pada Kamis, 15 Oktober 2026 perusahaan juga menerima SKPKB PPN Masa Juni 2024 yang diterbitkan pada hari yang sama, dengan jatuh tempo pelunasan 1 bulan sejak diterbitkan. Tanggal 15 November 2026 jatuh pada hari Minggu, dan tidak ada hari libur nasional lain pada November 2026. Kombinasi batas waktu yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "PPh Pasal 21 disetor paling lambat Senin, 16 November 2026; SPT Masa PPh 21/26 dilaporkan paling lambat Jumat, 20 November 2026; SKPKB dilunasi paling lambat Minggu, 15 November 2026 karena jatuh tempo pelunasan ketetapan tidak bergeser",
-        B: "PPh Pasal 21 disetor paling lambat Jumat, 13 November 2026 karena dimajukan ke hari kerja sebelumnya; SPT Masa PPh 21/26 paling lambat Jumat, 20 November 2026; SKPKB paling lambat Minggu, 15 November 2026",
-        C: "PPh Pasal 21 disetor paling lambat Senin, 16 November 2026; SPT Masa PPh 21/26 dilaporkan paling lambat Jumat, 20 November 2026; SKPKB dilunasi paling lambat Senin, 16 November 2026 karena jatuh tempo pelunasan ketetapan ikut bergeser ke hari kerja berikutnya",
-        D: "PPh Pasal 21 disetor paling lambat Selasa, 10 November 2026; SPT Masa PPh 21/26 paling lambat Jumat, 20 November 2026; SKPKB paling lambat Minggu, 15 November 2026"
-      },
+      opsi: { A: "PPh Pasal 21 disetor paling lambat Senin, 16 November 2026; SPT Masa PPh 21/26 dilaporkan paling lambat Jumat, 20 November 2026; SKPKB dilunasi paling lambat Minggu, 15 November 2026 karena jatuh tempo pelunasan ketetapan tidak bergeser", B: "PPh Pasal 21 disetor paling lambat Jumat, 13 November 2026 karena dimajukan ke hari kerja sebelumnya; SPT Masa PPh 21/26 paling lambat Jumat, 20 November 2026; SKPKB paling lambat Minggu, 15 November 2026", C: "PPh Pasal 21 disetor paling lambat Senin, 16 November 2026; SPT Masa PPh 21/26 dilaporkan paling lambat Jumat, 20 November 2026; SKPKB dilunasi paling lambat Senin, 16 November 2026 karena jatuh tempo pelunasan ketetapan ikut bergeser ke hari kerja berikutnya", D: "PPh Pasal 21 disetor paling lambat Selasa, 10 November 2026; SPT Masa PPh 21/26 paling lambat Jumat, 20 November 2026; SKPKB paling lambat Minggu, 15 November 2026" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "angka-usang" },
       pembahasan: {
         inti: "Jatuh tempo penyetoran pajak masa yang jatuh pada hari libur bergeser ke hari kerja berikutnya (PMK 81/2024 Pasal 100), sedangkan jatuh tempo pelunasan SKPKB (1 bulan sejak terbit, Pasal 9 ayat (3)) tidak bergeser; pelunasan dapat dilakukan lebih awal atau melalui kanal elektronik.",
-        jejakHitung: [["Setor PPh 21 Masa Oktober: 15 Nov 2026 (Minggu)", "bergeser ke Senin, 16 November 2026"], ["Lapor SPT Masa: 20 hari setelah masa berakhir", "Jumat, 20 November 2026"], ["SKPKB terbit 15 Okt + 1 bulan", "15 November 2026, tidak bergeser"]],
-        mengapaSalah: { B: "Jatuh tempo setor bergeser ke hari kerja berikutnya, bukan dimajukan.", C: "Pergeseran hari libur dalam PMK 81/2024 berlaku untuk pembayaran pajak masa, bukan jatuh tempo pelunasan ketetapan.", D: "Tanggal 10 adalah batas setor PPh 21 menurut PMK 242/2014 yang telah dicabut." },
+        jejakHitung: [
+          ["Setor PPh 21 Masa Oktober: 15 Nov 2026 (Minggu)", "bergeser ke Senin, 16 November 2026"],
+          ["Lapor SPT Masa: 20 hari setelah masa berakhir", "Jumat, 20 November 2026"],
+          ["SKPKB terbit 15 Okt + 1 bulan", "15 November 2026, tidak bergeser"]
+        ],
+        mengapaSalah: {
+          B: "Jatuh tempo setor bergeser ke hari kerja berikutnya, bukan dimajukan.",
+          C: "Pergeseran hari libur dalam PMK 81/2024 berlaku untuk pembayaran pajak masa, bukan jatuh tempo pelunasan ketetapan.",
+          D: "Tanggal 10 adalah batas setor PPh 21 menurut PMK 242/2014 yang telah dicabut."
+        },
         jebakan: "Dua jatuh tempo pada tanggal yang sama diperlakukan berbeda karena dasar hukumnya berbeda."
       },
-      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 94 ayat (2) dan Pasal 100", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 9 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 3 ayat (3) huruf a UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 100, verifikasi: "◐",
-      peringatan: "Penegasan bahwa jatuh tempo pelunasan SKPKB/STP tidak bergeser karena hari libur bersumber dari pemberitaan (riset 02a A.1); teks resminya belum dibaca langsung."
+      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 94 ayat (2), Pasal 98 ayat (1), dan Pasal 100", berlakuSejak: "2025-01-01" }, { pasal: "PMK 81/2024 Pasal 171 ayat (1) dan Pasal 173", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 9 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 3 ayat (3) huruf a UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "✅"
     },
     {
       id: "A2-089", topik: "A2.4", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2,
@@ -2552,8 +2659,7 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a, Pasal 17, dan Pasal 17A UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (2) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17C ayat (5) UU KUP", berlakuSejak: "2008-01-01" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Kenaikan 100% Pasal 17C bersumber dari riset 02b bertanda [P]; nomor ayat perlu dicek ke teks konsolidasi UU KUP."
+      verifikasi: "✅"
     },
     {
       id: "A2-092", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"],
@@ -2701,26 +2807,35 @@ UKP.register({
       anggaranDetik: 75, verifikasi: "✅"
     },
     {
-      id: "A2-098", topik: "A2.3", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A2-098",
+      topik: "A2.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "PT Mahakam Sejahtera (tahun buku kalender, peredaran bruto 2025 Rp63 miliar sehingga tidak memperoleh fasilitas Pasal 31E) melaporkan rugi fiskal 2024 Rp800.000.000 dan mengompensasikannya seluruhnya dalam SPT Tahunan PPh Badan 2025 yang disampaikan tepat waktu (penghasilan neto fiskal 2025 Rp1.500.000.000). Pemeriksaan atas Tahun Pajak 2024 menghasilkan surat ketetapan pajak yang dikirim dan diterima Senin, 14 September 2026, yang menetapkan rugi fiskal 2024 hanya Rp300.000.000. Atas Tahun Pajak 2025 belum pernah dilakukan pemeriksaan. Pernyataan yang paling tepat tentang SPT Tahunan 2025 adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Dapat dibetulkan paling lambat 14 Desember 2026, dengan tambahan PPh terutang Rp176.000.000",
-        B: "Tidak dapat dibetulkan karena batas waktu SPT Tahunan 2025 telah lewat; selisih kompensasi menunggu pemeriksaan Tahun Pajak 2025",
-        C: "Dapat dibetulkan paling lambat 14 Desember 2026, dengan tambahan PPh terutang Rp110.000.000",
-        D: "Dapat dibetulkan paling lambat 31 Desember 2026, dengan tambahan PPh terutang Rp110.000.000"
-      },
+      opsi: { A: "Dapat dibetulkan paling lambat 14 Desember 2026, dengan tambahan PPh terutang Rp176.000.000", B: "Tidak dapat dibetulkan karena batas waktu SPT Tahunan 2025 telah lewat; selisih kompensasi menunggu pemeriksaan Tahun Pajak 2025", C: "Dapat dibetulkan paling lambat 14 Desember 2026, dengan tambahan PPh terutang Rp110.000.000", D: "Dapat dibetulkan paling lambat 31 Desember 2026, dengan tambahan PPh terutang Rp110.000.000" },
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
         inti: "WP yang menerima SKP untuk tahun sebelumnya dengan rugi fiskal berbeda dari yang telah dikompensasikan dapat membetulkan SPT dalam 3 bulan setelah menerima SKP (Pasal 8 ayat (6)). Kompensasi turun Rp500.000.000 sehingga PPh bertambah 22% × Rp500.000.000.",
-        jejakHitung: [["Rugi dikompensasikan semula", "Rp800.000.000"], ["Rugi menurut SKP", "Rp300.000.000"], ["Selisih kompensasi", "Rp500.000.000"], ["Tambahan PPh = 22% × 500.000.000", "Rp110.000.000"], ["SKP diterima 14 Sep 2026 + 3 bulan", "14 Desember 2026"]],
-        mengapaSalah: { A: "Mengalikan 22% dengan seluruh rugi Rp800.000.000; yang berubah hanya selisih Rp500.000.000.", B: "Pasal 8 ayat (6) memberi hak pembetulan khusus dalam 3 bulan setelah menerima SKP.", D: "Batas pembetulan khusus ini dihitung 3 bulan sejak SKP diterima, bukan akhir tahun." },
+        jejakHitung: [
+          ["Rugi dikompensasikan semula", "Rp800.000.000"],
+          ["Rugi menurut SKP", "Rp300.000.000"],
+          ["Selisih kompensasi", "Rp500.000.000"],
+          ["Tambahan PPh = 22% × 500.000.000", "Rp110.000.000"],
+          ["SKP diterima 14 Sep 2026 + 3 bulan", "14 Desember 2026"]
+        ],
+        mengapaSalah: {
+          A: "Mengalikan 22% dengan seluruh rugi Rp800.000.000; yang berubah hanya selisih Rp500.000.000.",
+          B: "Pasal 8 ayat (6) memberi hak pembetulan khusus dalam 3 bulan setelah menerima SKP.",
+          D: "Batas pembetulan khusus ini dihitung 3 bulan sejak SKP diterima, bukan akhir tahun."
+        },
         jebakan: "Peredaran bruto di atas Rp50 miliar sengaja disebut agar tarif yang dipakai 22% penuh tanpa Pasal 31E."
       },
       dasarHukum: [{ pasal: "Pasal 8 ayat (6) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 6 ayat (2) dan Pasal 17 ayat (1) huruf b UU PPh", berlakuSejak: "2022-01-01" }],
-      anggaranDetik: 170, verifikasi: "◐",
-      peringatan: "Hak pembetulan 3 bulan setelah menerima SKP yang mengubah rugi fiskal (Pasal 8 ayat (6) UU KUP) disusun dari pengetahuan teks UU; riset proyek tidak memuat kutipan ayat ini. Sanksi bunga atas pembetulan jenis ini sengaja tidak ditanyakan."
+      anggaranDetik: 170,
+      verifikasi: "✅"
     },
     {
       id: "A2-099", topik: "A2.4", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2,
@@ -2769,72 +2884,98 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-101", topik: "A2.8", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2,
+      id: "A2-101",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
       stem: "PT Aruna Teknik menerima SKPKB PPh Pasal 23 Masa Juli 2025 yang diterbitkan Rabu, 7 Oktober 2026, dengan pokok Rp60.000.000 dan bunga Pasal 13 ayat (2) Rp16.560.000 (jumlah Rp76.560.000). Pada 20 Oktober 2026 perusahaan menyetor Rp38.280.000 dengan kode billing SKPKB tersebut dan belum mengajukan permohonan apa pun. Menurut PMK 118/2024 s.t.d.d. PMK 71/2026 yang berlaku sejak 2 Oktober 2026, sisa utang dalam SKPKB setelah pembayaran itu adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Sisa pokok Rp30.000.000 dan sisa bunga Rp8.280.000, karena pembayaran dialokasikan proporsional ke pokok dan sanksi",
-        B: "Sisa pokok Rp38.280.000 dan sisa bunga Rp0, karena pembayaran melunasi sanksi lebih dahulu",
-        C: "Sisa pokok Rp21.720.000 dan sisa bunga Rp16.560.000, karena pembayaran dialokasikan ke pokok lebih dahulu",
-        D: "Sisa pokok Rp21.720.000, sedangkan bunga Rp16.560.000 terhapus otomatis tanpa permohonan berdasarkan KEP-239/PJ/2026"
-      },
+      opsi: { A: "Sisa pokok Rp30.000.000 dan sisa bunga Rp8.280.000, karena pembayaran dialokasikan proporsional ke pokok dan sanksi", B: "Sisa pokok Rp38.280.000 dan sisa bunga Rp0, karena pembayaran melunasi sanksi lebih dahulu", C: "Sisa pokok Rp21.720.000 dan sisa bunga Rp16.560.000, karena pembayaran dialokasikan ke pokok lebih dahulu", D: "Sisa pokok Rp21.720.000, sedangkan bunga Rp16.560.000 terhapus otomatis tanpa permohonan berdasarkan KEP-239/PJ/2026" },
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "PMK 71/2026 mengubah alokasi pembayaran utang pajak: pembayaran dialokasikan ke pokok lebih dahulu (sebelumnya proporsional). Fasilitas pengurangan/penghapusan sanksi (KEP-239/PJ/2026) hanya diberikan atas permohonan.",
-        jejakHitung: [["Pembayaran", "Rp38.280.000"], ["Dialokasikan ke pokok: 60.000.000 − 38.280.000", "sisa pokok Rp21.720.000"], ["Bunga belum tersentuh", "Rp16.560.000"], ["Pembanding proporsional (aturan lama, 50%)", "sisa pokok Rp30.000.000; bunga Rp8.280.000"]],
-        mengapaSalah: { A: "Alokasi proporsional adalah ketentuan sebelum PMK 71/2026.", B: "Tidak ada ketentuan yang mendahulukan sanksi.", D: "Fasilitas sanksi tidak otomatis; WP harus mengajukan permohonan." },
-        jebakan: "Pembayaran tepat separuh jumlah SKPKB dipilih agar hasil proporsional tampak 'rapi' dan menggoda."
+        inti: "PMK 71/2026 mengubah Pasal 23 ayat (6) dan (7) PMK 118/2024: pembayaran atas SKP/STP diperhitungkan terlebih dahulu ke pokok pajak, dan baru kelebihannya ke sanksi administratif. Sebelumnya, pembayaran yang dilakukan sebelum bulan permohonan pengurangan sanksi diperhitungkan secara proporsional. Fasilitas pengurangan/penghapusan sanksi (Pasal 27A PMK 118/2024 s.t.d.d. PMK 71/2026 dan KEP-239/PJ/2026) hanya diberikan atas permohonan.",
+        jejakHitung: [
+          ["Pembayaran", "Rp38.280.000"],
+          ["Dialokasikan ke pokok: 60.000.000 − 38.280.000", "sisa pokok Rp21.720.000"],
+          ["Bunga belum tersentuh", "Rp16.560.000"],
+          ["Pembanding proporsional (aturan lama, 50%)", "sisa pokok Rp30.000.000; bunga Rp8.280.000"]
+        ],
+        mengapaSalah: {
+          A: "Alokasi proporsional adalah bunyi Pasal 23 ayat (6) PMK 118/2024 sebelum diubah PMK 71/2026.",
+          B: "Tidak ada ketentuan yang mendahulukan sanksi; Pasal 23 ayat (7) justru menaruh sanksi setelah pokok lunas.",
+          D: "Fasilitas sanksi tidak otomatis; KEP-239/PJ/2026 Diktum KETIGA mensyaratkan permohonan kepada Direktur Jenderal Pajak."
+        },
+        jebakan: "Pembayaran tepat separuh jumlah SKPKB dipilih agar hasil proporsional tampak 'rapi' dan menggoda. Sejak 2 Oktober 2026 pokok dilunasi lebih dahulu."
       },
-      dasarHukum: [{ pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026 (alokasi pembayaran; Pasal 27A fasilitas sanksi)", berlakuSejak: "2026-10-02" }, { pasal: "KEP-239/PJ/2026", berlakuSejak: "2026-10-08" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "Aturan alokasi pembayaran ke pokok lebih dahulu bersumber dari pemberitaan PMK 71/2026 (riset 02b bagian E); teks pasalnya belum dibaca langsung."
+      dasarHukum: [{ pasal: "Pasal 23 ayat (6) dan (7) PMK 118/2024 s.t.d.d. PMK 71/2026 (pembayaran diperhitungkan ke pokok lebih dahulu)", berlakuSejak: "2026-10-02" }, { pasal: "Pasal 27A PMK 118/2024 s.t.d.d. PMK 71/2026 (fasilitas pengurangan/penghapusan sanksi)", berlakuSejak: "2026-10-02" }, { pasal: "KEP-239/PJ/2026 Diktum KETIGA (fasilitas diberikan atas permohonan)", berlakuSejak: "2026-10-08" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
-      id: "A2-102", topik: "A2.10", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "A2-102",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       kutipan: "Pasal 21 ayat (1), (3), dan (3a) UU KUP (parafrase setia): Negara mempunyai hak mendahulu untuk utang pajak atas barang-barang milik Penanggung Pajak. Hak mendahulu untuk tagihan pajak melebihi segala hak mendahulu lainnya, kecuali terhadap biaya perkara yang semata-mata disebabkan suatu penghukuman untuk melelang suatu barang bergerak dan/atau tidak bergerak, biaya yang telah dikeluarkan untuk menyelamatkan barang dimaksud, dan/atau biaya perkara yang semata-mata disebabkan pelelangan dan penyelesaian suatu warisan. Dalam hal Wajib Pajak dinyatakan pailit, bubar, atau dilikuidasi, kurator, likuidator, atau orang atau badan yang ditugasi melakukan pemberesan dilarang membagikan harta Wajib Pajak kepada pemegang saham atau kreditur lainnya sebelum menggunakan harta tersebut untuk membayar utang pajak Wajib Pajak tersebut.",
       stem: "PT Samudra Jaya dinyatakan pailit. Kurator memegang hasil penjualan harta pailit Rp1.200.000.000. Tagihan yang tercatat: utang pajak (SKPKB PPN beserta bunga dan STP) Rp700.000.000; biaya perkara pelelangan aset Rp50.000.000; biaya penjagaan dan asuransi untuk menyelamatkan aset sebelum dilelang Rp30.000.000; utang dagang kepada para pemasok (kreditur konkuren) Rp650.000.000; serta permintaan pemegang saham agar sebagian hasil penjualan dibagikan kepada mereka. Berdasarkan kutipan, urutan penggunaan hasil penjualan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Biaya perkara pelelangan Rp50.000.000 dan biaya penyelamatan aset Rp30.000.000 dibayar lebih dahulu, lalu utang pajak Rp700.000.000 dilunasi; sisa Rp420.000.000 untuk kreditur lain, dan pemegang saham hanya menerima bila masih ada sisa",
-        B: "Utang pajak Rp700.000.000 dan utang pemasok Rp650.000.000 dibayar secara pro rata dari Rp1.120.000.000 setelah biaya perkara dan biaya penyelamatan aset",
-        C: "Utang pajak Rp700.000.000 dilunasi lebih dahulu sebelum biaya perkara pelelangan dan biaya penyelamatan aset, karena hak mendahulu negara melebihi segala hak mendahulu lainnya; sisa Rp500.000.000 baru dipakai untuk biaya dan kreditur lain",
-        D: "Sebagian hasil penjualan boleh dibagikan kepada pemegang saham setelah utang pemasok dilunasi, sedangkan utang pajak ditagih kepada direksi secara pribadi"
-      },
+      opsi: { A: "Biaya perkara pelelangan Rp50.000.000 dan biaya penyelamatan aset Rp30.000.000 dibayar lebih dahulu, lalu utang pajak Rp700.000.000 dilunasi; sisa Rp420.000.000 untuk kreditur lain, dan pemegang saham hanya menerima bila masih ada sisa", B: "Utang pajak Rp700.000.000 dan utang pemasok Rp650.000.000 dibayar secara pro rata dari Rp1.120.000.000 setelah biaya perkara dan biaya penyelamatan aset", C: "Utang pajak Rp700.000.000 dilunasi lebih dahulu sebelum biaya perkara pelelangan dan biaya penyelamatan aset, karena hak mendahulu negara melebihi segala hak mendahulu lainnya; sisa Rp500.000.000 baru dipakai untuk biaya dan kreditur lain", D: "Sebagian hasil penjualan boleh dibagikan kepada pemegang saham setelah utang pemasok dilunasi, sedangkan utang pajak ditagih kepada direksi secara pribadi" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Hak mendahulu negara berada di atas kreditur lain kecuali biaya perkara pelelangan, biaya penyelamatan barang, dan biaya penyelesaian warisan. Kurator dilarang membagikan harta kepada kreditur lain atau pemegang saham sebelum utang pajak dibayar.",
-        jejakHitung: [["Hasil penjualan", "Rp1.200.000.000"], ["− biaya perkara pelelangan dan penyelamatan aset", "Rp80.000.000 → sisa Rp1.120.000.000"], ["− utang pajak", "Rp700.000.000 → sisa Rp420.000.000"], ["Sisa untuk kreditur konkuren", "Rp420.000.000 (dari tagihan Rp650.000.000)"]],
-        mengapaSalah: { B: "Utang pajak tidak berbagi pro rata dengan kreditur konkuren; ia didahulukan.", C: "Kutipan memberi pengecualian untuk biaya perkara pelelangan dan biaya penyelamatan barang.", D: "Kurator dilarang membagikan harta kepada pemegang saham atau kreditur lain sebelum utang pajak dibayar." },
+        jejakHitung: [
+          ["Hasil penjualan", "Rp1.200.000.000"],
+          ["− biaya perkara pelelangan dan penyelamatan aset", "Rp80.000.000 → sisa Rp1.120.000.000"],
+          ["− utang pajak", "Rp700.000.000 → sisa Rp420.000.000"],
+          ["Sisa untuk kreditur konkuren", "Rp420.000.000 (dari tagihan Rp650.000.000)"]
+        ],
+        mengapaSalah: {
+          B: "Utang pajak tidak berbagi pro rata dengan kreditur konkuren; ia didahulukan.",
+          C: "Kutipan memberi pengecualian untuk biaya perkara pelelangan dan biaya penyelamatan barang.",
+          D: "Kurator dilarang membagikan harta kepada pemegang saham atau kreditur lain sebelum utang pajak dibayar."
+        },
         jebakan: "'Melebihi segala hak mendahulu lainnya' tetap memiliki tiga pengecualian biaya."
       },
-      dasarHukum: [{ pasal: "Pasal 21 ayat (1), (3), dan (3a) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "UU PPSP (Penanggung Pajak) dan Pasal 32 UU KUP", berlakuSejak: "2000-08-02" }],
-      anggaranDetik: 150, verifikasi: "◐",
-      peringatan: "Kutipan Pasal 21 UU KUP disusun dari pengetahuan teks UU; riset proyek belum memuatnya. Hubungan hak mendahulu pajak dengan upah pekerja dan kreditur separatis sengaja tidak diuji."
+      dasarHukum: [{ pasal: "Pasal 21 ayat (1), (3), dan (3a) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 32 ayat (1) huruf b dan ayat (2) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
-      id: "A2-103", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10"],
+      id: "A2-103",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
       kutipan: "Pasal 27 ayat (5f) dan (5g) UU KUP (parafrase setia): Dalam hal Putusan Peninjauan Kembali menyebabkan jumlah pajak yang masih harus dibayar bertambah, Wajib Pajak dikenai sanksi administratif berupa denda sebesar 60% dari jumlah pajak berdasarkan Putusan Peninjauan Kembali dikurangi dengan pembayaran pajak yang telah dibayar sebelum mengajukan keberatan. Sanksi tersebut ditagih dengan STP yang diterbitkan paling lama 2 tahun sejak Putusan Peninjauan Kembali diterima Direktur Jenderal Pajak.",
       stem: "SKPKB PPh Badan PT Orion Prima memuat pokok Rp300.000.000. Sebelum keberatan, WP melunasi pokok yang disetujui dalam PAHP Rp50.000.000. Keberatan ditolak, tetapi Putusan Banding mengabulkan seluruh banding sehingga pokok menjadi Rp50.000.000. DJP mengajukan Peninjauan Kembali, dan Putusan PK yang diterima DJP pada Kamis, 10 September 2026 menetapkan pokok Rp210.000.000. Dasar denda dihitung dari pokok pajak. Berdasarkan kutipan, sanksi dan batas penagihannya adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Denda 30% × Rp160.000.000 = Rp48.000.000, ditagih dengan STP paling lambat 10 September 2028",
-        B: "Denda 60% × (Rp210.000.000 − Rp50.000.000) = Rp96.000.000, ditagih dengan STP paling lambat 10 September 2028",
-        C: "Denda 60% × Rp210.000.000 = Rp126.000.000, ditagih dengan STP paling lambat 10 September 2028",
-        D: "Denda 60% × (Rp210.000.000 − Rp50.000.000) = Rp96.000.000, ditetapkan dengan SKPKBT paling lambat 10 September 2031"
-      },
+      opsi: { A: "Denda 30% × Rp160.000.000 = Rp48.000.000, ditagih dengan STP paling lambat 10 September 2028", B: "Denda 60% × (Rp210.000.000 − Rp50.000.000) = Rp96.000.000, ditagih dengan STP paling lambat 10 September 2028", C: "Denda 60% × Rp210.000.000 = Rp126.000.000, ditagih dengan STP paling lambat 10 September 2028", D: "Denda 60% × (Rp210.000.000 − Rp50.000.000) = Rp96.000.000, ditetapkan dengan SKPKBT paling lambat 10 September 2031" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
         inti: "Putusan PK yang menambah pajak yang masih harus dibayar menimbulkan denda 60% dari pajak menurut Putusan PK dikurangi pembayaran sebelum keberatan, ditagih dengan STP paling lama 2 tahun sejak putusan diterima DJP.",
-        jejakHitung: [["Pokok menurut Putusan PK", "Rp210.000.000"], ["Dibayar sebelum keberatan", "Rp50.000.000"], ["Denda = 60% × 160.000.000", "Rp96.000.000"], ["Batas STP: 10 Sep 2026 + 2 tahun", "10 September 2028"]],
-        mengapaSalah: { A: "30% adalah denda keberatan; PK memakai 60%.", C: "Lupa mengurangkan pembayaran sebelum keberatan.", D: "Denda ditagih dengan STP dalam 2 tahun, bukan dengan SKPKBT dalam 5 tahun." },
+        jejakHitung: [
+          ["Pokok menurut Putusan PK", "Rp210.000.000"],
+          ["Dibayar sebelum keberatan", "Rp50.000.000"],
+          ["Denda = 60% × 160.000.000", "Rp96.000.000"],
+          ["Batas STP: 10 Sep 2026 + 2 tahun", "10 September 2028"]
+        ],
+        mengapaSalah: {
+          A: "30% adalah denda keberatan; PK memakai 60%.",
+          C: "Lupa mengurangkan pembayaran sebelum keberatan.",
+          D: "Denda ditagih dengan STP dalam 2 tahun, bukan dengan SKPKBT dalam 5 tahun."
+        },
         jebakan: "Pembayaran sebelum keberatan (Rp50.000.000) dikurangkan di semua tingkat: keberatan, banding, dan PK."
       },
       dasarHukum: [{ pasal: "Pasal 27 ayat (5f) dan (5g) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 77 ayat (3) dan Pasal 89–93 UU 14/2002", berlakuSejak: "2002-04-12" }],
-      anggaranDetik: 160, verifikasi: "◐",
-      peringatan: "Denda 60% dan batas STP 2 tahun bersumber dari riset 02a A.4; rumusan pengurang 'pembayaran sebelum mengajukan keberatan' dalam Pasal 27 ayat (5f) belum dibaca langsung dari teks konsolidasi."
+      anggaranDetik: 160,
+      verifikasi: "✅"
     },
     {
       id: "A2-104",
@@ -2850,24 +2991,23 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "salah-baca" },
       pembahasan: {
-        inti: "Pajak Masukan atas perolehan yang tidak berhubungan langsung dengan kegiatan usaha tidak dapat dikreditkan. Pada SPT pembetulan, III.D memuat kurang/lebih bayar hasil hitung baru (III.A − III.B − III.C), III.E memuat angka SPT yang dibetulkan, dan III.F = III.D − III.E.",
+        inti: "Pajak Masukan atas perolehan yang tidak mempunyai hubungan langsung dengan kegiatan usaha tidak dapat dikreditkan (Pasal 9 ayat (8) huruf b UU PPN). Pada induk SPT Masa PPN Coretax (Lampiran huruf E PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026), butir III.E memuat kurang atau (lebih) bayar hasil hitung baru (III.A − III.B − III.C − III.D), butir III.F memuat selisih seluruh PPN yang telah disetor dengan PPN yang telah dikembalikan sebelum pembetulan, dan butir III.G = III.E − III.F adalah PPN kurang atau (lebih) bayar karena pembetulan.",
         jejakHitung: [
-          ["PM yang dapat dikreditkan (III.C) = 150.000.000 − 5.500.000", "Rp144.500.000"],
-          ["III.D = 180.000.000 − 0 − 144.500.000", "Rp35.500.000 kurang bayar"],
-          ["III.E (SPT yang dibetulkan)", "Rp30.000.000 kurang bayar"],
-          ["III.F = III.D − III.E", "Rp5.500.000 kurang bayar"]
+          ["PM yang dapat diperhitungkan (III.C) = 150.000.000 − 5.500.000", "Rp144.500.000"],
+          ["III.E = 180.000.000 − 0 − 144.500.000 − 0", "Rp35.500.000 kurang bayar"],
+          ["III.F (PPN yang telah disetor sebelum pembetulan)", "Rp30.000.000"],
+          ["III.G = III.E − III.F", "Rp5.500.000 kurang bayar"]
         ],
         mengapaSalah: {
-          A: "Rp35.500.000 adalah isian III.D (hasil hitung baru), bukan selisih karena pembetulan.",
+          A: "Rp35.500.000 adalah isian III.E (hasil hitung baru), bukan selisih karena pembetulan.",
           B: "Menghitung ulang 12% × Rp50.000.000 tanpa DPP nilai lain 11/12; yang dikeluarkan dari Pajak Masukan adalah PPN dalam faktur, Rp5.500.000.",
-          C: "Rp30.000.000 adalah isian III.E dari SPT yang dibetulkan."
+          C: "Rp30.000.000 adalah isian III.F, yaitu PPN yang telah disetor sebelum pembetulan."
         },
-        jebakan: "Butir III.D, III.E, dan III.F berurutan dan mudah tertukar; yang disetor sebelum pembetulan hanya III.F."
+        jebakan: "Peta formulir proyek (kode 1111.induk.15, mengikuti tata letak SPT 1111 lama) menyebut baris ini III.F; pada induk SPT Masa PPN Coretax baris yang sama adalah III.G (III.E − III.F). Yang wajib disetor sebelum SPT pembetulan disampaikan hanya selisih karena pembetulan."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (8) huruf b UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 8 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (2a) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "PER-11/PJ/2025 (bentuk SPT Masa PPN)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (8) huruf b UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 8 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (2a) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 29B dan Lampiran huruf E PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 (pembetulan dan pengisian SPT Masa PPN)", berlakuSejak: "2026-10-01" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Penomoran butir III.A–III.F mengikuti peta formulir proyek (induk SPT Masa PPN 1111 pra-Coretax, kode 1111.induk.15); di Coretax (PER-11/PJ/2025) komponen yang sama tersaji dengan tata letak berbeda dan belum dicek langsung. Jawaban tidak bergantung pada huruf butir."
+      verifikasi: "✅"
     },
     {
       id: "A2-105",
@@ -2914,24 +3054,24 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
-        inti: "Kelebihan Pajak Masukan dikompensasikan ke masa berikutnya; restitusi baru dapat dimohonkan pada akhir tahun buku (Pasal 9 ayat (4a) UU PPN), kecuali bagi PKP dalam Pasal 9 ayat (4b) UU PPN yang boleh meminta setiap Masa Pajak: pengekspor BKP berwujud, BKP tidak berwujud, atau JKP; PKP yang menyerahkan BKP/JKP kepada pemungut PPN; dan PKP yang menyerahkan BKP/JKP yang PPN-nya tidak dipungut. PKP dalam tahap belum berproduksi tidak lagi termasuk sejak UU 11/2020 (berlaku 2 November 2020) menghapus huruf f. Batas Pasal 17D baru relevan bila hak restitusi sudah ada; sejak 1 Mei 2026 (PMK 28 Tahun 2026) PKP persyaratan tertentu juga tidak lagi diperlakukan sebagai PKP berisiko rendah yang boleh meminta pengembalian pendahuluan setiap masa (Pasal 9 ayat (4c) UU PPN).",
+        inti: "Kelebihan Pajak Masukan dikompensasikan ke masa berikutnya; restitusi baru dapat dimohonkan pada akhir tahun buku (Pasal 9 ayat (4) dan (4a) UU PPN), kecuali bagi PKP dalam Pasal 9 ayat (4b) UU PPN yang boleh meminta setiap Masa Pajak: pengekspor BKP berwujud, BKP tidak berwujud, atau JKP; PKP yang menyerahkan BKP/JKP kepada pemungut PPN; dan PKP yang menyerahkan BKP/JKP yang PPN-nya tidak dipungut (huruf f sudah dihapus oleh UU 11/2020). Batas Pasal 17D baru relevan bila hak restitusi sudah ada: Pasal 10 ayat (6) PMK 28 Tahun 2026 mensyaratkan kegiatan tertentu itu untuk pengembalian pendahuluan pada Masa Pajak selain akhir tahun buku, dan sejak 1 Mei 2026 PKP persyaratan tertentu tidak lagi tercantum sebagai PKP berisiko rendah (Pasal 13 ayat (2) PMK 28 Tahun 2026; dulu Pasal 13 ayat (2) huruf f PMK 39/PMK.03/2018 s.t.d.t.d. PMK 119 Tahun 2024).",
         jejakHitung: [
           ["Lebih bayar = 185.000.000 − 120.000.000", "Rp65.000.000"],
           ["Termasuk PKP Pasal 9 ayat (4b)?", "tidak"],
-          ["Isian pilihan lebih bayar (III.G) Masa Agustus 2026", "dikompensasikan ke Masa September 2026"],
+          ["Isian pilihan lebih bayar (III.G pada peta formulir; butir III.H SPT Masa PPN Coretax) Masa Agustus 2026", "dikompensasikan ke Masa September 2026"],
           ["Restitusi paling cepat", "Masa Desember 2026 (akhir tahun buku)"]
         ],
         mengapaSalah: {
-          B: "Pasal 17D mengatur cara pengembalian, bukan hak restitusi tiap masa; sejak PMK 28/2026 PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah, sehingga PKP biasa baru berhak pada akhir tahun buku.",
+          B: "Pasal 17D mengatur cara pengembalian, bukan hak restitusi tiap masa; Pasal 10 ayat (6) PMK 28/2026 mensyaratkan kegiatan Pasal 9 ayat (4b) untuk masa selain akhir tahun buku, sehingga PKP biasa baru berhak pada akhir tahun buku.",
           C: "Restitusi setiap masa hanya untuk PKP dalam Pasal 9 ayat (4b) UU PPN (pengekspor, penyerah kepada pemungut PPN, atau penyerahan yang PPN-nya tidak dipungut); PKP lain baru pada akhir tahun buku.",
-          D: "Kelebihan Pajak Masukan tidak hangus; ia dikompensasikan ke masa berikutnya."
+          D: "Kelebihan Pajak Masukan tidak hangus; ia dikompensasikan ke masa berikutnya (Pasal 9 ayat (4) UU PPN)."
         },
         jebakan: "Batas Rp1 miliar dan Rp4,2 miliar sengaja disebut: memenuhi batas pengembalian pendahuluan tidak menciptakan hak restitusi per masa."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (4) dan (4a) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (4b) UU PPN (huruf f \"PKP dalam tahap belum berproduksi\" dihapus UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17B dan 17D UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 28 Tahun 2026 (pengembalian pendahuluan; mencabut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021)", berlakuSejak: "2026-05-01" }],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (4) dan (4a) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (4b) UU PPN (huruf f dihapus UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17B dan 17D UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2) huruf d, Pasal 10 ayat (6), dan Pasal 13 ayat (2) PMK 28 Tahun 2026 (mencabut PMK 39/PMK.03/2018 s.t.d.t.d. PMK 119 Tahun 2024)", berlakuSejak: "2026-05-01" }],
       anggaranDetik: 140,
       verifikasi: "◐",
-      peringatan: "Penomoran butir III.G mengikuti peta formulir proyek (induk SPT Masa PPN 1111 pra-Coretax, kode 1111.induk.16); tata letak Coretax belum dicek langsung. Rincian Pasal 9 ayat (4b) UU PPN, termasuk penghapusan huruf f (PKP dalam tahap belum berproduksi) oleh UU 11/2020, mengikuti matriks perubahan Pasal 9 UU PPN DDTCNews 2020; naskah UU 11/2020 belum dibuka langsung. Batas PKP Pasal 17D dan ketentuan bahwa PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah mengikuti ringkasan resmi PMK 28 Tahun 2026 ✅; nomor pasalnya belum dibaca dari teks ◐."
+      peringatan: "Isi jawaban sudah dicocokkan ke naskah (Pasal 9 ayat (4)-(4b) UU PPN; Pasal 10 ayat (2) huruf d dan ayat (6) serta Pasal 13 ayat (2) PMK 28 Tahun 2026). Yang belum beres: stem menyebut butir III.G, padahal pada SPT Masa PPN Coretax (Lampiran PER-11/PJ/2025, petunjuk Huruf H) pilihan atas lebih bayar ada di butir III.H, sedangkan III.G adalah PPN kurang atau (lebih) bayar karena pembetulan. Peta formulir 1111.induk.16 perlu disesuaikan."
     },
     {
       id: "A2-107",
@@ -2961,31 +3101,37 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "Pasal 39 ayat (1) huruf d UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (3) dan (3a) UU KUP (denda 100%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 44B UU KUP (UU 7/2021)", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 28 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }],
       anggaranDetik: 180,
-      verifikasi: "◐",
-      peringatan: "Rentang pidana Pasal 38–39 dan pengali Pasal 44B bertanda ◐ dalam riset proyek (02a A.4); denda 100% Pasal 8 ayat (3a) terverifikasi. Perbuatan dalam soal sengaja dibatasi pada penyampaian SPT yang isinya tidak benar karena cakupan Pasal 8 ayat (3) pasca-UU HPP (tidak mendaftar, menyalahgunakan NPWP/PKP, tidak/tidak benar menyampaikan SPT, tidak menyetor potput) tidak memuat perbuatan tidak menyelenggarakan pembukuan."
+      verifikasi: "✅"
     },
     {
-      id: "A2-108", topik: "A2.12", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2,
+      id: "A2-108",
+      topik: "A2.12",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
       kutipan: "Pasal 2 ayat (1) dan (2) UU 9/2017 (parafrase setia): Direktur Jenderal Pajak berwenang mendapatkan akses informasi keuangan untuk kepentingan perpajakan dari lembaga jasa keuangan yang melaksanakan kegiatan di sektor perbankan, pasar modal, perasuransian, lembaga jasa keuangan lainnya, dan/atau entitas lain yang dikategorikan sebagai lembaga keuangan sesuai standar pertukaran informasi keuangan berdasarkan perjanjian internasional di bidang perpajakan. Lembaga tersebut wajib menyampaikan kepada Direktur Jenderal Pajak laporan informasi keuangan sesuai standar pertukaran informasi untuk setiap rekening keuangan yang wajib dilaporkan dan laporan informasi keuangan untuk kepentingan perpajakan yang dikelola selama satu tahun kalender.",
       stem: "Dalam pemeriksaan lengkap PPh Badan Tahun Pajak 2025 atas PT Selaras Niaga, pemeriksa menemukan aliran dana ke rekening pribadi direktur utamanya di PT Bank Cakra (bank umum di bawah pengawasan OJK). Rekening itu tidak tercantum dalam laporan tahunan bank karena saldo akhir tahunnya di bawah ambang laporan domestik. DJP kemudian meminta rekening koran Januari–Desember 2025 atas rekening tersebut. Bank Cakra menjawab bahwa (1) data nasabah dilindungi rahasia bank sehingga diperlukan permintaan tertulis Menteri Keuangan, dan (2) kewajibannya sudah selesai karena laporan tahunan telah disampaikan. Berdasarkan kutipan dan UU 9/2017, penilaian yang paling tepat atas jawaban bank adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Alasan (2) dapat diterima karena rekening yang saldonya di bawah ambang laporan domestik berada di luar kewenangan akses DJP; alasan (1) menjadi tidak relevan",
-        B: "Alasan (1) dapat diterima karena Pasal 35 ayat (2) UU KUP tetap mensyaratkan permintaan tertulis Menteri Keuangan untuk bank dalam pemeriksaan; alasan (2) tidak dapat diterima",
-        C: "Kedua alasan tidak dapat diterima: di luar laporan tahunan DJP berwenang meminta informasi dan/atau bukti atau keterangan yang wajib dipenuhi bank, dan rahasia bank tidak dapat dijadikan alasan menolak tanpa perlu permintaan tertulis Menteri Keuangan",
-        D: "Kedua alasan tidak dapat diterima, tetapi bank cukup memasukkan rekening itu ke laporan tahunan berikutnya yang disampaikan melalui OJK karena akses DJP atas data bank hanya melalui laporan otomatis"
-      },
+      opsi: { A: "Alasan (2) dapat diterima karena rekening yang saldonya di bawah ambang laporan domestik berada di luar kewenangan akses DJP; alasan (1) menjadi tidak relevan", B: "Alasan (1) dapat diterima karena Pasal 35 ayat (2) UU KUP tetap mensyaratkan permintaan tertulis Menteri Keuangan untuk bank dalam pemeriksaan; alasan (2) tidak dapat diterima", C: "Kedua alasan tidak dapat diterima: di luar laporan tahunan DJP berwenang meminta informasi dan/atau bukti atau keterangan yang wajib dipenuhi bank, dan rahasia bank tidak dapat dijadikan alasan menolak tanpa perlu permintaan tertulis Menteri Keuangan", D: "Kedua alasan tidak dapat diterima, tetapi bank cukup memasukkan rekening itu ke laporan tahunan berikutnya yang disampaikan melalui OJK karena akses DJP atas data bank hanya melalui laporan otomatis" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "angka-usang", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Akses informasi keuangan berjalan dua jalur: laporan otomatis tahunan dan permintaan IBK oleh DJP yang wajib dipenuhi LJK. Ambang saldo hanya menentukan rekening yang masuk laporan otomatis, bukan batas kewenangan meminta IBK, dan ketentuan rahasia bank serta Pasal 35 ayat (2) UU KUP tidak berlaku sepanjang berkaitan dengan akses informasi keuangan.",
-        jejakHitung: [["Jalur yang dipakai DJP", "permintaan IBK, terpisah dari laporan tahunan"], ["Rekening di bawah ambang", "tidak masuk laporan otomatis, tetap dapat diminta"], ["Rahasia bank dan izin Menteri Keuangan", "tidak berlaku untuk akses informasi keuangan"]],
-        mengapaSalah: { A: "Ambang saldo hanya membatasi isi laporan otomatis domestik; kewenangan meminta IBK tidak dibatasi saldo.", B: "Pasal 35 ayat (2) UU KUP yang mensyaratkan permintaan tertulis Menteri Keuangan untuk bank dinyatakan tidak berlaku sepanjang berkaitan dengan akses informasi keuangan untuk kepentingan perpajakan.", D: "Laporan otomatis dan permintaan IBK adalah dua jalur terpisah; IBK dipenuhi atas permintaan DJP, tidak menunggu laporan tahunan berikutnya." },
+        jejakHitung: [
+          ["Jalur yang dipakai DJP", "permintaan IBK, terpisah dari laporan tahunan"],
+          ["Rekening di bawah ambang", "tidak masuk laporan otomatis, tetap dapat diminta"],
+          ["Rahasia bank dan izin Menteri Keuangan", "tidak berlaku untuk akses informasi keuangan"]
+        ],
+        mengapaSalah: {
+          A: "Ambang saldo hanya membatasi isi laporan otomatis domestik; kewenangan meminta IBK tidak dibatasi saldo.",
+          B: "Pasal 35 ayat (2) UU KUP yang mensyaratkan permintaan tertulis Menteri Keuangan untuk bank dinyatakan tidak berlaku sepanjang berkaitan dengan akses informasi keuangan untuk kepentingan perpajakan.",
+          D: "Laporan otomatis dan permintaan IBK adalah dua jalur terpisah; IBK dipenuhi atas permintaan DJP, tidak menunggu laporan tahunan berikutnya."
+        },
         jebakan: "Laporan tahunan yang sudah disampaikan tidak menghapus kewajiban memenuhi permintaan IBK."
       },
-      dasarHukum: [{ pasal: "Pasal 2 ayat (1)–(2) UU 9/2017", berlakuSejak: "2017-05-08" }, { pasal: "Pasal 8 UU 9/2017; ketentuan IBK UU 9/2017 (nomor pasal ◐)", berlakuSejak: "2017-05-08" }, { pasal: "Pasal 35 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 170, verifikasi: "◐",
-      peringatan: "Substansi kewenangan meminta IBK dan tidak berlakunya rahasia bank konsisten di sumber; nomor pasal ketentuan IBK dalam UU 9/2017 belum dicocokkan dengan teks resmi sehingga dasar hukumnya ditulis deskriptif (◐). Soal tidak menguji nomor pasal."
+      dasarHukum: [{ pasal: "Pasal 2 ayat (1)–(2) dan Pasal 4 ayat (1)–(2) UU 9/2017", berlakuSejak: "2017-05-08" }, { pasal: "Pasal 2 ayat (8) dan Pasal 8 angka 1 dan 2 UU 9/2017", berlakuSejak: "2017-05-08" }, { pasal: "Pasal 35 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅"
     },
     {
       id: "A2-109", topik: "A2.12", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1,
@@ -3030,52 +3176,70 @@ UKP.register({
       anggaranDetik: 130, verifikasi: "✅"
     },
     {
-      id: "A2-111", topik: "A2.12", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2,
+      id: "A2-111",
+      topik: "A2.12",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
       stem: "Kepala divisi kepatuhan PT Bank Dirgantara (bank umum di bawah pengawasan OJK) dengan sengaja tidak menjalankan prosedur identifikasi atas 2.000 rekening baru yang dibuka sepanjang 2025, dan Bank Dirgantara sama sekali tidak menyampaikan laporan informasi keuangan data 2025 sampai tenggatnya terlewati. Ketika DJP kemudian meminta keterangan atas sejumlah rekening, kepala divisi itu juga menolak memberikannya. Menurut UU 9/2017, ancaman pidana yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Kepala divisi: ancaman Pasal 41A UU KUP (kurungan paling lama 1 tahun; denda paling banyak Rp25.000.000); Bank Dirgantara tidak dapat dipidana karena ancaman pidana hanya untuk orang pribadi",
-        B: "Kepala divisi: pidana kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000; Bank Dirgantara: pidana denda paling banyak Rp1.000.000.000",
-        C: "Kepala divisi: ancaman Pasal 41B UU KUP (penjara paling lama 3 tahun; denda paling banyak Rp75.000.000); Bank Dirgantara: pidana denda paling banyak Rp1.000.000.000",
-        D: "Kepala divisi tidak dipidana karena tanggung jawab pelaporan berada pada bank; Bank Dirgantara: pidana denda paling banyak Rp1.000.000.000"
-      },
+      opsi: { A: "Kepala divisi: ancaman Pasal 41A UU KUP (kurungan paling lama 1 tahun; denda paling banyak Rp25.000.000); Bank Dirgantara tidak dapat dipidana karena ancaman pidana hanya untuk orang pribadi", B: "Kepala divisi: pidana kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000; Bank Dirgantara: pidana denda paling banyak Rp1.000.000.000", C: "Kepala divisi: ancaman Pasal 41B UU KUP (penjara paling lama 3 tahun; denda paling banyak Rp75.000.000); Bank Dirgantara: pidana denda paling banyak Rp1.000.000.000", D: "Kepala divisi tidak dipidana karena tanggung jawab pelaporan berada pada bank; Bank Dirgantara: pidana denda paling banyak Rp1.000.000.000" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "UU 9/2017 mengancam pimpinan dan/atau pegawai LJK yang tidak menyampaikan laporan, tidak melaksanakan prosedur identifikasi, atau tidak memberikan IBK dengan pidana kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000, dan mengancam LJK yang tidak menyampaikan laporan dengan pidana denda paling banyak Rp1.000.000.000. Pelanggaran kewajiban LJK diatur UU 9/2017, bukan Pasal 41A atau 41B UU KUP.",
-        jejakHitung: [["Kepala divisi (pegawai LJK)", "tidak identifikasi + menolak IBK → kurungan ≤ 1 tahun atau denda ≤ Rp1 miliar"], ["Bank Dirgantara (LJK)", "tidak menyampaikan laporan → denda ≤ Rp1 miliar"]],
-        mengapaSalah: { A: "Pasal 41A mengatur pihak ketiga yang tidak memberi keterangan atau bukti menurut Pasal 35 UU KUP; kewajiban LJK atas akses informasi keuangan diatur UU 9/2017, yang juga mengancam LJK sebagai badan dengan pidana denda.", C: "Pasal 41B UU KUP ditujukan bagi orang yang menghalangi atau mempersulit penyidikan, bukan pelanggaran kewajiban pelaporan dan identifikasi LJK.", D: "Pimpinan dan/atau pegawai LJK diancam pidana tersendiri; ancaman terhadap LJK tidak menghapus tanggung jawab pribadi mereka." },
+        jejakHitung: [
+          ["Kepala divisi (pegawai LJK)", "tidak identifikasi + menolak IBK → kurungan ≤ 1 tahun atau denda ≤ Rp1 miliar"],
+          ["Bank Dirgantara (LJK)", "tidak menyampaikan laporan → denda ≤ Rp1 miliar"]
+        ],
+        mengapaSalah: {
+          A: "Pasal 41A mengatur pihak ketiga yang tidak memberi keterangan atau bukti menurut Pasal 35 UU KUP; kewajiban LJK atas akses informasi keuangan diatur UU 9/2017, yang juga mengancam LJK sebagai badan dengan pidana denda.",
+          C: "Pasal 41B UU KUP ditujukan bagi orang yang menghalangi atau mempersulit penyidikan, bukan pelanggaran kewajiban pelaporan dan identifikasi LJK.",
+          D: "Pimpinan dan/atau pegawai LJK diancam pidana tersendiri; ancaman terhadap LJK tidak menghapus tanggung jawab pribadi mereka."
+        },
         jebakan: "UU 9/2017 menjerat dua subjek sekaligus: orangnya (kurungan atau denda) dan LJK-nya (denda)."
       },
-      dasarHukum: [{ pasal: "UU 9/2017, ketentuan pidana pimpinan/pegawai dan LJK (nomor pasal ◐)", berlakuSejak: "2017-05-08" }, { pasal: "Pasal 41A dan 41B UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 150, verifikasi: "◐",
-      peringatan: "Besaran ancaman pidana konsisten di beberapa sumber; nomor pasal ketentuan pidana UU 9/2017 belum dicocokkan dengan teks resmi (ringkasan sumber tidak seragam: Pasal 5 atau Pasal 7) sehingga dasar hukumnya ditulis deskriptif (◐). Soal tidak menguji nomor pasal."
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) dan (2) UU 9/2017", berlakuSejak: "2017-05-08" }, { pasal: "Pasal 41A dan 41B UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
-      id: "A2-112", topik: "A2.12", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 3,
+      id: "A2-112",
+      topik: "A2.12",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 3,
       kutipan: "Pasal 35A ayat (1) UU KUP (parafrase setia): Setiap instansi pemerintah, lembaga, asosiasi, dan pihak lain wajib memberikan data dan informasi yang berkaitan dengan perpajakan kepada Direktorat Jenderal Pajak yang ketentuannya diatur dengan Peraturan Pemerintah, dengan memperhatikan ketentuan Pasal 35 ayat (2).",
       stem: "Tiga perbuatan terungkap pada tahun yang sama: (i) Tuan Gilang, nasabah PT Bank Kencana, dengan sengaja mengisi pernyataan diri (self-certification) bahwa ia bukan penduduk untuk keperluan pajak di suatu negara lain, padahal ia penduduk negara itu, sehingga informasi yang wajib disampaikan bank menjadi tidak benar; (ii) pejabat sebuah instansi pemerintah yang termasuk ILAP menurut PP 31/2012 dengan sengaja tidak menyampaikan data dan informasi perpajakan yang wajib diberikan secara rutin kepada DJP; (iii) Notaris Hana, yang menerima permintaan tertulis Direktur Jenderal Pajak dalam pemeriksaan atas kliennya, dengan sengaja tidak memberikan salinan akta yang diminta. Berdasarkan kutipan, UU KUP, dan UU 9/2017, pasangan dasar ancaman pidana yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "(i) UU 9/2017 tentang pernyataan palsu: kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000; (ii) Pasal 41C UU KUP; (iii) UU 9/2017 karena notaris tidak memberikan informasi, bukti, atau keterangan",
-        B: "(i) Pasal 39 UU KUP karena menyampaikan keterangan yang isinya tidak benar; (ii) UU 9/2017; (iii) Pasal 41A UU KUP",
-        C: "(i) UU 9/2017 tentang pernyataan palsu: kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000; (ii) UU 9/2017, ketentuan pidana bagi pimpinan atau pegawai lembaga jasa keuangan; (iii) Pasal 41B UU KUP",
-        D: "(i) UU 9/2017 tentang pernyataan palsu: kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000; (ii) Pasal 41C UU KUP; (iii) Pasal 41A UU KUP"
-      },
+      opsi: { A: "(i) UU 9/2017 tentang pernyataan palsu: kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000; (ii) Pasal 41C UU KUP; (iii) UU 9/2017 karena notaris tidak memberikan informasi, bukti, atau keterangan", B: "(i) Pasal 39 UU KUP karena menyampaikan keterangan yang isinya tidak benar; (ii) UU 9/2017; (iii) Pasal 41A UU KUP", C: "(i) UU 9/2017 tentang pernyataan palsu: kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000; (ii) UU 9/2017, ketentuan pidana bagi pimpinan atau pegawai lembaga jasa keuangan; (iii) Pasal 41B UU KUP", D: "(i) UU 9/2017 tentang pernyataan palsu: kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000; (ii) Pasal 41C UU KUP; (iii) Pasal 41A UU KUP" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
         inti: "Pernyataan palsu dalam rangka akses informasi keuangan, termasuk pernyataan diri nasabah, diancam UU 9/2017 dengan kurungan paling lama 1 tahun atau denda paling banyak Rp1.000.000.000. Kewajiban ILAP bersumber dari Pasal 35A UU KUP sehingga ancamannya Pasal 41C, sedangkan pihak ketiga yang diminta keterangan atau bukti berdasarkan Pasal 35 (notaris) diancam Pasal 41A.",
-        jejakHitung: [["(i) nasabah, pernyataan diri tidak benar", "UU 9/2017 (pernyataan palsu)"], ["(ii) pejabat ILAP, data rutin Pasal 35A", "Pasal 41C UU KUP"], ["(iii) notaris, permintaan tertulis Dirjen Pasal 35", "Pasal 41A UU KUP"]],
-        mengapaSalah: { A: "Notaris bukan lembaga jasa keuangan; kewajibannya memberi keterangan atau bukti bersumber dari Pasal 35 UU KUP sehingga ancamannya Pasal 41A.", B: "Pernyataan palsu dalam rangka identifikasi rekening keuangan diatur khusus dalam UU 9/2017, bukan Pasal 39 UU KUP yang menyangkut pemenuhan kewajiban perpajakan Wajib Pajak; selain itu ILAP diancam Pasal 41C, bukan UU 9/2017.", C: "Instansi pemerintah bukan lembaga jasa keuangan, dan Pasal 41B ditujukan bagi orang yang menghalangi atau mempersulit penyidikan, bukan pihak ketiga yang menolak permintaan dalam pemeriksaan." },
+        jejakHitung: [
+          ["(i) nasabah, pernyataan diri tidak benar", "UU 9/2017 (pernyataan palsu)"],
+          ["(ii) pejabat ILAP, data rutin Pasal 35A", "Pasal 41C UU KUP"],
+          ["(iii) notaris, permintaan tertulis Dirjen Pasal 35", "Pasal 41A UU KUP"]
+        ],
+        mengapaSalah: {
+          A: "Notaris bukan lembaga jasa keuangan; kewajibannya memberi keterangan atau bukti bersumber dari Pasal 35 UU KUP sehingga ancamannya Pasal 41A.",
+          B: "Pernyataan palsu dalam rangka identifikasi rekening keuangan diatur khusus dalam UU 9/2017, bukan Pasal 39 UU KUP yang menyangkut pemenuhan kewajiban perpajakan Wajib Pajak; selain itu ILAP diancam Pasal 41C, bukan UU 9/2017.",
+          C: "Instansi pemerintah bukan lembaga jasa keuangan, dan Pasal 41B ditujukan bagi orang yang menghalangi atau mempersulit penyidikan, bukan pihak ketiga yang menolak permintaan dalam pemeriksaan."
+        },
         jebakan: "Tentukan dulu sumber kewajibannya (UU 9/2017, Pasal 35, atau Pasal 35A), baru pilih pasal pidananya."
       },
-      dasarHukum: [{ pasal: "UU 9/2017, ketentuan pidana pernyataan palsu (nomor pasal ◐)", berlakuSejak: "2017-05-08" }, { pasal: "Pasal 35, 35A, 41A, dan 41C UU KUP; PP 31/2012", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 180, verifikasi: "◐",
-      peringatan: "Nomor pasal ketentuan pidana pernyataan palsu dalam UU 9/2017 belum dicocokkan dengan teks resmi sehingga dasar hukumnya ditulis deskriptif (◐); besaran ancamannya konsisten di beberapa sumber. Besaran ancaman Pasal 41C sengaja tidak dijadikan pembeda opsi. Soal tidak menguji nomor pasal UU 9/2017."
+      dasarHukum: [{ pasal: "Pasal 7 ayat (3) UU 9/2017", berlakuSejak: "2017-05-08" }, { pasal: "Pasal 35, 35A, 41A, dan 41C UU KUP; Pasal 2 ayat (1) PP 31/2012", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
-      id: "A2-113", topik: "A2.12", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A2-09",
+      id: "A2-113",
+      topik: "A2.12",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-A2-09",
       stem: "Data untuk soal vignette V-A2-09: PT Bank Arta Nusa adalah bank umum di bawah pengawasan OJK. Data rekening per 31 Desember 2026: (1) Tuan Bayu memiliki tabungan Rp350.000.000 dan deposito Rp700.000.000 di Bank Arta Nusa; (2) Nyonya Citra memiliki tabungan Rp600.000.000 di Bank Arta Nusa dan Rp800.000.000 di bank lain; (3) CV Rimba Jaya memiliki giro Rp45.000.000 di Bank Arta Nusa; (4) Tuan Dimas memiliki rekening efek senilai Rp250.000.000 yang ditatausahakan Bank Arta Nusa sebagai Lembaga Kustodian. Menurut PMK 108/2025, rekening yang wajib dimuat Bank Arta Nusa dalam laporan informasi keuangan untuk kepentingan perpajakan domestik data 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "(1) saja", B: "(1), (2), (3), dan (4)", C: "(1), (3), dan (4)", D: "(1) dan (3)" },
@@ -3083,58 +3247,80 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Ambang Rp1.000.000.000 hanya berlaku untuk rekening orang pribadi di Lembaga Simpanan dan dihitung dari saldo agregat per lembaga per 31 Desember. Rekening entitas serta rekening pada Lembaga Kustodian dilaporkan tanpa batas saldo.",
-        jejakHitung: [["(1) Tuan Bayu: Rp350.000.000 + Rp700.000.000", "Rp1.050.000.000 ≥ Rp1 miliar → dilaporkan"], ["(2) Nyonya Citra di Bank Arta Nusa", "Rp600.000.000 < Rp1 miliar → tidak dilaporkan (agregasi per lembaga)"], ["(3) CV Rimba Jaya (entitas)", "tanpa batas saldo → dilaporkan"], ["(4) Tuan Dimas (Lembaga Kustodian)", "tanpa batas saldo → dilaporkan"]],
-        mengapaSalah: { A: "Ambang Rp1 miliar diterapkan juga pada rekening entitas dan rekening kustodian, padahal keduanya tanpa batas saldo.", B: "Saldo Nyonya Citra dijumlahkan lintas bank (Rp1,4 miliar), padahal agregasi dilakukan per lembaga.", D: "Rekening kustodian diperlakukan seperti rekening Lembaga Simpanan; rekening pada Lembaga Kustodian dilaporkan tanpa batas saldo." },
+        jejakHitung: [
+          ["(1) Tuan Bayu: Rp350.000.000 + Rp700.000.000", "Rp1.050.000.000 ≥ Rp1 miliar → dilaporkan"],
+          ["(2) Nyonya Citra di Bank Arta Nusa", "Rp600.000.000 < Rp1 miliar → tidak dilaporkan (agregasi per lembaga)"],
+          ["(3) CV Rimba Jaya (entitas)", "tanpa batas saldo → dilaporkan"],
+          ["(4) Tuan Dimas (Lembaga Kustodian)", "tanpa batas saldo → dilaporkan"]
+        ],
+        mengapaSalah: {
+          A: "Ambang Rp1 miliar diterapkan juga pada rekening entitas dan rekening kustodian, padahal keduanya tanpa batas saldo.",
+          B: "Saldo Nyonya Citra dijumlahkan lintas bank (Rp1,4 miliar), padahal agregasi dilakukan per lembaga.",
+          D: "Rekening kustodian diperlakukan seperti rekening Lembaga Simpanan; rekening pada Lembaga Kustodian dilaporkan tanpa batas saldo."
+        },
         jebakan: "Rp1 miliar adalah ambang khusus rekening orang pribadi di Lembaga Simpanan, dihitung per lembaga, bukan ambang umum semua rekening."
       },
-      dasarHukum: [{ pasal: "PMK 108/2025", berlakuSejak: "2026-01-01" }, { pasal: "Pasal 2 ayat (2) huruf b UU 9/2017", berlakuSejak: "2017-05-08" }],
-      anggaranDetik: 170, verifikasi: "◐",
-      peringatan: "Teks PMK 108/2025 tidak terbaca langsung; ambang Rp1 miliar per lembaga untuk orang pribadi di Lembaga Simpanan, rekening entitas tanpa batas, dan Lembaga Kustodian tanpa batas diambil dari ringkasan JDIH Kemenkeu, FAQ DJP, IKPI, dan DDTC yang konsisten."
+      dasarHukum: [{ pasal: "Pasal 33 ayat (1) dan Pasal 35 ayat (7)–(8) PMK 108/2025", berlakuSejak: "2026-01-01" }, { pasal: "Pasal 2 ayat (2) huruf b UU 9/2017", berlakuSejak: "2017-05-08" }],
+      anggaranDetik: 170,
+      verifikasi: "✅"
     },
     {
-      id: "A2-114", topik: "A2.12", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, kasusId: "V-A2-09",
-      stem: "Lanjutan V-A2-09: PT Bank Arta Nusa (bank umum di bawah pengawasan OJK) menyiapkan laporan informasi keuangan data 2026. Perusahaan satu grupnya, PT Amanah Kelola, adalah entitas lain yang dikategorikan sebagai lembaga keuangan (Entitas Investasi), tidak berada di bawah pengawasan OJK, dan sepanjang 2026 tidak mempunyai satu pun rekening yang wajib dilaporkan. Menurut PMK 108/2025, pernyataan yang paling tepat adalah ...",
+      id: "A2-114",
+      topik: "A2.12",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kasusId: "V-A2-09",
+      stem: "Lanjutan V-A2-09: PT Bank Arta Nusa (bank umum di bawah pengawasan OJK) menyiapkan laporan yang berisi informasi Rekening Keuangan dalam rangka pelaksanaan perjanjian internasional (laporan CRS) data 2026. Perusahaan satu grupnya, PT Amanah Kelola, adalah entitas lain yang dikategorikan sebagai lembaga keuangan (Entitas Investasi), tidak berada di bawah pengawasan OJK, dan tidak mempunyai satu pun rekening yang wajib dilaporkan dalam laporan CRS data 2026. Menurut PMK 108/2025, pernyataan yang paling tepat tentang saluran dan batas waktu laporan CRS tersebut sebagaimana ditetapkan (sebelum pergeseran karena hari libur) adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Bank Arta Nusa menyampaikan laporan ke OJK paling lambat 31 Agustus 2027 dan OJK meneruskannya ke DJP paling lambat 30 September 2027; PT Amanah Kelola menyampaikan laporan nihil langsung ke DJP paling lambat 30 April 2027",
-        B: "Bank Arta Nusa dan PT Amanah Kelola sama-sama menyampaikan laporan langsung ke DJP paling lambat 30 April 2027, dan laporan PT Amanah Kelola berupa laporan nihil",
-        C: "Bank Arta Nusa menyampaikan laporan ke OJK paling lambat 1 Agustus 2027 dan OJK meneruskannya ke DJP paling lambat 31 Agustus 2027; PT Amanah Kelola tidak perlu menyampaikan laporan karena tidak ada rekening yang wajib dilaporkan",
-        D: "Bank Arta Nusa menyampaikan laporan ke OJK paling lambat 1 Agustus 2027 dan OJK meneruskannya ke DJP paling lambat 31 Agustus 2027; PT Amanah Kelola menyampaikan laporan nihil langsung ke DJP paling lambat 30 April 2027"
-      },
+      opsi: { A: "Bank Arta Nusa menyampaikan laporan ke OJK paling lambat tanggal 31 Agustus dan OJK meneruskannya ke DJP paling lambat tanggal 30 September; PT Amanah Kelola menyampaikan laporan nihil langsung ke DJP paling lambat tanggal 30 April", B: "Bank Arta Nusa dan PT Amanah Kelola sama-sama menyampaikan laporan langsung ke DJP paling lambat tanggal 30 April, dan laporan PT Amanah Kelola berupa laporan nihil", C: "Bank Arta Nusa menyampaikan laporan ke OJK paling lambat tanggal 1 Agustus dan OJK meneruskannya ke DJP paling lambat tanggal 31 Agustus; PT Amanah Kelola tidak perlu menyampaikan laporan karena tidak ada rekening yang wajib dilaporkan", D: "Bank Arta Nusa menyampaikan laporan ke OJK paling lambat tanggal 1 Agustus dan OJK meneruskannya ke DJP paling lambat tanggal 31 Agustus; PT Amanah Kelola menyampaikan laporan nihil langsung ke DJP paling lambat tanggal 30 April" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
-        inti: "PMK 108/2025 membedakan tenggat menurut jenis pelapor: LJK di bawah pengawasan OJK menyampaikan laporan ke OJK paling lambat 1 Agustus dan OJK meneruskannya ke DJP paling lambat 31 Agustus; LJK lainnya dan entitas lain melapor langsung ke DJP paling lambat 30 April. Pelapor yang tidak mempunyai rekening yang wajib dilaporkan tetap menyampaikan laporan nihil.",
-        jejakHitung: [["Bank Arta Nusa (diawasi OJK)", "ke OJK ≤ 1 Agustus 2027; OJK ke DJP ≤ 31 Agustus 2027"], ["PT Amanah Kelola (entitas lain, tidak diawasi OJK)", "langsung ke DJP ≤ 30 April 2027"], ["Tidak ada rekening yang wajib dilaporkan", "laporan nihil tetap wajib"]],
-        mengapaSalah: { A: "Tenggat bank ke OJK adalah 1 Agustus; 31 Agustus adalah tenggat OJK meneruskan laporan ke DJP.", B: "Saluran langsung dan tenggat 30 April hanya untuk LJK lainnya/entitas lain; bank di bawah pengawasan OJK melapor melalui OJK paling lambat 1 Agustus.", C: "Laporan nihil tetap wajib walaupun tidak ada rekening yang wajib dilaporkan." },
-        jebakan: "Tenggat ditentukan oleh jenis pelapor (diawasi OJK atau tidak), dan keadaan nihil bukan alasan untuk tidak melapor."
+        inti: "Untuk laporan CRS (pelaksanaan perjanjian internasional), PMK 108/2025 membedakan saluran dan tenggat menurut jenis pelapor: LJK di bawah pengawasan OJK menyampaikan laporan kepada OJK paling lambat tanggal 1 Agustus dan OJK meneruskannya kepada DJP paling lambat tanggal 31 Agustus; LJK lainnya dan Entitas Lain CRS menyampaikan laporan langsung kepada DJP melalui Portal Wajib Pajak paling lambat tanggal 30 April. Pelapor yang tidak mempunyai rekening yang wajib dilaporkan tetap menyampaikan laporan nihil.",
+        jejakHitung: [
+          ["Bank Arta Nusa (LJK diawasi OJK)", "ke OJK ≤ 1 Agustus; OJK ke DJP ≤ 31 Agustus"],
+          ["PT Amanah Kelola (Entitas Lain CRS, tidak diawasi OJK)", "langsung ke DJP ≤ 30 April"],
+          ["Tidak ada rekening yang wajib dilaporkan", "laporan nihil tetap wajib"],
+          ["Tahun 2027", "1 Agustus 2027 hari Minggu → bergeser ke Senin, 2 Agustus 2027"]
+        ],
+        mengapaSalah: {
+          A: "Tenggat bank ke OJK adalah 1 Agustus; 31 Agustus adalah tenggat OJK meneruskan laporan ke DJP, dan tidak ada tenggat 30 September.",
+          B: "Untuk laporan CRS, saluran langsung dan tenggat 30 April hanya untuk LJK lainnya dan Entitas Lain CRS; bank di bawah pengawasan OJK menyampaikan laporan CRS melalui OJK paling lambat 1 Agustus. Saluran langsung ke DJP 30 April bagi bank berlaku untuk laporan domestik, bukan laporan CRS.",
+          C: "Laporan nihil tetap wajib walaupun tidak ada rekening yang wajib dilaporkan."
+        },
+        jebakan: "Bedakan laporan CRS dari laporan domestik: laporan domestik semua pelapor, termasuk bank, disampaikan langsung ke DJP paling lambat 30 April. Tenggat yang jatuh pada hari Sabtu, Minggu, atau hari libur bergeser ke hari kerja berikutnya, sehingga untuk data 2026 batas bank ke OJK menjadi Senin, 2 Agustus 2027."
       },
-      dasarHukum: [{ pasal: "PMK 108/2025", berlakuSejak: "2026-01-01" }, { pasal: "Pasal 2 UU 9/2017", berlakuSejak: "2017-05-08" }],
-      anggaranDetik: 140, verifikasi: "◐",
-      peringatan: "Teks PMK 108/2025 tidak terbaca langsung; tenggat 1 Agustus, 31 Agustus, dan 30 April serta kewajiban laporan nihil diambil dari ringkasan JDIH Kemenkeu, FAQ DJP, IKPI, dan DDTC yang konsisten. Pergeseran tenggat yang jatuh pada hari libur tidak dibahas."
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) dan (13) serta Pasal 11 ayat (5) sampai (7) PMK 108/2025", berlakuSejak: "2026-01-01" }, { pasal: "Pasal 2 ayat (2) dan Pasal 3 ayat (1) UU 9/2017", berlakuSejak: "2017-05-08" }],
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
-      id: "A2-115", topik: "A2.12", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1, kasusId: "V-A2-09",
+      id: "A2-115",
+      topik: "A2.12",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      kasusId: "V-A2-09",
       kutipan: "Ketentuan UU 9/2017 tentang nasabah yang menolak identifikasi (parafrase setia): Lembaga jasa keuangan, lembaga jasa keuangan lainnya, dan/atau entitas lain tidak boleh melayani pembukaan rekening keuangan baru, atau transaksi baru terkait rekening keuangan, bagi nasabah yang menolak untuk mematuhi ketentuan identifikasi rekening keuangan.",
       stem: "Lanjutan V-A2-09: Pada Maret 2027 Tuan Erlangga, calon nasabah baru, meminta PT Bank Arta Nusa (bank umum di bawah pengawasan OJK) membuka deposito Rp2.000.000.000. Ia menolak mengisi pernyataan diri (self-certification) tentang negara domisili pajaknya dan menolak menyerahkan dokumen yang diminta dalam prosedur identifikasi rekening keuangan, lalu menawarkan agar deposito tetap dibuka dan dokumen dilengkapi tahun depan. Berdasarkan kutipan, tindakan bank yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Bank boleh membuka deposito karena saldonya di atas Rp1.000.000.000 sehingga rekening itu tetap akan dilaporkan; identifikasi dapat dilengkapi sebelum tenggat laporan",
-        B: "Bank tidak boleh melayani pembukaan deposito tersebut selama Tuan Erlangga menolak mematuhi ketentuan identifikasi rekening keuangan",
-        C: "Bank boleh membuka deposito karena prosedur identifikasi baru dilakukan atas rekening yang saldonya sudah diketahui per 31 Desember",
-        D: "Bank boleh membuka deposito bila Tuan Erlangga warga negara Indonesia, karena prosedur identifikasi hanya diperlukan untuk pertukaran informasi internasional"
-      },
+      opsi: { A: "Bank boleh membuka deposito karena saldonya di atas Rp1.000.000.000 sehingga rekening itu tetap akan dilaporkan; identifikasi dapat dilengkapi sebelum tenggat laporan", B: "Bank tidak boleh melayani pembukaan deposito tersebut selama Tuan Erlangga menolak mematuhi ketentuan identifikasi rekening keuangan", C: "Bank boleh membuka deposito karena prosedur identifikasi baru dilakukan atas rekening yang saldonya sudah diketahui per 31 Desember", D: "Bank boleh membuka deposito bila Tuan Erlangga warga negara Indonesia, karena prosedur identifikasi hanya diperlukan untuk pertukaran informasi internasional" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
         inti: "LJK tidak boleh melayani pembukaan rekening baru atau transaksi baru terkait rekening bagi nasabah yang menolak mematuhi ketentuan identifikasi rekening keuangan. Besarnya saldo maupun kewarganegaraan nasabah tidak mengubah larangan itu.",
         jejakHitung: [],
-        mengapaSalah: { A: "Kewajiban pelaporan tidak menggantikan prosedur identifikasi; nasabah yang menolak identifikasi tidak boleh dilayani.", C: "Identifikasi dilakukan saat pembukaan rekening baru, bukan menunggu posisi saldo akhir tahun.", D: "Prosedur identifikasi justru menentukan negara domisili pajak setiap pemegang rekening, termasuk WNI, dan larangan melayani berlaku tanpa membedakan kewarganegaraan." },
+        mengapaSalah: {
+          A: "Kewajiban pelaporan tidak menggantikan prosedur identifikasi; nasabah yang menolak identifikasi tidak boleh dilayani.",
+          C: "Identifikasi dilakukan saat pembukaan rekening baru, bukan menunggu posisi saldo akhir tahun.",
+          D: "Prosedur identifikasi justru menentukan negara domisili pajak setiap pemegang rekening, termasuk WNI, dan larangan melayani berlaku tanpa membedakan kewarganegaraan."
+        },
         jebakan: "Nilai deposito yang besar menggoda untuk tetap dilayani; larangan tidak mengenal pengecualian saldo."
       },
-      dasarHukum: [{ pasal: "UU 9/2017, larangan melayani nasabah (nomor pasal ◐)", berlakuSejak: "2017-05-08" }, { pasal: "PMK 108/2025 (prosedur identifikasi rekening keuangan)", berlakuSejak: "2026-01-01" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "Substansi larangan melayani nasabah yang menolak identifikasi konsisten di sumber; nomor pasalnya dalam UU 9/2017 belum dicocokkan dengan teks resmi sehingga dasar hukumnya ditulis deskriptif (◐). Soal tidak menguji nomor pasal."
+      dasarHukum: [{ pasal: "Pasal 2 ayat (4) dan (6) UU 9/2017", berlakuSejak: "2017-05-08" }, { pasal: "Pasal 14 ayat (1) PMK 108/2025", berlakuSejak: "2026-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-116", topik: "A2.12", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
@@ -3159,26 +3345,35 @@ UKP.register({
       anggaranDetik: 180, verifikasi: "✅"
     },
     {
-      id: "A2-117", topik: "A2.12", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A2-117",
+      topik: "A2.12",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Pada Februari 2026 dua klien meminta pendapat konsultan pajak tentang PMK 108/2025 yang berlaku 1 Januari 2026. (1) PT Bank Lestari (bank umum di bawah pengawasan OJK) sedang menyiapkan identifikasi dan laporan atas informasi rekening keuangan yang tercatat sampai 31 Desember 2025. (2) PT Kripto Mandiri Digital, penyedia jasa aset kripto (PJAK), bertanya apakah transaksi aset kripto penggunanya selama 2025 harus dilaporkan sebagai CARF pada 2026, dan apa yang harus dilakukan bila kelak tidak ada pengguna atau transaksi yang wajib dilaporkan. Pendapat yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "(1) mengikuti ketentuan lama (PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024) untuk informasi yang tercatat sampai 31 Desember 2025; (2) CARF pertama memuat data 2026, disampaikan paling lambat 30 April 2027, dan laporan nihil tetap wajib bila tidak ada yang wajib dilaporkan",
-        B: "(1) wajib memakai seluruh ketentuan PMK 108/2025 karena laporan disampaikan setelah 1 Januari 2026; (2) CARF pertama memuat data 2026, disampaikan paling lambat 30 April 2027, dan laporan nihil tetap wajib bila tidak ada yang wajib dilaporkan",
-        C: "(1) mengikuti ketentuan lama untuk informasi yang tercatat sampai 31 Desember 2025; (2) transaksi 2025 wajib dilaporkan sebagai CARF paling lambat 30 April 2026, sedangkan laporan nihil tidak diperlukan",
-        D: "(1) mengikuti ketentuan lama untuk informasi yang tercatat sampai 31 Desember 2025; (2) CARF pertama memuat data 2026 dan disampaikan paling lambat 30 April 2027, tetapi PJAK yang tidak mempunyai pengguna atau transaksi yang wajib dilaporkan tidak perlu menyampaikan laporan"
-      },
+      opsi: { A: "(1) mengikuti ketentuan lama (PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024) untuk informasi yang tercatat sampai 31 Desember 2025; (2) CARF pertama memuat data 2026, disampaikan paling lambat 30 April 2027, dan laporan nihil tetap wajib bila tidak ada yang wajib dilaporkan", B: "(1) wajib memakai seluruh ketentuan PMK 108/2025 karena laporan disampaikan setelah 1 Januari 2026; (2) CARF pertama memuat data 2026, disampaikan paling lambat 30 April 2027, dan laporan nihil tetap wajib bila tidak ada yang wajib dilaporkan", C: "(1) mengikuti ketentuan lama untuk informasi yang tercatat sampai 31 Desember 2025; (2) transaksi 2025 wajib dilaporkan sebagai CARF paling lambat 30 April 2026, sedangkan laporan nihil tidak diperlukan", D: "(1) mengikuti ketentuan lama untuk informasi yang tercatat sampai 31 Desember 2025; (2) CARF pertama memuat data 2026 dan disampaikan paling lambat 30 April 2027, tetapi PJAK yang tidak mempunyai pengguna atau transaksi yang wajib dilaporkan tidak perlu menyampaikan laporan" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Menurut ketentuan peralihan PMK 108/2025, informasi yang tercatat sampai 31 Desember 2025 masih mengikuti rezim lama. Kewajiban CARF bagi PJAK dimulai untuk data 2026, dilaporkan paling lambat 30 April 2027 dan dipertukarkan dengan yurisdiksi mitra mulai 2027; laporan nihil tetap wajib.",
-        jejakHitung: [["(1) informasi s.d. 31 Desember 2025", "rezim lama (PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024)"], ["(2) transaksi kripto 2025", "belum ada kewajiban CARF"], ["(2) data CARF 2026", "lapor paling lambat 30 April 2027; pertukaran mulai 2027"], ["Tidak ada yang wajib dilaporkan", "laporan nihil"]],
-        mengapaSalah: { B: "Tanggal berlaku PMK baru tidak menarik informasi 2025 ke rezim baru; informasi yang tercatat sampai 31 Desember 2025 masih mengikuti ketentuan lama.", C: "CARF baru berlaku untuk data 2026, dan laporan nihil tetap wajib.", D: "Laporan nihil tetap wajib walaupun tidak ada pengguna atau transaksi yang wajib dilaporkan." },
-        jebakan: "Bedakan tahun data dari tahun pelaporan: informasi 2025 dilaporkan pada 2026 dengan rezim lama, data 2026 dilaporkan pada 2027 dengan rezim baru."
+        inti: "Ketentuan peralihan PMK 108/2025: prosedur identifikasi untuk informasi Rekening Keuangan yang tercatat sampai 31 Desember 2025 dan laporan yang disampaikan sampai 30 September 2026 masih mengikuti PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024. Kewajiban CARF bagi PJAK dilaksanakan pertama kali atas tahun data 2026, dilaporkan paling lambat 30 April 2027 dan dipertukarkan mulai 2027; laporan nihil tetap wajib bila tidak ada informasi yang wajib dilaporkan.",
+        jejakHitung: [
+          ["(1) identifikasi informasi s.d. 31 Desember 2025", "rezim lama (PMK 70/PMK.03/2017 s.t.d.t.d. PMK 47/2024)"],
+          ["(1) laporan yang disampaikan s.d. 30 September 2026", "rezim lama"],
+          ["(2) transaksi kripto 2025", "belum ada kewajiban CARF"],
+          ["(2) data CARF 2026", "lapor paling lambat 30 April 2027; pertukaran mulai 2027"],
+          ["Tidak ada yang wajib dilaporkan", "laporan nihil"]
+        ],
+        mengapaSalah: {
+          B: "Tanggal berlaku PMK baru tidak menarik informasi 2025 ke rezim baru: identifikasi atas informasi yang tercatat sampai 31 Desember 2025 dan laporan yang disampaikan sampai 30 September 2026 masih mengikuti ketentuan lama.",
+          C: "CARF baru dilaksanakan pertama kali atas tahun data 2026, dan laporan nihil tetap wajib.",
+          D: "Laporan nihil tetap wajib walaupun tidak ada pengguna atau transaksi yang wajib dilaporkan."
+        },
+        jebakan: "Bedakan tahun data dari tanggal penyampaian: laporan data 2025 yang disampaikan sampai 30 September 2026 memakai rezim lama, tetapi laporan data 2025 atau pembetulan yang baru disampaikan sejak 1 Oktober 2026 sudah mengikuti PMK 108/2025; data 2026 dilaporkan pada 2027 dengan rezim baru."
       },
-      dasarHukum: [{ pasal: "PMK 108/2025 (ketentuan peralihan dan CARF)", berlakuSejak: "2026-01-01" }],
-      anggaranDetik: 170, verifikasi: "◐",
-      peringatan: "Teks PMK 108/2025 tidak terbaca langsung; ketentuan peralihan, jadwal CARF (data 2026, lapor paling lambat 30 April 2027, pertukaran mulai 2027), dan laporan nihil diambil dari ringkasan JDIH Kemenkeu, FAQ DJP, IKPI, dan DDTC."
+      dasarHukum: [{ pasal: "Pasal 59 PMK 108/2025 (ketentuan peralihan)", berlakuSejak: "2026-01-01" }, { pasal: "Pasal 18 ayat (6), Pasal 22 ayat (10), dan Pasal 24 ayat (4) PMK 108/2025 (CARF)", berlakuSejak: "2026-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅"
     },
     {
       id: "A2-118",
@@ -3255,8 +3450,7 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "UU 14/2002 Pasal 84 ayat (1) huruf g dan h serta ayat (2)", berlakuSejak: "2002-04-12" }],
       anggaranDetik: 90,
-      verifikasi: "◐",
-      peringatan: "Opsi B (kunci) terpotong di sumber try out (hanya \"kecuali putusan telah melampaui 1 tahun\"); bagian awalnya dilengkapi menurut bunyi Ps. 84 ayat (2) UU 14/2002 (putusan tidak sah dan Ketua memerintahkan sengketa segera disidangkan kembali dengan acara cepat). Kalimat penjelasan sumber juga terpotong di tempat yang sama.",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 34, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -3317,7 +3511,7 @@ UKP.register({
     {
       id: "A2-123",
       topik: "A2.6",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 2,
       stem: "Atas SPT Tahunan PPh Badan Tahun Pajak 2023, DJP telah menerbitkan SKPKB kepada PT Ortax Distributor dan ketetapan tersebut telah dilunasi. Pada 2026 DJP memperoleh data baru dari pihak ketiga, lalu melakukan pemeriksaan dalam rangka penerbitan SKPKBT. Hasilnya, terdapat tambahan pajak terutang Rp60.000.000. PT Ortax Distributor tidak pernah menyampaikan keterangan tertulis atas kehendak sendiri. Produk hukum dan jumlah yang harus dibayar adalah ...",
@@ -3327,16 +3521,21 @@ UKP.register({
       jebakanOpsi: { B: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
         inti: "Karena SKPKB Tahun Pajak 2023 telah terbit, data baru yang menambah pajak terutang ditetapkan dengan SKPKBT, yang masih dapat diterbitkan dalam 5 tahun setelah berakhirnya Tahun Pajak. Kekurangan pajak dalam SKPKBT ditambah kenaikan 100%, karena tidak ada keterangan tertulis atas kehendak sendiri sebelum pemeriksaan.",
-        jejakHitung: [ [ "Kekurangan pajak", "Rp60.000.000" ], [ "Kenaikan 100% × Rp60.000.000", "Rp60.000.000" ], [ "Jumlah SKPKBT", "Rp120.000.000" ] ],
-        mengapaSalah: { B: "SKPKBT tanpa kenaikan hanya berlaku bila diterbitkan berdasarkan keterangan tertulis atas kehendak sendiri sebelum pemeriksaan.", C: "Setelah SKPKB terbit, ketetapan atas data baru adalah SKPKBT, bukan SKPKB.", D: "Memakai kenaikan 75% yang berlaku untuk SKPKB tertentu, bukan SKPKBT." },
+        jejakHitung: [
+          ["Kekurangan pajak", "Rp60.000.000"],
+          ["Kenaikan 100% × Rp60.000.000", "Rp60.000.000"],
+          ["Jumlah SKPKBT", "Rp120.000.000"]
+        ],
+        mengapaSalah: {
+          B: "SKPKBT tanpa kenaikan hanya berlaku bila diterbitkan berdasarkan keterangan tertulis atas kehendak sendiri sebelum pemeriksaan.",
+          C: "Setelah SKPKB terbit, ketetapan atas data baru adalah SKPKBT, bukan SKPKB.",
+          D: "Memakai kenaikan 75% yang berlaku untuk SKPKB tertentu, bukan SKPKBT."
+        },
         jebakan: "Bandingkan setiap opsi dengan dasar hukum: UU KUP Pasal 15 ayat (1) dan (2) s.t.d.t.d. UU 6/2023."
       },
-      dasarHukum: [
-        { pasal: "UU KUP Pasal 15 ayat (1) dan (2) s.t.d.t.d. UU 6/2023", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU KUP Pasal 15 ayat (1) dan (2) s.t.d.t.d. UU 6/2023", berlakuSejak: null }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Baris kelompok tidak ada di sumber (soal juga tersalin dobel di akhir Soal No. 48); kelompok A2 (KUP) disimpulkan dari isi.",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 49, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -3442,7 +3641,7 @@ UKP.register({
     {
       id: "A2-128",
       topik: "A2.11",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "kasus",
       kesulitan: 3,
       stem: "Putusan banding atas sengketa PT Ortax Elektrik diucapkan pada 24 Februari 2026 dan dikirim kepada para pihak pada 3 Maret 2026. Putusan menolak banding sehingga perusahaan harus melunasi kekurangan pajak. Pada 13 Juli 2026 perusahaan menemukan bukti tertulis baru yang penting dan menentukan; hari dan tanggal penemuannya dinyatakan di bawah sumpah dan disahkan pejabat berwenang. Analisis yang tepat adalah ...",
@@ -3453,16 +3652,16 @@ UKP.register({
       pembahasan: {
         inti: "PK hanya dapat diajukan satu kali. Untuk alasan bukti tertulis baru yang penting dan menentukan, PK diajukan paling lambat 3 bulan sejak bukti ditemukan (tanggal penemuan dinyatakan di bawah sumpah dan disahkan pejabat berwenang), yaitu 13 Oktober 2026 (Selasa). Permohonan PK tidak menangguhkan atau menghentikan pelaksanaan putusan Pengadilan Pajak.",
         jejakHitung: [],
-        mengapaSalah: { A: "Untuk alasan novum, jangka 3 bulan dihitung sejak bukti ditemukan, bukan sejak putusan dikirim.", C: "Jangka waktunya benar, tetapi PK tidak menangguhkan pelaksanaan putusan.", D: "Jangka PK hanya 3 bulan, dan PK tidak menangguhkan penagihan." },
+        mengapaSalah: {
+          A: "Untuk alasan novum, jangka 3 bulan dihitung sejak bukti ditemukan, bukan sejak putusan dikirim.",
+          C: "Jangka waktunya benar, tetapi PK tidak menangguhkan pelaksanaan putusan.",
+          D: "Jangka PK hanya 3 bulan, dan PK tidak menangguhkan penagihan."
+        },
         jebakan: "Langkah: Tanggal bukti ditemukan (di bawah sumpah): 13 Juli 2026; + 3 bulan: 13 Oktober 2026 (Selasa)."
       },
-      dasarHukum: [
-        { pasal: "UU 14/2002 Pasal 77 ayat (3), Pasal 89 ayat (1)–(2), Pasal 91 huruf b, Pasal 92 ayat (2)", berlakuSejak: null },
-        { pasal: "UU KUP Pasal 27 ayat (5e) s.t.d.t.d. UU 6/2023", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU 14/2002 Pasal 77 ayat (3), Pasal 89 ayat (1)–(2), Pasal 91 huruf b, Pasal 92 ayat (2)", berlakuSejak: "2002-04-12" }, { pasal: "UU KUP Pasal 27 ayat (5e) s.t.d.t.d. UU 6/2023", berlakuSejak: "2021-10-29" }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Sumber tidak memuat bagian Pengecoh; alasan opsi salah disusun sendiri. · Opsi A, B, C, D terpotong/teracak di sumber (sebagian teks A tercampur dengan akhir B; C berhenti di \"Mahkamah\", D berhenti di \"sampai\"). Opsi dilengkapi dari pembahasan (PK tidak menangguhkan pelaksanaan putusan).",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 61, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -3540,7 +3739,7 @@ UKP.register({
     {
       id: "A2-132",
       topik: "A2.11",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "kasus",
       kesulitan: 1,
       kutipan: "UU KUP Pasal 23 ayat (2) huruf a dan b (dikutip try out): Gugatan Wajib Pajak atau Penanggung Pajak terhadap: a. pelaksanaan Surat Paksa, Surat Perintah Melaksanakan Penyitaan, atau Pengumuman Lelang; b. keputusan pencegahan dalam rangka penagihan pajak; ... hanya dapat diajukan kepada badan peradilan pajak.",
@@ -3552,16 +3751,16 @@ UKP.register({
       pembahasan: {
         inti: "Yang dipersoalkan adalah pelaksanaan Surat Perintah Melaksanakan Penyitaan, yaitu tindakan penagihan pajak. Pasal 23 ayat (2) huruf a UU KUP menetapkan bahwa gugatan terhadap pelaksanaan Surat Paksa, Surat Perintah Melaksanakan Penyitaan, atau Pengumuman Lelang hanya dapat diajukan kepada badan peradilan pajak; Pasal 31 ayat (3) UU 14/2002 menyebut Pengadilan Pajak dalam hal gugatan memeriksa sengketa atas pelaksanaan penagihan pajak. Banding hanya dapat diajukan atas Surat Keputusan Keberatan.",
         jejakHitung: [],
-        mengapaSalah: { A: "Banding hanya atas Surat Keputusan Keberatan; pelaksanaan penyitaan adalah objek gugatan.", C: "Keberatan diajukan atas surat ketetapan pajak atau pemotongan/pemungutan, bukan atas pelaksanaan penyitaan.", D: "Gugatan atas pelaksanaan penagihan pajak hanya dapat diajukan kepada badan peradilan pajak, bukan Pengadilan Tata Usaha Negara." },
+        mengapaSalah: {
+          A: "Banding hanya atas Surat Keputusan Keberatan; pelaksanaan penyitaan adalah objek gugatan.",
+          C: "Keberatan diajukan atas surat ketetapan pajak atau pemotongan/pemungutan, bukan atas pelaksanaan penyitaan.",
+          D: "Gugatan atas pelaksanaan penagihan pajak hanya dapat diajukan kepada badan peradilan pajak, bukan Pengadilan Tata Usaha Negara."
+        },
         jebakan: "Banding → atas SK Keberatan; gugatan → atas pelaksanaan penagihan (Surat Paksa, SPMP, Pengumuman Lelang), keputusan pencegahan, dan keputusan lain sesuai Pasal 23 ayat (2) UU KUP."
       },
-      dasarHukum: [
-        { pasal: "UU KUP Pasal 23 ayat (2) huruf a dan Pasal 27 ayat (1) s.t.d.t.d. UU 6/2023", berlakuSejak: null },
-        { pasal: "UU 14/2002 Pasal 31 ayat (2) dan (3)", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU KUP Pasal 23 ayat (2) huruf a dan Pasal 27 ayat (1) s.t.d.t.d. UU 6/2023", berlakuSejak: "2008-01-01" }, { pasal: "UU 14/2002 Pasal 31 ayat (2) dan (3)", berlakuSejak: "2002-04-12" }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Teks opsi B kosong di sumber; disusun dari pembahasan (gugatan kepada Pengadilan Pajak atas pelaksanaan SPMP), sejajar dengan pola opsi lain.",
+      verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 86, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -3659,7 +3858,7 @@ UKP.register({
     { id: "KT-A2-43", topik: "A2.1", tipe: "definisi", depan: "Dokumen apa saja yang termasuk surat ketetapan pajak?", belakang: "SKPKB, SKPKBT, SKPLB, dan SKPN; STP bukan surat ketetapan pajak", dasar: "Pasal 1 UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-44", topik: "A2.1", tipe: "prosedur", depan: "Siapa yang dapat menjadi kuasa Wajib Pajak menurut PMK 44/2026?", belakang: "Konsultan pajak, pihak lain ber-SKT, atau keluarga sampai derajat kedua", dasar: "PMK 44/2026 Pasal 2–3; Pasal 32 ayat (3) UU KUP", berlakuSejak: "2026-07-06", menggantikan: "hanya konsultan pajak atau karyawan WP (PMK 229/PMK.03/2014)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-45", topik: "A2.1", tipe: "pasal", depan: "Isi wajib surat kuasa khusus menurut PMK 44/2026?", belakang: "Hak/kewajiban yang dikuasakan dan masa berlaku; tidak boleh disubstitusikan", dasar: "PMK 44/2026 Pasal 8", berlakuSejak: "2026-07-06", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-A2-46", topik: "A2.3", tipe: "pasal", depan: "Kapan SPT dianggap tidak disampaikan?", belakang: "Tidak ditandatangani, tidak lengkap, LB lewat 3 tahun dan ditegur, atau setelah pemeriksaan/SKP", dasar: "Pasal 6 ayat (5) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A2-46", topik: "A2.3", tipe: "pasal", depan: "Kapan SPT dianggap tidak disampaikan?", belakang: "Tidak ditandatangani, tidak lengkap, LB lewat 3 tahun dan ditegur, atau setelah pemeriksaan/SKP", dasar: "Pasal 3 ayat (7) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-47", topik: "A2.3", tipe: "prosedur", depan: "Jatuh tempo pelunasan STP/SKPKB jatuh pada hari libur?", belakang: "Tidak bergeser; berbeda dengan jatuh tempo setor pajak masa yang bergeser", dasar: "Pasal 9 ayat (3) UU KUP; PMK 81/2024 Pasal 100", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-48", topik: "A2.3", tipe: "pasal", depan: "Pembetulan SPT setelah SKP tahun lalu mengubah rugi fiskal yang dikompensasikan?", belakang: "Paling lama 3 bulan setelah menerima SKP/keputusan/putusan tersebut", dasar: "Pasal 8 ayat (6) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-49", topik: "A2.3", tipe: "prosedur", depan: "Pembetulan SPT di Coretax sejak 1 Oktober 2026?", belakang: "Memperhitungkan pembayaran dan pengembalian yang terjadi sebelum pembetulan disampaikan", dasar: "PER-12/PJ/2026", berlakuSejak: "2026-10-01", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
@@ -3680,13 +3879,13 @@ UKP.register({
     { id: "KT-A2-64", topik: "A2.11", tipe: "angka", depan: "Batas penerbitan STP atas denda 60% Putusan PK?", belakang: "Paling lama 2 tahun sejak Putusan PK diterima DJP", dasar: "Pasal 27 ayat (5f)–(5g) UU KUP", berlakuSejak: "2021-10-29", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-65", topik: "A2.6", tipe: "definisi", depan: "STP vs SKPKB: dasar terbit dan upaya hukumnya?", belakang: "STP menagih pokok berjalan/sanksi, tidak dapat keberatan; SKPKB hasil pemeriksaan, dapat keberatan", dasar: "Pasal 13, 14, 25 ayat (1), dan 36 UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-66", topik: "A2.10", tipe: "definisi", depan: "Bedakan Surat Teguran SPT dan Surat Teguran penagihan.", belakang: "Teguran SPT: dasar SKPKB Ps. 13(1)b; teguran penagihan: lewat 7 hari jatuh tempo", dasar: "Pasal 13 ayat (1) huruf b UU KUP; Pasal 8 UU PPSP; PMK 61/2023", berlakuSejak: "2023-06-12", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A2-67", topik: "A2.12", tipe: "definisi", depan: "Dua jalur akses informasi keuangan DJP menurut UU 9/2017?", belakang: "Laporan otomatis tahunan LJK dan permintaan informasi, bukti, atau keterangan (IBK)", dasar: "Pasal 2 UU 9/2017; ketentuan IBK (nomor pasal ◐)", berlakuSejak: "2017-05-08", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A2-67", topik: "A2.12", tipe: "definisi", depan: "Dua jalur akses informasi keuangan DJP menurut UU 9/2017?", belakang: "Laporan otomatis tahunan LJK dan permintaan informasi, bukti, atau keterangan (IBK)", dasar: "Pasal 2 ayat (2) dan Pasal 4 UU 9/2017", berlakuSejak: "2017-05-08", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-68", topik: "A2.12", tipe: "pasal", depan: "Dasar meminta data notaris/akuntan publik vs data bank dalam pemeriksaan?", belakang: "Notaris/akuntan: Pasal 35 UU KUP atas permintaan tertulis Dirjen; bank: UU 9/2017", dasar: "Pasal 35 UU KUP; Pasal 8 UU 9/2017", berlakuSejak: "2017-05-08", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-69", topik: "A2.12", tipe: "pasal", depan: "Rahasia bank dalam akses informasi keuangan untuk kepentingan perpajakan?", belakang: "Tidak berlaku; tanpa permintaan tertulis Menteri Keuangan per bank per nasabah", dasar: "Pasal 8 UU 9/2017", berlakuSejak: "2017-05-08", menggantikan: "Pasal 35 ayat (2) UU KUP: rahasia bank ditiadakan atas permintaan tertulis Menteri Keuangan", dekTambahan: [] },
     { id: "KT-A2-70", topik: "A2.12", tipe: "angka", depan: "Ancaman pidana UU 9/2017 bagi pimpinan/pegawai LJK dan bagi LJK?", belakang: "Pimpinan/pegawai: kurungan ≤ 1 tahun atau denda ≤ Rp1 miliar; LJK: denda ≤ Rp1 miliar", dasar: "UU 9/2017 Pasal 7", berlakuSejak: "2017-05-08", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A2-71", topik: "A2.12", tipe: "prosedur", depan: "Nasabah menolak prosedur identifikasi rekening keuangan?", belakang: "LJK tidak boleh melayani pembukaan rekening baru atau transaksi baru terkait rekening", dasar: "UU 9/2017, larangan melayani nasabah (nomor pasal ◐)", berlakuSejak: "2017-05-08", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A2-71", topik: "A2.12", tipe: "prosedur", depan: "Nasabah menolak prosedur identifikasi rekening keuangan?", belakang: "LJK tidak boleh melayani pembukaan rekening baru atau transaksi baru terkait rekening", dasar: "Pasal 2 ayat (6) UU 9/2017", berlakuSejak: "2017-05-08", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-72", topik: "A2.12", tipe: "angka", depan: "Ambang laporan domestik rekening orang pribadi menurut PMK 108/2025?", belakang: "Lembaga Simpanan (sejak 2026 termasuk uang elektronik tertentu): agregat per lembaga per 31 Desember ≥ Rp1 miliar; entitas tanpa batas", dasar: "PMK 108/2025", berlakuSejak: "2026-01-01", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-A2-73", topik: "A2.12", tipe: "angka", depan: "Tenggat laporan informasi keuangan menurut PMK 108/2025?", belakang: "LJK diawasi OJK: ke OJK 1 Agustus; OJK ke DJP 31 Agustus; lainnya 30 April", dasar: "PMK 108/2025", berlakuSejak: "2026-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A2-73", topik: "A2.12", tipe: "angka", depan: "Tenggat laporan informasi keuangan menurut PMK 108/2025?", belakang: "Laporan CRS: LJK diawasi OJK ke OJK 1 Agustus, OJK ke DJP 31 Agustus, lainnya langsung ke DJP 30 April. Laporan domestik: semua pelapor langsung ke DJP 30 April", dasar: "Pasal 11 ayat (5) dan (6) serta Pasal 37 ayat (1) PMK 108/2025", berlakuSejak: "2026-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-74", topik: "A2.12", tipe: "prosedur", depan: "Laporan CARF pertama oleh PJAK dan laporan nihil?", belakang: "Data 2026, lapor paling lambat 30 April 2027; laporan nihil tetap wajib", dasar: "PMK 108/2025", berlakuSejak: "2026-01-01", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] }
   ],
   kasus: [

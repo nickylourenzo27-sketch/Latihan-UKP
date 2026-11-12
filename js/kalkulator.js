@@ -1291,14 +1291,14 @@
   // ---------- 15. BUT & branch profit tax ----------
   K.push({
     jenis: 'bpt', nama: 'BUT & branch profit tax', kelompok: 'C9', mvp: false,
-    deskripsi: 'PPh badan BUT dan PPh 26 ayat (4) atas laba setelah pajak (20% atau tarif P3B), nihil atas bagian yang ditanamkan kembali.',
+    deskripsi: 'PPh badan BUT dan PPh 26 ayat (4) atas laba setelah pajak (20% atau tarif P3B); dikecualikan hanya bila seluruh laba setelah pajak ditanamkan kembali di Indonesia.',
     dasarHukum: ['Pasal 26 ayat (4) UU PPh', 'PMK 14/PMK.03/2011', 'P3B terkait'],
     statusPer: STATUS_PER, verifikasi: '✅',
     input: [
       { key: 'pkp', label: 'PKP BUT', tipe: 'uang', default: 1000000000 },
       { key: 'tarifBadan', label: 'Tarif PPh badan', tipe: 'persen', default: 22, min: 0 },
       { key: 'tarifP3b', label: 'Tarif BPT menurut P3B', tipe: 'persen', default: null, bantu: 'Kosongkan untuk tarif domestik 20%; mis. Singapura 10%, Malaysia 12,5%.' },
-      { key: 'ditanamKembali', label: 'Laba setelah pajak yang ditanamkan kembali di Indonesia', tipe: 'uang', default: 0, min: 0, bantu: 'Penyertaan modal pada perusahaan baru/berdiri, aktiva tetap atau tak berwujud BUT, paling lambat akhir tahun berikutnya, tidak dialihkan ≥ 2 tahun.' }
+      { key: 'ditanamKembali', label: 'Laba setelah pajak yang ditanamkan kembali di Indonesia', tipe: 'uang', default: 0, min: 0, bantu: 'Pengecualian hanya bila SELURUH laba setelah pajak ditanamkan kembali paling lambat akhir Tahun Pajak berikutnya: penyertaan modal pada perusahaan baru atau yang sudah berdiri, aktiva tetap, atau aktiva tidak berwujud BUT. Penanaman sebagian tidak mengurangi dasar.' }
     ],
     hitung: function (v) {
       const dh = ['Pasal 26 ayat (4) UU PPh', 'PMK 14/PMK.03/2011'];
@@ -1310,17 +1310,20 @@
       const pphBadan = Math.round(pkp * v.tarifBadan / 100);
       const laba = pkp - pphBadan;
       const tarif = isNum(v.tarifP3b) ? v.tarifP3b / 100 : 0.20;
-      const tanam = Math.min(nol(v.ditanamKembali), Math.max(0, laba));
-      const dasar = Math.max(0, laba - tanam);
+      // PMK 14/PMK.03/2011 Pasal 1 ayat (3): pengecualian hanya bila SELURUH laba setelah pajak ditanamkan kembali.
+      const tanam = nol(v.ditanamKembali);
+      const seluruh = laba > 0 && tanam >= laba;
+      const dasar = seluruh ? 0 : Math.max(0, laba);
       const bpt = Math.round(dasar * tarif);
       const peringatan = [];
-      if (nol(v.ditanamKembali) > Math.max(0, laba)) peringatan.push('Jumlah ditanam kembali melebihi laba setelah pajak; dibatasi sebesar laba setelah pajak.');
+      if (tanam > Math.max(0, laba)) peringatan.push('Jumlah ditanam kembali melebihi laba setelah pajak; dianggap seluruh laba setelah pajak ditanamkan kembali.');
+      if (tanam > 0 && !seluruh && laba > 0) peringatan.push('Penanaman kembali sebagian tidak mendapat pengecualian: PMK 14/PMK.03/2011 Pasal 1 ayat (3) mensyaratkan seluruh laba setelah pajak ditanamkan kembali, sehingga dasar BPT tetap seluruh laba setelah pajak.');
       if (isNum(v.tarifP3b)) dh.push('P3B (tarif branch profit tax ' + angka(v.tarifP3b) + '%)');
       const jejak = [['PKP BUT', uang(pkp)], ['PPh badan = ' + angka(v.tarifBadan) + '% × ' + uang(pkp), uang(pphBadan)], ['Laba setelah pajak', uang(laba)]];
-      if (tanam) jejak.push(['Ditanamkan kembali (PMK 14/2011)', '−' + uang(tanam)]);
+      if (tanam > 0 && laba > 0) jejak.push(seluruh ? ['Seluruh laba setelah pajak ditanamkan kembali (PMK 14/PMK.03/2011 Pasal 1 ayat (3))', 'dikecualikan'] : ['Ditanamkan kembali ' + uang(tanam) + ' (hanya sebagian, tidak mengurangi dasar)', uang(0)]);
       jejak.push(['Dasar BPT', uang(dasar)]);
       jejak.push(['BPT = ' + persen(tarif) + ' × ' + uang(dasar) + (isNum(v.tarifP3b) ? ' (tarif P3B)' : ' (tarif domestik)'), uang(bpt)]);
-      const asumsi = ['Tarif P3B hanya dapat dipakai bila kantor pusat menyerahkan SKD/Form DGT yang sah (PMK 112/2025).', 'BPT bersifat final, disetor sendiri oleh BUT; dilaporkan pada lampiran 6A SPT 1771.'];
+      const asumsi = ['Tarif P3B hanya dapat dipakai bila kantor pusat menyerahkan SKD/Form DGT yang sah (PMK 112/2025).', 'BPT bersifat final, disetor sendiri oleh BUT; dilaporkan pada lampiran 6A SPT 1771.', 'Penanaman kembali harus memenuhi syarat PMK 14/PMK.03/2011 Pasal 2: dilakukan paling lambat akhir Tahun Pajak berikutnya, diberitahukan tertulis ke KPP, dan tidak dialihkan paling sedikit 2 tahun sejak produksi komersial (perusahaan baru) atau 3 tahun (perusahaan yang sudah berdiri, aktiva tetap, aktiva tidak berwujud).'];
       const hasil = [baris('Branch profit tax (PPh 26 ayat (4))', bpt, 'uang', true), baris('PPh badan BUT', pphBadan, 'uang'), baris('Laba setelah pajak', laba, 'uang'), baris('Dasar BPT', dasar, 'uang'), baris('Tarif BPT', tarif, 'persen'), baris('Total beban PPh BUT', pphBadan + bpt, 'uang')];
       return keluaran({ hasil: hasil, jejak: jejak, asumsi: asumsi, dasarHukum: dh, peringatan: peringatan });
     }
