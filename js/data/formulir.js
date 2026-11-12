@@ -97,7 +97,7 @@ UKP.registerFormulir({
           { kode: "1770.induk.21", nomor: "21", label: "Angsuran PPh Pasal 25 tahun pajak berikutnya",
             isi: "Umumnya 1/12 × (PPh terutang dikurangi kredit PPh 21, 22, 23, dan 24); OP pengusaha tertentu 0,75% × peredaran bruto bulanan setiap tempat usaha.",
             sumberAngka: "Induk 14 dikurangi kredit pihak lain (induk 15), dibagi 12", pasal: "Ps. 25 ayat (1) dan (7) UU PPh; PMK 81/2024 (menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)", topik: "A1.9",
-            jebakan: "PPh 25 yang dibayar sendiri pada tahun berjalan tidak dikurangkan dalam dasar angsuran." }
+            jebakan: "PPh 25 yang dibayar sendiri pada tahun berjalan tidak dikurangkan dalam dasar angsuran. Bila baris 8 memuat kompensasi kerugian, dasar angsuran dihitung dari penghasilan neto dikurangi sisa kerugian yang masih dapat dikompensasikan pada tahun berjalan (kerugian habis: penghasilan neto penuh), bukan dari PPh terutang setelah kompensasi (Ps. 25 ayat (6) huruf a UU PPh)." }
         ] },
         { id: "l1", nama: "Lampiran I — Penghasilan neto dalam negeri", baris: [
           { kode: "1770.l1.1", nomor: "I-1", label: "Peredaran usaha (WP pembukuan)",
@@ -339,7 +339,7 @@ UKP.registerFormulir({
             sumberAngka: "Induk 8 − 9; bukti setor PPh 29", pasal: "Ps. 28A dan Ps. 29 UU PPh; Ps. 17B–17D UU KUP", topik: "B6.6",
             jebakan: "Pelunasan PPh 29 setelah batas waktu SPT dikenai bunga Ps. 9 ayat (2b) per bulan." },
           { kode: "1771.induk.E", nomor: "E", label: "Angsuran PPh Pasal 25 tahun pajak berikutnya",
-            isi: "(PPh terutang − kredit PPh 22, 23, dan 24) ÷ 12; WP tertentu (bank, BUMN/BUMD, emiten, WP baru) memakai penghitungan khusus dalam lampiran tersendiri.",
+            isi: "(PPh terutang − kredit PPh 22, 23, dan 24) ÷ 12; WP tertentu (bank, BUMN/BUMD, emiten, WP baru) memakai penghitungan khusus dalam lampiran tersendiri. Bila tahun pajak itu ada kompensasi kerugian, PPh terutang dihitung ulang dari penghasilan neto dikurangi sisa kerugian yang masih dapat dikompensasikan pada tahun berjalan (Ps. 25 ayat (6) huruf a UU PPh).",
             sumberAngka: "Induk 6 − 7, dibagi 12, atau lampiran penghitungan khusus", pasal: "Ps. 25 UU PPh; PMK 81/2024 (menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)", topik: "B6.9",
             jebakan: "Angsuran baru berlaku sejak bulan SPT Tahunan disampaikan, paling lambat sejak bulan batas akhir penyampaian SPT; bulan-bulan sebelum SPT disampaikan memakai angsuran bulan terakhir tahun lalu (Ps. 25 ayat (2) UU PPh; contoh penjelasan: SPT disampaikan Februari, angsuran baru mulai Februari)." },
           { kode: "1771.induk.F", nomor: "F", label: "Pernyataan transaksi lainnya",
@@ -480,7 +480,7 @@ UKP.registerFormulir({
             sumberAngka: "Lampiran A1", pasal: "Ps. 4 ayat (1) huruf f–h dan Ps. 7 ayat (2) UU PPN", topik: "A4.6",
             jebakan: "Ekspor bertarif 0% (bukan dibebaskan), sehingga pajak masukan terkait tetap dapat dikreditkan." },
           { kode: "1111.induk.2", nomor: "I.A.2", label: "Penyerahan yang PPN-nya harus dipungut sendiri",
-            isi: "Faktur kode 01, 04, 05, 06, dan 09: DPP dan PPN keluaran.",
+            isi: "Faktur kode 01, 04, 05, 06, dan 09: DPP dan PPN keluaran (04 untuk DPP nilai lain, termasuk penyerahan selain barang mewah dengan DPP 11/12 sejak 2025).",
             sumberAngka: "Lampiran A2", pasal: "Ps. 7 ayat (1), Ps. 8A, Ps. 9A, dan Ps. 16D UU PPN; PMK 131/2024", topik: "A4.6",
             jebakan: "Untuk barang/jasa non-mewah PPN = 12% × 11/12 × harga jual (efektif 11%); 12% penuh hanya untuk barang mewah." },
           { kode: "1111.induk.3", nomor: "I.A.3", label: "Penyerahan yang PPN-nya dipungut oleh pemungut",
@@ -538,7 +538,7 @@ UKP.registerFormulir({
             sumberAngka: "SPT Masa PPN yang dibetulkan", pasal: "Ps. 8 ayat (1) dan (2a) UU KUP; PER-12/PJ/2026", topik: "A4.10",
             jebakan: "Pembetulan yang menimbulkan kurang bayar dikenai bunga Ps. 8 ayat (2a) sejak jatuh tempo penyetoran." },
           { kode: "1111.induk.16", nomor: "III.G", label: "Pilihan atas lebih bayar",
-            isi: "Dikompensasikan ke masa berikutnya atau dikembalikan; restitusi pada masa selain akhir tahun buku hanya bagi PKP tertentu (ekspor, penyerahan kepada pemungut, penyerahan tidak dipungut, belum berproduksi) atau PKP berisiko rendah (Ps. 9 ayat (4c)); sejak PMK 28/2026 PKP persyaratan tertentu (Ps. 17D) tidak lagi diperlakukan sebagai PKP berisiko rendah.",
+            isi: "Dikompensasikan ke masa berikutnya atau dikembalikan; restitusi pada masa selain akhir tahun buku hanya bagi PKP tertentu (ekspor, penyerahan kepada pemungut, penyerahan tidak dipungut, ekspor BKP tidak berwujud, ekspor JKP) atau PKP berisiko rendah (Ps. 9 ayat (4c)); PKP yang belum melakukan penyerahan meminta pengembalian pada akhir tahun buku (Ps. 9 ayat (4a)), karena kategori PKP belum berproduksi (ayat (4b) huruf f) dihapus UU 11/2020; sejak PMK 28/2026 PKP persyaratan tertentu (Ps. 17D) tidak lagi diperlakukan sebagai PKP berisiko rendah.",
             sumberAngka: "Induk III.D (lebih bayar)", pasal: "Ps. 9 ayat (4)–(4c) UU PPN; Ps. 17B–17D UU KUP", topik: "A4.9",
             jebakan: "PKP umum hanya dapat meminta restitusi pada akhir tahun buku; pada masa lain kelebihan dikompensasikan." }
         ] },
@@ -547,9 +547,9 @@ UKP.registerFormulir({
             isi: "DPP = biaya yang dikeluarkan untuk membangun (tidak termasuk tanah); beban efektif 2,2% untuk bangunan seluas paling sedikit 200 m², disetor sendiri.",
             sumberAngka: "Bukti setor PPN KMS", pasal: "Ps. 16C UU PPN; PMK 81/2024 Pasal 324 s.t.d.d. PMK 11/2025 (menggantikan PMK 61/PMK.03/2022)", topik: "A4.6",
             jebakan: "Harga tanah tidak termasuk DPP." },
-          { kode: "1111.induk.18", nomor: "V", label: "Pembayaran kembali pajak masukan bagi PKP gagal berproduksi",
+          { kode: "1111.induk.18", nomor: "V", label: "Pembayaran kembali pajak masukan bagi PKP yang belum melakukan penyerahan",
             isi: "Pajak masukan yang telah dikreditkan dan dikembalikan wajib dibayar kembali bila dalam 3 tahun sejak masa pengkreditan pertama PKP belum melakukan penyerahan (sejak UU 11/2020 tidak terbatas pada barang modal).",
-            sumberAngka: "Daftar pajak masukan barang modal yang telah dikreditkan", pasal: "Ps. 9 ayat (2a) dan (6a) UU PPN", topik: "A4.7" },
+            sumberAngka: "Daftar pajak masukan yang telah dikreditkan dan dikembalikan", pasal: "Ps. 9 ayat (2a) dan (6a) UU PPN", topik: "A4.7" },
           { kode: "1111.induk.19", nomor: "VI", label: "PPnBM",
             isi: "DPP dan PPnBM atas penyerahan barang mewah oleh pengusaha yang menghasilkan (dipungut sendiri, oleh pemungut, tidak dipungut, dibebaskan).",
             sumberAngka: "Lampiran A2 (kolom PPnBM)", pasal: "Ps. 5 dan Ps. 8 UU PPN; PMK 131/2024", topik: "A4.6",
@@ -604,7 +604,7 @@ UKP.registerFormulir({
         { id: "B3", nama: "Lampiran B3 — Pajak masukan yang tidak dapat dikreditkan atau mendapat fasilitas", baris: [
           { kode: "1111.B3.1", nomor: "B3-1", label: "Pajak masukan yang tidak dapat dikreditkan",
             isi: "Perolehan yang tidak berhubungan langsung dengan kegiatan usaha (mis. mobil untuk keperluan pribadi keluarga pemegang saham), faktur yang tidak memenuhi syarat, dan pemanfaatan BKP tidak berwujud/JKP dari luar Daerah Pabean yang dokumennya tidak memenuhi syarat (Pasal 9 ayat (8) kini hanya memuat huruf b, f, dan g). Larangan atas perolehan sebelum berproduksi selain barang modal (huruf j) dihapus UU 11/2020: PKP yang belum melakukan penyerahan dapat mengkreditkan PM, dengan kewajiban membayar kembali bila 3 tahun belum ada penyerahan. PM sedan/station wagon operasional yang diperoleh sejak 1 April 2022 dapat dikreditkan (huruf c dihapus).",
-            sumberAngka: "Faktur masukan terkait", pasal: "Ps. 9 ayat (8) huruf b dan f UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", topik: "A4.7" },
+            sumberAngka: "Faktur masukan terkait", pasal: "Ps. 9 ayat (8) huruf b, f, dan g UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", topik: "A4.7" },
           { kode: "1111.B3.2", nomor: "B3-2", label: "Pajak masukan atas perolehan yang mendapat fasilitas",
             isi: "Faktur kode 07 (tidak dipungut/DTP) dan kode 08 (dibebaskan) yang diterima sebagai pembeli, serta pajak masukan yang terkait penyerahan dibebaskan.",
             sumberAngka: "Faktur masukan kode 07/08", pasal: "Ps. 16B ayat (3) UU PPN; PP 49/2022", topik: "A4.2",

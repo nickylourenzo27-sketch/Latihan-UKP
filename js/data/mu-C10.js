@@ -1792,30 +1792,35 @@ UKP.register({
       anggaranDetik: 100, verifikasi: "✅"
     },
     {
-      id: "C10-055", topik: "C10.9", tingkat: ["C"], jenis: "hitung", kesulitan: 3,
+      id: "C10-055",
+      topik: "C10.9",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 3,
       kutipan: "Pasal 9 ayat (2a) UU KUP (disederhanakan): Apabila pembayaran atau penyetoran pajak dilakukan setelah tanggal jatuh tempo, dikenai sanksi administratif berupa bunga sebesar tarif bunga per bulan yang ditetapkan Menteri Keuangan (suku bunga acuan ditambah 5%, dibagi 12) yang dihitung dari tanggal jatuh tempo sampai dengan tanggal pembayaran, dan bagian dari bulan dihitung penuh 1 bulan.",
       stem: "PT Lautan Media membayar royalti konten Rp250.000.000 pada 22 September 2026 kepada Seoul Contents Co., Ltd. (Korea Selatan) yang tidak menyerahkan SKD/Form DGT. PPh 26 Masa September 2026 jatuh tempo 15 Oktober 2026, tetapi baru akan disetor pada 10 Desember 2026. Tarif bunga Pasal 9 ayat (2a) yang berlaku pada awal penghitungan (KMK 47/MK/EF.2/2026, Oktober 2026) adalah 1,01% per bulan. Sanksi bunga atas keterlambatan penyetoran PPh 26 tersebut (sebelum memperhitungkan permohonan pengurangan/penghapusan sanksi menurut PMK 71/2026) adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp2.000.000",
-        B: "Rp505.000",
-        C: "Rp1.840.000",
-        D: "Rp1.010.000"
-      },
+      opsi: { A: "Rp2.000.000", B: "Rp505.000", C: "Rp1.840.000", D: "Rp1.010.000" },
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
         inti: "Tanpa SKD, PPh 26 = 20% × Rp250.000.000 = Rp50.000.000. Dari 15 Oktober s.d. 10 Desember 2026 = 1 bulan 25 hari, dibulatkan menjadi 2 bulan. Bunga = Rp50.000.000 × 1,01% × 2 = Rp1.010.000.",
-        jejakHitung: [["PPh 26 = 20% × Rp250.000.000", "Rp50.000.000"], ["15 Okt–15 Nov", "1 bulan"], ["15 Nov–10 Des (bagian bulan)", "1 bulan"], ["Bunga = 50.000.000 × 1,01% × 2", "Rp1.010.000"]],
+        jejakHitung: [
+          ["PPh 26 = 20% × Rp250.000.000", "Rp50.000.000"],
+          ["15 Okt–15 Nov", "1 bulan"],
+          ["15 Nov–10 Des (bagian bulan)", "1 bulan"],
+          ["Bunga = 50.000.000 × 1,01% × 2", "Rp1.010.000"]
+        ],
         mengapaSalah: {
-          A: "Memakai bunga 2% flat sebelum UU HPP.",
+          A: "Memakai bunga 2% flat per bulan yang berlaku sebelum UU Cipta Kerja (UU 11/2020; sejak 2 November 2020 diganti tarif bunga bulanan KMK).",
           B: "Bagian bulan tidak dibulatkan ke atas.",
           C: "Memakai tarif Pasal 13 ayat (2) (uplift 15%) yang untuk SKPKB hasil pemeriksaan."
         },
         jebakan: "Tarif PPh 26 tanpa SKD, uplift pasal yang tepat, dan pembulatan bulan."
       },
       dasarHukum: [{ pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" }, { pasal: "PMK 81/2024 (jatuh tempo tanggal 15)", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "C10-056", topik: "C10.9", tingkat: ["C"], jenis: "hitung", kesulitan: 2,

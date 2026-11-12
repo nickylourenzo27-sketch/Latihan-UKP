@@ -862,7 +862,12 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-033", topik: "A5.4", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, kasusId: "V-A5-02",
+      id: "A5-033",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kasusId: "V-A5-02",
       stem: "Lanjutan data PT Bayar Cepat Indonesia (pemungut bea meterai yang ditetapkan Kepala KPP). Bea meterai yang dipungut atas dokumen tanda terima pembayaran digital Masa September 2026 berjumlah Rp125.000.000. Tanggal 15 Oktober 2026 adalah hari Kamis (hari kerja). Batas paling lambat penyetoran bea meterai tersebut dan penyampaian SPT Masa Bea Meterai melalui Coretax adalah ...",
       kataKualifikasi: ["paling lambat"],
       opsi: { A: "Setor paling lambat 15 Oktober 2026, lapor paling lambat 31 Oktober 2026", B: "Setor paling lambat 10 Oktober 2026, lapor paling lambat 20 Oktober 2026", C: "Setor paling lambat 15 Oktober 2026, lapor paling lambat 20 Oktober 2026", D: "Setor dan lapor paling lambat 15 Oktober 2026" },
@@ -871,10 +876,14 @@ UKP.register({
       pembahasan: {
         inti: "PMK 78/2024 menyamakan tenggat penyetoran dan pelaporan SPT Masa Bea Meterai pemungut, yaitu paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir.",
         jejakHitung: [],
-        mengapaSalah: { A: "Akhir bulan berikutnya adalah tenggat SPT Masa PPN", B: "Setor tanggal 10 dan lapor tanggal 20 adalah ketentuan PMK 151/2021 yang sudah dicabut", C: "Tanggal 20 adalah tenggat SPT Masa PPh, bukan SPT Masa Bea Meterai" },
+        mengapaSalah: {
+          A: "Akhir bulan berikutnya adalah tenggat SPT Masa PPN",
+          B: "Setor tanggal 10 dan lapor tanggal 20 adalah ketentuan PMK 151/2021 yang sudah dicabut",
+          C: "Tanggal 20 adalah tenggat SPT Masa PPh, bukan SPT Masa Bea Meterai"
+        },
         jebakan: "Tiga tenggat SPT Masa (bea meterai, PPh, PPN) berbeda; jangan menyamaratakan."
       },
-      dasarHukum: [ { pasal: "PMK 78/2024 (setor dan lapor pemungut)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" } ],
+      dasarHukum: [{ pasal: "PMK 78/2024 (setor dan lapor pemungut)", berlakuSejak: "2024-11-01" }, { pasal: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 90,
       verifikasi: "✅"
     },
@@ -946,7 +955,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-037", topik: "A5.4", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3,
+      id: "A5-037",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
       stem: "PT Kliring Mandiri, pemungut bea meterai, memungut bea meterai Masa Oktober 2026 sebesar Rp48.300.000. Tanggal 15 November 2026 jatuh pada hari Minggu, sedangkan 16 November 2026 adalah hari kerja. Tim pajak menanyakan batas akhir penyetoran dan penyampaian SPT Masa Bea Meterai yang tidak menimbulkan sanksi. Jawaban yang tepat adalah ...",
       kataKualifikasi: ["tidak"],
       opsi: { A: "Setor 16 November 2026, lapor paling lambat 20 November 2026", B: "Jumat, 13 November 2026, karena tenggat yang jatuh pada hari libur dimajukan ke hari kerja sebelumnya", C: "Setor 10 November 2026 dan lapor 20 November 2026", D: "Senin, 16 November 2026, untuk penyetoran maupun pelaporan" },
@@ -954,11 +967,18 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "angka-usang" },
       pembahasan: {
         inti: "Tenggat setor dan lapor pemungut adalah tanggal 15 bulan berikutnya; bila jatuh pada hari libur (termasuk Sabtu, Minggu, libur nasional), penyetoran dan pelaporan dapat dilakukan pada hari kerja berikutnya.",
-        jejakHitung: [ ["Tenggat normal Masa Oktober 2026", "15 November 2026 (Minggu)"], ["Hari kerja berikutnya", "Senin, 16 November 2026"] ],
-        mengapaSalah: { A: "Pelaporan SPT Masa Bea Meterai bertenggat sama dengan penyetoran", B: "Tenggat yang jatuh pada hari libur bergeser ke hari kerja berikutnya, bukan sebelumnya", C: "Tanggal 10/20 adalah ketentuan PMK 151/2021 yang sudah dicabut" },
+        jejakHitung: [
+          ["Tenggat normal Masa Oktober 2026", "15 November 2026 (Minggu)"],
+          ["Hari kerja berikutnya", "Senin, 16 November 2026"]
+        ],
+        mengapaSalah: {
+          A: "Pelaporan SPT Masa Bea Meterai bertenggat sama dengan penyetoran",
+          B: "Tenggat yang jatuh pada hari libur bergeser ke hari kerja berikutnya, bukan sebelumnya",
+          C: "Tanggal 10/20 adalah ketentuan PMK 151/2021 yang sudah dicabut"
+        },
         jebakan: "Dua lapis aturan: tenggat tanggal 15 dan pergeseran hari libur."
       },
-      dasarHukum: [ { pasal: "PMK 78/2024 (tenggat pemungut tanggal 15)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 81/2024 (tenggat pada hari libur)", berlakuSejak: "2025-01-01" } ],
+      dasarHukum: [{ pasal: "PMK 78/2024 (tenggat pemungut tanggal 15)", berlakuSejak: "2024-11-01" }, { pasal: "PMK 81/2024 (tenggat pada hari libur)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
@@ -993,7 +1013,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-039", topik: "A5.4", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 1,
+      id: "A5-039",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
       stem: "PT Pos Bayar, pemungut bea meterai, menyetor bea meterai Masa Juni 2026 sebesar Rp32.000.000 tepat pada 15 Juli 2026, tetapi SPT Masa Bea Meterai Masa Juni 2026 baru disampaikan pada 3 Agustus 2026. Sanksi administratif yang dikenakan atas keterlambatan tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp323.200", B: "Rp100.000", C: "Rp500.000", D: "Rp1.000.000" },
@@ -1001,11 +1025,19 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
         inti: "Penyetoran tepat waktu sehingga tidak ada bunga; yang terlambat hanya penyampaian SPT Masa, dikenai denda Pasal 7 ayat (1) UU KUP untuk SPT Masa lainnya Rp100.000.",
-        jejakHitung: [ ["Setoran 15 Juli 2026", "tepat waktu → tanpa bunga"], ["SPT Masa disampaikan 3 Agustus 2026", "terlambat"], ["Denda SPT Masa lainnya", "Rp100.000"] ],
-        mengapaSalah: { A: "Memperlakukan keterlambatan lapor seperti keterlambatan setor: bunga 32.000.000 × 1,01% × 1 bulan (15 Juli–3 Agustus, bagian bulan dihitung penuh); bunga hanya untuk setoran yang terlambat", C: "Rp500.000 adalah denda SPT Masa PPN", D: "Rp1.000.000 adalah denda SPT Tahunan PPh Badan" },
+        jejakHitung: [
+          ["Setoran 15 Juli 2026", "tepat waktu → tanpa bunga"],
+          ["SPT Masa disampaikan 3 Agustus 2026", "terlambat"],
+          ["Denda SPT Masa lainnya", "Rp100.000"]
+        ],
+        mengapaSalah: {
+          A: "Memperlakukan keterlambatan lapor seperti keterlambatan setor: bunga 32.000.000 × 1,01% × 1 bulan (15 Juli–3 Agustus, bagian bulan dihitung penuh); bunga hanya untuk setoran yang terlambat",
+          C: "Rp500.000 adalah denda SPT Masa PPN",
+          D: "Rp1.000.000 adalah denda SPT Tahunan PPh Badan"
+        },
         jebakan: "Pisahkan keterlambatan setor (bunga) dan keterlambatan lapor (denda)."
       },
-      dasarHukum: [ { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 11 UU 10/2020; PMK 78/2024", berlakuSejak: "2025-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 11 UU 10/2020; PMK 78/2024", berlakuSejak: "2024-11-01" }],
       anggaranDetik: 75,
       verifikasi: "✅"
     },
@@ -1509,7 +1541,12 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-067", topik: "A5.2", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A5-05",
+      id: "A5-067",
+      topik: "A5.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-A5-05",
       stem: "Lanjutan data PT Puri Asri Properti. Atas penjualan rumah tapak (bukan rumah sederhana) seharga Rp1.250.000.000, PT Puri Asri wajib menyetor PPh final Pasal 4 ayat (2) atas pengalihan hak atas tanah dan/atau bangunan dengan tarif umum. Para pihak sepakat bea meterai akta jual beli dan salinannya ditanggung pembeli, sedangkan untuk PPJB (2 rangkap, satu untuk tiap pihak), kuitansi uang muka, dan kuitansi pelunasan tidak ada kesepakatan. PPh final yang disetor PT Puri Asri dan bea meterai yang menjadi tanggungan PT Puri Asri sendiri sebagai pihak yang terutang adalah ...",
       kataKualifikasi: ["sendiri sebagai pihak yang terutang"],
       opsi: { A: "PPh final Rp31.250.000; bea meterai Rp10.000", B: "PPh final Rp31.250.000; bea meterai Rp30.000", C: "PPh final Rp62.500.000; bea meterai Rp10.000", D: "PPh final Rp31.250.000; bea meterai Rp0" },
@@ -1517,11 +1554,21 @@ UKP.register({
       jebakanOpsi: { B: "lupa-pasal", C: "angka-usang", D: "salah-baca" },
       pembahasan: {
         inti: "PPh final 2,5% × Rp1.250.000.000 = Rp31.250.000. PT Puri Asri hanya terutang atas rangkap PPJB yang diterimanya; kuitansi terutang oleh Ny. Larasati sebagai penerima, dan akta jual beli ditanggung pembeli berdasarkan kesepakatan (Pasal 9).",
-        jejakHitung: [ ["PPh final = 2,5% × Rp1.250.000.000", "Rp31.250.000"], ["Rangkap PPJB milik PT Puri Asri", "Rp10.000"], ["Kuitansi uang muka dan pelunasan", "terutang oleh Ny. Larasati (penerima)"], ["Akta jual beli dan salinannya", "ditanggung pembeli sesuai kesepakatan"], ["Bea meterai tanggungan PT Puri Asri", "Rp10.000"] ],
-        mengapaSalah: { B: "Menganggap PT Puri Asri terutang atas kuitansi uang muka dan pelunasan yang dibuatnya; kuitansi terutang oleh penerimanya, yaitu Ny. Larasati", C: "Memakai tarif lama 5% sebelum PP 34/2016; tarif umum kini 2,5% dari jumlah bruto", D: "Kesepakatan pembeli menanggung bea meterai hanya untuk akta jual beli dan salinannya; rangkap PPJB milik PT Puri Asri tetap tanggungannya" },
+        jejakHitung: [
+          ["PPh final = 2,5% × Rp1.250.000.000", "Rp31.250.000"],
+          ["Rangkap PPJB milik PT Puri Asri", "Rp10.000"],
+          ["Kuitansi uang muka dan pelunasan", "terutang oleh Ny. Larasati (penerima)"],
+          ["Akta jual beli dan salinannya", "ditanggung pembeli sesuai kesepakatan"],
+          ["Bea meterai tanggungan PT Puri Asri", "Rp10.000"]
+        ],
+        mengapaSalah: {
+          B: "Menganggap PT Puri Asri terutang atas kuitansi uang muka dan pelunasan yang dibuatnya; kuitansi terutang oleh penerimanya, yaitu Ny. Larasati",
+          C: "Memakai tarif lama 5% sebelum PP 34/2016; tarif umum kini 2,5% dari jumlah bruto",
+          D: "Kesepakatan pembeli menanggung bea meterai hanya untuk akta jual beli dan salinannya; rangkap PPJB milik PT Puri Asri tetap tanggungannya"
+        },
         jebakan: "Pembuat kuitansi bukan pihak terutang, dan kesepakatan pembebanan hanya berlaku untuk dokumen yang disepakati."
       },
-      dasarHukum: [ { pasal: "PP 34/2016 Pasal 2 ayat (1) huruf a (PPh final 2,5% pengalihan tanah/bangunan)", berlakuSejak: "2016-09-08" }, { pasal: "Pasal 9 UU 10/2020", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "PP 34/2016 Pasal 2 ayat (1) huruf a (PPh final 2,5% pengalihan tanah/bangunan)", berlakuSejak: "2016-09-07" }, { pasal: "Pasal 9 UU 10/2020", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -1803,7 +1850,12 @@ UKP.register({
       peringatan: "Nomor baris mengikuti peta logis SPT Masa Bea Meterai di js/data/formulir.js (BM.induk.2–4); tata letak formulir Coretax menurut PER-11/PJ/2025 belum dicek ke formulir resmi. Substansi angkanya (dokumen objek, bea meterai dipungut, disetor) mengikuti UU 10/2020 dan PMK 78/2024."
     },
     {
-      id: "A5-084", topik: "A5.4", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, kasusId: "V-A5-07",
+      id: "A5-084",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kasusId: "V-A5-07",
       kutipan: "PMK 81/2024 Pasal 94 dan ketentuan hari libur (parafrase): pajak yang dipotong atau dipungut, termasuk bea meterai yang dipungut pemungut, disetor paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir; bila jatuh tempo bertepatan dengan hari libur, penyetoran atau pelaporan dapat dilakukan pada hari kerja berikutnya. PMK 78/2024 (parafrase): pemungut menyampaikan SPT Masa Bea Meterai paling lambat tanggal 15 bulan berikutnya.",
       stem: "Lanjutan data PT Kasir Awan Indonesia. Tim pajak menyusun prosedur pelunasan dan pelaporan bea meterai Masa Oktober 2026 sebesar Rp185.000.000 melalui Coretax. Tanggal 15 November 2026 jatuh pada hari Minggu dan 16 November 2026 hari kerja. Berdasarkan kutipan tersebut, prosedur yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
@@ -1812,11 +1864,19 @@ UKP.register({
       jebakanOpsi: { A: "angka-usang", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
         inti: "Setor dan lapor pemungut sama-sama paling lambat tanggal 15 bulan berikutnya; karena 15 November 2026 hari Minggu, keduanya bergeser ke Senin, 16 November 2026. Bukti setor adalah NTPN dan bukti lapor adalah bukti penerimaan elektronik dari Coretax.",
-        jejakHitung: [["Dokumen objek 18.500 × Rp10.000", "Rp185.000.000"], ["Tenggat setor dan lapor: 15 November 2026", "hari Minggu"], ["Bergeser ke hari kerja berikutnya", "Senin, 16 November 2026"]],
-        mengapaSalah: { A: "Tenggat lapor tanggal 20 adalah ketentuan lama PMK 151/2021; kini setor dan lapor sama-sama tanggal 15", B: "Tenggat yang jatuh pada hari libur bergeser ke hari kerja berikutnya, bukan dimajukan", C: "Tenggat akhir bulan berikutnya berlaku untuk SPT Masa PPN, bukan untuk bea meterai pemungut" },
+        jejakHitung: [
+          ["Dokumen objek 18.500 × Rp10.000", "Rp185.000.000"],
+          ["Tenggat setor dan lapor: 15 November 2026", "hari Minggu"],
+          ["Bergeser ke hari kerja berikutnya", "Senin, 16 November 2026"]
+        ],
+        mengapaSalah: {
+          A: "Tenggat lapor tanggal 20 adalah ketentuan lama PMK 151/2021; kini setor dan lapor sama-sama tanggal 15",
+          B: "Tenggat yang jatuh pada hari libur bergeser ke hari kerja berikutnya, bukan dimajukan",
+          C: "Tenggat akhir bulan berikutnya berlaku untuk SPT Masa PPN, bukan untuk bea meterai pemungut"
+        },
         jebakan: "Tenggat bea meterai pemungut tidak sama dengan SPT Masa PPh (tanggal 20) maupun SPT Masa PPN (akhir bulan)."
       },
-      dasarHukum: [ { pasal: "PMK 81/2024 Pasal 94 (jatuh tempo tanggal 15; hari libur)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 78/2024 (setor dan lapor pemungut tanggal 15)", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 (SPT Masa Bea Meterai di Coretax)", berlakuSejak: "2025-05-22" } ],
+      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 94 (jatuh tempo tanggal 15; hari libur)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 78/2024 (setor dan lapor pemungut tanggal 15)", berlakuSejak: "2024-11-01" }, { pasal: "PER-11/PJ/2025 (SPT Masa Bea Meterai di Coretax)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -1850,7 +1910,7 @@ UKP.register({
         },
         jebakan: "Keterlambatan 10 hari tetap dihitung 1 bulan bunga; jatuh tempo efektif sudah bergeser karena hari libur."
       },
-      dasarHukum: [{ pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "KMK 47/MK/EF.2/2026 (tarif bunga Oktober 2026)", berlakuSejak: "2026-10-01" }],
+      dasarHukum: [{ pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "KMK tarif bunga bulanan Agustus 2026 (tarif pada tanggal dimulainya penghitungan sanksi, 18 Agustus 2026; 1,01% di soal ini anggapan)", berlakuSejak: "2026-08-01" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -1917,7 +1977,7 @@ UKP.register({
         },
         jebakan: "Nilai transaksi Rp1,2 triliun dan jumlah nasabah tidak dipakai; bea meterai dihitung per konfirmasi transaksi."
       },
-      dasarHukum: [{ pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" }],
+      dasarHukum: [{ pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "KMK tarif bunga bulanan September 2026 (tarif pada tanggal dimulainya penghitungan sanksi, 15 September 2026; 1,01% di soal ini anggapan)", berlakuSejak: "2026-09-01" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -1963,7 +2023,7 @@ UKP.register({
         },
         jebakan: "Jumlah bulan dihitung dari tanggal jatuh tempo, bukan dari pergantian bulan kalender."
       },
-      dasarHukum: [{ pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "KMK 47/MK/EF.2/2026 (tarif bunga Oktober 2026)", berlakuSejak: "2026-10-01" }],
+      dasarHukum: [{ pasal: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "KMK tarif bunga bulanan September 2026 (tarif pada tanggal dimulainya penghitungan sanksi, 15 September 2026; 1,01% di soal ini anggapan)", berlakuSejak: "2026-09-01" }],
       anggaranDetik: 75,
       verifikasi: "✅"
     },

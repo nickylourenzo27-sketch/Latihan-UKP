@@ -305,7 +305,7 @@ UKP.register({
         "Dividen yang diterima OP dalam negeri: dikecualikan bila diinvestasikan di Indonesia ≥ 3 tahun; jika tidak, 10% final disetor sendiri paling lambat tanggal 15 bulan berikutnya. Penghasilan usaha WP tertentu 0,5% (PP 55/2022 jo. PP 20/2026)."
       ],
       poinKunci: [
-        { label: "Sewa tanah/bangunan", nilai: "10% × bruto termasuk service charge", dasar: "PP 34/2017" },
+        { label: "Sewa tanah/bangunan", nilai: "10% × bruto termasuk service charge", dasar: "PP 34/2017", berlakuSejak: "2018-01-02" },
         { label: "Konstruksi", nilai: "1,75% / 4% / 2,65%; konsultansi 3,5% / 6%", dasar: "PP 9/2022 Pasal 3 ayat (1)", berlakuSejak: "2022-02-21" },
         { label: "Deposito/tabungan", nilai: "20%; dikecualikan ≤ Rp7,5 juta", dasar: "PP 131/2000; KMK 51/KMK.04/2001", berlakuSejak: "2001-01-01" },
         { label: "Obligasi WPDN", nilai: "10% (sebelumnya 15%)", dasar: "PP 91/2021", berlakuSejak: "2021-08-30" },
@@ -808,7 +808,12 @@ UKP.register({
       peringatan: "Rincian pengecualian material dari jumlah bruto (yang tidak berlaku bagi katering) bersumber sekunder atas PMK 141/PMK.03/2015; tarif 2% dan status katering sebagai jasa lain terverifikasi."
     },
     {
-      id: "A3-023", topik: "A3.7", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2, kasusId: "V-A3-01",
+      id: "A3-023",
+      topik: "A3.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      kasusId: "V-A3-01",
       stem: "V-A3-01 — PT Mitra Sejahtera pada September 2026 membayar di muka sewa ruko untuk gudang selama 12 bulan (Oktober 2026–September 2027) kepada Tuan Budi, orang pribadi pemilik ruko. Perjanjian merinci nilai sewa Rp60.000.000 dan service charge (keamanan, kebersihan, perawatan) Rp6.000.000 yang ditagih terpisah. Perlakuan PPh yang tepat atas pembayaran tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "PT Mitra Sejahtera memotong PPh Pasal 4 ayat (2) final Rp6.000.000 karena service charge tidak termasuk nilai sewa", B: "PT Mitra Sejahtera memotong PPh Pasal 4 ayat (2) final Rp6.600.000 pada Masa Pajak September 2026", C: "PT Mitra Sejahtera memotong PPh Pasal 23 sebesar Rp1.320.000", D: "PT Mitra Sejahtera tidak memotong; Tuan Budi menyetor sendiri PPh final setiap bulan selama masa sewa" },
@@ -816,12 +821,22 @@ UKP.register({
       jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "Sewa tanah dan/atau bangunan dikenai PPh final 10% dari jumlah bruto nilai persewaan, termasuk service charge meskipun ditagih terpisah; penyewa berbentuk badan wajib memotong saat pembayaran, sehingga seluruh nilai 12 bulan dipotong pada Masa September 2026.",
-        jejakHitung: [["Jumlah bruto = Rp60.000.000 + Rp6.000.000", "Rp66.000.000"], ["Tarif PPh 4 ayat (2) sewa tanah/bangunan", "10%"], ["PPh = 10% × Rp66.000.000", "Rp6.600.000"], ["Saat terutang", "saat pembayaran, Masa September 2026"]],
-        mengapaSalah: { A: "Service charge termasuk jumlah bruto nilai persewaan", C: "Sewa tanah/bangunan dikecualikan dari PPh 23 dan dikenai PPh final", D: "Setor sendiri oleh pemilik hanya bila penyewa bukan pemotong; PT adalah pemotong, dan PPh terutang saat pembayaran, bukan dicicil" },
+        jejakHitung: [
+          ["Jumlah bruto = Rp60.000.000 + Rp6.000.000", "Rp66.000.000"],
+          ["Tarif PPh 4 ayat (2) sewa tanah/bangunan", "10%"],
+          ["PPh = 10% × Rp66.000.000", "Rp6.600.000"],
+          ["Saat terutang", "saat pembayaran, Masa September 2026"]
+        ],
+        mengapaSalah: {
+          A: "Service charge termasuk jumlah bruto nilai persewaan",
+          C: "Sewa tanah/bangunan dikecualikan dari PPh 23 dan dikenai PPh final",
+          D: "Setor sendiri oleh pemilik hanya bila penyewa bukan pemotong; PT adalah pemotong, dan PPh terutang saat pembayaran, bukan dicicil"
+        },
         jebakan: "Ruko tetap bangunan: jangan tergoda PPh 23 sewa harta."
       },
-      dasarHukum: [{ pasal: "PP 34/2017 (jumlah bruto nilai persewaan)" }, { pasal: "Pasal 4 ayat (2) huruf d UU PPh", berlakuSejak: "2009-01-01" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PP 34/2017 (jumlah bruto nilai persewaan)", berlakuSejak: "2018-01-02" }, { pasal: "Pasal 4 ayat (2) huruf d UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "A3-024", topik: "A3.9", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3, kasusId: "V-A3-01",
@@ -1356,7 +1371,11 @@ UKP.register({
       anggaranDetik: 170, verifikasi: "✅"
     },
     {
-      id: "A3-051", topik: "A3.7", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1,
+      id: "A3-051",
+      topik: "A3.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
       stem: "Ny. Rita, karyawati yang tidak menjalankan usaha, menyewa rumah tinggal milik Tuan Hendra untuk dua tahun (September 2026–Agustus 2028) dan membayar seluruh uang sewa Rp120.000.000 pada 25 Agustus 2026. Perlakuan PPh atas uang sewa tersebut yang tepat adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Ny. Rita wajib memotong PPh Pasal 4 ayat (2) Rp12.000.000 dan memberikan bukti potong", B: "Tuan Hendra menyetor sendiri PPh final 10% sebesar Rp12.000.000 paling lambat 15 September 2026", C: "Ny. Rita memotong PPh Pasal 23 2% sebesar Rp2.400.000", D: "Tuan Hendra menyetor PPh final Rp6.000.000 untuk 2026 dan Rp6.000.000 untuk 2027 sesuai masa sewa" },
@@ -1364,12 +1383,21 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
         inti: "Penyewa orang pribadi yang bukan pemotong tidak memotong; pemilik menyetor sendiri PPh final 10% atas seluruh pembayaran yang diterima di muka, paling lambat tanggal 15 bulan berikutnya.",
-        jejakHitung: [["PPh final = 10% × Rp120.000.000", "Rp12.000.000"], ["Saat terutang", "saat pembayaran diterima (Agustus 2026)"], ["Tenggat setor sendiri", "15 September 2026 (Selasa)"]],
-        mengapaSalah: { A: "Orang pribadi biasa tidak ditunjuk sebagai pemotong PPh sewa", C: "Sewa bangunan bukan objek PPh 23", D: "PPh terutang atas seluruh pembayaran di muka saat diterima, tidak dibagi per tahun" },
+        jejakHitung: [
+          ["PPh final = 10% × Rp120.000.000", "Rp12.000.000"],
+          ["Saat terutang", "saat pembayaran diterima (Agustus 2026)"],
+          ["Tenggat setor sendiri", "15 September 2026 (Selasa)"]
+        ],
+        mengapaSalah: {
+          A: "Orang pribadi biasa tidak ditunjuk sebagai pemotong PPh sewa",
+          C: "Sewa bangunan bukan objek PPh 23",
+          D: "PPh terutang atas seluruh pembayaran di muka saat diterima, tidak dibagi per tahun"
+        },
         jebakan: "Siapa penyewanya menentukan siapa yang menyetor."
       },
-      dasarHukum: [{ pasal: "PP 34/2017 (penyetoran sendiri oleh pemilik)" }, { pasal: "PMK 81/2024 Pasal 94 ayat (2)", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 100, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PP 34/2017 (penyetoran sendiri oleh pemilik)", berlakuSejak: "2018-01-02" }, { pasal: "PMK 81/2024 Pasal 94 ayat (2)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "✅"
     },
     {
       id: "A3-052", topik: "A3.7", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
@@ -1509,7 +1537,7 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "kasus",
       kesulitan: 3,
-      kutipan: "Pasal 9 ayat (2a) UU KUP: pembayaran atau penyetoran pajak yang dilakukan setelah tanggal jatuh tempo pembayaran atau penyetoran pajak dikenai sanksi administratif berupa bunga sebesar tarif bunga per bulan yang ditetapkan oleh Menteri Keuangan, dihitung dari tanggal jatuh tempo pembayaran sampai dengan tanggal pembayaran, dan bagian dari bulan dihitung penuh 1 (satu) bulan.",
+      kutipan: "Pasal 9 ayat (2a) UU KUP: pembayaran atau penyetoran pajak yang dilakukan setelah tanggal jatuh tempo pembayaran atau penyetoran pajak dikenai sanksi administratif berupa bunga sebesar tarif bunga per bulan yang ditetapkan oleh Menteri Keuangan, dihitung dari tanggal jatuh tempo pembayaran sampai dengan tanggal pembayaran, dan dikenakan paling lama 24 (dua puluh empat) bulan, serta bagian dari bulan dihitung penuh 1 (satu) bulan.",
       stem: "PT Wira Usaha memotong PPh Pasal 23 Rp20.000.000 atas jasa pada Masa Pajak Agustus 2026, tetapi baru menyetornya pada 20 Oktober 2026 dan menyampaikan SPT Masa PPh Unifikasi Agustus 2026 pada hari yang sama. Tarif bunga Pasal 9 ayat (2a) yang berlaku untuk penghitungan ini 1,01% per bulan. Berdasarkan kutipan tersebut dan Pasal 7 ayat (1) UU KUP, jumlah sanksi administrasi yang akan ditagih melalui STP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp404.000", B: "Rp504.000", C: "Rp302.000", D: "Rp904.000" },
@@ -1641,7 +1669,7 @@ UKP.register({
         },
         jebakan: "Surat Keterangan PP 55/2022 tidak membebaskan pungutan; ia mengubah jenisnya dari PPh 22 1,5% menjadi PPh final 0,5%."
       },
-      dasarHukum: [{ pasal: "PMK 51/2025 (pemungutan PPh Pasal 22 atas penyerahan barang dan kegiatan di bidang impor atau usaha lain; rezim PMK 34/PMK.010/2017 dicabut PMK 81/2024 per 1 Januari 2025)", berlakuSejak: "2025-08-01" }, { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 (pelunasan PPh final melalui pemotongan/pemungutan pihak lain)", berlakuSejak: "2026-04-22" }, { pasal: "PMK 164/2023 (Surat Keterangan dan pemungutan PPh final UMKM)" }],
+      dasarHukum: [{ pasal: "PMK 51/2025 (pemungutan PPh Pasal 22 atas penyerahan barang dan kegiatan di bidang impor atau usaha lain; rezim PMK 34/PMK.010/2017 dicabut PMK 81/2024 per 1 Januari 2025)", berlakuSejak: "2025-08-01" }, { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 (pelunasan PPh final melalui pemotongan/pemungutan pihak lain)", berlakuSejak: "2026-04-22" }, { pasal: "PMK 164/2023 (Surat Keterangan dan pemungutan PPh final UMKM)", berlakuSejak: "2023-12-29" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
@@ -3394,7 +3422,7 @@ UKP.register({
     {
       id: "A3-146",
       topik: "A3.7",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 2,
       stem: "Tuan Jaka adalah pegawai tetap sebuah bank dan tidak menjalankan usaha atau pekerjaan bebas. Pada Juli 2026 ia menyewa satu unit apartemen milik PT Ortax Residence selama 2 tahun dengan nilai sewa Rp240.000.000. Berdasarkan perjanjian terpisah dengan PT Ortax Residence, Tuan Jaka juga membayar biaya pemeliharaan dan keamanan unit selama masa sewa Rp12.000.000. Seluruh jumlah dibayar lunas pada Juli 2026. Berdasarkan PP 34 Tahun 2017, penerapan PPh Pasal 4 ayat (2) yang tepat adalah ...",
@@ -3404,14 +3432,18 @@ UKP.register({
       jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
         inti: "Orang pribadi yang ditunjuk sebagai pemotong PPh final sewa hanyalah yang melakukan pekerjaan bebas dan/atau menjalankan usaha dan menyelenggarakan pembukuan; pegawai seperti Tuan Jaka tidak termasuk. Karena penyewa bukan pemotong, PPh final dibayar sendiri oleh PT Ortax Residence. Jumlah bruto mencakup biaya pemeliharaan dan keamanan yang berkaitan dengan unit yang disewa.",
-        jejakHitung: [ [ "Jumlah bruto = Rp240.000.000 + Rp12.000.000", "Rp252.000.000" ], [ "PPh final = 10% × Rp252.000.000 (disetor sendiri PT Ortax Residence)", "Rp25.200.000" ] ],
-        mengapaSalah: { A: "Tuan Jaka bukan pemotong pajak.", B: "Biaya pemeliharaan dan keamanan termasuk jumlah bruto walaupun perjanjiannya terpisah.", D: "Penyewa bukan pemotong dan DPP-nya juga kurang." },
+        jejakHitung: [
+          ["Jumlah bruto = Rp240.000.000 + Rp12.000.000", "Rp252.000.000"],
+          ["PPh final = 10% × Rp252.000.000 (disetor sendiri PT Ortax Residence)", "Rp25.200.000"]
+        ],
+        mengapaSalah: {
+          A: "Tuan Jaka bukan pemotong pajak.",
+          B: "Biaya pemeliharaan dan keamanan termasuk jumlah bruto walaupun perjanjiannya terpisah.",
+          D: "Penyewa bukan pemotong dan DPP-nya juga kurang."
+        },
         jebakan: "Bandingkan setiap opsi dengan dasar hukum: PP 34/2017 Pasal 3 ayat (1)–(3) dan Pasal 4 ayat (1)–(2)."
       },
-      dasarHukum: [
-        { pasal: "PP 34/2017 Pasal 3 ayat (1)–(3) dan Pasal 4 ayat (1)–(2)", berlakuSejak: null },
-        { pasal: "PER-11/PJ/2025 Pasal 16 ayat (2)", berlakuSejak: "2025-05-22" }
-      ],
+      dasarHukum: [{ pasal: "PP 34/2017 Pasal 3 ayat (1)–(3) dan Pasal 4 ayat (1)–(2)", berlakuSejak: "2018-01-02" }, { pasal: "PER-11/PJ/2025 Pasal 16 ayat (2)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 150,
       verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 12, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
@@ -3873,7 +3905,7 @@ UKP.register({
     { id: "KT-A3-24", topik: "A3.6", tipe: "pasal", depan: "Pembayaran yang dikecualikan dari pemotongan PPh 23?", belakang: "Bank, SGU hak opsi, dividen Ps. 4(3)f, SHU koperasi, penyalur pinjaman", dasar: "Pasal 23 ayat (4) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-25", topik: "A3.7", tipe: "angka", depan: "Tarif PPh final pekerjaan konstruksi (PP 9/2022)?", belakang: "1,75% kualifikasi kecil · 2,65% menengah/besar · 4% tanpa sertifikat", dasar: "PP 9/2022 Pasal 3 ayat (1)", berlakuSejak: "2022-02-21", menggantikan: "2% / 3% / 4% (PP 51/2008)", dekTambahan: [] },
     { id: "KT-A3-26", topik: "A3.7", tipe: "angka", depan: "Tarif PPh final konsultansi konstruksi?", belakang: "3,5% bersertifikat; 6% tanpa sertifikat", dasar: "PP 9/2022 Pasal 3 ayat (1)", berlakuSejak: "2022-02-21", menggantikan: "4% / 6% (PP 51/2008)", dekTambahan: [] },
-    { id: "KT-A3-27", topik: "A3.7", tipe: "angka", depan: "PPh final sewa tanah dan/atau bangunan?", belakang: "10% × bruto, termasuk service charge", dasar: "PP 34/2017", berlakuSejak: null, menggantikan: null, dekTambahan: [] },
+    { id: "KT-A3-27", topik: "A3.7", tipe: "angka", depan: "PPh final sewa tanah dan/atau bangunan?", belakang: "10% × bruto, termasuk service charge", dasar: "PP 34/2017", berlakuSejak: "2018-01-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-28", topik: "A3.7", tipe: "angka", depan: "PPh final pengalihan hak atas tanah/bangunan?", belakang: "2,5%; 1% rumah sederhana oleh pengembang; 0% ke pemerintah", dasar: "PP 34/2016 Pasal 2 ayat (1)", berlakuSejak: "2016-09-07", menggantikan: "5% (PP 71/2008)", dekTambahan: [] },
     { id: "KT-A3-29", topik: "A3.7", tipe: "angka", depan: "PPh final bunga obligasi bagi WP dalam negeri?", belakang: "10% final", dasar: "PP 91/2021", berlakuSejak: "2021-08-30", menggantikan: "15% (PP 16/2009 s.t.d.d. PP 55/2019)", dekTambahan: [] },
     { id: "KT-A3-30", topik: "A3.7", tipe: "angka", depan: "PPh final bunga deposito dan tabungan?", belakang: "20%; dikecualikan saldo ≤ Rp7,5 juta (bukan pecahan)", dasar: "PP 131/2000; KMK 51/KMK.04/2001", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },
@@ -3896,7 +3928,7 @@ UKP.register({
     { id: "KT-A3-47", topik: "A3.5", tipe: "angka", depan: "PPh 22 impor kedelai, gandum, tepung terigu oleh importir ber-API?", belakang: "0,5% × nilai impor", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-48", topik: "A3.5", tipe: "definisi", depan: "Nilai impor sebagai dasar PPh 22 impor?", belakang: "CIF + bea masuk + pungutan pabean lain; biaya setelah pabean tidak termasuk", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-49", topik: "A3.5", tipe: "angka", depan: "PPh 22 industri/eksportir atas pembelian dari pedagang pengumpul?", belakang: "0,25% × harga beli tanpa PPN; petani langsung tidak dipungut", dasar: "PMK 51/2025 (PPh Pasal 22, berlaku 1 Agustus 2025; perlakuan pembelian langsung dari petani ◐). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A3-50", topik: "A3.5", tipe: "angka", depan: "PPh 22 penjualan BBM oleh produsen/importir?", belakang: "0,25% ke SPBU Pertamina; 0,3% lainnya; final bagi penyalur/agen", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A3-50", topik: "A3.5", tipe: "angka", depan: "PPh 22 penjualan BBM oleh produsen/importir?", belakang: "0,25% ke SPBU Pertamina; 0,3% lainnya; final bagi penyalur/agen", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; tarif 0,25%/0,3% dan penggolongan SPBU ◐). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-51", topik: "A3.5", tipe: "angka", depan: "Kriteria hunian sangat mewah (PPh 22 1%)?", belakang: "Rumah > Rp30 miliar atau > 400 m²; apartemen > Rp30 miliar atau > 150 m²", dasar: "PMK 92/PMK.03/2019", berlakuSejak: "2019-06-19", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-52", topik: "A3.6", tipe: "pasal", depan: "Saat terutang PPh 23?", belakang: "Saat dibayar, disediakan untuk dibayar, atau jatuh tempo — mana lebih dahulu", dasar: "Pasal 23 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-53", topik: "A3.6", tipe: "definisi", depan: "Dasar PPh 23 bila tagihan memakai DPP nilai lain 11/12?", belakang: "Harga jual jasa tanpa PPN, bukan DPP nilai lain", dasar: "Pasal 23 ayat (1) UU PPh; PMK 131/2024", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
@@ -3937,7 +3969,7 @@ UKP.register({
     { id: "KT-A3-88", topik: "A3.2", tipe: "prosedur", depan: "Masa Pajak Terakhir pegawai bergaji USD: bruto setahun dalam rupiah?", belakang: "Jumlah rupiah tiap bulan dengan kurs KMK masing-masing; bukan total USD × kurs Desember", dasar: "PP 58/2023 Pasal 2; PMK 168/2023", berlakuSejak: "2024-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-89", topik: "A3.7", tipe: "prosedur", depan: "Uang muka dan termin jasa konstruksi dalam USD: kurs PPh final?", belakang: "Kurs KMK saat tiap pembayaran; bukan kurs kontrak atau berita acara", dasar: "PP 9/2022 Pasal 3; KMK nilai kurs mingguan", berlakuSejak: "2022-02-21", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-90", topik: "A3.4", tipe: "prosedur", depan: "Pesangon USD dibayar bertahap: kurs dan lapisan tarif?", belakang: "Tiap tahap dengan kurs KMK saat dibayar; lapisan tarif kumulatif dalam rupiah", dasar: "PP 68/2009", berlakuSejak: "2009-11-16", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A3-91", topik: "A3.5", tipe: "definisi", depan: "Pembelian USD oleh BUMN pemungut: kurs PPh 22 vs kurs PPN?", belakang: "PPh 22: kurs KMK saat pembayaran · PPN: kurs KMK saat faktur seharusnya dibuat", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025); PP 44/2022 Pasal 21", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] }
+    { id: "KT-A3-91", topik: "A3.5", tipe: "definisi", depan: "Pembelian USD oleh BUMN pemungut: kurs PPh 22 vs kurs PPN?", belakang: "PPh 22: kurs KMK saat pembayaran · PPN: kurs KMK saat faktur seharusnya dibuat", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; saat terutang pembelian oleh BUMN ◐; PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025); PP 44/2022 Pasal 21", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] }
   ],
   kasus: [
     {

@@ -702,7 +702,7 @@
       if (selisih > 0) saran = 'Setor paling lambat akhir bulan berikutnya, sebelum SPT Masa PPN disampaikan.';
       else if (selisih === 0) saran = 'Nihil — tetap laporkan SPT Masa PPN.';
       else if (v.akhirTahunBuku === true) saran = 'Lebih bayar akhir tahun buku: dapat dimintakan restitusi (Ps. 9 ayat (4b) UU PPN) atau dikompensasikan.';
-      else saran = 'Kompensasikan ke masa berikutnya; restitusi tiap masa hanya untuk PKP Ps. 9 ayat (4b) (eksportir, penyerahan ke pemungut, tidak dipungut, belum berproduksi) atau pengembalian pendahuluan.';
+      else saran = 'Kompensasikan ke masa berikutnya; restitusi tiap masa hanya untuk PKP Ps. 9 ayat (4b) (eksportir, penyerahan ke pemungut, tidak dipungut) atau pengembalian pendahuluan.';
       dh.push('Pasal 9 ayat (2)–(4b) UU PPN');
       asumsi.push('Non-mewah: PPN = 12% × 11/12 × harga = efektif 11% (PMK 131/2024; nilai lain dan besaran tertentu disesuaikan PMK 11/2025).');
       asumsi.push('Pajak masukan dikreditkan pada masa yang sama; yang belum dikreditkan dapat dikreditkan paling lama 3 masa berikutnya (Ps. 9 ayat (9)).');

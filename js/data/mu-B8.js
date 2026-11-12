@@ -15,7 +15,7 @@ UKP.register({
       "PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022 (klasifikasi objek dan penetapan NJOP PBB-P5L)",
       "PMK 23/PMK.03/2014 (NJOPTKP Rp12.000.000)",
       "UU 1/2022 (HKPD): batas objek PBB-P2 daerah dan dana bagi hasil PBB",
-      "PMK 81/2024 (Coretax) dan PMK 118/2024 (pelaksanaan hak dan kewajiban wajib pajak)",
+      "PMK 81/2024 (Coretax) dan PMK 118/2024 (pembetulan, keberatan, pengurangan, penghapusan, dan pembatalan di bidang perpajakan)",
       "PMK 129/2023 (pemberian pengurangan PBB; menggantikan PMK 82/PMK.03/2017)",
       "UU 19/1997 s.t.d.d. UU 19/2000 (PPSP) dan UU 14/2002 (Pengadilan Pajak)"
     ],
@@ -48,7 +48,7 @@ UKP.register({
       { label: "Keputusan keberatan", nilai: "≤ 12 bulan sejak surat keberatan diterima; lewat = dianggap diterima", dasar: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01" },
       { label: "Banding", nilai: "≤ 3 bulan sejak keputusan keberatan diterima", dasar: "Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" },
       { label: "Gugatan atas pelaksanaan penagihan", nilai: "14 hari sejak tanggal pelaksanaan penagihan", dasar: "Pasal 40 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" },
-      { label: "Pengurangan PBB", nilai: "atas permohonan: kondisi tertentu objek atau bencana/sebab luar biasa", dasar: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" },
+      { label: "Pengurangan PBB", nilai: "atas permohonan: kondisi tertentu objek (paling tinggi 75%) atau bencana/sebab luar biasa (paling tinggi 100%) dari PBB yang belum dilunasi ◐", dasar: "Pasal 19 ayat (1) UU PBB; PMK 129/2023", berlakuSejak: "1995-01-01" },
       { label: "Rantai penagihan", nilai: "Surat Teguran lewat 7 hari → Surat Paksa lewat 21 hari → sita (2 × 24 jam) → pengumuman lelang ≥ 14 hari → lelang ≥ 14 hari", dasar: "UU 19/1997 s.t.d.d. UU 19/2000; PMK 61/2023", berlakuSejak: "2023-06-12" },
       { label: "Pembayaran", nilai: "kode billing Coretax (NPWP 16 digit + NOP); bukti pelunasan ber-NTPN", dasar: "Pasal 12 UU PBB; PMK 81/2024", berlakuSejak: "2025-01-01" },
       { label: "Bagi hasil (DBH PBB)", nilai: "100% untuk daerah: provinsi 16,2%, kabupaten/kota penghasil (letak objek) 73,8%, kabupaten/kota lain dalam provinsi 10%; UU PBB hanya mensyaratkan ≥ 90% ◐", dasar: "Pasal 113 UU 1/2022; PMK 67/2024; Pasal 18 ayat (1) UU PBB" },
@@ -258,7 +258,7 @@ UKP.register({
         "Keberatan dipakai bila penetapan tidak benar (luas, NJOP, subjek); pengurangan dipakai bila penetapan benar tetapi wajib pajak membutuhkan keringanan, misalnya objek rusak karena bencana setelah 1 Januari.",
         "Upaya hukum non keberatan PBB-P5L (PMK 118/2024 s.t.d.d. PMK 71/2026): (a) pembetulan SPPT, SKP PBB, atau STP PBB yang memuat kesalahan tulis (nama, alamat, NOP, tanggal jatuh tempo), kesalahan hitung (penjumlahan, pengurangan, perkalian, pembagian), dan/atau kekeliruan penerapan ketentuan, karena jabatan atau atas permohonan; (b) pengurangan PBB karena kondisi tertentu atau bencana (Pasal 19 UU PBB; tata caranya diatur tersendiri dalam PMK 129/2023); (c) pengurangan atau penghapusan denda administratif PBB yang dikenakan karena kekhilafan wajib pajak atau bukan karena kesalahannya (Pasal 20 UU PBB); (d) pengurangan atau pembatalan SPPT, SKP PBB, atau STP PBB yang tidak benar.",
         "Memilih jalur: salah tulis atau salah hitung yang tampak dari dokumen → pembetulan; sengketa materi (luas, NJOP, subjek) yang masih dalam 3 bulan → keberatan; tenggat keberatan lewat atau keberatan tidak dipertimbangkan → pengurangan atau pembatalan ketetapan yang tidak benar; penetapan benar tetapi objek terkena bencana atau kondisi tertentu → pengurangan PBB; denda 2% sebulan atau 25% yang timbul karena kekhilafan atau bukan kesalahan wajib pajak → pengurangan denda administratif. STP PBB bukan objek keberatan, sehingga STP yang tidak benar diselesaikan melalui pembetulan atau pembatalan.",
-        "Pengurangan atau pembatalan SKP PBB yang tidak benar hanya dapat diajukan bila wajib pajak tidak mengajukan keberatan atau keberatannya tidak dipertimbangkan; banding tidak tersedia karena tidak ada keputusan keberatan. Pengurangan denda administratif PBB hanya diberikan atas denda yang belum dibayar. Keputusan atas permohonan pembetulan, pengurangan denda, serta pengurangan atau pembatalan ketetapan diterbitkan paling lama 6 bulan sejak permohonan diterima; jangka waktu keputusan pengurangan PBB Pasal 19 mengikuti PMK 129/2023."
+        "Pengurangan atau pembatalan SKP PBB yang tidak benar hanya dapat diajukan bila wajib pajak tidak mengajukan keberatan atau keberatannya tidak dipertimbangkan; banding tidak tersedia karena tidak ada keputusan keberatan. Pengurangan denda administratif PBB hanya diberikan atas denda yang belum dibayar, dan pokok PBB yang menjadi dasar denda dalam STP PBB harus sudah dilunasi; sejak PMK 71/2026 (berlaku 2 Oktober 2026) pembayaran atas STP PBB diperhitungkan lebih dulu terhadap pokok, dan kelebihannya baru terhadap denda. Keputusan atas permohonan pembetulan, pengurangan denda, serta pengurangan atau pembatalan ketetapan diterbitkan paling lama 6 bulan sejak permohonan diterima; jangka waktu keputusan pengurangan PBB Pasal 19 mengikuti PMK 129/2023."
       ],
       poinKunci: [
         { label: "Objek keberatan", nilai: "SPPT dan SKP", dasar: "Pasal 15 ayat (1) UU PBB", berlakuSejak: "1995-01-01" },
@@ -266,6 +266,8 @@ UKP.register({
         { label: "Keputusan keberatan", nilai: "≤ 12 bulan; lewat = dianggap diterima", dasar: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01" },
         { label: "Banding", nilai: "≤ 3 bulan sejak keputusan diterima", dasar: "Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" },
         { label: "Pengurangan", nilai: "atas permohonan: kondisi tertentu atau bencana", dasar: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" },
+        { label: "Batas pengurangan PBB", nilai: "kondisi tertentu ≤ 75%; bencana alam atau sebab lain yang luar biasa ≤ 100% dari PBB yang belum dilunasi; permohonan karena bencana diajukan pada tahun terjadinya bencana ◐", dasar: "PMK 129/2023", berlakuSejak: null },
+        { label: "Pengurangan denda administratif PBB", nilai: "kekhilafan atau bukan kesalahan WP; atas denda yang belum dibayar; pokok PBB dasar denda dalam STP PBB sudah lunas; pembayaran STP PBB diperhitungkan ke pokok lebih dulu (sejak PMK 71/2026)", dasar: "Pasal 20 UU PBB; PMK 118/2024 s.t.d.d. PMK 71/2026 Pasal 23 ayat (5) huruf a, ayat (6), dan ayat (7)", berlakuSejak: "2026-10-02" },
         { label: "Upaya hukum non keberatan PBB", nilai: "Pembetulan · pengurangan PBB · pengurangan denda administratif · pengurangan/pembatalan SPPT, SKP, STP PBB yang tidak benar", dasar: "Pasal 19 dan 20 UU PBB; PMK 129/2023 (pengurangan PBB); PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" },
         { label: "Pembetulan SPPT/SKP/STP PBB", nilai: "Kesalahan tulis, hitung, atau kekeliruan penerapan ketentuan; jabatan atau permohonan", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01" },
         { label: "Pembatalan SKP PBB tidak benar", nilai: "Hanya bila tidak diajukan keberatan atau keberatan tidak dipertimbangkan", dasar: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" },
@@ -327,7 +329,7 @@ UKP.register({
         langkah: [ ["PBB-P5L (pajak selain PPh)", "dapat dibiayakan Rp312.000.000"], ["Denda STP (sanksi administrasi)", "tidak dapat dibiayakan"], ["Koreksi fiskal positif", "Rp6.240.000"] ]
       },
       verifikasi: "◐",
-      peringatan: "Tata cara pengembalian kelebihan pembayaran PBB (jenis keputusan, jangka waktu) dan layanan pemindahbukuan di Coretax (PMK 81/2024) belum dicek ke teks primer; soal restitusi hanya menguji prinsip perhitungan dengan utang pajak dan pemindahbukuan."
+      peringatan: "Tata cara pengembalian kelebihan pembayaran PBB (jenis keputusan, jangka waktu) dan layanan pemindahbukuan di Coretax (PMK 81/2024) belum dicek ke teks primer; soal restitusi hanya menguji prinsip perhitungan dengan utang pajak dan pemindahbukuan. Butir keempat ringkasan (pengurangan yang menurunkan pajak yang sudah dibayar), kasus K-B8-06, dan soal B8-061 memperlakukan pengurangan PBB Pasal 19 atas SPPT yang sudah lunas sebagai kelebihan pembayaran; menurut ringkasan sekunder PMK 129/2023 pengurangan diberikan dari PBB yang belum dilunasi (dan SE-16/PJ/2025 menurut basis data sekunder menutup permohonan bila PBB telah dilunasi melalui kompensasi), sehingga alur itu belum pasti sampai naskah dicek (lihat peringatan topik B8.6)."
     },
     {
       id: "B8.8", slug: "bagi-hasil-pbb", judul: "Bagi hasil penerimaan PBB",
@@ -1679,7 +1681,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-074", topik: "B8.1", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "B8-074",
+      topik: "B8.1",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "PT Sawit Barito Jaya menjual seluruh kebun kelapa sawit ber-HGU di Kabupaten Barito Selatan kepada PT Agro Kalteng Mandiri. Akta jual beli ditandatangani pada 2 Juni 2026 dengan nilai pengalihan tanah dan bangunan Rp210.000.000.000; nilai tanaman Rp95.000.000.000 dicatat terpisah sebagai penjualan aset biasa. Pendaftaran peralihan HGU selesai pada Agustus 2026. SPPT PBB-P5L 2026 atas kebun tersebut sebesar Rp512.400.000 diterima pada 16 Maret 2026 atas nama PT Sawit Barito Jaya. Penjual bukan pengembang real estat dan tidak memperoleh fasilitas khusus. Pernyataan yang paling tepat mengenai PBB-P5L, PPh, dan BPHTB atas transaksi tersebut adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan perubahan subjek dilaporkan dengan SPOP untuk SPPT 2027; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", B: "PBB-P5L 2026 dibagi proporsional, 5 bulan atas nama penjual dan 7 bulan atas nama pembeli; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", C: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan perubahan subjek dilaporkan dengan SPOP untuk SPPT 2027; penjual membayar PPh final 2,5% × Rp305.000.000.000 = Rp7.625.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", D: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan perubahan subjek dilaporkan dengan SPOP untuk SPPT 2027; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB ke kas negara karena objeknya PBB-P5L" },
@@ -1687,11 +1693,19 @@ UKP.register({
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "SPPT 2026 mengikuti subjek dan keadaan objek per 1 Januari 2026 (Pasal 8 ayat (2) UU PBB); peralihan hak dilaporkan dengan SPOP sehingga pembeli menjadi subjek mulai 2027. Pengalihan hak atas tanah dan bangunan dikenai PPh final 2,5% dari nilai bruto pengalihan tanah dan bangunan (PP 34/2016), sedangkan nilai tanaman diperlakukan sebagai penjualan aset biasa. BPHTB adalah pajak daerah (UU 1/2022) yang dibayar pembeli kepada kabupaten, meskipun objek PBB-nya PBB-P5L.",
-        jejakHitung: [ ["Dasar PPh final (tanah dan bangunan)", "Rp210.000.000.000"], ["PPh final 2,5%", "Rp5.250.000.000"], ["Nilai tanaman Rp95.000.000.000", "di luar PPh final; penghasilan usaha biasa"] ],
-        mengapaSalah: { B: "PBB tidak dibagi per bulan; Pasal 8 ayat (2) mengunci subjek dan objek pada 1 Januari", C: "Nilai tanaman bukan nilai pengalihan hak atas tanah dan/atau bangunan sehingga tidak masuk dasar PPh final", D: "BPHTB adalah pajak daerah berdasarkan UU 1/2022; status PBB-P5L objek tidak memindahkan BPHTB ke kas negara" },
+        jejakHitung: [
+          ["Dasar PPh final (tanah dan bangunan)", "Rp210.000.000.000"],
+          ["PPh final 2,5%", "Rp5.250.000.000"],
+          ["Nilai tanaman Rp95.000.000.000", "di luar PPh final; penghasilan usaha biasa"]
+        ],
+        mengapaSalah: {
+          B: "PBB tidak dibagi per bulan; Pasal 8 ayat (2) mengunci subjek dan objek pada 1 Januari",
+          C: "Nilai tanaman bukan nilai pengalihan hak atas tanah dan/atau bangunan sehingga tidak masuk dasar PPh final",
+          D: "BPHTB adalah pajak daerah berdasarkan UU 1/2022; status PBB-P5L objek tidak memindahkan BPHTB ke kas negara"
+        },
         jebakan: "Satu transaksi kebun menyentuh tiga rezim sekaligus: PBB-P5L (pusat), PPh final (pusat), dan BPHTB (daerah)."
       },
-      dasarHukum: [ { pasal: "Pasal 4 ayat (1) dan Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 34/2016 Pasal 2", berlakuSejak: "2016-09-08" }, { pasal: "Pasal 44–47 UU 1/2022", berlakuSejak: "2022-01-05" } ],
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) dan Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 34/2016 Pasal 2", berlakuSejak: "2016-09-07" }, { pasal: "Pasal 44–47 UU 1/2022", berlakuSejak: "2022-01-05" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -2108,10 +2122,10 @@ UKP.register({
         },
         jebakan: "Soal lintas KUP–PBB: titik awal (dikirim vs diterima) dan sanksi atas keberatan berbeda."
       },
-      dasarHukum: [{ pasal: "Pasal 25 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 25 ayat (9) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 15–16 UU PBB", berlakuSejak: "1995-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 25 ayat (9) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 15–16 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 118/2024 Pasal 20 ayat (4)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 150,
       verifikasi: "◐",
-      peringatan: "Tidak berlakunya denda Pasal 25 ayat (9) UU KUP atas keberatan PBB disimpulkan dari pengaturan keberatan tersendiri dalam Pasal 15–16 UU PBB; aturan pelaksana terbaru (PMK 118/2024) belum dicek untuk PBB."
+      peringatan: "Tidak berlakunya denda Pasal 25 ayat (9) UU KUP atas keberatan PBB mengikuti pengaturan keberatan tersendiri dalam Pasal 15–16 UU PBB dan, menurut dua berita DDTCNews (\"Keberatan soal ketetapan PBB ditolak, pemohon tak dikenai sanksi denda\" dan \"Keberatan PBB-P5L ditolak, apakah WP dikenakan sanksi?\"), ditegaskan PMK 118/2024 Pasal 20 ayat (4) untuk keputusan keberatan atas SPPT dan SKP PBB. Kunci C sejalan dengan kedua sumber itu; nomor pasal PMK 118/2024 berasal dari sumber sekunder dan naskahnya belum dibuka langsung."
     },
     {
       id: "B8-098", topik: "B8.7", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["C-2026-10"],
@@ -2249,30 +2263,36 @@ UKP.register({
       peringatan: "Nomor pasal UU PBB untuk pengurangan denda administratif (Pasal 20 menurut PMK 81/PMK.03/2017; beberapa peraturan lama merujuk pasal lain) dan rincian PMK 118/2024 s.t.d.d. PMK 71/2026 untuk PBB dikonfirmasi dari sumber sekunder; cek teks primer. Untuk masalah (4), banjir terjadi pada Juli 2026, sedangkan SPPT 2026 menurut soal lanjutan B8-105 sudah dilunasi 3 Juli 2026 dan PMK 129/2023 menurut ringkasan sekunder memberikan pengurangan dari PBB yang belum dilunasi; jalur yang diuji tetap pengurangan PBB, tetapi apakah pengurangan masih dapat diberikan atas PBB yang sudah dilunasi belum dicek ke naskah."
     },
     {
-      id: "B8-105", topik: "B8.6", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-09",
+      id: "B8-105",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-09",
       stem: "Lanjutan V-B8-09: SPPT PBB-P5L 2026 PT Sawit Tanjung Harapan sebesar Rp640.000.000 diterima pada 2 Januari 2026. Pada hari jatuh tempo pembayaran gagal karena gangguan sistem bank persepsi (dibuktikan surat keterangan bank), dan PBB baru berhasil dilunasi penuh keesokan harinya. Pada 5 Oktober 2026 perusahaan menerima STP PBB berisi denda keterlambatan dan belum membayarnya. Asumsikan bagian dari bulan dihitung satu bulan penuh. Jumlah denda dalam STP dan langkah yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp12.800.000; mengajukan keberatan atas STP PBB paling lambat 3 bulan sejak STP diterima",
-        B: "Rp12.800.000; mengajukan permohonan pengurangan atau penghapusan denda administratif PBB karena denda timbul bukan karena kesalahan wajib pajak, sebelum denda itu dibayar",
-        C: "Rp153.600.000; mengajukan pengurangan PBB Pasal 19 karena keadaan kahar",
-        D: "Rp160.000.000; mengajukan pembetulan STP PBB karena kesalahan hitung"
-      },
+      opsi: { A: "Rp12.800.000; mengajukan keberatan atas STP PBB paling lambat 3 bulan sejak STP diterima", B: "Rp12.800.000; mengajukan permohonan pengurangan atau penghapusan denda administratif PBB karena denda timbul bukan karena kesalahan wajib pajak, sebelum denda itu dibayar", C: "Rp153.600.000; mengajukan pengurangan PBB Pasal 19 karena keadaan kahar", D: "Rp160.000.000; mengajukan pembetulan STP PBB karena kesalahan hitung" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Jatuh tempo SPPT 6 bulan sejak diterima (2 Juli 2026); terlambat satu hari dihitung satu bulan sehingga denda 2% × Rp640.000.000 = Rp12.800.000. Karena denda timbul bukan karena kesalahan wajib pajak dan belum dibayar, jalurnya permohonan pengurangan atau penghapusan denda administratif PBB.",
-        jejakHitung: [["Jatuh tempo: 2 Januari 2026 + 6 bulan", "2 Juli 2026"], ["Dilunasi 3 Juli 2026", "terlambat 1 hari → 1 bulan"], ["Denda 2% × 1 × Rp640.000.000", "Rp12.800.000"]],
+        jejakHitung: [
+          ["Jatuh tempo: 2 Januari 2026 + 6 bulan", "2 Juli 2026"],
+          ["Dilunasi 3 Juli 2026", "terlambat 1 hari → 1 bulan"],
+          ["Denda 2% × 1 × Rp640.000.000", "Rp12.800.000"]
+        ],
         mengapaSalah: {
           A: "STP bukan objek keberatan PBB; keberatan hanya atas SPPT dan SKP.",
-          C: "Denda dihitung per bulan keterlambatan (1 bulan), bukan 12 bulan; pengurangan Pasal 19 ditujukan pada pokok PBB, bukan denda.",
+          C: "Denda dihitung per bulan keterlambatan (1 bulan), bukan 12 bulan; lagi pula pengurangan PBB Pasal 19 mensyaratkan kondisi tertentu objek yang berhubungan dengan subjek atau objek terkena bencana alam/sebab lain yang luar biasa, bukan gangguan sistem pembayaran, sehingga keterlambatan karena bank persepsi diselesaikan dengan pengurangan atau penghapusan denda administratif.",
           D: "25% adalah denda dalam SKP (Pasal 10 UU PBB), bukan denda keterlambatan bayar; STP tidak memuat kesalahan hitung."
         },
         jebakan: "Mencampur denda 25% SKP dengan denda 2% sebulan, dan mengira STP dapat diajukan keberatan."
       },
       dasarHukum: [{ pasal: "Pasal 11 ayat (1) dan (3) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 20 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" }],
-      anggaranDetik: 160, verifikasi: "◐",
-      peringatan: "Nomor pasal UU PBB untuk pengurangan denda administratif (Pasal 20 menurut PMK 81/PMK.03/2017; beberapa peraturan lama merujuk pasal lain) dan rincian PMK 118/2024 s.t.d.d. PMK 71/2026 untuk PBB dikonfirmasi dari sumber sekunder; cek teks primer."
+      anggaranDetik: 160,
+      verifikasi: "◐",
+      peringatan: "Nomor pasal UU PBB untuk pengurangan denda administratif (Pasal 20 menurut PMK 81/PMK.03/2017; beberapa peraturan lama merujuk pasal lain) dan rincian PMK 118/2024 s.t.d.d. PMK 71/2026 untuk PBB dikonfirmasi dari sumber sekunder; cek teks primer. Cakupan pengurangan PBB menurut PMK 129/2023 (ringkasan sekunder menyebut dapat mencakup PBB yang belum dilunasi dalam SKP PBB atau STP PBB beserta dendanya) belum dicek ke naskah; alasan opsi C tidak bergantung pada hal itu."
     },
     {
       id: "B8-106", topik: "B8.6", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"],
@@ -2325,15 +2345,15 @@ UKP.register({
       anggaranDetik: 180, verifikasi: "✅"
     },
     {
-      id: "B8-108", topik: "B8.6", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"],
+      id: "B8-108",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
       stem: "PT Agro Seruyan Jaya mempunyai dua objek PBB-P5L. PBB 2026 Objek I sebesar Rp185.000.000 dibayar tepat pada jatuh tempo, tetapi kode billing dibuat dengan NOP Objek II yang SPPT-nya sudah lunas. Akibatnya sistem mencatat SPPT Objek I belum dibayar, dan pada Oktober 2026 KPP menerbitkan STP PBB Objek I berisi denda Rp14.800.000 (2% × 4 bulan). Perusahaan belum membayar STP tersebut. Langkah yang paling tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Mengajukan keberatan atas STP PBB paling lambat 3 bulan sejak STP diterima",
-        B: "Mengajukan pemindahbukuan pembayaran ke NOP Objek I (tanggal pembayaran tetap tanggal setor semula), lalu mengajukan permohonan pembatalan STP PBB yang tidak benar",
-        C: "Membayar denda Rp14.800.000 lebih dulu, kemudian mengajukan permohonan pengurangan denda administratif",
-        D: "Mengajukan pengurangan PBB Pasal 19 sebesar denda yang tercantum dalam STP"
-      },
+      opsi: { A: "Mengajukan keberatan atas STP PBB paling lambat 3 bulan sejak STP diterima", B: "Mengajukan pemindahbukuan pembayaran ke NOP Objek I (tanggal pembayaran tetap tanggal setor semula), lalu mengajukan permohonan pembatalan STP PBB yang tidak benar", C: "Membayar denda Rp14.800.000 lebih dulu, kemudian mengajukan permohonan pengurangan denda administratif", D: "Mengajukan pengurangan PBB Pasal 19 sebesar denda yang tercantum dalam STP" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
@@ -2342,13 +2362,14 @@ UKP.register({
         mengapaSalah: {
           A: "STP bukan objek keberatan PBB.",
           C: "Pengurangan denda hanya atas denda yang belum dibayar; lagi pula di sini dendanya tidak seharusnya ada, sehingga yang tepat pembatalan STP.",
-          D: "Pengurangan Pasal 19 ditujukan pada pokok PBB karena kondisi objek/subjek atau bencana, bukan denda."
+          D: "Pengurangan PBB Pasal 19 mensyaratkan kondisi tertentu objek yang berhubungan dengan subjek atau objek terkena bencana alam/sebab lain yang luar biasa; salah NOP pada pembayaran bukan alasan pengurangan, dan dendanya sendiri tidak seharusnya ada, sehingga jalurnya pemindahbukuan lalu pembatalan STP."
         },
         jebakan: "Membayar denda lebih dulu sehingga kehilangan kesempatan meminta pengurangan, atau memilih keberatan atas STP."
       },
       dasarHukum: [{ pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" }, { pasal: "PMK 81/2024 (pemindahbukuan)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 11 ayat (3) UU PBB", berlakuSejak: "1995-01-01" }],
-      anggaranDetik: 130, verifikasi: "◐",
-      peringatan: "Ketentuan bahwa tanggal pembayaran hasil pemindahbukuan mengikuti tanggal setor semula diambil dari praktik PMK pemindahbukuan sebelumnya; cek PMK 81/2024. Rincian pembatalan STP PBB menurut PMK 118/2024 s.t.d.d. PMK 71/2026 dikonfirmasi dari sumber sekunder."
+      anggaranDetik: 130,
+      verifikasi: "◐",
+      peringatan: "Ketentuan bahwa tanggal pembayaran hasil pemindahbukuan mengikuti tanggal setor semula diambil dari praktik PMK pemindahbukuan sebelumnya; cek PMK 81/2024. Rincian pembatalan STP PBB menurut PMK 118/2024 s.t.d.d. PMK 71/2026 dikonfirmasi dari sumber sekunder. Cakupan pengurangan PBB menurut PMK 129/2023 (ringkasan sekunder menyebut dapat mencakup STP PBB beserta dendanya) belum dicek ke naskah; alasan opsi D tidak bergantung pada hal itu."
     },
     {
       id: "B8-109", topik: "B8.4", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-10",
@@ -2829,7 +2850,7 @@ UKP.register({
     { id: "KT-B8-64", topik: "B8.8", tipe: "pasal", depan: "Kebun membentang di dua kabupaten: tempat terutang dan penerima bagi hasil?", belakang: "Masing-masing kabupaten sesuai letak bagian kebun (porsi kabupaten penghasil)", dasar: "Pasal 8 ayat (3) UU PBB; Pasal 113 UU 1/2022", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-65", topik: "B8.6", tipe: "definisi", depan: "Empat upaya hukum non keberatan PBB-P5L?", belakang: "Pembetulan; pengurangan PBB; pengurangan denda; pembatalan/pengurangan SPPT, SKP, STP tidak benar", dasar: "Pasal 19 dan 20 UU PBB; PMK 129/2023 (pengurangan PBB); PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-66", topik: "B8.6", tipe: "definisi", depan: "Kesalahan yang diperbaiki lewat pembetulan SPPT, SKP, atau STP PBB?", belakang: "Kesalahan tulis, kesalahan hitung, kekeliruan penerapan ketentuan", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B8-67", topik: "B8.6", tipe: "prosedur", depan: "Syarat pengurangan denda administratif PBB?", belakang: "Karena kekhilafan atau bukan kesalahan WP; hanya atas denda yang belum dibayar", dasar: "Pasal 20 UU PBB; PMK 118/2024", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B8-67", topik: "B8.6", tipe: "prosedur", depan: "Syarat pengurangan denda administratif PBB?", belakang: "Karena kekhilafan atau bukan kesalahan WP; hanya atas denda yang belum dibayar; pokok PBB dasar denda dalam STP PBB sudah lunas (sejak PMK 71/2026 pembayaran STP diperhitungkan ke pokok lebih dulu)", dasar: "Pasal 20 UU PBB; PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-68", topik: "B8.6", tipe: "prosedur", depan: "Kapan pengurangan/pembatalan SKP PBB yang tidak benar dapat diajukan?", belakang: "Bila tidak diajukan keberatan atau keberatannya tidak dipertimbangkan", dasar: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-69", topik: "B8.8", tipe: "angka", depan: "Rincian DBH PBB menurut Pasal 113 UU 1/2022?", belakang: "16,2% provinsi; 73,8% kabupaten/kota penghasil; 10% kabupaten/kota lainnya", dasar: "Pasal 113 UU 1/2022", berlakuSejak: "2022-01-05", menggantikan: "imbangan sekurang-kurangnya 90% untuk daerah (Pasal 18 UU PBB)", dekTambahan: [] },
     { id: "KT-B8-70", topik: "B8.2", tipe: "definisi", depan: "Klinik gratis khusus karyawan di areal usaha: dikecualikan dari PBB?", belakang: "Tidak; tidak melayani kepentingan umum, tetap objek", dasar: "Pasal 3 ayat (1) huruf a UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },

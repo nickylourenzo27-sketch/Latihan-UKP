@@ -107,6 +107,14 @@ Rilis ini menjawab empat hal dari tim: banyak anggota tidak langsung tersambung,
 - **Rujukan diseragamkan:** PMK 51/2025 berlaku 1 Agustus 2025 (PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025); PPN PMSE, ekspor JKP, dan kegiatan membangun sendiri kini merujuk PMK 81/2024; PP 34/2017 berlaku 2 Januari 2018; PP 93/2010 dan PP 94/2010 bertanggal 30 Desember 2010; hanya Pasal 2A PP 94/2010 yang dicabut PP 55/2022.
 - Hal yang masih memerlukan naskah peraturan diberi tanda ◐ dengan peringatan; soal bertanda ◐ kini 382 (v9.4: 377). Situs peraturan resmi tidak terjangkau dari lingkungan kerja, jadi bukti berasal dari hasil pencarian dan sumber sekunder.
 
+## Putaran penutup pemeriksaan soal Tingkat B (v9.4.2)
+
+- **Angsuran PPh Pasal 25 bila ada kompensasi kerugian.** Dasar angsuran tahun berjalan adalah penghasilan neto tahun lalu dikurangi SISA kerugian yang masih dapat dikompensasikan pada tahun berjalan, bukan PPh terutang tahun lalu setelah kompensasi (Pasal 25 ayat (6) huruf a UU PPh dan contoh Penjelasannya; bagian penghitungan angsuran pada SPT Tahunan). Bila kerugian habis dipakai pada tahun lalu, dasarnya neto penuh. Kunci atau angka yang berubah: A1-082 (April Rp10.595.833), B6-013 (B menjadi C, Rp25.300.000), B7-044 (B menjadi D, Rp69.925.000), B6-069 (angsuran Rp17.612.500), serta langkah angsuran kasus K-B6-01 dan K-B6-04. Topik A1.9, B6.9, B7.6, kartu, dan lembar ringkas diselaraskan. Soal-soal itu bertanda ◐ karena naskah PER-11/PJ/2025 belum dibuka langsung.
+- **Restitusi PPN tiap Masa Pajak** tidak lagi memuat "PKP belum berproduksi": Pasal 9 ayat (4b) huruf f UU PPN dihapus UU 11/2020. PKP yang belum melakukan penyerahan boleh mengkreditkan Pajak Masukan (ayat (2a)), meminta pengembalian pada akhir tahun buku (ayat (4a)), dan wajib membayar kembali bila 3 tahun belum ada penyerahan (ayat (6a)). Dibetulkan di A4, A2, B7, peta formulir, glosarium, dan teks saran kalkulator.
+- A1-042 kini menyebut bengkel dijalankan di rumah tinggal, sehingga bukan Wajib Pajak orang pribadi pengusaha tertentu dan kunci C tetap sah. Sisa rumusan tenggat PKP lama (kasus K-A4-04, A4-077), kode faktur (A4-023), dan beberapa tanggal berlaku diseragamkan.
+- Hal yang menunggu naskah peraturan diberi tanda ◐ dan peringatan yang menyebut dua versi sumbernya, antara lain sanksi atas jasa di luar klasifikasi izin menurut PMK 55/2026 (E-032, E-036) dan pengurangan PBB menurut PMK 129/2023.
+- `test/v942.test.js` mengunci sembilan kunci yang dibetulkan pada putaran 4 sampai 7, supaya suntingan berikutnya tidak mengembalikan jawaban lama tanpa sengaja.
+
 ## Isi saat ini (status 9 November 2026, v7.8)
 
 | | Jumlah |

@@ -381,7 +381,7 @@ UKP.register({
         { label: "PKP persyaratan tertentu", nilai: "tidak lagi diperlakukan sebagai PKP berisiko rendah (Ps. 9 ayat (4c) UU PPN)", dasar: "PMK 28 Tahun 2026", berlakuSejak: "2026-05-01" },
         { label: "Pengembalian setelah SKPLB", nilai: "1 bulan; terlambat → imbalan bunga Ps. 11(3)", dasar: "Pasal 11 ayat (2)–(3) UU KUP", berlakuSejak: "2008-01-01" },
         { label: "Tarif imbalan bunga Okt 2026", nilai: "0,59% per bulan (uplift 0%), maks 24 bulan", dasar: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
-        { label: "SKPKB setelah 17C/17D", nilai: "kenaikan 100%", dasar: "Pasal 17C ayat (5), 17D ayat (5) UU KUP", berlakuSejak: "2021-10-29" }
+        { label: "SKPKB setelah 17C/17D", nilai: "kenaikan 100%", dasar: "Pasal 17C ayat (5), 17D ayat (5) UU KUP", berlakuSejak: "2008-01-01" }
       ],
       dasarHukum: [
         { pasal: "Pasal 11 UU KUP", catatan: "pengembalian kelebihan dan imbalan bunga" },
@@ -1503,7 +1503,12 @@ UKP.register({
       peringatan: "Ketentuan imbalan bunga Pasal 11 ayat (3) bertanda ◐ dalam riset; tarif bulan November 2026 belum terbit saat penyusunan sehingga dinyatakan sebagai asumsi soal."
     },
     {
-      id: "A2-047", topik: "A2.9", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2, laporanUjian: ["B-2026-10"],
+      id: "A2-047",
+      topik: "A2.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
       stem: "PT Pelita (WP persyaratan tertentu) memperoleh pengembalian pendahuluan PPh Badan 2025 berdasarkan Pasal 17D. Pada 2026 DJP memeriksa dan menerbitkan SKPKB dengan kekurangan PPh Rp50.000.000 karena ternyata ada penghasilan yang tidak dilaporkan. Jumlah yang ditagih dalam SKPKB (pokok dan sanksi) adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp100.000.000, karena dikenai kenaikan 100%", B: "Rp50.000.000 ditambah bunga Pasal 13 ayat (2) uplift 15%", C: "Rp87.500.000, karena dikenai kenaikan 75%", D: "Rp50.000.000 tanpa sanksi karena pengembalian telah disetujui DJP" },
@@ -1511,12 +1516,21 @@ UKP.register({
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
         inti: "WP yang menerima pengembalian pendahuluan Pasal 17C/17D lalu terbit SKPKB dikenai kenaikan 100% dari jumlah kekurangan pembayaran pajak (Pasal 17C ayat (5) dan 17D ayat (5)).",
-        jejakHitung: [["Kekurangan pajak", "Rp50.000.000"], ["Kenaikan 100%", "Rp50.000.000"], ["Jumlah SKPKB", "Rp100.000.000"]],
-        mengapaSalah: { B: "Bunga Pasal 13 ayat (2) berlaku untuk PKP berisiko rendah, bukan WP 17C/17D.", C: "75% milik Pasal 13 ayat (3).", D: "Pengembalian pendahuluan tidak menghapus hak DJP memeriksa." },
+        jejakHitung: [
+          ["Kekurangan pajak", "Rp50.000.000"],
+          ["Kenaikan 100%", "Rp50.000.000"],
+          ["Jumlah SKPKB", "Rp100.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Bunga Pasal 13 ayat (2) berlaku untuk PKP berisiko rendah, bukan WP 17C/17D.",
+          C: "75% milik Pasal 13 ayat (3).",
+          D: "Pengembalian pendahuluan tidak menghapus hak DJP memeriksa."
+        },
         jebakan: "Jalur cepat restitusi dibayar mahal bila ternyata keliru."
       },
-      dasarHukum: [{ pasal: "Pasal 17C ayat (5) dan 17D ayat (5) UU KUP", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 100, verifikasi: "◐",
+      dasarHukum: [{ pasal: "Pasal 17C ayat (5) dan 17D ayat (5) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "◐",
       peringatan: "Kenaikan 100% Pasal 17C/17D bersumber dari riset 02b bertanda [P]; nomor ayat perlu dicek ke teks konsolidasi UU KUP."
     },
     {
@@ -2322,7 +2336,12 @@ UKP.register({
       peringatan: "SPT disampaikan 20 April 2026, sebelum PMK 28 Tahun 2026 berlaku (1 Mei 2026); batas lebih bayar badan Rp1 miliar sama menurut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021 maupun PMK 28/2026, dan peredaran Rp46 miliar di bawah batas peredaran badan yang diberitakan untuk PMK 28/2026 (Rp50 miliar), sehingga jawaban tidak bergantung pada ketentuan mana yang diterapkan; nomor pasal, batas peredaran, dan ketentuan peralihan PMK 28/2026 belum dibaca dari teks ◐. Label baris pilihan lebih bayar pada induk SPT 1771 versi Coretax (PER-11/PJ/2025) belum dicek langsung; formulirRef mengacu ke baris 1771.induk.10 (kurang/lebih bayar dan pilihan atas lebih bayar) di peta formulir proyek."
     },
     {
-      id: "A2-084", topik: "A2.1", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A2-06",
+      id: "A2-084",
+      topik: "A2.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-A2-06",
       kutipan: "Pasal 1 angka 22 huruf a UU KUP: Kredit Pajak untuk Pajak Penghasilan adalah pajak yang dibayar sendiri oleh Wajib Pajak ditambah dengan pokok pajak yang terutang dalam Surat Tagihan Pajak karena Pajak Penghasilan dalam tahun berjalan tidak atau kurang dibayar, ditambah dengan pajak yang dipotong atau dipungut, ditambah dengan pajak atas penghasilan yang dibayar atau terutang di luar negeri, dikurangi dengan pengembalian pendahuluan kelebihan pajak, yang dikurangkan dari pajak yang terutang.",
       stem: "Lanjutan V-A2-06: PT Sentra Boga Utama (PPh Badan 2025: PPh terutang menurut SPT Rp1.160.000.000; PPh Pasal 22 Rp310.000.000, PPh Pasal 23 Rp90.000.000, PPh Pasal 25 Rp1.392.000.000) menerima SKPPKP Pasal 17D dan pengembalian pendahuluan Rp632.000.000 pada Juni 2026. Pemeriksaan kemudian menyimpulkan PPh terutang Rp1.390.000.000 dan hanya mengakui PPh Pasal 23 Rp70.000.000 karena bukti potong Rp20.000.000 tidak dapat ditunjukkan; kredit lain diakui penuh. Berdasarkan kutipan, pokok PPh kurang dibayar yang dicantumkan dalam SKPKB adalah ...",
       kataKualifikasi: [],
@@ -2331,12 +2350,22 @@ UKP.register({
       jebakanOpsi: { B: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Kredit pajak menurut pemeriksaan dikurangi pengembalian pendahuluan yang sudah diterima. Kurang dibayar = PPh terutang menurut pemeriksaan − (kredit pajak yang diakui − pengembalian pendahuluan).",
-        jejakHitung: [["Kredit diakui = 310.000.000 + 70.000.000 + 1.392.000.000", "Rp1.772.000.000"], ["Dikurangi pengembalian pendahuluan", "− Rp632.000.000"], ["Kredit pajak menurut kutipan", "Rp1.140.000.000"], ["Kurang dibayar = 1.390.000.000 − 1.140.000.000", "Rp250.000.000"]],
-        mengapaSalah: { B: "Lupa mengurangkan pengembalian pendahuluan: 1.390.000.000 − 1.772.000.000 tampak lebih bayar, padahal Rp632.000.000 sudah dikembalikan.", C: "Mengabaikan koreksi PPh Pasal 23 Rp20.000.000 (hanya 1.390 jt − 1.160 jt).", D: "Menagih kembali seluruh pengembalian pendahuluan ditambah koreksi; yang ditetapkan hanya kekurangan bersih." },
+        jejakHitung: [
+          ["Kredit diakui = 310.000.000 + 70.000.000 + 1.392.000.000", "Rp1.772.000.000"],
+          ["Dikurangi pengembalian pendahuluan", "− Rp632.000.000"],
+          ["Kredit pajak menurut kutipan", "Rp1.140.000.000"],
+          ["Kurang dibayar = 1.390.000.000 − 1.140.000.000", "Rp250.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Lupa mengurangkan pengembalian pendahuluan: 1.390.000.000 − 1.772.000.000 tampak lebih bayar, padahal Rp632.000.000 sudah dikembalikan.",
+          C: "Mengabaikan koreksi PPh Pasal 23 Rp20.000.000 (hanya 1.390 jt − 1.160 jt).",
+          D: "Menagih kembali seluruh pengembalian pendahuluan ditambah koreksi; yang ditetapkan hanya kekurangan bersih."
+        },
         jebakan: "Pengembalian pendahuluan mengurangi kredit pajak; tanpa langkah ini hasil pemeriksaan terlihat lebih bayar."
       },
-      dasarHukum: [{ pasal: "Pasal 1 angka 22 huruf a UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 17D UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 13 ayat (1) huruf a UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 1 angka 22 huruf a UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 17D UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (1) huruf a UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "A2-085",
@@ -2365,7 +2394,7 @@ UKP.register({
         },
         jebakan: "Tarif 1,84% sengaja diberikan sebagai pengecoh: sanksi khusus pengembalian pendahuluan menggantikan bunga SKPKB biasa."
       },
-      dasarHukum: [{ pasal: "Pasal 17C ayat (5) dan 17D ayat (5) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 13 ayat (2) UU KUP", berlakuSejak: "2020-11-02" }],
+      dasarHukum: [{ pasal: "Pasal 17C ayat (5) dan 17D ayat (5) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (2) UU KUP", berlakuSejak: "2020-11-02" }],
       anggaranDetik: 120,
       verifikasi: "◐",
       peringatan: "Kenaikan 100% Pasal 17C/17D bersumber dari riset 02b bertanda [P]; nomor ayat perlu dicek ke teks konsolidasi UU KUP."
@@ -2480,8 +2509,8 @@ UKP.register({
         jejakHitung: [
           ["SP2 disampaikan", "3 Agustus 2026 → pembetulan Pasal 8 ayat (1) tertutup"],
           ["21 September 2026, SPHP belum ada", "pengungkapan Pasal 8 ayat (4) terbuka"],
-          ["Sanksi pengungkapan", "bunga uplift 10% (Oktober 2026: 1,42% per bulan)"],
-          ["Bila menunggu koreksi pemeriksa", "SKPKB berbunga uplift 15% (1,84% per bulan)"]
+          ["Sanksi pengungkapan", "bunga uplift 10% sejak batas waktu SPT Tahunan 2024 berakhir (30 April 2025) sampai tanggal pembayaran, dengan tarif yang berlaku pada tanggal dimulainya penghitungan"],
+          ["Bila menunggu koreksi pemeriksa", "SKPKB berbunga uplift 15% sejak akhir Tahun Pajak 2024 (31 Desember 2024)"]
         ],
         mengapaSalah: {
           A: "Pembetulan Pasal 8 ayat (1) hanya dapat dilakukan sebelum DJP melakukan tindakan pemeriksaan.",
@@ -2521,7 +2550,7 @@ UKP.register({
         },
         jebakan: "Arah koreksi (dari lebih bayar menjadi kurang bayar) tidak mengubah jenis sanksi; yang menentukan adalah dasar penerbitan SKPKB."
       },
-      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a, Pasal 17, dan Pasal 17A UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (2) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17C ayat (5) UU KUP", berlakuSejak: "2021-10-29" }],
+      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a, Pasal 17, dan Pasal 17A UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (2) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17C ayat (5) UU KUP", berlakuSejak: "2008-01-01" }],
       anggaranDetik: 150,
       verifikasi: "◐",
       peringatan: "Kenaikan 100% Pasal 17C bersumber dari riset 02b bertanda [P]; nomor ayat perlu dicek ke teks konsolidasi UU KUP."
@@ -2872,26 +2901,37 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-106", topik: "A2.9", tingkat: ["A", "B", "C"], jenis: "baris-spt", kesulitan: 2, kasusId: "V-A2-08", formulirRef: "1111.induk.16",
-      stem: "Lanjutan V-A2-08: untuk Masa Agustus 2026, PT Mega Teknik Persada (PKP, bukan eksportir, tidak menyerahkan kepada pemungut PPN, tidak melakukan penyerahan yang PPN-nya tidak dipungut, dan sudah berproduksi) mencatat Pajak Keluaran Rp120.000.000 dan Pajak Masukan yang dapat dikreditkan Rp185.000.000 karena membeli mesin produksi baru. Direksi ingin kelebihan itu segera dikembalikan dan mengetahui bahwa sejak 1 Mei 2026 pengembalian pendahuluan bagi PKP persyaratan tertentu dibatasi lebih bayar paling banyak Rp1 miliar dan jumlah penyerahan paling banyak Rp4,2 miliar untuk suatu Masa Pajak. Pada butir pilihan atas PPN lebih bayar di induk SPT Masa PPN (butir III.G pada peta formulir), isian yang paling tepat adalah ...",
+      id: "A2-106",
+      topik: "A2.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 2,
+      kasusId: "V-A2-08",
+      formulirRef: "1111.induk.16",
+      stem: "Lanjutan V-A2-08: untuk Masa Agustus 2026, PT Mega Teknik Persada (PKP, bukan eksportir, tidak menyerahkan kepada pemungut PPN, tidak melakukan penyerahan yang PPN-nya tidak dipungut, dan sudah rutin melakukan penyerahan) mencatat Pajak Keluaran Rp120.000.000 dan Pajak Masukan yang dapat dikreditkan Rp185.000.000 karena membeli mesin produksi baru. Direksi ingin kelebihan itu segera dikembalikan dan mengetahui bahwa sejak 1 Mei 2026 pengembalian pendahuluan bagi PKP persyaratan tertentu dibatasi lebih bayar paling banyak Rp1 miliar dan jumlah penyerahan paling banyak Rp4,2 miliar untuk suatu Masa Pajak. Pada butir pilihan atas PPN lebih bayar di induk SPT Masa PPN (butir III.G pada peta formulir), isian yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Dikompensasikan ke Masa Pajak berikutnya; pengembalian (restitusi) atas kelebihan yang masih tersisa baru dapat dimohonkan pada akhir tahun buku, yaitu Masa Desember 2026",
-        B: "Dikembalikan (restitusi) melalui pengembalian pendahuluan Pasal 17D karena kelebihan Rp65.000.000 dan jumlah penyerahan Masa Agustus 2026 masih di bawah batas PKP persyaratan tertentu (Rp1 miliar dan Rp4,2 miliar), tanpa harus menunggu akhir tahun buku",
-        C: "Dikembalikan (restitusi) melalui pemeriksaan Pasal 17B karena setiap PKP berhak meminta restitusi pada setiap Masa Pajak",
-        D: "Tidak diisi; kelebihan Pajak Masukan Rp65.000.000 hangus bila tidak dimintakan restitusi pada masa yang sama"
-      },
+      opsi: { A: "Dikompensasikan ke Masa Pajak berikutnya; pengembalian (restitusi) atas kelebihan yang masih tersisa baru dapat dimohonkan pada akhir tahun buku, yaitu Masa Desember 2026", B: "Dikembalikan (restitusi) melalui pengembalian pendahuluan Pasal 17D karena kelebihan Rp65.000.000 dan jumlah penyerahan Masa Agustus 2026 masih di bawah batas PKP persyaratan tertentu (Rp1 miliar dan Rp4,2 miliar), tanpa harus menunggu akhir tahun buku", C: "Dikembalikan (restitusi) melalui pemeriksaan Pasal 17B karena setiap PKP berhak meminta restitusi pada setiap Masa Pajak", D: "Tidak diisi; kelebihan Pajak Masukan Rp65.000.000 hangus bila tidak dimintakan restitusi pada masa yang sama" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
-        inti: "Kelebihan Pajak Masukan dikompensasikan ke masa berikutnya; restitusi hanya pada akhir tahun buku, kecuali bagi PKP tertentu dalam Pasal 9 ayat (4b) UU PPN (eksportir, penyerahan kepada pemungut, penyerahan yang tidak dipungut, PKP belum berproduksi) yang boleh setiap masa. Batas Pasal 17D baru relevan bila hak restitusi sudah ada; sejak 1 Mei 2026 (PMK 28 Tahun 2026) PKP persyaratan tertentu juga tidak lagi diperlakukan sebagai PKP berisiko rendah yang boleh meminta pengembalian pendahuluan setiap masa (Pasal 9 ayat (4c) UU PPN).",
-        jejakHitung: [["Lebih bayar = 185.000.000 − 120.000.000", "Rp65.000.000"], ["Termasuk PKP Pasal 9 ayat (4b)?", "tidak"], ["Isian pilihan lebih bayar (III.G) Masa Agustus 2026", "dikompensasikan ke Masa September 2026"], ["Restitusi paling cepat", "Masa Desember 2026 (akhir tahun buku)"]],
-        mengapaSalah: { B: "Pasal 17D mengatur cara pengembalian, bukan hak restitusi tiap masa; sejak PMK 28/2026 PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah, sehingga PKP biasa baru berhak pada akhir tahun buku.", C: "Restitusi setiap masa hanya untuk PKP dalam Pasal 9 ayat (4b) UU PPN.", D: "Kelebihan Pajak Masukan tidak hangus; ia dikompensasikan ke masa berikutnya." },
+        inti: "Kelebihan Pajak Masukan dikompensasikan ke masa berikutnya; restitusi baru dapat dimohonkan pada akhir tahun buku (Pasal 9 ayat (4a) UU PPN), kecuali bagi PKP dalam Pasal 9 ayat (4b) UU PPN yang boleh meminta setiap Masa Pajak: pengekspor BKP berwujud, BKP tidak berwujud, atau JKP; PKP yang menyerahkan BKP/JKP kepada pemungut PPN; dan PKP yang menyerahkan BKP/JKP yang PPN-nya tidak dipungut. PKP dalam tahap belum berproduksi tidak lagi termasuk sejak UU 11/2020 (berlaku 2 November 2020) menghapus huruf f. Batas Pasal 17D baru relevan bila hak restitusi sudah ada; sejak 1 Mei 2026 (PMK 28 Tahun 2026) PKP persyaratan tertentu juga tidak lagi diperlakukan sebagai PKP berisiko rendah yang boleh meminta pengembalian pendahuluan setiap masa (Pasal 9 ayat (4c) UU PPN).",
+        jejakHitung: [
+          ["Lebih bayar = 185.000.000 − 120.000.000", "Rp65.000.000"],
+          ["Termasuk PKP Pasal 9 ayat (4b)?", "tidak"],
+          ["Isian pilihan lebih bayar (III.G) Masa Agustus 2026", "dikompensasikan ke Masa September 2026"],
+          ["Restitusi paling cepat", "Masa Desember 2026 (akhir tahun buku)"]
+        ],
+        mengapaSalah: {
+          B: "Pasal 17D mengatur cara pengembalian, bukan hak restitusi tiap masa; sejak PMK 28/2026 PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah, sehingga PKP biasa baru berhak pada akhir tahun buku.",
+          C: "Restitusi setiap masa hanya untuk PKP dalam Pasal 9 ayat (4b) UU PPN (pengekspor, penyerah kepada pemungut PPN, atau penyerahan yang PPN-nya tidak dipungut); PKP lain baru pada akhir tahun buku.",
+          D: "Kelebihan Pajak Masukan tidak hangus; ia dikompensasikan ke masa berikutnya."
+        },
         jebakan: "Batas Rp1 miliar dan Rp4,2 miliar sengaja disebut: memenuhi batas pengembalian pendahuluan tidak menciptakan hak restitusi per masa."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (4), (4a), dan (4b) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 17B dan 17D UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 28 Tahun 2026 (pengembalian pendahuluan; mencabut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021)", berlakuSejak: "2026-05-01" }],
-      anggaranDetik: 140, verifikasi: "◐",
-      peringatan: "Penomoran butir III.G mengikuti peta formulir proyek (induk SPT Masa PPN 1111 pra-Coretax, kode 1111.induk.16); tata letak Coretax belum dicek langsung. Rincian Pasal 9 ayat (4b) UU PPN bersumber dari riset 02b B.6 bertanda [P]. Batas PKP Pasal 17D dan ketentuan bahwa PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah mengikuti ringkasan resmi PMK 28 Tahun 2026 ✅; nomor pasalnya belum dibaca dari teks ◐."
+      dasarHukum: [{ pasal: "Pasal 9 ayat (4) dan (4a) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (4b) UU PPN (huruf f \"PKP dalam tahap belum berproduksi\" dihapus UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17B dan 17D UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 28 Tahun 2026 (pengembalian pendahuluan; mencabut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021)", berlakuSejak: "2026-05-01" }],
+      anggaranDetik: 140,
+      verifikasi: "◐",
+      peringatan: "Penomoran butir III.G mengikuti peta formulir proyek (induk SPT Masa PPN 1111 pra-Coretax, kode 1111.induk.16); tata letak Coretax belum dicek langsung. Rincian Pasal 9 ayat (4b) UU PPN, termasuk penghapusan huruf f (PKP dalam tahap belum berproduksi) oleh UU 11/2020, mengikuti matriks perubahan Pasal 9 UU PPN DDTCNews 2020; naskah UU 11/2020 belum dibuka langsung. Batas PKP Pasal 17D dan ketentuan bahwa PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah mengikuti ringkasan resmi PMK 28 Tahun 2026 ✅; nomor pasalnya belum dibaca dari teks ◐."
     },
     {
       id: "A2-107",
@@ -3631,8 +3671,8 @@ UKP.register({
     { id: "KT-A2-55", topik: "A2.8", tipe: "angka", depan: "Bunga atas angsuran atau penundaan pembayaran pajak?", belakang: "Pasal 19 ayat (2), uplift 0%, atas sisa yang masih harus dibayar", dasar: "Pasal 9 ayat (4) UU KUP; Pasal 19 ayat (2) UU KUP s.t.d.d. UU 11/2020", berlakuSejak: "2020-11-02", menggantikan: "bunga 2% per bulan (UU 28/2007)", dekTambahan: [] },
     { id: "KT-A2-56", topik: "A2.8", tipe: "prosedur", depan: "Alokasi pembayaran utang pajak sejak 2 Oktober 2026?", belakang: "Pokok pajak dilunasi lebih dahulu, baru sanksi administratif", dasar: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02", menggantikan: "dialokasikan proporsional ke pokok dan sanksi", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-57", topik: "A2.9", tipe: "pasal", depan: "Imbalan bunga bila SKPLB restitusi terlambat diterbitkan?", belakang: "Sejak berakhirnya jangka waktu 1 bulan penerbitan SKPLB (Ps. 17B ayat (2)) sampai SKPLB terbit; tarif uplift 0%", dasar: "Pasal 17B ayat (3) UU KUP", berlakuSejak: "2020-11-02", menggantikan: "imbalan bunga 2% per bulan (UU 28/2007)", dekTambahan: [] },
-    { id: "KT-A2-58", topik: "A2.9", tipe: "pasal", depan: "Siapa yang boleh meminta restitusi PPN setiap Masa Pajak?", belakang: "Eksportir, penyerah ke pemungut/tidak dipungut, PKP belum berproduksi; lainnya akhir tahun buku", dasar: "Pasal 9 ayat (4a)–(4b) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A2-59", topik: "A2.9", tipe: "angka", depan: "Sanksi SKPKB setelah pengembalian pendahuluan Pasal 17C/17D?", belakang: "Kenaikan 100% dari jumlah kekurangan pembayaran pajak", dasar: "Pasal 17C ayat (5) dan 17D ayat (5) UU KUP", berlakuSejak: "2021-10-29", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A2-58", topik: "A2.9", tipe: "pasal", depan: "Siapa yang boleh meminta restitusi PPN setiap Masa Pajak?", belakang: "Pengekspor BKP berwujud, BKP tidak berwujud, atau JKP; PKP yang menyerahkan BKP/JKP kepada pemungut PPN atau yang PPN-nya tidak dipungut; lainnya (termasuk PKP belum berproduksi, yang dihapus dari daftar oleh UU 11/2020) pada akhir tahun buku", dasar: "Pasal 9 ayat (4a)–(4b) UU PPN s.t.d.t.d. UU 11/2020", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A2-59", topik: "A2.9", tipe: "angka", depan: "Sanksi SKPKB setelah pengembalian pendahuluan Pasal 17C/17D?", belakang: "Kenaikan 100% dari jumlah kekurangan pembayaran pajak", dasar: "Pasal 17C ayat (5) dan 17D ayat (5) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-60", topik: "A2.10", tipe: "pasal", depan: "Daluwarsa penagihan bila WP mengajukan angsuran (pengakuan utang)?", belakang: "Tertangguh; 5 tahun dihitung ulang sejak tanggal pengakuan utang", dasar: "Pasal 22 ayat (2) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-61", topik: "A2.10", tipe: "pasal", depan: "Batas hak mendahulu negara atas utang pajak?", belakang: "Di atas semua, kecuali biaya perkara lelang, penyelamatan barang, dan penyelesaian warisan", dasar: "Pasal 21 ayat (1) dan (3) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-62", topik: "A2.10", tipe: "angka", depan: "Syarat dan jangka pencegahan ke luar negeri?", belakang: "Utang ≥ Rp100 juta dan itikad diragukan; 6 bulan, dapat diperpanjang 6 bulan", dasar: "Pasal 29–30 UU PPSP; PMK 61/2023", berlakuSejak: "2023-06-12", menggantikan: null, dekTambahan: [] },
