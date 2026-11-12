@@ -4702,3 +4702,9 @@ dialog.tim-dlg[open] { display: flex; flex-direction: column; max-height: calc(1
 }
 /* (5) v9.5 FC4: animasi masuk dialog (dialog[open]:not(.sheet)) tidak boleh menimpa posisi tengah kotak cadangan */
 dialog[data-cadangan][open]:not(.sheet) { animation: none; }
+
+/* ===== v9.4.1 ===== */
+/* Dialog soal pemimpin, "Jawaban tiap orang": nama pendek tidak lagi terpotong menjadi "S…" saat keterangannya panjang
+   ("tidak menjawab"). Dulu nama dan keterangan menyusut sebanding; kini keterangan yang lebih dulu turun baris, dan nama
+   baru dipotong (elipsis) bila memang tidak muat. */
+.eval-dlg-jawab > li > .meta { flex: 1 1 0; min-width: min-content; }

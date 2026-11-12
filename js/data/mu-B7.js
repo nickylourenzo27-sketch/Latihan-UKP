@@ -26,7 +26,7 @@ UKP.register({
       { label: "PPN barang/jasa non-mewah", nilai: "12% × 11/12 × harga = 11% efektif", dasar: "PMK 131/2024", berlakuSejak: "2025-01-01" },
       { label: "PPh 23", nilai: "2% jasa/sewa harta · 15% dividen/bunga/royalti · tanpa NPWP ×2", dasar: "Pasal 23 UU PPh", berlakuSejak: "2009-01-01" },
       { label: "PPh final sewa tanah/bangunan", nilai: "10% × bruto nilai sewa (termasuk service charge)", dasar: "Pasal 4 ayat (2) UU PPh; PP 34/2017" },
-      { label: "PPh 22 penjualan BBM oleh produsen/importir", nilai: "◐ 0,25% ke SPBU Pertamina · 0,3% ke SPBU lain/selain SPBU · final bagi penyalur/agen", dasar: "PMK 51/2025 (PPh Pasal 22; menggantikan PMK 34/PMK.010/2017)", berlakuSejak: "2025-08-01" },
+      { label: "PPh 22 penjualan BBM oleh produsen/importir", nilai: "◐ 0,25% ke SPBU Pertamina · 0,3% ke SPBU lain/selain SPBU · final bagi penyalur/agen", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" },
       { label: "Tarif PPh badan", nilai: "22% · Tbk memenuhi syarat 19%", dasar: "Pasal 17 ayat (1) huruf b dan ayat (2b) UU PPh", berlakuSejak: "2022-01-01" },
       { label: "Pasal 31E", nilai: "11% atas PKP × 4,8 M/omzet; omzet ≤ Rp50 M (termasuk final)", dasar: "Pasal 31E UU PPh; SE-02/PJ/2015", berlakuSejak: "2009-01-01" },
       { label: "Kompensasi kerugian fiskal", nilai: "5 tahun berturut-turut", dasar: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" },
@@ -114,7 +114,7 @@ UKP.register({
         { label: "Syarat hapus piutang", nilai: "Beban komersial + daftar piutang + PN/perjanjian/publikasi/pengakuan", dasar: "Pasal 6 ayat (1) huruf h UU PPh; PMK 207/PMK.010/2015", berlakuSejak: "2009-01-01" },
         { label: "Metode persediaan", nilai: "Rata-rata atau FIFO, taat asas; LIFO dilarang", dasar: "Pasal 10 ayat (6) UU PPh", berlakuSejak: "2009-01-01" },
         { label: "Biaya bermanfaat > 1 tahun", nilai: "Dibebankan sesuai masa manfaat", dasar: "Pasal 9 ayat (2) UU PPh", berlakuSejak: "2009-01-01" },
-        { label: "Sewa bangunan dibayar di muka", nilai: "PPh final 10% atas seluruh pembayaran", dasar: "Pasal 4 ayat (2) UU PPh; PP 29/1996 s.t.d.d. PP 5/2002" }
+        { label: "Sewa bangunan dibayar di muka", nilai: "PPh final 10% atas seluruh pembayaran", dasar: "Pasal 4 ayat (2) UU PPh; PP 34/2017" }
       ],
       dasarHukum: [
         { pasal: "Pasal 6 ayat (1) huruf h UU PPh", catatan: "syarat piutang nyata-nyata tidak dapat ditagih" },
@@ -535,7 +535,7 @@ UKP.register({
         },
         jebakan: "Dasar PPh 22 impor dan PPN impor sama-sama nilai impor (CIF + bea masuk + pungutan lain)."
       },
-      dasarHukum: [{ pasal: "Pasal 22 ayat (1) huruf a UU PPh; PMK 51/2025 (PPh Pasal 22; menggantikan PMK 34/PMK.010/2017)", berlakuSejak: "2025-08-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 22 ayat (1) huruf b UU PPh; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025)", berlakuSejak: "2025-08-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 140,
       verifikasi: "✅"
     },
@@ -1054,25 +1054,32 @@ UKP.register({
       anggaranDetik: 90, verifikasi: "✅"
     },
     {
-      id: "B7-035", topik: "B7.5", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "B7-035",
+      topik: "B7.5",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       stem: "Yayasan Pendidikan Cendekia Bangsa (badan nirlaba pendidikan terdaftar) menyewakan dua ruang kelas pada sore hari kepada PT Bimbel Juara (WP badan) seharga Rp120.000.000 untuk setahun, dibayar sekaligus pada Maret 2026; PT Bimbel Juara memotong PPh sesuai ketentuan. Perlakuan akuntansi dan perpajakan yang tepat di pembukuan yayasan adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Dr Kas 120.000.000; Cr Pendapatan sewa 120.000.000 — sewa bukan objek karena diterima badan nirlaba",
-        B: "Dr Kas 108.000.000; Dr PPh dibayar di muka 12.000.000; Cr Pendapatan sewa 120.000.000 — PPh dikreditkan dalam SPT Tahunan yayasan",
-        C: "Dr Kas 108.000.000; Dr Beban PPh final 12.000.000; Cr Pendapatan sewa 120.000.000 — penghasilan sewa dikeluarkan dari perhitungan sisa lebih dan PPh-nya tidak dapat dikreditkan",
-        D: "Dr Kas 117.600.000; Dr PPh 23 dibayar di muka 2.400.000; Cr Pendapatan sewa 120.000.000"
-      },
+      opsi: { A: "Dr Kas 120.000.000; Cr Pendapatan sewa 120.000.000 — sewa bukan objek karena diterima badan nirlaba", B: "Dr Kas 108.000.000; Dr PPh dibayar di muka 12.000.000; Cr Pendapatan sewa 120.000.000 — PPh dikreditkan dalam SPT Tahunan yayasan", C: "Dr Kas 108.000.000; Dr Beban PPh final 12.000.000; Cr Pendapatan sewa 120.000.000 — penghasilan sewa dikeluarkan dari perhitungan sisa lebih dan PPh-nya tidak dapat dikreditkan", D: "Dr Kas 117.600.000; Dr PPh 23 dibayar di muka 2.400.000; Cr Pendapatan sewa 120.000.000" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
         inti: "Sewa bangunan dikenai PPh final 10% Pasal 4 ayat (2) yang dipotong penyewa: Rp12.000.000. Bagi yayasan PPh final dicatat sebagai beban (tidak dapat dikreditkan) dan penghasilan sewa tidak ikut dalam sisa lebih yang dihitung dari penghasilan non-final.",
-        jejakHitung: [["PPh final = 10% × 120.000.000", "Rp12.000.000"], ["Kas diterima", "Rp108.000.000"]],
-        mengapaSalah: { A: "Status nirlaba tidak mengecualikan penghasilan sewa", B: "PPh final tidak dapat dikreditkan", D: "Sewa bangunan dikenai PPh final 10%, bukan PPh 23 2%" },
+        jejakHitung: [
+          ["PPh final = 10% × 120.000.000", "Rp12.000.000"],
+          ["Kas diterima", "Rp108.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Status nirlaba tidak mengecualikan penghasilan sewa",
+          B: "PPh final tidak dapat dikreditkan",
+          D: "Sewa bangunan dikenai PPh final 10%, bukan PPh 23 2%"
+        },
         jebakan: "Badan nirlaba tetap dipotong PPh final atas sewa bangunan."
       },
-      dasarHukum: [{ pasal: "Pasal 4 ayat (2) UU PPh; PP 29/1996 s.t.d.d. PP 5/2002" }, { pasal: "Pasal 4 ayat (3) huruf m UU PPh", berlakuSejak: "2009-01-01" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 4 ayat (2) UU PPh; PP 34/2017 (sewa tanah/bangunan)" }, { pasal: "Pasal 4 ayat (3) huruf m UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "B7-036", topik: "B7.5", tingkat: ["B", "C"], jenis: "konsep", kesulitan: 1,
@@ -1733,13 +1740,13 @@ UKP.register({
           ["Batas unggah faktur 18 Juni 2026", "20 Juli 2026"]
         ],
         mengapaSalah: {
-          A: "Kode 01 untuk PPN yang dipungut sendiri oleh penjual; di sini PPN dipungut pemungut sehingga tidak ikut diterima penjual",
+          A: "Kode 01 (atau kode 04 bila memakai DPP nilai lain 11/12) dipakai untuk penyerahan yang PPN-nya dipungut sendiri oleh penjual; penyerahan kepada pemungut PPN selain instansi pemerintah memakai kode 03, dan PPN-nya dipungut pembeli sehingga tidak ikut diterima penjual",
           C: "Tanggal 15 adalah batas unggah e-Faktur sebelum PER-11/PJ/2025",
           D: "PPh 22 yang dipungut BUMN tidak final; dicatat sebagai kredit pajak, bukan beban"
         },
         jebakan: "Pada kode 03 penjual tetap membuat dan mengunggah faktur serta melaporkan penyerahan, tetapi tidak menyetor PPN-nya."
       },
-      dasarHukum: [{ pasal: "Pasal 16A ayat (1) UU PPN" }, { pasal: "PER-11/PJ/2025 (kode transaksi dan batas unggah faktur)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 22 UU PPh; PMK 51/2025 (PPh Pasal 22; menggantikan PMK 34/PMK.010/2017)", berlakuSejak: "2025-08-01" }],
+      dasarHukum: [{ pasal: "Pasal 16A ayat (1) UU PPN" }, { pasal: "PER-11/PJ/2025 (kode transaksi dan batas unggah faktur)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 22 UU PPh; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025)", berlakuSejak: "2025-08-01" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
@@ -1805,13 +1812,13 @@ UKP.register({
       kesulitan: 3,
       laporanUjian: ["B-2026-10"],
       kasusId: "V-B7-09",
-      stem: "Vignette PT Sumber Tirta Energi (1/2). PT Sumber Tirta Energi (PKP; pengusaha SPBU Pertamina yang bertindak sebagai penyalur BBM; tahun buku kalender) pada 8 Juni 2026 membeli BBM nonsubsidi dari PT Nusa Petro Niaga (produsen/importir BBM yang ditunjuk sebagai pemungut PPh Pasal 22) seharga Rp600.000.000 belum termasuk PPN, dengan faktur pajak kode 01 (DPP nilai lain 11/12). Pada hari yang sama PT Nusa Petro juga menjual solar industri Rp400.000.000 kepada PT Tambang Batu Raya yang memakainya sendiri untuk alat berat. PT Sumber Tirta membayar tunai seluruh tagihan, termasuk PPh Pasal 22 yang dipungut penjual. Jurnal pembelian BBM di PT Sumber Tirta yang tepat adalah ...",
+      stem: "Vignette PT Sumber Tirta Energi (1/2). PT Sumber Tirta Energi (PKP; pengusaha SPBU Pertamina yang bertindak sebagai penyalur BBM; tahun buku kalender) pada 8 Juni 2026 membeli BBM nonsubsidi dari PT Nusa Petro Niaga (anak perusahaan Pertamina; produsen/importir BBM yang ditunjuk sebagai pemungut PPh Pasal 22) seharga Rp600.000.000 belum termasuk PPN, dengan faktur pajak kode 04 (DPP nilai lain 11/12). Pada hari yang sama PT Nusa Petro juga menjual solar industri Rp400.000.000 kepada PT Tambang Batu Raya yang memakainya sendiri untuk alat berat. PT Sumber Tirta membayar tunai seluruh tagihan, termasuk PPh Pasal 22 yang dipungut penjual. Jurnal pembelian BBM di PT Sumber Tirta yang tepat adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Dr Persediaan BBM 600.000.000; Dr PPN Masukan 66.000.000; Dr PPh Pasal 22 dibayar di muka 1.500.000; Cr Kas 667.500.000", B: "Dr Persediaan BBM 600.000.000; Dr PPN Masukan 66.000.000; Dr Beban PPh Pasal 22 final 1.800.000; Cr Kas 667.800.000", C: "Dr Persediaan BBM 600.000.000; Dr PPN Masukan 66.000.000; Dr Beban PPh Pasal 22 final 1.500.000; Cr Kas 667.500.000", D: "Dr Persediaan BBM 600.000.000; Dr PPN Masukan 72.000.000; Dr Beban PPh Pasal 22 final 1.500.000; Cr Kas 673.500.000" },
       kunci: "C",
       jebakanOpsi: { A: "final-nonfinal", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
-        inti: "Bagi penyalur/agen (SPBU Pertamina), PPh Pasal 22 atas pembelian BBM dari produsen/importir bertarif 0,25% dari harga tanpa PPN dan bersifat final, sehingga dicatat sebagai beban pajak final, bukan PPh dibayar di muka. PPN Masukan = 12% × 11/12 × 600.000.000 = Rp66.000.000. PPh 22 dipungut penjual di atas harga, sehingga kas = 600.000.000 + 66.000.000 + 1.500.000 = Rp667.500.000.",
+        inti: "Bagi penyalur/agen (SPBU Pertamina), PPh Pasal 22 atas pembelian BBM dari Pertamina atau anak perusahaannya (produsen/importir) bertarif 0,25% dari harga tanpa PPN dan bersifat final, sehingga dicatat sebagai beban pajak final, bukan PPh dibayar di muka. PPN Masukan = 12% × 11/12 × 600.000.000 = Rp66.000.000. PPh 22 dipungut penjual di atas harga, sehingga kas = 600.000.000 + 66.000.000 + 1.500.000 = Rp667.500.000.",
         jejakHitung: [
           ["PPN = 12% × 11/12 × 600.000.000", "Rp66.000.000"],
           ["PPh 22 SPBU Pertamina = 0,25% × 600.000.000", "Rp1.500.000"],
@@ -1821,15 +1828,15 @@ UKP.register({
         ],
         mengapaSalah: {
           A: "PPh 22 BBM bagi penyalur/agen bersifat final sehingga tidak boleh dicatat sebagai kredit pajak; perlakuan kredit hanya untuk pembeli selain penyalur seperti PT Tambang",
-          B: "Tarif 0,3% untuk SPBU bukan Pertamina atau pembeli selain SPBU; PT Sumber Tirta adalah SPBU Pertamina (0,25%)",
+          B: "Tarif 0,3% untuk SPBU yang membeli BBM bukan dari Pertamina atau anak perusahaannya, atau pembeli selain SPBU; PT Sumber Tirta adalah SPBU Pertamina yang membeli dari anak perusahaan Pertamina (0,25%)",
           D: "Memakai 12% × harga penuh; BBM nonsubsidi bukan barang mewah sehingga DPP nilai lain 11/12 (efektif 11%)"
         },
         jebakan: "Tarif 0,25% vs 0,3% dan sifat final vs kredit bergantung pada siapa pembelinya; data PT Tambang disisipkan untuk memancing tarif dan perlakuan yang tertukar."
       },
-      dasarHukum: [{ pasal: "Pasal 22 UU PPh; PMK 51/2025 (PPh Pasal 22; menggantikan PMK 34/PMK.010/2017)", berlakuSejak: "2025-08-01" }, { pasal: "PMK 131/2024 (DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 22 UU PPh; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025)", berlakuSejak: "2025-08-01" }, { pasal: "PMK 131/2024 (DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 160,
       verifikasi: "◐",
-      peringatan: "Tarif PPh 22 BBM 0,25%/0,3% bertanda ◐ di lembar riset: sama dengan PMK 34/PMK.010/2017 dan laporan peserta UKP Oktober 2026, dan menurut ringkasan sumber sekunder dilanjutkan PMK 51/2025 (berlaku 1 Agustus 2025), tetapi nomor pasal dan penggolongan pembelinya (0,25% untuk SPBU yang menjual BBM dari Pertamina atau anak perusahaannya; 0,3% untuk SPBU lain dan pembeli lain) belum dicek ke teks resmi, dan stem tidak menyebut apakah pemasok termasuk grup Pertamina. Sifat final bagi penyalur/agen sudah terverifikasi."
+      peringatan: "Tarif PPh 22 BBM 0,25%/0,3% bertanda ◐ di lembar riset: sama dengan PMK 34/PMK.010/2017 dan laporan peserta UKP Oktober 2026, dan menurut ringkasan sumber sekunder dilanjutkan PMK 51/2025 (berlaku 1 Agustus 2025) dengan penggolongan 0,25% untuk SPBU yang membeli BBM dari Pertamina atau anak perusahaannya dan 0,3% untuk SPBU lain dan pembeli lain; nomor pasal dan rumusan penggolongan itu belum dicek ke naskah resmi. Stem menyebut pemasok sebagai anak perusahaan Pertamina agar penggolongan tidak bergantung pada asumsi. Sifat final bagi penyalur/agen sudah terverifikasi."
     },
     {
       id: "B7-072",
@@ -1866,26 +1873,34 @@ UKP.register({
       peringatan: "Sifat final PPh 22 bagi penyalur BBM terverifikasi, tetapi tarif 0,25%/0,3% masih ◐ di lembar riset; angka soal ini tidak bergantung pada tarif tersebut."
     },
     {
-      id: "B7-073", topik: "B7.1", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "B7-073",
+      topik: "B7.1",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       kutipan: "Pasal 5A ayat (1) UU PPN: Pajak Pertambahan Nilai atau Pajak Pertambahan Nilai dan Pajak Penjualan atas Barang Mewah atas penyerahan Barang Kena Pajak yang dikembalikan dapat dikurangkan dari Pajak Pertambahan Nilai atau Pajak Pertambahan Nilai dan Pajak Penjualan atas Barang Mewah yang terutang dalam Masa Pajak terjadinya pengembalian Barang Kena Pajak tersebut.",
-      stem: "PT Sinar Logam Niaga (PKP, distributor besi beton; bukan industri baja) pada 12 Mei 2026 menyerahkan 40 ton besi beton kepada PT Mitra Bangun Persada (PKP, bukan pemungut PPN) seharga Rp480.000.000 belum termasuk PPN dengan faktur pajak kode 01 (DPP nilai lain 11/12); pembayaran jatuh tempo 30 hari. Pada 3 Juni 2026, 5 ton senilai Rp60.000.000 dikembalikan karena tidak sesuai spesifikasi, dan PT Mitra Bangun membuat nota retur melalui Coretax pada tanggal yang sama. SPT Masa PPN Mei 2026 PT Sinar Logam telah disampaikan pada 25 Juni 2026. Berdasarkan kutipan tersebut, perlakuan PPN dan jurnal retur di PT Sinar Logam yang tepat adalah ...",
+      stem: "PT Sinar Logam Niaga (PKP, distributor besi beton; bukan industri baja) pada 12 Mei 2026 menyerahkan 40 ton besi beton kepada PT Mitra Bangun Persada (PKP, bukan pemungut PPN) seharga Rp480.000.000 belum termasuk PPN dengan faktur pajak kode 04 (DPP nilai lain 11/12); pembayaran jatuh tempo 30 hari. Pada 3 Juni 2026, 5 ton senilai Rp60.000.000 dikembalikan karena tidak sesuai spesifikasi, dan PT Mitra Bangun membuat nota retur melalui Coretax pada tanggal yang sama. SPT Masa PPN Mei 2026 PT Sinar Logam telah disampaikan pada 25 Juni 2026. Berdasarkan kutipan tersebut, perlakuan PPN dan jurnal retur di PT Sinar Logam yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Mengurangkan PPN Keluaran Masa Mei 2026 sebesar Rp6.600.000 melalui pembetulan SPT Masa PPN Mei 2026; jurnal: Dr Retur penjualan 60.000.000; Dr PPN Keluaran 6.600.000; Cr Piutang usaha 66.600.000",
-        B: "Mengurangkan PPN Keluaran Masa Juni 2026 sebesar Rp7.200.000; jurnal: Dr Retur penjualan 60.000.000; Dr PPN Keluaran 7.200.000; Cr Piutang usaha 67.200.000",
-        C: "Mengurangkan PPN Keluaran Masa Juni 2026 sebesar Rp6.600.000; jurnal: Dr Retur penjualan 66.600.000; Cr Piutang usaha 66.600.000",
-        D: "Mengurangkan PPN Keluaran Masa Juni 2026 sebesar Rp6.600.000; jurnal: Dr Retur penjualan 60.000.000; Dr PPN Keluaran 6.600.000; Cr Piutang usaha 66.600.000"
-      },
+      opsi: { A: "Mengurangkan PPN Keluaran Masa Mei 2026 sebesar Rp6.600.000 melalui pembetulan SPT Masa PPN Mei 2026; jurnal: Dr Retur penjualan 60.000.000; Dr PPN Keluaran 6.600.000; Cr Piutang usaha 66.600.000", B: "Mengurangkan PPN Keluaran Masa Juni 2026 sebesar Rp7.200.000; jurnal: Dr Retur penjualan 60.000.000; Dr PPN Keluaran 7.200.000; Cr Piutang usaha 67.200.000", C: "Mengurangkan PPN Keluaran Masa Juni 2026 sebesar Rp6.600.000; jurnal: Dr Retur penjualan 66.600.000; Cr Piutang usaha 66.600.000", D: "Mengurangkan PPN Keluaran Masa Juni 2026 sebesar Rp6.600.000; jurnal: Dr Retur penjualan 60.000.000; Dr PPN Keluaran 6.600.000; Cr Piutang usaha 66.600.000" },
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-klasifikasi" },
       pembahasan: {
         inti: "PPN atas BKP yang dikembalikan dikurangkan dari PPN terutang pada Masa Pajak terjadinya pengembalian (Juni 2026), bukan dengan membetulkan Masa Mei. PPN retur = 12% × 11/12 × 60.000.000 = Rp6.600.000. Karena piutang semula dicatat termasuk PPN, retur mengurangi piutang Rp66.600.000, mengurangi PPN Keluaran Rp6.600.000, dan dicatat sebagai retur penjualan Rp60.000.000. Di pihak pembeli, PPN Masukan Masa Juni dikurangi sebesar yang sama.",
-        jejakHitung: [["PPN atas retur = 12% × 11/12 × 60.000.000", "Rp6.600.000"], ["Piutang yang dikurangi = 60.000.000 + 6.600.000", "Rp66.600.000"], ["Masa pengurangan", "Juni 2026 (bulan pengembalian)"]],
-        mengapaSalah: { A: "Pengurangan dilakukan pada Masa terjadinya pengembalian, bukan dengan membetulkan SPT Masa penyerahan; SPT Masa Mei tetap benar", B: "Memakai 12% × harga penuh; besi beton bukan barang mewah sehingga PPN efektif 11% dari harga", C: "PPN Keluaran yang semula dikredit tidak dikurangi, sehingga liabilitas PPN tetap terlalu besar dan retur penjualan tercatat termasuk PPN" },
+        jejakHitung: [
+          ["PPN atas retur = 12% × 11/12 × 60.000.000", "Rp6.600.000"],
+          ["Piutang yang dikurangi = 60.000.000 + 6.600.000", "Rp66.600.000"],
+          ["Masa pengurangan", "Juni 2026 (bulan pengembalian)"]
+        ],
+        mengapaSalah: {
+          A: "Pengurangan dilakukan pada Masa terjadinya pengembalian, bukan dengan membetulkan SPT Masa penyerahan; SPT Masa Mei tetap benar",
+          B: "Memakai 12% × harga penuh; besi beton bukan barang mewah sehingga PPN efektif 11% dari harga",
+          C: "PPN Keluaran yang semula dikredit tidak dikurangi, sehingga liabilitas PPN tetap terlalu besar dan retur penjualan tercatat termasuk PPN"
+        },
         jebakan: "Tanggal penyampaian SPT Masa Mei disisipkan untuk memancing pembetulan; retur selalu masuk Masa pengembalian."
       },
       dasarHukum: [{ pasal: "Pasal 5A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 (nota retur di Coretax)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "B7-074", topik: "B7.1", tingkat: ["B", "C"], jenis: "konsep", kesulitan: 1,
@@ -2252,25 +2267,34 @@ UKP.register({
       anggaranDetik: 180, verifikasi: "✅"
     },
     {
-      id: "B7-092", topik: "B7.6", tingkat: ["B", "C"], jenis: "baris-spt", kesulitan: 1, formulirRef: "1771.induk.9b",
+      id: "B7-092",
+      topik: "B7.6",
+      tingkat: ["B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 1,
+      formulirRef: "1771.induk.9b",
       stem: "PT Sukses Mandiri Plastindo membayar angsuran PPh Pasal 25 Tahun Pajak 2025 Rp40.000.000 per bulan, kecuali Masa September 2025 yang terlewat. Atas masa itu DJP menerbitkan STP berisi pokok PPh Pasal 25 Rp40.000.000 dan sanksi bunga Rp1.180.000, yang dilunasi pada Desember 2025; bunga STP dicatat sebagai beban lain-lain. Dalam SPT Tahunan PPh Badan 2025, bagian kredit 'PPh yang dibayar sendiri' diisi dengan ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "PPh Pasal 25 bulanan Rp440.000.000 dan STP PPh Pasal 25 Rp41.180.000 (pokok dan bunga)",
-        B: "PPh Pasal 25 bulanan Rp440.000.000 dan STP PPh Pasal 25 Rp40.000.000 (hanya pokok); bunga Rp1.180.000 tidak dikreditkan dan dikoreksi positif",
-        C: "PPh Pasal 25 bulanan Rp440.000.000 dan STP PPh Pasal 25 Rp40.000.000; bunga Rp1.180.000 dibebankan sebagai biaya bunga yang dapat dikurangkan",
-        D: "PPh Pasal 25 bulanan Rp480.000.000 tanpa baris STP; bunga Rp1.180.000 ikut dikreditkan sebagai PPh yang dibayar sendiri"
-      },
+      opsi: { A: "PPh Pasal 25 bulanan Rp440.000.000 dan STP PPh Pasal 25 Rp41.180.000 (pokok dan bunga)", B: "PPh Pasal 25 bulanan Rp440.000.000 dan STP PPh Pasal 25 Rp40.000.000 (hanya pokok); bunga Rp1.180.000 tidak dikreditkan dan dikoreksi positif", C: "PPh Pasal 25 bulanan Rp440.000.000 dan STP PPh Pasal 25 Rp40.000.000; bunga Rp1.180.000 dibebankan sebagai biaya bunga yang dapat dikurangkan", D: "PPh Pasal 25 bulanan Rp480.000.000 tanpa baris STP; bunga Rp1.180.000 ikut dikreditkan sebagai PPh yang dibayar sendiri" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
         inti: "Kredit pajak hanya berupa pokok pajak. Pokok PPh 25 yang ditagih dengan STP dilaporkan pada baris STP PPh Pasal 25 (hanya pokok pajak) sebesar Rp40.000.000, terpisah dari angsuran yang dibayar sendiri 11 × Rp40.000.000 = Rp440.000.000. Sanksi bunga bukan pelunasan pajak terutang, tidak dapat dikreditkan, dan sebagai beban tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k) sehingga dikoreksi positif pada Lampiran 1771-I.",
-        jejakHitung: [["PPh 25 dibayar sendiri = 11 × 40.000.000", "Rp440.000.000"], ["STP PPh 25 (hanya pokok)", "Rp40.000.000"], ["Bunga STP", "tidak dikreditkan; koreksi positif Rp1.180.000"]],
-        mengapaSalah: { A: "Bunga STP bukan pajak terutang sehingga tidak ikut dikreditkan", C: "Sanksi administrasi tidak dapat dibiayakan (Pasal 9 ayat (1) huruf k)", D: "Bunga tidak pernah menjadi kredit pajak; pokok yang dibayar lewat STP dilaporkan pada baris STP" },
+        jejakHitung: [
+          ["PPh 25 dibayar sendiri = 11 × 40.000.000", "Rp440.000.000"],
+          ["STP PPh 25 (hanya pokok)", "Rp40.000.000"],
+          ["Bunga STP", "tidak dikreditkan; koreksi positif Rp1.180.000"]
+        ],
+        mengapaSalah: {
+          A: "Bunga STP bukan pajak terutang sehingga tidak ikut dikreditkan",
+          C: "Sanksi administrasi tidak dapat dibiayakan (Pasal 9 ayat (1) huruf k)",
+          D: "Bunga tidak pernah menjadi kredit pajak; pokok yang dibayar lewat STP dilaporkan pada baris STP"
+        },
         jebakan: "Baris STP PPh 25 bertuliskan 'hanya pokok pajak' — bunga dan denda selalu di luar kredit pajak."
       },
-      dasarHukum: [{ pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 14 ayat (1) dan (3) UU KUP (STP)", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 100, verifikasi: "◐",
+      dasarHukum: [{ pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 14 ayat (3) UU KUP (bunga STP; tarif KMK)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 14 ayat (1) UU KUP (STP)", berlakuSejak: null }],
+      anggaranDetik: 100,
+      verifikasi: "◐",
       peringatan: "Label dan nomor baris mengikuti induk SPT 1771 pra-Coretax; di SPT Badan Coretax (PER-11/PJ/2025) kredit 'dibayar sendiri' diisi dari data pembayaran pra-isi dan tata letaknya belum dicek. Substansi (hanya pokok yang dikreditkan) tidak berubah."
     },
     {
@@ -2642,7 +2666,7 @@ UKP.register({
         },
         jebakan: "Dalam satu transaksi impor bekerja dua kurs: kurs KMK untuk pungutan impor, kurs transaksi untuk harga barang dan utang usaha."
       },
-      dasarHukum: [{ pasal: "PSAK 202 (persediaan)", berlakuSejak: "2024-01-01" }, { pasal: "PSAK 221 (eks-PSAK 10) Pengaruh Perubahan Kurs Valuta Asing", berlakuSejak: "2024-01-01" }, { pasal: "KMK kurs sebagai dasar pelunasan bea masuk, PPN/PPnBM, bea keluar, dan PPh (ditetapkan mingguan)" }, { pasal: "PMK 51/2025 (PPh Pasal 22; menggantikan PMK 34/PMK.010/2017; PPh 22 impor 2,5% dengan API)", berlakuSejak: "2025-08-01" }, { pasal: "PMK 131/2024 (PPN 12% × DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
+      dasarHukum: [{ pasal: "PSAK 202 (persediaan)", berlakuSejak: "2024-01-01" }, { pasal: "PSAK 221 (eks-PSAK 10) Pengaruh Perubahan Kurs Valuta Asing", berlakuSejak: "2024-01-01" }, { pasal: "KMK kurs sebagai dasar pelunasan bea masuk, PPN/PPnBM, bea keluar, dan PPh (ditetapkan mingguan)" }, { pasal: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025; PPh 22 impor 2,5% dengan API)", berlakuSejak: "2025-08-01" }, { pasal: "PMK 131/2024 (PPN 12% × DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
@@ -3318,25 +3342,35 @@ UKP.register({
       anggaranDetik: 170, verifikasi: "✅"
     },
     {
-      id: "B7-142", topik: "B7.4", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "B7-142",
+      topik: "B7.4",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Arka Logistik Global (pembukuan Rupiah sesuai SAK; transaksi valas dicatat dengan kurs tengah BI tanggal transaksi) menyewa gudang dan kantor milik PT Graha Properti Andalan (WP badan dalam negeri) untuk 12 bulan, 1 Juli 2026–30 Juni 2027, dengan sewa USD24.000 yang dibayar sekaligus pada 1 Juli 2026 dari giro USD. Perusahaan memilih pengecualian sewa jangka pendek PSAK 116 sehingga pembayaran dicatat sebagai sewa dibayar di muka. Atas sewa bangunan itu PT Arka memotong PPh final Pasal 4 ayat (2) sebesar 10% dan mentransfer sisanya kepada PT Graha. Pada 1 Juli 2026 kurs tengah BI Rp16.250 dan kurs KMK yang berlaku Rp16.300. PPN atas sewa ditagih dan dibayar terpisah dalam Rupiah. Jurnal pembayaran sewa dan perlakuan fiskal selisih kurs yang timbul di PT Arka adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Dr Sewa dibayar di muka Rp390.000.000; Cr Kas (giro USD) Rp351.000.000; Cr Utang PPh Pasal 4 ayat (2) Rp39.000.000; tidak ada selisih kurs",
-        B: "Dr Sewa dibayar di muka Rp390.000.000; Dr Rugi selisih kurs Rp120.000; Cr Kas (giro USD) Rp351.000.000; Cr Utang PPh Pasal 4 ayat (2) Rp39.120.000; rugi selisih kurs dikoreksi positif karena terkait penghasilan yang dikenai PPh final",
-        C: "Dr Sewa dibayar di muka Rp391.200.000; Cr Kas (giro USD) Rp352.080.000; Cr Utang PPh Pasal 4 ayat (2) Rp39.120.000; tidak ada selisih kurs",
-        D: "Dr Sewa dibayar di muka Rp390.000.000; Dr Rugi selisih kurs Rp120.000; Cr Kas (giro USD) Rp351.000.000; Cr Utang PPh Pasal 4 ayat (2) Rp39.120.000; rugi selisih kurs dapat dikurangkan oleh PT Arka"
-      },
+      opsi: { A: "Dr Sewa dibayar di muka Rp390.000.000; Cr Kas (giro USD) Rp351.000.000; Cr Utang PPh Pasal 4 ayat (2) Rp39.000.000; tidak ada selisih kurs", B: "Dr Sewa dibayar di muka Rp390.000.000; Dr Rugi selisih kurs Rp120.000; Cr Kas (giro USD) Rp351.000.000; Cr Utang PPh Pasal 4 ayat (2) Rp39.120.000; rugi selisih kurs dikoreksi positif karena terkait penghasilan yang dikenai PPh final", C: "Dr Sewa dibayar di muka Rp391.200.000; Cr Kas (giro USD) Rp352.080.000; Cr Utang PPh Pasal 4 ayat (2) Rp39.120.000; tidak ada selisih kurs", D: "Dr Sewa dibayar di muka Rp390.000.000; Dr Rugi selisih kurs Rp120.000; Cr Kas (giro USD) Rp351.000.000; Cr Utang PPh Pasal 4 ayat (2) Rp39.120.000; rugi selisih kurs dapat dikurangkan oleh PT Arka" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", C: "salah-hitung" },
       pembahasan: {
         inti: "Pembukuan memakai kurs tengah BI: sewa dibayar di muka 24.000 × 16.250 = Rp390.000.000 dan kas yang keluar 21.600 × 16.250 = Rp351.000.000. PPh Pasal 4 ayat (2) atas imbalan valas dihitung dengan kurs KMK saat terutang: 10% × 24.000 × 16.300 = Rp39.120.000. Kredit melebihi debit Rp120.000 sehingga dicatat rugi selisih kurs. Sifat final melekat pada penghasilan sewa PT Graha sebagai pemilik bangunan; bagi PT Arka sewa adalah biaya usaha, sehingga rugi kurs yang menyertainya dapat dikurangkan (Pasal 6 ayat (1) huruf e UU PPh).",
-        jejakHitung: [["Sewa dibayar di muka = 24.000 × 16.250 (kurs tengah BI)", "Rp390.000.000"], ["PPh Pasal 4 ayat (2) = 10% × 24.000 × 16.300 (kurs KMK)", "Rp39.120.000"], ["Kas (giro USD) = 21.600 × 16.250", "Rp351.000.000"], ["Rugi selisih kurs = 351.000.000 + 39.120.000 − 390.000.000", "Rp120.000"]],
-        mengapaSalah: { A: "Utang PPh dihitung dengan kurs tengah BI; DPP PPh atas imbalan valas wajib memakai kurs KMK saat terutang", B: "Jurnalnya benar, tetapi PP 94/2010 Pasal 9 ayat (2) hanya mengecualikan selisih kurs yang terkait penghasilan final milik wajib pajak sendiri; penghasilan final di sini milik PT Graha, bukan penyewa", C: "Seluruh jurnal dicatat dengan kurs KMK; pembukuan memakai kurs tengah BI, kurs KMK hanya untuk menghitung PPh" },
+        jejakHitung: [
+          ["Sewa dibayar di muka = 24.000 × 16.250 (kurs tengah BI)", "Rp390.000.000"],
+          ["PPh Pasal 4 ayat (2) = 10% × 24.000 × 16.300 (kurs KMK)", "Rp39.120.000"],
+          ["Kas (giro USD) = 21.600 × 16.250", "Rp351.000.000"],
+          ["Rugi selisih kurs = 351.000.000 + 39.120.000 − 390.000.000", "Rp120.000"]
+        ],
+        mengapaSalah: {
+          A: "Utang PPh dihitung dengan kurs tengah BI; DPP PPh atas imbalan valas wajib memakai kurs KMK saat terutang",
+          B: "Jurnalnya benar, tetapi PP 94/2010 Pasal 9 ayat (2) hanya mengecualikan selisih kurs yang terkait penghasilan final milik wajib pajak sendiri; penghasilan final di sini milik PT Graha, bukan penyewa",
+          C: "Seluruh jurnal dicatat dengan kurs KMK; pembukuan memakai kurs tengah BI, kurs KMK hanya untuk menghitung PPh"
+        },
         jebakan: "Kata 'final' pada PPh sewa bangunan tidak membuat rugi kurs penyewa menjadi tidak dapat dikurangkan; yang menerima penghasilan final adalah pemilik bangunan."
       },
-      dasarHukum: [{ pasal: "Pasal 4 ayat (2) UU PPh; PP 34/2017 (sewa tanah/bangunan)", berlakuSejak: "2017-09-20" }, { pasal: "PP 94/2010 Pasal 9", berlakuSejak: "2010-12-30" }, { pasal: "Pasal 6 ayat (1) huruf e UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PSAK 221 (eks-PSAK 10) Pengaruh Perubahan Kurs Valuta Asing", berlakuSejak: "2024-01-01" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 4 ayat (2) UU PPh; PP 34/2017 (sewa tanah/bangunan)", berlakuSejak: "2018-01-02" }, { pasal: "PP 94/2010 Pasal 9", berlakuSejak: "2010-12-30" }, { pasal: "Pasal 6 ayat (1) huruf e UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PSAK 221 (eks-PSAK 10) Pengaruh Perubahan Kurs Valuta Asing", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "B7-143", topik: "B7.8", tingkat: ["C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["C-2026-10"],
@@ -3404,7 +3438,12 @@ UKP.register({
       peringatan: "Perlakuan fiskal selisih kurs atas provisi valas yang pembentukannya tidak dapat dikurangkan tidak diatur tersurat dalam PP 94/2010 Pasal 9. Kunci disusun dari Pasal 9 ayat (1) huruf c UU PPh (cadangan tidak dapat dikurangkan; biaya diakui saat klaim dibayar sebesar Rupiah yang sesungguhnya dikeluarkan) dan PSAK 212; pendapat yang mengakui rugi penjabaran provisi sebagai rugi kurs fiskal (opsi B) mungkin ditemui dalam praktik dan belum diuji terhadap putusan atau penegasan DJP."
     },
     {
-      id: "B7-146", topik: "B7.6", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["C-2026-10"],
+      id: "B7-146",
+      topik: "B7.6",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
       kutipan: "PP 94/2010 Pasal 9 (parafrase setia): (1) pengakuan keuntungan atau kerugian selisih kurs mata uang asing dilakukan berdasarkan sistem pembukuan yang dianut dan dilakukan secara taat asas sesuai dengan standar akuntansi keuangan yang berlaku di Indonesia; (2) ketentuan ayat (1) tidak berlaku atas keuntungan atau kerugian selisih kurs yang terkait dengan penghasilan yang dikenai PPh bersifat final dan/atau bukan objek pajak.",
       stem: "PT Bahtera Kimia Industri (manufaktur resin; bukan perseroan terbuka; peredaran bruto 2025 Rp185 miliar; pembukuan Rupiah sesuai SAK) melaporkan laba sebelum pajak 2025 Rp4.200.000.000. Di dalamnya termasuk: (1) rugi selisih kurs belum direalisasi Rp150.000.000 atas penjabaran utang impor bahan baku dengan kurs tengah BI 31 Desember 2025 (bila dijabarkan dengan kurs KMK, rugi itu hanya Rp138.000.000); (2) laba selisih kurs belum direalisasi Rp60.000.000 atas piutang ekspor; (3) pendapatan sewa ruko Rp300.000.000 yang telah dipotong PPh final 10%, beban penyusutan ruko Rp70.000.000, dan rugi selisih kurs Rp40.000.000 atas utang USD kepada pemasok luar negeri yang memasok lift dan peralatan ruko tersebut; (4) beban PPh Pasal 26 yang ditanggung perusahaan tanpa klausul gross-up Rp45.000.000. Kredit pajak 2025: PPh Pasal 22 impor Rp180.000.000, PPh Pasal 23 Rp20.000.000, dan PPh Pasal 25 Rp540.000.000. Tidak ada koreksi lain. Berdasarkan kutipan tersebut, PPh Pasal 29 Tahun Pajak 2025 adalah ...",
       kataKualifikasi: [],
@@ -3413,12 +3452,25 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", D: "salah-baca" },
       pembahasan: {
         inti: "Selisih kurs belum direalisasi (1) dan (2) diakui fiskal mengikuti pembukuan sesuai SAK dan tidak dikoreksi, termasuk tidak 'disesuaikan' ke kurs KMK. Pos ruko (3) berkaitan dengan penghasilan final: pendapatan sewa dikoreksi negatif Rp300.000.000, sedangkan penyusutan Rp70.000.000 dan rugi kurs Rp40.000.000 dikoreksi positif (Pasal 9 ayat (2) PP 94/2010). PPh 26 yang ditanggung tanpa gross-up (4) dikoreksi positif Rp45.000.000. PKP Rp4.055.000.000; PPh 22% Rp892.100.000; dikurangi kredit Rp740.000.000 = PPh 29 Rp152.100.000. Pasal 31E tidak berlaku karena peredaran bruto di atas Rp50 miliar.",
-        jejakHitung: [["Laba sebelum pajak", "Rp4.200.000.000"], ["Koreksi positif: penyusutan ruko + rugi kurs ruko + PPh 26 ditanggung = 70.000.000 + 40.000.000 + 45.000.000", "Rp155.000.000"], ["Koreksi negatif: pendapatan sewa final", "Rp300.000.000"], ["PKP = 4.200.000.000 + 155.000.000 − 300.000.000", "Rp4.055.000.000"], ["PPh terutang = 22% × 4.055.000.000", "Rp892.100.000"], ["Kredit pajak = 180.000.000 + 20.000.000 + 540.000.000", "Rp740.000.000"], ["PPh Pasal 29", "Rp152.100.000"]],
-        mengapaSalah: { A: "Mengoreksi selisih kurs belum direalisasi (+150.000.000 dan −60.000.000); fiskal mengikuti pembukuan taat asas sesuai SAK, termasuk yang belum direalisasi", B: "Lupa memisahkan pos ruko: pendapatan sewa final dan seluruh biaya terkaitnya, termasuk rugi kursnya, dikeluarkan dari penghitungan", D: "Menambah koreksi positif Rp12.000.000 agar penjabaran 'mengikuti' kurs KMK; kurs KMK tidak dipakai untuk menjabarkan pos moneter" },
+        jejakHitung: [
+          ["Laba sebelum pajak", "Rp4.200.000.000"],
+          ["Koreksi positif: penyusutan ruko + rugi kurs ruko + PPh 26 ditanggung = 70.000.000 + 40.000.000 + 45.000.000", "Rp155.000.000"],
+          ["Koreksi negatif: pendapatan sewa final", "Rp300.000.000"],
+          ["PKP = 4.200.000.000 + 155.000.000 − 300.000.000", "Rp4.055.000.000"],
+          ["PPh terutang = 22% × 4.055.000.000", "Rp892.100.000"],
+          ["Kredit pajak = 180.000.000 + 20.000.000 + 540.000.000", "Rp740.000.000"],
+          ["PPh Pasal 29", "Rp152.100.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengoreksi selisih kurs belum direalisasi (+150.000.000 dan −60.000.000); fiskal mengikuti pembukuan taat asas sesuai SAK, termasuk yang belum direalisasi",
+          B: "Lupa memisahkan pos ruko: pendapatan sewa final dan seluruh biaya terkaitnya, termasuk rugi kursnya, dikeluarkan dari penghitungan",
+          D: "Menambah koreksi positif Rp12.000.000 agar penjabaran 'mengikuti' kurs KMK; kurs KMK tidak dipakai untuk menjabarkan pos moneter"
+        },
         jebakan: "Belum direalisasi tidak berarti dikoreksi; yang dikoreksi adalah selisih kurs yang terkait penghasilan final atau bukan objek."
       },
-      dasarHukum: [{ pasal: "PP 94/2010 Pasal 9 ayat (1) dan (2)", berlakuSejak: "2010-12-30" }, { pasal: "Pasal 4 ayat (2) UU PPh; PP 34/2017 (sewa tanah/bangunan)", berlakuSejak: "2017-09-20" }, { pasal: "Pasal 9 ayat (1) huruf h dan Pasal 17 ayat (1) huruf b UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
-      anggaranDetik: 200, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PP 94/2010 Pasal 9 ayat (1) dan (2)", berlakuSejak: "2010-12-30" }, { pasal: "Pasal 4 ayat (2) UU PPh; PP 34/2017 (sewa tanah/bangunan)", berlakuSejak: "2018-01-02" }, { pasal: "Pasal 9 ayat (1) huruf h dan Pasal 17 ayat (1) huruf b UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅"
     },
     {
       id: "B7-147", topik: "B7.8", tingkat: ["C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["C-2026-10"],
@@ -3620,7 +3672,7 @@ UKP.register({
     { id: "KT-B7-41", topik: "B7.1", tipe: "prosedur", depan: "Uang muka diterima sebelum penyerahan BKP — kapan PPN terutang?", belakang: "Saat uang muka diterima; faktur dibuat atas uang muka itu", dasar: "Pasal 11 ayat (2) dan Pasal 13 ayat (1a) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B7-42", topik: "B7.1", tipe: "pasal", depan: "PPN atas retur penjualan dikurangkan pada Masa Pajak apa?", belakang: "Masa terjadinya pengembalian BKP, bukan pembetulan masa penyerahan", dasar: "Pasal 5A ayat (1) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B7-43", topik: "B7.1", tipe: "pasal", depan: "PPN lebih bayar PKP biasa (bukan eksportir/penyerahan ke pemungut)?", belakang: "Dikompensasikan; restitusi hanya dapat diminta pada akhir tahun buku", dasar: "Pasal 9 ayat (4), (4a), (4b) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B7-44", topik: "B7.1", tipe: "definisi", depan: "PPh 22 atas pembelian BBM oleh SPBU penyalur dicatat sebagai?", belakang: "Beban PPh final (tarif ◐ 0,25% SPBU Pertamina); tidak dikreditkan", dasar: "PMK 51/2025 (PPh Pasal 22; menggantikan PMK 34/PMK.010/2017)", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B7-44", topik: "B7.1", tipe: "definisi", depan: "PPh 22 atas pembelian BBM oleh SPBU penyalur dicatat sebagai?", belakang: "Beban PPh final (tarif ◐ 0,25% SPBU Pertamina); tidak dikreditkan", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B7-45", topik: "B7.1", tipe: "definisi", depan: "Premi JKK, JKM, BPJS Kesehatan bagian pemberi kerja — bruto PPh 21 pegawai?", belakang: "Ditambahkan ke bruto (TER); iuran JHT/JP pemberi kerja tidak", dasar: "PP 58/2023; PMK 168/2023", berlakuSejak: "2024-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B7-46", topik: "B7.2", tipe: "pasal", depan: "Penyerahan BKP secara konsinyasi — saat terutang PPN?", belakang: "Saat diserahkan ke komisioner; pendapatan diakui saat terjual", dasar: "Pasal 1A ayat (1) huruf g UU PPN; PSAK 115", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B7-47", topik: "B7.2", tipe: "definisi", depan: "Persediaan rusak dimusnahkan dengan berita acara vs diturunkan ke NRV?", belakang: "Pemusnahan dapat dibiayakan; penurunan nilai NRV dikoreksi positif", dasar: "Pasal 6 ayat (1) dan Pasal 10 ayat (6) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
@@ -3835,7 +3887,7 @@ UKP.register({
     },
     {
       id: "K-B7-06", judul: "Sewa truk tanpa hak opsi: PSAK 116 vs fiskal, PPh 23, PPN, dan pajak tangguhan", topik: "B7.3", estimasiMenit: 15,
-      narasi: "PT Lintas Niaga Distribusi (PKP; tahun buku kalender) pada 1 Januari 2026 menyewa 4 truk boks dari PT Rental Armada Prima (PKP, perusahaan rental; bukan perusahaan pembiayaan) selama 3 tahun tanpa hak opsi membeli. Sewa Rp20.000.000 per bulan belum termasuk PPN, dibayar setiap akhir bulan dengan faktur pajak kode 01 (DPP nilai lain 11/12). Secara komersial (PSAK 116) perusahaan mengakui aset hak-guna dan liabilitas sewa masing-masing Rp600.000.000 (nilai kini pembayaran sewa); aset hak-guna disusutkan garis lurus 3 tahun, dan beban bunga liabilitas sewa 2026 Rp63.800.000 (dibulatkan). Tarif PPh badan 22%.",
+      narasi: "PT Lintas Niaga Distribusi (PKP; tahun buku kalender) pada 1 Januari 2026 menyewa 4 truk boks dari PT Rental Armada Prima (PKP, perusahaan rental; bukan perusahaan pembiayaan) selama 3 tahun tanpa hak opsi membeli. Sewa Rp20.000.000 per bulan belum termasuk PPN, dibayar setiap akhir bulan dengan faktur pajak kode 04 (DPP nilai lain 11/12). Secara komersial (PSAK 116) perusahaan mengakui aset hak-guna dan liabilitas sewa masing-masing Rp600.000.000 (nilai kini pembayaran sewa); aset hak-guna disusutkan garis lurus 3 tahun, dan beban bunga liabilitas sewa 2026 Rp63.800.000 (dibulatkan). Tarif PPh badan 22%.",
       data: [["Masa sewa / hak opsi", "36 bulan sejak 1 Januari 2026 / tidak ada"], ["Sewa per bulan (tanpa PPN)", "Rp20.000.000"], ["PPN", "12% × 11/12"], ["Aset hak-guna = liabilitas sewa awal", "Rp600.000.000"], ["Penyusutan aset hak-guna", "Garis lurus 3 tahun"], ["Beban bunga sewa 2026", "Rp63.800.000"], ["Tarif PPh badan", "22%"]],
       langkah: [
         { no: 1, pertanyaan: "Perlakuan fiskal sewa ini bagi lessee?", tipe: "pilihan",

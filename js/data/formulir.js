@@ -513,7 +513,7 @@ UKP.registerFormulir({
             sumberAngka: "Lampiran B2", pasal: "Ps. 9 ayat (2) dan (9) UU PPN", topik: "A4.7",
             jebakan: "Pajak masukan dapat dikreditkan paling lambat 3 masa pajak setelah masa faktur, sepanjang belum dibiayakan dan belum dilakukan pemeriksaan." },
           { kode: "1111.induk.10", nomor: "II.C", label: "Perolehan yang pajak masukannya tidak dapat dikreditkan atau mendapat fasilitas",
-            isi: "Pajak masukan atas sedan/station wagon, perolehan yang tidak berhubungan langsung dengan usaha, faktur tidak lengkap, perolehan terkait penyerahan dibebaskan, serta perolehan dengan fasilitas.",
+            isi: "Pajak masukan atas perolehan yang tidak berhubungan langsung dengan kegiatan usaha (larangan PM sedan/station wagon dihapus sejak 1 April 2022 bagi perolehan sejak tanggal itu), faktur tidak lengkap, perolehan terkait penyerahan dibebaskan, serta perolehan dengan fasilitas.",
             sumberAngka: "Lampiran B3", pasal: "Ps. 9 ayat (8) dan Ps. 16B ayat (3) UU PPN", topik: "A4.7",
             jebakan: "Faktur yang lengkap tidak otomatis dapat dikreditkan; perolehan untuk penyerahan dibebaskan tetap masuk B3." }
         ] },
@@ -545,10 +545,10 @@ UKP.registerFormulir({
         { id: "induk-4", nama: "Induk IV–VII — Bagian khusus", baris: [
           { kode: "1111.induk.17", nomor: "IV", label: "PPN terutang atas kegiatan membangun sendiri",
             isi: "DPP = biaya yang dikeluarkan untuk membangun (tidak termasuk tanah); beban efektif 2,2% untuk bangunan seluas paling sedikit 200 m², disetor sendiri.",
-            sumberAngka: "Bukti setor PPN KMS", pasal: "Ps. 16C UU PPN; PMK 61/PMK.03/2022; PMK 11/2025", topik: "A4.6",
+            sumberAngka: "Bukti setor PPN KMS", pasal: "Ps. 16C UU PPN; PMK 81/2024 Pasal 324 s.t.d.d. PMK 11/2025 (menggantikan PMK 61/PMK.03/2022)", topik: "A4.6",
             jebakan: "Harga tanah tidak termasuk DPP." },
           { kode: "1111.induk.18", nomor: "V", label: "Pembayaran kembali pajak masukan bagi PKP gagal berproduksi",
-            isi: "Pajak masukan barang modal yang telah dikreditkan dan dikembalikan wajib dibayar kembali bila dalam 3 tahun PKP belum melakukan penyerahan.",
+            isi: "Pajak masukan yang telah dikreditkan dan dikembalikan wajib dibayar kembali bila dalam 3 tahun sejak masa pengkreditan pertama PKP belum melakukan penyerahan (sejak UU 11/2020 tidak terbatas pada barang modal).",
             sumberAngka: "Daftar pajak masukan barang modal yang telah dikreditkan", pasal: "Ps. 9 ayat (2a) dan (6a) UU PPN", topik: "A4.7" },
           { kode: "1111.induk.19", nomor: "VI", label: "PPnBM",
             isi: "DPP dan PPnBM atas penyerahan barang mewah oleh pengusaha yang menghasilkan (dipungut sendiri, oleh pemungut, tidak dipungut, dibebaskan).",
@@ -566,8 +566,8 @@ UKP.registerFormulir({
             jebakan: "Ekspor tidak dibuatkan faktur pajak; PEB berfungsi sebagai faktur." },
           { kode: "1111.A1.2", nomor: "A1-2", label: "Ekspor BKP tidak berwujud dan JKP",
             isi: "Dokumen pemberitahuan ekspor JKP/BKP tidak berwujud beserta kontrak dan bukti pembayaran.",
-            sumberAngka: "Pemberitahuan ekspor JKP/BKP tidak berwujud; invoice", pasal: "Ps. 4 ayat (1) huruf g–h UU PPN; PMK 32/PMK.010/2019", topik: "A4.2",
-            jebakan: "Hanya JKP yang termasuk batasan PMK 32/PMK.010/2019 yang diperlakukan sebagai ekspor bertarif 0%." }
+            sumberAngka: "Pemberitahuan ekspor JKP/BKP tidak berwujud; invoice", pasal: "Ps. 4 ayat (1) huruf g–h UU PPN; PMK 81/2024 (ekspor JKP; menggantikan PMK 32/PMK.010/2019 sejak 1 Januari 2025)", topik: "A4.2",
+            jebakan: "Hanya JKP yang termasuk batasan ekspor JKP dalam PMK 81/2024 yang diperlakukan sebagai ekspor bertarif 0%." }
         ] },
         { id: "A2", nama: "Lampiran A2 — Pajak keluaran dalam negeri", baris: [
           { kode: "1111.A2.1", nomor: "A2-1", label: "Faktur keluaran",
@@ -589,7 +589,7 @@ UKP.registerFormulir({
             jebakan: "Nilai impor = nilai pabean ditambah bea masuk dan pungutan lain menurut kepabeanan; untuk barang non-mewah DPP dikalikan 11/12." },
           { kode: "1111.B1.2", nomor: "B1-2", label: "PPN pemanfaatan BKP tidak berwujud/JKP dari luar Daerah Pabean",
             isi: "Bukti setor PPN yang disetor sendiri oleh pemanfaat beserta nama dan negara pemberi jasa, atau dokumen pungutan PMSE yang mencantumkan identitas pembeli.",
-            sumberAngka: "Bukti setor (NTPN); dokumen PMSE", pasal: "Ps. 4 ayat (1) huruf d dan e UU PPN; PMK 60/2022", topik: "A4.7",
+            sumberAngka: "Bukti setor (NTPN); dokumen PMSE", pasal: "Ps. 4 ayat (1) huruf d dan e UU PPN; PMK 81/2024 (PPN PMSE; menggantikan PMK 60/PMK.03/2022 sejak 1 Januari 2025)", topik: "A4.7",
             jebakan: "Bila PPN sudah dipungut pemungut PMSE, PKP tidak menyetor lagi; dokumen PMSE dengan identitas pembeli menjadi dasar pengkreditan." }
         ] },
         { id: "B2", nama: "Lampiran B2 — Pajak masukan dalam negeri", baris: [
@@ -603,8 +603,8 @@ UKP.registerFormulir({
         ] },
         { id: "B3", nama: "Lampiran B3 — Pajak masukan yang tidak dapat dikreditkan atau mendapat fasilitas", baris: [
           { kode: "1111.B3.1", nomor: "B3-1", label: "Pajak masukan yang tidak dapat dikreditkan",
-            isi: "Perolehan sedan/station wagon (bukan barang dagangan atau disewakan), perolehan yang tidak berhubungan langsung dengan usaha, perolehan sebelum berproduksi selain barang modal, dan faktur yang tidak memenuhi syarat.",
-            sumberAngka: "Faktur masukan terkait", pasal: "Ps. 9 ayat (8) UU PPN", topik: "A4.7" },
+            isi: "Perolehan yang tidak berhubungan langsung dengan kegiatan usaha (mis. mobil untuk keperluan pribadi keluarga pemegang saham), faktur yang tidak memenuhi syarat, dan pemanfaatan BKP tidak berwujud/JKP dari luar Daerah Pabean yang dokumennya tidak memenuhi syarat (Pasal 9 ayat (8) kini hanya memuat huruf b, f, dan g). Larangan atas perolehan sebelum berproduksi selain barang modal (huruf j) dihapus UU 11/2020: PKP yang belum melakukan penyerahan dapat mengkreditkan PM, dengan kewajiban membayar kembali bila 3 tahun belum ada penyerahan. PM sedan/station wagon operasional yang diperoleh sejak 1 April 2022 dapat dikreditkan (huruf c dihapus).",
+            sumberAngka: "Faktur masukan terkait", pasal: "Ps. 9 ayat (8) huruf b dan f UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", topik: "A4.7" },
           { kode: "1111.B3.2", nomor: "B3-2", label: "Pajak masukan atas perolehan yang mendapat fasilitas",
             isi: "Faktur kode 07 (tidak dipungut/DTP) dan kode 08 (dibebaskan) yang diterima sebagai pembeli, serta pajak masukan yang terkait penyerahan dibebaskan.",
             sumberAngka: "Faktur masukan kode 07/08", pasal: "Ps. 16B ayat (3) UU PPN; PP 49/2022", topik: "A4.2",
@@ -689,7 +689,7 @@ UKP.registerFormulir({
             sumberAngka: "Daftar BPPU/BPNR; setoran sendiri", pasal: "Ps. 15 UU PPh; KMK 416/KMK.04/1996; KMK 475/KMK.04/1996", topik: "A3.8" },
           { kode: "unifikasi.induk.3", nomor: "3", label: "PPh Pasal 22",
             isi: "PPh 22 yang dipungut bendahara, BUMN tertentu, industri tertentu, dan pemungut lain.",
-            sumberAngka: "Daftar BPPU dan dokumen yang dipersamakan", pasal: "Ps. 22 UU PPh; PMK 51/2025 (menggantikan PMK 34/2017)", topik: "A3.5" },
+            sumberAngka: "Daftar BPPU dan dokumen yang dipersamakan", pasal: "Ps. 22 UU PPh; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", topik: "A3.5" },
           { kode: "unifikasi.induk.4", nomor: "4", label: "PPh Pasal 23",
             isi: "PPh 23 atas dividen, bunga, royalti, dan hadiah (15%) serta sewa dan jasa (2%).",
             sumberAngka: "Daftar BPPU", pasal: "Ps. 23 UU PPh; PMK 141/PMK.03/2015", topik: "A3.6" },
@@ -890,7 +890,7 @@ UKP.registerFormulir({
             isi: "Peserta lomba, rapat, seminar, dan pelatihan: tarif Pasal 17 × bruto per pembayaran, tanpa pengurang 50%.",
             sumberAngka: "Bruto pembayaran", pasal: "PMK 168/2023", topik: "A3.3" },
           { kode: "BP21.b.5", nomor: "B", label: "Komisaris bukan pegawai tetap dan mantan pegawai",
-            isi: "Komisaris bukan pegawai tetap: TER bulanan (kategori menurut status PTKP) × bruto yang diterima dalam Masa Pajak itu, tidak kumulatif (PMK 168/2023 Pasal 16 ayat (1)). Mantan pegawai (jasa produksi, tantiem, dan bonus): tarif Pasal 17 × bruto; menurut ulasan sekunder atas PMK 168/2023 dasarnya bruto dalam satu Masa Pajak, tidak lagi kumulatif setahun seperti aturan lama (bunyi pasal belum dibaca langsung ◐).",
+            isi: "Komisaris bukan pegawai tetap: TER bulanan (kategori menurut status PTKP) × bruto yang diterima dalam Masa Pajak itu, tidak kumulatif (PMK 168/2023 Pasal 16 ayat (1)). Mantan pegawai (jasa produksi, tantiem, dan bonus) dan penarikan dana pensiun oleh pegawai: tarif Pasal 17 ayat (1) huruf a × jumlah bruto yang diterima, tidak kumulatif (menurut ulasan DDTCNews dan Ortax atas PMK 168/2023; bunyi pasal belum dibaca langsung ◐).",
             sumberAngka: "Bruto Masa Pajak (komisaris); bruto pembayaran (mantan pegawai)",
             jebakan: "Skema kumulatif lama untuk komisaris (tarif Pasal 17 × bruto kumulatif, PER-16/PJ/2016) tidak berlaku sejak 1 Januari 2024.", pasal: "PMK 168/2023", topik: "A3.3" },
           { kode: "BP21.b.6", nomor: "B", label: "Pesangon (final)",
@@ -945,7 +945,7 @@ UKP.registerFormulir({
             jebakan: "Rekanan pemegang Surat Keterangan PP 55/2022 dipotong PPh final 0,5%, bukan PPh 23 2%." },
           { kode: "BPPU.b.5", nomor: "B", label: "PPh Pasal 22 yang dipungut",
             isi: "Bendahara pemerintah 1,5% atas pembelian barang di atas Rp2 juta, BUMN tertentu, serta industri tertentu sesuai tarif masing-masing.",
-            sumberAngka: "Dokumen pembelian", pasal: "Ps. 22 UU PPh; PMK 51/2025 (menggantikan PMK 34/2017)", topik: "A3.5",
+            sumberAngka: "Dokumen pembelian", pasal: "Ps. 22 UU PPh; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", topik: "A3.5",
             jebakan: "Pembelian bendahara sampai Rp2 juta tidak dipungut dan nilai transaksi tidak boleh dipecah." },
           { kode: "BPPU.b.6", nomor: "B", label: "PPh Pasal 15",
             isi: "Pelayaran dalam negeri 1,2% dan penerbangan dalam negeri 1,8% dari peredaran bruto bila dipotong pencarter.",

@@ -26,7 +26,7 @@ UKP.register({
     perubahanTerbaru: [
       {
         sebelum: "PPh final 0,5% PP 55/2022 dapat dipakai PT (3 tahun), CV/firma/BUMDes/koperasi/perseroan perorangan (4 tahun)",
-        sesudah: "Penerima baru hanya orang pribadi, perseroan perorangan yang didirikan satu orang, dan koperasi (koperasi tetap 4 tahun pajak); pekerjaan bebas dikecualikan; CV/firma/PT yang terdaftar sebelum 22 April 2026 tetap memakai sampai jangka waktu lamanya habis",
+        sesudah: "Penerima baru hanya orang pribadi, perseroan perorangan yang didirikan satu orang, dan koperasi (4 tahun pajak; koperasi yang terdaftar sebelum PP 20/2026 dan jangkanya berakhir TP 2024–2029: sampai Tahun Pajak 2029); pekerjaan bebas dikecualikan; CV/firma/PT yang terdaftar sebelum 22 April 2026 tetap memakai sampai jangka waktu lamanya habis",
         dasar: "PP 20/2026 (perubahan PP 55/2022 Pasal 56–59)",
         berlakuSejak: "2026-04-22"
       },
@@ -72,10 +72,10 @@ UKP.register({
       { label: "Tarif perseroan terbuka", nilai: "19% bila ≥ 40% saham di BEI, ≥ 300 pihak masing-masing < 5%, ≥ 183 hari", dasar: "Pasal 17 ayat (2b) UU PPh; PP 55/2022", berlakuSejak: "2022-01-01" },
       { label: "Fasilitas Pasal 31E", nilai: "11% atas PKP × (Rp4,8 M ÷ peredaran bruto); peredaran bruto ≤ Rp50 M", dasar: "Pasal 31E UU PPh; SE-02/PJ/2015", berlakuSejak: "2009-01-01" },
       { label: "Peredaran bruto Pasal 31E", nilai: "usaha + luar usaha, termasuk final dan bukan objek; tanpa PPN", dasar: "SE-02/PJ/2015", berlakuSejak: "2015-01-09" },
-      { label: "PPh final 0,5% badan", nilai: "koperasi (4 tahun) dan perseroan perorangan; PT/CV lama sampai jangka habis (3/4 tahun)", dasar: "PP 55/2022 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" },
+      { label: "PPh final 0,5% badan", nilai: "koperasi (4 tahun; koperasi terdaftar sebelum PP 20/2026 yang jangkanya berakhir TP 2024–2029: sampai TP 2029) dan perseroan perorangan; PT/CV lama sampai jangka habis (3/4 tahun)", dasar: "PP 55/2022 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" },
       { label: "Dividen dalam negeri diterima badan dalam negeri", nilai: "bukan objek, tanpa syarat kepemilikan; tidak dipotong PPh 23", dasar: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" },
       { label: "Dividen luar negeri non-bursa", nilai: "bukan objek bila diinvestasikan ≥ 30% laba setelah pajak", dasar: "Pasal 4 ayat (3) huruf f angka 2 UU PPh", berlakuSejak: "2020-11-02" },
-      { label: "PPh final sewa · deposito · pengalihan tanah/bangunan", nilai: "10% · 20% · 2,5% dari bruto", dasar: "PP 34/2017; PP 131/2000; PP 34/2016", berlakuSejak: "2017-09-20" },
+      { label: "PPh final sewa · deposito · pengalihan tanah/bangunan", nilai: "10% · 20% · 2,5% dari bruto", dasar: "PP 34/2017; PP 131/2000; PP 34/2016", berlakuSejak: "2018-01-02" },
       { label: "DER fiskal", nilai: "4 : 1 dari rata-rata saldo akhir bulan; biaya pinjaman × (4 × modal ÷ utang)", dasar: "PMK 169/PMK.010/2015", berlakuSejak: "2016-01-01" },
       { label: "Sumbangan yang dapat dikurangkan", nilai: "≤ 5% neto fiskal tahun sebelumnya; tidak boleh menimbulkan rugi", dasar: "PP 93/2010", berlakuSejak: "2010-12-30" },
       { label: "Penyusutan Kelompok 1–4", nilai: "garis lurus 25/12,5/6,25/5%; saldo menurun 50/25/12,5/10%", dasar: "Pasal 11 ayat (6) UU PPh; PMK 72/2023", berlakuSejak: "2009-01-01" },
@@ -83,7 +83,7 @@ UKP.register({
       { label: "Kompensasi kerugian", nilai: "5 tahun mulai tahun sesudah rugi; tax allowance s.d. 10 tahun", dasar: "Pasal 6 ayat (2) UU PPh; PP 78/2019", berlakuSejak: "2009-01-01" },
       { label: "Kredit PPh 24", nilai: "per negara: terkecil antara pajak LN dan (neto LN ÷ PKP) × PPh", dasar: "Pasal 24 ayat (2) UU PPh dan penjelasannya", berlakuSejak: "2009-01-01" },
       { label: "Angsuran PPh 25 badan", nilai: "(PPh terutang − PPh 22, 23, 24) ÷ 12; mulai bulan SPT disampaikan, paling lambat bulan batas SPT", dasar: "Pasal 25 ayat (1)–(2) UU PPh", berlakuSejak: "2009-01-01" },
-      { label: "Pengurangan angsuran PPh 25", nilai: "proyeksi PPh terutang < 75% dasar angsuran", dasar: "PER-11/PJ/2025 (menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" },
+      { label: "Pengurangan angsuran PPh 25", nilai: "proyeksi PPh terutang < 75% dasar angsuran", dasar: "PER-11/PJ/2025 Pasal 119 (menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" },
       { label: "Batas setor pajak masa dan PPh 25", nilai: "tanggal 15 bulan berikutnya; bayar PPh 25 tervalidasi = lapor", dasar: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" },
       { label: "Hubungan istimewa", nilai: "kepemilikan ≥ 25% (berantai dikalikan); penguasaan, termasuk satu grup usaha; keluarga satu derajat", dasar: "Pasal 18 ayat (4) UU PPh; PP 55/2022 Pasal 33; PMK 172/2023 Pasal 2 ayat (5)", berlakuSejak: "2009-01-01" },
       { label: "Dokumentasi TP", nilai: "tersedia ≤ 4 bulan setelah akhir tahun pajak; ikhtisar dilampirkan SPT", dasar: "PMK 172/2023", berlakuSejak: "2023-12-29" },
@@ -91,7 +91,7 @@ UKP.register({
       { label: "Denda terlambat SPT Tahunan badan", nilai: "Rp1.000.000", dasar: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" },
       { label: "PPh Pasal 29", nilai: "lunas sebelum SPT disampaikan", dasar: "Pasal 29 UU PPh", berlakuSejak: "2009-01-01" },
       { label: "Bunga telat bayar/pembetulan (Oktober 2026)", nilai: "(acuan + 5%)/12 = 1,01% per bulan; maks 24 bulan", dasar: "Pasal 8 ayat (2), 9 ayat (2a)/(2b) UU KUP; KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
-      { label: "Bunga pengungkapan saat pemeriksaan (Oktober 2026)", nilai: "(acuan + 10%)/12 = 1,42% per bulan; sejak akhir tahun pajak", dasar: "Pasal 8 ayat (5) UU KUP; KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
+      { label: "Bunga pengungkapan saat pemeriksaan (Oktober 2026)", nilai: "(acuan + 10%)/12 = 1,42% per bulan; sejak batas waktu penyampaian SPT Tahunan berakhir (SPT Masa: sejak jatuh tempo pembayaran) sampai tanggal pembayaran, maks 24 bulan", dasar: "Pasal 8 ayat (5) UU KUP; KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
       { label: "Keputusan restitusi", nilai: "SKP ≤ 12 bulan; pengembalian ≤ 1 bulan setelah SKPLB", dasar: "Pasal 17B dan Pasal 11 UU KUP", berlakuSejak: "2008-01-01" },
       { label: "Tax allowance", nilai: "30% investasi (5%/tahun × 6 tahun); dividen ke SPLN 10% atau tarif P3B lebih rendah; kompensasi rugi s.d. 10 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12" },
       { label: "Tax holiday", nilai: "100% (≥ Rp500 M) atau 50% (Rp100–<500 M); transisi 2 tahun 50%/25% ◐", dasar: "PMK 130/PMK.010/2020 s.t.d.d. PMK 69/2024", berlakuSejak: "2020-10-09" },
@@ -189,7 +189,7 @@ UKP.register({
           dasar: "Pasal 4 ayat (3) huruf m UU PPh",
           berlakuSejak: "2009-01-01"
         },
-        { label: "Sewa tanah/bangunan", nilai: "10% final × bruto", dasar: "PP 34/2017", berlakuSejak: "2017-09-20" },
+        { label: "Sewa tanah/bangunan", nilai: "10% final × bruto", dasar: "PP 34/2017", berlakuSejak: "2018-01-02" },
         { label: "Pengalihan hak atas tanah/bangunan", nilai: "2,5% final × bruto", dasar: "PP 34/2016", berlakuSejak: "2016-09-08" },
         { label: "Bunga deposito/tabungan", nilai: "20% final", dasar: "PP 131/2000", berlakuSejak: "2001-01-01" }
       ],
@@ -242,7 +242,7 @@ UKP.register({
           label: "Sumbangan PP 93/2010",
           nilai: "≤ 5% neto fiskal tahun sebelumnya, tidak menimbulkan rugi",
           dasar: "PP 93/2010",
-          berlakuSejak: "2010-11-30"
+          berlakuSejak: "2010-12-30"
         },
         {
           label: "Natura/kenikmatan pegawai",
@@ -460,7 +460,7 @@ UKP.register({
         "Pasal 31E (wajib diterapkan, bukan pilihan): WP badan DN dengan peredaran bruto s.d. Rp50 miliar memperoleh pengurangan 50% tarif atas PKP dari bagian peredaran bruto s.d. Rp4,8 miliar. PKP fasilitas = (4,8 miliar ÷ peredaran bruto) × PKP; PPh = 11% × PKP fasilitas + 22% × sisanya. Peredaran bruto ≤ Rp4,8 miliar → seluruh PKP 11%.",
         "Peredaran bruto untuk Pasal 31E mencakup penghasilan usaha dan luar usaha, termasuk penghasilan yang dikenai PPh final dan yang bukan objek, setelah retur dan potongan, sebelum biaya (SE-02/PJ/2015).",
         "PPh final 0,5% PP 55/2022 setelah PP 20/2026 (berlaku 22 April 2026): penerima baru hanya orang pribadi, perseroan perorangan yang didirikan satu orang, dan koperasi (koperasi paling lama 4 tahun pajak); jasa sehubungan pekerjaan bebas dikecualikan; batas peredaran bruto Rp4,8 miliar; fasilitas omzet Rp500 juta tidak kena pajak hanya untuk orang pribadi.",
-        "Peralihan PP 20/2026: CV, firma, dan PT yang terdaftar dan telah memanfaatkan PPh final sebelum 22 April 2026 tetap dapat memakainya sampai jangka waktu lama berakhir (PT 3 tahun pajak, CV/firma 4 tahun pajak); setelah itu wajib tarif umum dengan Pasal 31E."
+        "Peralihan PP 20/2026: CV, firma, dan PT yang terdaftar dan telah memanfaatkan PPh final sebelum 22 April 2026 tetap dapat memakainya sampai jangka waktu lama berakhir (PT 3 tahun pajak, CV/firma 4 tahun pajak); setelah itu wajib tarif umum dengan Pasal 31E. Koperasi yang terdaftar sebelum PP 20/2026 dan jangka waktu PPh finalnya menurut PP 55/2022 berakhir pada Tahun Pajak 2024–2029 dapat memakai PPh final sampai Tahun Pajak 2029 (PP 20/2026 Pasal II angka 1 huruf b); batas 4 tahun pajak berlaku bagi koperasi yang terdaftar setelah PP 20/2026."
       ],
       poinKunci: [
         { label: "Tarif umum badan", nilai: "22%", dasar: "Pasal 17 ayat (1) huruf b UU PPh (UU HPP)", berlakuSejak: "2022-01-01" },
@@ -478,7 +478,7 @@ UKP.register({
         },
         {
           label: "PPh final UMKM badan",
-          nilai: "0,5% × omzet bulanan; hanya koperasi (4 th) dan perseroan perorangan",
+          nilai: "0,5% × omzet bulanan; hanya koperasi (4 th; koperasi lama yang jangkanya berakhir TP 2024–2029: sampai TP 2029) dan perseroan perorangan",
           dasar: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57",
           berlakuSejak: "2026-04-22"
         },
@@ -555,7 +555,7 @@ UKP.register({
         langkah: [["30% × 120.000.000.000", "Rp36.000.000.000"], ["Dibagi 6 tahun (5% per tahun)", "Rp6.000.000.000 per tahun"]]
       },
       verifikasi: "◐",
-      peringatan: "Rincian PMK 69/2024 (perubahan PMK 130/2020, termasuk batas waktu pengajuan dan kaitan dengan pajak minimum global) serta pasal PP 78/2019 dan PP 45/2019 (termasuk status Pasal 29A–29C PP 94/2010 setelah PP 55/2022) belum dicek ke teks primer; angka plafon 30%, 60%, 200%, 300%, dan Rp100/500 miliar berkeyakinan tinggi."
+      peringatan: "Rincian PMK 69/2024 (perubahan PMK 130/2020, termasuk batas waktu pengajuan dan kaitan dengan pajak minimum global) serta pasal PP 78/2019 dan PP 45/2019 belum dicek ke teks primer; angka plafon 30%, 60%, 200%, 300%, dan Rp100/500 miliar berkeyakinan tinggi."
     },
     {
       id: "B6.9",
@@ -566,20 +566,20 @@ UKP.register({
       ringkasan: [
         "Angsuran PPh 25 = (PPh terutang menurut SPT Tahunan tahun lalu − PPh 22, 23, dan 24 yang dikreditkan) ÷ 12. PPh 25 tahun lalu dan PPh final tidak ikut dikurangkan. Hasil nol atau negatif → angsuran nihil.",
         "Angsuran untuk bulan-bulan sebelum SPT Tahunan disampaikan (sebelum batas waktu penyampaiannya) sama dengan angsuran bulan terakhir tahun pajak lalu; angsuran baru berlaku sejak bulan SPT disampaikan (contoh penjelasan undang-undang: SPT disampaikan Februari, angsuran baru mulai Februari), paling lambat sejak bulan batas waktu (April untuk tahun buku kalender) (Pasal 25 ayat (2)).",
-        "WP badan tertentu: bank dan sewa guna usaha dengan hak opsi berdasarkan laporan keuangan triwulanan terakhir; BUMN/BUMD berdasarkan RKAP yang telah disahkan RUPS; WP masuk bursa dan WP lain yang wajib laporan keuangan berkala berdasarkan laporan keuangan berkala terakhir (Pasal 25 ayat (7); PMK 81/2024, menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025; rumusan untuk bank masih perlu dicek ke PMK 81/2024).",
-        "WP dapat mengajukan pengurangan angsuran bila usahanya diperkirakan menghasilkan PPh terutang kurang dari 75% dari PPh terutang yang menjadi dasar penghitungan angsuran (PER-11/PJ/2025, menggantikan KEP-537/PJ/2000 sejak 22 Mei 2025).",
+        "WP badan tertentu (Pasal 25 ayat (7); PMK 81/2024, menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025): bank menghitung angsuran berdasarkan laporan keuangan yang disampaikan kepada OJK sejak awal tahun pajak sampai masa pajak yang dilaporkan, dikurangi antara lain angsuran masa-masa sebelumnya; WP masuk bursa dan WP lain yang wajib membuat laporan keuangan berkala berdasarkan laporan keuangan berkala (triwulanan) yang disampaikan ke bursa/OJK; BUMN/BUMD berdasarkan RKAP yang telah disahkan RUPS.",
+        "WP dapat mengajukan pengurangan angsuran bila usahanya diperkirakan menghasilkan PPh terutang kurang dari 75% dari PPh terutang yang menjadi dasar penghitungan angsuran; permohonan diajukan setelah tahun pajak berjalan 3 bulan atau lebih (PER-11/PJ/2025 Pasal 119, menggantikan KEP-537/PJ/2000 sejak 22 Mei 2025).",
         "Penyetoran paling lambat tanggal 15 bulan berikutnya (PMK 81/2024); di Coretax pembayaran PPh 25 yang tervalidasi dianggap sebagai penyampaian SPT Masa."
       ],
       poinKunci: [
         { label: "Rumus angsuran", nilai: "(PPh terutang − kredit 22/23/24) ÷ 12", dasar: "Pasal 25 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
         { label: "Angsuran sebelum SPT", nilai: "= angsuran Desember tahun lalu", dasar: "Pasal 25 ayat (2) UU PPh", berlakuSejak: "2009-01-01" },
-        { label: "Syarat pengurangan", nilai: "estimasi PPh terutang < 75% dasar angsuran", dasar: "PER-11/PJ/2025 (menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" },
+        { label: "Syarat pengurangan", nilai: "estimasi PPh terutang < 75% dasar angsuran", dasar: "PER-11/PJ/2025 Pasal 119 (menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" },
         { label: "Batas setor", nilai: "tanggal 15 bulan berikutnya", dasar: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" }
       ],
       dasarHukum: [
         { pasal: "Pasal 25 UU PPh", catatan: "angsuran, WP tertentu (ayat (7))" },
         { pasal: "PMK 81/2024", catatan: "angsuran WP tertentu (bank, BUMN, masuk bursa); menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025" },
-        { pasal: "PER-11/PJ/2025", catatan: "angsuran dalam hal tertentu: pengurangan angsuran; penghasilan tidak teratur (Pasal 113 dan 115); menggantikan KEP-537/PJ/2000 sejak 22 Mei 2025" },
+        { pasal: "PER-11/PJ/2025", catatan: "angsuran dalam hal tertentu: pengurangan angsuran (Pasal 119); penghasilan tidak teratur (Pasal 113 dan 115); menggantikan KEP-537/PJ/2000 sejak 22 Mei 2025" },
         { pasal: "PMK 81/2024 Pasal 94", catatan: "batas setor tanggal 15" }
       ],
       jebakan: [
@@ -597,7 +597,7 @@ UKP.register({
         ]
       },
       verifikasi: "◐",
-      peringatan: "PMK 215/PMK.03/2018 dan KEP-537/PJ/2000 sudah dicabut (PMK 81/2024 sejak 1 Januari 2025; PER-11/PJ/2025 sejak 22 Mei 2025). Rumusan dasar angsuran bank dan sewa guna usaha dengan hak opsi di ringkasan (laporan keuangan triwulanan terakhir) adalah rumusan PMK 255/PMK.03/2008; menurut ulasan sumber sekunder atas PMK 81/2024 (antara lain IKPI), angsuran bank kini dihitung dari laporan keuangan yang disampaikan kepada Otoritas Jasa Keuangan sejak awal tahun pajak sampai masa yang dilaporkan, sedangkan Wajib Pajak masuk bursa memakai laporan keuangan berkala. Ambang pengurangan 75% menurut pemberitaan DDTCNews dimuat ulang dalam PER-11/PJ/2025 (disebut Pasal 119 ayat (1)); rumus angsuran bagi Wajib Pajak yang berhak atas kompensasi kerugian (kartu KT-B6-60) belum dicek. Naskah PMK 81/2024 dan PER-11/PJ/2025 serta nomor pasalnya belum dibaca langsung."
+      peringatan: "PMK 215/PMK.03/2018 dan KEP-537/PJ/2000 sudah dicabut (PMK 81/2024 sejak 1 Januari 2025; PER-11/PJ/2025 sejak 22 Mei 2025). Butir Wajib Pajak tertentu di ringkasan mengikuti ulasan sumber sekunder atas PMK 81/2024 (antara lain IKPI, yang menyebut Pasal 227–229). Rumusan lama PMK 255/PMK.03/2008 (bank dan sewa guna usaha dengan hak opsi memakai laporan keuangan triwulanan terakhir yang disetahunkan) tidak berlaku lagi, dan sewa guna usaha dengan hak opsi tidak disebut dalam Pasal 25 ayat (7) UU PPh. Menurut ulasan itu angsuran bank dihitung dari laporan keuangan yang disampaikan kepada Otoritas Jasa Keuangan sejak awal tahun pajak sampai masa yang dilaporkan, sedangkan Wajib Pajak masuk bursa memakai laporan keuangan berkala. Ambang pengurangan 75% menurut pemberitaan DDTCNews dimuat ulang dalam PER-11/PJ/2025 (disebut Pasal 119 ayat (1)); rumus angsuran bagi Wajib Pajak yang berhak atas kompensasi kerugian (kartu KT-B6-60) belum dicek. Naskah PMK 81/2024 dan PER-11/PJ/2025 serta nomor pasalnya belum dibaca langsung."
     },
     {
       id: "B6.10",
@@ -886,11 +886,7 @@ UKP.register({
         },
         jebakan: "Petakan setiap penghasilan ke tiga keranjang: tarif umum, final, bukan objek — baru jumlahkan."
       },
-      dasarHukum: [
-        { pasal: "Pasal 4 ayat (1) dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PP 131/2000; PP 34/2017; PP 14/1997", berlakuSejak: "2017-09-20" },
-        { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 34/2017 (sewa tanah dan/atau bangunan)", berlakuSejak: "2018-01-02" }, { pasal: "PP 131/2000; PP 14/1997", berlakuSejak: null }, { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
@@ -1219,11 +1215,7 @@ UKP.register({
         },
         jebakan: "Batas 5% memakai neto fiskal tahun pajak SEBELUMNYA."
       },
-      dasarHukum: [
-        { pasal: "Pasal 6 ayat (1) huruf i–m UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "Pasal 9 ayat (1) huruf g UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PP 93/2010", berlakuSejak: "2010-11-30" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf i–m UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 9 ayat (1) huruf g UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 93/2010", berlakuSejak: "2010-12-30" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -1310,13 +1302,9 @@ UKP.register({
         },
         jebakan: "Penyebut alokasi adalah total penghasilan (final + tidak final)."
       },
-      dasarHukum: [
-        { pasal: "Pasal 6 ayat (1) dan Pasal 9 UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PP 94/2010 Pasal 13 (alokasi biaya bersama), diselaraskan PP 55/2022", berlakuSejak: "2010-12-30" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) dan Pasal 9 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 94/2010 Pasal 27 ayat (1) dan (2) (pembukuan terpisah; biaya bersama yang tidak dapat dipisahkan dialokasikan secara proporsional)", berlakuSejak: "2010-12-30" }, { pasal: "PP 94/2010 Pasal 13 huruf a (biaya untuk penghasilan yang dikenai PPh final tidak boleh dikurangkan)", berlakuSejak: "2010-12-30" }],
       anggaranDetik: 150,
-      verifikasi: "◐",
-      peringatan: "Prinsip alokasi proporsional biaya bersama berkeyakinan tinggi; nomor pasal PP 94/2010 dan status pengaturannya setelah PP 55/2022 perlu dicek ke teks primer."
+      verifikasi: "✅"
     },
     {
       id: "B6-020",
@@ -1829,30 +1817,28 @@ UKP.register({
       tingkat: ["B", "C"],
       jenis: "klasifikasi",
       kesulitan: 3,
-      stem: "Pada November 2026 empat calon klien menanyakan apakah dapat memakai PPh final 0,5% atas omzet (masing-masing peredaran bruto tahun sebelumnya di bawah Rp4,8 miliar dan belum pernah memilih tarif umum): (1) Koperasi Produsen Tani Makmur, terdaftar 2024; (2) CV Sinar Abadi, didirikan dan terdaftar Juni 2026; (3) PT Cahaya Niaga (bukan perseroan perorangan), terdaftar 2022; (4) perseroan perorangan milik seorang konsultan pajak yang hanya menjual jasa konsultansi pajak. Menurut PP 55/2022 s.t.d.d. PP 20/2026, yang masih dapat memakai PPh final 0,5% pada 2026 adalah ...",
+      stem: "Pada November 2026 empat calon klien menanyakan apakah dapat memakai PPh final 0,5% atas omzet (masing-masing peredaran bruto tahun sebelumnya di bawah Rp4,8 miliar dan belum pernah memilih tarif umum): (1) Koperasi Produsen Tani Makmur, terdaftar 2024; (2) CV Sinar Abadi, didirikan dan terdaftar Juni 2026; (3) PT Cahaya Niaga (bukan perseroan perorangan), terdaftar 2022; (4) perseroan perorangan milik seorang konsultan pajak, didirikan dan terdaftar Juli 2026, yang hanya menjual jasa konsultansi pajak. Menurut PP 55/2022 s.t.d.d. PP 20/2026, yang masih dapat memakai PPh final 0,5% pada 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Hanya (1)", B: "(1) dan (2)", C: "(1) dan (3)", D: "(1) dan (4)" },
       kunci: "A",
       jebakanOpsi: { B: "angka-usang", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Pasca-PP 20/2026 penerima baru hanya orang pribadi, perseroan perorangan, dan koperasi; koperasi terdaftar 2024 masih dalam 4 tahun pajak (2024–2027). CV baru tidak lagi berhak, PT lama sudah habis jangka 3 tahunnya, dan jasa pekerjaan bebas dikecualikan.",
+        inti: "Pasca-PP 20/2026 penerima baru hanya orang pribadi, perseroan perorangan, dan koperasi. Koperasi terdaftar 2024 (menurut PP 55/2022 berakhir TP 2027) termasuk koperasi lama yang dapat memakai PPh final sampai TP 2029 (PP 20/2026 Pasal II angka 1 huruf b), jadi 2026 tercakup. CV baru tidak lagi berhak, PT lama sudah habis jangka 3 tahunnya, dan perseroan perorangan yang didirikan ahli untuk jasa sejenis pekerjaan bebas dikecualikan; peralihan sampai akhir Tahun Pajak 2026 hanya bagi yang sudah dikenai PPh final berdasarkan PP 55/2022, sedangkan butir (4) baru terdaftar Juli 2026.",
         jejakHitung: [
-          ["(1) Koperasi 2024: 4 tahun pajak", "2024–2027 → boleh"],
+          ["(1) Koperasi terdaftar 2024 (sebelum PP 20/2026)", "jangka PP 55/2022 s.d. TP 2027 → peralihan s.d. TP 2029 → 2026 boleh"],
           ["(2) CV terdaftar setelah 22 April 2026", "tidak boleh (subjek dipersempit)"],
           ["(3) PT terdaftar 2022: 3 tahun pajak", "2022–2024 → habis"],
-          ["(4) Perseroan perorangan jasa pekerjaan bebas", "dikecualikan"]
+          ["(4) Perseroan perorangan jasa sejenis pekerjaan bebas, terdaftar Juli 2026", "dikecualikan; tidak ada peralihan"],
+          ["Yang masih dapat memakai pada 2026", "hanya (1)"]
         ],
         mengapaSalah: {
           B: "CV yang baru terdaftar setelah 22 April 2026 tidak lagi termasuk subjek PPh final; peralihan hanya untuk CV yang sudah memanfaatkan sebelumnya.",
           C: "Jangka waktu PT 3 tahun pajak (2022–2024) sudah berakhir.",
-          D: "Penghasilan jasa sehubungan pekerjaan bebas dikecualikan oleh PP 20/2026, termasuk melalui perseroan perorangan."
+          D: "Perseroan perorangan yang didirikan ahli untuk menjual jasa sejenis jasa pekerjaan bebas dikecualikan oleh PP 20/2026; peralihan sampai akhir Tahun Pajak 2026 hanya bagi yang sudah dikenai PPh final berdasarkan PP 55/2022, sedangkan perseroan ini baru terdaftar Juli 2026."
         },
-        jebakan: "Uji tiga hal berurutan: jenis subjek, tanggal terdaftar terhadap 22 April 2026, dan jenis penghasilan (pekerjaan bebas)."
+        jebakan: "Uji tiga hal berurutan: jenis subjek, tanggal terdaftar terhadap 22 April 2026 (menentukan ada tidaknya peralihan), dan jenis penghasilan (pekerjaan bebas)."
       },
-      dasarHukum: [
-        { pasal: "PP 55/2022 Pasal 56–57 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" },
-        { pasal: "PP 20/2026 (ketentuan peralihan)", berlakuSejak: "2026-04-22" }
-      ],
+      dasarHukum: [{ pasal: "PP 55/2022 Pasal 56–57 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" }, { pasal: "PP 20/2026 (ketentuan peralihan)", berlakuSejak: "2026-04-22" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -2042,7 +2028,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PMK 81/2024 (ketentuan pengurangan penghasilan bruto atas kegiatan penelitian dan pengembangan tertentu di Indonesia; mencabut PMK 153/PMK.010/2020)", berlakuSejak: "2025-01-01" }, { pasal: "PP 94/2010 s.t.d.d. PP 45/2019 (super deduction litbang, plafon 300%)", berlakuSejak: "2019-06-26" }],
       anggaranDetik: 80,
       verifikasi: "◐",
-      peringatan: "PMK 153/PMK.010/2020 dicabut dan digantikan PMK 81/2024 sejak 1 Januari 2025; plafon 300% (100% + tambahan paling tinggi 200%) berkeyakinan tinggi. Nomor pasal dan rincian tambahan dalam PMK 81/2024 serta status PP 94/2010 s.t.d.d. PP 45/2019 setelah PP 55/2022 belum dicek ke teks primer."
+      peringatan: "PMK 153/PMK.010/2020 dicabut dan digantikan PMK 81/2024 sejak 1 Januari 2025; plafon 300% (100% + tambahan paling tinggi 200%) berkeyakinan tinggi. Nomor pasal dan rincian tambahan dalam PMK 81/2024 belum dicek ke teks primer."
     },
     {
       id: "B6-043",
@@ -2151,7 +2137,7 @@ UKP.register({
         },
         jebakan: "Ambang 75% dibandingkan dengan PPh terutang yang menjadi dasar angsuran, bukan dengan angsuran bulanan."
       },
-      dasarHukum: [{ pasal: "Pasal 25 ayat (6) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 (pengurangan angsuran PPh Pasal 25; menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (6) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 119 (pengurangan angsuran PPh Pasal 25; menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 140,
       verifikasi: "✅"
     },
@@ -2163,14 +2149,14 @@ UKP.register({
       kesulitan: 2,
       stem: "Konsultan menyiapkan memo dasar penghitungan angsuran PPh 25 tahun 2026 untuk beberapa klien badan dengan karakteristik berbeda (bank, BUMN, emiten, dan badan yang baru terdaftar). Pernyataan berikut sesuai Pasal 25 ayat (7) UU PPh dan peraturan pelaksanaannya, KECUALI ...",
       kataKualifikasi: ["kecuali"],
-      opsi: { A: "Bank menghitung angsuran berdasarkan laporan keuangan triwulanan terakhir yang disetahunkan", B: "WP badan yang baru terdaftar wajib membayar angsuran 0,75% dari peredaran bruto bulanan seperti WP orang pribadi pengusaha tertentu", C: "BUMN dan BUMD menghitung angsuran berdasarkan RKAP tahun berjalan yang telah disahkan RUPS", D: "WP masuk bursa dan WP lain yang wajib menyampaikan laporan keuangan berkala menghitung angsuran berdasarkan laporan keuangan berkala terakhir" },
+      opsi: { A: "Bank menghitung angsuran berdasarkan laporan keuangan yang disampaikan kepada Otoritas Jasa Keuangan", B: "WP badan yang baru terdaftar wajib membayar angsuran 0,75% dari peredaran bruto bulanan seperti WP orang pribadi pengusaha tertentu", C: "BUMN dan BUMD menghitung angsuran berdasarkan RKAP tahun berjalan yang telah disahkan RUPS", D: "WP masuk bursa dan WP lain yang wajib menyampaikan laporan keuangan berkala menghitung angsuran berdasarkan laporan keuangan berkala terakhir" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
         inti: "Tarif 0,75% dari peredaran bruto bulanan hanya untuk WP orang pribadi pengusaha tertentu (OPPT); badan baru tidak memakai skema itu.",
         jejakHitung: [],
         mengapaSalah: {
-          A: "Sesuai secara prinsip: angsuran bank dihitung dari laporan keuangan berkalanya, bukan dari SPT Tahunan tahun lalu (Pasal 25 ayat (7) huruf b UU PPh; peraturan pelaksanaannya kini PMK 81/2024, yang mencabut PMK 215/PMK.03/2018).",
+          A: "Benar: angsuran bank dihitung dari laporan keuangan yang disampaikan kepada OJK, bukan dari SPT Tahunan tahun lalu (Pasal 25 ayat (7) UU PPh; peraturan pelaksanaannya kini PMK 81/2024, yang mencabut PMK 215/PMK.03/2018).",
           C: "Benar: BUMN/BUMD memakai RKAP yang disahkan RUPS.",
           D: "Benar: emiten dan WP wajib lapkeu berkala memakai laporan berkala terakhir."
         },
@@ -2179,7 +2165,7 @@ UKP.register({
       dasarHukum: [{ pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 (ketentuan penghitungan angsuran PPh Pasal 25; mencabut PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 120,
       verifikasi: "◐",
-      peringatan: "Kunci (skema 0,75% hanya untuk OPPT) berkeyakinan tinggi; PMK 215/PMK.03/2018 telah dicabut PMK 81/2024 sejak 1 Januari 2025 dan nomor pasal penggantinya belum dicek ke teks primer. Rincian opsi A (laporan keuangan triwulanan terakhir yang disetahunkan) adalah rumusan PMK 255/PMK.03/2008; rumusan dasar angsuran bank dalam PMK 81/2024 belum dicek, sehingga opsi A mungkin perlu disesuaikan."
+      peringatan: "Kunci (skema 0,75% hanya untuk OPPT) berkeyakinan tinggi; PMK 215/PMK.03/2018 telah dicabut PMK 81/2024 sejak 1 Januari 2025 dan nomor pasal penggantinya belum dicek ke teks primer. Opsi A sudah diganti dari rumusan PMK 255/PMK.03/2008 (laporan keuangan triwulanan terakhir yang disetahunkan) menjadi rumusan laporan keuangan yang disampaikan kepada OJK menurut ulasan sumber sekunder atas PMK 81/2024 (IKPI, disebut Pasal 227); naskahnya belum dibaca langsung."
     },
     {
       id: "B6-048",
@@ -3168,12 +3154,7 @@ UKP.register({
       kutipan: "PP 34/2017 (parafrase): Atas penghasilan dari persewaan tanah dan/atau bangunan dikenai PPh yang bersifat final sebesar 10% dari jumlah bruto nilai persewaan. PPh tersebut dipotong oleh penyewa dalam hal penyewa adalah badan pemerintah, Subjek Pajak badan dalam negeri, penyelenggara kegiatan, BUT, atau perwakilan perusahaan luar negeri lainnya, atau orang pribadi yang ditunjuk sebagai pemotong; dalam hal penyewa bukan pemotong, PPh tersebut wajib dibayar sendiri oleh pihak yang menyewakan.",
       stem: "PT Graha Sentosa Properti (badan dalam negeri, tarif umum, peredaran bruto di atas Rp50 miliar) pada Agustus 2026 menerima penghasilan sewa ruang di gedungnya (seluruh nilai belum termasuk PPN): (1) dari PT Mitra Logistik (badan dalam negeri) sewa Rp300.000.000 dan service charge yang ditagih dengan perjanjian terpisah Rp30.000.000; (2) dari dr. Hendra, orang pribadi yang tidak ditunjuk sebagai pemotong, sewa ruang praktik Rp60.000.000; dan (3) dari kantor perwakilan perusahaan perdagangan asing (KP3A) sewa Rp90.000.000. Penyewa (1) dan (3) telah memotong PPh dan memberikan bukti potong. Berdasarkan kutipan tersebut, PPh final yang wajib dibayar sendiri oleh PT Graha untuk Masa Agustus 2026, batas penyetorannya, dan perlakuan penghasilan sewa dalam rekonsiliasi fiskal adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp6.000.000 paling lambat 15 September 2026; seluruh penghasilan sewa Rp480.000.000 menjadi koreksi negatif, dan seluruh PPh finalnya dikreditkan dalam SPT Tahunan",
-        B: "Rp6.000.000 paling lambat 15 September 2026; seluruh penghasilan sewa Rp480.000.000, termasuk service charge, dikeluarkan dari penghasilan neto fiskal sebagai penghasilan yang dikenai PPh final",
-        C: "Rp15.000.000 (sewa dari dr. Hendra dan KP3A) paling lambat 15 September 2026; seluruh penghasilan sewa Rp480.000.000 dikeluarkan dari penghasilan neto fiskal",
-        D: "Rp6.000.000 paling lambat 10 September 2026; service charge Rp30.000.000 tetap dikenai tarif umum karena perjanjiannya terpisah"
-      },
+      opsi: { A: "Rp6.000.000 paling lambat 15 September 2026; seluruh penghasilan sewa Rp480.000.000 menjadi koreksi negatif, dan seluruh PPh finalnya dikreditkan dalam SPT Tahunan", B: "Rp6.000.000 paling lambat 15 September 2026; seluruh penghasilan sewa Rp480.000.000, termasuk service charge, dikeluarkan dari penghasilan neto fiskal sebagai penghasilan yang dikenai PPh final", C: "Rp15.000.000 (sewa dari dr. Hendra dan KP3A) paling lambat 15 September 2026; seluruh penghasilan sewa Rp480.000.000 dikeluarkan dari penghasilan neto fiskal", D: "Rp6.000.000 paling lambat 10 September 2026; service charge Rp30.000.000 tetap dikenai tarif umum karena perjanjiannya terpisah" },
       kunci: "B",
       jebakanOpsi: { A: "final-nonfinal", C: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
@@ -3192,10 +3173,7 @@ UKP.register({
         },
         jebakan: "Siapa pemotongnya menentukan siapa yang menyetor; sifat finalnya tetap sama, sehingga seluruh sewa keluar dari rekonsiliasi."
       },
-      dasarHukum: [
-        { pasal: "Pasal 4 ayat (2) UU PPh; PP 34/2017", berlakuSejak: "2017-09-20" },
-        { pasal: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 4 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 34/2017", berlakuSejak: "2018-01-02" }, { pasal: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 160,
       verifikasi: "✅"
     },
@@ -3505,7 +3483,7 @@ UKP.register({
         jejakHitung: [
           ["Status PT Sentosa Pangan Tbk", "Wajib Pajak masuk bursa"],
           ["Dasar angsuran", "laporan keuangan berkala terakhir"],
-          ["Pembanding", "bank: laporan keuangan berkala; BUMN/BUMD: RKAP; Wajib Pajak umum: SPT tahun lalu"]
+          ["Pembanding", "bank: laporan keuangan yang disampaikan kepada OJK; BUMN/BUMD: RKAP; Wajib Pajak umum: SPT tahun lalu"]
         ],
         mengapaSalah: {
           A: "Rumus SPT tahun lalu dibagi 12 berlaku bagi Wajib Pajak badan umum, bukan Wajib Pajak masuk bursa.",
@@ -3517,7 +3495,7 @@ UKP.register({
       dasarHukum: [{ pasal: "Pasal 25 ayat (7) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 (angsuran Wajib Pajak tertentu; menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 130,
       verifikasi: "◐",
-      peringatan: "PMK 215/PMK.03/2018 dicabut PMK 81/2024 sejak 1 Januari 2025. Dasar laporan keuangan berkala bagi Wajib Pajak masuk bursa mengikuti rumusan PMK 215/PMK.03/2018; apakah rumusan itu dimuat ulang tanpa perubahan dalam PMK 81/2024 dan pada pasal berapa belum dicek ke teks primer."
+      peringatan: "PMK 215/PMK.03/2018 dicabut PMK 81/2024 sejak 1 Januari 2025. Dasar laporan keuangan berkala bagi Wajib Pajak masuk bursa mengikuti rumusan PMK 215/PMK.03/2018; ulasan IKPI menyebut rumusan itu dimuat dalam Pasal 228 PMK 81/2024 (laporan keuangan triwulanan ke bursa dan/atau OJK), tetapi bunyi dan nomor pasalnya belum dicek ke teks primer."
     },
     {
       id: "B6-086",
@@ -3896,12 +3874,7 @@ UKP.register({
       kesulitan: 1,
       stem: "PT Sepatu Prima Nusantara, industri alas kaki padat karya yang mempekerjakan 1.200 pegawai Indonesia, memperoleh fasilitas investment allowance (PP 94/2010 s.t.d.d. PP 45/2019) atas penanaman modal baru berupa aktiva tetap berwujud untuk kegiatan usaha utama Rp24.000.000.000, termasuk tanah Rp4.000.000.000, yang mulai berproduksi komersial pada 2025. Pengurangan penghasilan neto per tahun dari fasilitas tersebut adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp14.400.000.000 sekaligus pada Tahun Pajak 2025",
-        B: "Rp2.400.000.000 per tahun selama 6 tahun",
-        C: "Rp2.000.000.000 per tahun selama 6 tahun",
-        D: "Rp1.200.000.000 per tahun selama 6 tahun"
-      },
+      opsi: { A: "Rp14.400.000.000 sekaligus pada Tahun Pajak 2025", B: "Rp2.400.000.000 per tahun selama 6 tahun", C: "Rp2.000.000.000 per tahun selama 6 tahun", D: "Rp1.200.000.000 per tahun selama 6 tahun" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
@@ -3917,13 +3890,10 @@ UKP.register({
         },
         jebakan: "Dua fasilitas sering tertukar: tax allowance 30% (5% × 6 tahun) dan investment allowance padat karya 60% (10% × 6 tahun)."
       },
-      dasarHukum: [
-        { pasal: "PP 94/2010 s.t.d.d. PP 45/2019 (investment allowance industri padat karya)" },
-        { pasal: "PMK 16/PMK.010/2020 (pelaksanaan investment allowance)" }
-      ],
+      dasarHukum: [{ pasal: "PP 94/2010 s.t.d.d. PP 45/2019 (investment allowance industri padat karya)" }, { pasal: "PMK 16/PMK.010/2020 (pelaksanaan investment allowance)" }],
       anggaranDetik: 90,
       verifikasi: "◐",
-      peringatan: "Fasilitas investment allowance padat karya (60% dibebankan 10% per tahun selama 6 tahun; syarat tenaga kerja) berasal dari pengetahuan peneliti tentang PP 45/2019 dan PMK 16/PMK.010/2020; status Pasal 29A–29C PP 94/2010 setelah PP 55/2022 belum dicek ke teks primer."
+      peringatan: "Fasilitas investment allowance padat karya (60% dibebankan 10% per tahun selama 6 tahun; syarat tenaga kerja) berasal dari pengetahuan peneliti tentang PP 45/2019 dan PMK 16/PMK.010/2020 dan belum dicek ke teks primer."
     },
     {
       id: "B6-097",
@@ -4138,35 +4108,27 @@ UKP.register({
       tingkat: ["B", "C"],
       jenis: "prosedur",
       kesulitan: 3,
-      kutipan: "Pasal 8 ayat (4) dan ayat (5) UU KUP (parafrase): Walaupun telah dilakukan pemeriksaan, sepanjang pemeriksa belum menyampaikan Surat Pemberitahuan Hasil Pemeriksaan, Wajib Pajak dengan kesadaran sendiri dapat mengungkapkan dalam laporan tersendiri tentang ketidakbenaran pengisian SPT yang telah disampaikan. Pengungkapan itu disertai pelunasan kekurangan pajak beserta sanksi administratif berupa bunga sebesar tarif bunga per bulan yang ditetapkan Menteri Keuangan, dihitung sejak saat terutangnya pajak atau berakhirnya Masa Pajak, bagian Tahun Pajak, atau Tahun Pajak sampai dengan tanggal pembayaran, paling lama 24 bulan, dan bagian dari bulan dihitung penuh 1 bulan.",
+      kutipan: "Pasal 8 ayat (4) dan ayat (5) UU KUP (parafrase): Walaupun telah dilakukan pemeriksaan, sepanjang pemeriksa belum menyampaikan Surat Pemberitahuan Hasil Pemeriksaan, Wajib Pajak dengan kesadaran sendiri dapat mengungkapkan dalam laporan tersendiri tentang ketidakbenaran pengisian SPT yang telah disampaikan. Atas kekurangan pembayaran pajak akibat pengungkapan itu dikenai sanksi administratif berupa bunga per bulan yang dihitung atas jumlah pajak yang kurang dibayar, sejak (a) batas waktu penyampaian SPT Tahunan berakhir sampai dengan tanggal pembayaran, untuk SPT Tahunan, atau (b) jatuh tempo pembayaran berakhir sampai dengan tanggal pembayaran, untuk SPT Masa; paling lama 24 bulan dan bagian dari bulan dihitung penuh 1 bulan. Tarif bunganya (suku bunga acuan + 10%) ÷ 12 (ayat (5a)).",
       stem: "PT Prima Daya Elektrika sedang menjalani pemeriksaan lengkap atas SPT Tahunan PPh Badan Tahun Pajak 2024 yang disampaikan 29 April 2025. Pada 26 Oktober 2026, sebelum SPHP disampaikan, perusahaan menyampaikan laporan tersendiri yang mengungkapkan biaya yang tidak dapat dibuktikan sehingga PPh badan kurang dibayar Rp200.000.000, dan melunasi kekurangan itu pada hari yang sama. Anggap tarif bunga Pasal 8 ayat (5) ((suku bunga acuan + 10%) ÷ 12) yang dipakai 1,42% per bulan, sedangkan tarif Pasal 8 ayat (2) 1,01% per bulan. Berdasarkan kutipan tersebut, sanksi yang harus dilunasi bersama pengungkapan adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Bunga Rp51.120.000",
-        B: "Bunga Rp62.480.000",
-        C: "Bunga Rp36.360.000",
-        D: "Denda Rp200.000.000 (100% dari pajak yang kurang dibayar)"
-      },
-      kunci: "B",
-      jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
+      opsi: { A: "Bunga Rp51.120.000", B: "Bunga Rp62.480.000", C: "Bunga Rp36.360.000", D: "Denda Rp200.000.000 (100% dari pajak yang kurang dibayar)" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Pengungkapan ketidakbenaran pengisian SPT sebelum SPHP dikenai bunga Pasal 8 ayat (5) (uplift 10%), dihitung sejak berakhirnya Tahun Pajak 2024 sampai tanggal pembayaran 26 Oktober 2026: 21 bulan lebih 26 hari = 22 bulan.",
+        inti: "Pengungkapan ketidakbenaran pengisian SPT Tahunan sebelum SPHP dikenai bunga Pasal 8 ayat (5) (uplift 10%), dihitung sejak batas waktu penyampaian SPT Tahunan berakhir (30 April 2025 untuk SPT badan TP 2024) sampai tanggal pembayaran 26 Oktober 2026: 17 bulan lebih 26 hari = 18 bulan.",
         jejakHitung: [
-          ["Awal penghitungan", "berakhirnya Tahun Pajak 2024 (31 Desember 2024)"],
-          ["Akhir 2024 → 26 Oktober 2026", "21 bulan 26 hari → 22 bulan (≤ 24)"],
-          ["Bunga = 200.000.000 × 1,42% × 22", "Rp62.480.000"]
+          ["Batas waktu SPT Tahunan badan TP 2024", "30 April 2025 (4 bulan setelah akhir tahun pajak)"],
+          ["1 Mei 2025 → 26 Oktober 2026", "17 bulan 26 hari → 18 bulan (≤ 24)"],
+          ["Bunga = 200.000.000 × 1,42% × 18", "Rp51.120.000"]
         ],
         mengapaSalah: {
-          A: "Menghitung sejak jatuh tempo SPT 30 April 2025 (18 bulan) seperti pembetulan; kutipan memakai berakhirnya Tahun Pajak.",
-          C: "Memakai tarif dan cara hitung pembetulan Pasal 8 ayat (2) (1,01% × 18 bulan); pengungkapan saat pemeriksaan memakai uplift 10%.",
+          B: "Menghitung sejak berakhirnya Tahun Pajak 2024 (22 bulan); titik awal itu milik bunga SKPKB Pasal 13 ayat (2), bukan Pasal 8 ayat (5) yang dimulai dari batas waktu penyampaian SPT Tahunan.",
+          C: "Memakai tarif pembetulan Pasal 8 ayat (2) (1,01% × 18 bulan); jangka waktunya sama, tetapi pengungkapan saat pemeriksaan memakai uplift 10% (1,42%).",
           D: "Denda 100% adalah sanksi pengungkapan ketidakbenaran perbuatan pada pemeriksaan bukti permulaan (Pasal 8 ayat (3)), bukan pengungkapan pengisian SPT saat pemeriksaan."
         },
-        jebakan: "Tiga rezim berbeda awal hitung dan tarif: pembetulan (jatuh tempo SPT, +5%), pengungkapan saat pemeriksaan (akhir tahun pajak, +10%), pengungkapan perbuatan saat bukti permulaan (denda 100%)."
+        jebakan: "Pembetulan sendiri (ayat (2)) dan pengungkapan saat pemeriksaan (ayat (5)) sama-sama mulai dari batas waktu SPT Tahunan; yang membedakan uplift 5% lawan 10%. Titik awal akhir tahun pajak milik Pasal 13 ayat (2) (SKPKB), dan denda 100% milik pengungkapan perbuatan saat bukti permulaan."
       },
-      dasarHukum: [
-        { pasal: "Pasal 8 ayat (4) dan ayat (5) UU KUP (UU HPP)", berlakuSejak: "2021-10-29" },
-        { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026 (penetapan tarif bunga)" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 8 ayat (4) UU KUP (UU HPP)", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 8 ayat (5) UU KUP (diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026 (penetapan tarif bunga)" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -4478,12 +4440,7 @@ UKP.register({
       laporanUjian: ["B-2026-10", "C-2026-10"],
       stem: "Melanjutkan data PT Sehat Farma Nusantara (V-B6-08): lisensi dipakai untuk memproduksi obat yang dijual di dalam negeri, Alpenwerk tidak mempunyai hubungan istimewa dengan PT Sehat, dan tarif royalti sesuai harga pasar. PT Sehat mencatat beban royalti dengan kurs tengah BI tanggal transaksi, mencatat utang PPh Pasal 26 sebesar jumlah Rupiah yang wajib disetor, dan membukukan selisihnya sebagai selisih kurs; penyetoran 15 September 2026 dicatat sebesar utang PPh Pasal 26 tersebut. Pernyataan yang tepat mengenai pencatatan dan perlakuan fiskal pembayaran royalti tersebut adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Beban royalti dicatat Rp1.296.000.000 dengan kurs KMK sehingga tidak timbul selisih kurs, dan seluruhnya dapat dikurangkan",
-        B: "Beban royalti Rp1.300.800.000 dapat dikurangkan seluruhnya; keuntungan selisih kurs Rp480.000 diakui sebagai penghasilan, dan penyetoran PPh Pasal 26 tidak menimbulkan selisih kurs",
-        C: "Beban royalti yang dapat dikurangkan hanya Rp1.170.720.000 (USD72.000 yang ditransfer), sedangkan PPh Pasal 26 Rp129.600.000 merupakan beban pajak yang dikoreksi positif",
-        D: "Beban royalti Rp1.300.800.000 dapat dikurangkan, tetapi saat penyetoran timbul kerugian selisih kurs Rp1.200.000 karena kurs KMK naik menjadi Rp16.350"
-      },
+      opsi: { A: "Beban royalti dicatat Rp1.296.000.000 dengan kurs KMK sehingga tidak timbul selisih kurs, dan seluruhnya dapat dikurangkan", B: "Beban royalti Rp1.300.800.000 dapat dikurangkan seluruhnya; keuntungan selisih kurs Rp480.000 diakui sebagai penghasilan, dan penyetoran PPh Pasal 26 tidak menimbulkan selisih kurs", C: "Beban royalti yang dapat dikurangkan hanya Rp1.170.720.000 (USD72.000 yang ditransfer), sedangkan PPh Pasal 26 Rp129.600.000 merupakan beban pajak yang dikoreksi positif", D: "Beban royalti Rp1.300.800.000 dapat dikurangkan, tetapi saat penyetoran timbul kerugian selisih kurs Rp1.200.000 karena kurs KMK naik menjadi Rp16.350" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
@@ -4503,11 +4460,7 @@ UKP.register({
         },
         jebakan: "Selisih kurs diukur dengan kurs pembukuan; kurs KMK masuk ke selisih kurs hanya pada bagian valas yang dilunasi dengan pajak Rupiah."
       },
-      dasarHukum: [
-        { pasal: "Pasal 6 ayat (1) huruf a dan huruf e UU PPh (UU HPP)", berlakuSejak: "2022-01-01" },
-        { pasal: "Pasal 4 ayat (1) huruf l UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "KMK nilai kurs mingguan; PP 94/2010 Pasal 9", berlakuSejak: "2010-11-30" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a dan huruf e UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 4 ayat (1) huruf l UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 94/2010 Pasal 9", berlakuSejak: "2010-12-30" }, { pasal: "KMK nilai kurs mingguan", berlakuSejak: null }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -4915,11 +4868,7 @@ UKP.register({
         },
         jebakan: "Rekonsiliasi lengkap mencampur beda tetap, beda temporer, penghasilan final, dan bukan objek; tabelkan sebelum menjumlah."
       },
-      dasarHukum: [
-        { pasal: "Pasal 6 ayat (1) dan Pasal 9 ayat (1) UU PPh (UU HPP)", berlakuSejak: "2022-01-01" },
-        { pasal: "PP 93/2010 (sumbangan); PP 94/2010", berlakuSejak: "2010-11-30" },
-        { pasal: "Pasal 28 dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) dan Pasal 9 ayat (1) UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "PP 93/2010 (sumbangan); PP 94/2010", berlakuSejak: "2010-12-30" }, { pasal: "Pasal 28 dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 240,
       verifikasi: "✅"
     },
@@ -5542,7 +5491,7 @@ UKP.register({
     { id: "KT-B6-04", topik: "B6.7", tipe: "angka", depan: "Pasal 31E: batas peredaran bruto dan bagian berfasilitas?", belakang: "Omzet ≤ Rp50 miliar; fasilitas atas PKP dari omzet s.d. Rp4,8 miliar", dasar: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-05", topik: "B6.7", tipe: "prosedur", depan: "Rumus PKP berfasilitas Pasal 31E?", belakang: "(Rp4,8 miliar ÷ peredaran bruto) × PKP, dikenai 11%", dasar: "Pasal 31E UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-06", topik: "B6.7", tipe: "definisi", depan: "Siapa yang boleh memakai PPh final 0,5% pasca-PP 20/2026?", belakang: "Orang pribadi, perseroan perorangan, koperasi; jasa pekerjaan bebas dikecualikan", dasar: "PP 55/2022 Pasal 56–57 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22", menggantikan: "PP 55/2022: juga CV, firma, PT, BUMDes (berjangka waktu)", dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-B6-07", topik: "B6.7", tipe: "angka", depan: "Jangka waktu PPh final 0,5% bagi koperasi?", belakang: "4 tahun pajak sejak terdaftar", dasar: "PP 55/2022 Pasal 57 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
+    { id: "KT-B6-07", topik: "B6.7", tipe: "angka", depan: "Jangka waktu PPh final 0,5% bagi koperasi?", belakang: "4 tahun pajak sejak terdaftar; koperasi yang terdaftar sebelum PP 20/2026 dan jangkanya berakhir TP 2024–2029: sampai TP 2029", dasar: "PP 55/2022 Pasal 57 s.t.d.d. PP 20/2026; PP 20/2026 Pasal II angka 1 huruf b", berlakuSejak: "2026-04-22", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-B6-08", topik: "B6.7", tipe: "prosedur", depan: "Peralihan PP 20/2026 bagi CV, firma, PT pengguna PPh final lama?", belakang: "Tetap final sampai jangka lama habis: PT 3 tahun, CV/firma 4 tahun", dasar: "PP 20/2026 (ketentuan peralihan)", berlakuSejak: "2026-04-22", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-B6-09", topik: "B6.5", tipe: "angka", depan: "Jangka kompensasi kerugian fiskal umum?", belakang: "5 tahun berturut-turut mulai tahun sesudah rugi", dasar: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "1984-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-10", topik: "B6.5", tipe: "angka", depan: "Kompensasi kerugian bagi penerima tax allowance?", belakang: "Lebih dari 5 tahun, paling lama 10 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12", menggantikan: null, dekTambahan: [] },
@@ -5554,7 +5503,7 @@ UKP.register({
     { id: "KT-B6-16", topik: "B6.4", tipe: "pasal", depan: "Saat mulai penyusutan harta yang masih dalam pengerjaan?", belakang: "Bulan selesainya pengerjaan", dasar: "Pasal 11 ayat (3) UU PPh", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-17", topik: "B6.4", tipe: "angka", depan: "Penyusutan bangunan tidak permanen?", belakang: "10 tahun, garis lurus 10%", dasar: "Pasal 11 ayat (6) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-18", topik: "B6.3", tipe: "angka", depan: "Batas perbandingan utang dan modal (DER) fiskal?", belakang: "4 : 1, dari rata-rata saldo akhir bulan", dasar: "PMK 169/PMK.010/2015", berlakuSejak: "2016-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-19", topik: "B6.3", tipe: "angka", depan: "Batas sumbangan PP 93/2010 yang dapat dibiayakan?", belakang: "5% neto fiskal tahun sebelumnya; tidak boleh menimbulkan rugi", dasar: "PP 93/2010", berlakuSejak: "2010-11-30", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-19", topik: "B6.3", tipe: "angka", depan: "Batas sumbangan PP 93/2010 yang dapat dibiayakan?", belakang: "5% neto fiskal tahun sebelumnya; tidak boleh menimbulkan rugi", dasar: "PP 93/2010", berlakuSejak: "2010-12-30", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-20", topik: "B6.3", tipe: "definisi", depan: "Natura/kenikmatan pegawai bagi pemberi kerja?", belakang: "Dapat dibiayakan sejak TP 2022 sepanjang terkait 3M", dasar: "Pasal 6 ayat (1) huruf a UU PPh (UU HPP); PP 55/2022", berlakuSejak: "2022-01-01", menggantikan: "tidak dapat dibiayakan (Pasal 9 ayat (1) huruf e lama)", dekTambahan: [] },
     { id: "KT-B6-21", topik: "B6.3", tipe: "prosedur", depan: "Syarat biaya promosi dan entertainment dapat dikurangkan?", belakang: "Daftar nominatif lengkap dilampirkan pada SPT Tahunan", dasar: "PMK 02/PMK.03/2010; SE-27/PJ.22/1986", berlakuSejak: "2010-01-05", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-22", topik: "B6.3", tipe: "prosedur", depan: "Syarat piutang tak tertagih dapat dibiayakan?", belakang: "Dibebankan, daftar piutang ke DJP, plus PN/PUPN, perjanjian, publikasi, atau pengakuan debitur", dasar: "Pasal 6 ayat (1) huruf h UU PPh; PMK 207/PMK.010/2015", berlakuSejak: "2015-11-11", menggantikan: null, dekTambahan: [] },
@@ -5562,7 +5511,7 @@ UKP.register({
     { id: "KT-B6-24", topik: "B6.6", tipe: "pasal", depan: "Jangka waktu keputusan restitusi Pasal 17B UU KUP?", belakang: "12 bulan; lewat → dianggap dikabulkan, SKPLB ≤ 1 bulan", dasar: "Pasal 17B ayat (1)–(2) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-25", topik: "B6.9", tipe: "prosedur", depan: "Rumus angsuran PPh 25 badan?", belakang: "(PPh terutang − PPh 22, 23, 24) ÷ 12", dasar: "Pasal 25 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-26", topik: "B6.9", tipe: "prosedur", depan: "Angsuran PPh 25 bulan-bulan sebelum SPT Tahunan disampaikan?", belakang: "Sama dengan angsuran bulan terakhir tahun pajak lalu; angsuran baru mulai bulan SPT disampaikan (paling lambat bulan batas waktu)", dasar: "Pasal 25 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-27", topik: "B6.9", tipe: "angka", depan: "Syarat permohonan pengurangan angsuran PPh 25?", belakang: "Proyeksi PPh terutang < 75% dasar angsuran", dasar: "PER-11/PJ/2025 (menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-27", topik: "B6.9", tipe: "angka", depan: "Syarat permohonan pengurangan angsuran PPh 25?", belakang: "Proyeksi PPh terutang < 75% dasar angsuran (dapat diajukan setelah 3 bulan atau lebih tahun pajak berjalan)", dasar: "PER-11/PJ/2025 Pasal 119 (menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-28", topik: "B6.9", tipe: "angka", depan: "Batas setor PPh 25 di era Coretax?", belakang: "Tanggal 15 bulan berikutnya; pembayaran tervalidasi dianggap lapor", dasar: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-B6-29", topik: "B6.10", tipe: "angka", depan: "Ambang hubungan istimewa karena kepemilikan modal?", belakang: "≥ 25% langsung atau tidak langsung", dasar: "Pasal 18 ayat (4) huruf a UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-30", topik: "B6.11", tipe: "angka", depan: "Batas penyampaian SPT Tahunan PPh Badan?", belakang: "4 bulan setelah akhir tahun pajak; perpanjangan paling lama 2 bulan", dasar: "Pasal 3 ayat (3) huruf c dan ayat (4) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
@@ -5589,8 +5538,8 @@ UKP.register({
     { id: "KT-B6-51", topik: "B6.5", tipe: "prosedur", depan: "Urutan pemakaian sisa kerugian fiskal?", belakang: "Kerugian tertua lebih dulu; sisa setelah tahun kelima hangus", dasar: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-52", topik: "B6.5", tipe: "definisi", depan: "Sisa rugi badan yang menggabungkan diri (penggabungan nilai buku)?", belakang: "Tidak dapat dikompensasikan oleh badan penerima penggabungan", dasar: "PMK 52/PMK.010/2017 s.t.d.d. PMK 56/PMK.010/2021", berlakuSejak: null, menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-53", topik: "B6.6", tipe: "pasal", depan: "SKPLB terbit saat Wajib Pajak masih punya utang pajak?", belakang: "Diperhitungkan dulu dengan utang pajak; sisanya dikembalikan paling lama 1 bulan", dasar: "Pasal 11 ayat (1)–(2) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-54", topik: "B6.6", tipe: "definisi", depan: "Sifat PPh 22 BBM bagi penyalur/agen dan bagi pembeli pemakai?", belakang: "Final bagi penyalur/agen; kredit pajak bagi pembeli pemakai", dasar: "PMK 51/2025 Pasal 10 ayat (2) (menggantikan PMK 34/PMK.010/2017)", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-55", topik: "B6.6", tipe: "angka", depan: "PPh 22 bendahara atas pembelian sampai Rp2.000.000?", belakang: "Tidak dipungut bila tidak lebih dari Rp2.000.000 (tidak termasuk PPN, bukan pembayaran yang dipecah); di atasnya dipungut 1,5% dan menjadi kredit penjual", dasar: "PMK 51/2025 (menggantikan PMK 34/PMK.010/2017)", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-54", topik: "B6.6", tipe: "definisi", depan: "Sifat PPh 22 BBM bagi penyalur/agen dan bagi pembeli pemakai?", belakang: "Final bagi penyalur/agen; kredit pajak bagi pembeli pemakai", dasar: "PMK 51/2025 Pasal 10 ayat (2) (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-55", topik: "B6.6", tipe: "angka", depan: "PPh 22 bendahara atas pembelian sampai Rp2.000.000?", belakang: "Tidak dipungut bila tidak lebih dari Rp2.000.000 (tidak termasuk PPN, bukan pembayaran yang dipecah); di atasnya dipungut 1,5% dan menjadi kredit penjual", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-56", topik: "B6.7", tipe: "prosedur", depan: "Apakah PPN keluaran masuk peredaran bruto Pasal 31E?", belakang: "Tidak; peredaran bruto memuat penghasilan final dan bukan objek, tanpa PPN", dasar: "Pasal 31E UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-57", topik: "B6.7", tipe: "angka", depan: "Tiga tarif dalam kasus PPh 29 badan (laporan peserta UKP 2026)?", belakang: "22% umum; 19% perseroan terbuka; 11% bagian PKP Pasal 31E", dasar: "Pasal 17 ayat (1) huruf b dan ayat (2b), Pasal 31E UU PPh", berlakuSejak: "2022-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-58", topik: "B6.8", tipe: "angka", depan: "Tarif PPh dividen ke subjek luar negeri bagi penerima tax allowance?", belakang: "10%, atau lebih rendah menurut P3B", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12", menggantikan: null, dekTambahan: [] },
@@ -5598,7 +5547,7 @@ UKP.register({
     { id: "KT-B6-60", topik: "B6.9", tipe: "prosedur", depan: "Dasar angsuran PPh 25 Wajib Pajak yang berhak atas kompensasi kerugian?", belakang: "Neto tahun lalu dikurangi sisa rugi yang masih dapat dikompensasikan", dasar: "Pasal 25 ayat (6) huruf a UU PPh; PER-11/PJ/2025 (menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-61", topik: "B6.10", tipe: "definisi", depan: "Keluarga semenda ke samping satu derajat?", belakang: "Ipar; menimbulkan hubungan istimewa", dasar: "Penjelasan Pasal 18 ayat (4) huruf c UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-62", topik: "B6.10", tipe: "prosedur", depan: "Syarat biaya jasa intra-grup dapat dibebankan?", belakang: "Jasa benar ada, bermanfaat, harga wajar; bukan aktivitas pemegang saham", dasar: "Pasal 18 ayat (3) UU PPh; PMK 172/2023", berlakuSejak: "2023-12-29", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-63", topik: "B6.11", tipe: "angka", depan: "Bunga pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan (Pasal 8 ayat (5))?", belakang: "(Acuan + 10%)/12 per bulan sejak akhir tahun pajak, maksimal 24 bulan", dasar: "Pasal 8 ayat (5) UU KUP (UU HPP)", berlakuSejak: "2021-10-29", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-63", topik: "B6.11", tipe: "angka", depan: "Bunga pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan (Pasal 8 ayat (5))?", belakang: "(Acuan + 10%)/12 per bulan sejak batas waktu penyampaian SPT Tahunan berakhir (SPT Masa: jatuh tempo pembayaran), maksimal 24 bulan", dasar: "Pasal 8 ayat (5) UU KUP (diubah UU 11/2020)", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-64", topik: "B6.11", tipe: "definisi", depan: "Isi Lampiran 1771-III?", belakang: "PPh 22 dan 23 yang dipotong/dipungut pihak lain di dalam negeri", dasar: "Petunjuk pengisian SPT 1771", berlakuSejak: "2014-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-65", topik: "B6.4", tipe: "pasal", depan: "Nilai perolehan dalam tukar-menukar harta?", belakang: "Harga pasar; selisih dengan nilai sisa buku menjadi laba/rugi", dasar: "Pasal 10 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-66", topik: "B6.4", tipe: "pasal", depan: "Nilai perolehan harta inbreng bagi badan penerima?", belakang: "Harga pasar", dasar: "Pasal 10 ayat (5) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },

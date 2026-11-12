@@ -40,15 +40,15 @@ UKP.register({
       { label: "Lapor SPT Masa PPh 21/26 dan Unifikasi", nilai: "20 hari setelah Masa Pajak berakhir", dasar: "Ps. 3 ayat (3) huruf a UU KUP; PMK 81/2024 Ps. 171", berlakuSejak: "2025-01-01" },
       { label: "SPT Masa PPN", nilai: "setor dan lapor akhir bulan berikutnya (setor sebelum lapor)", dasar: "Ps. 3 ayat (3) dan Ps. 9 ayat (1) UU KUP", berlakuSejak: "2010-01-01" },
       { label: "SPT Tahunan OP · Badan", nilai: "3 bulan (31 Maret) · 4 bulan setelah akhir tahun buku (30 April)", dasar: "Ps. 3 ayat (3) huruf b dan c UU KUP", berlakuSejak: "2008-01-01" },
-      { label: "Perpanjangan SPT Tahunan", nilai: "paling lama 2 bulan; kekurangan → bunga Ps. 19(3) uplift 0%", dasar: "Ps. 3 ayat (4)–(5) dan Ps. 19 ayat (3) UU KUP", berlakuSejak: "2008-01-01" },
+      { label: "Perpanjangan SPT Tahunan", nilai: "paling lama 2 bulan; kekurangan → bunga Ps. 19(3) uplift 0% (tarif bunga bulanan sejak 2 November 2020)", dasar: "Ps. 3 ayat (4)–(5) dan Ps. 19 ayat (3) UU KUP", berlakuSejak: "2008-01-01" },
       { label: "Jatuh tempo STP/SKPKB/SKPKBT/SK/putusan", nilai: "1 bulan sejak terbit (2 bulan usaha kecil/daerah tertentu); tidak bergeser karena libur", dasar: "Ps. 9 ayat (3)–(3a) UU KUP", berlakuSejak: "2008-01-01" },
       { label: "Denda SPT terlambat (Ps. 7)", nilai: "Masa PPN Rp500 rb · Masa lain Rp100 rb · Badan Rp1 jt · OP Rp100 rb", dasar: "Ps. 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" },
-      { label: "Rumus bunga sanksi", nilai: "(acuan + uplift) : 12 per bulan; bagian bulan = 1 bulan; maks 24 bulan", dasar: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026", berlakuSejak: "2021-10-29" },
+      { label: "Rumus bunga sanksi", nilai: "(acuan + uplift) : 12 per bulan; bagian bulan = 1 bulan; maks 24 bulan", dasar: "Ps. 8, 9, 13, 14, 19 UU KUP s.t.d.d. UU 11/2020; KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026", berlakuSejak: "2020-11-02" },
       { label: "Tarif bunga Oktober 2026", nilai: "0,59% · 1,01% · 1,42% · 1,84% · 2,26% (uplift 0/5/10/15/20%)", dasar: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
       { label: "Uplift per pasal", nilai: "0% Ps. 19 · 5% Ps. 8(2)/(2a), 9(2a)/(2b), 14(3) · 10% Ps. 8(5) · 15% Ps. 13(2) · 20% Ps. 13(3)", dasar: "UU KUP s.t.d.t.d. UU HPP", berlakuSejak: "2021-10-29" },
       { label: "Kenaikan", nilai: "75% Ps. 13(3) (potput tidak disetor, PPN) · 100% Ps. 15(2) SKPKBT dan Ps. 17C/17D", dasar: "Ps. 13 ayat (3), 15 ayat (2), 17C–17D UU KUP", berlakuSejak: "2021-10-29" },
-      { label: "Denda faktur pajak", nilai: "1% × DPP (tidak/terlambat/tidak lengkap)", dasar: "Ps. 14 ayat (4) UU KUP", berlakuSejak: "2021-10-29" },
-      { label: "Pengungkapan Ps. 8(3) · Ps. 8(4)", nilai: "denda 100% (bukper) · bunga uplift 10% sebelum SPHP", dasar: "Ps. 8 ayat (3a) dan (5) UU KUP", berlakuSejak: "2021-10-29" },
+      { label: "Denda faktur pajak", nilai: "1% × DPP (tidak/terlambat/tidak lengkap)", dasar: "Ps. 14 ayat (4) UU KUP s.t.d.d. UU 11/2020", berlakuSejak: "2020-11-02" },
+      { label: "Pengungkapan Ps. 8(3) · Ps. 8(4)", nilai: "denda 100% (bukper) · bunga uplift 10% sejak batas waktu SPT Tahunan (SPT Masa: sejak jatuh tempo pembayaran), diungkapkan sebelum SPHP (batas SPHP sejak 29 Oktober 2021)", dasar: "Ps. 8 ayat (3a), (5), dan (5a) UU KUP s.t.d.d. UU 11/2020; Ps. 8 ayat (4) UU KUP (UU HPP)", berlakuSejak: "2020-11-02" },
       { label: "Daluwarsa penetapan · penagihan", nilai: "5 tahun setelah akhir masa/tahun pajak · 5 tahun sejak terbit (dapat tertangguh)", dasar: "Ps. 13 ayat (1) dan Ps. 22 UU KUP", berlakuSejak: "2008-01-01" },
       { label: "Pemeriksaan", nilai: "lengkap 5 bln (+4) · terfokus 3 · spesifik 1; tanggapan SPHP 5 hari kerja; PAHP 30 hari kerja", dasar: "PMK 15/2025", berlakuSejak: "2025-02-14" },
       { label: "Keberatan", nilai: "3 bulan sejak SKP dikirim/pemotongan; lunasi jumlah PAHP; putusan 12 bulan", dasar: "Ps. 25–26 UU KUP; PMK 118/2024", berlakuSejak: "2025-01-01" },
@@ -56,11 +56,11 @@ UKP.register({
       { label: "Permohonan Pasal 36", nilai: "keputusan 6 bulan; huruf a–c maks 2 kali; ditolak → gugatan 30 hari", dasar: "Ps. 36 dan Ps. 23 ayat (2) UU KUP; PMK 118/2024", berlakuSejak: "2025-01-01" },
       { label: "Restitusi Ps. 17B", nilai: "SKP 12 bulan; lewat → dikabulkan, SKPLB 1 bulan", dasar: "Ps. 17B UU KUP", berlakuSejak: "2008-01-01" },
       { label: "Ambang Ps. 17D", nilai: "OP usaha ≤ Rp100 jt · badan ≤ Rp1 M · PKP: LB ≤ Rp1 M per Masa Pajak dan penyerahan ≤ Rp4,2 M, sejak 1 Mei 2026 (sebelumnya PKP ≤ Rp5 M)", dasar: "PMK 28 Tahun 2026 (mencabut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021)", berlakuSejak: "2026-05-01" },
-      { label: "Pengembalian dan imbalan bunga", nilai: "1 bulan sejak SKPLB; terlambat → imbalan bunga uplift 0% ◐", dasar: "Ps. 11 ayat (2)–(3) dan Ps. 27B UU KUP", berlakuSejak: "2008-01-01" },
+      { label: "Pengembalian dan imbalan bunga", nilai: "1 bulan sejak SKPLB; terlambat → imbalan bunga uplift 0% (tarif bunga bulanan sejak 2 November 2020) ◐", dasar: "Ps. 11 ayat (2)–(3) dan Ps. 27B UU KUP", berlakuSejak: "2008-01-01" },
       { label: "Linimasa penagihan", nilai: "teguran +7 hari · Surat Paksa +21 hari · SPMP 2×24 jam · umumkan lelang +14 · lelang +14", dasar: "UU PPSP Ps. 8, 12, 26; PMK 61/2023", berlakuSejak: "2023-06-12" },
       { label: "Pencegahan · penyanderaan", nilai: "utang ≥ Rp100 jt + itikad diragukan; 6 + 6 bulan; sandera ≥ 14 hari setelah Surat Paksa", dasar: "UU PPSP Ps. 29–33; PMK 61/2023", berlakuSejak: "2023-06-12" },
       { label: "Banding · gugatan · PK", nilai: "3 bln (putusan 12+3) · 14/30 hari (putusan 6+3) · 3 bln ke MA", dasar: "UU 14/2002 Ps. 35, 40, 81, 92", berlakuSejak: "2002-04-12" },
-      { label: "Lapor pengukuhan PKP", nilai: "akhir bulan berikutnya setelah peredaran bruto > Rp4,8 M", dasar: "PMK 197/PMK.03/2013", berlakuSejak: "2014-01-01" },
+      { label: "Lapor pengukuhan PKP", nilai: "paling lambat akhir tahun buku saat peredaran bruto > Rp4,8 M; pungut PPN mulai Masa Pajak pertama tahun buku berikutnya (dulu akhir bulan berikutnya) ◐", dasar: "PMK 164/2023 Pasal 17 dan 18", berlakuSejak: "2023-12-29" },
       { label: "Simpan dokumen pembukuan", nilai: "10 tahun di Indonesia, termasuk data elektronik", dasar: "Ps. 28 ayat (11) UU KUP", berlakuSejak: "2008-01-01" },
       { label: "Alokasi pembayaran dan fasilitas sanksi", nilai: "pokok lebih dulu; hapus sanksi 100% s.d. 31 Des 2026 atas permohonan", dasar: "PMK 71/2026; KEP-239/PJ/2026", berlakuSejak: "2026-10-02" },
       { label: "Pengadilan Pajak ke MA", nilai: "pembinaan organisasi, administrasi, keuangan paling lambat 31 Des 2026", dasar: "Putusan MK 26/PUU-XXI/2023", berlakuSejak: "2023-05-25" },
@@ -111,7 +111,7 @@ UKP.register({
       ringkasan: [
         "OP penduduk memakai NIK sebagai NPWP; badan, OP bukan penduduk, dan instansi pemerintah memakai NPWP 16 digit; tempat kegiatan usaha (cabang) diberi NITKU, pengganti NPWP cabang. Implementasi penuh 1 Juli 2024.",
         "Dokumen yang memuat NPWP 15 digit sebelum implementasi penuh tetap sah; sejak 1 Januari 2025 seluruh layanan berjalan di Coretax (Portal WP) dengan akun WP, kode otorisasi/sertifikat elektronik, dan penunjukan PIC bagi badan.",
-        "Pengusaha yang peredaran brutonya dalam satu tahun buku melebihi Rp4,8 miliar wajib melaporkan usaha untuk dikukuhkan PKP paling lambat akhir bulan berikutnya setelah bulan batas terlampaui; pengusaha kecil boleh memilih menjadi PKP.",
+        "Pengusaha yang peredaran brutonya dalam satu tahun buku melebihi Rp4,8 miliar wajib melaporkan usaha untuk dikukuhkan PKP paling lambat akhir tahun buku saat batas itu terlampaui dan memungut PPN mulai Masa Pajak pertama tahun buku berikutnya (PMK 164/2023 Pasal 17 dan 18; dulu akhir bulan berikutnya menurut PMK 197/PMK.03/2013); pengusaha kecil boleh memilih menjadi PKP.",
         "DJP dapat menerbitkan NPWP dan/atau mengukuhkan PKP secara jabatan; kewajiban dimulai sejak syarat subjektif dan objektif terpenuhi, paling lama 5 tahun sebelum NPWP diterbitkan/PKP dikukuhkan.",
         "Penghapusan NPWP dan pencabutan PKP dapat atas permohonan atau secara jabatan; keputusan atas permohonan penghapusan NPWP paling lama 6 bulan (OP) atau 12 bulan (badan), pencabutan PKP 6 bulan sejak permohonan lengkap."
       ],
@@ -119,27 +119,28 @@ UKP.register({
         { label: "NIK sebagai NPWP penuh", nilai: "1 Juli 2024", dasar: "PMK 112/2022 jo. PMK 136/2023", berlakuSejak: "2024-07-01" },
         { label: "NITKU", nilai: "identitas tempat kegiatan usaha, pengganti NPWP cabang", dasar: "PMK 112/2022 jo. PMK 136/2023", berlakuSejak: "2024-07-01" },
         { label: "Batas pengusaha kecil", nilai: "peredaran bruto ≤ Rp4,8 miliar per tahun buku", dasar: "PMK 197/PMK.03/2013", berlakuSejak: "2014-01-01" },
-        { label: "Lapor pengukuhan PKP", nilai: "akhir bulan berikutnya setelah bulan Rp4,8 M terlampaui", dasar: "PMK 197/PMK.03/2013; PMK 81/2024", berlakuSejak: "2014-01-01" },
+        { label: "Lapor pengukuhan PKP", nilai: "akhir tahun buku saat Rp4,8 M terlampaui; pungut PPN mulai Masa Pajak pertama tahun buku berikutnya", dasar: "PMK 164/2023 Pasal 17 dan 18; PMK 81/2024", berlakuSejak: "2023-12-29" },
         { label: "NPWP/PKP jabatan", nilai: "kewajiban mundur paling lama 5 tahun", dasar: "Pasal 2 ayat (4a) UU KUP", berlakuSejak: "2008-01-01" }
       ],
       dasarHukum: [
         { pasal: "Pasal 2 ayat (1), (1a), (2), (4), (4a) UU KUP", catatan: "kewajiban mendaftar, NIK sebagai NPWP, NPWP/PKP jabatan" },
         { pasal: "Pasal 2 ayat (6)–(9) UU KUP", catatan: "penghapusan NPWP dan pencabutan PKP" },
         { pasal: "PMK 112/PMK.03/2022 jo. PMK 136/2023", catatan: "NIK, NPWP 16 digit, NITKU" },
-        { pasal: "PMK 81/2024", catatan: "pendaftaran, akun WP, dan layanan Coretax" }
+        { pasal: "PMK 81/2024", catatan: "pendaftaran, akun WP, dan layanan Coretax" },
+        { pasal: "PMK 164/2023 Pasal 17 dan 18", catatan: "tenggat lapor pengukuhan PKP akhir tahun buku saat peredaran bruto melebihi Rp4,8 miliar" }
       ],
       jebakan: [
         { teks: "Mendaftarkan NPWP cabang untuk toko kedua — sejak Juli 2024 cukup NITKU", tagSebab: "angka-usang" },
-        { teks: "Tenggat lapor PKP dihitung akhir bulan yang sama saat omzet terlampaui — yang benar akhir bulan berikutnya", tagSebab: "salah-baca" },
+        { teks: "Tenggat lapor PKP dihitung akhir bulan berikutnya setelah omzet terlampaui (PMK 197/PMK.03/2013) — sejak PMK 164/2023 paling lambat akhir tahun buku saat batas terlampaui", tagSebab: "angka-usang" },
         { teks: "Kewajiban NPWP jabatan dianggap mulai sejak usaha berdiri tanpa batas — dibatasi paling lama 5 tahun ke belakang", tagSebab: "lupa-pasal" }
       ],
       contohSoal: {
         stem: "Peredaran bruto kumulatif PT Lancar Abadi melewati Rp4,8 miliar pada bulan Agustus 2026. Kapan batas akhir melapor untuk dikukuhkan sebagai PKP?",
-        jawaban: "30 September 2026",
-        langkah: [["Bulan batas terlampaui", "Agustus 2026"], ["Tenggat", "akhir bulan berikutnya"], ["Batas lapor", "30 September 2026"]]
+        jawaban: "31 Desember 2026",
+        langkah: [["Bulan batas terlampaui", "Agustus 2026 (anggap tahun buku kalender 2026)"], ["Tenggat", "akhir tahun buku saat batas terlampaui (PMK 164/2023)"], ["Batas lapor", "31 Desember 2026; PPN dipungut mulai Masa Januari 2027"]]
       },
       verifikasi: "◐",
-      peringatan: "Rincian Pasal 2 ayat (4a) dan (9) UU KUP (5 tahun ke belakang; 6/12 bulan keputusan) bersumber dari teks UU yang belum dibaca ulang langsung pada riset ini; angka NIK/NITKU dan Rp4,8 miliar terverifikasi."
+      peringatan: "Rincian Pasal 2 ayat (4a) dan (9) UU KUP (5 tahun ke belakang; 6/12 bulan keputusan) bersumber dari teks UU yang belum dibaca ulang langsung pada riset ini; angka NIK/NITKU dan Rp4,8 miliar terverifikasi. Tenggat akhir tahun buku mengikuti PMK 164/2023 Pasal 17 menurut keterangan resmi DJP dan soal try out November 2026; naskah PMK belum dibuka langsung."
     },
     {
       id: "A2.3", slug: "pembayaran-pelaporan", judul: "Pembayaran, pelaporan SPT, perpanjangan, dan pembetulan",
@@ -219,7 +220,7 @@ UKP.register({
         "PMK 15/2025 berlaku 14 Februari 2025, menyatukan PMK 17/2013 jo. 184/2015 dan PMK 256/2014. Pemeriksaan menguji kepatuhan: lengkap 5 bulan (dapat diperpanjang 4 bulan untuk grup usaha/indikasi transfer pricing), terfokus 3 bulan, spesifik 1 bulan (kriteria tertentu 10 hari kerja).",
         "Jangka waktu pengujian dihitung sejak SP2/pemberitahuan pemeriksaan sampai SPHP disampaikan; Pembahasan Temuan Sementara dilakukan sebelum SPHP (dikecualikan untuk pemeriksaan spesifik).",
         "WP menanggapi SPHP paling lama 5 hari kerja sejak diterima (sebelumnya 7 hari kerja); tidak menanggapi dituangkan dalam berita acara. PAHP dan laporan diselesaikan dalam 30 hari kerja sejak SPHP disampaikan.",
-        "Selama pemeriksaan dan sebelum SPHP disampaikan, WP dapat mengungkapkan ketidakbenaran pengisian SPT (Pasal 8 ayat (4)) dengan bunga uplift 10%; pemeriksaan tetap dilanjutkan.",
+        "Selama pemeriksaan dan sebelum SPHP disampaikan, WP dapat mengungkapkan ketidakbenaran pengisian SPT (Pasal 8 ayat (4)) dengan bunga uplift 10% (Pasal 8 ayat (5) dan (5a)) yang dihitung sejak batas waktu penyampaian SPT Tahunan berakhir (SPT Masa: sejak jatuh tempo pembayaran) sampai tanggal pembayaran, paling lama 24 bulan; pemeriksaan tetap dilanjutkan. Akhir Tahun Pajak adalah titik awal bunga SKPKB Pasal 13 ayat (2), bukan bunga pengungkapan.",
         "Pemeriksaan bukti permulaan mendahului penyidikan; pengungkapan ketidakbenaran perbuatan (Pasal 8 ayat (3)) sebelum penyidikan diberitahukan ke penuntut umum disertai denda 100%.",
         "Untuk kepentingan penerimaan negara, Jaksa Agung dapat menghentikan penyidikan atas permintaan Menteri Keuangan setelah WP/tersangka melunasi kerugian pada pendapatan negara ditambah denda 1 kali (Pasal 38), 3 kali (Pasal 39), atau 4 kali jumlah pajak dalam faktur/bukti potong/bukti setor (Pasal 39A) (Pasal 44B)."
       ],
@@ -265,7 +266,7 @@ UKP.register({
         { label: "Bunga Ps. 13(3) huruf a/b", nilai: "uplift 20%; Okt 2026 2,26%/bulan", dasar: "Pasal 13 ayat (3) dan (3b) UU KUP", berlakuSejak: "2026-10-01" },
         { label: "Kenaikan Ps. 13(3) huruf c/d", nilai: "75% (dulu 100%)", dasar: "Pasal 13 ayat (3) UU KUP (UU HPP)", berlakuSejak: "2021-10-29" },
         { label: "Kenaikan SKPKBT", nilai: "100%", dasar: "Pasal 15 ayat (2) UU KUP", berlakuSejak: "2008-01-01" },
-        { label: "Denda faktur Ps. 14(4)", nilai: "1% × DPP", dasar: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2021-10-29" },
+        { label: "Denda faktur Ps. 14(4)", nilai: "1% × DPP (dulu 2%)", dasar: "Pasal 14 ayat (4) UU KUP s.t.d.d. UU 11/2020", berlakuSejak: "2020-11-02" },
         { label: "Daluwarsa penetapan", nilai: "5 tahun", dasar: "Pasal 13 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }
       ],
       dasarHukum: [
@@ -341,7 +342,7 @@ UKP.register({
         { label: "Tarif Oktober 2026", nilai: "0,59% · 1,01% · 1,42% · 1,84% · 2,26%", dasar: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
         { label: "Maksimal bunga", nilai: "24 bulan; bagian bulan = 1 bulan", dasar: "Pasal 9 ayat (2a), 13 ayat (2), 19 UU KUP", berlakuSejak: "2020-11-02" },
         { label: "Denda keberatan · banding", nilai: "30% · 60%", dasar: "Pasal 25 ayat (9), 27 ayat (5d) UU KUP", berlakuSejak: "2021-10-29" },
-        { label: "Pengungkapan perbuatan Ps. 8(3)", nilai: "denda 100% (dulu 150%)", dasar: "Pasal 8 ayat (3a) UU KUP", berlakuSejak: "2021-10-29" }
+        { label: "Pengungkapan perbuatan Ps. 8(3)", nilai: "denda 100% (dulu 150%)", dasar: "Pasal 8 ayat (3a) UU KUP s.t.d.d. UU 11/2020", berlakuSejak: "2020-11-02" }
       ],
       dasarHukum: [
         { pasal: "Pasal 7 UU KUP", catatan: "denda keterlambatan SPT" },
@@ -411,7 +412,7 @@ UKP.register({
         "Penagihan seketika dan sekaligus dapat dilakukan tanpa menunggu jatuh tempo bila Penanggung Pajak akan meninggalkan Indonesia untuk selamanya, memindahtangankan barang, ada tanda pembubaran/penggabungan/pemekaran, badan akan dibubarkan negara, atau terjadi penyitaan pihak ketiga/kepailitan.",
         "Pencegahan ke luar negeri: utang pajak paling sedikit Rp100 juta dan diragukan itikad baiknya; paling lama 6 bulan, dapat diperpanjang paling lama 6 bulan.",
         "Penyanderaan (gijzeling): utang pajak paling sedikit Rp100 juta dan diragukan itikad baiknya (kumulatif), izin tertulis Menteri Keuangan/Gubernur, paling cepat 14 hari setelah Surat Paksa diberitahukan, paling lama 6 bulan dan dapat diperpanjang paling lama 6 bulan; tidak menghapus utang pajak.",
-        "Daluwarsa penagihan 5 tahun sejak penerbitan STP/SKP/keputusan; tertangguh bila Surat Paksa diberitahukan, ada pengakuan utang (angsuran/penundaan), SKPKB Pasal 13 ayat (5)/SKPKBT Pasal 15 ayat (4), atau penyidikan.",
+        "Daluwarsa penagihan 5 tahun sejak penerbitan STP/SKP/keputusan; tertangguh bila Surat Paksa diberitahukan, ada pengakuan utang (angsuran/penundaan), SKPKB Pasal 13 ayat (5)/SKPKBT Pasal 15 ayat (4) (rujukan Pasal 22 ayat (2) huruf c; kedua ayat itu dihapus UU 11/2020 sejak 2 November 2020, sehingga sebab ini kini tidak lagi terjadi), atau penyidikan.",
         "Barang tertentu (uang tunai, deposito, saham, obligasi, piutang) dijual atau dipindahbukukan tanpa lelang."
       ],
       poinKunci: [
@@ -612,20 +613,35 @@ UKP.register({
       anggaranDetik: 90, verifikasi: "✅"
     },
     {
-      id: "A2-006", topik: "A2.2", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A2-006",
+      topik: "A2.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "PT Lancar Abadi (berdiri 2023, tahun buku kalender, belum PKP, bukan WP PPh final UMKM) mencatat peredaran bruto 2025 Rp4.300.000.000. Peredaran bruto 2026: Januari–Juni Rp3.600.000.000, Juli Rp650.000.000, Agustus Rp720.000.000, September Rp800.000.000. Dengan memperhatikan batasan pengusaha kecil per tahun buku, batas akhir PT Lancar Abadi melaporkan usahanya untuk dikukuhkan sebagai PKP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "31 Agustus 2026", B: "30 September 2026", C: "31 Oktober 2026", D: "31 Desember 2026" },
-      kunci: "B",
-      jebakanOpsi: { A: "salah-baca", C: "salah-hitung", D: "salah-klasifikasi" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "angka-usang", C: "salah-hitung" },
       pembahasan: {
-        inti: "Batas Rp4,8 miliar dihitung kumulatif per tahun buku; terlampaui pada Agustus 2026 sehingga lapor paling lambat akhir bulan berikutnya, 30 September 2026. Omzet 2025 (Rp4,3 miliar) tidak relevan karena di bawah batas.",
-        jejakHitung: [["Kumulatif s.d. Juni", "Rp3.600.000.000"], ["s.d. Juli (+Rp650 jt)", "Rp4.250.000.000 ≤ Rp4,8 M"], ["s.d. Agustus (+Rp720 jt)", "Rp4.970.000.000 > Rp4,8 M"], ["Batas lapor: akhir bulan berikutnya", "30 September 2026"]],
-        mengapaSalah: { A: "Akhir bulan yang sama; ketentuan memberi waktu sampai akhir bulan berikutnya.", C: "Menganggap batas terlampaui pada September karena salah menjumlah.", D: "Akhir tahun buku tertukar dengan saat berakhirnya tarif final PP 55 bagi WP yang omzetnya melewati Rp4,8 miliar; kewajiban lapor pengukuhan PKP tetap akhir bulan berikutnya." },
-        jebakan: "Hitung kumulatif sejak awal tahun buku, bukan per bulan atau tahun lalu."
+        inti: "Batas Rp4,8 miliar diuji kumulatif dalam tahun buku: terlampaui pada Agustus 2026 (Rp4.970.000.000). Menurut PMK 164/2023 Pasal 17 dan 18, pengusaha wajib melaporkan usahanya untuk dikukuhkan sebagai PKP paling lambat akhir tahun buku saat batas itu terlampaui, yaitu 31 Desember 2026, dan memungut PPN mulai Masa Pajak pertama tahun buku berikutnya (Januari 2027). Tenggat ini berlaku bagi semua pengusaha, termasuk yang bukan WP PPh final UMKM. Omzet 2025 (Rp4,3 miliar) tidak relevan karena di bawah batas.",
+        jejakHitung: [
+          ["Kumulatif s.d. Juni", "Rp3.600.000.000"],
+          ["s.d. Juli (+Rp650 jt)", "Rp4.250.000.000 ≤ Rp4,8 M"],
+          ["s.d. Agustus (+Rp720 jt)", "Rp4.970.000.000 > Rp4,8 M"],
+          ["Batas lapor: akhir tahun buku saat batas terlampaui", "31 Desember 2026"]
+        ],
+        mengapaSalah: {
+          A: "Akhir bulan saat batas terlampaui; tenggat lapor pengukuhan PKP adalah akhir tahun buku.",
+          B: "Memakai tenggat lama akhir bulan berikutnya (PMK 197/PMK.03/2013) yang sejak PMK 164/2023 diganti akhir tahun buku.",
+          C: "Salah menjumlah sehingga menganggap batas terlampaui pada September, lalu memakai tenggat lama akhir bulan berikutnya."
+        },
+        jebakan: "Hitung kumulatif sejak awal tahun buku untuk menemukan tahun buku saat batas terlampaui; tenggat lapor kini akhir tahun buku itu, bukan akhir bulan berikutnya."
       },
-      dasarHukum: [{ pasal: "Pasal 2 ayat (2) UU KUP; Pasal 3A UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 197/PMK.03/2013", berlakuSejak: "2014-01-01" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 2 ayat (2) UU KUP; Pasal 3A UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 164/2023 Pasal 17 dan 18", berlakuSejak: "2023-12-29" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "◐",
+      peringatan: "Tenggat akhir tahun buku mengikuti PMK 164/2023 Pasal 17 menurut keterangan resmi DJP dan soal try out November 2026; naskah PMK belum dibuka langsung."
     },
     {
       id: "A2-007", topik: "A2.2", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1,
@@ -731,7 +747,11 @@ UKP.register({
       anggaranDetik: 160, verifikasi: "✅"
     },
     {
-      id: "A2-013", topik: "A2.3", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A2-013",
+      topik: "A2.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "dr. Ratna Dewi (orang pribadi, SPT 1770) baru melunasi PPh Pasal 29 Tahun Pajak 2025 sebesar Rp14.600.000 pada 8 Juli 2026 dan menyampaikan SPT Tahunan pada 9 Juli 2026. Batas waktu SPT Tahunan OP Tahun Pajak 2025 adalah 31 Maret 2026 (Selasa). Anggap tarif bunga Pasal 9 ayat (2b) yang berlaku pada tanggal dimulainya penghitungan sanksi adalah 1,01% per bulan. Total sanksi administratif yang akan ditagih dengan STP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp1.589.840", B: "Rp542.380", C: "Rp589.840", D: "Rp689.840" },
@@ -739,12 +759,22 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
         inti: "Dua sanksi sekaligus: bunga Pasal 9 ayat (2b) atas PPh 29 yang dibayar setelah batas waktu SPT, dan denda Pasal 7 ayat (1) Rp100.000 atas SPT Tahunan OP yang terlambat.",
-        jejakHitung: [["31 Maret → 8 Juli 2026", "3 bulan 8 hari = 4 bulan"], ["Bunga = 14.600.000 × 1,01% × 4", "Rp589.840"], ["Denda SPT Tahunan OP", "Rp100.000"], ["Total sanksi", "Rp689.840"]],
-        mengapaSalah: { A: "Memakai denda SPT Tahunan badan Rp1.000.000.", B: "Bulan dibulatkan ke bawah (3 bulan) sehingga bunga Rp442.380.", C: "Lupa denda keterlambatan SPT Tahunan." },
+        jejakHitung: [
+          ["31 Maret → 8 Juli 2026", "3 bulan 8 hari = 4 bulan"],
+          ["Bunga = 14.600.000 × 1,01% × 4", "Rp589.840"],
+          ["Denda SPT Tahunan OP", "Rp100.000"],
+          ["Total sanksi", "Rp689.840"]
+        ],
+        mengapaSalah: {
+          A: "Memakai denda SPT Tahunan badan Rp1.000.000.",
+          B: "Bulan dibulatkan ke bawah (3 bulan) sehingga bunga Rp442.380.",
+          C: "Lupa denda keterlambatan SPT Tahunan."
+        },
         jebakan: "Terlambat bayar dan terlambat lapor adalah dua pelanggaran terpisah."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (2) dan (2b) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 3 ayat (3) huruf b UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2b) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 3 ayat (3) huruf b UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "A2-014",
@@ -873,22 +903,37 @@ UKP.register({
       anggaranDetik: 90, verifikasi: "✅"
     },
     {
-      id: "A2-021", topik: "A2.5", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A2-03",
-      kutipan: "Pasal 8 ayat (4) dan (5) UU KUP (parafrase setia): Walaupun DJP telah melakukan pemeriksaan, dengan syarat belum menyampaikan SPHP, WP dengan kesadaran sendiri dapat mengungkapkan dalam laporan tersendiri ketidakbenaran pengisian SPT. Kekurangan pajak harus dilunasi sebelum laporan disampaikan beserta bunga sebesar tarif bunga per bulan (suku bunga acuan + 10%) : 12, dihitung sejak saat terutangnya pajak atau berakhirnya Masa Pajak, Bagian Tahun Pajak, atau Tahun Pajak sampai dengan tanggal pembayaran, paling lama 24 bulan, dan bagian dari bulan dihitung penuh 1 bulan.",
+      id: "A2-021",
+      topik: "A2.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-A2-03",
+      kutipan: "Pasal 8 ayat (4), (5), dan (5a) UU KUP (parafrase setia): Walaupun DJP telah melakukan pemeriksaan, dengan syarat belum menyampaikan SPHP, WP dengan kesadaran sendiri dapat mengungkapkan dalam laporan tersendiri tentang ketidakbenaran pengisian SPT yang telah disampaikan. Kekurangan pajak beserta sanksi administratif berupa bunga harus dilunasi sebelum laporan tersendiri disampaikan. Bunga dihitung sejak batas waktu penyampaian SPT Tahunan berakhir sampai dengan tanggal pembayaran (untuk SPT Tahunan), atau sejak jatuh tempo pembayaran berakhir sampai dengan tanggal pembayaran (untuk SPT Masa), paling lama 24 bulan, dan bagian dari bulan dihitung penuh 1 bulan. Tarif bunga per bulan adalah (suku bunga acuan + 10%) : 12 yang berlaku pada tanggal dimulainya penghitungan sanksi.",
       stem: "Lanjutan V-A2-03: PT Rimba Kencana (pemeriksaan lengkap PPh Badan Tahun Pajak 2024 sejak 12 Januari 2026, tahun buku kalender) pada 6 April 2026, sebelum SPHP disampaikan, menyampaikan laporan tersendiri pengungkapan ketidakbenaran pengisian SPT yang menyebabkan PPh kurang bayar Rp84.000.000, dan melunasinya pada hari yang sama. Batas waktu penyampaian SPT Tahunan 2024 adalah 30 April 2025. Anggap tarif bunga per bulan yang berlaku: uplift 5% = 1,01%; 10% = 1,42%; 15% = 1,84%. Berdasarkan kutipan, sanksi yang wajib dilunasi adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Rp19.084.800", B: "Rp14.313.600", C: "Rp13.574.400", D: "Rp24.729.600" },
-      kunci: "A",
-      jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
+      opsi: { A: "Rp19.084.800", B: "Rp14.313.600", C: "Rp10.180.800", D: "Rp18.547.200" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Pengungkapan Pasal 8 ayat (4) memakai uplift 10% dan dihitung sejak berakhirnya Tahun Pajak (31 Desember 2024) sampai tanggal pembayaran.",
-        jejakHitung: [["31 Des 2024 → 31 Mar 2026", "15 bulan"], ["31 Mar → 6 Apr 2026", "bagian bulan = 1 bulan"], ["Jumlah bulan", "16"], ["Bunga = 84.000.000 × 1,42% × 16", "Rp19.084.800"]],
-        mengapaSalah: { B: "Menghitung sejak batas waktu SPT (30 April 2025) seperti pembetulan Pasal 8 ayat (2): 12 bulan.", C: "Memakai uplift 5% milik pembetulan biasa.", D: "Memakai uplift 15% milik SKPKB Pasal 13 ayat (2)." },
-        jebakan: "Titik awal dan uplift pengungkapan berbeda dengan pembetulan biasa."
+        inti: "Pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan (Pasal 8 ayat (4)) dikenai bunga uplift 10% (Pasal 8 ayat (5a)) yang, untuk SPT Tahunan, dihitung sejak batas waktu penyampaian SPT Tahunan berakhir (30 April 2025) sampai tanggal pembayaran (6 April 2026): 11 bulan 7 hari dihitung 12 bulan.",
+        jejakHitung: [
+          ["Titik awal: batas waktu penyampaian SPT Tahunan 2024", "30 April 2025"],
+          ["30 Apr 2025 → 30 Mar 2026", "11 bulan"],
+          ["30 Mar → 6 Apr 2026", "7 hari = bagian bulan = 1 bulan"],
+          ["Jumlah bulan (maks 24)", "12"],
+          ["Bunga = 84.000.000 × 1,42% × 12", "Rp14.313.600"]
+        ],
+        mengapaSalah: {
+          A: "Menghitung sejak berakhirnya Tahun Pajak (31 Desember 2024, 16 bulan); titik awal itu milik bunga SKPKB Pasal 13 ayat (2), sedangkan Pasal 8 ayat (5) menghitung sejak batas waktu penyampaian SPT Tahunan berakhir.",
+          C: "Memakai uplift 5% (1,01%) milik pembetulan sendiri Pasal 8 ayat (2); pengungkapan saat pemeriksaan memakai uplift 10% (Pasal 8 ayat (5a)).",
+          D: "Memakai uplift 15% (1,84%) milik bunga SKPKB Pasal 13 ayat (2)."
+        },
+        jebakan: "Titik awal bunga pengungkapan SPT Tahunan sama dengan pembetulan sendiri (batas waktu penyampaian SPT), yang berbeda hanya uplift-nya (10%, bukan 5%). Akhir Tahun Pajak adalah titik awal bunga SKPKB Pasal 13 ayat (2)."
       },
-      dasarHukum: [{ pasal: "Pasal 8 ayat (4) dan (5) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PP 50/2022", berlakuSejak: "2022-12-12" }, { pasal: "PMK 15/2025", berlakuSejak: "2025-02-14" }],
-      anggaranDetik: 200, verifikasi: "◐",
-      peringatan: "Titik awal penghitungan bunga Pasal 8 ayat (5) (akhir Tahun Pajak) disusun dari pengetahuan teks UU HPP; riset proyek hanya mengonfirmasi uplift 10%, batas sebelum SPHP, dan maksimal 24 bulan. Cek ulang ke teks konsolidasi."
+      dasarHukum: [{ pasal: "Pasal 8 ayat (4) UU KUP (batas sebelum SPHP; UU 7/2021)", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 8 ayat (5) dan (5a) UU KUP (titik awal dan bunga uplift 10%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "PP 50/2022", berlakuSejak: "2022-12-12" }, { pasal: "PMK 15/2025", berlakuSejak: "2025-02-14" }],
+      anggaranDetik: 200,
+      verifikasi: "✅"
     },
     {
       id: "A2-022", topik: "A2.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, kasusId: "V-A2-03",
@@ -907,7 +952,11 @@ UKP.register({
       anggaranDetik: 90, verifikasi: "✅"
     },
     {
-      id: "A2-023", topik: "A2.5", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2,
+      id: "A2-023",
+      topik: "A2.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
       kutipan: "Pasal 8 ayat (3) dan (3a) UU KUP (parafrase setia): Walaupun telah dilakukan tindakan pemeriksaan bukti permulaan, WP dengan kemauan sendiri dapat mengungkapkan ketidakbenaran perbuatannya, sepanjang mulainya penyidikan belum diberitahukan kepada Penuntut Umum, disertai pelunasan kekurangan pembayaran jumlah pajak yang sebenarnya terutang beserta sanksi administratif berupa denda sebesar 100% dari jumlah pajak yang kurang dibayar.",
       stem: "CV Garuda Logistik sedang menjalani pemeriksaan bukti permulaan atas dugaan tindak pidana Pasal 39 terkait PPN Masa Januari–Desember 2024. Sebelum penyidikan dimulai, CV Garuda mengungkapkan sendiri ketidakbenaran perbuatannya secara tertulis dengan PPN yang kurang dibayar Rp230.000.000. Berdasarkan kutipan, jumlah yang harus dilunasi agar pengungkapan diproses dan perkara tidak dilanjutkan ke penyidikan adalah ...",
       kataKualifikasi: [],
@@ -915,34 +964,51 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
-        inti: "Pengungkapan ketidakbenaran perbuatan saat pemeriksaan bukti permulaan: pokok kurang bayar ditambah denda 100% (UU HPP; sebelumnya 150%).",
-        jejakHitung: [["Pokok PPN kurang bayar", "Rp230.000.000"], ["Denda 100%", "Rp230.000.000"], ["Jumlah dilunasi", "Rp460.000.000"]],
-        mengapaSalah: { A: "Denda 150% adalah ketentuan sebelum UU HPP.", B: "Kenaikan 75% milik SKPKB Pasal 13 ayat (3).", C: "Hanya denda; pokok juga wajib dilunasi." },
+        inti: "Pengungkapan ketidakbenaran perbuatan saat pemeriksaan bukti permulaan: pokok kurang bayar ditambah denda 100% (sejak UU Cipta Kerja, 2 November 2020; sebelumnya 150%).",
+        jejakHitung: [
+          ["Pokok PPN kurang bayar", "Rp230.000.000"],
+          ["Denda 100%", "Rp230.000.000"],
+          ["Jumlah dilunasi", "Rp460.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Denda 150% adalah ketentuan UU 28/2007, sebelum UU Cipta Kerja (2 November 2020).",
+          B: "Kenaikan 75% milik SKPKB Pasal 13 ayat (3).",
+          C: "Hanya denda; pokok juga wajib dilunasi."
+        },
         jebakan: "Bedakan pengungkapan 'perbuatan' (bukper, denda 100%) dan 'pengisian SPT' (pemeriksaan, bunga uplift 10%)."
       },
-      dasarHukum: [{ pasal: "Pasal 8 ayat (3) dan (3a) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 43A UU KUP", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 8 ayat (3) dan (3a) UU KUP (denda 100%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 43A UU KUP", berlakuSejak: "2021-10-29" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
-      id: "A2-024", topik: "A2.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A2-024",
+      topik: "A2.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       stem: "PT Kirana Medika (bukan anggota grup usaha, tanpa indikasi transfer pricing) menerima Surat Perintah Pemeriksaan (SP2) pemeriksaan terfokus atas pos biaya promosi dalam SPT Tahunan PPh Badan Tahun Pajak 2024 pada 2 Maret 2026. Manajer pajaknya menyusun linimasa internal berdasarkan PMK 15/2025 dan Pasal 8 UU KUP sebagaimana diubah UU HPP. Butir linimasa berikut sudah tepat, kecuali ...",
       kataKualifikasi: ["kecuali"],
-      opsi: {
-        A: "SPHP paling lambat disampaikan 2 Juni 2026, yaitu 3 bulan sejak SP2 disampaikan",
-        B: "Sebelum SPHP disampaikan, pemeriksa melakukan Pembahasan Temuan Sementara dengan WP, karena pengecualian hanya untuk pemeriksaan spesifik",
-        C: "Pengungkapan ketidakbenaran pengisian SPT (Pasal 8 ayat (4)) masih dapat disampaikan sepanjang SPHP belum disampaikan, dengan bunga uplift 10%",
-        D: "Setelah SPHP diterima, perusahaan memiliki 7 hari kerja untuk menyampaikan tanggapan tertulis"
-      },
+      opsi: { A: "SPHP paling lambat disampaikan 2 Juni 2026, yaitu 3 bulan sejak SP2 disampaikan", B: "Sebelum SPHP disampaikan, pemeriksa melakukan Pembahasan Temuan Sementara dengan WP, karena pengecualian hanya untuk pemeriksaan spesifik", C: "Pengungkapan ketidakbenaran pengisian SPT (Pasal 8 ayat (4)) masih dapat disampaikan sepanjang SPHP belum disampaikan, dengan bunga uplift 10%", D: "Setelah SPHP diterima, perusahaan memiliki 7 hari kerja untuk menyampaikan tanggapan tertulis" },
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "angka-usang" },
       pembahasan: {
         inti: "PMK 15/2025 menetapkan tanggapan tertulis atas SPHP paling lama 5 hari kerja sejak SPHP diterima; 7 hari kerja adalah ketentuan PMK 17/2013 jo. 184/2015. Butir lain sudah tepat.",
-        jejakHitung: [["SP2 pemeriksaan terfokus", "2 Maret 2026"], ["+ 3 bulan (terfokus)", "SPHP paling lambat 2 Juni 2026"], ["Tanggapan SPHP", "5 hari kerja, bukan 7"]],
-        mengapaSalah: { A: "Benar: jangka pengujian pemeriksaan terfokus 3 bulan sejak SP2 sampai SPHP; angka 5 bulan hanya untuk pemeriksaan lengkap.", B: "Benar: Pembahasan Temuan Sementara wajib sebelum SPHP; yang dikecualikan hanya pemeriksaan spesifik.", C: "Benar: sejak UU HPP batas pengungkapan adalah sebelum SPHP disampaikan (dulu sebelum SKP terbit), dengan bunga Pasal 8 ayat (5) uplift 10%." },
+        jejakHitung: [
+          ["SP2 pemeriksaan terfokus", "2 Maret 2026"],
+          ["+ 3 bulan (terfokus)", "SPHP paling lambat 2 Juni 2026"],
+          ["Tanggapan SPHP", "5 hari kerja, bukan 7"]
+        ],
+        mengapaSalah: {
+          A: "Benar: jangka pengujian pemeriksaan terfokus 3 bulan sejak SP2 sampai SPHP; angka 5 bulan hanya untuk pemeriksaan lengkap.",
+          B: "Benar: Pembahasan Temuan Sementara wajib sebelum SPHP; yang dikecualikan hanya pemeriksaan spesifik.",
+          C: "Benar: sejak UU HPP batas pengungkapan adalah sebelum SPHP disampaikan (dulu sebelum SKP terbit), dengan bunga Pasal 8 ayat (5) uplift 10%."
+        },
         jebakan: "Kata 'kecuali': cari angka usang di antara butir yang sudah sesuai aturan 2025."
       },
-      dasarHukum: [{ pasal: "PMK 15/2025", berlakuSejak: "2025-02-14" }, { pasal: "Pasal 8 ayat (4) dan (5) UU KUP", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PMK 15/2025", berlakuSejak: "2025-02-14" }, { pasal: "Pasal 8 ayat (4) UU KUP (batas sebelum SPHP; UU 7/2021)", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 8 ayat (5) UU KUP (bunga uplift 10%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-025", topik: "A2.5", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3,
@@ -962,7 +1028,13 @@ UKP.register({
       peringatan: "Pengali 1/3/4 kali Pasal 44B (UU HPP) dari pengetahuan regulasi; riset proyek menandai pidana ◐. Cek teks konsolidasi UU KUP."
     },
     {
-      id: "A2-026", topik: "A2.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"], kasusId: "V-A2-01",
+      id: "A2-026",
+      topik: "A2.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      kasusId: "V-A2-01",
       stem: "Data untuk soal vignette V-A2-01: PT Graha Mandiri (PKP, menyelenggarakan pembukuan, SPT selalu tepat waktu) diperiksa atas PPN Masa Juni 2024 (SPT Masa semula dilaporkan nihil, tanpa kompensasi atau restitusi). Pemeriksa mengoreksi Pajak Masukan yang tidak memenuhi syarat sehingga PPN kurang bayar Rp150.000.000. SKPKB diterbitkan dan dikirim 16 Oktober 2026. Anggap tarif bunga per bulan yang berlaku untuk penghitungan ini: uplift 15% = 1,84%; uplift 20% = 2,26%. Jumlah yang harus dibayar menurut SKPKB adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp262.500.000", B: "Rp231.360.000", C: "Rp227.280.000", D: "Rp216.240.000" },
@@ -970,12 +1042,21 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
         inti: "SKPKB hasil pemeriksaan biasa (Pasal 13 ayat (1) huruf a) dikenai bunga Pasal 13 ayat (2) uplift 15% sejak berakhirnya Masa Pajak sampai SKPKB terbit, paling lama 24 bulan.",
-        jejakHitung: [["30 Jun 2024 → 16 Okt 2026", "28 bulan, dibatasi 24"], ["Bunga = 150.000.000 × 1,84% × 24", "Rp66.240.000"], ["Pokok + bunga", "Rp216.240.000"]],
-        mengapaSalah: { A: "Kenaikan 75% hanya bila SKPKB terbit karena Pasal 13 ayat (1) huruf b–d (misalnya SPT tidak disampaikan setelah ditegur).", B: "Uplift 20% (Pasal 13 ayat (3)) tidak berlaku untuk pemeriksaan biasa.", C: "Tidak menerapkan batas 24 bulan (28 bulan)." },
+        jejakHitung: [
+          ["30 Jun 2024 → 16 Okt 2026", "28 bulan, dibatasi 24"],
+          ["Bunga = 150.000.000 × 1,84% × 24", "Rp66.240.000"],
+          ["Pokok + bunga", "Rp216.240.000"]
+        ],
+        mengapaSalah: {
+          A: "Kenaikan 75% hanya bila SKPKB terbit karena Pasal 13 ayat (1) huruf b–d (misalnya SPT tidak disampaikan setelah ditegur).",
+          B: "Uplift 20% (Pasal 13 ayat (3)) tidak berlaku untuk pemeriksaan biasa.",
+          C: "Tidak menerapkan batas 24 bulan (28 bulan)."
+        },
         jebakan: "PPN kurang bayar dari pemeriksaan biasa tidak otomatis kenaikan 75%."
       },
-      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a dan ayat (2) UU KUP", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (2) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "A2-027", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10"], kasusId: "V-A2-01",
@@ -1015,7 +1096,12 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A2-029", topik: "A2.6", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2, laporanUjian: ["B-2026-10"],
+      id: "A2-029",
+      topik: "A2.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
       stem: "KPP menemukan lima peristiwa pada CV Rajawali Teknik: (1) angsuran PPh Pasal 25 Masa Maret 2026 tidak disetor; (2) faktur pajak atas penyerahan BKP dibuat terlambat; (3) hasil pemeriksaan PPh Badan 2024 menunjukkan kurang bayar; (4) SPT Masa PPN Masa April 2026 dilaporkan terlambat; (5) dalam pemeriksaan ditemukan bonus pegawai Juni 2025 yang belum dipotong PPh Pasal 21 dan tidak dilaporkan dalam SPT Masa. Peristiwa yang ditagih dengan STP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "(1), (2), dan (4)", B: "(1), (2), (4), dan (5)", C: "(1), (3), dan (4)", D: "(2) dan (4) saja" },
@@ -1024,11 +1110,16 @@ UKP.register({
       pembahasan: {
         inti: "STP (Pasal 14) menagih PPh tahun berjalan yang tidak dibayar, denda/bunga, dan denda faktur; kekurangan pajak hasil pemeriksaan ditetapkan dengan SKPKB (Pasal 13).",
         jejakHitung: [],
-        mengapaSalah: { B: "Temuan pemeriksaan (5) ditetapkan dengan SKPKB, bukan STP.", C: "Kurang bayar hasil pemeriksaan (3) adalah SKPKB.", D: "PPh 25 tahun berjalan yang tidak dibayar (1) juga ditagih dengan STP Pasal 14 ayat (1) huruf a." },
+        mengapaSalah: {
+          B: "Temuan pemeriksaan (5) ditetapkan dengan SKPKB, bukan STP.",
+          C: "Kurang bayar hasil pemeriksaan (3) adalah SKPKB.",
+          D: "PPh 25 tahun berjalan yang tidak dibayar (1) juga ditagih dengan STP Pasal 14 ayat (1) huruf a."
+        },
         jebakan: "STP untuk tagihan administratif; SKPKB untuk hasil pengujian (pemeriksaan)."
       },
-      dasarHukum: [{ pasal: "Pasal 14 ayat (1) dan (4) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 13 ayat (1) UU KUP", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 14 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 14 ayat (4) UU KUP (denda faktur 1%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 13 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-030", topik: "A2.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
@@ -1244,7 +1335,11 @@ UKP.register({
       anggaranDetik: 200, verifikasi: "✅"
     },
     {
-      id: "A2-040", topik: "A2.8", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2,
+      id: "A2-040",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
       stem: "CV Sentra Elektrik (PKP) menyerahkan peralatan listrik (bukan barang mewah) kepada PT Bangun Kota pada 12 Agustus 2026 dengan harga jual Rp240.000.000. Faktur pajak baru dibuat dan diunggah ke Coretax pada 25 November 2026, lewat 3 bulan sejak saat faktur seharusnya dibuat, sehingga dianggap tidak membuat faktur pajak. PPN dihitung 12% × DPP nilai lain 11/12 × harga jual. Sanksi Pasal 14 ayat (4) UU KUP yang ditagih dengan STP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp2.400.000", B: "Rp4.400.000", C: "Rp264.000", D: "Rp2.200.000" },
@@ -1252,16 +1347,28 @@ UKP.register({
       jebakanOpsi: { A: "salah-hitung", B: "angka-usang", C: "salah-baca" },
       pembahasan: {
         inti: "PKP yang tidak membuat faktur, terlambat, atau tidak lengkap dikenai denda 1% dari Dasar Pengenaan Pajak; DPP di sini adalah nilai lain 11/12 × harga jual.",
-        jejakHitung: [["DPP = 11/12 × 240.000.000", "Rp220.000.000"], ["Denda 1% × DPP", "Rp2.200.000"]],
-        mengapaSalah: { A: "1% dari harga jual, bukan dari DPP.", B: "Tarif denda 2% berlaku sebelum UU HPP.", C: "1% dari PPN (Rp26.400.000), bukan dari DPP." },
+        jejakHitung: [
+          ["DPP = 11/12 × 240.000.000", "Rp220.000.000"],
+          ["Denda 1% × DPP", "Rp2.200.000"]
+        ],
+        mengapaSalah: {
+          A: "1% dari harga jual, bukan dari DPP.",
+          B: "Tarif denda 2% adalah ketentuan UU 28/2007, sebelum UU Cipta Kerja (sejak 2 November 2020 menjadi 1%).",
+          C: "1% dari PPN (Rp26.400.000), bukan dari DPP."
+        },
         jebakan: "Era PPN 12%: DPP nilai lain 11/12 menjadi dasar denda faktur."
       },
-      dasarHukum: [{ pasal: "Pasal 14 ayat (1) huruf d dan ayat (4) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PMK 131/2024", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 120, verifikasi: "◐",
+      dasarHukum: [{ pasal: "Pasal 14 ayat (1) huruf d UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 14 ayat (4) UU KUP (denda faktur 1%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "PMK 131/2024", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 120,
+      verifikasi: "◐",
       peringatan: "Penerapan denda 1% atas DPP nilai lain 11/12 mengikuti bunyi 'dari Dasar Pengenaan Pajak'; praktik Coretax atas penyerahan non-mewah belum dikonfirmasi riset."
     },
     {
-      id: "A2-041", topik: "A2.8", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1,
+      id: "A2-041",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
       stem: "Tarif bunga per bulan Oktober 2026 menurut KMK 47/MK/EF.2/2026 adalah 0,59%; 1,01%; 1,42%; 1,84%; dan 2,26%, masing-masing untuk uplift 0%, 5%, 10%, 15%, dan 20%. Tarif 1,42% per bulan dipakai untuk sanksi atas peristiwa ...",
       kataKualifikasi: [],
       opsi: { A: "SKPKB hasil pemeriksaan atas PPh yang kurang dibayar", B: "SKPKB yang tidak dilunasi pada saat jatuh tempo", C: "Pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan sebelum SPHP", D: "Keterlambatan penyetoran pajak masa" },
@@ -1270,11 +1377,16 @@ UKP.register({
       pembahasan: {
         inti: "1,42% adalah tarif uplift 10%, yaitu sanksi Pasal 8 ayat (5) atas pengungkapan ketidakbenaran pengisian SPT selama pemeriksaan.",
         jejakHitung: [],
-        mengapaSalah: { A: "SKPKB Pasal 13 ayat (2): uplift 15% (1,84%).", B: "Pasal 19 ayat (1): uplift 0% (0,59%).", D: "Pasal 9 ayat (2a): uplift 5% (1,01%)." },
+        mengapaSalah: {
+          A: "SKPKB Pasal 13 ayat (2): uplift 15% (1,84%).",
+          B: "Pasal 19 ayat (1): uplift 0% (0,59%).",
+          D: "Pasal 9 ayat (2a): uplift 5% (1,01%)."
+        },
         jebakan: "Hafal pasangan: 0 Ps. 19 · 5 Ps. 8(2)/9/14 · 10 Ps. 8(5) · 15 Ps. 13(2) · 20 Ps. 13(3)."
       },
-      dasarHukum: [{ pasal: "Pasal 8 ayat (5) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" }],
-      anggaranDetik: 60, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 8 ayat (5) UU KUP (bunga uplift 10%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅"
     },
     {
       id: "A2-042",
@@ -1361,7 +1473,11 @@ UKP.register({
       peringatan: "Batas PKP (lebih bayar ≤ Rp1 miliar dan penyerahan ≤ Rp4,2 miliar per Masa Pajak, sejak 1 Mei 2026) terverifikasi dari ringkasan resmi PMK 28 Tahun 2026 ✅. Batas OP berusaha Rp100 juta dan badan Rp1 miliar mengikuti PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021 dan pemberitaan PMK 28/2026; batas peredaran usaha badan yang diberitakan (Rp50 miliar) serta nomor pasal PMK 28/2026 belum dibaca dari teks ◐."
     },
     {
-      id: "A2-046", topik: "A2.9", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3,
+      id: "A2-046",
+      topik: "A2.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
       stem: "SKPLB PPh Badan PT Hijau Lestari sebesar Rp300.000.000 terbit 5 Oktober 2026 dan WP tidak memiliki utang pajak. Batas waktu pengembalian 1 bulan berakhir 5 November 2026, tetapi pengembalian baru dilakukan (SP2D terbit dan dana ditransfer ke rekening WP) pada 18 Januari 2027. Anggap tarif imbalan bunga per bulan yang berlaku 0,59% (uplift 0%), sedangkan tarif uplift 5% 1,01%. Imbalan bunga Pasal 11 ayat (3) yang diterima WP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp9.090.000", B: "Rp7.080.000", C: "Rp3.540.000", D: "Rp5.310.000" },
@@ -1369,12 +1485,21 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-hitung" },
       pembahasan: {
         inti: "Imbalan bunga Pasal 11 ayat (3) dihitung sejak batas waktu 1 bulan berakhir sampai pengembalian dilakukan, dengan tarif uplift 0%, bagian bulan dihitung penuh.",
-        jejakHitung: [["5 Nov 2026 → 5 Jan 2027", "2 bulan"], ["5 Jan → 18 Jan 2027", "bagian bulan = 1"], ["Imbalan = 300.000.000 × 0,59% × 3", "Rp5.310.000"]],
-        mengapaSalah: { A: "Memakai uplift 5% milik sanksi, bukan imbalan bunga.", B: "Dihitung sejak SKPLB terbit (4 bulan), bukan sejak batas 1 bulan berakhir.", C: "Bulan dibulatkan ke bawah (2 bulan)." },
+        jejakHitung: [
+          ["5 Nov 2026 → 5 Jan 2027", "2 bulan"],
+          ["5 Jan → 18 Jan 2027", "bagian bulan = 1"],
+          ["Imbalan = 300.000.000 × 0,59% × 3", "Rp5.310.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai uplift 5% milik sanksi, bukan imbalan bunga.",
+          B: "Dihitung sejak SKPLB terbit (4 bulan), bukan sejak batas 1 bulan berakhir.",
+          C: "Bulan dibulatkan ke bawah (2 bulan)."
+        },
         jebakan: "Imbalan bunga mulai setelah jatah 1 bulan DJP habis."
       },
-      dasarHukum: [{ pasal: "Pasal 11 ayat (2) dan (3) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "KMK tarif bunga bulanan (uplift 0%)", berlakuSejak: "2026-10-01" }],
-      anggaranDetik: 150, verifikasi: "◐",
+      dasarHukum: [{ pasal: "Pasal 11 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 11 ayat (3) UU KUP (imbalan bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK tarif bunga bulanan (uplift 0%)", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 150,
+      verifikasi: "◐",
       peringatan: "Ketentuan imbalan bunga Pasal 11 ayat (3) bertanda ◐ dalam riset; tarif bulan November 2026 belum terbit saat penyusunan sehingga dinyatakan sebagai asumsi soal."
     },
     {
@@ -1625,28 +1750,43 @@ UKP.register({
       anggaranDetik: 60, verifikasi: "✅"
     },
     {
-      id: "A2-060", topik: "A2.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"],
+      id: "A2-060",
+      topik: "A2.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
       stem: "KPP menemukan empat peristiwa pada PT Wahana Karya (PKP, tahun buku kalender): (i) angsuran PPh Pasal 25 Masa Juli dan Agustus 2026 tidak dibayar; (ii) pemeriksaan atas SPT Tahunan PPh Badan 2024 yang disampaikan tepat waktu menemukan biaya fiktif sehingga PPh kurang dibayar; (iii) SPT Tahunan PPh Badan 2023 tidak disampaikan dan tetap tidak disampaikan setelah ditegur secara tertulis, lalu pemeriksaan menemukan PPh kurang dibayar; (iv) SPT Masa PPN Masa Maret 2024 tidak disampaikan setelah ditegur secara tertulis, lalu pemeriksaan menemukan PPN kurang dibayar. Pasangan produk hukum dan sanksi administratif atas pokok pajaknya yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "(i) STP berisi pokok dan bunga uplift 5%; (iv) SKPKB dengan bunga uplift 20%",
-        B: "(ii) SKPKB dengan kenaikan 75%; (iii) SKPKB dengan bunga uplift 20%",
-        C: "(i) STP berisi pokok dan bunga uplift 5%; (iii) SKPKB dengan bunga uplift 20%",
-        D: "(ii) STP berisi pokok dan bunga uplift 15%; (iv) SKPKB dengan kenaikan 75%"
-      },
+      opsi: { A: "(i) STP berisi pokok dan bunga uplift 5%; (iv) SKPKB dengan bunga uplift 20%", B: "(ii) SKPKB dengan kenaikan 75%; (iii) SKPKB dengan bunga uplift 20%", C: "(i) STP berisi pokok dan bunga uplift 5%; (iii) SKPKB dengan bunga uplift 20%", D: "(ii) STP berisi pokok dan bunga uplift 15%; (iv) SKPKB dengan kenaikan 75%" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "PPh tahun berjalan yang tidak dibayar ditagih dengan STP (Pasal 14 ayat (1) huruf a) beserta bunga uplift 5% (Pasal 14 ayat (3)). SPT yang tetap tidak disampaikan setelah ditegur melahirkan SKPKB Pasal 13 ayat (1) huruf b: PPh kurang dibayar dikenai bunga uplift 20% (Pasal 13 ayat (3) huruf a), sedangkan PPN kurang dibayar dikenai kenaikan 75% (huruf d). Temuan pemeriksaan biasa (ii) ditetapkan dengan SKPKB berbunga uplift 15% (Pasal 13 ayat (2)).",
-        jejakHitung: [["(i) PPh 25 tahun berjalan tidak dibayar", "STP + bunga uplift 5% (Ps. 14 ayat (3))"], ["(ii) SPT tepat waktu, koreksi pemeriksaan", "SKPKB + bunga uplift 15% (Ps. 13 ayat (2))"], ["(iii) SPT PPh tidak disampaikan setelah ditegur", "SKPKB + bunga uplift 20% (Ps. 13 ayat (3) huruf a)"], ["(iv) SPT PPN tidak disampaikan setelah ditegur", "SKPKB + kenaikan 75% (Ps. 13 ayat (3) huruf d)"]],
-        mengapaSalah: { A: "Pasangan (iv) keliru: PPN kurang dibayar dalam SKPKB Pasal 13 ayat (1) huruf b dikenai kenaikan 75%, bukan bunga uplift 20%.", B: "Pasangan (ii) keliru: SKPKB hasil pemeriksaan atas SPT yang disampaikan (huruf a) dikenai bunga uplift 15%; kenaikan 75% hanya untuk huruf b–d.", D: "Pasangan (ii) keliru: kekurangan pajak hasil pemeriksaan ditetapkan dengan SKPKB, bukan ditagih dengan STP." },
+        jejakHitung: [
+          ["(i) PPh 25 tahun berjalan tidak dibayar", "STP + bunga uplift 5% (Ps. 14 ayat (3))"],
+          ["(ii) SPT tepat waktu, koreksi pemeriksaan", "SKPKB + bunga uplift 15% (Ps. 13 ayat (2))"],
+          ["(iii) SPT PPh tidak disampaikan setelah ditegur", "SKPKB + bunga uplift 20% (Ps. 13 ayat (3) huruf a)"],
+          ["(iv) SPT PPN tidak disampaikan setelah ditegur", "SKPKB + kenaikan 75% (Ps. 13 ayat (3) huruf d)"]
+        ],
+        mengapaSalah: {
+          A: "Pasangan (iv) keliru: PPN kurang dibayar dalam SKPKB Pasal 13 ayat (1) huruf b dikenai kenaikan 75%, bukan bunga uplift 20%.",
+          B: "Pasangan (ii) keliru: SKPKB hasil pemeriksaan atas SPT yang disampaikan (huruf a) dikenai bunga uplift 15%; kenaikan 75% hanya untuk huruf b–d.",
+          D: "Pasangan (ii) keliru: kekurangan pajak hasil pemeriksaan ditetapkan dengan SKPKB, bukan ditagih dengan STP."
+        },
         jebakan: "Kata 'ditegur' memindahkan sanksi dari Pasal 13 ayat (2) ke ayat (3), lalu jenis pajaknya (PPh atau PPN) menentukan bunga atau kenaikan."
       },
-      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a dan b, ayat (2), dan ayat (3) huruf a dan d UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 14 ayat (1) huruf a dan ayat (3) UU KUP", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 160, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a dan b UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (2) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 13 ayat (3) huruf a dan d UU KUP (UU 7/2021)", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 14 ayat (1) huruf a UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 14 ayat (3) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 160,
+      verifikasi: "✅"
     },
     {
-      id: "A2-061", topik: "A2.8", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10"],
+      id: "A2-061",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
       stem: "Hasil penelitian KPP atas PT Sagara Prima (PKP, tahun buku kalender) per akhir November 2026: (1) SPT Masa PPN Masa Agustus 2026 (kurang bayar Rp18.500.000 yang telah disetor 29 September 2026) baru disampaikan Jumat, 2 Oktober 2026; (2) faktur pajak atas penyerahan BKP 8 Juni 2026 dengan DPP Rp80.000.000 baru dibuat 14 Oktober 2026 sehingga dianggap tidak membuat faktur pajak; (3) PPh Pasal 23 Masa September 2026 Rp12.000.000 disetor, dan SPT Masa PPh Unifikasi-nya disampaikan, pada Senin, 19 Oktober 2026; (4) SKPKB PPh Badan 2024 hasil pemeriksaan (pokok Rp50.000.000 dan bunga Pasal 13 ayat (2) Rp18.400.000) terbit 2 Oktober 2026 dan telah dilunasi seluruhnya 20 Oktober 2026. Tarif KMK Oktober 2026: uplift 0% = 0,59%; 5% = 1,01%; 15% = 1,84%. Jumlah sanksi administratif yang ditagih melalui STP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp1.300.000", B: "Rp2.221.200", C: "Rp1.021.200", D: "Rp1.421.200" },
@@ -1654,12 +1794,24 @@ UKP.register({
       jebakanOpsi: { A: "salah-baca", B: "angka-usang", C: "salah-klasifikasi" },
       pembahasan: {
         inti: "STP menagih denda dan bunga yang berdiri sendiri: denda SPT Masa PPN terlambat Rp500.000 (Pasal 7 ayat (1)), denda faktur 1% × DPP (Pasal 14 ayat (4)), dan bunga Pasal 9 ayat (2a) atas PPh 23 yang disetor setelah tanggal 15. Bunga dalam SKPKB sudah ditetapkan di SKPKB itu sendiri dan SKPKB dilunasi sebelum jatuh tempo, sehingga tidak ada STP Pasal 19.",
-        jejakHitung: [["(1) SPT Masa PPN Agustus terlambat (batas 30 Sep 2026)", "Rp500.000"], ["(2) Denda faktur 1% × Rp80.000.000", "Rp800.000"], ["(3) Jatuh tempo setor 15 Okt → setor 19 Okt 2026", "bagian bulan = 1 bulan"], ["Bunga Ps. 9 ayat (2a) = 12.000.000 × 1,01% × 1", "Rp121.200"], ["(4) SKPKB: bunga di dalam SKPKB, lunas sebelum jatuh tempo 2 Nov 2026", "Rp0 di STP"], ["Total STP", "Rp1.421.200"]],
-        mengapaSalah: { A: "Menganggap PPh 23 bebas sanksi karena SPT Masa Unifikasi tepat waktu, padahal setorannya lewat tanggal 15.", B: "Memakai denda faktur 2% × DPP sebelum UU HPP.", C: "SPT Masa PPN terlambat didenda Rp500.000, bukan Rp100.000." },
+        jejakHitung: [
+          ["(1) SPT Masa PPN Agustus terlambat (batas 30 Sep 2026)", "Rp500.000"],
+          ["(2) Denda faktur 1% × Rp80.000.000", "Rp800.000"],
+          ["(3) Jatuh tempo setor 15 Okt → setor 19 Okt 2026", "bagian bulan = 1 bulan"],
+          ["Bunga Ps. 9 ayat (2a) = 12.000.000 × 1,01% × 1", "Rp121.200"],
+          ["(4) SKPKB: bunga di dalam SKPKB, lunas sebelum jatuh tempo 2 Nov 2026", "Rp0 di STP"],
+          ["Total STP", "Rp1.421.200"]
+        ],
+        mengapaSalah: {
+          A: "Menganggap PPh 23 bebas sanksi karena SPT Masa Unifikasi tepat waktu, padahal setorannya lewat tanggal 15.",
+          B: "Memakai denda faktur 2% × DPP menurut UU 28/2007; sejak UU Cipta Kerja (2 November 2020) dendanya 1%.",
+          C: "SPT Masa PPN terlambat didenda Rp500.000, bukan Rp100.000."
+        },
         jebakan: "Data SKPKB dan PPN kurang bayar sengaja disisipkan: yang ditagih STP hanya sanksi yang tidak tercantum dalam ketetapan lain."
       },
-      dasarHukum: [{ pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2a) dan Pasal 14 ayat (1) dan (4) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (2a) dan Pasal 14 ayat (4) UU KUP (bunga dan denda faktur; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 14 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "A2-062", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-A2-04",
@@ -1981,7 +2133,12 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A2-077", topik: "A2.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"],
+      id: "A2-077",
+      topik: "A2.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
       stem: "PT Citra Rekayasa (PKP, tahun buku kalender, eksportir jasa desain teknik) diperiksa atas SPT Masa PPN Februari dan Maret 2025 yang dilaporkan tepat waktu. Temuan: (i) Masa Februari 2025, PKP menerapkan tarif 0% atas penyerahan jasa desain dengan penggantian Rp400.000.000 kepada pelanggan luar negeri, padahal jasa itu terbukti dimanfaatkan di dalam daerah pabean sehingga bukan ekspor JKP; PPN terutang dihitung 12% × DPP nilai lain 11/12 × penggantian; (ii) Masa Maret 2025, Pajak Masukan Rp20.000.000 dari faktur yang tidak memenuhi syarat dikoreksi, sehingga SPT yang semula nihil menjadi kurang bayar Rp20.000.000. Kedua SKPKB diterbitkan Senin, 12 Oktober 2026. Anggap tarif bunga uplift 15% yang berlaku 1,84% per bulan. Jumlah sanksi administratif dalam kedua SKPKB adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp23.184.000", B: "Rp39.992.000", C: "Rp42.992.000", D: "Rp50.992.000" },
@@ -1989,12 +2146,23 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "angka-usang" },
       pembahasan: {
         inti: "PPN yang tidak seharusnya dikenai tarif 0% ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf c dan dikenai kenaikan 75% (Pasal 13 ayat (3)). Koreksi Pajak Masukan biasa ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf a dan dikenai bunga uplift 15% sejak akhir Masa Pajak sampai SKPKB terbit.",
-        jejakHitung: [["(i) PPN = 12% × 11/12 × 400.000.000", "Rp44.000.000"], ["(i) Kenaikan 75%", "Rp33.000.000"], ["(ii) 31 Mar 2025 → 12 Okt 2026", "18 bulan 12 hari = 19 bulan"], ["(ii) Bunga = 20.000.000 × 1,84% × 19", "Rp6.992.000"], ["Total sanksi", "Rp39.992.000"]],
-        mengapaSalah: { A: "Memberi bunga uplift 15% juga pada (i): 44.000.000 × 1,84% × 20 = Rp16.192.000; tarif 0% yang tidak seharusnya dikenai kenaikan 75%.", C: "Menghitung PPN (i) dengan 12% × penggantian penuh (Rp48.000.000) sehingga kenaikannya Rp36.000.000; DPP nilai lain 11/12 berlaku sejak 2025.", D: "Memakai kenaikan 100% sebelum UU HPP untuk (i)." },
+        jejakHitung: [
+          ["(i) PPN = 12% × 11/12 × 400.000.000", "Rp44.000.000"],
+          ["(i) Kenaikan 75%", "Rp33.000.000"],
+          ["(ii) 31 Mar 2025 → 12 Okt 2026", "18 bulan 12 hari = 19 bulan"],
+          ["(ii) Bunga = 20.000.000 × 1,84% × 19", "Rp6.992.000"],
+          ["Total sanksi", "Rp39.992.000"]
+        ],
+        mengapaSalah: {
+          A: "Memberi bunga uplift 15% juga pada (i): 44.000.000 × 1,84% × 20 = Rp16.192.000; tarif 0% yang tidak seharusnya dikenai kenaikan 75%.",
+          C: "Menghitung PPN (i) dengan 12% × penggantian penuh (Rp48.000.000) sehingga kenaikannya Rp36.000.000; DPP nilai lain 11/12 berlaku sejak 2025.",
+          D: "Memakai kenaikan 100% sebelum UU HPP untuk (i)."
+        },
         jebakan: "Status eksportir dan SPT yang tepat waktu tidak mengubah sanksi; huruf c (tarif 0%) dan huruf a (koreksi biasa) memberi sanksi yang berbeda."
       },
-      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a dan c, ayat (2), dan ayat (3) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PMK 131/2024 (DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 200, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a dan c UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (2) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 13 ayat (3) UU KUP (UU 7/2021)", berlakuSejak: "2021-10-29" }, { pasal: "PMK 131/2024 (DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅"
     },
     {
       id: "A2-078", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1, laporanUjian: ["B-2026-10"],
@@ -2019,7 +2187,11 @@ UKP.register({
       anggaranDetik: 100, verifikasi: "✅"
     },
     {
-      id: "A2-079", topik: "A2.8", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A2-079",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "PT Pelangi Nusa (tahun buku kalender, bukan perusahaan terbuka, peredaran bruto 2025 Rp82 miliar sehingga tidak memperoleh fasilitas Pasal 31E) menyampaikan SPT Tahunan PPh Badan 2025 pada Senin, 27 April 2026 dengan PPh Pasal 29 Rp35.000.000 yang telah dilunasi Jumat, 24 April 2026. Pada Oktober 2026, sebelum ada pemeriksaan, perusahaan menemukan biaya entertainment Rp120.000.000 tanpa daftar nominatif yang telah dibebankan, sehingga PPh terutang bertambah 22% × Rp120.000.000. Kekurangan itu disetor Senin, 12 Oktober 2026 dan SPT pembetulan disampaikan Rabu, 14 Oktober 2026. Anggap tarif bunga uplift 5% yang berlaku pada tanggal dimulainya penghitungan sanksi 1,05% per bulan. Sanksi administratif atas pembetulan tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp1.386.000", B: "Rp1.940.400", C: "Rp1.663.200", D: "Rp2.663.200" },
@@ -2027,12 +2199,22 @@ UKP.register({
       jebakanOpsi: { A: "salah-hitung", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Pembetulan sendiri SPT Tahunan yang menambah utang pajak dikenai bunga Pasal 8 ayat (2) uplift 5% sejak batas waktu penyampaian SPT Tahunan badan berakhir (30 April 2026) sampai tanggal pembayaran; SPT semula tepat waktu sehingga tidak ada denda Pasal 7.",
-        jejakHitung: [["Tambahan PPh = 22% × 120.000.000", "Rp26.400.000"], ["30 Apr → 12 Okt 2026", "5 bulan 12 hari = 6 bulan"], ["Bunga = 26.400.000 × 1,05% × 6", "Rp1.663.200"], ["Denda Pasal 7 (SPT semula 27 April, tepat waktu)", "Rp0"]],
-        mengapaSalah: { A: "Membulatkan bulan ke bawah (5 bulan); bagian bulan dihitung penuh.", B: "Menghitung sejak 31 Maret, batas SPT Tahunan orang pribadi (7 bulan).", D: "Menambahkan denda Rp1.000.000 padahal SPT semula disampaikan tepat waktu; pembetulan tidak membuat SPT terlambat." },
+        jejakHitung: [
+          ["Tambahan PPh = 22% × 120.000.000", "Rp26.400.000"],
+          ["30 Apr → 12 Okt 2026", "5 bulan 12 hari = 6 bulan"],
+          ["Bunga = 26.400.000 × 1,05% × 6", "Rp1.663.200"],
+          ["Denda Pasal 7 (SPT semula 27 April, tepat waktu)", "Rp0"]
+        ],
+        mengapaSalah: {
+          A: "Membulatkan bulan ke bawah (5 bulan); bagian bulan dihitung penuh.",
+          B: "Menghitung sejak 31 Maret, batas SPT Tahunan orang pribadi (7 bulan).",
+          D: "Menambahkan denda Rp1.000.000 padahal SPT semula disampaikan tepat waktu; pembetulan tidak membuat SPT terlambat."
+        },
         jebakan: "Tanggal pelunasan PPh 29 semula dan peredaran bruto tidak dipakai; titik awal bunga pembetulan Tahunan adalah batas waktu SPT, titik akhirnya tanggal setor."
       },
-      dasarHukum: [{ pasal: "Pasal 8 ayat (1) dan (2) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 3 ayat (3) huruf c UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PER-12/PJ/2026 (pembetulan SPT di Coretax)", berlakuSejak: "2026-10-01" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (2) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 3 ayat (3) huruf c UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PER-12/PJ/2026 (pembetulan SPT di Coretax)", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "A2-080",
@@ -2060,13 +2242,18 @@ UKP.register({
         },
         jebakan: "Ada dua titik waktu: 12 bulan (permohonan dianggap dikabulkan) dan 1 bulan sesudahnya (batas terbit SKPLB). Imbalan bunga keterlambatan SKPLB dihitung dari titik kedua."
       },
-      dasarHukum: [{ pasal: "Pasal 17B ayat (1)–(3) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026 (imbalan bunga uplift 0%)", berlakuSejak: "2021-10-29" }],
+      dasarHukum: [{ pasal: "Pasal 17B ayat (1) dan (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 17B ayat (3) UU KUP (imbalan bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026 (imbalan bunga uplift 0%)", berlakuSejak: null }],
       anggaranDetik: 160,
       verifikasi: "◐",
       peringatan: "Titik awal imbalan bunga Pasal 17B ayat (3) (sejak berakhirnya jangka waktu 1 bulan penerbitan SKPLB pada ayat (2)) disimpulkan dari bunyi Pasal 17B UU KUP dan kutipan ketentuan imbalan bunga PMK 81/2024 serta PMK pendahulunya di hasil pencarian; naskah resmi UU dan PMK (termasuk perubahan PMK 81/2024 oleh PMK 1/2026) belum dibuka langsung. Tarif 0,60% dan 1,02% adalah asumsi soal."
     },
     {
-      id: "A2-081", topik: "A2.10", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["C-2026-10"],
+      id: "A2-081",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
       stem: "SKPKB PPN Masa Juni 2020 atas PT Maju Karya sebesar Rp300.000.000 diterbitkan 11 Maret 2022 dan tidak dilunasi saat jatuh tempo. KPP menyampaikan Surat Teguran pada 20 April 2022, tetapi Surat Paksa tidak pernah diterbitkan. Pada 15 Agustus 2024 KPP menerima surat permohonan angsuran dari PT Maju Karya yang menyebutkan jumlah utang SKPKB tersebut; permohonan disetujui dan tiga angsuran dibayar sampai 15 November 2024, lalu pembayaran berhenti. Tidak ada penyidikan maupun SKPKB/SKPKBT karena pidana. Hak untuk melakukan penagihan atas sisa utang tersebut daluwarsa pada ...",
       kataKualifikasi: [],
       opsi: { A: "15 Agustus 2029", B: "11 Maret 2027", C: "20 April 2027", D: "15 November 2029" },
@@ -2074,12 +2261,22 @@ UKP.register({
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
         inti: "Daluwarsa penagihan 5 tahun sejak penerbitan SKPKB (11 Maret 2027) tertangguh karena ada pengakuan utang pajak berupa permohonan angsuran; daluwarsa dihitung ulang 5 tahun sejak tanggal pengakuan (surat permohonan diterima 15 Agustus 2024).",
-        jejakHitung: [["Daluwarsa semula: 11 Mar 2022 + 5 tahun", "11 Maret 2027"], ["Surat Teguran 20 Apr 2022", "tidak menangguhkan daluwarsa"], ["Pengakuan utang (permohonan angsuran diterima)", "15 Agustus 2024"], ["Daluwarsa baru: + 5 tahun", "15 Agustus 2029"]],
-        mengapaSalah: { B: "Mengabaikan penangguhan karena pengakuan utang pajak.", C: "Surat Teguran bukan sebab penangguhan; yang menangguhkan adalah Surat Paksa, pengakuan utang, SKPKB Pasal 13 ayat (5)/SKPKBT Pasal 15 ayat (4), atau penyidikan.", D: "Titik awal adalah tanggal pengakuan utang, bukan tanggal pembayaran angsuran terakhir." },
+        jejakHitung: [
+          ["Daluwarsa semula: 11 Mar 2022 + 5 tahun", "11 Maret 2027"],
+          ["Surat Teguran 20 Apr 2022", "tidak menangguhkan daluwarsa"],
+          ["Pengakuan utang (permohonan angsuran diterima)", "15 Agustus 2024"],
+          ["Daluwarsa baru: + 5 tahun", "15 Agustus 2029"]
+        ],
+        mengapaSalah: {
+          B: "Mengabaikan penangguhan karena pengakuan utang pajak.",
+          C: "Surat Teguran bukan sebab penangguhan; yang menangguhkan menurut Pasal 22 ayat (2) adalah Surat Paksa, pengakuan utang, penerbitan SKPKB Pasal 13 ayat (5)/SKPKBT Pasal 15 ayat (4) (kedua ayat itu dihapus UU 11/2020, sehingga sebab ini kini tidak lagi terjadi), atau penyidikan.",
+          D: "Titik awal adalah tanggal pengakuan utang, bukan tanggal pembayaran angsuran terakhir."
+        },
         jebakan: "Teguran dan pembayaran angsuran adalah tanggal pengecoh; cari peristiwa yang disebut Pasal 22 ayat (2)."
       },
       dasarHukum: [{ pasal: "Pasal 22 ayat (1) dan (2) UU KUP beserta penjelasannya", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (4) UU KUP (angsuran/penundaan)", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A2-082", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1, laporanUjian: ["B-2026-10"],
@@ -2196,26 +2393,37 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A2-087", topik: "A2.2", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A2-087",
+      topik: "A2.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Ibu Lia Kartika (orang pribadi penduduk, NIK sebagai NPWP) berdagang bahan bangunan dan membayar PPh final 0,5% berdasarkan PP 55/2022 s.t.d.d. PP 20/2026; ia belum PKP. Peredaran bruto 2025 Rp4,1 miliar. Peredaran bruto 2026: Januari–Agustus Rp3.950.000.000, September Rp480.000.000, Oktober Rp510.000.000, dan November diperkirakan Rp450.000.000. Ia tidak memiliki penghasilan dari luar negeri maupun dari pekerjaan bebas. Pernyataan yang paling tepat tentang kewajibannya adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Wajib melaporkan usaha untuk dikukuhkan sebagai PKP paling lambat 31 Oktober 2026; PPh final 0,5% berhenti sejak Masa Oktober 2026",
-        B: "Wajib melaporkan usaha untuk dikukuhkan sebagai PKP paling lambat 30 November 2026; PPh final 0,5% berhenti sejak Masa November 2026, dan sisa penghasilan tahun 2026 dihitung dengan tarif Pasal 17 dalam SPT Tahunan",
-        C: "Wajib melaporkan usaha untuk dikukuhkan sebagai PKP paling lambat 30 November 2026; PPh final 0,5% tetap berlaku sampai akhir Tahun Pajak 2026, dan mulai Tahun Pajak 2027 penghasilannya dikenai tarif umum",
-        D: "Wajib melaporkan usaha untuk dikukuhkan sebagai PKP paling lambat 31 Desember 2026, yaitu akhir tahun buku; PPh final 0,5% tetap berlaku sampai akhir Tahun Pajak 2026"
-      },
-      kunci: "C",
-      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
+      opsi: { A: "Wajib melaporkan usaha untuk dikukuhkan sebagai PKP paling lambat 31 Oktober 2026; PPh final 0,5% berhenti sejak Masa Oktober 2026", B: "Wajib melaporkan usaha untuk dikukuhkan sebagai PKP paling lambat 30 November 2026; PPh final 0,5% berhenti sejak Masa November 2026, dan sisa penghasilan tahun 2026 dihitung dengan tarif Pasal 17 dalam SPT Tahunan", C: "Wajib melaporkan usaha untuk dikukuhkan sebagai PKP paling lambat 30 November 2026; PPh final 0,5% tetap berlaku sampai akhir Tahun Pajak 2026, dan mulai Tahun Pajak 2027 penghasilannya dikenai tarif umum", D: "Wajib melaporkan usaha untuk dikukuhkan sebagai PKP paling lambat 31 Desember 2026, yaitu akhir tahun buku; PPh final 0,5% tetap berlaku sampai akhir Tahun Pajak 2026" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "angka-usang" },
       pembahasan: {
-        inti: "Batas Rp4,8 miliar diuji kumulatif dalam tahun buku: terlampaui pada Oktober 2026 sehingga laporan pengukuhan PKP paling lambat akhir bulan berikutnya (30 November 2026). Untuk PPh, batas Rp4,8 miliar diuji atas tahun sebelumnya, sehingga tarif final 0,5% tetap dipakai sampai akhir 2026 dan tarif umum berlaku mulai 2027.",
-        jejakHitung: [["s.d. Agustus", "Rp3.950.000.000"], ["s.d. September (+Rp480 jt)", "Rp4.430.000.000 ≤ Rp4,8 M"], ["s.d. Oktober (+Rp510 jt)", "Rp4.940.000.000 > Rp4,8 M"], ["Lapor pengukuhan PKP", "paling lambat 30 November 2026"], ["PPh", "final 0,5% s.d. Desember 2026; tarif umum mulai 2027"]],
-        mengapaSalah: { A: "Batas lapor PKP adalah akhir bulan berikutnya, bukan akhir bulan saat batas terlampaui; PPh final juga tidak berhenti di tengah tahun.", B: "PPh final tidak berhenti di tengah tahun pajak; perubahan ke tarif umum berlaku mulai tahun pajak berikutnya.", D: "Kewajiban lapor PKP tidak menunggu akhir tahun buku." },
-        jebakan: "Satu angka batas (Rp4,8 miliar) memicu dua akibat dengan waktu berbeda: PPN segera (akhir bulan berikutnya), PPh pada tahun pajak berikutnya."
+        inti: "Batas Rp4,8 miliar diuji kumulatif dalam tahun buku: terlampaui pada Oktober 2026, sehingga Ibu Lia wajib melaporkan usahanya untuk dikukuhkan sebagai PKP paling lambat akhir tahun buku itu, 31 Desember 2026 (PMK 164/2023 Pasal 17), dan memungut PPN mulai Masa Pajak Januari 2027. Untuk PPh, batas Rp4,8 miliar diuji atas tahun sebelumnya, sehingga tarif final 0,5% tetap dipakai sampai akhir 2026 dan tarif umum berlaku mulai 2027.",
+        jejakHitung: [
+          ["s.d. Agustus", "Rp3.950.000.000"],
+          ["s.d. September (+Rp480 jt)", "Rp4.430.000.000 ≤ Rp4,8 M"],
+          ["s.d. Oktober (+Rp510 jt)", "Rp4.940.000.000 > Rp4,8 M"],
+          ["Lapor pengukuhan PKP", "paling lambat 31 Desember 2026 (akhir tahun buku)"],
+          ["PPN dipungut mulai", "Masa Pajak Januari 2027"],
+          ["PPh", "final 0,5% s.d. Desember 2026; tarif umum mulai 2027"]
+        ],
+        mengapaSalah: {
+          A: "Tenggat lapor PKP bukan akhir bulan saat batas terlampaui, dan PPh final tidak berhenti di tengah tahun pajak.",
+          B: "Memakai tenggat lama akhir bulan berikutnya, dan PPh final tidak berhenti di tengah tahun pajak; perubahan ke tarif umum berlaku mulai tahun pajak berikutnya.",
+          C: "Bagian PPh-nya benar, tetapi tenggat 30 November 2026 (akhir bulan berikutnya) adalah rumusan PMK 197/PMK.03/2013 yang sejak PMK 164/2023 diganti akhir tahun buku."
+        },
+        jebakan: "Satu angka batas (Rp4,8 miliar) memicu dua akibat: kewajiban PPN (lapor paling lambat akhir tahun buku, pungut mulai tahun buku berikutnya) dan PPh (tarif umum mulai tahun pajak berikutnya)."
       },
-      dasarHukum: [{ pasal: "Pasal 2 ayat (2) UU KUP; PMK 197/PMK.03/2013", berlakuSejak: "2014-01-01" }, { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 (batas peredaran bruto PPh final)", berlakuSejak: "2026-04-22" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 160, verifikasi: "◐",
-      peringatan: "Ketentuan bahwa PPh final 0,5% tetap dipakai sampai akhir tahun pajak saat peredaran bruto melampaui Rp4,8 miliar disimpulkan dari pengujian batas atas tahun sebelumnya (riset 02a B.6); pasal PP 55/2022 yang mengaturnya belum dikutip langsung."
+      dasarHukum: [{ pasal: "Pasal 2 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 164/2023 Pasal 17 dan 18", berlakuSejak: "2023-12-29" }, { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 (batas peredaran bruto PPh final)", berlakuSejak: "2026-04-22" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 160,
+      verifikasi: "◐",
+      peringatan: "Ketentuan bahwa PPh final 0,5% tetap dipakai sampai akhir tahun pajak saat peredaran bruto melampaui Rp4,8 miliar disimpulkan dari pengujian batas atas tahun sebelumnya (riset 02a B.6); pasal PP 55/2022 yang mengaturnya belum dikutip langsung. Tenggat akhir tahun buku mengikuti PMK 164/2023 Pasal 17 menurut keterangan resmi DJP dan soal try out November 2026; naskah PMK belum dibuka langsung."
     },
     {
       id: "A2-088", topik: "A2.3", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1,
@@ -2256,47 +2464,66 @@ UKP.register({
       anggaranDetik: 130, verifikasi: "✅"
     },
     {
-      id: "A2-090", topik: "A2.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A2-090",
+      topik: "A2.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       kutipan: "Pasal 8 ayat (1), (4), dan (5) UU KUP (parafrase setia): Wajib Pajak dengan kemauan sendiri dapat membetulkan SPT yang telah disampaikan, dengan syarat Direktur Jenderal Pajak belum melakukan tindakan pemeriksaan. Walaupun telah dilakukan pemeriksaan, Wajib Pajak dengan kemauan sendiri dapat mengungkapkan dalam laporan tersendiri ketidakbenaran pengisian SPT yang telah disampaikan, sepanjang Surat Pemberitahuan Hasil Pemeriksaan belum disampaikan, disertai pelunasan kekurangan pajak beserta bunga dengan uplift 10%; pemeriksaan tetap dilanjutkan.",
       stem: "PT Delta Sarana (tahun buku kalender) menerima SP2 pemeriksaan terfokus atas SPT Tahunan PPh Badan 2024 pada Senin, 3 Agustus 2026. Pada Senin, 21 September 2026, sebelum SPHP disampaikan, manajer pajak menemukan penghasilan jasa yang belum dilaporkan sehingga PPh kurang dibayar Rp40.000.000. Direksi ingin memperbaiki kesalahan itu sendiri agar sanksinya lebih ringan daripada bila dikoreksi pemeriksa. Berdasarkan kutipan, langkah yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Menyampaikan SPT pembetulan Pasal 8 ayat (1) dan melunasi kekurangan beserta bunga uplift 5%, sehingga pemeriksaan terfokus dihentikan",
-        B: "Mengungkapkan ketidakbenaran pengisian SPT dalam laporan tersendiri sebelum SPHP disampaikan, melunasi kekurangan beserta bunga uplift 10%, sehingga pemeriksaan terfokus dihentikan",
-        C: "Mengungkapkan ketidakbenaran pengisian SPT dalam laporan tersendiri sebelum SPHP disampaikan, melunasi kekurangan beserta bunga uplift 10%, dan pemeriksaan tetap dilanjutkan",
-        D: "Menunggu SPHP lalu menyetujui koreksi dalam PAHP, karena bunga dalam SKPKB juga memakai uplift 10%"
-      },
+      opsi: { A: "Menyampaikan SPT pembetulan Pasal 8 ayat (1) dan melunasi kekurangan beserta bunga uplift 5%, sehingga pemeriksaan terfokus dihentikan", B: "Mengungkapkan ketidakbenaran pengisian SPT dalam laporan tersendiri sebelum SPHP disampaikan, melunasi kekurangan beserta bunga uplift 10%, sehingga pemeriksaan terfokus dihentikan", C: "Mengungkapkan ketidakbenaran pengisian SPT dalam laporan tersendiri sebelum SPHP disampaikan, melunasi kekurangan beserta bunga uplift 10%, dan pemeriksaan tetap dilanjutkan", D: "Menunggu SPHP lalu menyetujui koreksi dalam PAHP, karena bunga dalam SKPKB juga memakai uplift 10%" },
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Setelah SP2 disampaikan, pembetulan biasa tertutup; jalurnya pengungkapan ketidakbenaran pengisian SPT (Pasal 8 ayat (4)) sebelum SPHP, dengan bunga Pasal 8 ayat (5) uplift 10%. Pemeriksaan tetap dilanjutkan, dan koreksi lain tetap dapat ditetapkan dalam SKP.",
-        jejakHitung: [["SP2 disampaikan", "3 Agustus 2026 → pembetulan Pasal 8 ayat (1) tertutup"], ["21 September 2026, SPHP belum ada", "pengungkapan Pasal 8 ayat (4) terbuka"], ["Sanksi pengungkapan", "bunga uplift 10% (Oktober 2026: 1,42% per bulan)"], ["Bila menunggu koreksi pemeriksa", "SKPKB berbunga uplift 15% (1,84% per bulan)"]],
-        mengapaSalah: { A: "Pembetulan Pasal 8 ayat (1) hanya dapat dilakukan sebelum DJP melakukan tindakan pemeriksaan.", B: "Pengungkapan tidak menghentikan pemeriksaan.", D: "SKPKB hasil pemeriksaan memakai uplift 15% (Pasal 13 ayat (2)), lebih berat dari 10%." },
+        jejakHitung: [
+          ["SP2 disampaikan", "3 Agustus 2026 → pembetulan Pasal 8 ayat (1) tertutup"],
+          ["21 September 2026, SPHP belum ada", "pengungkapan Pasal 8 ayat (4) terbuka"],
+          ["Sanksi pengungkapan", "bunga uplift 10% (Oktober 2026: 1,42% per bulan)"],
+          ["Bila menunggu koreksi pemeriksa", "SKPKB berbunga uplift 15% (1,84% per bulan)"]
+        ],
+        mengapaSalah: {
+          A: "Pembetulan Pasal 8 ayat (1) hanya dapat dilakukan sebelum DJP melakukan tindakan pemeriksaan.",
+          B: "Pengungkapan tidak menghentikan pemeriksaan.",
+          D: "SKPKB hasil pemeriksaan memakai uplift 15% (Pasal 13 ayat (2)), lebih berat dari 10%."
+        },
         jebakan: "Opsi B dan C hanya berbeda pada akibatnya terhadap pemeriksaan."
       },
-      dasarHukum: [{ pasal: "Pasal 8 ayat (1), (4), dan (5) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PMK 15/2025", berlakuSejak: "2025-02-14" }],
-      anggaranDetik: 130, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (4) UU KUP (batas sebelum SPHP; UU 7/2021)", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 8 ayat (5) UU KUP (bunga uplift 10%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "PMK 15/2025", berlakuSejak: "2025-02-14" }],
+      anggaranDetik: 130,
+      verifikasi: "✅"
     },
     {
-      id: "A2-091", topik: "A2.6", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2, laporanUjian: ["B-2026-10"],
+      id: "A2-091",
+      topik: "A2.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
       stem: "Pemeriksaan atas SPT Tahunan PPh Badan 2024 empat perusahaan (semua tahun buku kalender, SPT tepat waktu) selesai pada Oktober 2026: (1) PT Alfa: SPT lebih bayar Rp300.000.000 dimintakan restitusi; menurut pemeriksaan masih lebih bayar Rp120.000.000. (2) PT Beta: SPT lebih bayar Rp90.000.000; menurut pemeriksaan PPh terutang sama dengan kredit pajak. (3) PT Gama: SPT lebih bayar Rp50.000.000; menurut pemeriksaan kurang bayar Rp70.000.000. (4) PT Delta: telah menerima pengembalian pendahuluan Pasal 17C; menurut pemeriksaan kurang bayar Rp40.000.000. Pemetaan produk hukum dan sanksi yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "(1) SKPLB Rp120.000.000; (2) SKPN; (3) SKPKB Rp70.000.000 dengan bunga Pasal 13 ayat (2); (4) SKPKB Rp40.000.000 dengan kenaikan 100%",
-        B: "(1) SKPLB Rp120.000.000 dan SKPKB Rp180.000.000 atas selisih koreksi; (2) SKPN; (3) SKPKB Rp70.000.000 dengan bunga Pasal 13 ayat (2); (4) SKPKB Rp40.000.000 dengan kenaikan 100%",
-        C: "(1) SKPLB Rp120.000.000; (2) SKPLB nihil; (3) STP Rp70.000.000 dengan bunga Pasal 14 ayat (3); (4) SKPKB Rp40.000.000 dengan kenaikan 100%",
-        D: "(1) SKPLB Rp120.000.000; (2) SKPN; (3) SKPKB Rp70.000.000 dengan kenaikan 75%; (4) SKPKB Rp40.000.000 dengan bunga Pasal 13 ayat (2)"
-      },
+      opsi: { A: "(1) SKPLB Rp120.000.000; (2) SKPN; (3) SKPKB Rp70.000.000 dengan bunga Pasal 13 ayat (2); (4) SKPKB Rp40.000.000 dengan kenaikan 100%", B: "(1) SKPLB Rp120.000.000 dan SKPKB Rp180.000.000 atas selisih koreksi; (2) SKPN; (3) SKPKB Rp70.000.000 dengan bunga Pasal 13 ayat (2); (4) SKPKB Rp40.000.000 dengan kenaikan 100%", C: "(1) SKPLB Rp120.000.000; (2) SKPLB nihil; (3) STP Rp70.000.000 dengan bunga Pasal 14 ayat (3); (4) SKPKB Rp40.000.000 dengan kenaikan 100%", D: "(1) SKPLB Rp120.000.000; (2) SKPN; (3) SKPKB Rp70.000.000 dengan kenaikan 75%; (4) SKPKB Rp40.000.000 dengan bunga Pasal 13 ayat (2)" },
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "Ketetapan mengikuti selisih akhir pajak terutang dan kredit pajak: lebih bayar → SKPLB sebesar lebih bayar menurut pemeriksaan; sama → SKPN; kurang bayar → SKPKB berbunga Pasal 13 ayat (2). Kekurangan setelah pengembalian pendahuluan Pasal 17C dikenai kenaikan 100%.",
-        jejakHitung: [["(1) Lebih bayar menurut pemeriksaan", "SKPLB Rp120.000.000 (koreksi Rp180 jt tidak ditagih tersendiri)"], ["(2) Terutang = kredit pajak", "SKPN"], ["(3) Kurang bayar", "SKPKB + bunga uplift 15%"], ["(4) Kurang bayar setelah Pasal 17C", "SKPKB + kenaikan 100%"]],
-        mengapaSalah: { B: "Koreksi atas lebih bayar hanya mengurangi SKPLB, tidak menimbulkan SKPKB terpisah.", C: "Hasil pemeriksaan dituangkan dalam SKP, bukan STP; 'SKPLB nihil' tidak dikenal (yang tepat SKPN).", D: "Kenaikan 75% hanya untuk SKPKB Pasal 13 ayat (1) huruf b–d, dan kekurangan setelah pengembalian pendahuluan dikenai kenaikan 100%." },
+        jejakHitung: [
+          ["(1) Lebih bayar menurut pemeriksaan", "SKPLB Rp120.000.000 (koreksi Rp180 jt tidak ditagih tersendiri)"],
+          ["(2) Terutang = kredit pajak", "SKPN"],
+          ["(3) Kurang bayar", "SKPKB + bunga uplift 15%"],
+          ["(4) Kurang bayar setelah Pasal 17C", "SKPKB + kenaikan 100%"]
+        ],
+        mengapaSalah: {
+          B: "Koreksi atas lebih bayar hanya mengurangi SKPLB, tidak menimbulkan SKPKB terpisah.",
+          C: "Hasil pemeriksaan dituangkan dalam SKP, bukan STP; 'SKPLB nihil' tidak dikenal (yang tepat SKPN).",
+          D: "Kenaikan 75% hanya untuk SKPKB Pasal 13 ayat (1) huruf b–d, dan kekurangan setelah pengembalian pendahuluan dikenai kenaikan 100%."
+        },
         jebakan: "Arah koreksi (dari lebih bayar menjadi kurang bayar) tidak mengubah jenis sanksi; yang menentukan adalah dasar penerbitan SKPKB."
       },
-      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a dan ayat (2), Pasal 17, dan Pasal 17A UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 17C ayat (5) UU KUP", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 150, verifikasi: "◐",
+      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf a, Pasal 17, dan Pasal 17A UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (2) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17C ayat (5) UU KUP", berlakuSejak: "2021-10-29" }],
+      anggaranDetik: 150,
+      verifikasi: "◐",
       peringatan: "Kenaikan 100% Pasal 17C bersumber dari riset 02b bertanda [P]; nomor ayat perlu dicek ke teks konsolidasi UU KUP."
     },
     {
@@ -2346,30 +2573,40 @@ UKP.register({
         },
         jebakan: "Bunga dalam SKPKB (Rp36.432.000) bukan dasar soal ini; dasar bunga angsuran adalah sisa pokok."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (4) dan Pasal 19 ayat (2) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026", berlakuSejak: "2021-10-29" }],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (4) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 19 ayat (2) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026", berlakuSejak: null }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
     {
-      id: "A2-094", topik: "A2.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2, laporanUjian: ["B-2026-10"], kasusId: "V-A2-07",
+      id: "A2-094",
+      topik: "A2.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      kasusId: "V-A2-07",
       stem: "Data untuk soal vignette V-A2-07: CV Dharma Niaga (PKP, tahun buku kalender) pada Senin, 5 Oktober 2026 menerima tiga dokumen yang diterbitkan dan dikirim pada hari itu: (i) STP atas angsuran PPh Pasal 25 Masa Juni dan Juli 2026 yang tidak dibayar, berisi pokok Rp18.000.000 dan bunga Pasal 14 ayat (3); (ii) SKPKB PPN Masa Agustus 2024 hasil pemeriksaan dengan pokok Rp120.000.000 ditambah bunga Pasal 13 ayat (2), dan dalam PAHP CV hanya menyetujui pokok Rp30.000.000; (iii) Surat Teguran karena SPT Tahunan PPh Badan 2025 belum disampaikan. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "(i) dan (ii) sama-sama dapat diajukan keberatan paling lambat 5 Januari 2027; (iii) merupakan awal tindakan penagihan yang dapat diikuti Surat Paksa setelah lewat 21 hari",
-        B: "(i) dapat diajukan keberatan karena memuat pokok pajak; (ii) dapat diajukan keberatan paling lambat 5 Januari 2027 setelah melunasi Rp30.000.000; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b",
-        C: "(i) tidak dapat diajukan keberatan, tetapi sanksinya dapat dimohonkan pengurangan/penghapusan berdasarkan Pasal 36; (ii) dapat diajukan keberatan paling lambat 5 Januari 2027 setelah melunasi Rp30.000.000; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b berbunga uplift 20%",
-        D: "(i) tidak dapat diajukan keberatan, tetapi sanksinya dapat dimohonkan pengurangan/penghapusan berdasarkan Pasal 36; (ii) dapat diajukan keberatan paling lambat 5 Januari 2027 setelah melunasi seluruh SKPKB beserta bunganya; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b berbunga uplift 20%"
-      },
+      opsi: { A: "(i) dan (ii) sama-sama dapat diajukan keberatan paling lambat 5 Januari 2027; (iii) merupakan awal tindakan penagihan yang dapat diikuti Surat Paksa setelah lewat 21 hari", B: "(i) dapat diajukan keberatan karena memuat pokok pajak; (ii) dapat diajukan keberatan paling lambat 5 Januari 2027 setelah melunasi Rp30.000.000; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b", C: "(i) tidak dapat diajukan keberatan, tetapi sanksinya dapat dimohonkan pengurangan/penghapusan berdasarkan Pasal 36; (ii) dapat diajukan keberatan paling lambat 5 Januari 2027 setelah melunasi Rp30.000.000; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b berbunga uplift 20%", D: "(i) tidak dapat diajukan keberatan, tetapi sanksinya dapat dimohonkan pengurangan/penghapusan berdasarkan Pasal 36; (ii) dapat diajukan keberatan paling lambat 5 Januari 2027 setelah melunasi seluruh SKPKB beserta bunganya; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b berbunga uplift 20%" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "STP bukan surat ketetapan pajak sehingga tidak dapat diajukan keberatan; sanksinya dapat dimohonkan pengurangan/penghapusan lewat Pasal 36. SKPKB diajukan keberatan dalam 3 bulan setelah melunasi jumlah yang disetujui dalam PAHP. Surat Teguran SPT bukan tindakan penagihan; ketidakpatuhan atasnya membuka SKPKB Pasal 13 ayat (1) huruf b dengan sanksi Pasal 13 ayat (3).",
-        jejakHitung: [["(i) STP", "bukan SKP → Pasal 36"], ["(ii) SKPKB dikirim 5 Okt 2026 + 3 bulan", "5 Januari 2027; lunasi Rp30.000.000 lebih dahulu"], ["(iii) Teguran SPT", "dasar SKPKB Pasal 13 ayat (1) huruf b; PPh → bunga uplift 20%"]],
-        mengapaSalah: { A: "STP tidak dapat diajukan keberatan, dan Surat Teguran SPT berbeda dari Surat Teguran penagihan dalam UU PPSP.", B: "STP tetap bukan objek keberatan walaupun memuat pokok pajak.", D: "Syarat pelunasan sebelum keberatan hanya sejumlah yang disetujui dalam PAHP, bukan seluruh SKPKB." },
+        jejakHitung: [
+          ["(i) STP", "bukan SKP → Pasal 36"],
+          ["(ii) SKPKB dikirim 5 Okt 2026 + 3 bulan", "5 Januari 2027; lunasi Rp30.000.000 lebih dahulu"],
+          ["(iii) Teguran SPT", "dasar SKPKB Pasal 13 ayat (1) huruf b; PPh → bunga uplift 20%"]
+        ],
+        mengapaSalah: {
+          A: "STP tidak dapat diajukan keberatan, dan Surat Teguran SPT berbeda dari Surat Teguran penagihan dalam UU PPSP.",
+          B: "STP tetap bukan objek keberatan walaupun memuat pokok pajak.",
+          D: "Syarat pelunasan sebelum keberatan hanya sejumlah yang disetujui dalam PAHP, bukan seluruh SKPKB."
+        },
         jebakan: "Istilah 'Surat Teguran' dipakai untuk dua hal: teguran SPT (UU KUP) dan teguran penagihan (UU PPSP)."
       },
-      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf b dan ayat (3), Pasal 14, Pasal 25 ayat (1), (3), dan (3a), serta Pasal 36 UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 170, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 13 ayat (1) huruf b UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (3) UU KUP (UU 7/2021)", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 14 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 14 ayat (3) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 25 ayat (1), (3), dan (3a) serta Pasal 36 UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅"
     },
     {
       id: "A2-095", topik: "A2.10", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-A2-07",
@@ -2474,25 +2711,33 @@ UKP.register({
       anggaranDetik: 110, verifikasi: "✅"
     },
     {
-      id: "A2-100", topik: "A2.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2,
+      id: "A2-100",
+      topik: "A2.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
       stem: "PT Bahari Samudra memakai tahun buku 1 Juli–30 Juni yang telah disetujui DJP. SPT Tahunan PPh Badan untuk tahun buku 1 Juli 2020–30 Juni 2021 disampaikan pada 28 Oktober 2021. SP2 pemeriksaan atas tahun buku tersebut disampaikan 9 Februari 2026, dan pemeriksa menemukan PPh kurang dibayar Rp210.000.000; konsep SKPKB direncanakan terbit Selasa, 20 Oktober 2026. Tidak ada putusan pidana atas WP. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "SKPKB masih dapat diterbitkan sampai 31 Desember 2026 karena daluwarsa dihitung 5 tahun sejak akhir tahun kalender 2021",
-        B: "SKPKB tidak dapat lagi diterbitkan karena daluwarsa penetapan berakhir 30 Juni 2026, kecuali bila kemudian WP dipidana berdasarkan putusan berkekuatan hukum tetap (Pasal 13 ayat (5))",
-        C: "SKPKB masih dapat diterbitkan karena SP2 disampaikan sebelum daluwarsa, sehingga jangka waktu penetapan tertangguh selama pemeriksaan berlangsung sampai SPHP dan PAHP selesai",
-        D: "SKPKB masih dapat diterbitkan sampai 28 Oktober 2026 karena daluwarsa dihitung 5 tahun sejak SPT disampaikan"
-      },
+      opsi: { A: "SKPKB masih dapat diterbitkan sampai 31 Desember 2026 karena daluwarsa dihitung 5 tahun sejak akhir tahun kalender 2021", B: "SKPKB tidak dapat lagi diterbitkan karena daluwarsa penetapan berakhir 30 Juni 2026", C: "SKPKB masih dapat diterbitkan karena SP2 disampaikan sebelum daluwarsa, sehingga jangka waktu penetapan tertangguh selama pemeriksaan berlangsung sampai SPHP dan PAHP selesai", D: "SKPKB masih dapat diterbitkan sampai 28 Oktober 2026 karena daluwarsa dihitung 5 tahun sejak SPT disampaikan" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
-        inti: "Daluwarsa penetapan 5 tahun dihitung setelah berakhirnya Tahun Pajak, yang bagi tahun buku non-kalender berakhir pada akhir tahun buku (30 Juni 2021), sehingga berakhir 30 Juni 2026. Pemeriksaan tidak menangguhkan daluwarsa penetapan; pengecualiannya hanya Pasal 13 ayat (5).",
-        jejakHitung: [["Akhir tahun buku", "30 Juni 2021"], ["+ 5 tahun", "30 Juni 2026"], ["Rencana SKPKB", "20 Oktober 2026 → lewat daluwarsa"]],
-        mengapaSalah: { A: "Tahun Pajak mengikuti tahun buku, bukan tahun kalender.", C: "UU KUP tidak mengenal penangguhan daluwarsa penetapan karena pemeriksaan; penangguhan berlaku untuk daluwarsa penagihan (Pasal 22).", D: "Daluwarsa tidak dihitung dari tanggal SPT disampaikan." },
+        inti: "Daluwarsa penetapan 5 tahun dihitung setelah berakhirnya Tahun Pajak, yang bagi tahun buku non-kalender berakhir pada akhir tahun buku (30 Juni 2021), sehingga berakhir 30 Juni 2026. Pemeriksaan tidak menangguhkan daluwarsa penetapan. Ketentuan yang dulu membolehkan SKPKB terbit setelah 5 tahun bagi WP yang dipidana (Pasal 13 ayat (5)) dihapus UU 11/2020 sejak 2 November 2020. Pasal 13 ayat (4) kini mengatur bahwa pajak dalam SPT menjadi pasti bila dalam 5 tahun tidak terbit ketetapan, kecuali WP melakukan tindak pidana di bidang perpajakan pada masa atau tahun pajak itu; pengecualian itu tidak memberi dasar menerbitkan SKPKB setelah daluwarsa.",
+        jejakHitung: [
+          ["Akhir tahun buku", "30 Juni 2021"],
+          ["+ 5 tahun", "30 Juni 2026"],
+          ["Rencana SKPKB", "20 Oktober 2026 → lewat daluwarsa"]
+        ],
+        mengapaSalah: {
+          A: "Tahun Pajak mengikuti tahun buku, bukan tahun kalender.",
+          C: "UU KUP tidak mengenal penangguhan daluwarsa penetapan karena pemeriksaan; penangguhan berlaku untuk daluwarsa penagihan (Pasal 22).",
+          D: "Daluwarsa tidak dihitung dari tanggal SPT disampaikan."
+        },
         jebakan: "Penangguhan milik daluwarsa penagihan sering dipinjam keliru untuk daluwarsa penetapan."
       },
-      dasarHukum: [{ pasal: "Pasal 1 (Tahun Pajak) dan Pasal 13 ayat (1) dan (5) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 22 UU KUP (pembanding)", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 130, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 1 (Tahun Pajak) dan Pasal 13 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 13 ayat (4) UU KUP s.t.d.d. UU 11/2020; Pasal 13 ayat (5) dihapus UU 11/2020", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 22 UU KUP (pembanding)", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅"
     },
     {
       id: "A2-101", topik: "A2.8", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2,
@@ -2563,7 +2808,13 @@ UKP.register({
       peringatan: "Denda 60% dan batas STP 2 tahun bersumber dari riset 02a A.4; rumusan pengurang 'pembayaran sebelum mengajukan keberatan' dalam Pasal 27 ayat (5f) belum dibaca langsung dari teks konsolidasi."
     },
     {
-      id: "A2-104", topik: "A2.3", tingkat: ["A", "B", "C"], jenis: "baris-spt", kesulitan: 2, kasusId: "V-A2-08", formulirRef: "1111.induk.15",
+      id: "A2-104",
+      topik: "A2.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 2,
+      kasusId: "V-A2-08",
+      formulirRef: "1111.induk.15",
       stem: "Data untuk soal vignette V-A2-08: PT Mega Teknik Persada (PKP, tahun buku kalender, bukan eksportir, terdaftar di KPP Madya) melaporkan SPT Masa PPN Juli 2026 pada Jumat, 28 Agustus 2026 dengan Pajak Keluaran Rp180.000.000 dan Pajak Masukan Rp150.000.000; kurang bayar Rp30.000.000 telah disetor Kamis, 27 Agustus 2026. Pada Oktober 2026, sebelum ada pemeriksaan, perusahaan menemukan bahwa Pajak Masukan itu mencakup PPN Rp5.500.000 atas jasa renovasi rumah pribadi direktur (penggantian Rp50.000.000) yang tidak berhubungan langsung dengan kegiatan usaha. Perusahaan menyampaikan SPT Masa PPN pembetulan. Isian baris 'PPN kurang atau (lebih) bayar karena pembetulan' pada induk SPT Masa PPN (butir III.F pada peta formulir) adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp35.500.000 kurang bayar", B: "Rp6.000.000 kurang bayar", C: "Rp30.000.000 kurang bayar", D: "Rp5.500.000 kurang bayar" },
@@ -2571,16 +2822,31 @@ UKP.register({
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "salah-baca" },
       pembahasan: {
         inti: "Pajak Masukan atas perolehan yang tidak berhubungan langsung dengan kegiatan usaha tidak dapat dikreditkan. Pada SPT pembetulan, III.D memuat kurang/lebih bayar hasil hitung baru (III.A − III.B − III.C), III.E memuat angka SPT yang dibetulkan, dan III.F = III.D − III.E.",
-        jejakHitung: [["PM yang dapat dikreditkan (III.C) = 150.000.000 − 5.500.000", "Rp144.500.000"], ["III.D = 180.000.000 − 0 − 144.500.000", "Rp35.500.000 kurang bayar"], ["III.E (SPT yang dibetulkan)", "Rp30.000.000 kurang bayar"], ["III.F = III.D − III.E", "Rp5.500.000 kurang bayar"]],
-        mengapaSalah: { A: "Rp35.500.000 adalah isian III.D (hasil hitung baru), bukan selisih karena pembetulan.", B: "Menghitung ulang 12% × Rp50.000.000 tanpa DPP nilai lain 11/12; yang dikeluarkan dari Pajak Masukan adalah PPN dalam faktur, Rp5.500.000.", C: "Rp30.000.000 adalah isian III.E dari SPT yang dibetulkan." },
+        jejakHitung: [
+          ["PM yang dapat dikreditkan (III.C) = 150.000.000 − 5.500.000", "Rp144.500.000"],
+          ["III.D = 180.000.000 − 0 − 144.500.000", "Rp35.500.000 kurang bayar"],
+          ["III.E (SPT yang dibetulkan)", "Rp30.000.000 kurang bayar"],
+          ["III.F = III.D − III.E", "Rp5.500.000 kurang bayar"]
+        ],
+        mengapaSalah: {
+          A: "Rp35.500.000 adalah isian III.D (hasil hitung baru), bukan selisih karena pembetulan.",
+          B: "Menghitung ulang 12% × Rp50.000.000 tanpa DPP nilai lain 11/12; yang dikeluarkan dari Pajak Masukan adalah PPN dalam faktur, Rp5.500.000.",
+          C: "Rp30.000.000 adalah isian III.E dari SPT yang dibetulkan."
+        },
         jebakan: "Butir III.D, III.E, dan III.F berurutan dan mudah tertukar; yang disetor sebelum pembetulan hanya III.F."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (8) huruf b UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 8 ayat (1) dan (2a) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PER-11/PJ/2025 (bentuk SPT Masa PPN)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 150, verifikasi: "◐",
+      dasarHukum: [{ pasal: "Pasal 9 ayat (8) huruf b UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 8 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (2a) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "PER-11/PJ/2025 (bentuk SPT Masa PPN)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 150,
+      verifikasi: "◐",
       peringatan: "Penomoran butir III.A–III.F mengikuti peta formulir proyek (induk SPT Masa PPN 1111 pra-Coretax, kode 1111.induk.15); di Coretax (PER-11/PJ/2025) komponen yang sama tersaji dengan tata letak berbeda dan belum dicek langsung. Jawaban tidak bergantung pada huruf butir."
     },
     {
-      id: "A2-105", topik: "A2.8", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2, kasusId: "V-A2-08",
+      id: "A2-105",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-A2-08",
       stem: "Lanjutan V-A2-08: PT Mega Teknik Persada menyetor kekurangan PPN Masa Juli 2026 karena pembetulan sebesar Rp5.500.000 pada Selasa, 13 Oktober 2026 dan menyampaikan SPT Masa PPN pembetulan Rabu, 14 Oktober 2026. SPT Masa PPN semula disampaikan tepat waktu. Anggap tarif bunga uplift 5% yang berlaku pada tanggal dimulainya penghitungan sanksi 1,03% per bulan; tarif Oktober 2026 1,01%. Sanksi administratif atas pembetulan tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp56.650", B: "Rp111.100", C: "Rp113.300", D: "Rp613.300" },
@@ -2588,12 +2854,22 @@ UKP.register({
       jebakanOpsi: { A: "salah-hitung", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Pembetulan SPT Masa yang menambah utang pajak dikenai bunga Pasal 8 ayat (2a) uplift 5% sejak jatuh tempo pembayaran PPN Masa Juli 2026 (31 Agustus 2026) sampai tanggal setor, memakai tarif yang berlaku pada tanggal dimulainya sanksi; SPT semula tepat waktu sehingga tidak ada denda.",
-        jejakHitung: [["Jatuh tempo setor PPN Masa Juli 2026", "Senin, 31 Agustus 2026"], ["31 Agu → 13 Okt 2026", "1 bulan 13 hari = 2 bulan"], ["Bunga = 5.500.000 × 1,03% × 2", "Rp113.300"], ["Denda Pasal 7", "tidak ada (SPT semula tepat waktu)"]],
-        mengapaSalah: { A: "Membulatkan ke bawah menjadi 1 bulan.", B: "Memakai tarif Oktober 2026 (bulan pembayaran), padahal tarif dikunci pada tanggal dimulainya sanksi.", D: "Menambahkan denda Rp500.000 SPT Masa PPN, padahal SPT semula disampaikan tepat waktu." },
+        jejakHitung: [
+          ["Jatuh tempo setor PPN Masa Juli 2026", "Senin, 31 Agustus 2026"],
+          ["31 Agu → 13 Okt 2026", "1 bulan 13 hari = 2 bulan"],
+          ["Bunga = 5.500.000 × 1,03% × 2", "Rp113.300"],
+          ["Denda Pasal 7", "tidak ada (SPT semula tepat waktu)"]
+        ],
+        mengapaSalah: {
+          A: "Membulatkan ke bawah menjadi 1 bulan.",
+          B: "Memakai tarif Oktober 2026 (bulan pembayaran), padahal tarif dikunci pada tanggal dimulainya sanksi.",
+          D: "Menambahkan denda Rp500.000 SPT Masa PPN, padahal SPT semula disampaikan tepat waktu."
+        },
         jebakan: "Tarif dikunci pada awal sanksi (Agustus 2026), bukan bulan setor (Oktober 2026)."
       },
-      dasarHukum: [{ pasal: "Pasal 8 ayat (2a) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 3 ayat (3) dan Pasal 9 ayat (1) UU KUP", berlakuSejak: "2010-01-01" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 130, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 8 ayat (2a) UU KUP (bunga; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 3 ayat (3) dan Pasal 9 ayat (1) UU KUP", berlakuSejak: "2010-01-01" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026", berlakuSejak: null }],
+      anggaranDetik: 130,
+      verifikasi: "✅"
     },
     {
       id: "A2-106", topik: "A2.9", tingkat: ["A", "B", "C"], jenis: "baris-spt", kesulitan: 2, kasusId: "V-A2-08", formulirRef: "1111.induk.16",
@@ -2618,26 +2894,34 @@ UKP.register({
       peringatan: "Penomoran butir III.G mengikuti peta formulir proyek (induk SPT Masa PPN 1111 pra-Coretax, kode 1111.induk.16); tata letak Coretax belum dicek langsung. Rincian Pasal 9 ayat (4b) UU PPN bersumber dari riset 02b B.6 bertanda [P]. Batas PKP Pasal 17D dan ketentuan bahwa PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah mengikuti ringkasan resmi PMK 28 Tahun 2026 ✅; nomor pasalnya belum dibaca dari teks ◐."
     },
     {
-      id: "A2-107", topik: "A2.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A2-107",
+      topik: "A2.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       kutipan: "Pasal 28 ayat (3) dan Pasal 39 ayat (1) huruf d UU KUP (parafrase setia, sebagian): Pembukuan atau pencatatan harus diselenggarakan dengan memperhatikan iktikad baik dan mencerminkan keadaan atau kegiatan usaha yang sebenarnya. Setiap orang yang dengan sengaja menyampaikan Surat Pemberitahuan dan/atau keterangan yang isinya tidak benar atau tidak lengkap sehingga dapat menimbulkan kerugian pada pendapatan negara dipidana dengan pidana penjara paling singkat 6 bulan dan paling lama 6 tahun dan denda paling sedikit 2 kali dan paling banyak 4 kali jumlah pajak terutang yang tidak atau kurang dibayar.",
       stem: "CV Arunika Jaya (PKP, peredaran bruto 2023 Rp7,5 miliar) dengan sengaja tidak mencatat penjualan tunai salah satu gerainya dalam pembukuan, sehingga SPT Tahunan PPh Badan 2023 yang disampaikan isinya tidak benar. Pemeriksaan bukti permulaan menghitung kerugian pada pendapatan negara (pajak kurang dibayar) Rp150.000.000. Konsultannya membandingkan tiga skenario: (a) mengungkapkan ketidakbenaran perbuatan selama pemeriksaan bukti permulaan, sebelum penyidikan diberitahukan kepada penuntut umum; (b) bila sudah disidik, memohon penghentian penyidikan berdasarkan Pasal 44B atas perkara Pasal 39; (c) perkara diputus pengadilan. Berdasarkan kutipan dan UU KUP setelah UU HPP, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "(a) melunasi Rp375.000.000; (b) melunasi Rp600.000.000; (c) pidana penjara 6 bulan–6 tahun dan denda Rp300.000.000–Rp600.000.000",
-        B: "(a) melunasi Rp300.000.000; (b) melunasi Rp600.000.000; (c) pidana penjara 6 bulan–6 tahun dan denda Rp300.000.000–Rp600.000.000",
-        C: "(a) melunasi Rp300.000.000; (b) melunasi Rp750.000.000; (c) pidana penjara 6 bulan–6 tahun dan denda Rp300.000.000–Rp600.000.000",
-        D: "(a) melunasi Rp300.000.000; (b) melunasi Rp600.000.000; (c) pidana kurungan 3 bulan–1 tahun atau denda Rp150.000.000–Rp300.000.000"
-      },
+      opsi: { A: "(a) melunasi Rp375.000.000; (b) melunasi Rp600.000.000; (c) pidana penjara 6 bulan–6 tahun dan denda Rp300.000.000–Rp600.000.000", B: "(a) melunasi Rp300.000.000; (b) melunasi Rp600.000.000; (c) pidana penjara 6 bulan–6 tahun dan denda Rp300.000.000–Rp600.000.000", C: "(a) melunasi Rp300.000.000; (b) melunasi Rp750.000.000; (c) pidana penjara 6 bulan–6 tahun dan denda Rp300.000.000–Rp600.000.000", D: "(a) melunasi Rp300.000.000; (b) melunasi Rp600.000.000; (c) pidana kurungan 3 bulan–1 tahun atau denda Rp150.000.000–Rp300.000.000" },
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "angka-usang", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Skenario (a): pengungkapan ketidakbenaran perbuatan menyampaikan SPT yang isinya tidak benar (Pasal 8 ayat (3)) mewajibkan pelunasan kekurangan ditambah denda 100% (Rp300.000.000). Skenario (b): penghentian penyidikan Pasal 44B mensyaratkan pelunasan kerugian ditambah denda 3 kali untuk perkara Pasal 39 (Rp600.000.000). Skenario (c): Pasal 39 ayat (1) huruf d mengancam penjara 6 bulan–6 tahun dan denda 2–4 kali (Rp300.000.000–Rp600.000.000).",
-        jejakHitung: [["(a) 150.000.000 + 100% × 150.000.000", "Rp300.000.000"], ["(b) 150.000.000 + 3 × 150.000.000", "Rp600.000.000"], ["(c) Denda 2× s.d. 4× × 150.000.000", "Rp300.000.000–Rp600.000.000"]],
-        mengapaSalah: { A: "Denda pengungkapan 150% berlaku sebelum UU HPP; kini 100%.", C: "Denda 4 kali adalah Pasal 44B sebelum UU HPP; kini pengalinya 1×/3×/4× menurut pasal pidana, dan perkara Pasal 39 memakai 3×.", D: "Kurungan 3 bulan–1 tahun dan denda 1–2 kali adalah Pasal 38 (kealpaan), padahal perbuatan dilakukan dengan sengaja." },
+        jejakHitung: [
+          ["(a) 150.000.000 + 100% × 150.000.000", "Rp300.000.000"],
+          ["(b) 150.000.000 + 3 × 150.000.000", "Rp600.000.000"],
+          ["(c) Denda 2× s.d. 4× × 150.000.000", "Rp300.000.000–Rp600.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Denda pengungkapan 150% adalah ketentuan UU 28/2007, sebelum UU Cipta Kerja (2 November 2020); kini 100%.",
+          C: "Denda 4 kali untuk semua perkara adalah rumusan Pasal 44B dalam UU 28/2007; kini pengalinya 1×/3×/4× menurut pasal pidana, dan perkara Pasal 39 memakai 3×.",
+          D: "Kurungan 3 bulan–1 tahun dan denda 1–2 kali adalah Pasal 38 (kealpaan), padahal perbuatan dilakukan dengan sengaja."
+        },
         jebakan: "Ketiga skenario memakai pengali berbeda atas angka yang sama; jangan menyamakan 100%, 3×, dan 2–4×."
       },
-      dasarHukum: [{ pasal: "Pasal 39 ayat (1) huruf d UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (3) dan (3a) serta Pasal 44B UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 28 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 180, verifikasi: "◐",
+      dasarHukum: [{ pasal: "Pasal 39 ayat (1) huruf d UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (3) dan (3a) UU KUP (denda 100%; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 44B UU KUP (UU 7/2021)", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 28 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "◐",
       peringatan: "Rentang pidana Pasal 38–39 dan pengali Pasal 44B bertanda ◐ dalam riset proyek (02a A.4); denda 100% Pasal 8 ayat (3a) terverifikasi. Perbuatan dalam soal sengaja dibatasi pada penyampaian SPT yang isinya tidak benar karena cakupan Pasal 8 ayat (3) pasca-UU HPP (tidak mendaftar, menyalahgunakan NPWP/PKP, tidak/tidak benar menyampaikan SPT, tidak menyetor potput) tidak memuat perbuatan tidak menyelenggarakan pembukuan."
     },
     {
@@ -3297,20 +3581,20 @@ UKP.register({
     { id: "KT-A2-05", topik: "A2.3", tipe: "prosedur", depan: "Perpanjangan SPT Tahunan?", belakang: "Paling lama 2 bulan; lampirkan penghitungan sementara dan bukti pelunasan", dasar: "Pasal 3 ayat (4)–(5) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-06", topik: "A2.3", tipe: "pasal", depan: "Batas pembetulan SPT yang menyatakan rugi atau lebih bayar?", belakang: "Paling lama 2 tahun sebelum daluwarsa penetapan", dasar: "Pasal 8 ayat (1a) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-07", topik: "A2.8", tipe: "angka", depan: "Denda Pasal 7 ayat (1) per jenis SPT?", belakang: "Masa PPN Rp500 rb; Masa lain Rp100 rb; Tahunan Badan Rp1 jt, OP Rp100 rb", dasar: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A2-08", topik: "A2.8", tipe: "angka", depan: "Rumus tarif bunga sanksi per bulan?", belakang: "(Suku bunga acuan + uplift) : 12; bagian bulan = 1 bulan; maks 24", dasar: "Pasal 8, 9, 13, 14, 19 UU KUP; KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026", berlakuSejak: "2021-10-29", menggantikan: "bunga 2% per bulan flat (UU 28/2007)", dekTambahan: ["perubahan-2025-2026"] },
+    { id: "KT-A2-08", topik: "A2.8", tipe: "angka", depan: "Rumus tarif bunga sanksi per bulan?", belakang: "(Suku bunga acuan + uplift) : 12; bagian bulan = 1 bulan; maks 24", dasar: "Pasal 8, 9, 13, 14, 19 UU KUP s.t.d.d. UU 11/2020; KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51/2026", berlakuSejak: "2020-11-02", menggantikan: "bunga 2% per bulan flat (UU 28/2007)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-09", topik: "A2.8", tipe: "angka", depan: "Tarif bunga Oktober 2026 (uplift 0/5/10/15/20%)?", belakang: "0,59% · 1,01% · 1,42% · 1,84% · 2,26% per bulan", dasar: "KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01", menggantikan: "tarif KMK bulan sebelumnya (tarif ditetapkan ulang tiap bulan)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-10", topik: "A2.8", tipe: "pasal", depan: "Uplift 0% dipakai untuk pasal apa?", belakang: "Pasal 19: tunggakan ketetapan, angsuran/penundaan, kurang bayar perpanjangan SPT", dasar: "Pasal 19 ayat (1)–(3) UU KUP", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-11", topik: "A2.8", tipe: "pasal", depan: "Uplift 5% dipakai untuk pasal apa?", belakang: "Ps. 8(2)/(2a) pembetulan; 9(2a)/(2b) terlambat setor; 14(3) STP", dasar: "UU KUP s.t.d.t.d. UU HPP", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-12", topik: "A2.8", tipe: "pasal", depan: "Uplift 10%, 15%, dan 20%?", belakang: "10% Ps. 8(5); 15% Ps. 13(2); 20% Ps. 13(3)", dasar: "Pasal 8 ayat (5), 13 ayat (2) dan (3) UU KUP", berlakuSejak: "2021-10-29", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-13", topik: "A2.6", tipe: "angka", depan: "Kenaikan Pasal 13 ayat (3) huruf c/d?", belakang: "75%: PPh dipotong/dipungut tidak disetor; PPN/PPnBM kurang bayar", dasar: "Pasal 13 ayat (3) UU KUP (UU HPP)", berlakuSejak: "2021-10-29", menggantikan: "kenaikan 100% (UU 28/2007)", dekTambahan: [] },
     { id: "KT-A2-14", topik: "A2.6", tipe: "angka", depan: "Sanksi dalam SKPKBT?", belakang: "Kenaikan 100% dari kekurangan pajak, kecuali WP mengungkapkan sendiri sebelum pemeriksaan", dasar: "Pasal 15 ayat (2) dan (3) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A2-15", topik: "A2.6", tipe: "angka", depan: "Denda faktur tidak dibuat/terlambat/tidak lengkap?", belakang: "1% × Dasar Pengenaan Pajak", dasar: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2021-10-29", menggantikan: "2% × DPP (UU 28/2007)", dekTambahan: [] },
+    { id: "KT-A2-15", topik: "A2.6", tipe: "angka", depan: "Denda faktur tidak dibuat/terlambat/tidak lengkap?", belakang: "1% × Dasar Pengenaan Pajak", dasar: "Pasal 14 ayat (4) UU KUP s.t.d.d. UU 11/2020", berlakuSejak: "2020-11-02", menggantikan: "2% × DPP (UU 28/2007)", dekTambahan: [] },
     { id: "KT-A2-16", topik: "A2.6", tipe: "angka", depan: "Daluwarsa penetapan SKPKB/SKPKBT/STP?", belakang: "5 tahun setelah saat terutang atau akhir Masa/Tahun Pajak", dasar: "Pasal 13 ayat (1), 14, 15 ayat (1) UU KUP", berlakuSejak: "2008-01-01", menggantikan: "10 tahun (UU 16/2000)", dekTambahan: [] },
     { id: "KT-A2-17", topik: "A2.5", tipe: "angka", depan: "Jangka pemeriksaan menurut PMK 15/2025?", belakang: "Lengkap 5 bulan (+4), terfokus 3 bulan, spesifik 1 bulan", dasar: "PMK 15/2025", berlakuSejak: "2025-02-14", menggantikan: "kantor 4 bulan / lapangan 6 bulan (PMK 17/2013 jo. 184/2015)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-18", topik: "A2.5", tipe: "angka", depan: "Tanggapan tertulis atas SPHP?", belakang: "5 hari kerja sejak SPHP diterima", dasar: "PMK 15/2025", berlakuSejak: "2025-02-14", menggantikan: "7 hari kerja (PMK 17/2013 jo. 184/2015)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-19", topik: "A2.5", tipe: "angka", depan: "Jangka PAHP dan laporan hasil pemeriksaan?", belakang: "30 hari kerja sejak SPHP disampaikan", dasar: "PMK 15/2025", berlakuSejak: "2025-02-14", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-A2-20", topik: "A2.5", tipe: "pasal", depan: "Batas dan sanksi pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan?", belakang: "Sebelum SPHP disampaikan; bunga uplift 10%", dasar: "Pasal 8 ayat (4)–(5) UU KUP", berlakuSejak: "2021-10-29", menggantikan: "sebelum SKP terbit dengan kenaikan 50% (UU 28/2007)", dekTambahan: [] },
-    { id: "KT-A2-21", topik: "A2.5", tipe: "angka", depan: "Denda pengungkapan ketidakbenaran perbuatan saat bukti permulaan?", belakang: "100% dari pajak kurang dibayar", dasar: "Pasal 8 ayat (3a) UU KUP", berlakuSejak: "2021-10-29", menggantikan: "150% (UU 28/2007)", dekTambahan: [] },
+    { id: "KT-A2-20", topik: "A2.5", tipe: "pasal", depan: "Batas dan sanksi pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan?", belakang: "Sebelum SPHP disampaikan; bunga uplift 10%", dasar: "Pasal 8 ayat (4) UU KUP s.t.d.t.d. UU 7/2021; Pasal 8 ayat (5) UU KUP s.t.d.d. UU 11/2020", berlakuSejak: null, menggantikan: "sebelum SKP terbit (UU 28/2007; diganti batas SPHP oleh UU HPP sejak 29 Oktober 2021) dengan kenaikan 50% (UU 28/2007; diganti bunga uplift 10% oleh UU Cipta Kerja sejak 2 November 2020)", dekTambahan: [] },
+    { id: "KT-A2-21", topik: "A2.5", tipe: "angka", depan: "Denda pengungkapan ketidakbenaran perbuatan saat bukti permulaan?", belakang: "100% dari pajak kurang dibayar", dasar: "Pasal 8 ayat (3a) UU KUP s.t.d.d. UU 11/2020", berlakuSejak: "2020-11-02", menggantikan: "150% (UU 28/2007)", dekTambahan: [] },
     { id: "KT-A2-22", topik: "A2.7", tipe: "angka", depan: "Tenggat mengajukan keberatan?", belakang: "3 bulan sejak SKP dikirim atau tanggal pemotongan/pemungutan", dasar: "Pasal 25 ayat (3) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-23", topik: "A2.7", tipe: "angka", depan: "Jangka keputusan keberatan?", belakang: "12 bulan sejak surat keberatan diterima; lewat = dikabulkan", dasar: "Pasal 26 ayat (1) dan (5) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-24", topik: "A2.7", tipe: "angka", depan: "Denda keberatan ditolak/dikabulkan sebagian?", belakang: "30% × (pajak SK Keberatan − dibayar sebelum keberatan); gugur bila banding", dasar: "Pasal 25 ayat (9)–(10) UU KUP", berlakuSejak: "2021-10-29", menggantikan: "50% (UU 28/2007)", dekTambahan: [] },
@@ -3324,9 +3608,9 @@ UKP.register({
     { id: "KT-A2-32", topik: "A2.11", tipe: "definisi", depan: "Inti Putusan MK 26/PUU-XXI/2023?", belakang: "Pembinaan organisasi, administrasi, keuangan Pengadilan Pajak ke MA paling lambat 31 Des 2026", dasar: "Putusan MK 26/PUU-XXI/2023", berlakuSejak: "2023-05-25", menggantikan: "pembinaan non-teknis oleh Kementerian Keuangan (Pasal 5 ayat (2) UU 14/2002)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-33", topik: "A2.10", tipe: "prosedur", depan: "Urutan dan jeda tindakan penagihan?", belakang: "Teguran +7 hari, Surat Paksa +21, sita 2×24 jam, umumkan +14, lelang +14", dasar: "UU PPSP Pasal 8, 12, 26; PMK 61/2023", berlakuSejak: "2023-06-12", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-34", topik: "A2.10", tipe: "angka", depan: "Syarat dan jangka penyanderaan?", belakang: "Utang ≥ Rp100 juta dan itikad diragukan; 6 bulan + 6 bulan", dasar: "Pasal 33 UU PPSP; PMK 61/2023", berlakuSejak: "2023-06-12", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A2-35", topik: "A2.10", tipe: "pasal", depan: "Daluwarsa penagihan dan penangguhannya?", belakang: "5 tahun sejak terbit; tertangguh: Surat Paksa, pengakuan utang, SKP Ps. 13(5)/15(4), penyidikan", dasar: "Pasal 22 UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A2-35", topik: "A2.10", tipe: "pasal", depan: "Daluwarsa penagihan dan penangguhannya?", belakang: "5 tahun sejak terbit; tertangguh: Surat Paksa, pengakuan utang, SKP Ps. 13(5)/15(4) (kedua ayat dihapus UU 11/2020), penyidikan", dasar: "Pasal 22 UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-36", topik: "A2.2", tipe: "angka", depan: "Implementasi penuh NIK sebagai NPWP dan pengganti NPWP cabang?", belakang: "1 Juli 2024; cabang memakai NITKU", dasar: "PMK 112/PMK.03/2022 jo. PMK 136/2023", berlakuSejak: "2024-07-01", menggantikan: "NPWP 15 digit dan NPWP cabang", dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-A2-37", topik: "A2.2", tipe: "angka", depan: "Kapan wajib lapor untuk dikukuhkan PKP?", belakang: "Akhir bulan berikutnya setelah peredaran bruto melewati Rp4,8 miliar", dasar: "PMK 197/PMK.03/2013", berlakuSejak: "2014-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A2-37", topik: "A2.2", tipe: "angka", depan: "Kapan wajib lapor untuk dikukuhkan PKP?", belakang: "Paling lambat akhir tahun buku saat peredaran bruto melewati Rp4,8 miliar; PPN dipungut mulai Masa Pajak pertama tahun buku berikutnya", dasar: "PMK 164/2023 Pasal 17 dan 18", berlakuSejak: "2023-12-29", menggantikan: "akhir bulan berikutnya setelah bulan batas terlampaui (PMK 197/PMK.03/2013)", dekTambahan: [] },
     { id: "KT-A2-38", topik: "A2.4", tipe: "angka", depan: "Masa simpan buku, catatan, dan dokumen dasar?", belakang: "10 tahun di Indonesia", dasar: "Pasal 28 ayat (11) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-39", topik: "A2.9", tipe: "angka", depan: "Batas keputusan restitusi Pasal 17B?", belakang: "12 bulan; lewat = dikabulkan, SKPLB terbit 1 bulan", dasar: "Pasal 17B ayat (1)–(2) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-40", topik: "A2.9", tipe: "angka", depan: "Ambang pengembalian pendahuluan Pasal 17D sejak 1 Mei 2026?", belakang: "OP usaha ≤ Rp100 jt; badan ≤ Rp1 M; PKP: lebih bayar ≤ Rp1 M dan penyerahan ≤ Rp4,2 M per Masa Pajak", dasar: "PMK 28 Tahun 2026", berlakuSejak: "2026-05-01", menggantikan: "PKP ≤ Rp5 miliar (PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021)", dekTambahan: ["perubahan-2025-2026"] },
@@ -3341,10 +3625,10 @@ UKP.register({
     { id: "KT-A2-49", topik: "A2.3", tipe: "prosedur", depan: "Pembetulan SPT di Coretax sejak 1 Oktober 2026?", belakang: "Memperhitungkan pembayaran dan pengembalian yang terjadi sebelum pembetulan disampaikan", dasar: "PER-12/PJ/2026", berlakuSejak: "2026-10-01", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-50", topik: "A2.5", tipe: "angka", depan: "Jangka maksimal pemeriksaan lengkap untuk grup usaha/indikasi transfer pricing?", belakang: "5 bulan ditambah perpanjangan 4 bulan, total 9 bulan sampai SPHP", dasar: "PMK 15/2025", berlakuSejak: "2025-02-14", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-51", topik: "A2.6", tipe: "pasal", depan: "Sanksi SKPKB PPN karena tarif 0% atau kompensasi yang tidak seharusnya?", belakang: "Kenaikan 75% (Pasal 13 ayat (3)); koreksi PPN biasa: bunga uplift 15%", dasar: "Pasal 13 ayat (1) huruf a dan c, ayat (2), ayat (3) UU KUP", berlakuSejak: "2021-10-29", menggantikan: "kenaikan 100% (UU 28/2007)", dekTambahan: [] },
-    { id: "KT-A2-52", topik: "A2.6", tipe: "pasal", depan: "Kapan SKPKB masih dapat terbit setelah daluwarsa 5 tahun lewat?", belakang: "Hanya bila WP dipidana berdasarkan putusan berkekuatan hukum tetap (Pasal 13 ayat (5))", dasar: "Pasal 13 ayat (5) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A2-52", topik: "A2.6", tipe: "pasal", depan: "Masih dapatkah SKPKB terbit setelah daluwarsa penetapan 5 tahun lewat?", belakang: "Tidak. Pasal 13 ayat (5) (SKPKB bagi WP yang dipidana) dihapus UU 11/2020", dasar: "Pasal 13 ayat (1) UU KUP; Pasal 13 ayat (5) dan Pasal 15 ayat (4) dihapus UU 11/2020", berlakuSejak: "2020-11-02", menggantikan: "SKPKB/SKPKBT masih dapat terbit setelah 5 tahun bila WP dipidana berdasarkan putusan berkekuatan hukum tetap (Pasal 13 ayat (5) dan Pasal 15 ayat (4) UU 28/2007)", dekTambahan: [] },
     { id: "KT-A2-53", topik: "A2.7", tipe: "angka", depan: "Tenggat keberatan atas pemotongan/pemungutan oleh pihak ketiga?", belakang: "3 bulan sejak tanggal pemotongan/pemungutan; diajukan kepada Direktur Jenderal Pajak", dasar: "Pasal 25 ayat (1) huruf e dan ayat (3) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A2-54", topik: "A2.7", tipe: "prosedur", depan: "Akibat surat keberatan yang tidak memenuhi syarat?", belakang: "Bukan surat keberatan; boleh diajukan ulang selama tenggat 3 bulan belum lewat", dasar: "Pasal 25 ayat (5) UU KUP; PMK 118/2024", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A2-55", topik: "A2.8", tipe: "angka", depan: "Bunga atas angsuran atau penundaan pembayaran pajak?", belakang: "Pasal 19 ayat (2), uplift 0%, atas sisa yang masih harus dibayar", dasar: "Pasal 9 ayat (4) dan Pasal 19 ayat (2) UU KUP", berlakuSejak: "2021-10-29", menggantikan: "bunga 2% per bulan (UU 28/2007)", dekTambahan: [] },
+    { id: "KT-A2-55", topik: "A2.8", tipe: "angka", depan: "Bunga atas angsuran atau penundaan pembayaran pajak?", belakang: "Pasal 19 ayat (2), uplift 0%, atas sisa yang masih harus dibayar", dasar: "Pasal 9 ayat (4) UU KUP; Pasal 19 ayat (2) UU KUP s.t.d.d. UU 11/2020", berlakuSejak: "2020-11-02", menggantikan: "bunga 2% per bulan (UU 28/2007)", dekTambahan: [] },
     { id: "KT-A2-56", topik: "A2.8", tipe: "prosedur", depan: "Alokasi pembayaran utang pajak sejak 2 Oktober 2026?", belakang: "Pokok pajak dilunasi lebih dahulu, baru sanksi administratif", dasar: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02", menggantikan: "dialokasikan proporsional ke pokok dan sanksi", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A2-57", topik: "A2.9", tipe: "pasal", depan: "Imbalan bunga bila SKPLB restitusi terlambat diterbitkan?", belakang: "Sejak berakhirnya jangka waktu 1 bulan penerbitan SKPLB (Ps. 17B ayat (2)) sampai SKPLB terbit; tarif uplift 0%", dasar: "Pasal 17B ayat (3) UU KUP", berlakuSejak: "2020-11-02", menggantikan: "imbalan bunga 2% per bulan (UU 28/2007)", dekTambahan: [] },
     { id: "KT-A2-58", topik: "A2.9", tipe: "pasal", depan: "Siapa yang boleh meminta restitusi PPN setiap Masa Pajak?", belakang: "Eksportir, penyerah ke pemungut/tidak dipungut, PKP belum berproduksi; lainnya akhir tahun buku", dasar: "Pasal 9 ayat (4a)–(4b) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
@@ -3494,7 +3778,7 @@ UKP.register({
     {
       id: "K-A2-05", judul: "Pemeriksaan lengkap, pengungkapan Pasal 8 ayat (4), dan SKPKB — PT Nusa Kreasi Mandiri", topik: "A2.5", estimasiMenit: 20,
       narasi: "PT Nusa Kreasi Mandiri (tahun buku kalender, bukan anggota grup usaha, tanpa indikasi transfer pricing) menyampaikan SPT Tahunan PPh Badan 2024 tepat waktu dengan status nihil. SP2 pemeriksaan lengkap atas SPT tersebut disampaikan Senin, 2 Februari 2026. Pada Senin, 18 Mei 2026, sebelum SPHP disampaikan, perusahaan menyampaikan laporan tersendiri pengungkapan ketidakbenaran pengisian SPT atas penghasilan sewa alat yang tidak dilaporkan, dengan PPh kurang dibayar Rp60.000.000, dan melunasi kekurangan itu beserta bunganya pada hari yang sama. SPHP disampaikan dan diterima Kamis, 25 Juni 2026 dengan koreksi tambahan atas biaya yang tidak dapat dikurangkan, sehingga PPh kurang dibayar bertambah Rp90.000.000 di luar jumlah yang telah diungkapkan. Perusahaan tidak menyetujui koreksi tambahan itu, dan SKPKB atas kekurangan Rp90.000.000 diterbitkan serta dikirim Senin, 3 Agustus 2026. Anggap tarif bunga yang berlaku pada tanggal dimulainya penghitungan masing-masing sanksi: uplift 10% = 1,45% per bulan; uplift 15% = 1,87% per bulan. Anggap tidak ada hari libur nasional.",
-      data: [["SP2 pemeriksaan lengkap", "Senin, 2 Februari 2026"], ["Akhir Tahun Pajak 2024", "31 Desember 2024"], ["Pengungkapan dan pelunasan", "Senin, 18 Mei 2026; pokok Rp60.000.000"], ["SPHP diterima", "Kamis, 25 Juni 2026"], ["Koreksi tambahan", "PPh kurang dibayar Rp90.000.000"], ["SKPKB diterbitkan dan dikirim", "Senin, 3 Agustus 2026"], ["Tarif (anggap)", "uplift 10% = 1,45%; uplift 15% = 1,87%"]],
+      data: [["SP2 pemeriksaan lengkap", "Senin, 2 Februari 2026"], ["Akhir Tahun Pajak 2024", "31 Desember 2024"], ["Batas waktu penyampaian SPT Tahunan 2024", "30 April 2025"], ["Pengungkapan dan pelunasan", "Senin, 18 Mei 2026; pokok Rp60.000.000"], ["SPHP diterima", "Kamis, 25 Juni 2026"], ["Koreksi tambahan", "PPh kurang dibayar Rp90.000.000"], ["SKPKB diterbitkan dan dikirim", "Senin, 3 Agustus 2026"], ["Tarif (anggap)", "uplift 10% = 1,45%; uplift 15% = 1,87%"]],
       langkah: [
         { no: 1, pertanyaan: "Paling lambat kapan SPHP harus disampaikan?", tipe: "pilihan",
           opsi: { A: "2 Mei 2026", B: "2 Juli 2026", C: "2 Agustus 2026", D: "2 November 2026" }, jawaban: "B",
@@ -3504,12 +3788,12 @@ UKP.register({
           opsi: { A: "Sah karena disampaikan sebelum SPHP disampaikan", B: "Tidak sah karena pemeriksaan sudah dimulai", C: "Sah hanya bila disampaikan sebelum SP2", D: "Sah selama SKP belum terbit" }, jawaban: "A",
           petunjuk: ["Baca Pasal 8 ayat (4) UU KUP setelah UU HPP", "Batasnya dikaitkan dengan SPHP", "Jawaban: A"],
           penjelasan: "Pengungkapan dapat disampaikan walaupun pemeriksaan sudah dimulai, sepanjang SPHP belum disampaikan; pemeriksaan tetap dilanjutkan." },
-        { no: 3, pertanyaan: "Berapa bulan bunga Pasal 8 ayat (5) atas pengungkapan tersebut?", tipe: "angka", jawaban: 17, toleransi: 0,
-          petunjuk: ["Bunga dihitung sejak berakhirnya Tahun Pajak sampai tanggal pembayaran", "31 Desember 2024 → 30 April 2026 = 16 bulan, sisa 18 hari", "Bagian bulan dihitung penuh: 17 bulan"],
-          penjelasan: "Bunga Pasal 8 ayat (5) dihitung sejak berakhirnya Tahun Pajak (31 Desember 2024) sampai tanggal pembayaran 18 Mei 2026: 16 bulan 18 hari menjadi 17 bulan." },
-        { no: 4, pertanyaan: "Berapa bunga Pasal 8 ayat (5) (Rp)?", tipe: "angka", jawaban: 14790000, toleransi: 0,
-          petunjuk: ["Uplift 10% → tarif 1,45% (anggap)", "60.000.000 × 1,45% = 870.000 per bulan", "870.000 × 17 = Rp14.790.000"],
-          penjelasan: "Rp60.000.000 × 1,45% × 17 = Rp14.790.000, dilunasi bersama kekurangan pajak sebelum laporan pengungkapan disampaikan." },
+        { no: 3, pertanyaan: "Berapa bulan bunga Pasal 8 ayat (5) atas pengungkapan tersebut?", tipe: "angka", jawaban: 13, toleransi: 0,
+          petunjuk: ["Untuk SPT Tahunan, bunga Pasal 8 ayat (5) dihitung sejak batas waktu penyampaian SPT Tahunan berakhir sampai tanggal pembayaran", "30 April 2025 → 30 April 2026 = 12 bulan, sisa 18 hari", "Bagian bulan dihitung penuh: 13 bulan"],
+          penjelasan: "Bunga Pasal 8 ayat (5) dihitung sejak batas waktu penyampaian SPT Tahunan 2024 berakhir (30 April 2025) sampai tanggal pembayaran 18 Mei 2026: 12 bulan 18 hari menjadi 13 bulan. Akhir Tahun Pajak (31 Desember 2024) adalah titik awal bunga SKPKB Pasal 13 ayat (2) pada langkah 6, bukan bunga pengungkapan." },
+        { no: 4, pertanyaan: "Berapa bunga Pasal 8 ayat (5) (Rp)?", tipe: "angka", jawaban: 11310000, toleransi: 0,
+          petunjuk: ["Uplift 10% → tarif 1,45% (anggap)", "60.000.000 × 1,45% = 870.000 per bulan", "870.000 × 13 = Rp11.310.000"],
+          penjelasan: "Rp60.000.000 × 1,45% × 13 = Rp11.310.000, dilunasi bersama kekurangan pajak sebelum laporan pengungkapan disampaikan." },
         { no: 5, pertanyaan: "Paling lambat kapan perusahaan menyampaikan tanggapan tertulis atas SPHP?", tipe: "pilihan",
           opsi: { A: "Selasa, 30 Juni 2026", B: "Kamis, 2 Juli 2026", C: "Senin, 6 Juli 2026", D: "Sabtu, 25 Juli 2026" }, jawaban: "B",
           petunjuk: ["Tanggapan SPHP 5 hari kerja sejak diterima (PMK 15/2025)", "Hari kerja: 26 Juni, 29 Juni, 30 Juni, 1 Juli, 2 Juli", "Kamis, 2 Juli 2026"],
@@ -3525,7 +3809,7 @@ UKP.register({
           petunjuk: ["Keberatan diajukan dalam 3 bulan", "Dihitung sejak tanggal SKP dikirim", "3 Agustus 2026 + 3 bulan = 3 November 2026"],
           penjelasan: "Pasal 25 ayat (3) UU KUP; karena tidak ada jumlah yang disetujui dalam PAHP atas koreksi tambahan, tidak ada pelunasan minimal sebelum keberatan." }
       ],
-      kesimpulan: "Pengungkapan sebelum SPHP membuat kekurangan Rp60.000.000 hanya dikenai bunga uplift 10% selama 17 bulan (Rp14.790.000) yang dilunasi bersama pengungkapan, sementara koreksi yang tidak diungkapkan (Rp90.000.000) ditetapkan dengan SKPKB berbunga uplift 15% selama 20 bulan (Rp33.660.000). Linimasa PMK 15/2025 (SPHP 5 bulan, tanggapan 5 hari kerja) dan tenggat keberatan 3 bulan melengkapi kasus ini.",
+      kesimpulan: "Pengungkapan sebelum SPHP membuat kekurangan Rp60.000.000 hanya dikenai bunga uplift 10% selama 13 bulan sejak batas waktu penyampaian SPT Tahunan (Rp11.310.000) yang dilunasi bersama pengungkapan, sementara koreksi yang tidak diungkapkan (Rp90.000.000) ditetapkan dengan SKPKB berbunga uplift 15% selama 20 bulan (Rp33.660.000). Linimasa PMK 15/2025 (SPHP 5 bulan, tanggapan 5 hari kerja) dan tenggat keberatan 3 bulan melengkapi kasus ini.",
       kalkulatorRef: "sanksi-bunga"
     }
   ],

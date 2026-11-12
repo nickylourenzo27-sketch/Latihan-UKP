@@ -26,14 +26,14 @@ UKP.register({
       { label: "Ekspor BKP, BKP tidak berwujud, JKP", nilai: "Tarif 0%; PM tetap dapat dikreditkan", dasar: "Pasal 7 ayat (2) UU PPN", berlakuSejak: "2010-04-01" },
       { label: "Rentang perubahan tarif dengan PP", nilai: "5%–15%", dasar: "Pasal 7 ayat (3) UU PPN", berlakuSejak: "2022-04-01" },
       { label: "Batas pengusaha kecil", nilai: "Peredaran bruto BKP/JKP ≤ Rp4,8 miliar per tahun buku", dasar: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013", berlakuSejak: "2014-01-01" },
-      { label: "Lapor pengukuhan PKP setelah batas terlampaui", nilai: "Umum: akhir bulan berikutnya; WP PPh final UMKM: akhir tahun buku, pungut PPN mulai Masa Januari berikutnya ◐", dasar: "PMK 197/PMK.03/2013; PMK 164/2023 Pasal 17–18", berlakuSejak: null },
+      { label: "Lapor pengukuhan PKP setelah batas terlampaui", nilai: "Paling lambat akhir tahun buku saat batas terlampaui; pungut PPN mulai Masa Pajak pertama tahun buku berikutnya ◐", dasar: "PMK 164/2023 Pasal 17–18", berlakuSejak: "2023-12-29" },
       { label: "Unggah faktur pajak Coretax", nilai: "Paling lambat tanggal 20 bulan berikutnya setelah tanggal faktur", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
       { label: "Kode transaksi faktur", nilai: "01–10; 02 instansi pemerintah, 03 pemungut lain, 07 tidak dipungut/DTP, 08 dibebaskan, 09 aktiva Pasal 16D", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
-      { label: "Denda faktur tidak dibuat/terlambat/tidak lengkap", nilai: "1% × DPP", dasar: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2021-10-29" },
+      { label: "Denda faktur tidak dibuat/terlambat/tidak lengkap", nilai: "1% × DPP", dasar: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2020-11-02" },
       { label: "Faktur dibuat > 3 bulan sejak seharusnya", nilai: "Dianggap tidak dibuat; PM pembeli tidak dapat dikreditkan", dasar: "PP 44/2022; PER-11/PJ/2025", berlakuSejak: "2022-12-02" },
       { label: "Pengkreditan PM yang tertunda", nilai: "Paling lama 3 Masa Pajak setelah masa faktur, belum dibiayakan", dasar: "Pasal 9 ayat (9) UU PPN", berlakuSejak: "2010-04-01" },
       { label: "PM masa sebelum dikukuhkan PKP", nilai: "Pedoman 80% × PK", dasar: "Pasal 9 ayat (9a) UU PPN", berlakuSejak: "2020-11-02" },
-      { label: "PM tidak dapat dikreditkan", nilai: "Tak terkait langsung usaha, sedan/station wagon, faktur cacat, terkait penyerahan dibebaskan", dasar: "Pasal 9 ayat (8) dan Pasal 16B ayat (3) UU PPN", berlakuSejak: "2022-04-01" },
+      { label: "PM tidak dapat dikreditkan", nilai: "Tak terkait langsung usaha, faktur cacat, terkait penyerahan dibebaskan (larangan sedan/station wagon dihapus sejak 1 April 2022)", dasar: "Pasal 9 ayat (8) dan Pasal 16B ayat (3) UU PPN", berlakuSejak: "2022-04-01" },
       { label: "Setor PPN pemanfaatan JKP/BKP tidak berwujud luar negeri dan KMS", nilai: "Tanggal 15 bulan berikutnya", dasar: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" },
       { label: "Setor dan lapor SPT Masa PPN", nilai: "Akhir bulan berikutnya; setor sebelum SPT disampaikan", dasar: "Pasal 15A UU PPN", berlakuSejak: "2010-04-01" },
       { label: "Denda terlambat SPT Masa PPN", nilai: "Rp500.000 per SPT", dasar: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" },
@@ -42,8 +42,8 @@ UKP.register({
       { label: "Kegiatan membangun sendiri", nilai: "2,2% × biaya tanpa tanah; bangunan ≥ 200 m²", dasar: "Pasal 16C UU PPN; PMK 81/2024 Pasal 324 s.t.d.d. PMK 11/2025", berlakuSejak: "2025-01-01" },
       { label: "PPnBM hunian mewah", nilai: "20% untuk harga jual ≥ Rp30 miliar", dasar: "PMK 96/PMK.03/2021 s.t.d.d. PMK 15/2023", berlakuSejak: null },
       { label: "PPN DTP rumah 2026", nilai: "100% atas bagian harga s.d. Rp2 miliar; harga jual maksimal Rp5 miliar", dasar: "PMK 90/2025", berlakuSejak: "2026-01-01" },
-      { label: "Ambang penunjukan pemungut PPN PMSE", nilai: "> Rp600 juta/tahun atau Rp50 juta/bulan; traffic > 12.000/tahun atau 1.000/bulan", dasar: "PMK 60/PMK.03/2022", berlakuSejak: "2022-04-01" },
-      { label: "PPh Pasal 22 bendahara (pembelian barang)", nilai: "1,5% × harga tanpa PPN; dikecualikan pembayaran ≤ Rp2 juta tidak termasuk PPN dan tidak dipecah", dasar: "PMK 51/2025 (PPh Pasal 22; menggantikan PMK 34/PMK.010/2017)", berlakuSejak: "2025-08-01" },
+      { label: "Ambang penunjukan pemungut PPN PMSE", nilai: "> Rp600 juta/tahun atau Rp50 juta/bulan; traffic > 12.000/tahun atau 1.000/bulan ◐", dasar: "PMK 81/2024 (PPN PMSE; menggantikan PMK 60/PMK.03/2022 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" },
+      { label: "PPh Pasal 22 bendahara (pembelian barang)", nilai: "1,5% × harga tanpa PPN; dikecualikan pembayaran ≤ Rp2 juta tidak termasuk PPN dan tidak dipecah", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" },
       { label: "Restitusi PPN", nilai: "PKP umum akhir tahun buku; tiap masa: ekspor, ke pemungut, tidak dipungut, belum berproduksi", dasar: "Pasal 9 ayat (4a)–(4b) UU PPN", berlakuSejak: "2010-04-01" },
       { label: "Pengembalian pendahuluan Pasal 17D bagi PKP", nilai: "Lebih bayar ≤ Rp1 miliar dan penyerahan ≤ Rp4,2 miliar per Masa Pajak ✅; SKPPKP 1 bulan", dasar: "PMK 28 Tahun 2026", berlakuSejak: "2026-05-01" },
       { label: "Restitusi melalui pemeriksaan", nilai: "Keputusan paling lama 12 bulan sejak permohonan lengkap", dasar: "Pasal 17B UU KUP", berlakuSejak: "2008-01-01" },
@@ -95,7 +95,7 @@ UKP.register({
       estimasiMenit: 14, jenisDominan: ["klasifikasi", "konsep"],
       ringkasan: [
         "Objek Pasal 4 ayat (1): penyerahan BKP dan JKP di dalam Daerah Pabean oleh pengusaha, impor BKP, pemanfaatan BKP tidak berwujud dan JKP dari luar Daerah Pabean, serta ekspor BKP berwujud, BKP tidak berwujud, dan JKP oleh PKP.",
-        "Pasal 16C: kegiatan membangun sendiri (KMS) di luar kegiatan usaha; Pasal 16D: penyerahan aktiva yang tujuan semula tidak untuk diperjualbelikan, kecuali aktiva yang PM-nya tidak dapat dikreditkan karena Pasal 9 ayat (8) huruf b dan c.",
+        "Pasal 16C: kegiatan membangun sendiri (KMS) di luar kegiatan usaha; Pasal 16D: penyerahan aktiva yang tujuan semula tidak untuk diperjualbelikan, kecuali aktiva yang PM-nya tidak dapat dikreditkan karena Pasal 9 ayat (8) huruf b (huruf c tentang sedan dan station wagon dihapus UU 7/2021 sejak 1 April 2022, sehingga sedan operasional yang PM-nya dapat dikreditkan terutang PPN saat dijual).",
         "Pasca-UU HPP, bukan BKP tinggal: makanan/minuman yang disajikan di hotel, restoran, rumah makan, warung dan sejenisnya (objek pajak daerah), serta uang, emas batangan untuk cadangan devisa negara, dan surat berharga.",
         "Bukan JKP pasca-UU HPP: jasa keagamaan, jasa kesenian dan hiburan, jasa perhotelan, jasa pemerintahan umum, jasa penyediaan tempat parkir, dan jasa boga/katering (sebagian besar objek pajak daerah).",
         "Barang kebutuhan pokok, jasa kesehatan, pendidikan, keuangan, asuransi, angkutan umum, dan tenaga kerja kini BKP/JKP tetapi DIBEBASKAN melalui PP 49/2022: PM atas perolehannya tidak dapat dikreditkan (Pasal 16B ayat (3)).",
@@ -104,7 +104,7 @@ UKP.register({
       ],
       poinKunci: [
         { label: "Dibebaskan vs tidak dipungut", nilai: "Dibebaskan: PM tidak dapat dikreditkan; tidak dipungut: PM dapat dikreditkan", dasar: "Pasal 16B ayat (2)–(3) UU PPN", berlakuSejak: "2022-04-01" },
-        { label: "Pengecualian Pasal 16D", nilai: "Aktiva dengan PM tidak dapat dikreditkan karena Ps. 9(8) huruf b dan c", dasar: "Pasal 16D UU PPN", berlakuSejak: "2010-04-01" },
+        { label: "Pengecualian Pasal 16D", nilai: "Aktiva dengan PM tidak dapat dikreditkan karena Ps. 9(8) huruf b (huruf c dihapus UU 7/2021)", dasar: "Pasal 16D UU PPN; Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" },
         { label: "Bukan BKP pasca-HPP", nilai: "Makanan/minuman di hotel-restoran; uang, emas batangan cadangan devisa, surat berharga", dasar: "Pasal 4A ayat (2) UU PPN", berlakuSejak: "2022-04-01" },
         { label: "Bukan JKP pasca-HPP", nilai: "Keagamaan, kesenian/hiburan, perhotelan, pemerintahan umum, parkir, boga/katering", dasar: "Pasal 4A ayat (3) UU PPN", berlakuSejak: "2022-04-01" },
         { label: "PPN DTP rumah 2026", nilai: "100% atas bagian harga s.d. Rp2 M, harga jual maks Rp5 M", dasar: "PMK 90/2025", berlakuSejak: "2026-01-01" },
@@ -120,12 +120,12 @@ UKP.register({
       jebakan: [
         { teks: "Masih menganggap beras, jasa pendidikan, atau jasa kesehatan sebagai bukan objek PPN; sejak UU HPP semuanya BKP/JKP yang dibebaskan", tagSebab: "angka-usang" },
         { teks: "Mengkreditkan PM atas perolehan yang berkaitan dengan penyerahan dibebaskan", tagSebab: "salah-klasifikasi" },
-        { teks: "Mengenakan PPN Pasal 16D atas penjualan sedan bekas direksi yang PM-nya memang tidak dapat dikreditkan", tagSebab: "lupa-pasal" }
+        { teks: "Mengenakan PPN Pasal 16D atas penjualan aktiva yang PM-nya tidak dapat dikreditkan karena tidak berhubungan langsung dengan usaha, atau sebaliknya tidak mengenakan PPN atas penjualan sedan bekas operasional yang PM-nya dapat dikreditkan sejak huruf c dihapus", tagSebab: "lupa-pasal" }
       ],
       contohSoal: {
-        stem: "PT A (PKP, pabrik tekstil) menjual mesin tenun bekas Rp200.000.000 dan sedan bekas direksi Rp300.000.000 (tidak termasuk PPN). PPN terutang atas kedua penjualan tersebut?",
+        stem: "PT A (PKP, pabrik tekstil) menjual mesin tenun bekas Rp200.000.000 dan mobil bekas yang dahulu dibeli untuk keperluan pribadi keluarga pemegang saham (tidak berhubungan langsung dengan usaha, PM-nya tidak dikreditkan) Rp300.000.000 (tidak termasuk PPN). PPN terutang atas kedua penjualan tersebut?",
         jawaban: "Rp22.000.000",
-        langkah: [["Mesin: aktiva Pasal 16D, PM semula dapat dikreditkan", "terutang"], ["Sedan: PM semula tidak dapat dikreditkan (Ps. 9(8)c)", "dikecualikan dari 16D"], ["PPN = 12% × 11/12 × 200.000.000", "Rp22.000.000"]]
+        langkah: [["Mesin: aktiva Pasal 16D, PM semula dapat dikreditkan", "terutang"], ["Mobil keperluan pribadi: PM tidak dapat dikreditkan (Ps. 9(8) huruf b)", "dikecualikan dari 16D"], ["PPN = 12% × 11/12 × 200.000.000", "Rp22.000.000"]]
       },
       verifikasi: "✅"
     },
@@ -135,15 +135,15 @@ UKP.register({
       ringkasan: [
         "Pengusaha yang menyerahkan BKP/JKP di dalam Daerah Pabean atau melakukan ekspor wajib melaporkan usahanya untuk dikukuhkan sebagai PKP dan memungut, menyetor, serta melaporkan PPN (Pasal 3A ayat (1)).",
         "Pengusaha kecil adalah pengusaha dengan peredaran bruto dan/atau penerimaan bruto penyerahan BKP/JKP tidak lebih dari Rp4.800.000.000 dalam satu tahun buku; ia tidak wajib PKP tetapi dapat memilih dikukuhkan.",
-        "Bagi WP PPh final UMKM (PP 55/2022 s.t.d.d. PP 20/2026) yang peredaran brutonya sampai dengan suatu bulan melampaui Rp4,8 miliar, PMK 164/2023 (Pasal 17 ayat (3) dan Pasal 18) mengatur lapor pengukuhan paling lambat akhir tahun buku saat batas terlampaui dan pemungutan PPN mulai Masa Pajak pertama tahun buku berikutnya; tenggat umum PMK 197/2013 adalah akhir bulan berikutnya setelah bulan batas terlampaui.",
+        "Pengusaha yang peredaran brutonya sampai dengan suatu bulan dalam tahun buku melampaui Rp4,8 miliar wajib melaporkan usahanya untuk dikukuhkan sebagai PKP paling lambat akhir tahun buku saat batas terlampaui dan memungut PPN mulai Masa Pajak pertama tahun buku berikutnya (PMK 164/2023 Pasal 17–18); tenggat lama 'akhir bulan berikutnya' (PMK 197/2013) tidak dipakai lagi.",
         "Ambang dihitung dari peredaran bruto atas penyerahan BKP/JKP dalam rangka kegiatan usaha; penyerahan yang bukan objek PPN (misalnya jasa boga/katering atau makanan di restoran yang menjadi objek pajak daerah) tidak ikut dihitung.",
         "Pengusaha kecil yang memilih dikukuhkan terikat seluruh kewajiban PKP (faktur, SPT Masa PPN) dan dapat mengajukan pencabutan bila tidak lagi memenuhi syarat.",
         "Sejak 2025 pengukuhan dan pencabutan PKP dilakukan melalui Coretax; setiap orang pribadi atau badan yang memanfaatkan BKP tidak berwujud/JKP dari luar Daerah Pabean tetap wajib memungut dan menyetor PPN sendiri walau bukan PKP (Pasal 3A ayat (3))."
       ],
       poinKunci: [
         { label: "Batas pengusaha kecil", nilai: "≤ Rp4,8 miliar per tahun buku", dasar: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013 Pasal 1", berlakuSejak: "2014-01-01" },
-        { label: "Tenggat lapor pengukuhan", nilai: "WP PPh final UMKM: akhir tahun buku saat batas terlampaui (umum, PMK 197/2013: akhir bulan berikutnya)", dasar: "PMK 164/2023 Pasal 17 ayat (3)", berlakuSejak: null },
-        { label: "Mulai memungut PPN", nilai: "Masa Pajak pertama tahun buku berikutnya", dasar: "PMK 164/2023 Pasal 18", berlakuSejak: null },
+        { label: "Tenggat lapor pengukuhan", nilai: "Akhir tahun buku saat batas terlampaui (bukan akhir bulan berikutnya)", dasar: "PMK 164/2023 Pasal 17 ayat (1) dan (3)", berlakuSejak: "2023-12-29" },
+        { label: "Mulai memungut PPN", nilai: "Masa Pajak pertama tahun buku berikutnya", dasar: "PMK 164/2023 Pasal 18", berlakuSejak: "2023-12-29" },
         { label: "Kewajiban PKP", nilai: "Memungut, menyetor, melaporkan PPN/PPnBM terutang", dasar: "Pasal 3A ayat (1) UU PPN", berlakuSejak: "2010-04-01" },
         { label: "Pemanfaatan dari luar Daerah Pabean", nilai: "PPN dipungut dan disetor oleh pemanfaat (PKP maupun bukan)", dasar: "Pasal 3A ayat (3) UU PPN", berlakuSejak: "2010-04-01" }
       ],
@@ -155,7 +155,7 @@ UKP.register({
       ],
       jebakan: [
         { teks: "Memakai batas lama Rp600 juta (pra-2014) atau menyamakan ambang PKP dengan ambang NPPN/PPh final 'kurang dari' Rp4,8 M; untuk PKP batasnya 'tidak lebih dari' Rp4,8 M", tagSebab: "angka-usang" },
-        { teks: "Bagi WP PPh final UMKM, memakai tenggat umum 'akhir bulan berikutnya' (PMK 197/2013) atau mengira PPN wajib dipungut sejak bulan batas terlampaui; PMK 164/2023 mengatur lapor paling lambat akhir tahun buku dan PPN dipungut mulai Masa pertama tahun buku berikutnya", tagSebab: "angka-usang" }
+        { teks: "Memakai tenggat lama 'akhir bulan berikutnya' (PMK 197/2013) atau mengira PPN wajib dipungut sejak bulan batas terlampaui; PMK 164/2023 mengatur lapor paling lambat akhir tahun buku (bagi semua pengusaha, termasuk yang tahun bukunya tidak sama dengan tahun kalender) dan PPN dipungut mulai Masa pertama tahun buku berikutnya", tagSebab: "angka-usang" }
       ],
       contohSoal: {
         stem: "Peredaran bruto Toko Berkah (orang pribadi, WP PPh final UMKM PP 55/2022, tahun buku Januari–Desember) atas penyerahan BKP secara kumulatif melampaui Rp4,8 miliar pada 18 Agustus 2026. Paling lambat kapan ia wajib melaporkan usahanya untuk dikukuhkan sebagai PKP, dan mulai Masa Pajak apa ia wajib memungut PPN?",
@@ -163,7 +163,7 @@ UKP.register({
         langkah: [["Bulan terlampauinya batas", "Agustus 2026 (tahun buku 2026)"], ["Tenggat: akhir tahun buku saat batas terlampaui (PMK 164/2023 Ps. 17 ayat (3))", "31 Desember 2026"], ["Kewajiban PPN: Masa Pajak pertama tahun buku berikutnya (Ps. 18)", "Masa Januari 2027"]]
       },
       verifikasi: "◐",
-      peringatan: "Tenggat akhir tahun buku dan awal pemungutan Masa pertama tahun buku berikutnya (PMK 164/2023) berlaku bagi WP PPh final UMKM; nomor pasal dan cakupannya belum dicek ke teks. Riset mencatat tenggat umum PMK 197/2013 (akhir bulan berikutnya) belum dicabut PMK 81/2024."
+      peringatan: "Tenggat akhir tahun buku dan awal pemungutan Masa pertama tahun buku berikutnya mengikuti PMK 164/2023 Pasal 17–18 menurut keterangan resmi DJP (Januari 2024) dan soal try out November 2026 (A4-152), berlaku bagi semua pengusaha; naskah PMK belum dibuka langsung."
     },
     {
       id: "A4.4", slug: "saat-tempat-terutang", judul: "Saat dan tempat PPN terutang, pemusatan",
@@ -214,7 +214,7 @@ UKP.register({
       ],
       poinKunci: [
         { label: "Batas unggah faktur", nilai: "Tanggal 20 bulan berikutnya setelah tanggal faktur", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
-        { label: "Sanksi faktur", nilai: "Denda 1% × DPP (STP)", dasar: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2021-10-29" },
+        { label: "Sanksi faktur", nilai: "Denda 1% × DPP (STP)", dasar: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2020-11-02" },
         { label: "Faktur sangat terlambat", nilai: "> 3 bulan sejak saat seharusnya → dianggap tidak dibuat", dasar: "PP 44/2022; PER-11/PJ/2025", berlakuSejak: "2022-12-02" },
         { label: "Kode transaksi", nilai: "10 kode (01–10)", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
         { label: "Faktur gabungan", nilai: "Paling lama akhir bulan penyerahan", dasar: "Pasal 13 ayat (2a) UU PPN", berlakuSejak: "2010-04-01" },
@@ -232,7 +232,7 @@ UKP.register({
         { pasal: "Pasal 39A UU KUP", catatan: "pidana atas faktur yang tidak berdasarkan transaksi sebenarnya" }
       ],
       jebakan: [
-        { teks: "Memakai batas unggah tanggal 15 (ketentuan e-Faktur lama) atau sanksi 2% DPP (pra-UU HPP)", tagSebab: "angka-usang" },
+        { teks: "Memakai batas unggah tanggal 15 (ketentuan e-Faktur lama) atau sanksi 2% DPP (sebelum UU Cipta Kerja, 2 November 2020)", tagSebab: "angka-usang" },
         { teks: "Menghitung sanksi 1% dari harga jual, padahal dasarnya DPP (untuk non-mewah DPP = 11/12 × harga jual)", tagSebab: "salah-hitung" },
         { teks: "Mengira faktur yang terlambat lebih dari 3 bulan cukup dikenai sanksi 1%; faktur itu dianggap tidak dibuat sehingga PM pembeli hangus", tagSebab: "lupa-pasal" }
       ],
@@ -290,7 +290,7 @@ UKP.register({
       ringkasan: [
         "PM dikreditkan dengan PK dalam Masa Pajak yang sama (Pasal 9 ayat (2)); syaratnya faktur memenuhi Pasal 13 ayat (5), perolehan berhubungan langsung dengan kegiatan usaha, dan PM dilaporkan dalam SPT Masa PPN.",
         "PM yang belum dikreditkan pada masa yang sama dapat dikreditkan paling lama 3 Masa Pajak setelah berakhirnya Masa Pajak saat faktur dibuat, sepanjang belum dibebankan sebagai biaya atau ditambahkan ke harga perolehan dan belum dilakukan pemeriksaan (Pasal 9 ayat (9)).",
-        "PM tidak dapat dikreditkan (Pasal 9 ayat (8)): perolehan yang tidak berhubungan langsung dengan kegiatan usaha (huruf b); perolehan dan pemeliharaan sedan dan station wagon, kecuali barang dagangan atau disewakan (huruf c); faktur yang tidak memenuhi Pasal 13 ayat (5)/(9), termasuk tanpa identitas pembeli (huruf f).",
+        "PM tidak dapat dikreditkan (Pasal 9 ayat (8)): perolehan yang tidak berhubungan langsung dengan kegiatan usaha (huruf b); larangan atas sedan dan station wagon (huruf c) dihapus UU 7/2021 sejak 1 April 2022, sehingga PM-nya dapat dikreditkan bila berhubungan langsung dengan usaha; faktur yang tidak memenuhi Pasal 13 ayat (5)/(9), termasuk tanpa identitas pembeli (huruf f).",
         "PM atas perolehan yang berkaitan dengan penyerahan yang dibebaskan tidak dapat dikreditkan (Pasal 16B ayat (3)); PM atas penyerahan yang tidak dipungut, ekspor, atau kepada pemungut tetap dapat dikreditkan.",
         "PKP yang melakukan penyerahan terutang dan dibebaskan: PM yang langsung terkait penyerahan terutang dikreditkan penuh, PM yang langsung terkait penyerahan dibebaskan tidak dikreditkan, dan PM bersama dikreditkan secara proporsional (penyerahan terutang ÷ seluruh penyerahan) (Pasal 9 ayat (5)–(6)).",
         "Untuk masa sebelum pengusaha dikukuhkan sebagai PKP (misalnya pengukuhan secara jabatan), PM dapat dikreditkan memakai pedoman 80% dari PK (Pasal 9 ayat (9a), sisipan UU Cipta Kerja).",
@@ -298,7 +298,7 @@ UKP.register({
       ],
       poinKunci: [
         { label: "Batas pengkreditan tertunda", nilai: "Paling lama 3 Masa Pajak setelah masa faktur", dasar: "Pasal 9 ayat (9) UU PPN", berlakuSejak: "2010-04-01" },
-        { label: "Sedan dan station wagon", nilai: "PM tidak dapat dikreditkan, kecuali barang dagangan/disewakan", dasar: "Pasal 9 ayat (8) huruf c UU PPN", berlakuSejak: "2010-04-01" },
+        { label: "Sedan dan station wagon", nilai: "PM dapat dikreditkan bila berhubungan langsung dengan kegiatan usaha (larangan huruf c dihapus); tetap tidak bila untuk keperluan pribadi", dasar: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" },
         { label: "Faktur cacat", nilai: "PM tidak dapat dikreditkan", dasar: "Pasal 9 ayat (8) huruf f UU PPN", berlakuSejak: "2010-04-01" },
         { label: "PM sebelum dikukuhkan PKP", nilai: "Pedoman 80% × PK", dasar: "Pasal 9 ayat (9a) UU PPN (UU Cipta Kerja)", berlakuSejak: "2020-11-02" },
         { label: "PM bersama (terutang + dibebaskan)", nilai: "Proporsional: penyerahan terutang ÷ total penyerahan", dasar: "Pasal 9 ayat (5)–(6) UU PPN", berlakuSejak: "2010-04-01" }
@@ -310,7 +310,7 @@ UKP.register({
       ],
       jebakan: [
         { teks: "Menganggap PM yang terlewat boleh dikreditkan kapan saja sampai akhir tahun buku; batasnya 3 Masa Pajak", tagSebab: "salah-hitung" },
-        { teks: "Mengkreditkan PM sedan operasional direksi atau kendaraan yang tidak disewakan/diperdagangkan", tagSebab: "lupa-pasal" },
+        { teks: "Mencoret PM sedan atau station wagon operasional dengan larangan huruf c yang sudah dihapus (perolehan sejak 1 April 2022), atau sebaliknya mengkreditkan kendaraan untuk keperluan pribadi keluarga pemegang saham", tagSebab: "angka-usang" },
         { teks: "Mengkreditkan seluruh PM bersama padahal PKP juga punya penyerahan dibebaskan", tagSebab: "salah-klasifikasi" }
       ],
       contohSoal: {
@@ -325,7 +325,7 @@ UKP.register({
       estimasiMenit: 11, jenisDominan: ["prosedur", "hitung"],
       ringkasan: [
         "PPN atas penyerahan BKP/JKP kepada pemungut PPN dipungut, disetor, dan dilaporkan oleh pemungut (Pasal 16A ayat (1) UU PPN); PKP penjual tetap membuat faktur pajak dan melaporkan penyerahannya, tetapi tidak menyetor PPN tersebut.",
-        "Pemungut PPN meliputi instansi pemerintah (bendahara dan pejabat penerbit SPM), BUMN dan badan usaha tertentu yang ditunjuk, serta pelaku usaha PMSE yang ditunjuk (Pasal 32A UU KUP jo. PMK 60/PMK.03/2022).",
+        "Pemungut PPN meliputi instansi pemerintah (bendahara dan pejabat penerbit SPM), BUMN dan badan usaha tertentu yang ditunjuk, serta pelaku usaha PMSE yang ditunjuk (Pasal 32A UU KUP jo. PMK 81/2024, yang sejak 1 Januari 2025 menggantikan PMK 60/PMK.03/2022).",
         "Kode transaksi faktur: 02 untuk penyerahan kepada instansi pemerintah dan 03 untuk penyerahan kepada pemungut selain instansi pemerintah (BUMN, KKKS migas, badan tertentu).",
         "Dalam SPT Masa PPN penjual, penyerahan kepada pemungut dicatat terpisah dari penyerahan yang PPN-nya dipungut sendiri; karena PK-nya tidak disetor sendiri, penjual kepada pemungut sering lebih bayar dan termasuk PKP yang dapat meminta restitusi setiap masa (Pasal 9 ayat (4b)).",
         "Bendahara pemerintah juga memungut PPh Pasal 22 sebesar 1,5% dari harga pembelian tidak termasuk PPN, sehingga dana yang diterima rekanan = nilai kontrak − PPN − PPh 22.",
@@ -334,14 +334,14 @@ UKP.register({
       poinKunci: [
         { label: "Kode faktur ke instansi pemerintah", nilai: "02", dasar: "PER-11/PJ/2025 (meneruskan PER-03/PJ/2022)", berlakuSejak: "2025-05-22" },
         { label: "Kode faktur ke pemungut lain", nilai: "03 (BUMN, KKKS, badan tertentu)", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
-        { label: "PPh 22 bendahara", nilai: "1,5% × harga tidak termasuk PPN", dasar: "Pasal 22 ayat (1) huruf a UU PPh; PMK 51/2025 (menggantikan PMK 34/PMK.010/2017)", berlakuSejak: null },
-        { label: "Ambang penunjukan PMSE", nilai: "> Rp600 jt/tahun atau Rp50 jt/bulan; traffic > 12.000/tahun atau 1.000/bulan", dasar: "PMK 60/PMK.03/2022", berlakuSejak: "2022-04-01" },
-        { label: "PPN PMSE", nilai: "12% × 11/12 (efektif 11%)", dasar: "PMK 60/2022 jo. PMK 131/2024", berlakuSejak: "2025-01-01" }
+        { label: "PPh 22 bendahara", nilai: "1,5% × harga tidak termasuk PPN", dasar: "Pasal 22 ayat (1) huruf a UU PPh; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" },
+        { label: "Ambang penunjukan PMSE", nilai: "> Rp600 jt/tahun atau Rp50 jt/bulan; traffic > 12.000/tahun atau 1.000/bulan ◐", dasar: "PMK 81/2024 (PPN PMSE; menggantikan PMK 60/PMK.03/2022 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" },
+        { label: "PPN PMSE", nilai: "12% × 11/12 (efektif 11%)", dasar: "PMK 81/2024 (PPN PMSE; menggantikan PMK 60/PMK.03/2022) jo. PMK 131/2024", berlakuSejak: "2025-01-01" }
       ],
       dasarHukum: [
         { pasal: "Pasal 16A UU PPN", catatan: "pemungutan PPN oleh pemungut" },
         { pasal: "Pasal 32A UU KUP", catatan: "penunjukan pihak lain sebagai pemungut (dasar PMSE)" },
-        { pasal: "PMK 60/PMK.03/2022", catatan: "PPN PMSE: kriteria penunjukan, pemungutan, penyetoran, pelaporan" },
+        { pasal: "PMK 81/2024 (menggantikan PMK 60/PMK.03/2022 sejak 1 Januari 2025)", catatan: "PPN PMSE: kriteria penunjukan, pemungutan, penyetoran, pelaporan" },
         { pasal: "Pasal 9 ayat (4b) huruf b UU PPN", catatan: "restitusi setiap masa bagi penjual kepada pemungut" }
       ],
       jebakan: [
@@ -354,7 +354,8 @@ UKP.register({
         jawaban: "Rp49.250.000",
         langkah: [["Harga tidak termasuk PPN = 55.500.000 × 100/111", "Rp50.000.000"], ["PPN dipungut bendahara = 11% × 50.000.000", "Rp5.500.000"], ["PPh 22 = 1,5% × 50.000.000", "Rp750.000"], ["Diterima = 55.500.000 − 5.500.000 − 750.000", "Rp49.250.000"]]
       },
-      verifikasi: "✅"
+      verifikasi: "◐",
+      peringatan: "PMK 60/PMK.03/2022 (PPN PMSE) dicabut PMK 81/2024 sejak 1 Januari 2025. Angka ambang penunjukan (Rp600 juta setahun atau Rp50 juta sebulan; traffic 12.000 setahun atau 1.000 sebulan) dan syarat dokumen PPN PMSE agar dapat dikreditkan berasal dari ketentuan pada masa PMK 60/PMK.03/2022; rumusannya dalam PMK 81/2024 s.t.d.t.d. PMK 1/2026 dan peraturan pelaksanaannya belum dicek ke teks."
     },
     {
       id: "A4.9", slug: "restitusi-kompensasi", judul: "Kompensasi, restitusi, dan pengembalian pendahuluan PPN",
@@ -531,21 +532,36 @@ UKP.register({
       anggaranDetik: 130, verifikasi: "✅"
     },
     {
-      id: "A4-007", topik: "A4.2", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A4-007",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       kutipan: "Pasal 16D UU PPN: Pajak Pertambahan Nilai dikenakan atas penyerahan Barang Kena Pajak berupa aktiva yang menurut tujuan semula tidak untuk diperjualbelikan oleh Pengusaha Kena Pajak, kecuali atas penyerahan aktiva yang Pajak Masukannya tidak dapat dikreditkan sebagaimana dimaksud dalam Pasal 9 ayat (8) huruf b dan huruf c.",
-      stem: "PT Logistik Prima (PKP, jasa logistik dan pergudangan korporasi yang terutang PPN) pada Oktober 2026 menjual tiga aktiva bekas (harga belum termasuk PPN): (1) truk boks Rp250.000.000 yang PM-nya dahulu dikreditkan; (2) sedan operasional direksi Rp180.000.000; (3) mesin fotokopi Rp12.000.000 yang dahulu dibeli dari pengusaha kecil bukan PKP sehingga tidak ada PM. Berdasarkan kutipan tersebut, PPN yang terutang atas penjualan aktiva Masa Oktober 2026 adalah ...",
+      stem: "PT Logistik Prima (PKP, jasa logistik dan pergudangan korporasi yang terutang PPN) pada Oktober 2026 menjual tiga aktiva bekas (harga belum termasuk PPN): (1) truk boks Rp250.000.000 yang PM-nya dahulu dikreditkan; (2) mobil penumpang yang dahulu dibeli untuk keperluan pribadi keluarga pemegang saham, tidak berhubungan langsung dengan kegiatan usaha sehingga PM-nya tidak dikreditkan, Rp180.000.000; (3) mesin fotokopi Rp12.000.000 yang dahulu dibeli dari pengusaha kecil bukan PKP sehingga tidak ada PM. Berdasarkan kutipan tersebut, PPN yang terutang atas penjualan aktiva Masa Oktober 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp27.500.000", B: "Rp48.620.000", C: "Rp28.820.000", D: "Rp31.440.000" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
-        inti: "Pengecualian Pasal 16D hanya untuk aktiva yang PM-nya tidak dapat dikreditkan karena Pasal 9 ayat (8) huruf b dan c (misalnya sedan); aktiva yang dibeli tanpa PPN dari non-PKP tidak termasuk pengecualian itu, sehingga truk dan mesin fotokopi terutang PPN.",
-        jejakHitung: [["Truk: aktiva Pasal 16D, PM dahulu dikreditkan", "terutang"], ["Sedan: PM tidak dapat dikreditkan (Ps. 9 ayat (8) huruf c)", "dikecualikan"], ["Mesin fotokopi: tidak ada PM, tetapi bukan karena huruf b/c", "terutang"], ["DPP = 11/12 × (250.000.000 + 12.000.000)", "Rp240.166.667"], ["PPN = 12% × 240.166.667", "Rp28.820.000"]],
-        mengapaSalah: { A: "Mengecualikan mesin fotokopi hanya karena tidak ada PM, padahal pengecualian dibatasi huruf b dan c", B: "Memasukkan sedan yang justru dikecualikan karena PM-nya tidak dapat dikreditkan (huruf c)", D: "Memakai 12% atas harga penuh; aktiva bukan barang mewah memakai DPP 11/12" },
-        jebakan: "'Tidak ada PM' tidak sama dengan 'PM tidak dapat dikreditkan karena Pasal 9 ayat (8) huruf b/c'."
+        inti: "Pengecualian Pasal 16D hanya untuk aktiva yang PM-nya tidak dapat dikreditkan karena Pasal 9 ayat (8) (kini tinggal huruf b, sebab huruf c tentang sedan dan station wagon dihapus UU 7/2021 sejak 1 April 2022), misalnya mobil untuk keperluan pribadi keluarga pemegang saham; aktiva yang dibeli tanpa PPN dari non-PKP tidak termasuk pengecualian itu, sehingga truk dan mesin fotokopi terutang PPN.",
+        jejakHitung: [
+          ["Truk: aktiva Pasal 16D, PM dahulu dikreditkan", "terutang"],
+          ["Mobil keperluan pribadi keluarga pemegang saham: PM tidak dapat dikreditkan (Ps. 9 ayat (8) huruf b)", "dikecualikan"],
+          ["Mesin fotokopi: tidak ada PM, tetapi bukan karena Pasal 9 ayat (8) huruf b", "terutang"],
+          ["DPP = 11/12 × (250.000.000 + 12.000.000)", "Rp240.166.667"],
+          ["PPN = 12% × 240.166.667", "Rp28.820.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengecualikan mesin fotokopi hanya karena tidak ada PM, padahal pengecualian dibatasi aktiva yang PM-nya tidak dapat dikreditkan karena Pasal 9 ayat (8)",
+          B: "Memasukkan mobil keperluan pribadi yang justru dikecualikan karena PM-nya tidak dapat dikreditkan (huruf b)",
+          D: "Memakai 12% atas harga penuh; aktiva bukan barang mewah memakai DPP 11/12"
+        },
+        jebakan: "'Tidak ada PM' tidak sama dengan 'PM tidak dapat dikreditkan karena Pasal 9 ayat (8) huruf b'. Sebaliknya, sedan operasional yang dibeli sejak 1 April 2022 dan PM-nya dapat dikreditkan terutang PPN saat dijual."
       },
-      dasarHukum: [{ pasal: "Pasal 16D UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (8) huruf c UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 170, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 16D UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅"
     },
     {
       id: "A4-008", topik: "A4.2", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2,
@@ -596,21 +612,37 @@ UKP.register({
       anggaranDetik: 60, verifikasi: "✅"
     },
     {
-      id: "A4-011", topik: "A4.3", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A4-011",
+      topik: "A4.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Ibu Wulan (orang pribadi pemilik UD Mitra Bangun; belum PKP, tahun buku Januari–Desember, sepanjang 2026 membayar PPh final UMKM 0,5% berdasarkan PP 55/2022 s.t.d.d. PP 20/2026) sepanjang Januari–September 2026 menjual bahan bangunan Rp480.000.000 per bulan. Pada Mei 2026 ia juga menjual rumah tinggal pribadinya, yang bukan barang dagangan dan tidak pernah dipakai dalam usaha, seharga Rp500.000.000. Pada Oktober 2026 penjualan bahan bangunan Rp520.000.000. Ibu Wulan belum pernah memilih dikukuhkan secara sukarela. Bulan terlampauinya batas pengusaha kecil, batas waktu melaporkan usaha untuk dikukuhkan sebagai PKP, dan Masa Pajak mulai wajib memungut PPN berturut-turut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "September 2026; 31 Desember 2026; Masa Januari 2027", B: "Oktober 2026; 30 November 2026; Masa Desember 2026", C: "Oktober 2026; 31 Desember 2026; Masa Januari 2027", D: "Oktober 2026; 31 Desember 2026; Masa November 2026" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Ambang Rp4,8 miliar dihitung dari peredaran bruto atas penyerahan BKP/JKP dalam kegiatan usaha; penjualan rumah tinggal pribadi di luar usaha tidak dihitung sehingga batas baru terlampaui pada Oktober 2026. Sebagai WP PPh final UMKM, pengusaha wajib melaporkan usahanya paling lambat akhir tahun buku saat batas terlampaui (31 Desember 2026) dan, sebagai PKP, memungut PPN mulai Masa Pajak pertama tahun buku berikutnya (Januari 2027).",
-        jejakHitung: [["Penjualan bahan bangunan s.d. September = 9 × 480.000.000", "Rp4.320.000.000"], ["Penjualan rumah tinggal pribadi (bukan penyerahan dalam kegiatan usaha)", "tidak dihitung"], ["Kumulatif s.d. Oktober = 4.320.000.000 + 520.000.000", "Rp4.840.000.000 (> Rp4,8 miliar)"], ["Bulan terlampaui", "Oktober 2026"], ["Batas lapor = akhir tahun buku (PMK 164/2023 Ps. 17 ayat (3))", "31 Desember 2026"], ["Mulai memungut PPN (PMK 164/2023 Ps. 18)", "Masa Januari 2027"]],
-        mengapaSalah: { A: "Memasukkan penjualan rumah pribadi di luar usaha sehingga batas seolah terlampaui pada September (4,32 + 0,5 = Rp4,82 miliar)", B: "Memakai tenggat umum 'akhir bulan berikutnya' (PMK 197/2013), padahal bagi WP PPh final UMKM berlaku tenggat akhir tahun buku (PMK 164/2023)", D: "Kewajiban memungut PPN dimulai Masa Pajak pertama tahun buku berikutnya, bukan bulan setelah batas terlampaui" },
-        jebakan: "Saring dulu penerimaan di luar penyerahan BKP/JKP dalam usaha, lalu pakai tenggat akhir tahun buku (khusus WP PPh final UMKM) dan awal kewajiban PPN pada tahun buku berikutnya."
+        inti: "Ambang Rp4,8 miliar dihitung dari peredaran bruto atas penyerahan BKP/JKP dalam kegiatan usaha; penjualan rumah tinggal pribadi di luar usaha tidak dihitung sehingga batas baru terlampaui pada Oktober 2026. Pengusaha wajib melaporkan usahanya paling lambat akhir tahun buku saat batas terlampaui (31 Desember 2026) dan, sebagai PKP, memungut PPN mulai Masa Pajak pertama tahun buku berikutnya (Januari 2027).",
+        jejakHitung: [
+          ["Penjualan bahan bangunan s.d. September = 9 × 480.000.000", "Rp4.320.000.000"],
+          ["Penjualan rumah tinggal pribadi (bukan penyerahan dalam kegiatan usaha)", "tidak dihitung"],
+          ["Kumulatif s.d. Oktober = 4.320.000.000 + 520.000.000", "Rp4.840.000.000 (> Rp4,8 miliar)"],
+          ["Bulan terlampaui", "Oktober 2026"],
+          ["Batas lapor = akhir tahun buku (PMK 164/2023 Ps. 17 ayat (3))", "31 Desember 2026"],
+          ["Mulai memungut PPN (PMK 164/2023 Ps. 18)", "Masa Januari 2027"]
+        ],
+        mengapaSalah: {
+          A: "Memasukkan penjualan rumah pribadi di luar usaha sehingga batas seolah terlampaui pada September (4,32 + 0,5 = Rp4,82 miliar)",
+          B: "Memakai tenggat lama 'akhir bulan berikutnya' (PMK 197/2013) dan memungut PPN sejak bulan berikutnya, padahal PMK 164/2023 mengatur lapor paling lambat akhir tahun buku dan PPN mulai tahun buku berikutnya",
+          D: "Kewajiban memungut PPN dimulai Masa Pajak pertama tahun buku berikutnya, bukan bulan setelah batas terlampaui"
+        },
+        jebakan: "Saring dulu penerimaan di luar penyerahan BKP/JKP dalam usaha, lalu pakai tenggat akhir tahun buku dan awal kewajiban PPN pada tahun buku berikutnya."
       },
       dasarHukum: [{ pasal: "Pasal 3A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 164/2023 Pasal 17 ayat (3) dan Pasal 18", berlakuSejak: null }, { pasal: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013 (batas Rp4,8 miliar)", berlakuSejak: "2014-01-01" }, { pasal: "Pasal 4 ayat (1) huruf a UU PPN (penyerahan dalam kegiatan usaha)", berlakuSejak: "2010-04-01" }, { pasal: "PP 55/2022 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" }],
-      anggaranDetik: 170, verifikasi: "◐",
-      peringatan: "Tenggat lapor 'akhir tahun buku' dan awal pemungutan 'Masa pertama tahun buku berikutnya' bersumber dari PMK 164/2023 yang mengatur WP PPh final UMKM; nomor pasal dan cakupannya belum dicek ke teks. Bagi pengusaha di luar rezim PPh final UMKM, riset masih mencatat tenggat umum 'akhir bulan berikutnya' (PMK 197/2013)."
+      anggaranDetik: 170,
+      verifikasi: "◐",
+      peringatan: "Tenggat akhir tahun buku dan awal pemungutan Masa pertama tahun buku berikutnya mengikuti PMK 164/2023 Pasal 17–18 menurut keterangan resmi DJP dan soal try out November 2026; naskah PMK belum dibuka langsung."
     },
     {
       id: "A4-012", topik: "A4.3", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 2,
@@ -645,7 +677,11 @@ UKP.register({
       anggaranDetik: 120, verifikasi: "✅"
     },
     {
-      id: "A4-014", topik: "A4.3", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A4-014",
+      topik: "A4.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Tuan Andra (orang pribadi, toko grosir, tahun buku Januari–Desember, pada 2025 membayar PPh final UMKM PP 55/2022) peredaran brutonya atas penyerahan BKP melampaui Rp4,8 miliar pada Maret 2025, tetapi sampai akhir 2025 ia tidak melaporkan usahanya untuk dikukuhkan sebagai PKP. Pada Agustus 2026, setelah pemeriksaan, DJP mengukuhkan Tuan Andra sebagai PKP secara jabatan dan menerbitkan SKPKB PPN Masa Mei 2026. Pada masa itu Tuan Andra menyerahkan BKP non-mewah Rp800.000.000 tanpa memungut PPN dan tidak memiliki faktur masukan yang dapat dikreditkan. Pokok PPN kurang bayar dalam SKPKB Masa Mei 2026 (sebelum sanksi) adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp88.000.000", B: "Rp17.600.000", C: "Rp19.200.000", D: "Rp70.400.000" },
@@ -653,13 +689,23 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
         inti: "Batas lapor pengukuhan adalah 31 Desember 2025, sehingga kewajiban PPN seharusnya berlaku sejak Masa Januari 2026; untuk masa sebelum dikukuhkan (termasuk Mei 2026) PM diperhitungkan dengan pedoman 80% dari PK (Pasal 9 ayat (9a)), sehingga pokok kurang bayar = 20% × PK.",
-        jejakHitung: [["Batas terlampaui Maret 2025 → lapor paling lambat 31 Desember 2025 (PMK 164/2023)", "PPN wajib sejak Masa Januari 2026"], ["PK = 12% × 11/12 × 800.000.000", "Rp88.000.000"], ["PM pedoman = 80% × 88.000.000", "Rp70.400.000"], ["Pokok kurang bayar = 88.000.000 − 70.400.000", "Rp17.600.000"]],
-        mengapaSalah: { A: "Mengabaikan pedoman pengkreditan 80% untuk masa sebelum pengukuhan", C: "Memakai 12% atas harga penuh sebelum menerapkan pedoman 80%", D: "Tertukar: Rp70,4 juta adalah PM pedoman, bukan kurang bayar" },
+        jejakHitung: [
+          ["Batas terlampaui Maret 2025 → lapor paling lambat 31 Desember 2025 (PMK 164/2023)", "PPN wajib sejak Masa Januari 2026"],
+          ["PK = 12% × 11/12 × 800.000.000", "Rp88.000.000"],
+          ["PM pedoman = 80% × 88.000.000", "Rp70.400.000"],
+          ["Pokok kurang bayar = 88.000.000 − 70.400.000", "Rp17.600.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengabaikan pedoman pengkreditan 80% untuk masa sebelum pengukuhan",
+          C: "Memakai 12% atas harga penuh sebelum menerapkan pedoman 80%",
+          D: "Tertukar: Rp70,4 juta adalah PM pedoman, bukan kurang bayar"
+        },
         jebakan: "Pedoman 80% menghasilkan beban 20% × PK, bukan nihil dan bukan PK penuh."
       },
       dasarHukum: [{ pasal: "Pasal 9 ayat (9a) UU PPN (sisipan UU Cipta Kerja)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 3A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 164/2023 Pasal 17–18", berlakuSejak: null }],
-      anggaranDetik: 160, verifikasi: "◐",
-      peringatan: "Penerapan pedoman 80% pada SKPKB untuk masa sebelum pengukuhan jabatan mengikuti Pasal 9 ayat (9a) UU PPN jo. PMK 18/2021; tata cara pengukuhan jabatan menurut PMK 81/2024 dan PER-7/PJ/2025 (termasuk tanggal efektif PKP) belum dibaca utuh. Tenggat lapor akhir tahun buku (PMK 164/2023) khusus WP PPh final UMKM; nomor pasalnya belum dicek ke teks."
+      anggaranDetik: 160,
+      verifikasi: "◐",
+      peringatan: "Penerapan pedoman 80% pada SKPKB untuk masa sebelum pengukuhan jabatan mengikuti Pasal 9 ayat (9a) UU PPN jo. PMK 18/2021; tata cara pengukuhan jabatan menurut PMK 81/2024 dan PER-7/PJ/2025 (termasuk tanggal efektif PKP) belum dibaca utuh. Tenggat akhir tahun buku mengikuti PMK 164/2023 Pasal 17 menurut keterangan resmi DJP dan soal try out November 2026; naskah PMK belum dibuka langsung."
     },
     {
       id: "A4-015", topik: "A4.4", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3,
@@ -758,7 +804,11 @@ UKP.register({
       anggaranDetik: 50, verifikasi: "✅"
     },
     {
-      id: "A4-021", topik: "A4.5", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2,
+      id: "A4-021",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
       kutipan: "Pasal 14 ayat (4) UU KUP: Pengusaha yang telah dikukuhkan sebagai Pengusaha Kena Pajak yang tidak membuat faktur pajak atau tidak tepat waktu membuat faktur pajak, atau tidak mengisi faktur pajak secara lengkap ... dikenai sanksi administratif berupa denda sebesar 1% (satu persen) dari Dasar Pengenaan Pajak.",
       stem: "PT Tirta Makmur (PKP) menyerahkan BKP non-mewah dengan harga jual Rp240.000.000 (belum termasuk PPN) kepada PKP lain pada 14 Juli 2026, tetapi faktur pajaknya baru dibuat pada 2 September 2026. Berdasarkan kutipan tersebut, denda yang ditagih melalui STP adalah ...",
       kataKualifikasi: [],
@@ -767,15 +817,28 @@ UKP.register({
       jebakanOpsi: { A: "salah-hitung", B: "angka-usang", C: "salah-baca" },
       pembahasan: {
         inti: "Faktur yang terlambat kurang dari 3 bulan tetap sah tetapi dikenai denda 1% dari DPP; untuk barang non-mewah DPP-nya nilai lain 11/12 × harga jual.",
-        jejakHitung: [["14 Juli → 2 September", "kurang dari 3 bulan: sah tetapi terlambat"], ["DPP nilai lain = 11/12 × 240.000.000", "Rp220.000.000"], ["Denda = 1% × 220.000.000", "Rp2.200.000"]],
-        mengapaSalah: { A: "Mengalikan 1% ke harga jual, bukan ke DPP", B: "Memakai tarif denda 2% sebelum UU HPP", C: "Mengalikan 1% ke jumlah PPN" },
+        jejakHitung: [
+          ["14 Juli → 2 September", "kurang dari 3 bulan: sah tetapi terlambat"],
+          ["DPP nilai lain = 11/12 × 240.000.000", "Rp220.000.000"],
+          ["Denda = 1% × 220.000.000", "Rp2.200.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengalikan 1% ke harga jual, bukan ke DPP",
+          B: "Memakai tarif denda 2% sebelum UU Cipta Kerja (2 November 2020)",
+          C: "Mengalikan 1% ke jumlah PPN"
+        },
         jebakan: "Dasar denda adalah DPP, dan DPP barang non-mewah sejak 2025 = 11/12 × harga jual."
       },
-      dasarHukum: [{ pasal: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 110, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 110,
+      verifikasi: "✅"
     },
     {
-      id: "A4-022", topik: "A4.5", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A4-022",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "PT Alfa Sentosa (PKP) menyerahkan BKP non-mewah seharga Rp120.000.000 (belum termasuk PPN) kepada PT Beta Jaya (PKP) pada 10 Januari 2026, tetapi baru membuat faktur pajak pada 20 Mei 2026. PT Beta Jaya telah membayar harga beserta PPN-nya. Akibat hukum yang tepat bagi kedua pihak adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Faktur dianggap tidak dibuat: PT Alfa tetap wajib menyetor PPN Rp13.200.000 dan dikenai denda Rp1.100.000, sedangkan PM PT Beta tidak dapat dikreditkan", B: "Faktur sah tetapi terlambat: PT Alfa didenda Rp1.100.000 dan PT Beta dapat mengkreditkan PM Rp13.200.000 pada Masa Mei 2026", C: "Faktur sah tetapi terlambat: PT Alfa didenda Rp2.200.000 dan PT Beta dapat mengkreditkan PM Rp13.200.000", D: "PT Alfa tidak dikenai sanksi karena PPN sudah dibayar pembeli, dan PT Beta dapat mengkreditkan PM paling lama 3 masa setelah Mei 2026" },
@@ -783,12 +846,22 @@ UKP.register({
       jebakanOpsi: { B: "lupa-pasal", C: "angka-usang", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Faktur yang dibuat lebih dari 3 bulan sejak saat seharusnya dianggap tidak dibuat: penjual tetap menyetor PPN dan dikenai denda 1% DPP, sedangkan pembeli tidak dapat mengkreditkan PM-nya.",
-        jejakHitung: [["10 Januari + 3 bulan", "10 April 2026"], ["Faktur 20 Mei 2026", "lebih dari 3 bulan: dianggap tidak dibuat"], ["PPN = 11% × 120.000.000", "Rp13.200.000"], ["Denda = 1% × DPP (11/12 × 120.000.000 = 110.000.000)", "Rp1.100.000"]],
-        mengapaSalah: { B: "Mengabaikan batas 3 bulan; faktur ini dianggap tidak dibuat", C: "Memakai denda 2% sebelum UU HPP dan mengabaikan batas 3 bulan", D: "Pembayaran oleh pembeli tidak menghapus sanksi, dan faktur yang dianggap tidak dibuat tidak dapat dikreditkan" },
+        jejakHitung: [
+          ["10 Januari + 3 bulan", "10 April 2026"],
+          ["Faktur 20 Mei 2026", "lebih dari 3 bulan: dianggap tidak dibuat"],
+          ["PPN = 11% × 120.000.000", "Rp13.200.000"],
+          ["Denda = 1% × DPP (11/12 × 120.000.000 = 110.000.000)", "Rp1.100.000"]
+        ],
+        mengapaSalah: {
+          B: "Mengabaikan batas 3 bulan; faktur ini dianggap tidak dibuat",
+          C: "Memakai denda 2% sebelum UU Cipta Kerja (2 November 2020) dan mengabaikan batas 3 bulan",
+          D: "Pembayaran oleh pembeli tidak menghapus sanksi, dan faktur yang dianggap tidak dibuat tidak dapat dikreditkan"
+        },
         jebakan: "Lewat 3 bulan: penjual menanggung setoran dan denda, pembeli kehilangan PM."
       },
-      dasarHukum: [{ pasal: "Pasal 13 ayat (1a) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 13 ayat (1a) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A4-023", topik: "A4.5", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2,
@@ -1046,21 +1119,36 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A4-038", topik: "A4.7", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
-      kutipan: "Pasal 9 ayat (8) huruf c UU PPN: Pajak Masukan tidak dapat dikreditkan menurut cara sebagaimana diatur pada ayat (2) bagi pengeluaran untuk perolehan dan pemeliharaan kendaraan bermotor berupa sedan dan station wagon, kecuali merupakan barang dagangan atau disewakan.",
-      stem: "PT Rental Nusantara (PKP, usaha penyewaan kendaraan) pada Masa Februari 2026 menerima faktur pajak lengkap atas: (1) pembelian 5 sedan untuk disewakan, PPN Rp66.000.000; (2) pembelian 1 station wagon untuk kendaraan dinas direktur, PPN Rp22.000.000; (3) servis berkala sedan sewaan, PPN Rp3.300.000; (4) servis station wagon direktur, PPN Rp1.100.000; dan (5) pembelian minibus antar-jemput karyawan, PPN Rp27.500.000. Berdasarkan kutipan tersebut, PM yang dapat dikreditkan Masa Februari 2026 adalah ...",
+      id: "A4-038",
+      topik: "A4.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kutipan: "Pasal 9 ayat (8) huruf b UU PPN: Pengkreditan Pajak Masukan sebagaimana dimaksud pada ayat (2) tidak dapat diberlakukan bagi pengeluaran untuk perolehan Barang Kena Pajak atau Jasa Kena Pajak yang tidak mempunyai hubungan langsung dengan kegiatan usaha. (Catatan: huruf c tentang sedan dan station wagon dihapus UU 7/2021, berlaku 1 April 2022.)",
+      stem: "PT Rental Nusantara (PKP, usaha penyewaan kendaraan) pada Masa Februari 2026 menerima faktur pajak lengkap atas: (1) pembelian 5 sedan untuk disewakan, PPN Rp66.000.000; (2) pembelian 1 station wagon untuk keperluan pribadi keluarga pemegang saham yang tidak dipakai dalam kegiatan usaha, PPN Rp22.000.000; (3) servis berkala sedan sewaan, PPN Rp3.300.000; (4) servis station wagon keluarga pemegang saham tersebut, PPN Rp1.100.000; dan (5) pembelian minibus antar-jemput karyawan, PPN Rp27.500.000. Berdasarkan kutipan tersebut, PM yang dapat dikreditkan Masa Februari 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp96.800.000", B: "Rp69.300.000", C: "Rp119.900.000", D: "Rp27.500.000" },
       kunci: "A",
-      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "angka-usang" },
       pembahasan: {
-        inti: "Larangan huruf c hanya untuk sedan dan station wagon yang bukan barang dagangan atau disewakan; sedan sewaan beserta pemeliharaannya serta minibus tetap dapat dikreditkan.",
-        jejakHitung: [["Sedan disewakan (pengecualian 'disewakan')", "Rp66.000.000"], ["Servis sedan sewaan", "Rp3.300.000"], ["Minibus (bukan sedan/station wagon)", "Rp27.500.000"], ["Station wagon direktur dan servisnya (Rp23.100.000)", "tidak dapat dikreditkan"], ["PM dapat dikreditkan", "Rp96.800.000"]],
-        mengapaSalah: { B: "Minibus bukan sedan/station wagon sehingga tidak terkena larangan", C: "Station wagon direktur dan servisnya terkena larangan huruf c", D: "Mengabaikan frasa 'kecuali ... disewakan' sehingga semua sedan dicoret" },
-        jebakan: "Baca pengecualian di ujung kutipan: 'kecuali merupakan barang dagangan atau disewakan'."
+        inti: "Sejak huruf c dihapus UU 7/2021 (berlaku 1 April 2022), jenis kendaraan tidak lagi menentukan; ujinya adalah hubungan langsung dengan kegiatan usaha. Sedan sewaan beserta servisnya dan minibus antar-jemput karyawan berhubungan langsung dengan usaha, sedangkan station wagon untuk keperluan pribadi keluarga pemegang saham beserta servisnya tidak (huruf b).",
+        jejakHitung: [
+          ["Sedan disewakan (kegiatan usaha penyewaan)", "Rp66.000.000"],
+          ["Servis sedan sewaan", "Rp3.300.000"],
+          ["Minibus antar-jemput karyawan", "Rp27.500.000"],
+          ["Station wagon keperluan pribadi dan servisnya (Rp23.100.000; huruf b)", "tidak dapat dikreditkan"],
+          ["PM dapat dikreditkan = 66.000.000 + 3.300.000 + 27.500.000", "Rp96.800.000"]
+        ],
+        mengapaSalah: {
+          B: "Minibus antar-jemput karyawan berhubungan langsung dengan kegiatan usaha sehingga PM-nya dapat dikreditkan",
+          C: "Station wagon dan servisnya untuk keperluan pribadi keluarga pemegang saham tidak berhubungan langsung dengan kegiatan usaha (huruf b)",
+          D: "Mencoret semua sedan seolah larangan sedan/station wagon (huruf c lama) masih berlaku; huruf c dihapus sejak 1 April 2022, dan dahulu pun sedan yang disewakan dikecualikan dari larangan itu"
+        },
+        jebakan: "Yang diuji adalah hubungan langsung dengan kegiatan usaha, bukan jenis kendaraan."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (8) huruf c UU PPN", berlakuSejak: "2010-04-01" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A4-039", topik: "A4.7", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
@@ -1127,20 +1215,35 @@ UKP.register({
       anggaranDetik: 100, verifikasi: "✅"
     },
     {
-      id: "A4-043", topik: "A4.7", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2, kasusId: "V-A4-01",
-      stem: "Vignette PT Sinar Logam (PKP, pabrik peralatan dapur, tahun buku Januari–Desember), Masa Maret 2026: penjualan kepada distributor PKP Rp1.800.000.000; penjualan kepada Dinas Pendidikan Provinsi (bendahara pemungut PPN) Rp200.000.000; ekspor Rp600.000.000 (PEB); pembelian bahan baku dari PKP Rp1.200.000.000 dengan faktur lengkap; pembelian sedan untuk direktur dengan PPN dalam faktur Rp60.000.000; jasa pemeliharaan mesin dengan PPN Rp8.800.000 (faktur lengkap); kompensasi lebih bayar Masa Februari 2026 Rp15.000.000. Semua harga belum termasuk PPN; produk dan bahan baku bukan barang mewah. PM yang dapat dikreditkan pada Masa Maret 2026 (sebelum memperhitungkan kompensasi) adalah ...",
+      id: "A4-043",
+      topik: "A4.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-A4-01",
+      stem: "Vignette PT Sinar Logam (PKP, pabrik peralatan dapur, tahun buku Januari–Desember), Masa Maret 2026: penjualan kepada distributor PKP Rp1.800.000.000; penjualan kepada Dinas Pendidikan Provinsi (bendahara pemungut PPN) Rp200.000.000; ekspor Rp600.000.000 (PEB); pembelian bahan baku dari PKP Rp1.200.000.000 dengan faktur lengkap; pembelian mobil untuk keperluan pribadi keluarga pemegang saham (tidak berhubungan langsung dengan kegiatan usaha) dengan PPN dalam faktur Rp60.000.000; jasa pemeliharaan mesin dengan PPN Rp8.800.000 (faktur lengkap); kompensasi lebih bayar Masa Februari 2026 Rp15.000.000. Semua harga belum termasuk PPN; produk dan bahan baku bukan barang mewah. PM yang dapat dikreditkan pada Masa Maret 2026 (sebelum memperhitungkan kompensasi) adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp200.800.000", B: "Rp140.800.000", C: "Rp152.800.000", D: "Rp155.800.000" },
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "PM bahan baku (11% × Rp1,2 miliar) dan jasa pemeliharaan dapat dikreditkan; PM sedan direktur dilarang Pasal 9 ayat (8) huruf c.",
-        jejakHitung: [["PM bahan baku = 11% × 1.200.000.000", "Rp132.000.000"], ["PM jasa pemeliharaan mesin", "Rp8.800.000"], ["PM sedan direktur (Ps. 9 ayat (8) huruf c)", "tidak dapat dikreditkan"], ["PM dapat dikreditkan", "Rp140.800.000"]],
-        mengapaSalah: { A: "Memasukkan PM sedan direktur", C: "Menghitung PM bahan baku 12% atas harga penuh", D: "Mencampurkan kompensasi masa lalu ke dalam PM masa ini, padahal soal meminta PM sebelum kompensasi" },
+        inti: "PM bahan baku (11% × Rp1,2 miliar) dan jasa pemeliharaan dapat dikreditkan; PM mobil untuk keperluan pribadi keluarga pemegang saham tidak berhubungan langsung dengan kegiatan usaha sehingga dilarang Pasal 9 ayat (8) huruf b.",
+        jejakHitung: [
+          ["PM bahan baku = 11% × 1.200.000.000", "Rp132.000.000"],
+          ["PM jasa pemeliharaan mesin", "Rp8.800.000"],
+          ["PM mobil keperluan pribadi keluarga pemegang saham (Ps. 9 ayat (8) huruf b)", "tidak dapat dikreditkan"],
+          ["PM dapat dikreditkan", "Rp140.800.000"]
+        ],
+        mengapaSalah: {
+          A: "Memasukkan PM mobil keperluan pribadi keluarga pemegang saham yang tidak berhubungan langsung dengan kegiatan usaha",
+          C: "Menghitung PM bahan baku 12% atas harga penuh",
+          D: "Mencampurkan kompensasi masa lalu ke dalam PM masa ini, padahal soal meminta PM sebelum kompensasi"
+        },
         jebakan: "Pisahkan PM masa berjalan dari kompensasi masa lalu; keduanya baru dijumlahkan saat menghitung kurang/lebih bayar."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (2) dan ayat (8) huruf c UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "A4-044", topik: "A4.10", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A4-01",
@@ -1175,7 +1278,13 @@ UKP.register({
       anggaranDetik: 90, verifikasi: "✅"
     },
     {
-      id: "A4-046", topik: "A4.8", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10"], kasusId: "V-A4-02",
+      id: "A4-046",
+      topik: "A4.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      kasusId: "V-A4-02",
       stem: "Vignette CV Sarana Abadi (PKP, pemasok komputer), Masa Agustus 2026. CV menyerahkan 20 unit komputer kepada Dinas Kesehatan Kota dengan nilai kontrak Rp222.000.000 sudah termasuk PPN; pembayaran dilakukan oleh bendahara pengeluaran dinas yang berstatus pemungut PPN. Kode transaksi faktur pajak dan pihak yang menyetor PPN atas penyerahan ini adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Kode 01; PPN Rp22.000.000 disetor sendiri oleh CV Sarana Abadi", B: "Kode 03; PPN Rp22.000.000 dipungut dan disetor bendahara", C: "Kode 02; PPN Rp24.420.000 dipungut dan disetor bendahara", D: "Kode 02; PPN Rp22.000.000 dipungut dan disetor bendahara" },
@@ -1183,12 +1292,21 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "salah-hitung" },
       pembahasan: {
         inti: "Penyerahan kepada instansi pemerintah memakai kode 02 dan PPN-nya dipungut, disetor, serta dilaporkan oleh bendahara sebagai pemungut.",
-        jejakHitung: [["Harga tanpa PPN = 222.000.000 × 100/111", "Rp200.000.000"], ["PPN = 11% × 200.000.000", "Rp22.000.000"], ["Penyerahan kepada instansi pemerintah", "kode 02; dipungut bendahara (Ps. 16A)"]],
-        mengapaSalah: { A: "Kode 01 untuk penyerahan yang PPN-nya dipungut sendiri oleh penjual", B: "Kode 03 untuk pemungut selain instansi pemerintah", C: "Mengalikan 11% ke nilai kontrak yang sudah termasuk PPN" },
+        jejakHitung: [
+          ["Harga tanpa PPN = 222.000.000 × 100/111", "Rp200.000.000"],
+          ["PPN = 11% × 200.000.000", "Rp22.000.000"],
+          ["Penyerahan kepada instansi pemerintah", "kode 02; dipungut bendahara (Ps. 16A)"]
+        ],
+        mengapaSalah: {
+          A: "PPN yang dipungut sendiri oleh penjual (kode 04 untuk DPP nilai lain 11/12, atau 01 untuk penyerahan di luar kode 02–10) tidak berlaku bila pembelinya instansi pemerintah pemungut; penyerahan ini memakai kode 02",
+          B: "Kode 03 untuk pemungut selain instansi pemerintah",
+          C: "Mengalikan 11% ke nilai kontrak yang sudah termasuk PPN"
+        },
         jebakan: "Nilai kontrak pemerintah biasanya sudah termasuk PPN: keluarkan dulu PPN dengan 100/111."
       },
       dasarHukum: [{ pasal: "Pasal 16A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PER-11/PJ/2025 (kode transaksi)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 110, verifikasi: "✅"
+      anggaranDetik: 110,
+      verifikasi: "✅"
     },
     {
       id: "A4-047", topik: "A4.8", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"], kasusId: "V-A4-02",
@@ -1223,7 +1341,11 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A4-049", topik: "A4.8", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 1,
+      id: "A4-049",
+      topik: "A4.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
       stem: "PT Medika Farma (PKP, pedagang besar farmasi) pada Masa Agustus 2026 menyerahkan obat kepada: (1) RSUD milik pemerintah kabupaten yang pembayarannya dilakukan bendahara pengeluaran daerah sebagai pemungut PPN; dan (2) PT Kereta Api Indonesia (Persero), BUMN yang ditetapkan sebagai pemungut PPN, untuk klinik karyawannya. Kode transaksi faktur pajak untuk penyerahan (1) dan (2) berturut-turut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "02 dan 03", B: "03 dan 02", C: "01 dan 01", D: "02 dan 01" },
@@ -1232,14 +1354,23 @@ UKP.register({
       pembahasan: {
         inti: "Penyerahan kepada instansi pemerintah (termasuk pemerintah daerah) memakai kode 02, sedangkan kepada pemungut selain instansi pemerintah seperti BUMN memakai kode 03.",
         jejakHitung: [],
-        mengapaSalah: { B: "Kode tertukar", C: "Kode 01 untuk penyerahan yang PPN-nya dipungut sendiri; penyerahan kepada pemungut punya kode khusus", D: "BUMN yang ditetapkan sebagai pemungut memakai kode 03" },
+        mengapaSalah: {
+          B: "Kode tertukar",
+          C: "Kode 01 (atau 04 untuk DPP nilai lain 11/12) dipakai bila PPN dipungut sendiri oleh penjual; penyerahan kepada pemungut punya kode khusus (02 atau 03)",
+          D: "BUMN yang ditetapkan sebagai pemungut memakai kode 03"
+        },
         jebakan: "02 = instansi pemerintah; 03 = pemungut lain."
       },
       dasarHukum: [{ pasal: "Pasal 16A UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PER-11/PJ/2025 (kode transaksi)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 70, verifikasi: "✅"
+      anggaranDetik: 70,
+      verifikasi: "✅"
     },
     {
-      id: "A4-050", topik: "A4.8", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 1,
+      id: "A4-050",
+      topik: "A4.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
       stem: "Nona Laras (karyawan, bukan PKP) berlangganan layanan musik digital dari penyedia luar negeri yang telah ditunjuk sebagai pemungut PPN PMSE. Harga langganan Rp169.000 per bulan belum termasuk PPN. PPN yang dipungut penyedia setiap bulan adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp20.280", B: "Rp18.590", C: "Rp16.900", D: "Rp0, karena Nona Laras bukan PKP" },
@@ -1247,15 +1378,27 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", C: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
         inti: "PPN PMSE atas pemanfaatan JKP/BKP tidak berwujud dari luar Daerah Pabean dipungut penyedia yang ditunjuk sebesar 12% × 11/12 = 11% dari harga.",
-        jejakHitung: [["DPP nilai lain = 11/12 × 169.000", "Rp154.917"], ["PPN = 12% × 154.916,67", "Rp18.590"]],
-        mengapaSalah: { A: "Memakai 12% atas harga penuh", C: "Memakai tarif 10% sebelum April 2022", D: "Konsumen akhir justru pemikul PPN; status PKP tidak relevan" },
+        jejakHitung: [
+          ["DPP nilai lain = 11/12 × 169.000", "Rp154.917"],
+          ["PPN = 12% × 154.916,67", "Rp18.590"]
+        ],
+        mengapaSalah: {
+          A: "Memakai 12% atas harga penuh",
+          C: "Memakai tarif 10% sebelum April 2022",
+          D: "Konsumen akhir justru pemikul PPN; status PKP tidak relevan"
+        },
         jebakan: "PPN PMSE mengikuti DPP 11/12 seperti barang/jasa non-mewah lainnya."
       },
-      dasarHukum: [{ pasal: "PMK 60/PMK.03/2022", berlakuSejak: "2022-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 50, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PMK 81/2024 (PPN PMSE; menggantikan PMK 60/PMK.03/2022 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 50,
+      verifikasi: "✅"
     },
     {
-      id: "A4-051", topik: "A4.8", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2,
+      id: "A4-051",
+      topik: "A4.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
       stem: "StreamGlobal Pte. Ltd. (berkedudukan di Singapura, tanpa BUT di Indonesia) menjual langganan video daring kepada konsumen di Indonesia. Dalam 12 bulan terakhir nilai transaksinya dengan pembeli Indonesia rata-rata Rp45.000.000 per bulan (Rp540.000.000 setahun), sedangkan jumlah pengakses (traffic) dari Indonesia rata-rata 1.500 per bulan. Berdasarkan kriteria penunjukan pemungut PPN PMSE, kesimpulan yang tepat adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Belum memenuhi karena nilai transaksi belum melebihi Rp50.000.000 sebulan", B: "Belum memenuhi karena nilai transaksi setahun belum melebihi Rp600.000.000", C: "Memenuhi karena jumlah traffic melebihi 1.000 pengakses dalam sebulan", D: "Memenuhi karena setiap PMSE luar negeri wajib ditunjuk tanpa ambang" },
@@ -1264,11 +1407,17 @@ UKP.register({
       pembahasan: {
         inti: "Kriteria nilai transaksi dan kriteria traffic bersifat alternatif ('dan/atau'); traffic 1.500 per bulan sudah melampaui 1.000 per bulan sehingga kriteria penunjukan terpenuhi.",
         jejakHitung: [],
-        mengapaSalah: { A: "Mengabaikan kriteria traffic yang berdiri sendiri", B: "Hanya memeriksa ambang tahunan nilai transaksi", D: "Penunjukan didasarkan pada kriteria ambang, tidak otomatis" },
+        mengapaSalah: {
+          A: "Mengabaikan kriteria traffic yang berdiri sendiri",
+          B: "Hanya memeriksa ambang tahunan nilai transaksi",
+          D: "Penunjukan didasarkan pada kriteria ambang, tidak otomatis"
+        },
         jebakan: "Satu kriteria terpenuhi sudah cukup."
       },
-      dasarHukum: [{ pasal: "PMK 60/PMK.03/2022 (kriteria penunjukan pemungut PMSE)", berlakuSejak: "2022-04-01" }, { pasal: "Pasal 32A UU KUP", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 100, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PMK 81/2024 (kriteria penunjukan pemungut PPN PMSE; menggantikan PMK 60/PMK.03/2022 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 32A UU KUP", berlakuSejak: "2021-10-29" }],
+      anggaranDetik: 100,
+      verifikasi: "◐",
+      peringatan: "PMK 60/PMK.03/2022 dicabut PMK 81/2024 sejak 1 Januari 2025. Angka ambang penunjukan (nilai transaksi Rp600 juta setahun atau Rp50 juta sebulan; traffic 12.000 setahun atau 1.000 sebulan) berasal dari ketentuan pada masa PMK 60/PMK.03/2022 dan belum dicek apakah sama dalam PMK 81/2024 s.t.d.t.d. PMK 1/2026 dan peraturan pelaksanaannya."
     },
     {
       id: "A4-052", topik: "A4.8", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1,
@@ -1544,20 +1693,39 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A4-067", topik: "A4.10", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A4-05",
-      stem: "Vignette PT Kode Nusantara (PKP, pengembang perangkat lunak, berdiri 2017, 46 karyawan, peredaran bruto 2025 Rp21 miliar), Masa September 2026: (a) jasa pengembangan aplikasi untuk klien di Singapura yang dimanfaatkan di luar Daerah Pabean dan memenuhi syarat ekspor JKP Rp1.200.000.000; (b) penjualan lisensi perangkat lunak kepada PKP swasta dalam negeri Rp1.500.000.000; (c) jasa konsultan TI untuk implementasi sistem kepada sebuah kementerian (pemungut PPN) Rp300.000.000; (d) pemanfaatan jasa komputasi awan dari penyedia di Irlandia (bukan pemungut PPN PMSE) Rp200.000.000 yang ditagih dan dibayar 10 September 2026, PPN-nya Rp22.000.000 disetor sendiri 28 September 2026; (e) faktur masukan lengkap: server dan laptop PPN Rp55.000.000, sewa kantor PPN Rp33.000.000 (PPh Pasal 4 ayat (2) atas sewa Rp30.000.000 telah dipotong), sedan untuk direktur PPN Rp48.000.000; (f) PPh Pasal 21 karyawan Rp84.000.000 dan angsuran PPh Pasal 25 Rp35.000.000; (g) lebih bayar Masa Agustus 2026 Rp7.500.000 dikompensasikan ke Masa September. Semua nilai belum termasuk PPN. PPN kurang bayar yang harus dilunasi melalui SPT Masa PPN September 2026 adalah ...",
+      id: "A4-067",
+      topik: "A4.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-A4-05",
+      stem: "Vignette PT Kode Nusantara (PKP, pengembang perangkat lunak, berdiri 2017, 46 karyawan, peredaran bruto 2025 Rp21 miliar), Masa September 2026: (a) jasa pengembangan aplikasi untuk klien di Singapura yang dimanfaatkan di luar Daerah Pabean dan memenuhi syarat ekspor JKP Rp1.200.000.000; (b) penjualan lisensi perangkat lunak kepada PKP swasta dalam negeri Rp1.500.000.000; (c) jasa konsultan TI untuk implementasi sistem kepada sebuah kementerian (pemungut PPN) Rp300.000.000; (d) pemanfaatan jasa komputasi awan dari penyedia di Irlandia (bukan pemungut PPN PMSE) Rp200.000.000 yang ditagih dan dibayar 10 September 2026, PPN-nya Rp22.000.000 disetor sendiri 28 September 2026; (e) faktur masukan lengkap: server dan laptop PPN Rp55.000.000, sewa kantor PPN Rp33.000.000 (PPh Pasal 4 ayat (2) atas sewa Rp30.000.000 telah dipotong), mobil untuk keperluan pribadi keluarga pemegang saham (tidak berhubungan langsung dengan kegiatan usaha) PPN Rp48.000.000; (f) PPh Pasal 21 karyawan Rp84.000.000 dan angsuran PPh Pasal 25 Rp35.000.000; (g) lebih bayar Masa Agustus 2026 Rp7.500.000 dikompensasikan ke Masa September. Semua nilai belum termasuk PPN. PPN kurang bayar yang harus dilunasi melalui SPT Masa PPN September 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp25.500.000", B: "Rp47.500.000", C: "Rp55.000.000", D: "Rp69.500.000" },
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Hanya PK yang dipungut sendiri (lisensi) yang dihadapkan dengan PM; ekspor JKP 0%, PPN jasa ke kementerian dipungut pemungut, PPN pemanfaatan cloud yang sudah disetor menjadi PM, PM sedan direktur tidak dapat dikreditkan, dan data PPh hanya pengalih.",
-        jejakHitung: [["PK dipungut sendiri: lisensi = 12% × 11/12 × 1.500.000.000", "Rp165.000.000"], ["Ekspor JKP (tarif 0%)", "Rp0"], ["Jasa ke kementerian: PPN Rp33.000.000", "dipungut dan disetor pemungut"], ["PM = 55.000.000 + 33.000.000 + 22.000.000 (bukti setor pemanfaatan)", "Rp110.000.000"], ["PM sedan direktur (Ps. 9 ayat (8) huruf c)", "tidak dapat dikreditkan"], ["PM + kompensasi = 110.000.000 + 7.500.000", "Rp117.500.000"], ["Kurang bayar = 165.000.000 − 117.500.000", "Rp47.500.000"], ["Karyawan, omzet 2025, PPh 21, PPh 25, PPh 4(2)", "tidak dipakai"]],
-        mengapaSalah: { A: "PPN pemanfaatan Rp22 juta sudah disetor tersendiri lalu dikreditkan sebagai PM; mengurangkannya lagi dari kurang bayar berarti menghitungnya dua kali", C: "Lupa mengurangkan kompensasi lebih bayar Agustus Rp7,5 juta", D: "Bukti setor PPN pemanfaatan JKP dari luar Daerah Pabean dipersamakan dengan faktur pajak, sehingga PPN-nya dapat dikreditkan" },
+        inti: "Hanya PK yang dipungut sendiri (lisensi) yang dihadapkan dengan PM; ekspor JKP 0%, PPN jasa ke kementerian dipungut pemungut, PPN pemanfaatan cloud yang sudah disetor menjadi PM, PM mobil keperluan pribadi keluarga pemegang saham tidak dapat dikreditkan (tidak berhubungan langsung dengan usaha), dan data PPh hanya pengalih.",
+        jejakHitung: [
+          ["PK dipungut sendiri: lisensi = 12% × 11/12 × 1.500.000.000", "Rp165.000.000"],
+          ["Ekspor JKP (tarif 0%)", "Rp0"],
+          ["Jasa ke kementerian: PPN Rp33.000.000", "dipungut dan disetor pemungut"],
+          ["PM = 55.000.000 + 33.000.000 + 22.000.000 (bukti setor pemanfaatan)", "Rp110.000.000"],
+          ["PM mobil keperluan pribadi (Ps. 9 ayat (8) huruf b)", "tidak dapat dikreditkan"],
+          ["PM + kompensasi = 110.000.000 + 7.500.000", "Rp117.500.000"],
+          ["Kurang bayar = 165.000.000 − 117.500.000", "Rp47.500.000"],
+          ["Karyawan, omzet 2025, PPh 21, PPh 25, PPh 4(2)", "tidak dipakai"]
+        ],
+        mengapaSalah: {
+          A: "PPN pemanfaatan Rp22 juta sudah disetor tersendiri lalu dikreditkan sebagai PM; mengurangkannya lagi dari kurang bayar berarti menghitungnya dua kali",
+          C: "Lupa mengurangkan kompensasi lebih bayar Agustus Rp7,5 juta",
+          D: "Bukti setor PPN pemanfaatan JKP dari luar Daerah Pabean dipersamakan dengan faktur pajak, sehingga PPN-nya dapat dikreditkan"
+        },
         jebakan: "Pilah dulu data PPh yang tidak relevan, lalu pisahkan PK sendiri, PK pemungut, ekspor 0%, dan PM yang dilarang."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (2), (4), dan (8) huruf c UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 7 ayat (2) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 16A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }],
-      anggaranDetik: 200, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2) dan (4) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }, { pasal: "Pasal 7 ayat (2) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 16A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅"
     },
     {
       id: "A4-068", topik: "A4.8", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A4-05",
@@ -1641,36 +1809,69 @@ UKP.register({
       peringatan: "Nama baris Induk SPT Masa PPN Coretax (dibebaskan, tidak dipungut, tidak terutang) mengikuti susunan logis SPT Masa PPN dan belum dicek ke teks PER-11/PJ/2025; soal menguji substansi pengelompokan penyerahan."
     },
     {
-      id: "A4-073", topik: "A4.2", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2, kasusId: "V-A4-06",
-      stem: "Vignette PT Samudra Pangan Lestari (PKP, pengolahan hasil laut, tahun buku Januari–Desember), Masa Juli 2026: penjualan ikan segar kepada pedagang Rp1.200.000.000 (dibebaskan dari PPN berdasarkan PP 49/2022); penjualan ikan kaleng kepada distributor PKP dalam negeri Rp1.800.000.000; ekspor ikan kaleng dengan PEB Rp3.000.000.000. PM bulan itu (faktur lengkap): bahan yang langsung dipakai untuk ikan kaleng Rp176.000.000; es dan jasa pendinginan yang langsung dipakai untuk ikan segar Rp22.000.000; PM bersama (listrik, sewa gudang, jasa keamanan) Rp66.000.000; sedan untuk direktur utama Rp44.000.000. PPh Pasal 21 karyawan bulan itu Rp58.000.000. Perlakuan PPN atas penjualan ikan segar dan ekspor ikan kaleng, beserta perlakuan PM yang langsung berkaitan dengan masing-masing, yang tepat adalah ...",
+      id: "A4-073",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      kasusId: "V-A4-06",
+      stem: "Vignette PT Samudra Pangan Lestari (PKP, pengolahan hasil laut, tahun buku Januari–Desember), Masa Juli 2026: penjualan ikan segar kepada pedagang Rp1.200.000.000 (dibebaskan dari PPN berdasarkan PP 49/2022); penjualan ikan kaleng kepada distributor PKP dalam negeri Rp1.800.000.000; ekspor ikan kaleng dengan PEB Rp3.000.000.000. PM bulan itu (faktur lengkap): bahan yang langsung dipakai untuk ikan kaleng Rp176.000.000; es dan jasa pendinginan yang langsung dipakai untuk ikan segar Rp22.000.000; PM bersama (listrik, sewa gudang, jasa keamanan) Rp66.000.000; mobil untuk keperluan pribadi keluarga pemegang saham Rp44.000.000. PPh Pasal 21 karyawan bulan itu Rp58.000.000. Perlakuan PPN atas penjualan ikan segar dan ekspor ikan kaleng, beserta perlakuan PM yang langsung berkaitan dengan masing-masing, yang tepat adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Ikan segar: faktur pajak kode 07 dan PM terkait Rp22.000.000 dapat dikreditkan; ekspor: PEB sebagai dokumen tertentu, tarif 0%, dan PM terkait dapat dikreditkan", B: "Ikan segar: faktur pajak kode 08 dan PM terkait Rp22.000.000 tidak dapat dikreditkan; ekspor: PEB sebagai dokumen tertentu, tarif 0%, dan PM terkait dapat dikreditkan", C: "Ikan segar: faktur pajak kode 08 dan PM terkait Rp22.000.000 tidak dapat dikreditkan; ekspor: PEB sebagai dokumen tertentu, tarif 0%, sehingga PM terkait juga tidak dapat dikreditkan", D: "Ikan segar: tidak perlu dibuatkan faktur pajak karena bukan objek PPN dan PM terkait Rp22.000.000 tidak dapat dikreditkan; ekspor: PEB sebagai dokumen tertentu, tarif 0%, dan PM terkait dapat dikreditkan" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "Ikan segar adalah BKP yang penyerahannya dibebaskan (kode 08; PM terkait tidak dapat dikreditkan, Pasal 16B ayat (3)); ekspor BKP berwujud terutang dengan tarif 0% sehingga PM terkait tetap dapat dikreditkan, dan PEB berfungsi sebagai dokumen tertentu.",
-        jejakHitung: [["Ikan segar: BKP dengan fasilitas dibebaskan (PP 49/2022)", "faktur kode 08; PM Rp22.000.000 tidak dikreditkan"], ["Ekspor ikan kaleng (Pasal 7 ayat (2))", "tarif 0%; PEB = dokumen tertentu"], ["PM terkait ekspor", "dapat dikreditkan (penyerahan terutang)"], ["Sedan direktur dan PPh Pasal 21", "tidak relevan untuk pertanyaan ini"]],
-        mengapaSalah: { A: "Kode 07 untuk tidak dipungut/DTP; penyerahan ikan segar mendapat fasilitas dibebaskan sehingga PM-nya tidak dapat dikreditkan", C: "Tarif 0% bukan pembebasan: ekspor tetap penyerahan terutang sehingga PM-nya dapat dikreditkan", D: "Sejak UU HPP hasil laut adalah BKP; penyerahan yang dibebaskan tetap wajib dibuatkan faktur pajak dengan kode 08" },
+        jejakHitung: [
+          ["Ikan segar: BKP dengan fasilitas dibebaskan (PP 49/2022)", "faktur kode 08; PM Rp22.000.000 tidak dikreditkan"],
+          ["Ekspor ikan kaleng (Pasal 7 ayat (2))", "tarif 0%; PEB = dokumen tertentu"],
+          ["PM terkait ekspor", "dapat dikreditkan (penyerahan terutang)"],
+          ["Mobil keperluan pribadi keluarga pemegang saham dan PPh Pasal 21", "tidak relevan untuk pertanyaan ini"]
+        ],
+        mengapaSalah: {
+          A: "Kode 07 untuk tidak dipungut/DTP; penyerahan ikan segar mendapat fasilitas dibebaskan sehingga PM-nya tidak dapat dikreditkan",
+          C: "Tarif 0% bukan pembebasan: ekspor tetap penyerahan terutang sehingga PM-nya dapat dikreditkan",
+          D: "Sejak UU HPP hasil laut adalah BKP; penyerahan yang dibebaskan tetap wajib dibuatkan faktur pajak dengan kode 08"
+        },
         jebakan: "Tarif 0% (ekspor) tidak sama dengan dibebaskan: yang pertama mempertahankan hak kredit, yang kedua memutusnya."
       },
-      dasarHukum: [{ pasal: "Pasal 16B ayat (1) dan (3) UU PPN", berlakuSejak: "2022-04-01" }, { pasal: "PP 49/2022", berlakuSejak: "2022-12-12" }, { pasal: "Pasal 7 ayat (2) dan Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PER-11/PJ/2025 (kode transaksi)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 16B ayat (1) dan (3) UU PPN", berlakuSejak: "2022-04-01" }, { pasal: "PP 49/2022", berlakuSejak: "2022-12-12" }, { pasal: "Pasal 7 ayat (2) dan Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PER-11/PJ/2025 (kode transaksi)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
-      id: "A4-074", topik: "A4.7", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3, kasusId: "V-A4-06",
-      stem: "Vignette PT Samudra Pangan Lestari (PKP, pengolahan hasil laut), Masa Juli 2026: penyerahan ikan segar yang dibebaskan Rp1.200.000.000; ikan kaleng kepada distributor PKP dalam negeri Rp1.800.000.000; ekspor ikan kaleng dengan PEB Rp3.000.000.000. PM dengan faktur lengkap: langsung untuk ikan kaleng (dalam negeri dan ekspor) Rp176.000.000; langsung untuk ikan segar Rp22.000.000; PM bersama yang tidak dapat diidentifikasi Rp66.000.000; sedan direktur utama Rp44.000.000. Gunakan pedoman pengkreditan proporsional berdasarkan perbandingan penyerahan yang terutang PPN terhadap seluruh penyerahan pada Masa Juli 2026. PM yang dapat dikreditkan pada Masa Juli 2026 adalah ...",
+      id: "A4-074",
+      topik: "A4.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      kasusId: "V-A4-06",
+      stem: "Vignette PT Samudra Pangan Lestari (PKP, pengolahan hasil laut), Masa Juli 2026: penyerahan ikan segar yang dibebaskan Rp1.200.000.000; ikan kaleng kepada distributor PKP dalam negeri Rp1.800.000.000; ekspor ikan kaleng dengan PEB Rp3.000.000.000. PM dengan faktur lengkap: langsung untuk ikan kaleng (dalam negeri dan ekspor) Rp176.000.000; langsung untuk ikan segar Rp22.000.000; PM bersama yang tidak dapat diidentifikasi Rp66.000.000; mobil untuk keperluan pribadi keluarga pemegang saham (tidak berhubungan langsung dengan kegiatan usaha) Rp44.000.000. Gunakan pedoman pengkreditan proporsional berdasarkan perbandingan penyerahan yang terutang PPN terhadap seluruh penyerahan pada Masa Juli 2026. PM yang dapat dikreditkan pada Masa Juli 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp195.800.000", B: "Rp242.000.000", C: "Rp250.800.000", D: "Rp228.800.000" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
-        inti: "PM langsung untuk penyerahan terutang dikreditkan penuh, PM langsung untuk penyerahan dibebaskan tidak dikreditkan, dan PM bersama dikreditkan sebesar proporsi penyerahan terutang (termasuk ekspor bertarif 0%) terhadap seluruh penyerahan.",
-        jejakHitung: [["Penyerahan terutang = 1.800.000.000 + 3.000.000.000 (ekspor tetap terutang, tarif 0%)", "Rp4.800.000.000"], ["Seluruh penyerahan = 4.800.000.000 + 1.200.000.000", "Rp6.000.000.000"], ["Proporsi = 4.800.000.000 ÷ 6.000.000.000", "80%"], ["PM bersama dapat dikreditkan = 80% × 66.000.000", "Rp52.800.000"], ["PM langsung ikan kaleng", "Rp176.000.000"], ["PM ikan segar dan sedan", "tidak dapat dikreditkan"], ["PM dapat dikreditkan = 176.000.000 + 52.800.000", "Rp228.800.000"]],
-        mengapaSalah: { A: "Mengeluarkan ekspor dari pembilang sehingga proporsi 30% (Rp19.800.000), padahal ekspor adalah penyerahan terutang bertarif 0%", B: "Mengkreditkan seluruh PM bersama tanpa pedoman proporsional Pasal 9 ayat (6)", C: "Ikut mengkreditkan PM Rp22.000.000 yang langsung terkait ikan segar yang dibebaskan" },
+        inti: "PM langsung untuk penyerahan terutang dikreditkan penuh, PM langsung untuk penyerahan dibebaskan tidak dikreditkan, dan PM bersama dikreditkan sebesar proporsi penyerahan terutang (termasuk ekspor bertarif 0%) terhadap seluruh penyerahan. PM mobil untuk keperluan pribadi keluarga pemegang saham tidak dapat dikreditkan karena tidak berhubungan langsung dengan kegiatan usaha.",
+        jejakHitung: [
+          ["Penyerahan terutang = 1.800.000.000 + 3.000.000.000 (ekspor tetap terutang, tarif 0%)", "Rp4.800.000.000"],
+          ["Seluruh penyerahan = 4.800.000.000 + 1.200.000.000", "Rp6.000.000.000"],
+          ["Proporsi = 4.800.000.000 ÷ 6.000.000.000", "80%"],
+          ["PM bersama dapat dikreditkan = 80% × 66.000.000", "Rp52.800.000"],
+          ["PM langsung ikan kaleng", "Rp176.000.000"],
+          ["PM ikan segar dan mobil keperluan pribadi (Ps. 9 ayat (8) huruf b)", "tidak dapat dikreditkan"],
+          ["PM dapat dikreditkan = 176.000.000 + 52.800.000", "Rp228.800.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengeluarkan ekspor dari pembilang sehingga proporsi 30% (Rp19.800.000), padahal ekspor adalah penyerahan terutang bertarif 0%",
+          B: "Mengkreditkan seluruh PM bersama tanpa pedoman proporsional Pasal 9 ayat (6)",
+          C: "Ikut mengkreditkan PM Rp22.000.000 yang langsung terkait ikan segar yang dibebaskan"
+        },
         jebakan: "Ekspor masuk pembilang proporsi karena terutang PPN (tarif 0%), bukan dibebaskan."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (5), (6), dan (8) huruf c UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 16B ayat (3) UU PPN", berlakuSejak: "2010-04-01" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 9 ayat (5) dan (6) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }, { pasal: "Pasal 16B ayat (3) UU PPN", berlakuSejak: "2010-04-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "A4-075", topik: "A4.10", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A4-06",
@@ -1689,22 +1890,36 @@ UKP.register({
       anggaranDetik: 180, verifikasi: "✅"
     },
     {
-      id: "A4-076", topik: "A4.3", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3,
-      kutipan: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013 (parafrase setia): Pengusaha kecil adalah pengusaha yang selama satu tahun buku melakukan penyerahan BKP dan/atau JKP dengan jumlah peredaran bruto dan/atau penerimaan bruto tidak lebih dari Rp4.800.000.000. Pengusaha yang sampai dengan suatu bulan dalam tahun buku jumlah peredaran bruto dan/atau penerimaan brutonya melebihi Rp4.800.000.000 wajib melaporkan usahanya untuk dikukuhkan sebagai Pengusaha Kena Pajak paling lambat akhir bulan berikutnya.",
+      id: "A4-076",
+      topik: "A4.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      kutipan: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013 (parafrase setia): Pengusaha kecil adalah pengusaha yang selama satu tahun buku melakukan penyerahan BKP dan/atau JKP dengan jumlah peredaran bruto dan/atau penerimaan bruto tidak lebih dari Rp4.800.000.000. PMK 164/2023 Pasal 17 (parafrase menurut keterangan resmi DJP): Pengusaha yang sampai dengan suatu bulan dalam tahun buku jumlah peredaran bruto dan/atau penerimaan brutonya melebihi Rp4.800.000.000 wajib melaporkan usahanya untuk dikukuhkan sebagai Pengusaha Kena Pajak paling lambat akhir tahun buku saat jumlah peredaran bruto dan/atau penerimaan brutonya melebihi Rp4.800.000.000.",
       stem: "PT Kriya Persada (didirikan dan terdaftar pada 2021, tahun buku Januari–Desember) tidak lagi memenuhi syarat PPh final UMKM sejak Tahun Pajak 2024 karena jangka waktu 3 tahun bagi perseroan terbatas telah berakhir, sehingga pada 2026 membayar PPh dengan tarif umum. Perusahaan belum PKP. Peredaran brutonya atas penyerahan BKP pada 2026: Januari–Juni Rp4.150.000.000, Juli Rp620.000.000, dan Agustus Rp540.000.000. Pada Juli 2026 perusahaan juga menerima bunga deposito Rp35.000.000 yang telah dipotong PPh final. Berdasarkan kutipan tersebut, bulan terlampauinya batas pengusaha kecil dan batas akhir melaporkan usaha untuk dikukuhkan sebagai PKP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Agustus 2026; paling lambat 31 Desember 2026", B: "Juli 2026; paling lambat 31 Agustus 2026", C: "Agustus 2026; paling lambat 30 September 2026", D: "Agustus 2026; paling lambat 15 September 2026" },
-      kunci: "C",
-      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "salah-baca" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-hitung", C: "angka-usang", D: "salah-baca" },
       pembahasan: {
-        inti: "Batas dihitung hanya dari penyerahan BKP/JKP sehingga terlampaui pada Agustus 2026; karena PT Kriya Persada tidak lagi dikenai PPh final UMKM, berlaku tenggat umum akhir bulan berikutnya, yaitu 30 September 2026.",
-        jejakHitung: [["Kumulatif s.d. Juli = 4.150.000.000 + 620.000.000", "Rp4.770.000.000 (belum melebihi)"], ["Bunga deposito Rp35.000.000", "bukan penyerahan BKP/JKP, tidak dihitung"], ["Kumulatif s.d. Agustus = 4.770.000.000 + 540.000.000", "Rp5.310.000.000 > Rp4,8 miliar"], ["Batas lapor: akhir bulan berikutnya", "30 September 2026"]],
-        mengapaSalah: { A: "Tenggat akhir tahun buku (PMK 164/2023) khusus bagi WP yang dikenai PPh final UMKM; PT Kriya Persada sudah memakai tarif umum", B: "Memasukkan bunga deposito ke peredaran bruto sehingga batas seolah terlampaui pada Juli (Rp4.805.000.000)", D: "Tanggal 15 adalah batas setor pajak masa, bukan batas lapor pengukuhan" },
-        jebakan: "Tentukan dulu rezim PPh-nya: WP PPh final UMKM → akhir tahun buku; selain itu → akhir bulan berikutnya."
+        inti: "Batas dihitung hanya dari penyerahan BKP/JKP sehingga terlampaui pada Agustus 2026; tenggat lapor pengukuhan adalah akhir tahun buku saat batas terlampaui, yaitu 31 Desember 2026, berlaku bagi semua pengusaha termasuk yang membayar PPh dengan tarif umum.",
+        jejakHitung: [
+          ["Kumulatif s.d. Juli = 4.150.000.000 + 620.000.000", "Rp4.770.000.000 (belum melebihi)"],
+          ["Bunga deposito Rp35.000.000", "bukan penyerahan BKP/JKP, tidak dihitung"],
+          ["Kumulatif s.d. Agustus = 4.770.000.000 + 540.000.000", "Rp5.310.000.000 > Rp4,8 miliar"],
+          ["Batas lapor: akhir tahun buku 2026 (PMK 164/2023 Ps. 17)", "31 Desember 2026"]
+        ],
+        mengapaSalah: {
+          B: "Memasukkan bunga deposito ke peredaran bruto sehingga batas seolah terlampaui pada Juli (Rp4.805.000.000) dan memakai tenggat lama akhir bulan berikutnya",
+          C: "Memakai tenggat lama PMK 197/2013 (akhir bulan berikutnya); sejak PMK 164/2023 tenggatnya akhir tahun buku, tidak bergantung pada rezim PPh",
+          D: "Tanggal 15 adalah batas setor pajak masa, bukan batas lapor pengukuhan"
+        },
+        jebakan: "Rezim PPh (final UMKM atau tarif umum) tidak menentukan tenggat: hitung bulan terlampaui dari penyerahan BKP/JKP, lalu tenggat lapor adalah akhir tahun buku saat batas terlampaui."
       },
-      dasarHukum: [{ pasal: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013", berlakuSejak: "2014-01-01" }, { pasal: "Pasal 3A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 164/2023 Pasal 17 (pembanding bagi WP PPh final UMKM)", berlakuSejak: null }],
-      anggaranDetik: 150, verifikasi: "◐",
-      peringatan: "Tenggat umum akhir bulan berikutnya bersumber dari PMK 68/2010 s.t.d.d. PMK 197/2013 yang menurut riset belum dicabut PMK 81/2024; letak pasalnya dan cakupan PMK 164/2023 (khusus WP PPh final UMKM) belum dicek ke teks."
+      dasarHukum: [{ pasal: "PMK 164/2023 Pasal 17 ayat (1) dan (3)", berlakuSejak: "2023-12-29" }, { pasal: "Pasal 3A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013 (batas Rp4,8 miliar)", berlakuSejak: "2014-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "◐",
+      peringatan: "Tenggat akhir tahun buku mengikuti PMK 164/2023 Pasal 17 menurut keterangan resmi DJP dan soal try out November 2026; naskah PMK belum dibuka langsung."
     },
     {
       id: "A4-077", topik: "A4.3", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 2,
@@ -1962,7 +2177,7 @@ UKP.register({
         },
         jebakan: "Dalam pungutan impor ada PPN impor (PM) dan PPh Pasal 22 impor (kredit PPh); jangan dicampur."
       },
-      dasarHukum: [{ pasal: "Pasal 8A ayat (1), Pasal 9 ayat (2), dan Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 22 ayat (1) huruf b UU PPh; PMK 51/2025 (PPh Pasal 22, menggantikan PMK 34/PMK.010/2017; impor 2,5% bagi pemilik API)", berlakuSejak: "2025-08-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 8A ayat (1), Pasal 9 ayat (2), dan Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 22 ayat (1) huruf b UU PPh; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; impor 2,5% bagi pemilik API). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
@@ -2008,31 +2223,46 @@ UKP.register({
         mengapaSalah: {
           A: "Mengabaikan pengecualian pembayaran sampai dengan Rp2.000.000 untuk kedua jenis pajak",
           C: "Menguji batas dari jumlah termasuk PPN untuk PPN dan PPh Pasal 22 sehingga rak buku (Rp2.164.500) ikut dipungut; batas diuji dari harga tidak termasuk PPN",
-          D: "Memakai uji termasuk PPN untuk PPN (rumusan sebelum PMK 59/PMK.03/2022); kini batas diuji tanpa PPN, sehingga PPN rak buku dipungut sendiri oleh rekanan"
+          D: "Memakai uji termasuk PPN untuk PPN (rumusan lama yang sudah tidak berlaku); kini batas diuji dari harga tanpa PPN, sehingga PPN rak buku dipungut sendiri oleh rekanan"
         },
         jebakan: "Batas Rp2.000.000 untuk PPN maupun PPh Pasal 22 bendahara diuji dari harga tidak termasuk PPN; rak buku Rp1.950.000 lolos dari keduanya."
       },
-      dasarHukum: [{ pasal: "Pasal 16A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 231/PMK.03/2019 s.t.d.d. PMK 59/PMK.03/2022 Pasal 18 ayat (1) huruf a dan ayat (2)", berlakuSejak: "2022-04-01" }, { pasal: "Pasal 22 ayat (1) huruf a UU PPh; PMK 51/2025 Pasal 4 ayat (1) (menggantikan rezim PMK 34/PMK.010/2017)", berlakuSejak: "2025-08-01" }],
+      dasarHukum: [{ pasal: "Pasal 16A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 231/PMK.03/2019 s.t.d.d. PMK 59/PMK.03/2022 Pasal 18 ayat (1) huruf a dan ayat (2)", berlakuSejak: "2022-05-01" }, { pasal: "Pasal 22 ayat (1) huruf a UU PPh; PMK 51/2025 Pasal 4 ayat (1) (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" }],
       anggaranDetik: 180,
       verifikasi: "◐",
-      peringatan: "Batas Rp2.000.000 tidak termasuk PPN bagi instansi pemerintah (Pasal 18 ayat (1) huruf a PMK 231/PMK.03/2019 s.t.d.d. PMK 59/PMK.03/2022) dikonfirmasi dari ringkasan resmi DJP dan kutipan DDTC. Naskah utuh PMK tersebut setelah PMK 81/2024 dan naskah PMK 51/2025 belum dibaca langsung."
+      peringatan: "Batas Rp2.000.000 tidak termasuk PPN bagi instansi pemerintah (Pasal 18 ayat (1) huruf a PMK 231/PMK.03/2019 s.t.d.d. PMK 59/PMK.03/2022) dikonfirmasi dari ringkasan resmi DJP dan kutipan DDTC. Naskah utuh PMK tersebut setelah PMK 81/2024 dan naskah PMK 51/2025 belum dibaca langsung. PMK 59/PMK.03/2022 ditetapkan 30 Maret 2022 dan menurut ringkasan sekunder berlaku 1 Mei 2022; Pasal II-nya belum dibaca. Letak pengecualian PPh Pasal 22 di Pasal 4 ayat (1) PMK 51/2025 mengikuti kutipan try out November 2026."
     },
     {
-      id: "A4-094", topik: "A4.8", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
-      stem: "PT Bumi Analitika (PKP, konsultan data) pada Masa Oktober 2026 berlangganan tiga layanan digital dari luar negeri untuk kegiatan usahanya: (1) perangkat lunak desain dari penyedia yang telah ditunjuk sebagai pemungut PPN PMSE, Rp24.000.000 belum termasuk PPN, dengan invoice yang mencantumkan nama dan NPWP PT Bumi Analitika serta PPN yang dipungut; (2) layanan basis data dari penyedia di Kanada yang tidak ditunjuk sebagai pemungut PPN PMSE, Rp60.000.000, ditagih pada Oktober 2026; dan (3) layanan rapat daring dari penyedia yang telah ditunjuk sebagai pemungut PPN PMSE, Rp6.000.000 belum termasuk PPN, dengan invoice yang hanya mencantumkan alamat surel tanpa nama dan NPWP pembeli. PPN yang wajib disetor sendiri telah dibayar pada Oktober 2026. Jumlah PPN yang wajib disetor sendiri oleh PT Bumi Analitika dan PM yang dapat dikreditkan Masa Oktober 2026 berturut-turut adalah ...",
+      id: "A4-094",
+      topik: "A4.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Bumi Analitika (PKP, konsultan data) pada Masa Oktober 2026 berlangganan tiga layanan digital dari luar negeri untuk kegiatan usahanya: (1) perangkat lunak desain dari penyedia yang telah ditunjuk sebagai pemungut PPN PMSE, Rp24.000.000 belum termasuk PPN, dengan invoice yang mencantumkan nama dan NPWP PT Bumi Analitika serta PPN yang dipungut; (2) layanan basis data dari penyedia di Kanada yang tidak ditunjuk sebagai pemungut PPN PMSE, Rp60.000.000, ditagih pada Oktober 2026; dan (3) layanan rapat daring dari penyedia yang telah ditunjuk sebagai pemungut PPN PMSE, Rp6.000.000 belum termasuk PPN, dengan invoice yang hanya mencantumkan alamat surel pribadi seorang karyawan (bukan alamat surel PT Bumi Analitika yang terdaftar pada administrasi DJP) tanpa nama dan NPWP pembeli, dan tanpa dokumen lain yang menunjukkan bahwa akun pembeli memuat nama dan NPWP atau alamat surel terdaftar perusahaan. PPN yang wajib disetor sendiri telah dibayar pada Oktober 2026. Jumlah PPN yang wajib disetor sendiri oleh PT Bumi Analitika dan PM yang dapat dikreditkan Masa Oktober 2026 berturut-turut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp6.600.000 dan Rp9.900.000", B: "Rp9.900.000 dan Rp9.900.000", C: "Rp6.600.000 dan Rp9.240.000", D: "Rp6.600.000 dan Rp2.640.000" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Hanya layanan dari penyedia yang tidak ditunjuk sebagai pemungut yang PPN-nya disetor sendiri; PPN PMSE dapat dikreditkan bila dokumennya mencantumkan nama dan NPWP pembeli, sedangkan bukti setor PPN pemanfaatan adalah dokumen tertentu.",
-        jejakHitung: [["(1) PPN dipungut pemungut PMSE = 11% × 24.000.000", "Rp2.640.000; invoice ber-NPWP → dapat dikreditkan"], ["(2) Disetor sendiri = 11% × 60.000.000", "Rp6.600.000; bukti setor → dapat dikreditkan"], ["(3) PPN dipungut pemungut PMSE = 11% × 6.000.000", "Rp660.000; tanpa identitas pembeli → tidak dapat dikreditkan"], ["PPN disetor sendiri", "Rp6.600.000"], ["PM = 2.640.000 + 6.600.000", "Rp9.240.000"]],
-        mengapaSalah: { A: "Ikut mengkreditkan PPN layanan (3) yang dokumennya tidak mencantumkan identitas pembeli", B: "Layanan (1) dan (3) sudah dipungut oleh pemungut PMSE sehingga tidak disetor lagi oleh pembeli", D: "Lupa bahwa bukti setor PPN pemanfaatan JKP dari luar Daerah Pabean dapat dikreditkan" },
-        jebakan: "Pemungut PMSE yang memungut; pembeli PKP hanya mengkreditkan bila dokumen memuat identitas dan NPWP-nya."
+        inti: "Hanya layanan dari penyedia yang tidak ditunjuk sebagai pemungut yang PPN-nya disetor sendiri; PPN PMSE dapat dikreditkan bila dokumennya mencantumkan nama dan NPWP pembeli (menurut penjelasan DJP, juga alamat surel pembeli yang terdaftar pada administrasi DJP), sedangkan bukti setor PPN pemanfaatan adalah dokumen tertentu.",
+        jejakHitung: [
+          ["(1) PPN dipungut pemungut PMSE = 11% × 24.000.000", "Rp2.640.000; invoice ber-NPWP → dapat dikreditkan"],
+          ["(2) Disetor sendiri = 11% × 60.000.000", "Rp6.600.000; bukti setor → dapat dikreditkan"],
+          ["(3) PPN dipungut pemungut PMSE = 11% × 6.000.000", "Rp660.000; tanpa nama dan NPWP, surel tidak terdaftar → tidak dapat dikreditkan"],
+          ["PPN disetor sendiri", "Rp6.600.000"],
+          ["PM = 2.640.000 + 6.600.000", "Rp9.240.000"]
+        ],
+        mengapaSalah: {
+          A: "Ikut mengkreditkan PPN layanan (3) yang dokumennya tidak mencantumkan nama dan NPWP pembeli maupun alamat surel yang terdaftar pada DJP",
+          B: "Layanan (1) dan (3) sudah dipungut oleh pemungut PMSE sehingga tidak disetor lagi oleh pembeli",
+          D: "Lupa bahwa bukti setor PPN pemanfaatan JKP dari luar Daerah Pabean dapat dikreditkan"
+        },
+        jebakan: "Pemungut PMSE yang memungut; pembeli PKP hanya mengkreditkan bila dokumen memuat nama dan NPWP-nya (atau alamat surel yang terdaftar pada administrasi DJP)."
       },
-      dasarHukum: [{ pasal: "PMK 60/PMK.03/2022", berlakuSejak: "2022-04-01" }, { pasal: "Pasal 3A ayat (3) dan Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 170, verifikasi: "◐",
-      peringatan: "Syarat dokumen PPN PMSE (invoice atau bukti pungut) mencantumkan nama dan NPWP pembeli agar dapat dikreditkan mengikuti PMK 60/PMK.03/2022 sebagaimana diingat penyusun; pasalnya belum dicek ke teks."
+      dasarHukum: [{ pasal: "PMK 81/2024 (PPN PMSE; menggantikan PMK 60/PMK.03/2022 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 3A ayat (3) dan Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "◐",
+      peringatan: "Syarat dokumen PPN PMSE (invoice atau bukti pungut) mencantumkan nama dan NPWP pembeli agar dapat dikreditkan semula diatur PMK 60/PMK.03/2022, yang dicabut PMK 81/2024 sejak 1 Januari 2025; rumusan dan pasalnya dalam PMK 81/2024 dan PER-12/PJ/2025 belum dicek ke teks. Menurut penjelasan DJP atas ketentuan sebelum PMK 81/2024 (artikel \"Bagaimana Cara Pengkreditan Pajak Masukan atas PPN PMSE?\") dan DDTCNews, alamat surel pembeli yang terdaftar pada administrasi DJP, atau dokumen yang menunjukkan akun pembeli memuat nama dan NPWP atau alamat surel itu, juga diakui; butir (3) sengaja tidak memenuhi satu pun, sehingga kunci tidak bergantung pada hal tersebut."
     },
     {
       id: "A4-095", topik: "A4.9", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2, kasusId: "V-A4-07",
@@ -2102,53 +2332,104 @@ UKP.register({
       anggaranDetik: 120, verifikasi: "✅"
     },
     {
-      id: "A4-099", topik: "A4.10", tingkat: ["A", "B", "C"], jenis: "baris-spt", kesulitan: 3, formulirRef: "1111.induk.13",
-      stem: "Staf pajak PT Delta Prima (PKP, pabrik suku cadang) mengisi baris 'Pajak Masukan yang dapat diperhitungkan' pada bagian perhitungan PPN kurang/lebih bayar dalam konsep SPT Masa PPN Oktober 2026; baris ini memuat PM yang dikreditkan pada masa itu ditambah kompensasi kelebihan PPN masa sebelumnya. Data: (1) faktur masukan Oktober 2026 atas bahan baku, lengkap, PPN Rp74.800.000; (2) faktur masukan tertanggal 18 Juli 2026, lengkap, belum pernah dikreditkan maupun dibiayakan, PPN Rp6.600.000; (3) faktur masukan tertanggal 22 Juni 2026, lengkap, belum pernah dikreditkan maupun dibiayakan, PPN Rp4.400.000; (4) PIB impor bahan penolong Oktober 2026 dengan PPN impor Rp13.200.000; (5) faktur pembelian sedan untuk kendaraan operasional manajer pemasaran, PPN Rp33.000.000; dan (6) lebih bayar Masa September 2026 Rp9.500.000 yang dikompensasikan ke Masa Oktober. Jumlah yang diisikan pada baris tersebut adalah ...",
+      id: "A4-099",
+      topik: "A4.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 3,
+      formulirRef: "1111.induk.13",
+      stem: "Staf pajak PT Delta Prima (PKP, pabrik suku cadang) mengisi baris 'Pajak Masukan yang dapat diperhitungkan' pada bagian perhitungan PPN kurang/lebih bayar dalam konsep SPT Masa PPN Oktober 2026; baris ini memuat PM yang dikreditkan pada masa itu ditambah kompensasi kelebihan PPN masa sebelumnya. Data: (1) faktur masukan Oktober 2026 atas bahan baku, lengkap, PPN Rp74.800.000; (2) faktur masukan tertanggal 18 Juli 2026, lengkap, belum pernah dikreditkan maupun dibiayakan, PPN Rp6.600.000; (3) faktur masukan tertanggal 22 Juni 2026, lengkap, belum pernah dikreditkan maupun dibiayakan, PPN Rp4.400.000; (4) PIB impor bahan penolong Oktober 2026 dengan PPN impor Rp13.200.000; (5) faktur pembelian mobil untuk keperluan pribadi keluarga pemegang saham yang tidak dipakai dalam kegiatan usaha, PPN Rp33.000.000; dan (6) lebih bayar Masa September 2026 Rp9.500.000 yang dikompensasikan ke Masa Oktober. Jumlah yang diisikan pada baris tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp104.100.000", B: "Rp108.500.000", C: "Rp97.500.000", D: "Rp94.600.000" },
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
-        inti: "Baris PM yang dapat diperhitungkan memuat PM yang sah dikreditkan pada Oktober (termasuk faktur Juli yang masih dalam batas 3 masa dan PIB) ditambah kompensasi September; faktur Juni sudah lewat batas dan PM sedan dilarang.",
-        jejakHitung: [["(1) Faktur Oktober", "Rp74.800.000"], ["(2) Faktur Juli: batas 3 masa = Oktober 2026", "Rp6.600.000"], ["(3) Faktur Juni: batas 3 masa = September 2026", "tidak dapat lagi dikreditkan"], ["(4) PIB impor", "Rp13.200.000"], ["(5) Sedan (Pasal 9 ayat (8) huruf c)", "tidak dapat dikreditkan"], ["(6) Kompensasi Masa September", "Rp9.500.000"], ["Jumlah = 74.800.000 + 6.600.000 + 13.200.000 + 9.500.000", "Rp104.100.000"]],
-        mengapaSalah: { B: "Ikut memasukkan faktur Juni yang batas pengkreditannya berakhir pada Masa September 2026", C: "Mengira faktur Juli tidak dapat dikreditkan lagi, padahal Oktober adalah masa ketiga setelah Juli", D: "Lupa menambahkan kompensasi lebih bayar Masa September" },
+        inti: "Baris PM yang dapat diperhitungkan memuat PM yang sah dikreditkan pada Oktober (termasuk faktur Juli yang masih dalam batas 3 masa dan PIB) ditambah kompensasi September; faktur Juni sudah lewat batas dan PM mobil untuk keperluan pribadi keluarga pemegang saham tidak berhubungan langsung dengan usaha.",
+        jejakHitung: [
+          ["(1) Faktur Oktober", "Rp74.800.000"],
+          ["(2) Faktur Juli: batas 3 masa = Oktober 2026", "Rp6.600.000"],
+          ["(3) Faktur Juni: batas 3 masa = September 2026", "tidak dapat lagi dikreditkan"],
+          ["(4) PIB impor", "Rp13.200.000"],
+          ["(5) Mobil keperluan pribadi (Pasal 9 ayat (8) huruf b)", "tidak dapat dikreditkan"],
+          ["(6) Kompensasi Masa September", "Rp9.500.000"],
+          ["Jumlah = 74.800.000 + 6.600.000 + 13.200.000 + 9.500.000", "Rp104.100.000"]
+        ],
+        mengapaSalah: {
+          B: "Ikut memasukkan faktur Juni yang batas pengkreditannya berakhir pada Masa September 2026",
+          C: "Mengira faktur Juli tidak dapat dikreditkan lagi, padahal Oktober adalah masa ketiga setelah Juli",
+          D: "Lupa menambahkan kompensasi lebih bayar Masa September"
+        },
         jebakan: "Hitung 3 masa setelah masa faktur: Juli → Agustus, September, Oktober."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (2), (8) huruf c, dan (9) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PER-11/PJ/2025 (bentuk SPT Masa PPN)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 170, verifikasi: "◐",
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2) dan (9) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }, { pasal: "Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PER-11/PJ/2025 (bentuk SPT Masa PPN)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 170,
+      verifikasi: "◐",
       peringatan: "Nama dan isi baris 'Pajak Masukan yang dapat diperhitungkan' (termasuk kompensasi) mengikuti susunan SPT Masa PPN 1111 yang diteruskan secara logis ke Coretax; tata letak baris Coretax belum dicek ke teks PER-11/PJ/2025."
     },
     {
-      id: "A4-100", topik: "A4.7", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A4-08",
-      stem: "Vignette PT Nusantara Kimia Industri (PKP, produsen bahan kimia), SPT Masa PPN Juli 2026: telah disampaikan dan kurang bayar Rp30.000.000 disetor tepat waktu pada 26 Agustus 2026. Perhitungan semula: PK dipungut sendiri Rp180.700.000; PM yang dikreditkan Rp150.700.000, terdiri dari (a) bahan kimia baku Rp121.000.000; (b) jasa pemeliharaan instalasi pabrik Rp5.500.000 (PPh Pasal 23 Rp1.000.000 telah dipotong); (c) renovasi rumah pribadi direktur utama yang tagihannya dibuat atas nama perusahaan Rp13.200.000; dan (d) pembelian station wagon untuk direktur keuangan Rp11.000.000. Semua faktur lengkap. Pada 12 Oktober 2026 auditor internal menemukan kekeliruan pengkreditan; belum ada pemeriksaan. PM yang seharusnya dapat dikreditkan pada Masa Juli 2026 adalah ...",
+      id: "A4-100",
+      topik: "A4.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-A4-08",
+      stem: "Vignette PT Nusantara Kimia Industri (PKP, produsen bahan kimia), SPT Masa PPN Juli 2026: telah disampaikan dan kurang bayar Rp30.000.000 disetor tepat waktu pada 26 Agustus 2026. Perhitungan semula: PK dipungut sendiri Rp180.700.000; PM yang dikreditkan Rp150.700.000, terdiri dari (a) bahan kimia baku Rp121.000.000; (b) jasa pemeliharaan instalasi pabrik Rp5.500.000 (PPh Pasal 23 Rp1.000.000 telah dipotong); (c) renovasi rumah pribadi direktur utama yang tagihannya dibuat atas nama perusahaan Rp13.200.000; dan (d) pembelian station wagon untuk keperluan pribadi keluarga pemegang saham yang tidak dipakai dalam kegiatan usaha Rp11.000.000. Semua faktur lengkap. Pada 12 Oktober 2026 auditor internal menemukan kekeliruan pengkreditan; belum ada pemeriksaan. PM yang seharusnya dapat dikreditkan pada Masa Juli 2026 adalah ...",
       kataKualifikasi: ["seharusnya"],
       opsi: { A: "Rp150.700.000", B: "Rp137.500.000", C: "Rp139.700.000", D: "Rp126.500.000" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Faktur lengkap tidak otomatis dapat dikreditkan: perolehan yang tidak berhubungan langsung dengan usaha (renovasi rumah direktur) dan station wagon yang tidak diperdagangkan atau disewakan dilarang dikreditkan.",
-        jejakHitung: [["(a) Bahan kimia baku", "Rp121.000.000"], ["(b) Pemeliharaan instalasi pabrik", "Rp5.500.000"], ["(c) Renovasi rumah pribadi direktur (Pasal 9 ayat (8) huruf b)", "tidak dapat dikreditkan"], ["(d) Station wagon direksi (Pasal 9 ayat (8) huruf c)", "tidak dapat dikreditkan"], ["PM seharusnya = 121.000.000 + 5.500.000", "Rp126.500.000"], ["PPh Pasal 23", "tidak dipakai"]],
-        mengapaSalah: { A: "Menganggap semua faktur yang lengkap dapat dikreditkan", B: "Tetap mengkreditkan station wagon; larangan huruf c meliputi sedan dan station wagon", C: "Tetap mengkreditkan renovasi rumah pribadi direktur yang tidak berhubungan langsung dengan kegiatan usaha" },
-        jebakan: "Uji materiil PM: berhubungan langsung dengan usaha dan bukan sedan/station wagon."
+        inti: "Faktur lengkap tidak otomatis dapat dikreditkan: perolehan yang tidak berhubungan langsung dengan kegiatan usaha (renovasi rumah pribadi direktur utama dan station wagon untuk keperluan pribadi keluarga pemegang saham) tidak dapat dikreditkan (Pasal 9 ayat (8) huruf b).",
+        jejakHitung: [
+          ["(a) Bahan kimia baku", "Rp121.000.000"],
+          ["(b) Pemeliharaan instalasi pabrik", "Rp5.500.000"],
+          ["(c) Renovasi rumah pribadi direktur (Pasal 9 ayat (8) huruf b)", "tidak dapat dikreditkan"],
+          ["(d) Station wagon keperluan pribadi keluarga pemegang saham (Pasal 9 ayat (8) huruf b)", "tidak dapat dikreditkan"],
+          ["PM seharusnya = 121.000.000 + 5.500.000", "Rp126.500.000"],
+          ["PPh Pasal 23", "tidak dipakai"]
+        ],
+        mengapaSalah: {
+          A: "Menganggap semua faktur yang lengkap dapat dikreditkan",
+          B: "Tetap mengkreditkan station wagon untuk keperluan pribadi keluarga pemegang saham yang tidak berhubungan langsung dengan kegiatan usaha",
+          C: "Tetap mengkreditkan renovasi rumah pribadi direktur yang tidak berhubungan langsung dengan kegiatan usaha"
+        },
+        jebakan: "Uji materiil PM: berhubungan langsung dengan kegiatan usaha; jenis kendaraan tidak lagi menentukan sejak huruf c dihapus (1 April 2022)."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (8) huruf b dan c UU PPN", berlakuSejak: "2010-04-01" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
-      id: "A4-101", topik: "A4.10", tingkat: ["A", "B", "C"], jenis: "baris-spt", kesulitan: 2, kasusId: "V-A4-08", formulirRef: "1111.induk.15",
-      stem: "Vignette PT Nusantara Kimia Industri (PKP): SPT Masa PPN Juli 2026 semula kurang bayar Rp30.000.000 (PK Rp180.700.000; PM Rp150.700.000) dan telah disetor 26 Agustus 2026. Pada Oktober 2026 perusahaan membetulkan SPT tersebut karena PM renovasi rumah pribadi direktur Rp13.200.000 dan PM station wagon direktur Rp11.000.000 tidak dapat dikreditkan. Pada SPT pembetulan, angka pada baris 'PPN kurang (lebih) bayar', baris 'PPN kurang (lebih) bayar pada SPT yang dibetulkan', dan baris 'PPN kurang (lebih) bayar karena pembetulan' berturut-turut adalah ...",
+      id: "A4-101",
+      topik: "A4.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 2,
+      kasusId: "V-A4-08",
+      formulirRef: "1111.induk.15",
+      stem: "Vignette PT Nusantara Kimia Industri (PKP): SPT Masa PPN Juli 2026 semula kurang bayar Rp30.000.000 (PK Rp180.700.000; PM Rp150.700.000) dan telah disetor 26 Agustus 2026. Pada Oktober 2026 perusahaan membetulkan SPT tersebut karena PM renovasi rumah pribadi direktur Rp13.200.000 dan PM station wagon untuk keperluan pribadi keluarga pemegang saham Rp11.000.000 tidak dapat dikreditkan. Pada SPT pembetulan, angka pada baris 'PPN kurang (lebih) bayar', baris 'PPN kurang (lebih) bayar pada SPT yang dibetulkan', dan baris 'PPN kurang (lebih) bayar karena pembetulan' berturut-turut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp24.200.000; Rp30.000.000; Rp54.200.000", B: "Rp54.200.000; Rp30.000.000; Rp24.200.000", C: "Rp54.200.000; Rp0; Rp54.200.000", D: "Rp43.200.000; Rp30.000.000; Rp13.200.000" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "SPT pembetulan memuat hasil hitung baru (Rp54.200.000), angka SPT semula (Rp30.000.000), dan selisihnya (Rp24.200.000) yang harus disetor sebelum pembetulan disampaikan.",
-        jejakHitung: [["PM pembetulan = 150.700.000 − 13.200.000 − 11.000.000", "Rp126.500.000"], ["Kurang bayar pembetulan = 180.700.000 − 126.500.000", "Rp54.200.000"], ["Kurang bayar pada SPT yang dibetulkan", "Rp30.000.000"], ["Kurang bayar karena pembetulan = 54.200.000 − 30.000.000", "Rp24.200.000 (setoran tambahan)"]],
-        mengapaSalah: { A: "Menukar baris hasil hitung baru dengan baris selisih karena pembetulan", C: "Mengabaikan kurang bayar yang sudah disetor sehingga Rp30.000.000 seolah dibayar dua kali", D: "Hanya mencoret renovasi rumah direktur; station wagon juga tidak dapat dikreditkan" },
+        jejakHitung: [
+          ["PM pembetulan = 150.700.000 − 13.200.000 − 11.000.000", "Rp126.500.000"],
+          ["Kurang bayar pembetulan = 180.700.000 − 126.500.000", "Rp54.200.000"],
+          ["Kurang bayar pada SPT yang dibetulkan", "Rp30.000.000"],
+          ["Kurang bayar karena pembetulan = 54.200.000 − 30.000.000", "Rp24.200.000 (setoran tambahan)"]
+        ],
+        mengapaSalah: {
+          A: "Menukar baris hasil hitung baru dengan baris selisih karena pembetulan",
+          C: "Mengabaikan kurang bayar yang sudah disetor sehingga Rp30.000.000 seolah dibayar dua kali",
+          D: "Hanya mencoret renovasi rumah direktur; station wagon untuk keperluan pribadi keluarga pemegang saham juga tidak dapat dikreditkan"
+        },
         jebakan: "Baris 'karena pembetulan' adalah selisih, bukan jumlah baru."
       },
-      dasarHukum: [{ pasal: "Pasal 8 ayat (1) dan (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (8) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PER-11/PJ/2025 (SPT Masa PPN pembetulan)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 130, verifikasi: "◐",
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) dan (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }, { pasal: "PER-11/PJ/2025 (SPT Masa PPN pembetulan)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 130,
+      verifikasi: "◐",
       peringatan: "Nama baris pembetulan (kurang/lebih bayar, pada SPT yang dibetulkan, karena pembetulan) mengikuti SPT Masa PPN 1111; susunannya di Coretax, termasuk perhitungan pembayaran sebelum pembetulan menurut PER-12/PJ/2026, belum dicek ke teks."
     },
     {
@@ -2250,7 +2531,12 @@ UKP.register({
       anggaranDetik: 160, verifikasi: "✅"
     },
     {
-      id: "A4-107", topik: "A4.5", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["C-2026-10"],
+      id: "A4-107",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
       kutipan: "PP 44/2022 Pasal 21 (parafrase): Dalam hal penyerahan BKP/JKP, impor BKP, atau pemanfaatan BKP tidak berwujud/JKP dari luar Daerah Pabean dilakukan dengan mata uang asing, PPN yang terutang dikonversi ke dalam rupiah dengan kurs yang ditetapkan Menteri Keuangan yang berlaku pada saat Faktur Pajak atau dokumen yang dipersamakan dengan Faktur Pajak seharusnya dibuat.",
       stem: "PT Mitra Polimer Sejahtera (PKP) menyerahkan resin plastik (bukan barang mewah) senilai USD45.000 belum termasuk PPN kepada PT Kemasan Prima (PKP) pada Selasa, 8 September 2026. Karena staf penagihan cuti, faktur pajak baru dibuat dan disetujui di Coretax pada Senin, 21 September 2026 dengan tanggal faktur 21 September 2026; pembayaran diterima 30 September 2026. Data kurs per USD: kurs KMK 2–8 September 2026 Rp16.380; kurs KMK 9–15 September 2026 Rp16.352; kurs KMK 16–22 September 2026 Rp16.396; kurs KMK 30 September–6 Oktober 2026 Rp16.440; kurs tengah BI 8 September 2026 Rp16.402. Berdasarkan kutipan tersebut, PPN dalam faktur pajak dan sanksi atas keterlambatan pembuatan faktur adalah ...",
       kataKualifikasi: [],
@@ -2259,12 +2545,23 @@ UKP.register({
       jebakanOpsi: { A: "angka-usang", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
         inti: "Kurs mengikuti saat faktur seharusnya dibuat, yaitu tanggal penyerahan Selasa 8 September (periode KMK 2–8 September), walaupun faktur baru dibuat 21 September. Keterlambatan membuat faktur dikenai denda 1% dari DPP, dan DPP barang non-mewah adalah nilai lain 11/12 × harga jual.",
-        jejakHitung: [["Saat faktur seharusnya dibuat", "Selasa, 8 September 2026 → kurs KMK 2–8 Sep Rp16.380"], ["Harga jual = 45.000 × 16.380", "Rp737.100.000"], ["DPP nilai lain = 11/12 × 737.100.000", "Rp675.675.000"], ["PPN = 12% × 675.675.000", "Rp81.081.000"], ["Denda Pasal 14 ayat (4) UU KUP = 1% × 675.675.000", "Rp6.756.750"]],
-        mengapaSalah: { A: "Memakai kurs pada tanggal faktur dibuat (16–22 September), rumusan lama PP 1/2012; PP 44/2022 memakai kurs saat faktur seharusnya dibuat", B: "Batas 3 bulan hanya menentukan apakah faktur dianggap tidak dibuat; faktur yang terlambat kurang dari 3 bulan tetap sah tetapi dikenai denda 1% DPP", C: "Menghitung denda dari harga jual penuh; dasar denda adalah DPP, yaitu nilai lain 11/12 × harga jual" },
+        jejakHitung: [
+          ["Saat faktur seharusnya dibuat", "Selasa, 8 September 2026 → kurs KMK 2–8 Sep Rp16.380"],
+          ["Harga jual = 45.000 × 16.380", "Rp737.100.000"],
+          ["DPP nilai lain = 11/12 × 737.100.000", "Rp675.675.000"],
+          ["PPN = 12% × 675.675.000", "Rp81.081.000"],
+          ["Denda Pasal 14 ayat (4) UU KUP = 1% × 675.675.000", "Rp6.756.750"]
+        ],
+        mengapaSalah: {
+          A: "Memakai kurs pada tanggal faktur dibuat (16–22 September), rumusan lama PP 1/2012; PP 44/2022 memakai kurs saat faktur seharusnya dibuat",
+          B: "Batas 3 bulan hanya menentukan apakah faktur dianggap tidak dibuat; faktur yang terlambat kurang dari 3 bulan tetap sah tetapi dikenai denda 1% DPP",
+          C: "Menghitung denda dari harga jual penuh; dasar denda adalah DPP, yaitu nilai lain 11/12 × harga jual"
+        },
         jebakan: "Faktur terlambat tidak menggeser kurs: tetap kurs saat faktur seharusnya dibuat."
       },
-      dasarHukum: [{ pasal: "PP 44/2022 Pasal 21", berlakuSejak: "2022-12-02" }, { pasal: "Pasal 13 ayat (1a) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 170, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PP 44/2022 Pasal 21", berlakuSejak: "2022-12-02" }, { pasal: "Pasal 13 ayat (1a) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅"
     },
     {
       id: "A4-108", topik: "A4.6", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["C-2026-10"],
@@ -2383,7 +2680,12 @@ UKP.register({
       anggaranDetik: 140, verifikasi: "✅"
     },
     {
-      id: "A4-115", topik: "A4.2", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "A4-115",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Rancang Cipta Digital (PKP) memberikan jasa konsultansi teknologi informasi kepada Orchid Systems Pte Ltd di Singapura; pekerjaan dilakukan dari Jakarta, hasilnya dimanfaatkan sepenuhnya di Singapura, dan kontrak serta bukti pembayaran tersedia sehingga memenuhi syarat ekspor JKP. Tagihan USD40.000 diterbitkan Rabu, 9 September 2026 (kurs KMK 9–15 September Rp16.352) dan dilunasi 2 November 2026 ketika kurs tengah BI Rp16.290, sehingga perusahaan membukukan rugi selisih kurs. Untuk pekerjaan ini perusahaan membeli lisensi dan jasa subkontrak dalam negeri dengan PPN masukan Rp22.000.000. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "PPN 0% atas ekspor JKP; PPN masukan Rp22.000.000 tidak dapat dikreditkan karena tidak ada pajak keluaran yang dipungut", B: "Terutang PPN 12% × 11/12 × USD40.000 × Rp16.352 karena pekerjaan dilakukan di Indonesia; rugi selisih kurs tidak memengaruhi PPN", C: "PPN 0% dengan pemberitahuan ekspor JKP di Coretax; PPN masukan Rp22.000.000 dapat dikreditkan; rugi selisih kurs tidak memengaruhi PPN", D: "PPN 0%, tetapi PPN masukan baru dapat dikreditkan setelah pelunasan diterima, dan rugi selisih kurs mengurangi nilai ekspor" },
@@ -2392,12 +2694,17 @@ UKP.register({
       pembahasan: {
         inti: "Ekspor JKP yang memenuhi syarat dikenai tarif 0% dengan pemberitahuan ekspor JKP (dokumen yang dipersamakan dengan faktur, dibuat di Coretax). Tarif 0% bukan pembebasan, sehingga PPN masukan terkait tetap dapat dikreditkan; selisih kurs saat pelunasan adalah urusan PPh, bukan PPN.",
         jejakHitung: [],
-        mengapaSalah: { A: "Tarif 0% bukan pembebasan; PPN masukan atas perolehan untuk ekspor tetap dapat dikreditkan", B: "Tempat pengerjaan tidak menentukan; jasa yang dimanfaatkan di luar Daerah Pabean dan memenuhi syarat ekspor JKP dikenai tarif 0%", D: "Pengkreditan PPN masukan tidak menunggu pelunasan piutang ekspor, dan selisih kurs tidak mengubah nilai ekspor yang telah diberitahukan" },
+        mengapaSalah: {
+          A: "Tarif 0% bukan pembebasan; PPN masukan atas perolehan untuk ekspor tetap dapat dikreditkan",
+          B: "Tempat pengerjaan tidak menentukan; jasa yang dimanfaatkan di luar Daerah Pabean dan memenuhi syarat ekspor JKP dikenai tarif 0%",
+          D: "Pengkreditan PPN masukan tidak menunggu pelunasan piutang ekspor, dan selisih kurs tidak mengubah nilai ekspor yang telah diberitahukan"
+        },
         jebakan: "Tarif 0% tidak sama dengan dibebaskan, dan selisih kurs bukan urusan PPN."
       },
-      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf h, Pasal 7 ayat (2), dan Pasal 9 ayat (2) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 32/PMK.010/2019 (batasan ekspor JKP)", berlakuSejak: null }, { pasal: "PER-11/PJ/2025 (pemberitahuan ekspor JKP dibuat di Coretax)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 6 ayat (1) huruf e UU PPh", berlakuSejak: "2009-01-01" }],
-      anggaranDetik: 120, verifikasi: "◐",
-      peringatan: "Pembuatan pemberitahuan ekspor JKP melalui modul e-Faktur Coretax mengikuti uraian sekunder atas PER-11/PJ/2025; pasal persisnya belum dicek ke teks. Pemenuhan syarat ekspor JKP menurut PMK 32/PMK.010/2019 diasumsikan sesuai stem."
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf h, Pasal 7 ayat (2), dan Pasal 9 ayat (2) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 81/2024 (ekspor JKP; menggantikan PMK 32/PMK.010/2019 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 (pemberitahuan ekspor JKP dibuat di Coretax)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 6 ayat (1) huruf e UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "◐",
+      peringatan: "Pembuatan pemberitahuan ekspor JKP melalui modul e-Faktur Coretax mengikuti uraian sekunder atas PER-11/PJ/2025; pasal persisnya belum dicek ke teks. Pemenuhan syarat ekspor JKP menurut PMK 81/2024 diasumsikan sesuai stem."
     },
     {
       id: "A4-116", topik: "A4.4", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 3, laporanUjian: ["C-2026-10"],
@@ -2760,7 +3067,7 @@ UKP.register({
         },
         jebakan: "Kurs pembukuan (kurs tengah BI) tidak masuk ke pungutan impor, baik PPN maupun PPh Pasal 22; keduanya berbasis nilai impor dengan kurs KMK tanggal PIB."
       },
-      dasarHukum: [{ pasal: "Pasal 1 UU PPN (definisi nilai impor) dan Pasal 4 ayat (1) huruf b UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PP 44/2022 Pasal 21", berlakuSejak: "2022-12-02" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 22 ayat (1) huruf b UU PPh; PMK 51/2025 (PPh Pasal 22, menggantikan PMK 34/PMK.010/2017; impor 2,5% bagi pemilik API)", berlakuSejak: "2025-08-01" }],
+      dasarHukum: [{ pasal: "Pasal 1 UU PPN (definisi nilai impor) dan Pasal 4 ayat (1) huruf b UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PP 44/2022 Pasal 21", berlakuSejak: "2022-12-02" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 22 ayat (1) huruf b UU PPh; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; impor 2,5% bagi pemilik API). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" }],
       anggaranDetik: 160,
       verifikasi: "✅"
     },
@@ -3295,7 +3602,7 @@ UKP.register({
       dasarHukum: [{ pasal: "UU PPN Pasal 3A ayat (1) s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PMK 164/2023 Pasal 17 ayat (1) dan (3)", berlakuSejak: null }],
       anggaranDetik: 90,
       verifikasi: "◐",
-      peringatan: "Soal try out ini memperlakukan tenggat lapor pengukuhan PKP dalam PMK 164/2023 Pasal 17 sebagai ketentuan umum yang menggantikan tenggat lama PMK 197/2013. Bunyi pasal itu, cakupannya (semua pengusaha atau hanya Wajib Pajak PPh final UMKM), dan ketentuan serupa dalam PMK 81/2024 belum dicek ke naskah resmi.",
+      peringatan: "Soal try out ini memakai tenggat lapor pengukuhan PKP dalam PMK 164/2023 Pasal 17 (akhir tahun buku) sebagai ketentuan umum yang menggantikan tenggat lama PMK 197/2013, selaras dengan keterangan resmi DJP Januari 2024; naskah PMK 164/2023 dan ketentuan serupa dalam PMK 81/2024 belum dibuka langsung.",
       sumber: { set: "TO-B-2026-11", no: 78, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -3483,7 +3790,7 @@ UKP.register({
     {
       id: "A4-160",
       topik: "A4.2",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "konsep",
       kesulitan: 2,
       stem: "Penyerahan BKP berupa aktiva yang menurut tujuan semula tidak untuk diperjualbelikan oleh PKP ...",
@@ -3494,13 +3801,14 @@ UKP.register({
       pembahasan: {
         inti: "Pasal 16D mengenakan PPN atas penyerahan aktiva yang menurut tujuan semula tidak untuk diperjualbelikan, seperti mesin, bangunan, dan kendaraan, kecuali aktiva yang Pajak Masukannya tidak dapat dikreditkan berdasarkan Pasal 9 ayat (8) huruf b dan c. Karena huruf c (sedan dan station wagon) telah dihapus UU HPP, pengecualian yang tersisa adalah aktiva yang tidak mempunyai hubungan langsung dengan kegiatan usaha.",
         jejakHitung: [],
-        mengapaSalah: { A: "Pasal 16D justru menetapkan penyerahan aktiva yang semula tidak untuk diperjualbelikan sebagai penyerahan yang terutang PPN.", C: "PPN Pasal 16D tidak bergantung pada adanya keuntungan dan tidak dihitung dari selisih keuntungan.", D: "Pengecualian Pasal 16D hanya untuk aktiva yang Pajak Masukannya tidak dapat dikreditkan karena tidak berhubungan langsung dengan usaha, bukan syarat telah dikreditkan." },
+        mengapaSalah: {
+          A: "Pasal 16D justru menetapkan penyerahan aktiva yang semula tidak untuk diperjualbelikan sebagai penyerahan yang terutang PPN.",
+          C: "PPN Pasal 16D tidak bergantung pada adanya keuntungan dan tidak dihitung dari selisih keuntungan.",
+          D: "Pengecualian Pasal 16D hanya untuk aktiva yang Pajak Masukannya tidak dapat dikreditkan karena tidak berhubungan langsung dengan usaha, bukan syarat telah dikreditkan."
+        },
         jebakan: "Penjelasan Pasal 16D yang masih menyebut sedan dan station wagon harus dibaca bersama penghapusan Pasal 9 ayat (8) huruf c oleh UU 7/2021."
       },
-      dasarHukum: [
-        { pasal: "UU PPN Pasal 16D dan Penjelasannya", berlakuSejak: null },
-        { pasal: "UU PPN Pasal 9 ayat (8) huruf b (huruf c dihapus UU 7/2021)", berlakuSejak: "2021-10-29" }
-      ],
+      dasarHukum: [{ pasal: "UU PPN Pasal 16D dan Penjelasannya", berlakuSejak: null }, { pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }],
       anggaranDetik: 90,
       verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 100, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
@@ -3516,7 +3824,7 @@ UKP.register({
     { id: "KT-A4-07", topik: "A4.6", tipe: "angka", depan: "Tarif PPnBM hunian mewah dan batas harganya?", belakang: "20% untuk harga jual ≥ Rp30 miliar", dasar: "PMK 96/PMK.03/2021 s.t.d.d. PMK 15/2023", berlakuSejak: null, menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-08", topik: "A4.6", tipe: "pasal", depan: "Berapa kali PPnBM dikenakan, dan apakah dapat dikreditkan?", belakang: "Sekali, di pabrikan atau saat impor; tidak dapat dikreditkan", dasar: "Pasal 5 UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-09", topik: "A4.5", tipe: "angka", depan: "Batas unggah faktur pajak Coretax?", belakang: "Tanggal 20 bulan berikutnya setelah tanggal faktur", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22", menggantikan: "tanggal 15 bulan berikutnya (e-Faktur)", dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-A4-10", topik: "A4.5", tipe: "angka", depan: "Denda faktur tidak dibuat, terlambat, atau tidak lengkap?", belakang: "1% × DPP", dasar: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2021-10-29", menggantikan: "2% × DPP (sebelum UU HPP)", dekTambahan: [] },
+    { id: "KT-A4-10", topik: "A4.5", tipe: "angka", depan: "Denda faktur tidak dibuat, terlambat, atau tidak lengkap?", belakang: "1% × DPP", dasar: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2020-11-02", menggantikan: "2% × DPP (sebelum UU Cipta Kerja, 2 November 2020)", dekTambahan: [] },
     { id: "KT-A4-11", topik: "A4.5", tipe: "prosedur", depan: "Faktur dibuat lebih dari 3 bulan setelah saat seharusnya?", belakang: "Dianggap tidak dibuat; PPN tetap disetor, PM pembeli tidak dapat dikreditkan", dasar: "Pasal 13 UU PPN; PER-11/PJ/2025", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-12", topik: "A4.5", tipe: "angka", depan: "Jumlah kode transaksi faktur di Coretax?", belakang: "10 kode (01–10); nomor seri otomatis dari Coretax", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22", menggantikan: "9 kode (01–09) dan NSFP diminta ke KPP", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A4-13", topik: "A4.5", tipe: "definisi", depan: "Kode faktur 07, 08, dan 09?", belakang: "07 tidak dipungut/DTP; 08 dibebaskan; 09 aktiva Pasal 16D", dasar: "PER-11/PJ/2025 (meneruskan PER-03/PJ/2022)", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
@@ -3524,20 +3832,20 @@ UKP.register({
     { id: "KT-A4-15", topik: "A4.5", tipe: "pasal", depan: "Retur BKP mengurangi PK penjual pada masa apa?", belakang: "Masa Pajak terjadinya pengembalian BKP", dasar: "Pasal 5A ayat (1) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-16", topik: "A4.5", tipe: "definisi", depan: "Dokumen tertentu yang dipersamakan dengan faktur pajak (contoh)?", belakang: "PIB, PEB, bukti setor PPN pemanfaatan luar negeri, tagihan listrik/telepon", dasar: "Pasal 13 ayat (6) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-17", topik: "A4.3", tipe: "angka", depan: "Batas peredaran bruto pengusaha kecil PPN?", belakang: "≤ Rp4,8 miliar setahun", dasar: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013", berlakuSejak: "2014-01-01", menggantikan: "Rp600 juta (PMK 68/2010, sampai 2013)", dekTambahan: [] },
-    { id: "KT-A4-18", topik: "A4.3", tipe: "prosedur", depan: "WP PPh final UMKM: batas lapor pengukuhan PKP setelah omzet melampaui Rp4,8 miliar?", belakang: "Akhir tahun buku saat batas terlampaui; pungut PPN mulai Masa pertama tahun buku berikutnya", dasar: "PMK 164/2023 Pasal 17 ayat (3) dan Pasal 18", berlakuSejak: null, menggantikan: "Tenggat umum akhir bulan berikutnya (PMK 197/2013), tidak dipakai bagi WP PPh final UMKM", dekTambahan: [] },
+    { id: "KT-A4-18", topik: "A4.3", tipe: "prosedur", depan: "Batas lapor pengukuhan PKP setelah peredaran bruto melampaui Rp4,8 miliar?", belakang: "Akhir tahun buku saat batas terlampaui; pungut PPN mulai Masa pertama tahun buku berikutnya ◐", dasar: "PMK 164/2023 Pasal 17 ayat (1) dan (3) dan Pasal 18", berlakuSejak: "2023-12-29", menggantikan: "Akhir bulan berikutnya setelah bulan batas terlampaui (PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013)", dekTambahan: [] },
     { id: "KT-A4-19", topik: "A4.4", tipe: "pasal", depan: "Saat terutang bila pembayaran diterima sebelum penyerahan?", belakang: "Saat pembayaran, sebesar yang dibayar", dasar: "Pasal 11 ayat (2) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-20", topik: "A4.4", tipe: "prosedur", depan: "Saat terutang dan batas setor PPN pemanfaatan JKP luar negeri?", belakang: "Paling awal: diakui utang, ditagih, atau dibayar; setor tanggal 15 bulan berikutnya", dasar: "Pasal 11 UU PPN; PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-21", topik: "A4.2", tipe: "definisi", depan: "Dibebaskan vs tidak dipungut: nasib PM?", belakang: "Dibebaskan: PM tidak dapat dikreditkan; tidak dipungut: PM dapat dikreditkan", dasar: "Pasal 16B ayat (2) dan (3) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-22", topik: "A4.2", tipe: "definisi", depan: "Jasa yang bukan JKP setelah UU HPP?", belakang: "Keagamaan, kesenian/hiburan, perhotelan, pemerintahan umum, parkir, boga/katering", dasar: "Pasal 4A ayat (3) UU PPN", berlakuSejak: "2022-04-01", menggantikan: "Daftar lama termasuk jasa kesehatan, pendidikan, keuangan (kini dibebaskan)", dekTambahan: [] },
     { id: "KT-A4-23", topik: "A4.2", tipe: "angka", depan: "PPN DTP rumah tahun 2026?", belakang: "100% atas bagian harga s.d. Rp2 miliar; harga jual maksimal Rp5 miliar", dasar: "PMK 90/2025", berlakuSejak: "2026-01-01", menggantikan: "2025: 100% Jan–Jun, 50% Jul–Des, kemudian diubah 100%", dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-A4-24", topik: "A4.2", tipe: "pasal", depan: "Aktiva Pasal 16D yang dikecualikan dari PPN?", belakang: "Aktiva yang PM-nya tidak dapat dikreditkan karena Pasal 9 ayat (8) huruf b dan c", dasar: "Pasal 16D UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A4-24", topik: "A4.2", tipe: "pasal", depan: "Aktiva Pasal 16D yang dikecualikan dari PPN?", belakang: "Aktiva yang PM-nya tidak dapat dikreditkan karena Pasal 9 ayat (8) huruf b (tidak berhubungan langsung dengan usaha)", dasar: "Pasal 16D UU PPN; Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01", menggantikan: "Huruf b dan c (termasuk sedan dan station wagon), s.d. 31 Maret 2022", dekTambahan: [] },
     { id: "KT-A4-25", topik: "A4.7", tipe: "angka", depan: "Batas pengkreditan PM yang terlewat?", belakang: "Paling lama 3 Masa Pajak setelah berakhirnya masa faktur", dasar: "Pasal 9 ayat (9) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A4-26", topik: "A4.7", tipe: "pasal", depan: "PM sedan dan station wagon dapat dikreditkan?", belakang: "Tidak, kecuali barang dagangan atau disewakan", dasar: "Pasal 9 ayat (8) huruf c UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A4-26", topik: "A4.7", tipe: "pasal", depan: "PM sedan dan station wagon dapat dikreditkan?", belakang: "Ya, bila berhubungan langsung dengan kegiatan usaha; tidak bila untuk keperluan pribadi (huruf b)", dasar: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01", menggantikan: "Tidak, kecuali barang dagangan atau disewakan (huruf c, s.d. 31 Maret 2022)", dekTambahan: [] },
     { id: "KT-A4-27", topik: "A4.7", tipe: "angka", depan: "Pedoman PM untuk masa sebelum dikukuhkan PKP?", belakang: "80% × Pajak Keluaran", dasar: "Pasal 9 ayat (9a) UU PPN (UU Cipta Kerja)", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-28", topik: "A4.7", tipe: "prosedur", depan: "PM bersama untuk penyerahan terutang dan dibebaskan?", belakang: "Dikreditkan proporsional: penyerahan terutang ÷ seluruh penyerahan", dasar: "Pasal 9 ayat (5)–(6) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-29", topik: "A4.8", tipe: "definisi", depan: "Kode faktur ke instansi pemerintah dan ke BUMN pemungut?", belakang: "02 (instansi pemerintah); 03 (pemungut selain instansi pemerintah)", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A4-30", topik: "A4.8", tipe: "angka", depan: "Kriteria penunjukan pemungut PPN PMSE?", belakang: "Transaksi > Rp600 juta/tahun atau Rp50 juta/bulan; traffic > 12.000/tahun atau 1.000/bulan", dasar: "PMK 60/PMK.03/2022", berlakuSejak: "2022-04-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A4-31", topik: "A4.8", tipe: "angka", depan: "PPh 22 yang dipungut bendahara atas pembelian barang?", belakang: "1,5% × harga tidak termasuk PPN", dasar: "Pasal 22 ayat (1) huruf a UU PPh; PMK 51/2025 (menggantikan PMK 34/PMK.010/2017)", berlakuSejak: null, menggantikan: null, dekTambahan: [] },
+    { id: "KT-A4-30", topik: "A4.8", tipe: "angka", depan: "Kriteria penunjukan pemungut PPN PMSE?", belakang: "Transaksi > Rp600 juta/tahun atau Rp50 juta/bulan; traffic > 12.000/tahun atau 1.000/bulan ◐", dasar: "PMK 81/2024 (PPN PMSE; menggantikan PMK 60/PMK.03/2022 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A4-31", topik: "A4.8", tipe: "angka", depan: "PPh 22 yang dipungut bendahara atas pembelian barang?", belakang: "1,5% × harga tidak termasuk PPN", dasar: "Pasal 22 ayat (1) huruf a UU PPh; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-32", topik: "A4.9", tipe: "pasal", depan: "PKP yang boleh restitusi setiap masa?", belakang: "Eksportir, penyerahan ke pemungut, tidak dipungut, belum berproduksi", dasar: "Pasal 9 ayat (4b) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-33", topik: "A4.9", tipe: "angka", depan: "Jangka waktu keputusan restitusi melalui pemeriksaan?", belakang: "Paling lama 12 bulan; lewat waktu dianggap dikabulkan", dasar: "Pasal 17B UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-34", topik: "A4.9", tipe: "angka", depan: "Batas pengembalian pendahuluan Pasal 17D bagi PKP sejak 1 Mei 2026?", belakang: "Lebih bayar ≤ Rp1 miliar dan penyerahan ≤ Rp4,2 miliar per Masa Pajak", dasar: "PMK 28 Tahun 2026", berlakuSejak: "2026-05-01", menggantikan: "Rp5 miliar (PMK 39/2018 s.t.d.d. PMK 209/2021)", dekTambahan: ["perubahan-2025-2026"] },
@@ -3556,14 +3864,14 @@ UKP.register({
     { id: "KT-A4-47", topik: "A4.6", tipe: "angka", depan: "Harga barang mewah sudah termasuk PPN dan PPnBM: rumus DPP?", belakang: "DPP = harga ÷ (1 + 12% + tarif PPnBM)", dasar: "Pasal 8A UU PPN; PMK 131/2024 Pasal 2", berlakuSejak: "2025-02-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-48", topik: "A4.7", tipe: "pasal", depan: "PM tidak dilaporkan tetapi ditemukan saat pemeriksaan?", belakang: "Dapat dikreditkan dalam penghitungan pemeriksaan", dasar: "Pasal 9 ayat (9b) UU PPN (UU Cipta Kerja)", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-49", topik: "A4.7", tipe: "definisi", depan: "PM yang tidak dapat dikreditkan: perlakuannya untuk PPh?", belakang: "Menjadi biaya atau harga perolehan, sepanjang pengeluarannya boleh dikurangkan", dasar: "Pasal 16B ayat (3) UU PPN; Pasal 6 dan 11 UU PPh", berlakuSejak: null, menggantikan: null, dekTambahan: [] },
-    { id: "KT-A4-50", topik: "A4.8", tipe: "angka", depan: "Pembayaran bendahara sampai Rp2 juta: perlakuan PPN dan PPh 22?", belakang: "Bendahara tidak memungut PPN maupun PPh 22 bila pembayaran ≤ Rp2 juta tidak termasuk PPN dan tidak dipecah; PPN-nya dipungut sendiri oleh PKP rekanan", dasar: "PMK 231/PMK.03/2019 s.t.d.d. PMK 59/PMK.03/2022 Pasal 18 ayat (1) huruf a; PMK 51/2025", berlakuSejak: null, menggantikan: "Rumusan lama 'termasuk PPN' (KMK 563/KMK.03/2003: Rp1 juta termasuk PPN)", dekTambahan: [] },
-    { id: "KT-A4-51", topik: "A4.8", tipe: "prosedur", depan: "PPN PMSE dapat dikreditkan pembeli PKP bila?", belakang: "Dokumen pungutan mencantumkan nama dan NPWP pembeli", dasar: "PMK 60/PMK.03/2022", berlakuSejak: "2022-04-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A4-50", topik: "A4.8", tipe: "angka", depan: "Pembayaran bendahara sampai Rp2 juta: perlakuan PPN dan PPh 22?", belakang: "Bendahara tidak memungut PPN maupun PPh 22 bila pembayaran ≤ Rp2 juta tidak termasuk PPN dan tidak dipecah; PPN-nya dipungut sendiri oleh PKP rekanan", dasar: "PMK 231/PMK.03/2019 s.t.d.d. PMK 59/PMK.03/2022 Pasal 18 ayat (1) huruf a; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025)", berlakuSejak: null, menggantikan: "Rumusan lama 'termasuk PPN' (KMK 563/KMK.03/2003: Rp1 juta termasuk PPN)", dekTambahan: [] },
+    { id: "KT-A4-51", topik: "A4.8", tipe: "prosedur", depan: "PPN PMSE dapat dikreditkan pembeli PKP bila?", belakang: "Dokumen pungutan mencantumkan nama dan NPWP pembeli, atau (menurut penjelasan DJP) alamat surel pembeli yang terdaftar pada DJP ◐", dasar: "PMK 81/2024 (PPN PMSE; menggantikan PMK 60/PMK.03/2022 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-52", topik: "A4.9", tipe: "pasal", depan: "Restitusi PKP umum bertahun buku Juli–Juni diajukan pada masa?", belakang: "Masa Juni (akhir tahun buku), bukan Desember", dasar: "Pasal 9 ayat (4a) UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-53", topik: "A4.9", tipe: "angka", depan: "SKPKB setelah pengembalian pendahuluan Pasal 17C/17D: sanksinya?", belakang: "Kenaikan 100% dari kekurangan pajak", dasar: "Pasal 17C dan 17D UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-54", topik: "A4.9", tipe: "angka", depan: "Jangka waktu SKPPKP untuk PPN?", belakang: "Paling lama 1 bulan sejak permohonan diterima lengkap", dasar: "Pasal 17C–17D UU KUP; PMK 28/2026", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-55", topik: "A4.10", tipe: "angka", depan: "Bunga pembetulan SPT Masa PPN yang menambah kurang bayar?", belakang: "(Acuan + 5%) ÷ 12 per bulan sejak jatuh tempo, maksimal 24 bulan", dasar: "Pasal 8 ayat (2a) UU KUP", berlakuSejak: "2020-11-02", menggantikan: "2% per bulan flat (sebelum UU Cipta Kerja, 2 November 2020)", dekTambahan: [] },
     { id: "KT-A4-56", topik: "A4.10", tipe: "prosedur", depan: "Batas setor atau lapor jatuh pada hari libur?", belakang: "Bergeser ke hari kerja berikutnya", dasar: "PMK 81/2024 (Pasal 100 untuk penyetoran)", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A4-57", topik: "A4.3", tipe: "prosedur", depan: "Bukan WP PPh final UMKM, omzet melampaui Rp4,8 miliar: batas lapor PKP?", belakang: "Akhir bulan berikutnya setelah bulan batas terlampaui", dasar: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013", berlakuSejak: "2014-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A4-57", topik: "A4.3", tipe: "prosedur", depan: "Tahun buku Juli–Juni, peredaran bruto melampaui Rp4,8 miliar pada Maret: batas lapor PKP?", belakang: "30 Juni (akhir tahun buku saat batas terlampaui), bukan 30 April dan bukan 31 Desember ◐", dasar: "PMK 164/2023 Pasal 17 ayat (1) dan (3)", berlakuSejak: "2023-12-29", menggantikan: "Akhir bulan berikutnya setelah bulan batas terlampaui (PMK 197/PMK.03/2013)", dekTambahan: [] },
     { id: "KT-A4-58", topik: "A4.3", tipe: "definisi", depan: "Peredaran bruto untuk batas pengusaha kecil PPN mencakup?", belakang: "Penyerahan BKP/JKP saja; katering, restoran, dan bunga tidak dihitung", dasar: "PMK 197/PMK.03/2013; Pasal 4A UU PPN", berlakuSejak: "2014-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-59", topik: "A4.1", tipe: "definisi", depan: "Pengecer bukan PKP dalam rantai distribusi: akibatnya bagi PPN?", belakang: "PPN berhenti di PKP terakhir; PPN yang dibayar pengecer menjadi biaya", dasar: "Pasal 9 ayat (2) dan Pasal 3A UU PPN", berlakuSejak: "2010-04-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A4-60", topik: "A4.6", tipe: "angka", depan: "Besaran tertentu PPN agen asuransi dan pialang asuransi?", belakang: "Agen 1,1% dan pialang 2,2% dari komisi; PM tidak dikreditkan", dasar: "PMK 67/PMK.03/2022 jo. PMK 11/2025", berlakuSejak: "2025-02-04", menggantikan: "Rumus 10%/20% × tarif 11% (2022–2024)", dekTambahan: ["perubahan-2025-2026"] },
@@ -3590,8 +3898,8 @@ UKP.register({
   kasus: [
     {
       id: "K-A4-01", judul: "SPT Masa PPN pabrik: pemungut, ekspor, dan PM yang dicoret", topik: "A4.10", estimasiMenit: 18,
-      narasi: "PT Mandiri Plastik (PKP, produsen kemasan plastik, tahun buku Januari–Desember) menyiapkan SPT Masa PPN Juni 2026 di Coretax. Pada Juni 2026 perusahaan menjual kemasan kepada PKP swasta Rp2.400.000.000, kepada PT Kereta Api Indonesia (Persero) yang ditetapkan sebagai pemungut PPN Rp600.000.000, dan mengekspor Rp1.000.000.000 dengan PEB. Faktur masukan bulan itu: bahan baku dengan harga Rp1.500.000.000 (faktur lengkap), jasa servis mesin dengan PPN Rp8.800.000 (faktur lengkap), pembelian sedan untuk direktur utama dengan PPN Rp66.000.000, dan pembelian suku cadang dengan PPN Rp3.300.000 yang fakturnya tidak mencantumkan NPWP/NIK perusahaan. Terdapat lebih bayar Masa Mei 2026 Rp12.000.000 yang dikompensasikan. Semua harga belum termasuk PPN dan produk yang dijual bukan barang mewah.",
-      data: [["Penjualan ke PKP swasta", "Rp2.400.000.000"], ["Penjualan ke BUMN pemungut", "Rp600.000.000"], ["Ekspor (PEB)", "Rp1.000.000.000"], ["Pembelian bahan baku (harga)", "Rp1.500.000.000"], ["PPN jasa servis mesin", "Rp8.800.000"], ["PPN sedan direktur", "Rp66.000.000"], ["PPN suku cadang, faktur tanpa identitas pembeli", "Rp3.300.000"], ["Kompensasi dari Masa Mei 2026", "Rp12.000.000"]],
+      narasi: "PT Mandiri Plastik (PKP, produsen kemasan plastik, tahun buku Januari–Desember) menyiapkan SPT Masa PPN Juni 2026 di Coretax. Pada Juni 2026 perusahaan menjual kemasan kepada PKP swasta Rp2.400.000.000, kepada PT Kereta Api Indonesia (Persero) yang ditetapkan sebagai pemungut PPN Rp600.000.000, dan mengekspor Rp1.000.000.000 dengan PEB. Faktur masukan bulan itu: bahan baku dengan harga Rp1.500.000.000 (faktur lengkap), jasa servis mesin dengan PPN Rp8.800.000 (faktur lengkap), pembelian mobil untuk keperluan pribadi keluarga pemegang saham (tidak berhubungan langsung dengan kegiatan usaha) dengan PPN Rp66.000.000, dan pembelian suku cadang dengan PPN Rp3.300.000 yang fakturnya tidak mencantumkan NPWP/NIK perusahaan. Terdapat lebih bayar Masa Mei 2026 Rp12.000.000 yang dikompensasikan. Semua harga belum termasuk PPN dan produk yang dijual bukan barang mewah.",
+      data: [["Penjualan ke PKP swasta", "Rp2.400.000.000"], ["Penjualan ke BUMN pemungut", "Rp600.000.000"], ["Ekspor (PEB)", "Rp1.000.000.000"], ["Pembelian bahan baku (harga)", "Rp1.500.000.000"], ["PPN jasa servis mesin", "Rp8.800.000"], ["PPN mobil keperluan pribadi keluarga pemegang saham", "Rp66.000.000"], ["PPN suku cadang, faktur tanpa identitas pembeli", "Rp3.300.000"], ["Kompensasi dari Masa Mei 2026", "Rp12.000.000"]],
       langkah: [
         { no: 1, pertanyaan: "Berapa PK yang harus dipungut sendiri (Rp)?", tipe: "angka", jawaban: 264000000, toleransi: 0,
           petunjuk: ["Hanya penjualan dalam negeri kepada PKP swasta yang dipungut sendiri", "11% × Rp2.400.000.000 (= 12% × 11/12)", "Jawaban: Rp264.000.000"],
@@ -3600,8 +3908,8 @@ UKP.register({
           petunjuk: ["BUMN yang ditetapkan sebagai pemungut bukan instansi pemerintah", "Cari kode untuk pemungut selain instansi pemerintah", "Jawaban: A"],
           penjelasan: "Kode 03; PPN 11% × Rp600 juta = Rp66.000.000 dipungut dan disetor BUMN, sehingga tidak masuk setoran PT Mandiri Plastik." },
         { no: 3, pertanyaan: "Berapa PM yang dapat dikreditkan (Rp)?", tipe: "angka", jawaban: 173800000, toleransi: 0,
-          petunjuk: ["Coret PM sedan (Pasal 9 ayat (8) huruf c) dan faktur tanpa identitas pembeli (huruf f)", "PM bahan baku = 11% × Rp1,5 miliar = Rp165.000.000, ditambah servis mesin", "Jawaban: Rp173.800.000"],
-          penjelasan: "PM bahan baku Rp165.000.000 + servis mesin Rp8.800.000 = Rp173.800.000; PM sedan direktur dan faktur suku cadang tanpa identitas pembeli tidak dapat dikreditkan." },
+          petunjuk: ["Coret PM mobil keperluan pribadi (Pasal 9 ayat (8) huruf b) dan faktur tanpa identitas pembeli (huruf f)", "PM bahan baku = 11% × Rp1,5 miliar = Rp165.000.000, ditambah servis mesin", "Jawaban: Rp173.800.000"],
+          penjelasan: "PM bahan baku Rp165.000.000 + servis mesin Rp8.800.000 = Rp173.800.000; PM mobil keperluan pribadi keluarga pemegang saham dan faktur suku cadang tanpa identitas pembeli tidak dapat dikreditkan." },
         { no: 4, pertanyaan: "Berapa PPN kurang bayar Masa Juni 2026 (Rp)?", tipe: "angka", jawaban: 78200000, toleransi: 0,
           petunjuk: ["PK dipungut sendiri − PM − kompensasi", "264.000.000 − 173.800.000 − 12.000.000", "Jawaban: Rp78.200.000"],
           penjelasan: "Kurang bayar Rp78.200.000 harus disetor sebelum SPT Masa PPN disampaikan." },
@@ -3612,7 +3920,7 @@ UKP.register({
           petunjuk: ["Setoran tepat waktu → tidak ada bunga", "Denda Pasal 7 ayat (1) untuk SPT Masa PPN", "Jawaban: Rp500.000"],
           penjelasan: "Keterlambatan SPT Masa PPN dikenai denda Rp500.000 melalui STP." }
       ],
-      kesimpulan: "PK dipungut sendiri Rp264 juta (penyerahan ke BUMN pemungut dan ekspor dipisahkan), PM yang dapat dikreditkan Rp173,8 juta setelah mencoret sedan dan faktur cacat, dikurangi kompensasi Rp12 juta, sehingga kurang bayar Rp78,2 juta disetor dan dilaporkan paling lambat 31 Juli 2026. Terlambat lapor saja menimbulkan denda Rp500.000.",
+      kesimpulan: "PK dipungut sendiri Rp264 juta (penyerahan ke BUMN pemungut dan ekspor dipisahkan), PM yang dapat dikreditkan Rp173,8 juta setelah mencoret mobil keperluan pribadi dan faktur cacat, dikurangi kompensasi Rp12 juta, sehingga kurang bayar Rp78,2 juta disetor dan dilaporkan paling lambat 31 Juli 2026. Terlambat lapor saja menimbulkan denda Rp500.000.",
       kalkulatorRef: "ppn"
     },
     {
@@ -3678,8 +3986,8 @@ UKP.register({
           petunjuk: ["Jumlahkan peredaran bruto secara kumulatif per bulan", "Rp4,56 miliar + Rp610 juta = Rp5,17 miliar", "Jawaban: B"],
           penjelasan: "Sampai Agustus Rp4.560.000.000 (belum melebihi); dengan September menjadi Rp5.170.000.000 sehingga batas terlampaui pada September 2026." },
         { no: 2, pertanyaan: "Paling lambat kapan Bapak Hendra wajib melaporkan usahanya untuk dikukuhkan sebagai PKP?", tipe: "pilihan", opsi: { A: "31 Oktober 2026", B: "15 Oktober 2026", C: "31 Desember 2026", D: "31 Januari 2027" }, jawaban: "C",
-          petunjuk: ["Ia adalah WP PPh final UMKM", "PMK 164/2023: paling lambat akhir tahun buku saat batas terlampaui", "Jawaban: C"],
-          penjelasan: "Bagi WP PPh final UMKM, laporan pengukuhan paling lambat akhir tahun buku terlampauinya batas (31 Desember 2026), dan PPN dipungut mulai Masa Januari 2027; tenggat umum akhir bulan berikutnya (31 Oktober 2026) tidak dipakai." },
+          petunjuk: ["Batas terlampaui pada September 2026, dalam tahun buku 2026", "PMK 164/2023: paling lambat akhir tahun buku saat batas terlampaui", "Jawaban: C"],
+          penjelasan: "Laporan pengukuhan paling lambat akhir tahun buku terlampauinya batas (31 Desember 2026), dan PPN dipungut mulai Masa Januari 2027; tenggat lama akhir bulan berikutnya (31 Oktober 2026, PMK 197/2013) tidak dipakai lagi." },
         { no: 3, pertanyaan: "Berapa PPN kurang bayar Masa Januari 2027 (Rp)?", tipe: "angka", jawaban: 22550000, toleransi: 0,
           petunjuk: ["PK = 11% × Rp700.000.000 = Rp77.000.000", "PM = 11% × Rp480.000.000 + Rp1.650.000 = Rp54.450.000", "Jawaban: Rp22.550.000"],
           penjelasan: "PK Rp77.000.000 dikurangi PM Rp54.450.000 (Rp52.800.000 barang dagangan + Rp1.650.000 sewa gudang) = Rp22.550.000." },
@@ -3730,7 +4038,7 @@ UKP.register({
   tips: [
     { teks: "Sebelum menghitung, tandai jenis barang: non-mewah → 11% (12% × 11/12); barang mewah → 12% × harga penuh ditambah PPnBM; besaran tertentu → persentase khusus tanpa kredit PM.", tagSebab: "salah-klasifikasi" },
     { teks: "Bila harga 'sudah termasuk PPN', keluarkan PPN dengan 11/111 (harga × 100/111 untuk harga tanpa PPN); jangan kalikan 11% langsung.", tagSebab: "salah-hitung" },
-    { teks: "Pada soal PK–PM, saring PM dengan tiga pertanyaan (faktur lengkap? berhubungan langsung dengan usaha dan bukan sedan? masih dalam 3 masa dan belum dibiayakan?), lalu keluarkan PK yang dipungut pemungut dan ekspor sebelum menghitung kurang/lebih bayar.", tagSebab: "lupa-pasal" },
+    { teks: "Pada soal PK–PM, saring PM dengan tiga pertanyaan (faktur lengkap? berhubungan langsung dengan usaha? masih dalam 3 masa dan belum dibiayakan?), lalu keluarkan PK yang dipungut pemungut dan ekspor sebelum menghitung kurang/lebih bayar.", tagSebab: "lupa-pasal" },
     { teks: "Hafalkan tanggal 2025–2026: setor PPN pemanfaatan luar negeri dan KMS tanggal 15, unggah faktur tanggal 20, setor dan lapor SPT Masa PPN akhir bulan berikutnya; tanggal 10 dan unggah tanggal 15 sudah usang.", tagSebab: "angka-usang" },
     { teks: "Bila opsi hanya berbeda satu frasa (dibebaskan vs tidak dipungut, kode 07 vs 08, 02 vs 03, dikabulkan vs ditolak), tentukan dulu jenis fasilitas atau pembelinya sebelum membaca opsi.", tagSebab: "salah-baca" },
     { teks: "Perbarui angka yang sering dijadikan pengecoh: lapor pengukuhan PKP paling lambat akhir tahun buku (bukan akhir bulan berikutnya) dengan PPN dipungut mulai tahun buku berikutnya, dan batas Pasal 17D bagi PKP sejak 1 Mei 2026 lebih bayar Rp1 miliar dengan penyerahan paling banyak Rp4,2 miliar per Masa Pajak (bukan Rp5 miliar).", tagSebab: "angka-usang" }

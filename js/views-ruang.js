@@ -820,6 +820,9 @@
   UKP.c.statusRoom = function (o) {
     o = o || {}; const ringkas = !!o.ringkas;
     const el = h('span', { class: 'status-room' + (ringkas ? ' ringkas' : ''), role: 'status' });
+    // v9.4.1: isi yang sama tidak ditulis ulang. Kabar hadir (pemimpin tiap 5 dtk, tiap anggota tiap 30 dtk) memanggil isi(); mengganti
+    // isi wilayah role=status dengan teks yang sama membuat pembaca layar membacakannya lagi dan peramban menata ulang tanpa perlu.
+    let tandaLalu = null;
     function isi() {
       const st = statusR(); const i = info(); const s = stR();
       let nada = 'mati', teks = '', ekstra = null;
@@ -840,6 +843,9 @@
           }
         } else { nada = 'warn'; teks = 'Menyambung ulang…'; }
       }
+      const tanda = nada + '|' + teks + '|' + (ekstra ? 1 : 0);
+      if (tanda === tandaLalu) return;
+      tandaLalu = tanda;
       el.dataset.nada = nada; el.title = ringkas ? teks : '';
       el.replaceChildren(titik(nada), h('span', { class: 'status-room-teks' }, teks), ekstra);
     }
@@ -1797,21 +1803,28 @@
         return { node, detik: detikLayar };
       }
       const bawah = h('div', { class: 'bar-bawah-room', role: 'status', 'aria-live': 'polite', 'data-langkah': sub });
+      // v9.4.1: isi yang sama tidak ditulis ulang (lihat UKP.c.statusRoom); wilayah ini aria-live dan dipanggil di tiap kabar hadir
+      let tandaBawah = null;
+      const isiBawah = (...anak) => {
+        const tanda = (bawah.dataset.langkah || '') + '|' + anak.map(n => n.textContent).join('|');
+        if (tanda === tandaBawah) return;
+        tandaBawah = tanda; bawah.replaceChildren(...anak);
+      };
       const perbaruiBawah = () => {
         const sAkhir = stR(); const a2 = sAkhir && sAkhir.aktivitas; if (!a2) return;
         const tersambung = !!(statusR() || {}).tersambung;
         const hitung = h('span', { class: 'meta hitung-jawab' }, teksHitungJawab(nDijawab(a2, sid), Array.isArray(a2.peserta) ? a2.peserta : null));
-        if (sub === 'hasil') bawah.replaceChildren(h('span', null, 'Menunggu ' + namaPemimpin(sAkhir) + ' melanjutkan'));
+        if (sub === 'hasil') isiBawah(h('span', null, 'Menunggu ' + namaPemimpin(sAkhir) + ' melanjutkan'));
         else if (sub === 'terkirim') {
-          bawah.replaceChildren(h('span', null, tersambung ? 'Jawaban terkirim. Menunggu kunci jawaban.' : 'Belum terkirim · menyambung ulang… jawaban Anda aman.'), hitung);
+          isiBawah(h('span', null, tersambung ? 'Jawaban terkirim. Menunggu kunci jawaban.' : 'Belum terkirim · menyambung ulang… jawaban Anda aman.'), hitung);
           // V3: judul besar ikut jujur saat putus (dulu tetap "Jawaban terkirim" dengan centang hijau)
           const blok = isi.querySelector('.terkirim-room'); const j = blok && blok.querySelector('.room-h1');
           if (blok && j) { const t = tersambung ? 'Jawaban terkirim. Menunggu kunci jawaban.' : 'Jawaban tersimpan di HP ini. Dikirim begitu tersambung.'; if (j.textContent !== t) j.textContent = t; blok.toggleAttribute('data-tertunda', !tersambung); }
         } else {
           const c = lokal.cur && lokal.cur.kunci === a2.id + ':' + sid ? lokal.cur : null;
           const langkah = c && c.o && c.o !== '-' ? 'Langkah 2: pilih seberapa yakin' : 'Langkah 1: ketuk huruf jawaban';
-          bawah.dataset.langkah = c && c.o ? 'yakin' : 'huruf';
-          bawah.replaceChildren(h('span', null, tersambung ? langkah : 'Menyambung ulang… jawaban Anda aman.'), hitung);
+          const lk = c && c.o ? 'yakin' : 'huruf'; if (bawah.dataset.langkah !== lk) bawah.dataset.langkah = lk;
+          isiBawah(h('span', null, tersambung ? langkah : 'Menyambung ulang… jawaban Anda aman.'), hitung);
         }
       };
       lokal.perbaruiBawah = perbaruiBawah;

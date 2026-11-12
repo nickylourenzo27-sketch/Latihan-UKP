@@ -16,6 +16,7 @@ UKP.register({
       "PMK 23/PMK.03/2014 (NJOPTKP Rp12.000.000)",
       "UU 1/2022 (HKPD): batas objek PBB-P2 daerah dan dana bagi hasil PBB",
       "PMK 81/2024 (Coretax) dan PMK 118/2024 (pelaksanaan hak dan kewajiban wajib pajak)",
+      "PMK 129/2023 (pemberian pengurangan PBB; menggantikan PMK 82/PMK.03/2017)",
       "UU 19/1997 s.t.d.d. UU 19/2000 (PPSP) dan UU 14/2002 (Pengadilan Pajak)"
     ],
     perubahanTerbaru: [
@@ -23,7 +24,7 @@ UKP.register({
       { sebelum: "Klasifikasi objek dan penetapan NJOP PBB-P5L menurut PMK 186/PMK.03/2019 versi awal", sesudah: "PMK 234/PMK.03/2022 mengubah PMK 186/2019 untuk menyelaraskan cakupan sektor PBB-P5L dengan UU HKPD", dasar: "PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" },
       { sebelum: "Pembayaran PBB-P5L dengan e-Billing DJP Online dan identitas NPWP 15 digit", sesudah: "Kode billing dibuat di Coretax dengan NPWP 16 digit/NIK dan NOP; layanan administrasi PBB-P5L dilakukan elektronik", dasar: "PMK 81/2024", berlakuSejak: "2025-01-01" },
       { sebelum: "Sanksi bunga UU KUP dan denda keterlambatan PBB sama-sama 2% per bulan (sebelum UU Cipta Kerja)", sesudah: "Bunga UU KUP memakai tarif bunga per bulan dari KMK (diatur UU Cipta Kerja dan dipertahankan UU HPP); denda PBB-P5L tetap 2% sebulan paling lama 24 bulan karena UU PBB tidak diubah kedua undang-undang itu", dasar: "UU 11/2020 (Cipta Kerja) yang mengubah pasal-pasal sanksi bunga UU KUP (Pasal 8, 9, 13, 14, 19), dipertahankan UU 7/2021 (HPP); Pasal 11 ayat (3) UU PBB", berlakuSejak: "2020-11-02" },
-      { sebelum: "Permohonan keberatan dan pengurangan PBB diajukan dengan surat ke KPP berdasarkan PMK tersendiri", sesudah: "Tata cara pelaksanaan hak wajib pajak dikonsolidasikan dalam PMK 118/2024 dan diajukan melalui Coretax (rincian khusus PBB perlu dicek ke teks primer)", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01" }
+      { sebelum: "Permohonan keberatan, pembetulan, pengurangan denda, serta pengurangan atau pembatalan ketetapan PBB diajukan dengan surat ke KPP berdasarkan PMK tersendiri", sesudah: "Tata cara keberatan, pembetulan, pengurangan denda, serta pengurangan atau pembatalan ketetapan PBB dikonsolidasikan dalam PMK 118/2024 dan diajukan melalui Coretax; pengurangan PBB Pasal 19 tetap diatur tersendiri dalam PMK 129/2023 (rincian khusus PBB perlu dicek ke teks primer)", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01" }
     ],
     lembarRingkas: [
       { label: "Tarif PBB-P5L", nilai: "0,5% (tarif tunggal)", dasar: "Pasal 5 UU PBB", berlakuSejak: "1995-01-01" },
@@ -253,11 +254,11 @@ UKP.register({
         "Keberatan harus diajukan dalam jangka waktu 3 bulan sejak tanggal diterimanya SPPT/SKP, kecuali wajib pajak dapat menunjukkan bahwa jangka waktu itu tidak dapat dipenuhi karena keadaan di luar kekuasaannya (Pasal 15); pengajuan keberatan tidak menunda kewajiban membayar.",
         "DJP memberi keputusan paling lama 12 bulan sejak surat keberatan diterima; keputusan dapat menerima seluruhnya/sebagian, menolak, atau menambah pajak terutang; bila 12 bulan lewat tanpa keputusan, keberatan dianggap diterima (Pasal 16).",
         "Atas keputusan keberatan dapat diajukan banding ke Pengadilan Pajak paling lambat 3 bulan sejak keputusan diterima (Pasal 35 ayat (2) UU 14/2002).",
-        "Pengurangan (Pasal 19 ayat (1)): atas permohonan wajib pajak, Menteri Keuangan dapat memberi pengurangan (a) karena kondisi tertentu objek yang ada hubungannya dengan subjek pajak dan/atau sebab tertentu lainnya, atau (b) karena objek terkena bencana alam atau sebab lain yang luar biasa; ketentuan pelaksana lazimnya membatasi pengurangan paling tinggi 75%, dan sampai 100% untuk bencana alam.",
+        "Pengurangan (Pasal 19 ayat (1)): atas permohonan wajib pajak, Menteri Keuangan dapat memberi pengurangan (a) karena kondisi tertentu objek yang ada hubungannya dengan subjek pajak dan/atau sebab tertentu lainnya, atau (b) karena objek terkena bencana alam atau sebab lain yang luar biasa; PMK 129/2023 (menggantikan PMK 82/PMK.03/2017) membatasi pengurangan karena kondisi tertentu paling tinggi 75%, dan karena bencana alam atau sebab lain yang luar biasa paling tinggi 100% dari PBB yang belum dilunasi; permohonan karena bencana diajukan pada tahun terjadinya bencana.",
         "Keberatan dipakai bila penetapan tidak benar (luas, NJOP, subjek); pengurangan dipakai bila penetapan benar tetapi wajib pajak membutuhkan keringanan, misalnya objek rusak karena bencana setelah 1 Januari.",
-        "Upaya hukum non keberatan PBB-P5L (PMK 118/2024 s.t.d.d. PMK 71/2026): (a) pembetulan SPPT, SKP PBB, atau STP PBB yang memuat kesalahan tulis (nama, alamat, NOP, tanggal jatuh tempo), kesalahan hitung (penjumlahan, pengurangan, perkalian, pembagian), dan/atau kekeliruan penerapan ketentuan, karena jabatan atau atas permohonan; (b) pengurangan PBB karena kondisi tertentu atau bencana (Pasal 19 UU PBB); (c) pengurangan atau penghapusan denda administratif PBB yang dikenakan karena kekhilafan wajib pajak atau bukan karena kesalahannya (Pasal 20 UU PBB); (d) pengurangan atau pembatalan SPPT, SKP PBB, atau STP PBB yang tidak benar.",
+        "Upaya hukum non keberatan PBB-P5L (PMK 118/2024 s.t.d.d. PMK 71/2026): (a) pembetulan SPPT, SKP PBB, atau STP PBB yang memuat kesalahan tulis (nama, alamat, NOP, tanggal jatuh tempo), kesalahan hitung (penjumlahan, pengurangan, perkalian, pembagian), dan/atau kekeliruan penerapan ketentuan, karena jabatan atau atas permohonan; (b) pengurangan PBB karena kondisi tertentu atau bencana (Pasal 19 UU PBB; tata caranya diatur tersendiri dalam PMK 129/2023); (c) pengurangan atau penghapusan denda administratif PBB yang dikenakan karena kekhilafan wajib pajak atau bukan karena kesalahannya (Pasal 20 UU PBB); (d) pengurangan atau pembatalan SPPT, SKP PBB, atau STP PBB yang tidak benar.",
         "Memilih jalur: salah tulis atau salah hitung yang tampak dari dokumen → pembetulan; sengketa materi (luas, NJOP, subjek) yang masih dalam 3 bulan → keberatan; tenggat keberatan lewat atau keberatan tidak dipertimbangkan → pengurangan atau pembatalan ketetapan yang tidak benar; penetapan benar tetapi objek terkena bencana atau kondisi tertentu → pengurangan PBB; denda 2% sebulan atau 25% yang timbul karena kekhilafan atau bukan kesalahan wajib pajak → pengurangan denda administratif. STP PBB bukan objek keberatan, sehingga STP yang tidak benar diselesaikan melalui pembetulan atau pembatalan.",
-        "Pengurangan atau pembatalan SKP PBB yang tidak benar hanya dapat diajukan bila wajib pajak tidak mengajukan keberatan atau keberatannya tidak dipertimbangkan; banding tidak tersedia karena tidak ada keputusan keberatan. Pengurangan denda administratif PBB hanya diberikan atas denda yang belum dibayar. Keputusan atas permohonan non keberatan diterbitkan paling lama 6 bulan sejak permohonan diterima."
+        "Pengurangan atau pembatalan SKP PBB yang tidak benar hanya dapat diajukan bila wajib pajak tidak mengajukan keberatan atau keberatannya tidak dipertimbangkan; banding tidak tersedia karena tidak ada keputusan keberatan. Pengurangan denda administratif PBB hanya diberikan atas denda yang belum dibayar. Keputusan atas permohonan pembetulan, pengurangan denda, serta pengurangan atau pembatalan ketetapan diterbitkan paling lama 6 bulan sejak permohonan diterima; jangka waktu keputusan pengurangan PBB Pasal 19 mengikuti PMK 129/2023."
       ],
       poinKunci: [
         { label: "Objek keberatan", nilai: "SPPT dan SKP", dasar: "Pasal 15 ayat (1) UU PBB", berlakuSejak: "1995-01-01" },
@@ -265,16 +266,16 @@ UKP.register({
         { label: "Keputusan keberatan", nilai: "≤ 12 bulan; lewat = dianggap diterima", dasar: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01" },
         { label: "Banding", nilai: "≤ 3 bulan sejak keputusan diterima", dasar: "Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" },
         { label: "Pengurangan", nilai: "atas permohonan: kondisi tertentu atau bencana", dasar: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" },
-        { label: "Upaya hukum non keberatan PBB", nilai: "Pembetulan · pengurangan PBB · pengurangan denda administratif · pengurangan/pembatalan SPPT, SKP, STP PBB yang tidak benar", dasar: "Pasal 19 dan 20 UU PBB; PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" },
+        { label: "Upaya hukum non keberatan PBB", nilai: "Pembetulan · pengurangan PBB · pengurangan denda administratif · pengurangan/pembatalan SPPT, SKP, STP PBB yang tidak benar", dasar: "Pasal 19 dan 20 UU PBB; PMK 129/2023 (pengurangan PBB); PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" },
         { label: "Pembetulan SPPT/SKP/STP PBB", nilai: "Kesalahan tulis, hitung, atau kekeliruan penerapan ketentuan; jabatan atau permohonan", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01" },
         { label: "Pembatalan SKP PBB tidak benar", nilai: "Hanya bila tidak diajukan keberatan atau keberatan tidak dipertimbangkan", dasar: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" },
-        { label: "Keputusan permohonan non keberatan", nilai: "≤ 6 bulan sejak permohonan diterima", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01" }
+        { label: "Keputusan permohonan non keberatan (PMK 118/2024)", nilai: "≤ 6 bulan sejak permohonan diterima: pembetulan, pengurangan denda, pengurangan/pembatalan ketetapan; pengurangan PBB Pasal 19 mengikuti PMK 129/2023", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01" }
       ],
       dasarHukum: [
         { pasal: "Pasal 15–16 UU PBB", catatan: "keberatan dan keputusannya" },
         { pasal: "Pasal 19 UU PBB", catatan: "pengurangan PBB" },
         { pasal: "Pasal 35 ayat (2) UU 14/2002", catatan: "jangka waktu banding" },
-        { pasal: "PMK 118/2024; PMK 82/PMK.03/2017", catatan: "tata cara keberatan dan pengurangan (status rincian perlu dicek)" },
+        { pasal: "PMK 118/2024; PMK 129/2023 (pemberian pengurangan PBB; menggantikan PMK 82/PMK.03/2017)", catatan: "tata cara keberatan (PMK 118/2024) dan pengurangan PBB (PMK 129/2023)" },
         { pasal: "Pasal 20 UU PBB", catatan: "pengurangan atau penghapusan denda administratif karena kekhilafan atau bukan kesalahan wajib pajak" },
         { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", catatan: "pembetulan, pengurangan denda, dan pengurangan/pembatalan SPPT, SKP PBB, STP PBB yang tidak benar" }
       ],
@@ -289,7 +290,7 @@ UKP.register({
         langkah: [ ["SPPT diterima + 3 bulan", "23 Mei 2026"], ["Surat keberatan diterima", "4 Mei 2026 (tepat waktu)"], ["+ 12 bulan", "4 Mei 2027"], ["Lewat tanpa keputusan", "dianggap diterima"] ]
       },
       verifikasi: "◐",
-      peringatan: "Batas persentase pengurangan (75%/100%), jangka waktu pengajuan/keputusan pengurangan, dan status PMK 82/PMK.03/2017 setelah konsolidasi PMK 118/2024 belum dicek ke teks primer; soal modul ini tidak menguji angka tersebut. Ketentuan keberatan Pasal 15–16 UU PBB dan banding UU 14/2002 dipakai apa adanya; nomor ayat Pasal 15–16 sengaja tidak dirinci (kecuali objek keberatan dan bentuk tertulis) karena penomoran ayat setelah UU 12/1994 belum dicek ke teks UU. Upaya non keberatan (pembetulan, pengurangan denda, pembatalan ketetapan yang tidak benar) ditulis dari ringkasan sekunder PMK 118/2024 s.t.d.d. PMK 71/2026; nomor pasal PMK dan jangka waktu 6 bulan untuk jenis PBB perlu dicek ke teks primer."
+      peringatan: "Batas persentase pengurangan (75% kondisi tertentu, 100% bencana, dari PBB yang belum dilunasi) dan jangka pengajuan karena bencana (dalam tahun terjadinya bencana) diambil dari ringkasan sekunder dan pembahasan try out (soal B8-120) atas PMK 129/2023 (diundangkan 30 November 2023, berlaku 30 hari kemudian), yang menggantikan PMK 82/PMK.03/2017; nomor pasal PMK 129/2023 belum dicek ke teks primer. Jangka waktu keputusan pengurangan PBB juga belum dicek: ringkasan sekunder atas PMK 129/2023 menyebut paling lama 4 bulan sejak permohonan diterima (lewat dari itu dianggap dikabulkan seluruhnya); karena itu angka 6 bulan di topik ini dibatasi pada permohonan menurut PMK 118/2024 dan angka 4 bulan belum dimasukkan ke ringkasan. Kasus K-B8-06 (keputusan juga baru diterima 20 Januari 2027, lebih dari 4 bulan setelah permohonan 22 Juli 2026) dan soal B8-061 menghitung pengurangan atas PBB yang sudah dilunasi lalu mengembalikan kelebihannya; kesesuaiannya dengan dasar 'PBB yang belum dilunasi' belum dicek. Pola yang sama, tanpa pengaruh pada kunci, ada pada V-B8-09 masalah (4) (banjir Juli 2026, sedangkan SPPT 2026 menurut soal B8-105 sudah lunas 3 Juli 2026) dan ringkasan B8.7 butir keempat (pengurangan yang menurunkan pajak yang sudah dibayar). Ketentuan keberatan Pasal 15–16 UU PBB dan banding UU 14/2002 dipakai apa adanya; nomor ayat Pasal 15–16 sengaja tidak dirinci (kecuali objek keberatan dan bentuk tertulis) karena penomoran ayat setelah UU 12/1994 belum dicek ke teks UU. Upaya non keberatan (pembetulan, pengurangan denda, pembatalan ketetapan yang tidak benar) ditulis dari ringkasan sekunder PMK 118/2024 s.t.d.d. PMK 71/2026; nomor pasal PMK dan jangka waktu 6 bulan untuk jenis PBB perlu dicek ke teks primer."
     },
     {
       id: "B8.7", slug: "pembayaran-penagihan-restitusi-pbb", judul: "Pembayaran, penagihan, dan restitusi PBB",
@@ -1434,7 +1435,13 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-061", topik: "B8.6", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-05",
+      id: "B8-061",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-05",
       stem: "Lanjutan data V-B8-05: Kedua SPPT PT Sawit Mukomuko Raya (Kebun Air Dikit Rp684.000.000 dan Kebun Teramang Rp318.500.000) dilunasi penuh pada 25 September 2026. Keputusan keberatan mengabulkan seluruhnya pengeluaran 150 ha areal produktif Kebun Air Dikit yang dalam SPPT dinilai dengan nilai tanah Rp4.000/m² dan SIT Rp5.400/m²; NJOPTKP tetap melekat pada Kebun Air Dikit. Keputusan pengurangan memberikan pengurangan 40% dari PBB terutang Kebun Teramang. Perusahaan tidak mempunyai utang pajak lain. Jumlah kelebihan pembayaran PBB yang dapat dikembalikan adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp155.600.000", B: "Rp139.400.000", C: "Rp197.900.000", D: "Rp127.400.000" },
@@ -1442,14 +1449,23 @@ UKP.register({
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
         inti: "Kelebihan berasal dari dua keputusan: keberatan menurunkan PBB Kebun Air Dikit sebesar 0,2% × NJOP 150 ha (nilai tanah + SIT), dan pengurangan 40% menurunkan PBB Kebun Teramang. Karena kedua SPPT sudah dilunasi dan tidak ada utang lain, seluruh penurunan menjadi kelebihan pembayaran.",
-        jejakHitung: [ ["NJOP 150 ha = 1.500.000 m² × (4.000 + 5.400)", "Rp14.100.000.000"], ["Penurunan PBB Air Dikit 14.100.000.000 × 40% × 0,5%", "Rp28.200.000"], ["Pengurangan Teramang 40% × 318.500.000", "Rp127.400.000"], ["Jumlah kelebihan", "Rp155.600.000"] ],
-        mengapaSalah: { B: "Areal produktif yang dikeluarkan hanya dinilai nilai tanah tanpa SIT (penurunan Rp12.000.000)", C: "Penurunan PBB Air Dikit dihitung 0,5% × NJOP tanpa NJKP 40% (Rp70.500.000)", D: "Hanya pengurangan Kebun Teramang yang dihitung; hasil keberatan Kebun Air Dikit terlupa" },
+        jejakHitung: [
+          ["NJOP 150 ha = 1.500.000 m² × (4.000 + 5.400)", "Rp14.100.000.000"],
+          ["Penurunan PBB Air Dikit 14.100.000.000 × 40% × 0,5%", "Rp28.200.000"],
+          ["Pengurangan Teramang 40% × 318.500.000", "Rp127.400.000"],
+          ["Jumlah kelebihan", "Rp155.600.000"]
+        ],
+        mengapaSalah: {
+          B: "Areal produktif yang dikeluarkan hanya dinilai nilai tanah tanpa SIT (penurunan Rp12.000.000)",
+          C: "Penurunan PBB Air Dikit dihitung 0,5% × NJOP tanpa NJKP 40% (Rp70.500.000)",
+          D: "Hanya pengurangan Kebun Teramang yang dihitung; hasil keberatan Kebun Air Dikit terlupa"
+        },
         jebakan: "Dua mekanisme berbeda menghasilkan satu angka restitusi: keberatan mengoreksi NJOP, pengurangan memotong pajak terutang."
       },
-      dasarHukum: [ { pasal: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002" }, { pasal: "PMK 81/2024 (pengembalian kelebihan pembayaran pajak)", berlakuSejak: "2025-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002" }, { pasal: "PMK 81/2024 (pengembalian kelebihan pembayaran pajak)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 170,
       verifikasi: "◐",
-      peringatan: "Persentase pengurangan diberikan sebagai isi keputusan di stem (batas persentase menurut aturan pelaksana belum dicek); tata cara pengembalian kelebihan pembayaran PBB setelah keputusan keberatan/pengurangan di Coretax belum dicek ke teks primer."
+      peringatan: "Persentase pengurangan (40%) diberikan sebagai isi keputusan di stem. Menurut ringkasan sekunder dan soal try out B8-120, PMK 129/2023 (menggantikan PMK 82/PMK.03/2017) memberikan pengurangan karena kondisi tertentu paling tinggi 75% dan karena bencana paling tinggi 100% dari PBB yang belum dilunasi, sedangkan soal ini menghitung pengurangan atas SPPT yang sudah dilunasi penuh lalu mengembalikannya sebagai kelebihan pembayaran; kesesuaian alur itu dengan PMK 129/2023 belum dicek ke naskah. Tata cara pengembalian kelebihan pembayaran PBB setelah keputusan keberatan/pengurangan di Coretax juga belum dicek ke teks primer."
     },
     {
       id: "B8-062", topik: "B8.5", tingkat: ["B", "C"], jenis: "konsep", kesulitan: 2,
@@ -2071,7 +2087,12 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-097", topik: "B8.6", tingkat: ["B", "C"], jenis: "konsep", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"],
+      id: "B8-097",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
       stem: "Konsultan pajak membandingkan dua keberatan PT Agro Mitra Sejati: keberatan atas SKPKB PPh Badan Tahun Pajak 2024 dan keberatan atas SKP PBB-P5L Tahun Pajak 2026. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "SKPKB: keberatan dalam 3 bulan sejak tanggal dikirim dan denda 30% bila ditolak atau dikabulkan sebagian; SKP PBB: keberatan dalam 3 bulan sejak tanggal diterima, tidak menunda kewajiban membayar, dan juga dikenai denda 30% bila ditolak", B: "SKPKB: keberatan dalam 3 bulan sejak tanggal dikirim dan denda 30% bila ditolak atau dikabulkan sebagian; SKP PBB: keberatan dalam 3 bulan sejak tanggal diterima, dan jatuh tempo SKP ditangguhkan sampai keputusan keberatan terbit", C: "SKPKB: keberatan dalam 3 bulan sejak tanggal dikirim dan denda 30% bila ditolak atau dikabulkan sebagian; SKP PBB: keberatan dalam 3 bulan sejak tanggal diterima, tidak menunda kewajiban membayar, dan UU PBB tidak mengatur denda serupa", D: "SKPKB: keberatan dalam 3 bulan sejak tanggal dikirim dan denda 50% bila ditolak atau dikabulkan sebagian; SKP PBB: keberatan dalam 3 bulan sejak tanggal diterima, tidak menunda kewajiban membayar, dan UU PBB tidak mengatur denda serupa" },
@@ -2080,10 +2101,14 @@ UKP.register({
       pembahasan: {
         inti: "Keberatan SKPKB tunduk pada Pasal 25 UU KUP (3 bulan sejak tanggal dikirim; denda 30% sejak UU HPP bila ditolak atau dikabulkan sebagian), sedangkan keberatan SKP PBB tunduk pada Pasal 15–16 UU PBB (3 bulan sejak diterima; tidak menunda pembayaran) yang tidak memuat denda atas keberatan yang ditolak.",
         jejakHitung: [],
-        mengapaSalah: { A: "Denda 30% Pasal 25 ayat (9) UU KUP melekat pada keberatan atas ketetapan menurut UU KUP, bukan pada SKP PBB", B: "Pengajuan keberatan PBB tidak menunda kewajiban membayar; SKP tetap jatuh tempo 1 bulan sejak diterima", D: "Denda 50% adalah ketentuan sebelum UU HPP" },
+        mengapaSalah: {
+          A: "Denda 30% Pasal 25 ayat (9) UU KUP melekat pada keberatan atas ketetapan menurut UU KUP, bukan pada SKP PBB",
+          B: "Pengajuan keberatan PBB tidak menunda kewajiban membayar; SKP tetap jatuh tempo 1 bulan sejak diterima",
+          D: "Denda 50% adalah ketentuan sebelum UU HPP"
+        },
         jebakan: "Soal lintas KUP–PBB: titik awal (dikirim vs diterima) dan sanksi atas keberatan berbeda."
       },
-      dasarHukum: [ { pasal: "Pasal 25 ayat (3) dan (9) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 15–16 UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 25 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 25 ayat (9) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 15–16 UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 150,
       verifikasi: "◐",
       peringatan: "Tidak berlakunya denda Pasal 25 ayat (9) UU KUP atas keberatan PBB disimpulkan dari pengaturan keberatan tersendiri dalam Pasal 15–16 UU PBB; aturan pelaksana terbaru (PMK 118/2024) belum dicek untuk PBB."
@@ -2196,15 +2221,16 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-104", topik: "B8.6", tingkat: ["B", "C"], jenis: "klasifikasi", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-09",
+      id: "B8-104",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-09",
       stem: "Data untuk soal ini dan soal berikutnya (V-B8-09): PT Sawit Tanjung Harapan memiliki satu objek PBB-P5L perkebunan di Kabupaten Kotawaringin Barat. Pada 2026 bagian pajaknya mencatat empat masalah: (1) SPPT 2026 yang diterima 2 Januari 2026 mencantumkan alamat objek dan NOP kebun lain, sedangkan nama wajib pajak, luas, dan jumlah pajak benar; (2) SKP PBB 2025 hasil pemeriksaan yang diterima 5 Januari 2026 menetapkan areal produktif 3.200 ha, padahal hasil pengukuran izin usaha hanya 2.800 ha; kekeliruan itu baru diketahui pada Agustus 2026 dan belum pernah diajukan keberatan; (3) STP PBB 2026 memuat denda keterlambatan, padahal pembayaran SPPT pada hari jatuh tempo gagal karena gangguan sistem bank persepsi dan baru berhasil keesokan harinya; (4) banjir pada Juli 2026 merusak 30% tanaman, sedangkan SPPT 2026 sudah sesuai keadaan objek pada 1 Januari 2026. Jalur penyelesaian yang tepat untuk masalah (1), (2), (3), dan (4) berturut-turut adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Pembetulan SPPT; pengurangan atau pembatalan SKP PBB yang tidak benar; pengurangan denda administratif PBB; pengurangan PBB",
-        B: "Keberatan; keberatan; keberatan atas STP PBB; pengurangan PBB",
-        C: "Pembetulan SPPT; banding ke Pengadilan Pajak; pembetulan STP PBB; keberatan",
-        D: "Pengurangan PBB; pembetulan SKP PBB; pengurangan PBB; pembetulan SPPT"
-      },
+      opsi: { A: "Pembetulan SPPT; pengurangan atau pembatalan SKP PBB yang tidak benar; pengurangan denda administratif PBB; pengurangan PBB", B: "Keberatan; keberatan; keberatan atas STP PBB; pengurangan PBB", C: "Pembetulan SPPT; banding ke Pengadilan Pajak; pembetulan STP PBB; keberatan", D: "Pengurangan PBB; pembetulan SKP PBB; pengurangan PBB; pembetulan SPPT" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
@@ -2218,8 +2244,9 @@ UKP.register({
         jebakan: "Menjadikan keberatan jalur tunggal untuk semua masalah PBB; tiap masalah punya jalurnya sendiri."
       },
       dasarHukum: [{ pasal: "Pasal 15, 19, dan 20 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" }],
-      anggaranDetik: 150, verifikasi: "◐",
-      peringatan: "Nomor pasal UU PBB untuk pengurangan denda administratif (Pasal 20 menurut PMK 81/PMK.03/2017; beberapa peraturan lama merujuk pasal lain) dan rincian PMK 118/2024 s.t.d.d. PMK 71/2026 untuk PBB dikonfirmasi dari sumber sekunder; cek teks primer."
+      anggaranDetik: 150,
+      verifikasi: "◐",
+      peringatan: "Nomor pasal UU PBB untuk pengurangan denda administratif (Pasal 20 menurut PMK 81/PMK.03/2017; beberapa peraturan lama merujuk pasal lain) dan rincian PMK 118/2024 s.t.d.d. PMK 71/2026 untuk PBB dikonfirmasi dari sumber sekunder; cek teks primer. Untuk masalah (4), banjir terjadi pada Juli 2026, sedangkan SPPT 2026 menurut soal lanjutan B8-105 sudah dilunasi 3 Juli 2026 dan PMK 129/2023 menurut ringkasan sekunder memberikan pengurangan dari PBB yang belum dilunasi; jalur yang diuji tetap pengurangan PBB, tetapi apakah pengurangan masih dapat diberikan atas PBB yang sudah dilunasi belum dicek ke naskah."
     },
     {
       id: "B8-105", topik: "B8.6", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-09",
@@ -2800,7 +2827,7 @@ UKP.register({
     { id: "KT-B8-62", topik: "B8.7", tipe: "angka", depan: "Jarak penyitaan → pengumuman lelang → lelang?", belakang: "Masing-masing paling singkat 14 hari", dasar: "Pasal 26 UU 19/1997 s.t.d.d. UU 19/2000", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-63", topik: "B8.8", tipe: "definisi", depan: "PSDH dan Dana Reboisasi dibagihasilkan sebagai?", belakang: "DBH sumber daya alam kehutanan, bukan DBH pajak", dasar: "UU 1/2022", berlakuSejak: "2022-01-05", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-64", topik: "B8.8", tipe: "pasal", depan: "Kebun membentang di dua kabupaten: tempat terutang dan penerima bagi hasil?", belakang: "Masing-masing kabupaten sesuai letak bagian kebun (porsi kabupaten penghasil)", dasar: "Pasal 8 ayat (3) UU PBB; Pasal 113 UU 1/2022", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B8-65", topik: "B8.6", tipe: "definisi", depan: "Empat upaya hukum non keberatan PBB-P5L?", belakang: "Pembetulan; pengurangan PBB; pengurangan denda; pembatalan/pengurangan SPPT, SKP, STP tidak benar", dasar: "Pasal 19 dan 20 UU PBB; PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B8-65", topik: "B8.6", tipe: "definisi", depan: "Empat upaya hukum non keberatan PBB-P5L?", belakang: "Pembetulan; pengurangan PBB; pengurangan denda; pembatalan/pengurangan SPPT, SKP, STP tidak benar", dasar: "Pasal 19 dan 20 UU PBB; PMK 129/2023 (pengurangan PBB); PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-66", topik: "B8.6", tipe: "definisi", depan: "Kesalahan yang diperbaiki lewat pembetulan SPPT, SKP, atau STP PBB?", belakang: "Kesalahan tulis, kesalahan hitung, kekeliruan penerapan ketentuan", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-67", topik: "B8.6", tipe: "prosedur", depan: "Syarat pengurangan denda administratif PBB?", belakang: "Karena kekhilafan atau bukan kesalahan WP; hanya atas denda yang belum dibayar", dasar: "Pasal 20 UU PBB; PMK 118/2024", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-68", topik: "B8.6", tipe: "prosedur", depan: "Kapan pengurangan/pembatalan SKP PBB yang tidak benar dapat diajukan?", belakang: "Bila tidak diajukan keberatan atau keberatannya tidak dipertimbangkan", dasar: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02", menggantikan: null, dekTambahan: [] },

@@ -83,6 +83,30 @@ Rilis ini menjawab empat hal dari tim: banyak anggota tidak langsung tersambung,
 - Soal yang dasar hukumnya belum bisa dicocokkan dengan naskah resmi diberi tanda ◐ dan peringatan. Situs peraturan resmi tidak terjangkau dari lingkungan kerja saat pemeriksaan, jadi bukti berasal dari hasil pencarian dan sumber sekunder.
 - Tips baru di modul A2 dan B8 tentang dua cara menghitung "N bulan sejak tanggal X".
 
+## Unduhan lebih hemat dan putaran ketiga serta keempat isi (v9.4.1)
+
+**Kode**
+
+- **Aplikasi tidak lagi diunduh dua kali.** Di v9.4 halaman mengunduh 31 aset dengan alamat bercap (`js/app.js?v=<VERSI>`), lalu `pasang()` di `sw.js` mengunduh lagi 31 aset yang sama dengan alamat polos. Kini `petaCap(html)` membaca alamat persis dari `index.html`, dan `simpan()` meminta alamat bercap itu lebih dulu (tetap `cache: 'no-cache'`, jadi peramban bertanya ke server dan mendapat 304), menyimpannya dengan kunci polos, dan jatuh ke alamat polos bila alamat bercap gagal. Isi jawaban galat yang tidak dipakai dibuang (`body.cancel()`), karena Chromium membatasi service worker yang sedang memasang pada 3 permintaan serentak. Terukur di Chromium dengan server yang meniru GitHub Pages: unduhan penuh pada pemasangan pertama dan pada pindah versi turun dari 62 berkas menjadi 31 (sekitar 3,8 MB menjadi 1,9 MB terkompresi per HP).
+- **Wilayah status di HP anggota tidak ditulis ulang bila isinya sama** (`UKP.c.statusRoom` dan bar bawah saat menjawab). Kabar hadir pemimpin tiap 5 detik dulu mengganti isi dua wilayah `role=status` dengan teks yang sama; kini catatan perubahan DOM per HP turun dari sekitar 100 menjadi 0 dalam 45 detik diam.
+- **Nama di "Jawaban tiap orang"** pada dialog soal pemimpin tidak lagi terpotong menjadi "S…" saat keterangannya panjang; keterangan yang lebih dulu turun baris, dan tanda "·" tidak sendirian di satu baris.
+- Teks toast saat jaringan mati: "Anda sedang offline. Materi tetap tersedia."
+- **Uji mesin Safari di GitHub** memakai image resmi Playwright (`mcr.microsoft.com/playwright`), tanpa memasang paket Ubuntu di mesin uji. Versi image dan versi paket npm harus sama. Hasil pada v9.4 yang tayang: 25 dari 25 langkah lulus lewat jalur publik, profil iPhone 13.
+
+**Isi (putaran ketiga dan keempat pemeriksaan ulang soal Tingkat B)**
+
+- 116 soal dan 216 teks lain (ringkasan topik, kartu, kasus, tips, tabel rujukan, peta formulir) dibetulkan sejak v9.4. Tiap usulan diuji pemeriksa kedua yang mengerjakan soalnya sendiri lebih dulu.
+- **Lima kunci berubah (putaran keempat):**
+  - A2-021 (A menjadi B) dan B6-103 (B menjadi A): bunga pengungkapan ketidakbenaran SPT saat pemeriksaan (Pasal 8 ayat (5) UU KUP) dihitung sejak batas waktu penyampaian SPT Tahunan berakhir, bukan sejak akhir tahun pajak. Rumusan "sejak berakhirnya Tahun Pajak" milik bunga SKPKB Pasal 13 ayat (2).
+  - A2-006 (B menjadi D), A2-087 (C menjadi D), A4-076 (C menjadi A): pengusaha yang peredaran brutonya melebihi Rp4,8 miliar wajib melapor untuk dikukuhkan sebagai PKP paling lambat akhir tahun buku dan memungut PPN mulai Masa Pajak pertama tahun buku berikutnya (PMK 164/2023 Pasal 17 dan 18). Tenggat lama "akhir bulan berikutnya" (PMK 197/PMK.03/2013) tidak dipakai lagi. Dasar: siaran pers DJP Januari 2024 dan soal try out November 2026; ketiga soal bertanda ◐ karena naskah PMK belum dibuka langsung.
+- **Pajak Masukan sedan dan station wagon dapat dikreditkan sejak 1 April 2022** bila berhubungan langsung dengan kegiatan usaha, karena UU 7/2021 menghapus Pasal 9 ayat (8) huruf c UU PPN. Sembilan soal PPN yang memakai larangan lama diganti faktanya menjadi kendaraan untuk keperluan pribadi keluarga pemegang saham (tetap tidak dapat dikreditkan menurut huruf b), sehingga kunci dan angka opsi tidak berubah. Topik A4.2 dan A4.7, kartu, kasus K-A4-01, dan rujukan Pasal 16D ikut dibetulkan.
+- **Sanksi yang diubah UU Cipta Kerja, bukan UU HPP:** denda faktur 1% DPP (Pasal 14 ayat (4) UU KUP), denda 100% pengungkapan saat pemeriksaan bukti permulaan (Pasal 8 ayat (3a)), dan bunga pengungkapan saat pemeriksaan (Pasal 8 ayat (5)). Tanggal berlaku diganti 2 November 2020 dan entri dasar hukum gabungan dipecah.
+- **Pasal 13 ayat (5) dan Pasal 15 ayat (4) UU KUP sudah dihapus UU 11/2020:** SKPKB atau SKPKBT tidak dapat lagi terbit setelah 5 tahun bagi Wajib Pajak yang dipidana. Pasal 13 ayat (4) tetap memuat pengecualian tindak pidana untuk "pajak menjadi pasti". Soal A2-100, kartu, dan glosarium dibetulkan.
+- **Faktur pajak kode 04** untuk penyerahan nonmewah dengan DPP nilai lain 11/12 sejak 2025 (bukan kode 01).
+- **Wajib Pajak orang pribadi pengusaha tertentu:** definisi mengikuti PMK 215/PMK.03/2018 (kini PMK 81/2024): usaha perdagangan atau jasa di tempat usaha yang berbeda dengan tempat tinggal, bukan hanya pedagang pengecer.
+- **Rujukan diseragamkan:** PMK 51/2025 berlaku 1 Agustus 2025 (PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025); PPN PMSE, ekspor JKP, dan kegiatan membangun sendiri kini merujuk PMK 81/2024; PP 34/2017 berlaku 2 Januari 2018; PP 93/2010 dan PP 94/2010 bertanggal 30 Desember 2010; hanya Pasal 2A PP 94/2010 yang dicabut PP 55/2022.
+- Hal yang masih memerlukan naskah peraturan diberi tanda ◐ dengan peringatan; soal bertanda ◐ kini 382 (v9.4: 377). Situs peraturan resmi tidak terjangkau dari lingkungan kerja, jadi bukti berasal dari hasil pencarian dan sumber sekunder.
+
 ## Isi saat ini (status 9 November 2026, v7.8)
 
 | | Jumlah |

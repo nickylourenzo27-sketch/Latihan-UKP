@@ -1175,7 +1175,7 @@
       const q = x.q; const so = cariSoal(q.id);
       const baris = ev.peserta.map(p => p.nama).map(nm => { const j = q.perPeserta[nm] || { o: '-', k: null, b: 0 }; const hs = hasilSel(j);
         return h('li', { 'data-hasil': hs }, h('span', { class: 'eval-dlg-nama', title: nm }, nm), h('span', { class: 'eval-sel', 'data-hasil': hs }, j.o === '-' ? '–' : j.o),
-          h('span', { class: 'meta' }, teksHasil(hs) + (j.k ? ' · ' + LABEL_YAKIN[j.k].toLowerCase() : ''))); });
+          h('span', { class: 'meta' }, teksHasil(hs) + (j.k ? ' ·\u00a0' + LABEL_YAKIN[j.k].toLowerCase() : ''))); }); // v9.4.1: spasi tak-putus, tanda "·" tidak sendirian di satu baris
       return h('div', { class: 'stack tim-dlg-soal' },
         h('div', { class: 'tim-dlg-meta' }, h('span', { class: 'tim-angka' }, 'Kunci jawaban ' + (q.kunci || so.kunci)), h('span', { class: 'meta' }, teksPerSoal(q))),
         h('ul', { class: 'eval-dlg-jawab', 'aria-label': 'Jawaban tiap orang' }, baris),

@@ -386,7 +386,7 @@
   // jalankan f saat toast boleh tampil (bukan selama simulasi); bila belum, coba lagi pada render berikutnya
   function saatBoleh(f) { if (bolehToastOffline()) { f(); return; } document.addEventListener('ukp:render', () => saatBoleh(f), { once: true }); }
   // toast offline tidak muncul selama simulasi (mode ujian); status tetap terbaca dari pill setelahnya
-  const toastOffline = () => { if (!daring() && bolehToastOffline()) UKP.toast('Anda offline — materi tetap tersedia.', { nada: 'info' }); };
+  const toastOffline = () => { if (!daring() && bolehToastOffline()) UKP.toast('Anda sedang offline. Materi tetap tersedia.', { nada: 'info' }); };
   function perbaruiKoneksi(e) {
     const pill = document.getElementById('pill-offline'); if (pill) pill.hidden = daring();
     if (!e) return;

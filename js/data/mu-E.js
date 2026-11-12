@@ -18,7 +18,7 @@ UKP.register({
       { sebelum: "Profesi konsultan pajak diatur PMK 111/PMK.03/2014 jo. PMK 175/PMK.01/2022 (izin oleh Sekretaris Jenderal Kemenkeu, sertifikat USKP berjenjang oleh KP3SKP)", sesudah: "PMK 55/2026 mencabut keduanya; izin A/B/C tidak harus berjenjang dengan syarat SKK hasil uji kompetensi dan lulus ujian profesi asosiasi", dasar: "PMK 55/2026 Pasal 4 (tingkat izin) dan ketentuan penutup (pencabutan PMK lama)", berlakuSejak: "2026-08-24" },
       { sebelum: "Kode Etik diuji sebagai mata ujian USKP tingkat A", sesudah: "Kode Etik dikeluarkan dari UKP; diuji dalam ujian profesi asosiasi (standar etik, standar praktik, sistem pengendalian mutu) yang wajib digelar paling lambat 31 Desember 2026", dasar: "PMK 55/2026 Pasal 61", berlakuSejak: "2026-08-24" },
       { sebelum: "Keanggotaan asosiasi menjadi syarat saat mengajukan permohonan izin praktik", sesudah: "Keanggotaan bukan syarat permohonan; wajib bergabung paling lambat 30 hari kerja sejak izin terbit, bila tidak izin dibekukan 3 bulan lalu dicabut", dasar: "PMK 55/2026", berlakuSejak: "2026-08-24" },
-      { sebelum: "Pencabutan izin praktik tanpa penegasan sifat permanen", sesudah: "Pencabutan izin bersifat permanen: tidak dapat mengajukan izin baru dan SKK ikut tidak berlaku", dasar: "PMK 55/2026 Pasal 30 ayat (4)", berlakuSejak: "2026-08-24" },
+      { sebelum: "Pencabutan izin praktik tanpa penegasan sifat permanen", sesudah: "Pencabutan izin bersifat permanen: tidak dapat mengajukan izin baru dan SKK ikut tidak berlaku", dasar: "PMK 55/2026 Pasal 30 ayat (4) ◐ (sumber sekunder menyebut akibat pencabutan, yaitu tidak dapat mengajukan izin kembali dan SKK tidak berlaku, diatur Pasal 42 ayat (1)–(2); belum dicek ke teks)", berlakuSejak: "2026-08-24" },
       { sebelum: "Laporan tahunan konsultan memuat ringkasan jasa", sesudah: "Laporan tahunan paling lambat 30 April tahun berikutnya wajib memuat perincian jasa per klien, PPL, dan keanggotaan asosiasi", dasar: "PMK 55/2026", berlakuSejak: "2026-08-24" },
       { sebelum: "Kuasa WP hanya konsultan pajak atau karyawan WP; surat kuasa khusus tanpa kewajiban mencantumkan masa berlaku (PMK 229/PMK.03/2014)", sesudah: "Tiga kategori kuasa: konsultan pajak, pihak lain ber-SKT (termasuk karyawan), keluarga sampai derajat kedua; surat kuasa khusus wajib memuat masa berlaku dan tidak dapat disubstitusikan", dasar: "PMK 44/2026 Pasal 2–3, 8", berlakuSejak: "2026-07-06" },
       { sebelum: "Kode Etik IKPI hasil Kongres XI Malang 2019", sesudah: "Kode Etik dan Standar Profesi hasil Kongres XII Bali 2024 (SK 07/KONGRES XII/IKPI/2024) dan pembentukan Dewan Kehormatan sebagai penegak kode etik", dasar: "SK 07/KONGRES XII/IKPI/2024; ART IKPI Pasal 35 ayat (1)", berlakuSejak: "2024-08-20" }
@@ -37,7 +37,7 @@ UKP.register({
       { label: "PPL per tahun (total / terstruktur)", nilai: "A 20/16 · B 30/24 · C 45/36 SKP ◐", dasar: "PMK 55/2026 (sumber sekunder)", berlakuSejak: "2026-08-24" },
       { label: "Laporan tahunan konsultan", nilai: "30 April tahun berikutnya; perincian jasa per klien, PPL, keanggotaan", dasar: "PMK 55/2026", berlakuSejak: "2026-08-24" },
       { label: "Ujian profesi asosiasi", nilai: "Paling lambat 31 Desember 2026; etika, standar praktik, SPM", dasar: "PMK 55/2026 Pasal 61", berlakuSejak: "2026-08-24" },
-      { label: "Jasa di luar klasifikasi izin", nilai: "Peringatan", dasar: "PMK 55/2026 Pasal 24 ayat (4)", berlakuSejak: "2026-08-24" },
+      { label: "Jasa di luar klasifikasi izin", nilai: "Peringatan ◐", dasar: "PMK 55/2026 Pasal 24 ayat (4) (sumber sekunder tidak seragam: peringatan atau pembekuan izin 3 bulan; belum dicek ke teks)", berlakuSejak: "2026-08-24" },
       { label: "Kode etik · keterangan menyesatkan · rekayasa", nilai: "Pembekuan izin paling lama 2 tahun", dasar: "PMK 55/2026 Pasal 24 ayat (5), Pasal 30 ayat (3)", berlakuSejak: "2026-08-24" },
       { label: "Imbalan kepada petugas · pemerasan", nilai: "Pencabutan permanen; SKK ikut tidak berlaku", dasar: "PMK 55/2026 Pasal 30 ayat (4)", berlakuSejak: "2026-08-24" },
       { label: "Kategori kuasa WP", nilai: "Konsultan pajak · pihak lain ber-SKT (+ SKK mulai 1 Jan 2027 ◐ belum dicek) · keluarga s.d. derajat kedua", dasar: "PMK 44/2026 Pasal 2–3; PMK 55/2026", berlakuSejak: "2026-07-06" },
@@ -180,7 +180,7 @@ UKP.register({
         { label: "Pelanggaran kode etik asosiasi", nilai: "pembekuan izin ≤ 2 tahun", dasar: "Pasal 24 ayat (5) PMK 55/2026", berlakuSejak: "2026-08-24" },
         { label: "Keterangan menyesatkan / rekayasa", nilai: "pembekuan izin ≤ 2 tahun", dasar: "Pasal 30 ayat (3) PMK 55/2026", berlakuSejak: "2026-08-24" },
         { label: "Imbalan ke petugas / pemerasan", nilai: "pencabutan permanen", dasar: "Pasal 30 ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24" },
-        { label: "Akibat pencabutan", nilai: "tak bisa ajukan izin baru; SKK tidak berlaku", dasar: "Pasal 30 ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24" },
+        { label: "Akibat pencabutan", nilai: "tak bisa ajukan izin baru; SKK tidak berlaku", dasar: "Pasal 30 ayat (4) PMK 55/2026 ◐ (sumber sekunder menyebut akibat pencabutan, yaitu tidak dapat mengajukan izin kembali dan SKK tidak berlaku, diatur Pasal 42 ayat (1)–(2); belum dicek ke teks)", berlakuSejak: "2026-08-24" },
         { label: "Tidak gabung asosiasi 30 hari kerja", nilai: "pembekuan 3 bulan → pencabutan", dasar: "PMK 55/2026", berlakuSejak: "2026-08-24" }
       ],
       dasarHukum: [
@@ -198,7 +198,7 @@ UKP.register({
         langkah: [["(1) Pasal 24 ayat (4)", "Peringatan"], ["(2) Pasal 30 ayat (1) huruf b jo. ayat (3)", "Pembekuan paling lama 2 tahun"], ["(3) Pasal 30 ayat (1) huruf c jo. ayat (4)", "Pencabutan permanen, SKK tidak berlaku"]]
       },
       verifikasi: "◐",
-      peringatan: "Pemetaan sanksi (Pasal 24 ayat (4)–(5), Pasal 30 ayat (3)–(4)) berasal dari beberapa ringkasan sekunder teks PMK 55/2026 yang saling cocok. Sanksi khusus untuk larangan huruf d (gratifikasi) dan huruf f (rangkap jabatan), serta bunyi aturan pencabutan setelah tiga kali pembekuan (nomor pasal, jenis pembekuan yang dihitung, dan ada tidaknya batas jangka waktu; ringkasan sekunder yang belum dicocokkan menyebut paling banyak 3 kali dalam 5 tahun terakhir), belum terbaca. Soal E-034 bergantung pada aturan tiga kali pembekuan itu dan karena itu bertanda ◐; soal lain modul ini tidak bergantung pada hal tersebut."
+      peringatan: "Pemetaan sanksi (Pasal 24 ayat (4)–(5), Pasal 30 ayat (3)–(4)) berasal dari beberapa ringkasan sekunder teks PMK 55/2026 yang saling cocok. Sanksi khusus untuk larangan huruf d (gratifikasi) dan huruf f (rangkap jabatan), serta bunyi aturan pencabutan setelah tiga kali pembekuan (nomor pasal, jenis pembekuan yang dihitung, dan ada tidaknya batas jangka waktu; ringkasan sekunder yang belum dicocokkan menyebut paling banyak 3 kali dalam 5 tahun terakhir), belum terbaca. Kutipan sekunder hanya menunjuk Pasal 41 sebagai pasal pembekuan izin. Dua hal lain juga belum dicocokkan ke teks JDIH Kemenkeu: (a) sanksi jasa di luar klasifikasi izin ternyata tidak seragam di sumber sekunder (artikel asosiasi konsultan pajak: peringatan menurut Pasal 24 ayat (4); satu berita perpajakan: Pasal 24 ayat (4) berbunyi pembekuan izin selama 3 bulan atas pelanggaran 'ayat (1) huruf a'); (b) akibat pencabutan (tidak dapat mengajukan izin kembali, SKK tidak berlaku) di modul ini ditulis dengan dasar Pasal 30 ayat (4), sedangkan kutipan sekunder menyebut Pasal 42 ayat (1)–(2). Soal E-034 bergantung pada aturan tiga kali pembekuan itu dan karena itu bertanda ◐; soal E-006, E-031, E-032, dan E-056 menyebut aturan itu di pembahasan (kuncinya tidak bergantung padanya) dan juga diberi tanda ◐; kunci E-032 dan E-036 mengikuti pemetaan peringatan pada butir (a)."
     },
     {
       id: "E.5", slug: "kuasa-wp-pmk44", judul: "Kuasa Wajib Pajak menurut PMK 44/2026",
@@ -395,15 +395,14 @@ UKP.register({
       peringatan: "Kewajiban pengungkapan benturan kepentingan diturunkan dari prinsip objektivitas Kode Etik IKPI versi 2019; teks versi 2024 belum dibaca langsung."
     },
     {
-      id: "E-005", topik: "E.1", tingkat: ["A", "B", "C"], jenis: "etika", kesulitan: 2,
+      id: "E-005",
+      topik: "E.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "etika",
+      kesulitan: 2,
       stem: "Konsultan Pajak Sinta Maharani (izin A) menyusun SPT Tahunan PPh orang pribadi Tahun Pajak 2025 milik Ny. Dewi, pengusaha butik yang menyelenggarakan pembukuan (tidak memakai PPh final 0,5%) dan juga menyewakan satu ruko kepada penyewa orang pribadi senilai Rp60.000.000 setahun. Selama Maret 2026 Sinta melakukan empat hal: (1) menolak memasukkan 'zakat' Rp15.000.000 yang diberikan Ny. Dewi langsung kepada tetangganya sebagai pengurang penghasilan bruto; (2) menolak mengirimkan salinan SPT Ny. Dewi kepada bank calon kreditur yang memintanya lewat surel tanpa persetujuan Ny. Dewi; (3) mengikuti pelatihan pengisian SPT di Coretax (PER-11/PJ/2025) sebelum menyusun SPT pertama di sistem itu; (4) menyarankan agar uang sewa ruko tidak dilaporkan karena penyewanya orang pribadi yang tidak memotong pajak, demi menjaga hubungan baik dengan klien. Tindakan yang BUKAN penerapan prinsip Kode Etik adalah ...",
       kataKualifikasi: ["bukan"],
-      opsi: {
-        A: "Tindakan (1): menolak zakat yang tidak dibayarkan melalui lembaga resmi sebagai pengurang penghasilan bruto",
-        B: "Tindakan (2): menolak mengirim salinan SPT kepada bank tanpa persetujuan klien",
-        C: "Tindakan (3): mengikuti pelatihan pengisian SPT di Coretax sebelum menyusun SPT",
-        D: "Tindakan (4): menyarankan penghasilan sewa ruko tidak dilaporkan demi menjaga hubungan dengan klien"
-      },
+      opsi: { A: "Tindakan (1): menolak zakat yang tidak dibayarkan melalui lembaga resmi sebagai pengurang penghasilan bruto", B: "Tindakan (2): menolak mengirim salinan SPT kepada bank tanpa persetujuan klien", C: "Tindakan (3): mengikuti pelatihan pengisian SPT di Coretax sebelum menyusun SPT", D: "Tindakan (4): menyarankan penghasilan sewa ruko tidak dilaporkan demi menjaga hubungan dengan klien" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
@@ -421,24 +420,20 @@ UKP.register({
         },
         jebakan: "Kata 'BUKAN' membalik pertanyaan; 'loyalitas kepada klien' yang mengorbankan kepatuhan bukan prinsip Kode Etik."
       },
-      dasarHukum: [
-        { pasal: "Kode Etik IKPI Bab II — integritas, kerahasiaan, kompetensi dan kehati-hatian", berlakuSejak: "2024-08-20" },
-        { pasal: "Pasal 4 ayat (2) UU PPh jo. PP 34/2017 — PPh final 10% atas persewaan tanah dan/atau bangunan", berlakuSejak: "2009-01-01" },
-        { pasal: "Pasal 9 ayat (1) huruf g UU PPh jo. PMK 114/2025 — zakat sebagai pengurang penghasilan bruto", berlakuSejak: "2025-12-31" }
-      ],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Kode Etik IKPI Bab II — integritas, kerahasiaan, kompetensi dan kehati-hatian", berlakuSejak: "2024-08-20" }, { pasal: "Pasal 4 ayat (2) UU PPh — PPh final atas penghasilan tertentu", berlakuSejak: "2009-01-01" }, { pasal: "PP 34/2017 — PPh final 10% atas persewaan tanah dan/atau bangunan", berlakuSejak: "2018-01-02" }, { pasal: "Pasal 9 ayat (1) huruf g UU PPh jo. PMK 114/2025 — zakat sebagai pengurang penghasilan bruto", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
-      id: "E-006", topik: "E.1", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "E-006",
+      topik: "E.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       kutipan: "Pasal 43 ayat (1) UU KUP: Ketentuan sebagaimana dimaksud dalam Pasal 39 dan Pasal 39A berlaku juga bagi wakil, kuasa, pegawai dari Wajib Pajak, atau pihak lain yang menyuruh melakukan, yang turut serta melakukan, yang menganjurkan, atau yang membantu melakukan tindak pidana di bidang perpajakan.",
       stem: "Konsultan Pajak Rudi Hartono (izin B) adalah kuasa CV Delta Niaga untuk mengisi dan menandatangani SPT Tahunan PPh Badan Tahun Pajak 2026, yang disampaikan pada April 2027. Saat menyusun SPT, Rudi melihat di rekening koran adanya penjualan tunai Rp1.200.000.000 yang tidak dicatat. Pemilik CV meminta Rudi 'membuang' penjualan itu dari SPT karena 'tidak ada faktur dan tidak akan ketahuan'. Rudi menuruti, menandatangani, dan menyampaikan SPT tersebut. Berdasarkan kutipan dan PMK 55/2026, pernyataan yang paling tepat mengenai risiko Rudi adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rudi dapat dipidana sebagai kuasa yang turut serta (Pasal 43 ayat (1) jo. Pasal 39 UU KUP) dan izinnya dapat dibekukan paling lama 2 tahun",
-        B: "Hanya CV Delta Niaga yang dapat dipidana karena SPT adalah SPT milik Wajib Pajak; Rudi cukup dikenai sanksi organisasi oleh asosiasi tanpa sanksi atas izin",
-        C: "Rudi otomatis dikenai pencabutan izin permanen tanpa ancaman pidana, karena setiap pelanggaran Pasal 30 PMK 55/2026 berujung pencabutan",
-        D: "Rudi tidak bertanggung jawab secara pidana maupun profesi karena hanya menjalankan instruksi pemilik selaku pemberi kuasa"
-      },
+      opsi: { A: "Rudi dapat dipidana sebagai kuasa yang turut serta (Pasal 43 ayat (1) jo. Pasal 39 UU KUP) dan izinnya dapat dibekukan paling lama 2 tahun", B: "Hanya CV Delta Niaga yang dapat dipidana karena SPT adalah SPT milik Wajib Pajak; Rudi cukup dikenai sanksi organisasi oleh asosiasi tanpa sanksi atas izin", C: "Rudi otomatis dikenai pencabutan izin permanen tanpa ancaman pidana, karena setiap pelanggaran Pasal 30 PMK 55/2026 berujung pencabutan", D: "Rudi tidak bertanggung jawab secara pidana maupun profesi karena hanya menjalankan instruksi pemilik selaku pemberi kuasa" },
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
@@ -456,12 +451,10 @@ UKP.register({
         },
         jebakan: "Mengira tanggung jawab pidana atas SPT hanya ada pada WP yang namanya tercantum."
       },
-      dasarHukum: [
-        { pasal: "Pasal 43 ayat (1) UU KUP", berlakuSejak: "2008-01-01" },
-        { pasal: "Pasal 39 ayat (1) huruf d UU KUP", berlakuSejak: "2008-01-01" },
-        { pasal: "Pasal 30 ayat (1) dan (3) PMK 55/2026", berlakuSejak: "2026-08-24" }
-      ],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 43 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 39 ayat (1) huruf d UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 30 ayat (1) dan (3) PMK 55/2026", berlakuSejak: "2026-08-24" }],
+      anggaranDetik: 180,
+      verifikasi: "◐",
+      peringatan: "Pembahasan menyebut pencabutan permanen untuk pelanggaran setelah tiga kali pembekuan; bunyi resmi aturan itu di PMK 55/2026 (nomor pasal, jenis pembekuan yang dihitung, dan batas paling banyak 3 kali dalam 5 tahun menurut ringkasan sekunder) belum dicocokkan ke teks JDIH Kemenkeu. Kunci tidak bergantung pada hal itu."
     },
     {
       id: "E-007", topik: "E.1", tingkat: ["A", "B", "C"], jenis: "etika", kesulitan: 2,
@@ -713,15 +706,14 @@ UKP.register({
       peringatan: "Larangan menerima komisi/imbalan tidak wajar dari pihak lain mengikuti ringkasan sekunder Kode Etik IKPI; teks versi 2024 belum dibaca langsung."
     },
     {
-      id: "E-015", topik: "E.2", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "E-015",
+      topik: "E.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Konsultan Pajak Yusuf (izin B) mulai menangani PT Bintang Kemasan (PKP) pada November 2026. Saat menelaah arsip, ia menemukan konsultan sebelumnya keliru mengkreditkan Pajak Masukan Rp48.000.000 dari faktur yang tidak memenuhi syarat, sehingga SPT Masa PPN Juli 2026 seharusnya kurang bayar Rp48.000.000; Masa Juli 2026 belum diperiksa. Direktur meminta Yusuf 'membongkar kesalahan konsultan lama di grup percakapan asosiasi supaya kapok'. Tindakan Yusuf yang paling tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Mengumumkan kesalahan itu di grup asosiasi sesuai permintaan direktur, karena kesalahan rekan adalah fakta yang benar dan berguna bagi anggota lain",
-        B: "Mendiamkan kesalahan itu agar tidak dianggap mencela rekan seprofesi, karena Masa Juli 2026 belum tentu akan diperiksa",
-        C: "Menjelaskan secara objektif kepada direktur, menyarankan pembetulan SPT Masa PPN Juli 2026 beserta pelunasan dan bunganya, tanpa mempublikasikan kesalahan rekan",
-        D: "Menunggu terbitnya SKPKB agar seluruh sanksi dapat dibebankan kepada konsultan lama melalui gugatan perdata, tanpa pembetulan SPT lebih dahulu"
-      },
+      opsi: { A: "Mengumumkan kesalahan itu di grup asosiasi sesuai permintaan direktur, karena kesalahan rekan adalah fakta yang benar dan berguna bagi anggota lain", B: "Mendiamkan kesalahan itu agar tidak dianggap mencela rekan seprofesi, karena Masa Juli 2026 belum tentu akan diperiksa", C: "Menjelaskan secara objektif kepada direktur, menyarankan pembetulan SPT Masa PPN Juli 2026 beserta pelunasan dan bunganya, tanpa mempublikasikan kesalahan rekan", D: "Menunggu terbitnya SKPKB agar seluruh sanksi dapat dibebankan kepada konsultan lama melalui gugatan perdata, tanpa pembetulan SPT lebih dahulu" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
@@ -739,11 +731,9 @@ UKP.register({
         },
         jebakan: "Menyamakan menyampaikan fakta secara objektif kepada klien dengan mencela rekan."
       },
-      dasarHukum: [
-        { pasal: "Pasal 8 ayat (1) dan (2a) UU KUP — pembetulan SPT Masa dan bunganya", berlakuSejak: "2021-10-29" },
-        { pasal: "Kode Etik IKPI Bab III–IV — kewajiban kepada klien dan rekan", berlakuSejak: "2024-08-20" }
-      ],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) UU KUP — pembetulan SPT Masa", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (2a) UU KUP (diubah UU 11/2020) — bunga pembetulan SPT Masa", berlakuSejak: "2020-11-02" }, { pasal: "Kode Etik IKPI Bab III–IV — kewajiban kepada klien dan rekan", berlakuSejak: "2024-08-20" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     // ---- Vignette V-E-01: KKP Sinergi Fiskal (soal E-016 s.d. E-018) ----
     {
@@ -816,15 +806,15 @@ UKP.register({
       peringatan: "Tanggung jawab KKP atas publikasi staf diturunkan dari Kode Etik dan Standar Profesi IKPI versi 2019; teks versi 2024 belum dibaca langsung."
     },
     {
-      id: "E-018", topik: "E.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-E-01",
+      id: "E-018",
+      topik: "E.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-E-01",
       stem: "Lanjutan data KKP Sinergi Fiskal: Teddy (izin C) kini menjadi kuasa PT Andalas Prima Industri dalam keberatan SKPKB Rp3,15 miliar. Menjelang pembahasan akhir, direktur keuangan PT Andalas menitipkan amplop berisi Rp50.000.000 kepada Teddy untuk diserahkan kepada penelaah keberatan 'sebagai ucapan terima kasih' agar keberatan dikabulkan. Uang itu sepenuhnya berasal dari klien. Jika Teddy menyerahkannya, sanksi izin praktik menurut PMK 55/2026 adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Peringatan, karena uang berasal dari klien dan Teddy hanya berperan sebagai perantara",
-        B: "Pembekuan izin paling lama 2 tahun, sama dengan pelanggaran kode etik asosiasi",
-        C: "Pembekuan izin 3 bulan, lalu pencabutan bila perbuatan itu diulangi",
-        D: "Pencabutan izin secara permanen; Teddy tidak dapat mengajukan izin baru"
-      },
+      opsi: { A: "Peringatan, karena uang berasal dari klien dan Teddy hanya berperan sebagai perantara", B: "Pembekuan izin paling lama 2 tahun, sama dengan pelanggaran kode etik asosiasi", C: "Pembekuan izin 3 bulan, lalu pencabutan bila perbuatan itu diulangi", D: "Pencabutan izin secara permanen; Teddy tidak dapat mengajukan izin baru" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
@@ -835,16 +825,15 @@ UKP.register({
           ["Sanksi", "Pasal 30 ayat (4): pencabutan permanen, SKK tidak berlaku"]
         ],
         mengapaSalah: {
-          A: "Posisi sebagai perantara tetap memenuhi larangan; peringatan untuk pelanggaran ringan seperti jasa di luar klasifikasi.",
+          A: "Posisi sebagai perantara tetap memenuhi larangan Pasal 30 ayat (1) huruf c; imbalan kepada petugas pajak tidak diganjar peringatan, melainkan pencabutan permanen menurut Pasal 30 ayat (4).",
           B: "Pembekuan paling lama 2 tahun untuk pelanggaran kode etik dan keterangan menyesatkan/rekayasa, bukan suap.",
           C: "Pembekuan 3 bulan adalah sanksi tidak bergabung dengan asosiasi dalam 30 hari kerja."
         },
         jebakan: "Mengira perantara yang tidak memakai uang sendiri hanya dikenai sanksi ringan."
       },
-      dasarHukum: [
-        { pasal: "Pasal 30 ayat (1) huruf c dan ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24" }
-      ],
-      anggaranDetik: 120, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 30 ayat (1) huruf c dan ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     // ===================== E.3 PMK 55/2026: izin, PPL, laporan =====================
     {
@@ -1240,15 +1229,14 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "E-031", topik: "E.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2,
+      id: "E-031",
+      topik: "E.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
       stem: "Dalam pemeriksaan PPh Badan Tahun Pajak 2025 PT Garuda Mebel, Konsultan Pajak Lukman (izin B) selaku kuasa menyerahkan kepada pemeriksa 'perjanjian sewa gudang' yang ia susun bersama klien pada Oktober 2026 dengan tanggal mundur Januari 2025, untuk mendukung biaya sewa Rp420.000.000 yang sebenarnya tidak pernah terjadi. Pemeriksa membuktikan dokumen itu dibuat belakangan. Tidak ada uang yang ditawarkan kepada petugas. Menurut PMK 55/2026, sanksi izin praktik yang dapat dikenakan kepada Lukman adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Pembekuan izin paling lama 2 tahun karena memberikan keterangan menyesatkan",
-        B: "Peringatan, karena dokumen dibuat atas permintaan klien dan tidak ada suap",
-        C: "Pencabutan izin permanen karena setiap pelanggaran Pasal 30 dikenai pencabutan",
-        D: "Pembekuan izin 3 bulan, sama dengan sanksi tidak bergabung dengan asosiasi"
-      },
+      opsi: { A: "Pembekuan izin paling lama 2 tahun karena memberikan keterangan menyesatkan", B: "Peringatan, karena dokumen dibuat atas permintaan klien dan tidak ada suap", C: "Pencabutan izin permanen karena setiap pelanggaran Pasal 30 dikenai pencabutan", D: "Pembekuan izin 3 bulan, sama dengan sanksi tidak bergabung dengan asosiasi" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
@@ -1266,22 +1254,20 @@ UKP.register({
         },
         jebakan: "Menyamaratakan sanksi enam larangan Pasal 30."
       },
-      dasarHukum: [
-        { pasal: "Pasal 30 ayat (1) huruf a–b dan ayat (3) PMK 55/2026", berlakuSejak: "2026-08-24" },
-        { pasal: "Pasal 39 ayat (1) huruf f jo. Pasal 43 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }
-      ],
-      anggaranDetik: 120, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 30 ayat (1) huruf a–b dan ayat (3) PMK 55/2026", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 39 ayat (1) huruf f jo. Pasal 43 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "◐",
+      peringatan: "Pembahasan menyebut pencabutan permanen untuk pelanggaran setelah tiga kali pembekuan; bunyi resmi aturan itu di PMK 55/2026 (nomor pasal, jenis pembekuan yang dihitung, dan batas paling banyak 3 kali dalam 5 tahun menurut ringkasan sekunder) belum dicocokkan ke teks JDIH Kemenkeu. Kunci tidak bergantung pada hal itu."
     },
     {
-      id: "E-032", topik: "E.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 1,
+      id: "E-032",
+      topik: "E.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 1,
       stem: "Konsultan Pajak Melinda (izin A) diminta sahabatnya menjadi kuasa CV Berkah Abadi untuk menyampaikan SPT Masa PPN dan menghadiri pemeriksaan pada Oktober 2026. Ia menerima penugasan itu karena menganggap CV 'masih usaha kecil milik orang pribadi'. Selama penugasan tidak ada keterangan menyesatkan, rekayasa, atau imbalan kepada petugas, dan CV Berkah Abadi tidak dirugikan. Menurut PMK 55/2026, sanksi yang tepat atas perbuatan Melinda adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Pembekuan izin paling lama 2 tahun",
-        B: "Pencabutan izin yang bersifat permanen",
-        C: "Tidak ada sanksi karena CV dimiliki orang pribadi sehingga termasuk cakupan izin A",
-        D: "Peringatan, karena memberikan jasa di luar klasifikasi izin"
-      },
+      opsi: { A: "Pembekuan izin paling lama 2 tahun", B: "Pencabutan izin yang bersifat permanen", C: "Tidak ada sanksi karena CV dimiliki orang pribadi sehingga termasuk cakupan izin A", D: "Peringatan, karena memberikan jasa di luar klasifikasi izin" },
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
@@ -1298,11 +1284,10 @@ UKP.register({
         },
         jebakan: "Menganggap CV milik keluarga sama dengan usaha orang pribadi."
       },
-      dasarHukum: [
-        { pasal: "Pasal 24 ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24" },
-        { pasal: "Pasal 4 PMK 55/2026", berlakuSejak: "2026-08-24" }
-      ],
-      anggaranDetik: 90, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 24 ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 4 PMK 55/2026", berlakuSejak: "2026-08-24" }],
+      anggaranDetik: 90,
+      verifikasi: "◐",
+      peringatan: "Kunci D memakai pemetaan modul ini: jasa di luar klasifikasi izin dikenai peringatan (Pasal 24 ayat (4) PMK 55/2026). Sumber sekunder tidak seragam: artikel asosiasi konsultan pajak menyebut peringatan, sedangkan satu berita perpajakan mengutip Pasal 24 ayat (4) sebagai pembekuan izin selama 3 bulan atas pelanggaran 'ayat (1) huruf a'. Bunyi pasal belum dicocokkan ke teks JDIH Kemenkeu; bila kutipan kedua yang berlaku untuk jasa di luar klasifikasi izin, kunci perlu ditinjau. Pembahasan juga menyebut pencabutan permanen untuk pelanggaran setelah tiga kali pembekuan; bunyi resmi aturan itu (nomor pasal, jenis pembekuan yang dihitung, dan batas paling banyak 3 kali dalam 5 tahun menurut ringkasan sekunder) juga belum dicocokkan, tetapi kunci tidak bergantung padanya."
     },
     {
       id: "E-033", topik: "E.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
@@ -1342,18 +1327,19 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "kasus",
       kesulitan: 3,
-      stem: "Riwayat sanksi izin Konsultan Pajak Samsul (izin B): pembekuan 6 bulan pada 2027 karena pelanggaran kode etik asosiasi (mencela rekan di media sosial); pembekuan 1 tahun pada 2028 karena memberikan keterangan menyesatkan kepada klien; pembekuan 18 bulan pada 2030 karena menerima permintaan klien membuat kontrak bertanggal mundur. Pada 2032, setelah pembekuan ketiga berakhir, Dewan Kehormatan asosiasinya kembali memutuskan Samsul melanggar kode etik karena mempublikasikan data klien. Menurut PMK 55/2026, sanksi izin yang paling tepat atas pelanggaran 2032 adalah ...",
+      stem: "Riwayat sanksi izin Konsultan Pajak Samsul (izin B): pembekuan 6 bulan mulai Oktober 2027 karena pelanggaran kode etik asosiasi (mencela rekan di media sosial); pembekuan 1 tahun mulai Juni 2028 karena memberikan keterangan menyesatkan kepada klien; pembekuan 18 bulan mulai Maret 2030 karena menerima permintaan klien membuat kontrak bertanggal mundur. Pada November 2031, setelah pembekuan ketiga berakhir (September 2031), Dewan Kehormatan asosiasinya kembali memutuskan Samsul melanggar kode etik karena mempublikasikan data klien. Menurut PMK 55/2026, sanksi izin yang paling tepat atas pelanggaran November 2031 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Pembekuan izin paling lama 2 tahun, sesuai Pasal 24 ayat (5) untuk pelanggaran kode etik", B: "Peringatan, karena pelanggaran publikasi tergolong ringan", C: "Pencabutan izin yang bersifat permanen, karena Samsul melanggar lagi setelah tiga kali dikenai pembekuan", D: "Pembekuan izin 3 bulan, lalu pencabutan bila Samsul tetap mengulangi pelanggaran setelahnya" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Pelanggaran keempat setelah tiga kali pembekuan berujung pencabutan izin yang bersifat permanen. Jenis pelanggaran keempat (kode etik) tidak lagi menentukan, karena riwayat pembekuan sudah mencapai tiga kali.",
+        inti: "Pelanggaran keempat setelah tiga kali pembekuan berujung pencabutan izin yang bersifat permanen. Jenis pelanggaran keempat (kode etik) tidak lagi menentukan, karena riwayat pembekuan sudah mencapai tiga kali. Seluruh riwayat (Oktober 2027 s.d. November 2031) berlangsung dalam kurang dari 5 tahun, sehingga kesimpulannya sama dengan atau tanpa batas jangka waktu yang disebut sebagian ringkasan.",
         jejakHitung: [
-          ["Pembekuan ke-1 (2027)", "6 bulan — kode etik (Pasal 24 ayat (5))"],
-          ["Pembekuan ke-2 (2028)", "1 tahun — keterangan menyesatkan (Pasal 30 ayat (3))"],
-          ["Pembekuan ke-3 (2030)", "18 bulan — menerima permintaan rekayasa (Pasal 30 ayat (3))"],
-          ["Pelanggaran 2032", "Setelah 3 kali pembekuan → pencabutan permanen"]
+          ["Pembekuan ke-1 (Oktober 2027)", "6 bulan — kode etik (Pasal 24 ayat (5))"],
+          ["Pembekuan ke-2 (Juni 2028)", "1 tahun — keterangan menyesatkan (Pasal 30 ayat (3))"],
+          ["Pembekuan ke-3 (Maret 2030 s.d. September 2031)", "18 bulan — menerima permintaan rekayasa (Pasal 30 ayat (3))"],
+          ["Rentang Oktober 2027 s.d. November 2031", "49 bulan, kurang dari 5 tahun"],
+          ["Pelanggaran November 2031", "Setelah 3 kali pembekuan → pencabutan permanen"]
         ],
         mengapaSalah: {
           A: "Pasal 24 ayat (5) berlaku untuk pelanggaran kode etik biasa; riwayat tiga kali pembekuan mengubah sanksinya menjadi pencabutan.",
@@ -1365,7 +1351,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PMK 55/2026 — pencabutan setelah tiga kali pembekuan", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 24 ayat (5) PMK 55/2026", berlakuSejak: "2026-08-24" }],
       anggaranDetik: 150,
       verifikasi: "◐",
-      peringatan: "Bunyi resmi ketentuan PMK 55/2026 tentang pencabutan izin setelah tiga kali pembekuan belum terbaca: nomor pasal, jenis pembekuan yang dihitung, dan ada tidaknya batas jangka waktu belum dicocokkan ke teks JDIH Kemenkeu. Menurut ringkasan sekunder yang belum dicocokkan, pembekuan dibatasi paling banyak 3 kali dalam 5 tahun terakhir; bila benar, jawaban bergantung pada bulan kejadian yang tidak disebut di soal."
+      peringatan: "Bunyi resmi ketentuan PMK 55/2026 tentang pencabutan izin setelah tiga kali pembekuan belum terbaca: nomor pasal dan ayat (kutipan sekunder menunjuk Pasal 41 sebagai pasal pembekuan izin) serta jenis pembekuan yang dihitung belum dicocokkan ke teks JDIH Kemenkeu. Menurut ringkasan sekunder, pembekuan dikenakan paling banyak 3 kali dalam jangka waktu 5 tahun terakhir dan pelanggaran sesudahnya dikenai pencabutan; stem sudah disusun sehingga seluruh kejadian berada dalam 49 bulan, jadi kunci tidak bergantung pada batas 5 tahun itu."
     },
     {
       id: "E-035", topik: "E.4", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2,
@@ -1400,15 +1386,14 @@ UKP.register({
       anggaranDetik: 120, verifikasi: "✅"
     },
     {
-      id: "E-036", topik: "E.4", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 3,
+      id: "E-036",
+      topik: "E.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 3,
       stem: "Unit pengawas Kementerian Keuangan mencatat empat temuan atas konsultan pajak pada 2027: (P) konsultan izin A menyusun dan menyampaikan SPT Tahunan sebuah PT perorangan; (Q) konsultan menyusun faktur pajak fiktif atas permintaan klien; (R) konsultan menawarkan 'uang rokok' Rp10.000.000 kepada juru sita agar penyitaan ditunda; (S) konsultan belum bergabung dengan asosiasi 30 hari kerja setelah izinnya terbit. Pemetaan sanksi izin yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "P peringatan; Q pencabutan permanen; R pembekuan ≤ 2 tahun; S pembekuan 3 bulan",
-        B: "P pembekuan ≤ 2 tahun; Q pembekuan ≤ 2 tahun; R pencabutan permanen; S peringatan",
-        C: "P tidak ada sanksi; Q pembekuan ≤ 2 tahun; R pencabutan permanen; S pembekuan 3 bulan",
-        D: "P peringatan; Q pembekuan ≤ 2 tahun; R pencabutan permanen; S pembekuan 3 bulan"
-      },
+      opsi: { A: "P peringatan; Q pencabutan permanen; R pembekuan ≤ 2 tahun; S pembekuan 3 bulan", B: "P pembekuan ≤ 2 tahun; Q pembekuan ≤ 2 tahun; R pencabutan permanen; S peringatan", C: "P tidak ada sanksi; Q pembekuan ≤ 2 tahun; R pencabutan permanen; S pembekuan 3 bulan", D: "P peringatan; Q pembekuan ≤ 2 tahun; R pencabutan permanen; S pembekuan 3 bulan" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-baca" },
       pembahasan: {
@@ -1426,11 +1411,10 @@ UKP.register({
         },
         jebakan: "PT perorangan sering dikira sama dengan WP orang pribadi."
       },
-      dasarHukum: [
-        { pasal: "Pasal 24 ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24" },
-        { pasal: "Pasal 30 ayat (1), (3), dan (4) PMK 55/2026", berlakuSejak: "2026-08-24" }
-      ],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 24 ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 30 ayat (1), (3), dan (4) PMK 55/2026", berlakuSejak: "2026-08-24" }],
+      anggaranDetik: 180,
+      verifikasi: "◐",
+      peringatan: "Kunci D memakai pemetaan modul ini: jasa di luar klasifikasi izin (temuan P) dikenai peringatan (Pasal 24 ayat (4) PMK 55/2026). Sumber sekunder tidak seragam: artikel asosiasi konsultan pajak menyebut peringatan, sedangkan berita perpajakan yang mengutip Pasal 24 ayat (4) dan ringkasan lain yang ditemukan lewat pencarian menyebut pembekuan izin selama 3 bulan. Bunyi pasal belum dicocokkan ke teks JDIH Kemenkeu; bila yang berlaku pembekuan 3 bulan, tidak ada opsi yang tepat (tidak satu pun memetakan P ke pembekuan 3 bulan) dan soal perlu ditinjau."
     },
     // ===================== E.5 Kuasa WP (PMK 44/2026) =====================
     {
@@ -2031,15 +2015,14 @@ UKP.register({
       peringatan: "Rincian standar dokumentasi dan kertas kerja mengikuti Standar Profesi IKPI versi 2019; teks versi 2024 belum dibaca langsung."
     },
     {
-      id: "E-056", topik: "E.6", tingkat: ["A", "B", "C"], jenis: "etika", kesulitan: 3,
+      id: "E-056",
+      topik: "E.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "etika",
+      kesulitan: 3,
       stem: "Dewan Kehormatan sebuah asosiasi memutuskan Konsultan Pajak Lestari (izin B) melanggar Kode Etik karena membocorkan data klien kepada pesaing klien itu, lalu menjatuhkan sanksi organisasi berupa pemberhentian sementara keanggotaan. Lestari berpendapat sanksi itu hanya urusan internal organisasi dan tidak berpengaruh pada izin praktiknya. Penilaian yang paling tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Lestari benar, karena sanksi asosiasi dan izin praktik dari Menteri sama sekali tidak berhubungan satu sama lain",
-        B: "Lestari keliru; pemberhentian sementara keanggotaan otomatis berarti pencabutan izin praktik secara permanen",
-        C: "Lestari keliru; sanksi asosiasi menggantikan sanksi Menteri sehingga izinnya dibekukan selama masa pemberhentian sementara saja",
-        D: "Lestari keliru; selain sanksi organisasi, pelanggaran kode etik dapat berujung pembekuan izin oleh Menteri paling lama 2 tahun"
-      },
+      opsi: { A: "Lestari benar, karena sanksi asosiasi dan izin praktik dari Menteri sama sekali tidak berhubungan satu sama lain", B: "Lestari keliru; pemberhentian sementara keanggotaan otomatis berarti pencabutan izin praktik secara permanen", C: "Lestari keliru; sanksi asosiasi menggantikan sanksi Menteri sehingga izinnya dibekukan selama masa pemberhentian sementara saja", D: "Lestari keliru; selain sanksi organisasi, pelanggaran kode etik dapat berujung pembekuan izin oleh Menteri paling lama 2 tahun" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
@@ -2052,12 +2035,10 @@ UKP.register({
         },
         jebakan: "Menganggap sanksi organisasi sebagai pengganti sanksi izin."
       },
-      dasarHukum: [
-        { pasal: "Pasal 24 ayat (5) PMK 55/2026", berlakuSejak: "2026-08-24" },
-        { pasal: "Kode Etik IKPI Bab VII — Sanksi", berlakuSejak: "2024-08-20" }
-      ],
-      anggaranDetik: 150, verifikasi: "◐",
-      peringatan: "Jenjang sanksi organisasi IKPI (teguran tertulis s.d. pemberhentian tetap) mengikuti versi 2019 dan ringkasan sekunder; teks versi 2024 belum dibaca langsung."
+      dasarHukum: [{ pasal: "Pasal 24 ayat (5) PMK 55/2026", berlakuSejak: "2026-08-24" }, { pasal: "Kode Etik IKPI Bab VII — Sanksi", berlakuSejak: "2024-08-20" }],
+      anggaranDetik: 150,
+      verifikasi: "◐",
+      peringatan: "Jenjang sanksi organisasi IKPI (teguran tertulis s.d. pemberhentian tetap) mengikuti versi 2019 dan ringkasan sekunder; teks versi 2024 belum dibaca langsung. Pembahasan menyebut pencabutan permanen untuk pelanggaran setelah tiga kali pembekuan; bunyi resmi aturan itu di PMK 55/2026 (nomor pasal, jenis pembekuan yang dihitung, dan batas paling banyak 3 kali dalam 5 tahun menurut ringkasan sekunder) belum dicocokkan ke teks JDIH Kemenkeu. Kunci tidak bergantung pada hal itu."
     },
     {
       id: "E-057", topik: "E.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
@@ -2090,15 +2071,14 @@ UKP.register({
     },
     // ===================== Gaya ujian nyata (laporan peserta UKP Oktober 2026) =====================
     {
-      id: "E-058", topik: "E.4", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "E-058",
+      topik: "E.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Pada Oktober 2026 PT Kencana Logam (badan dalam negeri, bukan PMA) sedang menjalani pemeriksaan lengkap PPh Badan Tahun Pajak 2025. Pemeriksa mengoreksi biaya bunga Rp780.000.000 karena tidak ada perjanjian pinjaman. Direktur keuangan meminta Konsultan Pajak Raka Pratama (izin B), kuasa perusahaan dalam pemeriksaan itu, menyusun 'perjanjian pinjaman' dengan pemegang saham yang diberi tanggal mundur 2 Januari 2025. Raka menyanggupi, menerima uang muka imbalan jasa Rp25.000.000 sesuai surat perikatan, dan mulai menyiapkan draf perjanjian. Sebelum draf diserahkan kepada pemeriksa, staf KKP melaporkan hal itu kepada unit pengawas Kementerian Keuangan. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Perbuatan Raka sudah memenuhi larangan menerima permintaan rekayasa yang bertentangan dengan ketentuan (Pasal 30 ayat (1) huruf b PMK 55/2026), tetapi karena draf belum diserahkan kepada pemeriksa, izinnya hanya dapat dikenai peringatan berdasarkan Pasal 24 ayat (4)",
-        B: "Perbuatan Raka sudah memenuhi larangan menerima permintaan rekayasa yang bertentangan dengan ketentuan (Pasal 30 ayat (1) huruf b PMK 55/2026), sehingga izinnya dapat dibekukan paling lama 2 tahun berdasarkan Pasal 30 ayat (3)",
-        C: "Perbuatan Raka sudah memenuhi larangan menerima permintaan rekayasa yang bertentangan dengan ketentuan (Pasal 30 ayat (1) huruf b PMK 55/2026), sehingga izinnya dicabut secara permanen berdasarkan Pasal 30 ayat (4)",
-        D: "Perbuatan Raka sudah memenuhi larangan menerima gratifikasi yang tidak wajar (Pasal 30 ayat (1) huruf d PMK 55/2026), sehingga izinnya dapat dibekukan paling lama 2 tahun berdasarkan Pasal 30 ayat (3)"
-      },
+      opsi: { A: "Perbuatan Raka sudah memenuhi larangan menerima permintaan rekayasa yang bertentangan dengan ketentuan (Pasal 30 ayat (1) huruf b PMK 55/2026), tetapi karena draf belum diserahkan kepada pemeriksa, izinnya hanya dapat dikenai peringatan berdasarkan Pasal 24 ayat (4)", B: "Perbuatan Raka sudah memenuhi larangan menerima permintaan rekayasa yang bertentangan dengan ketentuan (Pasal 30 ayat (1) huruf b PMK 55/2026), sehingga izinnya dapat dibekukan paling lama 2 tahun berdasarkan Pasal 30 ayat (3)", C: "Perbuatan Raka sudah memenuhi larangan menerima permintaan rekayasa yang bertentangan dengan ketentuan (Pasal 30 ayat (1) huruf b PMK 55/2026), sehingga izinnya dicabut secara permanen berdasarkan Pasal 30 ayat (4)", D: "Perbuatan Raka sudah memenuhi larangan menerima gratifikasi yang tidak wajar (Pasal 30 ayat (1) huruf d PMK 55/2026), sehingga izinnya dapat dibekukan paling lama 2 tahun berdasarkan Pasal 30 ayat (3)" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
@@ -2110,17 +2090,15 @@ UKP.register({
           ["Sanksi", "Pasal 30 ayat (3): pembekuan paling lama 2 tahun, bukan pencabutan ayat (4)"]
         ],
         mengapaSalah: {
-          A: "Larangan huruf b tidak mensyaratkan dokumen sudah diserahkan; peringatan Pasal 24 ayat (4) ditujukan untuk pelanggaran seperti jasa di luar klasifikasi izin.",
+          A: "Larangan huruf b tidak mensyaratkan dokumen sudah diserahkan kepada pemeriksa; sanksi atas menerima permintaan rekayasa adalah pembekuan paling lama 2 tahun menurut Pasal 30 ayat (3), bukan peringatan.",
           C: "Pencabutan permanen Pasal 30 ayat (4) untuk menawarkan imbalan kepada petugas pajak dan pemerasan, bukan untuk rekayasa.",
           D: "Uang muka adalah imbalan jasa yang diperjanjikan dalam surat perikatan, bukan gratifikasi; inti pelanggarannya adalah menyanggupi rekayasa."
         },
         jebakan: "Keempat opsi hampir identik; yang membedakan hanya frasa sanksi atau huruf larangan, dan frasa 'draf belum diserahkan' menggoda untuk menurunkan sanksi."
       },
-      dasarHukum: [
-        { pasal: "Pasal 30 ayat (1) huruf b dan ayat (3) PMK 55/2026 — rekayasa, pembekuan paling lama 2 tahun", berlakuSejak: "2026-08-24" },
-        { pasal: "Pasal 30 ayat (4) dan Pasal 24 ayat (4) PMK 55/2026 — pencabutan dan peringatan (pembanding)", berlakuSejak: "2026-08-24" }
-      ],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 30 ayat (1) huruf b dan ayat (3) PMK 55/2026 — rekayasa, pembekuan paling lama 2 tahun", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 30 ayat (4) PMK 55/2026 — pencabutan permanen (pembanding)", berlakuSejak: "2026-08-24" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "E-059", topik: "E.6", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 2,
@@ -2322,16 +2300,15 @@ UKP.register({
       peringatan: "Teks Kode Etik IKPI 2024 belum dibaca langsung; penerapan prinsip kerahasiaan pada layanan AI publik merupakan penafsiran prinsip umum karena pedoman asosiasi tentang hal ini belum ditemukan."
     },
     {
-      id: "E-065", topik: "E.1", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 3,
+      id: "E-065",
+      topik: "E.1",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
       kutipan: "Pasal 8 ayat (4) dan (5) UU KUP (parafrase setia): Walaupun telah dilakukan pemeriksaan, Wajib Pajak dengan kesadaran sendiri dapat mengungkapkan dalam laporan tersendiri tentang ketidakbenaran pengisian Surat Pemberitahuan yang telah disampaikan, sepanjang pemeriksa belum menyampaikan surat pemberitahuan hasil pemeriksaan, dan proses pemeriksaan tetap dilanjutkan. Kekurangan pajak yang timbul beserta sanksi bunga dengan tarif bunga per bulan yang ditetapkan Menteri Keuangan, paling lama 24 bulan, harus dilunasi sebelum laporan tersendiri itu disampaikan.",
       stem: "PT Wahana Kemasindo (WP badan dalam negeri, bukan PMA, peredaran bruto 2025 Rp86.000.000.000 sehingga tidak berhak atas fasilitas Pasal 31E) diperiksa lengkap atas PPh Badan Tahun Pajak 2025 sejak SP2 disampaikan 1 September 2026; Konsultan Pajak Gita Ramadhani (izin B) adalah kuasanya. Pada 26 Oktober 2026, saat menyiapkan dokumen untuk Pembahasan Temuan Sementara, Gita menemukan penjualan sisa produksi (scrap) Rp540.000.000 yang tidak dicatat dan belum diketahui pemeriksa; SPHP belum disampaikan. Direktur meminta Gita 'diam saja, siapa tahu tidak ketemu'. Berdasarkan kutipan, nasihat dan sikap Gita yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Menyarankan PT membetulkan SPT Tahunan PPh Badan 2025 berdasarkan Pasal 8 ayat (1) UU KUP karena SPHP belum disampaikan; bila direksi menolak, Gita tidak memberikan keterangan yang menyesatkan kepada pemeriksa dan dapat mengundurkan diri tanpa membuka informasi klien kepada pihak lain",
-        B: "Menyarankan PT mengungkapkan ketidakbenaran dalam laporan tersendiri sepanjang SKP belum diterbitkan, dengan melunasi kekurangan pajak dan bunganya lebih dahulu sehingga pemeriksaan dihentikan; bila direksi menolak, Gita tidak memberikan keterangan yang menyesatkan kepada pemeriksa dan dapat mengundurkan diri tanpa membuka informasi klien kepada pihak lain",
-        C: "Menyarankan PT mengungkapkan ketidakbenaran dalam laporan tersendiri sebelum SPHP disampaikan, dengan melunasi kekurangan pajak dan bunganya lebih dahulu, sedangkan pemeriksaan tetap dilanjutkan; bila direksi menolak, Gita tidak memberikan keterangan yang menyesatkan kepada pemeriksa dan dapat mengundurkan diri tanpa membuka informasi klien kepada pihak lain",
-        D: "Mengikuti permintaan direktur, karena kuasa hanya wajib menjawab pertanyaan pemeriksa dan temuan yang belum ditanyakan sepenuhnya menjadi risiko Wajib Pajak"
-      },
+      opsi: { A: "Menyarankan PT membetulkan SPT Tahunan PPh Badan 2025 berdasarkan Pasal 8 ayat (1) UU KUP karena SPHP belum disampaikan; bila direksi menolak, Gita tidak memberikan keterangan yang menyesatkan kepada pemeriksa dan dapat mengundurkan diri tanpa membuka informasi klien kepada pihak lain", B: "Menyarankan PT mengungkapkan ketidakbenaran dalam laporan tersendiri sepanjang SKP belum diterbitkan, dengan melunasi kekurangan pajak dan bunganya lebih dahulu sehingga pemeriksaan dihentikan; bila direksi menolak, Gita tidak memberikan keterangan yang menyesatkan kepada pemeriksa dan dapat mengundurkan diri tanpa membuka informasi klien kepada pihak lain", C: "Menyarankan PT mengungkapkan ketidakbenaran dalam laporan tersendiri sebelum SPHP disampaikan, dengan melunasi kekurangan pajak dan bunganya lebih dahulu, sedangkan pemeriksaan tetap dilanjutkan; bila direksi menolak, Gita tidak memberikan keterangan yang menyesatkan kepada pemeriksa dan dapat mengundurkan diri tanpa membuka informasi klien kepada pihak lain", D: "Mengikuti permintaan direktur, karena kuasa hanya wajib menjawab pertanyaan pemeriksa dan temuan yang belum ditanyakan sepenuhnya menjadi risiko Wajib Pajak" },
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", D: "salah-klasifikasi" },
       pembahasan: {
@@ -2350,12 +2327,9 @@ UKP.register({
         },
         jebakan: "Pembetulan dan pengungkapan ketidakbenaran sering tertukar; titik pembedanya adalah dimulainya tindakan pemeriksaan (pembetulan) dan disampaikannya SPHP (pengungkapan)."
       },
-      dasarHukum: [
-        { pasal: "Pasal 8 ayat (1), (4), dan (5) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2021-10-29" },
-        { pasal: "Pasal 30 ayat (1) huruf a PMK 55/2026 — larangan keterangan menyesatkan", berlakuSejak: "2026-08-24" },
-        { pasal: "Kode Etik IKPI Bab II — integritas dan kerahasiaan", berlakuSejak: "2024-08-20" }
-      ],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) UU KUP — pembetulan SPT sebelum tindakan pemeriksaan", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 ayat (4) UU KUP s.t.d.t.d. UU 7/2021 — pengungkapan ketidakbenaran sebelum SPHP disampaikan", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 8 ayat (5) UU KUP (diubah UU 11/2020) — bunga pengungkapan, uplift 10%", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 30 ayat (1) huruf a PMK 55/2026 — larangan keterangan menyesatkan", berlakuSejak: "2026-08-24" }, { pasal: "Kode Etik IKPI Bab II — integritas dan kerahasiaan", berlakuSejak: "2024-08-20" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "E-066", topik: "E.1", tingkat: ["C"], jenis: "etika", kesulitan: 2,
@@ -3165,8 +3139,8 @@ UKP.register({
     { id: "KT-E-12", topik: "E.3", tipe: "prosedur", depan: "Apakah permohonan izin harus berjenjang A→B→C?", belakang: "Tidak; pemegang SKK C dapat langsung mengajukan izin C", dasar: "PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: "USKP dan izin berjenjang (PMK 111/2014)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-E-13", topik: "E.4", tipe: "definisi", depan: "Enam larangan Pasal 30 ayat (1) PMK 55/2026?", belakang: "Menyesatkan, rekayasa, imbalan ke petugas, gratifikasi tak wajar, pemerasan, rangkap jabatan", dasar: "Pasal 30 ayat (1) PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-E-14", topik: "E.4", tipe: "angka", depan: "Pembekuan izin paling lama berapa, untuk pelanggaran apa?", belakang: "2 tahun: pelanggaran kode etik, keterangan menyesatkan, rekayasa", dasar: "Pasal 24 ayat (5); Pasal 30 ayat (3) PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-E-15", topik: "E.4", tipe: "definisi", depan: "Akibat pencabutan izin menurut PMK 55/2026?", belakang: "Permanen: tidak dapat mengajukan izin baru; SKK ikut tidak berlaku", dasar: "Pasal 30 ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-E-16", topik: "E.4", tipe: "prosedur", depan: "Sanksi memberi jasa di luar klasifikasi izin?", belakang: "Peringatan", dasar: "Pasal 24 ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: [] },
+    { id: "KT-E-15", topik: "E.4", tipe: "definisi", depan: "Akibat pencabutan izin menurut PMK 55/2026?", belakang: "Permanen: tidak dapat mengajukan izin baru; SKK ikut tidak berlaku", dasar: "Pasal 30 ayat (4) PMK 55/2026 ◐ (sumber sekunder menyebut akibat pencabutan, yaitu tidak dapat mengajukan izin kembali dan SKK tidak berlaku, diatur Pasal 42 ayat (1)–(2); belum dicek ke teks)", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
+    { id: "KT-E-16", topik: "E.4", tipe: "prosedur", depan: "Sanksi memberi jasa di luar klasifikasi izin?", belakang: "Peringatan ◐", dasar: "Pasal 24 ayat (4) PMK 55/2026 (sumber sekunder tidak seragam: peringatan atau pembekuan izin 3 bulan; belum dicek ke teks)", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: [] },
     { id: "KT-E-17", topik: "E.4", tipe: "prosedur", depan: "Sanksi tidak bergabung asosiasi dalam 30 hari kerja?", belakang: "Pembekuan izin 3 bulan; tetap tidak bergabung → pencabutan", dasar: "PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-E-18", topik: "E.4", tipe: "pasal", depan: "Dasar pencabutan karena imbalan kepada petugas pajak atau pemerasan?", belakang: "Pasal 30 ayat (4) PMK 55/2026", dasar: "Pasal 30 ayat (1) huruf c, e dan ayat (4) PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: [] },
     { id: "KT-E-19", topik: "E.4", tipe: "prosedur", depan: "Kapan pembekuan berulang berubah menjadi pencabutan?", belakang: "Melanggar lagi setelah tiga kali dikenai pembekuan ◐ (nomor dan bunyi pasal belum dicek)", dasar: "PMK 55/2026 (sumber sekunder: pembekuan paling banyak 3 kali dalam 5 tahun terakhir)", berlakuSejak: "2026-08-24", menggantikan: null, dekTambahan: [] },
@@ -3205,7 +3179,7 @@ UKP.register({
     { id: "KT-E-52", topik: "E.5", tipe: "prosedur", depan: "Apakah penunjukan atau pergantian kuasa menggeser tenggat keberatan atau banding?", belakang: "Tidak; tenggat tetap dihitung sejak SKP dikirim atau keputusan diterima", dasar: "Pasal 25 ayat (3) UU KUP; Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-E-53", topik: "E.3", tipe: "angka", depan: "PPh atas imbalan konsultan pajak orang pribadi (bukan pegawai)?", belakang: "PPh 21: tarif Pasal 17 × 50% bruto per pembayaran; BP21", dasar: "PMK 168/2023", berlakuSejak: "2024-01-01", menggantikan: "Pembedaan berkesinambungan/tidak berkesinambungan dengan penghitungan kumulatif (PER-16/PJ/2016)", dekTambahan: [] },
     { id: "KT-E-54", topik: "E.3", tipe: "angka", depan: "PPh atas imbalan jasa konsultan yang dibayar kepada KKP berbentuk badan atau persekutuan?", belakang: "PPh 23 sebesar 2% dari bruto tanpa PPN; BPPU", dasar: "Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-E-55", topik: "E.1", tipe: "prosedur", depan: "Batas pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan?", belakang: "Sebelum SPHP disampaikan; bunga (acuan + 10%)/12; pemeriksaan tetap berlanjut", dasar: "Pasal 8 ayat (4) dan (5) UU KUP", berlakuSejak: "2021-10-29", menggantikan: "Sepanjang SKP belum diterbitkan (sebelum UU HPP)", dekTambahan: [] },
+    { id: "KT-E-55", topik: "E.1", tipe: "prosedur", depan: "Batas pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan?", belakang: "Sebelum SPHP disampaikan; bunga (acuan + 10%)/12; pemeriksaan tetap berlanjut", dasar: "Pasal 8 ayat (4) UU KUP s.t.d.t.d. UU 7/2021 (batas SPHP); bunga Pasal 8 ayat (5) dengan uplift 10% sejak UU 11/2020 (2 November 2020)", berlakuSejak: "2021-10-29", menggantikan: "Sepanjang SKP belum diterbitkan (sebelum UU HPP)", dekTambahan: [] },
     { id: "KT-E-56", topik: "E.6", tipe: "prosedur", depan: "Urutan menjadi konsultan pajak berizin sejak PMK 55/2026?", belakang: "SKK (UKP) → ujian profesi → izin → asosiasi ≤ 30 hari kerja", dasar: "PMK 55/2026", berlakuSejak: "2026-08-24", menggantikan: "USKP berjenjang A→B→C dan keanggotaan asosiasi sebagai syarat permohonan", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-E-57", topik: "E.5", tipe: "angka", depan: "Batas mengajukan banding dan jangka waktu putusan Pengadilan Pajak?", belakang: "Banding 3 bulan sejak keputusan keberatan diterima; putusan 12 bulan sejak surat banding diterima", dasar: "Pasal 35 ayat (2) dan Pasal 81 UU 14/2002", berlakuSejak: "2002-04-12", menggantikan: null, dekTambahan: [] },
     { id: "KT-E-58", topik: "E.5", tipe: "angka", depan: "Denda bila keberatan atau banding ditolak/dikabulkan sebagian?", belakang: "Keberatan 30% (gugur bila banding); banding 60%; atas pokok dikurangi pembayaran pra-keberatan", dasar: "Pasal 25 ayat (9) dan Pasal 27 ayat (5d) UU KUP", berlakuSejak: "2021-10-29", menggantikan: "Denda keberatan 50% dan banding 100% (sebelum UU HPP)", dekTambahan: [] },
@@ -3316,7 +3290,7 @@ UKP.register({
         { no: 1, pertanyaan: "Jalan sah yang seharusnya disarankan Rahmat atas temuan 2 Desember 2026?", tipe: "pilihan",
           opsi: { A: "Pembetulan SPT Tahunan berdasarkan Pasal 8 ayat (1) UU KUP", B: "Pengungkapan ketidakbenaran pengisian SPT dalam laporan tersendiri sebelum SPHP disampaikan, dengan melunasi kekurangan pajak dan bunganya lebih dahulu; pemeriksaan tetap berjalan", C: "Menunggu SKPKB lalu mengajukan keberatan atas seluruh koreksi", D: "Melaporkan temuan langsung kepada pemeriksa tanpa sepengetahuan klien" }, jawaban: "B",
           petunjuk: ["Pembetulan hanya dapat dilakukan sepanjang belum ada tindakan pemeriksaan.", "Selama pemeriksaan, Pasal 8 ayat (4) membuka pengungkapan ketidakbenaran sampai SPHP disampaikan.", "Pengungkapan tidak menghentikan pemeriksaan → B."],
-          penjelasan: "Batas pengungkapan sejak UU HPP adalah sebelum SPHP disampaikan (dahulu sebelum SKP terbit); bunganya memakai uplift 10%." },
+          penjelasan: "Batas pengungkapan sejak UU HPP adalah sebelum SPHP disampaikan (dahulu sebelum SKP terbit); bunganya memakai uplift 10% sejak UU Cipta Kerja (dahulu kenaikan 50%)." },
         { no: 2, pertanyaan: "Direktur tetap menolak mengungkapkan. Sikap Rahmat yang tepat?", tipe: "pilihan",
           opsi: { A: "Tetap mewakili dan menyangkal adanya penghasilan sewa bila pemeriksa bertanya", B: "Tidak memberikan keterangan yang menyesatkan, tetap menjaga rahasia klien terhadap pihak lain, dan dapat mengundurkan diri sebagai kuasa", C: "Segera melaporkan temuan kepada KPP karena kewajiban kerahasiaan gugur bila klien menolak membetulkan", D: "Menahan dokumen klien sampai direktur bersedia mengungkapkan" }, jawaban: "B",
           petunjuk: ["Pasal 30 ayat (1) huruf a PMK 55/2026 melarang keterangan menyesatkan.", "Kerahasiaan hanya dibuka karena kewajiban undang-undang (mis. permintaan tertulis DJP).", "Konsultan boleh mundur bila klien menolak jalan yang sah → B."],
@@ -3372,7 +3346,7 @@ UKP.register({
     }
   ],
   tips: [
-    { teks: "Untuk soal sanksi PMK 55/2026, klasifikasikan perbuatannya dulu: di luar klasifikasi izin → peringatan; kode etik, keterangan menyesatkan, rekayasa → pembekuan paling lama 2 tahun; imbalan kepada petugas atau pemerasan → pencabutan permanen.", tagSebab: "salah-klasifikasi" },
+    { teks: "Untuk soal sanksi PMK 55/2026, klasifikasikan perbuatannya dulu: di luar klasifikasi izin → peringatan (◐ Pasal 24 ayat (4) belum dicek ke teks: sumber sekunder menyebut peringatan atau pembekuan izin 3 bulan); kode etik, keterangan menyesatkan, rekayasa → pembekuan paling lama 2 tahun; imbalan kepada petugas atau pemerasan → pencabutan permanen.", tagSebab: "salah-klasifikasi" },
     { teks: "Bedakan hari kerja dan hari kalender; hitung 30 hari kerja mulai hari kerja berikutnya setelah izin terbit, dan cek libur nasional yang disebut dalam soal.", tagSebab: "salah-hitung" },
     { teks: "Soal profesi yang masih memakai PMK 111/2014, PMK 175/2022, atau PMK 229/2014 sudah usang: patokannya PMK 44/2026 (6 Juli 2026) dan PMK 55/2026 (24 Agustus 2026).", tagSebab: "angka-usang" },
     { teks: "Pada soal kombinasi (I, II, III, IV), nilai setiap pernyataan satu per satu dan tandai benar/salah sebelum melihat opsi.", tagSebab: "salah-baca" },

@@ -11,7 +11,7 @@
    cache versi lama dihapus saat activate. Daftar skrip juga dibaca ulang dari index.html saat install, jadi berkas baru tetap ikut. */
 'use strict';
 /* <ASET-OTOMATIS> ditulis ulang oleh tools/build-artifact.js — jangan diubah manual */
-const VERSI = '65e6e215ca3d';
+const VERSI = '3423af21ccc2';
 const ASET = [
   "index.html",
   "js/core.js",
@@ -90,7 +90,7 @@ function ambilSegar(url) { return fetch(new Request(url, { cache: 'no-cache', cr
 function denganBatas(p, ms) { return Promise.race([p, new Promise(r => setTimeout(() => r(null), ms))]); }
 
 // skrip, stylesheet, manifest, dan ikon lokal yang dirujuk index.html
-function tautanLokal(html) {
+function tautanUrl(html) {
   const hasil = [];
   html.replace(/<script\b[^>]*\bsrc\s*=\s*["']([^"']+)["']/gi, (_, u) => { if (lokal(u)) hasil.push(u); return _; });
   html.replace(/<link\b[^>]*>/gi, tag => {
@@ -99,14 +99,29 @@ function tautanLokal(html) {
     if (href && lokal(href) && /\b(?:stylesheet|manifest|icon|apple-touch-icon)\b/i.test(rel)) hasil.push(href);
     return tag;
   });
-  return hasil.map(u => new URL(u.replace(/&amp;/g, '&'), INDEX)).filter(u => u.href.startsWith(LINGKUP)).map(u => u.origin + u.pathname);
+  return hasil.map(u => new URL(u.replace(/&amp;/g, '&'), INDEX)).filter(u => u.href.startsWith(LINGKUP));
+}
+function tautanLokal(html) { return tautanUrl(html).map(u => u.origin + u.pathname); }
+// v9.4.1: alamat polos → alamat persis yang dirujuk index.html (bercap ?v=<VERSI>). Pra-muat meminta alamat yang SAMA dengan yang baru
+// saja diunduh halaman, sehingga peramban cukup bertanya "masih sama?" ke server (jawaban 304, isi dari cache HTTP). Dulu pra-muat
+// meminta alamat polos: alamatnya beda, jadi semua aset (sekitar 1,9 MB terkompresi) diunduh dua kali pada pemasangan pertama dan
+// pada tiap pindah versi, bersaing dengan halaman yang sedang menyambung ke room. Kunci cache tetap alamat polos.
+function petaCap(html) {
+  const peta = new Map();
+  for (const u of tautanUrl(html)) if (u.search) peta.set(u.origin + u.pathname, u.origin + u.pathname + u.search);
+  return peta;
 }
 
-async function simpan(cache, url, wajib) {
-  let res;
-  try { res = await ambilSegar(url); } catch (e) { if (wajib) throw e; debug('lewati', url, e && e.message); return; }
+async function simpan(cache, url, wajib, bercap) {
+  let res = null;
+  // v9.4.1: coba dulu alamat bercap (lihat petaCap); gagal atau bukan 2xx → alamat polos seperti dulu
+  // Isi jawaban yang tidak dipakai (bukan 2xx) harus dibuang. Chromium membatasi service worker yang sedang memasang pada 3 permintaan
+  // serentak, dan jawaban ber-kepala no-store yang isinya tidak dibaca menahan jatah itu: pemasangan macet sekitar 5 menit lalu batal.
+  const buang = r => { try { if (r && r.body) r.body.cancel().catch(() => {}); } catch (e) {} };
+  if (bercap && bercap !== url) { try { const r = await ambilSegar(bercap); if (r && r.ok) res = r; else buang(r); } catch (e) { debug('bercap gagal', bercap, e && e.message); } }
+  if (!res) { try { res = await ambilSegar(url); } catch (e) { if (wajib) throw e; debug('lewati', url, e && e.message); return; } }
   // 404 dsb.: berkas memang tidak ada di server (juga gagal saat daring) → lewati tanpa menggagalkan install
-  if (res.ok) await cache.put(url, res); else debug('lewati', url, res.status);
+  if (res.ok) await cache.put(url, res); else { debug('lewati', url, res.status); buang(res); }
 }
 
 // Google Fonts: stylesheet + berkas fon subset latin/latin-ext (cukup untuk bahasa Indonesia); upaya terbaik, tidak pernah menggagalkan install
@@ -138,8 +153,9 @@ async function pasang() {
   await Promise.all([cache.put(INDEX, salinanIndex), cache.put(AKAR, salinanAkar)]);
   const wajib = unik(ASET.map(mutlak).concat(tautanLokal(html))).filter(u => u !== INDEX && u !== AKAR);
   const opsional = ASET_OPSIONAL.map(mutlak).filter(u => !wajib.includes(u));
-  await Promise.all(wajib.map(u => simpan(cache, u, true)));
-  await Promise.all(opsional.map(u => simpan(cache, u, false)));
+  const cap = petaCap(html);
+  await Promise.all(wajib.map(u => simpan(cache, u, true, cap.get(u))));
+  await Promise.all(opsional.map(u => simpan(cache, u, false, cap.get(u))));
   await siapkanFont(html).catch(e => debug('fon dilewati', e && e.message));
 }
 
