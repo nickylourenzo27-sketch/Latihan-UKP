@@ -384,8 +384,20 @@
       if (kredit) jejak.push(['Kredit pajak (PPh 21 + 22 + 23 + 24 + 25)', '−' + uang(kredit)]);
       const kb = ps.pajak - kredit;
       jejak.push([kb >= 0 ? 'PPh Ps. 29 kurang bayar' : 'PPh Ps. 28A lebih bayar', uang(Math.abs(kb))]);
-      const pph25 = Math.max(0, Math.round((ps.pajak - kreditNon25) / 12));
-      jejak.push(['PPh 25 tahun berikutnya = (' + uang(ps.pajak) + ' − ' + uang(kreditNon25) + ') ÷ 12', uang(pph25)]);
+      // v9.4.2: bila ada kompensasi kerugian, dasar angsuran = penghasilan neto dikurangi SISA kerugian yang masih dapat dikompensasikan
+      // tahun berikutnya (Pasal 25 ayat (6) huruf a UU PPh dan contoh Penjelasannya), bukan PPh terutang setelah kompensasi.
+      let pphDasar25 = ps.pajak;
+      if (rugiInput > 0) {
+        const sisaRugi = rugiInput - rugi;
+        const pkp25 = bulatRibuBawah(Math.max(0, setelahZakat - sisaRugi) - ptkp);
+        pphDasar25 = ps17(pkp25).pajak;
+        jejak.push(['Dasar angsuran PPh 25 = neto ' + uang(setelahZakat) + ' − sisa kerugian tahun berikutnya ' + uang(sisaRugi) + ' − PTKP ' + uang(ptkp), uang(pkp25)]);
+        jejak.push(['PPh Ps. 17 atas dasar angsuran', uang(pphDasar25)]);
+        dh.push('Pasal 25 ayat (6) huruf a UU PPh (angsuran bila ada kompensasi kerugian)');
+        asumsi.push('Ada kompensasi kerugian: angsuran PPh 25 dihitung dari penghasilan neto dikurangi sisa kerugian yang masih dapat dikompensasikan tahun berikutnya (di sini ' + uang(sisaRugi) + '), bukan dari PPh terutang setelah kompensasi. Bila sisa kerugian itu sudah lewat 5 tahun, dasarnya neto penuh.');
+      }
+      const pph25 = Math.max(0, Math.round((pphDasar25 - kreditNon25) / 12));
+      jejak.push(['PPh 25 tahun berikutnya = (' + uang(pphDasar25) + ' − ' + uang(kreditNon25) + ') ÷ 12', uang(pph25)]);
       asumsi.push('PKP dibulatkan ke bawah ribuan rupiah penuh; tarif Ps. 17 berlaku sejak Tahun Pajak 2022 (UU HPP).');
       asumsi.push('Zakat hanya dapat dikurangkan bila dibayar ke BAZNAS/LAZ yang disahkan dan tidak boleh menimbulkan rugi (PMK 114/2025).');
       if (zakat) dh.push('Pasal 9 ayat (1) huruf g UU PPh; PMK 114/2025');
@@ -989,12 +1001,14 @@
       { key: 'pkp', label: 'Penghasilan Kena Pajak', tipe: 'uang', default: 3000000000 },
       { key: 'tbk', label: 'Perseroan Terbuka memenuhi syarat tarif 19%', tipe: 'boolean', default: false, bantu: '≥ 40% saham di BEI, ≥ 300 pihak, masing-masing < 5%, ≥ 183 hari.' },
       { key: 'kredit', label: 'Kredit PPh 22, 23, 24 setahun', tipe: 'uang', default: 50000000, min: 0 },
-      { key: 'pph25', label: 'Angsuran PPh 25 yang telah dibayar setahun', tipe: 'uang', default: 480000000, min: 0 }
+      { key: 'pph25', label: 'Angsuran PPh 25 yang telah dibayar setahun', tipe: 'uang', default: 480000000, min: 0 },
+      { key: 'komp', label: 'Kompensasi kerugian yang sudah dikurangkan dalam PKP', tipe: 'uang', default: 0, min: 0, bantu: 'Isi bila PKP di atas sudah dikurangi kompensasi kerugian. Dipakai hanya untuk menghitung angsuran PPh 25.' },
+      { key: 'sisaRugi', label: 'Sisa kerugian yang masih dapat dikompensasikan tahun berikutnya', tipe: 'uang', default: 0, min: 0, bantu: 'Nol bila kerugian sudah habis dipakai atau sudah lewat 5 tahun.' }
     ],
     hitung: function (v) {
       const dh = ['Pasal 17 ayat (1) huruf b UU PPh (22%)', 'Pasal 31E UU PPh', 'SE-02/PJ/2015'];
       const g = cekWajib(v, [['bruto', 'peredaran bruto'], ['pkp', 'PKP', true]]); if (g) return salah(g, dh);
-      const e = cekOpsional(v, [['kredit', 'kredit pajak'], ['pph25', 'angsuran PPh 25']]); if (e) return salah(e, dh);
+      const e = cekOpsional(v, [['kredit', 'kredit pajak'], ['pph25', 'angsuran PPh 25'], ['komp', 'kompensasi kerugian'], ['sisaRugi', 'sisa kerugian']]); if (e) return salah(e, dh);
       const jejak = [], asumsi = [], peringatan = [];
       const pkp = bulatRibuBawah(v.pkp);
       if (v.pkp <= 0) peringatan.push('PKP nihil/negatif: tidak ada PPh terutang; rugi fiskal dapat dikompensasikan 5 tahun (Ps. 6 ayat (2)).');
@@ -1025,10 +1039,28 @@
       jejak.push(['Kredit PPh 22/23/24', '−' + uang(kredit)]);
       jejak.push(['Angsuran PPh 25', '−' + uang(k25)]);
       jejak.push([kb >= 0 ? 'PPh Ps. 29 kurang bayar' : 'PPh Ps. 28A lebih bayar', uang(Math.abs(kb))]);
-      const ang = Math.max(0, Math.round((pph - kredit) / 12));
-      jejak.push(['PPh 25 tahun berikutnya = (' + uang(pph) + ' − ' + uang(kredit) + ') ÷ 12', uang(ang)]);
+      // v9.4.2: bila ada kompensasi kerugian, dasar angsuran = penghasilan neto (PKP + kompensasi yang dipakai) dikurangi SISA kerugian
+      // yang masih dapat dikompensasikan tahun berikutnya (Pasal 25 ayat (6) huruf a UU PPh), dengan perlakuan tarif yang sama.
+      const komp = nol(v.komp), sisaRugi = nol(v.sisaRugi);
+      const pphAtas = function (x) {
+        if (v.tbk === true) return Math.round(x * 19 / 100);
+        if (v.bruto <= 4800000000) return Math.round(x * 11 / 100);
+        if (v.bruto <= 50000000000) { const f = Math.round(x * (4800000000 / v.bruto)); return Math.round(f * 11 / 100) + Math.round((x - f) * 22 / 100); }
+        return Math.round(x * 22 / 100);
+      };
+      let pphDasar25 = pph;
+      if (komp > 0 || sisaRugi > 0) {
+        const dasar25 = bulatRibuBawah(Math.max(0, pkp + komp - sisaRugi));
+        pphDasar25 = pphAtas(dasar25);
+        jejak.push(['Dasar angsuran PPh 25 = PKP ' + uang(pkp) + ' + kompensasi ' + uang(komp) + ' − sisa kerugian tahun berikutnya ' + uang(sisaRugi), uang(dasar25)]);
+        jejak.push(['PPh atas dasar angsuran (perlakuan tarif sama)', uang(pphDasar25)]);
+        dh.push('Pasal 25 ayat (6) huruf a UU PPh (angsuran bila ada kompensasi kerugian)');
+        asumsi.push('Ada kompensasi kerugian: angsuran PPh 25 dihitung dari penghasilan neto dikurangi sisa kerugian yang masih dapat dikompensasikan tahun berikutnya, bukan dari PPh terutang setelah kompensasi.');
+      }
+      const ang = Math.max(0, Math.round((pphDasar25 - kredit) / 12));
+      jejak.push(['PPh 25 tahun berikutnya = (' + uang(pphDasar25) + ' − ' + uang(kredit) + ') ÷ 12', uang(ang)]);
       asumsi.push('Ps. 31E bersifat wajib (bukan pilihan) bagi WP badan dalam negeri dengan peredaran bruto s.d. Rp50 miliar.');
-      asumsi.push('Angsuran PPh 25 baru berlaku mulai bulan batas waktu SPT; WP tertentu (bank, BUMN, Tbk) memakai ketentuan khusus PMK 215/PMK.03/2018.');
+      asumsi.push('Angsuran PPh 25 baru berlaku mulai bulan batas waktu SPT; WP tertentu (bank, BUMN, Tbk) memakai ketentuan khusus PMK 81/2024 (dahulu PMK 215/PMK.03/2018). Bila PKP sudah dikurangi kompensasi kerugian, isi dua kolom kompensasi di bawah supaya angsurannya tepat.');
       const hasil = [
         baris('PPh Badan terutang', pph, 'uang', true),
         baris('Perlakuan tarif', ket, 'teks'),

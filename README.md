@@ -113,7 +113,8 @@ Rilis ini menjawab empat hal dari tim: banyak anggota tidak langsung tersambung,
 - **Restitusi PPN tiap Masa Pajak** tidak lagi memuat "PKP belum berproduksi": Pasal 9 ayat (4b) huruf f UU PPN dihapus UU 11/2020. PKP yang belum melakukan penyerahan boleh mengkreditkan Pajak Masukan (ayat (2a)), meminta pengembalian pada akhir tahun buku (ayat (4a)), dan wajib membayar kembali bila 3 tahun belum ada penyerahan (ayat (6a)). Dibetulkan di A4, A2, B7, peta formulir, glosarium, dan teks saran kalkulator.
 - A1-042 kini menyebut bengkel dijalankan di rumah tinggal, sehingga bukan Wajib Pajak orang pribadi pengusaha tertentu dan kunci C tetap sah. Sisa rumusan tenggat PKP lama (kasus K-A4-04, A4-077), kode faktur (A4-023), dan beberapa tanggal berlaku diseragamkan.
 - Hal yang menunggu naskah peraturan diberi tanda ◐ dan peringatan yang menyebut dua versi sumbernya, antara lain sanksi atas jasa di luar klasifikasi izin menurut PMK 55/2026 (E-032, E-036) dan pengurangan PBB menurut PMK 129/2023.
-- `test/v942.test.js` mengunci sembilan kunci yang dibetulkan pada putaran 4 sampai 7, supaya suntingan berikutnya tidak mengembalikan jawaban lama tanpa sengaja.
+- **Kalkulator PPh badan dan PPh orang pribadi** menghitung angsuran PPh 25 dengan rumus yang sama. Kalkulator badan mendapat dua isian baru: kompensasi kerugian yang sudah dikurangkan dalam PKP, dan sisa kerugian yang masih dapat dikompensasikan tahun berikutnya. Tanpa kompensasi kerugian hasilnya tidak berubah. Angka kalkulator kini sama dengan jawaban kasus K-B6-01 (Rp28.791.333) dan K-B6-04 (Rp37.426.800).
+- `test/v942.test.js` mengunci sembilan kunci yang dibetulkan pada putaran 4 sampai 7 dan rumus angsuran di kalkulator, supaya suntingan berikutnya tidak mengembalikan jawaban lama tanpa sengaja.
 
 ## Isi saat ini (status 9 November 2026, v7.8)
 
