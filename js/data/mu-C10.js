@@ -32,7 +32,7 @@ UKP.register({
     lembarRingkas: [
       { label: "PPh 26 umum (dividen, bunga, royalti, sewa, jasa, hadiah)", nilai: "20% × bruto, final (kecuali BUT/berubah status)", dasar: "Pasal 26 ayat (1) dan (5) UU PPh", berlakuSejak: "2009-01-01" },
       { label: "PPh 26 penjualan harta tertentu di Indonesia (daftar Pasal 2 ayat (4) PMK 82/PMK.03/2009)/saham nonbursa, termasuk conduit", nilai: "20% × 25% = 5% harga jual, final; saham perseroan dalam negeri nonbursa dipotong pembeli (pembeli WPLN: Perseroan menjadi pemungut)", dasar: "Pasal 26 ayat (2) dan (2a) UU PPh; PMK 82/PMK.03/2009; Pasal 238 sampai 240 PMK 81/2024 (saham perseroan dalam negeri nonbursa, sejak 1 Januari 2025; sebelumnya KMK 434/KMK.04/1999); PMK 258/PMK.03/2008 (saham perusahaan antara/conduit)", berlakuSejak: "2009-01-01" },
-      { label: "PPh 26 premi asuransi ke luar negeri", nilai: "Tertanggung 10% · asuransi 2% · reasuransi 1% dari premi", dasar: "KMK 624/KMK.04/1994", berlakuSejak: "1995-01-01" },
+      { label: "PPh 26 premi asuransi ke luar negeri", nilai: "Tertanggung 10% · asuransi 2% · reasuransi 1% dari premi", dasar: "Pasal 26 ayat (2) UU PPh; PMK 81/2024 Pasal 241 sampai 243 (premi asuransi; menggantikan KMK 624/KMK.04/1994 sejak 1 Januari 2025)", berlakuSejak: "1995-01-01" },
       { label: "Syarat tarif P3B", nilai: "Form DGT (6 bagian) diterima pemotong dalam rangka pemotongan, dicek, dan diunggah melalui portal wajib pajak; beneficial owner; tanpa penyalahgunaan", dasar: "PMK 112/2025", berlakuSejak: "2025-12-31" },
       { label: "SKD lama (PER-25/PJ/2018)", nilai: "Tetap berlaku sampai periodenya berakhir", dasar: "PENG-2/PJ.09/2026", berlakuSejak: "2026-01-09" },
       { label: "Setor PPh 26", nilai: "Tanggal 15 bulan berikutnya", dasar: "PMK 81/2024", berlakuSejak: "2025-01-01" },
@@ -392,7 +392,7 @@ UKP.register({
       ],
       poinKunci: [
         { label: "PPh 26 umum", nilai: "20% × bruto, final", dasar: "Pasal 26 ayat (1) dan (5) UU PPh", berlakuSejak: "2009-01-01" },
-        { label: "Premi asuransi ke LN", nilai: "10% tertanggung · 2% asuransi · 1% reasuransi", dasar: "KMK 624/KMK.04/1994" },
+        { label: "Premi asuransi ke LN", nilai: "10% tertanggung · 2% asuransi · 1% reasuransi", dasar: "Pasal 26 ayat (2) UU PPh; PMK 81/2024 Pasal 241 sampai 243 (premi asuransi; menggantikan KMK 624/KMK.04/1994 sejak 1 Januari 2025)" },
         { label: "Penjualan harta tertentu/saham", nilai: "20% × 25% = 5% harga jual, final (harta: daftar Pasal 2 ayat (4) PMK 82/PMK.03/2009; saham perseroan dalam negeri nonbursa: dipotong pembeli, atau dipungut Perseroan bila pembeli WPLN)", dasar: "Pasal 26 ayat (2) dan (2a) UU PPh; PMK 82/PMK.03/2009; Pasal 238 sampai 240 PMK 81/2024 (saham perseroan dalam negeri nonbursa, sejak 1 Januari 2025; sebelumnya KMK 434/KMK.04/1999); PMK 258/PMK.03/2008 (saham perusahaan antara/conduit)", berlakuSejak: "2009-01-01" },
         { label: "Setor dan lapor", nilai: "Setor tanggal 15; SPT Masa 20 hari; BPNR", dasar: "PMK 81/2024; PER-11/PJ/2025", berlakuSejak: "2025-01-01" },
         { label: "Tanpa SKD sah", nilai: "20%; kelebihan di atas tarif P3B diminta kembali oleh pemotong dengan surat kuasa WPLN (WPLN sendiri bila pemotong tidak dapat ditemukan atau tidak dapat membetulkan SPT)", dasar: "PMK 112/2025 Pasal 10 ayat (4) dan Pasal 15; PMK 81/2024 Pasal 133 dan Pasal 134", berlakuSejak: "2025-12-31" }
@@ -1876,20 +1876,23 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "C10-056", topik: "C10.9", tingkat: ["C"], jenis: "hitung", kesulitan: 2,
+      id: "C10-056",
+      topik: "C10.9",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 2,
       stem: "Pada Juni 2026 terdapat tiga pembayaran premi kepada perusahaan asuransi/reasuransi luar negeri yang tidak menyerahkan SKD: (i) PT Kilang Energi (tertanggung) membayar premi asuransi langsung kepada Atlas Insurance Ltd. Rp400.000.000; (ii) PT Asuransi Pelita (perusahaan asuransi dalam negeri) membayar premi kepada perusahaan asuransi luar negeri Rp1.000.000.000; (iii) PT Reasuransi Nusa (perusahaan reasuransi dalam negeri) membayar premi kepada perusahaan reasuransi luar negeri Rp2.000.000.000. PPh Pasal 26 yang dipotong masing-masing pembayar (i), (ii), dan (iii) adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp80.000.000; Rp200.000.000; Rp400.000.000",
-        B: "Rp40.000.000; Rp100.000.000; Rp200.000.000",
-        C: "Rp40.000.000; Rp20.000.000; Rp20.000.000",
-        D: "Rp4.000.000; Rp20.000.000; Rp200.000.000"
-      },
+      opsi: { A: "Rp80.000.000; Rp200.000.000; Rp400.000.000", B: "Rp40.000.000; Rp100.000.000; Rp200.000.000", C: "Rp40.000.000; Rp20.000.000; Rp20.000.000", D: "Rp4.000.000; Rp20.000.000; Rp200.000.000" },
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
         inti: "Perkiraan neto premi: 50% (tertanggung), 10% (perusahaan asuransi), 5% (reasuransi). PPh 26 efektif 10%, 2%, 1%: Rp40.000.000; Rp20.000.000; Rp20.000.000.",
-        jejakHitung: [["(i) 20% × 50% × Rp400.000.000", "Rp40.000.000"], ["(ii) 20% × 10% × Rp1.000.000.000", "Rp20.000.000"], ["(iii) 20% × 5% × Rp2.000.000.000", "Rp20.000.000"]],
+        jejakHitung: [
+          ["(i) 20% × 50% × Rp400.000.000", "Rp40.000.000"],
+          ["(ii) 20% × 10% × Rp1.000.000.000", "Rp20.000.000"],
+          ["(iii) 20% × 5% × Rp2.000.000.000", "Rp20.000.000"]
+        ],
         mengapaSalah: {
           A: "20% dari premi bruto tanpa perkiraan neto.",
           B: "Memakai 10% efektif untuk semua pembayar.",
@@ -1897,8 +1900,9 @@ UKP.register({
         },
         jebakan: "Tarif efektif ditentukan oleh siapa pembayarnya."
       },
-      dasarHukum: [{ pasal: "Pasal 26 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "KMK 624/KMK.04/1994" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 26 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 241 dan Pasal 242 (perkiraan penghasilan neto premi asuransi dan reasuransi; menggantikan KMK 624/KMK.04/1994)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "C10-057", topik: "C10.9", tingkat: ["C"], jenis: "kasus", kesulitan: 2,
@@ -1997,15 +2001,14 @@ UKP.register({
       anggaranDetik: 160, verifikasi: "✅"
     },
     {
-      id: "C10-061", topik: "C10.9", tingkat: ["C"], jenis: "klasifikasi", kesulitan: 2,
+      id: "C10-061",
+      topik: "C10.9",
+      tingkat: ["C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
       stem: "Admin pajak PT Bahtera Energi Samudra menyusun daftar pembayaran ke luar negeri Masa Juli 2026 sebelum membuat bukti potong di Coretax. Seluruh penerima tidak memiliki BUT di Indonesia dan belum ada Form DGT yang terekam. Tanpa memperhatikan P3B, pembayaran berikut yang BUKAN objek pemotongan PPh Pasal 26 menurut UU PPh adalah ...",
       kataKualifikasi: ["bukan"],
-      opsi: {
-        A: "Harga suku cadang turbin yang dibeli dari pemasok di Tiongkok dan dikirim dari Shanghai, yang atas impornya telah dipungut PPh Pasal 22 impor",
-        B: "Sewa crane milik perusahaan Malaysia yang dipakai di proyek PT Bahtera di Kalimantan Timur",
-        C: "Premi asuransi rangka kapal yang dibayar PT Bahtera sebagai tertanggung langsung kepada perusahaan asuransi di Inggris",
-        D: "Imbalan jaminan (guarantee fee) kepada induk di Singapura atas pinjaman bank yang diterima PT Bahtera"
-      },
+      opsi: { A: "Harga suku cadang turbin yang dibeli dari pemasok di Tiongkok dan dikirim dari Shanghai, yang atas impornya telah dipungut PPh Pasal 22 impor", B: "Sewa crane milik perusahaan Malaysia yang dipakai di proyek PT Bahtera di Kalimantan Timur", C: "Premi asuransi rangka kapal yang dibayar PT Bahtera sebagai tertanggung langsung kepada perusahaan asuransi di Inggris", D: "Imbalan jaminan (guarantee fee) kepada induk di Singapura atas pinjaman bank yang diterima PT Bahtera" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
@@ -2018,8 +2021,9 @@ UKP.register({
         },
         jebakan: "Tidak semua pembayaran ke luar negeri dipotong PPh 26; pembelian barang adalah jebakan yang dilaporkan peserta ujian."
       },
-      dasarHukum: [{ pasal: "Pasal 26 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "KMK 624/KMK.04/1994 (premi asuransi ke luar negeri)" }, { pasal: "Pasal 22 UU PPh (PPh 22 impor)" }],
-      anggaranDetik: 90, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 241 ayat (2) huruf a dan Pasal 242 huruf a (premi asuransi ke luar negeri; sebelumnya KMK 624/KMK.04/1994)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 22 UU PPh (PPh 22 impor)" }],
+      anggaranDetik: 90,
+      verifikasi: "✅"
     },
     {
       id: "C10-062", topik: "C10.1", tingkat: ["C"], jenis: "klasifikasi", kesulitan: 2, kasusId: "V-C10-06",
@@ -4587,7 +4591,7 @@ UKP.register({
     { id: "KT-C10-34", topik: "C10.8", tipe: "angka", depan: "Ambang laporan domestik rekening orang pribadi di Lembaga Simpanan?", belakang: "Agregat semua rekening di lembaga yang sama per 31 Desember ≥ Rp1 miliar", dasar: "PMK 108/2025 Pasal 35 ayat (8) huruf a angka 1", berlakuSejak: "2026-01-01", menggantikan: "Rp200 juta (versi awal PMK 70/PMK.03/2017; dinaikkan menjadi Rp1 miliar oleh PMK 73/PMK.03/2017)", dekTambahan: [] },
     { id: "KT-C10-35", topik: "C10.8", tipe: "pasal", depan: "Sanksi pimpinan/pegawai LK yang tidak menyampaikan laporan?", belakang: "Kurungan ≤ 1 tahun atau denda ≤ Rp1 miliar", dasar: "UU 9/2017 Pasal 7", berlakuSejak: "2017-05-08", menggantikan: null, dekTambahan: [] },
     { id: "KT-C10-36", topik: "C10.9", tipe: "angka", depan: "Tarif umum PPh 26 dan sifatnya?", belakang: "20% × bruto, final (kecuali BUT); dapat diturunkan P3B", dasar: "Pasal 26 ayat (1) dan (5) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-C10-37", topik: "C10.9", tipe: "angka", depan: "PPh 26 efektif atas premi asuransi ke LN?", belakang: "Tertanggung 10%; asuransi 2%; reasuransi 1% dari premi", dasar: "KMK 624/KMK.04/1994", menggantikan: null, dekTambahan: [] },
+    { id: "KT-C10-37", topik: "C10.9", tipe: "angka", depan: "PPh 26 efektif atas premi asuransi ke LN?", belakang: "Tertanggung 10%; asuransi 2%; reasuransi 1% dari premi", dasar: "Pasal 26 ayat (2) UU PPh; PMK 81/2024 Pasal 241 (sebelumnya KMK 624/KMK.04/1994)", menggantikan: null, dekTambahan: [] },
     { id: "KT-C10-38", topik: "C10.9", tipe: "prosedur", depan: "Setor, lapor, dan bukti potong PPh 26 badan LN?", belakang: "Setor tanggal 15; SPT Masa Unifikasi 20 hari; BPNR", dasar: "PMK 81/2024; PER-11/PJ/2025", berlakuSejak: "2025-01-01", menggantikan: "setor tanggal 10 (PMK 242/PMK.03/2014)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-C10-39", topik: "C10.9", tipe: "prosedur", depan: "WPLN dipotong 20% padahal berhak P3B?", belakang: "Pemotong mengajukan permohonan pengembalian pajak yang seharusnya tidak terutang dengan surat kuasa WPLN; WPLN sendiri hanya bila pemotong tidak dapat ditemukan atau tidak dapat membetulkan SPT", dasar: "PMK 81/2024 Pasal 133 dan Pasal 134 (menggantikan PMK 187/PMK.03/2015)", menggantikan: null, dekTambahan: [] },
     { id: "KT-C10-40", topik: "C10.9", tipe: "angka", depan: "Rumus gross-up PPh 26 yang ditanggung pembayar?", belakang: "Bruto = neto ÷ (1 − tarif); PPh = tarif × bruto", dasar: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },

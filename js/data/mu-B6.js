@@ -2957,12 +2957,7 @@ UKP.register({
       laporanUjian: ["B-2026-10"],
       stem: "Pada Oktober 2026 kantor konsultan menerima empat permintaan penegasan status subjek pajak untuk Tahun Pajak 2026. Di antara pihak-pihak berikut, yang merupakan subjek pajak badan dalam negeri adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Yayasan sosial yang didirikan di Indonesia, seluruh dananya berasal dari sumbangan masyarakat, dan tidak menjalankan usaha",
-        B: "Unit pelaksana teknis dinas kesehatan kabupaten yang dibentuk dengan peraturan bupati, dibiayai APBD, seluruh penerimaannya masuk APBD, dan pembukuannya diperiksa inspektorat",
-        C: "Kantor perwakilan organisasi internasional yang ditetapkan Menteri Keuangan, Indonesia menjadi anggotanya, dan tidak menjalankan usaha di Indonesia",
-        D: "Kantor konsulat jenderal negara sahabat di Surabaya"
-      },
+      opsi: { A: "Yayasan sosial yang didirikan di Indonesia, seluruh dananya berasal dari sumbangan masyarakat, dan tidak menjalankan usaha", B: "Unit pelaksana teknis dinas kesehatan kabupaten yang dibentuk dengan peraturan bupati, dibiayai APBD, seluruh penerimaannya masuk APBD, dan pembukuannya diperiksa inspektorat", C: "Kantor perwakilan organisasi internasional yang ditetapkan Menteri Keuangan, Indonesia menjadi anggotanya, dan tidak menjalankan usaha di Indonesia", D: "Kantor konsulat jenderal negara sahabat di Surabaya" },
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
@@ -2970,20 +2965,17 @@ UKP.register({
         jejakHitung: [
           ["Yayasan sosial", "badan → subjek pajak badan dalam negeri"],
           ["UPT dinas yang memenuhi empat kriteria", "dikecualikan (Pasal 2 ayat (3) huruf b)"],
-          ["Organisasi internasional yang ditetapkan", "bukan subjek (Pasal 3 ayat (1) huruf c)"],
+          ["Organisasi internasional yang ditetapkan", "bukan subjek (Pasal 3 ayat (1) huruf c; penetapan dengan Keputusan Menteri Keuangan menurut Pasal 3 ayat (2))"],
           ["Konsulat negara asing", "bukan subjek (Pasal 3 ayat (1) huruf a)"]
         ],
         mengapaSalah: {
           B: "Unit pemerintah yang memenuhi empat kriteria kumulatif dikecualikan dari subjek pajak badan.",
-          C: "Organisasi internasional yang ditetapkan Menteri Keuangan dan memenuhi syarat Pasal 3 bukan subjek pajak.",
+          C: "Organisasi internasional yang memenuhi syarat Pasal 3 ayat (1) huruf c UU PPh (Indonesia menjadi anggota dan tidak menjalankan usaha untuk memperoleh penghasilan dari Indonesia) dan ditetapkan dengan Keputusan Menteri Keuangan (Pasal 3 ayat (2)) bukan subjek pajak.",
           D: "Kantor perwakilan negara asing, termasuk konsulat, bukan subjek pajak."
         },
         jebakan: "Jangan mencampur status subjek dengan objek: yayasan yang hanya menerima sumbangan tetap subjek pajak, walaupun sumbangannya dapat bukan objek."
       },
-      dasarHukum: [
-        { pasal: "Pasal 1 angka 3 UU KUP", berlakuSejak: "2008-01-01" },
-        { pasal: "Pasal 2 ayat (1) huruf b dan ayat (3) huruf b, Pasal 3 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 1 angka 3 UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 2 ayat (1) huruf b dan ayat (3) huruf b, Pasal 3 ayat (1) dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 80,
       verifikasi: "✅"
     },
@@ -3377,7 +3369,7 @@ UKP.register({
         },
         jebakan: "Pengecualian Rp2.000.000 pada PPh 22 bendahara dan PPh 22 BBM di SPBU adalah materi Pot/Put yang disisipkan; keduanya tidak menambah kredit pajak pembeli."
       },
-      dasarHukum: [{ pasal: "Pasal 22 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 (ketentuan PPh Pasal 22 untuk Januari–Juli 2025) dan PMK 51/2025 (sejak 1 Agustus 2025); PMK 34/PMK.010/2017 s.t.d.t.d. PMK 41/PMK.010/2022 dicabut PMK 81/2024 per 1 Januari 2025" }, { pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 22 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 217 sampai Pasal 225 (ketentuan PPh Pasal 22 untuk Januari sampai Juli 2025); PMK 81/2024 mencabut PMK 34/PMK.010/2017 s.t.d.t.d. PMK 41/PMK.010/2022 per 1 Januari 2025", berlakuSejak: "2025-01-01" }, { pasal: "PMK 51/2025 (ketentuan PPh Pasal 22 sejak 1 Agustus 2025)", berlakuSejak: "2025-08-01" }, { pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -3661,7 +3653,7 @@ UKP.register({
         },
         jebakan: "Sifat PPh 22 BBM bergantung pada posisi pembeli: final bagi penyalur/agen, kredit bagi pemakai. Penghasilan final tetap dihitung dalam peredaran bruto Pasal 31E."
       },
-      dasarHukum: [{ pasal: "Pasal 22 ayat (1) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 51/2025 Pasal 10 ayat (2) (PPh 22 BBM final bagi penyalur/agen; berlaku 1 Agustus 2025) dan, untuk Januari–Juli 2025, ketentuan PPh Pasal 22 dalam PMK 81/2024; PMK 34/PMK.010/2017 s.t.d.t.d. PMK 41/PMK.010/2022 dicabut PMK 81/2024 per 1 Januari 2025" }, { pasal: "Pasal 31E UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" }, { pasal: "Pasal 28 dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 22 ayat (1) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 225 ayat (2) (PPh Pasal 22 BBM final bagi penyalur/agen, Januari sampai Juli 2025); PMK 81/2024 mencabut PMK 34/PMK.010/2017 s.t.d.t.d. PMK 41/PMK.010/2022 per 1 Januari 2025", berlakuSejak: "2025-01-01" }, { pasal: "PMK 51/2025 Pasal 10 ayat (2) (PPh Pasal 22 BBM final bagi penyalur/agen, sejak 1 Agustus 2025)", berlakuSejak: "2025-08-01" }, { pasal: "Pasal 31E UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" }, { pasal: "Pasal 28 dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -9464,6 +9456,41 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "B6-125",
       sejak: "9.5.0"
+    },
+    {
+      id: "B6-283",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      kutipan: "Pasal 11 ayat (1) UU KUP: \"Atas permohonan Wajib Pajak, kelebihan pembayaran pajak sebagaimana dimaksud dalam Pasal 17, Pasal 17B, Pasal 17C, atau Pasal 17D dikembalikan dengan ketentuan bahwa apabila ternyata Wajib Pajak mempunyai utang pajak, langsung diperhitungkan untuk melunasi terlebih dahulu utang pajak tersebut.\" Penjelasan Pasal 11 ayat (1): \"Dalam hal Wajib Pajak masih mempunyai utang pajak yang meliputi semua jenis pajak baik di pusat maupun cabang-cabangnya, kelebihan pembayaran tersebut harus diperhitungkan terlebih dahulu dengan utang pajak tersebut dan jika masih terdapat sisa lebih, dikembalikan kepada Wajib Pajak.\" Penjelasan Pasal 11 ayat (2): batas waktu pengembalian paling lama 1 (satu) bulan, antara lain \"b. untuk Surat Ketetapan Pajak Lebih Bayar sebagaimana dimaksud dalam Pasal 17 ayat (2) dan Pasal 17B, dihitung sejak tanggal penerbitan;\"",
+      stem: "PT Sinar Lestari Pangan, produsen makanan ringan dengan satu kantor cabang di Makassar, menyampaikan SPT Tahunan PPh Badan Tahun Pajak 2025 lebih bayar dengan permohonan pengembalian pada 28 April 2026. Setelah pemeriksaan, DJP menerbitkan SKPLB sebesar Rp356.000.000 pada 14 September 2026. Pada tanggal itu perusahaan masih mempunyai STP bunga PPh Pasal 21 Rp8.200.000 atas kegiatan kantor pusat dan SKPKB PPh Pasal 23 Masa Mei 2024 Rp45.000.000 atas kegiatan cabang Makassar; keduanya telah jatuh tempo, belum dilunasi, dan tidak diajukan keberatan atau permohonan apa pun. Berdasarkan kutipan tersebut, pernyataan yang paling tepat adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Rp302.800.000 dikembalikan setelah diperhitungkan dengan STP dan SKPKB cabang, paling lama 1 bulan sejak SKPLB diterbitkan", B: "Rp347.800.000 dikembalikan setelah diperhitungkan dengan STP kantor pusat saja, paling lama 1 bulan sejak SKPLB diterbitkan", C: "Rp356.000.000 dikembalikan seluruhnya, sedangkan STP dan SKPKB cabang ditagih terpisah melalui tindakan penagihan pajak", D: "Rp302.800.000 dikembalikan setelah diperhitungkan dengan STP dan SKPKB cabang, paling lama 12 bulan sejak SKPLB diterbitkan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Kelebihan pembayaran lebih dahulu diperhitungkan dengan utang pajak Wajib Pajak, yang menurut Penjelasan Pasal 11 ayat (1) UU KUP meliputi semua jenis pajak di pusat maupun cabang-cabangnya. Jadi STP Rp8.200.000 dan SKPKB cabang Rp45.000.000 sama-sama dipotong, sisanya Rp302.800.000 dikembalikan. SKPLB ini terbit setelah pemeriksaan atas permohonan restitusi (Pasal 17B), sehingga jangka 1 bulan dihitung sejak tanggal penerbitan SKPLB (Penjelasan Pasal 11 ayat (2) huruf b), yaitu sampai 13 Oktober 2026 menurut cara hitung bulan yang dipakai aplikasi. Bila terlambat, Wajib Pajak berhak atas imbalan bunga (Pasal 11 ayat (3)).",
+        jejakHitung: [
+          ["SKPLB PPh Badan 2025", "Rp356.000.000"],
+          ["Utang pajak kantor pusat (STP PPh Pasal 21)", "Rp8.200.000"],
+          ["Utang pajak cabang (SKPKB PPh Pasal 23)", "Rp45.000.000"],
+          ["Dikembalikan = 356.000.000 − 8.200.000 − 45.000.000", "Rp302.800.000"],
+          ["Jenis SKPLB", "Pasal 17B (pemeriksaan atas permohonan restitusi)"],
+          ["Jangka pengembalian", "1 bulan sejak 14 September 2026, hari terakhir 13 Oktober 2026"]
+        ],
+        mengapaSalah: {
+          B: "Utang pajak yang diperhitungkan meliputi semua jenis pajak di pusat maupun cabang-cabangnya (Penjelasan Pasal 11 ayat (1)); SKPKB cabang tidak boleh dikecualikan.",
+          C: "Pasal 11 ayat (1) mewajibkan kelebihan pembayaran langsung diperhitungkan untuk melunasi utang pajak lebih dahulu; yang dikembalikan hanya sisanya.",
+          D: "Dua belas bulan adalah jangka penerbitan SKP atas permohonan restitusi (Pasal 17B ayat (1)); setelah SKPLB terbit, pengembalian paling lama 1 bulan sejak tanggal penerbitan."
+        },
+        jebakan: "Utang pajak yang dikompensasikan bukan hanya utang kantor pusat: utang cabang ikut diperhitungkan. Bedakan juga jangka penerbitan SKP (12 bulan sejak permohonan lengkap) dari jangka pengembalian uang (1 bulan sejak SKPLB Pasal 17B diterbitkan)."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1)–(3) beserta Penjelasan ayat (1) dan ayat (2) huruf b dan Pasal 17B UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 28A UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 110,
+      verifikasi: "✅",
+      kembaranDari: "B6-094",
+      sejak: "9.5.1"
     }
   ],
   kartu: [

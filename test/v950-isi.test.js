@@ -1,7 +1,7 @@
 /* Uji v9.5.0 (isi): cakupan materi dari salinan PDF yang lebih bersih, peta soal ke butir materi resmi, dan soal baru
    (soal pengganti untuk soal yang sudah dipakai dan soal untuk butir yang tipis). Jalankan: node --test test/ */
 'use strict';
-const BATAS_TIPIS = 5; const BATAS_KOSONG = 0; const JUMLAH_BARU = 970; // dihitung saat rilis: butir Tingkat B dengan kurang dari 4 soal, butir tanpa soal, dan soal baru (field sejak)
+const BATAS_TIPIS = 0; const BATAS_KOSONG = 0; const JUMLAH_BARU = 1027; // dihitung saat rilis: butir Tingkat B dengan kurang dari 4 soal, butir tanpa soal, dan soal baru (field sejak)
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');

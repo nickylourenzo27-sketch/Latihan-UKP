@@ -1382,25 +1382,34 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-055", topik: "A5.4", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3,
-      kutipan: "PMK 81/2024 Pasal 94 dan ketentuan hari libur dalam PMK yang sama (parafrase): pajak yang dipotong atau dipungut, termasuk bea meterai yang dipungut pemungut, disetor paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir; dalam hal tanggal jatuh tempo bertepatan dengan hari libur (Sabtu, Minggu, hari libur nasional, atau cuti bersama), penyetoran atau pelaporan dapat dilakukan pada hari kerja berikutnya. PMK 78/2024 (parafrase): pemungut menyampaikan SPT Masa Bea Meterai paling lambat tanggal 15 bulan berikutnya.",
+      id: "A5-055",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      kutipan: "PMK 78/2024 Pasal 63 ayat (1), Pasal 64 ayat (1), dan Pasal 65 (parafrase): bea meterai yang dipungut untuk setiap Masa Pajak wajib disetor, dan SPT Masa Bea Meterai wajib disampaikan, paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir; dalam hal batas akhir penyetoran dan pelaporan itu merupakan hari libur (hari Sabtu, hari Minggu, hari libur nasional, hari yang diliburkan untuk Pemilihan Umum, atau cuti bersama secara nasional), penyetoran dan pelaporan dapat dilakukan paling lama pada hari kerja berikutnya. PMK 81/2024 memuat tenggat yang sama (Pasal 94 ayat (2) huruf k dan Pasal 100 untuk setor; Pasal 171 ayat (18) dan Pasal 173 untuk lapor).",
       stem: "PT Loket Bayar Prima, penyelenggara pembayaran digital yang telah ditetapkan Kepala KPP sebagai pemungut bea meterai, memungut bea meterai Masa Juli 2026 atas 2.740 tanda terima pembayaran digital bernilai lebih dari Rp5.000.000; pada masa yang sama platform juga memfasilitasi 8.115 tanda terima bernilai Rp5.000.000 ke bawah. Pada kalender kantor, 15 Agustus 2026 jatuh pada hari Sabtu, 16 Agustus hari Minggu, 17 Agustus 2026 libur nasional Hari Kemerdekaan, dan 18 Agustus 2026 hari kerja biasa. Berdasarkan kutipan tersebut, jumlah setoran melalui kode billing Coretax serta batas paling lambat penyetoran dan penyampaian SPT Masa Bea Meterai yang tidak menimbulkan sanksi adalah ...",
       kataKualifikasi: ["paling lambat"],
-      opsi: {
-        A: "Setor Rp27.400.000 dan lapor paling lambat Jumat, 14 Agustus 2026, karena tenggat yang jatuh pada hari libur dimajukan ke hari kerja sebelumnya",
-        B: "Setor Rp27.400.000 dan lapor paling lambat Senin, 17 Agustus 2026, yaitu hari pertama setelah akhir pekan",
-        C: "Setor Rp27.400.000 paling lambat 10 Agustus 2026 dan lapor paling lambat 20 Agustus 2026",
-        D: "Setor Rp27.400.000 dan lapor paling lambat Selasa, 18 Agustus 2026"
-      },
+      opsi: { A: "Setor Rp27.400.000 dan lapor paling lambat Jumat, 14 Agustus 2026, karena tenggat yang jatuh pada hari libur dimajukan ke hari kerja sebelumnya", B: "Setor Rp27.400.000 dan lapor paling lambat Senin, 17 Agustus 2026, yaitu hari pertama setelah akhir pekan", C: "Setor Rp27.400.000 paling lambat 10 Agustus 2026 dan lapor paling lambat 20 Agustus 2026", D: "Setor Rp27.400.000 dan lapor paling lambat Selasa, 18 Agustus 2026" },
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "angka-usang" },
       pembahasan: {
-        inti: "Bea meterai yang dipungut 2.740 × Rp10.000 = Rp27.400.000 (tanda terima ≤ Rp5 juta bukan objek). Tenggat setor dan lapor pemungut adalah tanggal 15 bulan berikutnya; karena 15–17 Agustus 2026 berturut-turut Sabtu, Minggu, dan libur nasional, keduanya bergeser ke hari kerja berikutnya, Selasa 18 Agustus 2026.",
-        jejakHitung: [ ["Dokumen objek pemungutan", "2.740 (8.115 tanda terima ≤ Rp5 juta tidak terutang)"], ["2.740 × Rp10.000", "Rp27.400.000"], ["Tenggat normal Masa Juli 2026", "15 Agustus 2026 (Sabtu)"], ["16 Agustus (Minggu) dan 17 Agustus (libur nasional)", "bukan hari kerja"], ["Tenggat setor dan lapor", "Selasa, 18 Agustus 2026"] ],
-        mengapaSalah: { A: "Tenggat yang jatuh pada hari libur bergeser ke hari kerja berikutnya, bukan dimajukan ke hari kerja sebelumnya", B: "17 Agustus 2026 adalah libur nasional sehingga bukan hari kerja; hari kerja berikutnya 18 Agustus 2026", C: "Setor tanggal 10 dan lapor tanggal 20 adalah ketentuan PMK 151/2021 yang sudah dicabut PMK 78/2024" },
+        inti: "Bea meterai yang dipungut 2.740 × Rp10.000 = Rp27.400.000 (tanda terima ≤ Rp5 juta bukan objek). Tenggat setor (Pasal 63 ayat (1) PMK 78/2024) dan lapor (Pasal 64 ayat (1)) pemungut sama-sama tanggal 15 bulan berikutnya. Menurut Pasal 65, bila batas akhir itu hari libur (Sabtu, Minggu, libur nasional, hari libur Pemilu, atau cuti bersama nasional), setor dan lapor dapat dilakukan paling lama pada hari kerja berikutnya. Karena 15 sampai 17 Agustus 2026 berturut-turut Sabtu, Minggu, dan libur nasional, keduanya bergeser ke Selasa, 18 Agustus 2026. PMK 81/2024 memuat tenggat yang sama (Pasal 94 ayat (2) huruf k dan Pasal 100; Pasal 171 ayat (18) dan Pasal 173).",
+        jejakHitung: [
+          ["Dokumen objek pemungutan", "2.740 (8.115 tanda terima ≤ Rp5 juta tidak terutang)"],
+          ["2.740 × Rp10.000", "Rp27.400.000"],
+          ["Tenggat normal Masa Juli 2026 (Pasal 63 ayat (1) dan Pasal 64 ayat (1) PMK 78/2024)", "15 Agustus 2026 (Sabtu)"],
+          ["16 Agustus (Minggu) dan 17 Agustus (libur nasional)", "hari libur menurut Pasal 65 ayat (2)"],
+          ["Tenggat setor dan lapor (Pasal 65 ayat (1))", "Selasa, 18 Agustus 2026"]
+        ],
+        mengapaSalah: {
+          A: "Pasal 65 ayat (1) PMK 78/2024 menggeser tenggat yang jatuh pada hari libur ke hari kerja berikutnya, bukan memajukannya ke hari kerja sebelumnya",
+          B: "17 Agustus 2026 adalah libur nasional sehingga termasuk hari libur (Pasal 65 ayat (2)); hari kerja berikutnya 18 Agustus 2026",
+          C: "Setor tanggal 10 dan lapor tanggal 20 adalah ketentuan PMK 151/2021 yang sudah dicabut PMK 78/2024"
+        },
         jebakan: "Pergeseran tenggat harus melewati semua hari libur berturut-turut, termasuk libur nasional yang menempel pada akhir pekan; jumlah tanda terima ≤ Rp5 juta hanya pengalih."
       },
-      dasarHukum: [ { pasal: "PMK 81/2024 Pasal 94 (jatuh tempo tanggal 15) dan ketentuan hari libur", berlakuSejak: "2025-01-01" }, { pasal: "PMK 78/2024 (setor dan lapor pemungut tanggal 15)", berlakuSejak: "2024-11-01" }, { pasal: "Pasal 3 ayat (2) huruf g dan Pasal 5 UU 10/2020", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 63 ayat (1), Pasal 64 ayat (1), dan Pasal 65 PMK 78/2024 (tenggat setor dan lapor pemungut; hari libur)", berlakuSejak: "2024-11-01" }, { pasal: "Pasal 94 ayat (2) huruf k dan Pasal 100 PMK 81/2024 (setor); Pasal 171 ayat (18) dan Pasal 173 PMK 81/2024 (lapor)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 3 ayat (2) huruf g dan Pasal 5 UU 10/2020", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -1967,18 +1976,18 @@ UKP.register({
       jenis: "prosedur",
       kesulitan: 2,
       kasusId: "V-A5-07",
-      kutipan: "PMK 81/2024 Pasal 94 dan ketentuan hari libur (parafrase): pajak yang dipotong atau dipungut, termasuk bea meterai yang dipungut pemungut, disetor paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir; bila jatuh tempo bertepatan dengan hari libur, penyetoran atau pelaporan dapat dilakukan pada hari kerja berikutnya. PMK 78/2024 (parafrase): pemungut menyampaikan SPT Masa Bea Meterai paling lambat tanggal 15 bulan berikutnya.",
+      kutipan: "PMK 78/2024 Pasal 63 ayat (1), Pasal 64 ayat (1), dan Pasal 65 (parafrase): bea meterai yang dipungut untuk setiap Masa Pajak wajib disetor, dan SPT Masa Bea Meterai wajib disampaikan, paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir; dalam hal batas akhir penyetoran dan pelaporan itu merupakan hari libur (hari Sabtu, hari Minggu, hari libur nasional, hari yang diliburkan untuk Pemilihan Umum, atau cuti bersama secara nasional), penyetoran dan pelaporan dapat dilakukan paling lama pada hari kerja berikutnya. PMK 81/2024 memuat tenggat yang sama (Pasal 94 ayat (2) huruf k dan Pasal 100 untuk setor; Pasal 171 ayat (18) dan Pasal 173 untuk lapor).",
       stem: "Lanjutan data PT Kasir Awan Indonesia. Tim pajak menyusun prosedur pelunasan dan pelaporan bea meterai Masa Oktober 2026 sebesar Rp185.000.000 melalui Coretax. Tanggal 15 November 2026 jatuh pada hari Minggu dan 16 November 2026 hari kerja. Berdasarkan kutipan tersebut, prosedur yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "Membuat kode billing bea meterai Rp185.000.000 di Coretax dan membayarnya hingga memperoleh NTPN paling lambat Senin, 16 November 2026, lalu menyampaikan SPT Masa Bea Meterai yang ditandatangani secara elektronik paling lambat Jumat, 20 November 2026", B: "Membuat kode billing bea meterai Rp185.000.000 di Coretax dan membayarnya hingga memperoleh NTPN, lalu menyampaikan SPT Masa Bea Meterai yang ditandatangani secara elektronik hingga memperoleh bukti penerimaan elektronik, keduanya paling lambat Jumat, 13 November 2026, karena tenggat pada hari libur dimajukan", C: "Membuat kode billing bea meterai Rp185.000.000 di Coretax dan membayarnya hingga memperoleh NTPN, lalu menyampaikan SPT Masa Bea Meterai yang ditandatangani secara elektronik hingga memperoleh bukti penerimaan elektronik, keduanya paling lambat Senin, 30 November 2026, mengikuti tenggat akhir bulan", D: "Membuat kode billing bea meterai Rp185.000.000 di Coretax dan membayarnya hingga memperoleh NTPN, lalu menyampaikan SPT Masa Bea Meterai yang ditandatangani secara elektronik hingga memperoleh bukti penerimaan elektronik, keduanya paling lambat Senin, 16 November 2026" },
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Setor dan lapor pemungut sama-sama paling lambat tanggal 15 bulan berikutnya; karena 15 November 2026 hari Minggu, keduanya bergeser ke Senin, 16 November 2026. Bukti setor adalah NTPN dan bukti lapor adalah bukti penerimaan elektronik dari Coretax.",
+        inti: "Setor (Pasal 63 ayat (1) PMK 78/2024) dan lapor (Pasal 64 ayat (1)) pemungut sama-sama paling lambat tanggal 15 bulan berikutnya; karena 15 November 2026 hari Minggu, keduanya bergeser ke Senin, 16 November 2026 (Pasal 65 PMK 78/2024; padanannya Pasal 100 dan Pasal 173 PMK 81/2024). Bukti setor adalah NTPN dan bukti lapor adalah bukti penerimaan elektronik dari Coretax.",
         jejakHitung: [
           ["Dokumen objek 18.500 × Rp10.000", "Rp185.000.000"],
           ["Tenggat setor dan lapor: 15 November 2026", "hari Minggu"],
-          ["Bergeser ke hari kerja berikutnya", "Senin, 16 November 2026"]
+          ["Bergeser ke hari kerja berikutnya (Pasal 65 PMK 78/2024)", "Senin, 16 November 2026"]
         ],
         mengapaSalah: {
           A: "Tenggat lapor tanggal 20 adalah ketentuan lama PMK 151/2021; kini setor dan lapor sama-sama tanggal 15",
@@ -1987,7 +1996,7 @@ UKP.register({
         },
         jebakan: "Tenggat bea meterai pemungut tidak sama dengan SPT Masa PPh (tanggal 20) maupun SPT Masa PPN (akhir bulan)."
       },
-      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 94 (jatuh tempo tanggal 15; hari libur)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 78/2024 (setor dan lapor pemungut tanggal 15)", berlakuSejak: "2024-11-01" }, { pasal: "PER-11/PJ/2025 (SPT Masa Bea Meterai di Coretax)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 63 ayat (1), Pasal 64 ayat (1), dan Pasal 65 PMK 78/2024 (tenggat setor dan lapor pemungut; hari libur)", berlakuSejak: "2024-11-01" }, { pasal: "Pasal 94 ayat (2) huruf k dan Pasal 100 PMK 81/2024 (setor); Pasal 171 ayat (18) dan Pasal 173 PMK 81/2024 (lapor)", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 (SPT Masa Bea Meterai di Coretax)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },

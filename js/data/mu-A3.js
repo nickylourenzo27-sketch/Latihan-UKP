@@ -1360,7 +1360,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A3-044", topik: "A3.6", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 3,
+      id: "A3-044",
+      topik: "A3.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 3,
       stem: "PT Anak Sejahtera (WP badan dalam negeri) pada Juni 2026 melakukan pembayaran: (1) dividen Rp1.000.000.000 kepada PT Induk Makmur (WP badan dalam negeri, pemilik 20% saham); (2) dividen Rp200.000.000 kepada Tuan Andi (orang pribadi dalam negeri, ber-NPWP); dan (3) bunga pinjaman Rp100.000.000 kepada PT Induk Makmur, yang bukan bank maupun lembaga pembiayaan. Jumlah PPh yang wajib dipotong PT Anak Sejahtera atas ketiga pembayaran tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp15.000.000", B: "Rp165.000.000", C: "Rp35.000.000", D: "Rp0" },
@@ -1368,12 +1372,21 @@ UKP.register({
       jebakanOpsi: { B: "angka-usang", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Dividen dari badan dalam negeri yang diterima badan dalam negeri kini dikecualikan tanpa syarat kepemilikan; dividen kepada orang pribadi dalam negeri tidak dipotong pembayar (dikecualikan bila diinvestasikan, atau PPh final 10% disetor sendiri). Hanya bunga pinjaman yang dipotong PPh 23 15%.",
-        jejakHitung: [["Dividen ke PT Induk (Pasal 4 ayat (3) huruf f)", "dikecualikan"], ["Dividen ke Tuan Andi", "tidak dipotong pembayar"], ["Bunga: 15% × Rp100.000.000", "Rp15.000.000"]],
-        mengapaSalah: { B: "Memakai syarat kepemilikan minimal 25% aturan lama sehingga dividen ke PT Induk (20%) dipotong 15%", C: "Memotong 10% atas dividen Tuan Andi; PPh final dividen OP disetor sendiri bila tidak diinvestasikan", D: "Bunga pinjaman antarperusahaan tetap objek PPh 23; pengecualian hanya untuk bank dan penyalur pinjaman tertentu" },
+        jejakHitung: [
+          ["Dividen ke PT Induk (Pasal 4 ayat (3) huruf f)", "dikecualikan"],
+          ["Dividen ke Tuan Andi", "tidak dipotong pembayar"],
+          ["Bunga: 15% × Rp100.000.000", "Rp15.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Memakai syarat kepemilikan minimal 25% aturan lama sehingga dividen ke PT Induk (20%) dipotong 15%",
+          C: "Memotong 10% atas dividen Tuan Andi; PPh final dividen OP disetor sendiri bila tidak diinvestasikan",
+          D: "Bunga pinjaman antarperusahaan tetap objek PPh 23; pengecualian hanya untuk bank dan penyalur pinjaman tertentu"
+        },
         jebakan: "Satu pemegang saham bisa menerima dua jenis penghasilan dengan perlakuan berbeda."
       },
-      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf f UU PPh (dividen dikecualikan)" }, { pasal: "Pasal 23 ayat (1) huruf a angka 2 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 18/PMK.03/2021", berlakuSejak: "2021-02-17" }],
-      anggaranDetik: 160, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf f UU PPh (dividen dikecualikan)" }, { pasal: "Pasal 23 ayat (1) huruf a angka 2 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 23 ayat (4) huruf c UU PPh (dividen Pasal 4 ayat (3) huruf f dan dividen orang pribadi Pasal 17 ayat (2c) tidak dipotong PPh 23)", berlakuSejak: "2020-11-02" }, { pasal: "PMK 81/2024 Pasal 370 ayat (1), Pasal 372, dan Pasal 373 (dividen dalam negeri orang pribadi: dikecualikan bila diinvestasikan; bila tidak, disetor sendiri; menggantikan Pasal 37 PMK 18/PMK.03/2021 yang dicabut Pasal 483 angka 35 PMK 81/2024)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 160,
+      verifikasi: "✅"
     },
     {
       id: "A3-045", topik: "A3.6", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 1,
@@ -2583,20 +2596,36 @@ UKP.register({
       anggaranDetik: 180, verifikasi: "✅"
     },
     {
-      id: "A3-097", topik: "A3.8", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A3-08",
-      stem: "Data untuk soal ini dan soal berikutnya (V-A3-08): PT Mitra Kimia Indonesia (WP badan dalam negeri) pada Masa Pajak Juni 2026 membayar kepada pihak luar negeri yang tidak memiliki BUT di Indonesia: (1) dividen Rp2.000.000.000 kepada Lion Chem Pte Ltd (Singapura), pemilik 30% saham; (2) dividen Rp500.000.000 kepada Tuan Robert Tan, orang pribadi penduduk Singapura pemilik 2% saham, yang tidak menyerahkan Form DGT; (3) bunga pinjaman Rp800.000.000 kepada Lion Chem Pte Ltd; dan (4) royalti merek Rp1.000.000.000 kepada Lion Brand Ltd (Hong Kong). Kecuali Tuan Robert Tan, seluruh penerima telah menyerahkan Form DGT yang sah dan terekam di Coretax sebelum pembayaran, merupakan beneficial owner, dan tidak menyalahgunakan P3B. Anggap tarif P3B: Singapura — dividen 10% bila kepemilikan ≥ 25% dan 15% lainnya, bunga 10%, royalti 10%; Hong Kong — royalti 5%. Pada bulan yang sama perusahaan juga menyetor PPh Pasal 25 Rp300.000.000. Jumlah PPh Pasal 26 yang wajib dipotong PT Mitra Kimia Indonesia adalah ...",
+      id: "A3-097",
+      topik: "A3.8",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-A3-08",
+      stem: "Data untuk soal ini dan soal berikutnya (V-A3-08): PT Mitra Kimia Indonesia (WP badan dalam negeri) pada Masa Pajak Juni 2026 membayar kepada pihak luar negeri yang tidak memiliki BUT di Indonesia: (1) dividen Rp2.000.000.000 kepada Lion Chem Pte Ltd (Singapura), pemilik 30% saham yang dimilikinya terus-menerus sejak 1 Maret 2021; (2) dividen Rp500.000.000 kepada Tuan Robert Tan, orang pribadi penduduk Singapura pemilik 2% saham, yang tidak menyerahkan Form DGT; (3) bunga pinjaman Rp800.000.000 kepada Lion Chem Pte Ltd; dan (4) royalti merek Rp1.000.000.000 kepada Lion Brand Ltd (Hong Kong). Kecuali Tuan Robert Tan, seluruh penerima telah menyerahkan Form DGT yang sah dan terekam di Coretax sebelum pembayaran, merupakan beneficial owner, dan tidak menyalahgunakan P3B. Anggap tarif P3B: Singapura: dividen 10% bila badan penerima memiliki ≥ 25% saham, dan 15% lainnya, bunga 10%, royalti 10%; Hong Kong: royalti 5%. Pada bulan yang sama perusahaan juga menyetor PPh Pasal 25 Rp300.000.000. Jumlah PPh Pasal 26 yang wajib dipotong PT Mitra Kimia Indonesia adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp405.000.000", B: "Rp430.000.000", C: "Rp480.000.000", D: "Rp530.000.000" },
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "salah-baca" },
       pembahasan: {
-        inti: "Tarif P3B hanya dapat diterapkan bila Form DGT yang sah diterima dan terekam sebelum pembayaran. Tuan Robert Tan tidak menyerahkan Form DGT sehingga dipotong tarif domestik 20%. Penerima lain memakai tarif P3B sesuai jenis penghasilan dan negara mitranya.",
-        jejakHitung: [["(1) Dividen Lion Chem (30% ≥ 25%): 10% × Rp2.000.000.000", "Rp200.000.000"], ["(2) Dividen Tuan Robert, tanpa Form DGT: 20% × Rp500.000.000", "Rp100.000.000"], ["(3) Bunga Lion Chem: 10% × Rp800.000.000", "Rp80.000.000"], ["(4) Royalti Lion Brand (Hong Kong): 5% × Rp1.000.000.000", "Rp50.000.000"], ["Total PPh 26", "Rp430.000.000"]],
-        mengapaSalah: { A: "Memberi Tuan Robert tarif P3B 15% walaupun Form DGT tidak diserahkan (Rp75.000.000)", C: "Memakai tarif royalti Singapura 10% untuk Lion Brand yang berkedudukan di Hong Kong (Rp100.000.000)", D: "Memakai tarif dividen portofolio 15% untuk Lion Chem yang memiliki 30% saham (Rp300.000.000)" },
+        inti: "Tarif P3B hanya dapat diterapkan bila Form DGT yang sah diterima dan terekam sebelum pembayaran. Tuan Robert Tan tidak menyerahkan Form DGT sehingga dipotong tarif domestik 20%. Penerima lain memakai tarif P3B sesuai jenis penghasilan dan negara mitranya. Tarif dividen yang lebih rendah untuk Lion Chem berlaku karena kepemilikan 30% memenuhi persentase dan sudah dipegang lebih dari 365 hari kalender termasuk hari pembayaran dividen (Pasal 20 ayat (2) PMK 112/2025).",
+        jejakHitung: [
+          ["(1) Dividen Lion Chem (30% ≥ 25%, dimiliki sejak 1 Maret 2021, lebih dari 365 hari): 10% × Rp2.000.000.000", "Rp200.000.000"],
+          ["(2) Dividen Tuan Robert, tanpa Form DGT: 20% × Rp500.000.000", "Rp100.000.000"],
+          ["(3) Bunga Lion Chem: 10% × Rp800.000.000", "Rp80.000.000"],
+          ["(4) Royalti Lion Brand (Hong Kong): 5% × Rp1.000.000.000", "Rp50.000.000"],
+          ["Total PPh 26", "Rp430.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Memberi Tuan Robert tarif P3B 15% walaupun Form DGT tidak diserahkan (Rp75.000.000)",
+          C: "Memakai tarif royalti Singapura 10% untuk Lion Brand yang berkedudukan di Hong Kong (Rp100.000.000)",
+          D: "Memakai tarif dividen 15% untuk Lion Chem, padahal kepemilikan 30% sejak 1 Maret 2021 memenuhi persentase dan periode minimum 365 hari sehingga tarif 10% berlaku (Rp300.000.000)"
+        },
         jebakan: "Tarif P3B dipilih per penerima: negara domisili, jenis penghasilan, persentase kepemilikan, dan ada tidaknya Form DGT."
       },
-      dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (Form DGT dan syarat penerapan P3B)", berlakuSejak: "2025-12-31" }, { pasal: "Pasal 32A UU PPh", berlakuSejak: "2009-01-01" }],
-      anggaranDetik: 200, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 Pasal 8 dan Pasal 10 ayat (3) dan ayat (4) (Form DGT dan syarat penerapan P3B), Pasal 19 (beneficial owner), dan Pasal 20 (persentase dan periode minimum kepemilikan 365 hari untuk tarif dividen yang lebih rendah)", berlakuSejak: "2025-12-31" }, { pasal: "Pasal 32A UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅"
     },
     {
       id: "A3-098",
@@ -2948,7 +2977,8 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "PMK 51/2025 Pasal 3 ayat (1) huruf a angka 1 butir e), Pasal 3 ayat (2), dan Pasal 5 ayat (1) (PPh Pasal 22 impor 2,5% × nilai impor bagi importir ber-API, dilunasi bersamaan dengan bea masuk; PMK 51/2025 berlaku 1 Agustus 2025; PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025)", berlakuSejak: "2025-08-01" }, { pasal: "KMK nilai kurs sebagai dasar pelunasan bea masuk, PPN dan PPnBM, bea keluar, dan PPh periode 8–14 Juli 2026 (kurs pajak mingguan)", berlakuSejak: "2026-07-08" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 170,
-      verifikasi: "✅"
+      verifikasi: "◐",
+      peringatan: "Kunci bergantung pada kurs yang dipakai kepabeanan untuk merupiahkan nilai pabean (KMK yang berlaku saat PIB/pembayaran); aturan kurs kepabeanan itu belum ada di pustaka naskah. PMK 51/2025 Pasal 3 ayat (2) hanya menyatakan nilai impor = dasar penghitungan bea masuk."
     },
     {
       id: "A3-110",
@@ -3094,7 +3124,12 @@ UKP.register({
       anggaranDetik: 140, verifikasi: "✅"
     },
     {
-      id: "A3-115", topik: "A3.8", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "A3-115",
+      topik: "A3.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Delta Rekayasa Energi membayar imbalan jasa desain teknik kepada Kraft Engineering GmbH, badan luar negeri tanpa BUT di Indonesia yang tidak menyerahkan Form DGT. Tagihan USD40.000 diterima, dicatat sebagai utang, jatuh tempo, dan dibayar pada hari yang sama, Selasa, 6 Oktober 2026. KMK nilai kurs periode 30 September–6 Oktober 2026 menetapkan USD Rp16.480, sedangkan KMK periode 7–13 Oktober 2026 menetapkan Rp16.430; kurs tengah BI 6 Oktober 2026 Rp16.468 (semua rekaan). Pernyataan yang paling tepat mengenai PPh Pasal 26 atas pembayaran itu adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "Rp131.440.000, karena KMK periode berikutnya sudah ditetapkan sebelum pembayaran sehingga kurs terbaru yang dipakai", B: "Rp131.840.000, karena KMK nilai kurs berlaku mingguan Rabu sampai Selasa dan 6 Oktober masih dalam periodenya", C: "Rp131.744.000, karena kurs tengah BI pada tanggal pembayaran mencerminkan nilai pasar yang paling wajar", D: "Rp65.920.000, karena tanpa Form DGT tarif P3B 10% tetap dipakai sampai Form DGT diserahkan" },
@@ -3102,15 +3137,30 @@ UKP.register({
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "KMK nilai kurs ditetapkan mingguan dan berlaku dari Rabu sampai Selasa berikutnya. Pembayaran Selasa, 6 Oktober masih memakai kurs periode 30 September–6 Oktober; tanpa Form DGT berlaku tarif domestik 20%.",
-        jejakHitung: [["Periode KMK yang memuat Selasa, 6 Oktober 2026", "30 September–6 Oktober 2026"], ["Bruto = USD40.000 × Rp16.480", "Rp659.200.000"], ["PPh 26 = 20% × Rp659.200.000", "Rp131.840.000"]],
-        mengapaSalah: { A: "Kurs dipilih menurut periode berlakunya pada saat terutang, bukan menurut KMK yang terakhir ditetapkan", C: "Kurs tengah BI bukan kurs pajak", D: "Tanpa Form DGT yang sah, PPh 26 dipotong dengan tarif 20%" },
+        jejakHitung: [
+          ["Periode KMK yang memuat Selasa, 6 Oktober 2026", "30 September–6 Oktober 2026"],
+          ["Bruto = USD40.000 × Rp16.480", "Rp659.200.000"],
+          ["PPh 26 = 20% × Rp659.200.000", "Rp131.840.000"]
+        ],
+        mengapaSalah: {
+          A: "Kurs dipilih menurut periode berlakunya pada saat terutang, bukan menurut KMK yang terakhir ditetapkan",
+          C: "Kurs tengah BI bukan kurs pajak",
+          D: "Tanpa Form DGT yang sah, PPh 26 dipotong dengan tarif 20%"
+        },
         jebakan: "Selasa adalah hari terakhir periode KMK; kurs baru berlaku mulai Rabu."
       },
       dasarHukum: [{ pasal: "KMK nilai kurs sebagai dasar pelunasan bea masuk, PPN dan PPnBM, bea keluar, dan PPh periode 30 September–6 Oktober 2026 (kurs pajak mingguan, berlaku Rabu s.d. Selasa)", berlakuSejak: "2026-09-30" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (penerapan P3B, Form DGT)", berlakuSejak: "2025-12-31" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      anggaranDetik: 120,
+      verifikasi: "◐",
+      peringatan: "Kunci bergantung pada aturan kurs KMK untuk PPh Pasal 26 badan luar negeri (periode mingguan Rabu sampai Selasa yang memuat saat terutang); naskah aturan itu belum ada di pustaka. PMK 168/2023 Pasal 5 ayat (4) hanya untuk PPh 21/26 orang pribadi."
     },
     {
-      id: "A3-116", topik: "A3.8", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 1, laporanUjian: ["C-2026-10"],
+      id: "A3-116",
+      topik: "A3.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Nusantara Rekayasa Digital (WP badan dalam negeri, pembukuan dalam Rupiah) memakai jasa manajemen proyek dari Lumen Advisory Pte. Ltd., badan luar negeri yang tidak mempunyai BUT di Indonesia. Tagihan USD12.000 dicatat sebagai utang, jatuh tempo, dan dibayar pada hari yang sama, Kamis, 22 Oktober 2026. Data kurs USD (rekaan): kurs KMK periode 14–20 Oktober 2026 Rp16.395; kurs KMK periode 21–27 Oktober 2026 Rp16.372; kurs tengah BI 22 Oktober 2026 Rp16.381; kurs jual bank saat transfer Rp16.430. Kurs yang dipakai untuk merupiahkan DPP PPh Pasal 26 atas imbalan tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Kurs tengah BI 22 Oktober 2026 (Rp16.381), karena sama dengan kurs pencatatan utang di pembukuan", B: "Kurs jual bank saat transfer (Rp16.430), karena mencerminkan rupiah yang benar-benar dikeluarkan", C: "Kurs KMK periode 14–20 Oktober 2026 (Rp16.395), yaitu kurs KMK minggu sebelum pembayaran", D: "Kurs KMK periode 21–27 Oktober 2026 (Rp16.372), yang berlaku pada saat PPh Pasal 26 terutang" },
@@ -3118,12 +3168,21 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
         inti: "DPP PPh Pasal 26 dalam valuta asing dirupiahkan dengan kurs yang ditetapkan Menteri Keuangan (kurs KMK) yang berlaku pada saat PPh terutang, yaitu saat penghasilan dibayarkan, disediakan untuk dibayarkan, atau jatuh tempo, mana yang lebih dahulu. Ketiganya jatuh pada Kamis, 22 Oktober 2026, yang termasuk periode KMK Rabu, 21 Oktober sampai Selasa, 27 Oktober 2026 (Rp16.372). Kurs tengah BI dan kurs bank hanya dipakai untuk pembukuan dan pembayaran.",
-        jejakHitung: [["Saat terutang PPh 26 (dicatat sebagai utang, jatuh tempo, dan dibayar)", "Kamis, 22 Oktober 2026"], ["Periode KMK yang mencakup tanggal itu", "Rabu 21 – Selasa 27 Oktober 2026 → Rp16.372"]],
-        mengapaSalah: { A: "Kurs tengah BI adalah kurs pembukuan, bukan kurs untuk DPP pemotongan", B: "Kurs jual bank hanya menentukan jumlah rupiah yang dibayar ke bank, bukan DPP PPh", C: "Kurs KMK dipilih menurut periode yang mencakup saat terutang; 22 Oktober sudah masuk periode 21–27 Oktober" },
+        jejakHitung: [
+          ["Saat terutang PPh 26 (dicatat sebagai utang, jatuh tempo, dan dibayar)", "Kamis, 22 Oktober 2026"],
+          ["Periode KMK yang mencakup tanggal itu", "Rabu 21 – Selasa 27 Oktober 2026 → Rp16.372"]
+        ],
+        mengapaSalah: {
+          A: "Kurs tengah BI adalah kurs pembukuan, bukan kurs untuk DPP pemotongan",
+          B: "Kurs jual bank hanya menentukan jumlah rupiah yang dibayar ke bank, bukan DPP PPh",
+          C: "Kurs KMK dipilih menurut periode yang mencakup saat terutang; 22 Oktober sudah masuk periode 21–27 Oktober"
+        },
         jebakan: "Pembukuan memakai kurs tengah BI, pemotongan memakai kurs KMK saat terutang; jangan tertukar."
       },
       dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "KMK kurs sebagai dasar pelunasan bea masuk, PPN/PPnBM, bea keluar, dan PPh (ditetapkan mingguan, berlaku Rabu s.d. Selasa)", berlakuSejak: null }],
-      anggaranDetik: 75, verifikasi: "✅"
+      anggaranDetik: 75,
+      verifikasi: "◐",
+      peringatan: "Kunci bergantung pada aturan kurs KMK untuk PPh Pasal 26 badan luar negeri (kurs yang berlaku saat terutang); naskah aturan itu belum ada di pustaka. PMK 168/2023 Pasal 5 ayat (4) hanya untuk PPh 21/26 orang pribadi."
     },
     {
       id: "A3-117", topik: "A3.6", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 1, laporanUjian: ["C-2026-10"],
@@ -9841,6 +9900,210 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "A3-143",
       sejak: "9.5.0"
+    },
+    {
+      id: "A3-352",
+      topik: "A3.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "Tuan Galih Mahendra adalah analis data (pegawai tetap, bukan pemegang saham) PT Sinar Kalibrasi Indonesia, perusahaan jasa kalibrasi alat ukur di Bandung. Pada 1 Januari 2026 ia tidak kawin dan menanggung sepenuhnya ibu kandungnya, dan NIK-nya telah dipadankan. Untuk Agustus 2026 ia menerima gaji Rp9.500.000 dan tunjangan komunikasi tunai Rp750.000. Pada bulan yang sama perseroan menyerahkan kepadanya sebuah telepon seluler (nilai pasar Rp14.500.000) yang menjadi miliknya dan dipakai untuk mengirim data hasil kalibrasi dari lokasi pelanggan, serta membayar langsung kepada operator paket internet seluler Rp350.000 untuk telepon itu. Tidak ada premi asuransi, iuran, atau penghasilan lain. Petikan TER kategori A: bruto lebih dari Rp8.550.000 s.d. Rp9.650.000 = 1,75%; lebih dari Rp10.050.000 s.d. Rp10.350.000 = 2,25%; lebih dari Rp10.350.000 s.d. Rp10.700.000 = 2,5%; lebih dari Rp24.150.000 s.d. Rp26.450.000 = 10%. PPh Pasal 21 yang wajib dipotong PT Sinar Kalibrasi Indonesia atas penghasilan Tuan Galih Masa Pajak Agustus 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp230.625", B: "Rp2.475.000", C: "Rp265.000", D: "Rp166.250" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Peralatan dan fasilitas kerja dari pemberi kerja, antara lain telepon seluler beserta sarana penunjangnya seperti pulsa atau sambungan internet, dikecualikan dari objek PPh sepanjang diterima Pegawai dan menunjang pekerjaannya, tanpa batas nilai (PMK 66/2023 Pasal 4 huruf e dan Lampiran huruf A angka 3). Telepon seluler dan paket internetnya tidak masuk bruto, sedangkan tunjangan komunikasi yang dibayar tunai adalah tunjangan biasa (PMK 168/2023 Pasal 5 ayat (3) huruf a). Status TK/1 memakai kategori A; bruto Rp10.250.000 berada di lapisan lebih dari Rp10.050.000 s.d. Rp10.350.000 (2,25%).",
+        jejakHitung: [
+          ["Gaji + tunjangan komunikasi tunai = 9.500.000 + 750.000", "Rp10.250.000"],
+          ["Telepon seluler dan paket internet untuk pekerjaan", "dikecualikan (Rp0)"],
+          ["Status 1 Januari 2026 TK/1", "kategori A"],
+          ["TER kategori A untuk Rp10.250.000", "2,25%"],
+          ["PPh Pasal 21 = 2,25% × Rp10.250.000", "Rp230.625"]
+        ],
+        mengapaSalah: {
+          B: "Memasukkan nilai pasar telepon seluler (bruto Rp24.750.000, TER 10%). Peralatan kerja yang diterima Pegawai dan menunjang pekerjaannya dikecualikan walaupun kepemilikannya beralih dan nilainya besar.",
+          C: "Mengecualikan telepon seluler tetapi memasukkan paket internet Rp350.000 (bruto Rp10.600.000, TER 2,5%). Lampiran huruf A angka 3 menyebut sarana penunjang seperti pulsa atau sambungan internet sebagai bagian fasilitas kerja yang dikecualikan.",
+          D: "Mengeluarkan tunjangan komunikasi tunai dari bruto (bruto Rp9.500.000, TER 1,75%). Pengecualian hanya untuk natura atau kenikmatan berupa peralatan dan fasilitas kerja; tunjangan dalam bentuk uang tetap penghasilan Pegawai Tetap."
+        },
+        jebakan: "Bedakan fasilitas kerja dalam bentuk barang atau layanan (dikecualikan, tanpa batas nilai) dari tunjangan uang untuk keperluan yang sama (tetap objek)."
+      },
+      dasarHukum: [{ pasal: "PMK 66/2023 Pasal 4 huruf e dan Lampiran huruf A angka 3", berlakuSejak: "2023-07-01" }, { pasal: "PMK 168/2023 Pasal 5 ayat (3) huruf a, Pasal 7 huruf b, dan Pasal 15 ayat (1) huruf a", berlakuSejak: "2024-01-01" }, { pasal: "PP 58/2023 Pasal 2 ayat (4) huruf a dan Lampiran huruf A (TER kategori A)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A3-353",
+      topik: "A3.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Sinergi Rekayasa Digital, perusahaan pengembang perangkat lunak di Yogyakarta, pada Oktober 2026 memberikan beberapa peralatan dan fasilitas yang tercantum pada opsi. Semua barang dan layanan itu dipakai penerimanya untuk menyelesaikan pekerjaan atau jasa bagi perseroan, dan tidak ada yang berlokasi di daerah tertentu. Pemberian yang nilainya menjadi objek pemotongan PPh Pasal 21 oleh PT Sinergi Rekayasa Digital adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Laptop yang diserahkan menjadi milik Sdri. Nadia, pemrogram berstatus pegawai tetap, untuk menulis kode aplikasi", B: "Telepon seluler dan pulsa bulanan bagi Sdr. Bima, teknisi pegawai tidak tetap berupah bulanan, untuk koordinasi lapangan", C: "Langganan internet rumah bagi Tuan Fikri, analis pegawai tetap yang bekerja dari rumah dua hari setiap minggu", D: "Laptop yang diserahkan menjadi milik Tuan Wira, konsultan keamanan siber independen, sebagai bagian imbalan jasa audit sistem" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pengecualian peralatan dan fasilitas kerja dalam Lampiran huruf A angka 3 PMK 66/2023 mensyaratkan dua hal: diterima atau diperoleh Pegawai dan menunjang pekerjaan Pegawai. Tuan Wira bukan Pegawai, melainkan orang pribadi yang memberikan jasa, sehingga laptop yang dialihkan kepadanya adalah imbalan jasa dalam bentuk natura yang dinilai menurut nilai pasar dan dipotong PPh Pasal 21 bagi Bukan Pegawai (PMK 168/2023 Pasal 5 ayat (1) huruf e dan ayat (2)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Laptop untuk pekerjaan yang diterima pegawai tetap termasuk peralatan kerja yang dikecualikan; beralihnya kepemilikan tidak menghilangkan pengecualian itu.",
+          B: "Pegawai menurut Pasal 1 angka 4 PMK 66/2023 mencakup orang pribadi yang bekerja berdasarkan kesepakatan kerja dengan imbalan menurut periode tertentu, sehingga pegawai tidak tetap juga memenuhi syarat diterima Pegawai; telepon seluler dan pulsanya dikecualikan.",
+          C: "Sambungan internet disebut tegas sebagai sarana penunjang fasilitas kerja; karena dipakai untuk bekerja dari rumah, langganan itu menunjang pekerjaan dan dikecualikan."
+        },
+        jebakan: "Pengecualian fasilitas kerja melekat pada penerima yang berstatus Pegawai; barang yang sama yang diberikan kepada penyedia jasa adalah imbalan natura yang dipotong PPh."
+      },
+      dasarHukum: [{ pasal: "PMK 66/2023 Pasal 1 angka 4, Pasal 3 ayat (1) dan ayat (4), Pasal 4 huruf e, Lampiran huruf A angka 3", berlakuSejak: "2023-07-01" }, { pasal: "PMK 168/2023 Pasal 5 ayat (1) huruf e dan ayat (2)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 110,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A3-354",
+      topik: "A3.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Lensa Kreatif Nusantara, rumah produksi video di Denpasar, mempekerjakan 25 pegawai. Pada Mei 2026 perseroan menyerahkan kepada Nona Ayu Lestari, penyunting video berstatus pegawai tetap, sebuah laptop berspesifikasi tinggi dengan nilai pasar Rp42.000.000 yang dipakai untuk menyunting video pesanan klien, dan laptop itu menjadi milik Nona Ayu. Laptop sejenis hanya diberikan kepada dua penyunting video; pegawai lain memakai komputer kantor biasa. Perseroan bertanya mengenai kewajiban pemotongan PPh Pasal 21 atas laptop tersebut. Perlakuan yang sesuai dengan PMK 66/2023 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Objek PPh Pasal 21 sebesar Rp39.000.000, yaitu nilai laptop di atas batas Rp3.000.000 per pegawai setahun, dipotong pada akhir Mei 2026", B: "Bukan objek PPh Pasal 21 seluruhnya, karena laptop diterima Pegawai dan menunjang pekerjaannya, dan pengecualian ini tidak mengenal batas nilai", C: "Objek PPh Pasal 21 sebesar Rp42.000.000 dipotong pada akhir Mei 2026, karena laptop yang beralih kepemilikannya adalah natura, bukan fasilitas", D: "Objek PPh Pasal 21 sebesar Rp42.000.000, karena pengecualian peralatan kerja hanya berlaku bila peralatan itu diberikan kepada seluruh pegawai" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Peralatan dan fasilitas kerja dari pemberi kerja, antara lain komputer dan laptop, termasuk natura dengan jenis dan batasan tertentu yang dikecualikan dari objek PPh (Pasal 4 huruf e PMK 66/2023). Batasan dalam Lampiran huruf A angka 3 hanya dua: diterima atau diperoleh Pegawai dan menunjang pekerjaan Pegawai. Tidak ada batas nilai dan tidak ada syarat diberikan kepada seluruh pegawai, sehingga laptop Rp42.000.000 itu dikecualikan seluruhnya dan tidak dipotong PPh Pasal 21 (Pasal 7 huruf b PMK 168/2023).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Batas Rp3.000.000 per pegawai dalam satu Tahun Pajak adalah batasan bingkisan selain hari raya keagamaan (Lampiran huruf A angka 2), bukan batasan peralatan kerja.",
+          C: "Lampiran huruf A angka 3 mengecualikan peralatan kerja, termasuk barang seperti laptop yang menjadi milik Pegawai; natura yang memenuhi jenis dan batasan tertentu dikecualikan (Pasal 4 huruf e).",
+          D: "Syarat diterima seluruh Pegawai berlaku untuk makanan dan minuman (Pasal 4 huruf a) dan bingkisan hari raya keagamaan (Lampiran huruf A angka 1), bukan untuk peralatan dan fasilitas kerja."
+        },
+        jebakan: "Setiap jenis natura punya batasannya sendiri: peralatan kerja dibatasi oleh penerima (Pegawai) dan fungsi (menunjang pekerjaan), bukan oleh nilai atau pemerataan."
+      },
+      dasarHukum: [{ pasal: "PMK 66/2023 Pasal 4 huruf a dan huruf e, Pasal 7, Lampiran huruf A angka 1, 2, dan 3", berlakuSejak: "2023-07-01" }, { pasal: "PMK 168/2023 Pasal 7 huruf b", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A3-355",
+      topik: "A3.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "Tuan Arif Kusumo, pegawai tetap PT Mega Lestari Farma di Semarang, pada 1 Januari 2026 tidak kawin dan menanggung sepenuhnya ayah dan ibu kandungnya; NIK-nya telah dipadankan. Ia memeriksa slip gaji Juni 2026 yang memuat: gaji pokok Rp9.400.000; tunjangan jabatan Rp1.300.000; uang lembur Rp1.250.000; premi asuransi kesehatan swasta yang dibayar perseroan untuknya Rp420.000; iuran dana pensiun lembaga keuangan (DPLK) yang dibayar perseroan Rp470.000; serta potongan iuran JHT bagian pegawai Rp188.000. Ia juga makan siang di kantin yang disediakan perseroan untuk seluruh pegawai (biaya Rp880.000 per pegawai sebulan). Tidak ada penghasilan lain pada bulan itu. Petikan TER: kategori A, bruto lebih dari Rp11.600.000 s.d. Rp12.500.000 = 4%; kategori B, lebih dari Rp10.750.000 s.d. Rp11.250.000 = 2%, lebih dari Rp11.600.000 s.d. Rp12.600.000 = 3%, lebih dari Rp12.600.000 s.d. Rp13.600.000 = 4%. PPh Pasal 21 atas penghasilan Tuan Arif Masa Pajak Juni 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp494.800", B: "Rp222.400", C: "Rp371.100", D: "Rp513.600" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pada Masa Pajak selain Masa Pajak Terakhir, PPh Pasal 21 pegawai tetap = TER bulanan × penghasilan bruto sebulan. Bruto teratur meliputi gaji, segala tunjangan, uang lembur, dan premi asuransi kesehatan yang dibayar pemberi kerja (PMK 168/2023 Pasal 5 ayat (3) huruf a dan f); iuran pensiun yang dibayar pemberi kerja kepada dana pensiun dan makanan di tempat kerja bagi seluruh pegawai tidak termasuk (Pasal 7 huruf b dan c). Status tidak kawin dengan 2 tanggungan (TK/2) masuk kategori B; bruto Rp12.370.000 berada di lapisan lebih dari Rp11.600.000 s.d. Rp12.600.000 (3%). Iuran JHT bagian pegawai tidak mengurangi bruto bulanan.",
+        jejakHitung: [
+          ["Gaji + tunjangan + lembur + premi = 9.400.000 + 1.300.000 + 1.250.000 + 420.000", "Rp12.370.000"],
+          ["Iuran DPLK bagian perseroan dan makan siang kantin", "tidak termasuk bruto"],
+          ["Status TK/2 pada 1 Januari 2026", "kategori B"],
+          ["TER kategori B untuk Rp12.370.000", "3%"],
+          ["PPh Pasal 21 = 3% × Rp12.370.000", "Rp371.100"]
+        ],
+        mengapaSalah: {
+          A: "Memakai kategori A (4%) karena tidak kawin; status tidak kawin dengan 2 tanggungan termasuk kategori B menurut Pasal 2 ayat (4) huruf b PP 58/2023.",
+          B: "Mengeluarkan uang lembur dari bruto (Rp11.120.000, kategori B 2%); uang lembur disebut tegas sebagai penghasilan teratur dalam Pasal 5 ayat (3) huruf a PMK 168/2023.",
+          D: "Memasukkan iuran DPLK yang dibayar perseroan (bruto Rp12.840.000, kategori B 4%); iuran pensiun yang dibayar pemberi kerja kepada dana pensiun dikecualikan dari penghasilan yang dipotong menurut Pasal 7 huruf c PMK 168/2023."
+        },
+        jebakan: "Premi asuransi yang dibayar pemberi kerja menambah bruto, sedangkan iuran pensiun yang dibayar pemberi kerja ke dana pensiun tidak; kategori TER mengikuti jumlah tanggungan, bukan hanya status kawin."
+      },
+      dasarHukum: [{ pasal: "PMK 168/2023 Pasal 5 ayat (3) huruf a dan f, Pasal 7 huruf b dan c, Pasal 8 ayat (2) huruf a, Pasal 15 ayat (1) huruf a", berlakuSejak: "2024-01-01" }, { pasal: "PP 58/2023 Pasal 2 ayat (3) dan ayat (4) huruf b serta Lampiran huruf B (TER kategori B)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A3-356",
+      topik: "A3.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Nona Citra Anindya telah tinggal di Indonesia sejak lahir dan tidak bekerja sejak awal 2026. Pada 1 Januari 2026 ia tidak kawin tanpa tanggungan, dan NIK-nya telah dipadankan. Ia mulai bekerja sebagai pegawai tetap PT Cahaya Prima Logistik pada 13 April 2026 dengan gaji Rp15.600.000 sebulan dan tunjangan transpor tetap Rp600.000 sebulan. Untuk April 2026 perseroan membayar gaji secara proporsional sebesar Rp9.360.000 dan tunjangan transpor penuh Rp600.000; tidak ada premi atau iuran yang ditanggung perseroan. Ketika menerima slip gaji pertamanya, Nona Citra ingin memastikan jumlah PPh Pasal 21 yang dipotong. Petikan TER kategori A: bruto lebih dari Rp8.550.000 s.d. Rp9.650.000 = 1,75%; lebih dari Rp9.650.000 s.d. Rp10.050.000 = 2%; lebih dari Rp15.100.000 s.d. Rp16.950.000 = 7%. PPh Pasal 21 Masa Pajak April 2026 atas penghasilan Nona Citra adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp199.200", B: "Rp1.134.000", C: "Rp248.100", D: "Rp165.585" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "angka-usang", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "April bukan Masa Pajak Terakhir, sehingga PPh Pasal 21 = TER bulanan × penghasilan bruto yang sungguh diterima dalam Masa Pajak itu (PMK 168/2023 Pasal 8 ayat (2) huruf a dan Pasal 15 ayat (1) huruf a). Pegawai yang kewajiban pajak subjektifnya sudah ada sejak awal tahun dan baru mulai bekerja tidak disetahunkan; penghasilannya selama bekerja baru dihitung ulang pada Masa Pajak Terakhir. Status TK/0 memakai kategori A; bruto Rp9.960.000 berada di lapisan lebih dari Rp9.650.000 s.d. Rp10.050.000 (2%).",
+        jejakHitung: [
+          ["Bruto April = 9.360.000 + 600.000", "Rp9.960.000"],
+          ["Status TK/0 pada 1 Januari 2026", "kategori A"],
+          ["TER kategori A untuk Rp9.960.000", "2%"],
+          ["PPh Pasal 21 = 2% × Rp9.960.000", "Rp199.200"]
+        ],
+        mengapaSalah: {
+          B: "Memakai gaji dan tunjangan sebulan penuh (Rp16.200.000, TER 7%); dasar pemotongan adalah bruto yang diterima dalam Masa Pajak April, yaitu gaji proporsional.",
+          C: "Memakai cara lama sebelum 2024: bruto April disetahunkan (Rp119.520.000), dikurangi biaya jabatan 5% Rp5.976.000 dan PTKP Rp54.000.000, PPh 5% × Rp59.544.000 = Rp2.977.200 dibagi 12. Sejak PP 58/2023, masa selain Masa Pajak Terakhir memakai TER atas bruto bulanan.",
+          D: "Mengurangkan biaya jabatan 5% (Rp498.000) sebelum menerapkan TER (Rp9.462.000, TER 1,75%); biaya jabatan baru dikurangkan pada Masa Pajak Terakhir."
+        },
+        jebakan: "Pegawai baru yang sudah menjadi subjek pajak dalam negeri sejak awal tahun dipotong TER atas bruto bulan pertamanya apa adanya, tanpa disetahunkan dan tanpa pengurang."
+      },
+      dasarHukum: [{ pasal: "PMK 168/2023 Pasal 8 ayat (1) huruf a dan ayat (2) huruf a, Pasal 15 ayat (1) huruf a, Lampiran huruf B Bagian Pertama angka I.1 dan I.2 angka 6 huruf a", berlakuSejak: "2024-01-01" }, { pasal: "PP 58/2023 Pasal 2 ayat (3) dan ayat (4) huruf a serta Lampiran huruf A (TER kategori A)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A3-357",
+      topik: "A3.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Tuan Yoga Pratama, operator mesin berstatus pegawai tetap pada CV Tirta Pangan Abadi di Klaten, pada 1 Januari 2026 tidak kawin dan menanggung sepenuhnya ayah, ibu, dan seorang anak angkatnya; NIK-nya telah dipadankan. Setiap bulan ia menerima gaji dan tunjangan tetap Rp6.100.000 tanpa premi atau iuran yang ditanggung pemberi kerja, sehingga PPh Pasal 21 bulanannya selama ini nihil. Pada Juli 2026, bersamaan dengan gaji, ia menerima jasa produksi Rp6.400.000. Slip gajinya bulan itu memuat potongan PPh Pasal 21, dan ia ingin memeriksa jumlahnya. Petikan TER: kategori A, bruto lebih dari Rp11.600.000 s.d. Rp12.500.000 = 4%; kategori B, sampai dengan Rp6.200.000 = 0%, lebih dari Rp6.200.000 s.d. Rp6.500.000 = 0,25%, lebih dari Rp11.600.000 s.d. Rp12.600.000 = 3%. PPh Pasal 21 Masa Pajak Juli 2026 atas penghasilan Tuan Yoga adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp16.000", B: "Rp320.000", C: "Rp375.000", D: "Rp500.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Jasa produksi adalah penghasilan pegawai tetap yang tidak teratur (PMK 168/2023 Pasal 5 ayat (3) huruf b). Penghasilan tidak teratur dijumlahkan dengan gaji dalam Masa Pajak diterimanya, lalu TER bulanan diterapkan atas seluruh bruto bulan itu (Pasal 8 ayat (2) huruf a dan Pasal 15 ayat (1) huruf a), walaupun gaji sendiri berada di lapisan 0%. Status tidak kawin dengan 3 tanggungan (TK/3) masuk kategori B; bruto Rp12.500.000 berada di lapisan lebih dari Rp11.600.000 s.d. Rp12.600.000 (3%).",
+        jejakHitung: [
+          ["Bruto Juli = 6.100.000 + 6.400.000", "Rp12.500.000"],
+          ["Status TK/3 pada 1 Januari 2026", "kategori B"],
+          ["TER kategori B untuk Rp12.500.000", "3%"],
+          ["PPh Pasal 21 = 3% × Rp12.500.000", "Rp375.000"]
+        ],
+        mengapaSalah: {
+          A: "Menerapkan TER terpisah: gaji Rp6.100.000 (0%) dan jasa produksi Rp6.400.000 (0,25% = Rp16.000). TER diterapkan atas jumlah seluruh bruto dalam satu Masa Pajak, bukan per jenis penghasilan.",
+          B: "Memotong jasa produksi dengan tarif Pasal 17 lapisan pertama 5% seolah penghasilan tersendiri; tarif Pasal 17 hanya dipakai pada Masa Pajak Terakhir atas penghasilan kena pajak setahun.",
+          D: "Memakai kategori A (4%) karena tidak kawin; status tidak kawin dengan 3 tanggungan termasuk kategori B menurut Pasal 2 ayat (4) huruf b angka 2 PP 58/2023."
+        },
+        jebakan: "Gaji yang biasanya kena TER 0% ikut terkena tarif lebih tinggi pada bulan penghasilan tidak teratur diterima, karena lapisan TER ditentukan dari total bruto bulan itu."
+      },
+      dasarHukum: [{ pasal: "PMK 168/2023 Pasal 5 ayat (1) huruf a dan ayat (3) huruf b, Pasal 8 ayat (2) huruf a, Pasal 15 ayat (1) huruf a", berlakuSejak: "2024-01-01" }, { pasal: "PP 58/2023 Pasal 2 ayat (3) dan ayat (4) huruf b serta Lampiran huruf B (TER kategori B)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A3-358",
+      topik: "A3.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Nyonya Rina Hapsari adalah manajer penjualan berstatus pegawai tetap pada PT Bahtera Niaga Utama. Setiap bulan perseroan membayar untuknya premi asuransi kesehatan kepada perusahaan asuransi swasta, dan premi itu sudah dimasukkan dalam penghasilan bruto bulanannya. Pada Oktober 2026, selain gaji bulanan, ia menerima beberapa pembayaran yang tercantum pada opsi. Saat memeriksa penghitungan PPh Pasal 21 Masa Pajak Oktober 2026, ia ingin mengetahui penerimaan yang tidak menambah penghasilan bruto yang dikalikan tarif efektif bulanan. Penerimaan tersebut adalah ...",
+      kataKualifikasi: ["tidak"],
+      opsi: { A: "Tantiem atas laba tahun buku 2025 sebesar Rp15.000.000 yang dibayarkan perseroan bersama gaji Oktober 2026", B: "Penggantian biaya rawat inap Rp18.500.000 yang dibayar perusahaan asuransi kepadanya atas polis yang preminya dibayar perseroan", C: "Insentif pencapaian target penjualan triwulan III sebesar Rp12.000.000 yang dibayarkan perseroan sekali pada Oktober", D: "Tunjangan cuti tahunan Rp9.000.000 yang dibayarkan perseroan sekali dalam setahun ketika ia mengambil cuti" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Penghasilan pegawai tetap yang dipotong PPh Pasal 21 mencakup penghasilan teratur maupun tidak teratur seperti bonus, tantiem, premi, dan penghasilan lain yang sifatnya tidak teratur (PMK 168/2023 Pasal 5 ayat (1) huruf a dan ayat (3) huruf b); semuanya dijumlahkan dalam bruto Masa Pajak diterimanya. Sebaliknya, pembayaran manfaat asuransi kesehatan dari perusahaan asuransi tidak termasuk penghasilan yang dipotong PPh Pasal 21 (Pasal 7 huruf a). Premi yang dibayar perseroan sudah menjadi penghasilan setiap bulan (Pasal 5 ayat (3) huruf f); klaim rawat inapnya tidak dipotong lagi.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tantiem disebut tegas sebagai penghasilan tidak teratur pegawai tetap; dibayar Oktober 2026 sehingga masuk bruto Masa Pajak Oktober walaupun dihitung dari laba 2025.",
+          C: "Insentif target penjualan yang dibayar sekali adalah penghasilan lain yang sifatnya tidak teratur dan dijumlahkan dengan gaji dalam Masa Pajak diterimanya.",
+          D: "Tunjangan yang dibayar sekali setahun tetap penghasilan pegawai tetap yang tidak teratur dan menambah bruto bulan pembayarannya."
+        },
+        jebakan: "Premi asuransi yang dibayar pemberi kerja adalah penghasilan pegawai, tetapi manfaat atau klaim yang dibayar perusahaan asuransi bukan penghasilan yang dipotong PPh Pasal 21."
+      },
+      dasarHukum: [{ pasal: "PMK 168/2023 Pasal 5 ayat (1) huruf a dan ayat (3) huruf b dan f, Pasal 7 huruf a, Pasal 8 ayat (2) huruf a", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "✅",
+      sejak: "9.5.1"
     }
   ],
   kartu: [

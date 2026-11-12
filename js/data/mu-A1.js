@@ -16,7 +16,7 @@ UKP.register({
       "PMK 101/PMK.010/2016 (PTKP); PER-17/PJ/2015 (NPPN)",
       "PP 60/2010 jo. PMK 114/2025 (zakat/sumbangan keagamaan wajib)",
       "PMK 81/2024 (angsuran PPh 25, termasuk OP pengusaha tertentu; menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)",
-      "PMK 192/PMK.03/2018 (kredit PPh Pasal 24); PMK 66/2023 (natura); PMK 18/PMK.03/2021 (investasi dividen, WNI di luar negeri); PMK 81/2024 Pasal 442 sampai dengan Pasal 447 (WNA berkeahlian tertentu)",
+      "PMK 192/PMK.03/2018 (kredit PPh Pasal 24); PMK 66/2023 (natura); PMK 18/PMK.03/2021 (kriteria investasi dividen, WNI di luar negeri); PMK 81/2024 Pasal 370 sampai dengan Pasal 374 (tata cara pengecualian dividen dan laporan realisasi investasi); PMK 81/2024 Pasal 442 sampai dengan Pasal 447 (WNA berkeahlian tertentu)",
       "PMK 81/2024 dan PER-11/PJ/2025 (Coretax, SPT Tahunan, bukti potong)"
     ],
     perubahanTerbaru: [
@@ -52,7 +52,7 @@ UKP.register({
       { label: "Denda terlambat SPT Tahunan OP", nilai: "Rp100.000 (badan Rp1.000.000); tidak dikenakan bila WP OP meninggal dunia", dasar: "Ps. 7 ayat (1)–(2) UU KUP", berlakuSejak: "2008-01-01" },
       { label: "PPh Pasal 29", nilai: "dilunasi sebelum SPT Tahunan disampaikan", dasar: "Ps. 9 ayat (2) UU KUP", berlakuSejak: "2008-01-01" },
       { label: "Bunga telat bayar · pembetulan kurang bayar", nilai: "(acuan + 5%) ÷ 12 per bulan, maks. 24 bulan; Oktober 2026: 1,01%", dasar: "Ps. 8 ayat (2), 9 ayat (2a)–(2b) UU KUP; KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
-      { label: "Dividen dalam negeri diterima OP", nilai: "bebas bila diinvestasikan di Indonesia ≥ 3 tahun (paling lambat akhir bulan ke-3 setelah tahun pajak); jika tidak 10% final", dasar: "Ps. 4 ayat (3) huruf f, 17 ayat (2c) UU PPh; PMK 18/PMK.03/2021", berlakuSejak: "2021-02-17" },
+      { label: "Dividen dalam negeri diterima OP", nilai: "bebas bila diinvestasikan di Indonesia ≥ 3 tahun (paling lambat akhir bulan ke-3 setelah tahun pajak); jika tidak 10% final", dasar: "Ps. 4 ayat (3) huruf f, 17 ayat (2c) UU PPh; Pasal 33 sampai dengan Pasal 36 PMK 18/PMK.03/2021; Pasal 370 sampai dengan Pasal 374 PMK 81/2024", berlakuSejak: "2021-02-17" },
       { label: "Bunga deposito · bunga obligasi · hadiah undian", nilai: "20% · 10% · 25% (final)", dasar: "Ps. 4 ayat (2) UU PPh; PP 131/2000; PP 91/2021; PP 132/2000", berlakuSejak: "2021-08-30" },
       { label: "Pengalihan tanah/bangunan · saham di bursa", nilai: "2,5% × bruto (final, walau rugi) · 0,1% × nilai transaksi (final)", dasar: "PP 34/2016; PP 41/1994 s.t.d.d. PP 14/1997", berlakuSejak: "2016-09-07" },
       { label: "Pesangon dibayar sekaligus (final)", nilai: "0% s.d. Rp50 jt · 5% s.d. Rp100 jt · 15% s.d. Rp500 jt · 25% di atasnya", dasar: "PP 68/2009", berlakuSejak: "2009-11-16" },
@@ -106,13 +106,13 @@ UKP.register({
         "Objek non-final OP yang sering diuji: imbalan pekerjaan termasuk natura/kenikmatan (sejak TP 2022), laba usaha, imbalan pekerjaan bebas, bunga dari pihak bukan bank, royalti, sewa harta selain tanah/bangunan (dipotong PPh 23 2%), keuntungan pengalihan harta selain yang final, dan penghasilan dari luar negeri.",
         "Penghasilan final Pasal 4 ayat (2): bunga deposito/tabungan 20%, bunga obligasi 10%, hadiah undian 25%, sewa tanah/bangunan 10%, pengalihan tanah/bangunan 2,5%, saham di bursa 0,1%, jasa konstruksi, PPh final UMKM 0,5% — dilaporkan di SPT, tidak digabung ke PKP, dan PPh-nya tidak dapat dikreditkan.",
         "Bukan objek Pasal 4 ayat (3) yang sering diuji: hibah dari keluarga sedarah garis lurus satu derajat tanpa hubungan usaha, warisan, pembayaran asuransi kesehatan/kecelakaan/jiwa/dwiguna/beasiswa dari perusahaan asuransi kepada OP, natura tertentu, dan bagian laba anggota CV/firma.",
-        "Dividen dalam negeri yang diterima OP dalam negeri dikecualikan dari objek bila diinvestasikan di Indonesia paling sedikit 3 tahun pajak (investasi paling lambat akhir bulan ketiga setelah tahun pajak dividen diterima); bagian yang tidak diinvestasikan dikenai PPh final 10% (Pasal 4 ayat (3) huruf f; Pasal 17 ayat (2c); PMK 18/PMK.03/2021).",
+        "Dividen dalam negeri yang diterima OP dalam negeri dikecualikan dari objek bila diinvestasikan di Indonesia paling sedikit 3 tahun pajak (investasi paling lambat akhir bulan ketiga setelah tahun pajak dividen diterima); pengecualian itu juga mensyaratkan laporan realisasi investasi (Pasal 370 ayat (1) dan Pasal 374 PMK 81/2024); bagian yang tidak diinvestasikan dikenai PPh final 10% yang disetor sendiri (Pasal 4 ayat (3) huruf f; Pasal 17 ayat (2c) UU PPh; kriteria investasi Pasal 33 sampai dengan Pasal 36 PMK 18/PMK.03/2021; Pasal 372 dan Pasal 373 PMK 81/2024, menggantikan Pasal 39 dan Pasal 40 PMK 18/PMK.03/2021).",
         "Natura bagi penerima merupakan objek kecuali yang dikecualikan PMK 66/2023: makanan/minuman bagi seluruh pegawai di tempat kerja, bingkisan hari raya keagamaan, peralatan kerja, fasilitas olahraga non-golf ≤ Rp1,5 juta/tahun, mes komunal, tempat tinggal non-komunal ≤ Rp2 juta/bulan, dan kendaraan bagi pegawai bukan pemegang saham berpenghasilan bruto ≤ Rp100 juta/bulan."
       ],
       poinKunci: [
         { label: "Bunga deposito/tabungan", nilai: "20% final", dasar: "Pasal 4 ayat (2) huruf a UU PPh; PP 131/2000", berlakuSejak: "2009-01-01" },
         { label: "Sewa tanah/bangunan", nilai: "10% × bruto, final", dasar: "Pasal 4 ayat (2) huruf d UU PPh; PP 34/2017", berlakuSejak: "2009-01-01" },
-        { label: "Dividen OP tidak diinvestasikan", nilai: "10% final, disetor sendiri", dasar: "Pasal 17 ayat (2c) UU PPh; PMK 18/PMK.03/2021", berlakuSejak: "2020-11-02" },
+        { label: "Dividen OP tidak diinvestasikan", nilai: "10% final, disetor sendiri", dasar: "Pasal 17 ayat (2c) UU PPh; Pasal 372 dan Pasal 373 PMK 81/2024 (menggantikan Pasal 39 dan Pasal 40 PMK 18/PMK.03/2021)", berlakuSejak: "2020-11-02" },
         { label: "Kendaraan kantor bukan objek", nilai: "pegawai bukan pemegang saham dan bruto ≤ Rp100 juta/bulan", dasar: "PMK 66/2023 Lampiran", berlakuSejak: "2023-07-01" },
         { label: "Tempat tinggal non-komunal bukan objek", nilai: "≤ Rp2 juta/pegawai/bulan", dasar: "PMK 66/2023 Lampiran", berlakuSejak: "2023-07-01" }
       ],
@@ -120,7 +120,7 @@ UKP.register({
         { pasal: "Pasal 4 ayat (1) UU PPh", catatan: "pengertian dan jenis objek penghasilan" },
         { pasal: "Pasal 4 ayat (2) UU PPh", catatan: "penghasilan yang dapat dikenai PPh final" },
         { pasal: "Pasal 4 ayat (3) UU PPh s.t.d.t.d. UU 7/2021", catatan: "penghasilan yang dikecualikan, termasuk dividen dan natura tertentu" },
-        { pasal: "PMK 18/PMK.03/2021; PMK 66/2023", catatan: "investasi dividen; natura yang dikecualikan" }
+        { pasal: "Pasal 33 sampai dengan Pasal 36 PMK 18/PMK.03/2021; Pasal 370 sampai dengan Pasal 374 PMK 81/2024; PMK 66/2023", catatan: "kriteria investasi dividen; tata cara pengecualian dividen dan laporan realisasi investasi; natura yang dikecualikan" }
       ],
       jebakan: [
         { teks: "Menggabungkan bunga deposito, hadiah undian, atau sewa ruko ke PKP dan mengkreditkan PPh finalnya", tagSebab: "final-nonfinal" },
@@ -566,20 +566,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-007", topik: "A1.2", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2,
+      id: "A1-007",
+      topik: "A1.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
       kutipan: "Pasal 4 ayat (3) huruf f UU PPh (s.t.d.t.d. UU 7/2021): dividen yang berasal dari dalam negeri yang diterima atau diperoleh Wajib Pajak orang pribadi dalam negeri dikecualikan dari objek pajak sepanjang diinvestasikan di wilayah Negara Kesatuan Republik Indonesia dalam jangka waktu tertentu. Pasal 17 ayat (2c): dividen yang dibagikan kepada Wajib Pajak orang pribadi dalam negeri dikenai tarif paling tinggi 10% dan bersifat final (tarif yang berlaku 10%).",
-      stem: "Ibu Maya (SPDN) pada Juni 2026 menerima dividen tunai Rp400.000.000 dari PT Andalas Tbk (perusahaan dalam negeri). Sebelum akhir Maret 2027 ia menginvestasikan Rp250.000.000 dari dividen itu ke Surat Berharga Negara dan menahannya paling sedikit 3 tahun pajak sesuai PMK 18/PMK.03/2021; sisanya dipakai untuk renovasi rumah. Berdasarkan kutipan tersebut, PPh atas dividen yang wajib disetor sendiri oleh Ibu Maya adalah ...",
+      stem: "Ibu Maya (SPDN) pada Juni 2026 menerima dividen tunai Rp400.000.000 dari PT Andalas Tbk (perusahaan dalam negeri). Sebelum akhir Maret 2027 ia menginvestasikan Rp250.000.000 dari dividen itu ke Surat Berharga Negara, menahannya paling sedikit 3 tahun pajak sesuai Pasal 33 sampai dengan Pasal 36 PMK 18/PMK.03/2021, dan menyampaikan laporan realisasi investasi tepat waktu sesuai Pasal 374 PMK 81/2024; sisanya dipakai untuk renovasi rumah. Berdasarkan kutipan tersebut, PPh atas dividen yang wajib disetor sendiri oleh Ibu Maya adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp15.000.000", B: "Rp40.000.000", C: "Rp22.500.000", D: "Rp0" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Hanya bagian dividen yang tidak diinvestasikan (Rp150.000.000) dikenai PPh final 10%; bagian yang diinvestasikan sesuai syarat dikecualikan dari objek.",
-        jejakHitung: [ ["Dividen diterima", "Rp400.000.000"], ["Diinvestasikan sesuai syarat (bukan objek)", "Rp250.000.000"], ["Tidak diinvestasikan", "Rp150.000.000"], ["PPh final 10% × Rp150.000.000", "Rp15.000.000"] ],
-        mengapaSalah: { B: "Mengenakan 10% atas seluruh dividen, padahal bagian yang diinvestasikan dikecualikan", C: "Memakai tarif PPh 23 15% atas dividen; bagi OP dalam negeri tarifnya 10% final", D: "Menganggap seluruh dividen otomatis bebas; pengecualian hanya untuk bagian yang diinvestasikan" },
-        jebakan: "Pengecualian dividen bagi OP bersyarat investasi; bagian yang tidak diinvestasikan tetap dikenai 10% final."
+        inti: "Hanya bagian dividen yang tidak diinvestasikan (Rp150.000.000) dikenai PPh final 10% yang disetor sendiri; bagian yang diinvestasikan sesuai kriteria, tata cara, dan jangka waktu (Pasal 33 sampai dengan Pasal 36 PMK 18/PMK.03/2021) serta dilaporkan realisasinya (Pasal 370 ayat (1) dan Pasal 374 PMK 81/2024) dikecualikan dari objek.",
+        jejakHitung: [
+          ["Dividen diterima", "Rp400.000.000"],
+          ["Diinvestasikan sesuai syarat dan dilaporkan realisasinya (bukan objek)", "Rp250.000.000"],
+          ["Tidak diinvestasikan", "Rp150.000.000"],
+          ["PPh final 10% × Rp150.000.000", "Rp15.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Mengenakan 10% atas seluruh dividen, padahal bagian yang diinvestasikan dan dilaporkan realisasinya dikecualikan",
+          C: "Memakai tarif PPh 23 15% atas dividen; bagi OP dalam negeri tarifnya 10% final",
+          D: "Menganggap seluruh dividen otomatis bebas; pengecualian hanya untuk bagian yang diinvestasikan"
+        },
+        jebakan: "Pengecualian dividen bagi OP bersyarat investasi dan laporan realisasi investasi; bagian yang tidak diinvestasikan tetap dikenai 10% final yang disetor sendiri paling lama tanggal 15 bulan berikutnya (Pasal 373 PMK 81/2024)."
       },
-      dasarHukum: [ { pasal: "Pasal 4 ayat (3) huruf f UU PPh (UU 11/2020 jo. UU 7/2021)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17 ayat (2c) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 18/PMK.03/2021 (tata cara investasi dividen)", berlakuSejak: "2021-02-17" } ],
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf f UU PPh (UU 11/2020 jo. UU 7/2021)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17 ayat (2c) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 33 sampai dengan Pasal 36 PMK 18/PMK.03/2021 (kriteria, bentuk, dan jangka waktu investasi; masih berlaku)", berlakuSejak: "2021-02-17" }, { pasal: "Pasal 370 ayat (1) dan Pasal 372 sampai dengan Pasal 374 PMK 81/2024 (tata cara pengecualian, penyetoran sendiri, dan laporan realisasi investasi; menggantikan Pasal 37 sampai dengan Pasal 41 PMK 18/PMK.03/2021)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
@@ -926,7 +939,7 @@ UKP.register({
       kataKualifikasi: [],
       opsi: { A: "Seluruh peredaran bruto Rp1,5 miliar (toko dan jasa arsitek) dikenai PPh final 0,5%", B: "Karena memiliki penghasilan pekerjaan bebas, toko tidak lagi boleh memakai PPh final dan seluruhnya dihitung dengan NPPN", C: "Neto dihitung 35% × Rp1,5 miliar = Rp525.000.000 dan seluruhnya digabung dengan tarif Pasal 17", D: "Jasa arsitek: neto 35% × Rp600.000.000 = Rp210.000.000 digabung dan dikenai tarif Pasal 17; toko tetap dikenai PPh final 0,5% karena total peredaran bruto tidak melebihi Rp4,8 miliar" },
       kunci: "D",
-      jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "salah-hitung" },
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
         inti: "Jasa sehubungan dengan pekerjaan bebas orang pribadi, termasuk arsitek, dikecualikan dari PPh final 0,5% (Pasal 56 ayat (3) huruf a dan ayat (4) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018) dan tetap dikecualikan setelah PP 20/2026. Usaha dagang WP yang sama tetap boleh memakai 0,5% selama peredaran bruto yang diuji tidak melebihi Rp4,8 miliar; sejak PP 20/2026 uji itu menjumlahkan peredaran bruto usaha, pekerjaan bebas, dan luar negeri (Pasal 58 ayat (1) huruf a). Penghasilan arsitek dihitung dengan NPPN dan dikenai tarif Pasal 17.",
         jejakHitung: [
@@ -1837,24 +1850,32 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-068", topik: "A1.2", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 3,
+      id: "A1-068",
+      topik: "A1.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 3,
       stem: "Ibu Wening Prameswari (SPDN) menerima dividen tunai dari PT Gemilang Tbk (perusahaan dalam negeri) sebesar Rp300.000.000 pada Agustus 2026 dan berencana menginvestasikan sebagian di Indonesia. Konsultannya menyusun empat pernyataan yang hanya berbeda pada satu frasa. Pernyataan yang PALING TEPAT menurut Pasal 4 ayat (3) huruf f dan Pasal 17 ayat (2c) UU PPh s.t.d.t.d. UU 7/2021 serta PMK 18/PMK.03/2021 adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Bagian dividen yang diinvestasikan di Indonesia paling lambat akhir bulan ketiga setelah Tahun Pajak 2026 berakhir dan ditahan paling sedikit 3 tahun pajak dikecualikan dari objek PPh; bagian yang tidak diinvestasikan dikenai PPh 10% yang bersifat final dan disetor sendiri; seluruh dividen tetap dilaporkan dalam SPT Tahunan 2026",
-        B: "Bagian dividen yang diinvestasikan di Indonesia paling lambat akhir bulan keenam setelah Tahun Pajak 2026 berakhir dan ditahan paling sedikit 3 tahun pajak dikecualikan dari objek PPh; bagian yang tidak diinvestasikan dikenai PPh 10% yang bersifat final dan disetor sendiri; seluruh dividen tetap dilaporkan dalam SPT Tahunan 2026",
-        C: "Bagian dividen yang diinvestasikan di Indonesia paling lambat akhir bulan ketiga setelah Tahun Pajak 2026 berakhir dan ditahan paling sedikit 3 tahun pajak dikecualikan dari objek PPh; bagian yang tidak diinvestasikan digabung dengan penghasilan lain dan dikenai tarif Pasal 17; seluruh dividen tetap dilaporkan dalam SPT Tahunan 2026",
-        D: "Bagian dividen yang diinvestasikan di Indonesia paling lambat akhir bulan ketiga setelah Tahun Pajak 2026 berakhir dan ditahan paling sedikit 3 tahun pajak dikecualikan dari objek PPh; bagian yang tidak diinvestasikan dikenai PPh 10% yang bersifat final dan disetor sendiri; dividen yang diinvestasikan tidak perlu dilaporkan dalam SPT Tahunan 2026"
-      },
+      opsi: { A: "Bagian dividen yang diinvestasikan di Indonesia paling lambat akhir bulan ketiga setelah Tahun Pajak 2026 berakhir dan ditahan paling sedikit 3 tahun pajak dikecualikan dari objek PPh; bagian yang tidak diinvestasikan dikenai PPh 10% yang bersifat final dan disetor sendiri; seluruh dividen tetap dilaporkan dalam SPT Tahunan 2026", B: "Bagian dividen yang diinvestasikan di Indonesia paling lambat akhir bulan keenam setelah Tahun Pajak 2026 berakhir dan ditahan paling sedikit 3 tahun pajak dikecualikan dari objek PPh; bagian yang tidak diinvestasikan dikenai PPh 10% yang bersifat final dan disetor sendiri; seluruh dividen tetap dilaporkan dalam SPT Tahunan 2026", C: "Bagian dividen yang diinvestasikan di Indonesia paling lambat akhir bulan ketiga setelah Tahun Pajak 2026 berakhir dan ditahan paling sedikit 3 tahun pajak dikecualikan dari objek PPh; bagian yang tidak diinvestasikan digabung dengan penghasilan lain dan dikenai tarif Pasal 17; seluruh dividen tetap dilaporkan dalam SPT Tahunan 2026", D: "Bagian dividen yang diinvestasikan di Indonesia paling lambat akhir bulan ketiga setelah Tahun Pajak 2026 berakhir dan ditahan paling sedikit 3 tahun pajak dikecualikan dari objek PPh; bagian yang tidak diinvestasikan dikenai PPh 10% yang bersifat final dan disetor sendiri; dividen yang diinvestasikan tidak perlu dilaporkan dalam SPT Tahunan 2026" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Dividen dalam negeri bagi OP dalam negeri dikecualikan dari objek sepanjang diinvestasikan di Indonesia (paling lambat akhir bulan ketiga setelah tahun pajak dividen diterima) dan ditahan paling sedikit 3 tahun pajak; bagian yang tidak diinvestasikan dikenai PPh final 10% yang disetor sendiri. Penghasilan bukan objek maupun final tetap dilaporkan dalam SPT.",
-        jejakHitung: [ ["Batas waktu investasi", "akhir Maret 2027 (bulan ketiga setelah TP 2026)"], ["Jangka waktu investasi", "paling sedikit 3 tahun pajak"], ["Bagian tidak diinvestasikan", "PPh 10% final, disetor sendiri"], ["Pelaporan SPT 2026", "seluruh dividen dilaporkan (bukan objek dan/atau final)"] ],
-        mengapaSalah: { B: "Batas investasi adalah akhir bulan ketiga, bukan keenam, setelah tahun pajak dividen diterima", C: "Pasal 17 ayat (2c) menetapkan PPh 10% yang final; dividen yang tidak diinvestasikan tidak digabung ke PKP", D: "Penghasilan yang dikecualikan dari objek tetap wajib dilaporkan agar SPT benar, lengkap, dan jelas" },
-        jebakan: "Frasa yang berbeda sangat kecil (ketiga vs keenam, final vs Pasal 17, dilaporkan vs tidak) adalah titik ujinya."
+        inti: "Dividen dalam negeri bagi OP dalam negeri dikecualikan dari objek sepanjang diinvestasikan di Indonesia (paling lambat akhir bulan ketiga setelah tahun pajak dividen diterima) dan ditahan paling sedikit 3 tahun pajak (Pasal 36 PMK 18/PMK.03/2021), serta dilaporkan realisasinya (Pasal 370 ayat (1) dan Pasal 374 PMK 81/2024); bagian yang tidak diinvestasikan dikenai PPh final 10% yang disetor sendiri (Pasal 373 PMK 81/2024). Penghasilan bukan objek maupun final tetap dilaporkan dalam SPT.",
+        jejakHitung: [
+          ["Batas waktu investasi", "akhir Maret 2027 (bulan ketiga setelah TP 2026)"],
+          ["Jangka waktu investasi", "paling sedikit 3 tahun pajak"],
+          ["Bagian tidak diinvestasikan", "PPh 10% final, disetor sendiri"],
+          ["Pelaporan SPT 2026", "seluruh dividen dilaporkan (bukan objek dan/atau final)"]
+        ],
+        mengapaSalah: {
+          B: "Batas investasi adalah akhir bulan ketiga, bukan keenam, setelah tahun pajak dividen diterima",
+          C: "Pasal 17 ayat (2c) menetapkan PPh 10% yang final; dividen yang tidak diinvestasikan tidak digabung ke PKP",
+          D: "Penghasilan yang dikecualikan dari objek tetap wajib dilaporkan agar SPT benar, lengkap, dan jelas"
+        },
+        jebakan: "Frasa yang berbeda sangat kecil (ketiga vs keenam, final vs Pasal 17, dilaporkan vs tidak) adalah titik ujinya. Sejak 2025 tata cara pengecualian dan laporan realisasi investasi diatur PMK 81/2024, bukan lagi Pasal 37 sampai dengan Pasal 41 PMK 18/PMK.03/2021."
       },
-      dasarHukum: [ { pasal: "Pasal 4 ayat (3) huruf f UU PPh (UU 11/2020 jo. UU 7/2021)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17 ayat (2c) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 18/PMK.03/2021 (tata cara investasi dividen)", berlakuSejak: "2021-02-17" }, { pasal: "Pasal 3 ayat (1) UU KUP", berlakuSejak: "2008-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf f UU PPh (UU 11/2020 jo. UU 7/2021)", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17 ayat (2c) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 33 sampai dengan Pasal 36 PMK 18/PMK.03/2021 (kriteria, bentuk, dan jangka waktu investasi; masih berlaku)", berlakuSejak: "2021-02-17" }, { pasal: "Pasal 370 ayat (1) dan Pasal 372 sampai dengan Pasal 374 PMK 81/2024 (tata cara pengecualian, penyetoran sendiri, dan laporan realisasi investasi; menggantikan Pasal 37 sampai dengan Pasal 41 PMK 18/PMK.03/2021)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 3 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -4859,7 +4880,7 @@ UKP.register({
     { id: "KT-A1-03", topik: "A1.1", tipe: "definisi", depan: "Subjek pajak pengganti saat WP OP meninggal dan warisan belum dibagi?", belakang: "Warisan yang belum terbagi, sampai warisan selesai dibagi", dasar: "Pasal 2 ayat (1) huruf a angka 2 dan Pasal 2A UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-04", topik: "A1.1", tipe: "angka", depan: "WNA SPDN berkeahlian tertentu dipajaki atas penghasilan apa, berapa lama?", belakang: "Hanya penghasilan dari Indonesia, selama 4 tahun pajak sejak menjadi SPDN; dimohonkan dan perlu surat persetujuan DJP", dasar: "Pasal 4 ayat (1a) UU PPh; Pasal 442 sampai dengan Pasal 447 PMK 81/2024 (menggantikan Pasal 7 sampai dengan Pasal 13 PMK 18/PMK.03/2021)", berlakuSejak: "2020-11-02", menggantikan: "penghasilan seluruh dunia bagi semua SPDN (sebelum UU Cipta Kerja)", dekTambahan: [] },
     { id: "KT-A1-05", topik: "A1.1", tipe: "pasal", depan: "Staf WNI kedutaan atau organisasi internasional: subjek pajak?", belakang: "Ya; pengecualian Pasal 3 mensyaratkan bukan WNI", dasar: "Pasal 3 ayat (1) huruf b dan d UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-06", topik: "A1.2", tipe: "angka", depan: "Dividen dalam negeri diterima OP bebas PPh bila?", belakang: "Diinvestasikan di Indonesia paling sedikit 3 tahun pajak", dasar: "Pasal 4 ayat (3) huruf f UU PPh; PMK 18/PMK.03/2021", berlakuSejak: "2020-11-02", menggantikan: "PPh final 10% atas seluruh dividen OP (UU 36/2008)", dekTambahan: [] },
+    { id: "KT-A1-06", topik: "A1.2", tipe: "angka", depan: "Dividen dalam negeri diterima OP bebas PPh bila?", belakang: "Diinvestasikan di Indonesia paling sedikit 3 tahun pajak", dasar: "Pasal 4 ayat (3) huruf f UU PPh; Pasal 33 sampai dengan Pasal 36 PMK 18/PMK.03/2021; Pasal 370 PMK 81/2024", berlakuSejak: "2020-11-02", menggantikan: "PPh final 10% atas seluruh dividen OP (UU 36/2008)", dekTambahan: [] },
     { id: "KT-A1-07", topik: "A1.2", tipe: "angka", depan: "Tarif PPh dividen OP yang tidak diinvestasikan?", belakang: "10% final, disetor sendiri", dasar: "Pasal 17 ayat (2c) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-08", topik: "A1.2", tipe: "definisi", depan: "Penghasilan final dalam SPT OP diperlakukan bagaimana?", belakang: "Dilaporkan, tidak digabung ke PKP, PPh-nya tidak dikreditkan", dasar: "Pasal 4 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-09", topik: "A1.2", tipe: "definisi", depan: "Hibah uang yang bukan objek PPh bagi penerima OP?", belakang: "Dari keluarga sedarah garis lurus satu derajat, tanpa hubungan usaha", dasar: "Pasal 4 ayat (3) huruf a angka 2 UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },

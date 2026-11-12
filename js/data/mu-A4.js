@@ -1044,20 +1044,35 @@ UKP.register({
       anggaranDetik: 130, verifikasi: "✅"
     },
     {
-      id: "A4-030", topik: "A4.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A4-03",
+      id: "A4-030",
+      topik: "A4.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-A4-03",
       stem: "Vignette PT Griya Utama Properti (PKP, pengembang), Masa Maret 2026. Pengembang juga menyerahkan satu unit apartemen kepada Nyonya Citra dengan harga jual Rp32.000.000.000 belum termasuk pajak. Apartemen dengan harga jual paling sedikit Rp30 miliar termasuk hunian mewah yang dikenai PPnBM 20%. PPN dan PPnBM yang dipungut pengembang atas penyerahan tersebut berturut-turut adalah ...",
       kataKualifikasi: ["paling sedikit"],
       opsi: { A: "PPN Rp3.520.000.000 dan PPnBM Rp6.400.000.000", B: "PPN Rp3.840.000.000 dan PPnBM Rp5.866.666.667", C: "PPN Rp4.608.000.000 dan PPnBM Rp6.400.000.000", D: "PPN Rp3.840.000.000 dan PPnBM Rp6.400.000.000" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
-        inti: "Hunian mewah adalah objek PPnBM, sehingga sejak 1 Februari 2025 PPN dihitung 12% × harga jual penuh dan PPnBM 20% × harga jual yang sama; PPnBM tidak masuk DPP PPN.",
-        jejakHitung: [["Barang mewah → DPP PPN = harga jual penuh", "Rp32.000.000.000"], ["PPN = 12% × 32.000.000.000", "Rp3.840.000.000"], ["PPnBM = 20% × 32.000.000.000", "Rp6.400.000.000"], ["Jumlah pajak dipungut", "Rp10.240.000.000"]],
-        mengapaSalah: { A: "Menerapkan DPP 11/12 pada barang mewah", B: "Menghitung PPnBM dari DPP 11/12", C: "Memasukkan PPnBM ke dalam DPP PPN" },
+        inti: "Hunian mewah adalah objek PPnBM, sehingga PPN dihitung 12% × harga jual penuh (PMK 131/2024 Pasal 2 ayat (2) dan ayat (3)). Bila pembeli berkarakteristik konsumen akhir (misalnya orang pribadi yang membeli untuk dipakai sendiri), ketentuan itu berlaku mulai 1 Februari 2025 (Pasal 5 huruf b); karena penyerahan terjadi pada Maret 2026, hasilnya sama untuk pembeli mana pun. PPnBM 20% × harga jual yang sama; PPnBM tidak masuk DPP PPN.",
+        jejakHitung: [
+          ["Barang mewah → DPP PPN = harga jual penuh", "Rp32.000.000.000"],
+          ["PPN = 12% × 32.000.000.000", "Rp3.840.000.000"],
+          ["PPnBM = 20% × 32.000.000.000", "Rp6.400.000.000"],
+          ["Jumlah pajak dipungut", "Rp10.240.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Menerapkan DPP 11/12 pada barang mewah",
+          B: "Menghitung PPnBM dari DPP 11/12",
+          C: "Memasukkan PPnBM ke dalam DPP PPN"
+        },
         jebakan: "Barang mewah: dua pajak dengan dasar yang sama (harga jual penuh), tidak saling menambah dasar."
       },
-      dasarHukum: [{ pasal: "PMK 131/2024 Pasal 2", berlakuSejak: "2025-02-01" }, { pasal: "Pasal 5 ayat (1) dan Pasal 8 UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 96/PMK.03/2021 s.t.d.d. PMK 15/2023 (hunian mewah 20%)", berlakuSejak: null }],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PMK 131/2024 Pasal 2", berlakuSejak: "2025-01-01" }, { pasal: "PMK 131/2024 Pasal 5 huruf b (pembeli berkarakteristik konsumen akhir)", berlakuSejak: "2025-02-01" }, { pasal: "Pasal 5 ayat (1) dan Pasal 8 UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 96/PMK.03/2021 s.t.d.d. PMK 15/2023 (hunian mewah 20%)", berlakuSejak: null }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A4-031", topik: "A4.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A4-03",
@@ -3139,25 +3154,25 @@ UKP.register({
       jenis: "klasifikasi",
       kesulitan: 3,
       laporanUjian: ["C-2026-10"],
-      stem: "PT Delta Fluida Indonesia (PKP) mencatat empat peristiwa dalam USD pada Oktober 2026: (1) menyerahkan pompa industri kepada PT Xeno (PKP) pada Selasa, 13 Oktober 2026, tetapi faktur pajak baru dibuat Rabu, 14 Oktober 2026; (2) menerima uang muka 30% dari PT Yasa (PKP) pada Selasa, 6 Oktober 2026 atas pompa yang diserahkan Kamis, 8 Oktober 2026 (yang dinilai hanya PPN atas uang muka); (3) mengimpor suku cadang dengan PIB yang didaftarkan dan pungutannya dilunasi Rabu, 7 Oktober 2026 (bill of lading 29 September 2026); dan (4) memanfaatkan jasa konsultan teknik dari Jerman yang mulai dipakai secara nyata pada Jumat, 9 Oktober 2026; invoice konsultan bertanggal Senin, 12 Oktober 2026, diterima dan dicatat sebagai utang pada hari yang sama, lalu dibayar pada Rabu, 14 Oktober 2026. Kurs KMK berlaku mingguan dari Rabu sampai Selasa. PPN atas peristiwa yang dikonversi dengan kurs KMK periode 7–13 Oktober 2026 adalah ...",
+      stem: "PT Delta Fluida Indonesia (PKP) mencatat empat peristiwa dalam USD pada Oktober 2026: (1) menyerahkan pompa industri kepada PT Xeno (PKP) pada Selasa, 13 Oktober 2026, tetapi faktur pajak baru dibuat Rabu, 14 Oktober 2026; (2) menerima uang muka 30% dari PT Yasa (PKP) pada Selasa, 6 Oktober 2026 atas pompa yang diserahkan Kamis, 8 Oktober 2026 (yang dinilai hanya PPN atas uang muka); (3) mengimpor suku cadang dengan PIB yang didaftarkan dan pungutannya dilunasi Rabu, 7 Oktober 2026 (bill of lading 29 September 2026); dan (4) memanfaatkan jasa konsultan teknik dari Jerman yang mulai dipakai secara nyata pada Jumat, 9 Oktober 2026; invoice konsultan bertanggal Senin, 12 Oktober 2026, diterima dan dicatat sebagai utang pada hari yang sama, lalu dibayar dan PPN-nya disetor dengan SSP pada Selasa, 13 Oktober 2026. Kurs KMK berlaku mingguan dari Rabu sampai Selasa. PPN atas peristiwa yang dikonversi dengan kurs KMK periode 7–13 Oktober 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "(1) dan (3) saja", B: "(1), (3), dan (4)", C: "(2), (3), dan (4)", D: "(3) dan (4) saja" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-baca", D: "angka-usang" },
       pembahasan: {
-        inti: "Kurs mengikuti saat Faktur Pajak atau dokumen yang dipersamakan seharusnya dibuat (PP 44/2022 Pasal 21): (1) tanggal penyerahan 13 Oktober; (3) tanggal PIB 7 Oktober; (4) saat pemanfaatan jasa dari luar Daerah Pabean, yaitu yang paling dahulu di antara harga dinyatakan sebagai utang, ditagih, atau dibayar (PP 44/2022 Pasal 23 ayat (6)), di sini 12 Oktober, tanggal invoice konsultan sekaligus saat dicatat sebagai utang. (2) uang muka diterima Selasa 6 Oktober, yang masih termasuk periode 30 September–6 Oktober.",
+        inti: "Kurs mengikuti saat Faktur Pajak atau dokumen yang dipersamakan seharusnya dibuat (PP 44/2022 Pasal 21): (1) tanggal penyerahan 13 Oktober, walaupun faktur baru dibuat 14 Oktober (contoh 1 Penjelasan Pasal 21); (3) tanggal PIB 7 Oktober; (4) untuk jasa dari luar Daerah Pabean, saat terutangnya adalah yang paling dahulu di antara harga dinyatakan sebagai utang, ditagih, atau dibayar (PP 44/2022 Pasal 23 ayat (6)), yaitu 12 Oktober; pemakaian nyata 9 Oktober serta pembayaran dan penyetoran SSP 13 Oktober juga jatuh pada periode 7–13 Oktober, sehingga kursnya sama. (2) uang muka diterima Selasa 6 Oktober, yang masih termasuk periode 30 September–6 Oktober.",
         jejakHitung: [
           ["(1) Seharusnya difakturkan saat penyerahan, Selasa 13 Okt", "periode 7–13 Okt (ya)"],
           ["(2) Uang muka diterima Selasa 6 Okt", "periode 30 Sep–6 Okt (tidak)"],
           ["(3) PIB Rabu 7 Okt", "periode 7–13 Okt (ya)"],
-          ["(4) Invoice bertanggal dan dicatat sebagai utang Senin 12 Okt, lebih dahulu dari pembayaran Rabu 14 Okt", "periode 7–13 Okt (ya)"]
+          ["(4) Pemakaian nyata Jumat 9 Okt; invoice dan utang Senin 12 Okt; pembayaran dan setoran SSP Selasa 13 Okt", "semuanya periode 7–13 Okt (ya)"]
         ],
         mengapaSalah: {
-          A: "Memakai tanggal pembayaran 14 Oktober untuk (4); saat pemanfaatan adalah yang paling dahulu di antara utang, tagihan, dan pembayaran, yaitu 12 Oktober",
+          A: "Mengeluarkan (4); semua tanggal yang relevan untuk jasa dari luar Daerah Pabean (pemakaian 9 Oktober, utang dan tagihan 12 Oktober, pembayaran dan setoran SSP 13 Oktober) jatuh pada periode 7–13 Oktober",
           C: "Memasukkan Selasa 6 Oktober ke periode 7–13 Oktober dan menggeser (1) ke tanggal faktur dibuat",
           D: "Memakai kurs saat faktur dibuat (14 Oktober) untuk (1); sejak PP 44/2022 yang dipakai kurs saat faktur seharusnya dibuat"
         },
-        jebakan: "Tentukan dulu tanggal seharusnya (untuk jasa dari luar negeri: yang paling dahulu di antara utang, tagihan, dan pembayaran), lalu cocokkan dengan periode KMK Rabu–Selasa. Pemakaian nyata Jumat 9 Oktober (Pasal 5 ayat (1) huruf a PMK 40/2010) juga jatuh pada periode yang sama, sehingga hasilnya tidak berubah."
+        jebakan: "Tentukan dulu tanggal seharusnya untuk tiap peristiwa (penyerahan, bukan tanggal faktur dibuat; tanggal uang muka diterima; tanggal PIB; untuk jasa dari luar negeri yang paling dahulu di antara utang, tagihan, dan pembayaran), lalu cocokkan dengan periode KMK Rabu–Selasa."
       },
       dasarHukum: [{ pasal: "PP 44/2022 Pasal 21 dan Pasal 23 ayat (6)", berlakuSejak: "2022-12-02" }, { pasal: "Pasal 11 ayat (1) dan (2) serta Pasal 13 ayat (1a) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "KMK nilai kurs mingguan (berlaku Rabu s.d. Selasa)", berlakuSejak: null }],
       anggaranDetik: 150,
@@ -3454,29 +3469,34 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A4-129", topik: "A4.5", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2, laporanUjian: ["C-2026-10"],
-      stem: "PT Medika Instrumen Nusantara (PKP) pada Selasa, 22 September 2026 menyerahkan alat uji laboratorium (bukan barang mewah) seharga USD35.000 belum termasuk PPN kepada PT Rumah Sakit Persada (BUMN yang ditunjuk sebagai pemungut PPN) dan membuat faktur pajak dengan kode transaksi 03 pada hari yang sama. Tagihan dibayar BUMN pada Rabu, 28 Oktober 2026, dan pada saat itu BUMN memungut PPN. Data kurs per USD: kurs KMK 16–22 September 2026 Rp16.396; kurs KMK 23–29 September 2026 Rp16.410; kurs tengah BI 22 September 2026 Rp16.430; kurs KMK 28 Oktober–3 November 2026 Rp16.342. Jumlah PPN yang dipungut BUMN serta perlakuan faktur tersebut dalam SPT Masa PPN PT Medika adalah ...",
+      id: "A4-129",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
+      stem: "PT Medika Instrumen Nusantara (PKP) pada Selasa, 22 September 2026 menyerahkan alat uji laboratorium (bukan barang mewah) seharga USD35.000 belum termasuk PPN kepada PT Rumah Sakit Persada (BUMN yang ditunjuk sebagai pemungut PPN) dan membuat faktur pajak dengan kode transaksi 03 pada hari yang sama. Tagihan dibayar BUMN pada Rabu, 28 Oktober 2026. Data kurs per USD: kurs KMK 16–22 September 2026 Rp16.396; kurs KMK 23–29 September 2026 Rp16.410; kurs tengah BI 22 September 2026 Rp16.430; kurs KMK 28 Oktober–3 November 2026 Rp16.342. Jumlah PPN yang dipungut BUMN serta perlakuan faktur tersebut dalam SPT Masa PPN PT Medika adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp62.916.700, sesuai kurs KMK saat pembayaran oleh pemungut; faktur dilaporkan dalam SPT Masa PPN Oktober 2026",
-        B: "Rp63.255.500; faktur dilaporkan dalam SPT Masa PPN September 2026 tanpa setoran oleh PT Medika",
-        C: "Rp63.178.500; faktur dilaporkan dalam SPT Masa PPN September 2026 tanpa setoran oleh PT Medika",
-        D: "Rp63.124.600; faktur dilaporkan dalam SPT Masa PPN September 2026 tanpa setoran oleh PT Medika"
-      },
+      opsi: { A: "Rp62.916.700, sesuai kurs KMK saat pembayaran oleh pemungut; faktur dilaporkan dalam SPT Masa PPN Oktober 2026", B: "Rp63.255.500; faktur dilaporkan dalam SPT Masa PPN September 2026 tanpa setoran oleh PT Medika", C: "Rp63.178.500; faktur dilaporkan dalam SPT Masa PPN September 2026 tanpa setoran oleh PT Medika", D: "Rp63.124.600; faktur dilaporkan dalam SPT Masa PPN September 2026 tanpa setoran oleh PT Medika" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
-        inti: "PPN dalam faktur kode 03 dirupiahkan dengan kurs KMK saat faktur seharusnya dibuat (penyerahan Selasa, 22 September 2026 → periode 16–22 September). Pemungut memungut PPN sebesar yang tercantum dalam faktur walaupun membayar lebih dari sebulan kemudian, sedangkan PKP penjual melaporkan faktur pada Masa September tanpa menyetor PPN-nya.",
-        jejakHitung: [["Kurs KMK 16–22 Sep 2026 (penyerahan Selasa, 22 Sep)", "Rp16.396"], ["Harga jual = 35.000 × 16.396", "Rp573.860.000"], ["PPN = 12% × 11/12 × 573.860.000 = 11% × 573.860.000", "Rp63.124.600"]],
+        inti: "PPN dalam faktur kode 03 dirupiahkan dengan kurs KMK saat faktur seharusnya dibuat (penyerahan Selasa, 22 September 2026 → periode 16–22 September). Pemungutan oleh Pemungut PPN dilakukan pada saat Faktur Pajak rekanan harus dibuat, di sini saat penyerahan (PMK 81/2024 Pasal 296 ayat (1) jo. Pasal 295 ayat (2) huruf a), bukan saat tagihan dibayar 28 Oktober, dan jumlahnya sebesar PPN dalam faktur. PKP penjual melaporkan faktur pada Masa September tanpa menyetor PPN-nya, karena PPN itu dipungut, disetor, dan dilaporkan oleh Pemungut (Pasal 291 ayat (1)).",
+        jejakHitung: [
+          ["Kurs KMK 16–22 Sep 2026 (penyerahan Selasa, 22 Sep)", "Rp16.396"],
+          ["Harga jual = 35.000 × 16.396", "Rp573.860.000"],
+          ["PPN = 12% × 11/12 × 573.860.000 = 11% × 573.860.000", "Rp63.124.600"]
+        ],
         mengapaSalah: {
-          A: "Saat pembayaran oleh pemungut tidak menggeser kurs dan masa faktur; faktur dibuat dan dilaporkan pada saat penyerahan (September)",
+          A: "Pembayaran tagihan tidak menggeser kurs, masa faktur, maupun saat pemungutan; pemungutan dilakukan pada saat Faktur Pajak harus dibuat, yaitu saat penyerahan September (PMK 81/2024 Pasal 296 ayat (1))",
           B: "Memakai kurs tengah BI (Rp16.430); kurs tengah BI adalah kurs pembukuan",
           C: "Memakai kurs KMK periode 23–29 September; Selasa, 22 September masih termasuk periode Rabu 16–Selasa 22 September"
         },
-        jebakan: "Pemungut memungut PPN sesuai faktur valas (kurs KMK saat faktur), bukan kurs saat pembayaran."
+        jebakan: "Pemungut memungut PPN pada saat faktur seharusnya dibuat dan sebesar PPN dalam faktur valas (kurs KMK saat itu), bukan pada saat dan dengan kurs saat tagihan dibayar."
       },
-      dasarHukum: [{ pasal: "PP 44/2022 Pasal 21", berlakuSejak: "2022-12-02" }, { pasal: "Pasal 13 ayat (1a) dan Pasal 16A UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }, { pasal: "KMK nilai kurs mingguan (berlaku Rabu s.d. Selasa)", berlakuSejak: null }],
-      anggaranDetik: 140, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PP 44/2022 Pasal 21", berlakuSejak: "2022-12-02" }, { pasal: "Pasal 13 ayat (1a) dan Pasal 16A UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 81/2024 Pasal 291 ayat (1), Pasal 295 ayat (2) huruf a, dan Pasal 296 ayat (1)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }, { pasal: "KMK nilai kurs mingguan (berlaku Rabu s.d. Selasa)", berlakuSejak: null }],
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "A4-130", topik: "A4.5", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 2, laporanUjian: ["C-2026-10"],
@@ -11566,6 +11586,227 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "A4-130",
       sejak: "9.5.0"
+    },
+    {
+      id: "A4-405",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Ruang Selaras Interior (PKP, usaha desain interior dan penjualan furnitur) di Bandung mencatat kegiatan berikut pada Masa Juli 2026; seluruhnya bukan barang mewah dan harga belum termasuk PPN. (1) Penjualan furnitur kantor kepada PT Mitra Sarana Logistik Rp264.000.000. (2) Jasa desain interior kantor untuk CV Lentera Kopi Rp84.000.000. (3) Jasa desain dan pengerjaan interior rumah tinggal Ibu Ratih, direktur utama PT Ruang Selaras Interior, yang ditagih dengan harga normal Rp48.000.000 dan dibayar Ibu Ratih dari rekening pribadinya. (4) Ibu Ratih menjual tiga lukisan koleksi pribadinya kepada seorang kolektor Rp175.000.000; lukisan itu tidak pernah dicatat sebagai persediaan atau aktiva perseroan, transaksinya dibuat atas nama Ibu Ratih, uangnya masuk ke rekening pribadinya, dan Ibu Ratih tidak menjalankan usaha jual beli lukisan. PPN yang terutang atas penyerahan oleh PT Ruang Selaras Interior pada Masa Juli 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp38.280.000", B: "Rp62.810.000", C: "Rp47.520.000", D: "Rp43.560.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Penyerahan terutang PPN bila yang diserahkan BKP atau JKP, dilakukan di dalam Daerah Pabean, dan dilakukan oleh pengusaha dalam kegiatan usaha atau pekerjaannya (Pasal 4 ayat (1) huruf a dan c UU PPN beserta penjelasannya). Transaksi (1) sampai (3) adalah penyerahan perseroan dalam kegiatan usahanya; pembelinya yang kebetulan direktur tidak mengubah hal itu. Penjualan lukisan pribadi direktur bukan penyerahan perseroan dan tidak dilakukan dalam kegiatan usaha siapa pun, sehingga tidak masuk PPN perseroan. Untuk barang dan jasa nonmewah, PPN = 12% × 11/12 × harga jual atau penggantian (PMK 131/2024 Pasal 3).",
+        jejakHitung: [
+          ["Penyerahan dalam kegiatan usaha perseroan: 264.000.000 + 84.000.000 + 48.000.000", "Rp396.000.000"],
+          ["Lukisan pribadi direktur, bukan penyerahan perseroan", "dikeluarkan"],
+          ["DPP nilai lain = 11/12 × 396.000.000", "Rp363.000.000"],
+          ["PPN = 12% × 363.000.000", "Rp43.560.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengeluarkan jasa interior rumah direktur (Rp48.000.000) karena mengira transaksi dengan pengurus bukan kegiatan usaha; jasa itu diserahkan perseroan dalam usahanya dan ditagih dengan harga normal: 11% × 348.000.000",
+          B: "Memasukkan penjualan lukisan pribadi direktur sebagai penyerahan perseroan: 11% × 571.000.000; lukisan itu bukan milik perseroan dan dijual di luar kegiatan usaha",
+          C: "Menghitung 12% langsung dari Rp396.000.000 tanpa DPP nilai lain 11/12 yang berlaku untuk penyerahan nonmewah"
+        },
+        jebakan: "Yang menentukan adalah siapa yang menyerahkan dan apakah penyerahan dilakukan dalam kegiatan usahanya, bukan siapa pembelinya atau di mana uangnya diterima."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf a dan c UU PPN dan penjelasannya", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 1 angka 14 UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A4-406",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      kutipan: "Penjelasan Pasal 4 ayat (1) huruf a UU PPN: Penyerahan barang yang dikenai pajak harus memenuhi syarat-syarat sebagai berikut: a. barang berwujud yang diserahkan merupakan Barang Kena Pajak, b. barang tidak berwujud yang diserahkan merupakan Barang Kena Pajak Tidak Berwujud, c. penyerahan dilakukan di dalam Daerah Pabean; dan d. penyerahan dilakukan dalam rangka kegiatan usaha atau pekerjaannya.",
+      stem: "Yayasan Kasih Bunda Lestari mengelola panti asuhan di Semarang. Yayasan ini tidak menjalankan kegiatan usaha apa pun, seluruh dananya berasal dari donatur, dan tidak dikukuhkan sebagai PKP. Pada Agustus 2026 yayasan mengimpor dua unit mesin cuci dan pengering berkapasitas besar dari Korea Selatan untuk dipakai di panti, dibeli dengan dana sendiri, dengan PIB atas nama yayasan dan tanpa fasilitas pembebasan apa pun. Pada bulan yang sama yayasan menjual minibus antar-jemput anak asuh yang sudah dipakai enam tahun kepada pedagang mobil bekas seharga Rp95.000.000. Berdasarkan kutipan tersebut dan ketentuan objek PPN, perlakuan PPN atas kedua peristiwa itu adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Impor mesin dan penjualan minibus sama-sama tidak terutang PPN karena yayasan bukan PKP dan tidak menjalankan usaha", B: "Impor mesin tidak terutang karena tidak untuk usaha; penjualan minibus terutang PPN sebagai penyerahan aktiva", C: "Impor mesin terutang PPN yang dipungut melalui DJBC; penjualan minibus bukan penyerahan yang terutang PPN", D: "Impor mesin terutang PPN yang dipungut melalui DJBC; penjualan minibus juga terutang dan wajib dibuatkan faktur pajak" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Penyerahan BKP di dalam Daerah Pabean hanya terutang bila dilakukan oleh pengusaha dalam rangka kegiatan usaha atau pekerjaannya (syarat huruf d kutipan; Pasal 4 ayat (1) huruf a; pengertian pengusaha Pasal 1 angka 14). Yayasan sosial yang tidak menjalankan usaha bukan pengusaha, sehingga penjualan minibus bekasnya tidak terutang; Pasal 16D pun hanya mengenai penyerahan aktiva oleh PKP. Sebaliknya impor BKP dikenai PPN siapa pun pengimpornya, tanpa memperhatikan apakah impor dilakukan dalam rangka kegiatan usaha, dan dipungut melalui DJBC (Penjelasan Pasal 4 ayat (1) huruf b).",
+        jejakHitung: [
+          ["Impor mesin oleh yayasan bukan pengusaha, tanpa fasilitas", "terutang PPN impor, dipungut melalui DJBC"],
+          ["Penjualan minibus bekas oleh badan yang tidak menjalankan usaha", "tidak memenuhi syarat kegiatan usaha, tidak terutang"],
+          ["Pasal 16D", "hanya untuk aktiva yang diserahkan PKP, tidak berlaku"]
+        ],
+        mengapaSalah: {
+          A: "Menyamakan syarat impor dengan syarat penyerahan; impor BKP dikenai PPN siapa pun pengimpornya walaupun bukan pengusaha dan bukan PKP",
+          B: "Membalik kedua aturan: syarat kegiatan usaha berlaku untuk penyerahan, bukan untuk impor, dan Pasal 16D hanya berlaku bagi aktiva yang diserahkan PKP",
+          D: "Melupakan syarat kegiatan usaha pada penyerahan; yayasan yang tidak menjalankan usaha bukan pengusaha, dan faktur pajak hanya boleh dibuat PKP"
+        },
+        jebakan: "Syarat dalam kegiatan usaha atau pekerjaan hanya berlaku untuk penyerahan; impor BKP tetap kena PPN walaupun pengimpornya bukan pengusaha."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf a dan b UU PPN dan penjelasannya", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 1 angka 14 UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 16D UU PPN", berlakuSejak: "2010-04-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A4-407",
+      topik: "A4.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Kirana Atap Nusantara adalah distributor rangka atap baja ringan di Surabaya dengan tahun buku Januari sampai Desember. Peredaran bruto kumulatif atas penyerahan BKP pada tahun buku 2025 melampaui Rp4,8 miliar pada September 2025, tetapi sampai akhir 2025 perseroan tidak melaporkan usahanya untuk dikukuhkan sebagai PKP. Pada April 2026 perseroan menjual baja ringan (bukan barang mewah) seharga Rp600.000.000 kepada PT Bangun Persada, kontraktor di Gresik, tanpa memungut PPN. Pada September 2026 kepala KPP mengukuhkan PT Kirana Atap Nusantara sebagai PKP secara jabatan. Perlakuan PPN atas penjualan April 2026 yang sesuai dengan ketentuan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Terutang PPN karena perseroan pengusaha yang seharusnya sudah dikukuhkan; kewajiban Masa April 2026 dipenuhi melalui SPT Masa PPN setelah dikukuhkan secara jabatan", B: "Tidak terutang PPN karena pada saat penyerahan perseroan belum dikukuhkan sebagai PKP, sehingga belum menjadi pengusaha yang penyerahannya terutang", C: "Tidak terutang PPN karena kewajiban memungut bagi PKP yang dikukuhkan secara jabatan baru dimulai pada Masa September 2026, masa pengukuhannya", D: "Tidak terutang PPN karena kewajiban memungut baru dimulai pada Masa Januari 2027, Masa Pajak pertama tahun buku setelah pengukuhan secara jabatan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pengusaha yang melakukan penyerahan BKP meliputi PKP maupun pengusaha yang seharusnya dikukuhkan sebagai PKP tetapi belum dikukuhkan (Penjelasan Pasal 4 ayat (1) huruf a UU PPN). Penjualan baja ringan oleh distributor adalah penyerahan BKP dalam kegiatan usahanya, sehingga objek PPN walaupun perseroan belum dikukuhkan. Batas terlampaui September 2025, sehingga lapor paling lambat 31 Desember 2025 dan PPN seharusnya dipungut mulai Masa Januari 2026 (PMK 164/2023 Pasal 17 ayat (3) dan Pasal 18 ayat (1)). Karena dikukuhkan secara jabatan, kewajiban memungut melalui faktur berlaku mulai Masa September 2026 (Pasal 19 ayat (1)), sedangkan kewajiban atas penyerahan Januari 2026 sampai sebelum pengukuhan, termasuk April 2026, dipenuhi melalui SPT Masa PPN (Pasal 19 ayat (2)); bila tidak, DJP dapat menerbitkan ketetapan atau STP (ayat (4)).",
+        jejakHitung: [
+          ["Batas Rp4,8 miliar terlampaui", "September 2025 (tahun buku 2025)"],
+          ["Batas lapor pengukuhan (Pasal 17 ayat (3))", "31 Desember 2025"],
+          ["PPN seharusnya dipungut sejak (Pasal 18 ayat (1))", "Masa Januari 2026"],
+          ["Penyerahan April 2026, sebelum pengukuhan secara jabatan September 2026", "terutang; dipenuhi melalui SPT Masa PPN (Pasal 19 ayat (2))"]
+        ],
+        mengapaSalah: {
+          B: "Mengira hanya PKP yang sudah dikukuhkan yang melakukan penyerahan terutang; penjelasan Pasal 4 ayat (1) huruf a mencakup pengusaha yang seharusnya dikukuhkan tetapi belum",
+          C: "Hanya membaca Pasal 19 ayat (1); ayat (2) mengatur pemenuhan kewajiban atas penyerahan sejak Masa Januari 2026 sampai sebelum pengukuhan melalui SPT Masa PPN",
+          D: "Menerapkan Pasal 18 ayat (1) seolah-olah tahun buku dihitung dari pengukuhan; tahun buku yang relevan adalah tahun buku sesudah batas terlampaui, yaitu 2026, dan pengukuhan secara jabatan diatur Pasal 19"
+        },
+        jebakan: "Status belum dikukuhkan tidak menghapus PPN atas penyerahan dalam kegiatan usaha; yang bergeser hanya cara memenuhi kewajibannya."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf a UU PPN dan penjelasannya", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 3A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 164/2023 Pasal 17 ayat (3), Pasal 18 ayat (1), dan Pasal 19", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A4-408",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Armada Tirta Logistik (PKP, jasa pergudangan) di Cikarang melakukan empat perolehan pada Oktober 2026 untuk gudangnya: (1) rak gudang baja baru dari PT Rakindo Baja (PKP, pabrik rak); (2) mobil pikap bekas dari Tuan Yudi, karyawan swasta yang memakai pikap itu untuk keperluan keluarganya dan tidak menjalankan usaha; (3) jasa perbaikan atap gudang dari CV Atap Prima (PKP, usaha renovasi bangunan); (4) sepuluh unit pendingin ruangan bekas dari drg. Sinta, dokter gigi yang membuka praktik mandiri, yang selama ini memasang unit-unit itu di rumah tinggalnya dan tidak pernah memakainya di tempat praktik. Perolehan yang merupakan penyerahan terutang PPN oleh pihak penjual atau pemberi jasa adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Perolehan (1) saja", B: "Perolehan (1) dan (3)", C: "Perolehan (1), (3), dan (4)", D: "Perolehan (1), (2), (3), dan (4)" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "PPN atas penyerahan BKP atau JKP di dalam Daerah Pabean hanya terutang bila penyerahan dilakukan oleh pengusaha dalam kegiatan usaha atau pekerjaannya (Pasal 4 ayat (1) huruf a dan c UU PPN beserta penjelasannya). Rak dari pabrik rak dan jasa perbaikan atap dari usaha renovasi diserahkan dalam kegiatan usaha penjualnya. Pikap pribadi karyawan dan pendingin ruangan dari rumah tinggal dokter gigi tidak diserahkan dalam kegiatan usaha atau pekerjaan penjualnya: dokter gigi itu memang mempunyai pekerjaan, tetapi barang yang dijual tidak pernah dipakai dalam pekerjaannya.",
+        jejakHitung: [
+          ["(1) Rak dari pabrik rak (PKP)", "penyerahan BKP dalam kegiatan usaha, terutang"],
+          ["(2) Pikap pribadi karyawan yang tidak menjalankan usaha", "bukan penyerahan oleh pengusaha, tidak terutang"],
+          ["(3) Jasa perbaikan atap dari usaha renovasi (PKP)", "penyerahan JKP dalam kegiatan usaha, terutang"],
+          ["(4) Pendingin ruangan dari rumah tinggal dokter gigi", "di luar pekerjaannya, tidak terutang"]
+        ],
+        mengapaSalah: {
+          A: "Melewatkan jasa perbaikan atap; penyerahan JKP dalam kegiatan usaha pemberi jasa juga objek PPN (Pasal 4 ayat (1) huruf c)",
+          C: "Menganggap semua penjualan oleh orang yang mempunyai pekerjaan bebas terutang; syaratnya penyerahan dilakukan dalam pekerjaannya, sedangkan pendingin ruangan itu barang rumah tinggal",
+          D: "Melupakan syarat kegiatan usaha atau pekerjaan; penjualan barang pribadi oleh orang yang tidak menjalankan usaha bukan objek PPN"
+        },
+        jebakan: "Status pembeli sebagai PKP tidak membuat setiap pembelian mengandung PPN; yang diuji adalah apakah penjualnya menyerahkan dalam kegiatan usaha atau pekerjaannya."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf a dan c UU PPN dan penjelasannya", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 1 angka 14 UU PPN", berlakuSejak: "2010-04-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A4-409",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Ibu Kartika adalah PKP orang pribadi yang menjalankan toko alat listrik Kartika Elektrik di Surakarta; seluruh barangnya bukan barang mewah. Pada Masa Oktober 2026 terdapat dua kelompok penjualan: (1) penjualan eceran di toko kepada pembeli orang pribadi bukan PKP yang memakai barang itu sendiri, dengan harga label yang sudah termasuk PPN; jumlah uang yang diterima dari kelompok ini Rp177.600.000; (2) penjualan kabel dan panel listrik kepada PT Graha Daya Konstruksi (PKP) seharga Rp96.000.000 belum termasuk PPN. Jumlah PPN yang wajib dipungut Ibu Kartika atas penjualan Masa Oktober 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp10.560.000", B: "Rp30.096.000", C: "Rp28.160.000", D: "Rp30.720.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-hitung" },
+      pembahasan: {
+        inti: "PKP wajib memungut PPN yang terutang atas setiap penyerahan BKP (Pasal 3A ayat (1) UU PPN), termasuk kepada pembeli orang pribadi bukan PKP, dan membuat faktur pajak untuk setiap penyerahan (Pasal 13 ayat (1)). Untuk barang nonmewah PPN = 12% × 11/12 × harga jual = 11% × harga jual, sehingga jumlah yang sudah termasuk PPN sama dengan 111% × harga jual.",
+        jejakHitung: [
+          ["(1) Harga jual = 177.600.000 ÷ 1,11", "Rp160.000.000"],
+          ["(1) PPN = 12% × 11/12 × 160.000.000", "Rp17.600.000"],
+          ["(2) PPN = 12% × 11/12 × 96.000.000", "Rp10.560.000"],
+          ["Jumlah PPN yang wajib dipungut", "Rp28.160.000"]
+        ],
+        mengapaSalah: {
+          A: "Hanya memungut PPN dari pembeli PKP; penjualan kepada konsumen bukan PKP juga penyerahan yang PPN-nya wajib dipungut",
+          B: "Memperlakukan Rp177.600.000 seolah-olah belum termasuk PPN: 11% × 177.600.000 + 10.560.000",
+          D: "Memakai 12% atas harga jual penuh tanpa DPP nilai lain 11/12: 12% × (160.000.000 + 96.000.000)"
+        },
+        jebakan: "Kewajiban memungut tidak bergantung pada status pembeli; harga yang sudah termasuk PPN harus dipisahkan lebih dulu sebelum PPN dihitung."
+      },
+      dasarHukum: [{ pasal: "Pasal 3A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 13 ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A4-410",
+      topik: "A4.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Tuan Bima adalah PKP orang pribadi yang menjalankan bengkel perbaikan mesin industri Bima Teknik di Bekasi. Pada 9 September 2026 ia menyerahkan jasa perbaikan mesin pengemas kepada CV Sumber Pangan (PKP) dengan imbalan Rp70.000.000. Staf administrasinya keliru menagih Rp70.000.000 tanpa mencantumkan PPN dan tanpa membuat faktur pajak, dan CV Sumber Pangan melunasi tagihan itu pada 15 September 2026. Kekeliruan baru diketahui pada 5 Oktober 2026, sebelum SPT Masa PPN September 2026 disampaikan. Pernyataan yang tepat mengenai PPN atas penyerahan jasa tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "PPN tetap terutang pada Masa September 2026, dan Tuan Bima tetap wajib membuat faktur pajak, menyetor, serta melaporkan PPN tersebut", B: "PPN tidak terutang karena tidak dipungut dari pembeli dan pembayaran tanpa PPN telah diterima, sehingga transaksi dianggap selesai", C: "PPN menjadi kewajiban CV Sumber Pangan untuk disetor sendiri karena pembeli adalah PKP yang menerima jasa tanpa faktur pajak", D: "PPN baru terutang pada Masa Oktober 2026, yaitu saat kekeliruan diketahui dan faktur pajak atas penyerahan itu dibuat" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "PPN terutang karena penyerahan JKP oleh pengusaha di dalam Daerah Pabean (Pasal 4 ayat (1) huruf c UU PPN) pada saat penyerahan (Pasal 11 ayat (1) huruf c), yaitu Masa September 2026. Pemungutan adalah kewajiban PKP (Pasal 3A ayat (1)): lupa menagih PPN kepada pembeli tidak menghapus utang pajak itu. Faktur pajak wajib dibuat untuk penyerahan itu (Pasal 13 ayat (1)); karena seharusnya dibuat pada saat penyerahan (ayat (1a)), faktur yang dibuat kemudian merupakan faktur terlambat.",
+        jejakHitung: [
+          ["Saat terutang: penyerahan jasa 9 September 2026", "Masa September 2026"],
+          ["Kewajiban PKP penjual", "memungut, membuat faktur, menyetor, melaporkan"],
+          ["PPN tidak ditagih kepada pembeli", "tidak menghapus PPN terutang"]
+        ],
+        mengapaSalah: {
+          B: "Mengira PPN hanya terutang bila sudah dipungut dari pembeli; utang PPN timbul karena penyerahan, sedangkan memungut adalah kewajiban PKP",
+          C: "Mekanisme setor sendiri oleh penerima hanya untuk pemanfaatan BKP tidak berwujud atau JKP dari luar Daerah Pabean (Pasal 3A ayat (3)); jasa ini diserahkan di dalam Daerah Pabean",
+          D: "Menganggap saat terutang mengikuti saat faktur dibuat atau saat kekeliruan diketahui; menurut Pasal 11 ayat (1) PPN terutang pada saat penyerahan"
+        },
+        jebakan: "Kelalaian memungut tidak memindahkan atau menghapus PPN terutang; PKP penjual tetap menanggung kewajiban menyetor dan melaporkannya pada masa penyerahan."
+      },
+      dasarHukum: [{ pasal: "Pasal 3A ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 11 ayat (1) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 13 ayat (1) dan (1a) UU PPN", berlakuSejak: "2010-04-01" }],
+      anggaranDetik: 110,
+      verifikasi: "✅",
+      sejak: "9.5.1"
+    },
+    {
+      id: "A4-411",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 3,
+      kutipan: "Pasal 1A ayat (2) UU PPN: Yang tidak termasuk dalam pengertian penyerahan Barang Kena Pajak adalah: a. penyerahan Barang Kena Pajak kepada makelar sebagaimana dimaksud dalam Kitab Undang-Undang Hukum Dagang; ... d. pengalihan Barang Kena Pajak dalam rangka penggabungan, peleburan, pemekaran, pemecahan, dan pengambilalihan usaha, serta pengalihan Barang Kena Pajak untuk tujuan setoran modal pengganti saham, dengan syarat pihak yang melakukan pengalihan dan yang menerima pengalihan adalah Pengusaha Kena Pajak; ... PP 44/2022 Pasal 24 ayat (1): Penyerahan Barang Kena Pajak sebagaimana dimaksud dalam Pasal 23 ayat (1) huruf a untuk penyerahan Barang Kena Pajak berwujud yang menurut sifat atau hukumnya berupa barang bergerak yang dilakukan secara konsinyasi, bagi consignor, terjadi pada saat harga atas penyerahan Barang Kena Pajak diakui sebagai piutang atau penghasilan, atau pada saat diterbitkan faktur penjualan oleh Pengusaha Kena Pajak consignor, sesuai dengan prinsip akuntansi yang berlaku umum dan diterapkan secara konsisten.",
+      stem: "PT Prima Busana Nusantara (PKP, produsen pakaian jadi yang bukan barang mewah) pada Masa Juli 2026 melakukan kegiatan berikut: (1) pada 6 Juli 2026 menitipkan pakaian dengan harga jual Rp240.000.000 kepada CV Lestari Sandang secara konsinyasi; menurut kebijakan akuntansi yang diterapkan secara konsisten, perusahaan baru mengakui piutang dan menerbitkan faktur penjualan setelah CV Lestari Sandang melaporkan barang yang terjual, dan sampai 31 Juli 2026 laporan penjualan yang diterima bernilai Rp95.000.000; (2) menyerahkan pakaian Rp120.000.000 kepada makelar sebagaimana dimaksud dalam KUHD untuk dijualkan, yang sampai akhir bulan belum laku; (3) mengalihkan persediaan kain Rp180.000.000 kepada PT Prima Tekstil Mandiri (PKP) sebagai setoran modal pengganti saham; dan (4) menjual pakaian kepada pengecer PKP Rp410.000.000. Semua nilai belum termasuk PPN. Berdasarkan kutipan tersebut, PPN yang terutang atas kegiatan PT Prima Busana Nusantara pada Masa Juli 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp45.100.000", B: "Rp55.550.000", C: "Rp71.500.000", D: "Rp75.350.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Bagi consignor, penyerahan BKP secara konsinyasi terjadi saat harga diakui sebagai piutang atau penghasilan, atau saat faktur penjualan diterbitkan, sesuai prinsip akuntansi yang diterapkan secara konsisten (Pasal 24 ayat (1) PP 44/2022), bukan saat barang dititipkan. Penyerahan kepada makelar KUHD dan pengalihan BKP sebagai setoran modal pengganti saham antara sesama PKP tidak termasuk pengertian penyerahan BKP (Pasal 1A ayat (2) huruf a dan d UU PPN).",
+        jejakHitung: [
+          ["(1) Konsinyasi: piutang diakui dan faktur penjualan terbit atas barang yang dilaporkan terjual", "Rp95.000.000 terutang"],
+          ["(1) Sisa barang titipan Rp145.000.000 yang belum dilaporkan terjual", "belum terjadi penyerahan"],
+          ["(2) Penyerahan kepada makelar KUHD", "bukan penyerahan"],
+          ["(3) Setoran modal pengganti saham, pengalih dan penerima sama-sama PKP", "bukan penyerahan"],
+          ["(4) Penjualan kepada pengecer", "Rp410.000.000 terutang"],
+          ["DPP nilai lain = 11/12 × (95.000.000 + 410.000.000)", "Rp462.916.667"],
+          ["PPN = 12% × 11/12 × 505.000.000", "Rp55.550.000"]
+        ],
+        mengapaSalah: {
+          A: "Tidak menghitung bagian konsinyasi yang sudah dilaporkan terjual; atas Rp95.000.000 itu piutang diakui dan faktur penjualan terbit pada Juli 2026, sehingga penyerahan oleh consignor sudah terjadi",
+          C: "Menganggap seluruh barang konsinyasi Rp240.000.000 terutang saat dititipkan; menurut Pasal 24 ayat (1) PP 44/2022 beserta Penjelasannya, penyerahan oleh consignor tidak terjadi saat barang dititipkan",
+          D: "Ikut mengenakan PPN atas setoran modal pengganti saham Rp180.000.000, padahal pengalihan itu antara sesama PKP sehingga tidak termasuk pengertian penyerahan (Pasal 1A ayat (2) huruf d UU PPN)"
+        },
+        jebakan: "Setoran modal berupa BKP baru dikecualikan dari pengertian penyerahan bila pengalih dan penerima sama-sama PKP. Barang konsinyasi terutang hanya sebesar bagian yang piutangnya diakui atau fakturnya terbit pada masa itu, bukan seluruh nilai titipan."
+      },
+      dasarHukum: [{ pasal: "Pasal 1A ayat (2) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PP 44/2022 Pasal 24 ayat (1)", berlakuSejak: "2022-12-02" }, { pasal: "PMK 131/2024 Pasal 3", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "A4-104",
+      sejak: "9.5.1"
     }
   ],
   kartu: [

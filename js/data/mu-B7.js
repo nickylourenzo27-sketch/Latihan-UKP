@@ -565,7 +565,11 @@ UKP.register({
       anggaranDetik: 170, verifikasi: "✅"
     },
     {
-      id: "B7-010", topik: "B7.2", tingkat: ["B", "C"], jenis: "klasifikasi", kesulitan: 1,
+      id: "B7-010",
+      topik: "B7.2",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
       kutipan: "Pasal 9 ayat (1) huruf c UU PPh: tidak boleh dikurangkan pembentukan atau pemupukan dana cadangan, kecuali cadangan piutang tak tertagih untuk usaha bank dan badan usaha lain yang menyalurkan kredit, sewa guna usaha dengan hak opsi, perusahaan pembiayaan konsumen, dan perusahaan anjak piutang; cadangan usaha asuransi; cadangan penjaminan LPS; cadangan biaya reklamasi pertambangan; cadangan biaya penanaman kembali kehutanan; dan cadangan biaya penutupan dan pemeliharaan tempat pembuangan limbah industri.",
       stem: "Empat klien sebuah kantor konsultan pajak membentuk cadangan kerugian piutang dalam laporan keuangan 2025 dan membebankannya ke laba rugi. Berdasarkan kutipan tersebut, beban pembentukan cadangan piutang dapat dikurangkan dalam penghitungan PKP (sepanjang dalam batas Peraturan Menteri Keuangan) oleh klien berikut, kecuali ...",
       kataKualifikasi: ["kecuali"],
@@ -575,11 +579,16 @@ UKP.register({
       pembahasan: {
         inti: "Pengecualian cadangan piutang hanya untuk usaha bank dan badan lain yang menyalurkan kredit, SGU dengan hak opsi, pembiayaan konsumen, dan anjak piutang. Distributor yang menjual secara kredit bukan lembaga pembiayaan; cadangannya dikoreksi positif dan baru menjadi biaya saat piutang dihapus sesuai Pasal 6 ayat (1) huruf h.",
         jejakHitung: [],
-        mengapaSalah: { A: "Bank termasuk pengecualian Pasal 9 ayat (1) huruf c angka 1", B: "SGU dengan hak opsi termasuk pengecualian", C: "Pembiayaan konsumen termasuk pengecualian" },
+        mengapaSalah: {
+          A: "Bank termasuk pengecualian Pasal 9 ayat (1) huruf c angka 1",
+          B: "SGU dengan hak opsi termasuk pengecualian",
+          C: "Pembiayaan konsumen termasuk pengecualian"
+        },
         jebakan: "'Menjual secara kredit' tidak sama dengan 'menyalurkan kredit' sebagai usaha pembiayaan."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (1) huruf c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/PMK.03/2009 s.t.d.d. PMK 219/PMK.011/2012" }],
-      anggaranDetik: 90, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) huruf c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 2 ayat (3) dan Pasal 3 PMK 74 Tahun 2024 (mencabut ketentuan cadangan piutang PMK 81/PMK.03/2009 s.t.d.d. PMK 219/PMK.011/2012)", berlakuSejak: "2024-10-18" }],
+      anggaranDetik: 90,
+      verifikasi: "✅"
     },
     {
       id: "B7-011", topik: "B7.2", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3, kasusId: "V-B7-02",
@@ -2009,26 +2018,34 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B7-075", topik: "B7.1", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 2,
-      kutipan: "Pasal 11 ayat (2) UU PPN (parafrase): dalam hal pembayaran diterima sebelum penyerahan Barang Kena Pajak atau Jasa Kena Pajak, saat terutangnya pajak adalah pada saat pembayaran. Pasal 13 ayat (1a) huruf b: Faktur Pajak dibuat pada saat penerimaan pembayaran dalam hal penerimaan pembayaran terjadi sebelum penyerahan.",
+      id: "B7-075",
+      topik: "B7.1",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      kutipan: "Pasal 11 ayat (2) UU PPN: Dalam hal pembayaran diterima sebelum penyerahan Barang Kena Pajak atau sebelum penyerahan Jasa Kena Pajak atau dalam hal pembayaran dilakukan sebelum dimulainya pemanfaatan Barang Kena Pajak Tidak Berwujud atau Jasa Kena Pajak dari luar Daerah Pabean, saat terutangnya pajak adalah pada saat pembayaran. Pasal 13 ayat (1a) huruf b UU PPN: Faktur Pajak sebagaimana dimaksud pada ayat (1) harus dibuat pada saat penerimaan pembayaran dalam hal penerimaan pembayaran terjadi sebelum penyerahan Barang Kena Pajak dan/atau sebelum penyerahan Jasa Kena Pajak.",
       stem: "PT Prima Interior Nusantara (PKP, produsen furnitur kantor; pembukuan akrual) menandatangani kontrak pengadaan 300 set meja dan kursi kantor (penyerahan barang, bukan jasa konstruksi) dengan PT Graha Asuransi Mandiri (bukan pemungut PPN) senilai Rp900.000.000 belum termasuk PPN. Pada 20 Juni 2026 PT Prima menerima uang muka 30% sebesar Rp270.000.000 ditambah PPN-nya; barang diserahkan seluruhnya pada 10 September 2026 dan sisa tagihan dilunasi 10 Oktober 2026. Berdasarkan kutipan tersebut, jurnal penerimaan uang muka dan Masa Pajak PPN-nya yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Dr Kas 299.700.000; Cr Pendapatan penjualan 270.000.000; Cr PPN Keluaran 29.700.000; faktur pajak dibuat 20 Juni 2026 dan dilaporkan dalam SPT Masa PPN Juni 2026",
-        B: "Dr Kas 270.000.000; Cr Uang muka penjualan 270.000.000; PPN atas seluruh kontrak baru terutang dan difakturkan pada Masa September 2026 saat barang diserahkan",
-        C: "Dr Kas 299.700.000; Cr Uang muka penjualan 270.000.000; Cr PPN Keluaran 29.700.000; faktur pajak dibuat 20 Juni 2026 dan dilaporkan dalam SPT Masa PPN Juni 2026",
-        D: "Dr Kas 302.400.000; Cr Uang muka penjualan 270.000.000; Cr PPN Keluaran 32.400.000; faktur pajak dibuat 20 Juni 2026 dan dilaporkan dalam SPT Masa PPN Juni 2026"
-      },
+      opsi: { A: "Dr Kas 299.700.000; Cr Pendapatan penjualan 270.000.000; Cr PPN Keluaran 29.700.000; faktur pajak dibuat 20 Juni 2026 dan dilaporkan dalam SPT Masa PPN Juni 2026", B: "Dr Kas 270.000.000; Cr Uang muka penjualan 270.000.000; PPN atas seluruh kontrak baru terutang dan difakturkan pada Masa September 2026 saat barang diserahkan", C: "Dr Kas 299.700.000; Cr Uang muka penjualan 270.000.000; Cr PPN Keluaran 29.700.000; faktur pajak dibuat 20 Juni 2026 dan dilaporkan dalam SPT Masa PPN Juni 2026", D: "Dr Kas 302.400.000; Cr Uang muka penjualan 270.000.000; Cr PPN Keluaran 32.400.000; faktur pajak dibuat 20 Juni 2026 dan dilaporkan dalam SPT Masa PPN Juni 2026" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
         inti: "Pembayaran mendahului penyerahan, sehingga PPN atas uang muka terutang dan faktur dibuat saat uang diterima (20 Juni 2026): 12% × 11/12 × 270.000.000 = Rp29.700.000, dilaporkan dalam SPT Masa PPN Juni 2026. Secara akuntansi dan PPh, uang muka adalah liabilitas karena kewajiban pelaksanaan baru dipenuhi saat penyerahan September 2026; pendapatan Rp900.000.000 diakui pada 2026 saat barang diserahkan. PPN atas sisa Rp630.000.000 terutang pada penyerahan 10 September 2026.",
-        jejakHitung: [["PPN uang muka = 12% × 11/12 × 270.000.000", "Rp29.700.000"], ["Kas diterima = 270.000.000 + 29.700.000", "Rp299.700.000"], ["PPN sisa saat penyerahan = 12% × 11/12 × 630.000.000", "Rp69.300.000 (Masa September 2026)"]],
-        mengapaSalah: { A: "Uang muka belum memenuhi kewajiban pelaksanaan; pendapatan baru diakui saat barang diserahkan (PSAK 115 dan akrual fiskal)", B: "Pasal 11 ayat (2): pembayaran sebelum penyerahan membuat PPN terutang saat pembayaran, sehingga uang muka harus difakturkan pada Juni", D: "Memakai 12% × harga penuh; furnitur kantor bukan barang mewah (efektif 11%)" },
+        jejakHitung: [
+          ["PPN uang muka = 12% × 11/12 × 270.000.000", "Rp29.700.000"],
+          ["Kas diterima = 270.000.000 + 29.700.000", "Rp299.700.000"],
+          ["PPN sisa saat penyerahan = 12% × 11/12 × 630.000.000", "Rp69.300.000 (Masa September 2026)"]
+        ],
+        mengapaSalah: {
+          A: "Uang muka belum memenuhi kewajiban pelaksanaan; pendapatan baru diakui saat barang diserahkan (PSAK 115 dan akrual fiskal)",
+          B: "Pasal 11 ayat (2): pembayaran sebelum penyerahan membuat PPN terutang saat pembayaran, sehingga uang muka harus difakturkan pada Juni",
+          D: "Memakai 12% × harga penuh; furnitur kantor bukan barang mewah (efektif 11%)"
+        },
         jebakan: "PPN mengikuti kas yang mendahului penyerahan, sedangkan pendapatan (akuntansi dan PPh) mengikuti penyerahan — dua saat berbeda untuk satu transaksi."
       },
       dasarHukum: [{ pasal: "Pasal 11 ayat (2) dan Pasal 13 ayat (1a) UU PPN", berlakuSejak: "2010-04-01" }, { pasal: "PMK 131/2024", berlakuSejak: "2025-01-01" }, { pasal: "PSAK 115 (pengakuan pendapatan)", berlakuSejak: "2024-01-01" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "B7-076", topik: "B7.2", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 2,
@@ -2212,21 +2229,34 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B7-083", topik: "B7.3", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "B7-083",
+      topik: "B7.3",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       kutipan: "Pasal 11 ayat (3) UU PPh: Penyusutan dimulai pada bulan dilakukannya pengeluaran, kecuali untuk harta yang masih dalam proses pengerjaan, penyusutannya dimulai pada bulan selesainya pengerjaan harta tersebut.",
-      stem: "PT Nusa Pangan Olahan (tahun buku kalender) membangun gedung pabrik permanen dengan pengeluaran bertahap Februari–September 2025 seluruhnya Rp4.800.000.000; pembangunan selesai pada September 2025, tetapi pabrik baru dipakai berproduksi pada November 2025. Mesin pengemas (Kelompok 2) seharga Rp960.000.000 dibeli, dibayar lunas, dan diterima di pabrik pada 10 Desember 2025, lalu dipasang dan mulai dipakai Februari 2026. Perusahaan memakai metode garis lurus untuk mesin dan tidak menyampaikan pemberitahuan untuk memulai penyusutan pada bulan harta digunakan. Berdasarkan kutipan tersebut, jumlah penyusutan fiskal Tahun Pajak 2025 atas kedua harta adalah ...",
+      stem: "PT Nusa Pangan Olahan (tahun buku kalender) membangun gedung pabrik permanen dengan pengeluaran bertahap Februari–September 2025 seluruhnya Rp4.800.000.000; pembangunan selesai pada September 2025, tetapi pabrik baru dipakai berproduksi pada November 2025. Mesin pengemas (Kelompok 2) seharga Rp960.000.000 dibeli, dibayar lunas, dan diterima di pabrik pada 10 Desember 2025, lalu dipasang dan mulai dipakai Februari 2026. Perusahaan memakai metode garis lurus untuk mesin dan tidak mengajukan permohonan kepada Direktur Jenderal Pajak untuk memulai penyusutan pada bulan harta digunakan. Berdasarkan kutipan tersebut, jumlah penyusutan fiskal Tahun Pajak 2025 atas kedua harta adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp90.000.000", B: "Rp80.000.000", C: "Rp50.000.000", D: "Rp230.000.000" },
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Gedung masih dalam proses pengerjaan sampai September 2025, sehingga penyusutannya dimulai bulan selesainya pengerjaan: 5% × 4.800.000.000 × 4/12 = Rp80.000.000. Mesin bukan harta dalam pengerjaan; tanpa pemberitahuan, penyusutan dimulai pada bulan pengeluaran (Desember 2025): 12,5% × 960.000.000 × 1/12 = Rp10.000.000. Total Rp90.000.000.",
-        jejakHitung: [["Gedung: 5% × 4.800.000.000 × 4/12 (September–Desember)", "Rp80.000.000"], ["Mesin: 12,5% × 960.000.000 × 1/12 (Desember)", "Rp10.000.000"], ["Total", "Rp90.000.000"]],
-        mengapaSalah: { B: "Tanpa pemberitahuan, penyusutan mesin tetap dimulai pada bulan pengeluaran (Desember 2025), bukan bulan mulai dipakai", C: "Penyusutan gedung dimulai bulan selesainya pengerjaan (September), bukan bulan mulai dipakai berproduksi", D: "Harta dalam proses pengerjaan tidak disusutkan sejak pengeluaran pertama (Februari)" },
-        jebakan: "Dua harta, dua titik mulai: 'selesai dikerjakan' untuk gedung dan 'bulan pengeluaran' untuk mesin; 'mulai dipakai' hanya berlaku dengan pemberitahuan sesuai Pasal 11 ayat (4)."
+        inti: "Gedung masih dalam proses pengerjaan sampai September 2025, sehingga penyusutannya dimulai bulan selesainya pengerjaan: 5% × 4.800.000.000 × 4/12 = Rp80.000.000. Mesin bukan harta dalam pengerjaan; memulai penyusutan pada bulan harta digunakan memerlukan persetujuan Direktur Jenderal Pajak lewat permohonan (Pasal 11 ayat (4) UU PPh; Pasal 5 ayat (1) huruf b dan ayat (4) PMK 72/2023). Tanpa permohonan itu, penyusutan dimulai pada bulan pengeluaran (Desember 2025): 12,5% × 960.000.000 × 1/12 = Rp10.000.000. Total Rp90.000.000.",
+        jejakHitung: [
+          ["Gedung: 5% × 4.800.000.000 × 4/12 (September sampai Desember)", "Rp80.000.000"],
+          ["Mesin: 12,5% × 960.000.000 × 1/12 (Desember)", "Rp10.000.000"],
+          ["Total", "Rp90.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Tanpa persetujuan Direktur Jenderal Pajak, penyusutan mesin tetap dimulai pada bulan pengeluaran (Desember 2025), bukan bulan mulai dipakai",
+          C: "Penyusutan gedung dimulai bulan selesainya pengerjaan (September), bukan bulan mulai dipakai berproduksi (5% × 4.800.000.000 × 2/12 = Rp40.000.000 ditambah mesin Rp10.000.000)",
+          D: "Harta dalam proses pengerjaan tidak disusutkan sejak pengeluaran pertama (Februari): 5% × 4.800.000.000 × 11/12 = Rp220.000.000 ditambah mesin Rp10.000.000 keliru"
+        },
+        jebakan: "Dua harta, dua titik mulai: 'selesai dikerjakan' untuk gedung dan 'bulan pengeluaran' untuk mesin. 'Mulai dipakai' hanya berlaku dengan persetujuan Direktur Jenderal Pajak atas permohonan Wajib Pajak (Pasal 11 ayat (4) UU PPh; Pasal 5 ayat (4) PMK 72/2023), bukan dengan pemberitahuan."
       },
-      dasarHukum: [{ pasal: "Pasal 11 ayat (3) dan (4) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 72/2023", berlakuSejak: "2023-07-17" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 11 ayat (3) dan (4) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 5 ayat (1) huruf a dan huruf b serta ayat (4) PMK 72/2023", berlakuSejak: "2023-07-17" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "B7-084",
@@ -2960,7 +2990,7 @@ UKP.register({
           ["Koreksi fiskal", "Rp0"]
         ],
         mengapaSalah: {
-          A: "SE-03/PJ.31/1997 angka 1 huruf b memang membolehkan pembebanan selisih kurs saat realisasi bagi pemakai kurs tetap, tetapi SE itu terbit pada 1997 berdasarkan UU PPh lama. PP 94/2010 Pasal 9 ayat (1), yang lebih tinggi dan masih berlaku (PP 55/2022 Pasal 72 hanya mencabut Pasal 2A PP 94/2010), mensyaratkan pembukuan taat asas sesuai SAK; menurut PSAK 221 pos moneter pada tanggal neraca dijabarkan dengan kurs penutup, sehingga tidak ada koreksi negatif",
+          A: "SE-03/PJ.31/1997 angka 1 huruf b angka 1 mengatur pembebanan KERUGIAN selisih kurs saat realisasi bagi pemakai kurs tetap, dan SE itu menyatakan sendiri bahwa penegasannya berdasarkan UU 7/1983 s.t.d.t.d. UU 10/1994. PP 94/2010 Pasal 9 ayat (1), yang lebih tinggi, lebih baru, dan masih berlaku (PP 55/2022 Pasal 72 huruf b hanya mencabut Pasal 2A PP 94/2010), mensyaratkan pengakuan selisih kurs berdasarkan pembukuan yang taat asas sesuai Standar Akuntansi Keuangan; menurut PSAK 221 pos moneter pada tanggal neraca dijabarkan dengan kurs penutup, sehingga tidak ada koreksi negatif",
           B: "Kurs KMK untuk menghitung pajak atas transaksi, bukan untuk menjabarkan saldo pembukuan",
           D: "Utang USD juga pos moneter; rugi atasnya (20.000 × 250 = Rp5.000.000) ikut diakui"
         },
@@ -7052,6 +7082,40 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "B7-064",
       sejak: "9.5.0"
+    },
+    {
+      id: "B7-279",
+      topik: "B7.2",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Lentera Tanah Liat (PKP, produsen lampu hias keramik; pembukuan akrual sesuai SAK) pada 21 Oktober 2025 mengirim 250 unit lampu hias dengan harga jual Rp1.800.000 per unit (belum termasuk PPN) kepada UD Rumah Cahaya sebagai consignee dalam perjanjian konsinyasi; barang yang tidak laku boleh dikembalikan. Sesuai kebijakan akuntansinya yang diterapkan secara konsisten, PT Lentera mengakui piutang dan penghasilan serta menerbitkan faktur penjualan pada bulan UD Rumah Cahaya menjual barang itu kepada konsumen (laporan penjualan UD Rumah Cahaya diterima pada bulan yang sama). UD Rumah Cahaya menjual 60 unit pada November 2025 dan 80 unit pada Desember 2025. Pada Januari 2026 sebanyak 30 unit dikembalikan kepada PT Lentera, dan 80 unit sisanya terjual pada Maret 2026. Pernyataan yang paling tepat mengenai perlakuan di PT Lentera adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "PPN terutang atas 250 unit pada Masa Oktober 2025; seluruh 250 unit dikeluarkan dari persediaan pada Oktober 2025 dan diakui sebagai penjualan; penghasilan PPh 2025 Rp450.000.000", B: "PPN terutang atas 60 unit pada Masa November 2025 dan 80 unit pada Masa Desember 2025; 110 unit dilaporkan sebagai persediaan PT Lentera per 31 Desember 2025; penghasilan PPh 2025 Rp252.000.000", C: "PPN terutang atas 250 unit pada Masa Oktober 2025; 110 unit yang belum terjual dilaporkan sebagai persediaan PT Lentera per 31 Desember 2025; penghasilan PPh 2025 Rp252.000.000", D: "PPN terutang atas 60 unit pada Masa November 2025 dan 80 unit pada Masa Desember 2025; 110 unit sisanya bukan lagi persediaan PT Lentera; penghasilan PPh 2025 Rp450.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "angka-usang", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Konsinyasi tidak lagi disebut dalam Pasal 1A ayat (1) UU PPN (huruf g dihapus). Bagi consignor, penyerahan BKP secara konsinyasi terjadi saat harga diakui sebagai piutang atau penghasilan, atau saat faktur penjualan diterbitkan, sesuai prinsip akuntansi yang berlaku umum dan diterapkan secara konsisten (Pasal 24 ayat (1) PP 44/2022); Penjelasannya menegaskan penyerahan tidak terjadi saat barang dititipkan kepada consignee. PT Lentera mengakui piutang dan menerbitkan faktur penjualan pada bulan UD Rumah Cahaya menjual barang, sehingga PPN terutang atas 60 unit pada Masa November 2025 dan 80 unit pada Masa Desember 2025; pengiriman 21 Oktober 2025 belum menimbulkan PPN. Pengendalian atas 110 unit yang belum terjual belum beralih kepada konsumen, sehingga per 31 Desember 2025 barang itu tetap persediaan PT Lentera (30 unit yang kemudian dikembalikan tidak pernah menjadi penyerahan). Penghasilan PPh 2025 mengikuti pembukuan akrual yang taat asas: 140 × Rp1.800.000 = Rp252.000.000.",
+        jejakHitung: [
+          ["Penyerahan Masa November 2025 = 60 × 1.800.000", "Rp108.000.000"],
+          ["Penyerahan Masa Desember 2025 = 80 × 1.800.000", "Rp144.000.000"],
+          ["PPN 2025 = 12% × 11/12 × 252.000.000", "Rp27.720.000"],
+          ["Persediaan konsinyasi per 31 Desember 2025 = 250 − 60 − 80", "110 unit (harga perolehan)"],
+          ["Penghasilan PPh 2025 = 140 × 1.800.000", "Rp252.000.000"],
+          ["Kesimpulan", "PPN Masa November atas 60 unit dan Masa Desember atas 80 unit; 110 unit persediaan; penghasilan Rp252.000.000 (opsi B)"]
+        ],
+        mengapaSalah: {
+          A: "Pengiriman kepada consignee bukan penjualan kepada konsumen: PPN atas barang titipan belum terutang saat dikirim (Pasal 24 ayat (1) PP 44/2022 dan Penjelasannya), barang yang belum terjual tetap persediaan consignor, dan penghasilan 2025 hanya atas 140 unit yang terjual",
+          C: "Memakai aturan lama Pasal 1A ayat (1) huruf g UU PPN yang sudah dihapus (PPN saat barang dikirim). Menurut Pasal 24 ayat (1) PP 44/2022, penyerahan oleh consignor terjadi saat piutang atau penghasilan diakui atau faktur penjualan terbit, jadi Masa November dan Desember 2025 atas 60 dan 80 unit",
+          D: "Saat terutang PPN sudah tepat, tetapi 110 unit yang masih dititipkan pada consignee belum dijual kepada konsumen sehingga tetap persediaan PT Lentera, dan penghasilan akrual 2025 hanya 140 × Rp1.800.000 = Rp252.000.000, bukan Rp450.000.000"
+        },
+        jebakan: "Sejak huruf g Pasal 1A ayat (1) UU PPN dihapus, saat penyerahan konsinyasi bagi consignor mengikuti pengakuan piutang atau penghasilan, atau penerbitan faktur penjualan (Pasal 24 ayat (1) PP 44/2022), bukan saat barang dikirim kepada consignee. PPN dilaporkan per Masa sesuai bulan pengakuan, dan barang yang dikembalikan tidak pernah menimbulkan PPN."
+      },
+      dasarHukum: [{ pasal: "PP 44/2022 Pasal 24 ayat (1) dan Penjelasannya", berlakuSejak: "2022-12-02" }, { pasal: "Pasal 1A ayat (1) UU PPN (huruf g dihapus)", berlakuSejak: "2022-04-01" }, { pasal: "PMK 131/2024 Pasal 3 (DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }, { pasal: "PSAK 115 (pengaturan konsinyasi)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 28 ayat (5) UU KUP (stelsel akrual taat asas)", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B7-080",
+      sejak: "9.5.1"
     }
   ],
   kartu: [

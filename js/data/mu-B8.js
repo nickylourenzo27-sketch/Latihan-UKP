@@ -50,7 +50,7 @@ UKP.register({
       { label: "Gugatan atas pelaksanaan penagihan", nilai: "14 hari sejak tanggal pelaksanaan penagihan", dasar: "Pasal 40 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" },
       { label: "Pengurangan PBB", nilai: "atas permohonan: kondisi tertentu objek (paling tinggi 75%) atau bencana/sebab luar biasa (paling tinggi 100%) dari PBB yang belum dilunasi ◐", dasar: "Pasal 19 ayat (1) UU PBB; PMK 129/2023", berlakuSejak: "1995-01-01" },
       { label: "Rantai penagihan", nilai: "Surat Teguran lewat 7 hari → Surat Paksa lewat 21 hari → sita (2 × 24 jam) → pengumuman lelang ≥ 14 hari → lelang ≥ 14 hari", dasar: "UU 19/1997 s.t.d.d. UU 19/2000; PMK 61/2023", berlakuSejak: "2023-06-12" },
-      { label: "Pembayaran", nilai: "kode billing Coretax (NPWP 16 digit + NOP); bukti pelunasan ber-NTPN", dasar: "Pasal 12 UU PBB; PMK 81/2024", berlakuSejak: "2025-01-01" },
+      { label: "Pembayaran", nilai: "kode billing Coretax (NPWP 16 digit + NOP); bukti pelunasan ber-NTPN", dasar: "Pasal 11 ayat (5) UU PBB; PMK 81/2024", berlakuSejak: "2025-01-01" },
       { label: "Bagi hasil (DBH PBB)", nilai: "100% untuk daerah: provinsi 16,2%, kabupaten/kota penghasil (letak objek) 73,8%, kabupaten/kota lain dalam provinsi 10%; UU PBB hanya mensyaratkan ≥ 90%", dasar: "Pasal 113 ayat (2) UU 1/2022; Pasal 16 PMK 35/2026; Pasal 18 ayat (1) UU PBB" },
       { label: "Pembanding PBB-P2 (pajak daerah)", nilai: "NJOPTKP ≥ Rp10 juta; dasar pengenaan 20%–100%; tarif ≤ 0,5% (Perda)", dasar: "Pasal 38–41 UU 1/2022", berlakuSejak: "2022-01-05" },
       { label: "PBB dalam PPh Badan", nilai: "PBB dapat dibiayakan; denda SKP/STP dikoreksi positif", dasar: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }
@@ -298,7 +298,7 @@ UKP.register({
       id: "B8.7", slug: "pembayaran-penagihan-restitusi-pbb", judul: "Pembayaran, penagihan, dan restitusi PBB",
       estimasiMenit: 12, jenisDominan: ["prosedur", "hitung"],
       ringkasan: [
-        "PBB-P5L dibayar ke kas negara melalui bank, kantor pos, dan tempat lain yang ditunjuk Menteri Keuangan (Pasal 12 UU PBB); sejak Coretax (PMK 81/2024) pembayaran memakai kode billing dengan NPWP 16 digit dan NOP, dan NTPN pada bukti penerimaan negara menjadi tanda pelunasan.",
+        "PBB-P5L dibayar ke kas negara melalui bank, kantor pos, dan tempat lain yang ditunjuk Menteri Keuangan (Pasal 11 ayat (5) UU PBB); sejak Coretax (PMK 81/2024) pembayaran memakai kode billing dengan NPWP 16 digit dan NOP, dan NTPN pada bukti penerimaan negara menjadi tanda pelunasan.",
         "Tanda pelunasan PBB bukan bukti pemilikan hak atas tanah (penjelasan Pasal 4 ayat (1)).",
         "Dasar penagihan adalah SPPT, SKP, dan STP; utang yang tidak dilunasi sampai jatuh tempo ditagih dengan urutan UU PPSP: Surat Teguran (setelah lewat 7 hari dari jatuh tempo), Surat Paksa (setelah lewat 21 hari sejak Surat Teguran), penyitaan bila tidak dilunasi dalam 2 × 24 jam setelah Surat Paksa diberitahukan, lalu lelang.",
         "Kelebihan pembayaran PBB dikembalikan setelah diperhitungkan lebih dahulu dengan utang pajak yang masih ada: pembayaran ganda atau pembayaran yang lebih besar daripada pajak terutang diminta kembali dengan permohonan (Pasal 123 dan Pasal 124 ayat (1) PMK 81/2024), sedangkan kelebihan karena keputusan keberatan, putusan banding, keputusan pembetulan, keputusan pengurangan atau pembatalan ketetapan, keputusan pengurangan denda, atau keputusan pemberian pengurangan PBB dikembalikan dengan Surat Keputusan Pengembalian Kelebihan Pembayaran Pajak paling lama 1 bulan sejak keputusan diterbitkan atau putusan banding diterima DJP (Pasal 139 ayat (2) dan Pasal 145 ayat (3) PMK 81/2024). Pengurangan PBB Pasal 19 hanya diberikan dari PBB yang belum dilunasi (Pasal 4 ayat (3) PMK 129/2023), sehingga tidak dapat dipakai untuk meminta kembali PBB yang sudah lunas sebelum permohonan diajukan.",
@@ -306,7 +306,7 @@ UKP.register({
         "Dalam PPh Badan, PBB adalah pajak selain PPh yang dapat dibiayakan (Pasal 6 ayat (1) huruf a UU PPh), sedangkan denda STP/SKP PBB tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k)."
       ],
       poinKunci: [
-        { label: "Tempat pembayaran", nilai: "kas negara via bank/pos persepsi (kode billing)", dasar: "Pasal 12 UU PBB; PMK 81/2024", berlakuSejak: "2025-01-01" },
+        { label: "Tempat pembayaran", nilai: "kas negara via bank/pos persepsi (kode billing)", dasar: "Pasal 11 ayat (5) UU PBB; PMK 81/2024", berlakuSejak: "2025-01-01" },
         { label: "Surat Teguran → Surat Paksa", nilai: "lewat 7 hari dari jatuh tempo → lewat 21 hari", dasar: "UU PPSP; PMK 61/2023" },
         { label: "Surat Paksa → penyitaan", nilai: "tidak lunas dalam 2 × 24 jam", dasar: "Pasal 11–12 UU 19/1997 s.t.d.d. UU 19/2000", berlakuSejak: "2001-01-01" },
         { label: "PBB dalam PPh Badan", nilai: "dapat dibiayakan; dendanya tidak", dasar: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf k UU PPh" },
@@ -1446,24 +1446,32 @@ UKP.register({
         },
         jebakan: "Soal lintas kelompok: jatuh tempo menurut UU PBB, tahapan penagihan menurut UU PPSP."
       },
-      dasarHukum: [{ pasal: "Pasal 11 ayat (4) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 8, 11, dan 12 UU 19/1997 s.t.d.d. UU 19/2000 (PPSP)", berlakuSejak: "2001-01-01" }, { pasal: "PMK 61/2023 (tata cara penagihan pajak)" }],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (4) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 8, 11, dan 12 UU 19/1997 s.t.d.d. UU 19/2000 (PPSP)", berlakuSejak: "2001-01-01" }, { pasal: "Pasal 6 ayat (1) sampai (3) PMK 61/2023 (tata cara penagihan pajak)", berlakuSejak: "2023-06-12" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
     {
-      id: "B8-045", topik: "B8.7", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 1,
+      id: "B8-045",
+      topik: "B8.7",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
       stem: "Staf keuangan PT Teh Puncak Lestari akan melunasi SPPT PBB-P5L 2026 pada Agustus 2026, sebelum jatuh tempo. Cara pembayaran yang sesuai dengan ketentuan dan sistem administrasi yang berlaku saat ini adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Mentransfer ke rekening kas daerah kabupaten letak kebun karena PBB menjadi pendapatan daerah", B: "Memotongkan PBB dari angsuran PPh Pasal 25 sehingga tidak perlu setoran terpisah", C: "Membuat kode billing di Coretax dengan NPWP 16 digit dan NOP objek, lalu membayar melalui bank/pos persepsi; bukti penerimaan negara ber-NTPN menjadi tanda pelunasan", D: "Membayar tunai kepada petugas KPP dengan tanda terima manual sebagai bukti pelunasan" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
-        inti: "PBB-P5L dibayar ke kas negara melalui bank, kantor pos, atau tempat lain yang ditunjuk Menteri Keuangan (Pasal 12 UU PBB); sejak Coretax (PMK 81/2024) pembayaran memakai kode billing dengan NPWP 16 digit, dan NTPN menjadi tanda pelunasan.",
+        inti: "PBB-P5L dibayar ke kas negara melalui bank, kantor pos dan giro, atau tempat lain yang ditunjuk Menteri Keuangan (Pasal 11 ayat (5) UU PBB); sejak Coretax (PMK 81/2024) pembayaran memakai kode billing dengan NPWP 16 digit, dan NTPN menjadi tanda pelunasan.",
         jejakHitung: [],
-        mengapaSalah: { A: "PBB-P5L adalah penerimaan negara yang baru kemudian dibagihasilkan; wajib pajak tidak menyetor ke kas daerah", B: "PBB tidak dapat dikompensasikan ke angsuran PPh; masing-masing jenis pajak disetor terpisah", D: "Pembayaran pajak tidak dilakukan tunai kepada petugas KPP" },
-        jebakan: "Bagi hasil ke daerah terjadi setelah setoran ke kas negara, bukan dengan menyetor ke kas daerah."
+        mengapaSalah: {
+          A: "PBB-P5L adalah penerimaan negara yang baru kemudian dibagihasilkan; wajib pajak tidak menyetor ke kas daerah",
+          B: "PBB tidak dapat dikompensasikan ke angsuran PPh; masing-masing jenis pajak disetor terpisah",
+          D: "Pembayaran pajak tidak dilakukan tunai kepada petugas KPP"
+        },
+        jebakan: "Bagi hasil ke daerah terjadi setelah setoran ke kas negara, bukan dengan menyetor ke kas daerah. Pasal 12 UU PBB mengatur dasar penagihan (SPPT, SKP, STP), bukan tempat pembayaran."
       },
-      dasarHukum: [ { pasal: "Pasal 12 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (5) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 70,
       verifikasi: "✅"
     },
@@ -1488,7 +1496,7 @@ UKP.register({
         },
         jebakan: "Salah bayar → pemindahbukuan; salah tetap → keberatan; berat bayar → pengurangan. Pemindahbukuan atas kelebihan bayar tidak dapat diajukan bila pembayaran itu sudah diperhitungkan dengan pajak terutang dalam SPPT (Pasal 109 ayat (3) huruf f PMK 81/2024); karena itu penting bahwa SPPT kebun sawit sudah lunas lebih dahulu. Tanggal bayar dalam Bukti Pemindahbukuan mengikuti tanggal setoran semula."
       },
-      dasarHukum: [{ pasal: "Pasal 108 huruf a, Pasal 109 ayat (1) huruf d, ayat (2), dan ayat (3) huruf f, serta Pasal 111 ayat (2) PMK 81/2024 (pemindahbukuan)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 12 UU PBB", berlakuSejak: "1995-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 108 huruf a, Pasal 109 ayat (1) huruf d, ayat (2), dan ayat (3) huruf f, serta Pasal 111 ayat (2) PMK 81/2024 (pemindahbukuan)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 11 ayat (5) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
@@ -1904,7 +1912,7 @@ UKP.register({
       tingkat: ["B", "C"],
       jenis: "prosedur",
       kesulitan: 2,
-      kutipan: "Pasal 11 ayat (1) dan Pasal 12 UU PBB (parafrase): Pajak yang terutang berdasarkan SPPT harus dilunasi selambat-lambatnya 6 bulan sejak tanggal diterimanya SPPT oleh wajib pajak. Pajak yang terutang dapat dibayar di bank, kantor pos dan giro, dan tempat lain yang ditunjuk oleh Menteri Keuangan.",
+      kutipan: "Pasal 11 ayat (1) dan ayat (5) UU PBB (parafrase): Pajak yang terutang berdasarkan SPPT harus dilunasi selambat-lambatnya 6 bulan sejak tanggal diterimanya SPPT oleh wajib pajak. Pajak yang terutang dibayar di bank, kantor pos dan giro, dan tempat lain yang ditunjuk oleh Menteri Keuangan.",
       stem: "SPPT PBB-P5L 2026 PT Teh Malabar Lestari (kebun teh di Kabupaten Bandung) diterbitkan pada 2 Maret 2026 dan diterima perusahaan pada 9 Maret 2026. Staf keuangan baru menyusun SOP pelunasan PBB-P5L untuk era Coretax. Berdasarkan kutipan tersebut dan ketentuan pembayaran elektronik yang berlaku sejak 2025, urutan langkah dan batas waktu yang paling tepat adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Masuk Portal Wajib Pajak Coretax → buat kode billing PBB-P5L dengan NPWP 16 digit, NOP, dan tahun pajak 2026 → bayar melalui bank/pos persepsi sebelum kode billing kedaluwarsa → simpan Bukti Penerimaan Negara yang memuat NTPN; seluruhnya paling lambat 6 bulan sejak 9 Maret 2026 (tanggal SPPT diterima)", B: "Masuk Portal Wajib Pajak Coretax → buat kode billing PBB-P5L dengan NPWP 16 digit, NOP, dan tahun pajak 2026 → bayar melalui bank/pos persepsi sebelum kode billing kedaluwarsa → simpan Bukti Penerimaan Negara yang memuat NTPN; seluruhnya paling lambat 6 bulan sejak 2 Maret 2026 (tanggal SPPT diterbitkan)", C: "Masuk Portal Wajib Pajak Coretax → buat kode billing PBB-P5L dengan NPWP 16 digit, NOP, dan tahun pajak 2026 → simpan cetakan kode billing sebagai tanda pelunasan → bayar melalui bank/pos persepsi; seluruhnya paling lambat 6 bulan sejak 9 Maret 2026 (tanggal SPPT diterima)", D: "Masuk e-Billing DJP Online → buat kode billing dengan NPWP 15 digit dan NOP → bayar melalui bank/pos persepsi → simpan Bukti Penerimaan Negara yang memuat NTPN; seluruhnya paling lambat 6 bulan sejak 9 Maret 2026 (tanggal SPPT diterima)" },
@@ -1924,7 +1932,7 @@ UKP.register({
         },
         jebakan: "Opsi prosedur berbeda satu langkah saja: kanal dan identitas, dokumen bukti, atau titik awal jatuh tempo. Tanggal diterima dihitung sebagai hari pertama, seperti contoh di Penjelasan Pasal 11 ayat (1) UU PBB (diterima 1 Maret, jatuh tempo 31 Agustus), sehingga SPPT yang diterima 9 Maret 2026 jatuh tempo 8 September 2026."
       },
-      dasarHukum: [{ pasal: "Pasal 11 ayat (1) dan Pasal 12 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 97 ayat (1) dan Pasal 102 ayat (5) PMK 81/2024", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 11 ayat (1) PMK 112/2022 s.t.d.d. PMK 136/2023 (NPWP 16 digit)", berlakuSejak: "2024-07-01" }],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1) dan ayat (5) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 97 ayat (1) dan Pasal 102 ayat (5) PMK 81/2024", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 11 ayat (1) PMK 112/2022 s.t.d.d. PMK 136/2023 (NPWP 16 digit)", berlakuSejak: "2024-07-01" }],
       anggaranDetik: 130,
       verifikasi: "◐",
       peringatan: "Sudah dicocokkan: jatuh tempo 6 bulan sejak SPPT diterima (Pasal 11 ayat (1) UU PBB; Pasal 97 ayat (1) PMK 81/2024), BPN sah bila divalidasi NTPN (Pasal 102 ayat (5) PMK 81/2024), dan NPWP 16 digit sejak 1 Juli 2024 (PMK 136/2023). Belum ada di naskah: alur pembuatan kode billing PBB-P5L di Portal Wajib Pajak Coretax, isi NOP dalam kode billing, dan masa kedaluwarsa kode billing; PMK 81/2024 tidak mengatur kode billing secara rinci."
@@ -2162,28 +2170,29 @@ UKP.register({
       tingkat: ["B", "C"],
       jenis: "prosedur",
       kesulitan: 2,
-      kutipan: "Pasal 9 ayat (1) dan (2) UU PBB (parafrase): Dalam rangka pendataan, subjek pajak wajib mendaftarkan objek pajaknya dengan mengisi SPOP. SPOP harus diisi dengan jelas, benar, dan lengkap serta ditandatangani dan disampaikan kepada Direktorat Jenderal Pajak yang wilayah kerjanya meliputi letak objek pajak selambat-lambatnya 30 hari setelah tanggal diterimanya SPOP oleh subjek pajak.",
-      stem: "PT Nikel Sulawesi Persada (IUP operasi produksi nikel di Kabupaten Morowali) memperoleh persetujuan perluasan wilayah IUP seluas 1.200 ha pada 10 Maret 2026 dan membangun jalan hauling permanen di area itu pada April 2026. Manajer pajak berpendapat perusahaan cukup menunggu formulir dari DJP dan bahwa area perluasan sudah terutang PBB-P5L 2026 secara proporsional sejak 10 Maret 2026. Atas permintaan perusahaan, SPOP dan LSPOP elektronik untuk area perluasan diterima perusahaan pada 3 Agustus 2026. Berdasarkan kutipan tersebut, pernyataan yang paling tepat adalah ...",
+      kutipan: "PMK 81/2024 Pasal 71 ayat (1), Pasal 79 ayat (3) huruf b, dan Pasal 81 ayat (1) (parafrase): Wajib Pajak wajib mendaftarkan objek PBB pada KPP tempat terdaftar paling lama 1 bulan setelah persyaratan subjektif terpenuhi (untuk pertambangan mineral: tanggal izin) untuk memperoleh Surat Keterangan Terdaftar Objek Pajak PBB. Untuk objek sektor pertambangan mineral atau batubara, tanggal diterimanya SPOP oleh Wajib Pajak adalah 31 Maret Tahun Pajak terutang. SPOP disampaikan paling lama 30 hari setelah tanggal diterimanya SPOP.",
+      stem: "PT Nikel Sulawesi Persada, yang objek PBB-P5L IUP lamanya sudah terdaftar, memperoleh IUP operasi produksi nikel baru untuk blok seluas 1.200 ha di Kabupaten Morowali pada 10 Maret 2026 dan membangun jalan hauling permanen di blok itu pada April 2026. Manajer pajak berpendapat perusahaan cukup menunggu SPOP dari DJP tanpa mendaftarkan blok baru, dan bahwa blok baru sudah terutang PBB-P5L 2026 secara proporsional sejak 10 Maret 2026. Berdasarkan kutipan tersebut dan UU PBB, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: { A: "Perusahaan cukup menunggu formulir dari DJP; area perluasan dikenai PBB mulai Tahun Pajak 2027; SPOP disampaikan paling lambat 2 September 2026", B: "Perusahaan wajib aktif mendaftarkan area perluasan; area perluasan dikenai PBB 2026 secara proporsional sejak 10 Maret 2026; SPOP disampaikan paling lambat 2 September 2026", C: "Perusahaan wajib aktif mendaftarkan area perluasan; area perluasan dikenai PBB mulai Tahun Pajak 2027; SPOP disampaikan paling lambat 3 September 2026", D: "Perusahaan wajib aktif mendaftarkan area perluasan; area perluasan dikenai PBB mulai Tahun Pajak 2027; SPOP disampaikan paling lambat 2 September 2026" },
+      opsi: { A: "Perusahaan cukup menunggu SPOP dari DJP tanpa mendaftarkan blok baru; blok baru dikenai PBB mulai Tahun Pajak 2027; SPOP Tahun Pajak 2027 dianggap diterima 31 Maret 2027 dan disampaikan paling lambat 30 April 2027", B: "Perusahaan wajib mendaftarkan blok baru ke KPP untuk memperoleh SKT Objek Pajak PBB; blok baru dikenai PBB 2026 secara proporsional sejak 10 Maret 2026; SPOP Tahun Pajak 2027 dianggap diterima 31 Maret 2027 dan disampaikan paling lambat 30 April 2027", C: "Perusahaan wajib mendaftarkan blok baru ke KPP untuk memperoleh SKT Objek Pajak PBB; blok baru dikenai PBB mulai Tahun Pajak 2027; SPOP Tahun Pajak 2027 dianggap diterima 1 Februari 2027 dan disampaikan paling lambat 3 Maret 2027", D: "Perusahaan wajib mendaftarkan blok baru ke KPP untuk memperoleh SKT Objek Pajak PBB; blok baru dikenai PBB mulai Tahun Pajak 2027; SPOP Tahun Pajak 2027 dianggap diterima 31 Maret 2027 dan disampaikan paling lambat 30 April 2027" },
       kunci: "D",
-      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-hitung" },
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Pasal 9 ayat (1) mewajibkan subjek pajak aktif mendaftarkan objeknya dengan SPOP; Pasal 9 ayat (2) memberi waktu 30 hari setelah tanggal SPOP diterima (3 Agustus + 30 hari = 2 September 2026). Karena keadaan objek ditentukan per 1 Januari (Pasal 8 ayat (2)), area perluasan baru dikenai PBB mulai Tahun Pajak 2027.",
+        inti: "Pendaftaran objek adalah kewajiban aktif: subjek pajak wajib mendaftarkan objeknya (Pasal 9 ayat (1) UU PBB), dan menurut PMK 81/2024 pendaftaran dilakukan ke KPP paling lama 1 bulan setelah tanggal izin untuk memperoleh SKT Objek Pajak PBB (Pasal 71 ayat (1) dan ayat (2) huruf e). Pajak terutang ditentukan menurut keadaan objek pada 1 Januari (Pasal 8 ayat (2) UU PBB): pada 1 Januari 2026 IUP blok baru belum ada, sehingga blok baru (termasuk jalan hauling) dikenai PBB mulai Tahun Pajak 2027. Untuk sektor pertambangan mineral, SPOP dianggap diterima pada 31 Maret Tahun Pajak terutang (Pasal 79 ayat (3) huruf b) dan wajib disampaikan paling lama 30 hari setelahnya (Pasal 81 ayat (1)): 30 April 2027.",
         jejakHitung: [
-          ["SPOP diterima", "3 Agustus 2026"],
-          ["Sisa hari Agustus (4–31)", "28 hari"],
-          ["Tambahan hari September", "2 hari"],
-          ["Batas penyampaian", "2 September 2026"]
+          ["IUP blok baru terbit", "10 Maret 2026"],
+          ["Keadaan objek 1 Januari 2026", "IUP belum ada; belum terutang 2026"],
+          ["Mulai terutang", "Tahun Pajak 2027"],
+          ["SPOP 2027 dianggap diterima (sektor pertambangan mineral)", "31 Maret 2027"],
+          ["Batas penyampaian (30 hari setelah 31 Maret 2027)", "30 April 2027"]
         ],
         mengapaSalah: {
-          A: "Pendaftaran objek bukan kewajiban pasif; Pasal 9 ayat (1) mewajibkan subjek pajak mendaftarkan objeknya",
-          B: "PBB tidak mengenal pengenaan proporsional; objek dikunci keadaan 1 Januari",
-          C: "Menghitung tanggal ke tanggal (3 Agustus menjadi 3 September); 30 hari setelah tanggal SPOP diterima, 3 Agustus 2026, berakhir 2 September 2026"
+          A: "Pendaftaran objek adalah kewajiban aktif Wajib Pajak (Pasal 9 ayat (1) UU PBB; Pasal 71 ayat (1) PMK 81/2024), bukan menunggu SPOP dari DJP",
+          B: "PBB tidak dikenakan secara proporsional; pajak terutang ditentukan menurut keadaan objek pada 1 Januari, dan pada 1 Januari 2026 IUP blok baru belum ada",
+          C: "Tanggal 1 Februari hanya untuk sektor perkebunan, migas, dan panas bumi (Pasal 79 ayat (3) huruf a); sektor pertambangan mineral memakai 31 Maret"
         },
-        jebakan: "Tiga hal diuji bersamaan: sifat aktif pendaftaran, keadaan 1 Januari, dan hitungan 30 hari."
+        jebakan: "Tiga hal diuji sekaligus: kewajiban aktif mendaftarkan objek, keadaan 1 Januari, dan tanggal anggapan diterimanya SPOP yang berbeda per sektor (1 Februari atau 31 Maret). Tanggal SPOP dibuka atau diminta Wajib Pajak bukan patokan jangka waktu 30 hari."
       },
-      dasarHukum: [{ pasal: "Pasal 9 ayat (1) dan (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 8 ayat (2) dan Pasal 9 ayat (1) dan (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 81/2024 s.t.d.t.d. PMK 1/2026 Pasal 71 ayat (1) dan ayat (2) huruf e, Pasal 79 ayat (3) huruf b, dan Pasal 81 ayat (1)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -2210,26 +2219,26 @@ UKP.register({
       tingkat: ["B", "C"],
       jenis: "kasus",
       kesulitan: 3,
-      stem: "PT Sawit Barito Jaya menjual seluruh kebun kelapa sawit ber-HGU di Kabupaten Barito Selatan kepada PT Agro Kalteng Mandiri. Akta jual beli ditandatangani pada 2 Juni 2026 dengan nilai pengalihan tanah dan bangunan Rp210.000.000.000; nilai tanaman Rp95.000.000.000 dicatat terpisah sebagai penjualan aset biasa. Pendaftaran peralihan HGU selesai pada Agustus 2026. SPPT PBB-P5L 2026 atas kebun tersebut sebesar Rp512.400.000 diterima pada 16 Maret 2026 atas nama PT Sawit Barito Jaya. Penjual bukan pengembang real estat dan tidak memperoleh fasilitas khusus. Pernyataan yang paling tepat mengenai PBB-P5L, PPh, dan BPHTB atas transaksi tersebut adalah ...",
+      stem: "PT Sawit Barito Jaya menjual seluruh kebun kelapa sawit ber-HGU di Kabupaten Barito Selatan kepada PT Agro Kalteng Mandiri. Akta jual beli ditandatangani pada 2 Juni 2026 dengan nilai pengalihan hak atas tanah dan bangunan, termasuk tanaman kelapa sawit di atasnya, Rp210.000.000.000. Dengan perjanjian terpisah, penjual juga menjual kendaraan angkut, alat berat, dan persediaan pupuk kepada pembeli yang sama seharga Rp95.000.000.000. Pendaftaran peralihan HGU selesai pada Agustus 2026. SPPT PBB-P5L 2026 atas kebun tersebut sebesar Rp512.400.000 diterima pada 16 Maret 2026 atas nama PT Sawit Barito Jaya. Penjual bukan pengembang real estat, tidak ada hubungan istimewa, dan penjual tidak memperoleh fasilitas khusus. Pernyataan yang paling tepat mengenai PBB-P5L, PPh, dan BPHTB atas transaksi tersebut adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan perubahan subjek dilaporkan dengan SPOP untuk SPPT 2027; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", B: "PBB-P5L 2026 dibagi proporsional, 5 bulan atas nama penjual dan 7 bulan atas nama pembeli; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", C: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan perubahan subjek dilaporkan dengan SPOP untuk SPPT 2027; penjual membayar PPh final 2,5% × Rp305.000.000.000 = Rp7.625.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", D: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan perubahan subjek dilaporkan dengan SPOP untuk SPPT 2027; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB ke kas negara karena objeknya PBB-P5L" },
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "SPPT 2026 mengikuti subjek dan keadaan objek per 1 Januari 2026 (Pasal 8 ayat (2) UU PBB); peralihan hak dilaporkan dengan SPOP sehingga pembeli menjadi subjek mulai 2027. Pengalihan hak atas tanah dan bangunan dikenai PPh final 2,5% dari nilai bruto pengalihan tanah dan bangunan (PP 34/2016), sedangkan nilai tanaman diperlakukan sebagai penjualan aset biasa. BPHTB adalah pajak daerah (UU 1/2022) yang dibayar pembeli kepada kabupaten, meskipun objek PBB-nya PBB-P5L.",
+        inti: "SPPT 2026 mengikuti subjek dan keadaan objek per 1 Januari 2026 (Pasal 8 ayat (2) UU PBB); peralihan hak dilaporkan dengan SPOP sehingga pembeli menjadi subjek mulai 2027. Pengalihan hak atas tanah dan bangunan dikenai PPh final 2,5% dari jumlah bruto nilai pengalihan hak atas tanah dan/atau bangunan, yaitu nilai yang sesungguhnya diterima (Pasal 2 ayat (1) huruf a dan ayat (2) huruf d PP 34/2016): 2,5% × Rp210.000.000.000 = Rp5.250.000.000. Penjualan kendaraan, alat berat, dan persediaan pupuk bukan pengalihan hak atas tanah dan/atau bangunan, sehingga tidak masuk dasar PPh final. BPHTB adalah pajak daerah (UU 1/2022) yang dibayar pembeli kepada kabupaten dengan tarif Perda paling tinggi 5%, meskipun objek PBB-nya PBB-P5L.",
         jejakHitung: [
-          ["Dasar PPh final (tanah dan bangunan)", "Rp210.000.000.000"],
-          ["PPh final 2,5%", "Rp5.250.000.000"],
-          ["Nilai tanaman Rp95.000.000.000", "di luar PPh final; penghasilan usaha biasa"]
+          ["Kendaraan, alat berat, persediaan pupuk Rp95.000.000.000", "bukan tanah dan/atau bangunan; di luar PPh final"],
+          ["Dasar PPh final (nilai pengalihan hak atas tanah dan bangunan)", "Rp210.000.000.000"],
+          ["PPh final 2,5% × Rp210.000.000.000", "Rp5.250.000.000"]
         ],
         mengapaSalah: {
           B: "PBB tidak dibagi per bulan; Pasal 8 ayat (2) mengunci subjek dan objek pada 1 Januari",
-          C: "Nilai tanaman bukan nilai pengalihan hak atas tanah dan/atau bangunan sehingga tidak masuk dasar PPh final",
+          C: "Kendaraan, alat berat, dan persediaan pupuk bukan hak atas tanah dan/atau bangunan, sehingga nilainya tidak masuk jumlah bruto nilai pengalihan dalam PP 34/2016",
           D: "BPHTB adalah pajak daerah berdasarkan UU 1/2022; status PBB-P5L objek tidak memindahkan BPHTB ke kas negara"
         },
-        jebakan: "Satu transaksi kebun menyentuh tiga rezim sekaligus: PBB-P5L (pusat), PPh final (pusat), dan BPHTB (daerah)."
+        jebakan: "Satu transaksi kebun menyentuh tiga rezim sekaligus: PBB-P5L (pusat), PPh final (pusat), dan BPHTB (daerah). Dasar PPh final hanya nilai pengalihan hak atas tanah dan/atau bangunan, bukan seluruh nilai transaksi."
       },
-      dasarHukum: [{ pasal: "Pasal 4 ayat (1) dan Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 34/2016 Pasal 2", berlakuSejak: "2016-09-07" }, { pasal: "Pasal 44–47 UU 1/2022", berlakuSejak: "2022-01-05" }],
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) dan Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 34/2016 Pasal 2 ayat (1) huruf a dan ayat (2) huruf d", berlakuSejak: "2016-09-07" }, { pasal: "Pasal 44–47 UU 1/2022", berlakuSejak: "2022-01-05" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -2511,25 +2520,25 @@ UKP.register({
       laporanUjian: ["B-2026-10", "C-2026-10"],
       kasusId: "V-B8-07",
       formulirRef: "1771.l1.7",
-      stem: "Lanjutan data V-B8-07: Dalam laporan laba rugi komersial 2026, PT Energi Panas Kerinci (tahun buku kalender) membebankan PBB-P5L 2026 sesuai keputusan keberatan Rp1.564.956.000 dan denda STP PBB-P5L 2024 sebesar Rp3.460.000 yang dibayar pada Maret 2026. Dalam rekonsiliasi fiskal SPT Tahunan PPh Badan 2026 (Lampiran I formulir 1771 atau lampiran setara di Coretax), perlakuan yang paling tepat adalah ...",
+      stem: "Lanjutan data V-B8-07: Dalam laporan laba rugi komersial 2026, PT Energi Panas Kerinci (tahun buku kalender) membebankan PBB-P5L 2026 sesuai keputusan keberatan Rp1.564.956.000 dan denda STP PBB-P5L 2024 sebesar Rp3.460.000 yang dibayar pada Maret 2026. Dalam lampiran rekonsiliasi laporan keuangan SPT Tahunan PPh Badan 2026 (susunan PER-11/PJ/2025 sebagaimana diubah PER-12/PJ/2026), perlakuan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: { A: "PBB-P5L tetap sebagai biaya tanpa penyesuaian; denda STP Rp3.460.000 dicantumkan sebagai penyesuaian fiskal positif pada baris sanksi administrasi", B: "PBB-P5L dan denda STP sama-sama dicantumkan sebagai penyesuaian fiskal positif pada baris pajak penghasilan", C: "PBB-P5L tetap sebagai biaya tanpa penyesuaian; denda STP Rp3.460.000 dicantumkan sebagai penyesuaian fiskal negatif", D: "PBB-P5L dicantumkan sebagai kredit pajak dalam SPT Tahunan; denda STP Rp3.460.000 dicantumkan sebagai penyesuaian fiskal positif pada baris sanksi administrasi" },
+      opsi: { A: "PBB-P5L tetap sebagai biaya tanpa penyesuaian; denda STP Rp3.460.000 diisi pada kolom penyesuaian fiskal positif akun tempat denda itu dibebankan, beserta kode penyesuaian fiskalnya", B: "PBB-P5L dan denda STP sama-sama diisi pada kolom penyesuaian fiskal positif karena keduanya pembayaran pajak yang tidak dapat dibiayakan", C: "PBB-P5L tetap sebagai biaya tanpa penyesuaian; denda STP Rp3.460.000 diisi pada kolom penyesuaian fiskal negatif", D: "PBB-P5L diisi sebagai kredit pajak dalam SPT Tahunan PPh; denda STP Rp3.460.000 diisi pada kolom penyesuaian fiskal positif akun tempat denda itu dibebankan" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
-        inti: "PBB adalah pajak selain PPh yang dapat dibiayakan (Pasal 6 ayat (1) huruf a angka 9 UU PPh). Denda STP adalah sanksi administrasi yang tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k UU PPh), sehingga dikoreksi positif. Pada Lampiran I formulir 1771 lama, koreksi ini masuk baris sanksi administrasi. Dalam SPT Tahunan PPh Badan menurut PER-11/PJ/2025 sebagaimana diubah PER-12/PJ/2026 (berlaku 1 Oktober 2026), koreksi diisi di kolom Penyesuaian Fiskal Positif pada akun tempat denda dibebankan, disertai kode penyesuaian fiskal.",
+        inti: "PBB adalah pajak selain PPh yang dapat dibiayakan (Pasal 6 ayat (1) huruf a angka 9 UU PPh). Denda STP adalah sanksi administrasi yang tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k UU PPh), sehingga dikoreksi positif. Dalam lampiran rekonsiliasi laporan keuangan SPT Tahunan PPh Badan menurut PER-11/PJ/2025 sebagaimana diubah PER-12/PJ/2026, koreksi diisi di kolom Penyesuaian Fiskal Positif pada akun tempat denda dibebankan (contoh petunjuk pengisian: sanksi administrasi pada akun Beban Usaha Lainnya), disertai kode penyesuaian fiskal. Pada formulir 1771 lama (Tahun Pajak sampai 2024), padanannya adalah koreksi positif sanksi administrasi di Lampiran I.",
         jejakHitung: [
-          ["PBB-P5L 2026", "biaya fiskal Rp1.564.956.000 (tanpa koreksi)"],
-          ["Denda STP PBB 2024", "koreksi fiskal positif Rp3.460.000"]
+          ["PBB-P5L 2026", "biaya fiskal Rp1.564.956.000 (tanpa penyesuaian)"],
+          ["Denda STP PBB 2024", "penyesuaian fiskal positif Rp3.460.000"]
         ],
         mengapaSalah: {
-          B: "Baris pajak penghasilan hanya untuk PPh yang dibebankan; PBB bukan PPh dan dapat dibiayakan",
+          B: "PBB adalah pajak selain PPh yang dapat dibiayakan; hanya dendanya yang dikoreksi positif",
           C: "Denda yang dibebankan secara komersial menambah penghasilan neto fiskal sehingga koreksinya positif",
           D: "Kredit pajak dalam SPT Tahunan PPh hanya untuk PPh yang dipotong, dipungut, atau dibayar sendiri, bukan PBB"
         },
         jebakan: "Pajak selain PPh boleh dibiayakan; sanksinya tidak. Di SPT Coretax tidak ada baris khusus sanksi: nilai koreksi ditulis di kolom Penyesuaian Fiskal Positif pada akun bebannya, lalu dipilih kode penyesuaian fiskalnya."
       },
-      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a angka 9 dan Pasal 9 ayat (1) huruf k UU PPh" }, { pasal: "PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026, Lampiran huruf H petunjuk pengisian SPT Tahunan PPh Badan (kolom Penyesuaian Fiskal Positif dan Kode Penyesuaian Fiskal)", berlakuSejak: "2026-10-01" }],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a angka 9 dan Pasal 9 ayat (1) huruf k UU PPh" }, { pasal: "Lampiran PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026, petunjuk pengisian Lampiran 1A - 1L Rekonsiliasi Laporan Keuangan SPT Tahunan PPh Badan (kolom Penyesuaian Fiskal Positif dan Kode Penyesuaian Fiskal)", berlakuSejak: "2026-10-01" }],
       anggaranDetik: 100,
       verifikasi: "✅"
     },
@@ -6837,6 +6846,103 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "B8-116",
       sejak: "9.5.0"
+    },
+    {
+      id: "B8-227",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Getah Musi Lestari, perusahaan perkebunan karet, menerima SPPT PBB-P5L Sektor Perkebunan Tahun Pajak 2026 sebesar Rp96.000.000 pada 16 Januari 2026. Pada 2 April 2026 perusahaan mengajukan keberatan atas SPPT tersebut (sampai saat pelunasan belum diputus). Pada 10 Juni 2026 perusahaan membayar Rp36.000.000 dan tidak membayar sisanya sampai jatuh tempo. KPP menerbitkan STP PBB yang memuat pokok dan denda administratif pada 3 November 2026, dan STP itu diterima perusahaan pada 5 November 2026. Perusahaan melunasi seluruh jumlah dalam STP tersebut pada 21 Januari 2027. Berdasarkan ketentuan penerbitan STP PBB dalam PMK 80/2023, jumlah dalam STP PBB pertama dan STP PBB berikutnya (bila ada) adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "STP pertama Rp67.680.000,00; STP berikutnya Rp3.840.000,00", B: "STP pertama Rp64.800.000,00; STP berikutnya Rp3.600.000,00", C: "STP pertama Rp64.800.000,00; STP berikutnya Rp2.400.000,00", D: "STP pertama Rp64.800.000,00; tidak ada STP berikutnya" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Keberatan tidak menunda kewajiban membayar (Pasal 15 ayat (6) UU PBB), sehingga SPPT tetap jatuh tempo 6 bulan sejak diterima. Denda 2% sebulan dikenakan atas jumlah yang tidak atau kurang dibayar (Pasal 11 ayat (3) UU PBB beserta Penjelasannya, bagian bulan dihitung penuh), yaitu sisa Rp60.000.000. STP pertama memuat sisa pokok ditambah denda yang dihitung sejak berakhirnya jatuh tempo SPPT sampai tanggal terbit STP (Pasal 29 huruf a dan Pasal 30 ayat (2) PMK 80/2023). STP harus dilunasi 1 bulan sejak diterima (Pasal 11 ayat (4) UU PBB). Karena pokok baru dilunasi setelah jatuh tempo STP, diterbitkan STP PBB yang hanya memuat denda atas pokok, dihitung sejak berakhirnya jatuh tempo STP sampai tanggal pembayaran pokok (Pasal 31 ayat (1) huruf b dan ayat (2) huruf b PMK 80/2023).",
+        jejakHitung: [
+          ["Jatuh tempo SPPT = 6 bulan sejak 16 Januari 2026", "15 Juli 2026"],
+          ["Pokok yang kurang dibayar = Rp96.000.000 − Rp36.000.000", "Rp60.000.000"],
+          ["16 Juli s.d. 3 November 2026 (tanggal terbit STP)", "3 bulan 19 hari → 4 bulan"],
+          ["STP pertama = Rp60.000.000 + 4 × 2% × Rp60.000.000", "Rp64.800.000"],
+          ["Jatuh tempo STP = 1 bulan sejak diterima 5 November 2026", "4 Desember 2026"],
+          ["5 Desember 2026 s.d. 21 Januari 2027 (pelunasan pokok)", "1 bulan 17 hari → 2 bulan"],
+          ["STP berikutnya = 2 × 2% × Rp60.000.000", "Rp2.400.000"]
+        ],
+        mengapaSalah: {
+          A: "Menghitung denda atas seluruh PBB Rp96.000.000, padahal denda hanya atas jumlah yang tidak atau kurang dibayar (Rp60.000.000).",
+          B: "Menghitung denda STP berikutnya 3 bulan, baik sejak sehari setelah STP terbit maupun dengan cara menghitung seluruh denda dari jatuh tempo SPPT sampai pelunasan (7 bulan) lalu mengurangkan 4 bulan yang sudah ditagih. Keduanya mengabaikan Pasal 31 ayat (2) huruf b PMK 80/2023: masa sampai jatuh tempo STP tidak didenda, dan denda STP berikutnya baru dihitung sejak berakhirnya jatuh tempo STP.",
+          D: "Mengabaikan STP yang hanya memuat denda atas pelunasan pokok setelah jatuh tempo STP (Pasal 31 ayat (1) huruf b PMK 80/2023)."
+        },
+        jebakan: "Pembayaran sebagian sebelum jatuh tempo mengurangi dasar denda. Denda STP pertama berhenti pada tanggal terbit STP, jatuh tempo STP dihitung dari tanggal diterima, dan denda STP berikutnya baru berjalan setelah jatuh tempo STP, sehingga masa 4 November sampai 4 Desember 2026 tidak didenda. Jangan menghitung denda kumulatif dari jatuh tempo SPPT sampai pelunasan lalu mengurangkan denda yang sudah ditagih. Total denda 6 bulan, di bawah batas 24 bulan."
+      },
+      dasarHukum: [{ pasal: "UU 12/1985 s.t.d.d. UU 12/1994 Pasal 11 ayat (1), (3), dan (4) beserta Penjelasan, Pasal 15 ayat (6)", berlakuSejak: "1995-01-01" }, { pasal: "PMK 80/2023 Pasal 29, Pasal 30 ayat (1)–(2), Pasal 31 ayat (1) huruf b dan ayat (2) huruf b", berlakuSejak: "2023-08-24" }, { pasal: "PMK 81/2024 s.t.d.t.d. PMK 1/2026 Pasal 97 ayat (1) dan (3)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B8-121",
+      sejak: "9.5.1"
+    },
+    {
+      id: "B8-228",
+      topik: "B8.1",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kutipan: "Pasal 4 ayat (1) UU PBB: Yang menjadi subyek pajak adalah orang atau badan yang secara nyata mempunyai suatu hak atas bumi, dan/atau memperoleh manfaat atas bumi, dan/atau memiliki, menguasai, dan/atau memperoleh manfaat atas bangunan. Pasal 3 ayat (6) PMK 186/PMK.03/2019: Dalam hal terdapat areal pada kawasan perkebunan sebagaimana dimaksud pada ayat (2) yang dipunyai haknya dan/atau dimanfaatkan sepenuhnya secara nyata dan sah oleh selain Subjek Pajak atau Wajib Pajak, areal tersebut tidak dikenakan PBB Sektor Perkebunan.",
+      stem: "PT Tunas Karya Agrindo memegang HGU seluas 4.800 ha untuk perkebunan karet di Kabupaten Musi Banyuasin. Sejak 2025, dengan perjanjian sewa yang sah, perusahaan menyewakan dua bagian lahan di dalam HGU: (1) 7 ha kepada PT Gudang Sriwijaya Logistik, yang memagari, menguasai, dan memanfaatkan sepenuhnya areal itu untuk gudang miliknya; (2) 11 ha kepada CV Angkut Lateks Mandiri sebagai pool truk, dengan klausul bahwa PT Tunas Karya Agrindo tetap memakai areal itu setiap hari sebagai tempat pengumpulan dan penimbangan lateks, dan klausul itu memang dijalankan. Kedua areal tetap tercatat dalam HGU. Berdasarkan kutipan tersebut, perlakuan PBB-P5L Sektor Perkebunan Tahun Pajak 2026 atas bumi kawasan HGU itu yang paling tepat adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "PT Tunas Karya Agrindo menjadi subjek atas bumi 4.782 ha; areal 7 ha dan 11 ha tidak dikenakan PBB Sektor Perkebunan karena keduanya disewakan secara sah", B: "PT Tunas Karya Agrindo menjadi subjek atas bumi seluruh 4.800 ha, karena kedua areal sewaan tetap tercatat dalam HGU dan haknya tetap dipunyai perusahaan", C: "PT Tunas Karya Agrindo menjadi subjek atas bumi 4.793 ha, dan PT Gudang Sriwijaya Logistik menjadi Wajib Pajak PBB Sektor Perkebunan atas bumi 7 ha", D: "PT Tunas Karya Agrindo menjadi subjek atas bumi 4.793 ha; areal 7 ha tidak dikenakan PBB Sektor Perkebunan, sedangkan areal 11 ha tetap menjadi objek" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pemegang HGU mempunyai hak atas bumi sehingga menjadi subjek atas bumi kawasan perkebunannya (Pasal 4 ayat (1) UU PBB). Pasal 3 ayat (6) PMK 186/PMK.03/2019 hanya mengeluarkan areal yang dimanfaatkan SEPENUHNYA secara nyata dan sah oleh selain Wajib Pajak. Areal 7 ha dikuasai dan dimanfaatkan sepenuhnya oleh penyewa sehingga tidak dikenakan PBB Sektor Perkebunan. Areal 11 ha tetap dipakai PT Tunas Karya Agrindo setiap hari, jadi tidak dimanfaatkan sepenuhnya oleh pihak lain dan tetap objek. Bumi yang menjadi objek: 4.800 − 7 = 4.793 ha.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Sewa yang sah saja tidak cukup: areal 11 ha tidak dimanfaatkan sepenuhnya oleh penyewa karena perusahaan tetap memakainya, sehingga syarat Pasal 3 ayat (6) tidak terpenuhi.",
+          B: "Tercatat dalam HGU tidak menentukan sendirian: areal 7 ha yang dimanfaatkan sepenuhnya secara nyata dan sah oleh pihak lain tidak dikenakan PBB Sektor Perkebunan (Pasal 3 ayat (6) PMK 186/2019).",
+          C: "Pasal 3 ayat (6) mengeluarkan areal 7 ha dari PBB Sektor Perkebunan sama sekali; penyewa tidak menjadi Wajib Pajak PBB Sektor Perkebunan atas areal itu."
+        },
+        jebakan: "Uji tiap bagian areal sewaan: yang menentukan adalah apakah pihak lain memanfaatkannya sepenuhnya secara nyata dan sah, bukan sekadar adanya perjanjian sewa atau pencatatan dalam HGU."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 3 ayat (2) dan (6) PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B8-001",
+      sejak: "9.5.1"
+    },
+    {
+      id: "B8-229",
+      topik: "B8.2",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kutipan: "Pasal 3 ayat (1) huruf e UU PBB: Obyek Pajak yang tidak dikenakan Pajak Bumi dan Bangunan adalah objek pajak yang digunakan oleh badan atau perwakilan organisasi internasional yang ditentukan oleh Menteri Keuangan. Pasal 4 ayat (5) PMK 186/PMK.03/2019: Dalam hal terdapat areal pada kawasan perhutanan sebagaimana dimaksud pada ayat (2) yang dipunyai haknya dan/atau dimanfaatkan sepenuhnya secara nyata dan sah oleh selain Subjek Pajak atau Wajib Pajak, areal tersebut tidak dikenakan PBB Sektor Perhutanan.",
+      stem: "PT Wana Lestari Mahakam memegang perizinan berusaha pemanfaatan hutan tanaman industri di Kabupaten Kutai Barat dan tidak memiliki objek PBB-P5L lain. Per 1 Januari 2026 di dalam areal izinnya terdapat: (1) stasiun riset 16 ha beserta bangunan milik perusahaan Rp1.350.000.000, yang menurut perjanjian kerja sama dipakai bersama setiap hari oleh peneliti perusahaan dan peneliti sebuah yayasan konservasi asing; yayasan itu bukan badan atau perwakilan organisasi internasional yang ditentukan Menteri Keuangan; (2) areal persemaian 22 ha yang disewakan kepada PT Bibit Tropika Nusantara dan sejak 2025 dikuasai serta dimanfaatkan sepenuhnya secara nyata dan sah oleh penyewa, beserta bangunan milik penyewa Rp640.000.000; (3) kantor dan mes karyawan 4 ha beserta bangunan Rp2.100.000.000 yang dipakai perusahaan sendiri. NJOP bumi ketiga areal Rp3.000/m². Berdasarkan kutipan tersebut, total NJOP bumi dan bangunan dari ketiga areal itu yang diperhitungkan dalam PBB-P5L Sektor Perhutanan Tahun Pajak 2026 PT Wana Lestari Mahakam adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp4.050.000.000", B: "Rp2.220.000.000", C: "Rp5.350.000.000", D: "Rp4.710.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Stasiun riset (1) tetap objek: yayasan asing itu bukan organisasi internasional yang ditentukan Menteri Keuangan (Pasal 3 ayat (1) huruf e UU PBB tidak berlaku), dan areal itu dipakai bersama sehingga tidak dimanfaatkan sepenuhnya oleh pihak lain. Persemaian (2) dimanfaatkan sepenuhnya secara nyata dan sah oleh penyewa sehingga seluruh areal itu, bumi dan bangunannya, tidak dikenakan PBB Sektor Perhutanan (Pasal 4 ayat (5) PMK 186/2019). Kantor dan mes (3) dipakai perusahaan sendiri dan tetap objek.",
+        jejakHitung: [
+          ["(1) 160.000 m² × Rp3.000 + Rp1.350.000.000 (tetap objek)", "Rp1.830.000.000"],
+          ["(2) 220.000 m² × Rp3.000 + Rp640.000.000 (tidak dikenakan, Pasal 4 ayat (5) PMK 186/2019)", "Rp1.300.000.000"],
+          ["(3) 40.000 m² × Rp3.000 + Rp2.100.000.000 (tetap objek)", "Rp2.220.000.000"],
+          ["Jumlah yang diperhitungkan = (1) + (3)", "Rp4.050.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Ikut mengeluarkan stasiun riset seolah dipakai organisasi internasional atau dimanfaatkan sepenuhnya oleh pihak lain, padahal yayasan itu tidak ditentukan Menteri Keuangan dan areal dipakai bersama perusahaan.",
+          C: "Persemaian ikut dihitung, padahal areal yang dimanfaatkan sepenuhnya secara nyata dan sah oleh selain Wajib Pajak tidak dikenakan PBB Sektor Perhutanan.",
+          D: "Hanya bangunan milik penyewa yang dikeluarkan, sedangkan bumi persemaian Rp660.000.000 tetap dihitung; Pasal 4 ayat (5) mengeluarkan arealnya, bukan hanya bangunannya."
+        },
+        jebakan: "Status asing pengguna tidak cukup: pengecualian huruf e hanya untuk organisasi internasional yang ditentukan Menteri Keuangan. Pemakaian bersama tidak memenuhi syarat dimanfaatkan sepenuhnya oleh pihak lain."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf d–e UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 4 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 4 ayat (2) dan (5) PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B8-077",
+      sejak: "9.5.1"
     }
   ],
   kartu: [
@@ -6872,7 +6978,7 @@ UKP.register({
     { id: "KT-B8-30", topik: "B8.6", tipe: "angka", depan: "Batas banding atas keputusan keberatan PBB?", belakang: "3 bulan sejak keputusan diterima, ke Pengadilan Pajak", dasar: "Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-31", topik: "B8.6", tipe: "pasal", depan: "Dua alasan pengurangan PBB (Pasal 19)?", belakang: "Kondisi tertentu objek terkait subjek; bencana alam atau sebab luar biasa", dasar: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-32", topik: "B8.6", tipe: "definisi", depan: "Dokumen PBB yang dapat diajukan keberatan?", belakang: "SPPT dan SKP (STP tidak)", dasar: "Pasal 15 ayat (1) UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B8-33", topik: "B8.7", tipe: "prosedur", depan: "Cara membayar PBB-P5L sejak 2025?", belakang: "Kode billing Coretax (NPWP 16 digit, NOP); bukti pelunasan NTPN", dasar: "Pasal 12 UU PBB; PMK 81/2024", berlakuSejak: "2025-01-01", menggantikan: "e-Billing DJP Online dengan NPWP 15 digit", dekTambahan: ["perubahan-2025-2026"] },
+    { id: "KT-B8-33", topik: "B8.7", tipe: "prosedur", depan: "Cara membayar PBB-P5L sejak 2025?", belakang: "Kode billing Coretax (NPWP 16 digit, NOP); bukti pelunasan NTPN", dasar: "Pasal 11 ayat (5) UU PBB; PMK 81/2024", berlakuSejak: "2025-01-01", menggantikan: "e-Billing DJP Online dengan NPWP 15 digit", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-B8-34", topik: "B8.7", tipe: "pasal", depan: "Perlakuan PBB dan dendanya dalam PPh Badan?", belakang: "PBB dapat dibiayakan; denda PBB tidak dapat dikurangkan", dasar: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf k UU PPh", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-35", topik: "B8.7", tipe: "definisi", depan: "Apakah pelunasan PBB membuktikan hak atas tanah?", belakang: "Tidak; tanda pelunasan PBB bukan bukti pemilikan hak", dasar: "Penjelasan Pasal 4 ayat (1) UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-36", topik: "B8.7", tipe: "prosedur", depan: "Urutan penagihan setelah STP tidak dilunasi?", belakang: "Surat Teguran → Surat Paksa → penyitaan (2 × 24 jam) → lelang", dasar: "UU 19/1997 s.t.d.d. UU 19/2000 (PPSP)", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },
@@ -6995,7 +7101,7 @@ UKP.register({
           penjelasan: "Kantor pusat adalah objek PBB-P2 Kota Bandung; tarif, NJKP, dan NJOPTKP mengikuti Perda; penerimaannya PAD, bukan DBH." },
         { no: 4, pertanyaan: "Ke mana PBB-P5L dibayar dan siapa penerima bagi hasil terbesar?", tipe: "pilihan",
           opsi: { A: "Ke kas daerah Kabupaten Garut langsung", B: "Ke kas negara dengan kode billing; penerima terbesar Kabupaten Garut sebagai daerah penghasil", C: "Ke kas negara; penerima terbesar Kota Bandung sebagai domisili", D: "Ke kas negara; tidak dibagihasilkan" }, jawaban: "B",
-          petunjuk: ["Pasal 12 UU PBB: dibayar ke kas negara", "Pasal 8 ayat (3): terutang di letak objek", "Bagi hasil: porsi terbesar kabupaten penghasil"],
+          petunjuk: ["Pasal 11 ayat (5) UU PBB: dibayar di bank, kantor pos dan giro, atau tempat lain yang ditunjuk Menteri Keuangan", "Pasal 8 ayat (3): terutang di letak objek", "Bagi hasil: porsi terbesar kabupaten penghasil"],
           penjelasan: "PBB-P5L disetor ke kas negara lalu dibagihasilkan; porsi terbesar diterima Kabupaten Garut sebagai daerah penghasil, disusul Provinsi Jawa Barat." },
         { no: 5, pertanyaan: "Berapa persen minimal bagian daerah menurut Pasal 18 ayat (1) UU PBB?", tipe: "angka", jawaban: 90, toleransi: 0,
           petunjuk: ["Pasal 18 UU PBB mengatur imbangan pembagian", "Bagian daerah 'sekurang-kurangnya'", "Jawaban: 90"],
