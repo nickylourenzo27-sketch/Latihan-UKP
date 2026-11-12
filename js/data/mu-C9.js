@@ -52,7 +52,7 @@ UKP.register({
       { label: "CbCR", nilai: "konsolidasi ≥ Rp11 triliun; 12 bulan setelah akhir tahun pajak", dasar: "PMK 172/2023", berlakuSejak: "2023-12-29" },
       { label: "Harga di luar rentang", nilai: "disesuaikan ke titik paling tepat dalam rentang, atau median bila titik itu tidak dapat ditentukan; selisih dianggap dividen (secondary adjustment) kecuali kas/setara kas sebesar selisih ditambahkan atau dikembalikan sebelum surat ketetapan pajak terbit, dan/atau WP menyetujui penentuan harga transfer oleh DJP", dasar: "Pasal 12 ayat (7) dan Pasal 37 PMK 172/2023", berlakuSejak: "2023-12-29" },
       { label: "Pembukuan bahasa Inggris/USD", nilai: "setelah izin; diajukan paling lambat 3 bulan sebelum tahun buku; layanan Coretax", dasar: "Pasal 28 ayat (8) UU KUP; PMK 123/PMK.03/2019; PER-8/PJ/2025", berlakuSejak: "2025-05-21" },
-      { label: "Tax allowance", nilai: "neto −30% investasi (5%/tahun × 6); dividen WPLN 10%; rugi s.d. 10 tahun", dasar: "PP 78/2019", berlakuSejak: "2019-12-12" },
+      { label: "Tax allowance", nilai: "neto −30% investasi (5%/tahun × 6); dividen WPLN 10%; rugi s.d. 10 tahun", dasar: "PP 78/2019", berlakuSejak: "2019-12-13" },
       { label: "Tax holiday", nilai: "≥ Rp500 M: 100% 5–20 tahun; Rp100–< 500 M: 50% 5 tahun", dasar: "PMK 130/PMK.010/2020 s.t.d.d. PMK 69/2024", berlakuSejak: "2020-10-09" },
       { label: "Cakupan GloBE", nilai: "pendapatan konsolidasi ≥ EUR 750 juta pada 2 dari 4 tahun sebelumnya", dasar: "PMK 136/2024", berlakuSejak: "2025-01-01" },
       { label: "Tarif minimum dan mulai berlaku", nilai: "ETR 15% per yurisdiksi; IIR dan DMTT TP 2025; UTPR TP 2026", dasar: "PMK 136/2024", berlakuSejak: "2025-01-01" },
@@ -1495,7 +1495,7 @@ UKP.register({
         },
         jebakan: "Fasilitas investasi tercermin di beberapa lampiran, tetapi daftarnya di Lampiran 13A. Jangan tertukar dengan Lampiran 13C (fasilitas pengurangan PPh badan atau tax holiday) dan Lampiran 13B (tambahan pengurangan penghasilan bruto)."
       },
-      dasarHukum: [{ pasal: "PP 78/2019 (fasilitas PPh untuk penanaman modal)", berlakuSejak: "2019-11-12" }, { pasal: "Pasal 85 ayat (1) dan Pasal 138 huruf a PER-11/PJ/2025 (bentuk SPT Tahunan PPh Badan)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "PP 78/2019 (fasilitas PPh untuk penanaman modal)", berlakuSejak: "2019-12-13" }, { pasal: "Pasal 85 ayat (1) dan Pasal 138 huruf a PER-11/PJ/2025 (bentuk SPT Tahunan PPh Badan)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 60,
       verifikasi: "✅"
     },
@@ -2626,30 +2626,29 @@ UKP.register({
       kesulitan: 2,
       laporanUjian: ["C-2026-10"],
       kutipan: "PMK 172/2023 (parafrase Pasal 18 ayat (1) dan Pasal 34 ayat (2)): Dokumen Induk dan Dokumen Lokal harus tersedia paling lama 4 bulan setelah akhir tahun pajak dan, bila diminta Direktur Jenderal Pajak dalam rangka pengawasan kepatuhan dan pemeriksaan, wajib disampaikan paling lama 1 bulan sejak permintaan disampaikan.",
-      stem: "PT Wahana Ban Indonesia (PMA, tahun buku Januari–Desember) memenuhi kriteria wajib Dokumen Induk dan Dokumen Lokal untuk tahun pajak 2024, tahun pertama dokumentasi menurut PMK 172/2023. Dalam pemeriksaan tahun pajak 2024, pemeriksa menyampaikan surat permintaan dokumen penentuan harga transfer tertanggal 9 Oktober 2026. Berdasarkan kutipan tersebut, kesimpulan yang tepat adalah ...",
+      stem: "PT Wahana Ban Indonesia (PMA, tahun buku Januari–Desember) memenuhi kriteria wajib Dokumen Induk dan Dokumen Lokal untuk tahun pajak 2024, tahun pertama dokumentasi menurut PMK 172/2023. Dalam pemeriksaan tahun pajak 2024, permintaan dokumen penentuan harga transfer disampaikan pemeriksa kepada PT Wahana pada Selasa, 13 Oktober 2026. Berdasarkan kutipan tersebut, kesimpulan yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Dokumen harus sudah tersedia paling lama 30 April 2025 dan diserahkan paling lama 23 Oktober 2026 (14 hari sejak permintaan)", B: "Dokumen harus sudah tersedia paling lama 30 April 2025 dan diserahkan paling lama 9 November 2026 (1 bulan sejak permintaan)", C: "Dokumen cukup disusun setelah ada permintaan, lalu diserahkan paling lama 9 November 2026 (1 bulan sejak permintaan)", D: "Dokumen harus sudah tersedia paling lama 31 Desember 2025 dan diserahkan paling lama 9 Januari 2027 (3 bulan sejak permintaan)" },
+      opsi: { A: "Dokumen harus sudah tersedia paling lama 30 April 2025 dan diserahkan paling lama 27 Oktober 2026 (14 hari setelah permintaan)", B: "Dokumen harus sudah tersedia paling lama 30 April 2025 dan diserahkan paling lama 12 November 2026 (1 bulan sejak permintaan disampaikan)", C: "Dokumen cukup disusun setelah ada permintaan, lalu diserahkan paling lama 12 November 2026 (1 bulan sejak permintaan disampaikan)", D: "Dokumen harus sudah tersedia paling lama 30 April 2025 dan diserahkan paling lama 13 November 2026 (tanggal yang sama pada bulan berikutnya)" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
-        inti: "Dokumen tahun pajak 2024 (tahun pertama menurut Pasal 73 angka 3 PMK 172/2023) harus tersedia paling lama 4 bulan setelah akhir tahun pajak, yaitu 30 April 2025 (Pasal 18 ayat (1)). Bila diminta dalam pemeriksaan, dokumen wajib disampaikan paling lama 1 bulan sejak permintaan disampaikan (Pasal 34 ayat (2)); untuk surat yang disampaikan 9 Oktober 2026, batasnya 9 November 2026.",
+        inti: "Dokumen tahun pajak 2024 (tahun pertama menurut Pasal 73 angka 3 PMK 172/2023) harus tersedia paling lama 4 bulan setelah akhir tahun pajak, yaitu 30 April 2025 (Pasal 18 ayat (1)). Bila diminta dalam pemeriksaan, dokumen wajib disampaikan paling lama 1 bulan sejak permintaan disampaikan (Pasal 34 ayat (2)). Tanggal penyampaian permintaan dihitung sebagai hari pertama, sehingga hari terakhir jangka waktu adalah sehari sebelum tanggal yang sama pada bulan berikutnya (pola contoh Penjelasan Pasal 19 ayat (1) UU KUP: SKPKB 7 Oktober 2008, batas pelunasan 6 November 2008): permintaan 13 Oktober 2026, batasnya 12 November 2026.",
         jejakHitung: [
           ["Akhir tahun pajak 2024", "31 Desember 2024"],
-          ["+ 4 bulan: wajib tersedia", "30 April 2025"],
-          ["Permintaan disampaikan", "9 Oktober 2026"],
-          ["+ 1 bulan: batas penyampaian", "9 November 2026"]
+          ["+ 4 bulan setelah akhir tahun pajak: wajib tersedia", "30 April 2025"],
+          ["Permintaan disampaikan (hari pertama)", "Selasa, 13 Oktober 2026"],
+          ["1 bulan sejak permintaan: hari terakhir", "Kamis, 12 November 2026"]
         ],
         mengapaSalah: {
-          A: "14 hari bukan jangka waktu penyampaian dokumen harga transfer; Pasal 34 ayat (2) memberi 1 bulan.",
+          A: "14 hari bukan jangka waktu penyampaian dokumen harga transfer; Pasal 34 ayat (2) memberi 1 bulan sejak permintaan disampaikan.",
           C: "Dokumen harus sudah tersedia 4 bulan setelah akhir tahun pajak (Pasal 18 ayat (1)), bukan disusun setelah diminta.",
-          D: "Ketersediaan dihitung 4 bulan setelah akhir tahun pajak, dan penyampaian 1 bulan sejak permintaan, bukan 3 bulan."
+          D: "Tanggal permintaan disampaikan dihitung sebagai hari pertama, sehingga 1 bulan berakhir sehari sebelum tanggal yang sama pada bulan berikutnya: 12 November 2026, bukan 13 November 2026."
         },
-        jebakan: "Dua tenggat berbeda: ketersediaan (4 bulan setelah akhir tahun pajak) dan penyampaian saat diminta (1 bulan sejak permintaan disampaikan, bukan sejak tanggal yang tertera di surat bila surat diterima kemudian)."
+        jebakan: "Dua tenggat berbeda: ketersediaan (4 bulan setelah akhir tahun pajak) dan penyampaian saat diminta (1 bulan sejak permintaan disampaikan, dihitung dari tanggal permintaan disampaikan, bukan dari tanggal yang tertera di surat). Jangka \"1 bulan sejak\" berakhir sehari sebelum tanggal yang sama pada bulan berikutnya."
       },
       dasarHukum: [{ pasal: "Pasal 18 ayat (1), Pasal 34 ayat (2), dan Pasal 73 angka 3 PMK 172/2023", berlakuSejak: "2023-12-29" }, { pasal: "Pasal 18 ayat (3) UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 120,
-      verifikasi: "◐",
-      peringatan: "Tenggat 4 bulan (Pasal 18 ayat (1)) dan 1 bulan sejak permintaan disampaikan (Pasal 34 ayat (2) PMK 172/2023) sudah cocok dengan naskah. Yang belum pasti: cara hitung \"1 bulan sejak 9 Oktober 2026\" (9 November atau 8 November) yang sedang ditanyakan ke pengguna, dan stem menyebut tanggal surat, sedangkan naskah menghitung sejak permintaan disampaikan."
+      verifikasi: "✅"
     },
     {
       id: "C9-090",
@@ -4633,7 +4632,12 @@ UKP.register({
       peringatan: "Sudah dicocokkan: PMK 81/2024 Pasal 106 ayat (1) dan Pasal 161 ayat (2) (WP berizin pembukuan USD tetap menyetor PPh Pasal 26 dalam rupiah; hanya SPT Tahunan PPh Badan dalam USD), Pasal 26 ayat (1) UU PPh, dan PP 94/2010 Pasal 15 ayat (4). Belum ditemukan di naskah: dasar bahwa DPP PPh 26 dalam valuta asing dikonversi dengan kurs KMK yang berlaku pada tanggal terutang (bukan akhir bulan atau tanggal bayar)."
     },
     {
-      id: "C9-159", topik: "C9.5", tingkat: ["C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["C-2026-10"],
+      id: "C9-159",
+      topik: "C9.5",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Borneo Kelapa Lestari (PMA; pembukuan Rupiah dengan kurs tengah BI tanggal transaksi) menerima fasilitas tax allowance PP 78/2019 yang masih berlaku, termasuk tarif PPh atas dividen kepada wajib pajak luar negeri 10% atau tarif yang lebih rendah menurut P3B. RUPS pada Rabu, 20 Mei 2026 menetapkan dividen tunai USD 800.000 yang pada hari itu dicatat sebagai utang dividen, dan dibayar pada Rabu, 10 Juni 2026. Pemegang saham: Palmera Holdings BV (Negara Nedera; 80%) dan Orchid Ventures Pte. Ltd. (Negara Singara; 20%). P3B Indonesia–Nedera dan Indonesia–Singara sama-sama membatasi pajak dividen 10% bila penerimanya badan yang memiliki paling sedikit 25% saham, dan 15% dalam hal lainnya. Keduanya pemilik manfaat, Form DGT keduanya sah dan terekam di Coretax sebelum RUPS, dan tidak mempunyai BUT di Indonesia. Kurs: KMK berlaku 20–26 Mei 2026 Rp16.180/USD; kurs tengah BI 20 Mei 2026 Rp16.205/USD; KMK berlaku 10–16 Juni 2026 Rp16.240/USD. Jumlah PPh Pasal 26 yang wajib dipotong adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp1.294.400.000", B: "Rp1.423.840.000", C: "Rp1.299.200.000", D: "Rp1.296.400.000" },
@@ -4641,7 +4645,12 @@ UKP.register({
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Tarif dividen fasilitas tax allowance 10% (atau lebih rendah menurut P3B) berlaku untuk kedua penerima: bagi Palmera tarif P3B juga 10%, bagi Orchid tarif fasilitas 10% lebih rendah daripada tarif P3B 15%. PPh terutang saat dividen disediakan untuk dibayarkan (20 Mei 2026), sehingga dipakai kurs KMK 20–26 Mei 2026.",
-        jejakHitung: [["Palmera: 10% × 80% × USD 800.000", "USD 64.000"], ["Orchid: 10% (tax allowance) × 20% × USD 800.000", "USD 16.000"], ["Jumlah", "USD 80.000"], ["× kurs KMK 20–26 Mei 2026 Rp16.180", "Rp1.294.400.000"]],
+        jejakHitung: [
+          ["Palmera: 10% × 80% × USD 800.000", "USD 64.000"],
+          ["Orchid: 10% (tax allowance) × 20% × USD 800.000", "USD 16.000"],
+          ["Jumlah", "USD 80.000"],
+          ["× kurs KMK 20–26 Mei 2026 Rp16.180", "Rp1.294.400.000"]
+        ],
         mengapaSalah: {
           B: "Memakai tarif P3B 15% untuk Orchid; fasilitas tax allowance memberi tarif 10% yang lebih rendah.",
           C: "Memakai kurs KMK minggu pembayaran; saat terutang adalah saat dividen dicatat sebagai utang.",
@@ -4649,8 +4658,9 @@ UKP.register({
         },
         jebakan: "Bandingkan tarif P3B dengan tarif fasilitas lalu pakai yang terendah, kemudian kunci kurs KMK pada saat terutang."
       },
-      dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 78/2019 Pasal 3 (tax allowance: PPh dividen kepada WPLN 10% atau lebih rendah menurut P3B)", berlakuSejak: "2019-12-12" }, { pasal: "PMK 112/2025 (penerapan P3B, Form DGT)", berlakuSejak: "2025-12-31" }, { pasal: "Keputusan Menteri Keuangan tentang kurs mingguan sebagai dasar pelunasan pajak (kurs KMK)" }],
-      anggaranDetik: 170, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 78/2019 Pasal 3 (tax allowance: PPh dividen kepada WPLN 10% atau lebih rendah menurut P3B)", berlakuSejak: "2019-12-13" }, { pasal: "PMK 112/2025 (penerapan P3B, Form DGT)", berlakuSejak: "2025-12-31" }, { pasal: "Keputusan Menteri Keuangan tentang kurs mingguan sebagai dasar pelunasan pajak (kurs KMK)" }],
+      anggaranDetik: 170,
+      verifikasi: "✅"
     },
     {
       id: "C9-160",

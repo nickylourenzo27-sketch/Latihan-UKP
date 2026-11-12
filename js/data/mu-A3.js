@@ -662,7 +662,11 @@ UKP.register({
       anggaranDetik: 120, verifikasi: "✅"
     },
     {
-      id: "A3-015", topik: "A3.3", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3,
+      id: "A3-015",
+      topik: "A3.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
       stem: "RS Sehat Sentosa (WP badan) pada Masa Pajak Juli 2026 membayar: (1) jasa medis Rp60.000.000 kepada dr. Rani, dokter spesialis yang bukan pegawai rumah sakit dan ber-NPWP; (2) jasa pengujian laboratorium Rp20.000.000 kepada PT Lab Medika (ber-NPWP), tagihan tanpa PPN; dan (3) upah Nona Ika, perawat pegawai tidak tetap yang dibayar setiap hari, Rp400.000 per hari selama 20 hari kerja. Jumlah seluruh PPh yang wajib dipotong RS Sehat Sentosa atas ketiga pembayaran tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp1.600.000", B: "Rp3.400.000", C: "Rp1.900.000", D: "Rp1.940.000" },
@@ -670,12 +674,22 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "salah-baca" },
       pembahasan: {
         inti: "Penerima menentukan pasal: dokter orang pribadi bukan pegawai dipotong PPh 21 dengan tarif Pasal 17 × 50% bruto (BP21); jasa laboratorium oleh badan termasuk jasa lain PPh 23 2% (BPPU); upah harian Rp400.000 masih di lapisan TER harian 0%.",
-        jejakHitung: [["dr. Rani → PPh 21: 5% × (50% × Rp60.000.000)", "Rp1.500.000"], ["PT Lab Medika → PPh 23 jasa laboratorium: 2% × Rp20.000.000", "Rp400.000"], ["Nona Ika: Rp400.000/hari ≤ Rp450.000 → TER harian 0%", "Rp0"], ["Total PPh dipotong", "Rp1.900.000"]],
-        mengapaSalah: { A: "Memotong dr. Rani dengan PPh 23 2% (Rp1.200.000); jasa tenaga ahli orang pribadi adalah objek PPh 21", B: "Lupa dasar pengenaan 50% untuk bukan pegawai (Rp3.000.000 + Rp400.000)", D: "Memotong 0,5% atas upah harian Rp400.000 (Rp40.000) padahal masih di bawah batas 0% Rp450.000" },
+        jejakHitung: [
+          ["dr. Rani → PPh 21: 5% × (50% × Rp60.000.000)", "Rp1.500.000"],
+          ["PT Lab Medika → PPh 23 jasa laboratorium: 2% × Rp20.000.000", "Rp400.000"],
+          ["Nona Ika: Rp400.000/hari ≤ Rp450.000 → TER harian 0%", "Rp0"],
+          ["Total PPh dipotong", "Rp1.900.000"]
+        ],
+        mengapaSalah: {
+          A: "Memotong dr. Rani dengan PPh 23 2% (Rp1.200.000); jasa tenaga ahli orang pribadi adalah objek PPh 21",
+          B: "Lupa dasar pengenaan 50% untuk bukan pegawai (Rp3.000.000 + Rp400.000)",
+          D: "Memotong 0,5% atas upah harian Rp400.000 (Rp40.000) padahal masih di bawah batas 0% Rp450.000"
+        },
         jebakan: "Satu rumah sakit, tiga penerima, tiga perlakuan: OP bukan pegawai (PPh 21, DPP 50%), badan (PPh 23), dan pegawai harian (TER harian)."
       },
-      dasarHukum: [{ pasal: "PP 58/2023 Pasal 2 dan Lampiran (TER harian)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 21 ayat (1) huruf d UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 Pasal 1 (jasa laboratorium/pengujian)", berlakuSejak: "2015-08-24" }],
-      anggaranDetik: 160, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PP 58/2023 Pasal 2 dan Lampiran (TER harian)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 21 ayat (1) huruf d UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 Pasal 1 (jasa laboratorium/pengujian)", berlakuSejak: "2015-08-26" }],
+      anggaranDetik: 160,
+      verifikasi: "✅"
     },
     {
       id: "A3-016", topik: "A3.3", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2,
@@ -1711,7 +1725,7 @@ UKP.register({
         },
         jebakan: "Pembetulan SPT Masa memakai bunga Pasal 8 ayat (2a), bukan Pasal 9 ayat (2a)."
       },
-      dasarHukum: [{ pasal: "Pasal 8 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "PER-11/PJ/2025 (BPPU dan pembetulan SPT Masa)", berlakuSejak: "2025-05-22" }, { pasal: "PMK 141/PMK.03/2015 (jasa perancang)", berlakuSejak: "2015-08-24" }],
+      dasarHukum: [{ pasal: "Pasal 8 ayat (2a) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "PER-11/PJ/2025 (BPPU dan pembetulan SPT Masa)", berlakuSejak: "2025-05-22" }, { pasal: "PMK 141/PMK.03/2015 (jasa perancang)", berlakuSejak: "2015-08-26" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
@@ -1999,7 +2013,11 @@ UKP.register({
       anggaranDetik: 200, verifikasi: "✅"
     },
     {
-      id: "A3-074", topik: "A3.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A3-074",
+      topik: "A3.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "PT Sinar Karya Logistik (PKP, peredaran bruto 2025 Rp120 miliar, memiliki tiga cabang ber-NITKU) pada Masa Pajak November 2026 melakukan pembayaran berikut (seluruhnya belum termasuk PPN): (1) sewa dua forklift tanpa operator dari PT Alat Prima (ber-NPWP) Rp36.000.000; (2) jasa perawatan genset dari CV Teknik Daya, yang bukan penyedia jasa konstruksi dan tidak memiliki NPWP, Rp24.000.000; (3) royalti penggunaan merek dagang kepada PT Merek Jaya (WP badan dalam negeri, ber-NPWP) Rp40.000.000; (4) jasa angkutan truk antarkota dari PT Truk Andal (ber-NPWP) Rp30.000.000; (5) voyage charter kapal tongkang dari PT Bahari Samudra, perusahaan pelayaran dalam negeri, Rp25.000.000; (6) sewa gudang di Cikarang dari Tuan Hendra Rp90.000.000; (7) bunga pinjaman modal kerja kepada PT Bank Nusa Rp12.000.000; dan (8) hadiah undian program loyalitas pelanggan berupa uang Rp10.000.000 kepada Ny. Wati. Jumlah PPh Pasal 23 yang wajib dipotong PT Sinar Karya Logistik pada Masa Pajak November 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp7.680.000", B: "Rp7.800.000", C: "Rp8.280.000", D: "Rp8.780.000" },
@@ -2007,12 +2025,24 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Hanya empat pembayaran yang objek PPh 23: sewa forklift (2%), perawatan genset oleh penerima tanpa NPWP (2% × 200% = 4%), royalti (15%), dan jasa angkutan darat (2%). Charter tongkang dari pelayaran dalam negeri adalah PPh 15, sewa gudang dan hadiah undian PPh 4 ayat (2), dan bunga kepada bank dikecualikan dari PPh 23.",
-        jejakHitung: [["(1) Forklift: 2% × Rp36.000.000", "Rp720.000"], ["(2) Genset, tanpa NPWP: 4% × Rp24.000.000", "Rp960.000"], ["(3) Royalti: 15% × Rp40.000.000", "Rp6.000.000"], ["(4) Angkutan truk: 2% × Rp30.000.000", "Rp600.000"], ["(5) PPh 15; (6) dan (8) PPh 4 ayat (2); (7) dikecualikan", "bukan PPh 23"], ["Total PPh 23", "Rp8.280.000"]],
-        mengapaSalah: { A: "Menganggap angkutan darat sebagai PPh 15; norma Pasal 15 hanya untuk pelayaran/penerbangan, sedangkan jasa angkutan darat termasuk jasa lain PPh 23", B: "Lupa tarif 100% lebih tinggi bagi CV Teknik Daya yang tidak ber-NPWP (2% × Rp24 juta = Rp480.000)", D: "Memotong PPh 23 2% atas charter tongkang (Rp500.000) yang merupakan objek PPh 15 1,2%" },
+        jejakHitung: [
+          ["(1) Forklift: 2% × Rp36.000.000", "Rp720.000"],
+          ["(2) Genset, tanpa NPWP: 4% × Rp24.000.000", "Rp960.000"],
+          ["(3) Royalti: 15% × Rp40.000.000", "Rp6.000.000"],
+          ["(4) Angkutan truk: 2% × Rp30.000.000", "Rp600.000"],
+          ["(5) PPh 15; (6) dan (8) PPh 4 ayat (2); (7) dikecualikan", "bukan PPh 23"],
+          ["Total PPh 23", "Rp8.280.000"]
+        ],
+        mengapaSalah: {
+          A: "Menganggap angkutan darat sebagai PPh 15; norma Pasal 15 hanya untuk pelayaran/penerbangan, sedangkan jasa angkutan darat termasuk jasa lain PPh 23",
+          B: "Lupa tarif 100% lebih tinggi bagi CV Teknik Daya yang tidak ber-NPWP (2% × Rp24 juta = Rp480.000)",
+          D: "Memotong PPh 23 2% atas charter tongkang (Rp500.000) yang merupakan objek PPh 15 1,2%"
+        },
         jebakan: "Delapan pembayaran, hanya empat yang masuk PPh 23; selesaikan klasifikasi sebelum menghitung."
       },
-      dasarHukum: [{ pasal: "Pasal 23 ayat (1), (1a), dan (4) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 Pasal 1 (perawatan mesin, jasa pengangkutan)", berlakuSejak: "2015-08-24" }, { pasal: "KMK 416/KMK.04/1996 (pelayaran dalam negeri)", berlakuSejak: "1996-06-14" }],
-      anggaranDetik: 200, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 23 ayat (1), (1a), dan (4) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 Pasal 1 (perawatan mesin, jasa pengangkutan)", berlakuSejak: "2015-08-26" }, { pasal: "KMK 416/KMK.04/1996 (pelayaran dalam negeri)", berlakuSejak: "1996-06-14" }],
+      anggaranDetik: 200,
+      verifikasi: "✅"
     },
     {
       id: "A3-075", topik: "A3.1", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
@@ -2385,7 +2415,11 @@ UKP.register({
       anggaranDetik: 170, verifikasi: "✅"
     },
     {
-      id: "A3-092", topik: "A3.6", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 2,
+      id: "A3-092",
+      topik: "A3.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
       stem: "PT Sinar Retail Mandiri menerima tagihan jasa perawatan sistem pendingin ruangan Masa Pajak Juli 2026 dari CV Dingin Jaya (PKP, ber-NPWP, bukan penyedia jasa konstruksi). Jumlah yang tercantum dalam invoice Rp66.600.000 sudah termasuk PPN yang dihitung dengan DPP nilai lain 11/12 dan tarif 12%; tidak ada penggantian material maupun reimbursement. PPh Pasal 23 yang wajib dipotong PT Sinar Retail Mandiri adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp1.332.000", B: "Rp1.100.000", C: "Rp1.189.286", D: "Rp1.200.000" },
@@ -2393,12 +2427,22 @@ UKP.register({
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
         inti: "Dasar PPh 23 adalah jumlah bruto tidak termasuk PPN, yaitu harga jual jasa. Karena PPN efektif 12% × 11/12 = 11%, harga jual = Rp66.600.000 ÷ 1,11 = Rp60.000.000. DPP nilai lain 11/12 hanya dipakai untuk menghitung PPN.",
-        jejakHitung: [["Beban PPN efektif = 12% × 11/12", "11%"], ["Harga jual jasa = Rp66.600.000 ÷ 1,11", "Rp60.000.000"], ["PPh 23 = 2% × Rp60.000.000", "Rp1.200.000"], ["(PPN = 12% × Rp55.000.000)", "Rp6.600.000"]],
-        mengapaSalah: { A: "Memotong dari tagihan yang masih termasuk PPN (2% × Rp66.600.000)", B: "Memakai DPP nilai lain PPN Rp55.000.000 sebagai dasar PPh 23", C: "Membagi tagihan dengan 1,12 seolah PPN 12% atas harga penuh (Rp59.464.286)" },
+        jejakHitung: [
+          ["Beban PPN efektif = 12% × 11/12", "11%"],
+          ["Harga jual jasa = Rp66.600.000 ÷ 1,11", "Rp60.000.000"],
+          ["PPh 23 = 2% × Rp60.000.000", "Rp1.200.000"],
+          ["(PPN = 12% × Rp55.000.000)", "Rp6.600.000"]
+        ],
+        mengapaSalah: {
+          A: "Memotong dari tagihan yang masih termasuk PPN (2% × Rp66.600.000)",
+          B: "Memakai DPP nilai lain PPN Rp55.000.000 sebagai dasar PPh 23",
+          C: "Membagi tagihan dengan 1,12 seolah PPN 12% atas harga penuh (Rp59.464.286)"
+        },
         jebakan: "Pasca-PMK 131/2024 ada dua 'dasar': DPP nilai lain untuk PPN dan harga jual untuk PPh; jangan dipertukarkan."
       },
-      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015 Pasal 1", berlakuSejak: "2015-08-24" }, { pasal: "PMK 131/2024 Pasal 3 (DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 130, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015 Pasal 1", berlakuSejak: "2015-08-26" }, { pasal: "PMK 131/2024 Pasal 3 (DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅"
     },
     {
       id: "A3-093",
@@ -4310,7 +4354,7 @@ UKP.register({
     { id: "KT-A3-51", topik: "A3.5", tipe: "angka", depan: "Kriteria hunian sangat mewah (PPh 22 1%)?", belakang: "Rumah > Rp30 miliar atau > 400 m²; apartemen > Rp30 miliar atau > 150 m²", dasar: "PMK 92/PMK.03/2019", berlakuSejak: "2019-06-19", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-52", topik: "A3.6", tipe: "pasal", depan: "Saat terutang PPh 23?", belakang: "Saat dibayar, disediakan untuk dibayar, atau jatuh tempo — mana lebih dahulu", dasar: "Pasal 23 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-53", topik: "A3.6", tipe: "definisi", depan: "Dasar PPh 23 bila tagihan memakai DPP nilai lain 11/12?", belakang: "Harga jual jasa tanpa PPN, bukan DPP nilai lain", dasar: "Pasal 23 ayat (1) UU PPh; PMK 131/2024", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-A3-54", topik: "A3.6", tipe: "definisi", depan: "Jumlah bruto jasa penyedia tenaga kerja (PPh 23)?", belakang: "Imbalan jasa saja; gaji pekerja yang dirinci dan didukung bukti dikeluarkan", dasar: "PMK 141/PMK.03/2015 Pasal 1", berlakuSejak: "2015-08-24", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A3-54", topik: "A3.6", tipe: "definisi", depan: "Jumlah bruto jasa penyedia tenaga kerja (PPh 23)?", belakang: "Imbalan jasa saja; gaji pekerja yang dirinci dan didukung bukti dikeluarkan", dasar: "PMK 141/PMK.03/2015 Pasal 1", berlakuSejak: "2015-08-26", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-55", topik: "A3.7", tipe: "prosedur", depan: "Kapan penjual orang pribadi membayar PPh pengalihan tanah/bangunan?", belakang: "Sebelum akta ditandatangani; PPAT menunggu bukti setor diteliti DJP", dasar: "PP 34/2016 Pasal 3", berlakuSejak: "2016-09-07", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-56", topik: "A3.7", tipe: "angka", depan: "Tarif PPh final pekerjaan konstruksi terintegrasi?", belakang: "2,65% bersertifikat; 4% tanpa sertifikat; dipotong saat pembayaran", dasar: "PP 9/2022 Pasal 3 ayat (1) huruf d dan e", berlakuSejak: "2022-02-21", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-57", topik: "A3.7", tipe: "angka", depan: "PPh final hadiah undian?", belakang: "25% × jumlah bruto hadiah", dasar: "PP 132/2000", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },

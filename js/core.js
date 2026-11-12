@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '9.4.4';
+  UKP.versi = '9.4.5';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.

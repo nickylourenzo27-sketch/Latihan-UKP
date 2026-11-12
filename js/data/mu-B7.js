@@ -424,25 +424,34 @@ UKP.register({
       anggaranDetik: 120, verifikasi: "✅"
     },
     {
-      id: "B7-004", topik: "B7.1", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "B7-004",
+      topik: "B7.1",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       stem: "PT Andalan Solusi Data (PKP, penyedia jasa pemeliharaan perangkat lunak) menerbitkan faktur kepada PT Bank Pratama (PKP, pemotong PPh 23) pada Agustus 2026 atas jasa pemeliharaan software Rp150.000.000 belum termasuk PPN (DPP nilai lain 11/12). Pada September 2026 PT Bank Pratama melunasi tagihan setelah memotong PPh sesuai ketentuan dan menerbitkan bukti potong BPPU. Jurnal di pembukuan PT Andalan saat menerima pelunasan yang benar adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Dr Kas 163.170.000; Dr PPh 23 dibayar di muka 3.330.000; Cr Piutang usaha 166.500.000",
-        B: "Dr Kas 163.500.000; Dr Beban PPh final 3.000.000; Cr Piutang usaha 166.500.000",
-        C: "Dr Kas 163.500.000; Dr PPh 23 dibayar di muka 3.000.000; Cr Piutang usaha 166.500.000",
-        D: "Dr Kas 163.500.000; Dr Utang PPh 23 3.000.000; Cr Piutang usaha 166.500.000"
-      },
+      opsi: { A: "Dr Kas 163.170.000; Dr PPh 23 dibayar di muka 3.330.000; Cr Piutang usaha 166.500.000", B: "Dr Kas 163.500.000; Dr Beban PPh final 3.000.000; Cr Piutang usaha 166.500.000", C: "Dr Kas 163.500.000; Dr PPh 23 dibayar di muka 3.000.000; Cr Piutang usaha 166.500.000", D: "Dr Kas 163.500.000; Dr Utang PPh 23 3.000.000; Cr Piutang usaha 166.500.000" },
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "final-nonfinal", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Piutang = Rp150.000.000 + PPN 11% efektif Rp16.500.000 = Rp166.500.000. PPh 23 jasa (perawatan software termasuk jasa lain PMK 141/2015) 2% × Rp150.000.000 = Rp3.000.000 bersifat tidak final, sehingga bagi pihak yang dipotong dicatat sebagai PPh 23 dibayar di muka (kredit pajak SPT Tahunan); kas diterima Rp163.500.000.",
-        jejakHitung: [["PPN = 12% × 11/12 × 150.000.000", "Rp16.500.000"], ["Piutang usaha", "Rp166.500.000"], ["PPh 23 = 2% × 150.000.000", "Rp3.000.000"], ["Kas = 166.500.000 − 3.000.000", "Rp163.500.000"]],
-        mengapaSalah: { A: "PPh 23 dihitung dari nilai termasuk PPN", B: "PPh 23 bukan PPh final; tidak dibebankan melainkan dikreditkan", D: "Utang PPh 23 adalah akun pemotong (PT Bank Pratama), bukan pihak yang dipotong" },
+        jejakHitung: [
+          ["PPN = 12% × 11/12 × 150.000.000", "Rp16.500.000"],
+          ["Piutang usaha", "Rp166.500.000"],
+          ["PPh 23 = 2% × 150.000.000", "Rp3.000.000"],
+          ["Kas = 166.500.000 − 3.000.000", "Rp163.500.000"]
+        ],
+        mengapaSalah: {
+          A: "PPh 23 dihitung dari nilai termasuk PPN",
+          B: "PPh 23 bukan PPh final; tidak dibebankan melainkan dikreditkan",
+          D: "Utang PPh 23 adalah akun pemotong (PT Bank Pratama), bukan pihak yang dipotong"
+        },
         jebakan: "Posisi menentukan akun: pemotong mencatat Utang PPh 23, pihak yang dipotong mencatat PPh 23 dibayar di muka."
       },
-      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015", berlakuSejak: "2015-08-24" }, { pasal: "Pasal 28 ayat (1) UU PPh (kredit pajak)", berlakuSejak: "2009-01-01" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015", berlakuSejak: "2015-08-26" }, { pasal: "Pasal 28 ayat (1) UU PPh (kredit pajak)", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "B7-005", topik: "B7.1", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10"],
@@ -3284,7 +3293,7 @@ UKP.register({
         },
         jebakan: "Menyamakan angsuran sewa guna usaha dengan hak opsi dengan sewa operasi."
       },
-      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c dan ayat (4) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 9 ayat (1) huruf c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 (jasa lain dan sewa)", berlakuSejak: "2015-08-24" }],
+      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c dan ayat (4) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 9 ayat (1) huruf c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 (jasa lain dan sewa)", berlakuSejak: "2015-08-26" }],
       anggaranDetik: 140,
       verifikasi: "✅"
     },
@@ -3744,25 +3753,35 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B7-148", topik: "B7.4", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "B7-148",
+      topik: "B7.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Bumi Agro Lestari (perkebunan dan pabrik kelapa sawit; pembukuan Rupiah; transaksi valas dicatat dengan kurs tengah BI tanggal transaksi) menerima tagihan jasa perawatan mesin pabrik dari PT Teknik Kalibrasi Prima (WP badan dalam negeri) sebesar USD15.000; PPN ditagih dan dibayar terpisah dalam Rupiah. Tagihan diterima, dicatat, dan dibayar pada hari yang sama, 12 Agustus 2026, dari rekening Rupiah: bank mengonversi jumlah neto setelah PPh Pasal 23 sebesar 2% dengan kurs jual bank Rp16.300. Pada tanggal itu kurs tengah BI Rp16.240 dan kurs KMK yang berlaku Rp16.200. Jurnal pembayaran yang tepat di PT Bumi adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Dr Beban perawatan mesin Rp243.600.000; Dr Rugi selisih kurs Rp870.000; Cr Kas Rp239.610.000; Cr Utang PPh Pasal 23 Rp4.860.000",
-        B: "Dr Beban perawatan mesin Rp243.600.000; Dr Rugi selisih kurs Rp882.000; Cr Kas Rp239.610.000; Cr Utang PPh Pasal 23 Rp4.872.000",
-        C: "Dr Beban perawatan mesin Rp244.500.000; Cr Kas Rp239.610.000; Cr Utang PPh Pasal 23 Rp4.890.000",
-        D: "Dr Beban perawatan mesin Rp243.000.000; Dr Rugi selisih kurs Rp1.470.000; Cr Kas Rp239.610.000; Cr Utang PPh Pasal 23 Rp4.860.000"
-      },
+      opsi: { A: "Dr Beban perawatan mesin Rp243.600.000; Dr Rugi selisih kurs Rp870.000; Cr Kas Rp239.610.000; Cr Utang PPh Pasal 23 Rp4.860.000", B: "Dr Beban perawatan mesin Rp243.600.000; Dr Rugi selisih kurs Rp882.000; Cr Kas Rp239.610.000; Cr Utang PPh Pasal 23 Rp4.872.000", C: "Dr Beban perawatan mesin Rp244.500.000; Cr Kas Rp239.610.000; Cr Utang PPh Pasal 23 Rp4.890.000", D: "Dr Beban perawatan mesin Rp243.000.000; Dr Rugi selisih kurs Rp1.470.000; Cr Kas Rp239.610.000; Cr Utang PPh Pasal 23 Rp4.860.000" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
         inti: "Beban dicatat dengan kurs tengah BI: 15.000 × 16.240 = Rp243.600.000. PPh Pasal 23 dihitung dari DPP valas dengan kurs KMK: 2% × 15.000 × 16.200 = Rp4.860.000. Kas Rupiah yang keluar = USD14.700 × kurs jual bank 16.300 = Rp239.610.000. Selisih debit Rp870.000 adalah rugi kurs (rugi konversi bank Rp882.000 dikurangi laba Rp12.000 karena porsi PPh dicatat dengan kurs KMK yang lebih rendah), dapat dikurangkan.",
-        jejakHitung: [["Beban = 15.000 × 16.240", "Rp243.600.000"], ["PPh 23 = 2% × 15.000 × 16.200", "Rp4.860.000"], ["Kas = 14.700 × 16.300", "Rp239.610.000"], ["Rugi kurs = 239.610.000 + 4.860.000 − 243.600.000", "Rp870.000"]],
-        mengapaSalah: { B: "PPh 23 dihitung dengan kurs tengah BI; DPP PPh atas imbalan valas memakai kurs KMK saat terutang", C: "Beban dan PPh dicatat dengan kurs jual bank; beban mengikuti kurs pembukuan dan PPh mengikuti kurs KMK", D: "Beban dicatat dengan kurs KMK; kurs KMK hanya untuk menghitung PPh, bukan untuk pembukuan" },
+        jejakHitung: [
+          ["Beban = 15.000 × 16.240", "Rp243.600.000"],
+          ["PPh 23 = 2% × 15.000 × 16.200", "Rp4.860.000"],
+          ["Kas = 14.700 × 16.300", "Rp239.610.000"],
+          ["Rugi kurs = 239.610.000 + 4.860.000 − 243.600.000", "Rp870.000"]
+        ],
+        mengapaSalah: {
+          B: "PPh 23 dihitung dengan kurs tengah BI; DPP PPh atas imbalan valas memakai kurs KMK saat terutang",
+          C: "Beban dan PPh dicatat dengan kurs jual bank; beban mengikuti kurs pembukuan dan PPh mengikuti kurs KMK",
+          D: "Beban dicatat dengan kurs KMK; kurs KMK hanya untuk menghitung PPh, bukan untuk pembukuan"
+        },
         jebakan: "Tiga kurs dalam satu jurnal: kurs tengah BI untuk beban, kurs KMK untuk utang PPh, dan kurs jual bank untuk kas Rupiah yang keluar."
       },
-      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015 (jasa lain)", berlakuSejak: "2015-08-24" }, { pasal: "PSAK 221 (eks-PSAK 10) Pengaruh Perubahan Kurs Valuta Asing", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 6 ayat (1) huruf e UU PPh", berlakuSejak: "2009-01-01" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015 (jasa lain)", berlakuSejak: "2015-08-26" }, { pasal: "PSAK 221 (eks-PSAK 10) Pengaruh Perubahan Kurs Valuta Asing", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 6 ayat (1) huruf e UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "B7-149", topik: "B7.8", tingkat: ["C"], jenis: "hitung", kesulitan: 2, kasusId: "V-B7-17", laporanUjian: ["C-2026-10"],

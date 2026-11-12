@@ -396,8 +396,8 @@ UKP.register({
       ],
       contohSoal: {
         stem: "PT Kencana mengajukan restitusi PPh Badan 2025 yang diterima lengkap 14 Mei 2026. Paling lambat kapan DJP menerbitkan SKP hasil pemeriksaan?",
-        jawaban: "14 Mei 2027",
-        langkah: [["Permohonan lengkap", "14 Mei 2026"], ["Jangka waktu Ps. 17B", "12 bulan"], ["Batas", "14 Mei 2027"]]
+        jawaban: "13 Mei 2027",
+        langkah: [["Permohonan lengkap (hari pertama)", "14 Mei 2026"], ["Jangka waktu Ps. 17B", "12 bulan"], ["Batas (hari terakhir)", "13 Mei 2027"]]
       },
       verifikasi: "◐",
       peringatan: "Sudah dicocokkan ke naskah: batas Pasal 17D (Pasal 9 ayat (2) PMK 28 Tahun 2026, termasuk peredaran usaha badan ≤ Rp50 miliar), berlaku 1 Mei 2026 (Pasal 27), ketentuan peralihan (Pasal 25 huruf d: permohonan sebelum 1 Mei 2026 diselesaikan berdasarkan PMK 39/PMK.03/2018 s.t.d.t.d. PMK 119 Tahun 2024), kenaikan 100% (Pasal 17C ayat (5) dan 17D ayat (5) UU KUP), serta imbalan bunga Pasal 11 ayat (3) dan (3a) UU KUP. Tarif imbalan bunga Oktober 2026 (KMK 47/MK/EF.2/2026) belum dicocokkan ke naskah ◐."
@@ -434,8 +434,8 @@ UKP.register({
       ],
       contohSoal: {
         stem: "STP terbit 3 Agustus 2026 dan tidak dilunasi. Kapan paling cepat Surat Teguran dapat diterbitkan?",
-        jawaban: "11 September 2026",
-        langkah: [["Jatuh tempo (1 bulan)", "3 September 2026"], ["Lewat 7 hari", "10 September 2026"], ["Paling cepat terbit", "11 September 2026"]]
+        jawaban: "10 September 2026",
+        langkah: [["Jatuh tempo (1 bulan sejak 3 Agustus, hari terakhir)", "2 September 2026"], ["Lewat 7 hari", "9 September 2026"], ["Paling cepat terbit", "10 September 2026"]]
       },
       verifikasi: "✅"
     },
@@ -694,22 +694,22 @@ UKP.register({
       kesulitan: 2,
       stem: "PT Cahaya Pratama telah selesai likuidasi dan mengajukan permohonan penghapusan NPWP yang diterima lengkap pada 2 Februari 2026. Pada hari yang sama, ahli waris almarhumah Ny. Rina (orang pribadi, tanpa warisan belum terbagi) juga mengajukan penghapusan NPWP almarhumah. Setelah melakukan pemeriksaan, DJP wajib menerbitkan keputusan atas permohonan PT Cahaya Pratama paling lambat ...",
       kataKualifikasi: ["paling lambat"],
-      opsi: { A: "2 Agustus 2026", B: "2 Februari 2027", C: "2 Mei 2026", D: "2 Februari 2028" },
+      opsi: { A: "1 Agustus 2026", B: "1 Februari 2027", C: "1 Mei 2026", D: "2 Februari 2027" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-hitung" },
       pembahasan: {
-        inti: "Keputusan penghapusan NPWP paling lama 6 bulan untuk WP orang pribadi dan 12 bulan untuk WP badan sejak permohonan diterima lengkap.",
+        inti: "Keputusan penghapusan NPWP paling lama 6 bulan untuk WP orang pribadi dan 12 bulan untuk WP badan sejak permohonan diterima lengkap. Tanggal permohonan diterima lengkap dihitung sebagai hari pertama, sehingga 12 bulan sejak 2 Februari 2026 berakhir 1 Februari 2027.",
         jejakHitung: [
-          ["Permohonan lengkap", "2 Februari 2026"],
+          ["Permohonan lengkap (hari pertama)", "2 Februari 2026"],
           ["Jangka waktu badan", "12 bulan"],
-          ["Batas keputusan", "2 Februari 2027"]
+          ["Batas keputusan (sehari sebelum 2 Februari 2027)", "1 Februari 2027"]
         ],
         mengapaSalah: {
-          A: "6 bulan berlaku untuk orang pribadi (permohonan Ny. Rina).",
+          A: "6 bulan berlaku untuk orang pribadi (permohonan Ny. Rina); hari terakhirnya 1 Agustus 2026.",
           C: "3 bulan adalah tenggat keberatan, bukan keputusan penghapusan NPWP.",
-          D: "24 bulan tidak dikenal untuk keputusan ini."
+          D: "Menghitung tanggal ke tanggal. Tanggal permohonan diterima lengkap adalah hari pertama, sehingga hari terakhir 12 bulan jatuh sehari sebelum 2 Februari 2027, yaitu 1 Februari 2027."
         },
-        jebakan: "Dua permohonan di stem sengaja disandingkan: bedakan OP 6 bulan dan badan 12 bulan."
+        jebakan: "Dua permohonan di stem sengaja disandingkan: bedakan OP 6 bulan dan badan 12 bulan. Hari terakhir jatuh sehari sebelum tanggal yang sama pada bulan ke-12."
       },
       dasarHukum: [{ pasal: "Pasal 2 ayat (6) dan (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 81/2024 Pasal 29 ayat (4) dan Pasal 47 ayat (4)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 90,
@@ -909,20 +909,33 @@ UKP.register({
       anggaranDetik: 180, verifikasi: "✅"
     },
     {
-      id: "A2-020", topik: "A2.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, kasusId: "V-A2-03",
+      id: "A2-020",
+      topik: "A2.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      kasusId: "V-A2-03",
       stem: "Data untuk soal vignette V-A2-03: PT Rimba Kencana (bukan anggota grup usaha, tanpa indikasi transfer pricing) menerima Surat Perintah Pemeriksaan (SP2) pemeriksaan lengkap atas SPT Tahunan PPh Badan Tahun Pajak 2024 (lebih bayar, dimintakan restitusi) pada 12 Januari 2026. Menurut PMK 15/2025, SPHP harus sudah disampaikan paling lambat ...",
       kataKualifikasi: ["paling lambat"],
-      opsi: { A: "12 Mei 2026", B: "12 Juni 2026", C: "12 Juli 2026", D: "12 Oktober 2026" },
+      opsi: { A: "11 Mei 2026", B: "11 Juni 2026", C: "12 Juni 2026", D: "11 Oktober 2026" },
       kunci: "B",
-      jebakanOpsi: { A: "angka-usang", C: "angka-usang", D: "salah-baca" },
+      jebakanOpsi: { A: "angka-usang", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
-        inti: "Jangka waktu pengujian pemeriksaan lengkap 5 bulan sejak SP2/pemberitahuan pemeriksaan sampai SPHP disampaikan; perpanjangan 4 bulan hanya untuk grup usaha atau indikasi transfer pricing.",
-        jejakHitung: [["SP2 diterima", "12 Januari 2026"], ["+ 5 bulan (pemeriksaan lengkap)", "12 Juni 2026"]],
-        mengapaSalah: { A: "4 bulan adalah jangka pemeriksaan kantor rezim PMK 17/2013 jo. 184/2015.", C: "6 bulan adalah jangka pemeriksaan lapangan rezim lama.", D: "Menambah perpanjangan 4 bulan yang tidak berlaku bagi WP ini." },
-        jebakan: "Lengkap 5 · terfokus 3 · spesifik 1; lupakan kantor 4/lapangan 6."
+        inti: "Jangka waktu pengujian pemeriksaan lengkap 5 bulan terhitung sejak SP2/pemberitahuan pemeriksaan disampaikan sampai SPHP disampaikan; perpanjangan 4 bulan hanya untuk grup usaha atau indikasi transfer pricing. Tanggal SP2 diterima adalah hari pertama, sehingga 5 bulan sejak 12 Januari 2026 berakhir 11 Juni 2026.",
+        jejakHitung: [
+          ["SP2 diterima (hari pertama)", "12 Januari 2026"],
+          ["5 bulan (pemeriksaan lengkap), hari terakhir", "11 Juni 2026"]
+        ],
+        mengapaSalah: {
+          A: "4 bulan adalah jangka pemeriksaan kantor rezim PMK 17/2013 jo. 184/2015.",
+          C: "Menghitung tanggal ke tanggal. Tanggal SP2 diterima dihitung sebagai hari pertama, sehingga hari terakhir 5 bulan adalah 11 Juni 2026.",
+          D: "Menambah perpanjangan 4 bulan (menjadi 9 bulan) yang tidak berlaku bagi WP ini."
+        },
+        jebakan: "Lengkap 5 · terfokus 3 · spesifik 1; lupakan kantor 4/lapangan 6. Hari terakhir jatuh sehari sebelum tanggal yang sama (12 Januari menjadi 11 Juni)."
       },
       dasarHukum: [{ pasal: "PMK 15/2025 (jangka waktu pengujian)", berlakuSejak: "2025-02-14" }, { pasal: "Pasal 17B UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 90, verifikasi: "✅"
+      anggaranDetik: 90,
+      verifikasi: "✅"
     },
     {
       id: "A2-021",
@@ -941,8 +954,8 @@ UKP.register({
         inti: "Pengungkapan ketidakbenaran pengisian SPT saat pemeriksaan (Pasal 8 ayat (4)) dikenai bunga uplift 10% (Pasal 8 ayat (5a)) yang, untuk SPT Tahunan, dihitung sejak batas waktu penyampaian SPT Tahunan berakhir (30 April 2025) sampai tanggal pembayaran (6 April 2026): 11 bulan 7 hari dihitung 12 bulan.",
         jejakHitung: [
           ["Titik awal: batas waktu penyampaian SPT Tahunan 2024", "30 April 2025"],
-          ["30 Apr 2025 → 30 Mar 2026", "11 bulan"],
-          ["30 Mar → 6 Apr 2026", "7 hari = bagian bulan = 1 bulan"],
+          ["1 Mei 2025 sampai 31 Maret 2026", "11 bulan"],
+          ["1 sampai 6 April 2026", "6 hari = bagian bulan = 1 bulan"],
           ["Jumlah bulan (maks 24)", "12"],
           ["Bunga = 84.000.000 × 1,42% × 12", "Rp14.313.600"]
         ],
@@ -1011,18 +1024,18 @@ UKP.register({
       kesulitan: 2,
       stem: "PT Kirana Medika (bukan anggota grup usaha, tanpa indikasi transfer pricing) menerima Surat Perintah Pemeriksaan (SP2) pemeriksaan terfokus atas pos biaya promosi dalam SPT Tahunan PPh Badan Tahun Pajak 2024 pada 2 Maret 2026. Manajer pajaknya menyusun linimasa internal berdasarkan PMK 15/2025 dan Pasal 8 UU KUP sebagaimana diubah UU HPP. Butir linimasa berikut sudah tepat, kecuali ...",
       kataKualifikasi: ["kecuali"],
-      opsi: { A: "SPHP paling lambat disampaikan 2 Juni 2026, yaitu 3 bulan sejak SP2 disampaikan", B: "Sebelum SPHP disampaikan, pemeriksa melakukan Pembahasan Temuan Sementara dengan WP, karena pengecualian hanya untuk pemeriksaan spesifik", C: "Pengungkapan ketidakbenaran pengisian SPT (Pasal 8 ayat (4)) masih dapat disampaikan sepanjang SPHP belum disampaikan, dengan bunga uplift 10%", D: "Setelah SPHP diterima, perusahaan memiliki 7 hari kerja untuk menyampaikan tanggapan tertulis" },
+      opsi: { A: "SPHP paling lambat disampaikan 1 Juni 2026, yaitu hari terakhir jangka 3 bulan sejak SP2 disampaikan", B: "Sebelum SPHP disampaikan, pemeriksa melakukan Pembahasan Temuan Sementara dengan WP, karena pengecualian hanya untuk pemeriksaan spesifik", C: "Pengungkapan ketidakbenaran pengisian SPT (Pasal 8 ayat (4)) masih dapat disampaikan sepanjang SPHP belum disampaikan, dengan bunga uplift 10%", D: "Setelah SPHP diterima, perusahaan memiliki 7 hari kerja untuk menyampaikan tanggapan tertulis" },
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "angka-usang" },
       pembahasan: {
         inti: "PMK 15/2025 menetapkan tanggapan tertulis atas SPHP paling lama 5 hari kerja sejak SPHP diterima; 7 hari kerja adalah ketentuan PMK 17/2013 jo. 184/2015. Butir lain sudah tepat.",
         jejakHitung: [
           ["SP2 pemeriksaan terfokus", "2 Maret 2026"],
-          ["+ 3 bulan (terfokus)", "SPHP paling lambat 2 Juni 2026"],
+          ["3 bulan (terfokus) sejak 2 Maret 2026, hari terakhir", "SPHP paling lambat 1 Juni 2026"],
           ["Tanggapan SPHP", "5 hari kerja, bukan 7"]
         ],
         mengapaSalah: {
-          A: "Benar: jangka pengujian pemeriksaan terfokus 3 bulan sejak SP2 sampai SPHP; angka 5 bulan hanya untuk pemeriksaan lengkap.",
+          A: "Benar: jangka pengujian pemeriksaan terfokus 3 bulan sejak SP2 sampai SPHP; tanggal SP2 dihitung sebagai hari pertama sehingga berakhir 1 Juni 2026. Angka 5 bulan hanya untuk pemeriksaan lengkap.",
           B: "Benar: Pembahasan Temuan Sementara wajib sebelum SPHP; yang dikecualikan hanya pemeriksaan spesifik.",
           C: "Benar: sejak UU HPP batas pengungkapan adalah sebelum SPHP disampaikan (dulu sebelum SKP terbit), dengan bunga Pasal 8 ayat (5) uplift 10%."
         },
@@ -1093,25 +1106,34 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-027", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10"], kasusId: "V-A2-01",
+      id: "A2-027",
+      topik: "A2.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      kasusId: "V-A2-01",
       stem: "Lanjutan V-A2-01: SKPKB PPN Masa Juni 2024 PT Graha Mandiri sebesar Rp216.240.000 (pokok Rp150.000.000 + bunga Rp66.240.000) dikirim 16 Oktober 2026. Dalam Pembahasan Akhir Hasil Pemeriksaan (PAHP), WP menyetujui koreksi pokok Rp40.000.000 dan menolak sisanya. Agar keberatannya memenuhi syarat menurut UU KUP dan PMK 118/2024, langkah yang tepat adalah ...",
       kataKualifikasi: ["paling sedikit", "paling lambat"],
-      opsi: {
-        A: "Melunasi paling sedikit jumlah yang disetujui dalam PAHP, lalu mengajukan keberatan lewat Portal Wajib Pajak paling lambat 16 Januari 2027",
-        B: "Melunasi seluruh SKPKB Rp216.240.000, lalu mengajukan keberatan paling lambat 16 Januari 2027",
-        C: "Mengajukan keberatan paling lambat 16 Januari 2027 tanpa pelunasan apa pun karena seluruh pajak tertangguh",
-        D: "Melunasi jumlah yang disetujui dalam PAHP, lalu mengajukan keberatan paling lambat 16 November 2026"
-      },
+      opsi: { A: "Melunasi paling sedikit jumlah yang disetujui dalam PAHP, lalu mengajukan keberatan lewat Portal Wajib Pajak paling lambat 15 Januari 2027", B: "Wajib melunasi seluruh SKPKB Rp216.240.000 lebih dahulu karena keberatan baru dapat diajukan setelah SKPKB lunas, lalu mengajukan keberatan paling lambat 15 Januari 2027", C: "Mengajukan keberatan paling lambat 15 Januari 2027 tanpa pelunasan apa pun karena seluruh pajak tertangguh", D: "Melunasi jumlah yang disetujui dalam PAHP, lalu mengajukan keberatan paling lambat 15 November 2026" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "lupa-pasal" },
       pembahasan: {
         inti: "Keberatan atas SKPKB diajukan paling lama 3 bulan sejak SKP dikirim, setelah melunasi paling sedikit jumlah yang disetujui dalam PAHP; sisanya tertangguh sampai 1 bulan sejak SK Keberatan terbit.",
-        jejakHitung: [["SKPKB dikirim", "16 Oktober 2026"], ["+ 3 bulan", "16 Januari 2027"]],
-        mengapaSalah: { B: "Pelunasan penuh tidak disyaratkan.", C: "Pasal 25 ayat (3a) mewajibkan pelunasan jumlah yang disetujui dalam PAHP.", D: "1 bulan adalah jatuh tempo pelunasan SKPKB, bukan tenggat keberatan." },
-        jebakan: "Tenggat keberatan 3 bulan dihitung dari tanggal dikirim SKP."
+        jejakHitung: [
+          ["SKPKB dikirim (hari pertama)", "16 Oktober 2026"],
+          ["3 bulan, hari terakhir", "15 Januari 2027"]
+        ],
+        mengapaSalah: {
+          B: "Pelunasan penuh tidak disyaratkan; yang wajib dilunasi sebelum keberatan paling sedikit jumlah yang disetujui dalam PAHP.",
+          C: "Pasal 25 ayat (3a) mewajibkan pelunasan jumlah yang disetujui dalam PAHP.",
+          D: "1 bulan (berakhir 15 November 2026) adalah jatuh tempo pelunasan SKPKB, bukan tenggat keberatan."
+        },
+        jebakan: "Tenggat keberatan 3 bulan dihitung dari tanggal dikirim SKP; tanggal kirim adalah hari pertama, sehingga berakhir 15 Januari 2027."
       },
       dasarHukum: [{ pasal: "Pasal 25 ayat (3), (3a), dan (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 118/2024 Pasal 10 dan 53–54", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A2-028", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"], kasusId: "V-A2-01",
@@ -1238,14 +1260,14 @@ UKP.register({
       kesulitan: 2,
       stem: "CV Anugerah mengajukan permohonan pengurangan sanksi administratif dalam STP berdasarkan Pasal 36 ayat (1) huruf a. Keputusan atas permohonan pertama yang menolak permohonan itu dikirim 10 Juli 2026. CV Anugerah ingin mencoba lagi. Pernyataan yang tepat tentang permohonan berikutnya adalah ...",
       kataKualifikasi: ["paling lama", "paling banyak"],
-      opsi: { A: "Permohonan kedua paling lama 10 Oktober 2026; setelah itu tidak dapat diajukan permohonan ketiga", B: "Permohonan kedua paling lama 10 Agustus 2026; permohonan ketiga masih dapat diajukan", C: "Permohonan kedua paling lama 10 Januari 2027, mengikuti jangka waktu keputusan 6 bulan", D: "Permohonan kedua paling lama 10 Oktober 2026; permohonan ketiga dapat diajukan bila ada bukti baru" },
+      opsi: { A: "Permohonan kedua paling lama 9 Oktober 2026; setelah itu tidak dapat diajukan permohonan ketiga", B: "Permohonan kedua paling lama 9 Agustus 2026; permohonan ketiga masih dapat diajukan", C: "Permohonan kedua paling lama 9 Januari 2027, mengikuti jangka waktu keputusan 6 bulan", D: "Permohonan kedua paling lama 9 Oktober 2026; permohonan ketiga dapat diajukan bila ada bukti baru" },
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
-        inti: "Permohonan Pasal 36 ayat (1) huruf a–c paling banyak 2 kali; permohonan kedua paling lama 3 bulan sejak keputusan pertama dikirim.",
+        inti: "Permohonan Pasal 36 ayat (1) huruf a–c paling banyak 2 kali; permohonan kedua paling lama 3 bulan sejak keputusan pertama dikirim. Tanggal kirim adalah hari pertama, sehingga 3 bulan sejak 10 Juli 2026 berakhir 9 Oktober 2026.",
         jejakHitung: [
-          ["Keputusan pertama dikirim", "10 Juli 2026"],
-          ["+ 3 bulan", "10 Oktober 2026"]
+          ["Keputusan pertama dikirim (hari pertama)", "10 Juli 2026"],
+          ["3 bulan, hari terakhir", "9 Oktober 2026"]
         ],
         mengapaSalah: {
           B: "1 bulan tidak dikenal; dan permohonan dibatasi 2 kali.",
@@ -1256,8 +1278,7 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "Pasal 36 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 24 ayat (1) dan (3) PMK 118/2024 (tidak diubah PMK 71/2026)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 100,
-      verifikasi: "◐",
-      peringatan: "Batas 2 kali dan tenggat 3 bulan sejak keputusan pertama dikirim sudah dicocokkan dengan Pasal 24 ayat (1) dan (3) PMK 118/2024 (tidak diubah PMK 71/2026). Yang belum pasti hanya cara menghitung '3 bulan sejak 10 Juli 2026': jatuh 10 Oktober atau 9 Oktober 2026 (sedang ditanyakan ke pengguna)."
+      verifikasi: "✅"
     },
     {
       id: "A2-035",
@@ -1483,25 +1504,34 @@ UKP.register({
       anggaranDetik: 60, verifikasi: "✅"
     },
     {
-      id: "A2-044", topik: "A2.9", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1,
+      id: "A2-044",
+      topik: "A2.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
       stem: "PT Kencana Agro menyampaikan SPT Tahunan PPh Badan 2025 lebih bayar dan mengajukan restitusi; permohonan diterima lengkap 14 Mei 2026. PT Kencana Agro bukan WP kriteria tertentu maupun persyaratan tertentu, dan tidak sedang dilakukan pemeriksaan bukti permulaan. Sampai 14 Mei 2027 DJP belum menerbitkan surat ketetapan pajak. Akibat hukumnya adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Permohonan gugur dan WP harus mengajukan ulang restitusi",
-        B: "WP dapat langsung mengajukan gugatan ke Pengadilan Pajak",
-        C: "Permohonan dianggap dikabulkan dan SKPLB diterbitkan paling lama 1 bulan setelah jangka waktu 12 bulan berakhir",
-        D: "DJP dapat memperpanjang jangka waktu 4 bulan seperti pemeriksaan grup usaha"
-      },
+      opsi: { A: "Permohonan gugur dan WP harus mengajukan ulang restitusi", B: "WP dapat langsung mengajukan gugatan ke Pengadilan Pajak", C: "Permohonan dianggap dikabulkan dan SKPLB diterbitkan paling lama 1 bulan setelah jangka waktu 12 bulan berakhir", D: "DJP dapat memperpanjang jangka waktu 4 bulan seperti pemeriksaan grup usaha" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Pasal 17B: keputusan atas restitusi melalui pemeriksaan paling lama 12 bulan sejak permohonan lengkap; lewat waktu, permohonan dianggap dikabulkan dan SKPLB terbit paling lama 1 bulan kemudian.",
-        jejakHitung: [["Permohonan lengkap", "14 Mei 2026"], ["+ 12 bulan", "14 Mei 2027"], ["SKPLB fiktif positif paling lama", "+1 bulan"]],
-        mengapaSalah: { A: "Undang-undang justru memberi fiktif positif.", B: "Tidak ada keputusan yang dapat digugat; hak WP sudah dijamin fiktif positif.", D: "Batas 12 bulan Pasal 17B ditetapkan undang-undang; perpanjangan PMK 15/2025 menyangkut jangka pengujian, bukan batas ini." },
+        inti: "Pasal 17B: keputusan atas restitusi melalui pemeriksaan paling lama 12 bulan sejak permohonan lengkap; tanggal permohonan lengkap adalah hari pertama, sehingga jangka itu berakhir 13 Mei 2027. Lewat waktu, permohonan dianggap dikabulkan dan SKPLB terbit paling lama 1 bulan kemudian.",
+        jejakHitung: [
+          ["Permohonan lengkap (hari pertama)", "14 Mei 2026"],
+          ["12 bulan, hari terakhir", "13 Mei 2027"],
+          ["14 Mei 2027 belum ada SKP", "jangka terlampaui, dianggap dikabulkan"],
+          ["SKPLB fiktif positif paling lama", "1 bulan setelah jangka 12 bulan berakhir"]
+        ],
+        mengapaSalah: {
+          A: "Undang-undang justru memberi fiktif positif.",
+          B: "Tidak ada keputusan yang dapat digugat; hak WP sudah dijamin fiktif positif.",
+          D: "Batas 12 bulan Pasal 17B ditetapkan undang-undang; perpanjangan PMK 15/2025 menyangkut jangka pengujian, bukan batas ini."
+        },
         jebakan: "Diamnya DJP menguntungkan WP pada restitusi Pasal 17B."
       },
       dasarHukum: [{ pasal: "Pasal 17B ayat (1) dan (2) UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 60, verifikasi: "✅"
+      anggaranDetik: 60,
+      verifikasi: "✅"
     },
     {
       id: "A2-045",
@@ -1540,7 +1570,7 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 3,
-      stem: "SKPLB PPh Badan PT Hijau Lestari sebesar Rp300.000.000 terbit 5 Oktober 2026 dan WP tidak memiliki utang pajak. Batas waktu pengembalian 1 bulan berakhir 5 November 2026, tetapi pengembalian baru dilakukan (SP2D terbit dan dana ditransfer ke rekening WP) pada 18 Januari 2027. Anggap tarif imbalan bunga per bulan yang berlaku 0,59% (uplift 0%), sedangkan tarif uplift 5% 1,01%. Imbalan bunga Pasal 11 ayat (3) yang diterima WP adalah ...",
+      stem: "SKPLB PPh Badan PT Hijau Lestari sebesar Rp300.000.000 terbit 5 Oktober 2026 dan WP tidak memiliki utang pajak. Batas waktu pengembalian 1 bulan berakhir 4 November 2026, tetapi pengembalian baru dilakukan (SP2D terbit dan dana ditransfer ke rekening WP) pada 18 Januari 2027. Anggap tarif imbalan bunga per bulan yang berlaku 0,59% (uplift 0%), sedangkan tarif uplift 5% 1,01%. Imbalan bunga Pasal 11 ayat (3) yang diterima WP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp9.090.000", B: "Rp7.080.000", C: "Rp3.540.000", D: "Rp5.310.000" },
       kunci: "D",
@@ -1548,7 +1578,8 @@ UKP.register({
       pembahasan: {
         inti: "Imbalan bunga Pasal 11 ayat (3) dihitung sejak batas waktu 1 bulan berakhir sampai pengembalian dilakukan, dengan tarif uplift 0%, bagian bulan dihitung penuh.",
         jejakHitung: [
-          ["5 Nov 2026 → 5 Jan 2027", "2 bulan"],
+          ["1 bulan sejak SKPLB terbit 5 Okt 2026, hari terakhir", "4 November 2026"],
+          ["5 Nov 2026 → 4 Jan 2027", "2 bulan"],
           ["5 Jan → 18 Jan 2027", "bagian bulan = 1"],
           ["Imbalan = 300.000.000 × 0,59% × 3", "Rp5.310.000"]
         ],
@@ -1610,20 +1641,35 @@ UKP.register({
       anggaranDetik: 90, verifikasi: "✅"
     },
     {
-      id: "A2-049", topik: "A2.10", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-A2-02",
-      stem: "Data untuk soal vignette V-A2-02: CV Sumber Makmur menerima STP PPN tertanggal 6 Juli 2026 sebesar Rp185.000.000 dengan jatuh tempo pelunasan Kamis, 6 Agustus 2026. Sampai jatuh tempo, utang tidak dibayar dan tidak ada permohonan angsuran atau penundaan. Menurut UU PPSP dan PMK 61/2023, Surat Teguran paling cepat dapat diterbitkan pada ...",
+      id: "A2-049",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-A2-02",
+      stem: "Data untuk soal vignette V-A2-02: CV Sumber Makmur menerima STP PPN tertanggal 7 Juli 2026 sebesar Rp185.000.000 dengan jatuh tempo pelunasan Kamis, 6 Agustus 2026. Sampai jatuh tempo, utang tidak dibayar dan tidak ada permohonan angsuran atau penundaan. Menurut UU PPSP dan PMK 61/2023, Surat Teguran paling cepat dapat diterbitkan pada ...",
       kataKualifikasi: ["paling cepat"],
       opsi: { A: "7 Agustus 2026", B: "14 Agustus 2026", C: "28 Agustus 2026", D: "6 September 2026" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
         inti: "Surat Teguran diterbitkan setelah lewat 7 hari sejak jatuh tempo pelunasan.",
-        jejakHitung: [["Jatuh tempo", "6 Agustus 2026"], ["Lewat 7 hari", "s.d. 13 Agustus 2026"], ["Paling cepat terbit", "14 Agustus 2026 (Jumat)"]],
-        mengapaSalah: { A: "Sehari setelah jatuh tempo belum lewat 7 hari.", C: "21 hari adalah jeda Surat Teguran ke Surat Paksa.", D: "Tidak ada jeda 1 bulan untuk teguran." },
+        jejakHitung: [
+          ["Jatuh tempo (1 bulan sejak 7 Juli 2026, hari terakhir)", "6 Agustus 2026"],
+          ["Lewat 7 hari", "s.d. 13 Agustus 2026"],
+          ["Paling cepat terbit", "14 Agustus 2026 (Jumat)"]
+        ],
+        mengapaSalah: {
+          A: "Sehari setelah jatuh tempo belum lewat 7 hari.",
+          C: "21 hari adalah jeda Surat Teguran ke Surat Paksa.",
+          D: "Tidak ada jeda 1 bulan untuk teguran."
+        },
         jebakan: "Jatuh tempo +7 → teguran; teguran +21 → Surat Paksa."
       },
       dasarHukum: [{ pasal: "Pasal 8 ayat (1) UU PPSP", berlakuSejak: "2000-08-02" }, { pasal: "PMK 61/2023 Pasal 5 dan 6", berlakuSejak: "2023-06-12" }, { pasal: "Pasal 9 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 90, verifikasi: "✅"
+      anggaranDetik: 90,
+      verifikasi: "✅"
     },
     {
       id: "A2-050", topik: "A2.10", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-A2-02",
@@ -1668,7 +1714,12 @@ UKP.register({
       anggaranDetik: 120, verifikasi: "✅"
     },
     {
-      id: "A2-052", topik: "A2.10", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["C-2026-10"],
+      id: "A2-052",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
       stem: "SKPKB PPh Badan 2019 PT Cendana diterbitkan 15 Maret 2021 dan tidak pernah dilunasi. Surat Paksa diberitahukan kepada Penanggung Pajak pada 20 Juni 2022; setelah itu tidak ada tindakan penagihan lain maupun pengakuan utang. Pada Oktober 2026 PT Cendana berpendapat utangnya sudah daluwarsa. Hak DJP untuk menagih utang tersebut daluwarsa pada ...",
       kataKualifikasi: [],
       opsi: { A: "15 Maret 2026, sehingga utang sudah daluwarsa", B: "31 Desember 2024, 5 tahun setelah Tahun Pajak 2019 berakhir", C: "15 Maret 2031", D: "20 Juni 2027" },
@@ -1676,12 +1727,21 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
         inti: "Daluwarsa penagihan 5 tahun sejak ketetapan diterbitkan, tetapi tertangguh bila Surat Paksa diterbitkan; daluwarsa dihitung ulang sejak tanggal penyampaian Surat Paksa.",
-        jejakHitung: [["Daluwarsa awal (15 Mar 2021 + 5 tahun)", "15 Maret 2026"], ["Tertangguh: Surat Paksa disampaikan", "20 Juni 2022"], ["Daluwarsa baru (+5 tahun)", "20 Juni 2027"]],
-        mengapaSalah: { A: "Mengabaikan penangguhan karena Surat Paksa.", B: "Itu daluwarsa penetapan, bukan penagihan.", C: "Daluwarsa penagihan 5 tahun, bukan 10 tahun." },
+        jejakHitung: [
+          ["Daluwarsa awal: 5 tahun sejak 15 Maret 2021 berakhir 14 Maret 2026", "daluwarsa mulai 15 Maret 2026"],
+          ["Tertangguh: Surat Paksa disampaikan", "20 Juni 2022"],
+          ["Daluwarsa baru: 5 tahun sejak 20 Juni 2022 berakhir 19 Juni 2027", "daluwarsa mulai 20 Juni 2027"]
+        ],
+        mengapaSalah: {
+          A: "Mengabaikan penangguhan karena Surat Paksa.",
+          B: "Itu daluwarsa penetapan, bukan penagihan.",
+          C: "Daluwarsa penagihan 5 tahun, bukan 10 tahun."
+        },
         jebakan: "Daluwarsa penetapan ≠ daluwarsa penagihan; Surat Paksa me-reset hitungan."
       },
       dasarHukum: [{ pasal: "Pasal 22 ayat (1) dan (2) huruf a UU KUP beserta penjelasannya", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-053",
@@ -1740,25 +1800,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-055", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10"],
+      id: "A2-055",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
       stem: "SK Keberatan atas SKPKB PPh Pasal 26 PT Orbit Teknologi diterbitkan 2 Juni 2026 dan diterima WP 5 Juni 2026 (abaikan pergeseran karena hari libur). WP tidak setuju dan ingin membawa sengketa ke Pengadilan Pajak. Pernyataan yang tepat tentang tenggat banding dan jangka waktu putusannya adalah ...",
       kataKualifikasi: ["paling lama"],
-      opsi: {
-        A: "Banding paling lama 5 September 2026; putusan paling lama 12 bulan sejak surat banding diterima dan dapat diperpanjang 3 bulan",
-        B: "Banding paling lama 2 September 2026, dihitung sejak SK Keberatan diterbitkan",
-        C: "Banding paling lama 5 Juli 2026 (30 hari), seperti gugatan atas keputusan",
-        D: "Banding paling lama 5 September 2026; putusan paling lama 6 bulan sejak surat banding diterima"
-      },
+      opsi: { A: "Banding paling lama 4 September 2026; putusan paling lama 12 bulan sejak surat banding diterima dan dapat diperpanjang 3 bulan", B: "Banding paling lama 1 September 2026, dihitung sejak SK Keberatan diterbitkan", C: "Banding paling lama 5 Juli 2026 (30 hari), seperti gugatan atas keputusan", D: "Banding paling lama 4 September 2026; putusan paling lama 6 bulan sejak surat banding diterima" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "Banding diajukan paling lama 3 bulan sejak SK Keberatan diterima; Pengadilan Pajak memutus paling lama 12 bulan sejak surat banding diterima, dapat diperpanjang 3 bulan.",
-        jejakHitung: [["SK Keberatan diterima", "5 Juni 2026"], ["+ 3 bulan", "5 September 2026"]],
-        mengapaSalah: { B: "Patokan banding adalah tanggal diterima, bukan diterbitkan.", C: "30 hari milik gugatan atas keputusan lain.", D: "6 bulan adalah jangka putusan gugatan." },
+        jejakHitung: [
+          ["SK Keberatan diterima (hari pertama)", "5 Juni 2026"],
+          ["3 bulan, hari terakhir", "4 September 2026"]
+        ],
+        mengapaSalah: {
+          B: "Patokan banding adalah tanggal diterima, bukan diterbitkan.",
+          C: "30 hari milik gugatan atas keputusan lain.",
+          D: "6 bulan adalah jangka putusan gugatan."
+        },
         jebakan: "Keberatan dihitung sejak dikirim; banding sejak diterima."
       },
       dasarHukum: [{ pasal: "Pasal 35 ayat (2) dan Pasal 81 ayat (1) UU 14/2002", berlakuSejak: "2002-04-12" }, { pasal: "Pasal 27 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 90, verifikasi: "✅"
+      anggaranDetik: 90,
+      verifikasi: "✅"
     },
     {
       id: "A2-056", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["C-2026-10"],
@@ -1794,25 +1862,32 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A2-058", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3,
+      id: "A2-058",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
       stem: "Putusan Banding yang menolak banding PT Delima Jaya diucapkan dan dikirim 3 Agustus 2026. Pada 10 September 2026 WP menemukan surat bukti yang bersifat menentukan (novum) yang ketika perkara diperiksa tidak dapat ditemukan; penemuan itu dinyatakan di bawah sumpah dan disahkan pejabat berwenang. WP ingin mengajukan Peninjauan Kembali. Pernyataan yang tepat adalah ...",
       kataKualifikasi: ["paling lambat"],
-      opsi: {
-        A: "PK paling lambat 3 November 2026 karena dihitung sejak putusan dikirim",
-        B: "PK paling lambat 10 Desember 2026; PK tidak menangguhkan pelaksanaan Putusan Banding",
-        C: "PK paling lambat 10 Desember 2026; selama PK diperiksa, pelunasan pajak tertangguh",
-        D: "Mengajukan kasasi ke Mahkamah Agung dalam 14 hari sejak putusan diterima"
-      },
+      opsi: { A: "PK paling lambat 2 November 2026 karena dihitung sejak putusan dikirim", B: "PK paling lambat 9 Desember 2026; PK tidak menangguhkan pelaksanaan Putusan Banding", C: "PK paling lambat 9 Desember 2026; selama PK diperiksa, pelunasan pajak tertangguh", D: "Mengajukan kasasi ke Mahkamah Agung dalam 14 hari sejak putusan diterima" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "PK dengan alasan novum diajukan paling lama 3 bulan sejak ditemukan surat bukti yang hari dan tanggal ditemukannya dinyatakan di bawah sumpah; PK hanya sekali dan tidak menangguhkan pelaksanaan putusan.",
-        jejakHitung: [["Novum ditemukan", "10 September 2026"], ["+ 3 bulan", "10 Desember 2026"]],
-        mengapaSalah: { A: "Patokan 'sejak putusan dikirim' untuk alasan lain (Pasal 91 huruf c–e).", C: "Pasal 89 UU 14/2002: PK tidak menangguhkan pelaksanaan putusan.", D: "Putusan Pengadilan Pajak bersifat akhir; tidak ada kasasi." },
+        jejakHitung: [
+          ["Novum ditemukan (hari pertama)", "10 September 2026"],
+          ["3 bulan, hari terakhir", "9 Desember 2026"]
+        ],
+        mengapaSalah: {
+          A: "Patokan 'sejak putusan dikirim' untuk alasan lain (Pasal 91 huruf c–e).",
+          C: "Pasal 89 UU 14/2002: PK tidak menangguhkan pelaksanaan putusan.",
+          D: "Putusan Pengadilan Pajak bersifat akhir; tidak ada kasasi."
+        },
         jebakan: "Titik awal 3 bulan PK bergantung pada alasan PK."
       },
       dasarHukum: [{ pasal: "Pasal 77, 89, 91, dan 92 UU 14/2002", berlakuSejak: "2002-04-12" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-059", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1,
@@ -1885,7 +1960,7 @@ UKP.register({
           ["(2) Denda faktur 1% × Rp80.000.000", "Rp800.000"],
           ["(3) Jatuh tempo setor 15 Okt → setor 19 Okt 2026", "bagian bulan = 1 bulan"],
           ["Bunga Ps. 9 ayat (2a) = 12.000.000 × 1,01% × 1", "Rp121.200"],
-          ["(4) SKPKB: bunga di dalam SKPKB, lunas sebelum jatuh tempo 2 Nov 2026", "Rp0 di STP"],
+          ["(4) SKPKB: bunga di dalam SKPKB, lunas sebelum jatuh tempo 1 Nov 2026", "Rp0 di STP"],
           ["Total STP", "Rp1.421.200"]
         ],
         mengapaSalah: {
@@ -1900,46 +1975,69 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-062", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-A2-04",
-      stem: "Data untuk soal vignette V-A2-04: PT Kaliandra Mitra (tahun buku kalender) menerima SKPKB PPh Badan Tahun Pajak 2024 yang diterbitkan dan dikirim Senin, 20 Juli 2026 dengan pokok Rp400.000.000 ditambah bunga Pasal 13 ayat (2); jatuh tempo pelunasannya 20 Agustus 2026. Dalam PAHP, WP menyetujui koreksi dengan pokok Rp90.000.000 dan melunasinya 18 Agustus 2026. Sisa SKPKB tidak dibayar, dan KPP menyampaikan Surat Teguran pada Selasa, 1 September 2026. Surat keberatan (satu surat untuk SKPKB tersebut, berbahasa Indonesia, memuat jumlah pajak terutang menurut WP beserta alasannya) disampaikan lewat Portal Wajib Pajak dan diterima Senin, 14 September 2026; belum ada Surat Paksa. Pernyataan yang paling tepat adalah ...",
+      id: "A2-062",
+      topik: "A2.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-A2-04",
+      stem: "Data untuk soal vignette V-A2-04: PT Kaliandra Mitra (tahun buku kalender) menerima SKPKB PPh Badan Tahun Pajak 2024 yang diterbitkan dan dikirim Selasa, 21 Juli 2026 dengan pokok Rp400.000.000 ditambah bunga Pasal 13 ayat (2); jatuh tempo pelunasannya 20 Agustus 2026. Dalam PAHP, WP menyetujui koreksi dengan pokok Rp90.000.000 dan melunasinya 18 Agustus 2026. Sisa SKPKB tidak dibayar, dan KPP menyampaikan Surat Teguran pada Selasa, 1 September 2026. Surat keberatan (satu surat untuk SKPKB tersebut, berbahasa Indonesia, memuat jumlah pajak terutang menurut WP beserta alasannya) disampaikan lewat Portal Wajib Pajak dan diterima Senin, 14 September 2026; belum ada Surat Paksa. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Keberatan memenuhi tenggat, tetapi pengajuan keberatan tidak menunda kewajiban membayar dan pelaksanaan penagihan, sehingga Surat Paksa atas sisa SKPKB tetap dapat diterbitkan setelah lewat 21 hari sejak Surat Teguran; DJP wajib memutus keberatan paling lama 14 September 2027",
-        B: "Keberatan memenuhi tenggat (paling lambat 20 Oktober 2026) dan syarat pelunasan; jangka waktu pelunasan sisa SKPKB yang belum dibayar tertangguh sampai 1 bulan sejak SK Keberatan diterbitkan sehingga penagihan atas sisa itu tidak dilanjutkan dengan Surat Paksa; DJP wajib memutus keberatan paling lama 14 September 2027",
-        C: "Keberatan tidak memenuhi syarat karena Surat Teguran telah disampaikan sebelum keberatan diajukan, sehingga WP harus melunasi seluruh SKPKB lebih dahulu",
-        D: "Keberatan memenuhi tenggat dan syarat pelunasan; jangka waktu pelunasan sisa SKPKB tertangguh sampai 1 bulan sejak SK Keberatan diterbitkan; DJP wajib memutus keberatan paling lama 20 Juli 2027, yaitu 12 bulan sejak SKPKB dikirim"
-      },
+      opsi: { A: "Keberatan memenuhi tenggat, tetapi pengajuan keberatan tidak menunda kewajiban membayar dan pelaksanaan penagihan, sehingga Surat Paksa atas sisa SKPKB tetap dapat diterbitkan setelah lewat 21 hari sejak Surat Teguran; DJP wajib memutus keberatan paling lama 13 September 2027", B: "Keberatan memenuhi tenggat (paling lambat 20 Oktober 2026) dan syarat pelunasan; jangka waktu pelunasan sisa SKPKB yang belum dibayar tertangguh sampai 1 bulan sejak SK Keberatan diterbitkan sehingga penagihan atas sisa itu tidak dilanjutkan dengan Surat Paksa; DJP wajib memutus keberatan paling lama 13 September 2027", C: "Keberatan tidak memenuhi syarat karena Surat Teguran telah disampaikan sebelum keberatan diajukan, sehingga WP harus melunasi seluruh SKPKB lebih dahulu", D: "Keberatan memenuhi tenggat dan syarat pelunasan; jangka waktu pelunasan sisa SKPKB tertangguh sampai 1 bulan sejak SK Keberatan diterbitkan; DJP wajib memutus keberatan paling lama 20 Juli 2027, yaitu 12 bulan sejak SKPKB dikirim" },
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "Keberatan diajukan paling lama 3 bulan sejak SKPKB dikirim (20 Oktober 2026) setelah melunasi jumlah yang disetujui dalam PAHP. Sejak keberatan diajukan, jangka waktu pelunasan atas jumlah yang belum dibayar tertangguh sampai 1 bulan sejak SK Keberatan (Pasal 25 ayat (7)), sehingga Surat Teguran yang sudah terbit tidak dilanjutkan dengan Surat Paksa atas sisa itu. DJP memutus paling lama 12 bulan sejak surat keberatan diterima.",
-        jejakHitung: [["SKPKB dikirim", "20 Juli 2026"], ["Tenggat keberatan (+3 bulan)", "20 Oktober 2026"], ["Jumlah PAHP dilunasi sebelum keberatan", "Rp90.000.000 (18 Agustus 2026)"], ["Surat Teguran sah (jatuh tempo 20 Agu, lewat 7 hari)", "paling cepat 28 Agustus; disampaikan 1 September 2026"], ["Keberatan diterima", "14 September 2026"], ["Batas keputusan (+12 bulan)", "14 September 2027"]],
-        mengapaSalah: { A: "Rumusan 'keberatan tidak menunda kewajiban membayar dan pelaksanaan penagihan' berasal dari UU KUP sebelum UU 28/2007; sejak 2008 jumlah yang belum dibayar saat keberatan tertangguh (Pasal 25 ayat (7)).", C: "Surat Teguran tidak menggugurkan hak keberatan; syarat pelunasan hanya sejumlah yang disetujui dalam PAHP.", D: "Jangka 12 bulan dihitung sejak surat keberatan diterima (Pasal 26 ayat (1)), bukan sejak SKPKB dikirim." },
+        inti: "Keberatan diajukan paling lama 3 bulan sejak SKPKB dikirim (hari terakhir 20 Oktober 2026) setelah melunasi jumlah yang disetujui dalam PAHP. Sejak keberatan diajukan, jangka waktu pelunasan atas jumlah yang belum dibayar tertangguh sampai 1 bulan sejak SK Keberatan (Pasal 25 ayat (7)), sehingga Surat Teguran yang sudah terbit tidak dilanjutkan dengan Surat Paksa atas sisa itu. DJP memutus paling lama 12 bulan sejak surat keberatan diterima.",
+        jejakHitung: [
+          ["SKPKB dikirim (hari pertama)", "21 Juli 2026"],
+          ["Tenggat keberatan (3 bulan, hari terakhir)", "20 Oktober 2026"],
+          ["Jumlah PAHP dilunasi sebelum keberatan", "Rp90.000.000 (18 Agustus 2026)"],
+          ["Surat Teguran sah (jatuh tempo 20 Agu, lewat 7 hari)", "paling cepat 28 Agustus; disampaikan 1 September 2026"],
+          ["Keberatan diterima", "14 September 2026"],
+          ["Batas keputusan (12 bulan, hari terakhir)", "13 September 2027"]
+        ],
+        mengapaSalah: {
+          A: "Rumusan 'keberatan tidak menunda kewajiban membayar dan pelaksanaan penagihan' berasal dari UU KUP sebelum UU 28/2007; sejak 2008 jumlah yang belum dibayar saat keberatan tertangguh (Pasal 25 ayat (7)).",
+          C: "Surat Teguran tidak menggugurkan hak keberatan; syarat pelunasan hanya sejumlah yang disetujui dalam PAHP.",
+          D: "Jangka 12 bulan dihitung sejak surat keberatan diterima (Pasal 26 ayat (1)), bukan sejak SKPKB dikirim."
+        },
         jebakan: "Tiga titik awal berbeda dalam satu kasus: keberatan sejak SKP dikirim, Surat Teguran sejak jatuh tempo, keputusan sejak keberatan diterima."
       },
       dasarHukum: [{ pasal: "Pasal 25 ayat (3), (3a), dan (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 26 ayat (1) dan (5) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" }, { pasal: "PMK 61/2023 Pasal 6 (Surat Teguran)", berlakuSejak: "2023-06-12" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
-      id: "A2-063", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10"], kasusId: "V-A2-04",
+      id: "A2-063",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
+      kasusId: "V-A2-04",
       stem: "Lanjutan V-A2-04: keberatan PT Kaliandra Mitra atas SKPKB PPh Badan 2024 (pokok Rp400.000.000; pokok Rp90.000.000 yang disetujui dalam PAHP telah dilunasi sebelum keberatan) ditolak seluruhnya melalui SK Keberatan yang diterbitkan Jumat, 6 Agustus 2027 dan diterima WP Senin, 9 Agustus 2027. WP ingin melanjutkan sengketa ke tingkat berikutnya. Dengan mengabaikan pergeseran hari libur, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat", "paling lama"],
-      opsi: {
-        A: "Banding diajukan ke Pengadilan Pajak paling lama 6 November 2027 karena tenggat dihitung sejak SK Keberatan diterbitkan; sisa jumlah SKPKB yang belum dibayar tetap tertangguh sampai 1 bulan sejak Putusan Banding diterbitkan",
-        B: "Gugatan diajukan ke Pengadilan Pajak paling lama 8 September 2027 (30 hari sejak SK Keberatan diterima) karena SK Keberatan merupakan keputusan DJP; sisa jumlah SKPKB yang belum dibayar tertangguh sampai 1 bulan sejak putusan gugatan",
-        C: "Banding diajukan secara tertulis dalam bahasa Indonesia ke Pengadilan Pajak paling lama 9 November 2027, satu Surat Banding untuk satu SK Keberatan dengan salinan SK Keberatan dilampirkan; sisa jumlah SKPKB yang belum dibayar tetap tertangguh sampai 1 bulan sejak Putusan Banding diterbitkan",
-        D: "Banding diajukan secara tertulis dalam bahasa Indonesia ke Pengadilan Pajak paling lama 9 November 2027, tetapi sisa jumlah SKPKB yang belum dibayar jatuh tempo 1 bulan sejak SK Keberatan diterbitkan karena penangguhan hanya berlaku selama proses keberatan"
-      },
+      opsi: { A: "Banding diajukan ke Pengadilan Pajak paling lama 5 November 2027 karena tenggat dihitung sejak SK Keberatan diterbitkan; sisa jumlah SKPKB yang belum dibayar tetap tertangguh sampai 1 bulan sejak Putusan Banding diterbitkan", B: "Gugatan diajukan ke Pengadilan Pajak paling lama 8 September 2027 (30 hari sejak SK Keberatan diterima) karena SK Keberatan merupakan keputusan DJP; sisa jumlah SKPKB yang belum dibayar tertangguh sampai 1 bulan sejak putusan gugatan", C: "Banding diajukan secara tertulis dalam bahasa Indonesia ke Pengadilan Pajak paling lama 8 November 2027, satu Surat Banding untuk satu SK Keberatan dengan salinan SK Keberatan dilampirkan; sisa jumlah SKPKB yang belum dibayar tetap tertangguh sampai 1 bulan sejak Putusan Banding diterbitkan", D: "Banding diajukan secara tertulis dalam bahasa Indonesia ke Pengadilan Pajak paling lama 8 November 2027, tetapi sisa jumlah SKPKB yang belum dibayar jatuh tempo 1 bulan sejak SK Keberatan diterbitkan karena penangguhan hanya berlaku selama proses keberatan" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "Banding atas SK Keberatan diajukan ke Pengadilan Pajak paling lama 3 bulan sejak SK Keberatan diterima, tertulis dalam bahasa Indonesia, satu Surat Banding untuk satu keputusan dengan salinan keputusan dilampirkan. Pasal 27 ayat (5a) UU KUP melanjutkan penangguhan pelunasan atas jumlah yang belum dibayar saat keberatan sampai 1 bulan sejak Putusan Banding.",
-        jejakHitung: [["SK Keberatan diterima", "9 Agustus 2027"], ["+ 3 bulan", "9 November 2027"], ["Sisa yang belum dibayar saat keberatan", "tertangguh s.d. 1 bulan sejak Putusan Banding"]],
-        mengapaSalah: { A: "Tenggat banding dihitung sejak SK Keberatan diterima, bukan diterbitkan.", B: "SK Keberatan adalah objek banding (Pasal 27 ayat (1) UU KUP), bukan gugatan; 30 hari milik gugatan atas keputusan lain.", D: "Penangguhan berlanjut bila WP banding (Pasal 27 ayat (5a)); jatuh tempo 1 bulan sejak SK Keberatan hanya berlaku bila WP tidak banding." },
+        jejakHitung: [
+          ["SK Keberatan diterima (hari pertama)", "9 Agustus 2027"],
+          ["3 bulan, hari terakhir", "8 November 2027"],
+          ["Sisa yang belum dibayar saat keberatan", "tertangguh s.d. 1 bulan sejak Putusan Banding"]
+        ],
+        mengapaSalah: {
+          A: "Tenggat banding dihitung sejak SK Keberatan diterima, bukan diterbitkan.",
+          B: "SK Keberatan adalah objek banding (Pasal 27 ayat (1) UU KUP), bukan gugatan; 30 hari milik gugatan atas keputusan lain.",
+          D: "Penangguhan berlanjut bila WP banding (Pasal 27 ayat (5a)); jatuh tempo 1 bulan sejak SK Keberatan hanya berlaku bila WP tidak banding."
+        },
         jebakan: "Keberatan dihitung sejak SKP dikirim, banding sejak SK Keberatan diterima; penangguhan pelunasan ikut berlanjut sampai Putusan Banding."
       },
       dasarHukum: [{ pasal: "Pasal 27 ayat (1) dan (5a) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 35 dan 36 UU 14/2002", berlakuSejak: "2002-04-12" }, { pasal: "Pasal 25 ayat (7) UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A2-064", topik: "A2.2", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2, laporanUjian: ["B-2026-10"],
@@ -1980,25 +2078,34 @@ UKP.register({
       anggaranDetik: 160, verifikasi: "✅"
     },
     {
-      id: "A2-066", topik: "A2.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A2-066",
+      topik: "A2.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       stem: "PT Nirwana Kargo (bukan anggota grup usaha, tanpa indikasi transfer pricing) menerima SP2 pemeriksaan spesifik atas SPT Masa PPh Pasal 23 Masa Juni 2026 pada Senin, 5 Oktober 2026; pemeriksaan itu tidak termasuk kriteria yang harus diselesaikan dalam 10 hari kerja. Manajer pajak menyiapkan empat ringkasan ketentuan PMK 15/2025 untuk direksi yang hanya berbeda pada satu frasa. Ringkasan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat", "paling lama"],
-      opsi: {
-        A: "Jangka waktu pengujian paling lama 1 bulan sejak SP2 disampaikan sampai SPHP disampaikan (5 November 2026); sebelum SPHP wajib dilakukan Pembahasan Temuan Sementara; tanggapan atas SPHP paling lama 5 hari kerja; PAHP dan pelaporan paling lama 30 hari kerja sejak SPHP disampaikan",
-        B: "Jangka waktu pengujian paling lama 1 bulan sejak SP2 disampaikan sampai SPHP disampaikan (5 November 2026); sebelum SPHP tidak wajib dilakukan Pembahasan Temuan Sementara; tanggapan atas SPHP paling lama 7 hari kerja; PAHP dan pelaporan paling lama 30 hari kerja sejak SPHP disampaikan",
-        C: "Jangka waktu pengujian paling lama 1 bulan sejak SP2 disampaikan sampai SPHP disampaikan (5 November 2026); sebelum SPHP tidak wajib dilakukan Pembahasan Temuan Sementara; tanggapan atas SPHP paling lama 5 hari kerja; PAHP dan pelaporan paling lama 30 hari kerja sejak SPHP disampaikan",
-        D: "Jangka waktu pengujian paling lama 3 bulan sejak SP2 disampaikan sampai SPHP disampaikan (5 Januari 2027); sebelum SPHP tidak wajib dilakukan Pembahasan Temuan Sementara; tanggapan atas SPHP paling lama 5 hari kerja; PAHP dan pelaporan paling lama 30 hari kerja sejak SPHP disampaikan"
-      },
+      opsi: { A: "Jangka waktu pengujian paling lama 1 bulan sejak SP2 disampaikan sampai SPHP disampaikan (4 November 2026); sebelum SPHP wajib dilakukan Pembahasan Temuan Sementara; tanggapan atas SPHP paling lama 5 hari kerja; PAHP dan pelaporan paling lama 30 hari kerja sejak SPHP disampaikan", B: "Jangka waktu pengujian paling lama 1 bulan sejak SP2 disampaikan sampai SPHP disampaikan (4 November 2026); sebelum SPHP tidak wajib dilakukan Pembahasan Temuan Sementara; tanggapan atas SPHP paling lama 7 hari kerja; PAHP dan pelaporan paling lama 30 hari kerja sejak SPHP disampaikan", C: "Jangka waktu pengujian paling lama 1 bulan sejak SP2 disampaikan sampai SPHP disampaikan (4 November 2026); sebelum SPHP tidak wajib dilakukan Pembahasan Temuan Sementara; tanggapan atas SPHP paling lama 5 hari kerja; PAHP dan pelaporan paling lama 30 hari kerja sejak SPHP disampaikan", D: "Jangka waktu pengujian paling lama 3 bulan sejak SP2 disampaikan sampai SPHP disampaikan (4 Januari 2027); sebelum SPHP tidak wajib dilakukan Pembahasan Temuan Sementara; tanggapan atas SPHP paling lama 5 hari kerja; PAHP dan pelaporan paling lama 30 hari kerja sejak SPHP disampaikan" },
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "PMK 15/2025: pemeriksaan spesifik diuji paling lama 1 bulan (10 hari kerja hanya untuk kriteria tertentu) dan dikecualikan dari kewajiban Pembahasan Temuan Sementara; tanggapan SPHP 5 hari kerja serta PAHP dan pelaporan 30 hari kerja berlaku umum.",
-        jejakHitung: [["SP2 disampaikan", "Senin, 5 Oktober 2026"], ["+ 1 bulan (spesifik)", "SPHP paling lambat 5 November 2026"], ["Pembahasan Temuan Sementara", "dikecualikan untuk pemeriksaan spesifik"], ["Tanggapan SPHP / PAHP dan pelaporan", "5 hari kerja / 30 hari kerja"]],
-        mengapaSalah: { A: "Pemeriksaan spesifik justru dikecualikan dari kewajiban Pembahasan Temuan Sementara.", B: "7 hari kerja adalah ketentuan PMK 17/2013 jo. 184/2015 yang dicabut PMK 15/2025.", D: "3 bulan adalah jangka pemeriksaan terfokus." },
+        jejakHitung: [
+          ["SP2 disampaikan", "Senin, 5 Oktober 2026"],
+          ["1 bulan (spesifik), hari terakhir", "SPHP paling lambat 4 November 2026"],
+          ["Pembahasan Temuan Sementara", "dikecualikan untuk pemeriksaan spesifik"],
+          ["Tanggapan SPHP / PAHP dan pelaporan", "5 hari kerja / 30 hari kerja"]
+        ],
+        mengapaSalah: {
+          A: "Pemeriksaan spesifik justru dikecualikan dari kewajiban Pembahasan Temuan Sementara.",
+          B: "7 hari kerja adalah ketentuan PMK 17/2013 jo. 184/2015 yang dicabut PMK 15/2025.",
+          D: "3 bulan adalah jangka pemeriksaan terfokus."
+        },
         jebakan: "Empat ringkasan nyaris identik: periksa satu per satu kata 'wajib/tidak wajib', jumlah hari, dan jenis pemeriksaan."
       },
       dasarHukum: [{ pasal: "PMK 15/2025 (jenis dan jangka waktu pemeriksaan, Pembahasan Temuan Sementara, tanggapan SPHP, PAHP)", berlakuSejak: "2025-02-14" }, { pasal: "Pasal 29 UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "A2-067",
@@ -2031,26 +2138,37 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-068", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10"],
+      id: "A2-068",
+      topik: "A2.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
       kutipan: "Pasal 25 ayat (2), (3), dan (3a) UU KUP serta PMK 118/2024 (parafrase setia): Keberatan diajukan secara tertulis dalam bahasa Indonesia dengan mengemukakan jumlah pajak yang terutang, jumlah pajak yang dipotong atau dipungut, atau jumlah rugi menurut penghitungan Wajib Pajak disertai alasan yang menjadi dasar penghitungan. Keberatan harus diajukan dalam jangka waktu 3 bulan sejak tanggal dikirim surat ketetapan pajak, kecuali Wajib Pajak dapat menunjukkan bahwa jangka waktu itu tidak dapat dipenuhi karena keadaan di luar kekuasaannya. Atas surat ketetapan pajak, Wajib Pajak wajib melunasi pajak yang masih harus dibayar paling sedikit sejumlah yang disetujui dalam pembahasan akhir hasil pemeriksaan sebelum Surat Keberatan disampaikan. PMK 118/2024 mengatur satu keberatan untuk satu surat ketetapan pajak yang disampaikan secara elektronik melalui Portal Wajib Pajak.",
       stem: "PT Larasati Tekstil menerima SKPKB PPN Masa Mei 2025 dan SKPKB PPh Pasal 23 Masa Mei 2025 yang keduanya diterbitkan dan dikirim melalui Coretax pada Rabu, 2 September 2026. Dalam PAHP, WP menyetujui pokok PPN Rp25.000.000 dan tidak menyetujui koreksi PPh Pasal 23 sama sekali. Staf pajak menyusun urutan langkah pengajuan keberatan atas kedua SKPKB melalui Portal Wajib Pajak. Berdasarkan kutipan, urutan dan isi langkah yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat", "paling lambat"],
-      opsi: {
-        A: "Buat dua surat keberatan terpisah di Portal Wajib Pajak, masing-masing berbahasa Indonesia dengan jumlah pajak terutang menurut WP dan alasannya; tandatangani secara elektronik dan sampaikan paling lambat 2 Desember 2026; lunasi pokok PPN Rp25.000.000 paling lambat sebelum SK Keberatan diterbitkan",
-        B: "Lunasi pokok PPN Rp25.000.000 lebih dahulu; buat satu surat keberatan gabungan untuk kedua SKPKB karena Masa Pajaknya sama, berbahasa Indonesia dengan jumlah pajak terutang menurut WP dan alasannya; tandatangani secara elektronik dan sampaikan paling lambat 2 Desember 2026",
-        C: "Lunasi pokok PPN Rp25.000.000 lebih dahulu; buat dua surat keberatan terpisah di Portal Wajib Pajak, masing-masing berbahasa Indonesia dengan jumlah pajak terutang menurut WP dan alasannya; tandatangani secara elektronik dan sampaikan paling lambat 2 Oktober 2026",
-        D: "Lunasi pokok PPN Rp25.000.000 lebih dahulu; buat dua surat keberatan terpisah di Portal Wajib Pajak, masing-masing berbahasa Indonesia dengan jumlah pajak terutang menurut WP dan alasannya; tandatangani secara elektronik dan sampaikan paling lambat 2 Desember 2026"
-      },
+      opsi: { A: "Buat dua surat keberatan terpisah di Portal Wajib Pajak, masing-masing berbahasa Indonesia dengan jumlah pajak terutang menurut WP dan alasannya; tandatangani secara elektronik dan sampaikan paling lambat 1 Desember 2026; lunasi pokok PPN Rp25.000.000 paling lambat sebelum SK Keberatan diterbitkan", B: "Lunasi pokok PPN Rp25.000.000 lebih dahulu; buat satu surat keberatan gabungan untuk kedua SKPKB karena Masa Pajaknya sama, berbahasa Indonesia dengan jumlah pajak terutang menurut WP dan alasannya; tandatangani secara elektronik dan sampaikan paling lambat 1 Desember 2026", C: "Lunasi pokok PPN Rp25.000.000 lebih dahulu; buat dua surat keberatan terpisah di Portal Wajib Pajak, masing-masing berbahasa Indonesia dengan jumlah pajak terutang menurut WP dan alasannya; tandatangani secara elektronik dan sampaikan paling lambat 1 Oktober 2026", D: "Lunasi pokok PPN Rp25.000.000 lebih dahulu; buat dua surat keberatan terpisah di Portal Wajib Pajak, masing-masing berbahasa Indonesia dengan jumlah pajak terutang menurut WP dan alasannya; tandatangani secara elektronik dan sampaikan paling lambat 1 Desember 2026" },
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
         inti: "Pelunasan sejumlah yang disetujui dalam PAHP dilakukan sebelum Surat Keberatan disampaikan; setiap SKPKB diajukan dengan surat keberatan tersendiri; tenggatnya 3 bulan sejak SKP dikirim. Untuk SKPKB PPh Pasal 23 tidak ada jumlah yang disetujui, sehingga tidak ada pelunasan minimal.",
-        jejakHitung: [["SKPKB dikirim", "Rabu, 2 September 2026"], ["Tenggat keberatan (+3 bulan)", "Rabu, 2 Desember 2026"], ["Pelunasan minimal sebelum keberatan PPN", "Rp25.000.000"], ["Pelunasan minimal sebelum keberatan PPh 23", "Rp0 (tidak ada yang disetujui)"], ["Jumlah surat keberatan", "2 (satu per SKPKB)"]],
-        mengapaSalah: { A: "Pelunasan jumlah PAHP adalah syarat sebelum Surat Keberatan disampaikan, bukan sebelum SK Keberatan terbit.", B: "Satu keberatan hanya untuk satu surat ketetapan pajak walaupun Masa Pajaknya sama.", C: "2 Oktober 2026 adalah jatuh tempo pelunasan SKPKB (1 bulan), bukan tenggat keberatan (3 bulan)." },
+        jejakHitung: [
+          ["SKPKB dikirim (hari pertama)", "Rabu, 2 September 2026"],
+          ["Tenggat keberatan (3 bulan, hari terakhir)", "Selasa, 1 Desember 2026"],
+          ["Pelunasan minimal sebelum keberatan PPN", "Rp25.000.000"],
+          ["Pelunasan minimal sebelum keberatan PPh 23", "Rp0 (tidak ada yang disetujui)"],
+          ["Jumlah surat keberatan", "2 (satu per SKPKB)"]
+        ],
+        mengapaSalah: {
+          A: "Pelunasan jumlah PAHP adalah syarat sebelum Surat Keberatan disampaikan, bukan sebelum SK Keberatan terbit.",
+          B: "Satu keberatan hanya untuk satu surat ketetapan pajak walaupun Masa Pajaknya sama.",
+          C: "1 Oktober 2026 adalah jatuh tempo pelunasan SKPKB (1 bulan), bukan tenggat keberatan (3 bulan)."
+        },
         jebakan: "Urutan langkah ikut diuji: bayar jumlah PAHP dulu, baru kirim keberatan."
       },
       dasarHukum: [{ pasal: "Pasal 25 ayat (2), (3), dan (3a) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026 (keberatan melalui Portal Wajib Pajak)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 81/2024 (layanan elektronik Coretax)", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A2-069",
@@ -2102,7 +2220,7 @@ UKP.register({
         jejakHitung: [
           ["PPh Pasal 29 = 740.000.000 − (60.000.000 + 18.000.000 + 432.000.000)", "Rp230.000.000"],
           ["Kekurangan di atas penghitungan sementara = 230.000.000 − 150.000.000", "Rp80.000.000"],
-          ["30 Apr → 24 Jun 2026", "1 bulan 25 hari = 2 bulan"],
+          ["Bulan bunga mulai 1 Mei 2026, sehari setelah batas 30 April: Mei penuh, lalu 1 sampai 24 Juni 2026", "2 bulan (bagian bulan dihitung penuh)"],
           ["Bunga Ps. 19 ayat (3) = 80.000.000 × 0,59% × 2", "Rp944.000"],
           ["SPT final 29 Juni 2026 (batas perpanjangan 30 Juni)", "tanpa denda Pasal 7"]
         ],
@@ -2163,15 +2281,15 @@ UKP.register({
       kutipan: "Pasal 2 ayat (8) dan (9) UU KUP (parafrase setia): Pencabutan pengukuhan Pengusaha Kena Pajak dilakukan oleh Direktur Jenderal Pajak antara lain apabila diajukan permohonan pencabutan oleh Pengusaha Kena Pajak. Direktur Jenderal Pajak setelah melakukan pemeriksaan harus memberikan keputusan atas permohonan pencabutan pengukuhan Pengusaha Kena Pajak dalam jangka waktu 6 bulan sejak tanggal permohonan diterima secara lengkap.",
       stem: "CV Anggrek Jaya dikukuhkan sebagai PKP sejak 2022 atas permohonan sendiri. Peredaran brutonya turun menjadi Rp1,6 miliar pada 2025 sehingga CV memenuhi kriteria pengusaha kecil, lalu mengajukan permohonan pencabutan pengukuhan PKP melalui Portal Wajib Pajak yang diterima lengkap pada Rabu, 11 Februari 2026. Selama Februari–Juli 2026 CV tetap menjual barang kepada pelanggan yang sama dan belum menerima keputusan apa pun. Sebagai pembanding, permohonan penghapusan NPWP badan diputus paling lama 12 bulan. Berdasarkan kutipan, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat", "paling lama"],
-      opsi: { A: "Keputusan atas permohonan paling lama 11 Februari 2027; sejak permohonan diterima lengkap CV tidak lagi wajib membuat faktur pajak dan menyampaikan SPT Masa PPN", B: "Keputusan atas permohonan paling lama 11 Agustus 2026; sejak permohonan diterima lengkap CV tidak lagi wajib membuat faktur pajak, memungut PPN, maupun menyampaikan SPT Masa PPN karena tinggal menunggu keputusan", C: "Keputusan atas permohonan paling lama 11 Agustus 2026 setelah dilakukan pemeriksaan; selama pengukuhan belum dicabut CV tetap wajib membuat faktur pajak, memungut PPN, dan menyampaikan SPT Masa PPN", D: "Keputusan atas permohonan paling lama 11 Agustus 2026 tanpa perlu pemeriksaan; status PKP berakhir otomatis sejak tanggal permohonan diterima lengkap" },
+      opsi: { A: "Keputusan atas permohonan paling lama 10 Februari 2027; sejak permohonan diterima lengkap CV tidak lagi wajib membuat faktur pajak dan menyampaikan SPT Masa PPN", B: "Keputusan atas permohonan paling lama 10 Agustus 2026; sejak permohonan diterima lengkap CV tidak lagi wajib membuat faktur pajak, memungut PPN, maupun menyampaikan SPT Masa PPN karena tinggal menunggu keputusan", C: "Keputusan atas permohonan paling lama 10 Agustus 2026 setelah dilakukan pemeriksaan; selama pengukuhan belum dicabut CV tetap wajib membuat faktur pajak, memungut PPN, dan menyampaikan SPT Masa PPN", D: "Keputusan atas permohonan paling lama 10 Agustus 2026 tanpa perlu pemeriksaan; status PKP berakhir otomatis sejak tanggal permohonan diterima lengkap" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Pencabutan pengukuhan PKP atas permohonan diputus setelah pemeriksaan paling lama 6 bulan sejak permohonan diterima lengkap (11 Agustus 2026). Status PKP baru berakhir dengan keputusan pencabutan, sehingga selama menunggu CV tetap memenuhi seluruh kewajiban PKP.",
+        inti: "Pencabutan pengukuhan PKP atas permohonan diputus setelah pemeriksaan paling lama 6 bulan sejak permohonan diterima lengkap (tanggal diterima adalah hari pertama; hari terakhir 10 Agustus 2026). Status PKP baru berakhir dengan keputusan pencabutan, sehingga selama menunggu CV tetap memenuhi seluruh kewajiban PKP.",
         jejakHitung: [
           ["Permohonan diterima lengkap", "Rabu, 11 Februari 2026"],
           ["Jangka keputusan pencabutan PKP", "6 bulan, setelah pemeriksaan"],
-          ["Batas keputusan", "11 Agustus 2026"],
+          ["Batas keputusan (6 bulan, hari terakhir)", "10 Agustus 2026"],
           ["Status selama menunggu", "tetap PKP: faktur, pungut PPN, SPT Masa PPN"]
         ],
         mengapaSalah: {
@@ -2233,25 +2351,35 @@ UKP.register({
       anggaranDetik: 180, verifikasi: "✅"
     },
     {
-      id: "A2-076", topik: "A2.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 3,
+      id: "A2-076",
+      topik: "A2.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
       stem: "PT Andalan Sejati (tahun buku kalender, peredaran bruto 2024 Rp310 miliar) adalah anggota grup usaha yang bertransaksi dengan pihak afiliasi di tiga negara. SP2 pemeriksaan lengkap atas SPT Tahunan PPh Badan 2024 (lebih bayar Rp2,4 miliar, dimintakan restitusi) disampaikan Senin, 9 Maret 2026. Karena ada indikasi transfer pricing, jangka waktu pengujian diperpanjang sesuai PMK 15/2025. Pemeriksa menyampaikan SPHP pada hari terakhir jangka waktu pengujian. Dengan asumsi tidak ada hari libur nasional atau cuti bersama, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "SPHP paling lambat 9 Agustus 2026; tanggapan tertulis atas SPHP paling lambat 5 hari kerja sejak SPHP diterima; pengungkapan ketidakbenaran pengisian SPT hanya dapat disampaikan sebelum SPHP disampaikan",
-        B: "SPHP paling lambat 9 Desember 2026; tanggapan tertulis paling lambat Jumat, 18 Desember 2026; pengungkapan ketidakbenaran pengisian SPT hanya dapat disampaikan sebelum SPHP disampaikan",
-        C: "SPHP paling lambat 9 Desember 2026; tanggapan tertulis paling lambat Rabu, 16 Desember 2026; pengungkapan ketidakbenaran pengisian SPT masih dapat disampaikan sampai PAHP selesai",
-        D: "SPHP paling lambat 9 Desember 2026; tanggapan tertulis paling lambat Rabu, 16 Desember 2026; pengungkapan ketidakbenaran pengisian SPT hanya dapat disampaikan sebelum SPHP disampaikan"
-      },
+      opsi: { A: "SPHP paling lambat 8 Agustus 2026; tanggapan tertulis atas SPHP paling lambat 5 hari kerja sejak SPHP diterima; pengungkapan ketidakbenaran pengisian SPT hanya dapat disampaikan sebelum SPHP disampaikan", B: "SPHP paling lambat 8 Desember 2026; tanggapan tertulis paling lambat Kamis, 17 Desember 2026; pengungkapan ketidakbenaran pengisian SPT hanya dapat disampaikan sebelum SPHP disampaikan", C: "SPHP paling lambat 8 Desember 2026; tanggapan tertulis paling lambat Selasa, 15 Desember 2026; pengungkapan ketidakbenaran pengisian SPT masih dapat disampaikan sampai PAHP selesai", D: "SPHP paling lambat 8 Desember 2026; tanggapan tertulis paling lambat Selasa, 15 Desember 2026; pengungkapan ketidakbenaran pengisian SPT hanya dapat disampaikan sebelum SPHP disampaikan" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "angka-usang", C: "lupa-pasal" },
       pembahasan: {
-        inti: "Pemeriksaan lengkap 5 bulan dapat diperpanjang 4 bulan untuk grup usaha/indikasi transfer pricing, sehingga SPHP paling lambat 9 Desember 2026. Tanggapan SPHP 5 hari kerja (Rabu 9 Desember → Rabu 16 Desember). Pengungkapan Pasal 8 ayat (4) dibatasi sampai sebelum SPHP disampaikan.",
-        jejakHitung: [["SP2 disampaikan", "Senin, 9 Maret 2026"], ["5 bulan + perpanjangan 4 bulan", "Rabu, 9 Desember 2026"], ["Hari kerja ke-1 s.d. ke-5", "10, 11, 14, 15, 16 Desember 2026"], ["Batas tanggapan SPHP", "Rabu, 16 Desember 2026"], ["Batas pengungkapan Pasal 8 ayat (4)", "sebelum SPHP disampaikan"]],
-        mengapaSalah: { A: "Mengabaikan perpanjangan 4 bulan yang berlaku karena grup usaha dan indikasi transfer pricing.", B: "18 Desember 2026 adalah hitungan 7 hari kerja (PMK 17/2013 jo. 184/2015) yang telah diganti 5 hari kerja.", C: "Sejak UU HPP, pengungkapan Pasal 8 ayat (4) hanya sampai sebelum SPHP disampaikan, bukan sampai PAHP." },
+        inti: "Pemeriksaan lengkap 5 bulan dapat diperpanjang 4 bulan untuk grup usaha/indikasi transfer pricing. Tanggal SP2 adalah hari pertama, sehingga 9 bulan sejak 9 Maret 2026 berakhir Selasa, 8 Desember 2026. Tanggapan SPHP 5 hari kerja (Selasa 8 Desember → Selasa 15 Desember). Pengungkapan Pasal 8 ayat (4) dibatasi sampai sebelum SPHP disampaikan.",
+        jejakHitung: [
+          ["SP2 disampaikan (hari pertama)", "Senin, 9 Maret 2026"],
+          ["5 bulan + perpanjangan 4 bulan, hari terakhir", "Selasa, 8 Desember 2026"],
+          ["Hari kerja ke-1 s.d. ke-5", "9, 10, 11, 14, 15 Desember 2026"],
+          ["Batas tanggapan SPHP", "Selasa, 15 Desember 2026"],
+          ["Batas pengungkapan Pasal 8 ayat (4)", "sebelum SPHP disampaikan"]
+        ],
+        mengapaSalah: {
+          A: "Mengabaikan perpanjangan 4 bulan yang berlaku karena grup usaha dan indikasi transfer pricing.",
+          B: "17 Desember 2026 adalah hitungan 7 hari kerja (PMK 17/2013 jo. 184/2015) yang telah diganti 5 hari kerja.",
+          C: "Sejak UU HPP, pengungkapan Pasal 8 ayat (4) hanya sampai sebelum SPHP disampaikan, bukan sampai PAHP."
+        },
         jebakan: "Peredaran bruto dan nilai lebih bayar tidak relevan; kata kunci 'grup usaha' dan 'indikasi transfer pricing' memicu perpanjangan 4 bulan."
       },
       dasarHukum: [{ pasal: "PMK 15/2025 (jangka waktu pemeriksaan lengkap dan perpanjangannya; tanggapan SPHP)", berlakuSejak: "2025-02-14" }, { pasal: "Pasal 8 ayat (4) UU KUP", berlakuSejak: "2021-10-29" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "A2-077",
@@ -2286,26 +2414,35 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-078", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1, laporanUjian: ["B-2026-10"],
+      id: "A2-078",
+      topik: "A2.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      laporanUjian: ["B-2026-10"],
       kutipan: "Pasal 25 ayat (1) dan (3) UU KUP (parafrase setia): Wajib Pajak dapat mengajukan keberatan hanya kepada Direktur Jenderal Pajak atas suatu SKPKB, SKPKBT, SKPLB, SKPN, atau pemotongan atau pemungutan pajak oleh pihak ketiga berdasarkan ketentuan peraturan perundang-undangan perpajakan. Keberatan harus diajukan dalam jangka waktu 3 bulan sejak tanggal dikirim surat ketetapan pajak atau sejak tanggal pemotongan atau pemungutan pajak, kecuali Wajib Pajak dapat menunjukkan bahwa jangka waktu itu tidak dapat dipenuhi karena keadaan di luar kekuasaannya.",
       stem: "PT Sinar Desain (penyedia jasa desain interior) menerima pembayaran dari PT Graha Properti pada Senin, 24 Agustus 2026. PT Graha Properti memotong PPh Pasal 23 sebesar 15% (diperlakukan sebagai royalti) atas imbalan Rp200.000.000, yaitu Rp30.000.000, dan membuat BPPU bertanggal 24 Agustus 2026 yang baru diterima PT Sinar Desain melalui Coretax pada Kamis, 27 Agustus 2026. Menurut PT Sinar Desain, imbalan itu adalah jasa dengan tarif 2% (Rp4.000.000). Berdasarkan kutipan, upaya dan tenggat yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Keberatan kepada Direktur Jenderal Pajak atas pemotongan tersebut, paling lambat 24 November 2026",
-        B: "Keberatan kepada Direktur Jenderal Pajak atas pemotongan tersebut, paling lambat 27 November 2026",
-        C: "Keberatan kepada PT Graha Properti selaku pemotong, paling lambat 24 November 2026",
-        D: "Banding ke Pengadilan Pajak paling lambat 24 November 2026 karena pemotongan bukan surat ketetapan pajak"
-      },
+      opsi: { A: "Keberatan kepada Direktur Jenderal Pajak atas pemotongan tersebut, paling lambat 23 November 2026", B: "Keberatan kepada Direktur Jenderal Pajak atas pemotongan tersebut, paling lambat 26 November 2026", C: "Keberatan kepada PT Graha Properti selaku pemotong, paling lambat 23 November 2026", D: "Banding ke Pengadilan Pajak paling lambat 23 November 2026 karena pemotongan bukan surat ketetapan pajak" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Pemotongan oleh pihak ketiga adalah objek keberatan yang diajukan kepada Direktur Jenderal Pajak, dalam 3 bulan sejak tanggal pemotongan (24 Agustus 2026), bukan sejak bukti potong diterima.",
-        jejakHitung: [["Tanggal pemotongan (BPPU)", "24 Agustus 2026"], ["+ 3 bulan", "24 November 2026"], ["Selisih PPh menurut WP", "Rp30.000.000 − Rp4.000.000 = Rp26.000.000"]],
-        mengapaSalah: { B: "Tenggat dihitung sejak tanggal pemotongan, bukan tanggal bukti potong diterima.", C: "Keberatan hanya diajukan kepada Direktur Jenderal Pajak, bukan kepada pemotong.", D: "Banding hanya atas keputusan keberatan; pemotongan pihak ketiga diajukan keberatan lebih dahulu." },
+        inti: "Pemotongan oleh pihak ketiga adalah objek keberatan yang diajukan kepada Direktur Jenderal Pajak, dalam 3 bulan sejak tanggal pemotongan (24 Agustus 2026, hari pertama; hari terakhir 23 November 2026), bukan sejak bukti potong diterima.",
+        jejakHitung: [
+          ["Tanggal pemotongan (BPPU), hari pertama", "24 Agustus 2026"],
+          ["3 bulan, hari terakhir", "23 November 2026"],
+          ["Selisih PPh menurut WP", "Rp30.000.000 − Rp4.000.000 = Rp26.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Tenggat dihitung sejak tanggal pemotongan, bukan tanggal bukti potong diterima.",
+          C: "Keberatan hanya diajukan kepada Direktur Jenderal Pajak, bukan kepada pemotong.",
+          D: "Banding hanya atas keputusan keberatan; pemotongan pihak ketiga diajukan keberatan lebih dahulu."
+        },
         jebakan: "Ada dua tanggal (dipotong dan diterima); kutipan menunjuk tanggal pemotongan."
       },
       dasarHukum: [{ pasal: "Pasal 25 ayat (1) huruf e dan ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 (BPPU)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 100, verifikasi: "✅"
+      anggaranDetik: 100,
+      verifikasi: "✅"
     },
     {
       id: "A2-079",
@@ -2349,17 +2486,17 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
-        inti: "Bila permohonan dianggap dikabulkan, SKPLB wajib terbit paling lama 1 bulan setelah 12 bulan berakhir (3 Mei 2026). Karena terlambat, WP diberi imbalan bunga Pasal 17B ayat (3) sejak berakhirnya jangka waktu 1 bulan tersebut (ayat (2)) sampai SKPLB terbit, dengan tarif uplift 0% dan bagian bulan dihitung penuh.",
+        inti: "Bila permohonan dianggap dikabulkan, SKPLB wajib terbit paling lama 1 bulan setelah 12 bulan berakhir (2 Mei 2026). Karena terlambat, WP diberi imbalan bunga Pasal 17B ayat (3) sejak berakhirnya jangka waktu 1 bulan tersebut (ayat (2)) sampai SKPLB terbit, dengan tarif uplift 0% dan bagian bulan dihitung penuh.",
         jejakHitung: [
-          ["Permohonan lengkap + 12 bulan", "3 April 2026"],
-          ["Batas penerbitan SKPLB (+1 bulan, Pasal 17B ayat (2))", "3 Mei 2026"],
-          ["3 Mei → 21 Jul 2026", "2 bulan 18 hari = 3 bulan"],
+          ["Permohonan lengkap 3 April 2025: 12 bulan, hari terakhir", "2 April 2026"],
+          ["Batas penerbitan SKPLB (1 bulan setelahnya, Pasal 17B ayat (2))", "2 Mei 2026"],
+          ["3 Mei → 21 Jul 2026", "2 bulan 19 hari = 3 bulan"],
           ["Imbalan bunga = 250.000.000 × 0,60% × 3", "Rp4.500.000"]
         ],
         mengapaSalah: {
           B: "Memakai tarif uplift 5% dan 4 bulan (250.000.000 × 1,02% × 4); imbalan bunga memakai tarif tanpa uplift (0,60%) dan masa bunganya 3 bulan.",
           C: "Menghitung sejak permohonan diterima (16 bulan); imbalan bunga hanya untuk periode keterlambatan penerbitan SKPLB.",
-          D: "Menghitung sejak 12 bulan berakhir (3 April 2026, 4 bulan); Pasal 17B ayat (3) menghitung sejak berakhirnya jangka waktu 1 bulan pada ayat (2). Patokan akhir 12 bulan dipakai Pasal 17B ayat (4), yaitu bila SKPLB terbit setelah pemeriksaan bukti permulaan yang tidak berujung pemidanaan."
+          D: "Menghitung sejak 12 bulan berakhir (2 April 2026; 3 April s.d. 21 Juli = 4 bulan); Pasal 17B ayat (3) menghitung sejak berakhirnya jangka waktu 1 bulan pada ayat (2). Patokan akhir 12 bulan dipakai Pasal 17B ayat (4), yaitu bila SKPLB terbit setelah pemeriksaan bukti permulaan yang tidak berujung pemidanaan."
         },
         jebakan: "Ada dua titik waktu: 12 bulan (permohonan dianggap dikabulkan) dan 1 bulan sesudahnya (batas terbit SKPLB). Imbalan bunga keterlambatan SKPLB dihitung dari titik kedua."
       },
@@ -2382,10 +2519,10 @@ UKP.register({
       pembahasan: {
         inti: "Daluwarsa penagihan 5 tahun sejak penerbitan SKPKB (11 Maret 2027) tertangguh karena ada pengakuan utang pajak berupa permohonan angsuran; daluwarsa dihitung ulang 5 tahun sejak tanggal pengakuan (surat permohonan diterima 15 Agustus 2024).",
         jejakHitung: [
-          ["Daluwarsa semula: 11 Mar 2022 + 5 tahun", "11 Maret 2027"],
+          ["Daluwarsa semula: 5 tahun sejak 11 Maret 2022 berakhir 10 Maret 2027", "daluwarsa mulai 11 Maret 2027"],
           ["Surat Teguran 20 Apr 2022", "tidak menangguhkan daluwarsa"],
           ["Pengakuan utang (permohonan angsuran diterima)", "15 Agustus 2024"],
-          ["Daluwarsa baru: + 5 tahun", "15 Agustus 2029"]
+          ["Daluwarsa baru: 5 tahun sejak 15 Agustus 2024 berakhir 14 Agustus 2029", "daluwarsa mulai 15 Agustus 2029"]
         ],
         mengapaSalah: {
           B: "Mengabaikan penangguhan karena pengakuan utang pajak.",
@@ -2399,25 +2536,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-082", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1, laporanUjian: ["B-2026-10"],
+      id: "A2-082",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      laporanUjian: ["B-2026-10"],
       stem: "CV Mekar Wangi mengajukan permohonan kedua pengurangan sanksi administratif dalam STP berdasarkan Pasal 36 ayat (1) huruf a. Keputusan Direktur Jenderal Pajak yang menolak permohonan itu bertanggal Jumat, 2 Oktober 2026 dan diterima CV pada Senin, 5 Oktober 2026. CV menilai keputusan itu keliru dan ingin membawanya ke Pengadilan Pajak; permohonan ketiga tidak lagi dimungkinkan. Upaya hukum dan tenggat yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Banding paling lambat 5 Januari 2027, yaitu 3 bulan sejak keputusan diterima",
-        B: "Gugatan paling lambat 4 November 2026, yaitu 30 hari sejak keputusan diterima",
-        C: "Gugatan paling lambat 19 Oktober 2026, yaitu 14 hari sejak keputusan diterima",
-        D: "Keberatan kepada Direktur Jenderal Pajak paling lambat 5 Januari 2027"
-      },
+      opsi: { A: "Banding paling lambat 4 Januari 2027, yaitu 3 bulan sejak keputusan diterima", B: "Gugatan paling lambat 4 November 2026, yaitu 30 hari sejak keputusan diterima", C: "Gugatan paling lambat 19 Oktober 2026, yaitu 14 hari sejak keputusan diterima", D: "Keberatan kepada Direktur Jenderal Pajak paling lambat 4 Januari 2027" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "Keputusan atas permohonan Pasal 36 adalah keputusan yang berkaitan dengan pelaksanaan keputusan perpajakan selain keputusan keberatan, sehingga upayanya gugatan (Pasal 23 ayat (2) huruf c UU KUP) dalam 30 hari sejak keputusan diterima (Pasal 40 ayat (3) UU 14/2002).",
-        jejakHitung: [["Keputusan diterima", "Senin, 5 Oktober 2026"], ["+ 30 hari", "Rabu, 4 November 2026"]],
-        mengapaSalah: { A: "Banding hanya atas keputusan keberatan (Pasal 27 UU KUP).", C: "14 hari berlaku untuk gugatan atas pelaksanaan penagihan (Surat Paksa, SPMP, pengumuman lelang).", D: "Keputusan Pasal 36 bukan objek keberatan; keberatan hanya atas SKP dan pemotongan/pemungutan." },
+        jejakHitung: [
+          ["Keputusan diterima", "Senin, 5 Oktober 2026"],
+          ["+ 30 hari", "Rabu, 4 November 2026"]
+        ],
+        mengapaSalah: {
+          A: "Banding hanya atas keputusan keberatan (Pasal 27 UU KUP).",
+          C: "14 hari berlaku untuk gugatan atas pelaksanaan penagihan (Surat Paksa, SPMP, pengumuman lelang).",
+          D: "Keputusan Pasal 36 bukan objek keberatan; keberatan hanya atas SKP dan pemotongan/pemungutan."
+        },
         jebakan: "Gugatan punya dua tenggat: 14 hari untuk tindakan penagihan, 30 hari untuk keputusan lain."
       },
       dasarHukum: [{ pasal: "Pasal 23 ayat (2) huruf c dan Pasal 36 UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 40 ayat (3) UU 14/2002", berlakuSejak: "2002-04-12" }],
-      anggaranDetik: 90, verifikasi: "✅"
+      anggaranDetik: 90,
+      verifikasi: "✅"
     },
     {
       id: "A2-083",
@@ -2574,7 +2719,7 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "prosedur",
       kesulitan: 1,
-      stem: "PT Bahtera Niaga (tahun buku kalender) memotong PPh Pasal 21 Masa Oktober 2026. Pada Kamis, 15 Oktober 2026 perusahaan juga menerima SKPKB PPN Masa Juni 2024 yang diterbitkan pada hari yang sama, dengan jatuh tempo pelunasan 1 bulan sejak diterbitkan. Tanggal 15 November 2026 jatuh pada hari Minggu, dan tidak ada hari libur nasional lain pada November 2026. Kombinasi batas waktu yang paling tepat adalah ...",
+      stem: "PT Bahtera Niaga (tahun buku kalender) memotong PPh Pasal 21 Masa Oktober 2026. Pada Jumat, 16 Oktober 2026 perusahaan juga menerima SKPKB PPN Masa Juni 2024 yang diterbitkan pada hari yang sama, dengan jatuh tempo pelunasan 1 bulan sejak diterbitkan. Tanggal 15 November 2026 jatuh pada hari Minggu, dan tidak ada hari libur nasional lain pada November 2026. Kombinasi batas waktu yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "PPh Pasal 21 disetor paling lambat Senin, 16 November 2026; SPT Masa PPh 21/26 dilaporkan paling lambat Jumat, 20 November 2026; SKPKB dilunasi paling lambat Minggu, 15 November 2026 karena jatuh tempo pelunasan ketetapan tidak bergeser", B: "PPh Pasal 21 disetor paling lambat Jumat, 13 November 2026 karena dimajukan ke hari kerja sebelumnya; SPT Masa PPh 21/26 paling lambat Jumat, 20 November 2026; SKPKB paling lambat Minggu, 15 November 2026", C: "PPh Pasal 21 disetor paling lambat Senin, 16 November 2026; SPT Masa PPh 21/26 dilaporkan paling lambat Jumat, 20 November 2026; SKPKB dilunasi paling lambat Senin, 16 November 2026 karena jatuh tempo pelunasan ketetapan ikut bergeser ke hari kerja berikutnya", D: "PPh Pasal 21 disetor paling lambat Selasa, 10 November 2026; SPT Masa PPh 21/26 paling lambat Jumat, 20 November 2026; SKPKB paling lambat Minggu, 15 November 2026" },
       kunci: "A",
@@ -2584,7 +2729,7 @@ UKP.register({
         jejakHitung: [
           ["Setor PPh 21 Masa Oktober: 15 Nov 2026 (Minggu)", "bergeser ke Senin, 16 November 2026"],
           ["Lapor SPT Masa: 20 hari setelah masa berakhir", "Jumat, 20 November 2026"],
-          ["SKPKB terbit 15 Okt + 1 bulan", "15 November 2026, tidak bergeser"]
+          ["SKPKB terbit 16 Okt 2026: 1 bulan, hari terakhir", "15 November 2026, tidak bergeser"]
         ],
         mengapaSalah: {
           B: "Jatuh tempo setor bergeser ke hari kerja berikutnya, bukan dimajukan.",
@@ -2676,25 +2821,35 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-092", topik: "A2.7", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"],
+      id: "A2-092",
+      topik: "A2.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
       stem: "PT Wijaya Kusuma menerima SKPKB PPh Pasal 21 Masa Mei 2025 (pokok Rp64.000.000) yang diterbitkan dan dikirim Selasa, 1 September 2026. Pokok Rp14.000.000 yang disetujui dalam PAHP dilunasi 10 September 2026. Pada 25 September 2026 staf keuangan menyampaikan surat keberatan lewat Portal Wajib Pajak yang hanya memuat alasan keberatan tanpa menyebut jumlah pajak terutang menurut perusahaan, dan ditandatangani staf itu sendiri tanpa surat kuasa khusus. Pada Jumat, 9 Oktober 2026 KPP memberitahukan bahwa surat tersebut tidak memenuhi persyaratan. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Hak keberatan atas SKPKB tersebut telah habis karena satu surat ketetapan pajak hanya dapat diajukan keberatan satu kali",
-        B: "Surat itu dianggap bukan surat keberatan sehingga tidak dipertimbangkan; perusahaan masih dapat menyampaikan surat keberatan baru yang memenuhi syarat (memuat jumlah pajak terutang menurut WP beserta alasan, ditandatangani pengurus atau kuasa dengan surat kuasa khusus) paling lambat 1 Desember 2026",
-        C: "Perusahaan dapat langsung mengajukan banding ke Pengadilan Pajak paling lambat 3 bulan sejak pemberitahuan 9 Oktober 2026",
-        D: "Perusahaan dapat menyampaikan surat keberatan baru yang memenuhi syarat (memuat jumlah pajak terutang menurut WP beserta alasan, ditandatangani pengurus atau kuasa dengan surat kuasa khusus) paling lambat 9 Januari 2027, yaitu 3 bulan sejak pemberitahuan tidak memenuhi persyaratan"
-      },
+      opsi: { A: "Hak keberatan atas SKPKB tersebut telah habis karena satu surat ketetapan pajak hanya dapat diajukan keberatan satu kali", B: "Surat itu dianggap bukan surat keberatan sehingga tidak dipertimbangkan; perusahaan masih dapat menyampaikan surat keberatan baru yang memenuhi syarat (memuat jumlah pajak terutang menurut WP beserta alasan, ditandatangani pengurus atau kuasa dengan surat kuasa khusus) paling lambat 30 November 2026", C: "Perusahaan dapat langsung mengajukan banding ke Pengadilan Pajak paling lambat 3 bulan sejak pemberitahuan 9 Oktober 2026", D: "Perusahaan dapat menyampaikan surat keberatan baru yang memenuhi syarat (memuat jumlah pajak terutang menurut WP beserta alasan, ditandatangani pengurus atau kuasa dengan surat kuasa khusus) paling lambat 8 Januari 2027, yaitu 3 bulan sejak pemberitahuan tidak memenuhi persyaratan" },
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
         inti: "Keberatan yang tidak memenuhi persyaratan Pasal 25 ayat (1)–(4) bukan surat keberatan sehingga tidak dipertimbangkan (Pasal 25 ayat (5)); karena belum ada keberatan yang sah, WP masih dapat mengajukan keberatan yang lengkap selama jangka 3 bulan sejak SKP dikirim belum lewat.",
-        jejakHitung: [["SKPKB dikirim", "Selasa, 1 September 2026"], ["Tenggat keberatan (+3 bulan)", "Selasa, 1 Desember 2026"], ["Syarat pelunasan PAHP", "Rp14.000.000 lunas 10 September 2026"], ["Cacat surat 25 September", "tanpa jumlah menurut WP; tanpa surat kuasa khusus"]],
-        mengapaSalah: { A: "Surat yang tidak memenuhi syarat dianggap bukan surat keberatan, sehingga hak keberatan belum terpakai.", C: "Banding hanya atas SK Keberatan; belum ada keputusan keberatan.", D: "Tenggat tetap dihitung sejak SKP dikirim, bukan sejak pemberitahuan." },
+        jejakHitung: [
+          ["SKPKB dikirim (hari pertama)", "Selasa, 1 September 2026"],
+          ["Tenggat keberatan (3 bulan, hari terakhir)", "Senin, 30 November 2026"],
+          ["Syarat pelunasan PAHP", "Rp14.000.000 lunas 10 September 2026"],
+          ["Cacat surat 25 September", "tanpa jumlah menurut WP; tanpa surat kuasa khusus"]
+        ],
+        mengapaSalah: {
+          A: "Surat yang tidak memenuhi syarat dianggap bukan surat keberatan, sehingga hak keberatan belum terpakai.",
+          C: "Banding hanya atas SK Keberatan; belum ada keputusan keberatan.",
+          D: "Tenggat tetap dihitung sejak SKP dikirim, bukan sejak pemberitahuan."
+        },
         jebakan: "Pemberitahuan KPP tidak memulai tenggat baru."
       },
       dasarHukum: [{ pasal: "Pasal 25 ayat (1)–(5) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 32 ayat (3) UU KUP; PMK 44/2026 (surat kuasa khusus)", berlakuSejak: "2026-07-06" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 160, verifikasi: "✅"
+      anggaranDetik: 160,
+      verifikasi: "✅"
     },
     {
       id: "A2-093",
@@ -2702,7 +2857,7 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 3,
-      stem: "PT Kirana Busana menerima SKPKB PPh Badan 2024 yang diterbitkan Selasa, 6 Oktober 2026 dengan pokok Rp90.000.000 dan bunga Pasal 13 ayat (2) Rp36.432.000; jatuh tempo pelunasan Jumat, 6 November 2026. Sebelum jatuh tempo, permohonan angsurannya disetujui: pokok diangsur tiga kali Rp30.000.000 pada 4 Desember 2026, 4 Januari 2027, dan 4 Februari 2027, sedangkan bunga dalam SKPKB dilunasi 4 Maret 2027; semua dibayar tepat jadwal. Dalam soal ini bunga Pasal 19 ayat (2) dihitung per bulan atas sisa pokok yang belum dibayar, dengan tarif selama masa angsuran dianggap 0,59% per bulan (uplift 0%); tarif uplift 5% 1,01%. Jumlah bunga Pasal 19 ayat (2) atas angsuran pokok tersebut adalah ...",
+      stem: "PT Kirana Busana menerima SKPKB PPh Badan 2024 yang diterbitkan Rabu, 7 Oktober 2026 dengan pokok Rp90.000.000 dan bunga Pasal 13 ayat (2) Rp36.432.000; jatuh tempo pelunasan Jumat, 6 November 2026. Sebelum jatuh tempo, permohonan angsurannya disetujui: pokok diangsur tiga kali Rp30.000.000 pada 4 Desember 2026, 4 Januari 2027, dan 4 Februari 2027, sedangkan bunga dalam SKPKB dilunasi 4 Maret 2027; semua dibayar tepat jadwal. Dalam soal ini bunga Pasal 19 ayat (2) dihitung per bulan atas sisa pokok yang belum dibayar, dengan tarif selama masa angsuran dianggap 0,59% per bulan (uplift 0%); tarif uplift 5% 1,01%. Jumlah bunga Pasal 19 ayat (2) atas angsuran pokok tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp1.593.000", B: "Rp1.818.000", C: "Rp3.600.000", D: "Rp1.062.000" },
       kunci: "D",
@@ -2710,9 +2865,9 @@ UKP.register({
       pembahasan: {
         inti: "WP yang diperbolehkan mengangsur dikenai bunga Pasal 19 ayat (2) dengan uplift 0% atas jumlah yang masih harus dibayar, sehingga bunga menurun mengikuti sisa pokok setiap bulan.",
         jejakHitung: [
-          ["6 Nov → 4 Des 2026 (1 bulan): 90.000.000 × 0,59%", "Rp531.000"],
-          ["4 Des 2026 → 4 Jan 2027 (1 bulan): 60.000.000 × 0,59%", "Rp354.000"],
-          ["4 Jan → 4 Feb 2027 (1 bulan): 30.000.000 × 0,59%", "Rp177.000"],
+          ["Bulan ke-1 (mulai 7 Nov 2026, sehari setelah jatuh tempo; angsuran 4 Des 2026): 90.000.000 × 0,59%", "Rp531.000"],
+          ["Bulan ke-2 (mulai 7 Des 2026; angsuran 4 Jan 2027): 60.000.000 × 0,59%", "Rp354.000"],
+          ["Bulan ke-3 (mulai 7 Jan 2027; angsuran 4 Feb 2027): 30.000.000 × 0,59%", "Rp177.000"],
           ["Total bunga Pasal 19 ayat (2)", "Rp1.062.000"]
         ],
         mengapaSalah: {
@@ -2736,14 +2891,14 @@ UKP.register({
       kasusId: "V-A2-07",
       stem: "Data untuk soal vignette V-A2-07: CV Dharma Niaga (PKP, tahun buku kalender) pada Senin, 5 Oktober 2026 menerima tiga dokumen yang diterbitkan dan dikirim pada hari itu: (i) STP atas angsuran PPh Pasal 25 Masa Juni dan Juli 2026 yang tidak dibayar, berisi pokok Rp18.000.000 dan bunga Pasal 14 ayat (3); (ii) SKPKB PPN Masa Agustus 2024 hasil pemeriksaan dengan pokok Rp120.000.000 ditambah bunga Pasal 13 ayat (2), dan dalam PAHP CV hanya menyetujui pokok Rp30.000.000; (iii) Surat Teguran karena SPT Tahunan PPh Badan 2025 belum disampaikan. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: { A: "(i) dan (ii) sama-sama dapat diajukan keberatan paling lambat 5 Januari 2027; (iii) merupakan awal tindakan penagihan yang dapat diikuti Surat Paksa setelah lewat 21 hari", B: "(i) dapat diajukan keberatan karena memuat pokok pajak; (ii) dapat diajukan keberatan paling lambat 5 Januari 2027 setelah melunasi Rp30.000.000; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b", C: "(i) tidak dapat diajukan keberatan, tetapi sanksinya dapat dimohonkan pengurangan/penghapusan berdasarkan Pasal 36; (ii) dapat diajukan keberatan paling lambat 5 Januari 2027 setelah melunasi Rp30.000.000; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b berbunga uplift 20%", D: "(i) tidak dapat diajukan keberatan, tetapi sanksinya dapat dimohonkan pengurangan/penghapusan berdasarkan Pasal 36; (ii) dapat diajukan keberatan paling lambat 5 Januari 2027 setelah melunasi seluruh SKPKB beserta bunganya; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b berbunga uplift 20%" },
+      opsi: { A: "(i) dan (ii) sama-sama dapat diajukan keberatan paling lambat 4 Januari 2027; (iii) merupakan awal tindakan penagihan yang dapat diikuti Surat Paksa setelah lewat 21 hari", B: "(i) dapat diajukan keberatan karena memuat pokok pajak; (ii) dapat diajukan keberatan paling lambat 4 Januari 2027 setelah melunasi Rp30.000.000; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b", C: "(i) tidak dapat diajukan keberatan, tetapi sanksinya dapat dimohonkan pengurangan/penghapusan berdasarkan Pasal 36; (ii) dapat diajukan keberatan paling lambat 4 Januari 2027 setelah melunasi Rp30.000.000; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b berbunga uplift 20%", D: "(i) tidak dapat diajukan keberatan, tetapi sanksinya dapat dimohonkan pengurangan/penghapusan berdasarkan Pasal 36; (ii) dapat diajukan keberatan paling lambat 4 Januari 2027 setelah melunasi seluruh SKPKB beserta bunganya; (iii) bila SPT tetap tidak disampaikan dalam jangka waktu yang ditentukan dalam teguran, PPh dapat ditetapkan dengan SKPKB Pasal 13 ayat (1) huruf b berbunga uplift 20%" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "STP bukan surat ketetapan pajak sehingga tidak dapat diajukan keberatan; sanksinya dapat dimohonkan pengurangan/penghapusan lewat Pasal 36. SKPKB diajukan keberatan dalam 3 bulan setelah melunasi jumlah yang disetujui dalam PAHP. Surat Teguran SPT bukan tindakan penagihan; ketidakpatuhan atasnya membuka SKPKB Pasal 13 ayat (1) huruf b dengan sanksi Pasal 13 ayat (3).",
         jejakHitung: [
           ["(i) STP", "bukan SKP → Pasal 36"],
-          ["(ii) SKPKB dikirim 5 Okt 2026 + 3 bulan", "5 Januari 2027; lunasi Rp30.000.000 lebih dahulu"],
+          ["(ii) SKPKB dikirim 5 Okt 2026: 3 bulan, hari terakhir", "4 Januari 2027; lunasi Rp30.000.000 lebih dahulu"],
           ["(iii) Teguran SPT", "dasar SKPKB Pasal 13 ayat (1) huruf b; PPh → bunga uplift 20%"]
         ],
         mengapaSalah: {
@@ -2758,46 +2913,69 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A2-095", topik: "A2.10", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-A2-07",
+      id: "A2-095",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-A2-07",
       stem: "Lanjutan V-A2-07: CV Dharma Niaga tidak membayar STP PPh Pasal 25 (pokok Rp18.000.000 ditambah bunga, diterbitkan Senin, 5 Oktober 2026). Atas SKPKB PPN (pokok Rp120.000.000, diterbitkan pada hari yang sama), CV melunasi pokok Rp30.000.000 yang disetujui dalam PAHP pada Rabu, 28 Oktober 2026, lalu menyampaikan keberatan yang memenuhi syarat dan diterima Senin, 2 November 2026; sisa SKPKB tidak dibayar. Tidak ada permohonan angsuran atau penundaan. Pernyataan yang paling tepat tentang tindakan penagihan adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Surat Teguran atas STP paling cepat Jumat, 13 November 2026; atas sisa SKPKB tidak diterbitkan Surat Teguran karena jangka waktu pelunasannya tertangguh sampai 1 bulan sejak SK Keberatan; bila teguran STP disampaikan Senin, 16 November 2026, Surat Paksa paling cepat Selasa, 8 Desember 2026",
-        B: "Surat Teguran atas STP dan atas sisa SKPKB Rp90.000.000 paling cepat Jumat, 13 November 2026; bila teguran disampaikan Senin, 16 November 2026, Surat Paksa atas keduanya paling cepat Selasa, 8 Desember 2026",
-        C: "Surat Teguran atas STP paling cepat Jumat, 6 November 2026; atas sisa SKPKB tidak diterbitkan Surat Teguran karena jangka waktu pelunasannya tertangguh; bila teguran STP disampaikan Senin, 16 November 2026, Surat Paksa paling cepat Selasa, 8 Desember 2026",
-        D: "Surat Teguran atas STP paling cepat Jumat, 13 November 2026; atas sisa SKPKB tidak diterbitkan Surat Teguran karena jangka waktu pelunasannya tertangguh sampai 1 bulan sejak SK Keberatan; bila teguran STP disampaikan Senin, 16 November 2026, Surat Paksa paling cepat Senin, 7 Desember 2026"
-      },
+      opsi: { A: "Surat Teguran atas STP paling cepat Kamis, 12 November 2026; atas sisa SKPKB tidak diterbitkan Surat Teguran karena jangka waktu pelunasannya tertangguh sampai 1 bulan sejak SK Keberatan; bila teguran STP disampaikan Senin, 16 November 2026, Surat Paksa paling cepat Selasa, 8 Desember 2026", B: "Surat Teguran atas STP dan atas sisa SKPKB Rp90.000.000 paling cepat Kamis, 12 November 2026; bila teguran disampaikan Senin, 16 November 2026, Surat Paksa atas keduanya paling cepat Selasa, 8 Desember 2026", C: "Surat Teguran atas STP paling cepat Kamis, 5 November 2026; atas sisa SKPKB tidak diterbitkan Surat Teguran karena jangka waktu pelunasannya tertangguh; bila teguran STP disampaikan Senin, 16 November 2026, Surat Paksa paling cepat Selasa, 8 Desember 2026", D: "Surat Teguran atas STP paling cepat Kamis, 12 November 2026; atas sisa SKPKB tidak diterbitkan Surat Teguran karena jangka waktu pelunasannya tertangguh sampai 1 bulan sejak SK Keberatan; bila teguran STP disampaikan Senin, 16 November 2026, Surat Paksa paling cepat Kamis, 26 November 2026" },
       kunci: "A",
-      jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-hitung" },
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
-        inti: "STP jatuh tempo 1 bulan sejak terbit (5 November 2026); Surat Teguran diterbitkan setelah lewat 7 hari (paling cepat 13 November), dan Surat Paksa setelah lewat 21 hari sejak teguran disampaikan. Sisa SKPKB yang belum dibayar saat keberatan diajukan tertangguh (Pasal 25 ayat (7)), sehingga belum dapat ditagih.",
-        jejakHitung: [["Jatuh tempo STP: 5 Okt + 1 bulan", "Kamis, 5 November 2026"], ["Lewat 7 hari (5 Nov + 7 = 12 Nov)", "teguran paling cepat Jumat, 13 November 2026"], ["Teguran disampaikan 16 Nov + 21 hari = 7 Des", "Surat Paksa paling cepat Selasa, 8 Desember 2026"], ["Sisa SKPKB Rp90.000.000", "tertangguh sejak keberatan diajukan (2 November 2026)"]],
-        mengapaSalah: { B: "Sisa SKPKB yang disengketakan dalam keberatan tertangguh pelunasannya sehingga tidak ditagih dengan teguran atau Surat Paksa.", C: "6 November adalah sehari setelah jatuh tempo; teguran baru dapat diterbitkan setelah lewat 7 hari.", D: "Surat Paksa diterbitkan setelah lewat 21 hari, yaitu mulai hari ke-22 (8 Desember), bukan pada hari ke-21." },
+        inti: "STP jatuh tempo 1 bulan sejak terbit; tanggal terbit adalah hari pertama, sehingga jatuh tempo Rabu, 4 November 2026. Surat Teguran diterbitkan setelah lewat 7 hari (paling cepat 12 November), dan Surat Paksa setelah lewat 21 hari sejak teguran disampaikan. Sisa SKPKB yang belum dibayar saat keberatan diajukan tertangguh (Pasal 25 ayat (7)), sehingga belum dapat ditagih.",
+        jejakHitung: [
+          ["Jatuh tempo STP: 1 bulan sejak 5 Okt, hari terakhir", "Rabu, 4 November 2026"],
+          ["Lewat 7 hari (4 Nov + 7 = 11 Nov)", "teguran paling cepat Kamis, 12 November 2026"],
+          ["Teguran disampaikan 16 Nov + 21 hari = 7 Des", "Surat Paksa paling cepat Selasa, 8 Desember 2026"],
+          ["Sisa SKPKB Rp90.000.000", "tertangguh sejak keberatan diajukan (2 November 2026)"]
+        ],
+        mengapaSalah: {
+          B: "Sisa SKPKB yang disengketakan dalam keberatan tertangguh pelunasannya sehingga tidak ditagih dengan teguran atau Surat Paksa.",
+          C: "5 November adalah sehari setelah jatuh tempo; teguran baru dapat diterbitkan setelah lewat 7 hari.",
+          D: "Jeda 21 hari dihitung sejak Surat Teguran disampaikan (16 November), bukan sejak jatuh tempo STP (4 November)."
+        },
         jebakan: "Dua dokumen yang terbit bersamaan berpisah nasib: STP berjalan ke penagihan, SKPKB yang diajukan keberatan tertangguh."
       },
       dasarHukum: [{ pasal: "Pasal 9 ayat (3) dan Pasal 25 ayat (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 8 UU PPSP; PMK 61/2023 Pasal 6", berlakuSejak: "2023-06-12" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
-      id: "A2-096", topik: "A2.11", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"], kasusId: "V-A2-07",
+      id: "A2-096",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      kasusId: "V-A2-07",
       stem: "Lanjutan V-A2-07: keberatan CV Dharma Niaga atas SKPKB PPN Masa Agustus 2024 (pokok Rp120.000.000; pokok Rp30.000.000 yang disetujui dalam PAHP telah dilunasi sebelum keberatan) diputus dengan SK Keberatan yang mengabulkan sebagian sehingga pokok menjadi Rp95.000.000. SK diterbitkan Jumat, 3 September 2027 dan diterima CV Senin, 6 September 2027. CV mempertimbangkan banding. Dasar denda dihitung dari pokok pajak. Dengan mengabaikan pergeseran hari libur, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Banding paling lambat 3 Desember 2027; bila banding ditolak, denda Pasal 27 ayat (5d) sebesar 60% × Rp95.000.000 = Rp57.000.000",
-        B: "Banding paling lambat 6 Desember 2027; bila banding ditolak, CV membayar denda Pasal 27 ayat (5d) Rp39.000.000 ditambah denda keberatan Pasal 25 ayat (9) sebesar Rp19.500.000",
-        C: "Banding paling lambat 6 Desember 2027; bila banding ditolak, denda Pasal 27 ayat (5d) sebesar 60% × Rp95.000.000 = Rp57.000.000",
-        D: "Banding paling lambat 6 Desember 2027; bila banding ditolak, denda Pasal 27 ayat (5d) sebesar Rp39.000.000, sedangkan denda 30% Pasal 25 ayat (9) tidak dikenakan"
-      },
+      opsi: { A: "Banding paling lambat 2 Desember 2027; bila banding ditolak, denda Pasal 27 ayat (5d) sebesar 60% × Rp95.000.000 = Rp57.000.000", B: "Banding paling lambat 5 Desember 2027; bila banding ditolak, CV membayar denda Pasal 27 ayat (5d) Rp39.000.000 ditambah denda keberatan Pasal 25 ayat (9) sebesar Rp19.500.000", C: "Banding paling lambat 5 Desember 2027; bila banding ditolak, denda Pasal 27 ayat (5d) sebesar 60% × Rp95.000.000 = Rp57.000.000", D: "Banding paling lambat 5 Desember 2027; bila banding ditolak, denda Pasal 27 ayat (5d) sebesar Rp39.000.000, sedangkan denda 30% Pasal 25 ayat (9) tidak dikenakan" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
-        inti: "Banding diajukan paling lama 3 bulan sejak SK Keberatan diterima (6 Desember 2027). Bila banding ditolak, denda 60% dihitung dari pajak menurut Putusan Banding dikurangi pembayaran sebelum keberatan, dan denda keberatan 30% gugur karena WP banding.",
-        jejakHitung: [["SK Keberatan diterima + 3 bulan", "6 Desember 2027"], ["Pokok menurut putusan (banding ditolak)", "Rp95.000.000"], ["Dibayar sebelum keberatan", "Rp30.000.000"], ["Denda 60% × (95.000.000 − 30.000.000)", "Rp39.000.000"], ["Denda 30% Pasal 25 ayat (9)", "tidak dikenakan (Pasal 25 ayat (10))"]],
-        mengapaSalah: { A: "Tenggat dihitung sejak SK diterima, bukan diterbitkan; dasar denda juga harus dikurangi pembayaran sebelum keberatan.", B: "Bila WP banding, denda 30% Pasal 25 ayat (9) tidak dikenakan.", C: "Dasar denda 60% dikurangi pembayaran sebelum keberatan Rp30.000.000." },
+        inti: "Banding diajukan paling lama 3 bulan sejak SK Keberatan diterima (hari terakhir 5 Desember 2027). Bila banding ditolak, denda 60% dihitung dari pajak menurut Putusan Banding dikurangi pembayaran sebelum keberatan, dan denda keberatan 30% gugur karena WP banding.",
+        jejakHitung: [
+          ["SK Keberatan diterima 6 Sep 2027: 3 bulan, hari terakhir", "5 Desember 2027"],
+          ["Pokok menurut putusan (banding ditolak)", "Rp95.000.000"],
+          ["Dibayar sebelum keberatan", "Rp30.000.000"],
+          ["Denda 60% × (95.000.000 − 30.000.000)", "Rp39.000.000"],
+          ["Denda 30% Pasal 25 ayat (9)", "tidak dikenakan (Pasal 25 ayat (10))"]
+        ],
+        mengapaSalah: {
+          A: "Tenggat dihitung sejak SK diterima, bukan diterbitkan; dasar denda juga harus dikurangi pembayaran sebelum keberatan.",
+          B: "Bila WP banding, denda 30% Pasal 25 ayat (9) tidak dikenakan.",
+          C: "Dasar denda 60% dikurangi pembayaran sebelum keberatan Rp30.000.000."
+        },
         jebakan: "Kalau tidak banding, denda yang berlaku 30% × Rp65.000.000 = Rp19.500.000; banding yang ditolak menaikkannya menjadi Rp39.000.000."
       },
       dasarHukum: [{ pasal: "Pasal 25 ayat (9)–(10) dan Pasal 27 ayat (5d) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" }],
-      anggaranDetik: 170, verifikasi: "✅"
+      anggaranDetik: 170,
+      verifikasi: "✅"
     },
     {
       id: "A2-097", topik: "A2.1", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1,
@@ -2843,7 +3021,7 @@ UKP.register({
         mengapaSalah: {
           A: "Mengalikan 22% dengan seluruh rugi Rp800.000.000; yang berubah hanya selisih Rp500.000.000.",
           B: "Pasal 8 ayat (6) memberi hak pembetulan khusus dalam 3 bulan setelah menerima SKP.",
-          D: "Batas pembetulan khusus ini dihitung 3 bulan sejak SKP diterima, bukan akhir tahun."
+          D: "Batas pembetulan khusus ini dihitung 3 bulan setelah SKP diterima, bukan akhir tahun."
         },
         jebakan: "Peredaran bruto di atas Rp50 miliar sengaja disebut agar tarif yang dipakai 22% penuh tanpa Pasal 31E."
       },
@@ -2969,7 +3147,7 @@ UKP.register({
       kutipan: "Pasal 27 ayat (5f) dan (5g) UU KUP (parafrase setia): Dalam hal Putusan Peninjauan Kembali menyebabkan jumlah pajak yang masih harus dibayar bertambah, Wajib Pajak dikenai sanksi administratif berupa denda sebesar 60% dari jumlah pajak berdasarkan Putusan Peninjauan Kembali dikurangi dengan pembayaran pajak yang telah dibayar sebelum mengajukan keberatan. Sanksi tersebut ditagih dengan STP yang diterbitkan paling lama 2 tahun sejak Putusan Peninjauan Kembali diterima Direktur Jenderal Pajak.",
       stem: "SKPKB PPh Badan PT Orion Prima memuat pokok Rp300.000.000. Sebelum keberatan, WP melunasi pokok yang disetujui dalam PAHP Rp50.000.000. Keberatan ditolak, tetapi Putusan Banding mengabulkan seluruh banding sehingga pokok menjadi Rp50.000.000. DJP mengajukan Peninjauan Kembali, dan Putusan PK yang diterima DJP pada Kamis, 10 September 2026 menetapkan pokok Rp210.000.000. Dasar denda dihitung dari pokok pajak. Berdasarkan kutipan, sanksi dan batas penagihannya adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Denda 30% × Rp160.000.000 = Rp48.000.000, ditagih dengan STP paling lambat 10 September 2028", B: "Denda 60% × (Rp210.000.000 − Rp50.000.000) = Rp96.000.000, ditagih dengan STP paling lambat 10 September 2028", C: "Denda 60% × Rp210.000.000 = Rp126.000.000, ditagih dengan STP paling lambat 10 September 2028", D: "Denda 60% × (Rp210.000.000 − Rp50.000.000) = Rp96.000.000, ditetapkan dengan SKPKBT paling lambat 10 September 2031" },
+      opsi: { A: "Denda 30% × Rp160.000.000 = Rp48.000.000, ditagih dengan STP paling lambat 9 September 2028", B: "Denda 60% × (Rp210.000.000 − Rp50.000.000) = Rp96.000.000, ditagih dengan STP paling lambat 9 September 2028", C: "Denda 60% × Rp210.000.000 = Rp126.000.000, ditagih dengan STP paling lambat 9 September 2028", D: "Denda 60% × (Rp210.000.000 − Rp50.000.000) = Rp96.000.000, ditetapkan dengan SKPKBT paling lambat 9 September 2031" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
@@ -2978,7 +3156,7 @@ UKP.register({
           ["Pokok menurut Putusan PK", "Rp210.000.000"],
           ["Dibayar sebelum keberatan", "Rp50.000.000"],
           ["Denda = 60% × 160.000.000", "Rp96.000.000"],
-          ["Batas STP: 10 Sep 2026 + 2 tahun", "10 September 2028"]
+          ["Batas STP: 2 tahun sejak 10 Sep 2026, hari terakhir", "9 September 2028"]
         ],
         mengapaSalah: {
           A: "30% adalah denda keberatan; PK memakai 60%.",
@@ -3486,11 +3664,12 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", C: "salah-hitung" },
       pembahasan: {
-        inti: "Jangka waktu pengujian Pemeriksaan Lengkap paling lama 5 bulan sejak Surat Pemberitahuan Pemeriksaan disampaikan sampai tanggal SPHP disampaikan (PMK 15/2025 Ps. 6 ayat (2) huruf a). Setelah itu tersedia paling lama 30 hari kerja untuk pembahasan akhir dan pelaporan (Ps. 6 ayat (3)).",
+        inti: "Jangka waktu pengujian Pemeriksaan Lengkap paling lama 5 bulan sejak Surat Pemberitahuan Pemeriksaan disampaikan sampai tanggal SPHP disampaikan (PMK 15/2025 Ps. 6 ayat (2) huruf a). Setelah itu tersedia paling lama 30 hari kerja untuk pembahasan akhir dan pelaporan (Ps. 6 ayat (3)). Kunci try out menulis 3 Agustus 2026 (hitungan tanggal ke tanggal); menurut cara hitung Penjelasan undang-undang yang dipakai aplikasi ini, hari terakhirnya 2 Agustus 2026.",
         jejakHitung: [
           ["Surat Pemberitahuan Pemeriksaan disampaikan", "3 Maret 2026"],
           ["Jangka waktu pengujian Pemeriksaan Lengkap", "5 bulan"],
-          ["Batas SPHP disampaikan", "3 Agustus 2026"]
+          ["Batas SPHP menurut kunci try out (tanggal ke tanggal)", "3 Agustus 2026"],
+          ["Hari terakhir menurut contoh Penjelasan undang-undang", "2 Agustus 2026"]
         ],
         mengapaSalah: {
           A: "Memakai 3 bulan, yaitu jangka waktu Pemeriksaan Terfokus.",
@@ -3501,7 +3680,8 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "PMK 15/2025 Pasal 6 ayat (2) huruf a dan ayat (3)", berlakuSejak: null }],
       anggaranDetik: 150,
-      verifikasi: "✅",
+      verifikasi: "◐",
+      peringatan: "Kunci try out (D, 3 Agustus 2026) memakai hitungan tanggal ke tanggal. Menurut cara hitung Penjelasan undang-undang yang dipakai aplikasi ini, 5 bulan sejak 3 Maret 2026 berakhir 2 Agustus 2026 (tanggal awal dihitung hari pertama). Di try out, D tetap pilihan terbaik karena opsi lain memakai jangka waktu yang salah.",
       sumber: { set: "TO-B-2026-11", no: 37, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -3612,7 +3792,7 @@ UKP.register({
     {
       id: "A2-126",
       topik: "A2.9",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 2,
       kutipan: "PMK 81/2024 Pasal 157 ayat (4) huruf d dan e (dikutip try out): Surat Keputusan Pengembalian Kelebihan Pembayaran Pajak ... diterbitkan paling lama 1 (satu) bulan terhitung sejak: ... d. Surat Keputusan Keberatan ... diterbitkan, e. Putusan Banding atau Putusan Peninjauan Kembali ... diterima kantor Direktorat Jenderal Pajak yang berwenang melaksanakan Putusan Banding atau Putusan Peninjauan Kembali.",
@@ -3622,17 +3802,24 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
-        inti: "Untuk kelebihan pembayaran pajak karena Putusan Banding, SKPKPP diterbitkan paling lama 1 bulan sejak Putusan Banding diterima kantor DJP yang berwenang melaksanakan putusan. Putusan diterima KPP pada 9 Juni 2026, sehingga batas penerbitan SKPKPP 9 Juli 2026 (Kamis). Tanggal pengiriman putusan (3 Juni 2026) bukan titik awal, berbeda dengan surat keputusan DJP (keberatan, pembetulan, pengurangan) yang dihitung sejak tanggal diterbitkan.",
-        jejakHitung: [ [ "Pemicu: Putusan Banding diterima KPP", "9 Juni 2026" ], [ "+ 1 bulan", "9 Juli 2026" ], [ "Hari", "Kamis (hari kerja)" ] ],
-        mengapaSalah: { A: "Menghitung sejak putusan dikirim/diterbitkan, padahal untuk Putusan Banding titik awalnya tanggal diterima kantor DJP.", C: "Memakai pola akhir bulan berikutnya yang tidak berlaku untuk penerbitan SKPKPP.", D: "Memakai jangka 3 bulan, padahal jangka penerbitan SKPKPP hanya 1 bulan." },
-        jebakan: "Khusus Putusan Banding/PK, titik awalnya tanggal DITERIMA kantor DJP pelaksana putusan. Batas dihitung tanggal ke tanggal (9 Juni → 9 Juli); bila dihitung inklusif (8 Juli 2026), tanggal itu tidak tersedia di opsi sehingga jawaban tetap tunggal."
+        inti: "Untuk kelebihan pembayaran pajak karena Putusan Banding, SKPKPP diterbitkan paling lama 1 bulan sejak Putusan Banding diterima kantor DJP yang berwenang melaksanakan putusan. Putusan diterima KPP pada 9 Juni 2026, sehingga batas penerbitan SKPKPP menurut kunci try out 9 Juli 2026 (hitungan tanggal ke tanggal); menurut cara hitung Penjelasan undang-undang yang dipakai aplikasi ini, hari terakhirnya 8 Juli 2026. Tanggal pengiriman putusan (3 Juni 2026) bukan titik awal, berbeda dengan surat keputusan DJP (keberatan, pembetulan, pengurangan) yang dihitung sejak tanggal diterbitkan.",
+        jejakHitung: [
+          ["Pemicu: Putusan Banding diterima KPP", "9 Juni 2026"],
+          ["+ 1 bulan menurut kunci try out (tanggal ke tanggal)", "9 Juli 2026"],
+          ["Hari terakhir menurut contoh Penjelasan undang-undang", "8 Juli 2026"],
+          ["Hari", "Rabu, 8 Juli dan Kamis, 9 Juli 2026 sama-sama hari kerja"]
+        ],
+        mengapaSalah: {
+          A: "Menghitung sejak putusan dikirim/diterbitkan, padahal untuk Putusan Banding titik awalnya tanggal diterima kantor DJP.",
+          C: "Memakai pola akhir bulan berikutnya yang tidak berlaku untuk penerbitan SKPKPP.",
+          D: "Memakai jangka 3 bulan, padahal jangka penerbitan SKPKPP hanya 1 bulan."
+        },
+        jebakan: "Khusus Putusan Banding/PK, titik awalnya tanggal DITERIMA kantor DJP pelaksana putusan. Menurut contoh Penjelasan undang-undang, hari terakhir 1 bulan sejak 9 Juni 2026 adalah 8 Juli 2026; try out memakai tanggal ke tanggal (9 Juli), dan B tetap satu-satunya opsi dengan titik awal yang benar."
       },
-      dasarHukum: [
-        { pasal: "UU KUP Pasal 11 ayat (1) dan (2) s.t.d.t.d. UU 6/2023", berlakuSejak: null },
-        { pasal: "PMK 81/2024 s.t.d.t.d. PMK 1/2026 Pasal 151 huruf h dan Pasal 157 ayat (4) huruf e", berlakuSejak: "2025-01-01" }
-      ],
+      dasarHukum: [{ pasal: "UU KUP Pasal 11 ayat (1) dan (2) s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PMK 81/2024 s.t.d.t.d. PMK 1/2026 Pasal 151 huruf h dan Pasal 157 ayat (4) huruf e", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 150,
-      verifikasi: "✅",
+      verifikasi: "◐",
+      peringatan: "Kunci try out (B, 9 Juli 2026) memakai hitungan tanggal ke tanggal. Menurut cara hitung Penjelasan undang-undang yang dipakai aplikasi ini, 1 bulan sejak 9 Juni 2026 berakhir 8 Juli 2026 (tanggal diterima dihitung hari pertama), dan tanggal itu tidak ada di opsi. Di try out, B tetap pilihan terbaik karena titik awalnya benar.",
       sumber: { set: "TO-B-2026-11", no: 54, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
@@ -3671,40 +3858,50 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "PK hanya dapat diajukan satu kali. Untuk alasan bukti tertulis baru yang penting dan menentukan, PK diajukan paling lambat 3 bulan sejak bukti ditemukan (tanggal penemuan dinyatakan di bawah sumpah dan disahkan pejabat berwenang), yaitu 13 Oktober 2026 (Selasa). Permohonan PK tidak menangguhkan atau menghentikan pelaksanaan putusan Pengadilan Pajak.",
-        jejakHitung: [],
+        inti: "PK hanya dapat diajukan satu kali. Untuk alasan bukti tertulis baru yang penting dan menentukan, PK diajukan paling lambat 3 bulan sejak bukti ditemukan (tanggal penemuan dinyatakan di bawah sumpah dan disahkan pejabat berwenang), yaitu 13 Oktober 2026 menurut opsi try out (hitungan tanggal ke tanggal); menurut cara hitung Penjelasan undang-undang yang dipakai aplikasi ini, hari terakhirnya 12 Oktober 2026. Permohonan PK tidak menangguhkan atau menghentikan pelaksanaan putusan Pengadilan Pajak.",
+        jejakHitung: [
+          ["Bukti ditemukan (di bawah sumpah)", "13 Juli 2026"],
+          ["3 bulan, hari terakhir menurut contoh Penjelasan undang-undang", "12 Oktober 2026"],
+          ["Tanggal di opsi try out (tanggal ke tanggal)", "13 Oktober 2026"]
+        ],
         mengapaSalah: {
           A: "Untuk alasan novum, jangka 3 bulan dihitung sejak bukti ditemukan, bukan sejak putusan dikirim.",
           C: "Jangka waktunya benar, tetapi PK tidak menangguhkan pelaksanaan putusan.",
           D: "Jangka PK hanya 3 bulan, dan PK tidak menangguhkan penagihan."
         },
-        jebakan: "Langkah: Tanggal bukti ditemukan (di bawah sumpah): 13 Juli 2026; + 3 bulan: 13 Oktober 2026 (Selasa)."
+        jebakan: "Titik awal 3 bulan bergantung pada alasan peninjauan kembali: sejak bukti ditemukan untuk bukti tertulis baru (Pasal 91 huruf b), dan sejak putusan dikirim untuk alasan Pasal 91 huruf c, d, dan e (Pasal 92 UU 14/2002)."
       },
       dasarHukum: [{ pasal: "UU 14/2002 Pasal 77 ayat (3), Pasal 89 ayat (1)–(2), Pasal 91 huruf b, Pasal 92 ayat (2)", berlakuSejak: "2002-04-12" }, { pasal: "UU KUP Pasal 27 ayat (5e) s.t.d.t.d. UU 6/2023", berlakuSejak: "2021-10-29" }],
       anggaranDetik: 120,
-      verifikasi: "✅",
+      verifikasi: "◐",
+      peringatan: "Opsi try out menulis batas PK 13 Oktober 2026 (tanggal ke tanggal). Menurut cara hitung Penjelasan undang-undang yang dipakai aplikasi ini, 3 bulan sejak 13 Juli 2026 berakhir 12 Oktober 2026 (tanggal penemuan dihitung hari pertama). B tetap pilihan terbaik karena pembedanya penangguhan pelaksanaan putusan.",
       sumber: { set: "TO-B-2026-11", no: 61, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
     },
     {
       id: "A2-129",
       topik: "A2.11",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 2,
       stem: "PT Ortax Logistik mengajukan gugatan ke Pengadilan Pajak atas pelaksanaan Surat Paksa. Salinan Surat Tanggapan dari tergugat diterima langsung oleh PT Ortax Logistik pada 10 Agustus 2026. Batas waktu paling lambat PT Ortax Logistik menyerahkan Surat Bantahan adalah ...",
-      kataKualifikasi: [ "paling lambat" ],
+      kataKualifikasi: ["paling lambat"],
       opsi: { A: "24 Agustus 2026", B: "9 September 2026", C: "10 September 2026", D: "31 Agustus 2026" },
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
         inti: "Pemohon banding atau penggugat dapat menyerahkan Surat Bantahan dalam jangka waktu 30 hari sejak tanggal diterima salinan Surat Uraian Banding atau Surat Tanggapan. Bila diterima secara langsung, tanggal diterima adalah tanggal saat surat diterima secara langsung.",
-        jejakHitung: [ [ "Tanggal diterima", "10 Agustus 2026" ], [ "+ 30 hari", "9 September 2026 (Rabu)" ] ],
-        mengapaSalah: { A: "Memakai jangka 14 hari.", C: "Memakai jangka 1 bulan, padahal undang-undang menyebut 30 hari.", D: "Memakai akhir bulan penerimaan, yang tidak dikenal dalam ketentuan Surat Bantahan." },
+        jejakHitung: [
+          ["Tanggal diterima", "10 Agustus 2026"],
+          ["+ 30 hari", "9 September 2026 (Rabu)"]
+        ],
+        mengapaSalah: {
+          A: "Memakai jangka 14 hari.",
+          C: "Memakai pola tanggal ke tanggal (10 Agustus menjadi 10 September), padahal jangkanya 30 hari: 10 Agustus 2026 ditambah 30 hari jatuh pada 9 September 2026.",
+          D: "Memakai akhir bulan penerimaan, yang tidak dikenal dalam ketentuan Surat Bantahan."
+        },
         jebakan: "Bandingkan setiap opsi dengan dasar hukum: UU 14/2002 Pasal 1 angka 12 dan Pasal 45 ayat (3)."
       },
-      dasarHukum: [
-        { pasal: "UU 14/2002 Pasal 1 angka 12 dan Pasal 45 ayat (3)", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU 14/2002 Pasal 1 angka 12 dan Pasal 45 ayat (3)", berlakuSejak: null }],
       anggaranDetik: 150,
       verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 70, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
@@ -3950,8 +4147,8 @@ UKP.register({
           petunjuk: ["500.000.000 × 1,84% = 9.200.000 per bulan", "Kalikan dengan jumlah bulan langkah 1", "9.200.000 × 22 = Rp202.400.000"],
           penjelasan: "Rp500.000.000 × 1,84% × 22 = Rp202.400.000; SKPKB seluruhnya Rp702.400.000." },
         { no: 3, pertanyaan: "Batas akhir pengajuan keberatan adalah ...", tipe: "pilihan",
-          opsi: { A: "14 Januari 2027", B: "14 November 2026", C: "14 April 2027", D: "31 Januari 2027" }, jawaban: "A",
-          petunjuk: ["Keberatan paling lama 3 bulan", "Dihitung sejak tanggal SKP dikirim", "14 Oktober 2026 + 3 bulan = 14 Januari 2027"],
+          opsi: { A: "13 Januari 2027", B: "13 November 2026", C: "13 April 2027", D: "31 Januari 2027" }, jawaban: "A",
+          petunjuk: ["Keberatan paling lama 3 bulan", "Dihitung sejak tanggal SKP dikirim; tanggal kirim adalah hari pertama", "3 bulan sejak 14 Oktober 2026 berakhir 13 Januari 2027"],
           penjelasan: "Pasal 25 ayat (3) UU KUP: 3 bulan sejak tanggal dikirim SKP." },
         { no: 4, pertanyaan: "Berapa pokok yang paling sedikit wajib dilunasi sebelum keberatan diajukan (Rp)?", tipe: "angka", jawaban: 120000000, toleransi: 0,
           petunjuk: ["Lihat Pasal 25 ayat (3a) UU KUP", "Yang wajib dilunasi adalah jumlah yang disetujui dalam PAHP", "Rp120.000.000"],
@@ -3972,8 +4169,8 @@ UKP.register({
     },
     {
       id: "K-A2-03", judul: "Linimasa penagihan dengan Surat Paksa — CV Bintang Samudra", topik: "A2.10", estimasiMenit: 15,
-      narasi: "CV Bintang Samudra menerima STP PPN Rp240.000.000 yang terbit 2 Oktober 2026 dengan jatuh tempo pelunasan Senin, 2 November 2026. Utang tidak dibayar dan tidak ada permohonan angsuran/penundaan. KPP melaksanakan setiap tindakan penagihan pada tanggal paling cepat yang diperbolehkan: Surat Teguran disampaikan pada tanggal paling cepat, Surat Paksa diberitahukan pukul 09.00 pada tanggal paling cepat. Direktur CV diketahui hendak menjual aset pribadi yang terkait usaha sehingga itikad baiknya diragukan. Susun linimasa penagihan.",
-      data: [["Utang pajak", "Rp240.000.000"], ["STP terbit", "2 Oktober 2026"], ["Jatuh tempo", "2 November 2026"], ["Surat Teguran", "lewat 7 hari sejak jatuh tempo"], ["Surat Paksa", "lewat 21 hari sejak Surat Teguran"], ["SPMP", "lewat 2 × 24 jam sejak Surat Paksa"]],
+      narasi: "CV Bintang Samudra menerima STP PPN Rp240.000.000 yang terbit 3 Oktober 2026 dengan jatuh tempo pelunasan Senin, 2 November 2026. Utang tidak dibayar dan tidak ada permohonan angsuran/penundaan. KPP melaksanakan setiap tindakan penagihan pada tanggal paling cepat yang diperbolehkan: Surat Teguran disampaikan pada tanggal paling cepat, Surat Paksa diberitahukan pukul 09.00 pada tanggal paling cepat. Direktur CV diketahui hendak menjual aset pribadi yang terkait usaha sehingga itikad baiknya diragukan. Susun linimasa penagihan.",
+      data: [["Utang pajak", "Rp240.000.000"], ["STP terbit", "3 Oktober 2026"], ["Jatuh tempo", "2 November 2026"], ["Surat Teguran", "lewat 7 hari sejak jatuh tempo"], ["Surat Paksa", "lewat 21 hari sejak Surat Teguran"], ["SPMP", "lewat 2 × 24 jam sejak Surat Paksa"]],
       langkah: [
         { no: 1, pertanyaan: "Tanggal paling cepat Surat Teguran adalah ...", tipe: "pilihan",
           opsi: { A: "3 November 2026", B: "10 November 2026", C: "23 November 2026", D: "2 Desember 2026" }, jawaban: "B",
@@ -3995,8 +4192,8 @@ UKP.register({
           petunjuk: ["Syaratnya kumulatif", "Utang Rp240 juta ≥ Rp100 juta; itikad diragukan", "Jawaban: C"],
           penjelasan: "Pasal 33 UU PPSP: penyanderaan hanya terhadap Penanggung Pajak dengan utang paling sedikit Rp100 juta dan diragukan itikad baiknya; lamanya 6 bulan dan dapat diperpanjang 6 bulan." },
         { no: 6, pertanyaan: "Dengan Surat Paksa diberitahukan 2 Desember 2026, daluwarsa penagihan menjadi ...", tipe: "pilihan",
-          opsi: { A: "2 Oktober 2031", B: "2 Desember 2031", C: "31 Desember 2031", D: "2 Oktober 2036" }, jawaban: "B",
-          petunjuk: ["Daluwarsa penagihan 5 tahun", "Surat Paksa menangguhkan daluwarsa", "Dihitung ulang sejak Surat Paksa: 2 Desember 2031"],
+          opsi: { A: "3 Oktober 2031", B: "2 Desember 2031", C: "31 Desember 2031", D: "3 Oktober 2036" }, jawaban: "B",
+          petunjuk: ["Daluwarsa penagihan 5 tahun", "Surat Paksa menangguhkan daluwarsa", "Lima tahun sejak 2 Desember 2026 berakhir 1 Desember 2031; daluwarsa mulai 2 Desember 2031"],
           penjelasan: "Pasal 22 UU KUP: daluwarsa penagihan tertangguh bila Surat Paksa diterbitkan dan dihitung sejak tanggal penyampaian Surat Paksa." }
       ],
       kesimpulan: "Linimasa: jatuh tempo 2 Nov → teguran 10 Nov → Surat Paksa 2 Des → SPMP 4 Des (setelah 48 jam) → penyanderaan paling cepat 14 hari setelah Surat Paksa bila syarat kumulatif terpenuhi; daluwarsa penagihan bergeser ke 2 Desember 2031.",
@@ -4008,8 +4205,8 @@ UKP.register({
       data: [["Lebih bayar menurut SPT", "Rp1.450.000.000"], ["Permohonan diterima lengkap", "Senin, 28 April 2025"], ["Kredit PPh 22 tidak diakui", "Rp270.000.000"], ["SKPLB terbit", "Kamis, 23 April 2026"], ["STP PPh 25 belum dibayar", "Rp41.616.000"], ["Tanggal transfer pengembalian", "Selasa, 14 Juli 2026"], ["Tarif imbalan bunga (anggap)", "0,60% per bulan"]],
       langkah: [
         { no: 1, pertanyaan: "Paling lambat kapan DJP harus menerbitkan surat ketetapan pajak atas permohonan restitusi ini?", tipe: "pilihan",
-          opsi: { A: "28 April 2026", B: "28 Mei 2026", C: "30 April 2026", D: "28 Oktober 2025" }, jawaban: "A",
-          petunjuk: ["Lihat Pasal 17B ayat (1) UU KUP", "Jangka waktunya 12 bulan sejak permohonan diterima lengkap", "28 April 2025 + 12 bulan = 28 April 2026"],
+          opsi: { A: "27 April 2026", B: "27 Mei 2026", C: "30 April 2026", D: "27 Oktober 2025" }, jawaban: "A",
+          petunjuk: ["Lihat Pasal 17B ayat (1) UU KUP", "Jangka waktunya 12 bulan sejak permohonan diterima lengkap; tanggal diterima adalah hari pertama", "12 bulan sejak 28 April 2025 berakhir 27 April 2026"],
           penjelasan: "SKP atas permohonan restitusi wajib terbit paling lama 12 bulan sejak permohonan diterima lengkap; SKPLB 23 April 2026 masih tepat waktu." },
         { no: 2, pertanyaan: "Berapa jumlah kelebihan pembayaran menurut SKPLB (Rp)?", tipe: "angka", jawaban: 1180000000, toleransi: 0,
           petunjuk: ["Mulai dari lebih bayar menurut SPT", "Kurangi kredit PPh 22 yang tidak diakui", "1.450.000.000 − 270.000.000 = Rp1.180.000.000"],
@@ -4018,21 +4215,21 @@ UKP.register({
           petunjuk: ["Kelebihan lebih dahulu diperhitungkan dengan utang pajak", "Utang = STP Rp41.616.000 (pokok dan bunga)", "1.180.000.000 − 41.616.000 = Rp1.138.384.000"],
           penjelasan: "Pasal 11 ayat (1) UU KUP: kelebihan dikembalikan setelah diperhitungkan dengan utang pajak, termasuk sanksinya." },
         { no: 4, pertanyaan: "Paling lambat kapan kelebihan pembayaran harus dikembalikan?", tipe: "pilihan",
-          opsi: { A: "23 April 2026", B: "23 Mei 2026", C: "23 Juni 2026", D: "28 April 2026" }, jawaban: "B",
-          petunjuk: ["Lihat Pasal 11 ayat (2) UU KUP", "Jangka waktunya 1 bulan sejak SKPLB diterbitkan", "23 April 2026 + 1 bulan = 23 Mei 2026"],
+          opsi: { A: "23 April 2026", B: "22 Mei 2026", C: "22 Juni 2026", D: "27 April 2026" }, jawaban: "B",
+          petunjuk: ["Lihat Pasal 11 ayat (2) UU KUP", "Jangka waktunya 1 bulan sejak SKPLB diterbitkan; tanggal terbit adalah hari pertama", "1 bulan sejak 23 April 2026 berakhir 22 Mei 2026"],
           penjelasan: "Pengembalian paling lama 1 bulan sejak SKPLB diterbitkan; transfer 14 Juli 2026 terlambat." },
         { no: 5, pertanyaan: "Berapa bulan imbalan bunga Pasal 11 ayat (3)?", tipe: "angka", jawaban: 2, toleransi: 0,
-          petunjuk: ["Hitung sejak batas 1 bulan berakhir sampai pengembalian", "23 Mei → 23 Juni = 1 bulan, sisa 21 hari", "Bagian bulan dihitung penuh: 2 bulan"],
+          petunjuk: ["Hitung sejak batas 1 bulan berakhir (22 Mei 2026) sampai pengembalian", "23 Mei → 22 Juni = 1 bulan; 23 Juni → 14 Juli = 22 hari", "Bagian bulan dihitung penuh: 2 bulan"],
           penjelasan: "Imbalan bunga dihitung sejak berakhirnya jangka 1 bulan sampai saat pengembalian, bagian bulan dihitung penuh, paling lama 24 bulan." },
         { no: 6, pertanyaan: "Faktor uplift yang dipakai untuk imbalan bunga adalah ...", tipe: "pilihan",
           opsi: { A: "0%", B: "5%", C: "10%", D: "15%" }, jawaban: "A",
           petunjuk: ["Imbalan bunga diberikan pemerintah, bukan sanksi", "KMK tarif bunga mencantumkan imbalan bunga bersama Pasal 19", "Uplift 0%"],
-          penjelasan: "Tarif imbalan bunga = suku bunga acuan : 12 tanpa uplift (Oktober 2026 sebesar 0,59%)." },
+          penjelasan: "Tarif imbalan bunga = suku bunga acuan : 12 tanpa uplift (kasus ini memakai anggapan 0,60% per bulan)." },
         { no: 7, pertanyaan: "Berapa imbalan bunga yang diterima perusahaan (Rp)?", tipe: "angka", jawaban: 13660608, toleransi: 1,
           petunjuk: ["Dasarnya jumlah yang terlambat dikembalikan", "1.138.384.000 × 0,60% = 6.830.304 per bulan", "6.830.304 × 2 = Rp13.660.608"],
           penjelasan: "Imbalan bunga = Rp1.138.384.000 × 0,60% × 2 = Rp13.660.608; bagian yang dipindahbukukan ke STP tepat waktu tidak diberi imbalan bunga." }
       ],
-      kesimpulan: "SKPLB terbit dalam 12 bulan (Pasal 17B) sebesar Rp1.180.000.000, diperhitungkan dulu dengan STP Rp41.616.000, lalu sisanya Rp1.138.384.000 wajib dikembalikan paling lama 23 Mei 2026. Karena baru ditransfer 14 Juli 2026, perusahaan berhak atas imbalan bunga Pasal 11 ayat (3) uplift 0% selama 2 bulan, yaitu Rp13.660.608.",
+      kesimpulan: "SKPLB terbit dalam 12 bulan (Pasal 17B) sebesar Rp1.180.000.000, diperhitungkan dulu dengan STP Rp41.616.000, lalu sisanya Rp1.138.384.000 wajib dikembalikan paling lama 22 Mei 2026. Karena baru ditransfer 14 Juli 2026, perusahaan berhak atas imbalan bunga Pasal 11 ayat (3) uplift 0% selama 2 bulan, yaitu Rp13.660.608.",
       kalkulatorRef: "sanksi-bunga"
     },
     {
@@ -4041,15 +4238,15 @@ UKP.register({
       data: [["SP2 pemeriksaan lengkap", "Senin, 2 Februari 2026"], ["Akhir Tahun Pajak 2024", "31 Desember 2024"], ["Batas waktu penyampaian SPT Tahunan 2024", "30 April 2025"], ["Pengungkapan dan pelunasan", "Senin, 18 Mei 2026; pokok Rp60.000.000"], ["SPHP diterima", "Kamis, 25 Juni 2026"], ["Koreksi tambahan", "PPh kurang dibayar Rp90.000.000"], ["SKPKB diterbitkan dan dikirim", "Senin, 3 Agustus 2026"], ["Tarif (anggap)", "uplift 10% = 1,45%; uplift 15% = 1,87%"]],
       langkah: [
         { no: 1, pertanyaan: "Paling lambat kapan SPHP harus disampaikan?", tipe: "pilihan",
-          opsi: { A: "2 Mei 2026", B: "2 Juli 2026", C: "2 Agustus 2026", D: "2 November 2026" }, jawaban: "B",
-          petunjuk: ["Pemeriksaan lengkap tanpa perpanjangan", "Jangka waktu pengujian 5 bulan sejak SP2", "2 Februari 2026 + 5 bulan = 2 Juli 2026"],
+          opsi: { A: "1 Mei 2026", B: "1 Juli 2026", C: "1 Agustus 2026", D: "1 November 2026" }, jawaban: "B",
+          petunjuk: ["Pemeriksaan lengkap tanpa perpanjangan", "Jangka waktu pengujian 5 bulan sejak SP2; tanggal SP2 adalah hari pertama", "5 bulan sejak 2 Februari 2026 berakhir 1 Juli 2026"],
           penjelasan: "PMK 15/2025: pemeriksaan lengkap 5 bulan sejak SP2 sampai SPHP; perpanjangan 4 bulan hanya untuk grup usaha/indikasi transfer pricing." },
         { no: 2, pertanyaan: "Pengungkapan ketidakbenaran pengisian SPT tanggal 18 Mei 2026 ...", tipe: "pilihan",
           opsi: { A: "Sah karena disampaikan sebelum SPHP disampaikan", B: "Tidak sah karena pemeriksaan sudah dimulai", C: "Sah hanya bila disampaikan sebelum SP2", D: "Sah selama SKP belum terbit" }, jawaban: "A",
           petunjuk: ["Baca Pasal 8 ayat (4) UU KUP setelah UU HPP", "Batasnya dikaitkan dengan SPHP", "Jawaban: A"],
           penjelasan: "Pengungkapan dapat disampaikan walaupun pemeriksaan sudah dimulai, sepanjang SPHP belum disampaikan; pemeriksaan tetap dilanjutkan." },
         { no: 3, pertanyaan: "Berapa bulan bunga Pasal 8 ayat (5) atas pengungkapan tersebut?", tipe: "angka", jawaban: 13, toleransi: 0,
-          petunjuk: ["Untuk SPT Tahunan, bunga Pasal 8 ayat (5) dihitung sejak batas waktu penyampaian SPT Tahunan berakhir sampai tanggal pembayaran", "30 April 2025 → 30 April 2026 = 12 bulan, sisa 18 hari", "Bagian bulan dihitung penuh: 13 bulan"],
+          petunjuk: ["Untuk SPT Tahunan, bunga Pasal 8 ayat (5) dihitung sejak batas waktu penyampaian SPT Tahunan berakhir sampai tanggal pembayaran", "1 Mei 2025 sampai 30 April 2026 = 12 bulan; 1 sampai 18 Mei 2026 = 18 hari", "Bagian bulan dihitung penuh: 13 bulan"],
           penjelasan: "Bunga Pasal 8 ayat (5) dihitung sejak batas waktu penyampaian SPT Tahunan 2024 berakhir (30 April 2025) sampai tanggal pembayaran 18 Mei 2026: 12 bulan 18 hari menjadi 13 bulan. Akhir Tahun Pajak (31 Desember 2024) adalah titik awal bunga SKPKB Pasal 13 ayat (2) pada langkah 6, bukan bunga pengungkapan." },
         { no: 4, pertanyaan: "Berapa bunga Pasal 8 ayat (5) (Rp)?", tipe: "angka", jawaban: 11310000, toleransi: 0,
           petunjuk: ["Uplift 10% → tarif 1,45% (anggap)", "60.000.000 × 1,45% = 870.000 per bulan", "870.000 × 13 = Rp11.310.000"],
@@ -4065,8 +4262,8 @@ UKP.register({
           petunjuk: ["Uplift 15% → tarif 1,87% (anggap)", "90.000.000 × 1,87% = 1.683.000 per bulan", "1.683.000 × 20 = Rp33.660.000"],
           penjelasan: "Rp90.000.000 × 1,87% × 20 = Rp33.660.000; jumlah SKPKB Rp123.660.000." },
         { no: 8, pertanyaan: "Paling lambat kapan keberatan atas SKPKB diajukan?", tipe: "pilihan",
-          opsi: { A: "3 September 2026", B: "3 Oktober 2026", C: "3 November 2026", D: "3 Agustus 2027" }, jawaban: "C",
-          petunjuk: ["Keberatan diajukan dalam 3 bulan", "Dihitung sejak tanggal SKP dikirim", "3 Agustus 2026 + 3 bulan = 3 November 2026"],
+          opsi: { A: "2 September 2026", B: "2 Oktober 2026", C: "2 November 2026", D: "2 Agustus 2027" }, jawaban: "C",
+          petunjuk: ["Keberatan diajukan dalam 3 bulan", "Dihitung sejak tanggal SKP dikirim; tanggal kirim adalah hari pertama", "3 bulan sejak 3 Agustus 2026 berakhir 2 November 2026"],
           penjelasan: "Pasal 25 ayat (3) UU KUP; karena tidak ada jumlah yang disetujui dalam PAHP atas koreksi tambahan, tidak ada pelunasan minimal sebelum keberatan." }
       ],
       kesimpulan: "Pengungkapan sebelum SPHP membuat kekurangan Rp60.000.000 hanya dikenai bunga uplift 10% selama 13 bulan sejak batas waktu penyampaian SPT Tahunan (Rp11.310.000) yang dilunasi bersama pengungkapan, sementara koreksi yang tidak diungkapkan (Rp90.000.000) ditetapkan dengan SKPKB berbunga uplift 15% selama 20 bulan (Rp33.660.000). Linimasa PMK 15/2025 (SPHP 5 bulan, tanggapan 5 hari kerja) dan tenggat keberatan 3 bulan melengkapi kasus ini.",
@@ -4080,6 +4277,6 @@ UKP.register({
     { teks: "Angka pra-2025 adalah pengecoh favorit: tanggal 10, pemeriksaan kantor 4/lapangan 6 bulan, SPHP 7 hari, denda 50%/100%, kenaikan 100%, bunga 2%.", tagSebab: "angka-usang" },
     { teks: "Baca titik awal tenggat dua kali: keberatan sejak SKP dikirim, banding sejak SK Keberatan diterima, Surat Paksa sejak Surat Teguran disampaikan.", tagSebab: "salah-baca" },
     { teks: "Denda keberatan/banding: kurangkan pajak yang dibayar sebelum keberatan, dan ingat denda 30% gugur bila WP banding.", tagSebab: "lupa-pasal" },
-    { teks: "Tenggat 'N bulan sejak tanggal X': contoh di Penjelasan Pasal 19 ayat (1) UU 28/2007 (sebelum Pasal 19 diganti UU 11/2020; Penjelasan yang berlaku kini 'Cukup jelas') dan Penjelasan Pasal 11 ayat (2) UU PBB menghitung sampai sehari sebelum tanggal yang sama (7 Oktober menjadi 6 November; 1 Maret menjadi 31 Maret). Soal latihan dan try out sering memakai tanggal yang sama. Hitung keduanya, lalu pilih yang ada di opsi.", tagSebab: "salah-hitung" }
+    { teks: "Tenggat 'N bulan sejak tanggal X': tanggal X dihitung sebagai hari pertama, jadi hari terakhirnya sehari sebelum tanggal yang sama pada bulan ke-N (3 bulan sejak 10 Juli berakhir 9 Oktober). Ini mengikuti contoh Penjelasan Pasal 11 ayat (1) dan (2) UU PBB (1 Maret menjadi 31 Agustus dan 31 Maret) dan Penjelasan Pasal 19 ayat (1) UU 28/2007 (7 Oktober menjadi 6 November). Beberapa soal try out memakai tanggal yang sama; soal itu diberi tanda perlu cek.", tagSebab: "salah-hitung" }
   ]
 });

@@ -290,8 +290,8 @@ UKP.register({
       ],
       contohSoal: {
         stem: "Otoritas Jepang memberitahukan koreksi laba induk pada 10 Maret 2024. P3B mengatur pengajuan MAP dalam 3 tahun sejak pemberitahuan pertama. Kapan batas akhir pengajuan MAP oleh afiliasinya di Indonesia?",
-        jawaban: "10 Maret 2027",
-        langkah: [["Titik awal", "Pemberitahuan pertama 10 Maret 2024"], ["Jangka waktu P3B", "3 tahun"], ["Batas akhir", "10 Maret 2027"]]
+        jawaban: "9 Maret 2027",
+        langkah: [["Titik awal", "Pemberitahuan pertama 10 Maret 2024 (hari pertama)"], ["Jangka waktu P3B", "3 tahun"], ["Batas akhir", "9 Maret 2027 (sehari sebelum 10 Maret 2027)"]]
       },
       verifikasi: "✅"
     },
@@ -654,20 +654,23 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "C10-010", topik: "C10.2", tingkat: ["C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["C-2026-10"], kasusId: "V-C10-02",
+      id: "C10-010",
+      topik: "C10.2",
+      tingkat: ["C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
+      kasusId: "V-C10-02",
       stem: "Lanjutan V-C10-02: setelah menjadi BUT, Lionstar Consulting terdaftar dan memiliki NPWP sebagai BUT di Jakarta. Pada November 2026 PT Nusantara Retailindo membayar fee jasa konsultansi lanjutan Rp500.000.000 kepada BUT tersebut. Pemotongan PPh yang tepat oleh PT Nusantara Retailindo adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "PPh 26 tarif 20% Rp100.000.000 dengan BPNR",
-        B: "Tidak dipotong karena Lionstar memiliki Form DGT sah",
-        C: "PPh 23 tarif 4% Rp20.000.000 karena penerima badan asing",
-        D: "PPh 23 tarif 2% Rp10.000.000 dengan BPPU"
-      },
+      opsi: { A: "PPh 26 tarif 20% Rp100.000.000 dengan BPNR", B: "Tidak dipotong karena Lionstar memiliki Form DGT sah", C: "PPh 23 tarif 4% Rp20.000.000 karena penerima badan asing", D: "PPh 23 tarif 2% Rp10.000.000 dengan BPPU" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
         inti: "BUT diperlakukan sebagai subjek pajak dalam negeri untuk pemotongan; imbalan jasa konsultan dipotong PPh 23 2% × Rp500.000.000 = Rp10.000.000 dan dibuatkan BPPU. PPh 23 ini menjadi kredit pajak BUT.",
-        jejakHitung: [["PPh 23 = 2% × Rp500.000.000", "Rp10.000.000"]],
+        jejakHitung: [
+          ["PPh 23 = 2% × Rp500.000.000", "Rp10.000.000"]
+        ],
         mengapaSalah: {
           A: "PPh 26 hanya untuk WPLN selain BUT.",
           B: "Form DGT tidak relevan untuk penghasilan yang diterima melalui BUT.",
@@ -675,8 +678,9 @@ UKP.register({
         },
         jebakan: "Begitu ada BUT, pembayaran kepadanya keluar dari rezim PPh 26."
       },
-      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015", berlakuSejak: "2015-10-01" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 (BPPU)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 100, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015", berlakuSejak: "2015-08-26" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-11/PJ/2025 (BPPU)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 100,
+      verifikasi: "✅"
     },
     {
       id: "C10-011", topik: "C10.2", tingkat: ["C"], jenis: "klasifikasi", kesulitan: 1, laporanUjian: ["C-2026-10"],
@@ -1376,30 +1380,35 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "C10-037", topik: "C10.6", tingkat: ["C"], jenis: "prosedur", kesulitan: 1, laporanUjian: ["C-2026-10"],
+      id: "C10-037",
+      topik: "C10.6",
+      tingkat: ["C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      laporanUjian: ["C-2026-10"],
       kutipan: "Pasal 25 ayat (1) P3B (disederhanakan): Apabila seorang residen menganggap bahwa tindakan salah satu atau kedua Negara mengakibatkan pengenaan pajak yang tidak sesuai dengan Persetujuan, ia dapat mengajukan kasusnya kepada pejabat berwenang Negara tempat ia menjadi residen dalam waktu 3 tahun sejak pemberitahuan pertama atas tindakan tersebut.",
       stem: "PT Hanei Indonesia menerima SKPKB hasil koreksi harga transfer atas pembelian dari afiliasinya di Jepang; SKPKB tersebut merupakan pemberitahuan pertama atas tindakan yang menimbulkan pajak berganda dan diterima pada 10 Maret 2024. Berdasarkan kutipan, PT Hanei Indonesia paling lambat harus mengajukan MAP kepada DJP pada tanggal ...",
       kataKualifikasi: ["paling lambat"],
-      opsi: {
-        A: "10 Juni 2024, sama dengan batas pengajuan keberatan",
-        B: "10 Maret 2027",
-        C: "31 Desember 2027, tiga tahun sejak akhir tahun pemberitahuan",
-        D: "10 Maret 2026"
-      },
+      opsi: { A: "9 Juni 2024, sama dengan tenggat 3 bulan pengajuan keberatan", B: "9 Maret 2027", C: "31 Desember 2027, tiga tahun sejak akhir tahun pemberitahuan", D: "10 Maret 2027, tanggal yang sama tiga tahun kemudian" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
-        inti: "Jangka waktu MAP mengikuti P3B: 3 tahun sejak pemberitahuan pertama (10 Maret 2024), sehingga paling lambat 10 Maret 2027.",
-        jejakHitung: [["Pemberitahuan pertama", "10 Maret 2024"], ["+ 3 tahun", "10 Maret 2027"]],
+        inti: "Jangka waktu MAP mengikuti P3B: 3 tahun sejak pemberitahuan pertama (10 Maret 2024). Tanggal pemberitahuan dihitung sebagai hari pertama (cara hitung contoh Penjelasan Pasal 11 UU PBB dan Penjelasan Pasal 19 ayat (1) UU KUP), sehingga hari terakhir pengajuan adalah 9 Maret 2027.",
+        jejakHitung: [
+          ["Pemberitahuan pertama (hari pertama)", "10 Maret 2024"],
+          ["3 tahun kemudian", "10 Maret 2027"],
+          ["Hari terakhir (sehari sebelumnya)", "9 Maret 2027"]
+        ],
         mengapaSalah: {
           A: "3 bulan adalah tenggat keberatan UU KUP, bukan MAP.",
-          C: "Dihitung sejak tanggal pemberitahuan, bukan akhir tahun.",
-          D: "Memakai 2 tahun, tidak sesuai kutipan."
+          C: "Dihitung sejak tanggal pemberitahuan, bukan sejak akhir tahun.",
+          D: "Tanggal pemberitahuan sudah dihitung sebagai hari pertama, sehingga 10 Maret 2027 sudah lewat satu hari dari jangka 3 tahun."
         },
-        jebakan: "Tenggat MAP mengikuti P3B, tenggat keberatan mengikuti UU KUP."
+        jebakan: "Tenggat MAP mengikuti P3B, tenggat keberatan mengikuti UU KUP. Jangka \"N tahun sejak\" berakhir sehari sebelum tanggal yang sama N tahun kemudian."
       },
       dasarHukum: [{ pasal: "Pasal 25 ayat (1) P3B" }, { pasal: "PMK 172/2023 (MAP)", berlakuSejak: "2023-12-29" }],
-      anggaranDetik: 60, verifikasi: "✅"
+      anggaranDetik: 60,
+      verifikasi: "✅"
     },
     {
       id: "C10-038", topik: "C10.6", tingkat: ["C"], jenis: "konsep", kesulitan: 2, laporanUjian: ["C-2026-10"],
@@ -1452,20 +1461,23 @@ UKP.register({
       anggaranDetik: 100, verifikasi: "✅"
     },
     {
-      id: "C10-040", topik: "C10.6", tingkat: ["C"], jenis: "prosedur", kesulitan: 3, laporanUjian: ["C-2026-10"],
+      id: "C10-040",
+      topik: "C10.6",
+      tingkat: ["C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Gemilang Tekstil menerima SKPKB PPh Badan 2023 hasil koreksi harga transfer atas penjualan kepada afiliasi di Jepang; SKPKB dikirim dan diterima pada 15 Juli 2026. Perusahaan ingin menempuh MAP sekaligus tetap mempertahankan hak keberatan agar tidak kehilangan jalur domestik bila MAP gagal. Langkah yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Cukup mengajukan MAP; jangka waktu keberatan otomatis tertangguh sampai MAP selesai atau dihentikan",
-        B: "Mengajukan keberatan paling lama 6 bulan sejak SKPKB dikirim (15 Januari 2027) karena disertai MAP",
-        C: "Mengajukan keberatan paling lama 15 Oktober 2026 (3 bulan sejak SKPKB dikirim) dan MAP dalam batas waktu P3B secara bersamaan",
-        D: "Mengajukan keberatan terlebih dahulu; MAP baru boleh diajukan setelah Surat Keputusan Keberatan terbit dan tidak diajukan banding"
-      },
+      opsi: { A: "Cukup mengajukan MAP; jangka waktu keberatan otomatis tertangguh sampai MAP selesai atau dihentikan", B: "Mengajukan keberatan paling lama 6 bulan sejak SKPKB dikirim (14 Januari 2027) karena disertai MAP", C: "Mengajukan keberatan paling lama 14 Oktober 2026 (3 bulan sejak SKPKB dikirim) dan MAP dalam batas waktu P3B secara bersamaan", D: "Mengajukan keberatan terlebih dahulu; MAP baru boleh diajukan setelah Surat Keputusan Keberatan terbit dan tidak diajukan banding" },
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Keberatan tetap tunduk pada Pasal 25 ayat (3) UU KUP (3 bulan sejak SKP dikirim, yaitu 15 Oktober 2026), sedangkan MAP mengikuti P3B; PMK 172/2023 membolehkan keduanya berjalan bersamaan.",
-        jejakHitung: [["SKPKB dikirim", "15 Juli 2026"], ["+ 3 bulan (keberatan)", "15 Oktober 2026"]],
+        inti: "Keberatan tetap tunduk pada Pasal 25 ayat (3) UU KUP (3 bulan sejak SKP dikirim; 15 Juli 2026 dihitung sebagai hari pertama, sehingga paling lama 14 Oktober 2026), sedangkan MAP mengikuti P3B; PMK 172/2023 membolehkan keduanya berjalan bersamaan.",
+        jejakHitung: [
+          ["SKPKB dikirim (hari pertama)", "15 Juli 2026"],
+          ["3 bulan, hari terakhir sehari sebelum 15 Oktober 2026", "14 Oktober 2026"]
+        ],
         mengapaSalah: {
           A: "Pengajuan MAP tidak menangguhkan tenggat keberatan.",
           B: "Tenggat keberatan tetap 3 bulan.",
@@ -1474,7 +1486,8 @@ UKP.register({
         jebakan: "Dua jalur, dua tenggat: UU KUP untuk keberatan, P3B untuk MAP."
       },
       dasarHukum: [{ pasal: "Pasal 25 ayat (3) UU KUP", berlakuSejak: "2021-10-29" }, { pasal: "PMK 172/2023 (MAP)", berlakuSejak: "2023-12-29" }, { pasal: "Pasal 25 P3B" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      anggaranDetik: 120,
+      verifikasi: "✅"
     },
     {
       id: "C10-041", topik: "C10.7", tingkat: ["C"], jenis: "konsep", kesulitan: 1, laporanUjian: ["C-2026-10"],
@@ -2759,21 +2772,25 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "C10-089", topik: "C10.6", tingkat: ["C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["C-2026-10"], kasusId: "V-C10-08",
+      id: "C10-089",
+      topik: "C10.6",
+      tingkat: ["C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
+      kasusId: "V-C10-08",
       kutipan: "Pasal 9 ayat (2) P3B (disederhanakan): Apabila suatu Negara memasukkan ke dalam laba perusahaan di Negara itu laba yang telah dikenai pajak di Negara lainnya atas perusahaan Negara lainnya, dan laba tersebut seharusnya diperoleh perusahaan Negara pertama seandainya syarat-syarat di antara kedua perusahaan sama dengan syarat di antara perusahaan independen, Negara lainnya akan melakukan penyesuaian yang wajar atas jumlah pajak yang dikenakan atas laba tersebut. Dalam menentukan penyesuaian itu, pejabat berwenang kedua Negara akan saling berkonsultasi bila perlu.",
       stem: "Data untuk soal V-C10-08: PT Hikari Komponen Indonesia (WPDN; tahun buku sama dengan tahun kalender) menjual seluruh produksinya kepada induknya, Hikari Corporation (Jepang). Pada 5 Februari 2026 otoritas pajak Jepang menyampaikan pemberitahuan pertama koreksi harga transfer kepada Hikari Corporation untuk tahun fiskal 2024: harga pembelian dari PT Hikari Indonesia dinilai terlalu tinggi sehingga laba Hikari Corporation dikoreksi naik setara Rp3.000.000.000. PT Hikari Indonesia telah melaporkan dan melunasi PPh Badan 2024, dan tahun itu belum pernah diperiksa DJP. P3B Indonesia–Jepang memuat penyesuaian berkaitan seperti kutipan serta MAP dengan batas 3 tahun sejak pemberitahuan pertama. Untuk menghilangkan pajak berganda, langkah yang tepat bagi PT Hikari Indonesia adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Mengajukan keberatan kepada DJP atas SPT Tahunan 2024 paling lambat 5 Mei 2026, yaitu 3 bulan sejak koreksi Jepang",
-        B: "Membetulkan sendiri SPT Tahunan 2024 untuk menurunkan laba Rp3.000.000.000 lalu meminta pengembalian kelebihan pembayaran pajaknya",
-        C: "Tidak ada upaya di Indonesia; pajak berganda hanya dapat diselesaikan Hikari Corporation melalui keberatan kepada otoritas Jepang",
-        D: "Mengajukan MAP kepada DJP untuk penyesuaian berkaitan paling lambat 5 Februari 2029; laba 2024 baru diturunkan setelah persetujuan bersama"
-      },
+      opsi: { A: "Mengajukan keberatan kepada DJP atas SPT Tahunan 2024 paling lambat 4 Mei 2026, yaitu 3 bulan sejak koreksi Jepang", B: "Membetulkan sendiri SPT Tahunan 2024 untuk menurunkan laba Rp3.000.000.000 lalu meminta pengembalian kelebihan pembayaran pajaknya", C: "Tidak ada upaya di Indonesia; pajak berganda hanya dapat diselesaikan Hikari Corporation melalui keberatan kepada otoritas Jepang", D: "Mengajukan MAP kepada DJP untuk penyesuaian berkaitan paling lambat 4 Februari 2029; laba 2024 baru diturunkan setelah persetujuan bersama" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Penyesuaian berkaitan (Pasal 9 ayat (2) P3B) atas koreksi otoritas mitra dilakukan melalui MAP, yang dapat dimohonkan WPDN kepada DJP dalam batas waktu P3B: 3 tahun sejak 5 Februari 2026, yaitu paling lambat 5 Februari 2029. Penurunan laba dilakukan berdasarkan persetujuan bersama, bukan secara sepihak.",
-        jejakHitung: [["Pemberitahuan pertama", "5 Februari 2026"], ["Batas pengajuan MAP (3 tahun)", "5 Februari 2029"]],
+        inti: "Penyesuaian berkaitan (Pasal 9 ayat (2) P3B) atas koreksi otoritas mitra dilakukan melalui MAP, yang dapat dimohonkan WPDN kepada DJP dalam batas waktu P3B: 3 tahun sejak 5 Februari 2026; tanggal itu dihitung sebagai hari pertama, sehingga paling lambat 4 Februari 2029. Penurunan laba dilakukan berdasarkan persetujuan bersama, bukan secara sepihak.",
+        jejakHitung: [
+          ["Pemberitahuan pertama (hari pertama)", "5 Februari 2026"],
+          ["Batas pengajuan MAP (3 tahun, sehari sebelum 5 Februari 2029)", "4 Februari 2029"]
+        ],
         mengapaSalah: {
           A: "Keberatan diajukan atas surat ketetapan atau pemotongan/pemungutan; SPT yang dilaporkan sendiri bukan objek keberatan.",
           B: "Penyesuaian berkaitan tidak dilakukan sepihak melalui pembetulan; jumlahnya ditentukan persetujuan bersama.",
@@ -2782,7 +2799,8 @@ UKP.register({
         jebakan: "Koreksi oleh negara mitra diselesaikan lewat MAP, bukan keberatan atau pembetulan."
       },
       dasarHukum: [{ pasal: "Pasal 9 ayat (2) dan Pasal 25 P3B" }, { pasal: "PMK 172/2023 (MAP dan penyesuaian berkaitan)", berlakuSejak: "2023-12-29" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "C10-090", topik: "C10.6", tingkat: ["C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["C-2026-10"], kasusId: "V-C10-08",
@@ -4788,15 +4806,15 @@ UKP.register({
           petunjuk: ["Selisih koreksi primer dianggap dividen kepada induk", "Kepemilikan 100% (≥ 25%) dan Form DGT sah → tarif P3B dividen 10%", "10% × Rp10.000.000.000 = Rp1.000.000.000"],
           penjelasan: "Pasal 37 PMK 172/2023: selisih koreksi primer diperlakukan sebagai dividen kepada pihak afiliasi, kecuali dikembalikan dalam kas/setara kas sebelum surat ketetapan pajak terbit (ayat (4) huruf a dan ayat (5)). SKPKB sudah terbit, sehingga PPh 26 tetap terutang." },
         { no: 6, pertanyaan: "Tenggat upaya penyelesaian yang tepat adalah ...", tipe: "pilihan",
-          opsi: { A: "Keberatan paling lambat 10 Desember 2026 dan MAP paling lambat 10 September 2029; keduanya dapat berjalan bersamaan", B: "Keberatan paling lambat 10 Desember 2026; MAP baru boleh diajukan setelah Surat Keputusan Keberatan terbit", C: "MAP paling lambat 10 Desember 2026, sama dengan tenggat keberatan", D: "Keberatan paling lambat 10 Maret 2027 karena disertai MAP" }, jawaban: "A",
-          petunjuk: ["Keberatan: 3 bulan sejak tanggal SKP dikirim (Pasal 25 ayat (3) UU KUP)", "MAP: sesuai P3B, 3 tahun sejak pemberitahuan pertama", "Jawaban: A"],
+          opsi: { A: "Keberatan paling lambat 9 Desember 2026 dan MAP paling lambat 9 September 2029; keduanya dapat berjalan bersamaan", B: "Keberatan paling lambat 9 Desember 2026; MAP baru boleh diajukan setelah Surat Keputusan Keberatan terbit", C: "MAP paling lambat 9 Desember 2026, sama dengan tenggat keberatan", D: "Keberatan paling lambat 9 Maret 2027 karena disertai MAP" }, jawaban: "A",
+          petunjuk: ["Keberatan: 3 bulan sejak tanggal SKP dikirim (Pasal 25 ayat (3) UU KUP); 10 September 2026 dihitung hari pertama, jadi paling lambat 9 Desember 2026", "MAP: sesuai P3B, 3 tahun sejak pemberitahuan pertama, jadi paling lambat 9 September 2029", "Jawaban: A"],
           penjelasan: "PMK 172/2023 membolehkan MAP berjalan bersamaan dengan keberatan; masing-masing tenggat tetap dijaga." },
         { no: 7, pertanyaan: "Melihat ke belakang: cara yang tepat agar secondary adjustment tidak dikenakan, dan kapan harus dilakukan, adalah ...", tipe: "pilihan",
           opsi: { A: "Mentari Holdings mengembalikan Rp10.000.000.000 kepada PT Mentari dalam bentuk kas/setara kas sebelum SKPKB terbit pada 10 September 2026", B: "PT Mentari memotong PPh 26 dengan tarif domestik 20%", C: "PT Mentari mengajukan APA unilateral untuk Tahun Pajak 2024", D: "Mentari Holdings mengembalikan Rp10.000.000.000 dalam bentuk kas setelah SKPKB terbit, asalkan sebelum keberatan diajukan" }, jawaban: "A",
           petunjuk: ["Secondary adjustment muncul karena kelebihan dana tertahan di induk", "Pasal 37 ayat (4) huruf a dan ayat (5) PMK 172/2023: pengembalian kas/setara kas sebesar selisih, dilakukan sebelum terbitnya surat ketetapan pajak", "Jawaban: A"],
           penjelasan: "Pengembalian kas sebesar selisih memulihkan posisi seolah-olah transaksi wajar, sehingga tidak ada dividen terselubung; syaratnya dilakukan sebelum surat ketetapan pajak terbit (Pasal 37 ayat (5) PMK 172/2023). Karena SKPKB sudah terbit 10 September 2026, jalan itu kini tertutup dan secondary adjustment pada langkah 5 tetap berlaku." }
       ],
-      kesimpulan: "Margin 1,0% disesuaikan ke median 3,5%: koreksi primer Rp10 miliar, PPh Rp2,2 miliar, dan sanksi bunga Rp831,6 juta (21 bulan × 1,80%). Karena tidak ada pengembalian kas sebelum SKPKB terbit (Pasal 37 ayat (5) PMK 172/2023), secondary adjustment menimbulkan PPh 26 10% = Rp1 miliar. Keberatan paling lambat 10 Desember 2026 dan MAP paling lambat 10 September 2029 dapat ditempuh bersamaan.",
+      kesimpulan: "Margin 1,0% disesuaikan ke median 3,5%: koreksi primer Rp10 miliar, PPh Rp2,2 miliar, dan sanksi bunga Rp831,6 juta (21 bulan × 1,80%). Karena tidak ada pengembalian kas sebelum SKPKB terbit (Pasal 37 ayat (5) PMK 172/2023), secondary adjustment menimbulkan PPh 26 10% = Rp1 miliar. Keberatan paling lambat 9 Desember 2026 dan MAP paling lambat 9 September 2029 dapat ditempuh bersamaan.",
       kalkulatorRef: "sanksi-bunga"
     },
     {

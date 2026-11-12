@@ -784,20 +784,29 @@ UKP.register({
       anggaranDetik: 60, verifikasi: "✅"
     },
     {
-      id: "A4-020", topik: "A4.5", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1,
+      id: "A4-020",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
       stem: "PKP membuat faktur pajak di Coretax tertanggal 26 Februari 2026 atas penyerahan BKP kepada PKP lain. Berdasarkan PER-11/PJ/2025, faktur tersebut harus diunggah dan memperoleh persetujuan DJP paling lambat pada ...",
       kataKualifikasi: ["paling lambat"],
-      opsi: { A: "15 Maret 2026", B: "20 Maret 2026", C: "31 Maret 2026", D: "26 Mei 2026" },
+      opsi: { A: "15 Maret 2026", B: "20 Maret 2026", C: "31 Maret 2026", D: "25 Mei 2026" },
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Sejak 22 Mei 2025 faktur Coretax diunggah paling lambat tanggal 20 bulan berikutnya setelah tanggal pembuatan faktur.",
         jejakHitung: [],
-        mengapaSalah: { A: "Tanggal 15 adalah batas unggah e-Faktur lama sebelum PER-11/PJ/2025", C: "31 Maret adalah batas SPT Masa PPN Februari, bukan batas unggah faktur", D: "Tiga bulan adalah batas faktur dianggap tidak dibuat, bukan batas unggah" },
+        mengapaSalah: {
+          A: "Tanggal 15 adalah batas unggah e-Faktur lama sebelum PER-11/PJ/2025",
+          C: "31 Maret adalah batas SPT Masa PPN Februari, bukan batas unggah faktur",
+          D: "25 Mei 2026 adalah hari terakhir jangka 3 bulan sejak 26 Februari 2026 (batas faktur dianggap tidak dibuat bila dihitung dari saat seharusnya dibuat), bukan batas unggah"
+        },
         jebakan: "Tiga tenggat berbeda: unggah tanggal 20, SPT akhir bulan, faktur > 3 bulan dianggap tidak dibuat."
       },
       dasarHukum: [{ pasal: "PER-11/PJ/2025 (batas unggah faktur)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 50, verifikasi: "✅"
+      anggaranDetik: 50,
+      verifikasi: "✅"
     },
     {
       id: "A4-021",
@@ -843,8 +852,8 @@ UKP.register({
       pembahasan: {
         inti: "Faktur yang dibuat lebih dari 3 bulan sejak saat seharusnya dianggap tidak dibuat: penjual tetap menyetor PPN dan dikenai denda 1% DPP, sedangkan pembeli tidak dapat mengkreditkan PM-nya.",
         jejakHitung: [
-          ["10 Januari + 3 bulan", "10 April 2026"],
-          ["Faktur 20 Mei 2026", "lebih dari 3 bulan: dianggap tidak dibuat"],
+          ["3 bulan sejak 10 Januari 2026 (tanggal itu hari pertama)", "berakhir 9 April 2026"],
+          ["Faktur 20 Mei 2026", "setelah 9 April 2026: dianggap tidak dibuat"],
           ["PPN = 11% × 120.000.000", "Rp13.200.000"],
           ["Denda = 1% × DPP (11/12 × 120.000.000 = 110.000.000)", "Rp1.100.000"]
         ],
@@ -1486,20 +1495,32 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A4-055", topik: "A4.9", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A4-055",
+      topik: "A4.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       stem: "PT Baja Prima (PKP) mengajukan permohonan restitusi lebih bayar PPN akhir tahun buku 2025 melalui SPT Masa PPN Desember 2025, dan permohonan dinyatakan diterima lengkap pada 10 Maret 2026. PT Baja Prima tidak memenuhi kriteria pengembalian pendahuluan sehingga dilakukan pemeriksaan. DJP wajib menerbitkan surat ketetapan pajak paling lama pada ...",
       kataKualifikasi: ["paling lama"],
-      opsi: { A: "10 April 2026", B: "10 September 2026", C: "10 Maret 2027; bila terlampaui permohonan dianggap ditolak", D: "10 Maret 2027; bila terlampaui permohonan dianggap dikabulkan dan SKPLB diterbitkan paling lama 1 bulan kemudian" },
+      opsi: { A: "9 April 2026", B: "9 September 2026", C: "9 Maret 2027; bila terlampaui permohonan dianggap ditolak", D: "9 Maret 2027; bila terlampaui permohonan dianggap dikabulkan dan SKPLB diterbitkan paling lama 1 bulan kemudian" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "salah-baca" },
       pembahasan: {
-        inti: "Pasal 17B: keputusan atas permohonan restitusi melalui pemeriksaan paling lama 12 bulan sejak permohonan diterima lengkap; bila terlewati, permohonan dianggap dikabulkan dan SKPLB terbit paling lama 1 bulan setelahnya.",
-        jejakHitung: [["Permohonan diterima lengkap", "10 Maret 2026"], ["+ 12 bulan", "10 Maret 2027"]],
-        mengapaSalah: { A: "1 bulan adalah jangka SKPPKP pengembalian pendahuluan PPN", B: "Tidak ada jangka 6 bulan dalam Pasal 17B", C: "Akibat lewat waktu adalah dikabulkan, bukan ditolak" },
-        jebakan: "Diamnya DJP melewati 12 bulan berarti permohonan dikabulkan."
+        inti: "Pasal 17B: surat ketetapan pajak atas permohonan restitusi melalui pemeriksaan diterbitkan paling lama 12 bulan sejak permohonan diterima lengkap; tanggal diterima lengkap dihitung sebagai hari pertama, sehingga jangka waktu berakhir sehari sebelum tanggal yang sama 12 bulan kemudian. Bila terlewati, permohonan dianggap dikabulkan dan SKPLB terbit paling lama 1 bulan setelahnya.",
+        jejakHitung: [
+          ["Permohonan diterima lengkap (hari pertama)", "10 Maret 2026"],
+          ["12 bulan sejak 10 Maret 2026 berakhir", "9 Maret 2027"]
+        ],
+        mengapaSalah: {
+          A: "9 April 2026 adalah akhir jangka 1 bulan, yaitu jangka SKPPKP pengembalian pendahuluan PPN, bukan Pasal 17B",
+          B: "9 September 2026 adalah akhir jangka 6 bulan; tidak ada jangka 6 bulan dalam Pasal 17B",
+          C: "Akibat lewat waktu adalah dikabulkan, bukan ditolak"
+        },
+        jebakan: "Diamnya DJP melewati 12 bulan berarti permohonan dikabulkan. Tanggal permohonan diterima lengkap dihitung sebagai hari pertama, jadi batasnya 9 Maret 2027, bukan 10 Maret 2027."
       },
       dasarHukum: [{ pasal: "Pasal 17B ayat (1) dan (2) UU KUP", berlakuSejak: "2008-01-01" }],
-      anggaranDetik: 80, verifikasi: "✅"
+      anggaranDetik: 80,
+      verifikasi: "✅"
     },
     {
       id: "A4-056",
@@ -2425,7 +2446,7 @@ UKP.register({
         inti: "Lebih bayar Rp257.000.000 dan penyerahan Rp4.000.000.000 memenuhi batas PKP persyaratan tertentu untuk suatu Masa Pajak (penyerahan sampai dengan Rp4,2 miliar dan lebih bayar paling banyak Rp1 miliar; PMK 28/2026 Pasal 9 ayat (2) huruf d). SKPPKP PPN diterbitkan paling lama 1 bulan (Pasal 17D ayat (1) UU KUP; PMK 28/2026 Pasal 11 ayat (2) huruf c). Pengembalian itu tidak menutup kewenangan pemeriksaan (Pasal 17D ayat (4) UU KUP; PMK 28/2026 Pasal 22), dan SKPKB sesudahnya dikenai kenaikan 100% (Pasal 17D ayat (5) UU KUP).",
         jejakHitung: [
           ["Permohonan lengkap", "18 September 2026"],
-          ["SKPPKP PPN paling lama 1 bulan", "18 Oktober 2026"],
+          ["SKPPKP PPN paling lama 1 bulan sejak permohonan diterima (18 September hari pertama)", "paling lambat 17 Oktober 2026"],
           ["SKPKB setelah pengembalian pendahuluan", "pokok + kenaikan 100%"]
         ],
         mengapaSalah: {
@@ -4203,13 +4224,13 @@ UKP.register({
           petunjuk: ["DPP = 11/12 × 96.000.000 = 88.000.000", "Denda = 1% × DPP", "Jawaban: Rp880.000"],
           penjelasan: "1% × Rp88.000.000 = Rp880.000." },
         { no: 3, pertanyaan: "Bagaimana status faktur PT Borneo (16 Maret → 1 Juli)?", tipe: "pilihan", opsi: { A: "Sah tetapi terlambat; PM PT Borneo dapat dikreditkan", B: "Dianggap tidak dibuat; CV tetap menyetor PPN dan didenda 1% DPP, PM PT Borneo tidak dapat dikreditkan", C: "Batal demi hukum dan PPN tidak terutang", D: "Sah karena diunggah sebelum tanggal 20 bulan berikutnya" }, jawaban: "B",
-          petunjuk: ["16 Maret + 3 bulan = 16 Juni 2026", "1 Juli 2026 sudah lewat", "Jawaban: B"],
+          petunjuk: ["3 bulan sejak 16 Maret 2026 (hari pertama) berakhir 15 Juni 2026", "1 Juli 2026 sudah lewat", "Jawaban: B"],
           penjelasan: "Faktur yang dibuat lebih dari 3 bulan sejak saat seharusnya dianggap tidak dibuat: PPN tetap disetor, denda 1% DPP, dan PM pembeli tidak dapat dikreditkan." },
         { no: 4, pertanyaan: "Berapa denda faktur PT Borneo (Rp)?", tipe: "angka", jawaban: 550000, toleransi: 0,
           petunjuk: ["DPP = 11/12 × 60.000.000 = 55.000.000", "Denda = 1% × DPP", "Jawaban: Rp550.000"],
           penjelasan: "1% × Rp55.000.000 = Rp550.000." },
         { no: 5, pertanyaan: "Berapa bulan bunga keterlambatan setor PPN Masa Maret?", tipe: "angka", jawaban: 2, toleransi: 0,
-          petunjuk: ["Jatuh tempo 30 April 2026", "30 April → 4 Juni = 1 bulan 5 hari; bagian bulan dihitung penuh", "Jawaban: 2 bulan"],
+          petunjuk: ["Jatuh tempo 30 April 2026", "Bulan pertama 1 sampai 31 Mei 2026; 1 sampai 4 Juni 2026 masuk bulan kedua; bagian bulan dihitung penuh", "Jawaban: 2 bulan"],
           penjelasan: "Bunga dihitung sejak jatuh tempo sampai tanggal bayar; bagian dari bulan dihitung satu bulan penuh." },
         { no: 6, pertanyaan: "Berapa jumlah bunga keterlambatan setor ditambah denda keterlambatan SPT (Rp)?", tipe: "angka", jawaban: 1445000, toleransi: 0,
           petunjuk: ["Bunga = 45.000.000 × 1,05% × 2 = 945.000", "Denda SPT Masa PPN = Rp500.000", "Jawaban: Rp1.445.000"],

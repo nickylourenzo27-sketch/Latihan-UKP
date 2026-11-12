@@ -93,7 +93,7 @@ UKP.register({
       { label: "Bunga telat bayar/pembetulan (Oktober 2026)", nilai: "(acuan + 5%)/12 = 1,01% per bulan; maks 24 bulan", dasar: "Pasal 8 ayat (2), 9 ayat (2a)/(2b) UU KUP; KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
       { label: "Bunga pengungkapan saat pemeriksaan (Oktober 2026)", nilai: "(acuan + 10%)/12 = 1,42% per bulan; sejak batas waktu penyampaian SPT Tahunan berakhir (SPT Masa: sejak jatuh tempo pembayaran) sampai tanggal pembayaran, maks 24 bulan", dasar: "Pasal 8 ayat (5) UU KUP; KMK 47/MK/EF.2/2026", berlakuSejak: "2026-10-01" },
       { label: "Keputusan restitusi", nilai: "SKP ≤ 12 bulan; pengembalian ≤ 1 bulan setelah SKPLB", dasar: "Pasal 17B dan Pasal 11 UU KUP", berlakuSejak: "2008-01-01" },
-      { label: "Tax allowance", nilai: "30% investasi (5%/tahun × 6 tahun); dividen ke SPLN 10% atau tarif P3B lebih rendah; kompensasi rugi s.d. 10 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12" },
+      { label: "Tax allowance", nilai: "30% investasi (5%/tahun × 6 tahun); dividen ke SPLN 10% atau tarif P3B lebih rendah; kompensasi rugi s.d. 10 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-13" },
       { label: "Tax holiday", nilai: "100% (≥ Rp500 M) atau 50% (Rp100–<500 M); transisi 2 tahun 50%/25% ◐", dasar: "PMK 130/PMK.010/2020 s.t.d.d. PMK 69/2024", berlakuSejak: "2020-10-09" },
       { label: "Super deduction", nilai: "vokasi ≤ 200%; litbang ≤ 300%", dasar: "PMK 128/PMK.010/2019; PMK 81/2024 (litbang; menggantikan PMK 153/PMK.010/2020)", berlakuSejak: "2019-09-09" },
       { label: "Pajak minimum global", nilai: "15%; grup ≥ EUR 750 juta; IIR/DMTT 2025, UTPR 2026", dasar: "PMK 136/2024; PER-6/PJ/2026", berlakuSejak: "2025-01-01" },
@@ -370,7 +370,7 @@ UKP.register({
           label: "Jangka kompensasi tax allowance",
           nilai: "> 5 tahun, paling lama 10 tahun",
           dasar: "PP 78/2019 Pasal 3",
-          berlakuSejak: "2019-12-12"
+          berlakuSejak: "2019-12-13"
         },
         { label: "Rugi luar negeri", nilai: "tidak dikompensasikan dengan penghasilan DN", dasar: "PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" }
       ],
@@ -527,7 +527,7 @@ UKP.register({
         "Pemanfaatan fasilitas dilaporkan pada lampiran fasilitas penanaman modal SPT 1771 (lampiran khusus 4A format lama, hanya untuk Tahun Pajak sampai 2024 menurut Pasal 138 huruf a PER-11/PJ/2025); sejak Tahun Pajak 2025 padanannya Lampiran 13A Daftar Fasilitas Penanaman Modal, yang jumlahnya dipindahkan ke Induk Bagian D angka 5 (Lampiran PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026). Pajak minimum global (PMK 136/2024) dapat mengurangi manfaat tax holiday bagi grup multinasional besar."
       ],
       poinKunci: [
-        { label: "Tax allowance", nilai: "30% investasi aktiva tetap, 5%/tahun × 6 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12" },
+        { label: "Tax allowance", nilai: "30% investasi aktiva tetap, 5%/tahun × 6 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-13" },
         {
           label: "Tax holiday",
           nilai: "100% (≥ Rp500 M) atau 50% (Rp100–<500 M); transisi 2 tahun 50%/25%",
@@ -1646,12 +1646,7 @@ UKP.register({
       kesulitan: 1,
       stem: "PT Energi Hijau Andalan memperoleh fasilitas tax allowance berdasarkan PP 78/2019 untuk investasi pabrik baterai di kawasan industri. Pada tahun kedua produksi komersial perusahaan masih merugi. Menurut PP 78/2019, kerugian tersebut dapat dikompensasikan paling lama ...",
       kataKualifikasi: ["paling lama"],
-      opsi: {
-        A: "5 tahun, sama dengan WP badan lainnya",
-        B: "8 tahun tanpa syarat tambahan",
-        C: "10 tahun, dengan tambahan tahun di atas 5 tahun sesuai kriteria yang dipenuhi",
-        D: "selama masa fasilitas berlaku, tanpa batas jumlah tahun"
-      },
+      opsi: { A: "5 tahun, sama dengan WP badan lainnya", B: "8 tahun tanpa syarat tambahan", C: "10 tahun, dengan tambahan tahun di atas 5 tahun sesuai kriteria yang dipenuhi", D: "selama masa fasilitas berlaku, tanpa batas jumlah tahun" },
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
@@ -1664,7 +1659,7 @@ UKP.register({
         },
         jebakan: "Angka 10 tahun hanya untuk penerima fasilitas tertentu; WP umum tetap 5 tahun."
       },
-      dasarHukum: [{ pasal: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12" }],
+      dasarHukum: [{ pasal: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-13" }],
       anggaranDetik: 80,
       verifikasi: "✅"
     },
@@ -1947,7 +1942,7 @@ UKP.register({
         },
         jebakan: "Tanah tidak disusutkan, tetapi ikut dasar tax allowance."
       },
-      dasarHukum: [{ pasal: "Pasal 31A UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 78/2019 Pasal 3 ayat (1) huruf a dan ayat (4) huruf a", berlakuSejak: "2019-12-12" }],
+      dasarHukum: [{ pasal: "Pasal 31A UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 78/2019 Pasal 3 ayat (1) huruf a dan ayat (4) huruf a", berlakuSejak: "2019-12-13" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -2908,15 +2903,15 @@ UKP.register({
       kutipan: "Pasal 2 ayat (6) dan ayat (7) UU KUP (parafrase): Penghapusan NPWP dilakukan oleh Direktur Jenderal Pajak antara lain apabila Wajib Pajak badan dilikuidasi karena penghentian atau penggabungan usaha. Direktur Jenderal Pajak setelah melakukan pemeriksaan harus menerbitkan keputusan atas permohonan penghapusan NPWP dalam jangka waktu 6 (enam) bulan untuk Wajib Pajak orang pribadi atau 12 (dua belas) bulan untuk Wajib Pajak badan, sejak tanggal permohonan diterima secara lengkap.",
       stem: "RUPS PT Andalan Ritel Nusantara (PKP, tahun buku kalender) memutuskan pembubaran perseroan pada 30 Juni 2026. Likuidator menyelesaikan likuidasi pada 30 September 2026 dan melunasi seluruh utang pajak yang tercatat, lalu pada 14 Oktober 2026 mengajukan permohonan penghapusan NPWP dan pencabutan pengukuhan PKP melalui Coretax; permohonan dinyatakan lengkap pada hari itu. Dua tempat kegiatan usaha yang memiliki NITKU sudah ditutup sejak Agustus 2026. Berdasarkan kutipan tersebut, pernyataan yang paling tepat mengenai keputusan penghapusan NPWP adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: { A: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 14 Oktober 2027 (12 bulan sejak permohonan lengkap)", B: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 14 April 2027 (6 bulan sejak permohonan lengkap)", C: "DJP wajib menerbitkan keputusan paling lambat 14 Oktober 2027 tanpa pemeriksaan, karena likuidasi telah selesai dan utang pajak telah dilunasi", D: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 30 Juni 2027 (12 bulan sejak RUPS memutuskan pembubaran)" },
+      opsi: { A: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 13 Oktober 2027 (12 bulan sejak permohonan lengkap)", B: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 13 April 2027 (6 bulan sejak permohonan lengkap)", C: "DJP wajib menerbitkan keputusan paling lambat 13 Oktober 2027 tanpa pemeriksaan, karena likuidasi telah selesai dan utang pajak telah dilunasi", D: "DJP melakukan pemeriksaan lebih dulu dan wajib menerbitkan keputusan paling lambat 29 Juni 2027 (12 bulan sejak RUPS memutuskan pembubaran)" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
-        inti: "Untuk Wajib Pajak badan, jangka waktu keputusan penghapusan NPWP 12 bulan dihitung sejak permohonan diterima lengkap (14 Oktober 2026), dan keputusan diterbitkan setelah DJP melakukan pemeriksaan untuk memastikan kewajiban perpajakan badan telah diselesaikan.",
+        inti: "Untuk Wajib Pajak badan, keputusan penghapusan NPWP diterbitkan setelah DJP melakukan pemeriksaan, paling lama 12 bulan sejak permohonan diterima lengkap (Pasal 2 ayat (7) UU KUP; Pasal 47 ayat (3) dan ayat (4) PMK 81/2024). Tanggal permohonan lengkap (14 Oktober 2026) dihitung sebagai hari pertama, sehingga hari terakhir jangka waktu adalah 13 Oktober 2027.",
         jejakHitung: [
           ["Jenis Wajib Pajak", "badan → 12 bulan (orang pribadi 6 bulan)"],
-          ["Titik awal", "permohonan lengkap 14 Oktober 2026"],
-          ["Batas keputusan", "14 Oktober 2027"],
+          ["Titik awal", "permohonan lengkap 14 Oktober 2026 (hari pertama)"],
+          ["Batas keputusan", "sehari sebelum 14 Oktober 2027 = 13 Oktober 2027"],
           ["Prasyarat keputusan", "pemeriksaan oleh DJP"]
         ],
         mengapaSalah: {
@@ -2924,7 +2919,7 @@ UKP.register({
           C: "Kutipan menyebut keputusan diterbitkan setelah melakukan pemeriksaan; pelunasan utang pajak tidak menghapus tahap itu.",
           D: "Jangka waktu dihitung sejak permohonan diterima lengkap, bukan sejak keputusan pembubaran."
         },
-        jebakan: "Kasus pembubaran memuat tiga tanggal (RUPS, selesai likuidasi, permohonan lengkap); jangka keputusan selalu dihitung dari permohonan lengkap."
+        jebakan: "Kasus pembubaran memuat tiga tanggal (RUPS, selesai likuidasi, permohonan lengkap); jangka keputusan dihitung dari permohonan lengkap. Cara hitung mengikuti contoh Penjelasan undang-undang: 12 bulan sejak 14 Oktober 2026 berakhir 13 Oktober 2027, bukan 14 Oktober 2027."
       },
       dasarHukum: [{ pasal: "Pasal 2 ayat (6) huruf b dan ayat (7) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 2A ayat (2) UU PPh (UU 10/1994)", berlakuSejak: "1995-01-01" }, { pasal: "PMK 81/2024 Pasal 46 ayat (2) huruf a dan Pasal 47 ayat (3) dan ayat (4)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 130,
@@ -2939,12 +2934,7 @@ UKP.register({
       laporanUjian: ["B-2026-10", "C-2026-10"],
       stem: "Hartmann Anlagenbau GmbH, badan yang berkedudukan di Negara G, menugaskan delapan teknisinya untuk merekondisi dan memelihara mesin produksi PT Sinar Kertas Prima di Serang sejak 2 Februari sampai 30 Juli 2026 (179 hari). P3B Indonesia–Negara G menetapkan BUT jasa timbul bila jasa diberikan lebih dari 90 hari dalam periode 12 bulan dan tarif pajak atas laba cabang 10%. Hartmann telah mendaftarkan BUT-nya di Coretax (NPWP dan pengukuhan PKP), dan BUT tersebut hanya memberikan jasa, tidak menjual barang di Indonesia. Pada 15 Oktober 2026 PT Sinar membayar termin akhir jasa Rp1.500.000.000 (belum termasuk PPN) atas faktur yang diterbitkan BUT, dan pada hari yang sama membayar Rp400.000.000 kepada kantor pusat Hartmann di Negara G atas suku cadang yang dikirim langsung dari Negara G dan diimpor sendiri oleh PT Sinar. Pajak penghasilan yang wajib dipotong PT Sinar atas kedua pembayaran itu adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "PPh Pasal 26 sebesar 20% × Rp1.900.000.000 = Rp380.000.000",
-        B: "PPh Pasal 23 sebesar 2% × Rp1.500.000.000 = Rp30.000.000 dan PPh Pasal 26 sebesar 20% × Rp400.000.000 = Rp80.000.000",
-        C: "PPh Pasal 23 sebesar 2% × Rp1.500.000.000 = Rp30.000.000; pembayaran suku cadang tidak dipotong PPh",
-        D: "Tidak ada pemotongan atas kedua pembayaran karena menurut P3B laba usaha Hartmann hanya dipajaki di Negara G"
-      },
+      opsi: { A: "PPh Pasal 26 sebesar 20% × Rp1.900.000.000 = Rp380.000.000", B: "PPh Pasal 23 sebesar 2% × Rp1.500.000.000 = Rp30.000.000 dan PPh Pasal 26 sebesar 20% × Rp400.000.000 = Rp80.000.000", C: "PPh Pasal 23 sebesar 2% × Rp1.500.000.000 = Rp30.000.000; pembayaran suku cadang tidak dipotong PPh", D: "Tidak ada pemotongan atas kedua pembayaran karena menurut P3B laba usaha Hartmann hanya dipajaki di Negara G" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
@@ -2962,11 +2952,7 @@ UKP.register({
         },
         jebakan: "Begitu BUT terbentuk, imbalan jasa beralih dari rezim PPh 26 ke PPh 23; pembayaran harga barang ke luar negeri tetap bukan objek pemotongan."
       },
-      dasarHukum: [
-        { pasal: "Pasal 2 ayat (5) dan Pasal 5 UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "Pasal 23 ayat (1) huruf c angka 2 UU PPh; PMK 141/PMK.03/2015", berlakuSejak: "2015-08-24" },
-        { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 2 ayat (5) dan Pasal 5 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 23 ayat (1) huruf c angka 2 UU PPh; PMK 141/PMK.03/2015", berlakuSejak: "2015-08-26" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 190,
       verifikasi: "✅"
     },
@@ -3560,7 +3546,7 @@ UKP.register({
         },
         jebakan: "Jangan memasukkan aset non-usaha utama ke dasar fasilitas, dan jangan mengubah pengurangan bertahap menjadi beban sekaligus. Peta 1771-I angka 9 dan lampiran khusus 4A adalah format lama, yang menurut Pasal 138 huruf a PER-11/PJ/2025 hanya untuk Tahun Pajak sampai 2024. Untuk SPT Tahun Pajak 2025 di Coretax, Rp13 miliar ini dirinci di Lampiran 13A (Daftar Fasilitas Penanaman Modal) lalu dipindahkan ke Induk Bagian D angka 5, sebelum kompensasi kerugian di Induk Bagian D angka 8."
       },
-      dasarHukum: [{ pasal: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12" }, { pasal: "Pasal 138 huruf a PER-11/PJ/2025 (format 1771 PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 hanya untuk Tahun Pajak sampai 2024)", berlakuSejak: "2025-05-22" }, { pasal: "Lampiran huruf H PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 (padanan Coretax: Lampiran 13A dan Induk Bagian D angka 5)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-13" }, { pasal: "Pasal 138 huruf a PER-11/PJ/2025 (format 1771 PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 hanya untuk Tahun Pajak sampai 2024)", berlakuSejak: "2025-05-22" }, { pasal: "Lampiran huruf H PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 (padanan Coretax: Lampiran 13A dan Induk Bagian D angka 5)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 160,
       verifikasi: "◐",
       peringatan: "Angka Rp13 miliar sudah dicocokkan ke PP 78/2019 Pasal 3 ayat (1) huruf a, dan padanan Coretax (Lampiran 13A, Induk Bagian D angka 5) ke Lampiran huruf H PER-11/PJ/2025. Yang belum dicocokkan: penomoran format 1771 lama (1771-I angka 9, lampiran khusus 4A), karena lampiran PER-34/PJ/2010 tidak ada di pustaka."
@@ -3591,10 +3577,7 @@ UKP.register({
         },
         jebakan: "Perpanjangan kompensasi tax allowance tidak otomatis 10 tahun; pakai jangka dalam keputusan dan mulai hitung dari tahun sesudah rugi."
       },
-      dasarHukum: [
-        { pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-13" }],
       anggaranDetik: 160,
       verifikasi: "✅"
     },
@@ -3607,12 +3590,7 @@ UKP.register({
       kasusId: "V-B6-06",
       stem: "Melanjutkan data PT Baterai Hijau Nusantara (V-B6-06): 30% sahamnya dimiliki Lithium Partners Ltd. (badan di Negara H; P3B Indonesia–Negara H mengatur tarif dividen 15%, dan surat keterangan domisili tersedia), sedangkan 70% dimiliki PT Energi Nusantara (badan dalam negeri). Pada Juni 2026 perusahaan membagikan dividen tunai Rp20.000.000.000 sesuai porsi kepemilikan, dan fasilitas tax allowance masih berlaku. Pemotongan pajak atas dividen tersebut yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "PPh Pasal 26 20% × Rp6.000.000.000 = Rp1.200.000.000; dividen kepada PT Energi Nusantara dipotong PPh Pasal 23 15%",
-        B: "PPh Pasal 26 10% × Rp6.000.000.000 = Rp600.000.000 sesuai fasilitas tax allowance karena lebih rendah dari tarif P3B; dividen kepada PT Energi Nusantara tidak dipotong PPh",
-        C: "PPh Pasal 26 15% × Rp6.000.000.000 = Rp900.000.000 sesuai P3B; dividen kepada PT Energi Nusantara tidak dipotong PPh",
-        D: "PPh Pasal 26 10% × Rp6.000.000.000 = Rp600.000.000; dividen kepada PT Energi Nusantara dipotong PPh Pasal 23 15% × Rp14.000.000.000 = Rp2.100.000.000"
-      },
+      opsi: { A: "PPh Pasal 26 20% × Rp6.000.000.000 = Rp1.200.000.000; dividen kepada PT Energi Nusantara dipotong PPh Pasal 23 15%", B: "PPh Pasal 26 10% × Rp6.000.000.000 = Rp600.000.000 sesuai fasilitas tax allowance karena lebih rendah dari tarif P3B; dividen kepada PT Energi Nusantara tidak dipotong PPh", C: "PPh Pasal 26 15% × Rp6.000.000.000 = Rp900.000.000 sesuai P3B; dividen kepada PT Energi Nusantara tidak dipotong PPh", D: "PPh Pasal 26 10% × Rp6.000.000.000 = Rp600.000.000; dividen kepada PT Energi Nusantara dipotong PPh Pasal 23 15% × Rp14.000.000.000 = Rp2.100.000.000" },
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
@@ -3630,11 +3608,7 @@ UKP.register({
         },
         jebakan: "Bandingkan tarif fasilitas dengan tarif P3B lalu pakai yang lebih rendah; jangan lupa sisi dalam negeri dari pembagian dividen yang sama."
       },
-      dasarHukum: [
-        { pasal: "PP 78/2019 Pasal 3 ayat (1)", berlakuSejak: "2019-12-12" },
-        { pasal: "Pasal 26 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }
-      ],
+      dasarHukum: [{ pasal: "PP 78/2019 Pasal 3 ayat (1)", berlakuSejak: "2019-12-13" }, { pasal: "Pasal 26 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02" }],
       anggaranDetik: 140,
       verifikasi: "✅"
     },
@@ -5100,7 +5074,7 @@ UKP.register({
     {
       id: "B6-137",
       topik: "B6.8",
-      tingkat: [ "B", "C" ],
+      tingkat: ["B", "C"],
       jenis: "hitung",
       kesulitan: 2,
       stem: "PT Ortax Agrindo, penerima fasilitas tax allowance, menanamkan modal dalam aktiva tetap berwujud untuk kegiatan usaha utama sebesar Rp10.000.000.000, terdiri atas tanah Rp2.000.000.000, bangunan Rp5.000.000.000, dan mesin Rp3.000.000.000. Besarnya pengurangan penghasilan neto per tahun dari fasilitas tersebut adalah ...",
@@ -5110,14 +5084,19 @@ UKP.register({
       jebakanOpsi: { A: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
         inti: "Pengurangan penghasilan neto sebesar 30% dari jumlah nilai penanaman modal berupa aktiva tetap berwujud termasuk tanah, dibebankan selama 6 tahun masing-masing 5% (PP 78/2019 Ps. 3 ayat (1) huruf a).",
-        jejakHitung: [ [ "Nilai investasi termasuk tanah", "Rp10.000.000.000" ], [ "Pengurangan per tahun = 5% × Rp10.000.000.000", "Rp500.000.000" ], [ "Total 6 tahun (30%)", "Rp3.000.000.000" ] ],
-        mengapaSalah: { A: "Mengeluarkan tanah dari nilai investasi (5% × Rp8.000.000.000), padahal tanah termasuk.", C: "Memakai 10% per tahun; yang benar 5% per tahun selama 6 tahun (total 30%).", D: "Total 30% (Rp3 miliar) tidak dibebankan sekaligus, tetapi dibagi rata 5% per tahun selama 6 tahun." },
+        jejakHitung: [
+          ["Nilai investasi termasuk tanah", "Rp10.000.000.000"],
+          ["Pengurangan per tahun = 5% × Rp10.000.000.000", "Rp500.000.000"],
+          ["Total 6 tahun (30%)", "Rp3.000.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengeluarkan tanah dari nilai investasi (5% × Rp8.000.000.000), padahal tanah termasuk.",
+          C: "Memakai 10% per tahun; yang benar 5% per tahun selama 6 tahun (total 30%).",
+          D: "Total 30% (Rp3 miliar) tidak dibebankan sekaligus, tetapi dibagi rata 5% per tahun selama 6 tahun."
+        },
         jebakan: "Bandingkan setiap opsi dengan dasar hukum: UU PPh Pasal 31A."
       },
-      dasarHukum: [
-        { pasal: "UU PPh Pasal 31A", berlakuSejak: null },
-        { pasal: "PP 78/2019 Pasal 3 ayat (1) huruf a", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU PPh Pasal 31A", berlakuSejak: null }, { pasal: "PP 78/2019 Pasal 3 ayat (1) huruf a", berlakuSejak: "2019-12-13" }],
       anggaranDetik: 150,
       verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 46, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
@@ -5389,7 +5368,7 @@ UKP.register({
     { id: "KT-B6-07", topik: "B6.7", tipe: "angka", depan: "Jangka waktu PPh final 0,5% bagi koperasi?", belakang: "4 tahun pajak sejak terdaftar; koperasi yang terdaftar sebelum PP 20/2026 dan jangkanya berakhir TP 2024–2029: sampai TP 2029", dasar: "PP 55/2022 Pasal 57 s.t.d.d. PP 20/2026; PP 20/2026 Pasal II angka 1 huruf b", berlakuSejak: "2026-04-22", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-B6-08", topik: "B6.7", tipe: "prosedur", depan: "Peralihan PP 20/2026 bagi CV, firma, PT pengguna PPh final lama?", belakang: "Tetap final sampai jangka lama habis: PT 3 tahun, CV/firma 4 tahun", dasar: "PP 20/2026 (ketentuan peralihan)", berlakuSejak: "2026-04-22", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-B6-09", topik: "B6.5", tipe: "angka", depan: "Jangka kompensasi kerugian fiskal umum?", belakang: "5 tahun berturut-turut mulai tahun sesudah rugi", dasar: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "1984-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-10", topik: "B6.5", tipe: "angka", depan: "Kompensasi kerugian bagi penerima tax allowance?", belakang: "Lebih dari 5 tahun, paling lama 10 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-10", topik: "B6.5", tipe: "angka", depan: "Kompensasi kerugian bagi penerima tax allowance?", belakang: "Lebih dari 5 tahun, paling lama 10 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-13", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-11", topik: "B6.2", tipe: "definisi", depan: "Dividen dalam negeri yang diterima badan dalam negeri?", belakang: "Bukan objek tanpa syarat kepemilikan; tidak dipotong PPh 23", dasar: "Pasal 4 ayat (3) huruf f UU PPh", berlakuSejak: "2020-11-02", menggantikan: "bukan objek hanya bila kepemilikan ≥ 25% dan dari laba ditahan", dekTambahan: [] },
     { id: "KT-B6-12", topik: "B6.2", tipe: "angka", depan: "Batas penanaman kembali sisa lebih nirlaba pendidikan/litbang?", belakang: "Paling lama 4 tahun sejak sisa lebih diperoleh", dasar: "Pasal 4 ayat (3) huruf m UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-13", topik: "B6.4", tipe: "angka", depan: "Masa manfaat fiskal bangunan permanen?", belakang: "20 tahun atau masa manfaat sebenarnya (taat asas)", dasar: "Pasal 11 ayat (6a) UU PPh; PMK 72/2023", berlakuSejak: "2022-01-01", menggantikan: "wajib 20 tahun", dekTambahan: [] },
@@ -5412,7 +5391,7 @@ UKP.register({
     { id: "KT-B6-30", topik: "B6.11", tipe: "angka", depan: "Batas penyampaian SPT Tahunan PPh Badan?", belakang: "4 bulan setelah akhir tahun pajak; perpanjangan paling lama 2 bulan", dasar: "Pasal 3 ayat (3) huruf c dan ayat (4) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-31", topik: "B6.11", tipe: "angka", depan: "Denda terlambat SPT Tahunan PPh Badan?", belakang: "Rp1.000.000", dasar: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-32", topik: "B6.11", tipe: "definisi", depan: "Isi lampiran 1771-V dan 1771-VI?", belakang: "V: pemegang saham dan pengurus; VI: penyertaan dan utang-piutang afiliasi", dasar: "Petunjuk pengisian SPT 1771", berlakuSejak: "2014-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-33", topik: "B6.8", tipe: "angka", depan: "Fasilitas tax allowance PP 78/2019 atas penghasilan neto?", belakang: "30% investasi aktiva tetap, 5% per tahun selama 6 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-33", topik: "B6.8", tipe: "angka", depan: "Fasilitas tax allowance PP 78/2019 atas penghasilan neto?", belakang: "30% investasi aktiva tetap, 5% per tahun selama 6 tahun", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-13", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-34", topik: "B6.8", tipe: "angka", depan: "Plafon super deduction vokasi dan litbang?", belakang: "Vokasi paling tinggi 200%; litbang paling tinggi 300%", dasar: "PMK 128/PMK.010/2019; PMK 81/2024 (litbang; menggantikan PMK 153/PMK.010/2020)", berlakuSejak: "2019-09-09", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-35", topik: "B6.1", tipe: "angka", depan: "Branch profit tax atas laba BUT?", belakang: "20% × (PKP − PPh badan), kecuali seluruhnya ditanamkan kembali di Indonesia, atau tarif P3B", dasar: "Pasal 26 ayat (4) UU PPh; Pasal 1 ayat (3) PMK 14/PMK.03/2011", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-36", topik: "B6.1", tipe: "definisi", depan: "Empat kriteria unit pemerintah yang bukan subjek pajak?", belakang: "Dasar peraturan, dibiayai APBN/APBD, penerimaan masuk anggaran, diperiksa APIP", dasar: "Pasal 2 ayat (3) huruf b UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
@@ -5437,7 +5416,7 @@ UKP.register({
     { id: "KT-B6-55", topik: "B6.6", tipe: "angka", depan: "PPh 22 bendahara atas pembelian sampai Rp2.000.000?", belakang: "Tidak dipungut bila tidak lebih dari Rp2.000.000 (tidak termasuk PPN, bukan pembayaran yang dipecah); di atasnya dipungut 1,5% dan menjadi kredit penjual", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-56", topik: "B6.7", tipe: "prosedur", depan: "Apakah PPN keluaran masuk peredaran bruto Pasal 31E?", belakang: "Tidak; peredaran bruto memuat penghasilan final dan bukan objek, tanpa PPN", dasar: "Pasal 31E UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-57", topik: "B6.7", tipe: "angka", depan: "Tiga tarif dalam kasus PPh 29 badan (laporan peserta UKP 2026)?", belakang: "22% umum; 19% perseroan terbuka; 11% bagian PKP Pasal 31E", dasar: "Pasal 17 ayat (1) huruf b dan ayat (2b), Pasal 31E UU PPh", berlakuSejak: "2022-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-58", topik: "B6.8", tipe: "angka", depan: "Tarif PPh dividen ke subjek luar negeri bagi penerima tax allowance?", belakang: "10%, atau lebih rendah menurut P3B", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-12", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-58", topik: "B6.8", tipe: "angka", depan: "Tarif PPh dividen ke subjek luar negeri bagi penerima tax allowance?", belakang: "10%, atau lebih rendah menurut P3B", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-13", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-59", topik: "B6.8", tipe: "angka", depan: "Pajak minimum global: tarif, ambang, dan saat berlaku?", belakang: "15%; omzet grup ≥ EUR 750 juta; IIR/DMTT 2025, UTPR 2026", dasar: "PMK 136/2024; PER-6/PJ/2026", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-B6-60", topik: "B6.9", tipe: "prosedur", depan: "Dasar angsuran PPh 25 Wajib Pajak yang berhak atas kompensasi kerugian?", belakang: "Neto tahun lalu dikurangi sisa rugi yang masih dapat dikompensasikan", dasar: "Pasal 25 ayat (6) huruf a UU PPh; PER-11/PJ/2025 (menggantikan KEP-537/PJ/2000)", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-61", topik: "B6.10", tipe: "definisi", depan: "Keluarga semenda ke samping satu derajat?", belakang: "Ipar; menimbulkan hubungan istimewa", dasar: "Penjelasan Pasal 18 ayat (4) huruf c UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },

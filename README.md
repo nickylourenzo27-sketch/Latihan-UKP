@@ -158,7 +158,24 @@ Tiap perbaikan membawa kutipan naskah yang dicek otomatis, diuji pemeriksa kedua
 - Materi, kartu, kasus, tabel rujukan, dan peta formulir diselaraskan dengan soal yang dibetulkan: 57 topik, 76 kartu (satu kartu baru), 18 kasus, dan 76 dari 243 baris peta formulir.
 - Soal try out tidak berubah stem, opsi, maupun kuncinya.
 
-Yang belum: keputusan cara menghitung "N bulan sejak" dan "N hari sejak diundangkan"; soal yang bersandar pada Kode Etik IKPI; tata letak layar Coretax.
+Yang belum saat v9.4.4 terbit: keputusan cara menghitung "N bulan sejak" dan "N hari sejak diundangkan" (diputuskan di v9.4.5); soal yang bersandar pada Kode Etik IKPI; tata letak layar Coretax.
+
+## Cara hitung tanggal disamakan (v9.4.5)
+
+Keputusan pemimpin tim 12 November 2026: jangka waktu yang dihitung dari suatu tanggal mengikuti contoh di Penjelasan undang-undang, dan semua soal, kasus, materi, dan tabel rujukan disamakan.
+
+- "N bulan sejak tanggal X" berakhir sehari sebelum tanggal yang sama pada bulan ke-N. Contoh naskah: Penjelasan Pasal 11 ayat (1) UU PBB (SPPT diterima 1 Maret, jatuh tempo 31 Agustus)
+  dan Penjelasan Pasal 19 ayat (1) UU 28/2007 (SKPKB terbit 7 Oktober 2008, jatuh tempo 6 November 2008). "N tahun sejak" dihitung dengan cara yang sama.
+- Bunga dan denda per bulan mulai dihitung sehari setelah jatuh tempo. Tenggat "setelah akhir Masa Pajak atau Tahun Pajak" tidak berubah.
+  Hitungan "N hari sejak" tidak diubah karena pustaka naskah tidak punya contohnya; soal yang memuatnya dibuat tahan terhadap selisih satu hari.
+- Peraturan yang "berlaku setelah N hari terhitung sejak tanggal diundangkan" dicatat berlaku pada tanggal diundangkan ditambah N hari (tafsir pemimpin tim):
+  PMK 141/PMK.03/2015 menjadi 26 Agustus 2015 dan PP 78/2019 menjadi 13 Desember 2019.
+- 100 soal berubah sejak v9.4.4: 51 berubah opsi dan 7 berubah stem; tidak ada huruf kunci yang berpindah. 13 kasus, 8 topik, 4 kartu, dan 3 tips ikut diselaraskan,
+  dan glosarium tabel rujukan mendapat entri tentang cara hitung ini. Semua soal dan kasus yang berubah dikerjakan ulang tanpa melihat kunci, dan semua kuncinya cocok.
+- Tanda perlu cek dicabut dari A2-034, A5-095, dan C9-089 karena keraguannya hanya cara hitung bulan.
+- Tiga soal try out (A2-121, A2-126, A2-128) memakai hitungan tanggal ke tanggal pada kunci atau opsinya. Stem, opsi, dan kuncinya tidak diubah; ketiganya diberi tanda perlu cek
+  dan penjelasan tanggal menurut contoh Penjelasan undang-undang.
+- Sisa soal bertanda: 65 (57 di modul Tingkat B dan Etika, 8 di modul Tingkat C).
 
 ## Isi saat ini (status 9 November 2026, v7.8)
 

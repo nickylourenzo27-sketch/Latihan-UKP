@@ -738,13 +738,13 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Izin B mencakup WP orang pribadi dan badan, kecuali badan dengan penanaman modal asing (PMA), bentuk usaha tetap (BUT), dan orang pribadi atau badan yang berdomisili di negara mitra P3B (Pasal 4 ayat (3) PMK 55/2026); izin C mencakup seluruh WP (Pasal 4 ayat (4)). Karena PT Andalas adalah PMA, kuasanya harus konsultan izin C. Surat kuasa khusus menurut PMK 44/2026 hanya untuk satu kuasa dan wajib memuat masa berlaku; keberatan diajukan paling lama 3 bulan sejak SKPKB dikirim (12 Januari 2027).",
+        inti: "Izin B mencakup WP orang pribadi dan badan, kecuali badan dengan penanaman modal asing (PMA), bentuk usaha tetap (BUT), dan orang pribadi atau badan yang berdomisili di negara mitra P3B (Pasal 4 ayat (3) PMK 55/2026); izin C mencakup seluruh WP (Pasal 4 ayat (4)). Karena PT Andalas adalah PMA, kuasanya harus konsultan izin C. Surat kuasa khusus menurut PMK 44/2026 hanya untuk satu kuasa dan wajib memuat masa berlaku; keberatan diajukan paling lama 3 bulan sejak SKPKB dikirim; tanggal 12 Oktober 2026 dihitung sebagai hari pertama, sehingga hari terakhirnya 11 Januari 2027.",
         jejakHitung: [
           ["Profil klien", "Badan PMA"],
           ["Izin B", "Badan kecuali PMA, BUT, dan OP/badan domisili mitra P3B → PMA tidak tercakup"],
           ["Izin C", "Seluruh WP → Teddy"],
           ["Surat kuasa", "Satu kuasa, memuat masa berlaku"],
-          ["Batas keberatan", "12 Oktober 2026 + 3 bulan = 12 Januari 2027"]
+          ["Batas keberatan", "12 Oktober 2026 + 3 bulan → hari terakhir 11 Januari 2027"]
         ],
         mengapaSalah: {
           A: "Status badan hukum Indonesia tidak mengubah statusnya sebagai PMA yang dikecualikan dari izin B.",
@@ -920,24 +920,23 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "E-022", topik: "E.3", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "E-022",
+      topik: "E.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Konsultan Pajak Wawan memperoleh izin praktik tingkat A yang terbit 1 Februari 2026; sebelum itu ia bekerja di bidang pemasaran, bukan perpajakan. Ia lulus UKP tingkat C (SKK C terbit 19 November 2026) dan lulus ujian profesi asosiasi pada Desember 2026. Wawan ingin secepatnya memegang izin tingkat C. Dengan asumsi praktiknya berjalan terus tanpa sanksi dan syarat lain terpenuhi, tanggal paling cepat Wawan memenuhi syarat izin C adalah ...",
       kataKualifikasi: ["paling cepat"],
-      opsi: {
-        A: "1 Februari 2027, karena kenaikan tingkat cukup dengan praktik 1 tahun sejak izin A",
-        B: "19 November 2026, karena izin tidak harus berjenjang dan SKK C sudah terbit pada tanggal itu",
-        C: "19 November 2028, karena pengalaman 2 tahun dihitung sejak SKK C terbit, bukan sejak izin A",
-        D: "1 Februari 2028, karena naik dua tingkat (A ke C) memerlukan praktik minimal 2 tahun"
-      },
+      opsi: { A: "1 Februari 2027, karena kenaikan tingkat cukup dengan praktik 1 tahun sejak izin A", B: "19 November 2026, karena izin tidak harus berjenjang dan SKK C sudah terbit pada tanggal itu", C: "19 November 2028, karena pengalaman 2 tahun dihitung sejak SKK C terbit, bukan sejak izin A", D: "1 Februari 2028, karena naik dua tingkat (A ke C) memerlukan praktik minimal 2 tahun" },
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-hitung" },
       pembahasan: {
-        inti: "Naik dua tingkat memerlukan praktik minimal 2 tahun sejak izin A (1 Februari 2028). Jalur langsung juga tidak lebih cepat karena pengalaman perpajakan Wawan baru dimulai 1 Februari 2026, sehingga syarat 2 tahun untuk izin C juga baru terpenuhi 1 Februari 2028. SKK C berlaku sampai 19 November 2029, jadi masih sah.",
+        inti: "Naik dua tingkat memerlukan praktik minimal 2 tahun sejak izin A (1 Februari 2028). Jalur langsung juga tidak lebih cepat karena pengalaman perpajakan Wawan baru dimulai 1 Februari 2026, sehingga syarat 2 tahun untuk izin C juga baru terpenuhi 1 Februari 2028. SKK C berlaku 3 tahun terhitung sejak 19 November 2026, dengan hari terakhir 18 November 2029, jadi masih sah.",
         jejakHitung: [
           ["Izin A terbit", "1 Februari 2026"],
-          ["Syarat naik dua tingkat", "Praktik ≥ 2 tahun → 1 Februari 2028"],
-          ["Pengalaman perpajakan untuk izin C", "Mulai 1 Februari 2026 → 24 bulan pada 1 Februari 2028"],
-          ["Masa berlaku SKK C", "19 November 2026 + 3 tahun = 19 November 2029 → masih berlaku"]
+          ["Syarat naik dua tingkat (Pasal 13 ayat (1) huruf a angka 2)", "Praktik ≥ 2 tahun terhitung sejak 1 Februari 2026: hari terakhir jangka waktu 31 Januari 2028 → memenuhi syarat 1 Februari 2028"],
+          ["Pengalaman perpajakan untuk izin C", "Mulai 1 Februari 2026 → genap 24 bulan pada akhir 31 Januari 2028 → 1 Februari 2028"],
+          ["Masa berlaku SKK C (Pasal 10 ayat (7))", "19 November 2026 + 3 tahun → hari terakhir 18 November 2029 → masih berlaku pada 1 Februari 2028"]
         ],
         mengapaSalah: {
           A: "Praktik 1 tahun hanya untuk naik satu tingkat (A ke B).",
@@ -946,11 +945,9 @@ UKP.register({
         },
         jebakan: "Mengira 'tidak harus berjenjang' menghapus syarat lamanya praktik atau pengalaman."
       },
-      dasarHukum: [
-        { pasal: "PMK 55/2026 — kenaikan tingkat izin dan syarat pengalaman", berlakuSejak: "2026-08-24" },
-        { pasal: "PMK 55/2026 — masa berlaku SKK 3 tahun", berlakuSejak: "2026-08-24" }
-      ],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PMK 55/2026: kenaikan tingkat izin dan syarat pengalaman", berlakuSejak: "2026-08-24" }, { pasal: "PMK 55/2026: masa berlaku SKK 3 tahun", berlakuSejak: "2026-08-24" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "E-023", topik: "E.3", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1,
@@ -987,16 +984,16 @@ UKP.register({
       kesulitan: 3,
       stem: "Pak Haryono pensiun dengan hormat dari DJP sebagai pemeriksa pajak pada 1 Juli 2025. Ia lulus UKP tingkat C (SKK terbit 19 November 2026), lulus ujian profesi pada Desember 2026, dan berpengalaman di bidang perpajakan lebih dari 25 tahun. Ia berencana mengajukan izin tingkat C pada Januari 2027. Rekannya mengingatkan bahwa PMK 55/2026 memuat ketentuan khusus bagi mantan pegawai Kementerian Keuangan. Kesimpulan yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Dapat mengajukan izin C pada Januari 2027 karena SKK, ujian profesi, dan pengalaman lebih dari 25 tahun telah terpenuhi", B: "Dapat mengajukan izin pada Januari 2027, tetapi hanya tingkat A selama 5 tahun pertama sejak pensiun, lalu naik ke tingkat C", C: "Belum dapat sebelum jeda 5 tahun sejak berhenti berakhir (1 Juli 2030), dan saat itu ia perlu SKK baru karena SKK C-nya sudah habis", D: "Dapat mengajukan izin C mulai 1 Juli 2027 setelah jeda 2 tahun sejak pensiun, memakai SKK C yang masih berlaku" },
+      opsi: { A: "Dapat mengajukan izin C pada Januari 2027 karena SKK, ujian profesi, dan pengalaman lebih dari 25 tahun telah terpenuhi", B: "Dapat mengajukan izin pada Januari 2027, tetapi hanya tingkat A selama 5 tahun pertama sejak pensiun, lalu naik ke tingkat C", C: "Belum dapat sebelum jeda 5 tahun sejak pensiun terlewati (paling cepat 1 Juli 2030), dan saat itu ia perlu SKK baru karena SKK C-nya sudah habis", D: "Dapat mengajukan izin C mulai 1 Juli 2027 setelah jeda 2 tahun sejak pensiun, memakai SKK C yang masih berlaku" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
-        inti: "Bagi pensiunan PNS Kementerian Keuangan, Pasal 5 ayat (2) huruf l angka 1 PMK 55/2026 mensyaratkan telah lewat 5 tahun sejak tanggal pensiun yang tercantum dalam surat keputusan pensiun; PMK 55/2026 tidak memuat jalur khusus bagi pensiunan DJP. Jeda itu baru berakhir 1 Juli 2030, sedangkan SKK C yang terbit 19 November 2026 berlaku 3 tahun (Pasal 10 ayat (7)), yaitu sampai 19 November 2029.",
+        inti: "Bagi pensiunan PNS Kementerian Keuangan, Pasal 5 ayat (2) huruf l angka 1 PMK 55/2026 mensyaratkan telah melewati jangka waktu 5 tahun terhitung sejak tanggal pensiun yang tercantum dalam surat keputusan pensiun; PMK 55/2026 tidak memuat jalur khusus bagi pensiunan DJP. Tanggal pensiun 1 Juli 2025 dihitung sebagai hari pertama, sehingga hari terakhir jangka waktu itu 30 Juni 2030 dan jeda baru terlewati pada 1 Juli 2030. SKK C yang terbit 19 November 2026 berlaku 3 tahun (Pasal 10 ayat (7)), dengan hari terakhir 18 November 2029.",
         jejakHitung: [
           ["Tanggal pensiun (SK pensiun)", "1 Juli 2025"],
-          ["Jeda 5 tahun (Pasal 5 ayat (2) huruf l angka 1)", "Paling cepat 1 Juli 2030"],
-          ["SKK C (Pasal 10 ayat (7))", "19 November 2026 + 3 tahun = 19 November 2029"],
-          ["Perbandingan", "1 Juli 2030 > 19 November 2029 → SKK sudah tidak berlaku"]
+          ["Jeda 5 tahun (Pasal 5 ayat (2) huruf l angka 1)", "Hari terakhir 30 Juni 2030 → paling cepat 1 Juli 2030"],
+          ["SKK C (Pasal 10 ayat (7))", "19 November 2026 + 3 tahun → hari terakhir 18 November 2029"],
+          ["Perbandingan", "1 Juli 2030 > 18 November 2029 → SKK sudah tidak berlaku"]
         ],
         mengapaSalah: {
           A: "Mengabaikan syarat jeda 5 tahun bagi pensiunan PNS Kementerian Keuangan (Pasal 5 ayat (2) huruf l); pengalaman kerja pun dihitung secara akumulasi dalam 3 tahun terakhir, bukan sepanjang karier.",
@@ -1005,27 +1002,26 @@ UKP.register({
         },
         jebakan: "Tidak membandingkan akhir jeda dengan masa berlaku SKK. SKK hanya dapat diperpanjang melalui ujian penyegaran yang diajukan paling cepat 1 bulan sebelum masa berlakunya berakhir (Pasal 10 ayat (8) dan (9)); tanpa perpanjangan itu, Pak Haryono memerlukan SKK baru."
       },
-      dasarHukum: [{ pasal: "Pasal 5 ayat (2) huruf l angka 1 PMK 55/2026 — jeda 5 tahun sejak tanggal pensiun bagi pensiunan PNS Kemenkeu", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 10 ayat (7) dan ayat (8) PMK 55/2026 — masa berlaku SKK 3 tahun dan perpanjangannya", berlakuSejak: "2026-08-24" }],
+      dasarHukum: [{ pasal: "Pasal 5 ayat (2) huruf l angka 1 PMK 55/2026: jeda 5 tahun sejak tanggal pensiun bagi pensiunan PNS Kemenkeu", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 10 ayat (7) dan ayat (8) PMK 55/2026: masa berlaku SKK 3 tahun dan perpanjangannya", berlakuSejak: "2026-08-24" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
     {
-      id: "E-025", topik: "E.3", tingkat: ["A", "B", "C"], jenis: "konsep", kesulitan: 1,
+      id: "E-025",
+      topik: "E.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
       stem: "Fikri lulus UKP tingkat B pada periode Oktober 2026 dan SKK-nya terbit 19 November 2026. Ia lulus ujian profesi asosiasi pada 2027, tetapi karena sibuk belum mengajukan izin praktik. Pada Januari 2030, dengan pengalaman 3 tahun di KKP, Fikri berencana mengajukan izin tingkat B menggunakan SKK tersebut. Penilaian yang tepat atas SKK Fikri pada Januari 2030 adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Masih berlaku karena SKK tidak memiliki masa berlaku selama belum dipakai untuk mengajukan izin praktik",
-        B: "Sudah tidak berlaku karena SKK berlaku 3 tahun sejak terbit (sampai 19 November 2029); Fikri perlu SKK baru",
-        C: "Masih berlaku karena SKK berlaku 5 tahun sejak terbit, yaitu sampai 19 November 2031, sehingga masih dapat dipakai",
-        D: "Sudah tidak berlaku karena SKK hanya berlaku 2 tahun sejak terbit, yaitu sampai 19 November 2028"
-      },
+      opsi: { A: "Masih berlaku karena SKK tidak memiliki masa berlaku selama belum dipakai untuk mengajukan izin praktik", B: "Sudah tidak berlaku karena SKK berlaku 3 tahun sejak terbit (sampai 18 November 2029); Fikri perlu SKK baru", C: "Masih berlaku karena SKK berlaku 5 tahun sejak terbit, yaitu sampai 18 November 2031, sehingga masih dapat dipakai", D: "Sudah tidak berlaku karena SKK hanya berlaku 2 tahun sejak terbit, yaitu sampai 18 November 2028" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
-        inti: "SKK hasil UKP berlaku 3 tahun sejak terbit: 19 November 2026 sampai 19 November 2029. Pada Januari 2030 SKK sudah habis sehingga tidak dapat dipakai untuk permohonan izin. Fikri perlu memperoleh SKK tingkat B baru melalui uji kompetensi.",
+        inti: "SKK hasil UKP berlaku 3 tahun terhitung sejak tanggal penerbitan (Pasal 10 ayat (7) PMK 55/2026). Tanggal terbit 19 November 2026 dihitung sebagai hari pertama, sehingga hari terakhirnya 18 November 2029. Pada Januari 2030 SKK sudah habis sehingga tidak dapat dipakai untuk permohonan izin. Fikri perlu memperoleh SKK tingkat B baru melalui uji kompetensi.",
         jejakHitung: [
           ["SKK terbit", "19 November 2026"],
-          ["Masa berlaku", "3 tahun → 19 November 2029"],
+          ["Masa berlaku", "3 tahun → hari terakhir 18 November 2029"],
           ["Rencana permohonan", "Januari 2030 → sudah lewat"]
         ],
         mengapaSalah: {
@@ -1035,11 +1031,9 @@ UKP.register({
         },
         jebakan: "Tertukar masa berlaku SKK (3 tahun) dengan ketentuan peralihan sertifikat lama (2 tahun)."
       },
-      dasarHukum: [
-        { pasal: "PMK 55/2026 — SKK berlaku 3 tahun", berlakuSejak: "2026-08-24" },
-        { pasal: "Pasal 60 huruf f PMK 55/2026 — pengakuan sertifikat lama", berlakuSejak: "2026-08-24" }
-      ],
-      anggaranDetik: 90, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PMK 55/2026 — SKK berlaku 3 tahun", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 60 huruf f PMK 55/2026 — pengakuan sertifikat lama", berlakuSejak: "2026-08-24" }],
+      anggaranDetik: 90,
+      verifikasi: "✅"
     },
     // ---- Vignette V-E-03: Dimas, izin B terbit 2 November 2026 (soal E-026 s.d. E-028) ----
     {
@@ -1644,15 +1638,15 @@ UKP.register({
       kesulitan: 2,
       stem: "Pada 10 Mei 2026 CV Kencana memberi surat kuasa khusus kepada Konsultan Pajak Ani Rahayu (izin B) untuk mengajukan dan mengikuti proses keberatan atas SKPKB PPh Badan Tahun Pajak 2024. Surat kuasa dibuat menurut PMK 229/2014 tanpa mencantumkan masa berlaku dan dilampirkan pada surat keberatan, yang diterima KPP pada 2 Juni 2026 dan penelitiannya masih berjalan pada November 2026; Direktur Jenderal Pajak wajib memberi keputusan paling lama 12 bulan sejak surat keberatan diterima. Menurut ketentuan peralihan PMK 44/2026 dan Pasal 26 ayat (1) UU KUP, status kuasa Ani adalah ...",
       kataKualifikasi: ["paling lama"],
-      opsi: { A: "Berakhir pada 6 Juli 2026 karena PMK 229/2014 dicabut", B: "Tetap berlaku sampai proses keberatan yang dikuasakan selesai, yaitu saat keputusan keberatan terbit (paling lambat 2 Juni 2027)", C: "Berakhir pada 31 Desember 2026 bersamaan dengan akhir masa transisi PMK 55/2026", D: "Tetap berlaku hanya bila CV Kencana mengganti surat kuasa dengan yang mencantumkan masa berlaku paling lambat 30 hari kerja sejak 6 Juli 2026" },
+      opsi: { A: "Berakhir pada 6 Juli 2026 karena PMK 229/2014 dicabut", B: "Tetap berlaku sampai proses keberatan yang dikuasakan selesai, yaitu saat keputusan keberatan terbit (paling lambat 1 Juni 2027)", C: "Berakhir pada 31 Desember 2026 bersamaan dengan akhir masa transisi PMK 55/2026", D: "Tetap berlaku hanya bila CV Kencana mengganti surat kuasa dengan yang mencantumkan masa berlaku paling lambat 30 hari kerja sejak 6 Juli 2026" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Surat kuasa khusus yang telah disampaikan kepada Direktur Jenderal Pajak sebelum PMK 44/2026 berlaku (6 Juli 2026) masih dapat dipergunakan untuk melaksanakan hak dan/atau memenuhi kewajiban tertentu sesuai isi surat kuasa itu (Pasal 15). Surat kuasa Ani disampaikan bersama surat keberatan pada 2 Juni 2026 dan isinya adalah mengajukan dan mengikuti proses keberatan, yang selesai dengan keputusan keberatan paling lama 12 bulan sejak surat keberatan diterima (2 Juni 2027). Kewajiban mencantumkan masa berlaku berlaku untuk surat kuasa yang dibuat menurut PMK 44/2026.",
+        inti: "Surat kuasa khusus yang telah disampaikan kepada Direktur Jenderal Pajak sebelum PMK 44/2026 berlaku (6 Juli 2026) masih dapat dipergunakan untuk melaksanakan hak dan/atau memenuhi kewajiban tertentu sesuai isi surat kuasa itu (Pasal 15). Surat kuasa Ani disampaikan bersama surat keberatan pada 2 Juni 2026 dan isinya adalah mengajukan dan mengikuti proses keberatan, yang selesai dengan keputusan keberatan paling lama 12 bulan sejak surat keberatan diterima (2 Juni 2026 dihitung sebagai hari pertama, sehingga hari terakhirnya 1 Juni 2027). Kewajiban mencantumkan masa berlaku berlaku untuk surat kuasa yang dibuat menurut PMK 44/2026.",
         jejakHitung: [
           ["Surat kuasa", "Dibuat 10 Mei 2026; disampaikan bersama surat keberatan 2 Juni 2026 (sebelum 6 Juli 2026)"],
           ["Ketentuan peralihan", "Masih dapat dipergunakan sesuai isi surat kuasa: proses keberatan (Pasal 15 PMK 44/2026)"],
-          ["Batas keputusan keberatan", "2 Juni 2026 + 12 bulan = 2 Juni 2027 (Pasal 26 ayat (1))"],
+          ["Batas keputusan keberatan", "2 Juni 2026 + 12 bulan → hari terakhir 1 Juni 2027 (Pasal 26 ayat (1))"],
           ["Status November 2026", "Keberatan masih diproses → kuasa tetap dapat dipergunakan"]
         ],
         mengapaSalah: {
@@ -1765,37 +1759,35 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "E-049", topik: "E.5", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-E-02",
+      id: "E-049",
+      topik: "E.5",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-E-02",
       stem: "Lanjutan data PT Mitra Sejahtera: SKPKB PPN Masa Juni 2025 sebesar Rp860.000.000 dikirim 18 Desember 2026; kuasa Galih berakhir 15 Januari 2027 karena izinnya dibekukan; perusahaan baru menandatangani surat kuasa khusus kepada konsultan izin C, Hendro, pada 1 Maret 2027. Direksi mengira batas pengajuan keberatan ikut bergeser karena pergantian kuasa. Menurut UU KUP, batas akhir pengajuan keberatan atas SKPKB tersebut adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "18 Januari 2027, mengikuti jatuh tempo pelunasan SKPKB satu bulan sejak dikirim",
-        B: "18 Maret 2027, yaitu 3 bulan sejak SKPKB dikirim; pergantian kuasa tidak memperpanjangnya",
-        C: "1 Juni 2027, karena jangka waktu 3 bulan dihitung ulang sejak kuasa baru ditunjuk",
-        D: "18 Desember 2027, karena keberatan dapat diajukan dalam 12 bulan sejak SKPKB dikirim"
-      },
+      opsi: { A: "17 Januari 2027, mengikuti jatuh tempo pelunasan SKPKB satu bulan sejak dikirim", B: "17 Maret 2027, yaitu 3 bulan sejak SKPKB dikirim; pergantian kuasa tidak memperpanjangnya", C: "31 Mei 2027, karena jangka waktu 3 bulan dihitung ulang sejak kuasa baru ditunjuk", D: "17 Desember 2027, karena keberatan dapat diajukan dalam 12 bulan sejak SKPKB dikirim" },
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Keberatan diajukan paling lama 3 bulan sejak tanggal SKP dikirim (Pasal 25 ayat (3) UU KUP), kecuali keadaan di luar kekuasaan WP. Pergantian atau berakhirnya kuasa bukan keadaan semacam itu, sehingga batasnya tetap 18 Maret 2027; Hendro masih punya waktu sejak 1 Maret 2027.",
+        inti: "Keberatan diajukan paling lama 3 bulan sejak tanggal SKP dikirim (Pasal 25 ayat (3) UU KUP), kecuali keadaan di luar kekuasaan WP. Pergantian atau berakhirnya kuasa bukan keadaan semacam itu, sehingga batasnya tetap: tanggal 18 Desember 2026 dihitung sebagai hari pertama, jadi hari terakhirnya 17 Maret 2027; Hendro masih punya waktu sejak 1 Maret 2027.",
         jejakHitung: [
           ["Tanggal SKPKB dikirim", "18 Desember 2026"],
-          ["Jangka waktu keberatan", "3 bulan → 18 Maret 2027"],
+          ["Jangka waktu keberatan", "3 bulan → hari terakhir 17 Maret 2027"],
           ["Kuasa baru ditunjuk", "1 Maret 2027 → masih dalam jangka waktu"],
           ["Pengaruh pergantian kuasa", "Tidak menggeser batas"]
         ],
         mengapaSalah: {
-          A: "Satu bulan adalah jatuh tempo pelunasan SKPKB (Pasal 9 ayat (3)), bukan batas keberatan.",
+          A: "Satu bulan adalah jatuh tempo pelunasan SKPKB sejak tanggal diterbitkan (Pasal 9 ayat (3)), bukan batas keberatan.",
           C: "Jangka waktu dihitung sejak SKP dikirim, bukan sejak kuasa ditunjuk.",
           D: "12 bulan adalah jangka waktu DJP memutus keberatan (Pasal 26 ayat (1))."
         },
         jebakan: "Mengira urusan internal kuasa memengaruhi tenggat hukum WP."
       },
-      dasarHukum: [
-        { pasal: "Pasal 25 ayat (3) UU KUP", berlakuSejak: "2008-01-01" },
-        { pasal: "Pasal 26 ayat (1) dan Pasal 9 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }
-      ],
-      anggaranDetik: 150, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 25 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 26 ayat (1) dan Pasal 9 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     // ===================== E.6 Standar praktik, SPM, Dewan Kehormatan, transisi =====================
     {
@@ -2090,15 +2082,15 @@ UKP.register({
       kutipan: "Pasal 25 ayat (2), (3), dan (3a) UU KUP (parafrase setia): Keberatan diajukan secara tertulis dalam bahasa Indonesia dengan mengemukakan jumlah pajak yang terutang, jumlah pajak yang dipotong atau dipungut, atau jumlah rugi menurut penghitungan Wajib Pajak dengan disertai alasan yang menjadi dasar penghitungan. Keberatan harus diajukan dalam jangka waktu 3 bulan sejak tanggal dikirim surat ketetapan pajak, kecuali Wajib Pajak dapat menunjukkan bahwa jangka waktu itu tidak dapat dipenuhi karena keadaan di luar kekuasaannya. Dalam hal Wajib Pajak mengajukan keberatan atas surat ketetapan pajak, Wajib Pajak wajib melunasi pajak yang masih harus dibayar paling sedikit sejumlah yang telah disetujui Wajib Pajak dalam pembahasan akhir hasil pemeriksaan, sebelum Surat Keberatan disampaikan.",
       stem: "CV Tunas Mandiri (WP badan dalam negeri, bukan PMA) menerima SKPKB PPh Badan Tahun Pajak 2024 yang dikirim pada 14 Oktober 2026 dengan jumlah pajak yang masih harus dibayar Rp1.120.000.000. Dalam pembahasan akhir hasil pemeriksaan, CV menyetujui sebagian koreksi sehingga jumlah pajak yang masih harus dibayar yang disetujuinya Rp180.000.000. Pada 1 November 2026 direktur menandatangani surat kuasa khusus kepada Konsultan Pajak Laras Wening (izin B) untuk mengajukan keberatan. Berdasarkan kutipan, PMK 44/2026, dan tata cara keberatan era Coretax, rangkaian langkah yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "(1) Memastikan surat kuasa khusus menyebut hak 'mengajukan keberatan atas SKPKB PPh Badan Tahun Pajak 2024' dan memuat masa berlaku; (2) CV melunasi paling sedikit Rp180.000.000 sebelum surat keberatan disampaikan; (3) menyusun satu surat keberatan berbahasa Indonesia yang memuat jumlah pajak menurut penghitungan CV beserta alasannya; (4) menyampaikannya melalui Portal Wajib Pajak (Coretax) dengan melampirkan surat kuasa khusus paling lambat 14 Januari 2027", B: "(1) Memastikan surat kuasa khusus menyebut hak 'mengajukan keberatan atas SKPKB PPh Badan Tahun Pajak 2024' dan memuat masa berlaku; (2) CV melunasi seluruh Rp1.120.000.000 sebelum surat keberatan disampaikan; (3) menyusun satu surat keberatan berbahasa Indonesia yang memuat jumlah pajak menurut penghitungan CV beserta alasannya; (4) menyampaikannya melalui Portal Wajib Pajak (Coretax) dengan melampirkan surat kuasa khusus paling lambat 14 Januari 2027", C: "(1) Memastikan surat kuasa khusus menyebut hak 'mengajukan keberatan atas SKPKB PPh Badan Tahun Pajak 2024' dan memuat masa berlaku; (2) CV melunasi paling sedikit Rp180.000.000 sebelum surat keberatan disampaikan; (3) menyusun satu surat keberatan berbahasa Indonesia yang memuat jumlah pajak menurut penghitungan CV beserta alasannya; (4) menyampaikannya melalui Portal Wajib Pajak (Coretax) dengan melampirkan surat kuasa khusus paling lambat 1 Februari 2027, yaitu 3 bulan sejak surat kuasa khusus ditandatangani", D: "(1) Memastikan surat kuasa khusus menyebut hak 'mengajukan keberatan atas SKPKB PPh Badan Tahun Pajak 2024' dan memuat masa berlaku; (2) CV melunasi paling sedikit 50% dari jumlah dalam SKPKB (Rp560.000.000) sebelum surat keberatan disampaikan; (3) menyusun satu surat keberatan berbahasa Indonesia yang memuat jumlah pajak menurut penghitungan CV beserta alasannya; (4) menyampaikannya melalui Portal Wajib Pajak (Coretax) dengan melampirkan surat kuasa khusus paling lambat 14 Januari 2027" },
+      opsi: { A: "(1) Memastikan surat kuasa khusus menyebut hak 'mengajukan keberatan atas SKPKB PPh Badan Tahun Pajak 2024' dan memuat masa berlaku; (2) CV melunasi paling sedikit Rp180.000.000 sebelum surat keberatan disampaikan; (3) menyusun satu surat keberatan berbahasa Indonesia yang memuat jumlah pajak menurut penghitungan CV beserta alasannya; (4) menyampaikannya melalui Portal Wajib Pajak (Coretax) dengan melampirkan surat kuasa khusus paling lambat 13 Januari 2027", B: "(1) Memastikan surat kuasa khusus menyebut hak 'mengajukan keberatan atas SKPKB PPh Badan Tahun Pajak 2024' dan memuat masa berlaku; (2) CV melunasi seluruh Rp1.120.000.000 sebelum surat keberatan disampaikan; (3) menyusun satu surat keberatan berbahasa Indonesia yang memuat jumlah pajak menurut penghitungan CV beserta alasannya; (4) menyampaikannya melalui Portal Wajib Pajak (Coretax) dengan melampirkan surat kuasa khusus paling lambat 13 Januari 2027", C: "(1) Memastikan surat kuasa khusus menyebut hak 'mengajukan keberatan atas SKPKB PPh Badan Tahun Pajak 2024' dan memuat masa berlaku; (2) CV melunasi paling sedikit Rp180.000.000 sebelum surat keberatan disampaikan; (3) menyusun satu surat keberatan berbahasa Indonesia yang memuat jumlah pajak menurut penghitungan CV beserta alasannya; (4) menyampaikannya melalui Portal Wajib Pajak (Coretax) dengan melampirkan surat kuasa khusus paling lambat 31 Januari 2027, yaitu 3 bulan sejak surat kuasa khusus ditandatangani", D: "(1) Memastikan surat kuasa khusus menyebut hak 'mengajukan keberatan atas SKPKB PPh Badan Tahun Pajak 2024' dan memuat masa berlaku; (2) CV melunasi paling sedikit 50% dari jumlah dalam SKPKB (Rp560.000.000) sebelum surat keberatan disampaikan; (3) menyusun satu surat keberatan berbahasa Indonesia yang memuat jumlah pajak menurut penghitungan CV beserta alasannya; (4) menyampaikannya melalui Portal Wajib Pajak (Coretax) dengan melampirkan surat kuasa khusus paling lambat 13 Januari 2027" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Pasal 25 ayat (3a) UU KUP mewajibkan pelunasan paling sedikit jumlah yang disetujui dalam pembahasan akhir (Rp180.000.000) sebelum keberatan disampaikan, dan ayat (3) menghitung 3 bulan sejak SKP dikirim (14 Oktober 2026 → 14 Januari 2027). Karena ditandatangani kuasa, surat keberatan dilampiri surat kuasa khusus yang menurut PMK 44/2026 menyebut hak tertentu dan masa berlaku; penyampaian dilakukan secara elektronik melalui Portal Wajib Pajak (PMK 118/2024).",
+        inti: "Pasal 25 ayat (3a) UU KUP mewajibkan pelunasan paling sedikit jumlah yang disetujui dalam pembahasan akhir (Rp180.000.000) sebelum keberatan disampaikan, dan ayat (3) menghitung 3 bulan sejak SKP dikirim (14 Oktober 2026 dihitung sebagai hari pertama → hari terakhir 13 Januari 2027). Karena ditandatangani kuasa, surat keberatan dilampiri surat kuasa khusus yang menurut PMK 44/2026 menyebut hak tertentu dan masa berlaku; penyampaian dilakukan secara elektronik melalui Portal Wajib Pajak (PMK 118/2024).",
         jejakHitung: [
           ["Pelunasan minimal", "Jumlah yang disetujui dalam pembahasan akhir = Rp180.000.000"],
           ["Bagian yang tidak disetujui", "Rp1.120.000.000 − Rp180.000.000 = Rp940.000.000 → tertangguh selama proses keberatan"],
-          ["Batas pengajuan", "14 Oktober 2026 + 3 bulan = 14 Januari 2027"],
+          ["Batas pengajuan", "14 Oktober 2026 + 3 bulan → hari terakhir 13 Januari 2027"],
           ["Surat kuasa khusus", "Hak tertentu + masa berlaku; dilampirkan pada surat keberatan"]
         ],
         mengapaSalah: {
@@ -2445,11 +2437,11 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
-        inti: "Memberi pendapat kedua tidak dilarang selama objektif, menyebut batasannya, dan tidak mencela rekan. Perpindahan penugasan tetap mengikuti etika antarrekan: perikatan lama diakhiri klien dan rekan sebelumnya diberi tahu; tenggat keberatan (3 bulan sejak 6 Oktober 2026, yaitu 6 Januari 2027) masih cukup untuk itu.",
+        inti: "Memberi pendapat kedua tidak dilarang selama objektif, menyebut batasannya, dan tidak mencela rekan. Perpindahan penugasan tetap mengikuti etika antarrekan: perikatan lama diakhiri klien dan rekan sebelumnya diberi tahu; tenggat keberatan (3 bulan sejak 6 Oktober 2026, dengan hari terakhir 5 Januari 2027) masih cukup untuk itu.",
         jejakHitung: [
           ["Pendapat kedua", "Boleh: objektif, tertulis, sebut batasan data"],
           ["Larangan antarrekan", "Tidak mencela, tidak merebut klien yang masih terikat"],
-          ["Tenggat keberatan", "6 Oktober 2026 + 3 bulan = 6 Januari 2027 → masih ada waktu"],
+          ["Tenggat keberatan", "6 Oktober 2026 + 3 bulan → hari terakhir 5 Januari 2027 → masih ada waktu"],
           ["Urutan perpindahan", "Klien mengakhiri perikatan lama → pemberitahuan kepada rekan → surat kuasa baru"]
         ],
         mengapaSalah: {
@@ -2849,16 +2841,16 @@ UKP.register({
       kutipan: "Pasal 34 ayat (1)–(3) UU 14/2002 tentang Pengadilan Pajak (parafrase setia): Para pihak yang bersengketa masing-masing dapat didampingi atau diwakili oleh satu atau lebih kuasa hukum dengan Surat Kuasa Khusus. Untuk menjadi kuasa hukum harus dipenuhi syarat warga negara Indonesia, mempunyai pengetahuan yang luas dan keahlian tentang peraturan perundang-undangan perpajakan, serta persyaratan lain yang ditetapkan Menteri. Dalam hal kuasa hukum merupakan keluarga sedarah atau semenda sampai derajat kedua, pegawai, atau pengampu, persyaratan tersebut tidak diperlukan.",
       stem: "Lanjutan data PT Lembah Hijau Lestari: keputusan keberatan (dikabulkan sebagian, pokok Rp1.040.000.000) diterima 23 Maret 2027; surat kuasa khusus Konsultan Pajak Wahyu Pratama (izin B) hanya untuk proses keberatan dan berlaku sampai 31 Maret 2027. Direksi memutuskan mengajukan banding dan ingin tetap diwakili Wahyu atau, bila tidak memungkinkan, oleh Pak Darmawan, manajer pajak perusahaan yang tidak memiliki izin konsultan maupun SKT. Berdasarkan kutipan, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Wahyu dapat langsung mewakili dalam banding memakai surat kuasa keberatan yang ada, karena banding merupakan kelanjutan keberatan dan surat kuasa masih berlaku sampai 31 Maret 2027", B: "Banding wajib diwakili konsultan pajak izin C karena sengketa di Pengadilan Pajak termasuk kewenangan izin tertinggi; Pak Darmawan tidak dapat mewakili karena tidak memiliki SKT", C: "Banding diajukan paling lambat 23 Juni 2027 oleh Wahyu, lalu Wahyu membuat surat substitusi kepada Pak Darmawan, karena pegawai tidak memerlukan persyaratan kuasa hukum", D: "Perusahaan menandatangani Surat Kuasa Khusus baru untuk banding; Wahyu dapat mewakili bila memenuhi syarat kuasa hukum, sedangkan Pak Darmawan sebagai pegawai dikecualikan dari syarat itu; banding paling lambat 23 Juni 2027" },
+      opsi: { A: "Wahyu dapat langsung mewakili dalam banding memakai surat kuasa keberatan yang ada, karena banding merupakan kelanjutan keberatan dan surat kuasa masih berlaku sampai 31 Maret 2027", B: "Banding wajib diwakili konsultan pajak izin C karena sengketa di Pengadilan Pajak termasuk kewenangan izin tertinggi; Pak Darmawan tidak dapat mewakili karena tidak memiliki SKT", C: "Banding diajukan paling lambat 22 Juni 2027 oleh Wahyu, lalu Wahyu membuat surat substitusi kepada Pak Darmawan, karena pegawai tidak memerlukan persyaratan kuasa hukum", D: "Perusahaan menandatangani Surat Kuasa Khusus baru untuk banding; Wahyu dapat mewakili bila memenuhi syarat kuasa hukum, sedangkan Pak Darmawan sebagai pegawai dikecualikan dari syarat itu; banding paling lambat 22 Juni 2027" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
-        inti: "Banding adalah proses baru di Pengadilan Pajak dengan aturan kuasa sendiri (Pasal 34 UU 14/2002): diperlukan Surat Kuasa Khusus untuk banding, dan kuasa hukum harus memenuhi syarat WNI, keahlian perpajakan, dan syarat Menteri, kecuali keluarga sampai derajat kedua, pegawai, atau pengampu. Surat banding diajukan dalam 3 bulan sejak keputusan keberatan diterima (Pasal 35 ayat (2)): 23 Juni 2027.",
+        inti: "Banding adalah proses baru di Pengadilan Pajak dengan aturan kuasa sendiri (Pasal 34 UU 14/2002): diperlukan Surat Kuasa Khusus untuk banding, dan kuasa hukum harus memenuhi syarat WNI, keahlian perpajakan, dan syarat Menteri, kecuali keluarga sampai derajat kedua, pegawai, atau pengampu. Surat banding diajukan dalam 3 bulan sejak keputusan keberatan diterima (Pasal 35 ayat (2)); tanggal 23 Maret 2027 dihitung sebagai hari pertama, sehingga hari terakhirnya 22 Juni 2027.",
         jejakHitung: [
           ["Lingkup surat kuasa Wahyu", "Hanya proses keberatan → tidak mencakup banding"],
           ["Dasar kuasa di Pengadilan Pajak", "Pasal 34 UU 14/2002 → Surat Kuasa Khusus baru"],
           ["Pak Darmawan (pegawai)", "Dikecualikan dari persyaratan kuasa hukum (Pasal 34 ayat (3))"],
-          ["Tenggat banding", "23 Maret 2027 + 3 bulan = 23 Juni 2027"]
+          ["Tenggat banding", "23 Maret 2027 + 3 bulan → hari terakhir 22 Juni 2027"]
         ],
         mengapaSalah: {
           A: "Surat kuasa khusus hanya mencakup hak yang disebutkan (keberatan); banding memerlukan Surat Kuasa Khusus tersendiri.",
@@ -2972,22 +2964,21 @@ UKP.register({
       peringatan: "Nama dan susunan isian bagian pernyataan pada SPT Tahunan PPh Badan di Coretax (PER-11/PJ/2025) belum dicocokkan dengan tampilan aplikasi; kewajiban melampirkan surat kuasa khusus (Pasal 4 ayat (3) UU KUP) terverifikasi."
     },
     {
-      id: "E-088", topik: "E.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "E-088",
+      topik: "E.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Bayu Saputra lulus USKP tingkat B dan sertifikatnya terbit 10 Maret 2025. Ia bekerja sebagai staf pajak di sebuah KKP sejak 2023 (pengalaman perpajakan lebih dari 2 tahun dalam 3 tahun terakhir) dan pada 2026 lulus ujian brevet C. Karena sibuk, ia baru menyiapkan permohonan izin praktik tingkat B pada April 2027 dengan memakai sertifikat USKP tersebut. Asosiasi tempatnya mendaftar telah menyelenggarakan ujian profesi sejak Desember 2026, tetapi Bayu belum mengikutinya. Menurut ketentuan peralihan PMK 55/2026, penilaian yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Dapat mengajukan izin B, karena sertifikat USKP diakui sebagai SKK yang berlaku 3 tahun sejak terbit (sampai 10 Maret 2028), dan pemegang sertifikat lama tidak wajib ujian profesi",
-        B: "Dapat mengajukan izin B, karena pengakuan sertifikat USKP sebagai SKK yang berakhir 10 Maret 2027 cukup diperpanjang dengan bukti lulus brevet C",
-        C: "Dapat mengajukan izin B, karena sertifikat USKP yang terbit sebelum PMK 55/2026 berlaku tanpa batas waktu, tetapi ia wajib lulus ujian profesi lebih dahulu",
-        D: "Tidak dapat memakai sertifikat itu, karena pengakuannya sebagai SKK berakhir 10 Maret 2027 (paling lama 2 tahun); ia perlu SKK baru melalui UKP dan juga lulus ujian profesi yang sudah diselenggarakan"
-      },
+      opsi: { A: "Dapat mengajukan izin B, karena sertifikat USKP diakui sebagai SKK yang berlaku 3 tahun sejak terbit (sampai 9 Maret 2028), dan pemegang sertifikat lama tidak wajib ujian profesi", B: "Dapat mengajukan izin B, karena pengakuan sertifikat USKP sebagai SKK yang berakhir 9 Maret 2027 cukup diperpanjang dengan bukti lulus brevet C", C: "Dapat mengajukan izin B, karena sertifikat USKP yang terbit sebelum PMK 55/2026 berlaku tanpa batas waktu, tetapi ia wajib lulus ujian profesi lebih dahulu", D: "Tidak dapat memakai sertifikat itu, karena pengakuannya sebagai SKK berakhir 9 Maret 2027 (paling lama 2 tahun); ia perlu SKK baru melalui UKP dan juga lulus ujian profesi yang sudah diselenggarakan" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "angka-usang" },
       pembahasan: {
-        inti: "Pasal 60 huruf f PMK 55/2026 mengakui sertifikat USKP sebagai SKK paling lama 2 tahun sejak diterbitkan: 10 Maret 2025 + 2 tahun = 10 Maret 2027, sehingga pada April 2027 sudah tidak dapat dipakai. Kelonggaran tanpa ujian profesi hanya berlaku selama ujian profesi belum diselenggarakan; karena sudah ada sejak Desember 2026, Bayu juga wajib lulus ujian profesi.",
+        inti: "Pasal 60 huruf f PMK 55/2026 mengakui sertifikat USKP sebagai SKK paling lama 2 tahun sejak diterbitkan: 10 Maret 2025 dihitung sebagai hari pertama, sehingga hari terakhirnya 9 Maret 2027, dan pada April 2027 sudah tidak dapat dipakai. Kelonggaran tanpa ujian profesi hanya berlaku selama ujian profesi belum diselenggarakan; karena sudah ada sejak Desember 2026, Bayu juga wajib lulus ujian profesi.",
         jejakHitung: [
           ["Sertifikat USKP terbit", "10 Maret 2025"],
-          ["Pengakuan sebagai SKK (paling lama 2 tahun)", "Sampai 10 Maret 2027"],
+          ["Pengakuan sebagai SKK (paling lama 2 tahun)", "Hari terakhir 9 Maret 2027"],
           ["Rencana permohonan", "April 2027 → pengakuan sudah berakhir"],
           ["Ujian profesi", "Sudah diselenggarakan sejak Desember 2026 → wajib lulus"],
           ["Kebutuhan", "SKK baru (UKP tingkat B) + lulus ujian profesi"]
@@ -2999,11 +2990,9 @@ UKP.register({
         },
         jebakan: "Dua angka masa berlaku mudah tertukar: SKK hasil UKP 3 tahun, sertifikat USKP lama paling lama 2 tahun."
       },
-      dasarHukum: [
-        { pasal: "Pasal 60 huruf f PMK 55/2026 — sertifikat USKP diakui sebagai SKK paling lama 2 tahun", berlakuSejak: "2026-08-24" },
-        { pasal: "Pasal 61 PMK 55/2026 — penyelenggaraan ujian profesi", berlakuSejak: "2026-08-24" }
-      ],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 60 huruf f PMK 55/2026: sertifikat USKP diakui sebagai SKK paling lama 2 tahun", berlakuSejak: "2026-08-24" }, { pasal: "Pasal 61 PMK 55/2026: penyelenggaraan ujian profesi", berlakuSejak: "2026-08-24" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "E-089", topik: "E.6", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1,
@@ -3100,11 +3089,11 @@ UKP.register({
     {
       id: "K-E-01", judul: "Peta kepatuhan profesi KKP Wibawa & Rekan", topik: "E.3", estimasiMenit: 15,
       narasi: "KKP Wibawa & Rekan di Yogyakarta memiliki tiga konsultan pajak. Sekar memperoleh izin tingkat A yang terbit Senin, 7 September 2026; tidak ada hari libur nasional atau cuti bersama antara 7 September dan 30 Oktober 2026, dan hari kerja adalah Senin–Jumat. Yoga memegang izin tingkat B sejak 2022 dan lulus UKP tingkat C dengan SKK C terbit 19 November 2026. Hendra memegang izin tingkat C sejak 2019. Rekap PPL tahun 2027: Sekar 21 SKP (15 terstruktur), Yoga 29 SKP (26 terstruktur), Hendra 47 SKP (38 terstruktur). Pada Januari 2028 KKP menerima permintaan jasa dari PT Sumber Rejeki, perusahaan PMA, dan partner ingin menugaskan Yoga. Partner juga menyusun jadwal laporan tahunan ketiga konsultan.",
-      data: [["Izin Sekar (A) terbit", "Senin, 7 September 2026"], ["Batas gabung asosiasi", "30 hari kerja sejak izin terbit"], ["PPL A / B / C", "20 (16) / 30 (24) / 45 (36) SKP"], ["PPL 2027 Sekar", "21 SKP (15 terstruktur)"], ["PPL 2027 Yoga", "29 SKP (26 terstruktur)"], ["PPL 2027 Hendra", "47 SKP (38 terstruktur)"], ["Yoga", "Izin B sejak 2022; SKK C terbit 19 November 2026"], ["Klien baru", "PT Sumber Rejeki (PMA), Januari 2028"]],
+      data: [["Izin Sekar (A) terbit", "Senin, 7 September 2026"], ["Batas gabung asosiasi", "30 hari kerja setelah izin diperoleh"], ["PPL A / B / C", "20 (16) / 30 (24) / 45 (36) SKP"], ["PPL 2027 Sekar", "21 SKP (15 terstruktur)"], ["PPL 2027 Yoga", "29 SKP (26 terstruktur)"], ["PPL 2027 Hendra", "47 SKP (38 terstruktur)"], ["Yoga", "Izin B sejak 2022; SKK C terbit 19 November 2026"], ["Klien baru", "PT Sumber Rejeki (PMA), Januari 2028"]],
       langkah: [
         { no: 1, pertanyaan: "Tanggal berapa (angka hari) pada bulan Oktober 2026 batas akhir Sekar wajib menjadi anggota asosiasi?", tipe: "angka", jawaban: 19, toleransi: 0,
           petunjuk: ["Hitung 30 hari kerja mulai hari kerja berikutnya setelah izin terbit (Selasa, 8 September 2026).", "8–11 September = 4 hari; 14 September – 16 Oktober = 5 minggu = 25 hari; kumulatif 29.", "Hari kerja ke-30 = Senin, 19 Oktober 2026 → jawaban 19."],
-          penjelasan: "PMK 55/2026 mewajibkan konsultan menjadi anggota asosiasi terdaftar paling lambat 30 hari kerja sejak izin terbit; bila tidak, izin dibekukan 3 bulan lalu dicabut." },
+          penjelasan: "PMK 55/2026 Pasal 25 ayat (1) mewajibkan konsultan menjadi anggota asosiasi terdaftar paling lama 30 hari kerja setelah izin diperoleh, sehingga hari kerja pertama adalah Selasa, 8 September 2026; bila tidak, izin dibekukan 3 bulan lalu dicabut." },
         { no: 2, pertanyaan: "Berapa SKP terstruktur yang masih kurang bagi Sekar (izin A) untuk tahun 2027?", tipe: "angka", jawaban: 1, toleransi: 0,
           petunjuk: ["Tingkat A: total 20 SKP, sekurang-kurangnya 16 terstruktur.", "Total Sekar 21 ≥ 20 (terpenuhi); terstruktur 15.", "16 − 15 = 1 SKP terstruktur."],
           penjelasan: "Dua syarat bersifat kumulatif: total SKP dan minimal SKP terstruktur. Total yang melebihi tidak menutup kekurangan komponen terstruktur." },
@@ -3117,7 +3106,7 @@ UKP.register({
           penjelasan: "Izin lama tetap berlaku (Pasal 60 huruf a), tetapi pemegangnya tetap tunduk pada kewajiban PPL yang berlaku." },
         { no: 5, pertanyaan: "Pengaturan yang tepat untuk penugasan PT Sumber Rejeki (PMA) pada Januari 2028?", tipe: "pilihan",
           opsi: { A: "Yoga langsung menangani karena sudah memegang SKK C", B: "Yoga dapat mengajukan kenaikan ke izin C (praktik izin B ≥ 1 tahun dan SKK C masih berlaku); sebelum izin C terbit, PT Sumber Rejeki ditangani Hendra", C: "Yoga harus menunggu 2 tahun sejak SKK C terbit sebelum mengajukan izin C", D: "PT Sumber Rejeki boleh ditangani Sekar karena PMA dimiliki orang pribadi asing" }, jawaban: "B",
-          petunjuk: ["PMA hanya dapat ditangani pemegang izin C.", "Naik satu tingkat (B ke C) memerlukan praktik minimal 1 tahun plus SKK tingkat tujuan; SKK C berlaku sampai 19 November 2029.", "SKK bukan izin; selama izin C belum terbit, Hendra yang menangani → B."],
+          petunjuk: ["PMA hanya dapat ditangani pemegang izin C.", "Naik satu tingkat (B ke C) memerlukan praktik minimal 1 tahun plus SKK tingkat tujuan; SKK C berlaku 3 tahun sejak 19 November 2026, dengan hari terakhir 18 November 2029.", "SKK bukan izin; selama izin C belum terbit, Hendra yang menangani → B."],
           penjelasan: "SKK membuktikan kompetensi, tetapi kewenangan praktik lahir dari izin. Selama izin Yoga masih B, klien PMA ditangani konsultan izin C." },
         { no: 6, pertanyaan: "Batas dan isi laporan tahunan ketiga konsultan untuk kegiatan tahun 2027?", tipe: "pilihan",
           opsi: { A: "31 Maret 2028, cukup jumlah klien", B: "30 April 2028, memuat nama dan profil, tempat bekerja, bukti penyampaian SPT, dan daftar rincian jasa per klien tiap konsultan", C: "31 Januari 2028, memuat daftar bukti potong yang diterbitkan", D: "30 April 2028, cukup diserahkan oleh partner KKP untuk semua konsultan dalam satu ringkasan total imbalan" }, jawaban: "B",
@@ -3206,20 +3195,20 @@ UKP.register({
           petunjuk: ["Pasal 30 ayat (1) huruf a PMK 55/2026 melarang keterangan menyesatkan.", "Kerahasiaan hanya dibuka karena kewajiban undang-undang (mis. permintaan tertulis DJP).", "Konsultan boleh mundur bila klien menolak jalan yang sah → B."],
           penjelasan: "Integritas dan kerahasiaan berjalan bersama: Rahmat tidak boleh berbohong untuk klien, tetapi juga tidak membuka rahasia klien tanpa dasar hukum." },
         { no: 3, pertanyaan: "Tanggal berapa (angka hari pada Januari 2027) batas akhir tanggapan tertulis atas SPHP?", tipe: "angka", jawaban: 25, toleransi: 0,
-          petunjuk: ["PMK 15/2025: tanggapan SPHP paling lama 5 hari kerja sejak SPHP diterima.", "Hari kerja ke-1 s.d. ke-4: Selasa 19 – Jumat 22 Januari 2027.", "Hari kerja ke-5 = Senin, 25 Januari 2027."],
+          petunjuk: ["PMK 15/2025: tanggapan SPHP paling lama 5 hari kerja sejak SPHP diterima; menurut data kasus, hari kerja ke-1 adalah hari kerja berikutnya.", "Hari kerja ke-1 s.d. ke-4: Selasa 19 – Jumat 22 Januari 2027.", "Hari kerja ke-5 = Senin, 25 Januari 2027."],
           penjelasan: "Tanggapan SPHP kini 5 hari kerja (dahulu 7 hari kerja); bila tidak ditanggapi, dituangkan dalam berita acara." },
         { no: 4, pertanyaan: "Berapa pokok pajak yang wajib dilunasi CV sebelum surat keberatan disampaikan (Rp)?", tipe: "angka", jawaban: 100000000, toleransi: 0,
           petunjuk: ["Pasal 25 ayat (3a) UU KUP mengatur pelunasan sebelum keberatan atas SKP.", "Jumlahnya paling sedikit sebesar yang disetujui dalam pembahasan akhir hasil pemeriksaan.", "Rp100.000.000."],
           penjelasan: "Bagian yang tidak disetujui (Rp540.000.000) tertangguh selama proses keberatan sampai 1 bulan sejak keputusan keberatan terbit." },
         { no: 5, pertanyaan: "Batas pengajuan keberatan dan dasar kewenangan Rahmat?", tipe: "pilihan",
-          opsi: { A: "8 Juni 2027; surat kuasa pemeriksaan sudah berakhir 28 Februari 2027 dan tidak mencakup keberatan, sehingga CV harus memberi surat kuasa khusus baru untuk keberatan", B: "18 April 2027 (3 bulan sejak SPHP diterima); surat kuasa pemeriksaan masih dapat dipakai", C: "8 Juni 2027; surat kuasa pemeriksaan otomatis diperpanjang untuk keberatan karena perkaranya sama", D: "8 April 2027 (1 bulan sejak SKPKB dikirim); surat kuasa khusus baru diperlukan" }, jawaban: "A",
-          petunjuk: ["Keberatan diajukan dalam 3 bulan sejak tanggal SKP dikirim.", "8 Maret 2027 + 3 bulan = 8 Juni 2027.", "Surat kuasa khusus hanya untuk hak yang disebut dan masa berlakunya sudah lewat → A."],
+          opsi: { A: "7 Juni 2027; surat kuasa pemeriksaan sudah berakhir 28 Februari 2027 dan tidak mencakup keberatan, sehingga CV harus memberi surat kuasa khusus baru untuk keberatan", B: "17 April 2027 (3 bulan sejak SPHP diterima); surat kuasa pemeriksaan masih dapat dipakai", C: "7 Juni 2027; surat kuasa pemeriksaan otomatis diperpanjang untuk keberatan karena perkaranya sama", D: "7 April 2027 (1 bulan sejak SKPKB dikirim); surat kuasa khusus baru diperlukan" }, jawaban: "A",
+          petunjuk: ["Keberatan diajukan dalam 3 bulan sejak tanggal SKP dikirim.", "8 Maret 2027 dihitung sebagai hari pertama: 3 bulan berakhir 7 Juni 2027.", "Surat kuasa khusus hanya untuk hak yang disebut dan masa berlakunya sudah lewat → A."],
           penjelasan: "PMK 44/2026 mewajibkan surat kuasa khusus menyebut hak tertentu dan masa berlaku; surat keberatan yang ditandatangani kuasa dilampiri surat kuasa khusus yang sah." },
         { no: 6, pertanyaan: "Bila keputusan keberatan menetapkan pokok Rp400.000.000 dan CV tidak mengajukan banding, berapa denda Pasal 25 ayat (9) (Rp)?", tipe: "angka", jawaban: 90000000, toleransi: 0,
           petunjuk: ["Denda 30% × (pokok menurut keputusan keberatan − pajak yang dibayar sebelum keberatan).", "Rp400.000.000 − Rp100.000.000 = Rp300.000.000.", "30% × Rp300.000.000 = Rp90.000.000."],
           penjelasan: "Denda 30% tidak dikenakan bila CV mengajukan banding; bila banding ditolak, yang berlaku denda 60% Pasal 27 ayat (5d)." }
       ],
-      kesimpulan: "Atas temuan di tengah pemeriksaan, jalan sahnya adalah pengungkapan ketidakbenaran sebelum SPHP; bila klien menolak, Rahmat tidak boleh memberi keterangan menyesatkan dan dapat mundur tanpa membuka rahasia. Tanggapan SPHP paling lambat 25 Januari 2027. Untuk keberatan, CV melunasi Rp100.000.000 lebih dahulu, mengajukan paling lambat 8 Juni 2027 dengan surat kuasa khusus baru, dan menghadapi denda Rp90.000.000 bila keputusan menetapkan Rp400.000.000 dan CV tidak banding.",
+      kesimpulan: "Atas temuan di tengah pemeriksaan, jalan sahnya adalah pengungkapan ketidakbenaran sebelum SPHP; bila klien menolak, Rahmat tidak boleh memberi keterangan menyesatkan dan dapat mundur tanpa membuka rahasia. Tanggapan SPHP paling lambat 25 Januari 2027. Untuk keberatan, CV melunasi Rp100.000.000 lebih dahulu, mengajukan paling lambat 7 Juni 2027 dengan surat kuasa khusus baru, dan menghadapi denda Rp90.000.000 bila keputusan menetapkan Rp400.000.000 dan CV tidak banding.",
       kalkulatorRef: "denda-keberatan"
     },
     {

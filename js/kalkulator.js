@@ -939,7 +939,7 @@
     deskripsi: 'Jadwal paling cepat: jatuh tempo → Surat Teguran → Surat Paksa → penyitaan → pengumuman lelang → lelang, plus penyanderaan dan daluwarsa.',
     dasarHukum: ['Pasal 9 ayat (3), (3a), 22 UU KUP', 'UU 19/1997 s.t.d.d. UU 19/2000 (PPSP) Pasal 8, 12, 25, 26, 33', 'PMK 61/2023'],
     statusPer: STATUS_PER, verifikasi: '◐',
-    peringatan: 'Konvensi penghitungan hari (jatuh tempo "1 bulan sejak terbit" = tanggal terbit + 1 bulan − 1 hari; "setelah lewat n hari" = hari ke-n+1; penyanderaan = Surat Paksa + 14 hari) dan tenggat pengumuman lelang/lelang 14 hari belum dicek ke teks UU PPSP/PMK 61/2023.',
+    peringatan: 'Jatuh tempo "1 bulan sejak terbit" dihitung seperti contoh Penjelasan Pasal 19 ayat (1) UU 28/2007: terbit 7 Oktober, jatuh tempo 6 November (tanggal terbit + 1 bulan − 1 hari). Hitungan hari ("setelah lewat n hari" = hari ke-n+1; penyanderaan = Surat Paksa + 14 hari) dan tenggat pengumuman lelang serta lelang 14 hari belum dicek ke teks UU PPSP dan PMK 61/2023.',
     input: [
       { key: 'terbit', label: 'Tanggal terbit SKP/STP', tipe: 'tanggal', default: '2026-07-01' },
       { key: 'usahaKecil', label: 'WP usaha kecil / daerah tertentu (jatuh tempo 2 bulan)', tipe: 'boolean', default: false },

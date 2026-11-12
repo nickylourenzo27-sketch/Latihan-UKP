@@ -1102,23 +1102,25 @@ UKP.register({
       jenis: "prosedur",
       kesulitan: 2,
       kasusId: "V-A5-03",
-      stem: "Lanjutan data CV Sumber Rejeki. Atas kuitansi Rp7.500.000 yang diterima CV pada 25 November 2021 tanpa meterai, pemeriksa pada 14 Oktober 2026 menyatakan bea meterai dan sanksinya masih dapat ditagih. Batas akhir daluwarsa kewajiban pemenuhan bea meterai atas kuitansi tersebut adalah ...",
+      stem: "Lanjutan data CV Sumber Rejeki. Atas kuitansi Rp7.500.000 yang diterima CV pada 25 November 2021 tanpa meterai, pemeriksa pada 14 Oktober 2026 menyatakan bea meterai dan sanksinya masih dapat ditagih. Bea meterai atas kuitansi tersebut menjadi kedaluwarsa (tidak dapat ditagih lagi) mulai ...",
       kataKualifikasi: [],
-      opsi: { A: "31 Desember 2026, akhir tahun kelima sejak dokumen dibuat", B: "25 November 2026, 5 tahun sejak saat terutang", C: "14 Oktober 2031, 5 tahun sejak dokumen ditemukan pemeriksa", D: "5 tahun sejak STP atau surat ketetapan diterbitkan, mengikuti daluwarsa penagihan UU KUP" },
+      opsi: { A: "1 Januari 2027, setelah akhir tahun kelima sejak dokumen dibuat", B: "25 November 2026, karena jangka waktu 5 tahun sejak saat terutang (25 November 2021) berakhir pada 24 November 2026", C: "14 Oktober 2031, setelah 5 tahun sejak dokumen ditemukan pemeriksa", D: "Setelah 5 tahun sejak STP atau surat ketetapan diterbitkan, mengikuti daluwarsa penagihan UU KUP" },
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Kuitansi terutang saat diserahkan (25 November 2021). Bea Meterai yang terutang kedaluwarsa setelah 5 tahun sejak saat terutang (Pasal 23 UU 10/2020), yaitu 25 November 2026; sanksi 100% dihitung dari bea meterai itu sehingga mengikuti pokoknya.",
+        inti: "Kuitansi terutang saat diserahkan (25 November 2021). Menurut Pasal 23 UU 10/2020, Bea Meterai yang terutang menjadi kedaluwarsa setelah jangka waktu 5 tahun sejak saat terutang. Dengan 25 November 2021 sebagai hari pertama, hari terakhir jangka waktu itu 24 November 2026, sehingga bea meterai kedaluwarsa mulai 25 November 2026. Pemeriksaan 14 Oktober 2026 masih di dalam jangka waktu; sanksi 100% dihitung dari bea meterai itu sehingga mengikuti pokoknya.",
         jejakHitung: [
           ["Saat terutang (diserahkan)", "25 November 2021"],
-          ["Ditambah 5 tahun", "25 November 2026"]
+          ["Hari terakhir jangka waktu 5 tahun (hari pertama 25 November 2021)", "24 November 2026"],
+          ["Kedaluwarsa mulai", "25 November 2026"],
+          ["Pemeriksaan 14 Oktober 2026", "masih dalam jangka waktu, dapat ditagih"]
         ],
         mengapaSalah: {
-          A: "Daluwarsa tidak dibulatkan ke akhir tahun",
+          A: "Daluwarsa dihitung per tanggal dari saat terutang, tidak dibulatkan ke akhir tahun",
           C: "Titik mulai adalah saat terutang, bukan tanggal penemuan",
           D: "Daluwarsa penagihan UU KUP berbeda dengan daluwarsa khusus Pasal 23 UU Bea Meterai"
         },
-        jebakan: "Pemeriksaan pada Oktober 2026 hanya berselang beberapa minggu sebelum daluwarsa; ketepatan tanggal menentukan."
+        jebakan: "Bedakan hari terakhir jangka waktu (24 November 2026, bea meterai masih dapat ditagih) dari saat kedaluwarsa (mulai 25 November 2026)."
       },
       dasarHukum: [{ pasal: "Pasal 23 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 8 ayat (1) huruf c UU 10/2020", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 90,
@@ -1172,7 +1174,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A5-045", topik: "A5.5", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2,
+      id: "A5-045",
+      topik: "A5.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
       kutipan: "Pasal 23 UU 10/2020 (parafrase): Bea Meterai yang terutang menjadi kedaluwarsa setelah jangka waktu 5 tahun sejak saat terutang. Penjelasan pasal: kedaluwarsa 5 tahun yang dihitung sejak saat terutang berlaku untuk semua dokumen.",
       stem: "Pada 20 Oktober 2026 pemeriksa menemukan empat dokumen PT Lestari Jaya tanpa meterai, dan tidak satu pun pernah diajukan ke pengadilan: (1) kuitansi Rp8.000.000 yang diterima perusahaan pada 15 Oktober 2021; (2) surat perjanjian sewa yang ditandatangani 3 Desember 2021; (3) kuitansi Rp12.000.000 yang diterima perusahaan pada 30 September 2021; (4) surat pernyataan yang diserahkan kepada perusahaan pada 1 Maret 2021. Berdasarkan kutipan tersebut, dokumen yang bea meterai dan sanksinya masih dapat ditagih adalah ...",
       kataKualifikasi: [],
@@ -1180,12 +1186,21 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
-        inti: "Daluwarsa 5 tahun sejak saat terutang: (1) 15 Oktober 2026, (3) 30 September 2026, dan (4) 1 Maret 2026 sudah lewat pada 20 Oktober 2026; hanya (2) yang daluwarsa 3 Desember 2026.",
-        jejakHitung: [ ["(1) terutang 15 Oktober 2021", "daluwarsa 15 Oktober 2026 → lewat"], ["(2) terutang 3 Desember 2021", "daluwarsa 3 Desember 2026 → masih ditagih"], ["(3) terutang 30 September 2021", "daluwarsa 30 September 2026 → lewat"], ["(4) terutang 1 Maret 2021", "daluwarsa 1 Maret 2026 → lewat"] ],
-        mengapaSalah: { A: "Daluwarsa dihitung sejak saat terutang, bukan sejak ditemukan", B: "Dokumen (1) daluwarsa 15 Oktober 2026, lima hari sebelum pemeriksaan", D: "Daluwarsa dihitung per tanggal, bukan per tahun pembuatan" },
+        inti: "Bea meterai kedaluwarsa setelah 5 tahun sejak saat terutang, sehingga tidak dapat ditagih lagi mulai tanggal yang sama pada tahun kelima: (1) mulai 15 Oktober 2026, (3) mulai 30 September 2026, dan (4) mulai 1 Maret 2026, semuanya sudah lewat pada 20 Oktober 2026; hanya (2) yang baru kedaluwarsa mulai 3 Desember 2026.",
+        jejakHitung: [
+          ["(1) terutang 15 Oktober 2021", "kedaluwarsa mulai 15 Oktober 2026 → lewat"],
+          ["(2) terutang 3 Desember 2021", "kedaluwarsa mulai 3 Desember 2026 → masih ditagih"],
+          ["(3) terutang 30 September 2021", "kedaluwarsa mulai 30 September 2026 → lewat"],
+          ["(4) terutang 1 Maret 2021", "kedaluwarsa mulai 1 Maret 2026 → lewat"]
+        ],
+        mengapaSalah: {
+          A: "Daluwarsa dihitung sejak saat terutang, bukan sejak ditemukan",
+          B: "Dokumen (1) kedaluwarsa mulai 15 Oktober 2026, lima hari sebelum pemeriksaan",
+          D: "Daluwarsa dihitung per tanggal, bukan per tahun pembuatan"
+        },
         jebakan: "Selisih beberapa hari dari tanggal pemeriksaan sengaja dibuat untuk menguji ketelitian."
       },
-      dasarHukum: [ { pasal: "Pasal 23 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 8 ayat (1) huruf a dan c UU 10/2020", berlakuSejak: "2021-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 23 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 8 ayat (1) huruf a dan c UU 10/2020", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -2227,29 +2242,28 @@ UKP.register({
       kutipan: "Pasal 19 UU 10/2020 (parafrase): pihak yang terutang yang tidak atau kurang membayar bea meterai diterbitkan surat ketetapan pajak sesuai ketentuan peraturan perundang-undangan di bidang ketentuan umum dan tata cara perpajakan, sebesar bea meterai yang tidak atau kurang dibayar ditambah sanksi administratif 100% (Pasal 18 ayat (2)). Pasal 25 ayat (1) sampai (3) UU KUP (parafrase): wajib pajak dapat mengajukan keberatan atas surat ketetapan pajak secara tertulis dengan mengemukakan jumlah pajak yang terutang menurut penghitungan wajib pajak disertai alasan, dalam jangka waktu 3 bulan sejak tanggal dikirim surat ketetapan pajak.",
       stem: "Hasil pemeriksaan bea meterai atas PT Panca Usaha dituangkan dalam surat ketetapan pajak yang dikirim 5 Oktober 2026 sebesar Rp1.240.000 (62 dokumen × Rp10.000 ditambah sanksi 100%). PT Panca Usaha berpendapat 20 dokumen di antaranya adalah surat jalan pengiriman barang yang bukan objek, sedangkan 42 dokumen lainnya memang kuitansi di atas Rp5.000.000 yang tidak bermeterai. Berdasarkan kutipan tersebut, prosedur yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: { A: "Mengajukan keberatan melalui Coretax paling lambat 5 Januari 2027 dengan mengemukakan bea meterai terutang menurut penghitungan PT Panca Usaha atas 42 dokumen sebesar Rp420.000, sehingga jumlah ketetapan menurut PT Panca Usaha beserta sanksi 100% menjadi Rp840.000", B: "Mengajukan keberatan melalui Coretax paling lambat 5 Januari 2027 dengan mengemukakan bea meterai terutang menurut penghitungan PT Panca Usaha atas 42 dokumen sebesar Rp420.000, sedangkan sanksi 100% gugur seluruhnya karena keberatan diajukan sehingga jumlah ketetapan menurut PT Panca Usaha Rp420.000", C: "Mengajukan keberatan melalui Coretax paling lambat 5 November 2026 dengan mengemukakan bea meterai terutang menurut penghitungan PT Panca Usaha atas 42 dokumen sebesar Rp420.000, sehingga jumlah ketetapan menurut PT Panca Usaha beserta sanksi 100% menjadi Rp840.000", D: "Langsung mengajukan gugatan ke Pengadilan Pajak paling lambat 30 hari sejak surat ketetapan dikirim" },
+      opsi: { A: "Mengajukan keberatan melalui Coretax paling lambat 4 Januari 2027 dengan mengemukakan bea meterai terutang menurut penghitungan PT Panca Usaha atas 42 dokumen sebesar Rp420.000, sehingga jumlah ketetapan menurut PT Panca Usaha beserta sanksi 100% menjadi Rp840.000", B: "Mengajukan keberatan melalui Coretax paling lambat 4 Januari 2027 dengan mengemukakan bea meterai terutang menurut penghitungan PT Panca Usaha atas 42 dokumen sebesar Rp420.000, sedangkan sanksi 100% gugur seluruhnya karena keberatan diajukan sehingga jumlah ketetapan menurut PT Panca Usaha Rp420.000", C: "Mengajukan keberatan melalui Coretax paling lambat 4 November 2026 dengan mengemukakan bea meterai terutang menurut penghitungan PT Panca Usaha atas 42 dokumen sebesar Rp420.000, sehingga jumlah ketetapan menurut PT Panca Usaha beserta sanksi 100% menjadi Rp840.000", D: "Langsung mengajukan gugatan ke Pengadilan Pajak paling lambat 30 hari sejak surat ketetapan dikirim" },
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Surat ketetapan bea meterai diterbitkan menurut tata cara UU KUP (Pasal 19 UU 10/2020), sehingga diuji melalui keberatan dalam 3 bulan sejak dikirim (5 Januari 2027) dengan mengemukakan bea meterai terutang menurut WP: 42 dokumen × Rp10.000 = Rp420.000. Sanksi 100% melekat pada bea meterai yang tidak dibayar, sehingga jumlah ketetapan menurut WP Rp840.000.",
+        inti: "Surat ketetapan bea meterai diterbitkan menurut tata cara UU KUP (Pasal 19 UU 10/2020), sehingga diuji melalui keberatan dalam jangka waktu 3 bulan sejak tanggal dikirim. Tanggal dikirim (5 Oktober 2026) dihitung sebagai hari pertama, sehingga hari terakhirnya 4 Januari 2027 (Senin). Yang dikemukakan adalah bea meterai terutang menurut WP: 42 dokumen × Rp10.000 = Rp420.000. Sanksi 100% melekat pada bea meterai yang tidak dibayar, sehingga jumlah ketetapan menurut WP Rp840.000.",
         jejakHitung: [
           ["Dokumen objek menurut WP", "62 − 20 = 42"],
           ["Bea meterai terutang menurut WP 42 × Rp10.000", "Rp420.000"],
           ["Sanksi 100% (Pasal 18 ayat (2))", "Rp420.000"],
           ["Jumlah ketetapan menurut WP", "Rp840.000"],
-          ["Batas keberatan 3 bulan sejak 5 Oktober 2026", "5 Januari 2027"]
+          ["Jangka waktu keberatan: 3 bulan sejak 5 Oktober 2026 (hari pertama 5 Oktober 2026)", "hari terakhir 4 Januari 2027"]
         ],
         mengapaSalah: {
           B: "Pengajuan keberatan tidak menghapus sanksi 100% atas dokumen yang diakui tidak dibayar; sanksi itu mengikuti pokoknya (Pasal 18 ayat (2) dan Pasal 19 UU 10/2020)",
-          C: "Jangka waktu keberatan 3 bulan sejak surat ketetapan dikirim, bukan 1 bulan",
+          C: "4 November 2026 adalah hari terakhir jangka waktu 1 bulan; jangka waktu keberatan 3 bulan sejak surat ketetapan dikirim, berakhir 4 Januari 2027",
           D: "Sengketa jumlah ketetapan ditempuh dengan keberatan; gugatan untuk pelaksanaan penagihan atau keputusan tertentu"
         },
         jebakan: "Yang dikemukakan dalam keberatan adalah pajak terutang menurut WP (pokok atas 42 dokumen); sanksi 100% atas dokumen yang diakui tetap mengikuti pokok tersebut."
       },
       dasarHukum: [{ pasal: "Pasal 19 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 25 ayat (1), ayat (2), dan ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 9 ayat (1) dan Pasal 10 ayat (2) PMK 118/2024", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 7 huruf a UU 10/2020 (surat jalan bukan objek)", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 180,
-      verifikasi: "◐",
-      peringatan: "Prosedur keberatan atas surat ketetapan bea meterai sudah dicocokkan ke Pasal 19 UU 10/2020, Pasal 25 ayat (1) sampai (3) UU KUP, dan Pasal 9 serta Pasal 10 ayat (2) PMK 118/2024. Yang belum pasti hanya cara menghitung batas '3 bulan sejak 5 Oktober 2026' (5 Januari 2027 atau sehari sebelumnya), yang sedang ditanyakan ke pengguna."
+      verifikasi: "✅"
     },
     {
       id: "A5-096", topik: "A5.6", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3, kasusId: "V-A5-08",

@@ -38,7 +38,7 @@ UKP.register({
       { label: "Penetapan NJOP", nilai: "setiap 3 tahun; daerah tertentu setiap tahun", dasar: "Pasal 6 ayat (2) UU PBB", berlakuSejak: "1995-01-01" },
       { label: "Saat yang menentukan pajak terutang", nilai: "keadaan objek 1 Januari (tanpa pro rata)", dasar: "Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" },
       { label: "Tempat pajak terutang", nilai: "kabupaten/kota letak objek", dasar: "Pasal 8 ayat (3) UU PBB", berlakuSejak: "1995-01-01" },
-      { label: "Penyampaian SPOP/LSPOP", nilai: "≤ 30 hari sejak SPOP diterima subjek pajak", dasar: "Pasal 9 ayat (2) UU PBB", berlakuSejak: "1995-01-01" },
+      { label: "Penyampaian SPOP/LSPOP", nilai: "≤ 30 hari setelah tanggal SPOP diterima subjek pajak", dasar: "Pasal 9 ayat (2) UU PBB", berlakuSejak: "1995-01-01" },
       { label: "Keterangan 'bukan wajib pajak'", nilai: "diputus ≤ 1 bulan; lewat = dianggap disetujui", dasar: "Pasal 4 ayat (4)–(7) UU PBB", berlakuSejak: "1995-01-01" },
       { label: "SKP PBB", nilai: "pokok (huruf a) atau selisih (huruf b) + denda 25%", dasar: "Pasal 10 ayat (2)–(4) UU PBB", berlakuSejak: "1995-01-01" },
       { label: "Jatuh tempo SPPT", nilai: "6 bulan sejak SPPT diterima", dasar: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" },
@@ -85,7 +85,7 @@ UKP.register({
         { pasal: "PMK 81/2024", catatan: "administrasi elektronik di Coretax" }
       ],
       jebakan: [
-        { teks: "Menghitung batas SPOP sebagai 'satu bulan' atau sejak 1 Januari; yang benar 30 hari sejak tanggal SPOP diterima", tagSebab: "salah-baca" },
+        { teks: "Menghitung batas SPOP sebagai 'satu bulan' atau sejak 1 Januari; yang benar 30 hari setelah tanggal SPOP diterima", tagSebab: "salah-baca" },
         { teks: "Mendaftarkan kantor pusat perusahaan perkebunan di kota sebagai objek PBB-P5L; bangunan di luar kawasan usaha adalah PBB-P2 daerah", tagSebab: "salah-klasifikasi" },
         { teks: "Menganggap subjek atas bumi otomatis juga subjek atas bangunan milik pihak lain di atasnya", tagSebab: "salah-klasifikasi" }
       ],
@@ -241,10 +241,10 @@ UKP.register({
       contohSoal: {
         stem: "SPPT PBB-P5L 2026 sebesar Rp240.000.000 diterima pada 12 Maret 2026 dan baru dibayar pada 30 Oktober 2026 (bagian bulan dihitung satu bulan). Berapa denda yang ditagih dengan STP?",
         jawaban: "Rp9.600.000",
-        langkah: [ ["Jatuh tempo (+6 bulan dari diterima)", "12 September 2026"], ["12 September s.d. 30 Oktober 2026", "1 bulan 18 hari → 2 bulan"], ["Denda 2 × 2% × 240.000.000", "Rp9.600.000"] ]
+        langkah: [ ["Jatuh tempo (6 bulan sejak diterima)", "11 September 2026"], ["11 September s.d. 30 Oktober 2026", "1 bulan 19 hari → 2 bulan"], ["Denda 2 × 2% × 240.000.000", "Rp9.600.000"] ]
       },
       verifikasi: "◐",
-      peringatan: "Cara menghitung bagian dari bulan pada denda Pasal 11 ayat (3) UU PBB tidak dibaca dari teks primer; soal modul ini menyatakan asumsi 'bagian dari bulan dihitung satu bulan penuh' di stem. Bentuk elektronik SPPT/SKP/STP di Coretax juga belum dicek."
+      peringatan: "Sudah dicocokkan: bagian dari bulan pada denda Pasal 11 ayat (3) UU PBB dihitung penuh satu bulan (Penjelasan Pasal 11 ayat (3)) dan cara hitung jatuh tempo (Penjelasan Pasal 11 ayat (1) dan (2)). Bentuk elektronik SPPT/SKP/STP di Coretax belum dicek."
     },
     {
       id: "B8.6", slug: "keberatan-pengurangan-pbb", judul: "Keberatan, banding, pengurangan, pembetulan, dan pembatalan PBB",
@@ -288,11 +288,11 @@ UKP.register({
       ],
       contohSoal: {
         stem: "SPPT PBB-P5L 2026 diterima 23 Februari 2026 dan surat keberatan diterima KPP pada 4 Mei 2026. Kapan batas keberatan, dan kapan DJP paling lambat harus memutus?",
-        jawaban: "Keberatan paling lambat diajukan 23 Mei 2026; keputusan paling lambat 4 Mei 2027",
-        langkah: [ ["SPPT diterima + 3 bulan", "23 Mei 2026"], ["Surat keberatan diterima", "4 Mei 2026 (tepat waktu)"], ["+ 12 bulan", "4 Mei 2027"], ["Lewat tanpa keputusan", "dianggap diterima"] ]
+        jawaban: "Keberatan paling lambat diajukan 22 Mei 2026; keputusan paling lambat 3 Mei 2027",
+        langkah: [ ["3 bulan sejak SPPT diterima 23 Februari 2026", "22 Mei 2026"], ["Surat keberatan diterima", "4 Mei 2026 (tepat waktu)"], ["12 bulan sejak surat keberatan diterima", "3 Mei 2027"], ["Lewat tanpa keputusan", "dianggap diterima"] ]
       },
       verifikasi: "◐",
-      peringatan: "Sudah dicocokkan ke naskah: Pasal 15, 16, 19, dan 20 UU PBB; Pasal 35 ayat (2) UU 14/2002; Pasal 4 ayat (3), Pasal 5 ayat (5), dan Pasal 13 ayat (4) PMK 129/2023; Pasal 6 ayat (1), Pasal 21, Pasal 29 ayat (1), Pasal 35 ayat (1), dan Pasal 41 ayat (1) PMK 118/2024. Kasus K-B8-06 dan soal B8-061 sudah mengikuti pengurangan dari PBB yang belum dilunasi. Yang belum pasti: contoh soal topik ini menghitung 3 bulan sejak 23 Februari sebagai 23 Mei 2026 (cara hitung 'N bulan sejak' menunggu keputusan), dan stem V-B8-09 (B8-104) masih perlu disusun ulang."
+      peringatan: "Sudah dicocokkan ke naskah: Pasal 15, 16, 19, dan 20 UU PBB; Pasal 35 ayat (2) UU 14/2002; Pasal 4 ayat (3), Pasal 5 ayat (5), dan Pasal 13 ayat (4) PMK 129/2023; Pasal 6 ayat (1), Pasal 21, Pasal 29 ayat (1), Pasal 35 ayat (1), dan Pasal 41 ayat (1) PMK 118/2024. Kasus K-B8-06 dan soal B8-061 sudah mengikuti pengurangan dari PBB yang belum dilunasi. Cara hitung 'N bulan sejak' mengikuti contoh Penjelasan Pasal 11 ayat (1) dan (2) UU PBB (hari terakhir sehari sebelum tanggal yang sama). Yang belum pasti: stem V-B8-09 (B8-104) masih perlu disusun ulang."
     },
     {
       id: "B8.7", slug: "pembayaran-penagihan-restitusi-pbb", judul: "Pembayaran, penagihan, dan restitusi PBB",
@@ -438,20 +438,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-005", topik: "B8.1", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 2,
+      id: "B8-005",
+      topik: "B8.1",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
       kutipan: "Pasal 4 ayat (4), (5), dan (7) UU PBB (parafrase): Subjek pajak yang ditetapkan sebagai wajib pajak dapat memberikan keterangan secara tertulis kepada Direktur Jenderal Pajak bahwa ia bukan wajib pajak terhadap objek pajak dimaksud. Bila keterangan disetujui, Direktur Jenderal Pajak membatalkan penetapan dalam jangka waktu satu bulan sejak diterimanya surat keterangan. Apabila setelah jangka waktu satu bulan sejak tanggal diterimanya keterangan tidak diberikan keputusan, keterangan yang diajukan itu dianggap disetujui.",
       stem: "Karena pemegang izin atas suatu areal tambang pasir kuarsa di Kabupaten Belitung Timur belum jelas, DJP menetapkan CV Damar Jaya sebagai wajib pajak PBB-P5L atas areal tersebut. Pada 6 April 2026 KPP menerima keterangan tertulis CV Damar Jaya beserta bukti bahwa IUP areal itu telah beralih kepada PT Kuarsa Prima sejak 2024. Sampai 15 Mei 2026 DJP belum memberikan keputusan apa pun. Berdasarkan kutipan tersebut, status CV Damar Jaya per 15 Mei 2026 adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Tetap sebagai wajib pajak sampai DJP menerbitkan keputusan tertulis yang membatalkan penetapan", B: "Tetap sebagai wajib pajak; satu-satunya jalan adalah mengajukan keberatan atas SPPT dalam tiga bulan", C: "Keterangannya dianggap disetujui sejak lewat satu bulan (6 Mei 2026), sehingga penetapannya sebagai wajib pajak harus dibatalkan", D: "DJP masih berwenang memutus sampai 12 bulan sejak keterangan diterima, yaitu 6 April 2027" },
+      opsi: { A: "Tetap sebagai wajib pajak sampai DJP menerbitkan keputusan tertulis yang membatalkan penetapan", B: "Tetap sebagai wajib pajak; satu-satunya jalan adalah mengajukan keberatan atas SPPT dalam tiga bulan", C: "Keterangannya dianggap disetujui sejak lewat satu bulan (6 Mei 2026), sehingga penetapannya sebagai wajib pajak harus dibatalkan", D: "DJP masih berwenang memutus sampai 12 bulan sejak keterangan diterima, yaitu 5 April 2027" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Pasal 4 ayat (7) memberi fiksi persetujuan: lewat satu bulan sejak 6 April 2026 (yaitu 6 Mei 2026) tanpa keputusan, keterangan dianggap disetujui, sehingga penetapan CV Damar Jaya sebagai wajib pajak batal.",
-        jejakHitung: [ ["Keterangan diterima", "6 April 2026"], ["Batas keputusan (+1 bulan)", "6 Mei 2026"], ["Keputusan per 15 Mei 2026", "belum ada → dianggap disetujui"] ],
-        mengapaSalah: { A: "Mengabaikan fiksi hukum 'dianggap disetujui' dalam Pasal 4 ayat (7)", B: "Untuk penetapan subjek tersedia mekanisme keterangan Pasal 4 ayat (4); keberatan adalah upaya atas SPPT/SKP", D: "Jangka 12 bulan adalah batas keputusan keberatan (Pasal 16), bukan keputusan atas keterangan subjek" },
+        inti: "Pasal 4 ayat (7) memberi fiksi persetujuan. Jangka waktu satu bulan sejak 6 April 2026 berakhir 5 Mei 2026 (tanggal diterima dihitung sebagai hari pertama, seperti contoh Penjelasan Pasal 11 ayat (2) UU PBB). Karena sampai saat itu tidak ada keputusan, sejak 6 Mei 2026 keterangan dianggap disetujui, sehingga penetapan CV Damar Jaya sebagai wajib pajak batal.",
+        jejakHitung: [
+          ["Keterangan diterima", "6 April 2026"],
+          ["Hari terakhir jangka waktu 1 bulan", "5 Mei 2026"],
+          ["Dianggap disetujui (setelah jangka waktu lewat)", "sejak 6 Mei 2026"],
+          ["Keputusan per 15 Mei 2026", "belum ada → dianggap disetujui"]
+        ],
+        mengapaSalah: {
+          A: "Mengabaikan fiksi hukum 'dianggap disetujui' dalam Pasal 4 ayat (7)",
+          B: "Untuk penetapan subjek tersedia mekanisme keterangan Pasal 4 ayat (4); keberatan adalah upaya atas SPPT/SKP",
+          D: "Jangka 12 bulan adalah batas keputusan keberatan (Pasal 16), bukan keputusan atas keterangan subjek"
+        },
         jebakan: "UU PBB memuat dua fiksi 'dianggap': keterangan bukan wajib pajak (1 bulan, dianggap disetujui) dan keberatan (12 bulan, dianggap diterima)."
       },
-      dasarHukum: [ { pasal: "Pasal 4 ayat (3)–(7) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3)–(7) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -507,19 +520,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-009", topik: "B8.6", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-03",
+      id: "B8-009",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-03",
       stem: "Lanjutan data V-B8-03: SKP PBB-P5L 2026 sebesar Rp233.000.000 diterima PT Wana Lestari Abadi pada 2 Juli 2026. Direksi menilai luas areal dalam data administrasi DJP terlalu besar dan berencana mengajukan keberatan, sambil menunda pembayaran sampai keberatan diputus. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Keberatan harus diajukan paling lambat 2 Oktober 2026, dan jatuh tempo SKP tertunda sampai keputusan keberatan terbit", B: "Keberatan harus diajukan paling lambat 2 Oktober 2026, sedangkan SKP tetap jatuh tempo 2 Agustus 2026; keberatan tidak menunda kewajiban membayar", C: "Keberatan dapat diajukan paling lambat 2 Januari 2027 (6 bulan), dan SKP jatuh tempo pada tanggal yang sama", D: "Keberatan tidak dapat diajukan atas SKP; perusahaan hanya dapat memohon pengurangan" },
+      opsi: { A: "Keberatan harus diajukan paling lambat 1 Oktober 2026, dan jatuh tempo SKP tertunda sampai keputusan keberatan terbit", B: "Keberatan harus diajukan paling lambat 1 Oktober 2026, sedangkan SKP tetap jatuh tempo 1 Agustus 2026; keberatan tidak menunda kewajiban membayar", C: "Keberatan dapat diajukan paling lambat 1 Januari 2027 (6 bulan), dan SKP jatuh tempo pada tanggal yang sama", D: "Keberatan tidak dapat diajukan atas SKP; perusahaan hanya dapat memohon pengurangan" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Keberatan atas SKP diajukan dalam 3 bulan sejak SKP diterima (2 Oktober 2026), sedangkan SKP harus dilunasi 1 bulan sejak diterima (2 Agustus 2026). Pengajuan keberatan tidak menunda kewajiban membayar; pembayaran setelah jatuh tempo dikenai denda 2% sebulan.",
-        jejakHitung: [ ["SKP diterima", "2 Juli 2026"], ["Jatuh tempo SKP (+1 bulan)", "2 Agustus 2026"], ["Batas keberatan (+3 bulan)", "2 Oktober 2026"] ],
-        mengapaSalah: { A: "Keberatan tidak menangguhkan jatuh tempo; menunda bayar memicu denda 2% sebulan", C: "Enam bulan adalah jatuh tempo SPPT, bukan batas keberatan ataupun jatuh tempo SKP", D: "Pasal 15 ayat (1) UU PBB menyebut keberatan dapat diajukan atas SPPT dan SKP" },
+        inti: "Keberatan atas SKP diajukan dalam 3 bulan sejak SKP diterima (1 Oktober 2026), sedangkan SKP harus dilunasi 1 bulan sejak diterima (1 Agustus 2026). Pengajuan keberatan tidak menunda kewajiban membayar; pembayaran setelah jatuh tempo dikenai denda 2% sebulan. Tanggal diterima dihitung sebagai hari pertama (contoh Penjelasan Pasal 11 ayat (2) UU PBB: SKP diterima 1 Maret, jatuh tempo 31 Maret).",
+        jejakHitung: [
+          ["SKP diterima", "2 Juli 2026"],
+          ["Jatuh tempo SKP (1 bulan sejak diterima)", "1 Agustus 2026"],
+          ["Batas keberatan (3 bulan sejak diterima)", "1 Oktober 2026"]
+        ],
+        mengapaSalah: {
+          A: "Keberatan tidak menangguhkan jatuh tempo; menunda bayar memicu denda 2% sebulan",
+          C: "Enam bulan adalah jatuh tempo SPPT, bukan batas keberatan ataupun jatuh tempo SKP",
+          D: "Pasal 15 ayat (1) UU PBB menyebut keberatan dapat diajukan atas SPPT dan SKP"
+        },
         jebakan: "Dua tenggat berjalan bersamaan: 1 bulan untuk melunasi SKP dan 3 bulan untuk keberatan."
       },
-      dasarHukum: [ { pasal: "Pasal 11 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -745,20 +772,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-021", topik: "B8.3", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"],
+      id: "B8-021",
+      topik: "B8.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
       kutipan: "Pasal 6 ayat (1) dan (2) UU PBB: Dasar pengenaan pajak adalah Nilai Jual Objek Pajak. Besarnya Nilai Jual Objek Pajak ditetapkan setiap tiga tahun oleh Menteri Keuangan, kecuali untuk daerah tertentu ditetapkan setiap tahun sesuai dengan perkembangan daerahnya.",
       stem: "NJOP bumi kebun PT Sawit Andalas naik dari Rp180.000.000.000 dalam SPPT 2025 menjadi Rp228.000.000.000 dalam SPPT 2026 yang diterima pada 9 Maret 2026, karena pembukaan jalan provinsi dan kenaikan harga tanah di sekitarnya. Direksi berpendapat kenaikan itu batal karena NJOP 'hanya boleh berubah tiga tahun sekali', dan berniat hanya membayar sebesar PBB 2025. Berdasarkan kutipan tersebut, tanggapan yang paling tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Pendapat direksi tepat; kenaikan NJOP sebelum tiga tahun batal demi hukum sehingga cukup membayar sesuai NJOP 2025", B: "Pendapat direksi tidak tepat; NJOP ditentukan sendiri oleh wajib pajak melalui SPOP sehingga perusahaan dapat menurunkannya dalam SPOP 2026", C: "Pendapat direksi tidak tepat; atas NJOP hanya tersedia permohonan pengurangan, bukan keberatan", D: "Pendapat direksi tidak tepat; NJOP dapat ditetapkan setiap tahun untuk daerah tertentu. Bila tidak setuju dengan NJOP, perusahaan dapat mengajukan keberatan paling lambat 9 Juni 2026, sambil tetap melunasi SPPT paling lambat 9 September 2026" },
+      opsi: { A: "Pendapat direksi tepat; kenaikan NJOP sebelum tiga tahun batal demi hukum sehingga cukup membayar sesuai NJOP 2025", B: "Pendapat direksi tidak tepat; NJOP ditentukan sendiri oleh wajib pajak melalui SPOP sehingga perusahaan dapat menurunkannya dalam SPOP 2026", C: "Pendapat direksi tidak tepat; atas NJOP hanya tersedia permohonan pengurangan, bukan keberatan", D: "Pendapat direksi tidak tepat; NJOP dapat ditetapkan setiap tahun untuk daerah tertentu. Bila tidak setuju dengan NJOP, perusahaan dapat mengajukan keberatan paling lambat 8 Juni 2026, sambil tetap melunasi SPPT paling lambat 8 September 2026" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
-        inti: "Pasal 6 ayat (2) membolehkan penetapan NJOP setiap tahun untuk daerah tertentu. Sengketa nilai dalam SPPT diselesaikan melalui keberatan Pasal 15 dalam 3 bulan sejak SPPT diterima (9 Juni 2026), dan keberatan tidak menunda kewajiban melunasi SPPT (jatuh tempo 9 September 2026).",
-        jejakHitung: [ ["SPPT diterima", "9 Maret 2026"], ["Batas keberatan (+3 bulan)", "9 Juni 2026"], ["Jatuh tempo SPPT (+6 bulan)", "9 September 2026"] ],
-        mengapaSalah: { A: "Frasa 'kecuali untuk daerah tertentu ditetapkan setiap tahun' diabaikan", B: "SPOP memuat data objek; NJOP ditetapkan atas nama Menteri Keuangan, bukan oleh wajib pajak", C: "Keberatan atas SPPT, termasuk nilai NJOP di dalamnya, diatur Pasal 15 ayat (1)" },
+        inti: "Pasal 6 ayat (2) membolehkan penetapan NJOP setiap tahun untuk daerah tertentu. Sengketa nilai dalam SPPT diselesaikan melalui keberatan Pasal 15 dalam 3 bulan sejak SPPT diterima (8 Juni 2026), dan keberatan tidak menunda kewajiban melunasi SPPT (jatuh tempo 8 September 2026).",
+        jejakHitung: [
+          ["SPPT diterima", "9 Maret 2026"],
+          ["Batas keberatan (3 bulan sejak diterima)", "8 Juni 2026"],
+          ["Jatuh tempo SPPT (6 bulan sejak diterima)", "8 September 2026"]
+        ],
+        mengapaSalah: {
+          A: "Frasa 'kecuali untuk daerah tertentu ditetapkan setiap tahun' diabaikan",
+          B: "SPOP memuat data objek; NJOP ditetapkan atas nama Menteri Keuangan, bukan oleh wajib pajak",
+          C: "Keberatan atas SPPT, termasuk nilai NJOP di dalamnya, diatur Pasal 15 ayat (1)"
+        },
         jebakan: "Frasa pengecualian 'kecuali ... setiap tahun' sering terlewat ketika membaca kutipan Pasal 6 ayat (2)."
       },
-      dasarHukum: [ { pasal: "Pasal 6 ayat (1)–(2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1)–(2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 160,
       verifikasi: "✅"
     },
@@ -846,19 +886,36 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-025", topik: "B8.5", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-01",
+      id: "B8-025",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-01",
       stem: "Lanjutan data V-B8-01: SPPT PBB-P5L 2026 PT Sawit Lestari Nusantara sebesar Rp855.196.000 diterima pada 16 Maret 2026. Karena antrean persetujuan internal, PBB baru dibayar penuh pada 2 Oktober 2026. Untuk PPh Badan 2026 (tahun buku kalender), manajer pajak menelaah denda dan perlakuan fiskalnya. Asumsikan bagian dari bulan dihitung satu bulan penuh. Pernyataan yang tepat adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Denda Rp17.103.920 ditagih dengan STP; PBB dan denda sama-sama dapat dibiayakan sebesar Rp872.299.920", B: "Denda Rp34.207.840 untuk 2 bulan; PBB dapat dibiayakan, dendanya tidak", C: "Denda Rp17.103.920 ditagih dengan STP; PBB Rp855.196.000 dapat dibiayakan, sedangkan dendanya tidak dapat dikurangkan", D: "Dikenai sanksi bunga Pasal 9 ayat (2a) UU KUP dengan tarif bunga KMK; PBB tidak dapat dibiayakan karena merupakan pajak" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Jatuh tempo SPPT 6 bulan sejak diterima (16 September 2026); keterlambatan 16 hari dikenai denda 2% untuk satu bulan dan ditagih dengan STP. Dalam PPh Badan, PBB adalah pajak selain PPh yang dapat dibiayakan, sedangkan sanksi administrasi tidak.",
-        jejakHitung: [ ["SPPT diterima", "16 Maret 2026"], ["Jatuh tempo (+6 bulan)", "16 September 2026"], ["Terlambat 16 hari", "dihitung 1 bulan"], ["Denda 2% × 855.196.000", "Rp17.103.920"], ["Biaya fiskal PBB (Pasal 6 ayat (1) huruf a UU PPh)", "Rp855.196.000"], ["Denda (Pasal 9 ayat (1) huruf k UU PPh)", "tidak dapat dikurangkan"] ],
-        mengapaSalah: { A: "Pasal 9 ayat (1) huruf k UU PPh melarang pembebanan sanksi administrasi berupa denda", B: "16 September–2 Oktober 2026 kurang dari satu bulan sehingga dihitung satu bulan, bukan dua", D: "Denda PBB diatur Pasal 11 ayat (3) UU PBB (2% sebulan), bukan Pasal 9 ayat (2a) UU KUP; Pasal 6 ayat (1) huruf a UU PPh membolehkan pajak selain PPh dibiayakan" },
+        inti: "Jatuh tempo SPPT 6 bulan sejak diterima (15 September 2026); keterlambatan 17 hari dikenai denda 2% untuk satu bulan dan ditagih dengan STP. Dalam PPh Badan, PBB adalah pajak selain PPh yang dapat dibiayakan, sedangkan sanksi administrasi tidak.",
+        jejakHitung: [
+          ["SPPT diterima", "16 Maret 2026"],
+          ["Jatuh tempo (6 bulan sejak diterima)", "15 September 2026"],
+          ["Terlambat 17 hari", "dihitung 1 bulan"],
+          ["Denda 2% × 855.196.000", "Rp17.103.920"],
+          ["Biaya fiskal PBB (Pasal 6 ayat (1) huruf a UU PPh)", "Rp855.196.000"],
+          ["Denda (Pasal 9 ayat (1) huruf k UU PPh)", "tidak dapat dikurangkan"]
+        ],
+        mengapaSalah: {
+          A: "Pasal 9 ayat (1) huruf k UU PPh melarang pembebanan sanksi administrasi berupa denda",
+          B: "15 September–2 Oktober 2026 kurang dari satu bulan sehingga dihitung satu bulan, bukan dua",
+          D: "Denda PBB diatur Pasal 11 ayat (3) UU PBB (2% sebulan), bukan Pasal 9 ayat (2a) UU KUP; Pasal 6 ayat (1) huruf a UU PPh membolehkan pajak selain PPh dibiayakan"
+        },
         jebakan: "Soal lintas kelompok: sanksinya menurut UU PBB, perlakuan biayanya menurut UU PPh."
       },
-      dasarHukum: [ { pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 6 ayat (1) huruf a UU PPh" }, { pasal: "Pasal 9 ayat (1) huruf k UU PPh" } ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 6 ayat (1) huruf a UU PPh" }, { pasal: "Pasal 9 ayat (1) huruf k UU PPh" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -1027,19 +1084,31 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-032", topik: "B8.5", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 1, laporanUjian: ["B-2026-10", "C-2026-10"],
+      id: "B8-032",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
       stem: "SPPT PBB-P5L Tahun Pajak 2026 PT Teh Puncak Lestari diterbitkan pada 5 Februari 2026 dan diterima perusahaan pada 27 Februari 2026. Paling lambat kapan PBB menurut SPPT tersebut harus dilunasi?",
       kataKualifikasi: ["paling lambat"],
-      opsi: { A: "27 Agustus 2026", B: "5 Agustus 2026", C: "27 Maret 2026", D: "15 Maret 2026" },
+      opsi: { A: "26 Agustus 2026", B: "4 Agustus 2026", C: "26 Maret 2026", D: "15 Maret 2026" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Pasal 11 ayat (1) UU PBB: pajak terutang berdasarkan SPPT harus dilunasi paling lambat 6 bulan sejak tanggal diterimanya SPPT oleh wajib pajak.",
-        jejakHitung: [ ["SPPT diterima", "27 Februari 2026"], ["+ 6 bulan", "27 Agustus 2026"] ],
-        mengapaSalah: { B: "Jangka 6 bulan dihitung sejak SPPT diterima, bukan sejak diterbitkan", C: "Satu bulan adalah jatuh tempo SKP dan STP", D: "Tanggal 15 bulan berikutnya adalah batas setor pajak masa (PMK 81/2024), tidak berlaku untuk SPPT" },
+        inti: "Pasal 11 ayat (1) UU PBB: pajak terutang berdasarkan SPPT harus dilunasi paling lambat 6 bulan sejak tanggal diterimanya SPPT oleh wajib pajak. Tanggal diterima dihitung sebagai hari pertama, sehingga hari terakhirnya sehari sebelum tanggal yang sama pada bulan keenam (contoh Penjelasan Pasal 11 ayat (1): diterima 1 Maret 1986, jatuh tempo 31 Agustus 1986): 26 Agustus 2026.",
+        jejakHitung: [
+          ["SPPT diterima", "27 Februari 2026"],
+          ["6 bulan sejak diterima", "26 Agustus 2026"]
+        ],
+        mengapaSalah: {
+          B: "Jangka 6 bulan dihitung sejak SPPT diterima, bukan sejak diterbitkan",
+          C: "Satu bulan adalah jatuh tempo SKP dan STP",
+          D: "Tanggal 15 bulan berikutnya adalah batas setor pajak masa (PMK 81/2024), tidak berlaku untuk SPPT"
+        },
         jebakan: "Titik awal hitung adalah tanggal diterima, bukan tanggal terbit."
       },
-      dasarHukum: [ { pasal: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 60,
       verifikasi: "✅"
     },
@@ -1140,38 +1209,64 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-037", topik: "B8.6", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-02",
+      id: "B8-037",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-02",
       kutipan: "Pasal 15 UU PBB (parafrase): Keberatan diajukan secara tertulis dalam bahasa Indonesia dengan disertai alasan-alasan yang jelas. Keberatan harus diajukan dalam jangka waktu tiga bulan sejak tanggal diterimanya SPPT atau SKP oleh wajib pajak, kecuali apabila wajib pajak dapat menunjukkan bahwa jangka waktu itu tidak dapat dipenuhi karena keadaan di luar kekuasaannya.",
       stem: "Data untuk soal V-B8-02: PT Andalan Bara Utama (IUP operasi produksi batubara di Kabupaten Tanah Bumbu) menerima SPPT PBB-P5L 2026 sebesar Rp1.842.500.000 pada 23 Februari 2026. Perusahaan menilai luas areal produktif dalam SPPT terlalu besar karena 600 ha bekas tambang telah direklamasi dan tidak ditambang lagi sejak 2025. Berdasarkan kutipan tersebut, paling lambat kapan dan dalam bentuk apa keberatan harus diajukan?",
       kataKualifikasi: ["paling lambat"],
-      opsi: { A: "Surat keberatan dapat diajukan sampai 23 Agustus 2026, bersamaan dengan jatuh tempo SPPT", B: "Surat keberatan berbahasa Indonesia dengan alasan yang jelas harus diajukan paling lambat 23 Mei 2026", C: "Keberatan cukup disampaikan secara lisan kepada petugas KPP paling lambat 23 Mei 2026", D: "Surat keberatan dapat diajukan sampai 23 Februari 2027, satu tahun sejak SPPT diterima" },
+      opsi: { A: "Surat keberatan dapat diajukan sampai 22 Agustus 2026, bersamaan dengan jatuh tempo SPPT", B: "Surat keberatan berbahasa Indonesia dengan alasan yang jelas harus diajukan paling lambat 22 Mei 2026", C: "Keberatan cukup disampaikan secara lisan kepada petugas KPP paling lambat 22 Mei 2026", D: "Surat keberatan dapat diajukan sampai 22 Februari 2027, satu tahun sejak SPPT diterima" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-hitung" },
       pembahasan: {
-        inti: "Keberatan atas SPPT harus tertulis, berbahasa Indonesia, beralasan jelas, dan diajukan dalam 3 bulan sejak SPPT diterima (23 Mei 2026).",
-        jejakHitung: [ ["SPPT diterima", "23 Februari 2026"], ["+ 3 bulan", "23 Mei 2026"] ],
-        mengapaSalah: { A: "Enam bulan adalah jatuh tempo pembayaran SPPT, bukan batas keberatan", C: "Pasal 15 ayat (2) mensyaratkan keberatan tertulis", D: "Dua belas bulan adalah batas DJP memutus keberatan, bukan batas mengajukan" },
+        inti: "Keberatan atas SPPT harus tertulis, berbahasa Indonesia, beralasan jelas, dan diajukan dalam 3 bulan sejak SPPT diterima (22 Mei 2026). Tanggal diterima dihitung sebagai hari pertama (contoh Penjelasan Pasal 11 ayat (1) UU PBB: diterima 1 Maret, jatuh tempo 31 Agustus).",
+        jejakHitung: [
+          ["SPPT diterima", "23 Februari 2026"],
+          ["Hari terakhir 3 bulan sejak diterima", "22 Mei 2026"]
+        ],
+        mengapaSalah: {
+          A: "Enam bulan adalah jatuh tempo pembayaran SPPT, bukan batas keberatan",
+          C: "Pasal 15 ayat (2) mensyaratkan keberatan tertulis",
+          D: "Dua belas bulan adalah batas DJP memutus keberatan, bukan batas mengajukan"
+        },
         jebakan: "Tiga angka bulan yang mirip: 3 (keberatan), 6 (jatuh tempo SPPT), 12 (keputusan)."
       },
-      dasarHukum: [ { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 130,
       verifikasi: "✅"
     },
     {
-      id: "B8-038", topik: "B8.6", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-02",
+      id: "B8-038",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-02",
       kutipan: "Pasal 16 UU PBB (parafrase): Direktur Jenderal Pajak dalam jangka waktu paling lama 12 bulan sejak tanggal diterimanya surat keberatan harus memberi keputusan. Keputusan dapat berupa menerima seluruhnya atau sebagian, menolak, atau menambah besarnya jumlah pajak yang terutang. Apabila jangka waktu itu telah lewat dan Direktur Jenderal Pajak tidak memberi suatu keputusan, keberatan yang diajukan dianggap diterima.",
       stem: "Lanjutan data V-B8-02: Surat keberatan PT Andalan Bara Utama atas SPPT 2026 (Rp1.842.500.000, diterima 23 Februari 2026) diterima KPP pada 4 Mei 2026, dan perusahaan melunasi SPPT pada jatuh temponya. Berdasarkan kutipan tersebut, paling lama kapan DJP harus memberi keputusan, dan apa akibatnya bila batas itu lewat?",
       kataKualifikasi: ["paling lama"],
-      opsi: { A: "DJP wajib memberi keputusan paling lambat 4 November 2026; bila lewat, keberatan dianggap ditolak", B: "DJP wajib memberi keputusan paling lambat 4 Mei 2027; bila lewat, keberatan dianggap ditolak sehingga perusahaan langsung dapat banding", C: "DJP wajib memberi keputusan paling lambat 4 Mei 2027; bila lewat tanpa keputusan, keberatan dianggap diterima", D: "DJP wajib memberi keputusan paling lambat 23 Februari 2027, yaitu 12 bulan sejak SPPT diterima" },
+      opsi: { A: "DJP wajib memberi keputusan paling lambat 3 November 2026; bila lewat, keberatan dianggap ditolak", B: "DJP wajib memberi keputusan paling lambat 3 Mei 2027; bila lewat, keberatan dianggap ditolak sehingga perusahaan langsung dapat banding", C: "DJP wajib memberi keputusan paling lambat 3 Mei 2027; bila lewat tanpa keputusan, keberatan dianggap diterima", D: "DJP wajib memberi keputusan paling lambat 22 Februari 2027, yaitu 12 bulan sejak SPPT diterima" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-hitung" },
       pembahasan: {
-        inti: "Jangka 12 bulan dihitung sejak surat keberatan diterima (4 Mei 2026), sehingga batasnya 4 Mei 2027; bila lewat tanpa keputusan, keberatan dianggap diterima (Pasal 16 UU PBB).",
-        jejakHitung: [ ["Surat keberatan diterima", "4 Mei 2026"], ["+ 12 bulan", "4 Mei 2027"] ],
-        mengapaSalah: { A: "Batas keputusan 12 bulan, bukan 6 bulan, dan akibatnya dianggap diterima", B: "Fiksi hukum Pasal 16 UU PBB adalah 'dianggap diterima', bukan ditolak", D: "Titik awal 12 bulan adalah tanggal surat keberatan diterima, bukan tanggal SPPT diterima" },
+        inti: "Jangka 12 bulan dihitung sejak surat keberatan diterima (4 Mei 2026), dengan tanggal diterima sebagai hari pertama, sehingga hari terakhirnya 3 Mei 2027; bila lewat tanpa keputusan, keberatan dianggap diterima (Pasal 16 UU PBB).",
+        jejakHitung: [
+          ["Surat keberatan diterima", "4 Mei 2026"],
+          ["Hari terakhir 12 bulan sejak diterima", "3 Mei 2027"]
+        ],
+        mengapaSalah: {
+          A: "Batas keputusan 12 bulan, bukan 6 bulan, dan akibatnya dianggap diterima",
+          B: "Fiksi hukum Pasal 16 UU PBB adalah 'dianggap diterima', bukan ditolak",
+          D: "Titik awal 12 bulan adalah tanggal surat keberatan diterima, bukan tanggal SPPT diterima"
+        },
         jebakan: "Diamnya DJP menguntungkan wajib pajak: dianggap diterima."
       },
-      dasarHukum: [ { pasal: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 16 UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
@@ -1185,14 +1280,14 @@ UKP.register({
       kasusId: "V-B8-02",
       stem: "Lanjutan data V-B8-02: Keputusan keberatan atas SPPT 2026 PT Andalan Bara Utama diterima perusahaan pada 8 Februari 2027. Alih-alih mengurangi, keputusan itu menambah PBB terutang karena penelitian lapangan menemukan bukaan tambang baru per 1 Januari 2026 yang belum dilaporkan dalam SPOP. Upaya hukum yang tersedia dan batas waktunya adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Keberatan kedua kepada DJP paling lambat 8 Mei 2027 karena keputusan menambah pajak", B: "Gugatan ke Pengadilan Pajak paling lambat 30 hari sejak keputusan diterima", C: "Banding ke Pengadilan Pajak paling lambat 8 Agustus 2027 (6 bulan sejak keputusan diterima)", D: "Banding ke Pengadilan Pajak paling lambat 8 Mei 2027 (3 bulan sejak keputusan diterima)" },
+      opsi: { A: "Keberatan kedua kepada DJP paling lambat 7 Mei 2027 karena keputusan menambah pajak", B: "Gugatan ke Pengadilan Pajak paling lambat 30 hari sejak keputusan diterima", C: "Banding ke Pengadilan Pajak paling lambat 7 Agustus 2027 (6 bulan sejak keputusan diterima)", D: "Banding ke Pengadilan Pajak paling lambat 7 Mei 2027 (3 bulan sejak keputusan diterima)" },
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
         inti: "Keputusan keberatan, termasuk yang menambah pajak (Pasal 16 UU PBB), dapat diajukan banding ke Pengadilan Pajak dalam 3 bulan sejak keputusan diterima (Pasal 35 ayat (2) UU 14/2002).",
         jejakHitung: [
           ["Keputusan keberatan diterima", "8 Februari 2027"],
-          ["+ 3 bulan", "8 Mei 2027"]
+          ["Hari terakhir 3 bulan sejak diterima", "7 Mei 2027"]
         ],
         mengapaSalah: {
           A: "Tidak ada keberatan kedua atas keputusan keberatan; upaya berikutnya adalah banding",
@@ -1206,19 +1301,32 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-040", topik: "B8.6", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"],
+      id: "B8-040",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
       stem: "SPPT PBB-P5L 2026 PT Cahaya Kebun diterima pada 10 Maret 2026. Pada April–Juni 2026 banjir besar merendam kantor kebun dan memutus akses jalan sehingga dokumen pendukung tidak dapat dikumpulkan; badan penanggulangan bencana daerah menerbitkan surat keterangan status tanggap darurat. Perusahaan menyampaikan surat keberatan atas luas areal dalam SPPT pada 14 Juli 2026. Penilaian yang tepat atas keberatan tersebut adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Keberatan dapat dipertimbangkan walaupun lewat 10 Juni 2026, sepanjang perusahaan dapat menunjukkan bahwa keterlambatan terjadi karena keadaan di luar kekuasaannya", B: "Keberatan pasti tidak dapat diterima karena batas 3 bulan bersifat mutlak tanpa pengecualian", C: "Keberatan tepat waktu karena batasnya 6 bulan sejak SPPT diterima, yaitu 10 September 2026", D: "Keberatan otomatis dialihkan menjadi permohonan pengurangan karena diajukan setelah batas waktu" },
+      opsi: { A: "Keberatan dapat dipertimbangkan walaupun lewat 9 Juni 2026, sepanjang perusahaan dapat menunjukkan bahwa keterlambatan terjadi karena keadaan di luar kekuasaannya", B: "Keberatan pasti tidak dapat diterima karena batas 3 bulan bersifat mutlak tanpa pengecualian", C: "Keberatan tepat waktu karena batasnya 6 bulan sejak SPPT diterima, yaitu 9 September 2026", D: "Keberatan otomatis dialihkan menjadi permohonan pengurangan karena diajukan setelah batas waktu" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Batas normal keberatan adalah 10 Juni 2026, tetapi Pasal 15 UU PBB memberi pengecualian bila wajib pajak dapat menunjukkan bahwa jangka waktu tidak dapat dipenuhi karena keadaan di luar kekuasaannya; surat keterangan tanggap darurat menjadi bukti pendukung.",
-        jejakHitung: [ ["SPPT diterima", "10 Maret 2026"], ["Batas normal (+3 bulan)", "10 Juni 2026"], ["Keberatan diajukan", "14 Juli 2026 (perlu bukti keadaan di luar kekuasaan)"] ],
-        mengapaSalah: { B: "Frasa 'kecuali apabila wajib pajak dapat menunjukkan ...' diabaikan", C: "Enam bulan adalah jatuh tempo pembayaran, bukan batas keberatan", D: "Tidak ada pengalihan otomatis; pengurangan adalah permohonan tersendiri dengan dasar Pasal 19" },
+        inti: "Batas normal keberatan adalah 9 Juni 2026, tetapi Pasal 15 UU PBB memberi pengecualian bila wajib pajak dapat menunjukkan bahwa jangka waktu tidak dapat dipenuhi karena keadaan di luar kekuasaannya; surat keterangan tanggap darurat menjadi bukti pendukung.",
+        jejakHitung: [
+          ["SPPT diterima", "10 Maret 2026"],
+          ["Batas normal (3 bulan sejak diterima)", "9 Juni 2026"],
+          ["Keberatan diajukan", "14 Juli 2026 (perlu bukti keadaan di luar kekuasaan)"]
+        ],
+        mengapaSalah: {
+          B: "Frasa 'kecuali apabila wajib pajak dapat menunjukkan ...' diabaikan",
+          C: "Enam bulan adalah jatuh tempo pembayaran, bukan batas keberatan",
+          D: "Tidak ada pengalihan otomatis; pengurangan adalah permohonan tersendiri dengan dasar Pasal 19"
+        },
         jebakan: "Kata 'kecuali' dalam Pasal 15 UU PBB membuka ruang keberatan terlambat yang beralasan."
       },
-      dasarHukum: [ { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 130,
       verifikasi: "✅"
     },
@@ -1289,19 +1397,34 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-044", topik: "B8.7", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 3, laporanUjian: ["C-2026-10"],
+      id: "B8-044",
+      topik: "B8.7",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
       stem: "STP PBB-P5L PT Sumber Rimba Jaya sebesar Rp127.280.000 (pokok dan denda) diterima pada 3 Agustus 2026 dan tidak dilunasi. KPP melanjutkan dengan tindakan penagihan aktif berdasarkan UU PPSP dan peraturan pelaksananya. Rangkaian yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "STP jatuh tempo 3 Februari 2027 (6 bulan) → Surat Paksa langsung → lelang 14 hari kemudian", B: "STP jatuh tempo 3 September 2026 → Surat Teguran setelah lewat 7 hari dari jatuh tempo → Surat Paksa setelah lewat 21 hari sejak Surat Teguran → penyitaan bila utang tidak dilunasi dalam 2 × 24 jam sejak Surat Paksa diberitahukan", C: "STP jatuh tempo 3 September 2026 → Surat Paksa diterbitkan keesokan harinya tanpa Surat Teguran → penyitaan setelah 21 hari", D: "STP jatuh tempo 3 September 2026 → penagihan diserahkan kepada pemerintah kabupaten letak objek sebagai pajak daerah" },
+      opsi: { A: "STP jatuh tempo 2 Februari 2027 (6 bulan) → Surat Paksa langsung → lelang 14 hari kemudian", B: "STP jatuh tempo 2 September 2026 → Surat Teguran setelah lewat 7 hari dari jatuh tempo → Surat Paksa setelah lewat 21 hari sejak Surat Teguran disampaikan → penyitaan bila utang tidak dilunasi dalam 2 × 24 jam sejak Surat Paksa diberitahukan", C: "STP jatuh tempo 2 September 2026 → Surat Paksa diterbitkan keesokan harinya tanpa Surat Teguran → penyitaan setelah 21 hari", D: "STP jatuh tempo 2 September 2026 → penagihan diserahkan kepada pemerintah kabupaten letak objek sebagai pajak daerah" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
         inti: "STP PBB jatuh tempo 1 bulan sejak diterima (Pasal 11 ayat (4) UU PBB). Selanjutnya berlaku urutan UU PPSP: Surat Teguran (lewat 7 hari dari jatuh tempo), Surat Paksa (lewat 21 hari sejak Surat Teguran), lalu Surat Perintah Melaksanakan Penyitaan bila utang tidak dilunasi dalam 2 × 24 jam setelah Surat Paksa diberitahukan.",
-        jejakHitung: [ ["STP diterima", "3 Agustus 2026"], ["Jatuh tempo (+1 bulan)", "3 September 2026"], ["Surat Teguran", "setelah lewat 7 hari dari jatuh tempo"], ["Surat Paksa", "setelah lewat 21 hari sejak Surat Teguran"], ["Penyitaan", "bila tidak lunas 2 × 24 jam sejak Surat Paksa"] ],
-        mengapaSalah: { A: "Enam bulan adalah jatuh tempo SPPT, bukan STP; lelang juga tidak langsung setelah Surat Paksa", C: "Surat Paksa didahului Surat Teguran dalam penagihan biasa", D: "PBB-P5L adalah pajak pusat; penagihannya dilakukan DJP, bukan pemerintah daerah" },
+        jejakHitung: [
+          ["STP diterima", "3 Agustus 2026"],
+          ["Jatuh tempo (1 bulan sejak diterima)", "2 September 2026"],
+          ["Surat Teguran", "setelah lewat 7 hari dari jatuh tempo"],
+          ["Surat Paksa", "setelah lewat 21 hari sejak Surat Teguran disampaikan"],
+          ["Penyitaan", "bila tidak lunas 2 × 24 jam sejak Surat Paksa"]
+        ],
+        mengapaSalah: {
+          A: "Enam bulan adalah jatuh tempo SPPT, bukan STP; lelang juga tidak langsung setelah Surat Paksa",
+          C: "Surat Paksa didahului Surat Teguran dalam penagihan biasa",
+          D: "PBB-P5L adalah pajak pusat; penagihannya dilakukan DJP, bukan pemerintah daerah"
+        },
         jebakan: "Soal lintas kelompok: jatuh tempo menurut UU PBB, tahapan penagihan menurut UU PPSP."
       },
-      dasarHukum: [ { pasal: "Pasal 11 ayat (4) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 8, 11, dan 12 UU 19/1997 s.t.d.d. UU 19/2000 (PPSP)", berlakuSejak: "2001-01-01" }, { pasal: "PMK 61/2023 (tata cara penagihan pajak)" } ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (4) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 8, 11, dan 12 UU 19/1997 s.t.d.d. UU 19/2000 (PPSP)", berlakuSejak: "2001-01-01" }, { pasal: "PMK 61/2023 (tata cara penagihan pajak)" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -1555,19 +1678,35 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-057", topik: "B8.6", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-04",
+      id: "B8-057",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-04",
       stem: "Lanjutan data V-B8-04: SPPT PBB-P5L 2026 PT Laut Natuna Energi sebesar Rp4.329.576.000 diterima pada 16 Maret 2026. Setelah dicocokkan dengan daftar aset, ternyata DJP memasukkan dua kapal crew boat (Rp45.000.000.000) sebagai bangunan; data lain sesuai dengan keadaan 1 Januari 2026. Manajer pajak ingin memperbaiki penetapan tersebut tanpa menimbulkan sanksi. Pernyataan yang paling tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Mengajukan keberatan tertulis atas SPPT paling lambat 16 Juni 2026 dengan alasan kapal adalah benda bergerak; bila dikabulkan seluruhnya PBB turun Rp90.000.000, dan SPPT tetap harus dilunasi paling lambat 16 September 2026", B: "Mengajukan permohonan pengurangan PBB paling lambat 16 Juni 2026; bila dikabulkan seluruhnya PBB turun Rp90.000.000, dan SPPT tetap harus dilunasi paling lambat 16 September 2026", C: "Mengajukan keberatan tertulis atas SPPT paling lambat 16 Juni 2026; bila dikabulkan seluruhnya PBB turun Rp225.000.000, dan SPPT tetap harus dilunasi paling lambat 16 September 2026", D: "Mengajukan keberatan tertulis atas SPPT paling lambat 16 Juni 2026; bila dikabulkan seluruhnya PBB turun Rp90.000.000, dan pelunasan SPPT ditunda sampai keputusan keberatan terbit" },
+      opsi: { A: "Mengajukan keberatan tertulis atas SPPT paling lambat 15 Juni 2026 dengan alasan kapal adalah benda bergerak; bila dikabulkan seluruhnya PBB turun Rp90.000.000, dan SPPT tetap harus dilunasi paling lambat 15 September 2026", B: "Mengajukan permohonan pengurangan PBB paling lambat 15 Juni 2026; bila dikabulkan seluruhnya PBB turun Rp90.000.000, dan SPPT tetap harus dilunasi paling lambat 15 September 2026", C: "Mengajukan keberatan tertulis atas SPPT paling lambat 15 Juni 2026; bila dikabulkan seluruhnya PBB turun Rp225.000.000, dan SPPT tetap harus dilunasi paling lambat 15 September 2026", D: "Mengajukan keberatan tertulis atas SPPT paling lambat 15 Juni 2026; bila dikabulkan seluruhnya PBB turun Rp90.000.000, dan pelunasan SPPT ditunda sampai keputusan keberatan terbit" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Memasukkan benda bergerak sebagai bangunan adalah penetapan yang tidak benar, sehingga jalurnya keberatan atas SPPT dalam 3 bulan sejak diterima (16 Juni 2026). Penurunan PBB = 0,2% × Rp45.000.000.000 (NJOPTKP tidak berubah). Keberatan tidak menunda kewajiban melunasi SPPT pada jatuh tempo 6 bulan (16 September 2026).",
-        jejakHitung: [ ["SPPT diterima", "16 Maret 2026"], ["Batas keberatan (+3 bulan)", "16 Juni 2026"], ["Jatuh tempo SPPT (+6 bulan)", "16 September 2026"], ["Penurunan PBB 45.000.000.000 × 40% × 0,5%", "Rp90.000.000"], ["Pembanding: SPPT setelah keberatan dikabulkan", "Rp4.239.576.000"] ],
-        mengapaSalah: { B: "Pengurangan (Pasal 19) adalah keringanan atas penetapan yang benar; penetapan yang memasukkan benda bergerak diperbaiki lewat keberatan", C: "Penurunan dihitung 0,5% × NJOP tanpa NJKP 40%", D: "Keberatan tidak menunda kewajiban membayar; menunggu keputusan memicu denda 2% sebulan" },
+        inti: "Memasukkan benda bergerak sebagai bangunan adalah penetapan yang tidak benar, sehingga jalurnya keberatan atas SPPT dalam 3 bulan sejak diterima (15 Juni 2026). Penurunan PBB = 0,2% × Rp45.000.000.000 (NJOPTKP tidak berubah). Keberatan tidak menunda kewajiban melunasi SPPT pada jatuh tempo 6 bulan (15 September 2026).",
+        jejakHitung: [
+          ["SPPT diterima", "16 Maret 2026"],
+          ["Batas keberatan (3 bulan sejak diterima)", "15 Juni 2026"],
+          ["Jatuh tempo SPPT (6 bulan sejak diterima)", "15 September 2026"],
+          ["Penurunan PBB 45.000.000.000 × 40% × 0,5%", "Rp90.000.000"],
+          ["Pembanding: SPPT setelah keberatan dikabulkan", "Rp4.239.576.000"]
+        ],
+        mengapaSalah: {
+          B: "Pengurangan (Pasal 19) adalah keringanan atas penetapan yang benar; penetapan yang memasukkan benda bergerak diperbaiki lewat keberatan",
+          C: "Penurunan dihitung 0,5% × NJOP tanpa NJKP 40%",
+          D: "Keberatan tidak menunda kewajiban membayar; menunggu keputusan memicu denda 2% sebulan"
+        },
         jebakan: "Bedakan salah tetap (keberatan) dari keringanan (pengurangan), dan ingat dua tenggat berjalan bersamaan: 3 bulan keberatan, 6 bulan pelunasan."
       },
-      dasarHukum: [ { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 angka 2 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 angka 2 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 160,
       verifikasi: "✅"
     },
@@ -1630,19 +1769,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-060", topik: "B8.6", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-05",
+      id: "B8-060",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-05",
       stem: "Data untuk soal V-B8-05: PT Sawit Mukomuko Raya memiliki dua kebun kelapa sawit di Kabupaten Mukomuko dengan NOP dan SPPT terpisah. SPPT PBB-P5L 2026 kedua kebun diterima pada 2 April 2026: Kebun Air Dikit Rp684.000.000 dan Kebun Teramang Rp318.500.000. Hasil penelitian internal: (i) SPPT Kebun Air Dikit masih memuat 150 ha areal produktif yang haknya telah dilepaskan kepada negara untuk pembangunan jalan nasional pada Oktober 2025 dan sejak itu tidak lagi dikuasai atau dimanfaatkan perusahaan; (ii) pada 18 Juli 2026 banjir bandang merusak sebagian besar tanaman Kebun Teramang, sedangkan SPPT-nya sudah sesuai keadaan 1 Januari 2026. Langkah yang paling tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Mengajukan permohonan pengurangan untuk Kebun Air Dikit dan keberatan atas SPPT Kebun Teramang karena banjir, keduanya paling lambat 2 Juli 2026", B: "Mengajukan keberatan atas SPPT Kebun Air Dikit paling lambat 2 Oktober 2026 dan permohonan pengurangan untuk Kebun Teramang; kedua SPPT jatuh tempo 2 Oktober 2026", C: "Mengajukan keberatan tertulis atas SPPT Kebun Air Dikit paling lambat 2 Juli 2026 dan permohonan pengurangan untuk Kebun Teramang karena bencana alam; SPPT Kebun Air Dikit tetap harus dilunasi paling lambat 2 Oktober 2026", D: "Mengajukan keberatan tertulis atas SPPT Kebun Air Dikit paling lambat 2 Juli 2026 dan permohonan pengurangan untuk Kebun Teramang; pelunasan SPPT Kebun Air Dikit ditunda tanpa denda sampai keputusan keberatan terbit" },
+      opsi: { A: "Mengajukan permohonan pengurangan untuk Kebun Air Dikit dan keberatan atas SPPT Kebun Teramang karena banjir, keduanya paling lambat 1 Juli 2026", B: "Mengajukan keberatan atas SPPT Kebun Air Dikit paling lambat 1 Oktober 2026 dan permohonan pengurangan untuk Kebun Teramang; kedua SPPT jatuh tempo 1 Oktober 2026", C: "Mengajukan keberatan tertulis atas SPPT Kebun Air Dikit paling lambat 1 Juli 2026 dan permohonan pengurangan untuk Kebun Teramang karena bencana alam; SPPT Kebun Air Dikit tetap harus dilunasi paling lambat 1 Oktober 2026", D: "Mengajukan keberatan tertulis atas SPPT Kebun Air Dikit paling lambat 1 Juli 2026 dan permohonan pengurangan untuk Kebun Teramang; pelunasan SPPT Kebun Air Dikit ditunda tanpa denda sampai keputusan keberatan terbit" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
-        inti: "Masalah (i) adalah penetapan yang tidak benar: per 1 Januari 2026 areal 150 ha sudah tanah negara yang tidak dibebani hak perusahaan, sehingga diselesaikan dengan keberatan dalam 3 bulan sejak SPPT diterima (2 Juli 2026). Masalah (ii) terjadi setelah 1 Januari dan penetapannya benar, sehingga jalurnya pengurangan karena bencana (Pasal 19 ayat (1) huruf b). Keberatan tidak menunda pelunasan SPPT yang jatuh tempo 2 Oktober 2026.",
-        jejakHitung: [ ["SPPT diterima", "2 April 2026"], ["Batas keberatan Kebun Air Dikit (+3 bulan)", "2 Juli 2026"], ["Jatuh tempo SPPT (+6 bulan)", "2 Oktober 2026"] ],
-        mengapaSalah: { A: "Jalurnya tertukar: salah luas per 1 Januari adalah objek keberatan, kerusakan karena bencana setelah 1 Januari adalah objek pengurangan", B: "Batas keberatan 3 bulan (2 Juli 2026); 2 Oktober 2026 adalah jatuh tempo pelunasan SPPT", D: "Keberatan tidak menunda kewajiban membayar; pelunasan setelah 2 Oktober 2026 dikenai denda 2% sebulan" },
+        inti: "Masalah (i) adalah penetapan yang tidak benar: per 1 Januari 2026 areal 150 ha sudah tanah negara yang tidak dibebani hak perusahaan, sehingga diselesaikan dengan keberatan dalam 3 bulan sejak SPPT diterima (1 Juli 2026). Masalah (ii) terjadi setelah 1 Januari dan penetapannya benar, sehingga jalurnya pengurangan karena bencana (Pasal 19 ayat (1) huruf b). Keberatan tidak menunda pelunasan SPPT yang jatuh tempo 1 Oktober 2026.",
+        jejakHitung: [
+          ["SPPT diterima", "2 April 2026"],
+          ["Batas keberatan Kebun Air Dikit (3 bulan sejak diterima)", "1 Juli 2026"],
+          ["Jatuh tempo SPPT (6 bulan sejak diterima)", "1 Oktober 2026"]
+        ],
+        mengapaSalah: {
+          A: "Jalurnya tertukar: salah luas per 1 Januari adalah objek keberatan, kerusakan karena bencana setelah 1 Januari adalah objek pengurangan",
+          B: "Batas keberatan 3 bulan (1 Juli 2026); 1 Oktober 2026 adalah jatuh tempo pelunasan SPPT",
+          D: "Keberatan tidak menunda kewajiban membayar; pelunasan setelah 1 Oktober 2026 dikenai denda 2% sebulan"
+        },
         jebakan: "Satu wajib pajak, dua masalah, dua jalur: uji dulu apakah masalahnya ada pada keadaan 1 Januari (keberatan) atau terjadi sesudahnya (pengurangan)."
       },
-      dasarHukum: [ { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 3 ayat (1) huruf c dan Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 11 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 3 ayat (1) huruf c dan Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
@@ -1679,19 +1832,30 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-062", topik: "B8.5", tingkat: ["B", "C"], jenis: "konsep", kesulitan: 2,
+      id: "B8-062",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
       stem: "PT Hutan Kapuas Lestari menerima SPOP sektor perhutanan pada 6 Januari 2026 tetapi tidak menyampaikannya, termasuk setelah ditegur secara tertulis. Pada 11 Mei 2026 KPP menerbitkan SKP PBB-P5L 2026 yang diterima perusahaan pada 18 Mei 2026. Pernyataan yang paling tepat mengenai SKP tersebut adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "SKP diterbitkan berdasarkan Pasal 10 ayat (2) huruf a UU PBB, memuat pokok pajak ditambah denda administrasi 25% dari pokok pajak, dan harus dilunasi paling lambat satu bulan sejak tanggal SKP diterbitkan, yaitu 11 Juni 2026", B: "SKP diterbitkan berdasarkan Pasal 10 ayat (2) huruf a UU PBB, memuat pokok pajak ditambah denda administrasi 25% dari pokok pajak, dan harus dilunasi paling lambat satu bulan sejak tanggal SKP diterima, yaitu 18 Juni 2026", C: "SKP diterbitkan berdasarkan Pasal 10 ayat (2) huruf a UU PBB, memuat pokok pajak ditambah denda administrasi 2% sebulan dari pokok pajak paling lama 24 bulan, dan harus dilunasi paling lambat satu bulan sejak tanggal SKP diterima, yaitu 18 Juni 2026", D: "SKP diterbitkan berdasarkan Pasal 10 ayat (2) huruf b UU PBB, memuat pokok pajak ditambah denda administrasi 25% dari pokok pajak, dan harus dilunasi paling lambat satu bulan sejak tanggal SKP diterima, yaitu 18 Juni 2026" },
+      opsi: { A: "SKP diterbitkan berdasarkan Pasal 10 ayat (2) huruf a UU PBB, memuat pokok pajak ditambah denda administrasi 25% dari pokok pajak, dan harus dilunasi paling lambat satu bulan sejak tanggal SKP diterbitkan, yaitu 10 Juni 2026", B: "SKP diterbitkan berdasarkan Pasal 10 ayat (2) huruf a UU PBB, memuat pokok pajak ditambah denda administrasi 25% dari pokok pajak, dan harus dilunasi paling lambat satu bulan sejak tanggal SKP diterima, yaitu 17 Juni 2026", C: "SKP diterbitkan berdasarkan Pasal 10 ayat (2) huruf a UU PBB, memuat pokok pajak ditambah denda administrasi 2% sebulan dari pokok pajak paling lama 24 bulan, dan harus dilunasi paling lambat satu bulan sejak tanggal SKP diterima, yaitu 17 Juni 2026", D: "SKP diterbitkan berdasarkan Pasal 10 ayat (2) huruf b UU PBB, memuat pokok pajak ditambah denda administrasi 25% dari pokok pajak, dan harus dilunasi paling lambat satu bulan sejak tanggal SKP diterima, yaitu 17 Juni 2026" },
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "SPOP yang tidak disampaikan setelah teguran memicu SKP Pasal 10 ayat (2) huruf a, yang memuat pokok ditambah denda 25% dari pokok (ayat (3)); SKP dilunasi paling lambat satu bulan sejak diterima (Pasal 11 ayat (2)), yaitu 18 Juni 2026.",
-        jejakHitung: [ ["SKP diterima", "18 Mei 2026"], ["Jatuh tempo (+1 bulan sejak diterima)", "18 Juni 2026"] ],
-        mengapaSalah: { A: "Titik awal jatuh tempo SKP adalah tanggal diterima, bukan tanggal terbit", C: "Denda 2% sebulan adalah sanksi keterlambatan bayar (Pasal 11 ayat (3)), bukan isi SKP huruf a", D: "Huruf b dipakai bila SPOP disampaikan lalu pemeriksaan menunjukkan pajak lebih besar; di sini SPOP tidak disampaikan" },
+        inti: "SPOP yang tidak disampaikan setelah teguran memicu SKP Pasal 10 ayat (2) huruf a, yang memuat pokok ditambah denda 25% dari pokok (ayat (3)); SKP dilunasi paling lambat satu bulan sejak diterima (Pasal 11 ayat (2)), yaitu 17 Juni 2026.",
+        jejakHitung: [
+          ["SKP diterima", "18 Mei 2026"],
+          ["Jatuh tempo (1 bulan sejak diterima)", "17 Juni 2026"]
+        ],
+        mengapaSalah: {
+          A: "Titik awal jatuh tempo SKP adalah tanggal diterima, bukan tanggal terbit",
+          C: "Denda 2% sebulan adalah sanksi keterlambatan bayar (Pasal 11 ayat (3)), bukan isi SKP huruf a",
+          D: "Huruf b dipakai bila SPOP disampaikan lalu pemeriksaan menunjukkan pajak lebih besar; di sini SPOP tidak disampaikan"
+        },
         jebakan: "Keempat kalimat hampir identik; bandingkan frasa per frasa: dasar huruf, jenis denda, dan titik awal jatuh tempo."
       },
-      dasarHukum: [ { pasal: "Pasal 10 ayat (2) huruf a dan ayat (3) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 11 ayat (2) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 10 ayat (2) huruf a dan ayat (3) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 11 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 140,
       verifikasi: "✅"
     },
@@ -1736,7 +1900,7 @@ UKP.register({
           C: "Kode billing hanya identitas setoran; tanda pelunasan adalah Bukti Penerimaan Negara yang divalidasi dengan NTPN (Pasal 102 ayat (5) PMK 81/2024)",
           D: "NPWP 15 digit hanya dapat dipakai sampai 30 Juni 2024; sejak 1 Juli 2024 layanan administrasi memakai NPWP 16 digit, dan Coretax berlaku sejak 2025"
         },
-        jebakan: "Opsi prosedur berbeda satu langkah saja: kanal dan identitas, dokumen bukti, atau titik awal jatuh tempo. Untuk tanggal pastinya, contoh di Penjelasan Pasal 11 ayat (1) UU PBB menghitung sampai sehari sebelum tanggal yang sama (diterima 1 Maret, jatuh tempo 31 Agustus), sehingga pembayaran paling aman dilakukan paling lambat 8 September 2026."
+        jebakan: "Opsi prosedur berbeda satu langkah saja: kanal dan identitas, dokumen bukti, atau titik awal jatuh tempo. Tanggal diterima dihitung sebagai hari pertama, seperti contoh di Penjelasan Pasal 11 ayat (1) UU PBB (diterima 1 Maret, jatuh tempo 31 Agustus), sehingga SPPT yang diterima 9 Maret 2026 jatuh tempo 8 September 2026."
       },
       dasarHukum: [{ pasal: "Pasal 11 ayat (1) dan Pasal 12 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 97 ayat (1) dan Pasal 102 ayat (5) PMK 81/2024", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 11 ayat (1) PMK 112/2022 s.t.d.d. PMK 136/2023 (NPWP 16 digit)", berlakuSejak: "2024-07-01" }],
       anggaranDetik: 130,
@@ -1744,20 +1908,35 @@ UKP.register({
       peringatan: "Sudah dicocokkan: jatuh tempo 6 bulan sejak SPPT diterima (Pasal 11 ayat (1) UU PBB; Pasal 97 ayat (1) PMK 81/2024), BPN sah bila divalidasi NTPN (Pasal 102 ayat (5) PMK 81/2024), dan NPWP 16 digit sejak 1 Juli 2024 (PMK 136/2023). Belum ada di naskah: alur pembuatan kode billing PBB-P5L di Portal Wajib Pajak Coretax, isi NOP dalam kode billing, dan masa kedaluwarsa kode billing; PMK 81/2024 tidak mengatur kode billing secara rinci."
     },
     {
-      id: "B8-065", topik: "B8.7", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 3, laporanUjian: ["C-2026-10"],
+      id: "B8-065",
+      topik: "B8.7",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
       kutipan: "UU PPSP dan PMK 61/2023 (parafrase): Surat Teguran diterbitkan apabila penanggung pajak tidak melunasi utang pajak setelah lewat 7 hari sejak saat jatuh tempo pembayaran. Surat Paksa diterbitkan apabila utang pajak tidak dilunasi setelah lewat 21 hari sejak tanggal Surat Teguran disampaikan. Penyitaan dilaksanakan apabila utang pajak tidak dilunasi dalam jangka waktu 2 × 24 jam sejak Surat Paksa diberitahukan.",
       stem: "STP PBB-P5L PT Rimba Borneo Lestari (pokok Rp96.000.000 dan denda Rp5.760.000) diterima pada 14 Juli 2026 dan tidak dilunasi. Surat Teguran kemudian disampaikan kepada perusahaan pada 24 Agustus 2026. Dalam soal ini, frasa 'setelah lewat n hari' berarti tindakan paling cepat dilakukan pada hari ke-(n + 1) setelah tanggal acuan. Berdasarkan kutipan tersebut, rangkaian tanggal yang paling tepat adalah ...",
       kataKualifikasi: ["paling cepat"],
-      opsi: { A: "STP jatuh tempo 14 Januari 2027; Surat Teguran paling cepat 22 Januari 2027; Surat Paksa paling cepat 21 hari setelah Surat Teguran disampaikan", B: "STP jatuh tempo 14 Agustus 2026; Surat Teguran paling cepat 22 Agustus 2026; Surat Paksa paling cepat 5 September 2026", C: "STP jatuh tempo 14 Agustus 2026; Surat Paksa dapat langsung diterbitkan 22 Agustus 2026 tanpa Surat Teguran karena PBB adalah pajak yang ditetapkan", D: "STP jatuh tempo 14 Agustus 2026; Surat Teguran paling cepat 22 Agustus 2026; Surat Paksa paling cepat 15 September 2026" },
+      opsi: { A: "STP jatuh tempo 13 Januari 2027; Surat Teguran paling cepat 21 Januari 2027; Surat Paksa paling cepat 21 hari setelah Surat Teguran disampaikan", B: "STP jatuh tempo 13 Agustus 2026; Surat Teguran paling cepat 21 Agustus 2026; Surat Paksa paling cepat 4 September 2026", C: "STP jatuh tempo 13 Agustus 2026; Surat Paksa dapat langsung diterbitkan 21 Agustus 2026 tanpa Surat Teguran karena PBB adalah pajak yang ditetapkan", D: "STP jatuh tempo 13 Agustus 2026; Surat Teguran paling cepat 21 Agustus 2026; Surat Paksa paling cepat 15 September 2026" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
-        inti: "STP PBB jatuh tempo satu bulan sejak diterima (Pasal 11 ayat (4) UU PBB): 14 Agustus 2026. Surat Teguran paling cepat hari ke-8 setelah jatuh tempo (22 Agustus 2026). Karena Surat Teguran disampaikan 24 Agustus 2026, Surat Paksa paling cepat hari ke-22 setelah tanggal itu, yaitu 15 September 2026.",
-        jejakHitung: [ ["STP diterima", "14 Juli 2026"], ["Jatuh tempo STP (+1 bulan)", "14 Agustus 2026"], ["Surat Teguran: lewat 7 hari → hari ke-8", "22 Agustus 2026"], ["Surat Teguran disampaikan", "24 Agustus 2026"], ["Surat Paksa: lewat 21 hari → hari ke-22 (7 hari Agustus + 15 hari September)", "15 September 2026"] ],
-        mengapaSalah: { A: "Enam bulan adalah jatuh tempo SPPT; STP jatuh tempo satu bulan sejak diterima", B: "Jangka 21 hari dihitung dari jatuh tempo (14 Agustus), padahal titik acuannya tanggal Surat Teguran disampaikan (24 Agustus)", C: "Penagihan dengan Surat Paksa didahului Surat Teguran; sifat PBB sebagai pajak yang ditetapkan tidak menghapus tahapan itu" },
+        inti: "STP PBB jatuh tempo satu bulan sejak diterima (Pasal 11 ayat (4) UU PBB): 13 Agustus 2026. Surat Teguran paling cepat hari ke-8 setelah jatuh tempo (21 Agustus 2026). Karena Surat Teguran disampaikan 24 Agustus 2026, Surat Paksa paling cepat hari ke-22 setelah tanggal itu, yaitu 15 September 2026.",
+        jejakHitung: [
+          ["STP diterima", "14 Juli 2026"],
+          ["Jatuh tempo STP (1 bulan sejak diterima)", "13 Agustus 2026"],
+          ["Surat Teguran: lewat 7 hari → hari ke-8", "21 Agustus 2026"],
+          ["Surat Teguran disampaikan", "24 Agustus 2026"],
+          ["Surat Paksa: lewat 21 hari → hari ke-22 (7 hari Agustus + 15 hari September)", "15 September 2026"]
+        ],
+        mengapaSalah: {
+          A: "Enam bulan adalah jatuh tempo SPPT; STP jatuh tempo satu bulan sejak diterima",
+          B: "Jangka 21 hari dihitung dari jatuh tempo (13 Agustus), padahal titik acuannya tanggal Surat Teguran disampaikan (24 Agustus)",
+          C: "Penagihan dengan Surat Paksa didahului Surat Teguran; sifat PBB sebagai pajak yang ditetapkan tidak menghapus tahapan itu"
+        },
         jebakan: "Dua titik acuan berbeda: 7 hari dari jatuh tempo, 21 hari dari tanggal Surat Teguran disampaikan, bukan dari tanggal paling cepatnya."
       },
-      dasarHukum: [ { pasal: "Pasal 11 ayat (4) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 8 UU 19/1997 s.t.d.d. UU 19/2000 (PPSP)", berlakuSejak: "2001-01-01" }, { pasal: "PMK 61/2023 (tata cara penagihan pajak)" } ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (4) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 8 UU 19/1997 s.t.d.d. UU 19/2000 (PPSP)", berlakuSejak: "2001-01-01" }, { pasal: "PMK 61/2023 (tata cara penagihan pajak)" }],
       anggaranDetik: 160,
       verifikasi: "✅"
     },
@@ -1796,19 +1975,35 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-067", topik: "B8.5", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["C-2026-10"],
+      id: "B8-067",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Kebun Lembah Seblat (PKP; tahun buku kalender) memiliki satu objek PBB-P5L dengan NJOP Rp374.162.000.000. SPPT PBB-P5L 2026 sebesar Rp748.300.000 diterbitkan pada 11 Februari 2026 dan diterima perusahaan pada 27 Februari 2026. Pembayaran PBB: 20 Agustus 2026 Rp400.000.000; 5 Oktober 2026 Rp200.000.000; dan 30 Oktober 2026 Rp148.300.000. Data lain pada periode yang sama: PPN kurang bayar Masa Agustus 2026 Rp38.500.000 disetor 14 September 2026; kode billing PBB yang dibuat 25 Agustus 2026 kedaluwarsa tanpa dibayar. Asumsikan denda dihitung terpisah untuk setiap bagian pokok sesuai tanggal pembayarannya dan bagian dari bulan dihitung satu bulan penuh. Denda administrasi PBB yang akan ditagih dengan STP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp24.898.000", B: "Rp9.932.000", C: "Rp16.898.000", D: "Rp20.898.000" },
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
-        inti: "Jatuh tempo SPPT dihitung 6 bulan sejak diterima: 27 Agustus 2026. Pembayaran 20 Agustus tepat waktu; Rp200.000.000 terlambat 1 bulan 8 hari (2 bulan) dan Rp148.300.000 terlambat 2 bulan 3 hari (3 bulan), masing-masing dikenai denda 2% sebulan (Pasal 11 ayat (3) UU PBB).",
-        jejakHitung: [ ["Cek SPPT: (374.162.000.000 − 12.000.000) × 0,2%", "Rp748.300.000"], ["Jatuh tempo (27 Februari + 6 bulan)", "27 Agustus 2026"], ["Rp400.000.000 dibayar 20 Agustus", "tepat waktu"], ["Rp200.000.000: 27 Agustus–5 Oktober → 2 bulan × 2%", "Rp8.000.000"], ["Rp148.300.000: 27 Agustus–30 Oktober → 3 bulan × 2%", "Rp8.898.000"], ["Jumlah denda", "Rp16.898.000"] ],
-        mengapaSalah: { A: "Jatuh tempo dihitung dari tanggal terbit (11 Agustus 2026), sehingga pembayaran 20 Agustus ikut didenda dan bulan keterlambatan bertambah", B: "Bagian bulan dibulatkan ke bawah (1 bulan dan 2 bulan)", D: "Seluruh sisa Rp348.300.000 dikenai denda 3 bulan sampai pelunasan terakhir, padahal Rp200.000.000 sudah dibayar 5 Oktober" },
+        inti: "Jatuh tempo SPPT dihitung 6 bulan sejak diterima: 26 Agustus 2026. Pembayaran 20 Agustus tepat waktu; Rp200.000.000 terlambat 1 bulan 9 hari (2 bulan) dan Rp148.300.000 terlambat 2 bulan 4 hari (3 bulan), masing-masing dikenai denda 2% sebulan (Pasal 11 ayat (3) UU PBB).",
+        jejakHitung: [
+          ["Cek SPPT: (374.162.000.000 − 12.000.000) × 0,2%", "Rp748.300.000"],
+          ["Jatuh tempo (6 bulan sejak 27 Februari)", "26 Agustus 2026"],
+          ["Rp400.000.000 dibayar 20 Agustus", "tepat waktu"],
+          ["Rp200.000.000: 26 Agustus–5 Oktober → 2 bulan × 2%", "Rp8.000.000"],
+          ["Rp148.300.000: 26 Agustus–30 Oktober → 3 bulan × 2%", "Rp8.898.000"],
+          ["Jumlah denda", "Rp16.898.000"]
+        ],
+        mengapaSalah: {
+          A: "Jatuh tempo dihitung dari tanggal terbit (10 Agustus 2026), sehingga pembayaran Rp400.000.000 pada 20 Agustus ikut didenda 1 bulan (Rp8.000.000)",
+          B: "Bagian bulan dibulatkan ke bawah (1 bulan dan 2 bulan)",
+          D: "Seluruh sisa Rp348.300.000 dikenai denda 3 bulan sampai pelunasan terakhir, padahal Rp200.000.000 sudah dibayar 5 Oktober"
+        },
         jebakan: "PPN, kode billing kedaluwarsa, dan tanggal terbit SPPT adalah data pengalih; yang menentukan hanya tanggal SPPT diterima dan tanggal tiap pembayaran."
       },
-      dasarHukum: [ { pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -1909,24 +2104,42 @@ UKP.register({
       peringatan: "Klasifikasi areal sudah dicocokkan ke Pasal 14 ayat (1) PMK 186/2019 (tidak diubah PMK 234/2022): ukurannya sudah atau belum ditanami. Yang belum dicek: nama bagian dan baris SPOP/LSPOP sektor perkebunan di Coretax (formulirRef SPOP.spop.4), karena formulir resmi tidak ada di pustaka naskah."
     },
     {
-      id: "B8-071", topik: "B8.5", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-06",
+      id: "B8-071",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-06",
       stem: "Lanjutan data V-B8-06: SPPT PBB-P5L 2026 PT Indragiri Sawit Makmur sebesar Rp688.101.000 diterbitkan pada 26 Februari 2026, diterima perusahaan pada 18 Maret 2026, dan dilunasi seluruhnya pada 2 Oktober 2026. Pada bulan yang sama perusahaan juga terlambat menyetor PPh Pasal 25 Masa September 2026. Asumsikan bagian dari bulan dihitung satu bulan penuh. Denda administrasi PBB-P5L yang akan ditagih dengan STP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp27.524.040", B: "Rp172.025.250", C: "Rp13.762.020", D: "Rp701.863.020" },
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "Jatuh tempo SPPT adalah 6 bulan sejak diterima, yaitu 18 September 2026. Pelunasan 2 Oktober 2026 terlambat 14 hari yang dihitung satu bulan, sehingga denda 2% × Rp688.101.000. Keterlambatan PPh Pasal 25 dikenai bunga UU KUP tersendiri dan tidak memengaruhi denda PBB.",
-        jejakHitung: [ ["SPPT diterima + 6 bulan", "18 September 2026"], ["18 September s.d. 2 Oktober 2026", "14 hari → 1 bulan"], ["Denda 1 × 2% × 688.101.000", "Rp13.762.020"] ],
-        mengapaSalah: { A: "Jatuh tempo dihitung dari tanggal terbit (26 Agustus 2026) sehingga keterlambatan menjadi 2 bulan", B: "Memakai denda 25% milik SKP Pasal 10 ayat (3), bukan denda keterlambatan bayar", D: "Menjawab pokok ditambah denda, padahal yang ditanya denda yang ditagih dengan STP" },
+        inti: "Jatuh tempo SPPT adalah 6 bulan sejak diterima, yaitu 17 September 2026. Pelunasan 2 Oktober 2026 terlambat 15 hari yang dihitung satu bulan, sehingga denda 2% × Rp688.101.000. Keterlambatan PPh Pasal 25 dikenai bunga UU KUP tersendiri dan tidak memengaruhi denda PBB.",
+        jejakHitung: [
+          ["6 bulan sejak SPPT diterima", "17 September 2026"],
+          ["17 September s.d. 2 Oktober 2026", "15 hari → 1 bulan"],
+          ["Denda 1 × 2% × 688.101.000", "Rp13.762.020"]
+        ],
+        mengapaSalah: {
+          A: "Jatuh tempo dihitung dari tanggal terbit (25 Agustus 2026) sehingga keterlambatan menjadi 2 bulan",
+          B: "Memakai denda 25% milik SKP Pasal 10 ayat (3), bukan denda keterlambatan bayar",
+          D: "Menjawab pokok ditambah denda, padahal yang ditanya denda yang ditagih dengan STP"
+        },
         jebakan: "Titik awal jatuh tempo SPPT adalah tanggal diterima; tanggal terbit hanya data pengecoh."
       },
-      dasarHukum: [ { pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
     {
-      id: "B8-072", topik: "B8.1", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "B8-072",
+      topik: "B8.1",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       kutipan: "Pasal 9 ayat (1) dan (2) UU PBB (parafrase): Dalam rangka pendataan, subjek pajak wajib mendaftarkan objek pajaknya dengan mengisi SPOP. SPOP harus diisi dengan jelas, benar, dan lengkap serta ditandatangani dan disampaikan kepada Direktorat Jenderal Pajak yang wilayah kerjanya meliputi letak objek pajak selambat-lambatnya 30 hari setelah tanggal diterimanya SPOP oleh subjek pajak.",
       stem: "PT Nikel Sulawesi Persada (IUP operasi produksi nikel di Kabupaten Morowali) memperoleh persetujuan perluasan wilayah IUP seluas 1.200 ha pada 10 Maret 2026 dan membangun jalan hauling permanen di area itu pada April 2026. Manajer pajak berpendapat perusahaan cukup menunggu formulir dari DJP dan bahwa area perluasan sudah terutang PBB-P5L 2026 secara proporsional sejak 10 Maret 2026. Atas permintaan perusahaan, SPOP dan LSPOP elektronik untuk area perluasan diterima perusahaan pada 3 Agustus 2026. Berdasarkan kutipan tersebut, pernyataan yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
@@ -1934,12 +2147,21 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
-        inti: "Pasal 9 ayat (1) mewajibkan subjek pajak aktif mendaftarkan objeknya dengan SPOP; Pasal 9 ayat (2) memberi waktu 30 hari sejak SPOP diterima (3 Agustus + 30 hari = 2 September 2026). Karena keadaan objek ditentukan per 1 Januari (Pasal 8 ayat (2)), area perluasan baru dikenai PBB mulai Tahun Pajak 2027.",
-        jejakHitung: [ ["SPOP diterima", "3 Agustus 2026"], ["Sisa hari Agustus (4–31)", "28 hari"], ["Tambahan hari September", "2 hari"], ["Batas penyampaian", "2 September 2026"] ],
-        mengapaSalah: { A: "Pendaftaran objek bukan kewajiban pasif; Pasal 9 ayat (1) mewajibkan subjek pajak mendaftarkan objeknya", B: "PBB tidak mengenal pengenaan proporsional; objek dikunci keadaan 1 Januari", C: "Tiga puluh hari disamakan dengan satu bulan kalender" },
+        inti: "Pasal 9 ayat (1) mewajibkan subjek pajak aktif mendaftarkan objeknya dengan SPOP; Pasal 9 ayat (2) memberi waktu 30 hari setelah tanggal SPOP diterima (3 Agustus + 30 hari = 2 September 2026). Karena keadaan objek ditentukan per 1 Januari (Pasal 8 ayat (2)), area perluasan baru dikenai PBB mulai Tahun Pajak 2027.",
+        jejakHitung: [
+          ["SPOP diterima", "3 Agustus 2026"],
+          ["Sisa hari Agustus (4–31)", "28 hari"],
+          ["Tambahan hari September", "2 hari"],
+          ["Batas penyampaian", "2 September 2026"]
+        ],
+        mengapaSalah: {
+          A: "Pendaftaran objek bukan kewajiban pasif; Pasal 9 ayat (1) mewajibkan subjek pajak mendaftarkan objeknya",
+          B: "PBB tidak mengenal pengenaan proporsional; objek dikunci keadaan 1 Januari",
+          C: "Menghitung tanggal ke tanggal (3 Agustus menjadi 3 September); 30 hari setelah tanggal SPOP diterima, 3 Agustus 2026, berakhir 2 September 2026"
+        },
         jebakan: "Tiga hal diuji bersamaan: sifat aktif pendaftaran, keadaan 1 Januari, dan hitungan 30 hari."
       },
-      dasarHukum: [ { pasal: "Pasal 9 ayat (1) dan (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) dan (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 81/2024", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -2184,19 +2406,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-083", topik: "B8.6", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-07",
+      id: "B8-083",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-07",
       stem: "Lanjutan data V-B8-07: SPPT PBB-P5L 2026 PT Energi Panas Kerinci sebesar Rp1.571.676.000 diterima pada 12 Maret 2026 dan dilunasi penuh pada 20 Agustus 2026. Surat keberatan yang diterima KPP pada 5 Mei 2026 memuat dua alasan: (i) 40 ha yang dinilai sebagai areal produktif (Rp9.000/m²) sebenarnya tapak sumur yang ditinggalkan sejak 2024 dan semestinya dinilai sebagai areal lainnya (Rp600/m²); (ii) pipa uap senilai Rp96.000.000.000 semestinya tidak dihitung karena merupakan peralatan produksi. Keputusan keberatan yang diterima pada 18 Februari 2027 mengabulkan alasan (i) dan menolak alasan (ii). PBB-P5L 2026 menurut keputusan keberatan adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp1.372.956.000", B: "Rp1.564.476.000", C: "Rp1.554.876.000", D: "Rp1.564.956.000" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
-        inti: "Alasan (i) mengubah klasifikasi 40 ha dari areal produktif menjadi areal lainnya, sehingga NJOP turun sebesar selisih nilai per m²; alasan (ii) ditolak karena pipa uap yang ditanam atau dilekatkan tetap adalah bangunan. NJOPTKP sudah dipakai pada SPPT sehingga penurunan NJOP langsung dikali 0,2%. Keberatan diajukan sebelum 12 Juni 2026 dan diputus sebelum 5 Mei 2027, sehingga prosedurnya sah.",
-        jejakHitung: [ ["Penurunan NJOP 400.000 m² × (9.000 − 600)", "Rp3.360.000.000"], ["Penurunan PBB 3.360.000.000 × 40% × 0,5%", "Rp6.720.000"], ["PBB menurut keputusan 1.571.676.000 − 6.720.000", "Rp1.564.956.000"] ],
-        mengapaSalah: { A: "Alasan (ii) juga dianggap dikabulkan (penurunan tambahan 96.000.000.000 × 0,2% = Rp192.000.000)", B: "Luas 40 ha dikeluarkan seluruhnya, padahal hanya direklasifikasi menjadi areal lainnya yang tetap dinilai Rp600/m²", C: "Penurunan NJOP dikali 0,5% tanpa NJKP 40%" },
+        inti: "Alasan (i) mengubah klasifikasi 40 ha dari areal produktif menjadi areal lainnya, sehingga NJOP turun sebesar selisih nilai per m²; alasan (ii) ditolak karena pipa uap yang ditanam atau dilekatkan tetap adalah bangunan. NJOPTKP sudah dipakai pada SPPT sehingga penurunan NJOP langsung dikali 0,2%. Keberatan diajukan dalam 3 bulan sejak SPPT diterima (paling lambat 11 Juni 2026) dan diputus dalam 12 bulan sejak surat keberatan diterima (paling lambat 4 Mei 2027), sehingga prosedurnya sah.",
+        jejakHitung: [
+          ["Penurunan NJOP 400.000 m² × (9.000 − 600)", "Rp3.360.000.000"],
+          ["Penurunan PBB 3.360.000.000 × 40% × 0,5%", "Rp6.720.000"],
+          ["PBB menurut keputusan 1.571.676.000 − 6.720.000", "Rp1.564.956.000"]
+        ],
+        mengapaSalah: {
+          A: "Alasan (ii) juga dianggap dikabulkan (penurunan tambahan 96.000.000.000 × 0,2% = Rp192.000.000)",
+          B: "Luas 40 ha dikeluarkan seluruhnya, padahal hanya direklasifikasi menjadi areal lainnya yang tetap dinilai Rp600/m²",
+          C: "Penurunan NJOP dikali 0,5% tanpa NJKP 40%"
+        },
         jebakan: "Keberatan yang dikabulkan atas klasifikasi areal hanya mengubah nilai per m², bukan menghapus luasnya."
       },
-      dasarHukum: [ { pasal: "Pasal 15–16 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 angka 2 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002" } ],
+      dasarHukum: [{ pasal: "Pasal 15–16 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 angka 2 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -2482,19 +2718,34 @@ UKP.register({
       peringatan: "Klasifikasi objek sudah dicocokkan ke Pasal 8 dan Pasal 9 ayat (2) PMK 186/2019 s.t.d.d. PMK 234/2022: keramba dan rumah jaga tidak termasuk daftar bangunan sektor lainnya. Yang belum dicek: susunan SPOP/LSPOP sektor lainnya di Coretax dan arti kode formulirRef SPOP.lspop.4, karena formulir resmi tidak ada di pustaka naskah."
     },
     {
-      id: "B8-094", topik: "B8.5", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-08",
+      id: "B8-094",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-08",
       stem: "Lanjutan data V-B8-08: SPPT PBB-P5L 2026 PT Samudra Mutiara Lestari untuk Objek I (Rp780.000) dan Objek II (Rp6.976.000) diterima pada 6 April 2026. Objek I dilunasi pada 5 Oktober 2026, sedangkan Objek II baru dilunasi pada 20 November 2026. Asumsikan bagian dari bulan dihitung satu bulan penuh. Denda administrasi yang ditagih dengan STP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp279.040", B: "Rp310.240", C: "Rp139.520", D: "Rp1.744.000" },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Kedua SPPT jatuh tempo 6 Oktober 2026. Objek I dilunasi sebelum jatuh tempo; Objek II terlambat 1 bulan 14 hari yang dihitung 2 bulan, sehingga denda 2 × 2% × Rp6.976.000.",
-        jejakHitung: [ ["Jatuh tempo (6 April + 6 bulan)", "6 Oktober 2026"], ["Objek I dibayar 5 Oktober 2026", "tepat waktu, tanpa denda"], ["Objek II: 6 Oktober s.d. 20 November 2026", "1 bulan 14 hari → 2 bulan"], ["Denda 2 × 2% × 6.976.000", "Rp279.040"] ],
-        mengapaSalah: { B: "Denda dikenakan juga atas Objek I yang dilunasi tepat waktu", C: "Bagian bulan dibulatkan ke bawah menjadi 1 bulan", D: "Memakai denda 25% milik SKP" },
+        inti: "Kedua SPPT jatuh tempo 5 Oktober 2026. Objek I dilunasi pada hari jatuh tempo sehingga tepat waktu; Objek II terlambat 1 bulan 15 hari yang dihitung 2 bulan, sehingga denda 2 × 2% × Rp6.976.000.",
+        jejakHitung: [
+          ["Jatuh tempo (6 bulan sejak 6 April)", "5 Oktober 2026"],
+          ["Objek I dibayar 5 Oktober 2026 (hari jatuh tempo)", "tepat waktu, tanpa denda"],
+          ["Objek II: 5 Oktober s.d. 20 November 2026", "1 bulan 15 hari → 2 bulan"],
+          ["Denda 2 × 2% × 6.976.000", "Rp279.040"]
+        ],
+        mengapaSalah: {
+          B: "Denda dikenakan juga atas Objek I yang dilunasi tepat waktu",
+          C: "Bagian bulan dibulatkan ke bawah menjadi 1 bulan",
+          D: "Memakai denda 25% milik SKP"
+        },
         jebakan: "Denda dihitung per SPPT; SPPT yang lunas tepat waktu tidak ikut didenda."
       },
-      dasarHukum: [ { pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
@@ -2530,20 +2781,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-096", topik: "B8.6", tingkat: ["B", "C"], jenis: "konsep", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"],
+      id: "B8-096",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
       kutipan: "Pasal 35 ayat (2) dan Pasal 40 ayat (2) UU 14/2002 (parafrase): Banding diajukan dalam jangka waktu 3 bulan sejak tanggal diterima keputusan yang dibanding, kecuali diatur lain dalam peraturan perundang-undangan perpajakan. Jangka waktu untuk mengajukan gugatan terhadap pelaksanaan penagihan pajak adalah 14 hari sejak tanggal pelaksanaan penagihan.",
       stem: "PT Kebun Sungai Lilin menghadapi tiga dokumen PBB-P5L pada 2026: (1) SKP PBB 2025 hasil pemeriksaan yang diterima pada 2 Februari 2026 dan dinilai keliru menghitung luas; (2) keputusan keberatan atas SPPT 2024 yang menolak seluruh keberatan dan diterima pada 9 Maret 2026; (3) Surat Paksa atas tunggakan STP PBB 2024 yang diberitahukan oleh jurusita pajak pada 14 April 2026 ke alamat yang menurut perusahaan keliru, sehingga pelaksanaannya dinilai cacat prosedur. Berdasarkan kutipan tersebut dan UU PBB, upaya hukum dan batas waktu yang paling tepat adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: { A: "(1) keberatan paling lambat 2 Mei 2026; (2) keberatan ulang paling lambat 9 Juni 2026; (3) gugatan paling lambat 28 April 2026", B: "(1) banding paling lambat 2 Mei 2026; (2) banding paling lambat 9 Juni 2026; (3) gugatan paling lambat 28 April 2026", C: "(1) keberatan paling lambat 2 Mei 2026; (2) banding paling lambat 9 Juni 2026; (3) keberatan paling lambat 14 Juli 2026", D: "(1) keberatan paling lambat 2 Mei 2026; (2) banding paling lambat 9 Juni 2026; (3) gugatan paling lambat 28 April 2026" },
+      opsi: { A: "(1) keberatan paling lambat 1 Mei 2026; (2) keberatan ulang paling lambat 8 Juni 2026; (3) gugatan dalam 14 hari sejak tanggal pelaksanaan penagihan (14 April 2026)", B: "(1) banding paling lambat 1 Mei 2026; (2) banding paling lambat 8 Juni 2026; (3) gugatan dalam 14 hari sejak tanggal pelaksanaan penagihan (14 April 2026)", C: "(1) keberatan paling lambat 1 Mei 2026; (2) banding paling lambat 8 Juni 2026; (3) keberatan paling lambat 13 Juli 2026", D: "(1) keberatan paling lambat 1 Mei 2026; (2) banding paling lambat 8 Juni 2026; (3) gugatan dalam 14 hari sejak tanggal pelaksanaan penagihan (14 April 2026)" },
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
-        inti: "SKP PBB diajukan keberatan dalam 3 bulan sejak diterima (Pasal 15 UU PBB); keputusan keberatan dapat dibanding ke Pengadilan Pajak dalam 3 bulan sejak diterima; pelaksanaan Surat Paksa yang dinilai cacat prosedur digugat dalam 14 hari sejak tanggal pelaksanaan penagihan.",
-        jejakHitung: [ ["(1) 2 Februari 2026 + 3 bulan", "2 Mei 2026"], ["(2) 9 Maret 2026 + 3 bulan", "9 Juni 2026"], ["(3) 14 April 2026 + 14 hari", "28 April 2026"] ],
-        mengapaSalah: { A: "Tidak ada keberatan kedua; upaya atas keputusan keberatan adalah banding", B: "SKP belum pernah diajukan keberatan; banding hanya atas keputusan keberatan", C: "Surat Paksa bukan objek keberatan; pelaksanaan penagihan digugat dalam 14 hari" },
+        inti: "SKP PBB diajukan keberatan dalam 3 bulan sejak diterima (Pasal 15 UU PBB); keputusan keberatan dapat dibanding ke Pengadilan Pajak dalam 3 bulan sejak diterima; pelaksanaan Surat Paksa yang dinilai cacat prosedur digugat dalam 14 hari sejak tanggal pelaksanaan penagihan. Untuk jangka waktu bulan, tanggal diterima dihitung sebagai hari pertama (contoh Penjelasan Pasal 11 ayat (1) UU PBB: diterima 1 Maret, jatuh tempo 31 Agustus).",
+        jejakHitung: [
+          ["(1) 3 bulan sejak 2 Februari 2026", "1 Mei 2026"],
+          ["(2) 3 bulan sejak 9 Maret 2026", "8 Juni 2026"],
+          ["(3) 14 hari sejak 14 April 2026 (pelaksanaan Surat Paksa)", "batas gugatan (Pasal 40 ayat (2) UU 14/2002)"]
+        ],
+        mengapaSalah: {
+          A: "Tidak ada keberatan kedua; upaya atas keputusan keberatan adalah banding",
+          B: "SKP belum pernah diajukan keberatan; banding hanya atas keputusan keberatan",
+          C: "Surat Paksa bukan objek keberatan; pelaksanaan penagihan digugat dalam 14 hari"
+        },
         jebakan: "Petakan dokumen ke upayanya: ketetapan → keberatan, keputusan keberatan → banding, pelaksanaan penagihan → gugatan."
       },
-      dasarHukum: [ { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 35 ayat (2) dan Pasal 40 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" }, { pasal: "Pasal 23 ayat (2) huruf a UU KUP" } ],
+      dasarHukum: [{ pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 35 ayat (2) dan Pasal 40 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" }, { pasal: "Pasal 23 ayat (2) huruf a UU KUP" }],
       anggaranDetik: 160,
       verifikasi: "✅"
     },
@@ -2713,7 +2977,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "(1) Salah tulis identitas objek tanpa sengketa nilai → pembetulan (Pasal 2 ayat (2) PMK 118/2024: kesalahan tulis meliputi nomor objek pajak dan lokasi objek pajak). (2) Sengketa materi atas SKP yang tenggat keberatannya sudah lewat (3 bulan sejak 5 Januari 2026, yaitu 5 April 2026) dan belum pernah diajukan keberatan → pengurangan atau pembatalan SKP PBB yang tidak benar. (3) Denda yang timbul karena keadaan pihak ketiga atau kendala jaringan sistem, bukan kesalahan wajib pajak → pengurangan denda administratif PBB (Pasal 20 UU PBB), atas denda yang belum dibayar. (4) Penetapan benar tetapi objek terkena bencana → pengurangan PBB Pasal 19, yang diberikan paling tinggi 100% dari PBB tahun bencana yang belum dilunasi, baik dalam SPPT maupun STP PBB yang terbit pada tahun bencana.",
+        inti: "(1) Salah tulis identitas objek tanpa sengketa nilai → pembetulan (Pasal 2 ayat (2) PMK 118/2024: kesalahan tulis meliputi nomor objek pajak dan lokasi objek pajak). (2) Sengketa materi atas SKP yang tenggat keberatannya sudah lewat (3 bulan sejak 5 Januari 2026, yaitu 4 April 2026) dan belum pernah diajukan keberatan → pengurangan atau pembatalan SKP PBB yang tidak benar. (3) Denda yang timbul karena keadaan pihak ketiga atau kendala jaringan sistem, bukan kesalahan wajib pajak → pengurangan denda administratif PBB (Pasal 20 UU PBB), atas denda yang belum dibayar. (4) Penetapan benar tetapi objek terkena bencana → pengurangan PBB Pasal 19, yang diberikan paling tinggi 100% dari PBB tahun bencana yang belum dilunasi, baik dalam SPPT maupun STP PBB yang terbit pada tahun bencana.",
         jejakHitung: [],
         mengapaSalah: {
           B: "Keberatan atas SKP 2025 sudah lewat 3 bulan, STP bukan objek keberatan PBB (keberatan hanya atas SPPT dan SKP PBB), dan kesalahan tulis tidak memerlukan keberatan.",
@@ -2759,20 +3023,24 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-106", topik: "B8.6", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"],
+      id: "B8-106",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
       stem: "PT Hutan Kapuas Lestari menerima SKP PBB-P5L 2025 sebesar Rp410.000.000 pada 10 Februari 2026. SKP itu memakai NJOP bumi hutan tanaman industri yang menurut perusahaan berasal dari data kawasan lain. Surat keberatan baru dikirim pada 25 Mei 2026 tanpa alasan keadaan di luar kekuasaan, sehingga DJP memberitahukan bahwa keberatan tidak dipertimbangkan karena tidak memenuhi syarat. Perusahaan tetap yakin SKP itu tidak benar dan memiliki bukti data kawasan yang lengkap. Upaya yang masih tersedia bagi perusahaan adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Banding ke Pengadilan Pajak atas surat pemberitahuan bahwa keberatan tidak dipertimbangkan, paling lambat 3 bulan sejak surat itu diterima",
-        B: "Mengajukan keberatan kedua atas SKP yang sama dengan melampirkan bukti data kawasan",
-        C: "Mengajukan permohonan pengurangan atau pembatalan SKP PBB yang tidak benar, karena keberatannya tidak dipertimbangkan",
-        D: "Mengajukan pengurangan PBB Pasal 19 dengan alasan kondisi tertentu objek pajak"
-      },
+      opsi: { A: "Banding ke Pengadilan Pajak atas surat pemberitahuan bahwa keberatan tidak dipertimbangkan, paling lambat 3 bulan sejak surat itu diterima", B: "Mengajukan keberatan kedua atas SKP yang sama dengan melampirkan bukti data kawasan", C: "Mengajukan permohonan pengurangan atau pembatalan SKP PBB yang tidak benar, karena keberatannya tidak dipertimbangkan", D: "Mengajukan pengurangan PBB Pasal 19 dengan alasan kondisi tertentu objek pajak" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Keberatan diajukan setelah lewat 3 bulan (batasnya 10 Mei 2026) sehingga tidak dipertimbangkan; tidak ada keputusan keberatan yang dapat dibanding. Atas SKP PBB yang tidak benar dan keberatannya tidak dipertimbangkan, tersedia permohonan pengurangan atau pembatalan SKP PBB yang tidak benar.",
-        jejakHitung: [["SKP diterima", "10 Februari 2026"], ["Batas keberatan (+ 3 bulan)", "10 Mei 2026"], ["Keberatan dikirim", "25 Mei 2026 → tidak dipertimbangkan"]],
+        inti: "Keberatan diajukan setelah lewat 3 bulan (batasnya 9 Mei 2026) sehingga tidak dipertimbangkan; tidak ada keputusan keberatan yang dapat dibanding. Atas SKP PBB yang tidak benar dan keberatannya tidak dipertimbangkan, tersedia permohonan pengurangan atau pembatalan SKP PBB yang tidak benar.",
+        jejakHitung: [
+          ["SKP diterima", "10 Februari 2026"],
+          ["Batas keberatan (3 bulan sejak diterima)", "9 Mei 2026"],
+          ["Keberatan dikirim", "25 Mei 2026 → tidak dipertimbangkan"]
+        ],
         mengapaSalah: {
           A: "Banding hanya terhadap keputusan keberatan; pemberitahuan bahwa keberatan tidak dipertimbangkan bukan keputusan keberatan.",
           B: "Satu SKP hanya dapat diajukan satu keberatan, dan tenggatnya sudah lewat.",
@@ -2781,7 +3049,8 @@ UKP.register({
         jebakan: "Mengira jalan satu-satunya setelah keberatan gagal adalah banding."
       },
       dasarHukum: [{ pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" }, { pasal: "Pasal 35 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      anggaranDetik: 150,
+      verifikasi: "✅"
     },
     {
       id: "B8-107",
@@ -2915,34 +3184,36 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-111", topik: "B8.7", tingkat: ["B", "C"], jenis: "prosedur", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-10",
+      id: "B8-111",
+      topik: "B8.7",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-10",
       stem: "Lanjutan data V-B8-10: SPPT PBB-P5L 2026 PT Gula Ogan Manis sebesar Rp1.065.616.000 diterbitkan pada 27 Februari 2026 dan diterima perusahaan pada 16 Maret 2026. Karena menunggu pencairan kredit modal kerja musim giling, PBB baru dilunasi seluruhnya pada 22 Oktober 2026. KPP kemudian menerbitkan STP PBB yang diterima perusahaan pada 30 Oktober 2026. Asumsikan bagian dari bulan dihitung satu bulan penuh. Denda administrasi dalam STP dan batas pelunasan STP tersebut adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp21.312.320; paling lambat 30 November 2026",
-        B: "Rp42.624.640; paling lambat 30 November 2026",
-        C: "Rp42.624.640; paling lambat 30 April 2027",
-        D: "Rp266.404.000; paling lambat 30 November 2026"
-      },
+      opsi: { A: "Rp21.312.320; paling lambat 29 November 2026", B: "Rp42.624.640; paling lambat 29 November 2026", C: "Rp42.624.640; paling lambat 29 April 2027", D: "Rp266.404.000; paling lambat 29 November 2026" },
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "SPPT jatuh tempo 6 bulan sejak diterima (16 September 2026). Pelunasan 22 Oktober 2026 terlambat 1 bulan 6 hari, dihitung 2 bulan, sehingga denda 2 × 2% dari pokok. STP PBB harus dilunasi paling lambat 1 bulan sejak diterima.",
+        inti: "SPPT jatuh tempo 6 bulan sejak diterima (15 September 2026). Pelunasan 22 Oktober 2026 terlambat 1 bulan 7 hari, dihitung 2 bulan, sehingga denda 2 × 2% dari pokok. STP PBB harus dilunasi paling lambat 1 bulan sejak diterima.",
         jejakHitung: [
-          ["Jatuh tempo SPPT: 16 Maret 2026 + 6 bulan", "16 September 2026"],
-          ["16 September s.d. 22 Oktober 2026", "1 bulan 6 hari → 2 bulan"],
+          ["Jatuh tempo SPPT: 6 bulan sejak 16 Maret 2026", "15 September 2026"],
+          ["15 September s.d. 22 Oktober 2026", "1 bulan 7 hari → 2 bulan"],
           ["Denda 2 × 2% × 1.065.616.000", "Rp42.624.640"],
-          ["Jatuh tempo STP: 30 Oktober 2026 + 1 bulan", "30 November 2026"]
+          ["Jatuh tempo STP: 1 bulan sejak 30 Oktober 2026", "29 November 2026"]
         ],
         mengapaSalah: {
-          A: "Sisa 6 hari diabaikan sehingga keterlambatan dihitung 1 bulan, padahal soal menetapkan bagian bulan dihitung penuh.",
+          A: "Sisa 7 hari diabaikan sehingga keterlambatan dihitung 1 bulan, padahal soal menetapkan bagian bulan dihitung penuh.",
           C: "Jangka 6 bulan milik SPPT diterapkan pada STP; STP (dan SKP) PBB jatuh tempo 1 bulan sejak diterima.",
           D: "Memakai denda 25% milik SKP PBB (Pasal 10 ayat (3)), padahal keterlambatan bayar SPPT dikenai 2% sebulan."
         },
         jebakan: "Dua tenggat berbeda dalam satu soal: SPPT 6 bulan, STP 1 bulan, keduanya dihitung sejak tanggal diterima."
       },
       dasarHukum: [{ pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 10 ayat (3) UU PBB", berlakuSejak: "1995-01-01" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "B8-112",
@@ -3079,7 +3350,12 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-116", topik: "B8.7", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"],
+      id: "B8-116",
+      topik: "B8.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
       kutipan: "Pasal 11 UU PBB (parafrase): Pajak yang terutang berdasarkan SPPT harus dilunasi selambat-lambatnya 6 bulan sejak tanggal diterimanya SPPT oleh wajib pajak. Pajak yang terutang yang pada saat jatuh tempo pembayaran tidak dibayar atau kurang dibayar dikenakan denda administrasi sebesar 2% sebulan, untuk jangka waktu paling lama 24 bulan.",
       stem: "PT Bara Sungai Kayan (IUP batubara di Kabupaten Bulungan) mempunyai dua objek PBB-P5L dengan NOP dan SPPT terpisah. Kedua SPPT Tahun Pajak 2026 diterbitkan pada 2 Maret 2026. SPPT Blok Utara sebesar Rp612.000.000 baru diterima pada 30 April 2026 karena lokasi kantor tambang terpencil, sedangkan SPPT Blok Selatan sebesar Rp248.000.000 diterima pada 9 Maret 2026. Kedua SPPT dilunasi pada 15 Oktober 2026. Asumsikan bagian dari bulan dihitung satu bulan penuh. Berdasarkan kutipan tersebut, jumlah denda administrasi PBB-P5L 2026 yang akan ditagih dengan STP adalah ...",
       kataKualifikasi: [],
@@ -3087,22 +3363,23 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
-        inti: "Jatuh tempo dihitung per SPPT sejak tanggal diterima. Blok Utara jatuh tempo 30 Oktober 2026 sehingga pelunasan 15 Oktober tepat waktu; Blok Selatan jatuh tempo 9 September 2026 sehingga terlambat 1 bulan 6 hari, dihitung 2 bulan.",
+        inti: "Jatuh tempo dihitung per SPPT sejak tanggal diterima. Blok Utara jatuh tempo 29 Oktober 2026 sehingga pelunasan 15 Oktober tepat waktu; Blok Selatan jatuh tempo 8 September 2026 sehingga terlambat 1 bulan 7 hari, dihitung 2 bulan.",
         jejakHitung: [
-          ["Blok Utara: 30 April 2026 + 6 bulan", "30 Oktober 2026 → tepat waktu"],
-          ["Blok Selatan: 9 Maret 2026 + 6 bulan", "9 September 2026"],
-          ["9 September s.d. 15 Oktober 2026", "1 bulan 6 hari → 2 bulan"],
+          ["Blok Utara: 6 bulan sejak 30 April 2026", "29 Oktober 2026 → tepat waktu"],
+          ["Blok Selatan: 6 bulan sejak 9 Maret 2026", "8 September 2026"],
+          ["8 September s.d. 15 Oktober 2026", "1 bulan 7 hari → 2 bulan"],
           ["Denda 2 × 2% × 248.000.000", "Rp9.920.000"]
         ],
         mengapaSalah: {
-          A: "Jatuh tempo dihitung dari tanggal terbit (2 September 2026) untuk kedua SPPT, sehingga keduanya dianggap terlambat 2 bulan (4% × Rp860.000.000).",
-          B: "Sisa 6 hari diabaikan sehingga Blok Selatan dianggap terlambat 1 bulan.",
+          A: "Jatuh tempo dihitung dari tanggal terbit (1 September 2026) untuk kedua SPPT, sehingga keduanya dianggap terlambat 2 bulan (4% × Rp860.000.000).",
+          B: "Sisa 7 hari diabaikan sehingga Blok Selatan dianggap terlambat 1 bulan.",
           C: "Memakai jatuh tempo 1 bulan milik SKP/STP untuk SPPT (Blok Utara 5 bulan, Blok Selatan 7 bulan)."
         },
         jebakan: "SPPT yang terlambat sampai ke wajib pajak mempunyai jatuh tempo sendiri; tanggal terbit tidak relevan."
       },
       dasarHukum: [{ pasal: "Pasal 11 ayat (1) dan (3) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 11 ayat (2) dan (4) UU PBB", berlakuSejak: "1995-01-01" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "B8-117",
@@ -3376,15 +3653,15 @@ UKP.register({
           petunjuk: ["Tambahkan NJOP bangunan Rp41.300.000.000", "Kurangi NJOPTKP Rp12.000.000 sekali", "245.218.000.000 × 40% × 0,5%"],
           penjelasan: "NJOP objek Rp245.230.000.000 − Rp12.000.000 = Rp245.218.000.000; × 40% = Rp98.087.200.000; × 0,5% = Rp490.436.000." },
         { no: 5, pertanyaan: "Bagaimana jatuh tempo dan sanksi atas pembayaran 21 September 2026?", tipe: "pilihan",
-          opsi: { A: "Jatuh tempo 4 September 2026; denda 25% = Rp122.609.000 ditagih dengan SKP", B: "Jatuh tempo 30 September 2026; tidak ada denda", C: "Jatuh tempo 4 September 2026; terlambat 17 hari dihitung 1 bulan; denda 2% = Rp9.808.720 ditagih dengan STP", D: "Jatuh tempo 4 September 2026; bunga Pasal 9 ayat (2a) UU KUP dengan tarif KMK" }, jawaban: "C",
-          petunjuk: ["SPPT jatuh tempo 6 bulan sejak diterima", "4 Maret + 6 bulan = 4 September 2026", "Denda Pasal 11 ayat (3): 2% × 1 bulan × Rp490.436.000"],
-          penjelasan: "Jatuh tempo 4 September 2026; keterlambatan 17 hari dihitung satu bulan sehingga denda 2% × Rp490.436.000 = Rp9.808.720 ditagih dengan STP. Denda 25% hanya untuk SKP, dan tarif bunga KMK hanya untuk UU KUP." },
+          opsi: { A: "Jatuh tempo 3 September 2026; denda 25% = Rp122.609.000 ditagih dengan SKP", B: "Jatuh tempo 30 September 2026; tidak ada denda", C: "Jatuh tempo 3 September 2026; terlambat 18 hari dihitung 1 bulan; denda 2% = Rp9.808.720 ditagih dengan STP", D: "Jatuh tempo 3 September 2026; bunga Pasal 9 ayat (2a) UU KUP dengan tarif KMK" }, jawaban: "C",
+          petunjuk: ["SPPT jatuh tempo 6 bulan sejak diterima", "6 bulan sejak 4 Maret 2026 berakhir 3 September 2026 (contoh Penjelasan Pasal 11 ayat (1): diterima 1 Maret, jatuh tempo 31 Agustus)", "Denda Pasal 11 ayat (3): 2% × 1 bulan × Rp490.436.000"],
+          penjelasan: "Jatuh tempo 3 September 2026; keterlambatan 18 hari dihitung satu bulan sehingga denda 2% × Rp490.436.000 = Rp9.808.720 ditagih dengan STP. Denda 25% hanya untuk SKP, dan tarif bunga KMK hanya untuk UU KUP." },
         { no: 6, pertanyaan: "Bagaimana perlakuan PBB dan denda dalam PPh Badan 2026?", tipe: "pilihan",
           opsi: { A: "PBB dan denda sama-sama dapat dibiayakan", B: "PBB Rp490.436.000 dapat dibiayakan; denda Rp9.808.720 dikoreksi fiskal positif", C: "PBB dan denda sama-sama tidak dapat dibiayakan karena keduanya pajak", D: "Hanya denda yang dapat dibiayakan" }, jawaban: "B",
           petunjuk: ["Pasal 6 ayat (1) huruf a UU PPh: pajak kecuali PPh", "Pasal 9 ayat (1) huruf k UU PPh: sanksi administrasi", "PBB boleh, denda tidak"],
           penjelasan: "PBB adalah pajak selain PPh yang dapat dibiayakan; denda keterlambatan adalah sanksi administrasi yang tidak dapat dikurangkan sehingga dikoreksi fiskal positif." }
       ],
-      kesimpulan: "NJOP dihitung per jenis areal (SIT hanya untuk areal produktif, objek Pasal 3 dikeluarkan dari luas), ditambah bangunan, dikurangi NJOPTKP sekali, lalu dikali 40% dan 0,5% sehingga PBB 2026 Rp490.436.000. Pembayaran 17 hari setelah jatuh tempo menimbulkan denda 2% (Rp9.808.720) yang tidak dapat dibiayakan, sedangkan PBB-nya dapat dibiayakan.",
+      kesimpulan: "NJOP dihitung per jenis areal (SIT hanya untuk areal produktif, objek Pasal 3 dikeluarkan dari luas), ditambah bangunan, dikurangi NJOPTKP sekali, lalu dikali 40% dan 0,5% sehingga PBB 2026 Rp490.436.000. Pembayaran 18 hari setelah jatuh tempo (3 September 2026) menimbulkan denda 2% (Rp9.808.720) yang tidak dapat dibiayakan, sedangkan PBB-nya dapat dibiayakan.",
       kalkulatorRef: "pbb-bphtb"
     },
     {
@@ -3406,19 +3683,19 @@ UKP.register({
           petunjuk: ["Pasal 10 ayat (4) UU PBB", "Denda 25% dari selisih", "70.000.000 + 17.500.000"],
           penjelasan: "SKP = selisih Rp70.000.000 + denda 25% × Rp70.000.000 (Rp17.500.000) = Rp87.500.000." },
         { no: 5, pertanyaan: "Kapan jatuh tempo SKP dan batas keberatan?", tipe: "pilihan",
-          opsi: { A: "14 September 2026 dan 14 November 2026", B: "14 Februari 2027 dan 14 November 2026", C: "14 September 2026 dan 14 Februari 2027", D: "14 November 2026 dan 14 September 2026" }, jawaban: "A",
-          petunjuk: ["SKP dilunasi 1 bulan sejak diterima (Pasal 11 ayat (2))", "Keberatan 3 bulan sejak SKP diterima (Pasal 15 UU PBB)", "14 Agustus + 1 bulan; 14 Agustus + 3 bulan"],
-          penjelasan: "Jatuh tempo SKP 14 September 2026; batas keberatan 14 November 2026. Keberatan yang diterima 20 Oktober 2026 tepat waktu dan tidak menunda kewajiban membayar." },
+          opsi: { A: "13 September 2026 dan 13 November 2026", B: "13 Februari 2027 dan 13 November 2026", C: "13 September 2026 dan 13 Februari 2027", D: "13 November 2026 dan 13 September 2026" }, jawaban: "A",
+          petunjuk: ["SKP dilunasi 1 bulan sejak diterima (Pasal 11 ayat (2))", "Keberatan 3 bulan sejak SKP diterima (Pasal 15 UU PBB)", "1 bulan sejak 14 Agustus berakhir 13 September; 3 bulan sejak 14 Agustus berakhir 13 November"],
+          penjelasan: "Jatuh tempo SKP 13 September 2026; batas keberatan 13 November 2026. Keberatan yang diterima 20 Oktober 2026 tepat waktu dan tidak menunda kewajiban membayar." },
         { no: 6, pertanyaan: "Paling lambat kapan DJP memutus keberatan, dan apa akibatnya bila lewat?", tipe: "pilihan",
-          opsi: { A: "20 April 2027; dianggap ditolak", B: "14 Agustus 2027; dianggap diterima", C: "20 Oktober 2027; dianggap ditolak", D: "20 Oktober 2027; dianggap diterima" }, jawaban: "D",
+          opsi: { A: "19 April 2027; dianggap ditolak", B: "13 Agustus 2027; dianggap diterima", C: "19 Oktober 2027; dianggap ditolak", D: "19 Oktober 2027; dianggap diterima" }, jawaban: "D",
           petunjuk: ["Pasal 16 ayat (1): 12 bulan", "Dihitung sejak surat keberatan diterima", "Pasal 16 UU PBB: lewat waktu → dianggap diterima"],
-          penjelasan: "Batas keputusan 12 bulan sejak 20 Oktober 2026, yaitu 20 Oktober 2027; bila lewat tanpa keputusan, keberatan dianggap diterima." },
+          penjelasan: "Batas keputusan 12 bulan sejak 20 Oktober 2026, yaitu 19 Oktober 2027; bila lewat tanpa keputusan, keberatan dianggap diterima." },
         { no: 7, pertanyaan: "Keputusan keberatan (menolak) diterima 5 Juli 2027. Upaya dan batas waktunya?", tipe: "pilihan",
-          opsi: { A: "Keberatan kedua paling lambat 5 Oktober 2027", B: "Banding ke Pengadilan Pajak paling lambat 5 Oktober 2027", C: "Gugatan paling lambat 4 Agustus 2027", D: "Banding paling lambat 5 Januari 2028" }, jawaban: "B",
-          petunjuk: ["Upaya atas keputusan keberatan adalah banding", "Pasal 35 ayat (2) UU 14/2002: 3 bulan", "5 Juli + 3 bulan"],
-          penjelasan: "Banding diajukan ke Pengadilan Pajak dalam 3 bulan sejak keputusan diterima, yaitu paling lambat 5 Oktober 2027." }
+          opsi: { A: "Keberatan kedua paling lambat 4 Oktober 2027", B: "Banding ke Pengadilan Pajak paling lambat 4 Oktober 2027", C: "Gugatan paling lambat 4 Agustus 2027", D: "Banding paling lambat 4 Januari 2028" }, jawaban: "B",
+          petunjuk: ["Upaya atas keputusan keberatan adalah banding", "Pasal 35 ayat (2) UU 14/2002: 3 bulan", "3 bulan sejak 5 Juli 2027 berakhir 4 Oktober 2027"],
+          penjelasan: "Banding diajukan ke Pengadilan Pajak dalam 3 bulan sejak keputusan diterima, yaitu paling lambat 4 Oktober 2027." }
       ],
-      kesimpulan: "Koreksi luas 250 ha menambah NJOP Rp35 miliar sehingga selisih PBB Rp70.000.000 dan SKP (dengan denda 25% dari selisih) Rp87.500.000. SKP jatuh tempo 14 September 2026, keberatan paling lambat 14 November 2026, keputusan paling lambat 20 Oktober 2027 (lewat = dianggap diterima), dan banding paling lambat 3 bulan setelah keputusan diterima.",
+      kesimpulan: "Koreksi luas 250 ha menambah NJOP Rp35 miliar sehingga selisih PBB Rp70.000.000 dan SKP (dengan denda 25% dari selisih) Rp87.500.000. SKP jatuh tempo 13 September 2026, keberatan paling lambat 13 November 2026, keputusan paling lambat 19 Oktober 2027 (lewat = dianggap diterima), dan banding paling lambat 4 Oktober 2027 (3 bulan sejak keputusan diterima).",
       kalkulatorRef: "pbb-bphtb"
     },
     {
@@ -3470,9 +3747,9 @@ UKP.register({
           petunjuk: ["NJOPTKP sudah dipakai pada NJOP objek", "Selisih NJOP × 40% × 0,5%", "38.000.000.000 × 0,2%"],
           penjelasan: "SPPT Rp4.127.376.000 dikurangi PBB yang seharusnya Rp4.051.376.000 = Rp76.000.000." },
         { no: 6, pertanyaan: "Bagaimana penilaian atas keberatan, pelunasan, dan akibat keputusan keberatan?", tipe: "pilihan",
-          opsi: { A: "Keberatan terlambat karena batasnya 10 Mei 2026; pelunasan tepat waktu", B: "Keberatan tepat waktu (batas 10 Juni 2026) dan pelunasan 1 September 2026 tepat waktu (jatuh tempo 10 September 2026); kelebihan Rp76.000.000 dikembalikan setelah keputusan", C: "Keberatan tepat waktu, tetapi pelunasan seharusnya ditunda sampai keputusan keberatan terbit", D: "Keberatan tidak diperlukan karena DJP wajib membetulkan SPPT secara otomatis; tidak ada kelebihan pembayaran" }, jawaban: "B",
+          opsi: { A: "Keberatan terlambat karena batasnya 9 Mei 2026; pelunasan tepat waktu", B: "Keberatan tepat waktu (batas 9 Juni 2026) dan pelunasan 1 September 2026 tepat waktu (jatuh tempo 9 September 2026); kelebihan Rp76.000.000 dikembalikan setelah keputusan", C: "Keberatan tepat waktu, tetapi pelunasan seharusnya ditunda sampai keputusan keberatan terbit", D: "Keberatan tidak diperlukan karena DJP wajib membetulkan SPPT secara otomatis; tidak ada kelebihan pembayaran" }, jawaban: "B",
           petunjuk: ["Keberatan 3 bulan sejak SPPT diterima", "SPPT jatuh tempo 6 bulan sejak diterima; keberatan tidak menunda pembayaran", "Keputusan mengabulkan seluruhnya → kelebihan dikembalikan karena tidak ada utang pajak lain"],
-          penjelasan: "Batas keberatan 10 Juni 2026 sehingga keberatan yang diterima 2 Juni 2026 tepat waktu; SPPT jatuh tempo 10 September 2026 sehingga pelunasan 1 September 2026 tepat waktu. Keputusan yang mengabulkan seluruhnya menimbulkan kelebihan Rp76.000.000 yang dikembalikan karena perusahaan tidak mempunyai utang pajak lain." }
+          penjelasan: "Batas keberatan 9 Juni 2026 sehingga keberatan yang diterima 2 Juni 2026 tepat waktu; SPPT jatuh tempo 9 September 2026 sehingga pelunasan 1 September 2026 tepat waktu. Keputusan yang mengabulkan seluruhnya menimbulkan kelebihan Rp76.000.000 yang dikembalikan karena perusahaan tidak mempunyai utang pajak lain." }
       ],
       kesimpulan: "Pada objek migas lepas pantai, perairan dan tubuh bumi adalah bumi, sedangkan anjungan, pipa, dan fasilitas darat adalah bangunan; kapal bukan objek. PBB seharusnya Rp4.051.376.000, sehingga SPPT yang memasukkan kapal kelebihan Rp76.000.000. Keberatan diajukan dalam 3 bulan, SPPT tetap dilunasi sebelum jatuh tempo, dan kelebihan dikembalikan setelah keputusan.",
       kalkulatorRef: "pbb-bphtb"
@@ -3484,7 +3761,7 @@ UKP.register({
       langkah: [
         { no: 1, pertanyaan: "Kapan batas penyampaian SPOP, dan atas dasar apa SKP diterbitkan?", tipe: "pilihan",
           opsi: { A: "12 Februari 2026; SKP berdasarkan Pasal 10 ayat (2) huruf b", B: "11 Februari 2026; SKP berdasarkan Pasal 10 ayat (2) huruf a", C: "31 Januari 2026; STP karena SPOP terlambat", D: "11 Februari 2026; SPPT biasa tanpa sanksi" }, jawaban: "B",
-          petunjuk: ["SPOP disampaikan 30 hari sejak diterima", "12 Januari + 30 hari = 11 Februari 2026", "SPOP tidak disampaikan setelah ditegur → huruf a"],
+          petunjuk: ["SPOP disampaikan paling lambat 30 hari setelah tanggal diterima (Pasal 9 ayat (2))", "12 Januari + 30 hari = 11 Februari 2026", "SPOP tidak disampaikan setelah ditegur → huruf a"],
           penjelasan: "Batas SPOP 11 Februari 2026 (Pasal 9 ayat (2) UU PBB); karena SPOP tetap tidak disampaikan setelah ditegur, DJP menerbitkan SKP berdasarkan Pasal 10 ayat (2) huruf a." },
         { no: 2, pertanyaan: "Berapa pokok PBB 2026 menurut data administrasi (Rp)?", tipe: "angka", jawaban: 742826000, toleransi: 0,
           petunjuk: ["Produktif 80.000.000 m² × 4.000; belum produktif 25.000.000 m² × 1.700; emplasemen 150.000 m² × 7.500", "NJOP objek = 363.625.000.000 + 7.800.000.000 = 371.425.000.000", "(371.425.000.000 − 12.000.000) × 0,2%"],
@@ -3493,22 +3770,22 @@ UKP.register({
           petunjuk: ["Pasal 10 ayat (3) UU PBB", "Denda 25% dari pokok = Rp185.706.500", "742.826.000 + 185.706.500"],
           penjelasan: "SKP huruf a = pokok + 25% × pokok = Rp742.826.000 + Rp185.706.500 = Rp928.532.500." },
         { no: 4, pertanyaan: "Kapan jatuh tempo SKP dan batas pengajuan keberatannya?", tipe: "pilihan",
-          opsi: { A: "15 November 2026 dan 15 Agustus 2026", B: "15 Juni 2026 dan 15 November 2026", C: "15 Juni 2026 dan 15 Agustus 2026", D: "15 Juli 2026 dan 15 Agustus 2026" }, jawaban: "C",
-          petunjuk: ["SKP dilunasi 1 bulan sejak diterima (Pasal 11 ayat (2))", "Keberatan 3 bulan sejak SKP diterima (Pasal 15)", "15 Mei + 1 bulan; 15 Mei + 3 bulan"],
-          penjelasan: "Jatuh tempo SKP 15 Juni 2026; keberatan paling lambat 15 Agustus 2026." },
+          opsi: { A: "14 November 2026 dan 14 Agustus 2026", B: "14 Juni 2026 dan 14 November 2026", C: "14 Juni 2026 dan 14 Agustus 2026", D: "14 Juli 2026 dan 14 Agustus 2026" }, jawaban: "C",
+          petunjuk: ["SKP dilunasi 1 bulan sejak diterima (Pasal 11 ayat (2))", "Keberatan 3 bulan sejak SKP diterima (Pasal 15)", "1 bulan sejak 15 Mei berakhir 14 Juni; 3 bulan sejak 15 Mei berakhir 14 Agustus"],
+          penjelasan: "Jatuh tempo SKP 14 Juni 2026; keberatan paling lambat 14 Agustus 2026." },
         { no: 5, pertanyaan: "Berapa denda keterlambatan yang ditagih dengan STP (Rp)?", tipe: "angka", jawaban: 37141300, toleransi: 0,
-          petunjuk: ["15 Juni s.d. 3 Agustus 2026 = 1 bulan 19 hari", "Bagian bulan dihitung penuh → 2 bulan", "2 × 2% × 928.532.500"],
-          penjelasan: "Keterlambatan 1 bulan 19 hari dihitung 2 bulan; denda 4% × Rp928.532.500 = Rp37.141.300 (Pasal 11 ayat (3) UU PBB)." },
+          petunjuk: ["14 Juni s.d. 3 Agustus 2026 = 1 bulan 20 hari", "Bagian bulan dihitung penuh → 2 bulan", "2 × 2% × 928.532.500"],
+          penjelasan: "Keterlambatan 1 bulan 20 hari dihitung 2 bulan; denda 4% × Rp928.532.500 = Rp37.141.300 (Pasal 11 ayat (3) UU PBB)." },
         { no: 6, pertanyaan: "STP diterima 1 September 2026 dan tidak dilunasi. Kapan Surat Teguran paling cepat, dan bila Surat Teguran disampaikan pada tanggal itu, kapan Surat Paksa paling cepat?", tipe: "pilihan",
-          opsi: { A: "Surat Teguran 9 Oktober 2026; Surat Paksa 31 Oktober 2026", B: "Surat Teguran 2 Oktober 2026; Surat Paksa 23 Oktober 2026", C: "Surat Teguran 9 September 2026; Surat Paksa 30 September 2026", D: "Surat Teguran 9 Oktober 2026; Surat Paksa 11 Oktober 2026" }, jawaban: "A",
-          petunjuk: ["STP jatuh tempo 1 bulan sejak diterima: 1 Oktober 2026", "Surat Teguran setelah lewat 7 hari dari jatuh tempo → hari ke-8", "Surat Paksa setelah lewat 21 hari sejak Surat Teguran → hari ke-22"],
-          penjelasan: "Jatuh tempo STP 1 Oktober 2026; Surat Teguran paling cepat 9 Oktober 2026; Surat Paksa paling cepat 31 Oktober 2026 (9 Oktober + 22 hari)." },
+          opsi: { A: "Surat Teguran 8 Oktober 2026; Surat Paksa 30 Oktober 2026", B: "Surat Teguran 1 Oktober 2026; Surat Paksa 22 Oktober 2026", C: "Surat Teguran 9 September 2026; Surat Paksa 30 September 2026", D: "Surat Teguran 8 Oktober 2026; Surat Paksa 10 Oktober 2026" }, jawaban: "A",
+          petunjuk: ["STP jatuh tempo 1 bulan sejak diterima: 30 September 2026", "Surat Teguran setelah lewat 7 hari dari jatuh tempo → hari ke-8", "Surat Paksa setelah lewat 21 hari sejak Surat Teguran → hari ke-22"],
+          penjelasan: "Jatuh tempo STP 30 September 2026; Surat Teguran paling cepat 8 Oktober 2026; Surat Paksa paling cepat 30 Oktober 2026 (8 Oktober + 22 hari)." },
         { no: 7, pertanyaan: "Bagaimana perlakuannya dalam PPh Badan 2026?", tipe: "pilihan",
           opsi: { A: "Pokok PBB Rp742.826.000 dapat dibiayakan; denda 25% Rp185.706.500 dan denda STP Rp37.141.300 dikoreksi fiskal positif", B: "Seluruh pembayaran SKP Rp928.532.500 dapat dibiayakan karena merupakan pajak terutang", C: "Pokok dan denda 25% dapat dibiayakan; hanya denda STP yang dikoreksi", D: "Tidak ada yang dapat dibiayakan karena SKP terbit akibat kelalaian" }, jawaban: "A",
           petunjuk: ["Pasal 6 ayat (1) huruf a UU PPh: pajak selain PPh dapat dibiayakan", "Pasal 9 ayat (1) huruf k UU PPh: sanksi administrasi tidak dapat dikurangkan", "Pisahkan pokok dari kedua denda"],
           penjelasan: "Pokok PBB adalah pajak selain PPh yang dapat dibiayakan; denda 25% dalam SKP dan denda 2% dalam STP adalah sanksi administrasi yang dikoreksi fiskal positif." }
       ],
-      kesimpulan: "Karena SPOP tidak dikembalikan setelah ditegur, DJP menerbitkan SKP huruf a: pokok Rp742.826.000 ditambah denda 25% menjadi Rp928.532.500 yang jatuh tempo 15 Juni 2026. Pelunasan 3 Agustus 2026 menimbulkan denda 2 bulan Rp37.141.300 yang ditagih dengan STP; bila STP tidak dilunasi, penagihan berlanjut ke Surat Teguran (paling cepat 9 Oktober 2026) dan Surat Paksa (paling cepat 31 Oktober 2026). Hanya pokok PBB yang dapat dibiayakan.",
+      kesimpulan: "Karena SPOP tidak dikembalikan setelah ditegur, DJP menerbitkan SKP huruf a: pokok Rp742.826.000 ditambah denda 25% menjadi Rp928.532.500 yang jatuh tempo 14 Juni 2026. Pelunasan 3 Agustus 2026 menimbulkan denda 2 bulan Rp37.141.300 yang ditagih dengan STP; bila STP tidak dilunasi, penagihan berlanjut ke Surat Teguran (paling cepat 8 Oktober 2026) dan Surat Paksa (paling cepat 30 Oktober 2026). Hanya pokok PBB yang dapat dibiayakan.",
       kalkulatorRef: "pbb-bphtb"
     },
     {
@@ -3524,9 +3801,9 @@ UKP.register({
           petunjuk: ["Produktif 14.000.000 m² × 9.500; belum produktif 2.600.000 m² × 3.900; emplasemen 220.000 m² × 12.500", "NJOP objek = 145.890.000.000 + 24.600.000.000 = 170.490.000.000", "(170.490.000.000 − 12.000.000) × 0,2%"],
           penjelasan: "NJOP bumi Rp145.890.000.000 ditambah bangunan Rp24.600.000.000 = Rp170.490.000.000; (Rp170.490.000.000 − Rp12.000.000) × 40% × 0,5% = Rp340.956.000." },
         { no: 3, pertanyaan: "Apakah pelunasan pada 7 September 2026 dikenai denda?", tipe: "pilihan",
-          opsi: { A: "Ya, karena jatuh tempo SPPT 9 Juni 2026 (3 bulan)", B: "Ya, denda 2% karena pembayaran dilakukan setelah banjir", C: "Tidak, karena jatuh tempo SPPT 9 September 2026 dan pembayaran dilakukan sebelumnya", D: "Tidak, karena permohonan pengurangan otomatis menghapus kewajiban membayar" }, jawaban: "C",
-          petunjuk: ["Pasal 11 ayat (1): 6 bulan sejak SPPT diterima", "9 Maret + 6 bulan = 9 September 2026", "7 September sebelum jatuh tempo"],
-          penjelasan: "Jatuh tempo SPPT 9 September 2026, sehingga pelunasan 7 September 2026 tepat waktu dan tidak menimbulkan denda Pasal 11 ayat (3)." },
+          opsi: { A: "Ya, karena jatuh tempo SPPT 8 Juni 2026 (3 bulan)", B: "Ya, denda 2% karena pembayaran dilakukan setelah banjir", C: "Tidak, karena jatuh tempo SPPT 8 September 2026 dan pembayaran dilakukan sebelumnya", D: "Tidak, karena permohonan pengurangan otomatis menghapus kewajiban membayar" }, jawaban: "C",
+          petunjuk: ["Pasal 11 ayat (1): 6 bulan sejak SPPT diterima", "6 bulan sejak 9 Maret 2026 berakhir 8 September 2026", "7 September sebelum jatuh tempo"],
+          penjelasan: "Jatuh tempo SPPT 8 September 2026, sehingga pelunasan 7 September 2026 tepat waktu dan tidak menimbulkan denda Pasal 11 ayat (3)." },
         { no: 4, pertanyaan: "Berapa besarnya pengurangan menurut keputusan (Rp)?", tipe: "angka", jawaban: 102286800, toleransi: 0,
           petunjuk: ["Pengurangan diberikan atas PBB terutang", "30% × Rp340.956.000", "Jawaban: Rp102.286.800"],
           penjelasan: "Pengurangan 30% × Rp340.956.000 = Rp102.286.800." },
@@ -3545,10 +3822,10 @@ UKP.register({
   tips: [
     { teks: "Hitung PBB-P5L dalam urutan tetap: luas × nilai per m² (+SIT hanya areal produktif) → tambah bangunan → kurangi NJOPTKP sekali → × 40% → × 0,5%.", tagSebab: "salah-hitung" },
     { teks: "Pisahkan rezim sebelum menghitung: kawasan usaha kebun/hutan/tambang = PBB-P5L (DJP); kantor atau objek di luar kawasan = PBB-P2 (Perda, PAD). Jangan pakai NJOPTKP Rp10 juta/Rp60 juta untuk P5L.", tagSebab: "salah-klasifikasi" },
-    { teks: "Hafalkan pasangan tenggat beserta titik awalnya: SPOP 30 hari, SPPT 6 bulan, SKP/STP 1 bulan, keberatan 3 bulan (semua sejak diterima), keputusan 12 bulan sejak surat keberatan diterima.", tagSebab: "salah-baca" },
+    { teks: "Hafalkan pasangan tenggat beserta titik awalnya: SPOP 30 hari setelah diterima; SPPT 6 bulan, SKP/STP 1 bulan, dan keberatan 3 bulan sejak diterima; keputusan 12 bulan sejak surat keberatan diterima.", tagSebab: "salah-baca" },
     { teks: "Sanksi PBB berasal dari UU PBB sendiri: denda SKP 25% sekali dan denda telat bayar 2% sebulan maks 24 bulan. Opsi bertarif bunga KMK atau kenaikan 75% adalah pengecoh dari UU KUP.", tagSebab: "lupa-pasal" },
     { teks: "Keadaan 1 Januari mengunci objek setahun: bangunan selesai Februari, klinik yang berubah komersial, atau tambang yang tutup Juli baru berpengaruh tahun berikutnya, tanpa pro rata.", tagSebab: "salah-baca" },
     { teks: "Objek offshore dan kabel bawah laut: laut tetap 'bumi', anjungan/pipa/kabel 'bangunan', kapal bukan objek; untuk sektor lainnya cek dulu NJOP ≥ Rp1 miliar (NJKP 40%) atau di bawahnya (20%).", tagSebab: "salah-klasifikasi" },
-    { teks: "Tenggat 'N bulan sejak tanggal X': contoh di Penjelasan Pasal 11 ayat (1) UU PBB (SPPT diterima 1 Maret, jatuh tempo 31 Agustus) dan di Penjelasan Pasal 19 ayat (1) UU 28/2007 (sebelum Pasal 19 diganti UU 11/2020; SKPKB terbit 7 Oktober, batas pelunasan 6 November) menghitung sampai sehari sebelum tanggal yang sama. Soal latihan dan try out sering memakai tanggal yang sama. Hitung keduanya, lalu pilih yang ada di opsi.", tagSebab: "salah-hitung" }
+    { teks: "Tenggat 'N bulan sejak tanggal X': contoh di Penjelasan Pasal 11 ayat (1) UU PBB (SPPT diterima 1 Maret, jatuh tempo 31 Agustus) dan di Penjelasan Pasal 19 ayat (1) UU 28/2007 (sebelum Pasal 19 diganti UU 11/2020; SKPKB terbit 7 Oktober, batas pelunasan 6 November) menghitung sampai sehari sebelum tanggal yang sama. Modul ini memakai cara itu (3 bulan sejak 10 Juli berakhir 9 Oktober). Bila opsi hanya memuat versi tanggal yang sama, periksa apakah kesimpulannya (tepat waktu atau terlambat, jumlah bulan denda) ikut berubah.", tagSebab: "salah-hitung" }
   ]
 });
