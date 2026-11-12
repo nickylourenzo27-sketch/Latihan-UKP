@@ -7,17 +7,17 @@ UKP.register({
     diujiDi: ["A", "B", "C"],
     durasiUSKP: 120,
     perkiraanBobotSoal: { A: 0.25, B: 0.15, C: 0.12 },
-    statusPer: "2026-10-27",
+    statusPer: "2026-11-12",
     tujuan: "Peserta mampu mengklasifikasikan setiap transaksi pembayaran ke pasal pemotongan/pemungutan yang tepat (PPh 21/26, 22, 23, 4 ayat (2), 15), menentukan tarif, dasar pengenaan, sifat final atau tidak final, serta pihak pemotong; menghitung PPh 21 pegawai tetap dengan TER bulanan dan hitung ulang Pasal 17 pada Masa Pajak Terakhir, bukan pegawai, pegawai tidak tetap, dan pesangon; serta memahami kewajiban bukti potong unifikasi, penyetoran tanggal 15, dan pelaporan 20 hari di Coretax.",
     dasarHukumUtama: ["UU 7/1983 s.t.d.t.d. UU 7/2021 (UU PPh) Pasal 4 ayat (2), 15, 21, 22, 23, 26", "PP 58/2023 dan PMK 168/2023 (PPh 21 TER)", "PP 68/2009 (pesangon dan pensiun sekaligus)", "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; rezim PMK 34/PMK.010/2017 s.t.d.t.d. PMK 41/PMK.010/2022 dicabut PMK 81/2024 sejak 1 Januari 2025); PMK 37/2025 (PPh 22 PMSE)", "PMK 141/PMK.03/2015 (jasa lain PPh 23)", "PP 34/2017, PP 9/2022, PP 131/2000, PP 91/2021, PP 34/2016 (PPh final)", "PMK 112/2025 (P3B)", "PMK 81/2024 dan PER-11/PJ/2025 (Coretax, bukti potong)"],
     perubahanTerbaru: [
       { sebelum: "PPh 21 pegawai tetap dihitung progresif Pasal 17 setiap bulan (disetahunkan)", sesudah: "Januari–November memakai TER bulanan kategori A/B/C × bruto; Desember hitung ulang Pasal 17", dasar: "PP 58/2023; PMK 168/2023", berlakuSejak: "2024-01-01" },
       { sebelum: "Penyetoran PPh Pasal 21/22/23/26/4(2)/15 paling lambat tanggal 10 bulan berikutnya", sesudah: "Paling lambat tanggal 15 bulan berikutnya; bila hari libur bergeser ke hari kerja berikutnya", dasar: "PMK 81/2024 Pasal 94 dan Pasal 100", berlakuSejak: "2025-01-01" },
-      { sebelum: "Bukti potong 1721-A1/A2 (PER-16/PJ/2016) dan bupot unifikasi PER-24/PJ/2021", sesudah: "Kode bupot Coretax: BPA1, BPA2, BPMP, BP21 (PPh 21/26) serta BPPU dan BPNR (Unifikasi)", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
-      { sebelum: "Marketplace bukan pemungut PPh", sesudah: "Marketplace yang ditunjuk memungut PPh 22 0,5% dari pedagang dalam negeri; pemungutan dijadwalkan mulai 1 November 2026 (sempat ditunda)", dasar: "PMK 37/2025", berlakuSejak: "2026-11-01" },
+      { sebelum: "Bukti potong 1721-A1/A2 (PER-16/PJ/2016) dan bupot unifikasi PER-24/PJ/2021", sesudah: "Bukti potong PPh 21/26: BPA1, BPA2, BP21, BP26 (PER-11/PJ/2025 Pasal 6 ayat (1)) serta BPPU dan BPNR (Unifikasi)", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
+      { sebelum: "Marketplace bukan pemungut PPh", sesudah: "Marketplace yang ditunjuk Direktur Jenderal Pajak (Pasal 4) memungut PPh 22 0,5% dari pedagang dalam negeri; PMK 37/2025 berlaku sejak diundangkan 14 Juli 2025 (Pasal 18); ◐ jadwal pemungutan 1 November 2026 bersumber sekunder (sempat ditunda)", dasar: "PMK 37/2025", berlakuSejak: "2025-07-14" },
       { sebelum: "Penerapan P3B dan Form DGT 7 bagian menurut PER-25/PJ/2018", sesudah: "PMK 112/2025: Form DGT 6 bagian yang direkam di Coretax; tanpa SKD yang sah dipotong 20%; SKD lama tetap berlaku sampai masa berlakunya habis", dasar: "PMK 112/2025", berlakuSejak: "2025-12-31" },
       { sebelum: "PPh 21 DTP padat karya 2025 untuk 4 sektor (PMK 10/2025)", sesudah: "Diperpanjang untuk Masa Pajak Januari–Desember 2026 dengan 5 sektor (ditambah pariwisata), gaji ≤ Rp10 juta/bulan", dasar: "PMK 105/2025", berlakuSejak: "2026-01-01" },
-      { sebelum: "PPh final 0,5% PP 55/2022 berlaku juga untuk CV, firma, dan PT biasa (dengan batas waktu)", sesudah: "Hanya orang pribadi, PT perorangan, dan koperasi; pekerjaan bebas dikecualikan; pungutan PPh 22 marketplace menjadi pelunasan PPh final UMKM", dasar: "PP 20/2026; PMK 37/2025", berlakuSejak: "2026-04-22" }
+      { sebelum: "PPh final 0,5% PP 55/2022 berlaku juga untuk CV, firma, dan PT biasa (dengan batas waktu)", sesudah: "Hanya orang pribadi, PT perorangan, dan koperasi; pekerjaan bebas tetap dikecualikan (Pasal 56 ayat (3) huruf a PP 55/2022); pungutan PPh 22 marketplace menjadi pelunasan PPh final UMKM", dasar: "PP 20/2026; PMK 37/2025", berlakuSejak: "2026-04-22" }
     ],
     lembarRingkas: [
       { label: "Setor PPh 21/22/23/26/4(2)/15 yang dipotong/dipungut", nilai: "Tanggal 15 bulan berikutnya; hari libur → hari kerja berikutnya", dasar: "PMK 81/2024 Ps. 94 ayat (2) dan Ps. 100", berlakuSejak: "2025-01-01" },
@@ -38,16 +38,16 @@ UKP.register({
       { label: "PPh 22 BBM", nilai: "0,25% ke SPBU yang menjual BBM dari Pertamina/anak usahanya · 0,3% SPBU lain/selain SPBU · final bagi penyalur/agen", dasar: "PMK 51/2025 (PPh Pasal 22, berlaku 1 Agustus 2025; sifat final hanya BBM/BBG bagi penyalur/agen). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" },
       { label: "PPh 22 emas · hasil bumi oleh industri/eksportir", nilai: "0,25% (konsumen akhir dikecualikan) · 0,25%", dasar: "PMK 48/2023 s.t.d.t.d. PMK 52/2025; PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" },
       { label: "PPh 22 barang sangat mewah", nilai: "5% kendaraan/pesawat/kapal · 1% rumah > Rp30 M atau > 400 m², apartemen > Rp30 M atau > 150 m²", dasar: "PMK 92/PMK.03/2019", berlakuSejak: "2019-06-19" },
-      { label: "PPh 22 marketplace", nilai: "◐ 0,5% × bruto pedagang; pemungutan dijadwalkan 1 Nov 2026 (cek status, sempat ditunda)", dasar: "PMK 37/2025", berlakuSejak: "2026-11-01" },
+      { label: "PPh 22 marketplace", nilai: "◐ 0,5% × bruto pedagang; pemungutan dijadwalkan 1 Nov 2026 (cek status, sempat ditunda)", dasar: "PMK 37/2025 (berlaku sejak diundangkan 14 Juli 2025; marketplace pemungut ditunjuk DJP, Pasal 4)", berlakuSejak: "2025-07-14" },
       { label: "PPh 23", nilai: "15% dividen/bunga/royalti/hadiah · 2% sewa harta dan jasa (tanpa PPN)", dasar: "Ps. 23 ayat (1) UU PPh; PMK 141/PMK.03/2015", berlakuSejak: "2009-01-01" },
       { label: "Sewa tanah/bangunan (final)", nilai: "10% × bruto termasuk service charge", dasar: "PP 34/2017", berlakuSejak: "2018-01-02" },
       { label: "Jasa konstruksi (final)", nilai: "1,75% kecil · 2,65% menengah/besar/terintegrasi · 4% tanpa sertifikat · konsultansi 3,5%/6%", dasar: "PP 9/2022 Ps. 3 ayat (1)", berlakuSejak: "2022-02-21" },
       { label: "Bunga dan hadiah (final)", nilai: "Deposito/tabungan 20% (tidak dipotong bila saldo ≤ Rp7,5 jt) · obligasi 10% · undian 25% · saham bursa 0,1%", dasar: "PP 131/2000; PP 91/2021; PP 132/2000; PP 14/1997", berlakuSejak: "2021-08-30" },
       { label: "Pengalihan tanah/bangunan (final)", nilai: "2,5% · 1% rumah sederhana pengembang · 0% ke pemerintah; bayar sebelum akta", dasar: "PP 34/2016 Ps. 2–3", berlakuSejak: "2016-09-07" },
       { label: "PPh Pasal 15", nilai: "Pelayaran DN 1,2% · penerbangan DN 1,8% · LN 2,64% · kantor perwakilan dagang asing 0,44%", dasar: "KMK 416, 417, 475/KMK.04/1996; KMK 634/KMK.04/1994" },
-      { label: "PPh Pasal 26", nilai: "20% bruto atau P3B · harta 5% · premi 10%/2%/1% · BPT 20% laba setelah pajak", dasar: "Ps. 26 ayat (1), (2), (4) UU PPh", berlakuSejak: "2009-01-01" },
+      { label: "PPh Pasal 26", nilai: "20% bruto atau P3B · harta tertentu 5% (daftar PMK 82/PMK.03/2009 Ps. 2 ayat (4)) · premi 10%/2%/1% · BPT 20% laba setelah pajak", dasar: "Ps. 26 ayat (1), (2), (4) UU PPh", berlakuSejak: "2009-01-01" },
       { label: "Syarat tarif P3B", nilai: "Form DGT 6 bagian terekam di Coretax sebelum bayar; beneficial owner; tanpa → 20%", dasar: "PMK 112/2025", berlakuSejak: "2025-12-31" },
-      { label: "Kode bukti potong Coretax", nilai: "BPA1, BPA2, BPMP, BP21 (PPh 21/26) · BPPU (WPDN), BPNR (WPLN)", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
+      { label: "Kode bukti potong Coretax", nilai: "BPA1, BPA2, BP21, BP26 (PPh 21/26) · BPPU (WPDN), BPNR (WPLN)", dasar: "PER-11/PJ/2025 Pasal 6 ayat (1)", berlakuSejak: "2025-05-22" },
       { label: "Kurs DPP PPh potong/pungut dalam valas", nilai: "Kurs KMK mingguan (Rabu–Selasa) yang berlaku saat terutang: dibayar, disediakan, atau jatuh tempo — mana lebih dahulu", dasar: "KMK nilai kurs; Ps. 23 ayat (1) dan 26 ayat (1) UU PPh (pasal saat konversi ◐)", berlakuSejak: "2009-01-01" },
       { label: "Kurs tengah BI", nilai: "Untuk pembukuan SAK (penjabaran pos moneter valas pada tanggal neraca); tidak dipakai untuk DPP pemotongan", dasar: "PSAK 221 (eks-PSAK 10); PP 94/2010 Ps. 9", berlakuSejak: "2010-12-30" },
       { label: "PPh 22 impor dalam valas", nilai: "◐ 2,5%/7,5% × (CIF + bea masuk) × kurs KMK yang dipakai untuk bea masuk pada PIB", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025; PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025); KMK nilai kurs", berlakuSejak: "2025-08-01" },
@@ -106,7 +106,7 @@ UKP.register({
         "Kategori TER ditentukan dari status PTKP pada awal tahun pajak: A = TK/0, TK/1, K/0; B = TK/2, TK/3, K/1, K/2; C = K/3.",
         "Lapisan TER yang paling sering diuji: kategori A 0% s.d. Rp5,4 jt, 0,25% s.d. Rp5,65 jt, 3% Rp10,7–11,05 jt, 10% Rp24,15–26,45 jt, 12% Rp28–30,05 jt; kategori B 0% s.d. Rp6,2 jt, 0,75% Rp6,85–7,3 jt, 1% Rp7,3–9,2 jt; kategori C 0% s.d. Rp6,6 jt, 1,25% Rp8,85–9,8 jt, 3% Rp12,05–12,95 jt.",
         "Masa Pajak Terakhir (Desember atau bulan berhenti): PPh setahun = tarif Pasal 17 × PKP; PKP = bruto setahun − biaya jabatan − iuran pensiun/JHT yang dibayar pegawai − zakat via pemberi kerja − PTKP (dibulatkan ribuan penuh ke bawah); PPh masa terakhir = PPh setahun − PPh yang telah dipotong Januari–November.",
-        "Penerima tanpa NPWP (NIK belum dipadankan): PPh 21 dipotong 120% dari yang seharusnya (tarif 20% lebih tinggi); tidak berlaku untuk PPh 21 final. Bagi pegawai tetap atau pensiunan berkala yang ber-NPWP dalam tahun kalender yang sama sebelum Masa Pajak Terakhir, selisih 20% yang telah dipotong diperhitungkan dengan PPh 21 bulan-bulan berikutnya.",
+        "Penerima tanpa NPWP (NIK belum dipadankan): PPh 21 dipotong 120% dari yang seharusnya (tarif 20% lebih tinggi); tidak berlaku untuk PPh 21 final. Bagi pegawai tetap atau pensiunan berkala yang ber-NPWP dalam tahun kalender yang sama sebelum Masa Pajak Terakhir, selisih 20% yang telah dipotong diperhitungkan dengan PPh 21 bulan-bulan berikutnya (PER-16/PJ/2016 Pasal 20 ayat (4); PMK 168/2023 tidak memuat mekanisme ini, dan keberlakuan PER-16/PJ/2016 setelah PMK 252/PMK.03/2008 dicabut PMK 168/2023 belum dipastikan).",
         "Pegawai yang berhenti di tengah tahun: Masa Pajak Terakhir adalah bulan berhenti; PTKP tetap setahun penuh dan penghasilan tidak disetahunkan (penyetahunan hanya bila kewajiban pajak subjektif mulai atau berakhir dalam tahun berjalan, misalnya WPLN yang baru datang).",
         "Hasil hitung ulang Desember dapat berupa kurang potong (dipotong tambahan) atau lebih potong (dikembalikan kepada pegawai bersamaan dengan bukti potong BPA1).",
         "Pegawai tetap yang kehilangan kewajiban pajak subjektif di tengah tahun karena meninggal dunia atau meninggalkan Indonesia untuk selama-lamanya (Pasal 2A ayat (1) UU PPh): Masa Pajak Terakhirnya adalah bulan berhenti bekerja dan PPh 21-nya dihitung dengan penyetahunan (PMK 168/2023). Neto n bulan (bruto − biaya jabatan paling banyak Rp500.000 × n − iuran pensiun/JHT yang dibayar pegawai) × 12/n; PKP = neto setahun − PTKP setahun penuh menurut keadaan awal tahun, dibulatkan ke bawah ribuan penuh; PPh setahun dengan tarif Pasal 17; PPh bagian tahun pajak = n/12 × PPh setahun; dikurangi PPh 21 yang telah dipotong dengan TER pada masa sebelumnya.",
@@ -148,7 +148,7 @@ UKP.register({
         "Bukan pegawai (tenaga ahli seperti dokter, pengacara, konsultan, akuntan; artis; pembawa acara; agen; petugas dinas luar asuransi): PPh 21 = tarif Pasal 17 × (50% × bruto) per pembayaran. Sejak 2024 tidak lagi dibedakan berkesinambungan/tidak berkesinambungan dan tidak kumulatif.",
         "Pegawai tidak tetap dibayar harian/mingguan/satuan/borongan: TER harian — 0% untuk bruto s.d. Rp450.000 per hari; 0,5% × bruto harian untuk > Rp450.000 s.d. Rp2.500.000; > Rp2.500.000 dikenai tarif Pasal 17 × (50% × bruto harian).",
         "Pegawai tidak tetap yang dibayar bulanan: TER bulanan untuk seluruh masa pajak termasuk Desember, tanpa penghitungan ulang Pasal 17.",
-        "Anggota dewan komisaris/pengawas yang tidak merangkap pegawai tetap: TER bulanan (kategori menurut status PTKP) × bruto yang diterima dalam Masa Pajak itu, tidak kumulatif (PMK 168/2023 Pasal 16 ayat (1)); skema lama tarif Pasal 17 × bruto kumulatif (PER-16/PJ/2016) tidak berlaku sejak 1 Januari 2024.",
+        "Anggota dewan komisaris/pengawas yang menerima penghasilan secara tidak teratur: TER bulanan (kategori menurut status PTKP) × bruto yang diterima dalam Masa Pajak itu, tidak kumulatif (PMK 168/2023 Pasal 3 ayat (1) huruf c, Pasal 12 ayat (1), dan Pasal 16 ayat (1)). Komisaris yang menerima penghasilan secara teratur termasuk Pegawai Tetap (Pasal 1 angka 10): TER bulanan pada Masa Pajak selain Masa Pajak Terakhir, lalu dihitung dengan tarif Pasal 17 pada Masa Pajak Terakhir (Pasal 15 ayat (1)); skema lama tarif Pasal 17 × bruto kumulatif (PER-16/PJ/2016) tidak berlaku sejak 1 Januari 2024.",
         "Mantan pegawai (jasa produksi, bonus, gratifikasi) dan penarikan dana pensiun oleh pegawai: tarif Pasal 17 ayat (1) huruf a × jumlah bruto yang diterima, tidak kumulatif (PMK 168/2023); skema kumulatif setahun PER-16/PJ/2016 tidak berlaku sejak 1 Januari 2024.",
         "Peserta kegiatan (lomba, rapat, seminar, kunjungan kerja): tarif Pasal 17 × bruto per pembayaran, tidak kumulatif dan tanpa pengurang 50%.",
         "Tanpa NPWP: 120% dari PPh seharusnya. Imbalan kepada orang pribadi WPLN bukan objek PPh 21 melainkan PPh 26 (20% atau tarif P3B)."
@@ -157,7 +157,7 @@ UKP.register({
         { label: "DPP bukan pegawai", nilai: "50% × bruto, tarif Pasal 17, per pembayaran", dasar: "PP 58/2023 Pasal 2; PMK 168/2023", berlakuSejak: "2024-01-01" },
         { label: "TER harian", nilai: "0% ≤ Rp450.000; 0,5% s.d. Rp2.500.000; > Rp2,5 jt Ps. 17 × 50%", dasar: "Lampiran PP 58/2023 (TER harian)", berlakuSejak: "2024-01-01" },
         { label: "Pegawai tidak tetap bulanan", nilai: "TER bulanan sepanjang tahun, termasuk Desember", dasar: "PMK 168/2023", berlakuSejak: "2024-01-01" },
-        { label: "Komisaris tidak merangkap pegawai tetap", nilai: "TER bulanan × bruto Masa Pajak itu (tidak kumulatif)", dasar: "PMK 168/2023 Pasal 16 ayat (1)", berlakuSejak: "2024-01-01" },
+        { label: "Komisaris yang menerima penghasilan tidak teratur", nilai: "TER bulanan × bruto Masa Pajak itu (tidak kumulatif); bila dibayar teratur: Pegawai Tetap", dasar: "PMK 168/2023 Pasal 1 angka 10, Pasal 12 ayat (1), dan Pasal 16 ayat (1)", berlakuSejak: "2024-01-01" },
         { label: "Peserta kegiatan", nilai: "Pasal 17 × bruto (tanpa 50%)", dasar: "PMK 168/2023", berlakuSejak: "2024-01-01" }
       ],
       dasarHukum: [
@@ -177,7 +177,7 @@ UKP.register({
         langkah: [["DPP = 50% × Rp80.000.000", "Rp40.000.000"], ["Lapisan Pasal 17 s.d. Rp60 juta", "5%"], ["PPh 21 = 5% × Rp40.000.000", "Rp2.000.000"]]
       },
       verifikasi: "◐",
-      peringatan: "Rumus TER bulanan × bruto untuk komisaris tidak merangkap pegawai tetap (PMK 168/2023 Pasal 16 ayat (1)) dikonfirmasi sumber sekunder (Ortax, DDTC, CNBC), bunyi pasal belum dibaca langsung; dasar pengenaan tanpa kumulatif untuk mantan pegawai dan penarikan dana pensiun (menurut ulasan DDTCNews dan Ortax atas PMK 168/2023; DDTCNews merujuk Pasal 12 ayat (7) untuk penarikan dana pensiun dan ayat (8) untuk mantan pegawai) serta bruto penuh untuk peserta kegiatan bersumber dari rujukan sekunder dan belum dicek ke naskah PMK 168/2023; angka bukan pegawai 50% dan TER harian terverifikasi."
+      peringatan: "Sudah dicocokkan ke naskah: rumus TER bulanan × bruto untuk komisaris yang menerima penghasilan secara tidak teratur (PMK 168/2023 Pasal 3 ayat (1) huruf c, Pasal 12 ayat (1), Pasal 16 ayat (1)); komisaris yang dibayar teratur adalah Pegawai Tetap (Pasal 1 angka 10). Belum dicocokkan: dasar pengenaan tanpa kumulatif untuk mantan pegawai dan penarikan dana pensiun (menurut ulasan DDTCNews dan Ortax atas PMK 168/2023; DDTCNews merujuk Pasal 12 ayat (7) untuk penarikan dana pensiun dan ayat (8) untuk mantan pegawai) serta bruto penuh untuk peserta kegiatan bersumber dari rujukan sekunder dan belum dicek ke naskah PMK 168/2023; angka bukan pegawai 50% dan TER harian terverifikasi."
     },
     {
       id: "A3.4", slug: "pph21-pesangon-pensiun-dtp", judul: "Pesangon, pensiun sekaligus, dan PPh 21 DTP",
@@ -225,7 +225,7 @@ UKP.register({
         "Industri: semen 0,25%, kertas 0,1%, baja 0,3%, otomotif 0,45%, farmasi 0,3% × DPP PPN; pembelian hasil bumi yang belum melalui proses industri manufaktur oleh industri/eksportir 0,25% dari siapa pun penjualnya (dikecualikan pembelian paling banyak Rp20.000.000 dalam satu Masa Pajak); emas batangan/perhiasan 0,25% × harga jual (dikecualikan konsumen akhir, WP PPh final PP 55/2022, pemegang SKB, Bank Indonesia).",
         "Barang sangat mewah (PMK 92/2019): 5% untuk pesawat/helikopter pribadi, kapal pesiar, kendaraan roda empat > Rp2 miliar atau > 3.000 cc, roda dua/tiga > Rp300 juta atau > 250 cc; 1% untuk rumah beserta tanah > Rp30 miliar atau luas bangunan > 400 m² dan apartemen > Rp30 miliar atau > 150 m².",
         "Produsen/importir BBM, BBG, dan pelumas: BBM 0,25% × harga jual tanpa PPN bila dijual kepada SPBU yang menjual BBM yang dibeli dari PT Pertamina (Persero) atau anak usahanya, 0,3% bila kepada SPBU yang menjual BBM yang dibeli selain dari Pertamina/anak usahanya dan kepada pembeli selain SPBU (termasuk pemakai akhir industri); yang menentukan adalah asal BBM, bukan merek SPBU; BBG dan pelumas 0,3%. Pemakai akhir tidak dikecualikan.",
-        "Sifat: umumnya kredit pajak; final untuk BBM dan BBG yang dibeli penyalur/agen, sedangkan PPh 22 atas pelumas tidak final, termasuk bila pembelinya penyalur/agen (PMK 51/2025 Pasal 10 ayat (2) dan (3)). Bendahara yang membeli dari WP PPh final UMKM yang menyerahkan Surat Keterangan memungut PPh final 0,5%, bukan PPh 22 1,5%. Tanpa NPWP: tarif 100% lebih tinggi. Marketplace: 0,5% × nilai transaksi bruto, pemungutan dijadwalkan mulai 1 November 2026; pedagang orang pribadi dengan peredaran bruto tahun berjalan ≤ Rp500 juta yang menyampaikan surat pernyataan tidak dipungut; bagi WP PPh final UMKM pungutan menjadi pelunasan PPh final."
+        "Sifat: umumnya kredit pajak; final untuk BBM dan BBG yang dibeli penyalur/agen, sedangkan PPh 22 atas pelumas tidak final, termasuk bila pembelinya penyalur/agen (PMK 51/2025 Pasal 10 ayat (2) dan (3)). Bendahara yang membeli dari WP PPh final UMKM yang menyerahkan Surat Keterangan memungut PPh final 0,5%, bukan PPh 22 1,5%. Tanpa NPWP: tarif 100% lebih tinggi. Marketplace: 0,5% × nilai transaksi bruto, dipungut oleh marketplace yang ditunjuk Direktur Jenderal Pajak (PMK 37/2025 Pasal 4; PMK 37/2025 berlaku sejak diundangkan 14 Juli 2025); jadwal pemungutan 1 November 2026 berasal dari pengumuman, bukan dari naskah PMK; pedagang orang pribadi dengan peredaran bruto tahun berjalan ≤ Rp500 juta yang menyampaikan surat pernyataan tidak dipungut; bagi WP PPh final UMKM pungutan menjadi pelunasan PPh final."
       ],
       poinKunci: [
         { label: "Impor API / non-API", nilai: "2,5% / 7,5% × nilai impor", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" },
@@ -234,7 +234,7 @@ UKP.register({
         { label: "Emas", nilai: "0,25% × harga jual (konsumen akhir dikecualikan)", dasar: "PMK 48/2023 s.t.d.t.d. PMK 52/2025", berlakuSejak: "2023-05-01" },
         { label: "Barang sangat mewah", nilai: "5% kendaraan/pesawat/kapal; 1% rumah/apartemen", dasar: "PMK 92/PMK.03/2019", berlakuSejak: "2019-06-19" },
         { label: "BBM/BBG/pelumas", nilai: "BBM 0,25% ke SPBU yang menjual BBM dari Pertamina/anak usahanya; 0,3% ke SPBU lain/selain SPBU; BBG dan pelumas 0,3%; final bagi penyalur/agen hanya untuk BBM/BBG, pelumas tidak final", dasar: "PMK 51/2025 (Pasal 3 ayat (1) huruf c untuk tarif; Pasal 10 ayat (2) dan (3) untuk sifat final/tidak final; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01" },
-        { label: "Marketplace", nilai: "0,5% × bruto; pemungutan mulai 1 Nov 2026", dasar: "PMK 37/2025", berlakuSejak: "2026-11-01" },
+        { label: "Marketplace", nilai: "◐ 0,5% × bruto; pemungut ditunjuk DJP, jadwal pemungutan diumumkan 1 Nov 2026", dasar: "PMK 37/2025 Pasal 4 (penunjukan oleh DJP); berlaku sejak diundangkan 14 Juli 2025", berlakuSejak: "2025-07-14" },
         { label: "Tanpa NPWP", nilai: "100% lebih tinggi", dasar: "Pasal 22 ayat (3) UU PPh", berlakuSejak: "2009-01-01" }
       ],
       dasarHukum: [
@@ -341,7 +341,7 @@ UKP.register({
       ringkasan: [
         "PPh Pasal 15 memakai norma penghitungan khusus: pelayaran dalam negeri 1,2% × peredaran bruto (final); penerbangan dalam negeri berdasarkan perjanjian charter 1,8% × peredaran bruto (tidak final, kredit pajak); pelayaran/penerbangan luar negeri (BUT) 2,64% × peredaran bruto (final); kantor perwakilan dagang asing dari negara non-P3B 0,44% × nilai ekspor bruto (final).",
         "PPh Pasal 26: 20% × bruto atas dividen, bunga, royalti, sewa, imbalan jasa/pekerjaan/kegiatan, hadiah, pensiun, premi swap, dan keuntungan pembebasan utang yang dibayarkan kepada WPLN selain BUT — atau tarif P3B bila syarat terpenuhi.",
-        "Perkiraan penghasilan neto: penjualan harta di Indonesia (hanya perhiasan mewah, berlian, emas, intan, jam tangan mewah, barang antik, lukisan, mobil, motor, kapal pesiar, dan/atau pesawat terbang ringan menurut PMK 82/PMK.03/2009) dan saham perusahaan antara (conduit) 20% × 25% = 5% × harga jual; premi asuransi ke luar negeri dibayar tertanggung 20% × 50% = 10%, oleh perusahaan asuransi 2%, oleh reasuransi 1%.",
+        "Perkiraan penghasilan neto: penjualan harta di Indonesia (hanya perhiasan mewah, berlian, emas, intan, jam tangan mewah, barang antik, lukisan, mobil, motor, kapal pesiar, dan/atau pesawat terbang ringan menurut PMK 82/PMK.03/2009), penjualan langsung saham perseroan terbatas dalam negeri yang bukan emiten atau perusahaan publik (Pasal 238 dan Pasal 239 PMK 81/2024; dipotong pembeli, atau dipungut perseroan bila pembelinya Wajib Pajak luar negeri), dan saham perusahaan antara (conduit, PMK 258/PMK.03/2008) 20% × 25% = 5% × harga jual; premi asuransi ke luar negeri dibayar tertanggung 20% × 50% = 10%, oleh perusahaan asuransi 2%, oleh reasuransi 1%.",
         "Branch Profit Tax: laba setelah pajak BUT dikenai 20% (atau P3B) kecuali SELURUH Penghasilan Kena Pajak sesudah dikurangi PPh ditanamkan kembali di Indonesia sesuai PMK 14/PMK.03/2011 (penyertaan modal pada perusahaan baru atau yang sudah berdiri, pembelian aktiva tetap BUT, atau investasi aktiva tidak berwujud BUT, paling lambat akhir tahun pajak berikutnya). Penanaman kembali sebagian tidak mengurangi dasar BPT.",
         "Penerapan P3B (PMK 112/2025, menggantikan PER-25/PJ/2018): WPLN bukan subjek pajak dalam negeri, SKD/Form DGT (6 bagian) sudah diterima pemotong dan terekam di Coretax dalam batas waktu PMK 112/2025, beneficial owner untuk dividen/bunga/royalti, dan tidak ada penyalahgunaan P3B; tanpa SKD yang sah dipotong 20%.",
         "Pembayaran harga barang yang dibeli dari luar negeri (diimpor) bukan objek PPh 26; pelunasan PPh atas impornya melalui PPh 22 impor. Yang dipotong PPh 26 adalah jasa, royalti, bunga, sewa, dividen, dan objek Pasal 26 lainnya, sedangkan BUT di Indonesia dipotong PPh 23.",
@@ -353,7 +353,7 @@ UKP.register({
         { label: "Pelayaran/penerbangan LN", nilai: "2,64% final", dasar: "KMK 417/KMK.04/1996", berlakuSejak: "1996-06-14" },
         { label: "Kantor perwakilan dagang asing", nilai: "0,44% × nilai ekspor bruto (non-P3B)", dasar: "KMK 634/KMK.04/1994; KEP-667/PJ./2001", berlakuSejak: "1995-01-01" },
         { label: "PPh 26 umum", nilai: "20% × bruto atau tarif P3B", dasar: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
-        { label: "Harta · premi asuransi", nilai: "5% · 10% / 2% / 1%", dasar: "Pasal 26 ayat (2) UU PPh; PMK 82/PMK.03/2009 (harta); KMK 624/KMK.04/1994 (premi asuransi)", berlakuSejak: "2009-01-01" },
+        { label: "Harta · premi asuransi", nilai: "5% (hanya harta dalam daftar PMK 82/PMK.03/2009 Pasal 2 ayat (4)) · 10% / 2% / 1%", dasar: "Pasal 26 ayat (2) UU PPh; PMK 82/PMK.03/2009 (harta); KMK 624/KMK.04/1994 (premi asuransi)", berlakuSejak: "2009-01-01" },
         { label: "Branch Profit Tax", nilai: "20% × laba setelah pajak BUT", dasar: "Pasal 26 ayat (4) UU PPh", berlakuSejak: "2009-01-01" },
         { label: "P3B", nilai: "PMK 112/2025; Form DGT 6 bagian", dasar: "PMK 112/2025", berlakuSejak: "2025-12-31" }
       ],
@@ -381,7 +381,7 @@ UKP.register({
       id: "A3.9", slug: "bupot-unifikasi-coretax", judul: "Bukti potong unifikasi, SPT Masa, dan Coretax",
       estimasiMenit: 12, jenisDominan: ["prosedur", "baris-spt"],
       ringkasan: [
-        "Kode bukti potong PPh 21/26 di Coretax (PER-11/PJ/2025): BPA1 = bupot tahunan pegawai tetap/pensiunan berkala (dibuat pada Masa Pajak Terakhir, hanya terbit bila NIK tervalidasi); BPA2 = bupot tahunan ASN/TNI/Polri/pejabat negara dan pensiunannya; BPMP = bupot bulanan pegawai tetap (bersifat notifikasi); BP21 = bupot PPh 21 tidak final/final bagi bukan pegawai, pegawai tidak tetap, peserta kegiatan, pesangon, dan penerima lain; BP26 = bupot PPh 26 atas imbalan pekerjaan, jasa, atau kegiatan orang pribadi Wajib Pajak luar negeri (PER-11/PJ/2025 Ps. 6 ayat (1) huruf d dan Ps. 7 ayat (1) huruf d).",
+        "Kode bukti potong PPh 21/26 di Coretax (PER-11/PJ/2025): BPA1 = bupot tahunan pegawai tetap/pensiunan berkala (dibuat pada Masa Pajak Terakhir); BPA2 = bupot tahunan ASN/TNI/Polri/pejabat negara dan pensiunannya; untuk Masa Pajak selain Masa Pajak Terakhir, pemotongan bulanan pegawai tetap dilaporkan dalam Formulir L-IA (Daftar Pemotongan Bulanan) lampiran SPT Masa PPh 21/26 (Ps. 11 ayat (1) huruf b angka 1); BPMP tidak termasuk jenis bukti potong dalam Ps. 6 ayat (1); BP21 = bupot PPh 21 tidak final/final bagi bukan pegawai, pegawai tidak tetap, peserta kegiatan, pesangon, dan penerima lain; BP26 = bupot PPh 26 atas imbalan pekerjaan, jasa, atau kegiatan orang pribadi Wajib Pajak luar negeri (PER-11/PJ/2025 Ps. 6 ayat (1) huruf d dan Ps. 7 ayat (1) huruf d).",
         "Bukti pemotongan/pemungutan Unifikasi: BPPU untuk WP dalam negeri (PPh 4 ayat (2), 15, 22, 23) dan BPNR untuk WP luar negeri (PPh 4 ayat (2), 15, 26 selain imbalan pekerjaan/jasa/kegiatan orang pribadi).",
         "SPT Masa PPh Unifikasi dan SPT Masa PPh 21/26 disusun otomatis dari bupot yang diterbitkan di e-Bupot Coretax; dokumen tertentu dipersamakan dengan bupot (misalnya SSP PPh 22 impor, dokumen pemungutan bendahara, invoice marketplace PMK 37/2025).",
         "Penyetoran PPh Pasal 21/26, 22, 23, 4 ayat (2), dan 15 yang dipotong/dipungut: paling lambat tanggal 15 bulan berikutnya (PMK 81/2024 Pasal 94); jatuh tempo pada hari libur bergeser ke hari kerja berikutnya (Pasal 100). PPh 22 impor disetor bersamaan bea masuk melalui bank devisa/DJBC.",
@@ -394,7 +394,7 @@ UKP.register({
         { label: "Setor pajak masa", nilai: "tanggal 15 bulan berikutnya (dulu tanggal 10)", dasar: "PMK 81/2024 Pasal 94 ayat (2)", berlakuSejak: "2025-01-01" },
         { label: "Lapor SPT Masa PPh", nilai: "20 hari setelah Masa Pajak berakhir", dasar: "Pasal 3 ayat (3) huruf a UU KUP; PMK 81/2024 Pasal 171", berlakuSejak: "2025-01-01" },
         { label: "Hari libur", nilai: "setor bergeser ke hari kerja berikutnya", dasar: "PMK 81/2024 Pasal 100", berlakuSejak: "2025-01-01" },
-        { label: "Kode bupot PPh 21/26", nilai: "BPA1, BPA2, BPMP, BP21, BP26", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
+        { label: "Kode bupot PPh 21/26", nilai: "BPA1, BPA2, BP21, BP26", dasar: "PER-11/PJ/2025 Pasal 6 ayat (1)", berlakuSejak: "2025-05-22" },
         { label: "Kode bupot Unifikasi", nilai: "BPPU (WPDN), BPNR (WPLN)", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
         { label: "Denda telat lapor SPT Masa PPh", nilai: "Rp100.000", dasar: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" },
         { label: "Tambahan tarif tanpa NPWP", nilai: "PPh 21: 20% lebih tinggi · PPh 22 dan 23: 100% lebih tinggi", dasar: "Pasal 21 ayat (5a), 22 ayat (3), 23 ayat (1a) UU PPh", berlakuSejak: "2009-01-01" },
@@ -731,13 +731,13 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 3,
-      stem: "Tuan Gunawan (ber-NPWP, status PTKP TK/0 pada 1 Januari 2026) adalah anggota dewan komisaris PT Arta yang tidak merangkap pegawai tetap. Ia menerima honorarium secara tidak teratur, yaitu Rp30.000.000 pada Januari 2026 dan Rp50.000.000 pada Maret 2026. PPh Pasal 21 yang dipotong atas pembayaran Maret 2026 adalah ...",
+      stem: "Tuan Gunawan (ber-NPWP, status PTKP TK/0 pada 1 Januari 2026) adalah anggota dewan komisaris PT Arta. Ia menerima honorarium secara tidak teratur, yaitu Rp30.000.000 pada Januari 2026 dan Rp50.000.000 pada Maret 2026. PPh Pasal 21 yang dipotong atas pembayaran Maret 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp9.000.000", B: "Rp4.500.000", C: "Rp1.250.000", D: "Rp7.500.000" },
       kunci: "A",
       jebakanOpsi: { B: "angka-usang", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Sejak PMK 168/2023, PPh 21 atas penghasilan anggota dewan komisaris yang tidak merangkap pegawai tetap dihitung dengan TER bulanan sesuai kategori PTKP dikalikan bruto yang diterima dalam Masa Pajak itu, tanpa penjumlahan kumulatif. TK/0 masuk kategori A; bruto Maret Rp50.000.000 berada pada lapisan Rp47.800.000-51.400.000 dengan TER 18%.",
+        inti: "Sejak PMK 168/2023, PPh 21 atas penghasilan anggota dewan komisaris yang menerima penghasilan secara tidak teratur dihitung dengan TER bulanan sesuai kategori PTKP dikalikan bruto yang diterima dalam Masa Pajak itu, tanpa penjumlahan kumulatif (Pasal 3 ayat (1) huruf c, Pasal 12 ayat (1), Pasal 16 ayat (1)). Pembedanya adalah teratur atau tidaknya penghasilan: komisaris yang dibayar teratur termasuk Pegawai Tetap (Pasal 1 angka 10). TK/0 masuk kategori A; bruto Maret Rp50.000.000 berada pada lapisan Rp47.800.000-51.400.000 dengan TER 18%.",
         jejakHitung: [
           ["Status TK/0 → kategori", "A"],
           ["Bruto Masa Maret (tidak kumulatif)", "Rp50.000.000"],
@@ -746,12 +746,12 @@ UKP.register({
         ],
         mengapaSalah: {
           B: "Memakai skema lama (tarif Pasal 17 atas bruto kumulatif Rp80 juta dikurangi PPh Januari) yang tidak berlaku lagi sejak PMK 168/2023",
-          C: "Memakai DPP 50% × tarif Pasal 17 seperti bukan pegawai; komisaris tidak merangkap pegawai tetap memakai TER bulanan",
-          D: "Memakai tarif Pasal 17 15% atas seluruh Rp50 juta; komisaris tidak merangkap pegawai tetap memakai TER bulanan"
+          C: "Memakai DPP 50% × tarif Pasal 17 seperti bukan pegawai; komisaris yang menerima penghasilan secara tidak teratur memakai TER bulanan × bruto (PMK 168/2023 Pasal 16 ayat (1))",
+          D: "Memakai tarif Pasal 17 15% atas seluruh Rp50 juta; komisaris yang menerima penghasilan secara tidak teratur memakai TER bulanan"
         },
-        jebakan: "Komisaris yang tidak merangkap pegawai tetap bukan \"bukan pegawai\" biasa (DPP 50%) dan tidak lagi dihitung kumulatif: pakai TER bulanan × bruto masa itu."
+        jebakan: "Komisaris yang menerima penghasilan secara tidak teratur bukan \"bukan pegawai\" biasa (DPP 50%) dan tidak lagi dihitung kumulatif: pakai TER bulanan × bruto masa itu. Bila honorariumnya dibayar teratur, ia Pegawai Tetap dan dihitung seperti pegawai tetap."
       },
-      dasarHukum: [{ pasal: "PMK 168/2023 Pasal 12 ayat (1) dan Pasal 16 ayat (1)", berlakuSejak: "2024-01-01" }, { pasal: "PP 58/2023 Pasal 2 ayat (4) huruf a dan Lampiran huruf A (TER kategori A)", berlakuSejak: "2024-01-01" }],
+      dasarHukum: [{ pasal: "PMK 168/2023 Pasal 1 angka 10, Pasal 3 ayat (1) huruf c, Pasal 12 ayat (1), dan Pasal 16 ayat (1)", berlakuSejak: "2024-01-01" }, { pasal: "PP 58/2023 Pasal 2 ayat (4) huruf a dan Lampiran huruf A (TER kategori A)", berlakuSejak: "2024-01-01" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -971,14 +971,20 @@ UKP.register({
       kasusId: "V-A3-02",
       stem: "V-A3-02 — Penghitungan Masa Pajak Desember 2026 menunjukkan PPh Pasal 21 Tuan Raka, pegawai tetap PT Sentosa Makmur, lebih potong Rp369.000. NIK Tuan Raka telah tervalidasi di Coretax dan ia tetap bekerja di perusahaan tersebut pada 2027. Tindakan PT Sentosa Makmur yang tepat sebagai pemotong adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Membuat BPMP Masa Desember, lalu menyarankan Tuan Raka meminta kembali kelebihan Rp369.000 melalui restitusi dalam SPT Tahunan PPh OP 2026", B: "Membuat BP21 final atas penghasilan setahun sehingga kelebihan Rp369.000 menjadi kredit pajak dalam SPT Tahunan Tuan Raka", C: "Membuat BPA1 pada Masa Desember, tetapi menahan kelebihan Rp369.000 untuk diperhitungkan dengan PPh 21 Tuan Raka Masa Januari 2027", D: "Membuat BPA1 pada Masa Desember, mengembalikan Rp369.000 kepada Tuan Raka, dan memperhitungkannya dalam SPT Masa PPh 21/26 perusahaan" },
+      opsi: { A: "Melaporkan pemotongan Masa Desember seperti bulan-bulan sebelumnya tanpa membuat BPA1, lalu menyarankan Tuan Raka meminta kembali kelebihan Rp369.000 melalui restitusi dalam SPT Tahunan PPh OP 2026", B: "Membuat BP21 final atas penghasilan setahun sehingga kelebihan Rp369.000 menjadi kredit pajak dalam SPT Tahunan Tuan Raka", C: "Membuat BPA1 pada Masa Desember, tetapi menahan kelebihan Rp369.000 untuk diperhitungkan dengan PPh 21 Tuan Raka Masa Januari 2027", D: "Membuat BPA1 pada Masa Desember, mengembalikan Rp369.000 kepada Tuan Raka, dan memperhitungkannya dalam SPT Masa PPh 21/26 perusahaan" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
         inti: "Pegawai tetap dibuatkan BPA1 untuk Masa Pajak terakhir, yaitu Desember (PER-11/PJ/2025 Ps. 7 ayat (1) huruf a, e, dan g). Bila PPh 21 yang dipotong Januari–November melebihi PPh 21 setahun, kelebihannya wajib dikembalikan pemotong kepada pegawai beserta bukti potongnya paling lambat akhir Januari 2027 (PMK 168/2023 Ps. 21 ayat (1)); kelebihan setor pemotong lalu diperhitungkan dengan PPh 21/26 bulan berikutnya melalui SPT Masa (Ps. 21 ayat (3)).",
-        jejakHitung: [],
+        jejakHitung: [
+          ["PPh 21 setahun (data V-A3-02: PKP Rp123.140.000; 5% × 60.000.000 + 15% × 63.140.000)", "Rp12.471.000"],
+          ["PPh 21 dipotong Januari–November = 10 × 930.000 + 3.540.000", "Rp12.840.000"],
+          ["Selisih = 12.471.000 − 12.840.000", "lebih potong Rp369.000"],
+          ["Masa Pajak terakhir pegawai tetap", "Desember 2026: dibuatkan BPA1"],
+          ["Kelebihan Rp369.000", "dikembalikan kepada Tuan Raka paling lambat akhir Januari 2027; kelebihan setor PT diperhitungkan lewat SPT Masa PPh 21/26"]
+        ],
         mengapaSalah: {
-          A: "Kelebihan potong pegawai tetap wajib dikembalikan oleh pemotong (PMK 168/2023 Ps. 21 ayat (1)), bukan diminta pegawai lewat restitusi SPT Tahunan; bukti potong Masa Desember pegawai tetap adalah BPA1",
+          A: "Masa Desember adalah Masa Pajak terakhir sehingga wajib dibuatkan BPA1 (PER-11/PJ/2025 Ps. 7 ayat (1) huruf e dan g), dan kelebihan potong pegawai tetap wajib dikembalikan oleh pemotong (PMK 168/2023 Ps. 21 ayat (1)), bukan diminta pegawai lewat restitusi SPT Tahunan",
           B: "BP21 hanya untuk penerima selain pegawai tetap dan ASN yang merupakan Wajib Pajak dalam negeri (PER-11 Ps. 7 ayat (1) huruf c); pegawai tetap memakai BPA1",
           C: "Kelebihan tidak boleh ditahan: wajib dikembalikan paling lambat akhir bulan berikutnya setelah Masa Pajak Terakhir (PMK 168/2023 Ps. 21 ayat (1))"
         },
@@ -1656,20 +1662,29 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A3-061", topik: "A3.9", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1,
+      id: "A3-061",
+      topik: "A3.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
       stem: "Staf pajak RS Medika Utama (WP badan) menyiapkan bukti potong Masa Pajak Desember 2026 di Coretax untuk gaji pegawai tetap, dividen kepada pemegang saham badan di Singapura, dan honorarium dokter tamu orang pribadi dalam negeri yang bukan pegawai. Pasangan kode bukti potong dan penggunaannya berikut tepat, kecuali ...",
       kataKualifikasi: ["kecuali"],
-      opsi: { A: "BPPU — bukti pemotongan PPh Pasal 21 atas honorarium dokter tamu yang bukan pegawai", B: "BPA1 — bukti potong tahunan PPh 21 pegawai tetap yang dibuat pada Masa Pajak Terakhir", C: "BPMP — bukti pemotongan bulanan pegawai tetap yang bersifat notifikasi", D: "BPNR — bukti pemotongan PPh Pasal 26 atas dividen kepada pemegang saham di luar negeri" },
+      opsi: { A: "BPPU — bukti pemotongan PPh Pasal 21 atas honorarium dokter tamu yang bukan pegawai", B: "BPA1 — bukti potong tahunan PPh 21 pegawai tetap yang dibuat pada Masa Pajak Terakhir", C: "BP26 — bukti pemotongan PPh Pasal 26 atas imbalan jasa orang pribadi luar negeri yang dilaporkan dalam SPT Masa PPh 21/26", D: "BPNR — bukti pemotongan PPh Pasal 26 atas dividen kepada pemegang saham di luar negeri" },
       kunci: "A",
-      jebakanOpsi: { B: "salah-baca", C: "salah-baca", D: "salah-klasifikasi" },
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Honorarium bukan pegawai adalah PPh 21 sehingga memakai BP21 dalam SPT Masa PPh 21/26; BPPU hanya untuk PPh 4 ayat (2), 15, 22, dan 23 bagi penerima dalam negeri.",
+        inti: "Honorarium dokter tamu bukan pegawai dalam negeri adalah PPh 21 sehingga memakai BP21 dalam SPT Masa PPh 21/26 (PER-11/PJ/2025 Ps. 7 ayat (1) huruf c); BPPU hanya untuk PPh 4 ayat (2), 15, 22, dan 23 bagi penerima dalam negeri. Pilihan lain sesuai Ps. 6 ayat (1) dan Ps. 7 ayat (1): BPA1 untuk Masa Pajak terakhir pegawai tetap, BP26 untuk PPh 26 atas jasa orang pribadi luar negeri, dan BPNR untuk PPh 26 lainnya seperti dividen.",
         jejakHitung: [],
-        mengapaSalah: { B: "Pernyataan benar: BPA1 dibuat pada Masa Pajak Terakhir", C: "Pernyataan benar: BPMP bersifat notifikasi bulanan", D: "Pernyataan benar: PPh 26 atas dividen kepada WPLN memakai BPNR" },
-        jebakan: "Kata 'kecuali' membalik soal: cari satu pasangan yang salah."
+        mengapaSalah: {
+          B: "Pernyataan benar: BPA1 dibuat pada Masa Pajak Terakhir (PER-11/PJ/2025 Ps. 7 ayat (1) huruf a, e, dan g)",
+          C: "Pernyataan benar: PPh 26 atas jasa orang pribadi luar negeri dibuatkan BP26 dalam rezim PPh 21/26 (PER-11/PJ/2025 Ps. 6 ayat (1) huruf d dan Ps. 7 ayat (1) huruf d)",
+          D: "Pernyataan benar: PPh 26 atas dividen kepada WPLN memakai BPNR"
+        },
+        jebakan: "Kata \"kecuali\" membalik soal: cari satu pasangan yang salah. BP26 (jasa orang pribadi luar negeri) dan BPNR (PPh 26 lainnya) sama-sama untuk WPLN, tetapi berbeda rezim SPT Masa."
       },
-      dasarHukum: [{ pasal: "PER-11/PJ/2025 (kode bukti potong Coretax)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 90, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PER-11/PJ/2025 Pasal 6 ayat (1) dan Pasal 7 ayat (1) huruf a, c, d, e (jenis bukti potong PPh 21/26)", berlakuSejak: "2025-05-22" }, { pasal: "PER-11/PJ/2025 (BPPU dan BPNR dalam SPT Masa PPh Unifikasi)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 90,
+      verifikasi: "✅"
     },
     {
       id: "A3-062",
@@ -1826,7 +1841,12 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A3-067", topik: "A3.8", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10"],
+      id: "A3-067",
+      topik: "A3.8",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
       stem: "PT Presisi Manufaktur (WP badan dalam negeri) pada Masa Pajak Agustus 2026 melakukan pembayaran berikut: (1) harga mesin CNC Rp3.000.000.000 kepada Hans Maschinen GmbH (Jerman, tidak memiliki BUT di Indonesia); mesin dikirim dari Hamburg dan PPh Pasal 22 impor Rp82.500.000 telah dibayar saat pengeluaran barang dari kawasan pabean; (2) imbalan jasa pelatihan operator secara daring yang seluruhnya dilakukan dari Jerman oleh Hans Maschinen GmbH Rp250.000.000; (3) royalti lisensi perangkat lunak pengendali mesin kepada Hans Maschinen GmbH Rp150.000.000; dan (4) jasa pengurusan dokumen impor kepada BUT Nordic Freight A/S di Jakarta (BUT perusahaan Denmark, ber-NPWP) Rp20.000.000. Hans Maschinen GmbH tidak menyerahkan Form DGT. Jumlah PPh Pasal 26 yang wajib dipotong PT Presisi Manufaktur adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp80.000.000", B: "Rp84.000.000", C: "Rp230.000.000", D: "Rp40.000.000" },
@@ -1834,12 +1854,23 @@ UKP.register({
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
         inti: "Pembayaran harga barang yang diimpor bukan objek PPh 26; pelunasan PPh atas impornya melalui PPh 22 impor. Imbalan jasa dan royalti kepada WPLN tanpa BUT dipotong PPh 26 20% karena tanpa Form DGT tarif P3B tidak dapat dipakai. BUT di Indonesia adalah subjek pajak dalam negeri sehingga dipotong PPh 23, bukan PPh 26.",
-        jejakHitung: [["(1) Harga mesin impor", "bukan objek PPh 26"], ["(2) Jasa pelatihan: 20% × Rp250.000.000", "Rp50.000.000"], ["(3) Royalti: 20% × Rp150.000.000", "Rp30.000.000"], ["(4) BUT Nordic Freight → PPh 23 2% (Rp400.000)", "tidak dihitung sebagai PPh 26"], ["Total PPh 26", "Rp80.000.000"]],
-        mengapaSalah: { B: "Memotong PPh 26 20% atas pembayaran kepada BUT (Rp4.000.000); BUT dipotong PPh 23", C: "Mengenakan 5% (20% × perkiraan neto 25%) atas harga mesin seolah-olah penjualan harta yang berada di Indonesia (Rp150.000.000)", D: "Menerapkan tarif P3B 10% padahal Form DGT tidak diserahkan" },
+        jejakHitung: [
+          ["(1) Harga mesin impor", "bukan objek PPh 26"],
+          ["(2) Jasa pelatihan: 20% × Rp250.000.000", "Rp50.000.000"],
+          ["(3) Royalti: 20% × Rp150.000.000", "Rp30.000.000"],
+          ["(4) BUT Nordic Freight → PPh 23 2% (Rp400.000)", "tidak dihitung sebagai PPh 26"],
+          ["Total PPh 26", "Rp80.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Memotong PPh 26 20% atas pembayaran kepada BUT (Rp4.000.000); BUT dipotong PPh 23",
+          C: "Menambahkan 5% (20% × perkiraan neto 25%) atas harga mesin (Rp150.000.000) seolah-olah penjualan harta di Indonesia; mesin itu barang impor yang dikirim dari Hamburg, dan PPh 26 atas penjualan harta di Indonesia pun hanya untuk harta dalam daftar PMK 82/PMK.03/2009 Pasal 2 ayat (4), yang tidak mencakup mesin",
+          D: "Menerapkan tarif P3B 10% padahal Form DGT tidak diserahkan"
+        },
         jebakan: "Pembelian barang dari luar negeri bukan objek PPh 26; yang dipotong adalah jasa dan royalti."
       },
-      dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 2 ayat (5) dan Pasal 23 ayat (1) UU PPh (BUT sebagai penerima PPh 23)", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (Form DGT sebagai syarat tarif P3B)", berlakuSejak: "2025-12-31" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 2 ayat (5) dan Pasal 23 ayat (1) UU PPh (BUT sebagai penerima PPh 23)", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (Form DGT sebagai syarat tarif P3B)", berlakuSejak: "2025-12-31" }, { pasal: "PMK 82/PMK.03/2009 Pasal 2 ayat (1) dan ayat (4) (penjualan harta tertentu di Indonesia oleh WPLN; mesin tidak termasuk daftar)", berlakuSejak: "2009-04-22" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "A3-068", topik: "A3.8", tingkat: ["B", "C"], jenis: "klasifikasi", kesulitan: 3, laporanUjian: ["B-2026-10"],
@@ -1890,21 +1921,35 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "A3-071", topik: "A3.9", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 2,
+      id: "A3-071",
+      topik: "A3.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
       kutipan: "PP 58/2023 Pasal 2 jo. PMK 168/2023 (parafrase): PPh Pasal 21 pegawai tetap untuk setiap Masa Pajak selain Masa Pajak Terakhir dihitung dengan tarif efektif bulanan; pada Masa Pajak Terakhir, yaitu Masa Pajak Desember atau Masa Pajak saat pegawai tetap berhenti bekerja, PPh Pasal 21 dihitung dengan tarif Pasal 17 ayat (1) huruf a atas Penghasilan Kena Pajak, dikurangi PPh Pasal 21 yang telah dipotong pada Masa Pajak sebelumnya.",
-      stem: "Nona Lia, pegawai tetap PT Abadi Sentosa yang NIK-nya telah tervalidasi di Coretax, mengundurkan diri efektif 30 Juni 2026 dan langsung bekerja di perusahaan lain di Indonesia. Untuk Masa Pajak Januari–Mei 2026, PT Abadi Sentosa telah menerbitkan bukti pemotongan bulanan pegawai tetap. Berdasarkan kutipan tersebut, tindakan administrasi PT Abadi Sentosa atas Masa Pajak Juni 2026 yang tepat adalah ...",
+      stem: "Nona Lia, pegawai tetap PT Abadi Sentosa, mengundurkan diri efektif 30 Juni 2026 dan langsung bekerja di perusahaan lain di Indonesia. Untuk Masa Pajak Januari–Mei 2026, PT Abadi Sentosa telah memotong PPh Pasal 21 Nona Lia dengan tarif efektif bulanan dan melaporkannya dalam Formulir L-IA (Daftar Pemotongan Bulanan) lampiran SPT Masa PPh 21/26. Berdasarkan kutipan tersebut, tindakan administrasi PT Abadi Sentosa atas Masa Pajak Juni 2026 yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Membuat BPMP Masa Juni seperti bulan-bulan sebelumnya, sedangkan BPA1 Nona Lia dibuat pada Masa Pajak Desember 2026 bersama pegawai lain; setor paling lambat 15 Juli dan lapor paling lambat 20 Juli 2026", B: "Membuat BP21 untuk Nona Lia pada Masa Pajak Juni 2026 karena ia tidak lagi berstatus pegawai tetap; setor paling lambat 15 Juli dan lapor paling lambat 20 Juli 2026", C: "Menghitung ulang dengan tarif Pasal 17 dan membuat BPA1 Nona Lia pada Masa Pajak Juni 2026; setor paling lambat Rabu, 15 Juli 2026 dan lapor SPT Masa PPh 21/26 paling lambat Senin, 20 Juli 2026", D: "Menghitung ulang dengan tarif Pasal 17 dan membuat BPA1 Nona Lia pada Masa Pajak Juni 2026; setor paling lambat 10 Juli 2026 dan lapor SPT Masa PPh 21/26 paling lambat 31 Juli 2026" },
+      opsi: { A: "Memotong dengan tarif efektif bulanan dan melaporkan Masa Juni dalam Formulir L-IA seperti bulan-bulan sebelumnya, sedangkan BPA1 Nona Lia dibuat pada Masa Pajak Desember 2026 bersama pegawai lain; setor paling lambat 15 Juli dan lapor paling lambat 20 Juli 2026", B: "Membuat BP21 untuk Nona Lia pada Masa Pajak Juni 2026 karena ia tidak lagi berstatus pegawai tetap; setor paling lambat 15 Juli dan lapor paling lambat 20 Juli 2026", C: "Menghitung ulang dengan tarif Pasal 17 dan membuat BPA1 Nona Lia pada Masa Pajak Juni 2026; setor paling lambat Rabu, 15 Juli 2026 dan lapor SPT Masa PPh 21/26 paling lambat Senin, 20 Juli 2026", D: "Menghitung ulang dengan tarif Pasal 17 dan membuat BPA1 Nona Lia pada Masa Pajak Juni 2026; setor paling lambat 10 Juli 2026 dan lapor SPT Masa PPh 21/26 paling lambat 31 Juli 2026" },
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
-        inti: "Bulan berhenti menjadi Masa Pajak Terakhir, sehingga hitung ulang Pasal 17 dan BPA1 dibuat pada Masa Juni 2026 (BPA1 hanya terbit bila NIK tervalidasi). Setor tanggal 15 bulan berikutnya, lapor 20 hari setelah Masa Pajak berakhir.",
-        jejakHitung: [["Masa Pajak Terakhir", "Juni 2026 (bulan berhenti)"], ["Bukti potong", "BPA1"], ["Tenggat setor", "Rabu, 15 Juli 2026"], ["Tenggat lapor SPT Masa PPh 21/26", "Senin, 20 Juli 2026"]],
-        mengapaSalah: { A: "Masa Pajak Terakhir pegawai yang berhenti adalah bulan berhenti, bukan Desember", B: "BP21 untuk bukan pegawai, pegawai tidak tetap, dan pesangon; penghasilan Nona Lia Januari–Juni adalah penghasilan pegawai tetap", D: "Tanggal 10 adalah tenggat setor lama, dan akhir bulan berikutnya adalah tenggat SPT Masa PPN" },
+        inti: "Bulan berhenti menjadi Masa Pajak Terakhir (PER-11/PJ/2025 Ps. 7 ayat (1) huruf g), sehingga hitung ulang Pasal 17 dan BPA1 dibuat pada Masa Juni 2026 (Ps. 7 ayat (1) huruf a dan e). Untuk Masa Pajak selain Masa Pajak Terakhir tidak ada bukti potong tersendiri: pemotongan bulanan pegawai tetap dilaporkan dalam Formulir L-IA lampiran SPT Masa PPh 21/26 (Ps. 11 ayat (1) huruf b angka 1). Setor tanggal 15 bulan berikutnya, lapor 20 hari setelah Masa Pajak berakhir.",
+        jejakHitung: [
+          ["Masa Pajak Terakhir", "Juni 2026 (bulan berhenti)"],
+          ["Bukti potong", "BPA1"],
+          ["Tenggat setor", "Rabu, 15 Juli 2026"],
+          ["Tenggat lapor SPT Masa PPh 21/26", "Senin, 20 Juli 2026"]
+        ],
+        mengapaSalah: {
+          A: "Masa Pajak Terakhir pegawai yang berhenti adalah bulan berhenti, bukan Desember; Juni tidak lagi diperlakukan sebagai masa biasa (L-IA), tetapi dihitung ulang dan dibuatkan BPA1",
+          B: "BP21 untuk bukan pegawai, pegawai tidak tetap, dan pesangon; penghasilan Nona Lia Januari–Juni adalah penghasilan pegawai tetap",
+          D: "Tanggal 10 adalah tenggat setor lama, dan akhir bulan berikutnya adalah tenggat SPT Masa PPN"
+        },
         jebakan: "Berhenti bekerja tidak mengubah status menjadi bukan pegawai; yang berubah adalah Masa Pajak Terakhirnya."
       },
-      dasarHukum: [{ pasal: "PP 58/2023 Pasal 2", berlakuSejak: "2024-01-01" }, { pasal: "PER-11/PJ/2025 (BPA1)", berlakuSejak: "2025-05-22" }, { pasal: "PMK 81/2024 Pasal 94 ayat (2) dan Pasal 171", berlakuSejak: "2025-01-01" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PP 58/2023 Pasal 2", berlakuSejak: "2024-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 6 ayat (1) huruf a dan Pasal 7 ayat (1) huruf a, e, dan g (BPA1 pada Masa Pajak terakhir)", berlakuSejak: "2025-05-22" }, { pasal: "PMK 81/2024 Pasal 94 ayat (2) dan Pasal 171", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 140,
+      verifikasi: "✅"
     },
     {
       id: "A3-072",
@@ -2133,7 +2178,12 @@ UKP.register({
       anggaranDetik: 140, verifikasi: "✅"
     },
     {
-      id: "A3-083", topik: "A3.9", tingkat: ["A", "B", "C"], jenis: "prosedur", kesulitan: 1, kasusId: "V-A3-06",
+      id: "A3-083",
+      topik: "A3.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      kasusId: "V-A3-06",
       kutipan: "PMK 81/2024 Pasal 94 ayat (2) (parafrase): PPh Pasal 4 ayat (2), Pasal 15, Pasal 21, Pasal 22, Pasal 23, dan Pasal 26 yang dipotong atau dipungut wajib disetor paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir. Pasal 3 ayat (3) huruf a UU KUP: SPT Masa disampaikan paling lama 20 hari setelah akhir Masa Pajak.",
       stem: "V-A3-06 — Atas pembayaran Masa Pajak Desember 2026 oleh PT Puri Bahari Resort (upah pekerja harian lepas termasuk PPh 21 DTP Made, honorarium Tuan Gilang dan Ny. Laras, serta sewa sound system kepada CV Gema Suara), staf pajak menyiapkan bukti potong di Coretax. Berdasarkan kutipan tersebut, pilihan yang seluruhnya tepat adalah ...",
       kataKualifikasi: ["seluruhnya tepat"],
@@ -2142,12 +2192,22 @@ UKP.register({
       jebakanOpsi: { B: "salah-klasifikasi", C: "angka-usang", D: "salah-baca" },
       pembahasan: {
         inti: "Pekerja harian lepas, pembawa acara, dan penyanyi dibuatkan BP21 dalam SPT Masa PPh 21/26 (PPh DTP tetap dibuatkan bukti potong); sewa harta kepada badan dalam negeri dibuatkan BPPU dalam SPT Masa PPh Unifikasi. Masa Desember 2026: setor tanggal 15 Januari 2027 (Jumat), lapor 20 hari setelah masa berakhir, yaitu 20 Januari 2027 (Rabu).",
-        jejakHitung: [["Bukti potong pekerja harian, MC, penyanyi", "BP21 (SPT Masa PPh 21/26)"], ["Bukti potong sewa sound system (PPh 23)", "BPPU (SPT Masa Unifikasi)"], ["Tenggat setor", "Jumat, 15 Januari 2027"], ["Tenggat lapor", "Rabu, 20 Januari 2027"]],
-        mengapaSalah: { B: "BPMP adalah bukti pemotongan bulanan pegawai tetap, bukan pekerja harian lepas", C: "Tanggal 10 adalah tenggat setor lama sebelum PMK 81/2024", D: "Akhir bulan berikutnya adalah tenggat SPT Masa PPN, bukan SPT Masa PPh" },
+        jejakHitung: [
+          ["Bukti potong pekerja harian, MC, penyanyi", "BP21 (SPT Masa PPh 21/26)"],
+          ["Bukti potong sewa sound system (PPh 23)", "BPPU (SPT Masa Unifikasi)"],
+          ["Tenggat setor", "Jumat, 15 Januari 2027"],
+          ["Tenggat lapor", "Rabu, 20 Januari 2027"]
+        ],
+        mengapaSalah: {
+          B: "Upah pekerja harian lepas (pegawai tidak tetap dalam negeri) dibuatkan BP21 (PER-11/PJ/2025 Ps. 7 ayat (1) huruf c); BPMP tidak termasuk jenis bukti potong PPh 21/26 dalam Ps. 6 ayat (1)",
+          C: "Tanggal 10 adalah tenggat setor lama sebelum PMK 81/2024",
+          D: "Akhir bulan berikutnya adalah tenggat SPT Masa PPN, bukan SPT Masa PPh"
+        },
         jebakan: "Opsi hanya berbeda satu frasa: kode bukti potong atau salah satu tanggal."
       },
-      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 94 ayat (2) dan Pasal 171", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 3 ayat (3) huruf a UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PER-11/PJ/2025 (BP21, BPMP, BPPU)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 110, verifikasi: "✅"
+      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 94 ayat (2) dan Pasal 171", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 3 ayat (3) huruf a UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 6 ayat (1) dan Pasal 7 ayat (1) huruf c (BP21); BPPU untuk PPh 23", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 110,
+      verifikasi: "✅"
     },
     {
       id: "A3-084", topik: "A3.3", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
@@ -2438,7 +2498,12 @@ UKP.register({
       anggaranDetik: 200, verifikasi: "✅"
     },
     {
-      id: "A3-098", topik: "A3.8", tingkat: ["B", "C"], jenis: "konsep", kesulitan: 3, kasusId: "V-A3-08",
+      id: "A3-098",
+      topik: "A3.8",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 3,
+      kasusId: "V-A3-08",
       stem: "V-A3-08 — Setelah membayar royalti merek Rp1.000.000.000 kepada Lion Brand Ltd (Hong Kong) dengan Form DGT yang terekam di Coretax, PT Mitra Kimia Indonesia mengetahui dari dokumen yang sebenarnya sudah tersedia sebelum pembayaran bahwa Lion Brand Ltd hanya memiliki satu pegawai administrasi, tidak memiliki kendali atas penggunaan dana royalti, dan wajib meneruskan 90% royalti yang diterimanya kepada Lion Holding Ltd di Negara Z yang tidak memiliki P3B dengan Indonesia. Anggap tarif royalti P3B Indonesia–Hong Kong 5%. Pernyataan yang paling tepat mengenai PPh Pasal 26 atas royalti tersebut adalah ...",
       kataKualifikasi: ["paling tepat"],
       opsi: { A: "Tarif P3B Indonesia–Hong Kong 5% tetap berlaku karena Form DGT yang sah telah terekam di Coretax sebelum pembayaran, sehingga PPh Pasal 26 sebesar Rp50.000.000", B: "Tarif P3B Indonesia–Hong Kong 5% tetap berlaku karena Lion Brand Ltd berkedudukan di Hong Kong dan memperoleh sertifikat domisili dari otoritas Hong Kong, sehingga PPh Pasal 26 sebesar Rp50.000.000", C: "Tarif P3B tidak dapat diterapkan karena Lion Brand Ltd bukan beneficial owner atas royalti tersebut, sehingga PPh Pasal 26 dipotong 20% atau Rp200.000.000", D: "Tarif P3B tidak dapat diterapkan karena Lion Brand Ltd bukan beneficial owner, tetapi karena Form DGT telah terekam PPh Pasal 26 cukup dipotong dengan tarif efektif 5% dari perkiraan penghasilan neto, sehingga Rp50.000.000" },
@@ -2446,12 +2511,21 @@ UKP.register({
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
         inti: "Untuk dividen, bunga, dan royalti, manfaat P3B hanya diberikan kepada beneficial owner. Penerima yang tidak mengendalikan dana dan meneruskan sebagian besar penghasilan kepada pihak lain berperan sebagai perantara (conduit), sehingga tarif domestik PPh 26 20% berlaku.",
-        jejakHitung: [["Syarat P3B untuk royalti", "Form DGT sah + beneficial owner + tidak ada penyalahgunaan"], ["Lion Brand Ltd meneruskan 90% dan tidak mengendalikan dana", "bukan beneficial owner"], ["PPh 26 = 20% × Rp1.000.000.000", "Rp200.000.000"]],
-        mengapaSalah: { A: "Form DGT hanya syarat administratif; tanpa status beneficial owner tarif P3B tetap tidak dapat dipakai", B: "Status penduduk Hong Kong saja tidak cukup untuk royalti; dibutuhkan juga status beneficial owner", D: "Tarif efektif 5% (20% × 25%) hanya untuk penjualan harta di Indonesia atau saham conduit, bukan royalti" },
+        jejakHitung: [
+          ["Syarat P3B untuk royalti", "Form DGT sah + beneficial owner + tidak ada penyalahgunaan"],
+          ["Lion Brand Ltd meneruskan 90% dan tidak mengendalikan dana", "bukan beneficial owner"],
+          ["PPh 26 = 20% × Rp1.000.000.000", "Rp200.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Form DGT hanya syarat administratif; tanpa status beneficial owner tarif P3B tetap tidak dapat dipakai",
+          B: "Status penduduk Hong Kong saja tidak cukup untuk royalti; dibutuhkan juga status beneficial owner",
+          D: "Tarif efektif 5% (20% × perkiraan penghasilan neto 25%) hanya untuk penjualan harta tertentu di Indonesia (daftar Pasal 2 ayat (4) PMK 82/PMK.03/2009), penjualan langsung saham perseroan terbatas dalam negeri yang bukan emiten atau perusahaan publik (Pasal 238 PMK 81/2024), dan penjualan saham perusahaan antara atau conduit (PMK 258/PMK.03/2008); royalti tidak termasuk, sehingga tanpa status beneficial owner berlaku tarif 20% dari bruto"
+        },
         jebakan: "Ketiga opsi salah memakai fakta yang benar (Form DGT terekam, domisili Hong Kong, angka 5%) untuk kesimpulan yang keliru."
       },
       dasarHukum: [{ pasal: "PMK 112/2025 (beneficial owner dan pencegahan penyalahgunaan P3B)", berlakuSejak: "2025-12-31" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
-      anggaranDetik: 160, verifikasi: "✅"
+      anggaranDetik: 160,
+      verifikasi: "✅"
     },
     {
       id: "A3-099", topik: "A3.8", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 1,
@@ -2476,7 +2550,7 @@ UKP.register({
       jenis: "hitung",
       kesulitan: 2,
       laporanUjian: ["C-2026-10"],
-      kutipan: "Pasal 26 ayat (4) UU PPh: Penghasilan Kena Pajak sesudah dikurangi Pajak Penghasilan dari suatu bentuk usaha tetap di Indonesia dikenai pajak sebesar 20%, kecuali penghasilan tersebut ditanamkan kembali di Indonesia, yang ketentuannya diatur lebih lanjut dengan atau berdasarkan Peraturan Menteri Keuangan.",
+      kutipan: "Pasal 26 ayat (4) UU PPh: Penghasilan Kena Pajak sesudah dikurangi pajak dari suatu bentuk usaha tetap di Indonesia dikenai pajak sebesar 20% (dua puluh persen), kecuali penghasilan tersebut ditanamkan kembali di Indonesia, yang ketentuannya diatur lebih lanjut dengan atau berdasarkan Peraturan Menteri Keuangan. PMK 14/PMK.03/2011 Pasal 1 ayat (3): Pengecualian dari pengenaan Pajak Penghasilan sebagaimana dimaksud pada ayat (2) diberikan apabila seluruh Penghasilan Kena Pajak sesudah dikurangi Pajak Penghasilan dari suatu Bentuk Usaha Tetap ditanamkan kembali di Indonesia dalam bentuk: ... c. pembelian aktiva tetap yang digunakan oleh Bentuk Usaha Tetap untuk menjalankan usaha Bentuk Usaha Tetap atau melakukan kegiatan Bentuk Usaha Tetap di Indonesia; ...",
       stem: "BUT Hikari Systems (kantor pusat di Jepang; usaha jasa pengembangan perangkat lunak) melaporkan Penghasilan Kena Pajak Tahun Pajak 2025 Rp6.000.000.000 dengan tarif PPh badan 22%. Pada 2026 sebagian laba setelah pajak, yaitu Rp1.680.000.000, ditanamkan kembali dalam bentuk pembelian aktiva tetap yang digunakan BUT tersebut; sisanya tidak ditanamkan kembali. Kantor pusat telah menyerahkan Form DGT yang sah; anggap P3B Indonesia–Jepang membatasi tarif pajak atas laba BUT 10%. Berdasarkan kutipan tersebut, PPh Pasal 26 ayat (4) yang terutang adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp432.000.000", B: "Rp300.000.000", C: "Rp468.000.000", D: "Rp936.000.000" },
@@ -3312,16 +3386,16 @@ UKP.register({
       jenis: "hitung",
       kesulitan: 3,
       laporanUjian: ["B-2026-10"],
-      stem: "Pada Masa Pajak Oktober 2026, PT Gresik Logam Presisi (WP badan dalam negeri) melakukan tiga pembayaran kepada Tokai Kikai Co., Ltd (Jepang, tidak mempunyai BUT di Indonesia dan tidak menyerahkan Form DGT): (1) harga mesin press hidrolik baru Rp2.400.000.000; mesin dikirim dari Osaka dan PPh Pasal 22 impor telah dilunasi saat pengeluaran barang dari kawasan pabean; (2) imbalan jasa teknik pemasangan dan commissioning mesin tersebut Rp350.000.000 yang ditagih dengan kontrak dan faktur terpisah dari harga mesin; pekerjaan dilakukan dua teknisi Tokai di pabrik Gresik selama 18 hari dan merupakan satu-satunya kegiatan Tokai di Indonesia dalam 12 bulan terakhir; dan (3) harga satu unit mesin bubut bekas milik Tokai Rp1.200.000.000; mesin itu sejak 2023 disewakan Tokai kepada PT Gresik dan selama ini berada di pabrik Gresik. Perkiraan penghasilan neto atas penjualan harta adalah 25% dari harga jual. Jumlah PPh Pasal 26 yang wajib dipotong PT Gresik adalah ...",
+      stem: "Pada Masa Pajak Oktober 2026, PT Gresik Logam Presisi (WP badan dalam negeri) melakukan tiga pembayaran kepada Tokai Kikai Co., Ltd (Jepang, tidak mempunyai BUT di Indonesia dan tidak menyerahkan Form DGT): (1) harga mesin press hidrolik baru Rp2.400.000.000; mesin dikirim dari Osaka dan PPh Pasal 22 impor telah dilunasi saat pengeluaran barang dari kawasan pabean; (2) imbalan jasa pelatihan operator mesin tersebut Rp350.000.000 yang ditagih dengan kontrak dan faktur terpisah dari harga mesin; pemasangan mesin dikerjakan sendiri oleh tim teknik PT Gresik, sedangkan pelatihan dilakukan dua instruktur Tokai di pabrik Gresik selama 18 hari dan merupakan satu-satunya kegiatan Tokai di Indonesia dalam 12 bulan terakhir; dan (3) harga satu unit mesin bubut bekas milik Tokai Rp1.200.000.000; mesin itu sejak 2023 disewakan Tokai kepada PT Gresik dan selama ini berada di pabrik Gresik. Perkiraan penghasilan neto atas penjualan harta adalah 25% dari harga jual. Jumlah PPh Pasal 26 yang wajib dipotong PT Gresik adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp70.000.000", B: "Rp250.000.000", C: "Rp130.000.000", D: "Rp310.000.000" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
-        inti: "Yang menentukan adalah jenis dan letak barang serta pemisahan tagihan. Mesin baru yang dikirim dari Osaka adalah pembelian barang dari luar negeri sehingga bukan objek PPh 26 (pelunasannya melalui PPh 22 impor). Jasa teknik yang ditagih terpisah adalah imbalan jasa kepada WPLN yang, sesuai data soal, tidak mempunyai BUT: dipotong PPh 26 20% dari jumlah bruto, dan tanpa Form DGT ketentuan P3B tidak dapat diterapkan. Mesin bubut bekas memang berada di Indonesia, tetapi PMK 82/PMK.03/2009 Pasal 2 ayat (4) hanya memotong PPh 26 atas penjualan perhiasan mewah, berlian, emas, intan, jam tangan mewah, barang antik, lukisan, mobil, motor, kapal pesiar, dan/atau pesawat terbang ringan; mesin tidak termasuk.",
+        inti: "Yang menentukan adalah jenis dan letak barang serta pemisahan tagihan. Mesin baru yang dikirim dari Osaka adalah pembelian barang dari luar negeri sehingga bukan objek PPh 26 (pelunasannya melalui PPh 22 impor). Jasa pelatihan yang ditagih terpisah adalah imbalan jasa kepada WPLN yang tidak mempunyai BUT: dipotong PPh 26 20% dari jumlah bruto, dan tanpa Form DGT ketentuan P3B tidak dapat diterapkan. Mesin bubut bekas memang berada di Indonesia, tetapi PMK 82/PMK.03/2009 Pasal 2 ayat (4) hanya memotong PPh 26 atas penjualan perhiasan mewah, berlian, emas, intan, jam tangan mewah, barang antik, lukisan, mobil, motor, kapal pesiar, dan/atau pesawat terbang ringan; mesin tidak termasuk.",
         jejakHitung: [
           ["(1) Mesin baru dari Osaka (impor)", "bukan objek PPh 26"],
-          ["(2) Jasa teknik terpisah: 20% × Rp350.000.000", "Rp70.000.000"],
+          ["(2) Jasa pelatihan terpisah: 20% × Rp350.000.000", "Rp70.000.000"],
           ["(3) Mesin bubut di Gresik", "bukan harta dalam daftar PMK 82/PMK.03/2009 Pasal 2 ayat (4): tidak dipotong"],
           ["Total PPh 26", "Rp70.000.000"]
         ],
@@ -3330,7 +3404,7 @@ UKP.register({
           C: "Mengenakan 5% atas mesin bubut (Rp60.000.000) berdasarkan rumusan umum Pasal 26 ayat (2), padahal PMK 82/PMK.03/2009 Pasal 2 ayat (4) membatasi harta yang dipotong pada perhiasan mewah, emas, barang antik, lukisan, kendaraan, kapal pesiar, dan sejenisnya dalam daftar",
           D: "Memotong 20% × harga jual mesin bubut (Rp240.000.000) tanpa perkiraan neto, padahal mesin bubut bahkan tidak termasuk harta yang dipotong"
         },
-        jebakan: "Pasal 26 ayat (2) UU PPh berbunyi umum, tetapi PMK 82/PMK.03/2009 membatasi pemotongannya pada daftar harta tertentu; mesin tidak termasuk. Ketiadaan BUT di sini adalah data soal: 18 hari belum melampaui uji lebih dari 60 hari dalam 12 bulan untuk pemberian jasa (Pasal 2 ayat (5) huruf m UU PPh), tetapi di luar soal ini pemasangan mesin dapat tergolong proyek instalasi (huruf l) yang menurut UU PPh tidak mengenal batas waktu."
+        jebakan: "Pasal 26 ayat (2) UU PPh berbunyi umum, tetapi PMK 82/PMK.03/2009 membatasi pemotongannya pada daftar harta tertentu; mesin tidak termasuk. Tokai tidak mempunyai BUT: pelatihan 18 hari belum melampaui uji lebih dari 60 hari dalam 12 bulan untuk pemberian jasa (Pasal 2 ayat (5) huruf m UU PPh), dan pemasangan dikerjakan PT Gresik sendiri. Seandainya Tokai yang memasang mesin, pekerjaan itu dapat tergolong proyek instalasi (huruf l) yang menurut UU PPh tidak mengenal batas waktu."
       },
       dasarHukum: [{ pasal: "Pasal 26 ayat (1) huruf d UU PPh (imbalan jasa kepada WPLN)", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 26 ayat (2) UU PPh (penjualan harta di Indonesia)", berlakuSejak: "2009-01-01" }, { pasal: "PMK 82/PMK.03/2009 Pasal 2 ayat (1), ayat (3), dan ayat (4) (20% × perkiraan neto 25%; hanya harta dalam daftar)", berlakuSejak: "2009-04-22" }, { pasal: "Pasal 2 ayat (5) huruf l dan huruf m UU PPh (BUT proyek instalasi; BUT pemberian jasa lebih dari 60 hari dalam 12 bulan)", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 170,
@@ -3381,19 +3455,19 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
-        inti: "Tanpa P3B, uang tambang kepada perusahaan pelayaran luar negeri dikenai PPh 15 sebesar 2,64% × peredaran bruto. Karena Pasal 32A UU PPh mendahulukan P3B dan syarat penerapannya terpenuhi, Indonesia tidak berhak memajaki laba pelayaran internasional tersebut; fasilitas P3B tetap didokumentasikan melalui BPNR.",
+        inti: "Uang tambang kepada perusahaan pelayaran luar negeri diatur dengan norma KMK 417/KMK.04/1996 (2,64% × peredaran bruto, final); SE-32/PJ.4/1996 butir 2 menyebut cakupannya perusahaan pelayaran luar negeri yang berusaha melalui BUT di Indonesia, sedangkan Pacific Star tidak mempunyai BUT. Apa pun jenis PPh yang dipakai tanpa P3B, Pasal 32A UU PPh mendahulukan P3B: karena syarat penerapannya terpenuhi dan laba pelayaran internasional hanya dipajaki Negara Q, Indonesia tidak memotong pajak; fasilitas P3B tetap didokumentasikan melalui BPNR.",
         jejakHitung: [
-          ["Tanpa P3B: 2,64% × Rp2.000.000.000", "Rp52.800.000"],
+          ["Pembanding tanpa P3B (norma KMK 417/KMK.04/1996): 2,64% × Rp2.000.000.000", "Rp52.800.000"],
           ["Dengan P3B (hak pemajakan negara domisili) dan Form DGT sah", "Rp0"]
         ],
         mengapaSalah: {
           A: "Norma Pasal 15 adalah ketentuan domestik yang tetap tunduk pada P3B berdasarkan Pasal 32A UU PPh",
-          C: "Penghasilan perusahaan pelayaran luar negeri diatur khusus dengan norma PPh 15, bukan PPh 26 atas sewa",
+          C: "P3B memberikan hak pemajakan laba pengoperasian kapal dalam lalu lintas internasional hanya kepada Negara Q, sehingga tidak ada PPh yang dipotong, baik dengan PPh 26 20% maupun dengan norma PPh 15",
           D: "Tarif 1,2% berlaku untuk perusahaan pelayaran dalam negeri; WPLN memakai 2,64%"
         },
-        jebakan: "Norma khusus PPh 15 bukan pengecualian dari P3B; P3B dan Form DGT yang sah tetap mendahului."
+        jebakan: "Norma khusus PPh 15 maupun PPh 26 bukan pengecualian dari P3B; P3B dan Form DGT yang sah tetap mendahului. Catat juga bahwa SE-32/PJ.4/1996 menyebut KMK 417/KMK.04/1996 mencakup perusahaan pelayaran luar negeri yang berusaha melalui BUT."
       },
-      dasarHukum: [{ pasal: "Pasal 15 UU PPh; KMK 417/KMK.04/1996 Pasal 1 dan Pasal 2 ayat (2) dan (3) (pelayaran/penerbangan luar negeri 2,64% final)", berlakuSejak: "1996-06-14" }, { pasal: "Pasal 32A UU PPh; PMK 112/2025 Pasal 2 ayat (5) dan (6), Pasal 10 ayat (3), Pasal 14 ayat (2) (penerapan P3B dan bukti potong walau nihil)", berlakuSejak: "2025-12-31" }, { pasal: "PER-11/PJ/2025 Pasal 14 ayat (3) huruf b dan Pasal 18 ayat (1) huruf b (PPh 15 dalam SPT Masa PPh Unifikasi; BPNR)", berlakuSejak: "2025-05-22" }],
+      dasarHukum: [{ pasal: "Pasal 15 UU PPh; KMK 417/KMK.04/1996 Pasal 1 dan Pasal 2 ayat (2) dan (3) (pelayaran/penerbangan luar negeri 2,64% final)", berlakuSejak: "1996-06-14" }, { pasal: "SE-32/PJ.4/1996 butir 2 (cakupan KMK 417/KMK.04/1996: perusahaan pelayaran luar negeri yang berusaha melalui BUT)", berlakuSejak: "1996-08-29" }, { pasal: "Pasal 32A UU PPh; PMK 112/2025 Pasal 2 ayat (5) dan (6), Pasal 10 ayat (3), Pasal 14 ayat (2) (penerapan P3B dan bukti potong walau nihil)", berlakuSejak: "2025-12-31" }, { pasal: "PER-11/PJ/2025 Pasal 14 ayat (3) huruf b dan Pasal 18 ayat (1) huruf b (PPh 15 dalam SPT Masa PPh Unifikasi; BPNR)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 130,
       verifikasi: "✅"
     },
@@ -3801,25 +3875,30 @@ UKP.register({
     {
       id: "A3-149",
       topik: "A3.5",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 2,
       kutipan: "PMK 51/2025 Pasal 10 ayat (3) (dikutip try out): Pemungutan Pajak Penghasilan Pasal 22 sebagaimana dimaksud dalam Pasal 2 ayat (1) huruf f atas penjualan pelumas bersifat tidak final dan dapat diperhitungkan sebagai pembayaran Pajak Penghasilan dalam tahun berjalan bagi Wajib Pajak yang dipungut.",
       stem: "PT Ortax Lubrindo (produsen pelumas) menjual pelumas kepada CV Ortax Distributor yang merupakan agen/penyalur pelumas, dengan nilai penjualan Rp400.000.000 (tidak termasuk PPN) pada Juni 2026. Berapa besarnya PPh Pasal 22 yang wajib dipungut oleh PT Ortax Lubrindo dan bagaimana sifat perlakuan pajaknya bagi CV Ortax Distributor?",
-      kataKualifikasi: [ "tidak termasuk" ],
+      kataKualifikasi: ["tidak termasuk"],
       opsi: { A: "Rp1.200.000,00 dan bersifat tidak final", B: "Rp1.200.000,00 dan bersifat final", C: "Rp1.000.000,00 dan bersifat final", D: "Rp1.000.000,00 dan bersifat tidak final" },
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
         inti: "Produsen pelumas memungut PPh Pasal 22 atas penjualan pelumas dengan tarif 0,3% dari penjualan tidak termasuk PPN. Berbeda dengan BBM dan BBG, pemungutan PPh 22 atas penjualan pelumas selalu bersifat tidak final, termasuk bila pembelinya agen/penyalur, sehingga dapat diperhitungkan sebagai kredit pajak tahun berjalan.",
-        jejakHitung: [ [ "Tarif PPh 22 pelumas", "0,3%" ], [ "PPh 22 = 0,3% × Rp400.000.000", "Rp1.200.000" ], [ "Sifat pemungutan atas pelumas", "tidak final" ] ],
-        mengapaSalah: { B: "Menerapkan sifat final penyalur/agen yang hanya berlaku untuk BBM dan BBG, bukan pelumas.", C: "Memakai tarif 0,25% (SPBU Pertamina) dan sifat final penyalur BBM.", D: "Memakai tarif 0,25% yang tidak berlaku untuk pelumas." },
+        jejakHitung: [
+          ["Tarif PPh 22 pelumas", "0,3%"],
+          ["PPh 22 = 0,3% × Rp400.000.000", "Rp1.200.000"],
+          ["Sifat pemungutan atas pelumas", "tidak final"]
+        ],
+        mengapaSalah: {
+          B: "Menerapkan sifat final penyalur/agen yang hanya berlaku untuk BBM dan BBG, bukan pelumas.",
+          C: "Memakai tarif 0,25%, yang hanya berlaku untuk BBM yang dijual kepada SPBU yang menjual BBM yang dibeli dari PT Pertamina (Persero) atau anak usahanya, dan sifat final penyalur yang hanya untuk BBM dan BBG.",
+          D: "Memakai tarif 0,25% yang tidak berlaku untuk pelumas."
+        },
         jebakan: "Pelumas: 0,3% dan selalu tidak final, siapa pun pembelinya."
       },
-      dasarHukum: [
-        { pasal: "UU PPh Pasal 22 ayat (1) huruf c s.t.d.t.d. UU 6/2023", berlakuSejak: null },
-        { pasal: "PMK 51/2025 Pasal 2 ayat (1) huruf f, Pasal 3 ayat (1) huruf c angka 3, Pasal 10 ayat (3)", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU PPh Pasal 22 ayat (1) huruf c s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PMK 51/2025 Pasal 2 ayat (1) huruf f, Pasal 3 ayat (1) huruf c angka 3, Pasal 10 ayat (3)", berlakuSejak: null }],
       anggaranDetik: 150,
       verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 19, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
@@ -4213,13 +4292,13 @@ UKP.register({
     { id: "KT-A3-33", topik: "A3.8", tipe: "pasal", depan: "Aturan tata cara penerapan P3B sejak 31 Desember 2025?", belakang: "PMK 112/2025; Form DGT 6 bagian terekam di Coretax", dasar: "PMK 112/2025", berlakuSejak: "2025-12-31", menggantikan: "PER-25/PJ/2018 (Form DGT 7 bagian)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A3-34", topik: "A3.9", tipe: "angka", depan: "Batas setor PPh 21/22/23/26/4(2)/15 yang dipotong?", belakang: "Tanggal 15 bulan berikutnya; hari libur bergeser ke hari kerja berikutnya", dasar: "PMK 81/2024 Pasal 94 dan 100", berlakuSejak: "2025-01-01", menggantikan: "tanggal 10 bulan berikutnya (PMK 242/2014)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A3-35", topik: "A3.9", tipe: "angka", depan: "Batas lapor SPT Masa PPh 21/26 dan Unifikasi?", belakang: "20 hari setelah Masa Pajak berakhir", dasar: "Pasal 3 ayat (3) huruf a UU KUP; PMK 81/2024", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A3-36", topik: "A3.9", tipe: "definisi", depan: "Kode bukti potong di Coretax?", belakang: "PPh 21/26: BPA1, BPA2, BPMP, BP21, BP26 · Unifikasi: BPPU, BPNR", dasar: "PER-11/PJ/2025", berlakuSejak: "2025-05-22", menggantikan: "1721-A1/A2 (PER-16/PJ/2016) dan bupot unifikasi PER-24/PJ/2021", dekTambahan: ["perubahan-2025-2026"] },
+    { id: "KT-A3-36", topik: "A3.9", tipe: "definisi", depan: "Kode bukti potong di Coretax?", belakang: "PPh 21/26: BPA1, BPA2, BP21, BP26 · Unifikasi: BPPU, BPNR", dasar: "PER-11/PJ/2025 Pasal 6 ayat (1)", berlakuSejak: "2025-05-22", menggantikan: "1721-A1/A2 (PER-16/PJ/2016) dan bupot unifikasi PER-24/PJ/2021", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A3-37", topik: "A3.9", tipe: "angka", depan: "Denda terlambat lapor SPT Masa PPh?", belakang: "Rp100.000 per SPT (SPT Masa PPN Rp500.000)", dasar: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-38", topik: "A3.1", tipe: "angka", depan: "Batas fasilitas olahraga yang dikecualikan dari objek PPh 21?", belakang: "Rp1,5 juta/pegawai/tahun; golf, pacuan kuda, otomotif tidak dikecualikan", dasar: "PMK 66/2023 Lampiran", berlakuSejak: "2023-07-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-39", topik: "A3.1", tipe: "pasal", depan: "Syarat diplomat asing tidak termasuk subjek pajak?", belakang: "Bukan WNI, tanpa penghasilan lain di Indonesia, ada perlakuan timbal balik", dasar: "Pasal 3 ayat (1) huruf b UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-40", topik: "A3.1", tipe: "angka", depan: "Biaya jabatan pegawai yang mulai bekerja di tengah tahun?", belakang: "5% bruto, maksimal Rp500.000 × jumlah bulan bekerja; tanpa penyetahunan", dasar: "PMK 168/2023 (menggantikan PMK 250/PMK.03/2008)", berlakuSejak: "2024-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-41", topik: "A3.2", tipe: "definisi", depan: "Premi dan iuran mana yang menambah bruto TER?", belakang: "Premi JKK, JKM, BPJS Kesehatan dari pemberi kerja; iuran JHT/JP pemberi kerja tidak", dasar: "PMK 168/2023", berlakuSejak: "2024-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A3-42", topik: "A3.2", tipe: "prosedur", depan: "Pegawai tetap memperoleh NPWP di tengah tahun: tambahan 20% yang telanjur dipotong?", belakang: "Diperhitungkan dengan PPh 21 bulan-bulan berikutnya", dasar: "Pasal 21 ayat (5a) UU PPh; PMK 168/2023", berlakuSejak: "2024-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A3-42", topik: "A3.2", tipe: "prosedur", depan: "Pegawai tetap memperoleh NPWP di tengah tahun: tambahan 20% yang telanjur dipotong?", belakang: "◐ Diperhitungkan dengan PPh 21 bulan-bulan berikutnya (keberlakuan PER-16/PJ/2016 setelah PMK 168/2023 belum dipastikan)", dasar: "Pasal 21 ayat (5a) UU PPh; PER-16/PJ/2016 Pasal 20 ayat (4)", berlakuSejak: "2016-09-29", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-43", topik: "A3.3", tipe: "definisi", depan: "Pembawa acara, penyanyi, dan pemain musik dipotong sebagai?", belakang: "Bukan pegawai: Pasal 17 × 50% × bruto", dasar: "PMK 168/2023", berlakuSejak: "2024-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-44", topik: "A3.3", tipe: "definisi", depan: "Honorarium kepada artis atau konsultan orang pribadi penduduk luar negeri?", belakang: "PPh 26 (20% atau tarif P3B), bukan PPh 21", dasar: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A3-45", topik: "A3.4", tipe: "angka", depan: "Syarat PPh 21 DTP 2026 bagi pegawai tidak tetap?", belakang: "Sektor tertentu, rata-rata upah harian ≤ Rp500.000, NIK/NPWP terpadankan", dasar: "PMK 105/2025", berlakuSejak: "2026-01-01", menggantikan: "PMK 10/2025: Masa Pajak 2025, empat sektor", dekTambahan: ["perubahan-2025-2026"] },

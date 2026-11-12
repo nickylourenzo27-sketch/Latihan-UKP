@@ -358,7 +358,7 @@
         jejak.push(['PPh final = 0,5% × (' + uang(v.bruto) + ' − Rp500.000.000)', uang(pphFinal)]);
         dh.push('PP 55/2022 Pasal 56–60 s.t.d.d. PP 20/2026');
         if (v.bruto > 4800000000) peringatan.push('Peredaran bruto melebihi Rp4,8 miliar: tahun pajak berikutnya tidak lagi dapat memakai PPh final 0,5% (wajib tarif Ps. 17).');
-        asumsi.push('Sejak PP 20/2026 (22 April 2026) penghasilan jasa sehubungan pekerjaan bebas dikecualikan dari PPh final 0,5%; pastikan omzet berasal dari usaha.');
+        asumsi.push('Penghasilan dari jasa sehubungan dengan pekerjaan bebas tidak termasuk PPh final 0,5% (Pasal 56 ayat (3) huruf a PP 55/2022); pastikan omzet berasal dari usaha.');
         asumsi.push('PPh final dibayar per bulan (tanggal 15 bulan berikutnya) dan tidak dapat dikreditkan; nilai di atas adalah jumlah setahun.');
       }
       const netoLain = nol(v.netoLain);
@@ -1233,31 +1233,39 @@
     }
   });
 
-  // ---------- 14. PPh 24 per negara ----------
+  // ---------- 14. PPh 24 per jenis penghasilan untuk tiap negara ----------
   K.push({
-    jenis: 'pph24', nama: 'Kredit PPh Pasal 24 per negara', kelompok: 'C9', mvp: false,
-    deskripsi: 'Batas kredit pajak luar negeri per negara (ordinary credit): nilai terkecil antara pajak LN dan (neto negara ÷ PKP) × PPh terutang; rugi LN tidak digabung.',
-    dasarHukum: ['Pasal 24 UU PPh', 'PMK 192/PMK.03/2018'],
+    jenis: 'pph24', nama: 'Kredit PPh Pasal 24 (pajak luar negeri)', kelompok: 'C9', mvp: false,
+    deskripsi: 'Batas kredit pajak luar negeri dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018): nilai terkecil dari tiga, yaitu pajak yang seharusnya terutang menurut P3B, pajak LN yang dibayar, dan (neto jenis itu dari negara itu ÷ PKP) × PPh terutang; rugi LN tidak digabung.',
+    dasarHukum: ['Pasal 24 UU PPh', 'Pasal 4 ayat (3), Pasal 6, dan Pasal 7 PMK 192/PMK.03/2018'],
     statusPer: STATUS_PER, verifikasi: '✅',
     input: [
-      { key: 'netoDn', label: 'Penghasilan neto dalam negeri', tipe: 'uang', default: 2000000000 },
+      { key: 'netoDn', label: 'Penghasilan neto dalam negeri', tipe: 'uang', default: 2000000000, bantu: 'Isi setelah kompensasi kerugian fiskal dalam negeri bila ada.' },
       { key: 'tarif', label: 'Tarif PPh', tipe: 'persen', default: 22, min: 0, bantu: 'Badan 22%; isi tarif lain bila perlu.' },
-      { key: 'neto1', label: 'Negara 1 — penghasilan neto', tipe: 'uang', default: 1000000000 },
-      { key: 'pajak1', label: 'Negara 1 — pajak dibayar/terutang di LN', tipe: 'uang', default: 300000000, min: 0 },
-      { key: 'neto2', label: 'Negara 2 — penghasilan neto', tipe: 'uang', default: 500000000 },
-      { key: 'pajak2', label: 'Negara 2 — pajak dibayar/terutang di LN', tipe: 'uang', default: 50000000, min: 0 },
-      { key: 'neto3', label: 'Negara 3 — penghasilan neto (negatif = rugi)', tipe: 'uang', default: -200000000 },
-      { key: 'pajak3', label: 'Negara 3 — pajak dibayar/terutang di LN', tipe: 'uang', default: 0, min: 0 }
+      { key: 'neto1', label: 'Penghasilan LN 1: neto', tipe: 'uang', default: 1000000000, bantu: 'Satu baris = satu jenis penghasilan dari satu negara. Laba cabang dan royalti dari negara yang sama diisi di dua baris.' },
+      { key: 'pajak1', label: 'Penghasilan LN 1: pajak dibayar/terutang di LN', tipe: 'uang', default: 300000000, min: 0 },
+      { key: 'p3b1', label: 'Penghasilan LN 1: pajak paling tinggi menurut P3B (boleh kosong)', tipe: 'uang', default: null, min: 0, bantu: 'Isi bila P3B membatasi pajak di negara sumber, misalnya 10% × royalti. Kredit memakai nilai terkecil dari tiga: pajak menurut P3B, pajak LN yang dibayar, dan batas proporsional (Pasal 6 ayat (4) PMK 192/PMK.03/2018).' },
+      { key: 'neto2', label: 'Penghasilan LN 2: neto', tipe: 'uang', default: 500000000 },
+      { key: 'pajak2', label: 'Penghasilan LN 2: pajak dibayar/terutang di LN', tipe: 'uang', default: 50000000, min: 0 },
+      { key: 'p3b2', label: 'Penghasilan LN 2: pajak paling tinggi menurut P3B (boleh kosong)', tipe: 'uang', default: null, min: 0 },
+      { key: 'neto3', label: 'Penghasilan LN 3: neto (negatif = rugi)', tipe: 'uang', default: -200000000 },
+      { key: 'pajak3', label: 'Penghasilan LN 3: pajak dibayar/terutang di LN', tipe: 'uang', default: 0, min: 0 },
+      { key: 'p3b3', label: 'Penghasilan LN 3: pajak paling tinggi menurut P3B (boleh kosong)', tipe: 'uang', default: null, min: 0 },
+      { key: 'neto4', label: 'Penghasilan LN 4: neto (boleh kosong)', tipe: 'uang', default: null },
+      { key: 'pajak4', label: 'Penghasilan LN 4: pajak dibayar/terutang di LN', tipe: 'uang', default: null, min: 0 },
+      { key: 'p3b4', label: 'Penghasilan LN 4: pajak paling tinggi menurut P3B (boleh kosong)', tipe: 'uang', default: null, min: 0 }
     ],
     hitung: function (v) {
-      const dh = ['Pasal 24 ayat (1)–(2) UU PPh', 'PMK 192/PMK.03/2018'];
+      const dh = ['Pasal 24 ayat (1)–(2) UU PPh', 'Pasal 4 ayat (3), Pasal 6 ayat (2), (4), dan (7), serta Pasal 7 PMK 192/PMK.03/2018'];
       const g = cekWajib(v, [['netoDn', 'penghasilan neto dalam negeri', true], ['tarif', 'tarif PPh']]); if (g) return salah(g, dh);
       if (v.tarif > 100) return salah('Tarif PPh tidak boleh di atas 100%.', dh);
-      for (let i = 1; i <= 3; i++) {
-        if (v['neto' + i] != null && !isNum(v['neto' + i])) return salah('Penghasilan neto negara ' + i + ' harus angka.', dh);
-        if (v['pajak' + i] != null && (!isNum(v['pajak' + i]) || v['pajak' + i] < 0)) return salah('Pajak luar negeri negara ' + i + ' harus angka tidak negatif.', dh);
+      for (let i = 1; i <= 4; i++) {
+        if (v['neto' + i] != null && !isNum(v['neto' + i])) return salah('Penghasilan neto luar negeri ' + i + ' harus angka.', dh);
+        if (v['pajak' + i] != null && (!isNum(v['pajak' + i]) || v['pajak' + i] < 0)) return salah('Pajak luar negeri atas penghasilan ' + i + ' harus angka tidak negatif.', dh);
+        if (v['p3b' + i] != null && v['p3b' + i] !== '' && (!isNum(v['p3b' + i]) || v['p3b' + i] < 0)) return salah('Pajak menurut P3B atas penghasilan ' + i + ' harus angka tidak negatif atau dikosongkan.', dh);
       }
-      const negara = [1, 2, 3].map(function (i) { return { no: i, neto: nol(v['neto' + i]), pajak: nol(v['pajak' + i]) }; });
+      // Pasal 6 ayat (2) PMK 192/PMK.03/2018: tiap baris = satu jenis penghasilan dari satu negara, dengan batasnya sendiri.
+      const negara = [1, 2, 3, 4].map(function (i) { return { no: i, neto: nol(v['neto' + i]), pajak: nol(v['pajak' + i]), p3b: isNum(v['p3b' + i]) ? v['p3b' + i] : null }; });
       const lnPositif = negara.reduce(function (s, n) { return s + Math.max(0, n.neto); }, 0);
       const pkp = bulatRibuBawah(v.netoDn + lnPositif);
       const pph = Math.round(pkp * v.tarif / 100);
@@ -1266,22 +1274,23 @@
       negara.forEach(function (n) {
         if (!n.neto && !n.pajak) return;
         const batas = n.neto > 0 && pkp > 0 ? Math.round(Math.min(1, n.neto / pkp) * pph) : 0;
-        const kredit = Math.min(n.pajak, batas); total += kredit; hangus += n.pajak - kredit;
-        jejak.push(['Negara ' + n.no + ': batas = ' + (n.neto > 0 ? uang(n.neto) + ' ÷ ' + uang(pkp) + ' × ' + uang(pph) : 'rugi — tidak ada batas'), uang(batas)]);
-        jejak.push(['Negara ' + n.no + ': kredit = min(' + uang(n.pajak) + ', ' + uang(batas) + ')', uang(kredit)]);
-        hasilNegara.push(baris('Kredit negara ' + n.no + ' (batas ' + uang(batas) + ')', kredit, 'uang'));
+        // Pasal 6 ayat (4): nilai terkecil dari pajak menurut P3B (bila ada), pajak LN yang dibayar, dan batas proporsional
+        const kredit = Math.min(n.pajak, batas, n.p3b == null ? Infinity : n.p3b); total += kredit; hangus += n.pajak - kredit;
+        jejak.push(['Penghasilan LN ' + n.no + ': batas = ' + (n.neto > 0 ? uang(n.neto) + ' ÷ ' + uang(pkp) + ' × ' + uang(pph) : 'rugi, tidak ada batas'), uang(batas)]);
+        jejak.push(['Penghasilan LN ' + n.no + ': kredit = min(' + uang(n.pajak) + (n.p3b == null ? '' : ', P3B ' + uang(n.p3b)) + ', ' + uang(batas) + ')', uang(kredit)]);
+        hasilNegara.push(baris('Kredit penghasilan LN ' + n.no + ' (batas ' + uang(batas) + ')', kredit, 'uang'));
       });
       const jumlahNegara = total;
       total = Math.min(total, pph);
       if (jumlahNegara > total) {
-        jejak.push(['Jumlah kredit per negara ' + uang(jumlahNegara) + ' melebihi PPh terutang (PKP < total neto LN) → dibatasi', uang(total)]);
+        jejak.push(['Jumlah kredit ' + uang(jumlahNegara) + ' melebihi PPh terutang (PKP < total neto LN, Pasal 6 ayat (7)) → dibatasi', uang(total)]);
         hangus += jumlahNegara - total;
       }
       jejak.push(['Total kredit PPh 24', uang(total)]);
       jejak.push(['PPh setelah kredit PPh 24', uang(pph - total)]);
-      const asumsi = ['Kredit dihitung per negara (per country limitation); pajak LN di atas batas tidak dapat dikreditkan maupun dibiayakan.',
-        'Kerugian di luar negeri tidak dikurangkan dari penghasilan dalam negeri.',
-        'PKP diasumsikan = neto DN + neto LN positif (tanpa kompensasi rugi/fasilitas lain); bukti pembayaran pajak LN dilampirkan pada SPT (lampiran 7A).'];
+      const asumsi = ['Kredit dihitung per jenis penghasilan untuk tiap negara atau yurisdiksi (Pasal 6 ayat (2) PMK 192/PMK.03/2018): isi tiap jenis penghasilan dari tiap negara di baris tersendiri. Kredit tiap baris = nilai terkecil dari pajak yang seharusnya terutang menurut P3B (bila kolomnya diisi), pajak LN yang dibayar, dan batas proporsional (Pasal 6 ayat (4)). Pajak LN di atas batas tidak dapat dikreditkan, dibiayakan, atau diminta kembali (Pasal 7).',
+        'Kerugian di luar negeri tidak digabungkan dalam menghitung PKP (Pasal 4 ayat (3) PMK 192/PMK.03/2018).',
+        'PKP diasumsikan = neto DN + neto LN positif (tanpa fasilitas lain; penghasilan yang dikenai PPh final tidak ikut, Pasal 6 ayat (9)); kredit pajak luar negeri dilaporkan pada Lampiran 3 SPT Tahunan PPh Badan sejak Tahun Pajak 2025 (PER-11/PJ/2025; formulir 1771 lama: lampiran khusus 7A), disertai bukti pembayaran pajak di luar negeri.'];
       const peringatan = hangus ? ['Pajak luar negeri sebesar ' + uang(hangus) + ' melebihi batas dan tidak dapat dikreditkan.'] : [];
       const hasil = [baris('Total kredit PPh 24', total, 'uang', true), baris('PKP', pkp, 'uang'), baris('PPh terutang', pph, 'uang')].concat(hasilNegara, [baris('PPh setelah kredit PPh 24', pph - total, 'uang')]);
       return keluaran({ hasil: hasil, jejak: jejak, asumsi: asumsi, dasarHukum: dh, peringatan: peringatan });
@@ -1291,24 +1300,32 @@
   // ---------- 15. BUT & branch profit tax ----------
   K.push({
     jenis: 'bpt', nama: 'BUT & branch profit tax', kelompok: 'C9', mvp: false,
-    deskripsi: 'PPh badan BUT dan PPh 26 ayat (4) atas laba setelah pajak (20% atau tarif P3B); dikecualikan hanya bila seluruh laba setelah pajak ditanamkan kembali di Indonesia.',
-    dasarHukum: ['Pasal 26 ayat (4) UU PPh', 'PMK 14/PMK.03/2011', 'P3B terkait'],
+    deskripsi: 'PPh badan BUT dan PPh 26 ayat (4) atas laba setelah pajak (20% atau tarif P3B); dikecualikan hanya bila seluruh laba setelah pajak ditanamkan kembali di Indonesia. Penghasilan BUT yang dikenai PPh final ikut masuk dasar setelah dikurangi PPh finalnya.',
+    dasarHukum: ['Pasal 26 ayat (4) UU PPh', 'PMK 14/PMK.03/2011', 'Petunjuk Lampiran 12A PER-11/PJ/2025', 'P3B terkait'],
     statusPer: STATUS_PER, verifikasi: '✅',
     input: [
       { key: 'pkp', label: 'PKP BUT', tipe: 'uang', default: 1000000000 },
       { key: 'tarifBadan', label: 'Tarif PPh badan', tipe: 'persen', default: 22, min: 0 },
       { key: 'tarifP3b', label: 'Tarif BPT menurut P3B', tipe: 'persen', default: null, bantu: 'Kosongkan untuk tarif domestik 20%; mis. Singapura 10%, Malaysia 12,5%.' },
-      { key: 'ditanamKembali', label: 'Laba setelah pajak yang ditanamkan kembali di Indonesia', tipe: 'uang', default: 0, min: 0, bantu: 'Pengecualian hanya bila SELURUH laba setelah pajak ditanamkan kembali paling lambat akhir Tahun Pajak berikutnya: penyertaan modal pada perusahaan baru atau yang sudah berdiri, aktiva tetap, atau aktiva tidak berwujud BUT. Penanaman sebagian tidak mengurangi dasar.' }
+      { key: 'ditanamKembali', label: 'Laba setelah pajak yang ditanamkan kembali di Indonesia', tipe: 'uang', default: 0, min: 0, bantu: 'Pengecualian hanya bila SELURUH laba setelah pajak ditanamkan kembali paling lambat akhir Tahun Pajak berikutnya: penyertaan modal pada perusahaan baru atau yang sudah berdiri, aktiva tetap, atau aktiva tidak berwujud BUT. Penanaman sebagian tidak mengurangi dasar.' },
+      { key: 'penghasilanFinal', label: 'Penghasilan yang dikenai PPh final (boleh kosong)', tipe: 'uang', default: null, min: 0, bantu: 'Misalnya bunga deposito atau jasa giro BUT, sebesar penghasilan neto setelah penyesuaian fiskal. Menurut petunjuk Lampiran 12A dan Pasal 6 PMK 14/PMK.03/2011, penghasilan ini ikut masuk dasar setelah dikurangi PPh finalnya.' },
+      { key: 'pphFinal', label: 'PPh final atas penghasilan itu (boleh kosong)', tipe: 'uang', default: null, min: 0, bantu: 'Misalnya 20% × bunga deposito. Diisi bila penghasilan final diisi.' }
     ],
     hitung: function (v) {
       const dh = ['Pasal 26 ayat (4) UU PPh', 'PMK 14/PMK.03/2011'];
       const g = cekWajib(v, [['pkp', 'PKP BUT', true], ['tarifBadan', 'tarif PPh badan']]); if (g) return salah(g, dh);
+      const eF = cekOpsional(v, [['penghasilanFinal', 'penghasilan yang dikenai PPh final'], ['pphFinal', 'PPh final']]); if (eF) return salah(eF, dh);
+      if (nol(v.pphFinal) > nol(v.penghasilanFinal)) return salah('PPh final tidak boleh melebihi penghasilan yang dikenai PPh final.', dh);
       if (v.tarifBadan > 100) return salah('Tarif PPh badan tidak boleh di atas 100%.', dh);
       if (v.tarifP3b != null && (!isNum(v.tarifP3b) || v.tarifP3b < 0 || v.tarifP3b > 100)) return salah('Tarif P3B harus 0–100% atau dikosongkan.', dh);
       const e = cekOpsional(v, [['ditanamKembali', 'laba yang ditanamkan kembali']]); if (e) return salah(e, dh);
       const pkp = bulatRibuBawah(v.pkp);
       const pphBadan = Math.round(pkp * v.tarifBadan / 100);
-      const laba = pkp - pphBadan;
+      // Petunjuk Lampiran 12A PER-11/PJ/2025 dan Pasal 6 PMK 14/PMK.03/2011: penghasilan yang dikenai PPh final
+      // ikut masuk dasar, dikurangi PPh finalnya.
+      const final = nol(v.penghasilanFinal), pphFinal = nol(v.pphFinal);
+      const labaUsaha = pkp - pphBadan;
+      const laba = labaUsaha + final - pphFinal;
       const tarif = isNum(v.tarifP3b) ? v.tarifP3b / 100 : 0.20;
       // PMK 14/PMK.03/2011 Pasal 1 ayat (3): pengecualian hanya bila SELURUH laba setelah pajak ditanamkan kembali.
       const tanam = nol(v.ditanamKembali);
@@ -1319,12 +1336,15 @@
       if (tanam > Math.max(0, laba)) peringatan.push('Jumlah ditanam kembali melebihi laba setelah pajak; dianggap seluruh laba setelah pajak ditanamkan kembali.');
       if (tanam > 0 && !seluruh && laba > 0) peringatan.push('Penanaman kembali sebagian tidak mendapat pengecualian: PMK 14/PMK.03/2011 Pasal 1 ayat (3) mensyaratkan seluruh laba setelah pajak ditanamkan kembali, sehingga dasar BPT tetap seluruh laba setelah pajak.');
       if (isNum(v.tarifP3b)) dh.push('P3B (tarif branch profit tax ' + angka(v.tarifP3b) + '%)');
-      const jejak = [['PKP BUT', uang(pkp)], ['PPh badan = ' + angka(v.tarifBadan) + '% × ' + uang(pkp), uang(pphBadan)], ['Laba setelah pajak', uang(laba)]];
-      if (tanam > 0 && laba > 0) jejak.push(seluruh ? ['Seluruh laba setelah pajak ditanamkan kembali (PMK 14/PMK.03/2011 Pasal 1 ayat (3))', 'dikecualikan'] : ['Ditanamkan kembali ' + uang(tanam) + ' (hanya sebagian, tidak mengurangi dasar)', uang(0)]);
+      const jejak = [['PKP BUT', uang(pkp)], ['PPh badan = ' + angka(v.tarifBadan) + '% × ' + uang(pkp), uang(pphBadan)]];
+      if (final > 0) { jejak.push(['Penghasilan yang dikenai PPh final ' + uang(final) + ' − PPh final ' + uang(pphFinal) + ' (petunjuk Lampiran 12A)', uang(final - pphFinal)]); dh.push('Pasal 6 PMK 14/PMK.03/2011; petunjuk Lampiran 12A PER-11/PJ/2025 (penghasilan yang dikenai PPh final)'); }
+      jejak.splice(2, 0, ['Laba setelah pajak = PKP − PPh badan', uang(labaUsaha)]);
+      if (final > 0) jejak.push(['Laba setelah pajak ditambah penghasilan final setelah PPh final', uang(laba)]);
+      if (tanam > 0 && laba > 0) jejak.push(seluruh ? ['Seluruh laba setelah pajak ditanamkan kembali (PMK 14/PMK.03/2011 Pasal 1 ayat (3))', 'dikecualikan'] : ['Ditanamkan kembali ' + uang(tanam) + ' (hanya sebagian, tidak mengurangi dasar)', 'tidak dikurangkan']);
       jejak.push(['Dasar BPT', uang(dasar)]);
       jejak.push(['BPT = ' + persen(tarif) + ' × ' + uang(dasar) + (isNum(v.tarifP3b) ? ' (tarif P3B)' : ' (tarif domestik)'), uang(bpt)]);
-      const asumsi = ['Tarif P3B hanya dapat dipakai bila kantor pusat menyerahkan SKD/Form DGT yang sah (PMK 112/2025).', 'BPT bersifat final, disetor sendiri oleh BUT; dilaporkan pada lampiran 6A SPT 1771.', 'Penanaman kembali harus memenuhi syarat PMK 14/PMK.03/2011 Pasal 2: dilakukan paling lambat akhir Tahun Pajak berikutnya, diberitahukan tertulis ke KPP, dan tidak dialihkan paling sedikit 2 tahun sejak produksi komersial (perusahaan baru) atau 3 tahun (perusahaan yang sudah berdiri, aktiva tetap, aktiva tidak berwujud).'];
-      const hasil = [baris('Branch profit tax (PPh 26 ayat (4))', bpt, 'uang', true), baris('PPh badan BUT', pphBadan, 'uang'), baris('Laba setelah pajak', laba, 'uang'), baris('Dasar BPT', dasar, 'uang'), baris('Tarif BPT', tarif, 'persen'), baris('Total beban PPh BUT', pphBadan + bpt, 'uang')];
+      const asumsi = ['Tarif P3B hanya dapat dipakai bila kantor pusat menyerahkan SKD/Form DGT yang sah (PMK 112/2025).', 'BPT bersifat final dan disetor sendiri oleh BUT. Sejak Tahun Pajak 2025 dihitung pada Lampiran 12A SPT Tahunan PPh Badan, dan penanaman kembali diberitahukan pada Lampiran 12B (PER-11/PJ/2025); formulir 1771 lama memakai lampiran khusus 6A.', 'Penanaman kembali harus memenuhi syarat PMK 14/PMK.03/2011 Pasal 2: dilakukan paling lambat akhir Tahun Pajak berikutnya, diberitahukan tertulis ke KPP, dan tidak dialihkan paling sedikit 2 tahun sejak produksi komersial (perusahaan baru) atau 3 tahun (perusahaan yang sudah berdiri, aktiva tetap, aktiva tidak berwujud).', 'PKP BUT diisi sebesar Penghasilan Kena Pajak menurut SPT. Bila BUT juga memperoleh penghasilan yang dikenai PPh final (misalnya bunga deposito), petunjuk Lampiran 12A dan Pasal 6 PMK 14/PMK.03/2011 memasukkannya ke dasar setelah dikurangi PPh finalnya: isi dua kolom penghasilan final.'];
+      const hasil = [baris('Branch profit tax (PPh 26 ayat (4))', bpt, 'uang', true), baris('PPh badan BUT', pphBadan, 'uang'), baris('Laba setelah pajak', labaUsaha, 'uang')].concat(final > 0 ? [baris('Penghasilan final setelah PPh final', final - pphFinal, 'uang')] : [], [baris('Dasar BPT', dasar, 'uang'), baris('Tarif BPT', tarif, 'persen'), baris('Total beban PPh BUT', pphBadan + bpt, 'uang')]);
       return keluaran({ hasil: hasil, jejak: jejak, asumsi: asumsi, dasarHukum: dh, peringatan: peringatan });
     }
   });
@@ -1371,7 +1391,7 @@
         jejak.push(['NJOP − NJOPTKP', uang(dasar)]);
         jejak.push(['NJKP ' + persen(njkp) + ' × ' + uang(dasar), uang(Math.round(dasar * njkp))]);
         jejak.push(['PBB = 0,5% × NJKP (efektif ' + persen(njkp * 0.005, 2) + ' × (NJOP − NJOPTKP))', uang(pbb)]);
-        asumsi.push('NJOP bumi sektor P5L dihitung dari areal × nilai per m² (perkebunan: + standar investasi tanaman; tambang: angka kapitalisasi × hasil produksi) sesuai PMK 186/2019 s.t.d.d. PMK 234/2022.');
+        asumsi.push('NJOP bumi sektor P5L dihitung dari areal × nilai per m² (perkebunan dan hutan tanaman: areal yang telah ditanami ditambah biaya investasi tanaman; tubuh bumi tambang yang berproduksi: pendapatan × angka kapitalisasi) sesuai PMK 186/2019 s.t.d.d. PMK 234/2022.');
         asumsi.push('SPPT jatuh tempo 6 bulan sejak diterima; keterlambatan dikenai denda 2% per bulan (Ps. 11 UU PBB).');
         return keluaran({ hasil: [baris('PBB-P5L terutang', pbb, 'uang', true), baris('NJOP', njop, 'uang'), baris('NJKP', njkp, 'persen'), baris('Dasar (NJOP − NJOPTKP)', dasar, 'uang'), baris('Tarif efektif atas dasar', njkp * 0.005, 'persen')], jejak: jejak, asumsi: asumsi, dasarHukum: dh, peringatan: peringatan });
       }
@@ -1485,8 +1505,8 @@
   // ---------- 18. Kurs KMK vs kurs tengah ----------
   const JENIS_PAJAK_KURS = {
     pph26: { label: 'PPh Pasal 26 — 20% atau tarif P3B (jasa/bunga/royalti kepada WPLN)', nama: 'PPh Pasal 26', tarif: 0.20, potong: true, wpln: true, dasar: 'Pasal 26 ayat (1) UU PPh' },
-    'pph26-5': { label: 'PPh Pasal 26 ayat (2) — 5% × harga jual (penjualan saham/harta di Indonesia oleh WPLN)', nama: 'PPh Pasal 26 ayat (2)', tarif: 0.05, potong: true, wpln: true,
-      catatan: 'Tarif efektif 5% = 20% × perkiraan penghasilan neto 25% dari harga jual', dasar: 'Pasal 26 ayat (2) UU PPh; KMK 434/KMK.04/1999 (perkiraan penghasilan neto 25%)' },
+    'pph26-5': { label: 'PPh Pasal 26 ayat (2) — 5% × harga jual (penjualan saham atau harta tertentu di Indonesia oleh WPLN)', nama: 'PPh Pasal 26 ayat (2)', tarif: 0.05, potong: true, wpln: true,
+      catatan: 'Tarif efektif 5% = 20% × perkiraan penghasilan neto 25% dari harga jual', dasar: 'Pasal 26 ayat (2) UU PPh; Pasal 238 PMK 81/2024 (saham perseroan nonbursa) dan Pasal 2 PMK 82/PMK.03/2009 (harta tertentu): perkiraan penghasilan neto 25%' },
     'pph23-2': { label: 'PPh Pasal 23 — 2% (jasa, sewa harta selain tanah/bangunan)', nama: 'PPh Pasal 23', tarif: 0.02, potong: true, dasar: 'Pasal 23 ayat (1) huruf c UU PPh; PMK 141/PMK.03/2015' },
     'pph23-15': { label: 'PPh Pasal 23 — 15% (bunga, royalti, hadiah)', nama: 'PPh Pasal 23', tarif: 0.15, potong: true, dasar: 'Pasal 23 ayat (1) huruf a UU PPh' },
     'pph42-10': { label: 'PPh Pasal 4 ayat (2) — 10% final (sewa tanah/bangunan)', nama: 'PPh Pasal 4 ayat (2)', tarif: 0.10, potong: true, final: true, dasar: 'Pasal 4 ayat (2) UU PPh; PP 34/2017' },
@@ -1615,7 +1635,7 @@
       if (ppn && !ppnValas) asumsi.push('PPN pada faktur dihitung dengan kurs KMK serta ditagih dan dilunasi dalam rupiah, sehingga PPN tidak menimbulkan selisih kurs; pos moneter valas = harga. Selisih DPP faktur vs pendapatan/beban buku menjadi bahan ekualisasi PPN.');
       if (ppnValas) asumsi.push('PPN ditagih dalam valas: tagihan memuat PPN ' + (nilaiLain ? '11% (12% × 11/12)' : '12%') + ' × harga dalam valas, sedangkan yang disetor/dikreditkan adalah PPN rupiah di faktur pajak (kurs KMK). Selisih PPN rupiah dengan bagian PPN valas (kurs buku) diakui sebagai selisih kurs saat pengakuan; pos moneter = harga + PPN valas dijabarkan dan dilunasi dengan kurs buku. Selisih DPP faktur vs pendapatan/beban buku tetap menjadi bahan ekualisasi PPN.');
       if (jp.impor) asumsi.push('Nilai impor (DPP PPh 22) = nilai pabean CIF + bea masuk' + (pakaiBm ? ' (' + persen(bm) + ' × nilai pabean)' : ' (tarif bea masuk kosong → dianggap nihil)') + ', keduanya dengan kurs KMK tanggal PIB; cukai dan pungutan kepabeanan lain tidak dihitung. Nilai valas dianggap nilai pabean CIF yang sama dengan utang kepada pemasok; bea masuk dan PPh 22 dibayar dalam rupiah sehingga tidak menimbulkan selisih kurs.');
-      if (v.jenisPajak === 'pph26-5') asumsi.push('PPh Pasal 26 ayat (2): 20% × perkiraan penghasilan neto 25% × harga jual = 5% × harga jual (penjualan saham perusahaan Indonesia nonbursa atau harta di Indonesia oleh WPLN). Banyak P3B memberi hak pemajakan capital gain kepada negara domisili (Pasal 13 P3B); bila SKD/DGT Form sah, pemotongan dapat nihil — tidak dihitung di sini.');
+      if (v.jenisPajak === 'pph26-5') asumsi.push('PPh Pasal 26 ayat (2): 20% × perkiraan penghasilan neto 25% × harga jual = 5% × harga jual. Berlaku untuk penjualan saham perseroan terbatas dalam negeri yang bukan emiten atau perusahaan publik oleh WPLN selain BUT (Pasal 238 sampai 240 PMK 81/2024: dipotong pembeli; bila pembelinya WPLN, perseroan ditunjuk sebagai pemungut) dan untuk penjualan harta tertentu di Indonesia oleh WPLN selain BUT, yaitu perhiasan mewah, berlian, emas, intan, jam tangan mewah, barang antik, lukisan, mobil, motor, kapal pesiar, dan pesawat terbang ringan (Pasal 2 ayat (4) PMK 82/PMK.03/2009); penjualan harta oleh orang pribadi luar negeri sampai Rp10.000.000 per jenis transaksi tidak dipotong (Pasal 3 ayat (2)). Banyak P3B memberi hak pemajakan capital gain kepada negara domisili (Pasal 13 P3B); bila SKD/DGT Form sah, pemotongan dapat nihil — tidak dihitung di sini.');
       if (v.jenisPajak === 'pph15-264') asumsi.push('PPh Pasal 15 perusahaan pelayaran/penerbangan luar negeri: 2,64% × peredaran bruto (imbalan pengangkutan dari pelabuhan Indonesia), bersifat final; dipotong pencarter/pemberi penghasilan atau disetor sendiri oleh BUT.');
       if (!adaTengah) asumsi.push('Kurs tengah BI saat pengakuan tidak diisi: pembukuan diasumsikan memakai kurs KMK sehingga selisih nilai transaksi nihil.');
       if (!adaAkhir && adaBayar) asumsi.push('Kurs akhir periode tidak diisi: pelunasan dianggap terjadi pada periode yang sama, sehingga selisih terealisasi dihitung dari kurs pengakuan.');

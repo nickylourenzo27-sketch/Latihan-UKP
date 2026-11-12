@@ -7,7 +7,7 @@ UKP.register({
     diujiDi: ["B", "C"],
     durasiUSKP: 90,
     perkiraanBobotSoal: { A: 0, B: 0.05, C: 0.04 },
-    statusPer: "2026-10-28",
+    statusPer: "2026-11-12",
     tujuan: "Peserta mampu menentukan subjek dan objek PBB sektor perkebunan, perhutanan, pertambangan (migas, panas bumi, minerba), dan sektor lainnya serta membedakannya dari PBB-P2 daerah; menghitung PBB terutang dari luas dan nilai per jenis areal sampai NJKP dan tarif; serta menerapkan prosedur SPOP, SPPT, SKP, STP, keberatan, banding, pengurangan, pembayaran, penagihan, restitusi, dan bagi hasil dalam kasus praktik.",
     dasarHukumUtama: [
       "UU 12/1985 s.t.d.d. UU 12/1994 tentang Pajak Bumi dan Bangunan (UU PBB)",
@@ -34,7 +34,7 @@ UKP.register({
       { label: "Rumus ringkas sektor perkebunan, perhutanan, pertambangan", nilai: "0,2% × (NJOP − Rp12.000.000)", dasar: "Pasal 5–7 UU PBB; PP 25/2002", berlakuSejak: "2002-01-01" },
       { label: "NJOP bumi perkebunan", nilai: "luas × nilai tanah per m² (+ Biaya Investasi Tanaman/SIT pada areal produktif, yaitu areal yang telah ditanami); 1 ha = 10.000 m²", dasar: "PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" },
       { label: "NJOP tubuh bumi pertambangan (produksi)", nilai: "minerba: pendapatan bersih × angka kapitalisasi; migas: pendapatan minyak dan/atau gas bumi × angka kapitalisasi (angka kapitalisasi ditetapkan Dirjen Pajak)", dasar: "PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" },
-      { label: "NJOP bangunan", nilai: "nilai perolehan baru dikurangi penyusutan; benda bergerak tidak dihitung ◐", dasar: "Pasal 1 angka 2–3 UU PBB", berlakuSejak: "1995-01-01" },
+      { label: "NJOP bangunan", nilai: "Nilai Perolehan Baru: seluruh biaya untuk memperoleh objek pada saat penilaian dikurangi penyusutan berdasarkan kondisi fisik; benda bergerak tidak dihitung", dasar: "Pasal 1 angka 2–3 UU PBB; Pasal 1 angka 7, Pasal 14 ayat (4), Pasal 15 ayat (4), Pasal 17 ayat (8), Pasal 19 ayat (8), Pasal 21 ayat (8), dan Pasal 33 ayat (5) PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "1995-01-01" },
       { label: "Penetapan NJOP", nilai: "setiap 3 tahun; daerah tertentu setiap tahun", dasar: "Pasal 6 ayat (2) UU PBB", berlakuSejak: "1995-01-01" },
       { label: "Saat yang menentukan pajak terutang", nilai: "keadaan objek 1 Januari (tanpa pro rata)", dasar: "Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" },
       { label: "Tempat pajak terutang", nilai: "kabupaten/kota letak objek", dasar: "Pasal 8 ayat (3) UU PBB", berlakuSejak: "1995-01-01" },
@@ -51,7 +51,7 @@ UKP.register({
       { label: "Pengurangan PBB", nilai: "atas permohonan: kondisi tertentu objek (paling tinggi 75%) atau bencana/sebab luar biasa (paling tinggi 100%) dari PBB yang belum dilunasi ◐", dasar: "Pasal 19 ayat (1) UU PBB; PMK 129/2023", berlakuSejak: "1995-01-01" },
       { label: "Rantai penagihan", nilai: "Surat Teguran lewat 7 hari → Surat Paksa lewat 21 hari → sita (2 × 24 jam) → pengumuman lelang ≥ 14 hari → lelang ≥ 14 hari", dasar: "UU 19/1997 s.t.d.d. UU 19/2000; PMK 61/2023", berlakuSejak: "2023-06-12" },
       { label: "Pembayaran", nilai: "kode billing Coretax (NPWP 16 digit + NOP); bukti pelunasan ber-NTPN", dasar: "Pasal 12 UU PBB; PMK 81/2024", berlakuSejak: "2025-01-01" },
-      { label: "Bagi hasil (DBH PBB)", nilai: "100% untuk daerah: provinsi 16,2%, kabupaten/kota penghasil (letak objek) 73,8%, kabupaten/kota lain dalam provinsi 10%; UU PBB hanya mensyaratkan ≥ 90% ◐", dasar: "Pasal 113 ayat (2) UU 1/2022; Pasal 16 PMK 35/2026; Pasal 18 ayat (1) UU PBB" },
+      { label: "Bagi hasil (DBH PBB)", nilai: "100% untuk daerah: provinsi 16,2%, kabupaten/kota penghasil (letak objek) 73,8%, kabupaten/kota lain dalam provinsi 10%; UU PBB hanya mensyaratkan ≥ 90%", dasar: "Pasal 113 ayat (2) UU 1/2022; Pasal 16 PMK 35/2026; Pasal 18 ayat (1) UU PBB" },
       { label: "Pembanding PBB-P2 (pajak daerah)", nilai: "NJOPTKP ≥ Rp10 juta; dasar pengenaan 20%–100%; tarif ≤ 0,5% (Perda)", dasar: "Pasal 38–41 UU 1/2022", berlakuSejak: "2022-01-05" },
       { label: "PBB dalam PPh Badan", nilai: "PBB dapat dibiayakan; denda SKP/STP dikoreksi positif", dasar: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }
     ]
@@ -181,13 +181,14 @@ UKP.register({
         "Perhutanan (Pasal 15 PMK 186/2019): areal produktif hutan tanaman adalah areal yang telah ditanami dan dinilai nilai tanah ditambah Biaya Investasi Tanaman (SIT), sedangkan areal yang belum ditanami adalah areal belum produktif; areal produktif hutan alam (blok tebangan) memakai Nilai Jual Pengganti (pendapatan bersih hasil hutan × angka kapitalisasi); areal lain dinilai dengan nilai tanah atau nilai yang ditetapkan Dirjen Pajak.",
         "Pertambangan (migas, panas bumi, minerba): bumi terdiri atas permukaan bumi onshore (dibagi beberapa jenis areal; pada minerba: belum dimanfaatkan, cadangan produksi, tidak produktif, pengaman, emplasemen), permukaan bumi offshore (NJOP ditetapkan dengan Keputusan Dirjen Pajak), dan tubuh bumi; tubuh bumi tahap produksi dinilai dengan Nilai Jual Pengganti: pendapatan × angka kapitalisasi (migas: pendapatan minyak dan/atau gas bumi; minerba: pendapatan bersih).",
         "Bangunan di kawasan usaha (pabrik kelapa sawit, kilang, pipa, tangki timbun, dermaga, conveyor, perumahan karyawan, jalan kebun/tambang) dinilai dengan pendekatan biaya (nilai perolehan baru dikurangi penyusutan) dan dijumlahkan ke NJOP objek.",
-        "Sektor lainnya (perairan yang digunakan untuk perikanan tangkap dan pembudidayaan ikan yang telah memiliki Surat Izin Usaha Perikanan, jaringan pipa, jaringan kabel, serta fasilitas penyimpanan dan pengolahan terapung seperti FSO, FPSO, dan FSRU; bangunannya hanya jaringan pipa, jaringan kabel, dan fasilitas tersebut, Pasal 8 dan Pasal 9 ayat (2) PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022) memakai NJKP menurut batas NJOP Rp1 miliar (40%/20%); pada objek offshore, areal perairan adalah bumi, anjungan/pipa/kabel yang dilekatkan tetap adalah bangunan, sedangkan kapal adalah benda bergerak.",
+        "Sektor lainnya (perairan yang digunakan untuk perikanan tangkap dan pembudidayaan ikan yang telah memiliki Surat Izin Usaha Perikanan, jaringan pipa, jaringan kabel, serta fasilitas penyimpanan dan pengolahan terapung seperti FSO, FPSO, dan FSRU; bangunannya hanya jaringan pipa, jaringan kabel, dan fasilitas tersebut, Pasal 8 dan Pasal 9 ayat (2) PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022) memakai NJKP menurut batas NJOP Rp1 miliar (40%/20%); pada sektor lainnya, areal perairan adalah bumi dan bangunannya terbatas pada jaringan pipa, jaringan kabel, serta fasilitas penyimpanan dan pengolahan terapung tersebut, sedangkan kapal adalah benda bergerak; anjungan migas lepas pantai bukan sektor lainnya, melainkan bangunan dalam kawasan pertambangan migas (Pasal 9 ayat (1) huruf c PMK 186/2019).",
         "Urutan baku: (1) luas kena pajak per areal × nilai per m² (+SIT bila produktif) → NJOP bumi; (2) + NJOP bangunan; (3) − NJOPTKP sekali; (4) × NJKP; (5) × 0,5%."
       ],
       poinKunci: [
-        { label: "Areal produktif perkebunan", nilai: "luas × (nilai tanah + SIT)", dasar: "PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" },
-        { label: "Areal belum produktif, tidak produktif, emplasemen", nilai: "luas × nilai tanah per m²", dasar: "PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" },
-        { label: "Tubuh bumi pertambangan", nilai: "angka kapitalisasi × hasil bersih", dasar: "PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" },
+        { label: "Areal produktif perkebunan (telah ditanami, termasuk tanaman yang belum menghasilkan)", nilai: "luas × (nilai tanah + Biaya Investasi Tanaman, di soal disebut SIT)", dasar: "Pasal 14 ayat (1) huruf a dan ayat (2) huruf a PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" },
+        { label: "Areal belum produktif (belum ditanami), tidak produktif, emplasemen", nilai: "luas × nilai tanah per m² (perbandingan harga dengan objek sejenis), tanpa SIT", dasar: "Pasal 14 ayat (1) huruf b, c, dan e serta ayat (2) huruf b, c, dan e PMK 186/PMK.03/2019", berlakuSejak: "2020-01-01" },
+        { label: "Areal pengaman perkebunan", nilai: "areal pendukung dan pengaman usaha kebun; dinilai dengan penyesuaian terhadap NJOP bumi per m² areal belum produktif", dasar: "Pasal 14 ayat (1) huruf d dan ayat (2) huruf d PMK 186/PMK.03/2019", berlakuSejak: "2020-01-01" },
+        { label: "Tubuh bumi pertambangan (eksploitasi atau operasi produksi)", nilai: "Nilai Jual Pengganti = pendapatan × Angka Kapitalisasi; migas: pendapatan minyak dan/atau gas bumi (penjualan kotor); panas bumi: pendapatan uap dan/atau listrik; minerba: pendapatan bersih", dasar: "Pasal 17 ayat (7), Pasal 18 ayat (1), Pasal 19 ayat (7), Pasal 20 ayat (1), dan Pasal 21 ayat (7) PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" },
         { label: "Konversi luas", nilai: "1 ha = 10.000 m²", dasar: "satuan baku penilaian" },
         { label: "Bangunan kawasan usaha", nilai: "masuk NJOP objek (pendekatan biaya)", dasar: "Pasal 1 angka 2 UU PBB", berlakuSejak: "1995-01-01" }
       ],
@@ -207,8 +208,7 @@ UKP.register({
         jawaban: "Rp417.976.000",
         langkah: [ ["Produktif 20.000.000 m² × 8.700", "Rp174.000.000.000"], ["Belum produktif 3.000.000 m² × 3.500", "Rp10.500.000.000"], ["Emplasemen 500.000 m² × 12.000", "Rp6.000.000.000"], ["NJOP bumi + bangunan", "Rp209.000.000.000"], ["− NJOPTKP", "Rp208.988.000.000"], ["× 40% × 0,5%", "Rp417.976.000"] ]
       },
-      verifikasi: "◐",
-      peringatan: "Rumus rinci per sektor (SIT hanya pada areal produktif, pendekatan hutan alam, angka kapitalisasi × hasil bersih untuk tubuh bumi pertambangan, daftar sektor lainnya) berasal dari pemahaman atas PMK 186/2019 s.t.d.d. PMK 234/2022 yang belum dicek ke teks primer. Soal modul ini memberi nilai per m², SIT, dan data penilaian di stem sehingga yang diuji adalah klasifikasi areal dan urutan hitung."
+      verifikasi: "✅"
     },
     {
       id: "B8.5", slug: "sppt-skp-stp-pbb", judul: "SPPT, SKP PBB, dan STP PBB",
@@ -256,7 +256,7 @@ UKP.register({
         "Atas keputusan keberatan dapat diajukan banding ke Pengadilan Pajak paling lambat 3 bulan sejak keputusan diterima (Pasal 35 ayat (2) UU 14/2002).",
         "Pengurangan (Pasal 19 ayat (1)): atas permohonan wajib pajak, Menteri Keuangan dapat memberi pengurangan (a) karena kondisi tertentu objek yang ada hubungannya dengan subjek pajak dan/atau sebab tertentu lainnya, atau (b) karena objek terkena bencana alam atau sebab lain yang luar biasa; PMK 129/2023 (menggantikan PMK 82/PMK.03/2017) membatasi pengurangan karena kondisi tertentu paling tinggi 75%, dan karena bencana alam atau sebab lain yang luar biasa paling tinggi 100% dari PBB yang belum dilunasi; permohonan karena bencana diajukan pada tahun terjadinya bencana.",
         "Keberatan dipakai bila penetapan tidak benar (luas, NJOP, subjek); pengurangan dipakai bila penetapan benar tetapi wajib pajak membutuhkan keringanan, misalnya objek rusak karena bencana setelah 1 Januari.",
-        "Upaya hukum non keberatan PBB-P5L (PMK 118/2024 s.t.d.d. PMK 71/2026): (a) pembetulan SPPT, SKP PBB, atau STP PBB yang memuat kesalahan tulis (nama, alamat, NOP, tanggal jatuh tempo), kesalahan hitung (penjumlahan, pengurangan, perkalian, pembagian), dan/atau kekeliruan penerapan ketentuan, karena jabatan atau atas permohonan; (b) pengurangan PBB karena kondisi tertentu atau bencana (Pasal 19 UU PBB; tata caranya diatur tersendiri dalam PMK 129/2023); (c) pengurangan atau penghapusan denda administratif PBB yang dikenakan karena kekhilafan wajib pajak atau bukan karena kesalahannya (Pasal 20 UU PBB); (d) pengurangan atau pembatalan SPPT, SKP PBB, atau STP PBB yang tidak benar.",
+        "Upaya hukum non keberatan PBB-P5L (PMK 118/2024 s.t.d.d. PMK 71/2026): (a) pembetulan SPPT, SKP PBB, atau STP PBB yang memuat kesalahan tulis (nama, alamat, NOP, tanggal jatuh tempo), kesalahan hitung (penjumlahan, pengurangan, perkalian, pembagian), dan/atau kekeliruan penerapan ketentuan, karena jabatan atau atas permohonan; (b) pengurangan PBB karena kondisi tertentu atau bencana (Pasal 19 UU PBB; tata caranya diatur tersendiri dalam PMK 129/2023); (c) pengurangan sebagian atau seluruh denda administratif PBB karena hal-hal tertentu, misalnya denda yang dikenakan karena kekhilafan wajib pajak atau bukan karena kesalahannya (Pasal 20 UU PBB; Pasal 21 huruf a PMK 118/2024); (d) pengurangan atau pembatalan SPPT atau SKP PBB yang tidak benar, dan pembatalan STP PBB yang tidak benar (Pasal 21 huruf b dan c PMK 118/2024).",
         "Memilih jalur: salah tulis atau salah hitung yang tampak dari dokumen → pembetulan; sengketa materi (luas, NJOP, subjek) yang masih dalam 3 bulan → keberatan; tenggat keberatan lewat atau keberatan tidak dipertimbangkan → pengurangan atau pembatalan ketetapan yang tidak benar; penetapan benar tetapi objek terkena bencana atau kondisi tertentu → pengurangan PBB; denda 2% sebulan atau 25% yang timbul karena kekhilafan atau bukan kesalahan wajib pajak → pengurangan denda administratif. STP PBB bukan objek keberatan, sehingga STP yang tidak benar diselesaikan melalui pembetulan atau pembatalan.",
         "Pengurangan atau pembatalan SKP PBB yang tidak benar hanya dapat diajukan bila wajib pajak tidak mengajukan keberatan atau keberatannya tidak dipertimbangkan; banding tidak tersedia karena tidak ada keputusan keberatan. Pengurangan denda administratif PBB hanya diberikan atas denda yang belum dibayar, dan pokok PBB yang menjadi dasar denda dalam STP PBB harus sudah dilunasi; sejak PMK 71/2026 (berlaku 2 Oktober 2026) pembayaran atas STP PBB diperhitungkan lebih dulu terhadap pokok, dan kelebihannya baru terhadap denda. Keputusan atas permohonan pembetulan, pengurangan denda, serta pengurangan atau pembatalan ketetapan diterbitkan paling lama 6 bulan sejak permohonan diterima; jangka waktu keputusan pengurangan PBB Pasal 19 mengikuti PMK 129/2023."
       ],
@@ -268,7 +268,7 @@ UKP.register({
         { label: "Pengurangan", nilai: "atas permohonan: kondisi tertentu atau bencana", dasar: "Pasal 19 ayat (1) UU PBB", berlakuSejak: "1995-01-01" },
         { label: "Batas pengurangan PBB", nilai: "kondisi tertentu ≤ 75%; bencana alam atau sebab lain yang luar biasa ≤ 100% dari PBB yang belum dilunasi; permohonan karena bencana diajukan pada tahun terjadinya bencana; keputusan paling lama 4 bulan sejak permohonan diterima", dasar: "Pasal 4 ayat (3), Pasal 5 ayat (5), dan Pasal 13 ayat (4) PMK 129/2023", berlakuSejak: "2023-12-30" },
         { label: "Pengurangan denda administratif PBB", nilai: "kekhilafan atau bukan kesalahan WP; atas denda yang belum dibayar; pokok PBB dasar denda dalam STP PBB sudah lunas; pembayaran STP PBB diperhitungkan ke pokok lebih dulu (sejak PMK 71/2026)", dasar: "Pasal 20 UU PBB; PMK 118/2024 s.t.d.d. PMK 71/2026 Pasal 23 ayat (5) huruf a, ayat (6), dan ayat (7)", berlakuSejak: "2026-10-02" },
-        { label: "Upaya hukum non keberatan PBB", nilai: "Pembetulan · pengurangan PBB · pengurangan denda administratif · pengurangan/pembatalan SPPT, SKP, STP PBB yang tidak benar", dasar: "Pasal 19 dan 20 UU PBB; PMK 129/2023 (pengurangan PBB); PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" },
+        { label: "Upaya hukum non keberatan PBB", nilai: "Pembetulan · pengurangan PBB · pengurangan denda administratif · pengurangan/pembatalan SPPT dan SKP PBB yang tidak benar · pembatalan STP PBB yang tidak benar", dasar: "Pasal 19 dan 20 UU PBB; PMK 129/2023 (pengurangan PBB); PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" },
         { label: "Pembetulan SPPT/SKP/STP PBB", nilai: "Kesalahan tulis, hitung, atau kekeliruan penerapan ketentuan; jabatan atau permohonan", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01" },
         { label: "Pembatalan SKP PBB tidak benar", nilai: "Hanya bila tidak diajukan keberatan atau keberatan tidak dipertimbangkan", dasar: "PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" },
         { label: "Keputusan permohonan non keberatan (PMK 118/2024)", nilai: "≤ 6 bulan sejak permohonan diterima: pembetulan, pengurangan denda, pengurangan/pembatalan ketetapan; pengurangan PBB Pasal 19 mengikuti PMK 129/2023", dasar: "PMK 118/2024", berlakuSejak: "2025-01-01" }
@@ -278,8 +278,8 @@ UKP.register({
         { pasal: "Pasal 19 UU PBB", catatan: "pengurangan PBB" },
         { pasal: "Pasal 35 ayat (2) UU 14/2002", catatan: "jangka waktu banding" },
         { pasal: "PMK 118/2024; PMK 129/2023 (pemberian pengurangan PBB; menggantikan PMK 82/PMK.03/2017)", catatan: "tata cara keberatan (PMK 118/2024) dan pengurangan PBB (PMK 129/2023)" },
-        { pasal: "Pasal 20 UU PBB", catatan: "pengurangan atau penghapusan denda administratif karena kekhilafan atau bukan kesalahan wajib pajak" },
-        { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", catatan: "pembetulan, pengurangan denda, dan pengurangan/pembatalan SPPT, SKP PBB, STP PBB yang tidak benar" }
+        { pasal: "Pasal 20 UU PBB", catatan: "pengurangan denda administratif PBB (sebagian atau seluruh) karena hal-hal tertentu atas permintaan wajib pajak" },
+        { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026", catatan: "pembetulan, pengurangan denda, pengurangan/pembatalan SPPT dan SKP PBB yang tidak benar, serta pembatalan STP PBB yang tidak benar" }
       ],
       jebakan: [
         { teks: "Mengajukan keberatan untuk kerusakan objek setelah 1 Januari; jalurnya pengurangan, bukan keberatan", tagSebab: "salah-klasifikasi" },
@@ -292,7 +292,7 @@ UKP.register({
         langkah: [ ["SPPT diterima + 3 bulan", "23 Mei 2026"], ["Surat keberatan diterima", "4 Mei 2026 (tepat waktu)"], ["+ 12 bulan", "4 Mei 2027"], ["Lewat tanpa keputusan", "dianggap diterima"] ]
       },
       verifikasi: "◐",
-      peringatan: "Batas persentase pengurangan (75% kondisi tertentu, 100% bencana, dari PBB yang belum dilunasi) dan jangka pengajuan karena bencana (dalam tahun terjadinya bencana) diambil dari ringkasan sekunder dan pembahasan try out (soal B8-120) atas PMK 129/2023 (diundangkan 30 November 2023, berlaku 30 hari kemudian), yang menggantikan PMK 82/PMK.03/2017; nomor pasal PMK 129/2023 belum dicek ke teks primer. Jangka waktu keputusan pengurangan PBB juga belum dicek: ringkasan sekunder atas PMK 129/2023 menyebut paling lama 4 bulan sejak permohonan diterima (lewat dari itu dianggap dikabulkan seluruhnya); karena itu angka 6 bulan di topik ini dibatasi pada permohonan menurut PMK 118/2024 dan angka 4 bulan belum dimasukkan ke ringkasan. Kasus K-B8-06 (keputusan juga baru diterima 20 Januari 2027, lebih dari 4 bulan setelah permohonan 22 Juli 2026) dan soal B8-061 menghitung pengurangan atas PBB yang sudah dilunasi lalu mengembalikan kelebihannya; kesesuaiannya dengan dasar 'PBB yang belum dilunasi' belum dicek. Pola yang sama, tanpa pengaruh pada kunci, ada pada V-B8-09 masalah (4) (banjir Juli 2026, sedangkan SPPT 2026 menurut soal B8-105 sudah lunas 3 Juli 2026) dan ringkasan B8.7 butir keempat (pengurangan yang menurunkan pajak yang sudah dibayar). Ketentuan keberatan Pasal 15–16 UU PBB dan banding UU 14/2002 dipakai apa adanya; nomor ayat Pasal 15–16 sengaja tidak dirinci (kecuali objek keberatan dan bentuk tertulis) karena penomoran ayat setelah UU 12/1994 belum dicek ke teks UU. Upaya non keberatan (pembetulan, pengurangan denda, pembatalan ketetapan yang tidak benar) ditulis dari ringkasan sekunder PMK 118/2024 s.t.d.d. PMK 71/2026; nomor pasal PMK dan jangka waktu 6 bulan untuk jenis PBB perlu dicek ke teks primer."
+      peringatan: "Sudah dicocokkan ke naskah: Pasal 15, 16, 19, dan 20 UU PBB; Pasal 35 ayat (2) UU 14/2002; Pasal 4 ayat (3), Pasal 5 ayat (5), dan Pasal 13 ayat (4) PMK 129/2023; Pasal 6 ayat (1), Pasal 21, Pasal 29 ayat (1), Pasal 35 ayat (1), dan Pasal 41 ayat (1) PMK 118/2024. Kasus K-B8-06 dan soal B8-061 sudah mengikuti pengurangan dari PBB yang belum dilunasi. Yang belum pasti: contoh soal topik ini menghitung 3 bulan sejak 23 Februari sebagai 23 Mei 2026 (cara hitung 'N bulan sejak' menunggu keputusan), dan stem V-B8-09 (B8-104) masih perlu disusun ulang."
     },
     {
       id: "B8.7", slug: "pembayaran-penagihan-restitusi-pbb", judul: "Pembayaran, penagihan, dan restitusi PBB",
@@ -301,8 +301,8 @@ UKP.register({
         "PBB-P5L dibayar ke kas negara melalui bank, kantor pos, dan tempat lain yang ditunjuk Menteri Keuangan (Pasal 12 UU PBB); sejak Coretax (PMK 81/2024) pembayaran memakai kode billing dengan NPWP 16 digit dan NOP, dan NTPN pada bukti penerimaan negara menjadi tanda pelunasan.",
         "Tanda pelunasan PBB bukan bukti pemilikan hak atas tanah (penjelasan Pasal 4 ayat (1)).",
         "Dasar penagihan adalah SPPT, SKP, dan STP; utang yang tidak dilunasi sampai jatuh tempo ditagih dengan urutan UU PPSP: Surat Teguran (setelah lewat 7 hari dari jatuh tempo), Surat Paksa (setelah lewat 21 hari sejak Surat Teguran), penyitaan bila tidak dilunasi dalam 2 × 24 jam setelah Surat Paksa diberitahukan, lalu lelang.",
-        "Kelebihan pembayaran PBB (pembayaran ganda, keputusan keberatan/banding/pengurangan yang menurunkan pajak yang sudah dibayar) dikembalikan atas permohonan setelah diperhitungkan lebih dahulu dengan utang pajak yang masih ada.",
-        "Salah NOP, tahun pajak, atau jenis pajak pada pembayaran diselesaikan dengan pemindahbukuan, bukan keberatan atau pengurangan.",
+        "Kelebihan pembayaran PBB dikembalikan setelah diperhitungkan lebih dahulu dengan utang pajak yang masih ada: pembayaran ganda atau pembayaran yang lebih besar daripada pajak terutang diminta kembali dengan permohonan (Pasal 123 dan Pasal 124 ayat (1) PMK 81/2024), sedangkan kelebihan karena keputusan keberatan, putusan banding, keputusan pembetulan, keputusan pengurangan atau pembatalan ketetapan, keputusan pengurangan denda, atau keputusan pemberian pengurangan PBB dikembalikan dengan Surat Keputusan Pengembalian Kelebihan Pembayaran Pajak paling lama 1 bulan sejak keputusan diterbitkan atau putusan banding diterima DJP (Pasal 139 ayat (2) dan Pasal 145 ayat (3) PMK 81/2024). Pengurangan PBB Pasal 19 hanya diberikan dari PBB yang belum dilunasi (Pasal 4 ayat (3) PMK 129/2023), sehingga tidak dapat dipakai untuk meminta kembali PBB yang sudah lunas sebelum permohonan diajukan.",
+        "Pembayaran yang lebih besar daripada pajak terutang, misalnya karena salah NOP, tahun pajak, atau jenis pajak, diselesaikan dengan permohonan pemindahbukuan (Pasal 109 ayat (1) huruf d dan ayat (2) PMK 81/2024), bukan keberatan atau pengurangan. Pemindahbukuan itu tidak dapat diajukan bila pembayarannya sudah diperhitungkan dengan pajak terutang dalam SPPT, SKP PBB, atau STP PBB (Pasal 109 ayat (3) huruf f); untuk salah NOP, syaratnya SPPT NOP yang tercantum dalam pembayaran itu sudah lunas sehingga pembayaran tersebut merupakan kelebihan.",
         "Dalam PPh Badan, PBB adalah pajak selain PPh yang dapat dibiayakan (Pasal 6 ayat (1) huruf a UU PPh), sedangkan denda STP/SKP PBB tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k)."
       ],
       poinKunci: [
@@ -329,7 +329,7 @@ UKP.register({
         langkah: [ ["PBB-P5L (pajak selain PPh)", "dapat dibiayakan Rp312.000.000"], ["Denda STP (sanksi administrasi)", "tidak dapat dibiayakan"], ["Koreksi fiskal positif", "Rp6.240.000"] ]
       },
       verifikasi: "◐",
-      peringatan: "Tata cara pengembalian kelebihan pembayaran PBB (jenis keputusan, jangka waktu) dan layanan pemindahbukuan di Coretax (PMK 81/2024) belum dicek ke teks primer; soal restitusi hanya menguji prinsip perhitungan dengan utang pajak dan pemindahbukuan. Butir keempat ringkasan (pengurangan yang menurunkan pajak yang sudah dibayar), kasus K-B8-06, dan soal B8-061 memperlakukan pengurangan PBB Pasal 19 atas SPPT yang sudah lunas sebagai kelebihan pembayaran; menurut ringkasan sekunder PMK 129/2023 pengurangan diberikan dari PBB yang belum dilunasi (dan SE-16/PJ/2025 menurut basis data sekunder menutup permohonan bila PBB telah dilunasi melalui kompensasi), sehingga alur itu belum pasti sampai naskah dicek (lihat peringatan topik B8.6)."
+      peringatan: "Sudah dicocokkan ke naskah: pengembalian kelebihan pembayaran dan imbalan bunga PBB (Pasal 123 sampai 125, 139, dan 145 PMK 81/2024), pemindahbukuan (Pasal 109 PMK 81/2024), pengurangan PBB hanya dari PBB yang belum dilunasi (Pasal 4 ayat (3) PMK 129/2023), serta jangka Surat Teguran, Surat Paksa, dan penyitaan (Pasal 6 PMK 61/2023). Yang belum ada di naskah: alur pembuatan kode billing PBB-P5L di Coretax dan isian NOP di dalamnya (lihat soal B8-064)."
     },
     {
       id: "B8.8", slug: "bagi-hasil-pbb", judul: "Bagi hasil penerimaan PBB",
@@ -542,19 +542,36 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-011", topik: "B8.2", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"],
-      stem: "PT Kopi Dataran Tinggi memegang HGU kebun kopi di Kabupaten Toraja Utara dan tidak memiliki objek PBB-P5L lain. Data objek per 1 Januari 2026: areal produktif 850 ha dengan nilai tanah Rp4.000/m² dan standar investasi tanaman (SIT) Rp6.500/m²; areal emplasemen 25 ha dengan nilai Rp9.000/m², yang di dalamnya terdapat masjid umum nirlaba 0,4 ha dan pemakaman umum 1,6 ha; bangunan (pabrik pengolahan, gudang, rumah karyawan; tidak termasuk masjid) NJOP Rp7.500.000.000. PBB-P5L terutang Tahun Pajak 2026 adalah ...",
+      id: "B8-011",
+      topik: "B8.2",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      stem: "PT Kopi Dataran Tinggi memegang HGU kebun kopi di Kabupaten Toraja Utara dan tidak memiliki objek PBB-P5L lain. Data objek per 1 Januari 2026: areal produktif 850 ha dengan nilai tanah Rp4.000/m² dan Biaya Investasi Tanaman (SIT) Rp6.500/m²; areal emplasemen 25 ha dengan nilai Rp9.000/m², yang di dalamnya terdapat masjid umum nirlaba 0,4 ha dan pemakaman umum 1,6 ha; bangunan (pabrik pengolahan, gudang, rumah karyawan; tidak termasuk masjid) NJOP Rp7.500.000.000. PBB-P5L terutang Tahun Pajak 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp197.976.000", B: "Rp87.116.000", C: "Rp494.040.000", D: "Rp197.616.000" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
         inti: "Luas masjid umum nirlaba dan pemakaman (2 ha) dikeluarkan dari emplasemen sebelum dinilai; areal produktif memakai nilai tanah ditambah SIT; lalu NJOP objek dikurangi NJOPTKP, dikali NJKP 40% dan tarif 0,5%.",
-        jejakHitung: [ ["Areal produktif 8.500.000 m² × (4.000 + 6.500)", "Rp89.250.000.000"], ["Emplasemen kena pajak (25 − 0,4 − 1,6 = 23 ha) 230.000 m² × 9.000", "Rp2.070.000.000"], ["NJOP bumi", "Rp91.320.000.000"], ["+ NJOP bangunan", "Rp98.820.000.000"], ["− NJOPTKP Rp12.000.000", "Rp98.808.000.000"], ["NJKP 40%", "Rp39.523.200.000"], ["PBB 0,5%", "Rp197.616.000"] ],
-        mengapaSalah: { A: "Masjid dan pemakaman tidak dikeluarkan dari emplasemen (25 ha × 10.000 × 9.000)", B: "SIT areal produktif tidak ditambahkan", C: "Tarif 0,5% dikalikan langsung ke NJOP neto tanpa NJKP 40% (PP 25/2002)" },
+        jejakHitung: [
+          ["Areal produktif 8.500.000 m² × (4.000 + 6.500)", "Rp89.250.000.000"],
+          ["Emplasemen kena pajak (25 − 0,4 − 1,6 = 23 ha) 230.000 m² × 9.000", "Rp2.070.000.000"],
+          ["NJOP bumi", "Rp91.320.000.000"],
+          ["+ NJOP bangunan", "Rp98.820.000.000"],
+          ["− NJOPTKP Rp12.000.000", "Rp98.808.000.000"],
+          ["NJKP 40%", "Rp39.523.200.000"],
+          ["PBB 0,5%", "Rp197.616.000"]
+        ],
+        mengapaSalah: {
+          A: "Masjid dan pemakaman tidak dikeluarkan dari emplasemen (25 ha × 10.000 × 9.000)",
+          B: "SIT areal produktif tidak ditambahkan",
+          C: "Tarif 0,5% dikalikan langsung ke NJOP neto tanpa NJKP 40% (PP 25/2002)"
+        },
         jebakan: "Selisih jawaban benar dan pengecoh yang lupa mengeluarkan masjid serta pemakaman hanya Rp360.000; keluarkan dulu luas objek yang dikecualikan sebelum mengalikan nilai per m²."
       },
-      dasarHukum: [ { pasal: "Pasal 3 ayat (1) huruf a dan b UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 5–7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002" }, { pasal: "PMK 23/PMK.03/2014" } ],
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a dan b UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 5–7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002" }, { pasal: "PMK 23/PMK.03/2014" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -650,7 +667,7 @@ UKP.register({
       jenis: "hitung",
       kesulitan: 3,
       laporanUjian: ["B-2026-10", "C-2026-10"],
-      kutipan: "Pasal 6 ayat (3) UU PBB: Dasar penghitungan pajak adalah Nilai Jual Kena Pajak yang ditetapkan serendah-rendahnya 20% (dua puluh persen) dan setinggi-tingginya 100% (seratus persen) dari nilai jual obyek pajak. PP 25/2002 (parafrase): NJKP ditetapkan 40% dari NJOP untuk objek perkebunan, kehutanan, dan pertambangan; untuk objek lainnya 40% bila NJOP sama dengan atau lebih dari Rp1.000.000.000, dan 20% bila NJOP kurang dari Rp1.000.000.000.",
+      kutipan: "Pasal 6 ayat (3) UU PBB: Dasar penghitungan pajak adalah Nilai Jual Kena Pajak yang ditetapkan serendah-rendahnya 20% (dua puluh persen) dan setinggi-tingginya 100% (seratus persen) dari nilai jual obyek pajak. PP 25/2002 (parafrase): NJKP ditetapkan 40% dari NJOP untuk objek perkebunan, kehutanan, dan pertambangan; untuk objek lainnya 40% bila NJOP sama dengan atau lebih dari Rp1.000.000.000, dan 20% bila NJOP kurang dari Rp1.000.000.000. Pasal 5 UU PBB: Tarif pajak yang dikenakan atas obyek pajak adalah sebesar 0,5% (lima persepuluh persen). Pasal 2 ayat (2) dan ayat (3) PMK 23/PMK.03/2014: Dalam penetapan besarnya PBB terutang, setiap Wajib Pajak diberikan NJOPTKP; besarnya NJOPTKP ditetapkan sebesar Rp12.000.000,00 (dua belas juta rupiah).",
       stem: "PT Bahari Kerapu Sejahtera menjalankan usaha pembudidayaan ikan kerapu dengan keramba di perairan laut Teluk Saleh, Kabupaten Sumbawa, berdasarkan Surat Izin Usaha Perikanan, dan areal perairan budidaya itu diadministrasikan sebagai objek PBB-P5L sektor lainnya. Menurut SPPT 2026, NJOP bumi (areal perairan budidaya) Rp760.000.000, tanpa NJOP bangunan. Perusahaan tidak memiliki objek PBB-P5L lain. Berdasarkan kutipan tersebut, PBB-P5L terutang 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp1.496.000", B: "Rp760.000", C: "Rp3.740.000", D: "Rp748.000" },
@@ -672,7 +689,7 @@ UKP.register({
         },
         jebakan: "Huruf 'L' dalam P5L tidak otomatis NJKP 40%; cek dulu NJOP objek terhadap Rp1 miliar."
       },
-      dasarHukum: [{ pasal: "Pasal 6 ayat (3) dan Pasal 7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 huruf b PP 25/2002", berlakuSejak: "2002-01-01" }, { pasal: "Pasal 2 ayat (3) PMK 23/PMK.03/2014", berlakuSejak: "2014-01-01" }, { pasal: "Pasal 8 ayat (1) huruf b dan ayat (2) serta Pasal 9 ayat (2) PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 5, Pasal 6 ayat (3), dan Pasal 7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 huruf b PP 25/2002", berlakuSejak: "2002-01-01" }, { pasal: "Pasal 2 ayat (2) dan ayat (3) PMK 23/PMK.03/2014", berlakuSejak: "2014-01-01" }, { pasal: "Pasal 8 ayat (1) huruf b dan ayat (2) serta Pasal 9 ayat (2) PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -1637,7 +1654,7 @@ UKP.register({
       kesulitan: 3,
       laporanUjian: ["B-2026-10", "C-2026-10"],
       kasusId: "V-B8-05",
-      stem: "Lanjutan data V-B8-05: Kedua SPPT PT Sawit Mukomuko Raya (Kebun Air Dikit Rp684.000.000 dan Kebun Teramang Rp318.500.000) dilunasi penuh pada 25 September 2026. Keputusan keberatan mengabulkan seluruhnya pengeluaran 150 ha areal produktif Kebun Air Dikit yang dalam SPPT dinilai dengan nilai tanah Rp4.000/m² dan SIT Rp5.400/m²; NJOPTKP tetap melekat pada Kebun Air Dikit. Untuk Kebun Teramang, perusahaan baru mengajukan permohonan pengurangan 40% karena banjir pada Oktober 2026, setelah SPPT-nya dilunasi. Perusahaan tidak mempunyai utang pajak lain. Jumlah kelebihan pembayaran PBB yang dapat dikembalikan adalah ...",
+      stem: "Lanjutan data V-B8-05: Kedua SPPT PT Sawit Mukomuko Raya (Kebun Air Dikit Rp684.000.000 dan Kebun Teramang Rp318.500.000) dilunasi penuh pada 25 September 2026. Keputusan keberatan mengabulkan seluruhnya pengeluaran 150 ha areal produktif Kebun Air Dikit yang dalam SPPT dinilai dengan nilai tanah Rp4.000/m² dan SIT Rp5.400/m²; NJOPTKP tetap melekat pada Kebun Air Dikit. Untuk Kebun Teramang, perusahaan baru pada Oktober 2026, setelah SPPT-nya dilunasi, mengajukan permohonan pengurangan 40% karena banjir 18 Juli 2026. Perusahaan tidak mempunyai utang pajak lain. Jumlah kelebihan pembayaran PBB yang dapat dikembalikan adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp155.600.000", B: "Rp28.200.000", C: "Rp70.500.000", D: "Rp12.000.000" },
       kunci: "B",
@@ -1829,19 +1846,36 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-069", topik: "B8.3", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"], kasusId: "V-B8-06",
-      stem: "Lanjutan data V-B8-06: NJOP bumi kebun PT Indragiri Sawit Makmur Tahun Pajak 2026, setelah mengeluarkan pemakaman umum dan masjid umum nirlaba, adalah Rp292.662.500.000. Daftar aset per 1 Januari 2026 memuat: pabrik kelapa sawit Rp36.800.000.000; perumahan karyawan dan kantor kebun Rp9.400.000.000; jalan kebun dan jembatan permanen Rp5.200.000.000; bangunan masjid umum nirlaba Rp900.000.000; kantor pemasaran di Kota Pekanbaru (di luar HGU) dengan NJOP Rp6.000.000.000; serta truk dan alat berat bernilai buku Rp42.000.000.000. Perusahaan tidak memiliki objek PBB-P5L lain. PBB-P5L terutang Tahun Pajak 2026 adalah ...",
+      id: "B8-069",
+      topik: "B8.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      kasusId: "V-B8-06",
+      stem: "Lanjutan data V-B8-06: NJOP bumi kebun PT Indragiri Sawit Makmur Tahun Pajak 2026, setelah mengeluarkan pemakaman umum dan masjid umum nirlaba, adalah Rp292.662.500.000. Daftar aset per 1 Januari 2026 memuat: pabrik kelapa sawit di dalam areal HGU yang dijalankan dengan izin usaha perkebunan yang sama dengan kebunnya (arealnya tidak diberi Izin Usaha Perkebunan untuk Pengolahan tersendiri) Rp36.800.000.000; perumahan karyawan dan kantor kebun Rp9.400.000.000; jalan kebun dan jembatan permanen Rp5.200.000.000; bangunan masjid umum nirlaba Rp900.000.000; kantor pemasaran di Kota Pekanbaru (di luar HGU) dengan NJOP Rp6.000.000.000; serta truk dan alat berat bernilai buku Rp42.000.000.000. Perusahaan tidak memiliki objek PBB-P5L lain. PBB-P5L terutang Tahun Pajak 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp700.101.000", B: "Rp688.125.000", C: "Rp1.720.252.500", D: "Rp688.101.000" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
         inti: "Bangunan yang masuk hanya pabrik, perumahan dan kantor kebun, serta jalan dan jembatan permanen di dalam HGU. Masjid umum nirlaba dikecualikan, kantor di Kota Pekanbaru adalah objek PBB-P2, dan truk serta alat berat adalah benda bergerak. NJOP objek dikurangi NJOPTKP sekali, lalu dikali NJKP 40% dan tarif 0,5%.",
-        jejakHitung: [ ["NJOP bumi", "Rp292.662.500.000"], ["Bangunan 36.800.000.000 + 9.400.000.000 + 5.200.000.000", "Rp51.400.000.000"], ["NJOP objek", "Rp344.062.500.000"], ["− NJOPTKP Rp12.000.000", "Rp344.050.500.000"], ["NJKP 40%", "Rp137.620.200.000"], ["PBB 0,5%", "Rp688.101.000"] ],
-        mengapaSalah: { A: "Kantor pemasaran di luar HGU ikut dihitung, padahal objek PBB-P2 Kota Pekanbaru (Pasal 38 ayat (1) UU 1/2022)", B: "NJOPTKP Rp12.000.000 tidak dikurangkan", C: "Tarif 0,5% dikalikan tanpa NJKP 40%" },
+        jejakHitung: [
+          ["NJOP bumi", "Rp292.662.500.000"],
+          ["Bangunan 36.800.000.000 + 9.400.000.000 + 5.200.000.000", "Rp51.400.000.000"],
+          ["NJOP objek", "Rp344.062.500.000"],
+          ["− NJOPTKP Rp12.000.000", "Rp344.050.500.000"],
+          ["NJKP 40%", "Rp137.620.200.000"],
+          ["PBB 0,5%", "Rp688.101.000"]
+        ],
+        mengapaSalah: {
+          A: "Kantor pemasaran di luar HGU ikut dihitung, padahal objek PBB-P2 Kota Pekanbaru (Pasal 38 ayat (1) UU 1/2022)",
+          B: "NJOPTKP Rp12.000.000 tidak dikurangkan",
+          C: "Tarif 0,5% dikalikan tanpa NJKP 40%"
+        },
         jebakan: "Opsi A dan B hanya berselisih Rp12.000.000 dan Rp24.000 dari kunci; tetapkan batas kawasan usaha dan NJOPTKP sebelum mengalikan."
       },
-      dasarHukum: [ { pasal: "Pasal 5–7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002" }, { pasal: "PMK 23/PMK.03/2014" }, { pasal: "Pasal 38 ayat (1) UU 1/2022", berlakuSejak: "2022-01-05" } ],
+      dasarHukum: [{ pasal: "Pasal 5–7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002" }, { pasal: "PMK 23/PMK.03/2014" }, { pasal: "Pasal 38 ayat (1) UU 1/2022", berlakuSejak: "2022-01-05" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -2703,7 +2737,7 @@ UKP.register({
       kasusId: "V-B8-09",
       stem: "Lanjutan V-B8-09: SPPT PBB-P5L 2026 PT Sawit Tanjung Harapan sebesar Rp640.000.000 diterima pada 2 Januari 2026. Pada hari jatuh tempo pembayaran gagal karena gangguan sistem bank persepsi (dibuktikan surat keterangan bank), dan PBB baru berhasil dilunasi penuh keesokan harinya. Pada 5 Oktober 2026 perusahaan menerima STP PBB berisi denda keterlambatan dan belum membayarnya. Asumsikan bagian dari bulan dihitung satu bulan penuh. Jumlah denda dalam STP dan langkah yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Rp12.800.000; mengajukan keberatan atas STP PBB paling lambat 3 bulan sejak STP diterima", B: "Rp12.800.000; mengajukan permohonan pengurangan atau penghapusan denda administratif PBB karena denda timbul bukan karena kesalahan wajib pajak, sebelum denda itu dibayar", C: "Rp153.600.000; mengajukan pengurangan PBB Pasal 19 karena keadaan kahar", D: "Rp160.000.000; mengajukan pembetulan STP PBB karena kesalahan hitung" },
+      opsi: { A: "Rp12.800.000; mengajukan keberatan atas STP PBB paling lambat 3 bulan sejak STP diterima", B: "Rp12.800.000; mengajukan permohonan pengurangan denda administratif PBB (sebagian atau seluruhnya) karena denda timbul bukan karena kesalahan wajib pajak, sebelum denda itu dibayar", C: "Rp153.600.000; mengajukan pengurangan PBB Pasal 19 karena keadaan kahar", D: "Rp160.000.000; mengajukan pembetulan STP PBB karena kesalahan hitung" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
@@ -2750,29 +2784,38 @@ UKP.register({
       anggaranDetik: 150, verifikasi: "✅"
     },
     {
-      id: "B8-107", topik: "B8.6", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"],
-      stem: "PT Kebun Lestari Mandiri menyampaikan SPOP 2026 dengan lampiran areal produktif 2.150 ha. Dalam SPPT PBB-P5L 2026 yang diterima pada 16 Maret 2026, luas areal produktif terekam 2.510 ha (angka tertukar), sedangkan data lain sesuai SPOP. Dasar penghitungan: NJOP bumi areal produktif Rp45.000.000 per ha (sudah termasuk standar investasi tanaman), NJOP bumi areal lain dan bangunan Rp7.050.000.000, NJOPTKP Rp12.000.000, NJKP 40%, tarif 0,5%. SPPT mencantumkan PBB Rp239.976.000. Jalur yang paling tepat dan jumlah PBB 2026 setelah diperbaiki adalah ...",
+      id: "B8-107",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      stem: "PT Kebun Lestari Mandiri menyampaikan SPOP 2026 dengan lampiran areal produktif 2.150 ha. Dalam SPPT PBB-P5L 2026 yang diterima pada 16 Maret 2026, luas areal produktif terekam 2.510 ha (angka tertukar), sedangkan data lain sesuai SPOP. Dasar penghitungan: NJOP bumi areal produktif Rp45.000.000 per ha (sudah termasuk Biaya Investasi Tanaman), NJOP bumi areal lain dan bangunan Rp7.050.000.000, NJOPTKP Rp12.000.000, NJKP 40%, tarif 0,5%. SPPT mencantumkan PBB Rp239.976.000. Bagian pajak menemukan kesalahan itu pada 20 April 2026, dan perusahaan belum mengajukan permohonan apa pun atas SPPT tersebut. Jalur yang sesuai ketentuan dan jumlah PBB 2026 menurut penghitungan perusahaan adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Pembetulan SPPT karena kesalahan tulis; PBB menjadi Rp207.576.000",
-        B: "Keberatan, dan selama keberatan diproses SPPT tidak perlu dibayar; PBB menjadi Rp207.576.000",
-        C: "Pembetulan SPPT karena kesalahan tulis; PBB menjadi Rp207.600.000",
-        D: "Pengurangan PBB Pasal 19 sebesar selisih Rp32.400.000"
-      },
-      kunci: "A",
-      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "salah-klasifikasi" },
+      opsi: { A: "Pembetulan SPPT karena kesalahan tulis; PBB menjadi Rp207.576.000", B: "Keberatan atas SPPT, dan selama keberatan diproses SPPT tidak perlu dibayar; PBB menurut perusahaan Rp207.576.000", C: "Keberatan atas SPPT dalam 3 bulan sejak SPPT diterima, dengan PBB menurut perusahaan Rp207.576.000; PBB dalam SPPT tetap dibayar pada jatuh tempo", D: "Pengurangan PBB Pasal 19 UU PBB sebesar selisih Rp32.400.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Luas yang terekam berbeda dari SPOP karena angka tertukar adalah kesalahan tulis yang diperbaiki dengan pembetulan SPPT. Dengan luas 2.150 ha, PBB = 0,5% × 40% × (NJOP − NJOPTKP) = Rp207.576.000.",
-        jejakHitung: [["NJOP areal produktif: 2.150 ha × Rp45.000.000", "Rp96.750.000.000"], ["+ NJOP areal lain dan bangunan", "Rp7.050.000.000"], ["NJOP − NJOPTKP Rp12.000.000", "Rp103.788.000.000"], ["NJKP 40%", "Rp41.515.200.000"], ["PBB 0,5% × NJKP", "Rp207.576.000"]],
+        inti: "Luas areal yang salah adalah materi SPPT yang menentukan besarnya PBB terutang, jadi jalurnya keberatan atas SPPT (Pasal 15 ayat (1) UU PBB; Pasal 9 ayat (1) huruf f dan ayat (2) huruf c PMK 118/2024), diajukan dalam 3 bulan sejak SPPT diterima (16 Maret 2026; 20 April 2026 jelas masih di dalamnya) dengan menyebut PBB menurut penghitungan perusahaan. Dengan luas 2.150 ha, PBB = 0,5% × 40% × (NJOP − NJOPTKP) = Rp207.576.000. Keberatan tidak menunda kewajiban membayar (Pasal 15 ayat (6) UU PBB; Pasal 10 ayat (4) PMK 118/2024), jadi SPPT tetap dilunasi pada jatuh tempo. Bila perusahaan tidak mengajukan keberatan, PMK 118/2024 juga menyediakan permohonan pengurangan SPPT yang tidak benar (Pasal 21 huruf b dan Pasal 32 ayat (2) huruf a); jalur itu tidak ada di opsi.",
+        jejakHitung: [
+          ["PBB menurut SPPT: (2.510 ha × Rp45.000.000 + Rp7.050.000.000 − Rp12.000.000) × 40% × 0,5%", "Rp239.976.000"],
+          ["NJOP areal produktif yang benar: 2.150 ha × Rp45.000.000", "Rp96.750.000.000"],
+          ["+ NJOP areal lain dan bangunan", "Rp7.050.000.000"],
+          ["NJOP − NJOPTKP Rp12.000.000", "Rp103.788.000.000"],
+          ["NJKP 40%", "Rp41.515.200.000"],
+          ["Selisih dengan SPPT: 360 ha × Rp45.000.000 × 40% × 0,5% (NJOPTKP saling hapus)", "Rp32.400.000"],
+          ["PBB menurut penghitungan perusahaan dalam surat keberatan: 0,5% × NJKP", "Rp207.576.000"]
+        ],
         mengapaSalah: {
-          B: "Pengajuan keberatan tidak menunda kewajiban membayar SPPT pada jatuh temponya; lagi pula kesalahan rekam data cukup dibetulkan.",
-          C: "Lupa mengurangkan NJOPTKP Rp12.000.000 sehingga PBB menjadi Rp207.600.000.",
-          D: "Pengurangan Pasal 19 adalah keringanan atas penetapan yang benar, bukan koreksi luas yang salah rekam; selisih Rp32.400.000 juga mengabaikan NJOPTKP."
+          A: "Angkanya benar, tetapi jalurnya tidak: menurut Pasal 2 ayat (2) PMK 118/2024 kesalahan tulis hanya meliputi kesalahan penulisan identitas dan sejenisnya yang tidak memengaruhi jumlah pajak terutang. Luas areal yang salah mengubah PBB, dan bukan pula kesalahan hitung (ayat (3)) atau kekeliruan penerapan ketentuan yang didaftar di ayat (4).",
+          B: "Jalurnya benar, tetapi pengajuan keberatan tidak menunda kewajiban membayar pajak (Pasal 15 ayat (6) UU PBB; Pasal 10 ayat (4) PMK 118/2024). SPPT yang tidak dibayar pada jatuh tempo dikenai denda.",
+          D: "Angka Rp32.400.000 memang selisih PBB (360 ha × Rp45.000.000 × 40% × 0,5%; NJOPTKP saling hapus), tetapi pengurangan Pasal 19 UU PBB adalah keringanan dari Menteri Keuangan karena kondisi tertentu objek yang berhubungan dengan subjek, sebab tertentu lainnya, atau bencana alam dan sebab luar biasa, bukan jalur mengoreksi luas yang salah."
         },
-        jebakan: "Memakai keberatan untuk kesalahan rekam data dan lupa NJOPTKP saat menghitung ulang."
+        jebakan: "Menyebut salah luas sebagai kesalahan tulis yang cukup dibetulkan, padahal kesalahan tulis dibatasi pada yang tidak memengaruhi jumlah pajak; atau mengira keberatan menunda pembayaran SPPT."
       },
-      dasarHukum: [{ pasal: "Pasal 6 dan 7 UU PBB s.t.d.d. UU 12/1994", berlakuSejak: "1995-01-01" }, { pasal: "PMK 118/2024 (pembetulan)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 6 dan 7 UU PBB s.t.d.d. UU 12/1994", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 15 ayat (1), (3), dan (6) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 19 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 2 ayat (2) sampai (4), Pasal 9, Pasal 10 ayat (2) dan (4), Pasal 21 huruf b PMK 118/2024", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "B8-108",
@@ -2942,7 +2985,7 @@ UKP.register({
       jenis: "kasus",
       kesulitan: 3,
       laporanUjian: ["B-2026-10", "C-2026-10"],
-      stem: "PT Kutai Pesisir Energi adalah kontraktor kontrak kerja sama migas tahap eksploitasi yang wilayah kerjanya meliputi daratan di Kabupaten Kutai Kartanegara dan perairan lepas pantai (offshore) di Selat Makassar; DJP mengadministrasikannya sebagai satu objek PBB-P5L sektor migas dan perusahaan tidak memiliki objek lain. Data penilaian per 1 Januari 2026: permukaan bumi onshore areal produktif (tapak sumur, stasiun pengumpul) 140 ha dengan nilai Rp30.000/m²; permukaan bumi onshore areal lainnya 22.000 ha dengan nilai Rp900/m²; areal perairan offshore 35.000 ha dengan nilai Rp60/m²; NJOP tubuh bumi hasil penilaian DJP Rp1.420.000.000.000; bangunan onshore (stasiun pengumpul, tangki timbun berpondasi, pipa darat) Rp380.000.000.000; bangunan offshore (anjungan yang dipancang ke dasar laut dan pipa bawah laut) Rp710.000.000.000. Peristiwa lain: (1) areal onshore 5.000 ha (nilai Rp900/m²) telah dikembalikan kepada negara dan dikeluarkan dari wilayah kerja efektif 1 November 2025, tetapi masih tercantum dalam SPPT 2025, dan tidak termasuk dalam angka 22.000 ha di atas; (2) 8.000 ha dari areal perairan offshore 35.000 ha dikembalikan kepada negara efektif 1 Maret 2026; (3) anjungan baru senilai Rp240.000.000.000 selesai dipancang dan mulai berproduksi pada 20 Februari 2026. Manajer pajak berpendapat areal yang dikembalikan pada Maret 2026 tidak perlu dihitung karena sudah tidak dikuasai ketika SPPT 2026 terbit. PBB-P5L terutang Tahun Pajak 2026 adalah ...",
+      stem: "PT Kutai Pesisir Energi adalah kontraktor kontrak kerja sama migas tahap eksploitasi yang wilayah kerjanya meliputi daratan di Kabupaten Kutai Kartanegara dan perairan lepas pantai (offshore) di Selat Makassar; DJP mengadministrasikannya sebagai satu objek PBB-P5L sektor migas dan perusahaan tidak memiliki objek lain. Data penilaian per 1 Januari 2026: permukaan bumi onshore areal produktif (tapak sumur, stasiun pengumpul) 140 ha dengan nilai Rp30.000/m²; permukaan bumi onshore areal lainnya 22.000 ha yang lahannya sudah dibebaskan dan dimanfaatkan perusahaan untuk kegiatan usaha migas (jalan akses, areal penyangga, dan lokasi cadangan pengeboran) dengan nilai Rp900/m²; areal perairan offshore 35.000 ha dengan nilai Rp60/m²; NJOP tubuh bumi hasil penilaian DJP Rp1.420.000.000.000; bangunan onshore (stasiun pengumpul, tangki timbun berpondasi, pipa darat) Rp380.000.000.000; bangunan offshore (anjungan yang dipancang ke dasar laut dan pipa bawah laut) Rp710.000.000.000. Peristiwa lain: (1) areal onshore 5.000 ha (nilai Rp900/m²) telah dikembalikan kepada negara dan dikeluarkan dari wilayah kerja efektif 1 November 2025, tetapi masih tercantum dalam SPPT 2025, dan tidak termasuk dalam angka 22.000 ha di atas; (2) 8.000 ha dari areal perairan offshore 35.000 ha dikembalikan kepada negara efektif 1 Maret 2026; (3) anjungan baru senilai Rp240.000.000.000 selesai dipancang dan mulai berproduksi pada 20 Februari 2026. Manajer pajak berpendapat areal yang dikembalikan pada Maret 2026 tidak perlu dihitung karena sudah tidak dikuasai ketika SPPT 2026 terbit. PBB-P5L terutang Tahun Pajak 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp5.532.376.000", B: "Rp6.021.976.000", C: "Rp5.631.976.000", D: "Rp5.541.976.000" },
       kunci: "D",
@@ -3001,9 +3044,14 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-115", topik: "B8.2", tingkat: ["B", "C"], jenis: "kasus", kesulitan: 3, laporanUjian: ["B-2026-10", "C-2026-10"],
+      id: "B8-115",
+      topik: "B8.2",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10", "C-2026-10"],
       kutipan: "Pasal 3 ayat (1) huruf a UU PBB (parafrase): Objek pajak yang tidak dikenakan PBB adalah objek yang digunakan semata-mata untuk melayani kepentingan umum di bidang ibadah, sosial, kesehatan, pendidikan, dan kebudayaan nasional, yang tidak dimaksudkan untuk memperoleh keuntungan.",
-      stem: "PT Nikel Teluk Weda Perkasa (IUP operasi produksi nikel; satu-satunya objek PBB-P5L wajib pajak ini) memiliki data penilaian per 1 Januari 2026: areal produktif (pit, stockpile, jalan tambang) 120 ha dengan nilai Rp25.000/m²; areal emplasemen 40 ha dengan nilai Rp60.000/m²; areal lainnya dalam wilayah IUP 15.000 ha dengan nilai Rp800/m²; NJOP tubuh bumi Rp640.000.000.000; dan NJOP seluruh bangunan Rp286.000.000.000. Di dalam emplasemen terdapat: (1) masjid yang terbuka untuk umum dan dikelola nirlaba (lahan 0,5 ha, bangunan Rp3.000.000.000); (2) sekolah dasar umum yang dikelola yayasan pendidikan nirlaba secara cuma-cuma di atas lahan milik perusahaan (lahan 0,3 ha, bangunan Rp1.200.000.000); (3) klinik perusahaan yang melayani karyawan dan keluarganya secara gratis tetapi tertutup bagi masyarakat (lahan 1,2 ha, bangunan Rp6.800.000.000). Berdasarkan kutipan tersebut, PBB-P5L terutang Tahun Pajak 2026 adalah ...",
+      stem: "PT Nikel Teluk Weda Perkasa (IUP operasi produksi nikel; satu-satunya objek PBB-P5L wajib pajak ini) memiliki data penilaian per 1 Januari 2026: areal produktif (pit, stockpile, jalan tambang) 120 ha dengan nilai Rp25.000/m²; areal emplasemen 40 ha dengan nilai Rp60.000/m²; areal lainnya dalam wilayah IUP 15.000 ha yang lahannya sudah dibebaskan dan dimanfaatkan perusahaan untuk kegiatan penambangan (jalan angkut, areal penyangga, dan lahan cadangan) dengan nilai Rp800/m²; NJOP tubuh bumi Rp640.000.000.000; dan NJOP seluruh bangunan Rp286.000.000.000. Di dalam emplasemen terdapat: (1) masjid yang terbuka untuk umum dan dikelola nirlaba (lahan 0,5 ha, bangunan Rp3.000.000.000); (2) sekolah dasar umum yang dikelola yayasan pendidikan nirlaba secara cuma-cuma di atas lahan milik perusahaan (lahan 0,3 ha, bangunan Rp1.200.000.000); (3) klinik perusahaan yang melayani karyawan dan keluarganya secara gratis tetapi tertutup bagi masyarakat (lahan 1,2 ha, bangunan Rp6.800.000.000). Berdasarkan kutipan tersebut, PBB-P5L terutang Tahun Pajak 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp2.175.576.000", B: "Rp2.193.376.000", C: "Rp2.190.616.000", D: "Rp2.199.976.000" },
       kunci: "C",
@@ -3027,7 +3075,8 @@ UKP.register({
         jebakan: "Kata 'gratis' pada klinik bukan syarat cukup; pengecualian menuntut pelayanan kepentingan umum dan tidak mencari keuntungan."
       },
       dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 5–7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002", berlakuSejak: "2002-01-01" }],
-      anggaranDetik: 180, verifikasi: "✅"
+      anggaranDetik: 180,
+      verifikasi: "✅"
     },
     {
       id: "B8-116", topik: "B8.7", tingkat: ["B", "C"], jenis: "hitung", kesulitan: 2, laporanUjian: ["B-2026-10", "C-2026-10"],
@@ -3289,7 +3338,7 @@ UKP.register({
     { id: "KT-B8-52", topik: "B8.4", tipe: "prosedur", depan: "NJOP bangunan kawasan usaha (pabrik, conveyor, pipa)?", belakang: "Nilai perolehan baru dikurangi penyusutan (pendekatan biaya)", dasar: "Pasal 1 angka 3 UU PBB; PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-53", topik: "B8.4", tipe: "prosedur", depan: "NJOP tubuh bumi pertambangan tahap produksi?", belakang: "Angka kapitalisasi × hasil bersih (data penilaian)", dasar: "PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-54", topik: "B8.4", tipe: "definisi", depan: "Objek migas lepas pantai: perairan, anjungan, pipa, kapal?", belakang: "Perairan = bumi; anjungan dan pipa = bangunan; kapal bukan objek", dasar: "Pasal 1 angka 1–2 UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B8-55", topik: "B8.4", tipe: "prosedur", depan: "Areal emplasemen dan areal belum produktif kebun dinilai dengan?", belakang: "Luas × nilai tanah per m², tanpa SIT", dasar: "PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B8-55", topik: "B8.4", tipe: "prosedur", depan: "Areal emplasemen dan areal belum produktif kebun dinilai dengan?", belakang: "Luas × nilai tanah per m², tanpa SIT (Biaya Investasi Tanaman). Areal belum produktif adalah areal yang belum ditanami (belum diolah, sudah diolah tetapi belum ditanami, atau pembibitan); tanaman yang belum menghasilkan sudah areal produktif", dasar: "Pasal 14 ayat (1) huruf b dan e serta ayat (2) huruf b dan e PMK 186/PMK.03/2019", berlakuSejak: "2020-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-56", topik: "B8.4", tipe: "prosedur", depan: "Lahan kebun yang sudah diolah baru ditanami sawit pada Agustus 2026: SIT dihitung mulai?", belakang: "Tahun Pajak 2027 (keadaan 1 Januari 2027); areal yang telah ditanami adalah areal produktif walaupun belum panen", dasar: "Pasal 8 ayat (2) UU PBB; PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-57", topik: "B8.5", tipe: "angka", depan: "Denda keterlambatan bayar PBB paling banyak?", belakang: "48% (2% × 24 bulan) dari pajak yang terlambat", dasar: "Pasal 11 ayat (3) UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B8-58", topik: "B8.6", tipe: "prosedur", depan: "Apakah keberatan PBB menunda kewajiban membayar?", belakang: "Tidak; SPPT/SKP tetap dilunasi pada jatuh temponya", dasar: "Pasal 15 UU PBB", berlakuSejak: "1995-01-01", menggantikan: null, dekTambahan: [] },
@@ -3480,14 +3529,14 @@ UKP.register({
           penjelasan: "Jatuh tempo SPPT 9 September 2026, sehingga pelunasan 7 September 2026 tepat waktu dan tidak menimbulkan denda Pasal 11 ayat (3)." },
         { no: 4, pertanyaan: "Berapa besarnya pengurangan menurut keputusan (Rp)?", tipe: "angka", jawaban: 102286800, toleransi: 0,
           petunjuk: ["Pengurangan diberikan atas PBB terutang", "30% × Rp340.956.000", "Jawaban: Rp102.286.800"],
-          penjelasan: "Pengurangan 30% × Rp340.956.000 = Rp102.286.800, sehingga PBB 2026 setelah pengurangan Rp238.669.200." },
+          penjelasan: "Pengurangan 30% × Rp340.956.000 = Rp102.286.800." },
         { no: 5, pertanyaan: "Berapa sisa PBB 2026 yang harus dilunasi pada 7 September 2026 (Rp)?", tipe: "angka", jawaban: 238669200, toleransi: 0,
           petunjuk: ["Pengurangan diberikan dari PBB yang belum dilunasi", "Keputusan terbit sebelum pelunasan", "340.956.000 − 102.286.800"],
           penjelasan: "Pengurangan PBB diberikan dari PBB yang belum dilunasi (Pasal 4 ayat (3) PMK 129/2023). Karena keputusan diterima sebelum pelunasan, perusahaan cukup melunasi Rp340.956.000 − Rp102.286.800 = Rp238.669.200. Tidak ada kelebihan pembayaran, sehingga utang STP PPh Pasal 21 Rp1.150.000 tetap dilunasi tersendiri. Bila SPPT sudah dilunasi penuh sebelum permohonan diajukan, tidak ada lagi PBB yang dapat dikurangkan." },
         { no: 6, pertanyaan: "Bagaimana pengaruh banjir terhadap PBB 2027?", tipe: "pilihan",
           opsi: { A: "Pengurangan 30% otomatis berlaku lagi untuk 2027", B: "PBB 2027 mengikuti keadaan objek per 1 Januari 2027; perubahan areal (misalnya blok rusak yang ditanam ulang) dilaporkan melalui SPOP agar penetapan 2027 sesuai", C: "PBB 2027 tidak terutang sampai kebun pulih", D: "PBB 2027 dihitung dari PBB 2026 setelah pengurangan" }, jawaban: "B",
           petunjuk: ["Pengurangan diberikan per tahun pajak atas permohonan", "Pasal 8 ayat (2): keadaan 1 Januari menentukan", "Perubahan data objek dilaporkan dengan SPOP"],
-          penjelasan: "Pengurangan berlaku untuk PBB tahun pajak yang dimohonkan. PBB 2027 ditetapkan menurut keadaan 1 Januari 2027; bila blok rusak berubah klasifikasi (misalnya ditanam ulang menjadi areal belum produktif), perubahan itu dilaporkan melalui SPOP." }
+          penjelasan: "Pengurangan berlaku untuk PBB tahun pajak yang dimohonkan. PBB 2027 ditetapkan menurut keadaan 1 Januari 2027; bila blok rusak berubah klasifikasi (misalnya tanaman rusak sudah ditumbang dan pada 1 Januari 2027 lahannya belum ditanami ulang sehingga menjadi areal belum produktif, Pasal 14 ayat (1) huruf b PMK 186/2019), perubahan itu dilaporkan melalui SPOP." }
       ],
       kesimpulan: "Kerusakan setelah 1 Januari tidak membuat SPPT keliru, sehingga jalurnya pengurangan karena bencana, bukan keberatan. PBB 2026 Rp340.956.000 mendapat pengurangan 30% (Rp102.286.800) yang diputus dalam 4 bulan dan sebelum pelunasan, sehingga sisa Rp238.669.200 dilunasi tepat waktu; pengurangan hanya memotong PBB yang belum dilunasi. Penetapan 2027 mengikuti keadaan 1 Januari 2027.",
       kalkulatorRef: "pbb-bphtb"
@@ -3500,6 +3549,6 @@ UKP.register({
     { teks: "Sanksi PBB berasal dari UU PBB sendiri: denda SKP 25% sekali dan denda telat bayar 2% sebulan maks 24 bulan. Opsi bertarif bunga KMK atau kenaikan 75% adalah pengecoh dari UU KUP.", tagSebab: "lupa-pasal" },
     { teks: "Keadaan 1 Januari mengunci objek setahun: bangunan selesai Februari, klinik yang berubah komersial, atau tambang yang tutup Juli baru berpengaruh tahun berikutnya, tanpa pro rata.", tagSebab: "salah-baca" },
     { teks: "Objek offshore dan kabel bawah laut: laut tetap 'bumi', anjungan/pipa/kabel 'bangunan', kapal bukan objek; untuk sektor lainnya cek dulu NJOP ≥ Rp1 miliar (NJKP 40%) atau di bawahnya (20%).", tagSebab: "salah-klasifikasi" },
-    { teks: "Tenggat 'N bulan sejak tanggal X': contoh di penjelasan undang-undang menghitung sampai sehari sebelum tanggal yang sama (7 Oktober menjadi 6 November). Soal latihan dan try out sering memakai tanggal yang sama. Hitung keduanya, lalu pilih yang ada di opsi.", tagSebab: "salah-hitung" }
+    { teks: "Tenggat 'N bulan sejak tanggal X': contoh di Penjelasan Pasal 11 ayat (1) UU PBB (SPPT diterima 1 Maret, jatuh tempo 31 Agustus) dan di Penjelasan Pasal 19 ayat (1) UU 28/2007 (sebelum Pasal 19 diganti UU 11/2020; SKPKB terbit 7 Oktober, batas pelunasan 6 November) menghitung sampai sehari sebelum tanggal yang sama. Soal latihan dan try out sering memakai tanggal yang sama. Hitung keduanya, lalu pilih yang ada di opsi.", tagSebab: "salah-hitung" }
   ]
 });

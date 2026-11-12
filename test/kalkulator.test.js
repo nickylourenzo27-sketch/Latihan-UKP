@@ -769,9 +769,47 @@ describe('pph24', () => {
     assert.equal(utama(r).nilai, 270000000);
     assert.equal(nilai(r, 'PKP'), 3500000000);
     assert.equal(nilai(r, 'PPh terutang'), 770000000);
-    assert.equal(nilai(r, 'Kredit negara 1'), 220000000);
-    assert.equal(nilai(r, 'Kredit negara 2'), 50000000);
+    assert.equal(nilai(r, 'Kredit penghasilan LN 1'), 220000000);
+    assert.equal(nilai(r, 'Kredit penghasilan LN 2'), 50000000);
     assert.equal(nilai(r, 'PPh setelah kredit'), 500000000);
+  });
+  it('per jenis penghasilan untuk tiap negara: K-C9-02 (laba cabang A, royalti A, bunga B, rugi C) Rp860.000.000', () => {
+    // Pasal 6 ayat (2) PMK 192/PMK.03/2018: laba cabang dan royalti dari negara yang sama dibatasi sendiri-sendiri
+    const r = ok(H('pph24', { netoDn: 11000000000, neto1: 3000000000, pajak1: 900000000, neto2: 500000000, pajak2: 50000000, neto3: 1000000000, pajak3: 150000000, neto4: -800000000, pajak4: 0 }));
+    assert.equal(nilai(r, 'PKP'), 15500000000);
+    assert.equal(nilai(r, 'PPh terutang'), 3410000000);
+    assert.equal(nilai(r, 'Kredit penghasilan LN 1'), 660000000);
+    assert.equal(nilai(r, 'Kredit penghasilan LN 2'), 50000000);
+    assert.equal(nilai(r, 'Kredit penghasilan LN 3'), 150000000);
+    assert.equal(utama(r).nilai, 860000000);
+    assert.ok(r.asumsi.some(a => a.includes('per jenis penghasilan untuk tiap negara')));
+  });
+  it('contoh Lampiran PMK 192/PMK.03/2018 (PT Indologo Tiga): Rp700.000.000', () => {
+    // usaha negara X 1.000/300, bunga negara Y 3.000/450, rugi negara Z 250; neto DN 4.000; tarif contoh 25%
+    const r = ok(H('pph24', { netoDn: 4000000000, tarif: 25, neto1: 1000000000, pajak1: 300000000, neto2: 3000000000, pajak2: 450000000, neto3: -250000000, pajak3: 0 }));
+    assert.equal(nilai(r, 'PKP'), 8000000000);
+    assert.equal(nilai(r, 'PPh terutang'), 2000000000);
+    assert.equal(nilai(r, 'Kredit penghasilan LN 1'), 250000000);
+    assert.equal(nilai(r, 'Kredit penghasilan LN 2'), 450000000);
+    assert.equal(utama(r).nilai, 700000000);
+  });
+  it('batas P3B: kredit = nilai terkecil dari tiga (soal C10-078: royalti Jepang dipotong 20,42% padahal P3B 10%)', () => {
+    // neto DN 6.000 jt; royalti Jepang 1.000 jt (dipotong 204,2 jt; P3B 10% = 100 jt); laba cabang Vietnam 2.000 jt (pajak 400 jt); rugi Filipina 500 jt
+    const r = ok(H('pph24', { netoDn: 6000000000, tarif: 22, neto1: 1000000000, pajak1: 204200000, p3b1: 100000000, neto2: 2000000000, pajak2: 400000000, neto3: -500000000, pajak3: 0 }));
+    assert.equal(nilai(r, 'PKP'), 9000000000);
+    assert.equal(nilai(r, 'PPh terutang'), 1980000000);
+    assert.equal(nilai(r, 'Kredit penghasilan LN 1'), 100000000);
+    assert.equal(nilai(r, 'Kredit penghasilan LN 2'), 400000000);
+    assert.equal(utama(r).nilai, 500000000);
+    assert.equal(nilai(r, 'PPh setelah kredit') - 80000000 - 1100000000, 300000000); // PPh Pasal 29 soal = kunci C
+    assert.ok(r.peringatan.some(p => p.includes('Rp104.200.000')));
+    // tanpa kolom P3B hasilnya lebih besar (pajak yang dibayar di bawah batas proporsional 220 jt)
+    assert.equal(nilai(ok(H('pph24', { netoDn: 6000000000, tarif: 22, neto1: 1000000000, pajak1: 204200000, neto2: 2000000000, pajak2: 400000000, neto3: 0 })), 'Kredit penghasilan LN 1'), 204200000);
+    gagal(H('pph24', { p3b1: -1 }));
+  });
+  it('baris keempat kosong tidak mengubah hasil; pajak baris keempat negatif ditolak', () => {
+    assert.equal(utama(ok(H('pph24', { neto4: null, pajak4: null }))).nilai, 270000000);
+    gagal(H('pph24', { pajak4: -5 }));
   });
   it('pajak LN di bawah batas dikreditkan penuh', () => {
     const r = ok(H('pph24', { pajak1: 100000000, neto2: 0, pajak2: 0, neto3: 0 }));
@@ -822,6 +860,29 @@ describe('bpt', () => {
   });
   it('soal A3-100: PKP Rp6 M, tarif 22%, P3B 10%, tanam kembali Rp1,68 M (sebagian) → Rp468.000.000', () => {
     assert.equal(utama(ok(H('bpt', { pkp: 6000000000, tarifBadan: 22, tarifP3b: 10, ditanamKembali: 1680000000 }))).nilai, 468000000);
+  });
+  it('penghasilan yang dikenai PPh final ikut masuk dasar setelah dikurangi PPh finalnya (petunjuk Lampiran 12A; Pasal 6 PMK 14/PMK.03/2011)', () => {
+    // PKP 10.350 jt, PPh 22% 2.277 jt, bunga deposito 150 jt dengan PPh final 30 jt, tarif P3B 10% → 10% × 8.193 jt
+    const r = ok(H('bpt', { pkp: 10350000000, tarifBadan: 22, tarifP3b: 10, penghasilanFinal: 150000000, pphFinal: 30000000 }));
+    assert.equal(nilai(r, 'Dasar BPT'), 8193000000);
+    assert.equal(utama(r).nilai, 819300000);
+    assert.ok(r.jejak.some(j => /PPh final/.test(j[0])));
+    // PKP 14.690 jt, jasa giro 60 jt dengan PPh final 12 jt → 10% × 11.506,2 jt
+    assert.equal(utama(ok(H('bpt', { pkp: 14690000000, tarifBadan: 22, tarifP3b: 10, penghasilanFinal: 60000000, pphFinal: 12000000 }))).nilai, 1150620000);
+    // baris 'Laba setelah pajak' tetap PKP − PPh badan; penghasilan final setelah PPh final tampil di baris tersendiri
+    assert.equal(nilai(r, 'Laba setelah pajak'), 8073000000);
+    assert.equal(nilai(r, 'Penghasilan final setelah PPh final'), 120000000);
+  });
+  it('kolom penghasilan final kosong → hasil sama seperti tanpa penghasilan final; PPh final melebihi penghasilannya ditolak', () => {
+    assert.equal(utama(ok(H('bpt', { penghasilanFinal: null, pphFinal: null }))).nilai, 156000000);
+    assert.equal(utama(ok(H('bpt', { penghasilanFinal: 0, pphFinal: 0 }))).nilai, 156000000);
+    gagal(H('bpt', { penghasilanFinal: 10000000, pphFinal: 20000000 }));
+    gagal(H('bpt', { penghasilanFinal: -1 }));
+  });
+  it('seluruh laba setelah pajak termasuk bagian penghasilan final harus ditanamkan kembali agar dikecualikan', () => {
+    // laba setelah pajak 780 jt + (100 jt − 20 jt) = 860 jt
+    assert.equal(utama(ok(H('bpt', { penghasilanFinal: 100000000, pphFinal: 20000000, ditanamKembali: 780000000 }))).nilai, 172000000);
+    assert.equal(utama(ok(H('bpt', { penghasilanFinal: 100000000, pphFinal: 20000000, ditanamKembali: 860000000 }))).nilai, 0);
   });
   it('ditanam kembali melebihi laba → dianggap seluruhnya + peringatan', () => {
     const r = ok(H('bpt', { ditanamKembali: 900000000 }));

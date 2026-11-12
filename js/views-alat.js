@@ -1218,7 +1218,7 @@
     // ---- tab 4: laporan peserta (bukan dokumen resmi) ----
     const LAPORAN_B = [
       ['B7', 'Jurnal dasar debit/kredit: beban gaji, utang gaji, utang PPh 21, pembayaran'],
-      ['B8', 'PBB perkebunan (emplasemen, areal produktif, standar investasi tanaman), migas lepas pantai, kabel bawah laut; SPPT, keberatan, pengurangan'],
+      ['B8', 'PBB perkebunan (emplasemen, areal produktif, biaya investasi tanaman), migas lepas pantai, kabel bawah laut; SPPT, keberatan, pengurangan'],
       ['B6', 'PPh Pasal 29 dengan tarif 22% / Tbk 19% / fasilitas Ps. 31E omzet ≤ Rp50 M; penyertaan saham afiliasi'],
       ['A1', 'Suami pegawai sekaligus pengusaha, istri pisah harta (PH/MT), keuntungan penjualan saham'],
       ['A2', 'Surat Teguran, keberatan, banding; STP vs SKPKB'],
@@ -1678,7 +1678,7 @@
     page.appendChild(UKP.c.kop({ judul: 'Peta formulir', lead: 'Komponen SPT dan bukti potong baris demi baris: isi, sumber angka, pasal, topik, dan soal latihan terkait.' }));
     if (!daftar.length) { page.appendChild(UKP.c.kosong('Peta formulir belum dimuat', 'Data js/data/formulir.js belum berisi formulir. Sementara itu, latih soal jenis baris SPT di Latih.', h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-sm', onclick: () => UKP.go('latih', { jenis: 'baris-spt', n: 10, mulai: true }) }, 'Latih soal baris SPT')), { ikon: 'formulir' })); return page; }
     const nBelumCek = daftar.filter(fm => fm.verifikasi === '◐').length; const mayoritasBelumCek = nBelumCek * 2 >= daftar.length;
-    if (mayoritasBelumCek) page.appendChild(UKP.c.banner((nBelumCek === daftar.length ? 'Semua' : nBelumCek + ' dari ' + daftar.length) + ' struktur formulir mengikuti versi pra-Coretax dan belum dicek ulang terhadap Coretax' + (F.statusPer ? ' (status per ' + UKP.fmt.tanggal(F.statusPer) + ')' : '') + '.', 'warn', null, F.catatan ? h('span', { class: 'meta' }, F.catatan) : null));
+    if (mayoritasBelumCek) page.appendChild(UKP.c.banner((nBelumCek === daftar.length ? 'Semua' : nBelumCek + ' dari ' + daftar.length) + ' struktur formulir masih mengikuti formulir lama, yang berlaku sampai Tahun Pajak 2024. Padanan Coretax ditulis pada baris yang sudah dicocokkan dengan PER-11/PJ/2025; tata letak layar Coretax belum dicek' + (F.statusPer ? ' (status per ' + UKP.fmt.tanggal(F.statusPer) + ')' : '') + '.', 'warn', null, F.catatan ? h('span', { class: 'meta' }, F.catatan) : null));
     else if (F.catatan) page.appendChild(UKP.c.banner(F.catatan, 'info'));
     const kbdCari = UKP.c.kbd('/'); kbdCari.classList.add('petunjuk-kbd');
     const cari = h('input', { class: 'input', type: 'search', id: 'fm-q', placeholder: 'Cari baris: kode, label, isi, atau pasal…', autocomplete: 'off', 'aria-describedby': 'fm-jumlah', 'data-cari-lokal': '', 'aria-keyshortcuts': '/', value: params.q || null });

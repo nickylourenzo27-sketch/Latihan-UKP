@@ -135,6 +135,31 @@ naskah yang dicek otomatis ada di berkas naskah, lalu diuji pemeriksa kedua.
 
 Yang belum: soal Tingkat C (modul C9 dan C10, 109 soal bertanda) dan penyelarasan lanjutan materi, kartu, serta peta formulir menyusul di rilis berikutnya.
 
+## Soal Tingkat C dan tindak lanjut naskah per modul (v9.4.4)
+
+Lanjutan v9.4.3. Pustaka naskah resmi kini memuat sekitar 180 naskah (JDIH Kementerian Keuangan, pajak.go.id, dan salinan DDTC untuk peraturan lama).
+Tiap perbaikan membawa kutipan naskah yang dicek otomatis, diuji pemeriksa kedua, lalu soal yang berubah dikerjakan ulang tanpa melihat kunci.
+
+- Soal bertanda perlu cek (◐) di modul Tingkat C (C9 dan C10, 109 soal) dicocokkan dengan naskah: tersisa 9 soal bertanda. Di modul Tingkat B dan Etika tersisa 56 soal bertanda
+  (kebanyakan bersandar pada Kode Etik dan Standar Profesi IKPI, tata letak formulir, atau cara menghitung tanggal yang belum diputuskan).
+- 248 soal berubah sejak v9.4.3; 12 berpindah huruf kunci, 11 di modul C9 dan C10 dan satu di B8: C9-004 (B), C9-026 (A), C9-067 (A), C9-070 (B), C9-104 (C), C9-126 (B), C9-135 (C), C9-136 (A), C10-013 (A), C10-076 (C), C10-152 (A), dan B8-107 (C).
+- Pajak laba cabang BUT (PPh Pasal 26 ayat (4)): pengecualian hanya bila seluruh laba setelah pajak ditanamkan kembali (Pasal 1 ayat (3) PMK 14/PMK.03/2011). Bila BUT juga punya penghasilan yang dikenai
+  PPh final (bunga deposito, jasa giro), penghasilan itu ikut masuk dasar setelah dikurangi PPh finalnya (Pasal 6 PMK 14/PMK.03/2011 dan petunjuk Lampiran 12A PER-11/PJ/2025). Soal, kasus, dan kalkulator disamakan.
+- Kredit pajak luar negeri (PPh Pasal 24) dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018 dan contoh Lampirannya), bukan digabung per negara.
+  Soal, kasus, kartu, tabel rujukan, peta formulir, dan kalkulator disamakan; kalkulator kini punya empat baris penghasilan luar negeri dan kolom batas pajak menurut P3B
+  (kredit = nilai terkecil dari tiga, Pasal 6 ayat (4)).
+- PPh Pasal 26 atas penjualan saham perseroan dalam negeri nonbursa oleh Wajib Pajak luar negeri memakai dasar Pasal 238 sampai 240 PMK 81/2024 (KMK 434/KMK.04/1999 sudah dicabut);
+  PMK 258/PMK.03/2008 hanya untuk saham perusahaan antara. Penjualan harta di Indonesia 5% hanya untuk daftar harta Pasal 2 ayat (4) PMK 82/PMK.03/2009.
+- B8-107 (SPPT PBB dengan luas areal salah): jalurnya keberatan atas SPPT (Pasal 15 UU PBB), bukan pembetulan karena kesalahan tulis, sebab Pasal 2 ayat (2) PMK 118/2024
+  membatasi kesalahan tulis pada kesalahan yang tidak memengaruhi jumlah pajak terutang.
+- Bukti potong PPh Pasal 21/26 mengikuti Pasal 6 ayat (1) PER-11/PJ/2025 (BPA1, BPA2, BP21, BP26); pemotongan bulanan pegawai tetap dilaporkan lewat Formulir L-IA.
+- Peta formulir: formulir lama (1770, 1771) hanya sampai Tahun Pajak 2024 (Pasal 138 huruf a PER-11/PJ/2025); tiap baris kini memuat padanan Coretax yang bisa dicocokkan dengan lampiran PER-11/PJ/2025
+  s.t.d.d. PER-12/PJ/2026. Induk SPT Masa PPN, SPT Masa PPh 21/26, dan SPT Masa Bea Meterai mengikuti susunan baru.
+- Materi, kartu, kasus, tabel rujukan, dan peta formulir diselaraskan dengan soal yang dibetulkan: 57 topik, 76 kartu (satu kartu baru), 18 kasus, dan 76 dari 243 baris peta formulir.
+- Soal try out tidak berubah stem, opsi, maupun kuncinya.
+
+Yang belum: keputusan cara menghitung "N bulan sejak" dan "N hari sejak diundangkan"; soal yang bersandar pada Kode Etik IKPI; tata letak layar Coretax.
+
 ## Isi saat ini (status 9 November 2026, v7.8)
 
 | | Jumlah |

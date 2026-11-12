@@ -7,7 +7,7 @@ UKP.register({
     diujiDi: ["A", "B", "C"],
     durasiUSKP: 120,
     perkiraanBobotSoal: { A: 0.25, B: 0.12, C: 0.10 },
-    statusPer: "2026-10-27",
+    statusPer: "2026-11-12",
     tujuan: "Peserta mampu menentukan status subjek pajak orang pribadi dan kewajiban subjektifnya, memilah penghasilan objek non-final, final, dan bukan objek, lalu menghitung penghasilan neto melalui pembukuan (koreksi fiskal, kompensasi kerugian) atau NPPN. Peserta menghitung PKP dengan zakat dan PTKP sesuai status keluarga (KK, HB, PH, MT), PPh terutang Pasal 17, kredit pajak dan PPh Pasal 29/28A, angsuran PPh Pasal 25 termasuk OP pengusaha tertentu, PPh final UMKM 0,5% pasca PP 20/2026, serta memetakan isi dan sanksi SPT Tahunan PPh OP di era Coretax.",
     dasarHukumUtama: [
       "UU 7/1983 s.t.d.t.d. UU 7/2021 (UU PPh) Pasal 2, 2A, 3, 4, 6, 7, 8, 9, 14, 17, 24, 25, 28, 28A, 29",
@@ -16,12 +16,12 @@ UKP.register({
       "PMK 101/PMK.010/2016 (PTKP); PER-17/PJ/2015 (NPPN)",
       "PP 60/2010 jo. PMK 114/2025 (zakat/sumbangan keagamaan wajib)",
       "PMK 81/2024 (angsuran PPh 25, termasuk OP pengusaha tertentu; menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)",
-      "PMK 192/PMK.03/2018 (kredit PPh Pasal 24); PMK 66/2023 (natura); PMK 18/PMK.03/2021",
+      "PMK 192/PMK.03/2018 (kredit PPh Pasal 24); PMK 66/2023 (natura); PMK 18/PMK.03/2021 (investasi dividen, WNI di luar negeri); PMK 81/2024 Pasal 442 sampai dengan Pasal 447 (WNA berkeahlian tertentu)",
       "PMK 81/2024 dan PER-11/PJ/2025 (Coretax, SPT Tahunan, bukti potong)"
     ],
     perubahanTerbaru: [
       { sebelum: "PPh final 0,5% PP 55/2022 dapat dipakai OP, koperasi, CV, firma, PT, dan BUMDes", sesudah: "Penerima baru hanya OP, PT perorangan yang didirikan 1 orang, dan koperasi; WP lama tetap sampai jangka waktu lamanya habis", dasar: "PP 20/2026 (perubahan Pasal 57 PP 55/2022)", berlakuSejak: "2026-04-22" },
-      { sebelum: "Jasa sehubungan pekerjaan bebas (dokter, notaris, konsultan, influencer) boleh memakai PPh final 0,5%", sesudah: "Dikecualikan; penghasilan neto dihitung dengan pembukuan atau NPPN dan dikenai tarif Pasal 17", dasar: "PP 20/2026 (Pasal 56 PP 55/2022)", berlakuSejak: "2026-04-22" },
+      { sebelum: "Daftar jasa pekerjaan bebas yang dikecualikan dari PPh final 0,5% (Pasal 56 ayat (4) PP 55/2022) belum menyebut pembuat konten daring (influencer), pemahat, pelukis, dan profesi sejenis lainnya; dokter, notaris, dan konsultan sudah dikecualikan (Pasal 56 ayat (3) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018)", sesudah: "Daftar diperluas, antara lain pembuat konten daring (influencer); jasa pekerjaan bebas tetap dikecualikan (Pasal 56 ayat (3) huruf a), sehingga neto dihitung dengan pembukuan atau NPPN dan dikenai tarif Pasal 17", dasar: "Pasal 56 ayat (3) huruf a dan ayat (4) PP 55/2022 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" },
       { sebelum: "Jangka waktu PPh final bagi OP 7 tahun pajak; batas Rp4,8 miliar diuji dari peredaran bruto usaha saja", sesudah: "Jangka waktu bagi OP dan PT perorangan dihapus (koperasi tetap 4 tahun); batas diuji dari akumulasi usaha, pekerjaan bebas, dan penghasilan luar negeri", dasar: "PP 20/2026", berlakuSejak: "2026-04-22" },
       { sebelum: "Zakat/sumbangan keagamaan wajib sebagai pengurang penghasilan bruto diatur PMK 254/PMK.03/2010", sesudah: "Diatur PMK 114/2025; daftar lembaga penerima PER-22/PJ/2025", dasar: "PMK 114/2025", berlakuSejak: "2025-12-31" },
       { sebelum: "SPT Tahunan OP disampaikan melalui e-Filing/e-Form DJP Online dengan formulir 1770 SS, 1770 S, atau 1770", sesudah: "SPT Tahunan OP dibuat di Coretax dengan data bukti potong elektronik (BPA1, BP21, BPPU) menurut format PER-11/PJ/2025", dasar: "PMK 81/2024; PER-11/PJ/2025", berlakuSejak: "2025-05-22" },
@@ -42,12 +42,12 @@ UKP.register({
       { label: "Kompensasi kerugian", nilai: "5 tahun berturut-turut mulai tahun berikutnya; rugi tertua dahulu", dasar: "Ps. 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" },
       { label: "Zakat/sumbangan keagamaan wajib", nilai: "ke BAZNAS/LAZ/lembaga resmi, bukti sah, tahun dibayar, tidak menimbulkan rugi", dasar: "Ps. 9 ayat (1) huruf g UU PPh; PMK 114/2025", berlakuSejak: "2025-12-31" },
       { label: "PPh final UMKM orang pribadi", nilai: "0,5% × peredaran bruto; batas Rp4,8 M; Rp500 jt pertama setahun tidak kena", dasar: "PP 55/2022 s.t.d.d. PP 20/2026; Ps. 7 ayat (2a) UU PPh", berlakuSejak: "2026-04-22" },
-      { label: "Penerima baru PPh final UMKM", nilai: "OP, PT perorangan 1 orang, koperasi; pekerjaan bebas dikecualikan; jangka waktu OP dihapus", dasar: "PP 20/2026", berlakuSejak: "2026-04-22" },
+      { label: "Penerima baru PPh final UMKM", nilai: "OP, PT perorangan 1 orang, koperasi; pekerjaan bebas tetap dikecualikan (Pasal 56 ayat (3) huruf a PP 55/2022); jangka waktu OP dihapus", dasar: "PP 20/2026", berlakuSejak: "2026-04-22" },
       { label: "Angsuran PPh 25 orang pribadi", nilai: "(PPh terutang tahun lalu − PPh 21/22/23/24) ÷ 12; bulan sebelum SPT disampaikan pakai angsuran Desember; bila ada kompensasi kerugian: PPh atas (neto tahun lalu − sisa rugi yang masih dapat dikompensasikan tahun berjalan − PTKP), dikurangi kredit, ÷ 12", dasar: "Ps. 25 ayat (1)–(2) dan (6) huruf a UU PPh", berlakuSejak: "2009-01-01" },
       { label: "Angsuran OP pengusaha tertentu (dagang/jasa selain pekerjaan bebas, di tempat usaha selain tempat tinggal)", nilai: "0,75% × peredaran bruto bulanan tiap tempat usaha", dasar: "PMK 81/2024 (menggantikan PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01" },
       { label: "Batas setor PPh 25 dan PPh final UMKM", nilai: "tanggal 15 bulan berikutnya", dasar: "PMK 81/2024 Ps. 94", berlakuSejak: "2025-01-01" },
       { label: "Kredit pajak SPT orang pribadi", nilai: "PPh 21, 22, 23, 24, 25 — bukan PPh final atau sanksi", dasar: "Ps. 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
-      { label: "Batas kredit PPh 24 (per negara)", nilai: "terkecil: pajak luar negeri dibayar atau (neto LN ÷ PKP) × PPh terutang", dasar: "Ps. 24 UU PPh; PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" },
+      { label: "Batas kredit PPh 24 (per jenis penghasilan untuk tiap negara)", nilai: "terkecil: pajak luar negeri (dengan memperhatikan P3B) atau (neto LN jenis itu ÷ PKP) × PPh terutang", dasar: "Ps. 24 UU PPh; Pasal 6 ayat (2) dan (4) PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" },
       { label: "Lapor SPT Tahunan OP · perpanjangan", nilai: "31 Maret · paling lama 2 bulan dengan pemberitahuan", dasar: "Ps. 3 ayat (3) huruf b dan ayat (4) UU KUP", berlakuSejak: "2008-01-01" },
       { label: "Denda terlambat SPT Tahunan OP", nilai: "Rp100.000 (badan Rp1.000.000); tidak dikenakan bila WP OP meninggal dunia", dasar: "Ps. 7 ayat (1)–(2) UU KUP", berlakuSejak: "2008-01-01" },
       { label: "PPh Pasal 29", nilai: "dilunasi sebelum SPT Tahunan disampaikan", dasar: "Ps. 9 ayat (2) UU KUP", berlakuSejak: "2008-01-01" },
@@ -96,8 +96,7 @@ UKP.register({
         jawaban: "Tidak — 172 hari, tidak lebih dari 183 hari; ia SPLN",
         langkah: [ ["10–31 Januari", "22 hari"], ["Februari s.d. Juni (28 + 31 + 30 + 31 + 30)", "150 hari"], ["Jumlah dalam 12 bulan", "172 hari"], ["Uji Pasal 2 ayat (3) huruf a", "172 ≤ 183 → SPLN"] ]
       },
-      verifikasi: "◐",
-      peringatan: "Fasilitas 4 tahun bagi WNA berkeahlian tertentu bersumber dari UU Cipta Kerja dan PMK 18/PMK.03/2021 yang teks resminya belum dibaca langsung dalam riset proyek; fakta subjek pajak lainnya adalah teks UU PPh yang stabil sejak UU 36/2008."
+      verifikasi: "✅"
     },
     {
       id: "A1.2", slug: "objek-penghasilan", judul: "Objek PPh orang pribadi, bukan objek, dan penghasilan final",
@@ -143,7 +142,7 @@ UKP.register({
         "Tidak boleh dikurangkan (Pasal 9 ayat (1)): premi asuransi jiwa/kesehatan yang dibayar OP untuk dirinya (huruf d), sumbangan/hibah kecuali zakat dan sumbangan tertentu (huruf g), PPh (huruf h), biaya pribadi WP dan tanggungannya termasuk 'gaji' pemilik atau prive (huruf i), serta sanksi administrasi dan pidana pajak (huruf k).",
         "Biaya untuk mendapatkan penghasilan yang dikenai PPh final atau bukan objek tidak dapat dikurangkan dari penghasilan yang dikenai tarif umum; penghasilan final yang ikut dalam laba komersial dikoreksi negatif.",
         "Sejak TP 2022 biaya natura/kenikmatan untuk pegawai dapat dikurangkan pemberi kerja sepanjang memenuhi biaya 3M (Pasal 6 ayat (1) huruf n UU PPh s.t.d.t.d. UU 7/2021); sebelumnya tidak boleh dibiayakan.",
-        "PPh 21 pegawai yang ditanggung pemberi kerja (tanpa tunjangan) sejak PMK 66/2023 diperlakukan sebagai kenikmatan menurut penjelasan DJP: menjadi penghasilan pegawai dan dapat dibiayakan pemberi kerja, sama dengan tunjangan PPh. Aturan lama (PER-16/PJ/2016: bukan penghasilan pegawai dan tidak boleh dibiayakan) tidak berlaku untuk tahun pajak 2023 ke atas (pemotongan sejak Juli 2023).",
+        "PPh 21 pegawai yang ditanggung pemberi kerja (tanpa tunjangan) merupakan penggantian dalam bentuk kenikmatan bagi pegawai dan objek pemotongan PPh 21 (Lampiran PMK 168/2023 huruf I angka 4), dan sebagai kenikmatan berkenaan dengan pekerjaan dapat dikurangkan pemberi kerja sepanjang merupakan biaya 3M (Pasal 2 ayat (1) PMK 66/2023), sama dengan tunjangan PPh. Rumusan lama PER-16/PJ/2016 (bukan penghasilan pegawai dan tidak boleh dibiayakan) adalah pengecoh; PMK 66/2023 berlaku 1 Juli 2023 dan PMK 168/2023 berlaku 1 Januari 2024.",
         "Penyusutan fiskal harta berwujud bukan bangunan: Kelompok 1 4 tahun (garis lurus 25%), Kelompok 2 8 tahun (12,5%), Kelompok 3 16 tahun (6,25%), Kelompok 4 20 tahun (5%); dimulai pada bulan pengeluaran dan dihitung proporsional bulan pada tahun pertama."
       ],
       poinKunci: [
@@ -168,8 +167,7 @@ UKP.register({
         jawaban: "Rp5.000.000",
         langkah: [ ["Tarif Kelompok 1 garis lurus", "25%"], ["Penyusutan setahun", "Rp6.000.000"], ["Maret–Desember", "10 bulan"], ["Rp6.000.000 × 10/12", "Rp5.000.000"] ]
       },
-      verifikasi: "◐",
-      peringatan: "Perlakuan PPh 21 yang ditanggung pemberi kerja sebagai kenikmatan yang dapat dibiayakan bersandar pada penjelasan DJP (Juli 2023, diberitakan DDTCNews) dan FAQ PMK 66/2023; bunyi pasal PMK 66/2023, PMK 168/2023, dan PP 55/2022 tentang hal ini belum dibaca langsung. Butir lain adalah teks UU PPh."
+      verifikasi: "✅"
     },
     {
       id: "A1.4", slug: "nppn", judul: "Norma Penghitungan Penghasilan Neto (NPPN)",
@@ -180,7 +178,7 @@ UKP.register({
         "Neto = persentase norma × peredaran bruto; persentase per jenis kegiatan dibedakan untuk 3 wilayah: 10 ibu kota provinsi (Medan, Palembang, Jakarta, Bandung, Semarang, Surabaya, Denpasar, Manado, Makassar, Pontianak), ibu kota provinsi lainnya, dan daerah lainnya (PER-17/PJ/2015). Di ujian, persentase lazim diberikan.",
         "Pengguna NPPN wajib menyelenggarakan pencatatan peredaran/penerimaan bruto dan penghasilan, bukan pembukuan lengkap (Pasal 28 ayat (2) UU KUP); biaya riil tidak dikurangkan lagi dan PPh yang dipotong pihak lain adalah kredit, bukan pengurang neto.",
         "Imbalan yang diterima dokter, arsitek, atau konsultan dari klien badan (dipotong PPh 21 bukan pegawai 5% × 50% × bruto per masa untuk lapisan pertama) tetap bagian peredaran bruto pekerjaan bebas.",
-        "Jasa sehubungan dengan pekerjaan bebas orang pribadi sudah dikecualikan dari PPh final 0,5% sejak PP 55/2022 (Pasal 56 ayat (3) huruf a) dan tetap dikecualikan setelah PP 20/2026, sehingga NPPN atau pembukuan menjadi jalur penghitungan bagi profesi bebas; yang baru dari PP 20/2026 adalah peredaran bruto pekerjaan bebas ikut dijumlahkan dalam uji batas Rp4,8 miliar PPh final usaha (Pasal 58 ayat (1) huruf a)."
+        "Jasa sehubungan dengan pekerjaan bebas orang pribadi dikecualikan dari PPh final 0,5% (Pasal 56 ayat (3) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018) dan tetap dikecualikan setelah PP 20/2026, sehingga NPPN atau pembukuan menjadi jalur penghitungan bagi profesi bebas; yang baru dari PP 20/2026 adalah peredaran bruto pekerjaan bebas ikut dijumlahkan dalam uji batas Rp4,8 miliar PPh final usaha (Pasal 58 ayat (1) huruf a)."
       ],
       poinKunci: [
         { label: "Batas peredaran bruto NPPN", nilai: "kurang dari Rp4,8 miliar setahun", dasar: "Pasal 14 ayat (2) UU PPh", berlakuSejak: "2009-01-01" },
@@ -192,7 +190,7 @@ UKP.register({
         { pasal: "Pasal 14 ayat (2)–(5) UU PPh", catatan: "syarat, pemberitahuan, dan akibat tidak memberitahukan" },
         { pasal: "PER-17/PJ/2015", catatan: "persentase norma per jenis kegiatan dan wilayah" },
         { pasal: "Pasal 28 ayat (2) UU KUP", catatan: "pencatatan bagi pengguna norma" },
-        { pasal: "Pasal 56 ayat (3) huruf a dan Pasal 58 ayat (1) PP 55/2022 s.t.d.d. PP 20/2026", catatan: "pekerjaan bebas dikecualikan dari PPh final UMKM (sejak PP 55/2022); peredaran bruto pekerjaan bebas ikut uji Rp4,8 miliar (sejak PP 20/2026)" }
+        { pasal: "Pasal 56 ayat (3) huruf a dan Pasal 58 ayat (1) PP 55/2022 s.t.d.d. PP 20/2026", catatan: "pekerjaan bebas dikecualikan dari PPh final UMKM (Pasal 56 ayat (3) huruf a; sebelumnya Pasal 2 ayat (3) huruf a PP 23/2018); peredaran bruto pekerjaan bebas ikut uji Rp4,8 miliar (sejak PP 20/2026)" }
       ],
       jebakan: [
         { teks: "Membaca batas NPPN sebagai 'paling banyak Rp4,8 miliar' — syaratnya kurang dari Rp4,8 miliar dan WP harus orang pribadi", tagSebab: "salah-baca" },
@@ -237,8 +235,7 @@ UKP.register({
         jawaban: "Rp30.000.000, sampai Tahun Pajak 2030",
         langkah: [ ["Kompensasi 2026", "Rp50.000.000"], ["Sisa", "Rp30.000.000"], ["Batas: 5 tahun sejak 2026", "2026–2030"] ]
       },
-      verifikasi: "◐",
-      peringatan: "Butir bahwa jumlah rugi mengikuti ketetapan DJP (SKP/keputusan keberatan) bersumber dari Penjelasan Pasal 6 ayat (2) dan praktik pemeriksaan yang teksnya belum dibaca langsung dalam riset proyek; butir lain adalah teks UU."
+      verifikasi: "✅"
     },
     {
       id: "A1.6", slug: "ptkp-status-keluarga", judul: "PTKP dan status perpajakan keluarga (KK, HB, PH, MT)",
@@ -313,25 +310,25 @@ UKP.register({
       ringkasan: [
         "Kredit pajak (Pasal 28 ayat (1) UU PPh): PPh 21 yang dipotong, PPh 22 yang dipungut, PPh 23 yang dipotong, PPh 24 (pajak luar negeri), dan PPh 25 yang disetor sendiri, dibuktikan dengan bukti potong/pungut (BPA1, BP21, BPPU) atau bukti setor.",
         "Tidak dapat dikreditkan: PPh final Pasal 4 ayat (2), sanksi administrasi, dan pajak tanpa bukti yang sah.",
-        "PPh 24 per negara: kredit maksimum = terkecil antara pajak yang dibayar di luar negeri dan (penghasilan neto luar negeri negara itu ÷ PKP) × PPh terutang; kerugian di luar negeri tidak digabung (PMK 192/PMK.03/2018).",
+        "PPh 24 dihitung per jenis penghasilan untuk tiap negara atau yurisdiksi (Pasal 6 ayat (2) PMK 192/PMK.03/2018): kredit maksimum = yang paling sedikit antara pajak yang dibayar atau seharusnya terutang di luar negeri (dengan memperhatikan P3B) dan (penghasilan neto jenis itu dari negara itu ÷ PKP) × PPh terutang (Pasal 6 ayat (4)); kelebihannya tidak dapat dikreditkan, dibiayakan, atau direstitusi (Pasal 7), dan kerugian di luar negeri tidak digabung (Pasal 4 ayat (3)).",
         "PPh terutang lebih besar dari kredit → kurang bayar (PPh Pasal 29) yang dilunasi sebelum SPT disampaikan (Pasal 9 ayat (2) UU KUP); pembayaran setelah batas waktu SPT dikenai bunga Pasal 9 ayat (2b) dengan tarif KMK (acuan + 5%)/12 per bulan, bagian bulan dihitung penuh.",
         "PPh terutang lebih kecil dari kredit → lebih bayar (Pasal 28A UU PPh); dikembalikan setelah diperhitungkan dengan utang pajak berikut sanksinya.",
         "PPh 22 atas pembelian barang sangat mewah (5% dari harga jual untuk kendaraan/kapal pesiar/pesawat pribadi, 1% untuk rumah/apartemen tertentu) yang dipungut penjual badan dapat dikreditkan oleh pembeli OP."
       ],
       poinKunci: [
         { label: "Kredit pajak OP", nilai: "PPh 21, 22, 23, 24, 25", dasar: "Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
-        { label: "Batas PPh 24", nilai: "min(pajak LN; neto LN/PKP × PPh terutang) per negara", dasar: "Pasal 24 UU PPh; PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" },
+        { label: "Batas PPh 24", nilai: "min(pajak LN; neto LN/PKP × PPh terutang) per jenis penghasilan untuk tiap negara", dasar: "Pasal 24 UU PPh; Pasal 6 ayat (2) dan (4) PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" },
         { label: "Pelunasan PPh 29", nilai: "sebelum SPT disampaikan", dasar: "Pasal 9 ayat (2) UU KUP", berlakuSejak: "2008-01-01" },
         { label: "Bunga bayar setelah batas SPT", nilai: "(acuan + 5%)/12 per bulan, maks 24 bulan", dasar: "Pasal 9 ayat (2b) UU KUP s.t.d.t.d. UU 7/2021", berlakuSejak: "2020-11-02" }
       ],
       dasarHukum: [
         { pasal: "Pasal 28, 28A, dan 29 UU PPh", catatan: "kredit pajak, lebih bayar, kurang bayar" },
-        { pasal: "Pasal 24 UU PPh; PMK 192/PMK.03/2018", catatan: "kredit pajak luar negeri per negara" },
+        { pasal: "Pasal 24 UU PPh; Pasal 6 dan Pasal 7 PMK 192/PMK.03/2018", catatan: "kredit pajak luar negeri dihitung per jenis penghasilan untuk tiap negara" },
         { pasal: "Pasal 9 ayat (2) dan (2b) UU KUP", catatan: "pelunasan PPh 29 dan sanksi bunga" }
       ],
       jebakan: [
         { teks: "Mengkreditkan PPh final bunga deposito atau sewa", tagSebab: "final-nonfinal" },
-        { teks: "Mengkreditkan seluruh pajak luar negeri tanpa batas per negara", tagSebab: "lupa-pasal" },
+        { teks: "Mengkreditkan seluruh pajak luar negeri tanpa batas per jenis penghasilan untuk tiap negara", tagSebab: "lupa-pasal" },
         { teks: "Lupa mengkreditkan PPh 21 bukan pegawai dari klien atau PPh 25 yang sudah disetor", tagSebab: "salah-hitung" }
       ],
       contohSoal: {
@@ -382,7 +379,7 @@ UKP.register({
       ringkasan: [
         "Tarif 0,5% × peredaran bruto bulanan dan bersifat final; bagi WP OP, bagian peredaran bruto sampai Rp500 juta dalam satu tahun pajak tidak dikenai PPh (Pasal 7 ayat (2a) UU PPh) — dihitung kumulatif sejak Januari.",
         "Syarat peredaran bruto tidak melebihi Rp4,8 miliar dalam satu tahun pajak (diuji dari tahun sebelumnya); bila terlampaui dalam tahun berjalan, tarif 0,5% tetap dipakai sampai akhir tahun pajak itu dan tahun berikutnya memakai tarif umum.",
-        "PP 20/2026 (berlaku 22 April 2026): penerima baru hanya OP, PT perorangan yang didirikan 1 orang, dan koperasi; jasa sehubungan pekerjaan bebas dikecualikan; jangka waktu bagi OP dan PT perorangan dihapus (koperasi tetap 4 tahun); WP lama (termasuk CV, firma, PT) tetap sampai jangka waktu lamanya habis.",
+        "PP 20/2026 (berlaku 22 April 2026): penerima baru hanya OP, PT perorangan yang didirikan 1 orang, dan koperasi; jasa sehubungan pekerjaan bebas tetap dikecualikan (Pasal 56 ayat (3) huruf a PP 55/2022), dengan daftar yang diperluas (antara lain pembuat konten daring); jangka waktu bagi OP dan PT perorangan dihapus (koperasi tetap 4 tahun); WP lama (termasuk CV, firma, PT) tetap sampai jangka waktu lamanya habis.",
         "Uji batas Rp4,8 miliar memakai akumulasi penghasilan usaha dan jasa pekerjaan bebas (final maupun tidak), termasuk peredaran bruto yang diterima atau diperoleh di luar negeri; ada ketentuan anti pemecahan usaha (OP beserta PT perorangan yang didirikannya dihitung bersama).",
         "Disetor sendiri paling lambat tanggal 15 bulan berikutnya atau dipotong/dipungut pembeli dengan Surat Keterangan; WP dengan peredaran bruto belum melebihi Rp500 juta menyerahkan surat pernyataan agar tidak dipotong (PMK 164/2023).",
         "WP dapat memilih tarif umum Pasal 17 dengan pemberitahuan; setelah memilih tidak dapat kembali ke 0,5%. Penghasilan final UMKM dilaporkan di SPT pada bagian penghasilan final dan tidak digabung ke PKP."
@@ -391,7 +388,7 @@ UKP.register({
         { label: "Tarif dan batas", nilai: "0,5%; peredaran bruto ≤ Rp4,8 miliar", dasar: "PP 55/2022 Pasal 56–57 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" },
         { label: "Bagian tidak kena pajak OP", nilai: "Rp500 juta pertama setahun (kumulatif)", dasar: "Pasal 7 ayat (2a) UU PPh; PP 55/2022", berlakuSejak: "2022-01-01" },
         { label: "Subjek sejak PP 20/2026", nilai: "OP, PT perorangan 1 orang, koperasi", dasar: "PP 20/2026", berlakuSejak: "2026-04-22" },
-        { label: "Pekerjaan bebas", nilai: "dikecualikan dari PPh final 0,5%", dasar: "PP 20/2026", berlakuSejak: "2026-04-22" },
+        { label: "Pekerjaan bebas", nilai: "dikecualikan dari PPh final 0,5% (Pasal 56 ayat (3) huruf a PP 55/2022; daftar diperluas PP 20/2026)", dasar: "Pasal 56 ayat (3) huruf a dan ayat (4) PP 55/2022 s.t.d.d. PP 20/2026", berlakuSejak: "2022-12-20" },
         { label: "Batas setor", nilai: "tanggal 15 bulan berikutnya", dasar: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01" }
       ],
       dasarHukum: [
@@ -409,8 +406,7 @@ UKP.register({
         jawaban: "Rp800.000",
         langkah: [ ["Kumulatif s.d. Februari", "Rp400.000.000 (nihil)"], ["Kumulatif s.d. Maret", "Rp660.000.000"], ["Kena pajak Maret", "Rp160.000.000"], ["0,5% × Rp160.000.000", "Rp800.000"] ]
       },
-      verifikasi: "◐",
-      peringatan: "Ketentuan 'tetap 0,5% sampai akhir tahun bila batas terlampaui' dan teknis PP 20/2026 (peralihan, perlakuan bagian Rp500 juta bila WP juga memiliki pekerjaan bebas) bersumber dari ulasan sekunder; nomor pasal pasca-PP 20/2026 dan aturan pelaksananya perlu dicek ke teks resmi."
+      verifikasi: "✅"
     },
     {
       id: "A1.11", slug: "spt-1770", judul: "SPT Tahunan PPh OP: formulir, tenggat, sanksi, dan peta isian",
@@ -448,7 +444,7 @@ UKP.register({
         langkah: [ ["Denda Pasal 7 ayat (1)", "Rp100.000"], ["31 Maret–10 April", "1 bulan"], ["Bunga 8.000.000 × 1,10% × 1", "Rp88.000"], ["Jumlah", "Rp188.000"] ]
       },
       verifikasi: "◐",
-      peringatan: "Struktur lampiran SPT Tahunan OP di Coretax (PER-11/PJ/2025) dan petunjuk pengisiannya belum dibaca langsung; pernyataan bahwa pembedaan 1770 SS/1770 S/1770 tidak lagi dipakai di Coretax belum dicek ke teks resmi, dan pemetaan isi mengikuti formulir lama serta cuplikan sumber sekunder. Rincian perpanjangan Pasal 3 ayat (4)–(5) UU KUP bertanda ◐ dalam riset."
+      peringatan: "Sudah dicocokkan: perpanjangan SPT (Pasal 3 ayat (4) UU KUP; Pasal 174 dan 175 PMK 81/2024), formulir lama hanya untuk SPT sampai Tahun Pajak 2024 (Pasal 138 huruf a PER-11/PJ/2025), dan susunan Lampiran 1 SPT Tahunan OP Coretax (Bagian A harta, Bagian B utang; Lampiran PER-12/PJ/2026). Belum pasti: isi formulir 1770 SS/1770 S/1770 (PER-34/PJ/2010) tidak ada di pustaka, dan kolom nilai saat ini harta di Coretax belum dicocokkan."
     }
   ],
   soal: [
@@ -772,7 +768,13 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-018", topik: "A1.4", kasusId: "V-A1-01", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 2, laporanUjian: ["B-2026-10"],
+      id: "A1-018",
+      topik: "A1.4",
+      kasusId: "V-A1-01",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      laporanUjian: ["B-2026-10"],
       stem: "Data untuk soal ini dan tiga soal berikutnya: dr. Rizal Kurniawan (K/2) adalah dokter spesialis anak di Bandung. Pada 2026 ia (1) pegawai tetap RS Harapan dengan penghasilan neto menurut BPA1 Rp206.400.000 dan PPh 21 dipotong Rp14.835.000; (2) dokter tamu (bukan pegawai) di RS Sehat dengan jasa medis Rp20.000.000 per bulan, dipotong PPh 21 Rp500.000 per bulan; (3) praktik pribadi dengan penerimaan bruto Rp290.000.000. Ia menyampaikan pemberitahuan penggunaan NPPN pada 20 Februari 2026; persentase norma untuk kegiatannya (diberikan) 50%. Penghasilan neto dari pekerjaan bebas dr. Rizal tahun 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp145.000.000", B: "Rp265.000.000", C: "Rp259.000.000", D: "Rp15.000.000" },
@@ -780,16 +782,31 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
         inti: "Jasa medis sebagai dokter tamu adalah peredaran bruto pekerjaan bebas. Peredaran bruto Rp240.000.000 + Rp290.000.000 = Rp530.000.000 (kurang dari Rp4,8 miliar, pemberitahuan tepat waktu), neto = 50% × Rp530.000.000.",
-        jejakHitung: [ ["Jasa medis RS Sehat (12 × Rp20.000.000)", "Rp240.000.000"], ["Praktik pribadi", "Rp290.000.000"], ["Peredaran bruto pekerjaan bebas", "Rp530.000.000"], ["Neto = 50% × Rp530.000.000", "Rp265.000.000"] ],
-        mengapaSalah: { A: "Hanya memakai praktik pribadi; jasa medis dokter tamu juga penghasilan pekerjaan bebas", C: "Mengurangkan PPh 21 yang dipotong dari neto; PPh adalah kredit, bukan pengurang penghasilan", D: "Memakai pola PPh final UMKM (bagian Rp500 juta tidak kena); pekerjaan bebas dikecualikan sejak PP 20/2026" },
+        jejakHitung: [
+          ["Jasa medis RS Sehat (12 × Rp20.000.000)", "Rp240.000.000"],
+          ["Praktik pribadi", "Rp290.000.000"],
+          ["Peredaran bruto pekerjaan bebas", "Rp530.000.000"],
+          ["Neto = 50% × Rp530.000.000", "Rp265.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Hanya memakai praktik pribadi; jasa medis dokter tamu juga penghasilan pekerjaan bebas",
+          C: "Mengurangkan PPh 21 yang dipotong dari neto; PPh adalah kredit, bukan pengurang penghasilan",
+          D: "Memakai pola PPh final UMKM (bagian Rp500 juta tidak kena); jasa pekerjaan bebas dikecualikan dari PPh final (Pasal 56 ayat (3) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018) dan tetap setelah PP 20/2026"
+        },
         jebakan: "Gaji RS Harapan (pegawai tetap) bukan peredaran bruto pekerjaan bebas, tetapi jasa medis dokter tamu termasuk."
       },
-      dasarHukum: [ { pasal: "Pasal 14 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-17/PJ/2015 (persentase norma)" }, { pasal: "PMK 168/2023 (PPh 21 bukan pegawai)", berlakuSejak: "2024-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 14 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PER-17/PJ/2015 (persentase norma)" }, { pasal: "PMK 168/2023 (PPh 21 bukan pegawai)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 56 ayat (3) huruf a PP 55/2022 s.t.d.d. PP 20/2026 (pekerjaan bebas dikecualikan dari PPh final)", berlakuSejak: "2022-12-20" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
     {
-      id: "A1-019", topik: "A1.7", kasusId: "V-A1-01", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["B-2026-10"],
+      id: "A1-019",
+      topik: "A1.7",
+      kasusId: "V-A1-01",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
       stem: "Lanjutan data dr. Rizal Kurniawan (K/2, istri tidak berpenghasilan, dua anak): penghasilan neto 2026 dari pekerjaan (BPA1 RS Harapan) Rp206.400.000; penghasilan neto pekerjaan bebas dengan NPPN Rp265.000.000 (peredaran bruto Rp530.000.000); zakat melalui BAZNAS Rp6.000.000; bunga deposito Rp9.000.000 yang telah dipotong PPh final. PPh terutang dr. Rizal Tahun Pajak 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp69.475.000", B: "Rp68.475.000", C: "Rp69.975.000", D: "Rp14.085.000" },
@@ -797,11 +814,23 @@ UKP.register({
       jebakanOpsi: { A: "angka-usang", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
         inti: "PKP = 206.400.000 + 265.000.000 − 6.000.000 − 67.500.000 = Rp397.900.000; bunga deposito final tidak ikut.",
-        jejakHitung: [ ["Neto pekerjaan + pekerjaan bebas", "Rp471.400.000"], ["− Zakat BAZNAS", "Rp6.000.000"], ["− PTKP K/2", "Rp67.500.000"], ["PKP", "Rp397.900.000"], ["5% × 60 jt + 15% × 190 jt", "Rp31.500.000"], ["25% × Rp147.900.000", "Rp36.975.000"], ["PPh terutang", "Rp68.475.000"] ],
-        mengapaSalah: { A: "Memakai lapisan pertama Rp50 juta (tarif lama pra-UU HPP)", C: "Lupa mengurangkan zakat (PKP Rp403.900.000)", D: "Memakai PPh final 0,5% × (Rp530 juta − Rp500 juta) untuk praktik dokter; pekerjaan bebas tidak boleh memakai PPh final sejak PP 20/2026" },
-        jebakan: "Peredaran bruto dokter yang sedikit di atas Rp500 juta memancing jalur hitung PPh final UMKM yang sudah tidak berlaku bagi pekerjaan bebas."
+        jejakHitung: [
+          ["Neto pekerjaan + pekerjaan bebas", "Rp471.400.000"],
+          ["− Zakat BAZNAS", "Rp6.000.000"],
+          ["− PTKP K/2", "Rp67.500.000"],
+          ["PKP", "Rp397.900.000"],
+          ["5% × 60 jt + 15% × 190 jt", "Rp31.500.000"],
+          ["25% × Rp147.900.000", "Rp36.975.000"],
+          ["PPh terutang", "Rp68.475.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai lapisan pertama Rp50 juta (tarif lama pra-UU HPP)",
+          C: "Lupa mengurangkan zakat (PKP Rp403.900.000)",
+          D: "Memakai PPh final 0,5% × (Rp530 juta − Rp500 juta) untuk praktik dokter; jasa pekerjaan bebas dikecualikan dari PPh final (Pasal 56 ayat (3) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018) dan tetap setelah PP 20/2026"
+        },
+        jebakan: "Peredaran bruto dokter yang sedikit di atas Rp500 juta memancing jalur hitung PPh final UMKM, padahal jasa pekerjaan bebas dokter tidak termasuk PPh final PP 55/2022 maupun setelah PP 20/2026."
       },
-      dasarHukum: [ { pasal: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 9 ayat (1) huruf g UU PPh; PMK 114/2025", berlakuSejak: "2025-12-31" }, { pasal: "PP 20/2026 (pekerjaan bebas dikecualikan)", berlakuSejak: "2026-04-22" } ],
+      dasarHukum: [{ pasal: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 9 ayat (1) huruf g UU PPh; PMK 114/2025", berlakuSejak: "2025-12-31" }, { pasal: "Pasal 56 ayat (3) huruf a PP 55/2022 s.t.d.d. PP 20/2026 (pekerjaan bebas dikecualikan dari PPh final)", berlakuSejak: "2022-12-20" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -899,7 +928,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
-        inti: "Jasa sehubungan dengan pekerjaan bebas orang pribadi, termasuk arsitek, sudah dikecualikan dari PPh final 0,5% sejak PP 55/2022 (Pasal 56 ayat (3) huruf a dan ayat (4) huruf a) dan tetap dikecualikan setelah PP 20/2026. Usaha dagang WP yang sama tetap boleh memakai 0,5% selama peredaran bruto yang diuji tidak melebihi Rp4,8 miliar; sejak PP 20/2026 uji itu menjumlahkan peredaran bruto usaha, pekerjaan bebas, dan luar negeri (Pasal 58 ayat (1) huruf a). Penghasilan arsitek dihitung dengan NPPN dan dikenai tarif Pasal 17.",
+        inti: "Jasa sehubungan dengan pekerjaan bebas orang pribadi, termasuk arsitek, dikecualikan dari PPh final 0,5% (Pasal 56 ayat (3) huruf a dan ayat (4) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018) dan tetap dikecualikan setelah PP 20/2026. Usaha dagang WP yang sama tetap boleh memakai 0,5% selama peredaran bruto yang diuji tidak melebihi Rp4,8 miliar; sejak PP 20/2026 uji itu menjumlahkan peredaran bruto usaha, pekerjaan bebas, dan luar negeri (Pasal 58 ayat (1) huruf a). Penghasilan arsitek dihitung dengan NPPN dan dikenai tarif Pasal 17.",
         jejakHitung: [
           ["Uji batas: peredaran bruto 2025 (usaha + pekerjaan bebas)", "di bawah Rp2 miliar ≤ Rp4,8 miliar"],
           ["Peredaran bruto 2026: Rp900 juta + Rp600 juta", "Rp1,5 miliar ≤ Rp4,8 miliar"],
@@ -1156,19 +1185,34 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-038", topik: "A1.8", tingkat: ["A", "B", "C"], jenis: "hitung", kesulitan: 3,
+      id: "A1-038",
+      topik: "A1.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
       stem: "Tuan Hendro (K/0, SPDN) pada 2026 memperoleh penghasilan neto usaha dalam negeri Rp358.500.000 dan penghasilan neto sewa apartemen di Singapura Rp100.000.000; atas sewa itu ia telah membayar pajak di Singapura setara Rp20.000.000 dengan bukti pembayaran lengkap. Tidak ada zakat dan kompensasi kerugian. Kredit PPh Pasal 24 maksimum yang dapat diperhitungkan dalam SPT 2026 adalah ...",
       kataKualifikasi: ["maksimum"],
       opsi: { A: "Rp20.000.000", B: "Rp9.000.000", C: "Rp17.250.000", D: "Rp0" },
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
-        inti: "PKP = 358,5 + 100 − 58,5 juta = Rp400.000.000; PPh terutang Rp69.000.000. Batas Singapura = 100/400 × Rp69.000.000 = Rp17.250.000, lebih kecil dari pajak yang dibayar di Singapura.",
-        jejakHitung: [ ["Neto dalam negeri + luar negeri", "Rp458.500.000"], ["− PTKP K/0", "Rp58.500.000"], ["PKP", "Rp400.000.000"], ["PPh terutang = Rp31.500.000 + 25% × Rp150.000.000", "Rp69.000.000"], ["Batas = 100/400 × Rp69.000.000", "Rp17.250.000"], ["Kredit = min(Rp20 juta; Rp17,25 juta)", "Rp17.250.000"] ],
-        mengapaSalah: { A: "Mengkreditkan seluruh pajak luar negeri tanpa batas per negara", B: "Menghitung batas dengan tarif Pasal 17 atas penghasilan luar negeri saja, bukan proporsi terhadap PPh terutang", D: "Sewa properti di luar negeri bukan objek PPh final Pasal 4 ayat (2); ia digabung dan pajaknya dapat dikreditkan" },
+        inti: "PKP = 358,5 + 100 − 58,5 juta = Rp400.000.000; PPh terutang Rp69.000.000. Batas untuk penghasilan sewa dari Singapura (dihitung per jenis penghasilan untuk tiap negara) = 100/400 × Rp69.000.000 = Rp17.250.000, lebih kecil dari pajak yang dibayar di Singapura.",
+        jejakHitung: [
+          ["Neto dalam negeri + luar negeri", "Rp458.500.000"],
+          ["− PTKP K/0", "Rp58.500.000"],
+          ["PKP", "Rp400.000.000"],
+          ["PPh terutang = Rp31.500.000 + 25% × Rp150.000.000", "Rp69.000.000"],
+          ["Batas = 100/400 × Rp69.000.000", "Rp17.250.000"],
+          ["Kredit = min(Rp20 juta; Rp17,25 juta)", "Rp17.250.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengkreditkan seluruh pajak luar negeri tanpa batas; kredit dibatasi per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) dan (4) PMK 192/PMK.03/2018)",
+          B: "Menghitung batas dengan tarif Pasal 17 atas penghasilan luar negeri saja, bukan proporsi terhadap PPh terutang",
+          D: "Sewa properti di luar negeri bukan objek PPh final Pasal 4 ayat (2); ia digabung dan pajaknya dapat dikreditkan"
+        },
         jebakan: "Batas kredit memakai proporsi neto luar negeri terhadap PKP, bukan tarif marginal."
       },
-      dasarHukum: [ { pasal: "Pasal 24 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" } ],
+      dasarHukum: [{ pasal: "Pasal 24 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -1417,19 +1461,27 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-050", topik: "A1.10", tingkat: ["A", "B", "C"], jenis: "klasifikasi", kesulitan: 2,
+      id: "A1-050",
+      topik: "A1.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
       stem: "Pada Oktober 2026 empat Wajib Pajak baru yang belum pernah memakai PPh final UMKM, dengan peredaran bruto di bawah Rp1 miliar, ingin memanfaatkan tarif 0,5%. Yang DAPAT memanfaatkannya menurut PP 55/2022 s.t.d.d. PP 20/2026 adalah ...",
       kataKualifikasi: ["dapat"],
       opsi: { A: "CV Sumber Rejeki yang didirikan Mei 2026", B: "Notaris orang pribadi atas honorarium jasa kenotariatan", C: "PT Karya Bersama yang didirikan dua pemegang saham pada Juni 2026", D: "Ibu Wati, orang pribadi penjual pakaian daring" },
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
-        inti: "Sejak PP 20/2026 penerima baru PPh final UMKM hanya OP, PT perorangan yang didirikan 1 orang, dan koperasi; jasa pekerjaan bebas dikecualikan. Penjual pakaian daring adalah usaha dagang OP.",
+        inti: "Sejak PP 20/2026 penerima baru PPh final UMKM hanya OP, PT perorangan yang didirikan 1 orang, dan koperasi. Jasa pekerjaan bebas tetap dikecualikan (Pasal 56 ayat (3) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018); itu bukan perubahan PP 20/2026. Penjual pakaian daring adalah usaha dagang OP.",
         jejakHitung: [],
-        mengapaSalah: { A: "CV baru tidak lagi dapat memakai PPh final UMKM sejak PP 20/2026 (sebelumnya boleh 4 tahun)", B: "Jasa sehubungan pekerjaan bebas seperti notaris dikecualikan", C: "PT dengan dua pemegang saham bukan PT perorangan yang didirikan 1 orang" },
+        mengapaSalah: {
+          A: "CV baru tidak lagi dapat memakai PPh final UMKM sejak PP 20/2026 (sebelumnya boleh 4 tahun)",
+          B: "Jasa sehubungan pekerjaan bebas seperti notaris dikecualikan",
+          C: "PT dengan dua pemegang saham bukan PT perorangan yang didirikan 1 orang"
+        },
         jebakan: "Peserta yang belajar dari materi PP 55/2022 versi awal akan menganggap CV dan PT masih boleh."
       },
-      dasarHukum: [ { pasal: "PP 55/2022 Pasal 56 dan 57 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" } ],
+      dasarHukum: [{ pasal: "PP 55/2022 Pasal 56 dan 57 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
@@ -2051,24 +2103,35 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-080", topik: "A1.5", kasusId: "V-A1-08", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
-      stem: "Lanjutan data Pak Wayan Sudarma (bengkel di Denpasar, pembukuan): penghasilan neto fiskal usaha 2026 Rp737.000.000 dan dana punia wajib yang dapat dikurangkan Rp20.000.000. Riwayat fiskalnya: rugi 2021 Rp900.000.000; penghasilan neto fiskal sebelum kompensasi 2022 Rp90.000.000, 2023 Rp110.000.000, 2024 Rp100.000.000, dan 2025 Rp400.000.000, yang seluruhnya habis untuk mengompensasikan rugi 2021. Pada 2026 ia juga menderita kerugian Rp50.000.000 dari usaha agen perjalanan miliknya di Timor Leste dan rugi Rp30.000.000 dari penjualan saham di Bursa Efek Indonesia. Kompensasi kerugian dalam SPT Tahunan 2026 Pak Wayan adalah ...",
+      id: "A1-080",
+      topik: "A1.5",
+      kasusId: "V-A1-08",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "Lanjutan data Pak Wayan Sudarma (bengkel di Denpasar, pembukuan): penghasilan neto fiskal usaha 2026 Rp737.000.000 dan dana punia wajib yang dapat dikurangkan Rp20.000.000. Riwayat fiskalnya: rugi 2021 Rp900.000.000; penghasilan neto fiskal sebelum kompensasi 2022 Rp90.000.000, 2023 Rp110.000.000, 2024 Rp100.000.000, dan 2025 Rp400.000.000, yang seluruhnya habis untuk mengompensasikan rugi 2021. Pada 2026 ia juga menderita kerugian Rp50.000.000 dari penjualan saham yang dimilikinya pada sebuah perusahaan di Timor Leste dan rugi Rp30.000.000 dari penjualan saham di Bursa Efek Indonesia. Kompensasi kerugian dalam SPT Tahunan 2026 Pak Wayan adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp0, karena rugi 2021 hanya dapat dikompensasikan sampai Tahun Pajak 2025",
-        B: "Rp250.000.000, yaitu sisa rugi 2021 ditambah kerugian usaha di Timor Leste",
-        C: "Rp200.000.000, yaitu sisa rugi 2021 yang masih dalam batas 5 tahun (2022–2026)",
-        D: "Rp230.000.000, yaitu sisa rugi 2021 ditambah rugi penjualan saham di bursa"
-      },
+      opsi: { A: "Rp0, karena rugi 2021 hanya dapat dikompensasikan sampai Tahun Pajak 2025", B: "Rp250.000.000, yaitu sisa rugi 2021 ditambah kerugian di Timor Leste", C: "Rp200.000.000, yaitu sisa rugi 2021 yang masih dalam batas 5 tahun (2022–2026)", D: "Rp230.000.000, yaitu sisa rugi 2021 ditambah rugi penjualan saham di bursa" },
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "final-nonfinal" },
       pembahasan: {
-        inti: "Rugi 2021 dapat dikompensasikan pada 2022–2026. Setelah terpakai Rp700 juta sampai 2025, sisanya Rp200 juta masih dapat dipakai pada 2026 (tahun kelima). Kerugian usaha di luar negeri tidak digabung, dan rugi penjualan saham di bursa (transaksi ber-PPh final) tidak dikompensasikan.",
-        jejakHitung: [ ["Rugi 2021", "Rp900.000.000"], ["Terpakai 2022–2025 (Rp90 jt + Rp110 jt + Rp100 jt + Rp400 jt)", "Rp700.000.000"], ["Sisa rugi 2021 (batas akhir Tahun Pajak 2026)", "Rp200.000.000"], ["Neto 2026 setelah dana punia (Rp737 jt − Rp20 jt)", "Rp717.000.000 (mencukupi)"], ["Rugi Timor Leste dan rugi saham di bursa", "tidak dikompensasikan"], ["Kompensasi 2026", "Rp200.000.000"] ],
-        mengapaSalah: { A: "Lima tahun dihitung mulai tahun berikutnya (2022), sehingga 2026 adalah tahun kelima dan sisa rugi 2021 masih dapat dipakai", B: "Kerugian usaha di luar negeri tidak boleh digabung dengan penghasilan dalam negeri (PMK 192/PMK.03/2018)", D: "Rugi atas transaksi saham di bursa yang dikenai PPh final 0,1% tidak dikompensasikan" },
+        inti: "Rugi 2021 dapat dikompensasikan pada 2022–2026. Setelah terpakai Rp700 juta sampai 2025, sisanya Rp200 juta masih dapat dipakai pada 2026 (tahun kelima). Kerugian yang diderita di luar negeri (rugi penjualan saham perusahaan Timor Leste) tidak dapat diperhitungkan dalam PKP, dan rugi penjualan saham di bursa (transaksi ber-PPh final) tidak dikompensasikan.",
+        jejakHitung: [
+          ["Rugi 2021", "Rp900.000.000"],
+          ["Terpakai 2022–2025 (Rp90 jt + Rp110 jt + Rp100 jt + Rp400 jt)", "Rp700.000.000"],
+          ["Sisa rugi 2021 (batas akhir Tahun Pajak 2026)", "Rp200.000.000"],
+          ["Neto 2026 setelah dana punia (Rp737 jt − Rp20 jt)", "Rp717.000.000 (mencukupi)"],
+          ["Rugi di Timor Leste dan rugi saham di bursa", "tidak dikompensasikan"],
+          ["Kompensasi 2026", "Rp200.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Lima tahun dihitung mulai tahun berikutnya (2022), sehingga 2026 adalah tahun kelima dan sisa rugi 2021 masih dapat dipakai",
+          B: "Kerugian yang diderita di luar negeri tidak dapat diperhitungkan dalam menghitung PKP (Pasal 4 ayat (3) huruf b PMK 192/PMK.03/2018)",
+          D: "Rugi atas transaksi saham di bursa yang dikenai PPh final 0,1% tidak dikompensasikan"
+        },
         jebakan: "Menghitung 2021 sebagai tahun pertama membuat sisa rugi seolah hangus setahun lebih cepat."
       },
-      dasarHukum: [ { pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018 (kerugian di luar negeri tidak digabung)", berlakuSejak: "2018-12-31" }, { pasal: "Pasal 4 ayat (2) huruf c UU PPh", berlakuSejak: "2009-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (3) PMK 192/PMK.03/2018 (kerugian di luar negeri tidak diperhitungkan)", berlakuSejak: "2018-12-31" }, { pasal: "Pasal 4 ayat (2) huruf c UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 160,
       verifikasi: "✅"
     },
@@ -2144,7 +2207,7 @@ UKP.register({
       dasarHukum: [{ pasal: "Pasal 25 ayat (1), (2), dan (6) huruf a UU PPh beserta Penjelasan ayat (6) Contoh 1", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 1 angka 63 (s.t.d.t.d. PMK 1/2026) dan Pasal 226 (angsuran PPh Pasal 25; menggantikan PMK 215/PMK.03/2018 sejak 1 Januari 2025)", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 Pasal 113 ayat (2) huruf a dan Pasal 114 (angsuran bila berhak atas kompensasi kerugian; dahulu KEP-537/PJ/2000 Pasal 2)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 200,
       verifikasi: "◐",
-      peringatan: "Sudah dicocokkan: definisi OPPT (PMK 81/2024 Pasal 1 angka 63), Pasal 25 ayat (2) dan (6) huruf a UU PPh, dan Contoh 1 Penjelasan ayat (6) (neto dikurangi sisa kerugian), yang mendukung kunci D. Belum pasti: PER-11/PJ/2025 Pasal 114 ayat (2) hanya berbunyi neto dikurangkan dengan kompensasi kerugian; dibaca sebagai kompensasi dalam SPT 2026 (Rp200.000.000), April menjadi Rp5.825.000 (opsi B). Juga, definisi OPPT tidak membatasi tempat usaha di Indonesia (usaha Timor Leste, A1-080)."
+      peringatan: "Sudah dicocokkan: definisi OPPT (PMK 81/2024 Pasal 1 angka 63), Pasal 25 ayat (2) dan (6) huruf a UU PPh, dan Contoh 1 Penjelasan ayat (6) (neto dikurangi sisa kerugian), yang mendukung kunci D. Belum pasti: PER-11/PJ/2025 Pasal 114 ayat (2) hanya berbunyi neto dikurangkan dengan kompensasi kerugian; dibaca sebagai kompensasi dalam SPT 2026 (Rp200.000.000), angsuran April menjadi Rp5.825.000 (opsi B)."
     },
     {
       id: "A1-083",
@@ -2491,19 +2554,33 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "A1-097", topik: "A1.8", tingkat: ["A", "B", "C"], jenis: "kasus", kesulitan: 3,
+      id: "A1-097",
+      topik: "A1.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
       stem: "Tuan Hartono Gunadi (K/1, SPDN) memiliki usaha distribusi di Medan dengan pembukuan. Data Tahun Pajak 2026: penghasilan neto usaha dalam negeri Rp763.000.000; penghasilan neto sewa apartemen di Singapura Rp200.000.000 dengan pajak Singapura yang telah dibayar Rp40.000.000; penghasilan neto restoran miliknya di Malaysia Rp100.000.000 dengan pajak Malaysia Rp30.000.000; dan rugi usaha kafe di Vietnam Rp50.000.000. Tidak ada zakat dan kompensasi kerugian; PPh 25 yang disetor Rp120.000.000; seluruh bukti pembayaran pajak luar negeri lengkap. Kredit PPh Pasal 24 maksimum yang dapat diperhitungkan dalam SPT 2026 adalah ...",
       kataKualifikasi: ["maksimum"],
       opsi: { A: "Rp70.000.000", B: "Rp73.200.000", C: "Rp64.400.000", D: "Rp64.105.263" },
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-hitung" },
       pembahasan: {
-        inti: "Batas kredit dihitung per negara: (neto negara itu ÷ PKP) × PPh terutang, dan yang dikreditkan adalah yang terkecil antara batas itu dan pajak yang benar-benar dibayar. Rugi di Vietnam tidak digabung.",
-        jejakHitung: [ ["PKP (Rp763 jt + Rp200 jt + Rp100 jt − PTKP K/1 Rp63 jt; rugi Vietnam tidak digabung)", "Rp1.000.000.000"], ["PPh terutang: Rp94.000.000 + 30% × Rp500.000.000", "Rp244.000.000"], ["Batas Singapura: 200/1.000 × Rp244.000.000 = Rp48.800.000", "kredit Rp40.000.000 (pajak dibayar)"], ["Batas Malaysia: 100/1.000 × Rp244.000.000 = Rp24.400.000", "kredit Rp24.400.000 (batas)"], ["Jumlah kredit PPh 24", "Rp64.400.000"] ],
-        mengapaSalah: { A: "Mengkreditkan seluruh pajak luar negeri tanpa batas per negara; kelebihan pajak Malaysia Rp5.600.000 tidak dapat dikreditkan", B: "Mengkreditkan batas maksimum Singapura walaupun pajak yang dibayar hanya Rp40 juta; kredit adalah nilai yang terkecil", D: "Menggabungkan rugi Vietnam sehingga PKP turun menjadi Rp950 juta; kerugian di luar negeri tidak digabung" },
-        jebakan: "Dua negara, dua hasil berbeda: satu dibatasi pajak yang dibayar, satu dibatasi rumus proporsi."
+        inti: "Batas kredit dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018): (neto jenis itu dari negara itu ÷ PKP) × PPh terutang, dan yang dikreditkan adalah yang paling sedikit antara batas itu dan pajak yang benar-benar dibayar. Di soal ini tiap negara hanya memberi satu jenis penghasilan (sewa dari Singapura, usaha restoran dari Malaysia). Rugi di Vietnam tidak digabung (Pasal 4 ayat (3)).",
+        jejakHitung: [
+          ["PKP (Rp763 jt + Rp200 jt + Rp100 jt − PTKP K/1 Rp63 jt; rugi Vietnam tidak digabung)", "Rp1.000.000.000"],
+          ["PPh terutang: Rp94.000.000 + 30% × Rp500.000.000", "Rp244.000.000"],
+          ["Batas sewa Singapura: 200/1.000 × Rp244.000.000 = Rp48.800.000", "kredit Rp40.000.000 (pajak dibayar)"],
+          ["Batas usaha restoran Malaysia: 100/1.000 × Rp244.000.000 = Rp24.400.000", "kredit Rp24.400.000 (batas)"],
+          ["Jumlah kredit PPh 24", "Rp64.400.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengkreditkan seluruh pajak luar negeri tanpa batas per jenis penghasilan untuk tiap negara; kelebihan pajak Malaysia Rp5.600.000 tidak dapat dikreditkan (Pasal 7 PMK 192/PMK.03/2018)",
+          B: "Mengkreditkan batas maksimum Singapura walaupun pajak yang dibayar hanya Rp40 juta; kredit adalah nilai yang terkecil",
+          D: "Menggabungkan rugi Vietnam sehingga PKP turun menjadi Rp950 juta; kerugian di luar negeri tidak digabung"
+        },
+        jebakan: "Dua jenis penghasilan dari dua negara, dua hasil berbeda: satu dibatasi pajak yang dibayar, satu dibatasi rumus proporsi."
       },
-      dasarHukum: [ { pasal: "Pasal 24 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018 (kredit pajak luar negeri; rugi luar negeri)", berlakuSejak: "2018-12-31" } ],
+      dasarHukum: [{ pasal: "Pasal 24 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018 (kredit pajak luar negeri; rugi luar negeri)", berlakuSejak: "2018-12-31" }],
       anggaranDetik: 190,
       verifikasi: "✅"
     },
@@ -2797,7 +2874,7 @@ UKP.register({
     { id: "KT-A1-01", topik: "A1.1", tipe: "angka", depan: "Uji kehadiran yang membuat orang asing menjadi SPDN?", belakang: "Berada di Indonesia lebih dari 183 hari dalam 12 bulan", dasar: "Pasal 2 ayat (3) huruf a UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-02", topik: "A1.1", tipe: "definisi", depan: "Kapan kewajiban subjektif SPDN orang pribadi berakhir?", belakang: "Saat meninggal dunia atau meninggalkan Indonesia untuk selama-lamanya", dasar: "Pasal 2A ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-03", topik: "A1.1", tipe: "definisi", depan: "Subjek pajak pengganti saat WP OP meninggal dan warisan belum dibagi?", belakang: "Warisan yang belum terbagi, sampai warisan selesai dibagi", dasar: "Pasal 2 ayat (1) huruf a angka 2 dan Pasal 2A UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-04", topik: "A1.1", tipe: "angka", depan: "WNA SPDN berkeahlian tertentu dipajaki atas penghasilan apa, berapa lama?", belakang: "Hanya penghasilan dari Indonesia, selama 4 tahun pajak", dasar: "Pasal 4 ayat (1a) UU PPh; PMK 18/PMK.03/2021", berlakuSejak: "2020-11-02", menggantikan: "penghasilan seluruh dunia bagi semua SPDN (sebelum UU Cipta Kerja)", dekTambahan: [] },
+    { id: "KT-A1-04", topik: "A1.1", tipe: "angka", depan: "WNA SPDN berkeahlian tertentu dipajaki atas penghasilan apa, berapa lama?", belakang: "Hanya penghasilan dari Indonesia, selama 4 tahun pajak sejak menjadi SPDN; dimohonkan dan perlu surat persetujuan DJP", dasar: "Pasal 4 ayat (1a) UU PPh; Pasal 442 sampai dengan Pasal 447 PMK 81/2024 (menggantikan Pasal 7 sampai dengan Pasal 13 PMK 18/PMK.03/2021)", berlakuSejak: "2020-11-02", menggantikan: "penghasilan seluruh dunia bagi semua SPDN (sebelum UU Cipta Kerja)", dekTambahan: [] },
     { id: "KT-A1-05", topik: "A1.1", tipe: "pasal", depan: "Staf WNI kedutaan atau organisasi internasional: subjek pajak?", belakang: "Ya; pengecualian Pasal 3 mensyaratkan bukan WNI", dasar: "Pasal 3 ayat (1) huruf b dan d UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-06", topik: "A1.2", tipe: "angka", depan: "Dividen dalam negeri diterima OP bebas PPh bila?", belakang: "Diinvestasikan di Indonesia paling sedikit 3 tahun pajak", dasar: "Pasal 4 ayat (3) huruf f UU PPh; PMK 18/PMK.03/2021", berlakuSejak: "2020-11-02", menggantikan: "PPh final 10% atas seluruh dividen OP (UU 36/2008)", dekTambahan: [] },
     { id: "KT-A1-07", topik: "A1.2", tipe: "angka", depan: "Tarif PPh dividen OP yang tidak diinvestasikan?", belakang: "10% final, disetor sendiri", dasar: "Pasal 17 ayat (2c) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
@@ -2814,7 +2891,7 @@ UKP.register({
     { id: "KT-A1-18", topik: "A1.4", tipe: "definisi", depan: "Akibat tidak memberitahukan NPPN tepat waktu?", belakang: "Dianggap memilih menyelenggarakan pembukuan", dasar: "Pasal 14 ayat (4) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-19", topik: "A1.4", tipe: "definisi", depan: "Tiga kelompok wilayah persentase norma?", belakang: "10 ibu kota provinsi, ibu kota provinsi lainnya, daerah lainnya", dasar: "PER-17/PJ/2015 Lampiran I", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-20", topik: "A1.5", tipe: "angka", depan: "Jangka waktu kompensasi kerugian fiskal?", belakang: "5 tahun berturut-turut mulai tahun berikutnya; rugi tertua lebih dahulu", dasar: "Pasal 6 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-21", topik: "A1.5", tipe: "definisi", depan: "Rugi usaha luar negeri boleh mengurangi laba dalam negeri?", belakang: "Tidak boleh", dasar: "Pasal 24 UU PPh; PMK 192/PMK.03/2018 (nomor perlu cek; aturan lama KMK 164/KMK.03/2002)", berlakuSejak: "2018-12-31", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A1-21", topik: "A1.5", tipe: "definisi", depan: "Rugi usaha luar negeri boleh mengurangi laba dalam negeri?", belakang: "Tidak boleh", dasar: "Pasal 4 ayat (3) PMK 192/PMK.03/2018 (mencabut KMK 164/KMK.03/2002)", berlakuSejak: "2018-12-31", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-22", topik: "A1.6", tipe: "angka", depan: "PTKP WP sendiri, tambahan kawin, dan per tanggungan?", belakang: "Rp54 juta; +Rp4,5 juta; +Rp4,5 juta per tanggungan (maks 3)", dasar: "Pasal 7 ayat (1) UU PPh; PMK 101/PMK.010/2016", berlakuSejak: "2016-01-01", menggantikan: "Rp36 juta untuk WP sendiri (TP 2015)", dekTambahan: [] },
     { id: "KT-A1-23", topik: "A1.6", tipe: "angka", depan: "Tambahan PTKP istri yang penghasilannya digabung?", belakang: "Rp54.000.000 (status K/I)", dasar: "Pasal 7 ayat (1) UU PPh; PMK 101/PMK.010/2016", berlakuSejak: "2016-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-24", topik: "A1.6", tipe: "definisi", depan: "Status PTKP ditentukan menurut keadaan kapan?", belakang: "Awal tahun pajak (1 Januari)", dasar: "Pasal 7 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
@@ -2826,14 +2903,14 @@ UKP.register({
     { id: "KT-A1-30", topik: "A1.7", tipe: "angka", depan: "Aturan pembulatan PKP?", belakang: "Ke bawah dalam ribuan rupiah penuh", dasar: "Pasal 17 ayat (4) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-31", topik: "A1.7", tipe: "pasal", depan: "Syarat zakat sebagai pengurang penghasilan bruto?", belakang: "Ke BAZNAS/LAZ resmi, ada bukti, tidak menimbulkan rugi", dasar: "Pasal 9 ayat (1) huruf g UU PPh; PMK 114/2025", berlakuSejak: "2025-12-31", menggantikan: "PMK 254/PMK.03/2010", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A1-32", topik: "A1.8", tipe: "pasal", depan: "Kredit pajak dalam SPT Tahunan OP?", belakang: "PPh 21, 22, 23, 24, dan 25; bukan PPh final atau sanksi", dasar: "Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-33", topik: "A1.8", tipe: "angka", depan: "Batas kredit PPh Pasal 24 per negara?", belakang: "Terkecil: pajak luar negeri atau (neto LN/PKP) × PPh terutang", dasar: "Pasal 24 UU PPh; PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A1-33", topik: "A1.8", tipe: "angka", depan: "Batas kredit PPh Pasal 24 per jenis penghasilan untuk tiap negara?", belakang: "Terkecil: pajak luar negeri (dengan memperhatikan P3B) atau (neto LN jenis itu/PKP) × PPh terutang", dasar: "Pasal 24 UU PPh; Pasal 6 ayat (2) dan (4) PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-34", topik: "A1.8", tipe: "prosedur", depan: "Kapan PPh Pasal 29 OP harus dilunasi?", belakang: "Sebelum SPT Tahunan disampaikan (paling lambat 31 Maret)", dasar: "Pasal 9 ayat (2) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-35", topik: "A1.9", tipe: "angka", depan: "Rumus angsuran PPh 25 orang pribadi biasa?", belakang: "(PPh terutang − PPh 21/22/23/24 tahun lalu) ÷ 12", dasar: "Pasal 25 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-36", topik: "A1.9", tipe: "angka", depan: "Angsuran PPh 25 OP pengusaha tertentu (usaha dagang/jasa, bukan pekerjaan bebas, di tempat usaha selain tempat tinggal)?", belakang: "0,75% × peredaran bruto bulanan setiap tempat usaha", dasar: "PMK 81/2024 (angsuran PPh Pasal 25 OP pengusaha tertentu; menggantikan PMK 215/PMK.03/2018)", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-37", topik: "A1.9", tipe: "prosedur", depan: "Batas setor PPh 25 dan PPh final UMKM?", belakang: "Tanggal 15 bulan berikutnya (sudah tanggal 15 sebelum 2025)", dasar: "PMK 81/2024 Pasal 94", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-38", topik: "A1.10", tipe: "angka", depan: "Tarif, batas, dan bagian bebas PPh final UMKM orang pribadi?", belakang: "0,5%; peredaran bruto ≤ Rp4,8 miliar; Rp500 juta pertama tidak kena", dasar: "PP 55/2022 s.t.d.d. PP 20/2026; Pasal 7 ayat (2a) UU PPh", berlakuSejak: "2022-01-01", menggantikan: "0,5% sejak rupiah pertama (PP 23/2018)", dekTambahan: [] },
     { id: "KT-A1-39", topik: "A1.10", tipe: "definisi", depan: "Siapa penerima baru PPh final UMKM sejak PP 20/2026?", belakang: "OP, PT perorangan didirikan 1 orang, dan koperasi", dasar: "PP 20/2026", berlakuSejak: "2026-04-22", menggantikan: "OP, koperasi, CV, firma, PT, BUMDes (PP 55/2022 awal)", dekTambahan: ["perubahan-2025-2026"] },
-    { id: "KT-A1-40", topik: "A1.10", tipe: "definisi", depan: "Jasa pekerjaan bebas boleh memakai PPh final 0,5%?", belakang: "Tidak; dikecualikan sejak PP 20/2026 (pakai NPPN/pembukuan)", dasar: "PP 20/2026", berlakuSejak: "2026-04-22", menggantikan: "boleh, sepanjang omzet ≤ Rp4,8 miliar (PP 55/2022 awal)", dekTambahan: ["perubahan-2025-2026"] },
+    { id: "KT-A1-40", topik: "A1.10", tipe: "definisi", depan: "Jasa pekerjaan bebas boleh memakai PPh final 0,5%?", belakang: "Tidak; dikecualikan (Pasal 56 ayat (3) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018) dan tetap setelah PP 20/2026 (pakai NPPN/pembukuan)", dasar: "Pasal 56 ayat (3) huruf a dan ayat (4) PP 55/2022 s.t.d.d. PP 20/2026", berlakuSejak: "2022-12-20", menggantikan: "daftar pekerjaan bebas di Pasal 56 ayat (4) PP 55/2022 awal belum menyebut pembuat konten daring (influencer)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A1-41", topik: "A1.10", tipe: "angka", depan: "Jangka waktu PPh final UMKM bagi orang pribadi?", belakang: "Tidak dibatasi lagi; koperasi tetap 4 tahun pajak", dasar: "PP 20/2026", berlakuSejak: "2026-04-22", menggantikan: "7 tahun pajak bagi OP (PP 55/2022 Pasal 59)", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A1-42", topik: "A1.10", tipe: "definisi", depan: "Komponen peredaran bruto untuk uji Rp4,8 miliar sejak PP 20/2026?", belakang: "Usaha + jasa pekerjaan bebas (final maupun tidak), termasuk peredaran bruto dari luar negeri", dasar: "PP 20/2026", berlakuSejak: "2026-04-22", menggantikan: "peredaran bruto usaha saja", dekTambahan: ["perubahan-2025-2026"] },
     { id: "KT-A1-43", topik: "A1.11", tipe: "angka", depan: "Batas lapor SPT Tahunan OP dan denda terlambat?", belakang: "31 Maret; denda Rp100.000", dasar: "Pasal 3 ayat (3) huruf b dan Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
@@ -2850,22 +2927,22 @@ UKP.register({
     { id: "KT-A1-54", topik: "A1.2", tipe: "angka", depan: "Bunga obligasi/SBN yang diterima OP dalam negeri?", belakang: "10% final", dasar: "Pasal 4 ayat (2) huruf a UU PPh; PP 91/2021", berlakuSejak: "2021-08-30", menggantikan: "15% (PP 16/2009 s.t.d.t.d. PP 55/2019)", dekTambahan: [] },
     { id: "KT-A1-55", topik: "A1.3", tipe: "angka", depan: "Penyusutan fiskal bangunan permanen?", belakang: "20 tahun (5%) atau masa manfaat lebih panjang menurut pembukuan; tanah tidak", dasar: "Pasal 11 ayat (6) UU PPh s.t.d.t.d. UU 7/2021; PMK 72/2023", berlakuSejak: "2022-01-01", menggantikan: "selalu 20 tahun (sebelum UU HPP)", dekTambahan: [] },
     { id: "KT-A1-56", topik: "A1.3", tipe: "prosedur", depan: "Harta usaha dijual: perlakuan fiskalnya?", belakang: "Harga jual menjadi penghasilan; nilai sisa buku fiskal dibebankan sebagai kerugian", dasar: "Pasal 11 ayat (8) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-57", topik: "A1.3", tipe: "angka", depan: "Batas sumbangan pendidikan/bencana nasional yang boleh dibiayakan?", belakang: "Maksimal 5% neto fiskal tahun sebelumnya; tidak boleh menimbulkan rugi", dasar: "Pasal 6 ayat (1) huruf i–m UU PPh; PP 93/2010", berlakuSejak: "2010-12-30", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A1-57", topik: "A1.3", tipe: "angka", depan: "Batas sumbangan pendidikan/bencana nasional yang boleh dibiayakan?", belakang: "Maksimal 5% neto fiskal tahun sebelumnya; tidak boleh menimbulkan rugi", dasar: "Pasal 6 ayat (1) huruf i–m UU PPh; Pasal 2 huruf b dan Pasal 3 PP 93/2010 (berlaku sejak Tahun Pajak 2010)", berlakuSejak: "2010-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-58", topik: "A1.3", tipe: "pasal", depan: "Syarat biaya promosi dapat dikurangkan?", belakang: "Daftar nominatif dibuat dan dilampirkan pada SPT Tahunan", dasar: "PMK 02/PMK.03/2010", berlakuSejak: "2010-01-05", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-59", topik: "A1.4", tipe: "definisi", depan: "Persentase norma bagi OP dengan kegiatan di beberapa kota?", belakang: "Per kegiatan, menurut wilayah tempat kegiatan dijalankan", dasar: "PER-17/PJ/2015 Lampiran I", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-60", topik: "A1.5", tipe: "prosedur", depan: "Batas membetulkan SPT setelah SKP mengubah rugi fiskal yang dikompensasikan?", belakang: "Paling lama 3 bulan setelah menerima SKP, keputusan, atau putusan", dasar: "Pasal 8 ayat (6) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A1-60", topik: "A1.5", tipe: "prosedur", depan: "Batas membetulkan SPT setelah SKP mengubah rugi fiskal yang dikompensasikan?", belakang: "Paling lama 3 bulan setelah menerima SKP, keputusan, atau putusan", dasar: "Pasal 8 ayat (6) UU KUP s.t.d.t.d. UU 7/2021 (bunyi sama sejak UU 28/2007); Pasal 181 ayat (5) PMK 81/2024", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-61", topik: "A1.6", tipe: "definisi", depan: "Suami-istri hidup berpisah berdasarkan putusan hakim (HB)?", belakang: "Dikenai pajak terpisah penuh, tanpa penggabungan dan pembagian proporsional", dasar: "Pasal 8 ayat (2) huruf a UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-62", topik: "A1.6", tipe: "definisi", depan: "Istri bekerja pada usaha atau pekerjaan bebas suami: perlakuannya?", belakang: "Digabung; PTKP bertambah Rp54 juta; PPh 21 istri menjadi kredit", dasar: "Pasal 7 ayat (1) dan Pasal 8 ayat (1) UU PPh; PMK 101/PMK.010/2016", berlakuSejak: "2016-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-63", topik: "A1.7", tipe: "angka", depan: "PPh kumulatif orang pribadi pada PKP Rp5 miliar?", belakang: "Rp1.444.000.000; kelebihannya dikenai 35%", dasar: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01", menggantikan: "tarif tertinggi 30% (UU 36/2008)", dekTambahan: [] },
-    { id: "KT-A1-64", topik: "A1.8", tipe: "pasal", depan: "Rugi usaha di satu negara dalam penghitungan PPh 24?", belakang: "Tidak digabung; batas kredit dihitung per negara", dasar: "Pasal 24 UU PPh; PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A1-64", topik: "A1.8", tipe: "pasal", depan: "Rugi usaha di satu negara dalam penghitungan PPh 24?", belakang: "Tidak digabung; batas kredit dihitung per jenis penghasilan untuk tiap negara", dasar: "Pasal 24 UU PPh; Pasal 4 ayat (3) dan Pasal 6 ayat (2) PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-65", topik: "A1.8", tipe: "definisi", depan: "Mengapa pegawai yang pindah kerja dalam setahun biasanya kurang bayar?", belakang: "Tiap pemberi kerja memakai PTKP setahun dan lapisan 5% dari awal", dasar: "Pasal 17 dan Pasal 21 UU PPh; PMK 168/2023", berlakuSejak: "2024-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-66", topik: "A1.9", tipe: "prosedur", depan: "Angsuran PPh 25 bulan-bulan sebelum SPT Tahunan disampaikan?", belakang: "Sama dengan angsuran bulan terakhir tahun pajak lalu; angsuran baru mulai bulan SPT disampaikan (paling lambat bulan batas waktu)", dasar: "Pasal 25 ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-67", topik: "A1.9", tipe: "definisi", depan: "Penghasilan tidak teratur dalam dasar angsuran PPh 25?", belakang: "Dikeluarkan; PPh dihitung ulang atas penghasilan teratur saja", dasar: "Pasal 25 ayat (1) dan ayat (6) huruf b UU PPh; PER-11/PJ/2025 Pasal 113 dan 115 (dahulu KEP-537/PJ/2000)", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-68", topik: "A1.10", tipe: "angka", depan: "Bagian Rp500 juta PPh final UMKM bagi suami-istri?", belakang: "KK: sekali untuk keluarga; PH/MT: masing-masing", dasar: "Pasal 7 ayat (2a) dan Pasal 8 UU PPh; PMK 164/2023", berlakuSejak: "2022-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-69", topik: "A1.10", tipe: "prosedur", depan: "Bendahara membeli dari UMKM yang menyerahkan Surat Keterangan: memungut apa?", belakang: "PPh final 0,5%, bukan PPh 22 1,5%", dasar: "PP 55/2022 s.t.d.d. PP 20/2026; PMK 164/2023", menggantikan: null, dekTambahan: [] },
     { id: "KT-A1-70", topik: "A1.11", tipe: "pasal", depan: "Denda terlambat SPT bagi Wajib Pajak OP yang telah meninggal dunia?", belakang: "Tidak dikenakan; SPT tetap disampaikan wakil/ahli waris", dasar: "Pasal 7 ayat (2) dan Pasal 32 ayat (1) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-71", topik: "A1.11", tipe: "prosedur", depan: "Isi angka 12 induk 1770 S (peta logis)?", belakang: "PPh dipotong/dipungut pihak lain (BPA1, BP21, BPPU); bukan PPh final", dasar: "Pasal 28 ayat (1) UU PPh; PER-11/PJ/2025", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] },
-    { id: "KT-A1-72", topik: "A1.11", tipe: "prosedur", depan: "OP pegawai yang juga berusaha: isi SPT dan kredit PPh 21?", belakang: "Pakai 1770: neto BPA1 dan usaha digabung; PPh 21 dikreditkan; omzet UMKM final tidak digabung", dasar: "Pasal 4 ayat (1), Pasal 17, dan Pasal 28 UU PPh; PER-11/PJ/2025", berlakuSejak: "2025-05-22", menggantikan: null, dekTambahan: [] }
+    { id: "KT-A1-71", topik: "A1.11", tipe: "prosedur", depan: "Isi angka 12 induk 1770 S (peta logis)?", belakang: "PPh dipotong/dipungut pihak lain (BPA1, BP21, BPPU); bukan PPh final", dasar: "Pasal 28 ayat (1) UU PPh; formulir 1770 S PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 (SPT sampai Tahun Pajak 2024; Pasal 138 huruf a PER-11/PJ/2025)", berlakuSejak: "2010-07-27", menggantikan: null, dekTambahan: [] },
+    { id: "KT-A1-72", topik: "A1.11", tipe: "prosedur", depan: "OP pegawai yang juga berusaha: isi SPT dan kredit PPh 21?", belakang: "Pakai 1770: neto BPA1 dan usaha digabung; PPh 21 dikreditkan; omzet UMKM final tidak digabung", dasar: "Pasal 4 ayat (1), Pasal 17, dan Pasal 28 UU PPh; formulir 1770 PER-34/PJ/2010 s.t.d.t.d. PER-30/PJ/2017 (SPT sampai Tahun Pajak 2024; Pasal 138 huruf a PER-11/PJ/2025)", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] }
   ],
   kasus: [
     {
@@ -2876,7 +2953,7 @@ UKP.register({
         { no: 1, pertanyaan: "Apakah Ir. Bayu boleh menghitung penghasilan neto 2026 dengan NPPN?", tipe: "pilihan",
           opsi: { A: "Tidak: arsitek wajib memakai PPh final 0,5%", B: "Tidak: pemberitahuan harus disampaikan sebelum tahun pajak dimulai", C: "Ya: peredaran bruto kurang dari Rp4,8 miliar dan pemberitahuan disampaikan dalam 3 bulan pertama 2026", D: "Ya, tetapi hanya atas penerimaan dari klien orang pribadi" }, jawaban: "C",
           petunjuk: ["Cek dua syarat Pasal 14 ayat (2): batas peredaran bruto dan tenggat pemberitahuan", "Rp1,2 miliar < Rp4,8 miliar; 16 Februari ≤ 31 Maret", "Jawaban: C"],
-          penjelasan: "Kedua syarat terpenuhi. PPh final 0,5% tidak tersedia bagi pekerjaan bebas sejak PP 20/2026, dan norma berlaku atas seluruh peredaran bruto pekerjaan bebas." },
+          penjelasan: "Kedua syarat terpenuhi. PPh final 0,5% tidak tersedia bagi jasa pekerjaan bebas (dikecualikan menurut Pasal 56 ayat (3) huruf a PP 55/2022 dan tetap setelah PP 20/2026), dan norma berlaku atas seluruh peredaran bruto pekerjaan bebas." },
         { no: 2, pertanyaan: "Berapa penghasilan neto dari pekerjaan bebas (Rp)?", tipe: "angka", jawaban: 420000000, toleransi: 0,
           petunjuk: ["Neto = persentase norma × seluruh peredaran bruto", "35% × Rp1.200.000.000", "Jawaban: Rp420.000.000"],
           penjelasan: "Penerimaan dari klien badan maupun orang pribadi sama-sama peredaran bruto; PPh 21 yang dipotong tidak mengurangi neto." },
@@ -2994,8 +3071,8 @@ UKP.register({
       langkah: [
         { no: 1, pertanyaan: "Bagaimana penghasilan neto dari jasa konsultasi 2026 dihitung?", tipe: "pilihan",
           opsi: { A: "PPh final 0,5% × penerimaan bruto karena di bawah Rp4,8 miliar", B: "NPPN: 50% × seluruh penerimaan bruto, karena pemberitahuan disampaikan dalam 3 bulan pertama", C: "NPPN hanya atas penerimaan dari klien badan", D: "Penerimaan dari klien orang pribadi tidak perlu dilaporkan karena tidak dipotong" }, jawaban: "B",
-          petunjuk: ["Konsultan TI menjalankan pekerjaan bebas", "PP 20/2026 mengecualikan pekerjaan bebas dari PPh final; NPPN diberitahukan 10 Januari", "Jawaban: B"],
-          penjelasan: "Pekerjaan bebas tidak dapat memakai PPh final 0,5% sejak PP 20/2026. Dengan pemberitahuan tepat waktu dan peredaran bruto di bawah Rp4,8 miliar, neto dihitung dengan norma atas seluruh penerimaan bruto." },
+          petunjuk: ["Konsultan TI menjalankan pekerjaan bebas", "Pekerjaan bebas dikecualikan dari PPh final (Pasal 56 ayat (3) huruf a PP 55/2022, tetap setelah PP 20/2026); NPPN diberitahukan 10 Januari", "Jawaban: B"],
+          penjelasan: "Jasa pekerjaan bebas tidak dapat memakai PPh final 0,5% (dikecualikan menurut Pasal 56 ayat (3) huruf a PP 55/2022 dan tetap setelah PP 20/2026). Dengan pemberitahuan tepat waktu dan peredaran bruto di bawah Rp4,8 miliar, neto dihitung dengan norma atas seluruh penerimaan bruto." },
         { no: 2, pertanyaan: "Berapa penghasilan neto dari jasa konsultasi (Rp)?", tipe: "angka", jawaban: 200000000, toleransi: 0,
           petunjuk: ["Persentase norma × seluruh penerimaan bruto", "50% × Rp400.000.000", "Jawaban: Rp200.000.000"],
           penjelasan: "PPh 21 yang dipotong klien badan tidak mengurangi neto; PPh itu kredit pajak." },
@@ -3016,13 +3093,13 @@ UKP.register({
           penjelasan: "Karena tidak ada PPh 25 tahun lalu, dasar angsuran sama dengan PPh 29; angsuran baru berlaku sejak bulan SPT 2026 disampaikan, paling lambat sejak Masa Maret 2027." }
       ],
       kesimpulan: "Neto pekerjaan Rp229 juta, neto NPPN Rp200 juta, dan neto Singapura Rp125 juta menghasilkan PKP Rp500 juta dan PPh Rp94 juta. Kredit PPh 24 dibatasi Rp23,5 juta; setelah kredit PPh 21 Rp22,5 juta, PPh 29 Rp48 juta dan angsuran 2027 Rp4 juta per bulan.",
-      kalkulatorRef: "pph24"
+      kalkulatorRef: null
     }
   ],
   tips: [
     { teks: "Tulis urutan PKP OP sebelum menghitung: neto (pekerjaan + usaha/NPPN + lain-lain + luar negeri) − zakat − kompensasi rugi − PTKP, lalu bulatkan ke ribuan ke bawah.", tagSebab: "salah-hitung" },
     { teks: "Pisahkan dahulu penghasilan final (bunga deposito, sewa tanah/bangunan, saham di bursa, UMKM 0,5%, dividen tidak diinvestasikan): tidak masuk PKP dan PPh-nya tidak masuk kredit.", tagSebab: "final-nonfinal" },
-    { teks: "Coret opsi yang memakai angka lama: lapisan pertama Rp50 juta, PTKP Rp36 juta, bunga 2% flat, pekerjaan bebas memakai 0,5%, CV/PT baru memakai PPh final.", tagSebab: "angka-usang" },
+    { teks: "Coret opsi yang memakai angka lama: lapisan pertama Rp50 juta, PTKP Rp36 juta, bunga 2% flat, CV/PT baru memakai PPh final. Coret juga opsi yang memakai 0,5% untuk pekerjaan bebas (dikecualikan menurut Pasal 56 ayat (3) huruf a PP 55/2022, seperti sebelumnya menurut PP 23/2018).", tagSebab: "angka-usang" },
     { teks: "Status PTKP dan keluarga dikunci pada 1 Januari; tanggungan maksimal 3 dan hanya garis lurus. Pada PH/MT, gabungkan dahulu baru bagi proporsional.", tagSebab: "salah-baca" },
     { teks: "Untuk PPh 25 kurangkan hanya PPh 21/22/23/24 tahun lalu; untuk PPh 29 kurangkan juga PPh 25 yang sudah disetor. Jangan tertukar.", tagSebab: "lupa-pasal" },
     { teks: "Di soal UMKM, hitung omzet kumulatif sejak Januari untuk menemukan bulan saat Rp500 juta terlampaui; PPh bulan itu hanya atas kelebihannya.", tagSebab: "salah-hitung" }
