@@ -1011,7 +1011,7 @@
       tag ? h('span', { class: 'pill tag-sebab', 'data-tone': 'warn', title: 'Jenis kesalahan' }, h('span', { class: 'visually-hidden' }, 'Jenis kesalahan: '), UKP.tagLabel(tag)) : null,
       waktuTeks ? h('span', { class: 'meta waktu-soal' }, waktuTeks) : null) : null;
     const bukaSalah = langsung && !benar && !kosong && !!(pb.mengapaSalah && pb.mengapaSalah[dipilih]); // jawab langsung & salah: alasan opsi yang dipilih langsung terlihat
-    const lipatSalah = salahLain.length || pb.jebakan ? h('details', { class: 'lipat blok', open: bukaSalah ? true : null }, h('summary', null, langsung ? 'Mengapa opsi lain salah' : 'Mengapa opsi lain keliru'), h('ul', { class: 'bersih small' }, (bukaSalah ? [dipilih].concat(salahLain.filter(k => k !== dipilih)) : salahLain).map(k => h('li', { 'data-dipilih': bukaSalah && k === dipilih ? '' : null }, h('strong', null, k + '. '), pb.mengapaSalah[k]))), pb.jebakan ? h('p', { class: 'small' }, h('strong', null, 'Jebakan: '), pb.jebakan) : null) : null;
+    const lipatSalah = salahLain.length || pb.jebakan ? h('details', { class: 'lipat blok', open: bukaSalah ? true : null }, h('summary', null, langsung ? 'Mengapa opsi lain salah' : 'Mengapa opsi lain keliru'), h('ul', { class: 'bersih small umpan-salah-opsi' }, (bukaSalah ? [dipilih].concat(salahLain.filter(k => k !== dipilih)) : salahLain).map(k => h('li', { 'data-dipilih': bukaSalah && k === dipilih ? '' : null }, h('strong', null, k + '. '), pb.mengapaSalah[k]))), pb.jebakan ? h('p', { class: 'small umpan-jebakan' }, h('strong', null, 'Jebakan: '), pb.jebakan) : null) : null;
     const panel = h('div', { class: 'umpan', 'data-hasil': hasil, 'data-langsung': langsung ? '' : null },
       status,
       kartuDitonjolkan ? kartuEl : null,

@@ -65,7 +65,7 @@
     try { const el = UKP.c.kop(o); const j = el && el.querySelector ? el.querySelector('h1') : null; if (j && j.textContent === String(o.judul)) return el; } catch (e) {}
     const cr = Array.isArray(o.crumbs) && o.crumbs.length ? h('nav', { class: 'crumb', 'aria-label': 'Remah roti' }, o.crumbs.map((c, i) => [i ? h('span', { 'aria-hidden': 'true' }, '›') : null, c.view ? UKP.link(c.teks, c.view, c.params) : h('span', null, c.teks)])) : null;
     const teks = h('div', { class: 'page-head-teks' }, cr, o.eyebrow ? h('p', { class: 'eyebrow' }, o.eyebrow) : null, h('h1', { tabindex: '-1' }, o.judul), o.lead ? h('p', { class: 'lead' }, o.lead) : null, o.meta ? h('div', { class: 'page-meta' }, o.meta) : null);
-    return h('header', { class: 'page-head' }, teks, o.aksi ? h('div', { class: 'page-actions' }, o.aksi) : null);
+    return h('header', { class: 'page-head' + (o.pita ? ' kop-pita' : '') }, teks, o.aksi ? h('div', { class: 'page-actions' }, o.aksi) : null);
   }
   UKP.c.kopHalaman = kopHalaman;
   // bar progres V6: lebar isian lewat --p sehingga CSS menganimasikannya dari 0 (UKP.c.progress bila tersedia)

@@ -69,7 +69,7 @@
   UKP.views.bank = function () {
     const s = UKP.store.get(); const tingkat = s.profil.tingkat;
     const page = h('div', { class: 'page halaman-bank' });
-    page.appendChild(UKP.c.kop({ judul: 'Bank soal', lead: 'Soal yang belum pernah keluar dan soal pengganti untuk soal yang sudah dibahas atau diujikan.' }));
+    page.appendChild(UKP.c.kop({ pita: true, judul: 'Bank soal', lead: 'Soal yang belum pernah keluar dan soal pengganti untuk soal yang sudah dibahas atau diujikan.' }));
     const semua = K.semuaSoal(tingkat); const r = ringkas(semua);
     const nVersi = UKP.versi ? semua.filter(x => x.sejak && x.sejak === UKP.versi).length : 0;
     // angka ringkas tingkat target

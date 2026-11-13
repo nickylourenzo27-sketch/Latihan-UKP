@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '9.5.5';
+  UKP.versi = '9.6.0';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
@@ -1095,7 +1095,7 @@
   };
   // kop halaman (DESAIN-V6 C.2). Dua bentuk pemanggilan:
   //   UKP.c.kop(crumbs, judul, lead)                                        — bentuk lama (tetap didukung)
-  //   UKP.c.kop({ crumbs, eyebrow, judul, lead, meta, aksi, ringkas })       — meta/aksi: node, teks, atau array
+  //   UKP.c.kop({ crumbs, eyebrow, judul, lead, meta, aksi, ringkas, pita }) — meta/aksi: node, teks, atau array; pita: kepala berpita (v9.6)
   // crumbs: [{ teks, view?, params? }]; aksi maks 1 primer + 1 sekunder + 1 hantu; ringkas: lead 3 baris + "Selengkapnya"
   UKP.c.kop = function (a, judul, lead) {
     const o = a && typeof a === 'object' && !Array.isArray(a) && !a.nodeType && Object.prototype.hasOwnProperty.call(a, 'judul') ? a : { crumbs: a, judul, lead };
@@ -1127,7 +1127,9 @@
     const meta = o.meta ? h('div', { class: 'page-meta' }, o.meta) : null;
     const aksi = o.aksi ? h('div', { class: 'page-actions' }, o.aksi) : null;
     const teks = [crumbs, o.eyebrow ? h('p', { class: 'eyebrow' }, o.eyebrow) : null, h('h1', { tabindex: '-1' }, o.judul), leadEl, toggle, meta];
-    return aksi || meta || o.eyebrow ? h('header', { class: 'page-head' }, h('div', { class: 'page-head-teks' }, teks), aksi) : h('header', { class: 'page-head' }, teks);
+    // v9.6: pita: true → kepala berpita biru tua (kelas .kop-pita; gaya di css/app.css "v9.6 tampilan: dasar bersama")
+    const kelasKop = 'page-head' + (o.pita ? ' kop-pita' : '');
+    return aksi || meta || o.eyebrow ? h('header', { class: kelasKop }, h('div', { class: 'page-head-teks' }, teks), aksi) : h('header', { class: kelasKop }, teks);
   };
   const IKON_BANNER = { info: 'info', ok: 'cek-lingkar', warn: 'peringatan', attn: 'peringatan' };
   // banner (DESAIN-V6 C.18): ikon bernada · isi (judul opsional + kalimat + aksi) · tutup. id → penutupan diingat

@@ -255,7 +255,7 @@
     const UTI = () => UKP.ujianTimUI || {}; // v8.2 room (js/views-ujian-tim.js)
     const pemanduRoom = () => { try { return !!(UTI().pemanduRoom && UTI().pemanduRoom()); } catch (e) { return false; } };
     const page = h('div', { class: 'page lebar halaman-simulasi' });
-    page.appendChild(UKP.c.kop({ judul: 'Simulasi ujian', lead: 'Latihan ujian penuh seperti CAT: waktu berjalan, pembahasan muncul setelah dikirim.' }));
+    page.appendChild(UKP.c.kop({ pita: true, judul: 'Simulasi ujian', lead: 'Latihan ujian penuh seperti CAT: waktu berjalan, pembahasan muncul setelah dikirim.' }));
     { const kut = typeof UKP.c.kartuUjianTim === 'function' ? UKP.c.kartuUjianTim() : null; if (kut) page.appendChild(kut); } // v8.1 ujian tim berjalan
     const lulusBatas = (fmt.UKP || {}).lulus || 60;
     // ≥ 1024: Ringkasan + tombol Mulai di kolom kanan lengket; < 1024: satu baris .meta tepat di atas .sticky-actions
@@ -418,7 +418,7 @@
       const skorTren = s.simulasi.filter(x => x.selesai).slice(-12).map(x => x.skor);
       page.appendChild(sect({ id: 'sim-rapor-j', judul: 'Simulasi terakhir', meta: riwayat.length + ' simulasi' + (mayoritasLulus ? ' · ' + nLulus + ' memenuhi 60' : ''),
         aksi: skorTren.length >= 3 && UKP.viz && UKP.viz.sparkline ? UKP.viz.sparkline({ nilai: skorTren, label: 'Skor ' + skorTren.length + ' simulasi terakhir: ' + skorTren.map(fmtSkor).join(', ') }) : null,
-        isi: h('div', { class: 'list-rows' }, riwayat.map(r => { const lulusR = r.skor >= 60; const kecuali = mayoritasLulus ? !lulusR : lulusR;
+        isi: h('div', { class: 'list-rows daftar-kartu' }, riwayat.map(r => { const lulusR = r.skor >= 60; const kecuali = mayoritasLulus ? !lulusR : lulusR;
           return h('a', { class: 'row-link', href: '#simulasi', onclick: e => { e.preventDefault(); UKP.go('simulasi', { hasil: r.id }); } }, h('span', { class: 'kode' }, UKP.fmt.tanggal(U.iso(new Date(r.selesai))).replace(/ \d{4}$/, '')), h('span', { class: 'row-title small' }, labelSim(r), h('span', { class: 'meta' }, ' · ' + r.benar + ' dari ' + r.total + ' benar')), h('span', { class: 'mono', style: { fontWeight: 700 } }, fmtSkor(r.skor)), kecuali ? UKP.c.pill(lulusR ? 'memenuhi 60' : 'di bawah 60', lulusR ? 'ok' : 'attn') : null, UKP.icon('chevron-kanan', 'chev', true)); })) }));
     }
     return page;
@@ -688,7 +688,7 @@
     if (!r) return h('div', { class: 'page' }, UKP.c.kop({ crumbs: [{ teks: 'Simulasi', view: 'simulasi' }], judul: 'Hasil tidak ditemukan' }), UKP.c.kosong('Rekaman simulasi ini tidak ada di perangkat ini', 'Mungkin sudah terhapus atau berasal dari perangkat lain.', UKP.link('Ke Simulasi', 'simulasi', null, 'btn btn-sm'), { ikon: 'sim' }));
     const page = h('div', { class: 'page lebar halaman-hasil' }); const lulus = r.skor >= 60;
     const durasi = Math.max(1, Math.round(((r.selesai || Date.now()) - r.mulai) / 60000));
-    page.appendChild(UKP.c.kop({ crumbs: [{ teks: 'Simulasi', view: 'simulasi' }, { teks: 'Hasil' }], judul: 'Hasil simulasi ' + labelSim(r),
+    page.appendChild(UKP.c.kop({ pita: true, crumbs: [{ teks: 'Simulasi', view: 'simulasi' }, { teks: 'Hasil' }], judul: 'Hasil simulasi ' + labelSim(r),
       meta: r.otomatis || r.terbagi ? [r.otomatis ? UKP.c.pill('dikirim otomatis saat waktu habis', 'warn') : null, r.terbagi ? UKP.c.pill('bagian ' + r.terbagi + ', bukan ukuran stamina', 'nila') : null] : null }));
     if (r.tim) page.appendChild(kartuKirimTim(r));
     const butuh = Math.ceil(r.total * .6); const tingkat = tingkatUlas(r);
@@ -723,7 +723,7 @@
       lemah ? { judul: 'Latih 10 soal ' + lemah.k, meta: rows.length > 1 ? 'kelompok terlemah' : K.namaKelompok(lemah.k), aksi: { teks: 'Latih', view: 'latih', params: { kode: lemah.k, n: 10, mulai: true } } } : null,
       { judul: 'Buat rencana dari hasil ini', aksi: { teks: 'Buat rencana', view: 'rencana', gaya: 'hantu' } },
     ], { label: 'Langkah berikutnya' }); daftarLangkah.classList.add('ringkas');
-    const sectLangkah = sect({ id: 'hasil-lanjut-j', judul: 'Langkah berikutnya', isi: daftarLangkah });
+    const sectLangkah = sect({ id: 'hasil-lanjut-j', judul: 'Langkah berikutnya', isi: daftarLangkah }); sectLangkah.classList.add('kartu-langkah');
     const tblKel = h('table', { class: 'tabel' }, h('caption', { class: 'visually-hidden' }, 'Hasil per kelompok, terlemah dulu'),
       h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Kelompok'), h('th', { scope: 'col', class: 'num' }, 'Benar'), h('th', { scope: 'col', style: { minWidth: '9rem' } }, 'Skor'), waktuKel ? h('th', { scope: 'col', class: 'num' }, 'Waktu di soal') : null, h('th', { scope: 'col', class: 'aksi' }, h('span', { class: 'visually-hidden' }, 'Aksi')))),
       h('tbody', null, rows.map(x => h('tr', null, h('th', { scope: 'row' }, h('span', { class: 'kode' }, x.k), ' ', h('span', { class: 'small' }, K.namaKelompok(x.k))), h('td', { class: 'num' }, x.v.benar + '/' + x.v.total),

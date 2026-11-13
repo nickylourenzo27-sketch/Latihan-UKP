@@ -1,0 +1,44 @@
+# Potret layar utama di WebKit (mesin Safari) dengan profil iPhone.
+# Gunanya: tampilan di iPhone bisa dilihat sebelum situs diperbarui. Situs tayang dari cabang gh-pages, jadi dorongan ke main
+# menjalankan potret ini lebih dulu.
+# Gambar dikirim sebagai catatan check run "Potret layar webkit" (potongan base64) dan diambil dengan:
+#   node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder>
+# Tidak ada data pengguna: profil contoh, riwayat dibuat skrip, service worker diblokir, tidak ada room yang dibuka.
+# Versi image dan versi paket npm playwright HARUS sama; naikkan keduanya bersama-sama (lihat cek-jalur-room.yml).
+name: Potret layar di WebKit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'css/**'
+      - 'js/**'
+      - 'index.html'
+      - 'tools/potret-layar.js'
+      - '.github/workflows/potret-webkit.yml'
+permissions:
+  contents: read
+  checks: write
+concurrency:
+  group: potret-webkit-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  potret:
+    name: Potret layar WebKit (profil iPhone)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    continue-on-error: true
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
+      options: --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pasang Playwright (versi sama dengan image)
+        run: npm install --no-save --no-audit --no-fund playwright@1.65.0
+      - name: Potret layar utama di WebKit
+        env:
+          BROWSER: webkit
+          HOME: /root
+          KIRIM: '1'
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/potret-layar.js potret . /tmp/potret

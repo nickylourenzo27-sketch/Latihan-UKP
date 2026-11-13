@@ -217,7 +217,7 @@
     // kop: angka ringkas sebagai pill (menggantikan tiga tile stat); catatan jumlah soal resmi sebagai pill warn
     const sep = () => h('span', { class: 'sep', 'aria-hidden': 'true' }, '·');
     const metaTeks = arr => h('span', { class: 'meta' }, arr.filter(Boolean).map((x, i) => [i ? sep() : null, x]));
-    page.appendChild(kop({ judul: 'Peta materi · ' + UKP.namaTingkat[tingkat], lead: 'Kelompok materi kumulatif sesuai cakupan UKP. Tingkat B diuji materi A+B, tingkat C diuji A+B+C.',
+    page.appendChild(kop({ pita: true, judul: 'Peta materi · ' + UKP.namaTingkat[tingkat], lead: 'Kelompok materi kumulatif sesuai cakupan UKP. Tingkat B diuji materi A+B, tingkat C diuji A+B+C.',
       meta: [metaTeks([kel.length + ' kelompok', fmt ? fmt.menit + ' mnt ujian' : null, fmt ? '± ' + fmt.soalPerkiraan + ' soal' : null]), fmt ? pill('jumlah soal resmi belum diumumkan', 'warn', 'peringatan') : null] }));
     // pilihan tingkat: segmen dengan subjudul (V6, T08), bukan chip berwarna blok
     page.appendChild(h('div', { class: 'field' }, h('span', { class: 'label', id: 'tingkat-lbl' }, 'Tingkat'),
@@ -624,7 +624,7 @@
       return page;
     }
     const sb = C.sumber || {};
-    const kopEl = kop({ crumbs, eyebrow: 'Dokumen KLC/BPPK · salinan PDF Nov 2026', judul: judulH1(tingkat), ringkas: true,
+    const kopEl = kop({ pita: true, crumbs, eyebrow: 'Dokumen KLC/BPPK · salinan PDF Nov 2026', judul: judulH1(tingkat), ringkas: true,
       lead: 'Daftar ini menyalin dokumen "Cakupan Materi Uji Kompetensi Perpajakan" yang dibagikan KLC (Kemenkeu Learning Center, BPPK), menurut salinan PDF 13 halaman yang diterima tim pada November 2026. Seratus soal try out Tingkat B seluruhnya jatuh di dalam daftar ini. Setiap butir dipetakan ke topik dan soal aplikasi dan diberi status belajar Anda; penomoran dan ejaan mengikuti dokumen.',
       meta: [pill(sb.penerbit || 'BPPK / KLC Kemenkeu'), UKP.c.verif('◐', 'Bersumber dari unggahan peserta; dokumen tidak memuat kop, tanggal, atau nomor')] });
     page.appendChild(kopEl);
@@ -1597,7 +1597,7 @@
                 h('button', { type: 'button', class: 'btn btn-ghost btn-text', onclick: keSaringan }, 'Atur saringan'),
                 UKP.link('Ke Hari Ini', 'beranda', null, 'btn btn-ghost btn-text')); })()),
           keliru.length ? sect({ id: 'keliru-judul', judul: ulangRun ? 'Masih keliru' : 'Keliru pada percobaan pertama', meta: keliru.length + ' soal', isi:
-            h('div', { class: 'list-rows' }, keliru.map(r => { const tag = r.jawab && r.jawab !== '-' ? (r.soal.jebakanOpsi || {})[r.jawab] : null; return h('button', { type: 'button', class: 'row-link baris-tombol', 'aria-haspopup': 'dialog', onclick: () => bukaSoal(r) }, h('span', { class: 'kode' }, r.soal.id.split('-').pop()), h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, pendek(r.soal.stem, 110)), h('span', { class: 'row-meta' }, h('span', { class: 'meta' }, h('span', { class: 'kode' }, r.soal.id), h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), r.jawab === '-' ? 'belum tahu' : 'jawaban ' + r.jawab + ', kunci ' + r.soal.kunci), r.keyakinan === 'yakin' ? pill('yakin', 'attn', 'peringatan') : null, tag ? pill(UKP.tagLabel(tag), 'warn') : null)), ikon('chevron-kanan', 'chev', true)); })) }) : null);
+            h('div', { class: 'list-rows daftar-kartu' }, keliru.map(r => { const tag = r.jawab && r.jawab !== '-' ? (r.soal.jebakanOpsi || {})[r.jawab] : null; return h('button', { type: 'button', class: 'row-link baris-tombol', 'aria-haspopup': 'dialog', onclick: () => bukaSoal(r) }, h('span', { class: 'kode' }, r.soal.id.split('-').pop()), h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, pendek(r.soal.stem, 110)), h('span', { class: 'row-meta' }, h('span', { class: 'meta' }, h('span', { class: 'kode' }, r.soal.id), h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), r.jawab === '-' ? 'belum tahu' : 'jawaban ' + r.jawab + ', kunci ' + r.soal.kunci), r.keyakinan === 'yakin' ? pill('yakin', 'attn', 'peringatan') : null, tag ? pill(UKP.tagLabel(tag), 'warn') : null)), ikon('chevron-kanan', 'chev', true)); })) }) : null);
         requestAnimationFrame(() => { if (typeof UKP.pasangHitung === 'function') UKP.pasangHitung(area); });
         UKP.fokus(area.querySelector('h1')); window.scrollTo({ top: 0 });
       }
@@ -1638,7 +1638,7 @@
               h('button', { type: 'button', class: 'btn btn-ghost btn-text', onclick: keSaringan }, 'Atur saringan'),
               UKP.link('Ke Hari Ini', 'beranda', null, 'btn btn-ghost btn-text'))),
           salahSoal.length ? sect({ id: 'keliru-judul', judul: 'Soal dengan jawaban salah', meta: salahSoal.length + ' soal', isi:
-            h('div', { class: 'list-rows' }, salahSoal.map(r => { const salah = peserta.filter(n => r.per[n] && !r.per[n].benar).map(n => n + ' (' + (r.per[n].opsi === '-' ? '–' : r.per[n].opsi) + ')');
+            h('div', { class: 'list-rows daftar-kartu' }, salahSoal.map(r => { const salah = peserta.filter(n => r.per[n] && !r.per[n].benar).map(n => n + ' (' + (r.per[n].opsi === '-' ? '–' : r.per[n].opsi) + ')');
               return h('button', { type: 'button', class: 'row-link baris-tombol', 'aria-haspopup': 'dialog', onclick: () => bukaSoal(r) }, h('span', { class: 'kode' }, r.soal.id.split('-').pop()), h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, pendek(r.soal.stem, 110)), h('span', { class: 'row-meta' }, h('span', { class: 'meta' }, h('span', { class: 'kode' }, r.soal.id), h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), 'kunci ' + r.soal.kunci, h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), 'salah: ' + salah.join(', ')))), ikon('chevron-kanan', 'chev', true)); })) }) : null);
         UKP.fokus(area.querySelector('h1')); window.scrollTo({ top: 0 });
       }
@@ -1797,7 +1797,7 @@
     page.classList.add('lebar');
     // v8.1: kartu "Sesi bersama belum selesai" paling atas
     const kartuLanjut = bisaLanjut ? UKP.c.kartuLanjutBersama() : null; if (kartuLanjut) page.appendChild(kartuLanjut);
-    page.appendChild(kop({ judul: 'Latih soal', lead: 'Pilih kelompok dan jumlah soal. Setiap jawaban langsung dibahas: inti jawaban, langkah hitung, dan dasar hukumnya.' }));
+    page.appendChild(kop({ pita: true, judul: 'Latih soal', lead: 'Pilih kelompok dan jumlah soal. Setiap jawaban langsung dibahas: inti jawaban, langkah hitung, dan dasar hukumnya.' }));
     if ((params.mulai && !tahanMulai) || langsungMulai) page.appendChild(h('div', { class: 'banner', 'data-tone': 'warn', role: 'note' }, ikon('peringatan'), h('span', null, 'Tidak ada soal yang cocok dengan filter ini. Longgarkan filter di bawah lalu mulai lagi.')));
     const semuaKel = K.semuaKelompok(); const luar = semuaKel.filter(k => !kelTingkat.includes(k));
     const opsiKel = k => h('option', { value: k, selected: f.kode === k ? true : null }, k + ' · ' + K.namaKelompok(k));
@@ -2013,7 +2013,7 @@
       chipAktif, tombolMulai,
       h('button', { type: 'button', class: 'btn btn-ghost rata', onclick: () => UKP.go('latih', { atur: 1 }, { replace: true }) }, ikon('atur-ulang', null, true), 'Atur ulang saringan')));
     const bk = L.bukuKesalahan(tingkat, 5);
-    if (bk.length) page.appendChild(sect({ judul: 'Buku Kesalahan terbaru', meta: bk.length + ' soal', isi: h('div', { class: 'list-rows' }, bk.map(j => { const so = K.soal(j.soal); return so ? h('a', { class: 'row-link', href: '#latih', onclick: e => { e.preventDefault(); jalankan([so]); } }, h('span', { class: 'kode' }, so.id.split('-').pop()), h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, pendek(so.stem, 90)), h('span', { class: 'row-meta' }, h('span', { class: 'kode' }, so.id), j.tag ? pill(UKP.tagLabel(j.tag), 'warn') : null)), ikon('chevron-kanan', 'chev', true)) : null; })) }));
+    if (bk.length) page.appendChild(sect({ judul: 'Buku Kesalahan terbaru', meta: bk.length + ' soal', isi: h('div', { class: 'list-rows daftar-kartu' }, bk.map(j => { const so = K.soal(j.soal); return so ? h('a', { class: 'row-link', href: '#latih', onclick: e => { e.preventDefault(); jalankan([so]); } }, h('span', { class: 'kode' }, so.id.split('-').pop()), h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, pendek(so.stem, 90)), h('span', { class: 'row-meta' }, h('span', { class: 'kode' }, so.id), j.tag ? pill(UKP.tagLabel(j.tag), 'warn') : null)), ikon('chevron-kanan', 'chev', true)) : null; })) }));
     return hasil();
   };
 

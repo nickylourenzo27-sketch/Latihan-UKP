@@ -145,7 +145,7 @@
     const kal = params.jenis ? daftar.find(k => k.jenis === params.jenis) : null;
     if (!kal) {
       const page = h('div', { class: 'page lebar' });
-      page.appendChild(UKP.c.kop({ judul: 'Kalkulator pajak', lead: 'Hitung cepat dengan jejak hitung, asumsi, dan dasar hukum. Mesin yang sama dipakai untuk memeriksa kunci soal hitung.', meta: daftar.length ? [UKP.c.pill(daftar.length + ' kalkulator', null, 'calc'), UKP.c.pill('mode tebak dulu', 'nila')] : null }));
+      page.appendChild(UKP.c.kop({ pita: true, judul: 'Kalkulator pajak', lead: 'Hitung cepat dengan jejak hitung, asumsi, dan dasar hukum. Mesin yang sama dipakai untuk memeriksa kunci soal hitung.', meta: daftar.length ? [UKP.c.pill(daftar.length + ' kalkulator', null, 'calc'), UKP.c.pill('mode tebak dulu', 'nila')] : null }));
       if (!daftar.length) page.appendChild(UKP.c.kosong('Mesin kalkulator belum dimuat', 'Berkas js/kalkulator.js belum tersedia.'));
       const grup = {}; daftar.forEach(k => { (grup[k.kelompok] = grup[k.kelompok] || []).push(k); });
       const kartuKal = (k, kode) => UKP.c.kartu({ judul: k.nama, view: 'kalkulator', params: { jenis: k.jenis }, kode: kode || null,
@@ -650,7 +650,7 @@
     const TAB = ['ringkasan', 'hadir', 'peta', 'salah', 'laporan', 'lencana']; const awal = TAB.includes(params.tab) && (params.tab !== 'ringkasan' || adaRingkasan) ? params.tab : adaRingkasan ? 'ringkasan' : 'hadir';
     const hariDari = ts => (U.hariDari ? U.hariDari(ts) : U.iso(new Date(ts)));
     const nRangkaian = UKP.hadir.rangkaian();
-    page.appendChild(UKP.c.kop({ judul: 'Kemajuan', lead: 'Lihat topik yang masih lemah dan kesalahan yang berulang, lalu latih langsung dari sini.' }));
+    page.appendChild(UKP.c.kop({ pita: true, judul: 'Kemajuan', lead: 'Lihat topik yang masih lemah dan kesalahan yang berulang, lalu latih langsung dari sini.' }));
     if (UKP.views.bank && typeof UKP.c.barisBank === 'function') { const bb = UKP.c.barisBank(tingkat); if (bb) page.appendChild(bb); }  // v9.5 satu baris Bank soal
     const ctaLatih = () => h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-sm', onclick: () => UKP.go('latih', { n: 10, mulai: true }) }, UKP.icon('pen', null, true), 'Latih 10 soal'));
     const bk = L.bukuKesalahan(tingkat, 60);
@@ -1486,7 +1486,7 @@
   UKP.hapusTimLokal = hapusTimLokal;
   UKP.views.pengaturan = function () {
     const s = UKP.store.get(); const p = s.profil; const g = s.pengaturan; const page = h('div', { class: 'page lebar halaman-pengaturan' });
-    page.appendChild(UKP.c.kop({ judul: 'Pengaturan', lead: 'Target, tampilan, Tutor, dan data Anda. Semua tersimpan otomatis di browser ini.',
+    page.appendChild(UKP.c.kop({ pita: true, judul: 'Pengaturan', lead: 'Target, tampilan, Tutor, dan data Anda. Semua tersimpan otomatis di browser ini.',
       meta: UKP.store.ok ? null : [UKP.c.pill('penyimpanan browser tidak tersedia', 'attn', 'peringatan')] }));
     // grup berjudul; indikator "Tersimpan" bercentang tampil 1,5 dtk di kop grup setelah perubahan (PG-1)
     const indikator = {}; const tTersimpan = {};

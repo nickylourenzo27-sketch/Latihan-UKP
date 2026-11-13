@@ -634,7 +634,7 @@
     const tombolTempel = h('button', { type: 'button', class: 'btn', onclick: () => bukaTempel(gambar) }, UKP.icon('tambah', null, true), 'Tempel kode hasil');
     const tombolCsv = h('button', { type: 'button', class: 'btn btn-ghost', onclick: ekspor }, UKP.icon('unduh', null, true), 'Ekspor CSV');
     const page = h('div', { class: 'page halaman-tim' },
-      UKP.c.kop({ judul: 'Dasbor tim', lead: 'Hasil latihan dan simulasi anggota tim saat belajar bersama. Buka nama anggota untuk melihat jawaban per soal, pola kesalahan, dan peta simulasinya.', meta, aksi: [tombolTempel, tombolCsv] }));
+      UKP.c.kop({ pita: true, judul: 'Dasbor tim', lead: 'Hasil latihan dan simulasi anggota tim saat belajar bersama. Buka nama anggota untuk melihat jawaban per soal, pola kesalahan, dan peta simulasinya.', meta, aksi: [tombolTempel, tombolCsv] }));
     const isi = h('div', { class: 'stack tim-isi' }); page.appendChild(isi);
     function gambar() {
       // server tim belum menjawab: status jujur, tanpa langkah Artifact dan tanpa tempel kode
@@ -1963,7 +1963,7 @@
     // v8.2 V4: anggota room kembali ke layar room (bukan Dasbor tim yang khusus pemimpin)
     const keRoom = anggota && dariRoom && !!infoRoom();
     const cr = [keRoom ? { teks: 'Room tim', view: 'room' } : { teks: 'Dasbor tim', view: 'tim' }, { teks: ujian ? 'Hasil ujian tim' : 'Evaluasi latihan bersama' }];
-    return [UKP.c.kop({ crumbs: cr, eyebrow: tanggalSesi(mulaiT), judul: ujian ? 'Hasil ujian tim' : 'Evaluasi tim',
+    return [UKP.c.kop({ pita: true, crumbs: cr, eyebrow: tanggalSesi(mulaiT), judul: ujian ? 'Hasil ujian tim' : 'Evaluasi tim',
       meta: [dariRoom ? UKP.c.pill('dari room', 'nila', null, { 'data-k': 'pill-dari-room' }) : null, h('span', { class: 'meta' }, (ujian && ev.judul ? ev.judul + ' · ' : '') + metaSesi(ev, sesi) + (sesi.tingkat ? ' · Tingkat ' + sesi.tingkat : '') + (sesi.selesai ? '' : ' · belum selesai'))].filter(Boolean) }),
       // v9.2 G3: hapus masuk menu "Lainnya" di kaki evaluasi (versi anggota: menu kecil, tidak bersaing dengan tombol utama)
       evaluasiBersama(sesi, { tanpaKop: true, diDasbor: true, menu: [hapus], onTutup: () => keRoom ? UKP.go('room') : UKP.go('tim', {}), labelTutup: keRoom ? 'Kembali ke room' : 'Kembali ke Dasbor tim', onUlangi: anggota ? null : ulangiSesi(sesi) })];

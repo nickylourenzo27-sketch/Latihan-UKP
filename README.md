@@ -16,6 +16,24 @@ Tampilan mengikuti kanvas desain pemilik ("MABAR UKP · Logo" dan "MABAR UKP · 
 - **Sambutan (v9.0).** Pengunjung baru di akar situs melihat halaman sambutan berkerangka sama, dengan tombol Masuk menuju formulir lima langkah. Tautan tim (`#room/<kode>`, `#ujiantim/<kode>`, `#lj`) tetap langsung ke layarnya.
 - **Mode mabar** adalah nama pintu fitur tim (halaman `#room`). Nama fitur di dalamnya tidak berubah.
 
+<!-- tampilan-960:mulai -->
+## Tampilan halaman dalam (v9.6.0)
+
+Permintaan pemilik: tampilan dibuat lebih bagus. Sejak v9.0 hanya Beranda yang memakai wajah MABAR. Di v9.6.0 halaman dalam menyusul. Perilaku dan teks layar tidak berubah; yang berubah hanya gaya dan beberapa kelas penanda.
+
+- **Kepala halaman berpita.** Simulasi, Latihan, Materi, Cakupan, Bank soal, Kemajuan, Dasbor tim, Pengaturan, Kalkulator, dan halaman hasil memakai pita biru tua berkisi seperti Beranda, dengan penanda kuning. Opsi `pita: true` pada `UKP.c.kop` memberi kelas `.kop-pita`. Layar sesi dan ujian tidak memakai pita.
+- **Pilihan segmen terisi.** Pilihan yang aktif berisi warna tinta (kuning di tema gelap), bukan lagi kotak bergaris.
+- **Lembar soal.** Soal, opsi, keyakinan, pembahasan, dan bar aksi berada di satu lembar. Huruf opsi menjadi lencana bulat. Opsi terpilih, kunci, dan salah diberi garis 2 px yang tegas.
+- **Pembahasan.** Pita vonis dengan aksen kiri 4 px, pilihan Anda disorot di "Mengapa opsi lain salah", catatan Jebakan berlatar kuning pucat, dan jejak hitung bergaya buku besar.
+- **Papan bersama.** Hasil tiap orang berupa pil. Tinggi baris dan ukuran tombol papan tidak berubah.
+- **Hasil.** Skor besar dengan huruf mono, satu langkah utama berwarna kuning, dan daftar per topik di dalam kartu.
+- **Mode ujian tetap tenang.** Simulasi dan ujian tim yang sedang berjalan hanya mendapat lembar dan lencana, tanpa pita atau warna baru.
+- **Batas yang dijaga.** Tanpa bayangan kartu, gradasi, atau blur. Radius 4, 6, dan 8. Tema gelap, teks besar, forced-colors, cetak, dan gerak kurang tetap didukung. Gaya baru tidak bergantung pada `border-image`, `color-mix()`, `:has()`, `@container`, atau penulisan bersarang, supaya Safari dan Android lama tetap menampilkan halaman dengan utuh.
+- **Di mana gayanya.** Lima bagian berpagar `/* ===== v9.6 tampilan: … ===== */` di akhir `css/app.css`, dengan token `--v96-*`.
+- **Potret Safari sebelum tayang.** `tools/potret-layar.js` memotret 25 layar utama (32 gambar: HP terang, HP gelap, dan laptop). Di GitHub alat ini berjalan dengan WebKit dan profil iPhone pada tiap dorongan ke `main` (`.github/workflows/potret-webkit.yml`), lalu mengirim gambarnya sebagai catatan check run "Potret layar webkit". Gambar diambil dengan `node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder>`. Situs tayang dari cabang `gh-pages`, jadi tampilan di mesin Safari bisa dilihat sebelum situs diperbarui.
+- **Belum.** HP sungguhan dan Safari versi lama tidak bisa diuji dari lingkungan kerja ini.
+<!-- tampilan-960:selesai -->
+
 ## Mode mabar yang mudah dipahami (v9.1 dan v9.2)
 
 Dua rilis ini tidak menambah fitur besar. Isinya kejelasan: teks, urutan, dan apa yang tampil di tiap layar.
