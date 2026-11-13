@@ -770,9 +770,11 @@
     const p = x => Math.round(x.benar / x.n * 100);
     const urutLemah = (arr, min) => arr.filter(x => x.n >= min).map(x => Object.assign(x, { p: p(x) })).sort((a, b) => a.p - b.p || b.n - a.n);
     const kelArr = Object.values(kel); const topArr = Object.values(top);
-    let kelLemah = urutLemah(kelArr, 5); if (!kelLemah.length) kelLemah = urutLemah(kelArr, 1);
+    // v9.5.4 Sx-A2: hanya kelompok/topik yang punya jawaban tidak benar yang bisa disebut "terlemah" (tanpa salah = tidak ditonjolkan)
+    const adaSalah = x => x.benar < x.n;
+    let kelLemah = urutLemah(kelArr.filter(adaSalah), 5); if (!kelLemah.length) kelLemah = urutLemah(kelArr.filter(adaSalah), 1);
     // topik: hanya ambang n ≥ 3 (sama dengan perTopikLemah); topik dengan 1–2 jawaban tidak ditonjolkan
-    const topLemah = urutLemah(topArr, 3);
+    const topLemah = urutLemah(topArr.filter(adaSalah), 3);
     const polaArr = Object.keys(pola).map(t => ({ tag: t, n: pola[t] })).sort((a, b) => b.n - a.n);
     const kini = U.hariIni(); const tren = [];
     for (let i = 6; i >= 0; i--) { const iso = U.tambahHari(kini, -i); const x = hari[iso] || { n: 0, benar: 0 }; tren.push({ iso, n: x.n, benar: x.benar, p: x.n ? p(x) : null }); }
@@ -826,7 +828,7 @@
         kl.n < 5 ? h('p', { class: 'meta' }, 'Data awal: kurang dari 5 jawaban di kelompok ini.') : null,
         tl ? h('p', { class: 'small' }, 'Topik terlemah: ', h('strong', null, tl.id), ' ' + (judulTopik(tl.id) || '') + ' · ' + tl.p + '% dari ' + tl.n + ' soal') : h('p', { class: 'meta' }, 'Topik terlemah: belum cukup data (min. 3 jawaban per topik).'),
         h('button', { type: 'button', class: 'btn btn-text btn-sm', 'data-k': 'lihat-kel', onclick: () => aksiKel(kl.kode) }, 'Lihat soal salah ' + kl.kode)]
-        : h('p', { class: 'meta' }, 'Belum cukup jawaban.'));
+        : h('p', { class: 'meta' }, a.n && a.benar === a.n ? 'Belum ada jawaban salah.' : 'Belum cukup jawaban.'));
     const pt = a.pola[0]; const totSalah = a.salah;
     const k2 = h('div', { class: 'card tim-masalah-kartu', 'data-k': 'masalah-pola' },
       h('span', { class: 'eyebrow' }, 'Pola kesalahan teratas'),
@@ -941,12 +943,12 @@
     }));
   }
 
-  // peserta lokal: jawaban "yakin tetapi salah" 30 hari terakhir (pill di Ringkasan masalah, hanya bila > 0)
+  // peserta lokal: jawaban "yakin tetapi salah" (pill di Ringkasan masalah, hanya bila > 0).
+  // v9.5.4 Sx-A1: rentangnya sama dengan bagian itu dan kartu Pola kesalahan (semua jawaban latihan bersama), bukan 30 hari
   function pillYakinSalah30(n) {
     if (!n.lokal) return null;
-    const batas = Date.now() / 1000 - 30 * 86400;
-    const x = n.jawaban.filter(j => j.w >= batas && j.k === 'yakin' && !j.b && j.o !== '-').length;
-    return x ? UKP.c.pill('yakin tapi salah: ' + x + ' (30 hari)', 'attn', null, { 'data-k': 'pill-yakin-salah', title: 'Menjawab yakin tetapi salah dalam 30 hari terakhir' }) : null;
+    const x = n.jawaban.filter(j => j.k === 'yakin' && !j.b && j.o !== '-').length;
+    return x ? UKP.c.pill('yakin tapi salah: ' + x, 'attn', null, { 'data-k': 'pill-yakin-salah', title: 'Jawaban latihan bersama yang dijawab yakin tetapi salah' }) : null;
   }
   function bagianJawaban(n, ui) {
     const jw = n.jawaban;
@@ -1104,7 +1106,7 @@
     if (adalahUjian(ev)) {
       const sk = ev.skor; const rata = sk.length ? sk.reduce((a, x) => a + x.skor, 0) / sk.length : null;
       return { jenis: 'Ujian tim' + (ev.judul ? ' · ' + ev.judul : ''), ujian: true,
-        meta: ev.nSoal + ' soal · ' + ev.nPeserta + ' orang' + (rata != null ? ' · rata-rata skor ' + Math.round(rata) + ' · ' + sk.filter(x => x.lulus).length + ' dari ' + sk.length + ' lulus' : '') };
+        meta: ev.nSoal + ' soal · ' + ev.nPeserta + ' orang' + (rata != null ? ' · rata-rata skor ' + angkaKoma(rata) + ' · ' + sk.filter(x => x.lulus).length + ' dari ' + sk.length + ' lulus' : '') };
     }
     // v9.2 G3: angka tim = skor tim (benar ÷ jawaban yang masuk), sama dengan kop evaluasi
     const t = ev.nSoal && ev.nPeserta ? angkaTim(sesi, ev) : null;
@@ -1145,7 +1147,16 @@
     if (grup['-'].length) bagian.push('tidak menjawab: ' + grup['-'].join(', '));
     return bagian.join(' · ');
   }
-  const KELAS_BAHAS = { tersandung: ['Banyak yang salah', 'attn'], terbelah: ['Tim terbagi', 'warn'], rapuh: ['Semua benar, tapi ada yang ragu', 'nila'], dikuasai: ['Semua benar', 'ok'], kosong: ['Tidak ada yang menjawab', 'warn'] };
+  // v9.5.4 S1: 'belumJawab' bukan kelas triase (kelas tetap 'rapuh'); hanya kunci tampilan untuk soal benar tanpa salah yang ada tidak menjawabnya
+  const KELAS_BAHAS = { tersandung: ['Banyak yang salah', 'attn'], terbelah: ['Tim terbagi', 'warn'], rapuh: ['Semua benar, tapi ada yang ragu', 'nila'], belumJawab: ['Benar, tapi ada yang belum menjawab', 'nila'], dikuasai: ['Semua benar', 'ok'], kosong: ['Tidak ada yang menjawab', 'warn'] };
+  // butir triase / butir bahas (atau nama kelas) → kunci KELAS_BAHAS
+  const kunciTampilKelas = x => {
+    if (!x || typeof x !== 'object') return x;
+    if (x.kelas !== 'rapuh') return x.kelas;
+    const belum = Array.isArray(x.tidakMenjawab) ? x.tidakMenjawab.length > 0 : (Number(x.nKosong) || 0) > 0 && !(Number(x.nSalah) || 0);
+    return belum ? 'belumJawab' : 'rapuh';
+  };
+  const namaKelasBahas = x => (KELAS_BAHAS[kunciTampilKelas(x)] || [''])[0];
   // rincian di samping pil kelas pada kotak mode bahas (pil sudah memuat nama kelas; tidak memakai label modul belajar)
   function labelKelas(x) {
     const nB = Number(x.nBenar) || 0, nS = Number(x.nSalah) || 0, nK = Number(x.nKosong) || 0;
@@ -1155,11 +1166,13 @@
     if (x.kelas === 'kosong') return nK ? nK + ' tidak menjawab' : '';
     return '';
   }
-  const pillKelas = kelas => { const k = KELAS_BAHAS[kelas] || KELAS_BAHAS.dikuasai; return UKP.c.pill(k[0], k[1], null, { 'data-kelas': kelas }); };
+  // x = butir triase/bahas (atau nama kelas, cara lama); data-kelas tetap kelas triase
+  const pillKelas = x => { const kelas = x && typeof x === 'object' ? x.kelas : x; const k = KELAS_BAHAS[kunciTampilKelas(x)] || KELAS_BAHAS.dikuasai; return UKP.c.pill(k[0], k[1], null, { 'data-kelas': kelas }); };
   // saringan matriks: q dari ev.soal, kelasDari(id) → kelas triase ('dikuasai' bila tidak ada di urutan bahas)
   const SARING_MATRIKS = [
     { nilai: 'semua', label: 'Semua', f: () => true },
-    { nilai: 'salah', label: 'Ada yang salah', f: (q, ev) => q.nBenar < ev.nPeserta },
+    // v9.5.4 C-1 (peninjau): soal berkelas "Semua benar" (mis. hanya pemandu/pengamat yang kosong) tidak masuk "Ada yang salah"
+    { nilai: 'salah', label: 'Ada yang salah', f: (q, ev, kelasDari) => q.nBenar < ev.nPeserta && !(typeof kelasDari === 'function' && kelasDari(q.id) === 'dikuasai') },
     { nilai: 'terbelah', label: 'Tim terbagi', f: (q, ev, kelasDari) => kelasDari(q.id) === 'terbelah' },
     { nilai: 'tersandung', label: 'Banyak yang salah', f: (q, ev, kelasDari) => kelasDari(q.id) === 'tersandung' },
   ];
@@ -1225,7 +1238,8 @@
     // urutan bahas (triase) — bila modul belajar belum menyediakannya, kembali ke "Soal paling banyak salah" v8.0
     const tri = ev.triase && Array.isArray(ev.triase.daftar) ? ev.triase : null;
     const bahas = tri ? kendaliBahas(sesi, ev, tri, namaUrut, adaUlangi ? () => opsi.onUlangi(idsSalah.slice()) : null, idsSalah.length) : null;
-    const kelasDari = id => { const x = tri && tri.daftar.find(d => d.id === id); return x ? x.kelas : 'dikuasai'; };
+    // v9.5.4 S1: cadangan tidak memberi 'dikuasai' bila ada yang tidak menjawab
+    const kelasDari = id => { const x = tri && tri.daftar.find(d => d.id === id); return x ? x.kelas : kelasCadangan(ev.soal.find(y => y.id === id), tri && tri.pengamat); };
     if (!opsi.ringkas) wadah.append(bagianMatriks(ev, namaUrut, kelasDari));
     if (bahas) wadah.append(bahas.bagian);
     else if (ev.tersulit && ev.tersulit.length) wadah.append(bagianTersulit(ev));
@@ -1346,7 +1360,7 @@
     const baris = [];
     if (adalahUjian(ev)) {
       const sk = ev.skor; const rata = sk.length ? sk.reduce((a, x) => a + x.skor, 0) / sk.length : 0;
-      baris.push(kapan + ': ujian tim ' + (ev.judul ? ev.judul + ' · ' : '') + ev.nSoal + ' soal · rata-rata tim ' + Math.round(rata) + ' · ' + sk.filter(x => x.lulus).length + ' dari ' + sk.length + ' di atas ' + batasLulus());
+      baris.push(kapan + ': ujian tim ' + (ev.judul ? ev.judul + ' · ' : '') + ev.nSoal + ' soal · rata-rata tim ' + angkaKoma(rata) + ' · ' + sk.filter(x => x.lulus).length + ' dari ' + sk.length + ' lulus (batas ' + batasLulus() + ')');
     } else {
       const t = angkaTim(sesi, ev); let total = null;
       try { const st = infoRoom() ? ruangR().state() : null; total = st && st.room && Array.isArray(st.room.peserta) ? st.room.peserta.length : null; } catch (e) { total = null; }
@@ -1376,7 +1390,7 @@
           : h('p', { class: 'meta', 'data-k': 'skor-saya' }, saya ? 'Nama ' + saya + ' tidak ada di hasil ini.' : 'Nama Anda belum diatur di perangkat ini.'),
         x ? UKP.c.barMini(x.skor, { acuan: bt, nada: x.lulus ? null : 'attn', label: 'Skor Anda ' + angkaKoma(x.skor) + ' dari 100, batas lulus ' + bt }) : null,
         x ? h('p', { class: 'meta' }, [x.benar + ' benar', x.salah + ' salah', x.kosong ? x.kosong + ' tidak menjawab' : null, x.nRagu ? x.nRagu + ' ragu' : null].filter(Boolean).join(' · ')) : null,
-        h('p', { class: 'eval-anggota-tim', 'data-k': 'rata-tim' }, 'Rata-rata tim ' + angkaKoma(rata) + ' · ' + nL + ' dari ' + sk.length + ' di atas ' + bt)));
+        h('p', { class: 'eval-anggota-tim', 'data-k': 'rata-tim' }, 'Rata-rata tim ' + angkaKoma(rata) + ' · ' + nL + ' dari ' + sk.length + ' lulus (batas ' + bt + ')')));
     } else {
       const t = angkaTim(sesi, ev); const bl = bahasLagi(sesi, ev);
       const pSaya = namaSesi ? ev.peserta.find(p => p.nama === namaSesi) : null;
@@ -1395,7 +1409,7 @@
     const ids = tri ? tri.map(x => x.id) : ev.soal.filter(q => q.nSalah + q.nKosong > 0).map(q => q.id);
     const daftarQ = ids.map(id => ev.soal.find(q => q.id === id)).filter(Boolean);
     if (daftarQ.length) {
-      const kelas = id => { const x = tri && tri.find(d => d.id === id); return x ? x.kelas : null; };
+      const kelas = id => { const x = tri && tri.find(d => d.id === id); return x || null; };
       const awal = 10; const ol = h('ol', { class: 'eval-bahas eval-bahas-anggota', 'aria-label': 'Soal untuk dibahas' }, daftarQ.map((q, i) => {
         const jt = judulTopik(q.topik); const sj = namaSesi ? q.perPeserta[namaSesi] : null;
         const takAda = !cariSoal(q.id); // v9.4 FA2: soal tidak ada di versi aplikasi ini → ditandai dengan teks; ketukan memberi pesan, tidak membuka soal lain
@@ -1742,8 +1756,8 @@
       const alasan = x.alasan && (x.alasan.label || x.alasan.opsi) ? 'Banyak memilih ' + x.alasan.opsi + (x.alasan.label ? ': ' + x.alasan.label : '') : null;
       return h('li', { 'data-k': 'bahas-' + x.id, 'data-kelas': x.kelas },
         h('span', { class: 'eval-bahas-no tim-angka', 'aria-hidden': 'true' }, String(i + 1)),
-        h('button', { type: 'button', class: 'eval-bahas-btn', 'aria-label': (i + 1) + '. ' + x.id + ', ' + (KELAS_BAHAS[x.kelas] || [''])[0] + ', ' + x.saran + '. Buka mode bahas', onclick: () => buka(i) },
-          h('span', { class: 'eval-bahas-kop' }, h('span', { class: 'kode' }, x.id), pillKelas(x.kelas), h('span', { class: 'eval-bahas-topik', title: jt || null }, jt || namaKel(x.kode))),
+        h('button', { type: 'button', class: 'eval-bahas-btn', 'aria-label': (i + 1) + '. ' + x.id + ', ' + namaKelasBahas(x) + ', ' + x.saran + '. Buka mode bahas', onclick: () => buka(i) },
+          h('span', { class: 'eval-bahas-kop' }, h('span', { class: 'kode' }, x.id), pillKelas(x), h('span', { class: 'eval-bahas-topik', title: jt || null }, jt || namaKel(x.kode))),
           h('span', { class: 'eval-bahas-saran' }, x.saran),
           alasan ? h('span', { class: 'meta eval-bahas-alasan' }, alasan) : null),
         h('label', { class: 'eval-bahas-cek' }, kotak, h('span', null, 'Dibahas')));
@@ -1760,15 +1774,34 @@
     return { bagian, buka };
   }
   // murni (tanpa DOM): butir mode bahas untuk semua soal, urut nomor. Soal yang ada di urutan bahas memakai butir triasenya;
-  // soal lain: dijawab benar oleh semua ('dikuasai') atau tidak dijawab siapa pun ('kosong')
+  // v9.5.4 S1: kelas cadangan satu soal ev.soal (bila tidak ada di daftar triase), aturan sama dengan L.triaseSoal tanpa keyakinan
+  // v9.5.4 C-1: pengamat (ev.triase.pengamat: tidak menjawab satu soal pun sepanjang sesi) tidak dihitung "belum menjawab"
+  const kunciPengamat = pengamat => new Set((Array.isArray(pengamat) ? pengamat : []).filter(x => typeof x === 'string').map(kunciNama));
+  const tidakMenjawabSoal = (q, pengamat) => { const pp = q && q.perPeserta && typeof q.perPeserta === 'object' ? q.perPeserta : {}; const pg = kunciPengamat(pengamat);
+    return Object.keys(pp).filter(nm => (!pp[nm] || !/^[A-D]$/.test(pp[nm].o)) && !pg.has(kunciNama(nm))); };
+  function kelasCadangan(q, pengamat) {
+    q = q || {}; const nB = Number(q.nBenar) || 0, nS = Number(q.nSalah) || 0; const nJawab = nB + nS;
+    const nK = Array.isArray(pengamat) && pengamat.length && q.perPeserta ? tidakMenjawabSoal(q, pengamat).length : Number(q.nKosong) || 0;
+    if (!nJawab) return 'kosong';
+    if (nS) return nB === 0 || nB / nJawab < 0.5 ? 'tersandung' : 'terbelah';
+    return nK ? 'rapuh' : 'dikuasai';
+  }
+  // soal lain: dijawab benar oleh semua ('dikuasai') atau tidak dijawab siapa pun ('kosong').
+  // v9.5.4 S1: cadangan (soal di luar daftar triase) tidak memberi 'dikuasai' bila ada peserta yang tidak menjawab atau salah
   function daftarBahasSemua(ev, daftarTri) {
     const per = new Map((daftarTri || []).map(x => [x.id, x]));
+    const pengamat = ev && ev.triase && Array.isArray(ev.triase.pengamat) ? ev.triase.pengamat : [];
     return (ev && Array.isArray(ev.soal) ? ev.soal : []).map((q, idx) => {
       const x = per.get(q.id); if (x) return Object.assign({}, x, { idx });
-      const nJawab = (Number(q.nBenar) || 0) + (Number(q.nSalah) || 0);
+      const nB = Number(q.nBenar) || 0, nS = Number(q.nSalah) || 0, nK = Number(q.nKosong) || 0;
+      const nJawab = nB + nS;
       const kosong = !nJawab;
-      return { idx, id: q.id, kode: q.kode, topik: q.topik, kunci: q.kunci, kelas: kosong ? 'kosong' : 'dikuasai', nBenar: q.nBenar || 0, nSalah: q.nSalah || 0, nKosong: q.nKosong || 0,
-        saran: kosong ? 'Baca pembahasan bersama' : 'Semua benar. Baca pembahasan singkat, lalu lanjut.', alasan: null };
+      const tidakMenjawab = tidakMenjawabSoal(q, pengamat);
+      const kelas = kelasCadangan(q, pengamat);
+      const saran = kosong ? 'Baca pembahasan bersama' : kelas === 'dikuasai' ? 'Semua benar. Baca pembahasan singkat, lalu lanjut.'
+        : kelas === 'rapuh' ? 'Ada yang belum menjawab. Baca pembahasan bersama.' : 'Baca pembahasan bersama';
+      return { idx, id: q.id, kode: q.kode, topik: q.topik, kunci: q.kunci, kelas, nBenar: nB, nSalah: nS, nKosong: nK, tidakMenjawab,
+        saran, alasan: null };
     });
   }
   // mode bahas: satu soal per langkah (mode ulas) dengan kotak triase, stopwatch, Sebelumnya / Sudah dibahas, lanjut
@@ -1791,7 +1824,7 @@
       const q = ctx.ev.soal[x.idx] || ctx.ev.soal.find(y => y.id === x.id) || { id: x.id, kunci: x.kunci, perPeserta: {} };
       const so = cariSoal(x.id);
       const kotak = h('div', { class: 'eval-triase', 'data-k': 'triase', 'data-kelas': x.kelas },
-        h('div', { class: 'eval-triase-kop' }, pillKelas(x.kelas), h('strong', null, labelKelas(x)), ctx.sudah.has(x.id) ? UKP.c.pill('sudah dibahas', 'ok', 'check') : null, jamEl),
+        h('div', { class: 'eval-triase-kop' }, pillKelas(x), h('strong', null, labelKelas(x)), ctx.sudah.has(x.id) ? UKP.c.pill('sudah dibahas', 'ok', 'check') : null, jamEl),
         h('p', { class: 'eval-triase-saran' }, x.saran),
         h('p', { class: 'eval-triase-pilih', 'data-k': 'triase-pilih' }, siapaMemilih(q, ctx.namaUrut)),
         x.alasan && (x.alasan.teks || x.alasan.label) ? h('p', { class: 'small eval-triase-alasan' }, h('strong', null, 'Opsi ' + x.alasan.opsi + (x.alasan.label ? ' · ' + x.alasan.label : '') + (x.alasan.teks ? ': ' : '')), x.alasan.teks || '') : null);
@@ -1977,7 +2010,7 @@
       const asalJw = n.lokal ? 'jawaban latihan bersama' : 'jawaban latihan dan simulasi 30 hari terakhir';
       const rek = ui.analisis ? (klJ && klJ.n >= 5 && klJ.p < 80
         ? UKP.c.ringkasStatus(h('span', null, h('strong', null, 'Fokus: ' + klJ.kode + ' ' + namaKel(klJ.kode) + ' (' + klJ.p + '% dari ' + klJ.n + ' soal)'), '. Akurasi kelompok ini paling rendah pada ' + asalJw + '; sarankan latihan terarah dan bahas soal yang keliru bersama.'))
-        : UKP.c.ringkasStatus(klJ && klJ.n >= 5 ? 'Belum ada kelompok yang menonjol lemah pada ' + asalJw + '.' : 'Jawaban per kelompok masih sedikit (kurang dari 5 soal); lihat kartu Ringkasan masalah untuk data awal.'))
+        : UKP.c.ringkasStatus(!klJ && ui.analisis.benar === ui.analisis.n ? 'Belum ada jawaban salah pada ' + asalJw + '.' : klJ && klJ.n >= 5 ? 'Belum ada kelompok yang menonjol lemah pada ' + asalJw + '.' : 'Jawaban per kelompok masih sedikit (kurang dari 5 soal); lihat kartu Ringkasan masalah untuk data awal.'))
         : f ? UKP.c.ringkasStatus(h('span', null, h('strong', null, 'Fokus: ' + f.kode + ' ' + namaKel(f.kode) + ' (' + f.p + '%)'), '. Akurasi kelompok ini paling rendah dalam 14 hari terakhir; sarankan latihan terarah dan bahas soal yang keliru bersama.'))
         : UKP.c.ringkasStatus(n.total ? 'Belum ada kelompok yang menonjol lemah dari data 14 hari terakhir.' : 'Anggota ini belum mengerjakan latihan dalam 14 hari terakhir.');
       const kel = Object.keys(n.perKelompok).map(k => ({ kode: k, n: Number(n.perKelompok[k] && n.perKelompok[k].n) || 0, p: pKel(n.perKelompok[k]) })).filter(x => x.n > 0).sort((p, q) => p.kode.localeCompare(q.kode, 'id', { numeric: true }));
@@ -2035,7 +2068,7 @@
   };
   // untuk uji: urutan dan CSV tanpa DOM
   UKP.views.tim._uji = { normal, urutkan, csv, keP, sumberTeks, normalJawaban, analisisJawaban, petaSimulasi, csvJawaban, labelPola, pesertaDari, dokDari, normalLokal, adalahLokal, normalSesi, evaluasiLokal, csvSesi, daftarSesi, ringkasSesi, kalimatTempo, kalimatBahas, siapaMemilih, menitSesi, SARING_MATRIKS, MODE_JAWAB, rekapAnggota, angkaTim, versiAnggota, teksTerimaKasih, bahasLagi, sebaranTanpaNama, KUNCI_PERINGKAT,
-    statusSaya, statusDariKunci, petaSaya, SARING_SAYA, hitungSaringSaya, saringPetaSaya, navSaya, daftarBahasSemua, bisaDibuka, adaBelumIkut, labelNoSaya };
+    statusSaya, statusDariKunci, petaSaya, SARING_SAYA, hitungSaringSaya, saringPetaSaya, navSaya, daftarBahasSemua, bisaDibuka, adaBelumIkut, labelNoSaya, kelasCadangan, kunciTampilKelas, namaKelasBahas };
   if (UKP.viz && UKP.viz.gaya) UKP.viz.gaya('ukp-tim-room', ':where(.tim-sumber){color:var(--muted)}'
     + ':where(.tim-online){display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-meta,.8125rem);color:var(--muted);white-space:nowrap}');
 })(typeof window !== 'undefined' ? window : globalThis);

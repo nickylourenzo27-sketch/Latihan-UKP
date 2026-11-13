@@ -53,6 +53,12 @@
   const soalCekTopik = t => { const tg = UKP.store.get().profil.tingkat; const saring = diTingkat(t.kode, tg); return K.soalTopik(t.id).filter(x => !saring || (x.tingkat || []).includes(tg)); };
   // v9.5 jumlah soal cek: paling banyak 5, satu soal per keluarga (soal asli beserta penggantinya)
   const nCekDari = arr => Math.min(5, K.akar ? new Set(arr.map(x => K.akar(x) || x.id)).size : arr.length);
+  // v9.5.4 S13: jumlah soal yang benar-benar dimulai tombol "Latih 10 soal <topik>": paling banyak maks (10), satu soal per keluarga,
+  // dari pool yang sama dengan #latih { kode, topik } (soal tingkat target; kelompok di luar tingkat target memakai semua soal kelompok itu)
+  const nLatihDari = (arr, maks) => Math.min(maks == null ? 10 : maks, K.akar ? new Set(arr.map(x => K.akar(x) || x.id)).size : arr.length);
+  const nLatihTopik = (id, maks) => { const t = K.topik(id); return t ? nLatihDari(soalCekTopik(t), maks) : 0; };
+  // v9.5.4 C-5: jumlah soal yang benar-benar dimulai #latih { hanyaSalah: true, n: maks } (pool sama dengan basis + soalSalah tanpa kelompok)
+  const nLatihSalah = maks => { const tg = UKP.store.get().profil.tingkat; const ids = new Set(L.bukuKesalahan(tg, 200).map(j => j.soal)); return nLatihDari(K.semuaSoal(tg).filter(x => ids.has(x.id)), maks); };
 
   // ---------- V7: komponen Kontrak v7 (DESAIN-V7 §4) dari core.js/learn.js; gaya ada di css/app.css (Kontrak kelas v7) ----------
   // K-08 mode fokus: navigasi situs disembunyikan selama soal/kartu/langkah kasus berjalan; mode ujian/sesi tidak ditimpa
@@ -274,7 +280,8 @@
   UKP.views.kelompok = function (params) {
     const kode = params.kode; const m = UKP.modul[kode]; const s = UKP.store.get(); const tingkat = s.profil.tingkat;
     if (!m) return h('div', { class: 'page' }, h('h1', null, 'Kelompok tidak ditemukan'), UKP.link('Kembali ke peta materi', 'tingkat'));
-    const sk = L.skorKelompok(kode); const nS = K.soalKelompok(kode).length;
+    // v9.5.4 S12: jumlah soal untuk tingkat target, aturan yang sama dengan Peta materi dan Latih (kelompok di luar tingkat target: semua soal)
+    const sk = L.skorKelompok(kode); const nS = K.soalKelompok(kode, diTingkat(kode, tingkat) ? tingkat : undefined).length;
     const page = h('div', { class: 'page lebar kelompok' });
     const lanjut = m.topik.find(t => !s.topikDibaca[t.id]);
     // DESAIN-V7 P3-04/D6: langkah berikutnya disebut dengan kode + judul topik (dipotong 40 karakter; teks lengkap di title)
@@ -441,7 +448,7 @@
         const tawarBaca = lulus && !s.topikDibaca[t.id] ? h('button', { type: 'button', class: 'btn btn-ghost btn-text', onclick: e => { s.topikDibaca[t.id] = Date.now(); UKP.store.save(); gambarPenanda(); gambarStatus(); e.currentTarget.replaceWith(h('span', { class: 'meta' }, ikon('check', null, true), ' Ditandai dibaca')); } }, 'Tandai dibaca juga') : null;
         // langkah berikutnya bernama: lulus → topik berikutnya (primer di navigasi); belum → latih topik ini
         const hasilCek = h('div', { class: 'card' + (lulus ? ' sorot' : '') }, h('h3', null, benar + ' dari ' + antrean.length + ' benar'), h('p', null, lulus ? 'Cek pemahaman tuntas.' + (next ? ' Lanjut ke ' + next.id + ' ' + next.judul + '.' : '') : 'Baca ulang ringkasan dan jebakan umum, lalu ulangi.'), lulus ? UKP.c.stempel('TUNTAS', 'ok', { besar: true, diraih: true }) : null,
-          h('div', { class: 'btn-row' }, h('button', { class: 'btn' + (lulus ? '' : ' btn-primary'), onclick: () => UKP.go('latih', { kode: t.kode, topik: t.id, n: 10, mulai: true }) }, 'Latih 10 soal ' + t.id), h('button', { class: 'btn' + (lulus ? ' btn-ghost btn-text' : ''), onclick: () => { antrean = ambilCek(); idx = 0; benar = 0; gambarCek(); } }, 'Ulangi dengan soal lain'), tawarBaca));
+          h('div', { class: 'btn-row' }, h('button', { class: 'btn' + (lulus ? '' : ' btn-primary'), onclick: () => UKP.go('latih', { kode: t.kode, topik: t.id, n: 10, mulai: true }) }, 'Latih ' + nLatihDari(soalTopik) + ' soal ' + t.id), h('button', { class: 'btn' + (lulus ? ' btn-ghost btn-text' : ''), onclick: () => { antrean = ambilCek(); idx = 0; benar = 0; gambarCek(); } }, 'Ulangi dengan soal lain'), tawarBaca));
         area.appendChild(hasilCek); UKP.fokus(hasilCek.querySelector('h3')); return;
       }
       const judulCek = h('h3', { class: 'visually-hidden' }, 'Cek pemahaman, soal ' + (idx + 1) + ' dari ' + antrean.length);
@@ -546,7 +553,22 @@
     }
     return indeksIdButir.peta.get(id) || null;
   }
-  UKP.cakupan = { topikDisentuh, status: statusButir, ringkas: (t, sentuh) => hitungCakupan(t, sentuh), indeksTopik: indeksTopikCakupan, definisi: DEFINISI_DIPELAJARI, butir: infoButir, telusuri: telusuriButir };
+  // v9.5.4 C-4: label aksesibilitas tombol Latih di Cakupan, seperti Bank soal: "Latih butir 7.c: <nama butir>" (tanpa nomor: ID butir).
+  // Bila dua butir satu tingkat tetap berlabel sama (teks dan nomor sama di subjek berbeda), nama subjek ditambahkan sebagai pembeda.
+  const labelDasarButir = (b, info) => 'Latih butir ' + ((info && info.nomor) || b.id) + ': ' + pendek(b.teks, 60);
+  const labelGanda = new Map();   // tingkat → Set label dasar yang dipakai lebih dari satu butir daun
+  function gandaTingkat(t) {
+    const C = UKP.cakupanResmi; const T = C && C.tingkat && C.tingkat[t]; if (!T) return new Set();
+    const ada = labelGanda.get(t); if (ada && ada.sumber === C) return ada.set;
+    const hit = new Map();
+    for (const m of T.mataUjian) for (const sj of m.subjek) telusuriButir(sj.butir, b => { if (adaAnak(b) || typeof b.id !== 'string') return; const l = labelDasarButir(b, infoButir(b.id)); hit.set(l, (hit.get(l) || 0) + 1); });
+    const set = new Set([...hit].filter(([, n]) => n > 1).map(([l]) => l)); labelGanda.set(t, { sumber: C, set }); return set;
+  }
+  function labelLatihButir(b, t) {
+    const info = infoButir(b.id); const l = labelDasarButir(b, info);
+    return gandaTingkat(t).has(l) && info && info.subjek ? l + ' · ' + info.subjek : l;
+  }
+  UKP.cakupan = { topikDisentuh, status: statusButir, ringkas: (t, sentuh) => hitungCakupan(t, sentuh), indeksTopik: indeksTopikCakupan, definisi: DEFINISI_DIPELAJARI, butir: infoButir, telusuri: telusuriButir, labelLatih: labelLatihButir };
   // titik status (bentuk + warna + teks; warna tidak menjadi satu-satunya penanda)
   // DESAIN-V7 P3-09: titik bernada hanya untuk butir yang belum dipelajari; butir yang sudah cukup bertanda cek redup
   const titikStatus = st => h('span', { class: 'cakupan-status', 'data-status': st, 'data-v7': '' },
@@ -587,7 +609,7 @@
     return h('section', { class: 'card kartu-cakupan', 'data-tingkat': tingkat, 'aria-labelledby': 'kartu-cakupan-j' },
       h('div', { class: 'card-head' }, h('div', { class: 'stack-sm' }, h('p', { class: 'eyebrow' }, 'Dokumen KLC/BPPK · Okt 2026'), h('h2', { class: 'card-title', id: 'kartu-cakupan-j' }, 'Cakupan materi resmi BPPK')), UKP.c.verif('◐', 'Bersumber dari unggahan peserta; dokumen tidak memuat kop, tanggal, atau nomor')),
       h('p', { class: 'small', style: { maxWidth: '68ch' } }, 'Daftar butir materi Tingkat ' + tingkat + ' dari dokumen cakupan materi yang dibagikan KLC. Menurut laporan peserta, soal ujian tidak keluar dari daftar ini; setiap butir dipetakan ke topik aplikasi beserta status belajar Anda.'),
-      h('p', { class: 'row-meta' }, h('span', { class: 'meta' }, r.mataUjian + ' kelompok', h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), r.butir + ' butir', h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), r.sudah + ' dari ' + (r.butir - r.tanpa) + ' butir dipelajari'), r.tanpa ? pill(r.tanpa + ' belum tercakup', 'warn') : null),
+      h('p', { class: 'row-meta' }, h('span', { class: 'meta' }, r.mataUjian + ' mata ujian', h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), r.butir + ' butir', h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), r.sudah + ' dari ' + (r.butir - r.tanpa) + ' butir dipelajari'), r.tanpa ? pill(r.tanpa + ' belum tercakup', 'warn') : null),
       h('div', { class: 'btn-row' }, UKP.link(['Buka cakupan Tingkat ' + tingkat, ikon('chevron-kanan', null, true)], 'cakupan', { tingkat }, 'btn btn-sm')));
   }
 
@@ -629,6 +651,13 @@
       h('div', { class: 'between' }, jumlah, btnLipat));
     const daftarWadah = h('div', { class: 'stack cakupan-daftar' });
     const terbuka = new Map(); // kunci mata ujian → terbuka? (pilihan pengguna dihormati selama halaman terbuka)
+    const cacheButir = new Map(); // v9.5.4 S14: tingkat|butir → { n, tunggu }
+    const hitungButir = (id, t) => {
+      const k = t + '|' + id; if (cacheButir.has(k)) return cacheButir.get(k);
+      const arr = K.soalButir(id, t); const P = L && L.pakai;
+      const tunggu = arr.length && P && typeof P.ringkas === 'function' && typeof P.menunggu === 'function' ? P.menunggu(P.ringkas(arr)) : 0;
+      const x = { n: arr.length, tunggu }; cacheButir.set(k, x); return x;
+    };
     const nomorEl = (b, dalam) => { const n = penandaButir(b.nomor, dalam); return h('span', { class: 'cakupan-nomor', 'aria-hidden': n ? null : 'true' }, n); };
     const chipTopik = id => {
       const judul = judulTopik(id); const d = sentuh.has(id);
@@ -659,12 +688,14 @@
           adaPeta ? soalButirEl(b) : null);
       };
       // v9.5 jumlah soal terpeta untuk tingkat ini + tautan Latih (hanya bila peta butir tersedia)
+      // v9.5.4 S14: kalimat yang sama dengan baris butir di Bank soal ("N soal · M pengganti menunggu"); label tombol tanpa angka.
+      // Angka per butir dihitung sekali per halaman (hitungButir), jadi mengetik di kotak cari tidak menghitung ulang ringkasan pemakaian.
       const soalButirEl = b => {
-        const n = K.soalButir(b.id, tingkat).length;
+        const x = hitungButir(b.id, tingkat); const n = x.n;
         if (!n) return h('p', { class: 'tiny cakupan-soal', 'data-kosong': '' }, UKP.c.pill('belum ada soal', 'warn'));
         // v9.5: tombol kecil (sasaran ketuk lebih besar dari tautan satu kata)
-        const a = UKP.link('Latih', 'latih', { butir: b.id, atur: 1 }, 'btn btn-sm cakupan-latih'); a.setAttribute('aria-label', 'Latih ' + n + ' soal butir ini: ' + pendek(b.teks, 60));
-        return h('p', { class: 'tiny cakupan-soal' }, h('span', { class: 'meta' }, n + ' soal'), ' ', a);
+        const a = UKP.link('Latih', 'latih', { butir: b.id, atur: 1 }, 'btn btn-sm cakupan-latih'); a.setAttribute('aria-label', labelLatihButir(b, tingkat));
+        return h('p', { class: 'tiny cakupan-soal' }, h('span', { class: 'meta' }, UKP.fmt.angka(n) + ' soal' + (x.tunggu ? ' · ' + UKP.fmt.angka(x.tunggu) + ' pengganti menunggu' : '')), ' ', a);
       };
       const olButir = (arr, dalam, jalurInduk, m, x) => {
         const li = [];
@@ -700,7 +731,7 @@
         bagian.push(d);
       });
       daftarWadah.replaceChildren(...(bagian.length ? bagian : [UKP.c.kosong('Tidak ada butir yang cocok', q ? 'Coba kata lain atau hapus pencarian "' + q + '".' : 'Semua butir Tingkat ' + tingkat + ' yang tercakup sudah Anda pelajari.', h('button', { type: 'button', class: 'btn btn-sm', onclick: () => { cari.value = ''; if (hanyaBelum) { hanyaBelum = false; const i = sakelar.querySelector('input'); if (i) i.checked = false; } UKP.perbaruiParams({ q: null, belum: null }, 'cakupan'); gambarDaftar(); UKP.fokus(cari); } }, 'Hapus saringan'), { ikon: 'saring' })]));
-      jumlah.textContent = adaSaring ? 'Menampilkan ' + tampil + ' dari ' + total + ' butir.' : total + ' butir dalam ' + T.mataUjian.length + ' kelompok.';
+      jumlah.textContent = adaSaring ? 'Menampilkan ' + tampil + ' dari ' + total + ' butir.' : total + ' butir dalam ' + T.mataUjian.length + ' mata ujian.';
       aturLabelLipat();
     }
     const tile = o => UKP.viz && UKP.viz.statTile ? UKP.viz.statTile(o) : h('div', { class: 'stat' }, h('span', { class: 'label' }, o.label), h('span', { class: 'nilai' }, String(o.nilai)), o.sub ? h('span', { class: 'tiny muted' }, o.sub) : null);
@@ -709,7 +740,7 @@
       return h('section', { class: 'stack-sm cakupan-ringkas', 'aria-labelledby': 'cakupan-ringkas-j' },
         h('div', { class: 'sect-head' }, h('h2', { id: 'cakupan-ringkas-j' }, 'Ringkasan Tingkat ' + t)),
         h('div', { class: 'pita-stat' },
-          tile({ label: 'Kelompok', nilai: r.mataUjian, sub: 'Dokumen KLC menyebutnya mata ujian.' }),
+          tile({ label: 'Mata ujian', nilai: r.mataUjian, sub: 'Pembagian dokumen KLC. Satu mata ujian bisa memuat beberapa kelompok aplikasi.' }),   // v9.5.4 Sx-B4
           tile({ label: 'Butir', nilai: r.butir, sub: 'butir terkecil yang tercetak' }),
           tile({ label: 'Sudah dipelajari', nilai: r.sudah, sub: pct + '% dari ' + dapat + ' butir yang tercakup' }),
           tile({ label: 'Belum tercakup', nilai: r.tanpa, sub: 'belum ada materi khusus di aplikasi' + (r.sebagian ? '; ' + r.sebagian + ' butir baru sebagian' : '') })),
@@ -718,7 +749,7 @@
         h('p', { class: 'meta', style: { maxWidth: '68ch', margin: 0 } }, DEFINISI_DIPELAJARI + ' Penilaian cakupan aplikasi per 30 Oktober 2026; jumlah butir dihitung atas butir terkecil (tanpa sub-butir).'));
     }
     const isiTab = t => { gambarDaftar(); const r = hitungCakupan(t, sentuh);
-      return h('div', { class: 'stack' }, ringkasan(t), h('section', { class: 'stack-sm', 'aria-labelledby': 'cakupan-daftar-j' }, h('div', { class: 'sect-head' }, h('h2', { id: 'cakupan-daftar-j' }, 'Butir per kelompok')),
+      return h('div', { class: 'stack' }, ringkasan(t), h('section', { class: 'stack-sm', 'aria-labelledby': 'cakupan-daftar-j' }, h('div', { class: 'sect-head' }, h('h2', { id: 'cakupan-daftar-j' }, 'Butir per mata ujian')),
         r.butir > r.tanpa ? ringkasStatus(teksMayoritas(r, mayoritasButir(r))) : null, kontrol, daftarWadah)); };
     const tabs = UKP.c.tabs({ id: 'cakupan-tab', label: 'Pilih tingkat', aktif: tingkat,
       // "Tingkat " disembunyikan secara visual di layar < 400 px (tetap dibacakan) agar ketiga tab muat tanpa digulir
@@ -851,13 +882,14 @@
   const fmtJamPendek = d => { d = Math.max(0, Math.floor(Number(d) || 0)); return Math.floor(d / 60) + ':' + String(d % 60).padStart(2, '0'); };
   const pesertaAktif = () => { const b = L.siapBersama(UKP.store.get()).bersama; return b.aktif && b.peserta.length ? b.peserta.slice() : null; };
   // v9.3 W1: baris ringkas total waktu → "10 soal · kira-kira 41 menit (21 mengerjakan + 20 membahas)";
-  // Bebas → "10 soal · 21 menit mengerjakan · membahas tanpa batas". Menit dibulatkan per bagian; total = jumlah kedua bagian
+  // Bebas → "10 soal · waktu latihan 21 menit, termasuk membahas · membahas per soal tanpa hitung mundur" (v9.5.3 B3). Menit dibulatkan per bagian; total = jumlah kedua bagian
   // v9.4 W: waktu mengerjakan tanpa batas (detikKerja 0) → tidak ada perkiraan lama latihan, ditulis jelas
   UKP.c.teksWaktuBersama = function (nSoal, detikKerja, detikBahas) {
     const n = Math.max(0, Math.round(Number(nSoal) || 0)); const k = Math.max(0, Number(detikKerja) || 0); const b = Math.max(0, Number(detikBahas) || 0);
     if (!k) return n + ' soal · mengerjakan tanpa batas · ' + (b ? 'membahas ' + Math.round(b / 60) + ' menit per soal' : 'membahas bebas') + ' · lama latihan tidak diperkirakan';
     const mk = Math.round(n * k / 60), mb = Math.round(n * b / 60);
-    return b ? n + ' soal · kira-kira ' + (mk + mb) + ' menit (' + mk + ' mengerjakan + ' + mb + ' membahas)' : n + ' soal · ' + mk + ' menit mengerjakan · membahas tanpa batas';
+    // v9.5.3 B3: membahas Bebas → hitung mundur sesi tetap berjalan saat membahas, jadi menit itu ditulis sebagai waktu latihan
+    return b ? n + ' soal · kira-kira ' + (mk + mb) + ' menit (' + mk + ' mengerjakan + ' + mb + ' membahas)' : n + ' soal · waktu latihan ' + mk + ' menit, termasuk membahas · membahas per soal tanpa hitung mundur';
   };
 
   // v8.1 UKP.c.kartuLanjutBersama() → kartu "Sesi bersama belum selesai · soal 7 dari 20 · 6 orang · sisa 12 mnt" atau null.
@@ -1026,7 +1058,31 @@
   const butirResmiTingkat = (x, t) => K.butirSoal(x.id).some(b => b.indexOf(t + '.') === 0);
   const saringResmi = (arr, t) => adaPetaResmi() ? arr.filter(x => butirResmiTingkat(x, t)) : arr;
   const luarResmi = t => adaPetaResmi() ? K.semuaSoal(t).filter(x => !butirResmiTingkat(x, t)) : [];
-  UKP.latihBank = { urutLatih, adaPetaResmi, saringResmi, luarResmi };
+  // v9.5.3 B4/B5: keterangan bila "Belum pernah dipakai" atau "Pengganti soal lama" tidak cukup untuk n soal yang akan dimulai.
+  // Mengikuti urutan pengisian L.urutBank (baru: B lalu G lalu R; pengganti: G lalu B lalu R); r = L.pakai.ringkas(...). '' bila cukup
+  function teksBankKurang(cara, n, r) {
+    n = Math.max(0, Math.floor(Number(n) || 0)); if (!r || !n || (cara !== 'baru' && cara !== 'pengganti')) return '';
+    const fa = x => UKP.fmt && UKP.fmt.angka ? UKP.fmt.angka(x) : String(x);
+    const baru = Math.max(0, r.baru | 0), ganti = Math.max(0, r.penggantiSiap | 0);
+    const punya = cara === 'baru' ? baru : ganti; if (punya >= n) return '';
+    const sisa = n - punya; const lain = Math.min(sisa, cara === 'baru' ? ganti : baru); const ulang = sisa - lain;
+    const asal = [lain ? fa(lain) + (cara === 'baru' ? ' soal pengganti' : ' soal yang belum pernah dipakai') : null, ulang ? fa(ulang) + ' soal yang sudah pernah dipakai' : null].filter(Boolean).join(' dan ');
+    const kepala = cara === 'baru'
+      ? (punya ? 'Hanya ' + fa(punya) + ' soal yang belum pernah dipakai. Sisanya ' : 'Tidak ada soal yang belum pernah dipakai di saringan ini. Sesi diisi ')
+      : (punya ? 'Hanya ' + fa(punya) + ' soal pengganti yang siap. Sisanya ' : 'Belum ada soal pengganti yang siap di saringan ini. Sesi diisi ');
+    return kepala + asal + '.';
+  }
+  // v9.5.3 B2: jumlah soal yang benar-benar dimulai dialog room "Mulai latihan bersama" (p = { n, set | topik }): pool yang sama dengan
+  // #latih { mulai, n, set | topik } (soal tingkat profil, atau soal paket), lalu urutLatih seperti mulai(), dibatasi MR.MAKS_SOAL
+  function jumlahMulaiRoom(p) {
+    p = p || {}; const st = UKP.store.get(); const t = st && st.profil ? st.profil.tingkat : 'B';
+    const n = Number(p.n) || 20; const set = p.set && K.daftarSet && K.daftarSet().some(x => x.set === p.set) ? p.set : '';
+    let arr = set ? K.soalSet(set) : K.semuaSoal(t);
+    if (p.topik) arr = arr.filter(x => x.topik === p.topik);
+    if (!arr.length) return 0;
+    return Math.min(urutLatih(arr, { n, bank: 'campur', set }, {}).length, MR.MAKS_SOAL || 120);
+  }
+  UKP.latihBank = { urutLatih, adaPetaResmi, saringResmi, luarResmi, teksBankKurang, jumlahMulaiRoom, nLatihTopik, nLatihDari, nLatihSalah };
 
   // ================= LATIH =================
   UKP.views.latih = function (params) {
@@ -1421,7 +1477,8 @@
         if (idx >= daftar.length) { selesai(); return; }
         terapkanSusulan();
         const soal = daftar[idx]; const anggaran = soal.anggaranDetik || 150; const no = idx;
-        const tempoEl = f.tempo ? h('span', { class: 'timer', role: 'timer' }, U.jam(anggaran)) : null;
+        // v9.5.3 B1: papan bersama tidak memakai hitung mundur "Waktu ketat per soal"; waktu per soal hanya mengikuti "Waktu mengerjakan per soal"
+        const tempoEl = f.tempo && !peserta ? h('span', { class: 'timer', role: 'timer' }, U.jam(anggaran)) : null;
         // v8.1 laju soal: mulai dari 0 (atau dari draf yang dipulihkan); papan soal berjalan dipulihkan lewat bersama.awal
         const pulihIni = pertama && pulihB && pulihB.idx === idx && pulihB.soalId === soal.id ? pulihB : null;
         const draf = !pulihIni && pertama && lanjut && lanjut.draf && lanjut.draf.soalId === soal.id ? lanjut.draf : null; pertama = false;
@@ -1534,7 +1591,7 @@
             (() => { const tt = top ? K.topik(top[0]) : null; const latihLagi = () => UKP.go('latih', Object.assign({}, f, { mulai: true }));
               const ulangSalah = keliru.map(r => r.soal).filter((x, i, a) => a.indexOf(x) === i);
               return h('div', { class: 'btn-row' },
-                tt ? h('button', { type: 'button', class: 'btn btn-primary', title: tt.id + ' ' + tt.judul, onclick: () => UKP.go('latih', { topik: tt.id, kode: tt.kode, n: 10, mulai: true }) }, 'Latih 10 soal ' + tt.id + ' ' + pendek(tt.judul, 32))
+                tt && nLatihTopik(tt.id) ? h('button', { type: 'button', class: 'btn btn-primary', title: tt.id + ' ' + tt.judul, onclick: () => UKP.go('latih', { topik: tt.id, kode: tt.kode, n: 10, mulai: true }) }, 'Latih ' + nLatihTopik(tt.id) + ' soal ' + tt.id + ' ' + pendek(tt.judul, 32))
                   : h('button', { type: 'button', class: 'btn btn-primary', onclick: latihLagi }, f.n === 'semua' ? 'Latih semua soal lagi' : 'Latih ' + f.n + ' soal lagi'),
                 ulangSalah.length ? h('button', { type: 'button', class: 'btn btn-ulang-salah', onclick: () => jalankan(U.acak(ulangSalah), { ulang: true }) }, 'Ulangi ' + ulangSalah.length + ' soal yang salah') : null,
                 h('button', { type: 'button', class: 'btn btn-ghost btn-text', onclick: keSaringan }, 'Atur saringan'),
@@ -1794,6 +1851,19 @@
     const catatanLap = h('p', { class: 'small muted', hidden: true });
     const toggGaya = togg('gayaUkp', 'Hanya soal kasus berangkai dan berkutipan', 'Seperti ujian 26–29 Oktober 2026.');
     const inGaya = toggGaya.querySelector('input');
+    // v9.5.3 B1/Bx2: "Waktu ketat per soal" hanya untuk latihan sendiri; di mode Bersama nonaktif dengan keterangan singkat
+    const toggTempo = togg('tempo', 'Waktu ketat per soal', 'Hitung mundur sesuai target waktu tiap soal.');
+    const inTempo = toggTempo.querySelector('input'); const bantuKetat = toggTempo.querySelector('.bantu');
+    function aturKetat() {
+      const ber = modeLatih === 'bersama'; inTempo.disabled = ber;
+      bantuKetat.textContent = ber ? 'Tidak berlaku di latihan bersama. Waktu per soal mengikuti pilihan Waktu mengerjakan per soal.' : 'Hitung mundur sesuai target waktu tiap soal.';
+    }
+    // v9.5.3 Bx3: judul lipatan "Saringan lanjutan · N aktif" ikut berubah saat sakelar diubah
+    const ringkasLanjut = h('summary', null, 'Saringan lanjutan');
+    const nLanjutKini = () => [f.laporan, f.gayaUkp, resmiAktif(f), f.kecuali, f.baru2025, f.tempo && modeLatih !== 'bersama'].filter(Boolean).length;
+    // v9.5.3 B4/B5: keterangan jujur bila pilihan soal tidak cukup (lihat teksBankKurang)
+    const catatanBankKurang = h('p', { class: 'small muted catatan-bank-kurang', hidden: true });
+    let rBank = null, rBankSemua = null;
     // v9.5 pilihan butir resmi (tidak tampil bila peta kosong; nonaktif selama saringan butir dipakai)
     const toggResmi = adaPeta ? togg('resmi', 'Hanya butir resmi Tingkat ' + tingkat, 'Soal di luar daftar cakupan materi resmi tingkat ini dilewati.') : null;
     if (toggResmi && f.butir) toggResmi.querySelector('input').disabled = true;
@@ -1814,7 +1884,12 @@
     const chipAktif = h('div', { class: 'chip-row latih-chip', role: 'group', 'aria-label': 'Saringan aktif' });
     let nCocok = null; let nKeluarga = 0; let aturWaktu = null;  // v9.5 nKeluarga: "Semua" = satu soal per keluarga
     let nTampil = null;  // v9.5 angka di panel: soal yang bisa dimulai (satu soal per keluarga), bukan semua soal cocok
-    const nSemua = () => f.set ? (nCocok || 0) : nKeluarga; // v9.3 W1: panel bersama (baris ringkas total waktu ikut jumlah soal)
+    // v9.5.3 B6: "Semua" dihitung dari himpunan yang sama dengan mulai() (tanpa soal yang sudah dijawab benar hari ini; lihat urutLatih)
+    let nSemuaHari = 0;
+    const nSemua = () => nSemuaHari; // v9.3 W1: panel bersama (baris ringkas total waktu ikut jumlah soal)
+    const nPenuh = () => f.set ? (nCocok || 0) : nKeluarga; // jumlah 10/20/50 diambil dari pool penuh
+    // v9.3 W1: nSoal = jumlah soal yang akan dimulai (untuk baris ringkas total waktu)
+    const nMulai = () => { const n = nCocok || 0; return f.n === 'semua' ? nSemua() : Math.min(Number(f.n) || 0, nKeluarga || n); };
     let modeLatih = 'sendiri'; // v8.2 B2: 'sendiri' | 'bersama' (segmen di atas kartu saringan)
     const klikMulai = e => {
       if (modeLatih === 'bersama' && peranRoom() === 'anggota') { UKP.go('room'); return; }
@@ -1833,15 +1908,19 @@
         else { b.removeAttribute('aria-disabled'); b.replaceChildren(ikon('play'), (tuanRoom ? 'Mulai latihan bersama di room · ' : pesertaAktif() ? 'Mulai latihan bersama · ' : 'Mulai latihan · ') + (f.n === 'semua' ? 'semua (' + UKP.fmt.angka(nSemua()) + ')' : Math.min(Number(f.n), nKeluarga || n) + ' soal')); }
       });
       // v9.5: soal pengganti yang menunggu giliran tidak ikut dihitung; kata "bisa dimulai" dipakai bila angkanya lebih kecil dari soal cocok
-      const nB = Math.min(n, nSemua() || 0); const kurang = nB < n; const tLama = nTampil; nTampil = nB;
+      const nB = Math.min(n, (f.n === 'semua' ? nSemua() : nPenuh()) || 0); const kurang = nB < n; const tLama = nTampil; nTampil = nB;
       if (UKP.hitungNaik && lama != null && tLama != null && tLama !== nB) UKP.hitungNaik(angkaCocok, nB, { dari: tLama, ulang: true }); else angkaCocok.textContent = UKP.fmt.angka(nB);
       labelCocok.textContent = kurang ? 'soal bisa dimulai untuk saringan ini' : 'soal tersedia untuk saringan ini';
       metaCocok.textContent = UKP.fmt.angka(nB) + (kurang ? ' soal bisa dimulai' : ' soal tersedia');
       if (aturWaktu && typeof aturWaktu.perbaruiWaktu === 'function') aturWaktu.perbaruiWaktu();
+      const tKurang = n && !(f.set && f.n === 'semua') ? teksBankKurang(f.bank, nMulai(), f.n === 'semua' ? rBankSemua : rBank) : '';
+      catatanBankKurang.textContent = tKurang; catatanBankKurang.hidden = !tKurang;
+      aturKetat();
+      const nL = nLanjutKini(); ringkasLanjut.textContent = 'Saringan lanjutan' + (nL ? ' · ' + nL + ' aktif' : '');
       const chip = (teks, ganti) => h('button', { type: 'button', class: 'chip', 'aria-label': 'Hapus saringan ' + teks, onclick: () => hapusSaring(ganti) }, teks, ikon('x', null, true));
       const aktif = [f.kode ? chip(f.kode + (f.topik ? ' · ' + f.topik : ''), { kode: '', topik: '' }) : null, f.jenis ? chip(JENIS_LABEL[f.jenis] || f.jenis, { jenis: '' }) : null, f.kesulitan ? chip('kesulitan ' + f.kesulitan, { kesulitan: '' }) : null,
         f.set ? chip((paketDari(f.set) || {}).label || 'Try Out', { set: '' }) : null, f.laporan ? chip('mirip ujian ' + tingkatLap(f.laporan), { laporan: '' }) : null, f.hanyaSalah ? chip('pernah keliru', { hanyaSalah: false }) : null, f.gayaUkp ? chip('kasus berangkai', { gayaUkp: false }) : null,
-        f.kecuali ? chip('soal "kecuali"', { kecuali: false }) : null, f.baru2025 ? chip('ketentuan 2025+', { baru2025: false }) : null, f.tempo ? chip('waktu ketat', { tempo: false }) : null,
+        f.kecuali ? chip('soal "kecuali"', { kecuali: false }) : null, f.baru2025 ? chip('ketentuan 2025+', { baru2025: false }) : null, f.tempo && modeLatih !== 'bersama' ? chip('waktu ketat', { tempo: false }) : null,
         f.butir ? chipButir() : null, resmiAktif(f) ? chip('butir resmi', { resmi: false }) : null, f.bank !== 'campur' ? chip(f.bank === 'baru' ? 'belum pernah dipakai' : 'pengganti soal lama', { bank: '' }) : null].filter(Boolean);
       function chipButir() {
         const b = infoButirF(f.butir); const teks = 'butir ' + (b ? (b.tingkat + ' ' + (b.mu.no ? b.mu.no + '.' : '') + b.nomor) : f.butir);
@@ -1857,11 +1936,15 @@
       const arrP = pool(); const n = arrP.length; const lama = nCocok; nCocok = n;
       // v9.5 baris hitungan bank untuk saringan aktif; nKeluarga = banyak soal yang bisa dimulai (satu soal per keluarga)
       nKeluarga = K.akar ? new Set(arrP.map(x => K.akar(x) || x.id)).size : n;
+      // v9.5.3 B6: "Semua" = urutLatih tanpa soal yang sudah dijawab benar hari ini (bila semuanya sudah, pakai semua)
+      const sudahHari = benarHariIni(); const sisaHari = arrP.filter(x => !sudahHari.has(x.id)); const basisSemua = sisaHari.length ? sisaHari : arrP;
+      nSemuaHari = f.set ? basisSemua.length : K.akar ? new Set(basisSemua.map(x => K.akar(x) || x.id)).size : basisSemua.length;
+      rBank = null; rBankSemua = null;
       if (L.pakai && L.pakai.ringkas) {
-        const r = L.pakai.ringkas(arrP); const tunggu = L.pakai.menunggu ? L.pakai.menunggu(r) : 0;
+        const r = L.pakai.ringkas(arrP); rBank = r; rBankSemua = basisSemua.length === arrP.length ? r : L.pakai.ringkas(basisSemua); const tunggu = L.pakai.menunggu ? L.pakai.menunggu(r) : 0;
         hitungBank.textContent = [UKP.fmt.angka(r.total) + ' soal', UKP.fmt.angka(r.baru) + ' belum dipakai', UKP.fmt.angka(r.penggantiSiap) + ' pengganti siap', UKP.fmt.angka(r.terpakai) + ' sudah dipakai'].join(' · ') + (tunggu ? '. ' + UKP.fmt.angka(tunggu) + ' soal pengganti menunggu giliran.' : '');
       }
-      const nB = f.set ? n : Math.min(n, nKeluarga);
+      const nB = Math.min(n, (f.n === 'semua' ? nSemua() : nPenuh()) || 0);
       const teks = n ? UKP.fmt.angka(nB) + (nB < n ? ' soal bisa dimulai' : ' soal tersedia') + (laporanCadangan() ? ' (saringan kasus berangkai).' : '.') : 'Tidak ada soal yang cocok; longgarkan saringan.';
       // wilayah aria-live (tersembunyi visual) diperbarui setelah 500 ms diam, bukan pada setiap klik
       clearTimeout(tUmum); if (lama == null) jumlah.textContent = teks; else tUmum = setTimeout(() => { jumlah.textContent = teks; }, 500);
@@ -1873,7 +1956,6 @@
     }
     jumlah.className = 'visually-hidden';
     hitung();
-    const nLanjut = [f.laporan, f.gayaUkp, resmiAktif(f), f.kecuali, f.baru2025, f.tempo].filter(Boolean).length;
     page.appendChild(metaCocok);
     // v8.2 B2 (audit T3): segmen besar "Sendiri | Bersama · N orang" di atas kartu saringan; rincian peserta dan tempo hanya saat Bersama.
     // Perangkat di room: pemandu → tombol "Mulai latihan bersama di room" (params room); anggota → ajakan "Masuk room" alih-alih papan
@@ -1884,8 +1966,6 @@
     const peranR = peranRoom();
     modeLatih = params.bersama || (sBer.aktif && sBer.peserta.length) ? 'bersama' : 'sendiri';
     const pintuUjian = h('p', { class: 'pintu-ujian-tim small' }, h('a', { href: UKP.href ? UKP.href('simulasi', { tim: 1 }) : '#simulasi', class: 'tautan', onclick: e => { e.preventDefault(); UKP.go('simulasi', { tim: 1 }); } }, ikon('tim', null, true), 'Ujian tim: kunci dan nilai di akhir'));
-    // v9.3 W1: nSoal = jumlah soal yang akan dimulai (untuk baris ringkas total waktu)
-    const nMulai = () => { const n = nCocok || 0; return f.n === 'semua' ? nSemua() : Math.min(Number(f.n) || 0, nKeluarga || n); };
     const atur = peranR === 'anggota' ? null : UKP.c.aturBersama({ tanpaSakelar: true, nSoal: nMulai, onUbah: () => { labelSeg(); perbaruiTombol(nCocok); } });
     aturWaktu = atur;
     const infoR = infoRoom();
@@ -1908,21 +1988,23 @@
     if (modeLatih === 'bersama' && atur && !(sBer.aktif && sBer.peserta.length)) { atur.aturAktif(true); labelSeg(); }
     if (modeLatih === 'sendiri' && sBer.aktif && atur) atur.aturAktif(false);
     perbaruiTombol(nCocok);
+    // v9.5.3 Bx3 (peninjau): lipatan terbuka bila ada saringan lanjutan yang aktif, dihitung sesudah mode diketahui (waktu ketat tidak dihitung di mode Bersama)
+    const nLanjut = [f.laporan, f.gayaUkp, resmiAktif(f), f.kecuali, f.baru2025, f.tempo && modeLatih !== 'bersama'].filter(Boolean).length;
     const tata = h('div', { class: 'tata' }); page.appendChild(tata);
     tata.appendChild(h('div', { class: 'card kl-8 latih-form' },
       segModeEl, panelBersama,
       h('div', { class: 'field' }, h('span', { class: 'label', id: 'f-n-lbl' }, 'Jumlah soal'), segN),
       segSet ? h('div', { class: 'field' }, h('span', { class: 'label', id: 'f-set-lbl' }, 'Sumber soal'), segSet, catatanSet) : null,
-      h('div', { class: 'field field-bank' }, h('span', { class: 'label', id: 'f-bank-lbl' }, 'Pilih soal'), segBank, catatanBank, hitungBank, tautanBank, catatanButir),
+      h('div', { class: 'field field-bank' }, h('span', { class: 'label', id: 'f-bank-lbl' }, 'Pilih soal'), segBank, catatanBank, hitungBank, catatanBankKurang, tautanBank, catatanButir),
       h('div', { class: 'form-grid dua' }, h('div', { class: 'field' }, h('label', { for: 'f-kode' }, 'Kelompok'), selKode, catatanKode), h('div', { class: 'field' }, h('label', { for: 'f-topik' }, 'Topik'), selTopik), h('div', { class: 'field' }, h('label', { for: 'f-jenis' }, 'Jenis soal'), selJenis), h('div', { class: 'field' }, h('label', { for: 'f-kes' }, 'Kesulitan'), selKes)),
       togg('hanyaSalah', 'Hanya soal yang pernah keliru', 'Diambil dari Buku Kesalahan.'),
-      h('details', { class: 'lipat saringan-lanjut', open: nLanjut ? true : null }, h('summary', null, 'Saringan lanjutan' + (nLanjut ? ' · ' + nLanjut + ' aktif' : '')),
+      h('details', { class: 'lipat saringan-lanjut', open: nLanjut ? true : null }, ringkasLanjut,
         h('div', { class: 'stack-sm' },
           h('div', { class: 'field' }, h('span', { class: 'label', id: 'f-lap-lbl' }, 'Soal mirip ujian Oktober 2026'), h('p', { class: 'bantu', id: 'f-lap-bantu' }, 'Diambil dari topik yang dilaporkan peserta. Untuk Tingkat A, laporan B juga memuat A1–A5.'), segLap, catatanLap),
           toggGaya, toggResmi,
           togg('kecuali', 'Hanya soal "kecuali"', 'Soal dengan kata kualifikasi: kecuali, bukan, paling lama, paling sedikit.'),
           togg('baru2025', 'Hanya ketentuan 2025+', 'Soal yang dasar hukumnya berlaku sejak 1 Januari 2025 atau sesudahnya.'),
-          togg('tempo', 'Waktu ketat per soal', 'Hitung mundur sesuai target waktu tiap soal (umumnya 2,5 menit), seperti di ujian.'))),
+          toggTempo)),
       jumlah,
       h('div', { class: 'sticky-actions latih-aksi-hp' }, tombolMulaiHp)));
     tata.appendChild(h('aside', { class: 'card ringkas latih-ringkas kl-4 lengket', 'aria-labelledby': 'latih-ringkas-j' },

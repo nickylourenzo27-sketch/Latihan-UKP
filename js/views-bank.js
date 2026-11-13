@@ -91,7 +91,7 @@
     page.appendChild(h('details', { class: 'lipat bank-tentang' }, h('summary', null, 'Cara bank soal bekerja'),
       h('div', { class: 'stack-sm small teks-baca' },
         h('p', null, h('strong', null, 'Soal pengganti'), ' adalah soal baru yang menguji hal yang sama dengan soal lama. Soal ini dipakai setelah soal lamanya keluar.'),
-        h('p', null, h('strong', null, 'Sudah dipakai'), ' berarti soal itu pernah dibahas atau dilatih bersama, diujikan, atau dilatih sendiri. Soal ujian dihitung sejak ujian dimulai, walau tidak dijawab.'),
+        h('p', null, h('strong', null, 'Sudah dipakai'), ' berarti soal itu pernah dibahas atau dilatih bersama, diujikan, atau dilatih sendiri. Soal ujian tim dihitung sejak ujian dimulai. Soal simulasi dihitung saat simulasi dikirim, walau tidak dijawab. Simulasi yang dibuang tidak dihitung.'),
         h('p', null, 'Latihan baru mendahulukan soal yang belum dipakai dan soal pengganti. Satu sesi tidak memuat soal lama bersama penggantinya.'),
         h('p', null, 'Karena itu angka belum dipakai dan pengganti siap dihitung satu per soal lama. Soal pengganti lain menunggu giliran.'),
         h('p', null, 'Catatan ini tersimpan di perangkat ini. Ekspor progres ikut membawanya.'))));

@@ -155,7 +155,7 @@ describe('v8.1 B: urutanBahas dan tandaiBahas', () => {
     assert.equal(L.tandaiBahas('tidak-ada', TO[2], true), false);
   });
   it('sesi kosong / bukan objek → daftar kosong', () => {
-    assert.deepEqual(J(L.urutanBahas(null)), { daftar: [], nDikuasai: 0, perKelas: { dikuasai: 0, rapuh: 0, terbelah: 0, tersandung: 0 } });
+    assert.deepEqual(J(L.urutanBahas(null)), { daftar: [], nDikuasai: 0, perKelas: { dikuasai: 0, rapuh: 0, terbelah: 0, tersandung: 0 }, pengamat: [] }); // v9.5.4 C-1
   });
 });
 
@@ -398,11 +398,15 @@ describe('v8.1 D: siklus Ujian tim (s.ujianTim)', () => {
     UT.catat('Nicky', IDS[0], 'A'); UT.nilai();
     assert.equal(s.jawaban.length, 0);
   });
-  it('nilai({ hanyaYangMengumpulkan }) mengeluarkan peserta tanpa satu pun jawaban', () => {
+  // v9.5.3 A6: saringan memakai u.terkumpul (sama dengan "n dari N mengumpulkan" di ruang ujian), bukan "punya minimal satu jawaban"
+  it('nilai({ hanyaYangMengumpulkan }) hanya memuat peserta yang sudah mengumpulkan, termasuk yang mengumpulkan tanpa jawaban', () => {
     UT.susun({ soalIds: IDS, menit: 10, peserta: ['Nicky', 'Mita', 'Nora'] });
-    UT.catat('Mita', IDS[0], 'A');
+    UT.catat('Nicky', IDS[0], 'A');
+    UT.kumpul('Mita', { jawaban: ['A'], ragu: [], detik: 60, sumber: 'ketik' });
+    UT.kumpul('Nora', { jawaban: ['-', '-', '-', '-', '-'], ragu: [], detik: 30, sumber: 'ketik' });
     const se = UT.nilai({ hanyaYangMengumpulkan: true });
-    assert.deepEqual(se.peserta, ['Mita']); assert.deepEqual(Object.keys(se.soal[0].jawaban), ['Mita']);
+    assert.deepEqual(se.peserta, ['Mita', 'Nora']); assert.deepEqual(Object.keys(se.soal[0].jawaban), ['Mita', 'Nora']);
+    assert.deepEqual(se.soal[0].jawaban.Nora, { o: '-', k: null, b: 0 });
   });
   it('batal mengosongkan ujian aktif; fungsi lain aman tanpa ujian aktif', () => {
     UT.susun({ soalIds: IDS, peserta: ['Mita'] }); assert.equal(UT.batal(), true); assert.equal(UT.aktif(), null);

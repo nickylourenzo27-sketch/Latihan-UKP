@@ -215,6 +215,40 @@ Setiap soal yang sudah dibahas, dilatih bersama, atau diujikan diganti soal baru
 - **Ringkasan waktu di Simulasi.** Ujian tim selalu memakai waktu. Ringkasan kini menulis menitnya saat "Kerjakan sebagai tim" menyala, walaupun "Tanpa batas waktu" sebelumnya dinyalakan, dan kartu Ujian tim memberi catatan singkat tentang hal itu. Pada simulasi sendiri, isian Menit disembunyikan selama "Tanpa batas waktu" menyala.
 <!-- isi-952:selesai -->
 
+<!-- isi-953:mulai -->
+### Perbaikan v9.5.3
+
+Teks di layar disamakan dengan perilaku aplikasi. Sapuan sesudah v9.5.2 menemukan 12 ketidakcocokan. Tiap temuan diulang penguji kedua di peramban, lalu dibetulkan dan ditinjau.
+
+- **Simulasi.** Simulasi tanpa batas waktu tidak lagi menulis "Waktu tetap berjalan". Kartu "Simulasi berjalan" berganti sendiri ke "waktu habis". Isian Jumlah soal dan Menit menulis balik nilai yang benar-benar dipakai. Label format mengikuti "terbagi dua malam" dan Menit try out.
+- **Ujian tim.** "Tambah 5 menit" ikut menambah penghitung bagian pemimpin. Tanpa room, layar mengatakan bahwa penghitung anggota yang sudah mulai tidak ikut bertambah. "Kerjakan bagian saya" menyebut sisa waktu ujian yang benar-benar tersedia. "Nilai hanya yang sudah mengumpulkan" menilai semua yang sudah mengumpulkan, termasuk yang mengumpulkan tanpa jawaban.
+- **Mode mabar dan latihan bersama.** Papan bersama tidak lagi memakai hitung mundur "Waktu ketat per soal". Dialog room menulis jumlah soal yang benar-benar tersedia. Teks "membahas tanpa batas" diperjelas: waktu latihan tetap berjalan saat membahas.
+- **Latih.** Bila "Belum pernah dipakai" atau "Pengganti soal lama" tidak cukup, layar menyebut angkanya dan dari mana sisanya diambil. Jumlah "Semua" sama dengan jumlah soal di sesi.
+- **Dikerjakan di v9.5.4.** Halaman hasil simulasi dulu menulis waktu per kelompok dengan ukuran yang berbeda dari waktu terpakai di kartu skor.
+<!-- isi-953:selesai -->
+
+<!-- isi-954:mulai -->
+### Tambahan dan perbaikan v9.5.4
+
+**Isi**
+
+- **Naskah peraturan.** 25 naskah resmi dari JDIH Kemenkeu ditambahkan ke pustaka naskah yang dipakai untuk memeriksa soal. Di antaranya PMK 105/2025, PMK 90/2025, PP 51/2008, PP 91/2021, PMK 02/PMK.03/2010, PMK 169/PMK.010/2015, PMK 186/PMK.03/2022, PMK 227/PMK.04/2015, KMK 634/KMK.04/1994, dan satu contoh keputusan kurs mingguan (KMK 50/MK/EF.2/2026).
+- **Soal baru.** 110 soal pengganti baru, sehingga jumlah soal menjadi 2.631 dan soal baru sejak v9.5.0 berjumlah 1.137. Rinciannya: 21 untuk soal yang dulu tertunda karena naskahnya belum ada, 18 soal Akuntansi Perpajakan yang penentu jawabannya standar akuntansi, dan 71 untuk soal di luar daftar butir resmi Tingkat B. Per kelompok: A1 42, A2 1, A3 14, A4 5, A5 17, B6 5, B7 19, B8 7. Kini 997 dari 1.062 soal lama Tingkat B punya soal pengganti. Tiap soal ditulis dengan kutipan naskah, dikerjakan buta oleh pengerja kedua, lalu diperiksa pemeriksa ketiga: 107 diterima, 3 dibetulkan pemeriksa, 0 ditolak, 13 dilewati penulis.
+- **Soal kurs.** Keputusan kurs mingguan membuktikan dua hal: kurs yang ditetapkan Menteri Keuangan menjadi dasar pelunasan PPh, bukan kurs tengah BI atau kurs bank, dan periodenya Rabu sampai Selasa. Naskah itu tidak menyebut tanggal mana yang menentukan periode kurs untuk PPh pemotongan atas penghasilan badan. Karena itu soal yang jawabannya bergantung pada pilihan kurs saat terutang lawan saat bayar diberi tanda ◐: B7-112, B7-130, B7-265, C9-111, C9-120, C9-141, C9-159, dan C9-161. Pada soal lain datanya dirapikan sehingga semua tanggal jatuh di satu periode kurs, dan tandanya dicabut: A3-109, A3-111, A3-115, A3-116, dan A3-141. Kartu, kasus, dan pembahasan tidak lagi menulis "kurs saat terutang" sebagai bunyi aturan.
+- **Perbaikan soal lama.** Empat putaran tinjauan, tiap perbaikan diuji pemeriksa kedua. Kunci berubah pada satu soal: B7-088, dari D menjadi C, karena biaya operasional kegiatan sosial termasuk pengurang sisa lebih menurut Pasal 48 ayat (9) huruf b PMK 18/PMK.03/2021. Stem atau opsi diperjelas tanpa mengubah kunci pada 35 soal, antara lain A1-087, A3-032, A3-083, A4-040, B6-095, B7-066, dan B8-074. A5-097, A5-102, dan A5-186 diberi tanda ◐ karena penggolongan sanksi administratif 100% bea meterai ke Pasal 9 ayat (1) huruf k UU PPh tidak tertulis tegas di naskah. Rujukan diperbarui, antara lain ke PMK 186/PMK.03/2022 untuk pedoman pengkreditan Pajak Masukan, PMK 212/PMK.03/2018 untuk bunga deposito dan tabungan, Pasal 5 PP 51/2008 untuk saat pemotongan jasa konstruksi, dan SE-27/PJ.22/1986 untuk daftar nominatif entertainment. Jumlah soal bertanda: 62 di modul Tingkat B dan Etika, 13 di modul Tingkat C. Soal try out tidak berubah stem, opsi, maupun kuncinya.
+
+**Aplikasi**
+
+Teks di layar disamakan dengan perilaku aplikasi. Sapuan kedua memeriksa hasil dan evaluasi tim, Dasbor tim, Kemajuan, Beranda, Pengaturan, Info ujian, Cakupan, dan Bank soal. Tiap temuan diulang penguji kedua di peramban, lalu dibetulkan, ditinjau, dan diuji ulang.
+
+- **Evaluasi tim.** "Semua benar" hanya untuk soal yang dijawab benar oleh semua peserta. Soal yang benar tetapi ada yang belum menjawab masuk urutan bahas dengan label "Benar, tapi ada yang belum menjawab". Peserta yang tidak menjawab satu soal pun sepanjang sesi dianggap pemandu dan tidak dihitung. Rata-rata skor tim ditulis sama di semua tempat. Teks "di atas 60" diganti "lulus (batas 60)".
+- **Dasbor tim, Kemajuan, dan laporan mingguan.** Jawaban "Tidak tahu" dihitung sama di semua tempat, yaitu sebagai soal yang dijawab salah. Angka per kelompok peserta latihan bersama mengikuti labelnya, 14 hari terakhir. Kartu "Kelompok terlemah" tidak lagi menonjolkan kelompok tanpa jawaban salah.
+- **Beranda dan Pengaturan.** Skor simulasi tidak lagi dibulatkan, jadi 59,5 tidak tampil 60. Simulasi yang waktunya habis dan belum dikirim tampil di kartu Lanjutkan. "Hapus semua data" ikut menghapus hasil anggota yang ditempel di Dasbor tim. Di website tanpa server, sakelar berbagi hasil tidak lagi menyatakan hasil dikirim.
+- **Materi, Cakupan, dan Bank soal.** Kop Kelompok menulis jumlah soal untuk tingkat target. Tombol "Latih N soal" menulis jumlah soal yang benar-benar dimulai. Cakupan menulis jumlah pengganti yang menunggu, sama dengan Bank soal. Bank soal menjelaskan kapan soal simulasi dihitung sudah dipakai.
+- **Hasil simulasi dan ujian tim.** Kolom waktu per kelompok kini berjudul "Waktu di soal" dan memakai "< 1" untuk waktu di bawah setengah menit. Dialog "Selesai dan nilai?" hanya menyebut peserta yang masih punya soal kosong.
+- **Yang sengaja tidak diubah.** Di papan latihan, pemimpin yang melewati satu soal tetap tidak disebut "belum menjawab". Di evaluasi sesudah sesi ia dihitung seperti peserta lain bila ia menjawab soal lainnya.
+<!-- isi-954:selesai -->
+
 ## Isi saat ini (status 9 November 2026, v7.8)
 
 | | Jumlah |

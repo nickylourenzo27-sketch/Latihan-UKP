@@ -154,7 +154,7 @@ describe('dasbor tim: evaluasi tim v8.1', () => {
   it('ringkasSesi: jenis dan ringkasan untuk "Sesi terakhir"; menitSesi ujian = waktu ujian', () => {
     const s = sesiUjian(); const r = J(X2.ringkasSesi(s, L2.evaluasiSesi(s)));
     assert.equal(r.jenis, 'Ujian tim · Try Out B 1–5'); assert.equal(r.ujian, true);
-    assert.equal(r.meta, '5 soal · 3 orang · rata-rata skor 47 · 1 dari 3 lulus');
+    assert.equal(r.meta, '5 soal · 3 orang · rata-rata skor 46,7 · 1 dari 3 lulus');   // v9.5.4 S2: satu desimal (angkaKoma)
     assert.equal(X2.menitSesi(L2.evaluasiSesi(s), s), 11);
     const lat = Object.assign({}, s, { mode: 'latihan', judul: null });
     const rl = J(X2.ringkasSesi(lat, L2.evaluasiSesi(lat)));

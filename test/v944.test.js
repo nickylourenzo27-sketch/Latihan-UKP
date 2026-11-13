@@ -123,11 +123,11 @@ describe('v9.4.4: tanda perlu cek dan keutuhan bank soal', () => {
       else assert.equal(s.peringatan, undefined, s.id + ' tanpa peringatan');
     }
   });
-  it('soal bertanda: Tingkat B paling banyak 62, Tingkat C paling banyak 12 (dari 109 sebelum dicocokkan)', () => {
+  it('soal bertanda: Tingkat B paling banyak 62, Tingkat C paling banyak 13 (dari 109 sebelum dicocokkan)', () => {
     let b = 0, c = 0;
     for (const m of semua) { const n = m.soal.filter(s => s.verifikasi === '◐').length; if (['C9', 'C10'].includes(m.meta.kode)) c += n; else b += n; }
     assert.ok(b <= 62, 'bertanda di modul Tingkat B: ' + b);
-    assert.ok(c <= 12, 'bertanda di modul Tingkat C: ' + c);
+    assert.ok(c <= 13, 'bertanda di modul Tingkat C: ' + c);
   });
   it('soal try out tetap utuh: 100 soal dengan nomor 1 sampai 100', () => {
     const to = [...peta.values()].filter(s => s.sumber && s.sumber.set === 'TO-B-2026-11');

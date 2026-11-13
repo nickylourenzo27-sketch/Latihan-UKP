@@ -2221,11 +2221,11 @@ UKP.register({
       kesulitan: 3,
       stem: "PT Sawit Barito Jaya menjual seluruh kebun kelapa sawit ber-HGU di Kabupaten Barito Selatan kepada PT Agro Kalteng Mandiri. Akta jual beli ditandatangani pada 2 Juni 2026 dengan nilai pengalihan hak atas tanah dan bangunan, termasuk tanaman kelapa sawit di atasnya, Rp210.000.000.000. Dengan perjanjian terpisah, penjual juga menjual kendaraan angkut, alat berat, dan persediaan pupuk kepada pembeli yang sama seharga Rp95.000.000.000. Pendaftaran peralihan HGU selesai pada Agustus 2026. SPPT PBB-P5L 2026 atas kebun tersebut sebesar Rp512.400.000 diterima pada 16 Maret 2026 atas nama PT Sawit Barito Jaya. Penjual bukan pengembang real estat, tidak ada hubungan istimewa, dan penjual tidak memperoleh fasilitas khusus. Pernyataan yang paling tepat mengenai PBB-P5L, PPh, dan BPHTB atas transaksi tersebut adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: { A: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan perubahan subjek dilaporkan dengan SPOP untuk SPPT 2027; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", B: "PBB-P5L 2026 dibagi proporsional, 5 bulan atas nama penjual dan 7 bulan atas nama pembeli; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", C: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan perubahan subjek dilaporkan dengan SPOP untuk SPPT 2027; penjual membayar PPh final 2,5% × Rp305.000.000.000 = Rp7.625.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", D: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan perubahan subjek dilaporkan dengan SPOP untuk SPPT 2027; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB ke kas negara karena objeknya PBB-P5L" },
+      opsi: { A: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan pembeli menjadi wajib pajak mulai Tahun Pajak 2027; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", B: "PBB-P5L 2026 dibagi proporsional, 5 bulan atas nama penjual dan 7 bulan atas nama pembeli; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", C: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan pembeli menjadi wajib pajak mulai Tahun Pajak 2027; penjual membayar PPh final 2,5% × Rp305.000.000.000 = Rp7.625.000.000; pembeli membayar BPHTB kepada pemerintah kabupaten dengan tarif Perda paling tinggi 5%", D: "PBB-P5L 2026 tetap atas nama penjual menurut keadaan 1 Januari 2026 dan pembeli menjadi wajib pajak mulai Tahun Pajak 2027; penjual membayar PPh final 2,5% × Rp210.000.000.000 = Rp5.250.000.000; pembeli membayar BPHTB ke kas negara karena objeknya PBB-P5L" },
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "SPPT 2026 mengikuti subjek dan keadaan objek per 1 Januari 2026 (Pasal 8 ayat (2) UU PBB); peralihan hak dilaporkan dengan SPOP sehingga pembeli menjadi subjek mulai 2027. Pengalihan hak atas tanah dan bangunan dikenai PPh final 2,5% dari jumlah bruto nilai pengalihan hak atas tanah dan/atau bangunan, yaitu nilai yang sesungguhnya diterima (Pasal 2 ayat (1) huruf a dan ayat (2) huruf d PP 34/2016): 2,5% × Rp210.000.000.000 = Rp5.250.000.000. Penjualan kendaraan, alat berat, dan persediaan pupuk bukan pengalihan hak atas tanah dan/atau bangunan, sehingga tidak masuk dasar PPh final. BPHTB adalah pajak daerah (UU 1/2022) yang dibayar pembeli kepada kabupaten dengan tarif Perda paling tinggi 5%, meskipun objek PBB-nya PBB-P5L.",
+        inti: "PBB terutang ditentukan menurut keadaan objek pada 1 Januari (Pasal 8 ayat (2) UU PBB), sehingga SPPT 2026 tetap atas nama penjual dan tidak dibagi karena peralihan di tengah tahun, sedangkan pembeli, yang secara nyata mempunyai hak atas bumi sejak peralihan HGU (Pasal 4 ayat (1) UU PBB), menjadi wajib pajak mulai Tahun Pajak 2027 menurut keadaan 1 Januari 2027. Pengalihan hak atas tanah dan bangunan dikenai PPh final 2,5% dari jumlah bruto nilai pengalihan hak atas tanah dan/atau bangunan, yaitu nilai yang sesungguhnya diterima (Pasal 2 ayat (1) huruf a dan ayat (2) huruf d PP 34/2016): 2,5% × Rp210.000.000.000 = Rp5.250.000.000. Penjualan kendaraan, alat berat, dan persediaan pupuk bukan pengalihan hak atas tanah dan/atau bangunan, sehingga tidak masuk dasar PPh final. BPHTB adalah pajak daerah (UU 1/2022) yang dibayar pembeli kepada kabupaten dengan tarif Perda paling tinggi 5%, meskipun objek PBB-nya PBB-P5L.",
         jejakHitung: [
           ["Kendaraan, alat berat, persediaan pupuk Rp95.000.000.000", "bukan tanah dan/atau bangunan; di luar PPh final"],
           ["Dasar PPh final (nilai pengalihan hak atas tanah dan bangunan)", "Rp210.000.000.000"],
@@ -2900,7 +2900,11 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "B8-099", topik: "B8.7", tingkat: ["B", "C"], jenis: "klasifikasi", kesulitan: 1,
+      id: "B8-099",
+      topik: "B8.7",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
       stem: "Pada 20 Agustus 2026 PT Kebun Lestari Jaya melunasi SPPT PBB-P5L 2026 sebesar Rp48.600.000 dan denda STP PBB-P5L 2025 sebesar Rp1.944.000 melalui rekening bank. Sebelumnya perusahaan tidak mencatat utang PBB, dan pembayaran langsung dibebankan. Jurnal yang tepat pada tanggal pembayaran adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Debit Beban PBB Rp48.600.000 dan Beban Denda Pajak Rp1.944.000; Kredit Utang PBB Rp50.544.000", B: "Debit Beban PBB Rp48.600.000 dan Beban Denda Pajak Rp1.944.000; Kredit Kas/Bank Rp50.544.000", C: "Debit Kas/Bank Rp50.544.000; Kredit Beban PBB Rp48.600.000 dan Beban Denda Pajak Rp1.944.000", D: "Debit Pajak Dibayar di Muka (kredit pajak PPh) Rp50.544.000; Kredit Kas/Bank Rp50.544.000" },
@@ -2908,11 +2912,19 @@ UKP.register({
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
         inti: "Pembayaran langsung dibebankan sehingga beban PBB dan beban denda didebit, sedangkan kas/bank dikredit sebesar jumlah yang keluar. Secara fiskal, beban PBB dapat dikurangkan, tetapi beban denda dikoreksi positif.",
-        jejakHitung: [ ["Beban PBB", "Rp48.600.000"], ["Beban denda pajak", "Rp1.944.000"], ["Kas/bank keluar", "Rp50.544.000"] ],
-        mengapaSalah: { A: "Pembayaran mengurangi kas/bank; utang PBB tidak pernah dicatat sebelumnya", C: "Sisi debit dan kredit terbalik", D: "PBB bukan kredit pajak PPh sehingga tidak dicatat sebagai pajak dibayar di muka yang dapat dikreditkan" },
+        jejakHitung: [
+          ["Beban PBB", "Rp48.600.000"],
+          ["Beban denda pajak", "Rp1.944.000"],
+          ["Kas/bank keluar", "Rp50.544.000"]
+        ],
+        mengapaSalah: {
+          A: "Pembayaran mengurangi kas/bank; utang PBB tidak pernah dicatat sebelumnya",
+          C: "Sisi debit dan kredit terbalik",
+          D: "PBB bukan kredit pajak PPh sehingga tidak dicatat sebagai pajak dibayar di muka yang dapat dikreditkan"
+        },
         jebakan: "Soal lintas akuntansi: catat beban dan kas dengan benar, lalu ingat bahwa denda dikoreksi secara fiskal."
       },
-      dasarHukum: [ { pasal: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf k UU PPh" }, { pasal: "Pasal 12 UU PBB", berlakuSejak: "1995-01-01" } ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf k UU PPh" }, { pasal: "Pasal 11 ayat (1), ayat (3), dan ayat (4) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 75,
       verifikasi: "✅"
     },
@@ -3834,7 +3846,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Pasal 8 ayat (2) UU PBB: saat yang menentukan pajak terutang adalah keadaan objek pada 1 Januari. Pada 1 Januari 2026 tangki masih berdiri, sehingga tetap masuk PBB 2026; Penjelasan Pasal 8 ayat (2) memberi contoh bangunan yang terbakar 10 Januari tetap dikenai pajak tahun itu. Perubahan objek diberitahukan melalui SPOP/LSPOP dan baru tercermin pada penetapan Tahun Pajak 2027. Tangki penampungan minyak termasuk bangunan menurut Penjelasan Pasal 1 angka 2.",
+        inti: "Pasal 8 ayat (2) UU PBB: saat yang menentukan pajak terutang adalah keadaan objek pada 1 Januari. Pada 1 Januari 2026 tangki masih berdiri, sehingga tetap masuk PBB 2026; Penjelasan Pasal 8 ayat (2) memberi contoh bangunan yang terbakar 10 Januari tetap dikenai pajak tahun itu. Pembongkaran baru tercermin pada penetapan Tahun Pajak 2027 menurut keadaan 1 Januari 2027. Administrasinya mengikuti PMK 81/2024: Wajib Pajak wajib melaporkan objek yang telah terdaftar dengan SPOP yang disampaikan oleh DJP, dan pelaporan itu dilakukan untuk setiap Tahun Pajak (Pasal 79 ayat (1) dan (2)); perubahan data objek dalam Surat Keterangan Terdaftar Objek Pajak dilakukan Kepala KPP atas permohonan Wajib Pajak atau secara jabatan (Pasal 76 ayat (1)). Tangki penampungan minyak termasuk bangunan menurut Penjelasan Pasal 1 angka 2.",
         jejakHitung: [],
         mengapaSalah: {
           A: "UU PBB tidak mengenal pengenaan proporsional dalam tahun berjalan; objek dikunci pada keadaan 1 Januari",
@@ -3843,7 +3855,7 @@ UKP.register({
         },
         jebakan: "Tanggal pembongkaran dibandingkan dengan 1 Januari, bukan dengan tanggal SPPT diterima; hilangnya bangunan di tengah tahun tidak mengurangi PBB tahun itu."
       },
-      dasarHukum: [{ pasal: "Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 angka 2 UU PBB beserta penjelasannya", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 9 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 8 ayat (2) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 angka 2 UU PBB beserta penjelasannya", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 9 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 76 ayat (1) dan Pasal 79 ayat (1) dan (2) PMK 81/2024", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 140,
       verifikasi: "✅",
       kembaranDari: "B8-003",
@@ -6452,7 +6464,7 @@ UKP.register({
         },
         jebakan: "Perhatikan apakah utang sudah dicatat lebih dulu: bila sudah, pelunasan mengurangi utang, bukan menambah beban. Lalu ingat denda dikoreksi secara fiskal."
       },
-      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 12 UU PBB", berlakuSejak: "1995-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 11 ayat (1), ayat (3), dan ayat (4) UU PBB", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 75,
       verifikasi: "✅",
       kembaranDari: "B8-099",
@@ -6943,6 +6955,201 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "B8-077",
       sejak: "9.5.1"
+    },
+    {
+      id: "B8-230",
+      topik: "B8.8",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Serat Rimba Lestari, pemegang perizinan berusaha pemanfaatan hutan tanaman industri, terdaftar di KPP dan berkantor pusat di Kota Pekanbaru, Provinsi Riau. Seluruh areal hutan tanamannya berada di Kabupaten Pelalawan, Provinsi Riau. PBB-P5L sektor perhutanan 2026 sebesar Rp418.500.000 telah dilunasi ke kas negara. Menurut persentase pembagian DBH PBB dalam UU 1/2022, daerah yang menerima porsi terbesar dari penerimaan tersebut adalah ...",
+      kataKualifikasi: ["porsi terbesar"],
+      opsi: { A: "Kota Pekanbaru sebagai tempat kedudukan dan KPP terdaftar wajib pajak", B: "Provinsi Riau sebagai provinsi yang bersangkutan", C: "Kabupaten Pelalawan sebagai kabupaten penghasil (letak objek)", D: "Seluruh kabupaten/kota lain di Provinsi Riau secara bersama-sama" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-hitung" },
+      pembahasan: {
+        inti: "PBB terutang di wilayah kabupaten/kota yang meliputi letak objek (Pasal 8 ayat (3) UU PBB), sehingga kabupaten penghasil PBB-P5L adalah Kabupaten Pelalawan tempat areal hutan berada. Pasal 113 ayat (2) UU 1/2022 membagi DBH PBB: 16,2% provinsi, 73,8% kabupaten/kota penghasil, dan 10% kabupaten/kota lainnya dalam provinsi. Porsi terbesar (73,8%) jatuh ke Kabupaten Pelalawan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tempat terdaftar wajib pajak menentukan daerah penghasil untuk DBH PPh (Penjelasan Pasal 112 ayat (2) UU 1/2022), bukan untuk DBH PBB; Kota Pekanbaru hanya ikut dalam porsi 10% kabupaten/kota lainnya",
+          B: "Provinsi yang bersangkutan hanya menerima 16,2%, lebih kecil daripada porsi kabupaten penghasil 73,8%",
+          D: "Kabupaten/kota lainnya dalam provinsi bersama-sama hanya menerima 10%, jauh di bawah 73,8%"
+        },
+        jebakan: "Kantor pusat dan KPP terdaftar di kota yang sama provinsinya dengan kebun. Untuk PBB yang menentukan adalah letak objek, berbeda dengan DBH PPh yang memakai tempat wajib pajak terdaftar."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (3) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 18 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "UU 1/2022 (DBH PBB, Pasal 113 ayat (2))", berlakuSejak: "2022-01-05" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B8-049",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B8-231",
+      topik: "B8.8",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      kutipan: "Pasal 18 ayat (1) UU PBB: Hasil penerimaan pajak merupakan penerimaan negara yang dibagi antara Pemerintah Pusat dan Pemerintah Daerah dengan imbangan pembagian sekurang-kurangnya 90% (sembilan puluh persen) untuk Pemerintah Daerah Tingkat II dan Pemerintah Daerah Tingkat I sebagai pendapatan daerah yang bersangkutan.",
+      stem: "Dalam rapat dengar pendapat di DPRD sebuah kabupaten penghasil kelapa sawit, seorang anggota dewan berkata: \"Pasal 18 UU PBB hanya menjamin daerah sekurang-kurangnya 90%. Jadi dari setiap Rp1 miliar PBB-P5L kebun di wilayah kita, paling sedikit Rp100 juta menjadi bagian pemerintah pusat.\" Berdasarkan kutipan tersebut dan ketentuan dana bagi hasil yang berlaku saat ini, tanggapan yang tepat adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tepat; imbangan Pasal 18 ayat (1) UU PBB tetap satu-satunya dasar, sehingga 10% menjadi bagian pusat", B: "Tidak tepat; Pasal 113 ayat (1) UU 1/2022 menetapkan DBH PBB sebesar 100% untuk Daerah", C: "Tidak tepat; bagian 10% itu menjadi hak provinsi, sedangkan 90% menjadi hak kabupaten penghasil", D: "Tidak tepat; PBB-P5L kini sudah pajak daerah sehingga seluruhnya langsung menjadi PAD kabupaten" },
+      kunci: "B",
+      jebakanOpsi: { A: "angka-usang", C: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 18 ayat (1) UU PBB hanya menetapkan batas bawah: sekurang-kurangnya 90% untuk pemerintah daerah. UU 1/2022 kemudian menetapkan DBH PBB sebesar 100% untuk Daerah (Pasal 113 ayat (1)), dibagi 16,2% provinsi, 73,8% kabupaten/kota penghasil, dan 10% kabupaten/kota lainnya dalam provinsi (Pasal 113 ayat (2); diulang Pasal 16 PMK 35/2026). Jadi tidak ada bagian 10% untuk pusat dari PBB-P5L.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "\"Sekurang-kurangnya 90%\" adalah batas bawah; UU 1/2022 yang berlaku sekarang menetapkan 100% untuk Daerah",
+          C: "Provinsi menerima 16,2%, kabupaten/kota penghasil 73,8%, dan 10% untuk kabupaten/kota lainnya dalam provinsi, bukan 10% provinsi dan 90% kabupaten penghasil",
+          D: "PBB-P5L tetap pajak pusat yang disetor ke kas negara lalu dibagihasilkan sebagai DBH pajak; yang menjadi pajak daerah (PAD) adalah PBB-P2"
+        },
+        jebakan: "\"Sekurang-kurangnya 90%\" bukan berarti pusat pasti mendapat 10%; ketentuan bagi hasil yang lebih baru menaikkan bagian daerah menjadi 100%."
+      },
+      dasarHukum: [{ pasal: "Pasal 18 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "UU 1/2022 (DBH pajak, Pasal 113)", berlakuSejak: "2022-01-05" }, { pasal: "Pasal 16 PMK 35/2026 (pengganti PMK 67/2024)", berlakuSejak: "2026-05-25" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B8-050",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B8-232",
+      topik: "B8.8",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Pemerintah Kabupaten Indragiri Hulu mencatat tiga jenis penerimaan yang berasal dari wilayahnya pada 2026: PBB-P5L atas kebun kelapa sawit, PPh Pasal 21 atas gaji karyawan orang pribadi dalam negeri yang dipotong perusahaan kebun yang terdaftar di KPP setempat, serta BPHTB atas pembelian tanah oleh pengembang perumahan. Pengelompokan yang tepat adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "PBB-P5L: DBH pajak dari pusat; PPh Pasal 21 dan BPHTB: pajak daerah (PAD)", B: "Ketiganya adalah DBH pajak yang ditransfer dari pemerintah pusat", C: "PBB-P5L: PAD karena objeknya di kabupaten; PPh Pasal 21 dan BPHTB: DBH pajak", D: "PBB-P5L dan PPh Pasal 21: DBH pajak dari pusat; BPHTB: pajak daerah (PAD)" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "DBH pajak terdiri atas PPh, PBB, dan cukai hasil tembakau (Pasal 111 ayat (2) UU 1/2022); DBH PPh meliputi PPh Pasal 21 serta PPh Pasal 25/29 orang pribadi dalam negeri (Pasal 112 ayat (1)). Jadi PBB-P5L dan PPh Pasal 21 adalah DBH pajak. BPHTB adalah pajak yang dipungut kabupaten/kota (Pasal 4 ayat (2)), sehingga menjadi PAD.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "PPh Pasal 21 adalah pajak pusat yang dibagihasilkan sebagai DBH pajak (Pasal 112 ayat (1) UU 1/2022), bukan pajak daerah",
+          B: "BPHTB dipungut sendiri oleh kabupaten/kota sebagai pajak daerah, bukan ditransfer dari pusat",
+          C: "Letak objek di kabupaten tidak mengubah PBB-P5L menjadi pajak daerah, dan BPHTB bukan DBH"
+        },
+        jebakan: "Tiga penerimaan berasal dari wilayah yang sama, tetapi jalurnya berbeda: pajak pusat yang dibagihasilkan (PBB-P5L, PPh Pasal 21) dan pajak daerah (BPHTB)."
+      },
+      dasarHukum: [{ pasal: "UU 1/2022 (pajak daerah BPHTB; DBH pajak)", berlakuSejak: "2022-01-05" }, { pasal: "Pasal 18 UU PBB", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B8-051",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B8-233",
+      topik: "B8.8",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Dari kegiatan pengusahaan panas bumi PT Uap Lembah Sejahtera di Kabupaten Garut pada 2026, negara menerima: PBB-P5L sektor pertambangan untuk pengusahaan panas bumi, iuran produksi panas bumi, dan PPh Pasal 25/29 perusahaan itu sebagai wajib pajak badan dalam negeri. Pengelompokan dana bagi hasil yang tepat menurut UU 1/2022 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "PBB-P5L: DBH pajak; iuran produksi: DBH sumber daya alam panas bumi; PPh Pasal 25/29 badan: tidak dibagihasilkan", B: "PBB-P5L dan iuran produksi: DBH sumber daya alam panas bumi; PPh Pasal 25/29 badan: DBH pajak", C: "PBB-P5L dan PPh Pasal 25/29 badan: DBH pajak; iuran produksi: DBH sumber daya alam panas bumi", D: "PBB-P5L: DBH pajak; iuran produksi dan PPh Pasal 25/29 badan: tidak dibagihasilkan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "PBB termasuk DBH pajak (Pasal 111 ayat (2) UU 1/2022) walaupun objeknya pengusahaan panas bumi. Iuran produksi panas bumi adalah sumber DBH sumber daya alam panas bumi (Pasal 111 ayat (3) huruf d dan Pasal 118 ayat (1)). DBH PPh hanya PPh Pasal 21 serta PPh Pasal 25 dan Pasal 29 wajib pajak orang pribadi dalam negeri (Pasal 112 ayat (1)), sehingga PPh Pasal 25/29 badan tidak dibagihasilkan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Jenis DBH ditentukan sifat penerimaannya: PBB tetap pajak walaupun objeknya panas bumi, dan PPh badan bukan sumber DBH PPh",
+          C: "Pasal 112 ayat (1) membatasi PPh Pasal 25/29 yang dibagihasilkan pada wajib pajak orang pribadi dalam negeri; PPh badan tidak termasuk",
+          D: "Iuran produksi panas bumi termasuk sumber DBH sumber daya alam panas bumi (Pasal 118 ayat (1))"
+        },
+        jebakan: "Dua jebakan sekaligus: PBB atas panas bumi tetap DBH pajak, dan PPh Pasal 25/29 hanya dibagihasilkan bila wajib pajaknya orang pribadi dalam negeri."
+      },
+      dasarHukum: [{ pasal: "UU 1/2022 (DBH pajak dan DBH sumber daya alam)", berlakuSejak: "2022-01-05" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B8-053",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B8-234",
+      topik: "B8.8",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kutipan: "Pasal 113 UU 1/2022: (1) DBH Pajak Bumi dan Bangunan sebagaimana dimaksud dalam Pasal 111 ayat (2) huruf b ditetapkan sebesar 100% (seratus persen) untuk Daerah. (2) DBH Pajak Bumi dan Bangunan untuk Daerah sebagaimana dimaksud pada ayat (1) dibagikan kepada: a. provinsi yang bersangkutan sebesar 16,2% (enam belas koma dua persen); b. kabupaten/kota penghasil sebesar 73,8% (tujuh puluh tiga koma delapan persen); dan c. kabupaten/kota lainnya dalam provinsi yang bersangkutan sebesar 10% (sepuluh persen).",
+      stem: "Pada 2026 PT Borneo Agro Rimba melunasi: PBB-P5L kebun kelapa sawit di Kabupaten Kotawaringin Barat Rp312.600.000; PBB-P5L hutan tanaman di Kabupaten Katingan Rp205.400.000; PBB-P2 atas kantor perwakilan di Kota Palangka Raya Rp14.200.000; BPHTB atas pembelian tanah untuk gudang Rp48.000.000; dan PPh Pasal 21 karyawan Rp860.000.000. Ketiga daerah itu berada di Provinsi Kalimantan Tengah; abaikan waktu penyaluran dan alokasi berdasarkan kinerja. Berdasarkan kutipan tersebut, jumlah DBH PBB yang menjadi porsi Provinsi Kalimantan Tengah dari pembayaran tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp51.800.000", B: "Rp86.216.400", C: "Rp83.916.000", D: "Rp135.716.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        inti: "DBH PBB hanya bersumber dari PBB yang dikelola pusat (PBB-P5L). PBB-P2 dan BPHTB adalah pajak kabupaten/kota (Pasal 4 ayat (2) UU 1/2022) yang menjadi PAD, sedangkan PPh Pasal 21 masuk DBH PPh, bukan DBH PBB. Porsi provinsi yang bersangkutan menurut Pasal 113 ayat (2) huruf a UU 1/2022 (diulang Pasal 16 PMK 35/2026) adalah 16,2% × Rp518.000.000 = Rp83.916.000.",
+        jejakHitung: [
+          ["PBB-P5L 312.600.000 + 205.400.000", "Rp518.000.000"],
+          ["DBH PBB untuk daerah 100%", "Rp518.000.000"],
+          ["Porsi provinsi 16,2% × 518.000.000", "Rp83.916.000"]
+        ],
+        mengapaSalah: {
+          A: "Memakai 10% (huruf c, kabupaten/kota lainnya dalam provinsi) sebagai porsi provinsi: 10% × Rp518.000.000; porsi provinsi adalah 16,2%",
+          B: "PBB-P2 Kota Palangka Raya ikut dihitung (16,2% × Rp532.200.000), padahal PBB-P2 adalah pajak daerah yang langsung menjadi PAD",
+          D: "Menjumlahkan porsi provinsi dan porsi kabupaten/kota lainnya (16,2% + 10% = 26,2%), padahal yang ditanya hanya porsi provinsi"
+        },
+        jebakan: "Data PBB-P2, BPHTB, dan PPh Pasal 21 sengaja disertakan; hanya PBB-P5L yang menjadi dasar DBH PBB. Bedakan porsi provinsi (16,2%) dari porsi kabupaten/kota lainnya dalam provinsi (10%)."
+      },
+      dasarHukum: [{ pasal: "Pasal 113 ayat (2) UU 1/2022", berlakuSejak: "2022-01-05" }, { pasal: "Pasal 1 angka 14, Pasal 16, dan Pasal 17 PMK 35/2026 (pengganti PMK 67/2024)", berlakuSejak: "2026-05-25" }, { pasal: "Pasal 18 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B8-101",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B8-235",
+      topik: "B8.8",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Nikel Bumi Anoa, pemegang IUP operasi produksi nikel di Kabupaten Konawe Utara, pada 2026 membayar: PBB-P5L sektor pertambangan mineral; iuran tetap dan iuran produksi (royalti) nikel; PBB-P2 atas rumah dinas direksi di Kota Kendari; serta bea meterai atas dokumen kontrak penjualan bijih nikel. Pengelompokan yang paling tepat menurut UU 1/2022 adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "PBB-P5L, iuran tetap, dan iuran produksi: DBH pajak; PBB-P2: PAD Kota Kendari; bea meterai: tidak dibagihasilkan", B: "PBB-P5L: DBH pajak; iuran tetap dan iuran produksi: DBH sumber daya alam minerba; PBB-P2: PAD Kota Kendari; bea meterai: tidak dibagihasilkan", C: "PBB-P5L, iuran tetap, dan iuran produksi: DBH sumber daya alam minerba; PBB-P2: PAD Kota Kendari; bea meterai: tidak dibagihasilkan", D: "PBB-P5L: DBH pajak; iuran tetap dan iuran produksi: DBH sumber daya alam minerba; PBB-P2: PAD Kota Kendari; bea meterai: DBH pajak" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "PBB-P5L tetap pajak sehingga dibagihasilkan sebagai DBH pajak (Pasal 111 ayat (2) UU 1/2022). Iuran tetap dan iuran produksi adalah sumber DBH sumber daya alam mineral dan batu bara (Pasal 116 ayat (1)). PBB-P2 adalah pajak kota (Pasal 4 ayat (2)) yang menjadi PAD. Bea meterai tidak termasuk sumber DBH pajak yang hanya terdiri atas PPh, PBB, dan cukai hasil tembakau.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Iuran tetap dan iuran produksi bukan pajak, melainkan sumber DBH sumber daya alam mineral dan batu bara",
+          C: "PBB-P5L sektor pertambangan tetap pajak dan dibagihasilkan sebagai DBH pajak, bukan DBH sumber daya alam",
+          D: "Pasal 111 ayat (2) hanya memuat PPh, PBB, dan cukai hasil tembakau; bea meterai tidak dibagihasilkan"
+        },
+        jebakan: "Sektor usaha (tambang) tidak menentukan jenis DBH; yang menentukan adalah sifat penerimaannya: pajak pusat, penerimaan sumber daya alam, atau pajak daerah."
+      },
+      dasarHukum: [{ pasal: "UU 1/2022 (DBH pajak dan DBH sumber daya alam mineral dan batu bara)", berlakuSejak: "2022-01-05" }, { pasal: "Pasal 18 UU PBB", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "✅",
+      kembaranDari: "B8-102",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B8-236",
+      topik: "B8.8",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Dari kegiatan usaha perkebunan teh PT Teh Lereng Kerinci di Kabupaten Kerinci pada 2026, negara menerima empat jenis penerimaan berikut. Penerimaan yang tidak dibagihasilkan kepada daerah sebagai dana bagi hasil pajak adalah ...",
+      kataKualifikasi: ["tidak"],
+      opsi: { A: "PPh Pasal 25/29 PT Teh Lereng Kerinci sebagai wajib pajak badan", B: "PBB-P5L sektor perkebunan atas kebun teh di Kabupaten Kerinci", C: "PPh Pasal 21 atas upah pemetik teh orang pribadi dalam negeri", D: "PPh Pasal 25/29 petani teh orang pribadi dalam negeri pemasok pucuk" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "DBH pajak bersumber dari PPh, PBB, dan cukai hasil tembakau (Pasal 111 ayat (2) UU 1/2022). DBH PPh hanya meliputi PPh Pasal 21 serta PPh Pasal 25 dan Pasal 29 wajib pajak orang pribadi dalam negeri (Pasal 112 ayat (1)). PPh Pasal 25/29 wajib pajak badan tidak dibagihasilkan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "PBB-P5L dibagihasilkan kepada daerah sebagai DBH PBB (Pasal 111 ayat (2) huruf b dan Pasal 113 UU 1/2022)",
+          C: "PPh Pasal 21 termasuk sumber DBH PPh (Pasal 112 ayat (1))",
+          D: "PPh Pasal 25/29 wajib pajak orang pribadi dalam negeri termasuk sumber DBH PPh (Pasal 112 ayat (1))"
+        },
+        jebakan: "Kata \"tidak\" membalik pertanyaan. PPh Pasal 25/29 muncul dua kali; yang membedakan adalah subjeknya: orang pribadi dalam negeri dibagihasilkan, badan tidak."
+      },
+      dasarHukum: [{ pasal: "UU 1/2022 (DBH pajak)", berlakuSejak: "2022-01-05" }, { pasal: "Pasal 18 UU PBB", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      kembaranDari: "B8-103",
+      sejak: "9.5.4"
     }
   ],
   kartu: [

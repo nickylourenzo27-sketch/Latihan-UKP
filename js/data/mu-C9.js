@@ -65,8 +65,8 @@ UKP.register({
       { label: "Urutan hitung top-up", nilai: "ETR = pajak tercakup ÷ laba GloBE; laba lebih = laba − SBIE; top-up = (15% − ETR) × laba lebih − QDMTT; IIR × porsi kepemilikan", dasar: "PMK 136/2024", berlakuSejak: "2025-01-01" },
       { label: "Tenggat GIR tahun buku non-kalender", nilai: "18 bulan setelah akhir tahun buku pertama (31 Maret 2026 → 30 September 2027), lalu 15 bulan", dasar: "PMK 136/2024; PER-6/PJ/2026", berlakuSejak: "2026-05-04" },
       { label: "BPT BUT kecil", nilai: "PPh badan 22% penuh (tanpa Pasal 31E/PP 55/2022), lalu tarif BPT × (PKP − PPh); tidak terutang hanya bila seluruhnya ditanamkan kembali", dasar: "Pasal 26 ayat (4) dan Pasal 31E UU PPh; PMK 14/PMK.03/2011", berlakuSejak: "2009-01-01" },
-      { label: "Kurs KMK vs kurs tengah BI", nilai: "KMK mingguan (Rabu–Selasa) untuk DPP PPh pot/put (BPPU/BPNR) dan PPN; kurs tengah BI untuk pembukuan dan penjabaran neraca", dasar: "KMK kurs mingguan; PP 94/2010 Pasal 9", berlakuSejak: null },
-      { label: "Kredit PPh 23 dalam valuta asing", nilai: "sebesar bukti potong (DPP × kurs KMK saat terutang), bukan tarif × pendapatan berkurs pembukuan", dasar: "Pasal 23 dan Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
+      { label: "Kurs KMK vs kurs tengah BI", nilai: "kurs yang ditetapkan Menteri Keuangan (keputusan mingguan, berlaku Rabu sampai Selasa) menjadi dasar pelunasan PPh pot/put (BPPU/BPNR) dan PPN, bukan kurs tengah BI atau kurs bank; tanggal penentu periode: PPN saat Faktur Pajak seharusnya dibuat (PP 44/2022 Pasal 21), PPh 21/26 orang pribadi saat bayar atau terutang yang lebih dahulu (PMK 168/2023 Pasal 5 ayat (4)), PPh pemotongan atas penghasilan badan tidak disebut naskah (soal di aplikasi ini memakai saat terutang); kurs tengah BI untuk pembukuan dan penjabaran neraca", dasar: "KMK nilai kurs mingguan (mis. KMK 50/MK/EF.2/2026 diktum KESATU); PP 44/2022 Pasal 21; PMK 168/2023 Pasal 5 ayat (4); PP 94/2010 Pasal 9", berlakuSejak: null },
+      { label: "Kredit PPh 23 dalam valuta asing", nilai: "sebesar bukti potong (DPP dikonversi dengan kurs yang ditetapkan Menteri Keuangan, keputusan mingguan Rabu sampai Selasa), bukan tarif × pendapatan berkurs pembukuan; naskah tidak menyebut tanggal penentu periode kurs untuk PPh pemotongan atas penghasilan badan; soal di aplikasi ini memakai kurs pada saat terutang", dasar: "Pasal 23 dan Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
       { label: "Kurs kredit PPh Pasal 24", nilai: "pajak luar negeri dengan kurs KMK saat terutang, dibayar, atau dipotong di luar negeri; penghasilan luar negeri sesuai pembukuan", dasar: "Pasal 24 UU PPh; Pasal 10 ayat (2) dan ayat (5) PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" },
       { label: "Selisih kurs fiskal", nilai: "realisasi dan penjabaran akhir tahun diakui sesuai pembukuan yang taat asas (SAK)", dasar: "Pasal 4 ayat (1) huruf l, Pasal 6 ayat (1) huruf e UU PPh; PP 94/2010 Pasal 9", berlakuSejak: null }
     ]
@@ -3110,7 +3110,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-baca" },
       pembahasan: {
-        inti: "Kredit PPh Pasal 23 adalah jumlah dalam bukti potong. Pemotong mengonversi DPP valuta asing dengan kurs KMK yang berlaku pada saat terutang, bukan kurs tengah BI yang dipakai BUT untuk membukukan pendapatan.",
+        inti: "Kredit PPh Pasal 23 adalah jumlah dalam bukti potong. Pemotong mengonversi DPP valuta asing dengan kurs yang ditetapkan Menteri Keuangan (KMK mingguan, dasar pelunasan PPh), bukan kurs tengah BI yang dipakai BUT untuk membukukan pendapatan. Naskah tidak menyebut tanggal penentu periode kurs untuk PPh Pasal 23 atas penghasilan badan; di soal ini tagihan dibayar pada tanggal faktur sehingga saat terutang dan saat bayar jatuh pada periode kurs yang sama, dan soal di aplikasi ini memakai kurs pada saat terutang.",
         jejakHitung: [
           ["PPh 23 faktur Maret = 2% × USD 1.500.000 × Rp16.320", "Rp489.600.000"],
           ["PPh 23 faktur September = 2% × USD 2.000.000 × Rp16.410", "Rp656.400.000"],
@@ -3267,29 +3267,35 @@ UKP.register({
       anggaranDetik: 160, verifikasi: "✅"
     },
     {
-      id: "C9-111", topik: "C9.5", tingkat: ["C"], jenis: "prosedur", kesulitan: 1, laporanUjian: ["C-2026-10"],
+      id: "C9-111",
+      topik: "C9.5",
+      tingkat: ["C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Harsa Kimia (PMA; pembukuan Rupiah) membayar bunga pinjaman USD 150.000 kepada Brevia Capital Bank (Negara Brevia; P3B membatasi bunga 10%; Form DGT sah telah terekam di Coretax sebelum pembayaran; pemilik manfaat; tidak mempunyai BUT di Indonesia). Bunga jatuh tempo dan dibayar pada Selasa, 30 Juni 2026. Data kurs: KMK berlaku 24–30 Juni 2026 Rp16.455/USD; KMK berlaku 8–14 Juli 2026 Rp16.510 (minggu rencana penyetoran PPh, Jumat 10 Juli 2026); kurs tengah BI 30 Juni 2026 Rp16.430; kurs jual bank saat transfer Rp16.520. Langkah administrasi yang tepat adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Membuat BPNR dengan PPh Pasal 26 Rp246.825.000 (kurs KMK 24–30 Juni), menyetor paling lambat 15 Juli 2026, dan melapor SPT Masa PPh Unifikasi paling lambat 20 Juli 2026",
-        B: "Membuat BPNR dengan PPh Pasal 26 Rp246.450.000 (kurs tengah BI 30 Juni), menyetor paling lambat 15 Juli 2026, dan melapor SPT Masa PPh Unifikasi paling lambat 20 Juli 2026",
-        C: "Membuat BPPU dengan PPh Pasal 26 Rp247.800.000 (kurs jual bank), menyetor paling lambat 10 Juli 2026, dan melapor SPT Masa PPh Unifikasi paling lambat 20 Juli 2026",
-        D: "Membuat BPNR dengan PPh Pasal 26 Rp247.650.000 (kurs KMK minggu penyetoran), menyetor paling lambat 15 Juli 2026, dan melapor SPT Masa PPh Unifikasi paling lambat 20 Juli 2026"
-      },
+      opsi: { A: "Membuat BPNR dengan PPh Pasal 26 Rp246.825.000 (kurs KMK 24–30 Juni), menyetor paling lambat 15 Juli 2026, dan melapor SPT Masa PPh Unifikasi paling lambat 20 Juli 2026", B: "Membuat BPNR dengan PPh Pasal 26 Rp246.450.000 (kurs tengah BI 30 Juni), menyetor paling lambat 15 Juli 2026, dan melapor SPT Masa PPh Unifikasi paling lambat 20 Juli 2026", C: "Membuat BPPU dengan PPh Pasal 26 Rp247.800.000 (kurs jual bank), menyetor paling lambat 10 Juli 2026, dan melapor SPT Masa PPh Unifikasi paling lambat 20 Juli 2026", D: "Membuat BPNR dengan PPh Pasal 26 Rp247.650.000 (kurs KMK minggu penyetoran), menyetor paling lambat 15 Juli 2026, dan melapor SPT Masa PPh Unifikasi paling lambat 20 Juli 2026" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "PPh Pasal 26 terutang saat bunga dibayar atau jatuh tempo (30 Juni 2026, sekaligus akhir Masa Juni), sehingga DPP dikonversi dengan kurs KMK yang berlaku pada tanggal itu (24–30 Juni: Rp16.455), bukan kurs pada minggu penyetoran. Penerima luar negeri dibuatkan BPNR; PPh Masa Juni disetor paling lambat 15 Juli dan dilaporkan paling lambat 20 Juli 2026.",
-        jejakHitung: [["PPh 26 = 10% × USD 150.000 × Rp16.455", "Rp246.825.000"], ["Batas setor Masa Juni 2026", "Rabu, 15 Juli 2026"], ["Batas lapor SPT Masa PPh Unifikasi", "Senin, 20 Juli 2026"]],
+        inti: "PPh Pasal 26 terutang saat bunga dibayar atau jatuh tempo; di soal ini keduanya pada 30 Juni 2026, sekaligus akhir Masa Juni. DPP dalam valuta asing dikonversi dengan kurs yang ditetapkan Menteri Keuangan (keputusan mingguan, berlaku Rabu sampai Selasa), bukan kurs tengah BI atau kurs bank. Untuk tanggal penentunya, naskah tidak menyebut tanggal penentu periode kurs untuk PPh pemotongan atas penghasilan badan, dan soal di aplikasi ini memakai kurs pada saat terutang: KMK 24–30 Juni (Rp16.455), bukan kurs pada minggu penyetoran. Penerima luar negeri dibuatkan BPNR; PPh Masa Juni disetor paling lambat 15 Juli dan dilaporkan paling lambat 20 Juli 2026.",
+        jejakHitung: [
+          ["PPh 26 = 10% × USD 150.000 × Rp16.455", "Rp246.825.000"],
+          ["Batas setor Masa Juni 2026", "Rabu, 15 Juli 2026"],
+          ["Batas lapor SPT Masa PPh Unifikasi", "Senin, 20 Juli 2026"]
+        ],
         mengapaSalah: {
           B: "Kurs tengah BI dipakai untuk pembukuan, bukan untuk DPP pemotongan.",
           C: "Kurs jual bank tidak dipakai; BPPU untuk penerima dalam negeri; tanggal 10 adalah batas setor lama sebelum PMK 81/2024.",
-          D: "Kurs dikunci pada saat terutang, bukan pada minggu pajak disetor."
+          D: "Memakai kurs KMK minggu penyetoran; soal ini memakai kurs pada saat terutang (30 Juni 2026), karena naskah tidak menyebut tanggal penentu periode kurs untuk PPh Pasal 26 atas penghasilan badan."
         },
-        jebakan: "Menunda penyetoran tidak mengubah jumlah PPh dalam Rupiah; kurs mengikuti saat terutang."
+        jebakan: "Menurut cara soal ini, menunda penyetoran tidak mengubah jumlah PPh dalam Rupiah: yang dipakai kurs KMK pada saat terutang."
       },
       dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (penerapan tarif P3B)", berlakuSejak: "2025-12-31" }, { pasal: "PMK 81/2024 Pasal 94 (batas setor tanggal 15)", berlakuSejak: "2025-01-01" }, { pasal: "PER-11/PJ/2025 (BPNR, SPT Masa PPh Unifikasi)", berlakuSejak: "2025-05-22" }],
-      anggaranDetik: 120, verifikasi: "✅"
+      anggaranDetik: 120,
+      verifikasi: "◐",
+      peringatan: "Kunci memakai kurs KMK saat terutang (30 Juni 2026), bukan kurs KMK minggu penyetoran (opsi D). KMK 50/MK/EF.2/2026 kini dibaca: kurs Menteri mingguan Rabu sampai Selasa adalah dasar pelunasan PPh, jadi kurs BI dan kurs bank salah. Belum pasti: naskah itu dan PMK 81/2024 tidak menyebut tanggal penentu periode kurs (terutang, dibayar, atau disetor) untuk PPh Pasal 26 atas penghasilan badan atau dividen; aturan \"mana lebih dahulu\" hanya untuk PPh 21/26 sehubungan dengan pekerjaan (PMK 168/2023 Pasal 5 ayat (4)). Kurs rekaan."
     },
     {
       id: "C9-112",
@@ -3542,29 +3548,35 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "C9-120", topik: "C9.5", tingkat: ["C"], jenis: "hitung", kesulitan: 1, laporanUjian: ["C-2026-10"],
+      id: "C9-120",
+      topik: "C9.5",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      laporanUjian: ["C-2026-10"],
       stem: "PT Kalingga Manufaktur (PMA; pembukuan Rupiah dengan kurs tengah BI tanggal transaksi) membayar bunga pinjaman USD 40.000 kepada Arven Capital Ltd. (Negara Arvenia; P3B membatasi bunga 10%; Form DGT sah terekam di Coretax sebelum pembayaran; pemilik manfaat; tidak mempunyai BUT di Indonesia). Bunga jatuh tempo dan dibayar pada Kamis, 16 Juli 2026, dan PPh-nya direncanakan disetor pada Rabu, 12 Agustus 2026. Data kurs: KMK berlaku 15–21 Juli 2026 Rp16.360; kurs tengah BI 16 Juli 2026 Rp16.395; KMK berlaku 12–18 Agustus 2026 Rp16.290. PPh Pasal 26 yang wajib dipotong adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "Rp65.580.000",
-        B: "Rp130.880.000",
-        C: "Rp65.160.000",
-        D: "Rp65.440.000"
-      },
+      opsi: { A: "Rp65.580.000", B: "Rp130.880.000", C: "Rp65.160.000", D: "Rp65.440.000" },
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-baca" },
       pembahasan: {
-        inti: "DPP PPh Pasal 26 dalam valuta asing dikonversi dengan kurs KMK yang berlaku pada saat PPh terutang (16 Juli 2026 → KMK 15–21 Juli Rp16.360), bukan kurs tengah BI pembukuan dan bukan kurs KMK minggu penyetoran. Dengan Form DGT sah dan status pemilik manfaat, tarif P3B 10%: 10% × USD 40.000 × Rp16.360 = Rp65.440.000.",
-        jejakHitung: [["Saat terutang", "16 Juli 2026 (jatuh tempo dan dibayar) → KMK 15–21 Juli 2026"], ["DPP = USD 40.000 × Rp16.360", "Rp654.400.000"], ["PPh Pasal 26 = 10% × DPP (tarif P3B)", "Rp65.440.000"]],
+        inti: "DPP PPh Pasal 26 dalam valuta asing dikonversi dengan kurs yang ditetapkan Menteri Keuangan (keputusan mingguan, berlaku Rabu sampai Selasa), bukan kurs tengah BI pembukuan. Untuk tanggal penentunya, naskah tidak menyebut tanggal penentu periode kurs untuk PPh pemotongan atas penghasilan badan, dan soal di aplikasi ini memakai kurs pada saat terutang (16 Juli 2026 → KMK 15–21 Juli Rp16.360), bukan kurs KMK minggu penyetoran. Dengan Form DGT sah dan status pemilik manfaat, tarif P3B 10%: 10% × USD 40.000 × Rp16.360 = Rp65.440.000.",
+        jejakHitung: [
+          ["Saat terutang (kurs yang dipakai soal ini)", "16 Juli 2026 (jatuh tempo dan dibayar) → KMK 15–21 Juli 2026"],
+          ["DPP = USD 40.000 × Rp16.360", "Rp654.400.000"],
+          ["PPh Pasal 26 = 10% × DPP (tarif P3B)", "Rp65.440.000"]
+        ],
         mengapaSalah: {
           A: "Memakai kurs tengah BI Rp16.395 (kurs pembukuan); DPP pemotongan memakai kurs KMK.",
           B: "Mengabaikan Form DGT yang sah sehingga memakai tarif domestik 20%.",
-          C: "Memakai kurs KMK minggu penyetoran (Rp16.290); kurs dikunci pada saat terutang."
+          C: "Memakai kurs KMK minggu penyetoran (Rp16.290); soal ini memakai kurs pada saat terutang."
         },
-        jebakan: "Kurs pajak mengikuti saat terutang, bukan tanggal setor atau kurs pembukuan."
+        jebakan: "Kurs pajak adalah kurs KMK, bukan kurs pembukuan; soal ini memakai kurs KMK pada saat terutang, bukan pada minggu setor."
       },
-      dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "KMK kurs mingguan sebagai dasar pelunasan PPh (kurs pada saat terutang)" }, { pasal: "PMK 112/2025 (penerapan tarif P3B)", berlakuSejak: "2025-12-31" }],
-      anggaranDetik: 75, verifikasi: "✅"
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "KMK nilai kurs mingguan sebagai dasar pelunasan PPh (mis. KMK 50/MK/EF.2/2026)" }, { pasal: "PMK 112/2025 (penerapan tarif P3B)", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 75,
+      verifikasi: "◐",
+      peringatan: "Kunci memakai kurs KMK saat terutang (16 Juli 2026), bukan kurs KMK minggu penyetoran (opsi C). KMK 50/MK/EF.2/2026 kini dibaca: kurs Menteri mingguan Rabu sampai Selasa adalah dasar pelunasan PPh, jadi kurs BI dan kurs bank salah. Belum pasti: naskah itu dan PMK 81/2024 tidak menyebut tanggal penentu periode kurs (terutang, dibayar, atau disetor) untuk PPh Pasal 26 atas penghasilan badan atau dividen; aturan \"mana lebih dahulu\" hanya untuk PPh 21/26 sehubungan dengan pekerjaan (PMK 168/2023 Pasal 5 ayat (4)). Kurs rekaan."
     },
     {
       id: "C9-121", topik: "C9.1", tingkat: ["C"], jenis: "klasifikasi", kesulitan: 2, laporanUjian: ["C-2026-10"],
@@ -3848,20 +3860,24 @@ UKP.register({
       anggaranDetik: 120, verifikasi: "✅"
     },
     {
-      id: "C9-132", topik: "C9.1", tingkat: ["C"], jenis: "hitung", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "C9-132",
+      topik: "C9.1",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       stem: "BUT Calvera Drilling di Balikpapan (kantor pusat bukan bank, berkedudukan di Negara Tarsia yang belum mempunyai P3B dengan Indonesia) membukukan dalam Rupiah dengan kurs tengah BI tanggal transaksi. Pada Rabu, 18 Maret 2026 BUT membayar dan membebankan: (1) bunga USD 60.000 atas pinjaman dari kantor pusatnya; (2) bunga USD 40.000 kepada Brevia Capital Bank (Negara Brevia; P3B membatasi bunga 10%; pemilik manfaat; Form DGT sah terekam di Coretax sebelum pembayaran; tidak mempunyai BUT di Indonesia). Kurs KMK berlaku 18–24 Maret 2026 Rp16.450/USD; kurs tengah BI 18 Maret 2026 Rp16.500/USD. PPh Pasal 26 atas bunga kepada Brevia Capital Bank dan koreksi fiskal positif atas bunga kepada kantor pusat dalam SPT Tahunan BUT 2026 masing-masing adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "PPh Pasal 26 Rp66.000.000; koreksi fiskal positif Rp990.000.000",
-        B: "PPh Pasal 26 Rp65.800.000; koreksi fiskal positif Rp987.000.000",
-        C: "PPh Pasal 26 Rp65.800.000; koreksi fiskal positif Rp990.000.000",
-        D: "PPh Pasal 26 Rp65.800.000; koreksi fiskal positif Rp1.650.000.000"
-      },
+      opsi: { A: "PPh Pasal 26 Rp66.000.000; koreksi fiskal positif Rp990.000.000", B: "PPh Pasal 26 Rp65.800.000; koreksi fiskal positif Rp987.000.000", C: "PPh Pasal 26 Rp65.800.000; koreksi fiskal positif Rp990.000.000", D: "PPh Pasal 26 Rp65.800.000; koreksi fiskal positif Rp1.650.000.000" },
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "BUT wajib memotong PPh Pasal 26 atas bunga kepada bank luar negeri; DPP valas dikonversi dengan kurs KMK saat terutang dan tarif P3B 10% dipakai karena Form DGT sah. Bunga kepada kantor pusat yang bukan bank tidak dapat dibebankan (Pasal 5 ayat (3) huruf c) dan dikoreksi sebesar beban yang dibukukan dengan kurs tengah BI. Bunga kepada bank pihak ketiga tetap biaya.",
-        jejakHitung: [["PPh 26 = 10% × USD 40.000 × Rp16.450 (kurs KMK 18–24 Maret)", "Rp65.800.000"], ["Beban bunga kantor pusat = USD 60.000 × Rp16.500 (kurs pembukuan)", "Rp990.000.000"], ["Koreksi fiskal positif", "Rp990.000.000"]],
+        inti: "BUT wajib memotong PPh Pasal 26 atas bunga kepada bank luar negeri; DPP valas dikonversi dengan kurs yang ditetapkan Menteri Keuangan (KMK mingguan 18–24 Maret 2026, dasar pelunasan PPh), bukan kurs tengah BI, dan tarif P3B 10% dipakai karena Form DGT sah. Naskah tidak menyebut tanggal penentu periode kurs untuk PPh Pasal 26 atas penghasilan badan; di soal ini bunga dibayar dan dibebankan pada hari yang sama, dan soal di aplikasi ini memakai kurs pada saat terutang. Bunga kepada kantor pusat yang bukan bank tidak dapat dibebankan (Pasal 5 ayat (3) huruf c) dan dikoreksi sebesar beban yang dibukukan dengan kurs tengah BI. Bunga kepada bank pihak ketiga tetap biaya.",
+        jejakHitung: [
+          ["PPh 26 = 10% × USD 40.000 × Rp16.450 (kurs KMK 18–24 Maret)", "Rp65.800.000"],
+          ["Beban bunga kantor pusat = USD 60.000 × Rp16.500 (kurs pembukuan)", "Rp990.000.000"],
+          ["Koreksi fiskal positif", "Rp990.000.000"]
+        ],
         mengapaSalah: {
           A: "PPh Pasal 26 dihitung dengan kurs tengah BI; DPP pemotongan dalam valas memakai kurs KMK.",
           B: "Koreksi fiskal dihitung dengan kurs KMK; koreksi membalik beban sebesar nilai bukunya.",
@@ -3870,7 +3886,8 @@ UKP.register({
         jebakan: "Dalam satu soal, kurs KMK untuk PPh yang dipotong dan kurs pembukuan untuk koreksi beban."
       },
       dasarHukum: [{ pasal: "Pasal 5 ayat (3) huruf c UU PPh", berlakuSejak: "2001-01-01" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (penerapan P3B)", berlakuSejak: "2025-12-31" }, { pasal: "Keputusan Menteri Keuangan tentang kurs mingguan sebagai dasar pelunasan pajak (kurs KMK)" }],
-      anggaranDetik: 130, verifikasi: "✅"
+      anggaranDetik: 130,
+      verifikasi: "✅"
     },
     {
       id: "C9-133",
@@ -4096,24 +4113,36 @@ UKP.register({
       anggaranDetik: 140, verifikasi: "✅"
     },
     {
-      id: "C9-141", topik: "C9.5", tingkat: ["C"], jenis: "hitung", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "C9-141",
+      topik: "C9.5",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       stem: "RUPS PT Rimba Kertas Nusantara (PMA; pembukuan Rupiah) pada Rabu, 17 Juni 2026 menetapkan dividen tunai USD 400.000 yang pada hari itu juga dicatat sebagai utang dividen, dan dibayar pada Rabu, 1 Juli 2026. Pemegang saham: Kanto Paper Co., badan di Negara Nippora (70%), dan Tuan Hiroshi Takeda, orang pribadi penduduk Negara Nippora (30%). P3B Indonesia–Nippora membatasi pajak dividen 10% bila penerimanya badan yang memiliki paling sedikit 25% saham dan 15% dalam hal lainnya. Keduanya pemilik manfaat, Form DGT keduanya sah dan terekam di Coretax sebelum RUPS, dan tidak ada yang mempunyai BUT di Indonesia. Kurs KMK berlaku 17–23 Juni 2026 Rp16.280/USD; kurs tengah BI 17 Juni 2026 Rp16.310/USD; kurs KMK berlaku 1–7 Juli 2026 Rp16.350/USD. Jumlah PPh Pasal 26 yang wajib dipotong PT Rimba Kertas adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp651.200.000", B: "Rp752.100.000", C: "Rp846.560.000", D: "Rp748.880.000" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
-        inti: "Tarif 10% hanya untuk penerima badan dengan kepemilikan paling sedikit 25%; Tuan Takeda orang pribadi sehingga memakai 15% (tetap tarif P3B karena Form DGT sah). PPh Pasal 26 terutang saat dividen disediakan untuk dibayarkan (dicatat sebagai utang pada 17 Juni 2026), sehingga DPP dikonversi dengan kurs KMK 17–23 Juni 2026.",
-        jejakHitung: [["Kanto: 10% × 70% × USD 400.000", "USD 28.000"], ["Takeda: 15% × 30% × USD 400.000", "USD 18.000"], ["Jumlah", "USD 46.000"], ["Konversi kurs KMK 17–23 Juni 2026: USD 46.000 × Rp16.280", "Rp748.880.000"]],
+        inti: "Tarif 10% hanya untuk penerima badan dengan kepemilikan paling sedikit 25%; Tuan Takeda orang pribadi sehingga memakai 15% (tetap tarif P3B karena Form DGT sah). PPh Pasal 26 terutang saat dividen disediakan untuk dibayarkan (dicatat sebagai utang pada 17 Juni 2026). DPP dikonversi dengan kurs yang ditetapkan Menteri Keuangan, bukan kurs tengah BI; naskah tidak menyebut tanggal penentu periode kurs untuk PPh Pasal 26 atas dividen, dan soal di aplikasi ini memakai kurs pada saat terutang (KMK 17–23 Juni 2026).",
+        jejakHitung: [
+          ["Kanto: 10% × 70% × USD 400.000", "USD 28.000"],
+          ["Takeda: 15% × 30% × USD 400.000", "USD 18.000"],
+          ["Jumlah", "USD 46.000"],
+          ["Konversi kurs KMK 17–23 Juni 2026: USD 46.000 × Rp16.280", "Rp748.880.000"]
+        ],
         mengapaSalah: {
           A: "Memakai 10% untuk kedua pemegang saham; tarif substansial P3B ini hanya untuk penerima badan.",
-          B: "Memakai kurs KMK minggu pembayaran; saat terutang sudah terjadi ketika dividen dicatat sebagai utang pada 17 Juni 2026.",
+          B: "Memakai kurs KMK minggu pembayaran; soal ini memakai kurs pada saat terutang, yaitu ketika dividen dicatat sebagai utang pada 17 Juni 2026.",
           C: "Memakai tarif domestik 20% untuk Tuan Takeda seolah-olah P3B tidak berlaku bagi orang pribadi."
         },
-        jebakan: "Baca syarat tarif P3B (jenis penerima dan persentase kepemilikan), lalu kunci kurs pada saat terutang."
+        jebakan: "Baca syarat tarif P3B (jenis penerima dan persentase kepemilikan), lalu pakai kurs KMK pada saat terutang sesuai cara soal ini."
       },
       dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (penerapan P3B, Form DGT)", berlakuSejak: "2025-12-31" }, { pasal: "Keputusan Menteri Keuangan tentang kurs mingguan sebagai dasar pelunasan pajak (kurs KMK)" }],
-      anggaranDetik: 140, verifikasi: "✅"
+      anggaranDetik: 140,
+      verifikasi: "◐",
+      peringatan: "Kunci memakai kurs KMK saat dividen dicatat sebagai utang (17 Juni 2026), bukan saat dibayar (opsi B). KMK 50/MK/EF.2/2026 kini dibaca: kurs Menteri mingguan Rabu sampai Selasa adalah dasar pelunasan PPh, jadi kurs BI dan kurs bank salah. Belum pasti: naskah itu dan PMK 81/2024 tidak menyebut tanggal penentu periode kurs (terutang, dibayar, atau disetor) untuk PPh Pasal 26 atas penghasilan badan atau dividen; aturan \"mana lebih dahulu\" hanya untuk PPh 21/26 sehubungan dengan pekerjaan (PMK 168/2023 Pasal 5 ayat (4)). Kurs rekaan."
     },
     {
       id: "C9-142", topik: "C9.5", tingkat: ["C"], jenis: "hitung", kesulitan: 3, laporanUjian: ["C-2026-10"],
@@ -4613,23 +4642,23 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
-        inti: "PPh Pasal 26 terutang saat royalti jatuh tempo dan dicatat sebagai utang (18 Februari 2026), lebih dulu dari pembayaran. DPP dalam valuta asing dikonversi dengan kurs KMK yang berlaku saat terutang; izin pembukuan USD tidak mengubah dasar konversi pemotongan. Tarif P3B 10% berlaku karena Form DGT sah.",
+        inti: "PPh Pasal 26 terutang saat royalti jatuh tempo dan dicatat sebagai utang (18 Februari 2026), lebih dulu dari pembayaran. DPP dalam valuta asing dikonversi dengan kurs yang ditetapkan Menteri Keuangan, bukan kurs tengah BI; izin pembukuan USD tidak mengubah dasar konversi pemotongan. Untuk tanggal penentunya, naskah tidak menyebut tanggal penentu periode kurs untuk PPh pemotongan atas penghasilan badan, dan soal di aplikasi ini memakai kurs pada saat terutang (KMK 18–24 Februari 2026). Tarif P3B 10% berlaku karena Form DGT sah.",
         jejakHitung: [
           ["PPh 26 = 10% × USD 60.000", "USD 6.000"],
           ["Kurs KMK 18–24 Februari 2026", "Rp16.820"],
           ["PPh 26 = USD 6.000 × Rp16.820", "Rp100.920.000"]
         ],
         mengapaSalah: {
-          A: "Memakai kurs KMK minggu pembayaran; saat terutang sudah terjadi pada tanggal jatuh tempo.",
+          A: "Memakai kurs KMK minggu pembayaran; soal ini memakai kurs pada saat terutang, dan saat terutang sudah terjadi pada tanggal jatuh tempo.",
           C: "Memakai kurs tengah BI; kurs BI dipakai untuk pembukuan, bukan untuk DPP pemotongan.",
           D: "Memakai tarif 20% padahal Form DGT sah sudah terekam sebelum pembayaran."
         },
-        jebakan: "Pembukuan USD tidak membuat kurs pembukuan berlaku untuk pemotongan; DPP PPh tetap memakai kurs KMK saat terutang."
+        jebakan: "Pembukuan USD tidak membuat kurs pembukuan berlaku untuk pemotongan; DPP PPh tetap memakai kurs KMK, dan soal ini memakai kurs pada saat terutang."
       },
       dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh; PP 94/2010 Pasal 15 ayat (4)", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (penerapan P3B, Form DGT)", berlakuSejak: "2025-12-31" }, { pasal: "Keputusan Menteri Keuangan tentang kurs mingguan sebagai dasar pelunasan pajak (kurs KMK)" }, { pasal: "Pasal 28 ayat (8) UU KUP; PMK 81/2024 Pasal 106 ayat (1) dan Pasal 161 ayat (2) (WP berizin pembukuan bahasa Inggris dan USD)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 140,
       verifikasi: "◐",
-      peringatan: "Sudah dicocokkan: PMK 81/2024 Pasal 106 ayat (1) dan Pasal 161 ayat (2) (WP berizin pembukuan USD tetap menyetor PPh Pasal 26 dalam rupiah; hanya SPT Tahunan PPh Badan dalam USD), Pasal 26 ayat (1) UU PPh, dan PP 94/2010 Pasal 15 ayat (4). Belum ditemukan di naskah: dasar bahwa DPP PPh 26 dalam valuta asing dikonversi dengan kurs KMK yang berlaku pada tanggal terutang (bukan akhir bulan atau tanggal bayar)."
+      peringatan: "Sudah dicocokkan: PMK 81/2024 Pasal 106 ayat (1) dan Pasal 161 ayat (2) (WP berizin pembukuan USD tetap menyetor PPh Pasal 26 dalam rupiah). Kunci memakai kurs KMK saat terutang (18 Februari 2026), bukan saat bayar (opsi A). KMK 50/MK/EF.2/2026 kini dibaca: kurs Menteri mingguan Rabu sampai Selasa adalah dasar pelunasan PPh, jadi kurs BI dan kurs bank salah. Belum pasti: naskah itu dan PMK 81/2024 tidak menyebut tanggal penentu periode kurs (terutang, dibayar, atau disetor) untuk PPh Pasal 26 atas penghasilan badan atau dividen; aturan \"mana lebih dahulu\" hanya untuk PPh 21/26 sehubungan dengan pekerjaan (PMK 168/2023 Pasal 5 ayat (4)). Kurs rekaan."
     },
     {
       id: "C9-159",
@@ -4644,7 +4673,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Tarif dividen fasilitas tax allowance 10% (atau lebih rendah menurut P3B) berlaku untuk kedua penerima: bagi Palmera tarif P3B juga 10%, bagi Orchid tarif fasilitas 10% lebih rendah daripada tarif P3B 15%. PPh terutang saat dividen disediakan untuk dibayarkan (20 Mei 2026), sehingga dipakai kurs KMK 20–26 Mei 2026.",
+        inti: "Tarif dividen fasilitas tax allowance 10% (atau lebih rendah menurut P3B) berlaku untuk kedua penerima: bagi Palmera tarif P3B juga 10%, bagi Orchid tarif fasilitas 10% lebih rendah daripada tarif P3B 15%. PPh terutang saat dividen disediakan untuk dibayarkan (20 Mei 2026). DPP dikonversi dengan kurs yang ditetapkan Menteri Keuangan, bukan kurs tengah BI; naskah tidak menyebut tanggal penentu periode kurs untuk PPh Pasal 26 atas dividen, dan soal di aplikasi ini memakai kurs pada saat terutang (KMK 20–26 Mei 2026).",
         jejakHitung: [
           ["Palmera: 10% × 80% × USD 800.000", "USD 64.000"],
           ["Orchid: 10% (tax allowance) × 20% × USD 800.000", "USD 16.000"],
@@ -4653,14 +4682,15 @@ UKP.register({
         ],
         mengapaSalah: {
           B: "Memakai tarif P3B 15% untuk Orchid; fasilitas tax allowance memberi tarif 10% yang lebih rendah.",
-          C: "Memakai kurs KMK minggu pembayaran; saat terutang adalah saat dividen dicatat sebagai utang.",
+          C: "Memakai kurs KMK minggu pembayaran; soal ini memakai kurs pada saat terutang, yaitu saat dividen dicatat sebagai utang.",
           D: "Memakai kurs tengah BI, yang hanya dipakai untuk mencatat utang dividen dalam pembukuan."
         },
-        jebakan: "Bandingkan tarif P3B dengan tarif fasilitas lalu pakai yang terendah, kemudian kunci kurs KMK pada saat terutang."
+        jebakan: "Bandingkan tarif P3B dengan tarif fasilitas lalu pakai yang terendah, kemudian pakai kurs KMK pada saat terutang sesuai cara soal ini."
       },
       dasarHukum: [{ pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 78/2019 Pasal 3 (tax allowance: PPh dividen kepada WPLN 10% atau lebih rendah menurut P3B)", berlakuSejak: "2019-12-13" }, { pasal: "PMK 112/2025 (penerapan P3B, Form DGT)", berlakuSejak: "2025-12-31" }, { pasal: "Keputusan Menteri Keuangan tentang kurs mingguan sebagai dasar pelunasan pajak (kurs KMK)" }],
       anggaranDetik: 170,
-      verifikasi: "✅"
+      verifikasi: "◐",
+      peringatan: "Kunci memakai kurs KMK saat dividen dicatat sebagai utang (20 Mei 2026), bukan saat dibayar (opsi C). KMK 50/MK/EF.2/2026 kini dibaca: kurs Menteri mingguan Rabu sampai Selasa adalah dasar pelunasan PPh, jadi kurs BI dan kurs bank salah. Belum pasti: naskah itu dan PMK 81/2024 tidak menyebut tanggal penentu periode kurs (terutang, dibayar, atau disetor) untuk PPh Pasal 26 atas penghasilan badan atau dividen; aturan \"mana lebih dahulu\" hanya untuk PPh 21/26 sehubungan dengan pekerjaan (PMK 168/2023 Pasal 5 ayat (4)). Kurs rekaan."
     },
     {
       id: "C9-160",
@@ -4696,30 +4726,32 @@ UKP.register({
       verifikasi: "✅"
     },
     {
-      id: "C9-161", topik: "C9.5", tingkat: ["C"], jenis: "klasifikasi", kesulitan: 2, laporanUjian: ["C-2026-10"],
+      id: "C9-161",
+      topik: "C9.5",
+      tingkat: ["C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
       kutipan: "PP 44/2022 Pasal 21 (parafrase): dalam hal harga jual, penggantian, atau nilai lain yang menjadi dasar pengenaan PPN dinyatakan dalam mata uang asing, nilai tersebut dikonversi ke Rupiah dengan kurs yang ditetapkan Menteri Keuangan yang berlaku pada saat faktur pajak seharusnya dibuat.",
       stem: "PT Sinar Optik Indonesia (PMA; pembukuan Rupiah; transaksi valuta asing dicatat dengan kurs tengah BI tanggal transaksi, dan pos moneter valuta asing dijabarkan dengan kurs tengah BI tanggal neraca sesuai SAK secara taat asas) mempunyai empat transaksi 2026: (1) bunga pinjaman USD kepada bank di Negara Lorvia yang terutang pada 30 Juni 2026 dan dibayar 14 Juli 2026; (2) penyerahan barang kena pajak kepada PT Mitra Optik (PKP dalam negeri) yang ditagih dalam USD dengan saat faktur pajak seharusnya dibuat 15 Juli 2026; (3) saldo utang usaha USD 300.000 pada 31 Desember 2026; (4) pendapatan ekspor USD 120.000 pada 5 Agustus 2026. Berdasarkan kutipan tersebut dan ketentuan pembukuan, pasangan kurs yang tepat untuk tiap keperluan adalah ...",
       kataKualifikasi: [],
-      opsi: {
-        A: "(1) DPP PPh 26: kurs KMK minggu pembayaran bunga; (2) DPP PPN: kurs KMK saat faktur seharusnya dibuat; (3) kurs tengah BI 31 Desember 2026; (4) kurs tengah BI 5 Agustus 2026",
-        B: "(1) DPP PPh 26: kurs KMK saat terutang; (2) DPP PPN: kurs tengah BI tanggal penyerahan; (3) kurs tengah BI 31 Desember 2026; (4) kurs tengah BI 5 Agustus 2026",
-        C: "(1) DPP PPh 26: kurs KMK saat terutang; (2) DPP PPN: kurs KMK saat faktur seharusnya dibuat; (3) kurs KMK minggu 31 Desember 2026 dan selisih kursnya dikoreksi fiskal; (4) kurs tengah BI 5 Agustus 2026",
-        D: "(1) DPP PPh 26: kurs KMK saat terutang; (2) DPP PPN: kurs KMK saat faktur seharusnya dibuat; (3) kurs tengah BI 31 Desember 2026, dengan selisih kurs diakui secara fiskal karena pembukuan taat asas; (4) kurs tengah BI 5 Agustus 2026"
-      },
+      opsi: { A: "(1) DPP PPh 26: kurs KMK minggu pembayaran bunga; (2) DPP PPN: kurs KMK saat faktur seharusnya dibuat; (3) kurs tengah BI 31 Desember 2026; (4) kurs tengah BI 5 Agustus 2026", B: "(1) DPP PPh 26: kurs KMK saat terutang; (2) DPP PPN: kurs tengah BI tanggal penyerahan; (3) kurs tengah BI 31 Desember 2026; (4) kurs tengah BI 5 Agustus 2026", C: "(1) DPP PPh 26: kurs KMK saat terutang; (2) DPP PPN: kurs KMK saat faktur seharusnya dibuat; (3) kurs KMK minggu 31 Desember 2026 dan selisih kursnya dikoreksi fiskal; (4) kurs tengah BI 5 Agustus 2026", D: "(1) DPP PPh 26: kurs KMK saat terutang; (2) DPP PPN: kurs KMK saat faktur seharusnya dibuat; (3) kurs tengah BI 31 Desember 2026, dengan selisih kurs diakui secara fiskal karena pembukuan taat asas; (4) kurs tengah BI 5 Agustus 2026" },
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
-        inti: "Kurs KMK adalah kurs untuk menghitung pajak: DPP PPh pemotongan pada saat terutang dan DPP PPN pada saat faktur pajak seharusnya dibuat (PP 44/2022 Pasal 21). Pembukuan memakai kurs transaksi, dan penjabaran akhir periode memakai kurs tengah BI; selisih kurs dari pembukuan yang taat asas diakui secara fiskal.",
+        inti: "Kurs yang ditetapkan Menteri Keuangan (kurs KMK, keputusan mingguan yang berlaku Rabu sampai Selasa) adalah kurs untuk menghitung pajak, bukan kurs tengah BI atau kurs bank. Untuk DPP PPN, PP 44/2022 Pasal 21 menyebut kurs yang berlaku pada saat faktur pajak seharusnya dibuat. Untuk DPP PPh pemotongan atas penghasilan badan, naskah tidak menyebut tanggal penentu periode kurs, dan soal di aplikasi ini memakai kurs pada saat terutang. Pembukuan memakai kurs transaksi, dan penjabaran akhir periode memakai kurs tengah BI; selisih kurs dari pembukuan yang taat asas diakui secara fiskal.",
         jejakHitung: [],
         mengapaSalah: {
-          A: "Saat terutang PPh 26 atas bunga sudah terjadi pada 30 Juni 2026; kurs minggu pembayaran tidak relevan.",
+          A: "Saat terutang PPh 26 atas bunga sudah terjadi pada 30 Juni 2026; soal ini memakai kurs pada saat terutang, bukan kurs minggu pembayaran.",
           B: "DPP PPN dalam valuta asing memakai kurs KMK, bukan kurs tengah BI.",
           C: "Penjabaran saldo akhir tahun mengikuti kurs pembukuan (kurs tengah BI), dan selisih kurs dari pembukuan taat asas tidak dikoreksi."
         },
         jebakan: "Pisahkan kurs pajak (KMK) dari kurs pembukuan (kurs transaksi dan kurs tengah BI akhir periode)."
       },
       dasarHukum: [{ pasal: "PP 44/2022 Pasal 21 (kurs KMK saat faktur pajak seharusnya dibuat)" }, { pasal: "Pasal 26 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 94/2010 Pasal 9 (selisih kurs mengikuti pembukuan taat asas)" }, { pasal: "Keputusan Menteri Keuangan tentang kurs mingguan sebagai dasar pelunasan pajak (kurs KMK)" }],
-      anggaranDetik: 150, verifikasi: "✅"
+      anggaranDetik: 150,
+      verifikasi: "◐",
+      peringatan: "Opsi A dan D hanya berbeda pada butir (1): kurs KMK saat bunga terutang lawan minggu pembayaran. KMK 50/MK/EF.2/2026 kini dibaca: kurs Menteri mingguan Rabu sampai Selasa adalah dasar pelunasan PPh, jadi kurs BI dan kurs bank salah. Belum pasti: naskah itu dan PMK 81/2024 tidak menyebut tanggal penentu periode kurs (terutang, dibayar, atau disetor) untuk PPh Pasal 26 atas penghasilan badan atau dividen; aturan \"mana lebih dahulu\" hanya untuk PPh 21/26 sehubungan dengan pekerjaan (PMK 168/2023 Pasal 5 ayat (4))."
     },
     {
       id: "C9-162",
@@ -4820,13 +4852,13 @@ UKP.register({
     { id: "KT-C9-62", topik: "C9.1", tipe: "pasal", depan: "Royalti, imbalan jasa, atau bunga yang diterima BUT dari kantor pusatnya?", belakang: "Bukan objek BUT, kecuali bunga berkenaan dengan usaha perbankan", dasar: "Pasal 5 ayat (3) UU PPh dan penjelasannya", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-63", topik: "C9.1", tipe: "prosedur", depan: "Menguji BUT dengan P3B, tetapi SKD/Form DGT tidak ada?", belakang: "P3B tidak diterapkan; uji dengan Pasal 2 ayat (5) UU PPh", dasar: "Pasal 2 ayat (5) dan Pasal 32A UU PPh; PMK 112/2025", berlakuSejak: "2025-12-31", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-64", topik: "C9.1", tipe: "definisi", depan: "Proyek konstruksi, instalasi, atau perakitan menurut UU PPh: ada batas waktunya?", belakang: "Tidak ada; batas waktu hanya dari P3B bila SKD sah", dasar: "Pasal 2 ayat (5) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-C9-65", topik: "C9.1", tipe: "angka", depan: "Kredit PPh 23 BUT atas jasa yang ditagih dalam USD?", belakang: "Sebesar bukti potong: tarif × DPP × kurs KMK saat terutang", dasar: "Pasal 23 dan Pasal 28 ayat (1) UU PPh; KMK kurs mingguan", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-C9-65", topik: "C9.1", tipe: "angka", depan: "Kredit PPh 23 BUT atas jasa yang ditagih dalam USD?", belakang: "Sebesar bukti potong: tarif × DPP × kurs yang ditetapkan Menteri Keuangan (KMK mingguan, Rabu sampai Selasa), bukan kurs pembukuan. Naskah tidak menyebut tanggal penentu periode kurs untuk PPh Pasal 23 atas penghasilan badan; soal di aplikasi ini memakai kurs pada saat terutang", dasar: "Pasal 23 dan Pasal 28 ayat (1) UU PPh; KMK nilai kurs mingguan (mis. KMK 50/MK/EF.2/2026 diktum KESATU)", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-66", topik: "C9.1", tipe: "definisi", depan: "Penghasilan kantor pusat yang berhubungan efektif dengan BUT?", belakang: "Penghasilan Ps. 26 kantor pusat dari harta/kegiatan BUT; digabung ke laba BUT", dasar: "Pasal 5 ayat (1) huruf c UU PPh", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-67", topik: "C9.2", tipe: "angka", depan: "Dasar BPT bila sebagian laba ditanamkan kembali?", belakang: "Tetap PKP − PPh badan tanpa pengurangan; pengecualian hanya bila seluruhnya ditanamkan kembali", dasar: "Pasal 26 ayat (4) UU PPh; Pasal 1 ayat (3) PMK 14/PMK.03/2011", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-68", topik: "C9.2", tipe: "definisi", depan: "Contoh investasi yang bukan penanaman kembali laba BUT?", belakang: "Deposito, obligasi, dan surat utang lain (bukan salah satu dari empat bentuk); atau penanaman setelah akhir tahun pajak berikutnya", dasar: "Pasal 1 ayat (3) dan Pasal 2 ayat (1) huruf a PMK 14/PMK.03/2011", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-69", topik: "C9.3", tipe: "prosedur", depan: "Konversi pajak luar negeri yang dikreditkan sebagai PPh Pasal 24?", belakang: "Kurs KMK saat pajak luar negeri terutang, dibayar, atau dipotong; penghasilan sesuai pembukuan", dasar: "Pasal 24 UU PPh; Pasal 10 ayat (2) dan ayat (5) PMK 192/PMK.03/2018", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-70", topik: "C9.3", tipe: "pasal", depan: "Pajak luar negeri atas dividen luar negeri yang memenuhi syarat bukan objek?", belakang: "Tidak dapat dikreditkan dan tidak dapat dibiayakan", dasar: "Pasal 4 ayat (3) huruf f angka 2 dan Pasal 9 ayat (1) huruf h UU PPh", berlakuSejak: "2020-11-02", menggantikan: null, dekTambahan: [] },
-    { id: "KT-C9-71", topik: "C9.5", tipe: "angka", depan: "Kurs untuk DPP PPh 23/26 dan PPN dalam valuta asing?", belakang: "Kurs KMK mingguan yang berlaku saat terutang (Rabu sampai Selasa)", dasar: "Keputusan Menteri Keuangan tentang kurs mingguan", menggantikan: null, dekTambahan: [] },
+    { id: "KT-C9-71", topik: "C9.5", tipe: "angka", depan: "Kurs untuk DPP PPh 23/26 dan PPN dalam valuta asing?", belakang: "Kurs yang ditetapkan Menteri Keuangan (KMK mingguan, berlaku Rabu sampai Selasa), bukan kurs tengah BI atau kurs bank. PPN: kurs saat Faktur Pajak seharusnya dibuat (PP 44/2022 Pasal 21). PPh 21/26 orang pribadi: saat pembayaran atau saat terutang, mana yang lebih dahulu (PMK 168/2023 Pasal 5 ayat (4)). PPh 23/26 atas penghasilan badan: naskah tidak menyebut tanggal penentunya; soal di aplikasi ini memakai kurs pada saat terutang", dasar: "KMK nilai kurs mingguan (mis. KMK 50/MK/EF.2/2026 diktum KESATU); PP 44/2022 Pasal 21; PMK 168/2023 Pasal 5 ayat (4)", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-72", topik: "C9.5", tipe: "definisi", depan: "Kurs penjabaran pos moneter valas pada tanggal neraca (SAK)?", belakang: "Kurs tengah BI; selisihnya diakui fiskal bila pembukuan taat asas", dasar: "PP 94/2010 Pasal 9; Pasal 4 ayat (1) huruf l dan Pasal 6 ayat (1) huruf e UU PPh", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-73", topik: "C9.5", tipe: "prosedur", depan: "Utang PPh 26 (kurs KMK) tidak sama dengan bagian beban (kurs tengah BI)?", belakang: "Selisihnya dicatat sebagai laba/rugi selisih kurs", dasar: "Pasal 26 UU PPh; PP 94/2010 Pasal 9", menggantikan: null, dekTambahan: [] },
     { id: "KT-C9-74", topik: "C9.6", tipe: "angka", depan: "Persentase SBIE masa transisi untuk tahun 2026?", belakang: "9,4% biaya gaji; 7,4% nilai tercatat aset berwujud", dasar: "Pasal 7 ayat (7) dan Pasal 8 ayat (5) PMK 136/2024", berlakuSejak: "2026-01-01", menggantikan: "9,6% gaji dan 7,6% aset (tahun 2025)", dekTambahan: ["perubahan-2025-2026"] },
@@ -5085,7 +5117,7 @@ UKP.register({
           petunjuk: ["BUT tidak berhak Pasal 31E maupun PPh final PP 55/2022", "PKP Rp14.690.000.000 (tanpa kompensasi kerugian)", "22% × Rp14.690.000.000 = Rp3.231.800.000"],
           penjelasan: "PKP dikalikan tarif badan 22%." },
         { no: 5, pertanyaan: "Berapa kredit PPh Pasal 23 sesuai bukti potong (Rp)?", tipe: "angka", jawaban: 1971000000, toleransi: 0,
-          petunjuk: ["Pemotong memakai kurs KMK yang berlaku saat terutang, bukan kurs tengah BI pembukuan", "2% × (USD 2.000.000 × 16.450 + USD 2.500.000 × 16.240 + USD 1.500.000 × 16.700)", "658 + 812 + 501 juta = Rp1.971.000.000"],
+          petunjuk: ["Pemotong memakai kurs yang ditetapkan Menteri Keuangan (KMK mingguan, Rabu sampai Selasa), bukan kurs tengah BI pembukuan. Naskah tidak menyebut tanggal penentu periode kurs untuk PPh Pasal 23 atas penghasilan badan; soal di aplikasi ini memakai kurs pada saat terutang, dan di kasus ini tagihan dibayar pada tanggal faktur", "2% × (USD 2.000.000 × 16.450 + USD 2.500.000 × 16.240 + USD 1.500.000 × 16.700)", "658 + 812 + 501 juta = Rp1.971.000.000"],
           penjelasan: "Kredit pajak mengikuti bukti potong. Bila dihitung ulang dengan kurs tengah BI hasilnya Rp1.969.900.000; selisih Rp1.100.000 itulah jebakan kurs." },
         { no: 6, pertanyaan: "Berapa PPh Pasal 29 (Rp)?", tipe: "angka", jawaban: 260800000, toleransi: 0,
           petunjuk: ["PPh terutang dikurangi kredit PPh 23 dan PPh 25", "PPh final bunga jasa giro bukan kredit pajak", "3.231.800.000 − 1.971.000.000 − 1.000.000.000 = Rp260.800.000"],

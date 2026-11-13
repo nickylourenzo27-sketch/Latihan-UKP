@@ -370,7 +370,7 @@ UKP.register({
         "Permohonan restitusi atas SPT lebih bayar diproses dengan pemeriksaan; DJP wajib menerbitkan SKP paling lama 12 bulan sejak permohonan diterima lengkap; lewat waktu permohonan dianggap dikabulkan dan SKPLB terbit paling lama 1 bulan kemudian (Pasal 17B).",
         "Pengembalian pendahuluan tanpa pemeriksaan, melalui penelitian (sejak 1 Mei 2026 diatur PMK 28 Tahun 2026 yang mencabut PMK 39/PMK.03/2018 s.t.d.d. PMK 209/PMK.03/2021): Pasal 17C (WP kriteria tertentu/patuh), Pasal 17D (WP persyaratan tertentu: OP tanpa usaha berapa pun, OP usaha ≤ Rp100 juta, badan dengan peredaran usaha ≤ Rp50 miliar dan lebih bayar ≤ Rp1 miliar, PKP dengan lebih bayar ≤ Rp1 miliar dan jumlah penyerahan ≤ Rp4,2 miliar untuk suatu Masa Pajak; sebelumnya PKP ≤ Rp5 miliar), dan PKP berisiko rendah (Pasal 9 ayat (4c) UU PPN). Sejak PMK 28/2026, PKP persyaratan tertentu tidak lagi diperlakukan sebagai PKP berisiko rendah. Keputusan berupa SKPPKP.",
         "Bila setelah pengembalian pendahuluan terbit SKPKB, WP Pasal 17C/17D dikenai kenaikan 100% dari kekurangan pajak (Pasal 17C ayat (5) dan 17D ayat (5)), sedangkan PKP berisiko rendah dikenai bunga Pasal 13 ayat (2).",
-        "Kelebihan pembayaran dikembalikan paling lama 1 bulan; titik awalnya berbeda (Pasal 11 ayat (2) dan Penjelasannya): SKPLB Pasal 17 ayat (1) sejak permohonan pengembalian diterima; SKPLB Pasal 17 ayat (2) dan Pasal 17B, Surat Keputusan Pengembalian Pendahuluan (Pasal 17C/17D), serta surat keputusan keberatan, pembetulan, pengurangan atau penghapusan sanksi, pengurangan atau pembatalan ketetapan, dan pemberian imbalan bunga sejak tanggal penerbitan; Putusan Banding atau PK sejak diterima kantor DJP. Lewat 1 bulan, pemerintah memberi imbalan bunga (Pasal 11 ayat (3)) sejak berakhirnya 1 bulan sampai pengembalian, tarif KMK uplift 0%.",
+        "Kelebihan pembayaran dikembalikan paling lama 1 bulan; titik awalnya berbeda (Pasal 11 ayat (2) dan Penjelasannya): SKPLB Pasal 17 ayat (1) sejak permohonan pengembalian diterima; SKPLB Pasal 17 ayat (2) dan Pasal 17B, Surat Keputusan Pengembalian Pendahuluan (Pasal 17C/17D), serta surat keputusan keberatan, pembetulan, pengurangan atau penghapusan sanksi, pengurangan atau pembatalan ketetapan, dan pemberian imbalan bunga sejak tanggal penerbitan; Putusan Banding atau PK sejak diterima kantor DJP. Lewat 1 bulan, pemerintah memberi imbalan bunga (Pasal 11 ayat (3)) sejak berakhirnya 1 bulan sampai pengembalian (Pasal 140 ayat (2) PMK 81/2024: jumlah bulan dihitung sampai tanggal penerbitan SKPKPP), tarif KMK uplift 0%.",
         "Imbalan bunga Pasal 27B diberikan bila keberatan, banding, PK, atau permohonan Pasal 36 dikabulkan sehingga ada kelebihan pembayaran, paling lama 24 bulan.",
         "Kelebihan pembayaran lebih dulu diperhitungkan dengan utang pajak lain (kompensasi) sebelum dikembalikan."
       ],
@@ -1589,27 +1589,28 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 3,
-      stem: "SKPLB PPh Badan PT Hijau Lestari sebesar Rp300.000.000 terbit 5 Oktober 2026 dan WP tidak memiliki utang pajak. Batas waktu pengembalian 1 bulan berakhir 4 November 2026, tetapi pengembalian baru dilakukan (SP2D terbit dan dana ditransfer ke rekening WP) pada 18 Januari 2027. Anggap tarif imbalan bunga per bulan yang berlaku 0,59% (uplift 0%), sedangkan tarif uplift 5% 1,01%. Imbalan bunga Pasal 11 ayat (3) yang diterima WP adalah ...",
+      stem: "SKPLB PPh Badan PT Hijau Lestari sebesar Rp300.000.000, yang diterbitkan berdasarkan Pasal 17B UU KUP setelah pemeriksaan atas permohonan pengembalian kelebihan pembayaran pajak dalam SPT Tahunan, terbit 5 Oktober 2026 dan WP tidak memiliki utang pajak. Batas waktu penerbitan Surat Keputusan Pengembalian Kelebihan Pembayaran Pajak (SKPKPP) 1 bulan sejak SKPLB terbit berakhir 4 November 2026, tetapi SKPKPP baru diterbitkan Kamis, 14 Januari 2027, dan pengembalian dilakukan (SP2D terbit dan dana ditransfer ke rekening WP) pada Senin, 18 Januari 2027. Anggap tarif imbalan bunga per bulan yang berlaku 0,59% (uplift 0%), sedangkan tarif uplift 5% 1,01%. Imbalan bunga Pasal 11 ayat (3) yang diterima WP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp9.090.000", B: "Rp7.080.000", C: "Rp3.540.000", D: "Rp5.310.000" },
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-hitung" },
       pembahasan: {
-        inti: "Imbalan bunga Pasal 11 ayat (3) dihitung sejak batas waktu 1 bulan berakhir sampai pengembalian dilakukan, dengan tarif uplift 0%, bagian bulan dihitung penuh.",
+        inti: "Untuk SKPLB Pasal 17B (dan Pasal 17 ayat (2)), batas waktu penerbitan SKPKPP 1 bulan dihitung sejak SKPLB terbit (Pasal 11 ayat (2) UU KUP; Pasal 140 ayat (3) huruf b PMK 81/2024). Imbalan bunga Pasal 11 ayat (3) dihitung sejak batas waktu itu berakhir; Pasal 11 ayat (3) UU KUP menyebut sampai saat pengembalian dilakukan, dan Pasal 140 ayat (2) PMK 81/2024 menyebut sampai tanggal penerbitan SKPKPP. Di soal ini keduanya memberi 3 bulan (bagian bulan dihitung penuh), dengan tarif uplift 0%.",
         jejakHitung: [
-          ["1 bulan sejak SKPLB terbit 5 Okt 2026, hari terakhir", "4 November 2026"],
+          ["1 bulan sejak SKPLB Pasal 17B terbit 5 Okt 2026, hari terakhir", "4 November 2026"],
           ["5 Nov 2026 → 4 Jan 2027", "2 bulan"],
-          ["5 Jan → 18 Jan 2027", "bagian bulan = 1"],
+          ["5 Jan → 14 Jan 2027 (SKPKPP terbit; sampai SP2D 18 Jan juga masih bulan ke-3)", "bagian bulan = 1"],
+          ["Jumlah bulan (acuan SKPKPP maupun SP2D)", "3 bulan"],
           ["Imbalan = 300.000.000 × 0,59% × 3", "Rp5.310.000"]
         ],
         mengapaSalah: {
           A: "Memakai uplift 5% milik sanksi, bukan imbalan bunga.",
-          B: "Dihitung sejak SKPLB terbit (4 bulan), bukan sejak batas 1 bulan berakhir.",
+          B: "Dihitung sejak SKPLB terbit (4 bulan, baik sampai SKPKPP 14 Januari maupun sampai SP2D 18 Januari), bukan sejak batas 1 bulan berakhir.",
           C: "Bulan dibulatkan ke bawah (2 bulan)."
         },
-        jebakan: "Imbalan bunga mulai setelah jatah 1 bulan DJP habis."
+        jebakan: "Imbalan bunga mulai setelah jatah 1 bulan DJP habis. Untuk SKPLB Pasal 17 ayat (1) (SPT tanpa permohonan pengembalian), jatah 1 bulan baru dihitung sejak permohonan pengembalian diterima, bukan sejak SKPLB terbit."
       },
-      dasarHukum: [{ pasal: "Pasal 11 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 11 ayat (3) dan (3a) UU KUP (imbalan bunga; tarif suku bunga acuan dibagi 12 tanpa uplift; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51 Tahun 2026, Diktum KELIMA (tarif bunga per bulan periode selanjutnya ditetapkan Direktur Strategi Stabilisasi Ekonomi atas nama Menteri Keuangan)", berlakuSejak: "2026-02-12" }],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 17B ayat (1) UU KUP (SKPLB atas permohonan pengembalian; batas pengembalian 1 bulan dihitung sejak SKPLB terbit)", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 140 ayat (3) huruf b PMK 81/2024 (batas 1 bulan sejak SKPLB Pasal 17 ayat (2) atau Pasal 17B terbit)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 11 ayat (3) dan (3a) UU KUP (imbalan bunga; tarif suku bunga acuan dibagi 12 tanpa uplift; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51 Tahun 2026, Diktum KELIMA (tarif bunga per bulan periode selanjutnya ditetapkan Direktur Strategi Stabilisasi Ekonomi atas nama Menteri Keuangan)", berlakuSejak: "2026-02-12" }, { pasal: "Pasal 140 ayat (2) dan (4) PMK 81/2024 (jumlah bulan imbalan bunga dihitung sampai tanggal penerbitan SKPKPP; bagian bulan dihitung penuh)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -5875,27 +5876,28 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 3,
-      stem: "SKPLB PPN Masa Januari 2026 atas nama PT Puspa Agro Mandiri sebesar Rp248.000.000 diterbitkan 14 Juli 2026; PT Puspa Agro Mandiri tidak mempunyai utang pajak. Batas waktu pengembalian 1 bulan sejak SKPLB diterbitkan berakhir 13 Agustus 2026, tetapi pengembalian baru dilakukan (SP2D terbit dan dana ditransfer ke rekening WP) pada 2 Desember 2026. Anggap tarif imbalan bunga per bulan yang berlaku pada tanggal dimulainya penghitungan 0,62% (uplift 0%), sedangkan tarif uplift 5% 1,03%. Imbalan bunga Pasal 11 ayat (3) yang diterima WP adalah ...",
+      stem: "SKPLB PPN Masa Januari 2026 atas nama PT Puspa Agro Mandiri sebesar Rp248.000.000 diterbitkan 14 Juli 2026 berdasarkan Pasal 17B UU KUP, setelah pemeriksaan atas permohonan pengembalian kelebihan pembayaran pajak dalam SPT Masa PPN; PT Puspa Agro Mandiri tidak mempunyai utang pajak. Batas waktu penerbitan Surat Keputusan Pengembalian Kelebihan Pembayaran Pajak (SKPKPP) 1 bulan sejak SKPLB diterbitkan berakhir 13 Agustus 2026, tetapi SKPKPP baru diterbitkan Jumat, 27 November 2026, dan pengembalian dilakukan (SP2D terbit dan dana ditransfer ke rekening WP) pada Rabu, 2 Desember 2026. Anggap tarif imbalan bunga per bulan yang berlaku pada tanggal dimulainya penghitungan 0,62% (uplift 0%), sedangkan tarif uplift 5% 1,03%. Imbalan bunga Pasal 11 ayat (3) yang diterima WP adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp6.150.400", B: "Rp10.217.600", C: "Rp7.688.000", D: "Rp4.612.800" },
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-baca", D: "salah-hitung" },
       pembahasan: {
-        inti: "Imbalan bunga Pasal 11 ayat (3) dihitung sejak batas waktu 1 bulan berakhir sampai saat pengembalian dilakukan, dengan tarif suku bunga acuan dibagi 12 tanpa uplift (ayat (3a)), bagian bulan dihitung penuh.",
+        inti: "Untuk SKPLB Pasal 17B (dan Pasal 17 ayat (2)), batas waktu penerbitan SKPKPP 1 bulan dihitung sejak SKPLB diterbitkan (Pasal 11 ayat (2) UU KUP; Pasal 140 ayat (3) huruf b PMK 81/2024). Imbalan bunga Pasal 11 ayat (3) dihitung sejak batas waktu itu berakhir; UU KUP menyebut sampai saat pengembalian dilakukan, Pasal 140 ayat (2) PMK 81/2024 menyebut sampai tanggal penerbitan SKPKPP. Di soal ini keduanya memberi 4 bulan (bagian bulan dihitung penuh), dengan tarif suku bunga acuan dibagi 12 tanpa uplift (ayat (3a)).",
         jejakHitung: [
-          ["1 bulan sejak SKPLB terbit 14 Jul 2026, hari terakhir", "13 Agustus 2026"],
+          ["1 bulan sejak SKPLB Pasal 17B terbit 14 Jul 2026, hari terakhir", "13 Agustus 2026"],
           ["14 Agu s.d. 13 Nov 2026", "3 bulan"],
-          ["14 Nov s.d. 2 Des 2026", "bagian bulan = 1"],
+          ["14 Nov s.d. 27 Nov 2026 (SKPKPP terbit; sampai SP2D 2 Des juga masih bulan ke-4)", "bagian bulan = 1"],
+          ["Jumlah bulan (acuan SKPKPP maupun SP2D)", "4 bulan"],
           ["Imbalan = 248.000.000 × 0,62% × 4", "Rp6.150.400"]
         ],
         mengapaSalah: {
           B: "Memakai uplift 5% milik sanksi; imbalan bunga memakai suku bunga acuan dibagi 12 tanpa uplift.",
-          C: "Dihitung sejak SKPLB terbit (5 bulan), bukan sejak batas 1 bulan berakhir.",
-          D: "Bagian bulan 14 November s.d. 2 Desember dibuang (3 bulan); bagian bulan dihitung penuh."
+          C: "Dihitung sejak SKPLB terbit (5 bulan, baik sampai SKPKPP 27 November maupun sampai SP2D 2 Desember), bukan sejak batas 1 bulan berakhir.",
+          D: "Bagian bulan sesudah 13 November (sampai SKPKPP 27 November atau SP2D 2 Desember) dibuang (3 bulan); bagian bulan dihitung penuh."
         },
-        jebakan: "Imbalan bunga baru berjalan setelah jatah 1 bulan DJP habis, dan tanpa uplift."
+        jebakan: "Imbalan bunga baru berjalan setelah jatah 1 bulan DJP habis, dan tanpa uplift. Untuk SKPLB Pasal 17 ayat (1) (SPT tanpa permohonan pengembalian), jatah 1 bulan dihitung sejak permohonan pengembalian diterima."
       },
-      dasarHukum: [{ pasal: "Pasal 11 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 11 ayat (3) dan (3a) UU KUP (imbalan bunga; tarif suku bunga acuan dibagi 12 tanpa uplift; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51 Tahun 2026, Diktum KELIMA (tarif bunga per bulan periode selanjutnya ditetapkan Direktur Strategi Stabilisasi Ekonomi atas nama Menteri Keuangan)", berlakuSejak: "2026-02-12" }],
+      dasarHukum: [{ pasal: "Pasal 11 ayat (2) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 17B ayat (1) UU KUP (SKPLB atas permohonan pengembalian; batas pengembalian 1 bulan dihitung sejak SKPLB terbit)", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 140 ayat (3) huruf b PMK 81/2024 (batas 1 bulan sejak SKPLB Pasal 17 ayat (2) atau Pasal 17B terbit)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 11 ayat (3) dan (3a) UU KUP (imbalan bunga; tarif suku bunga acuan dibagi 12 tanpa uplift; diubah UU 11/2020)", berlakuSejak: "2020-11-02" }, { pasal: "KMK 488/KMK.010/2021 s.t.d.t.d. KMK 51 Tahun 2026, Diktum KELIMA (tarif bunga per bulan periode selanjutnya ditetapkan Direktur Strategi Stabilisasi Ekonomi atas nama Menteri Keuangan)", berlakuSejak: "2026-02-12" }, { pasal: "Pasal 140 ayat (2) dan (4) PMK 81/2024 (jumlah bulan imbalan bunga dihitung sampai tanggal penerbitan SKPKPP; bagian bulan dihitung penuh)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅",
       kembaranDari: "A2-046",
@@ -8165,6 +8167,40 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "A2-117",
       sejak: "9.5.1"
+    },
+    {
+      id: "A2-265",
+      topik: "A2.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      laporanUjian: ["B-2026-10"],
+      kutipan: "Pasal 3 ayat (1) huruf b UU PPh: Yang tidak termasuk subjek pajak sebagaimana dimaksud dalam Pasal 2 adalah pejabat-pejabat perwakilan diplomatik dan konsulat atau pejabat-pejabat lain dari negara asing dan orang-orang yang diperbantukan kepada mereka yang bekerja pada dan bertempat tinggal bersama-sama mereka dengan syarat bukan warga negara Indonesia dan di Indonesia tidak menerima atau memperoleh penghasilan di luar jabatan atau pekerjaannya tersebut serta negara bersangkutan memberikan perlakuan timbal balik;",
+      stem: "Ms. Lena Varo, warga negara Veltria, menjabat Sekretaris Pertama pada Kedutaan Besar Veltria di Jakarta sejak Maret 2025 dan hanya menerima gaji dari Pemerintah Veltria. Ia tinggal di rumah dinas bersama Mr. Tomas Brek, warga negara Veltria yang diperbantukan kepadanya sebagai pengurus rumah tangga, dan Pak Darto, WNI yang dipekerjakan sebagai sopir dan juga tinggal di rumah dinas itu. Sejak April 2026, di luar jam kerjanya, Mr. Brek memberikan les privat bahasa Veltria kepada beberapa mahasiswa di Jakarta dan menerima honorarium dari mereka. Veltria memberikan perlakuan timbal balik kepada Indonesia. Berdasarkan kutipan, pernyataan yang paling tepat adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Ms. Varo bukan subjek pajak; Mr. Brek bukan subjek pajak karena diperbantukan dan bertempat tinggal bersama pejabat diplomatik; Pak Darto tetap subjek pajak dalam negeri karena pengecualian tidak berlaku bagi WNI", B: "Ms. Varo bukan subjek pajak; Mr. Brek merupakan subjek pajak karena memperoleh penghasilan di luar pekerjaannya di Indonesia; Pak Darto bukan subjek pajak karena bekerja pada dan bertempat tinggal bersama pejabat diplomatik", C: "Ms. Varo bukan subjek pajak; Mr. Brek merupakan subjek pajak karena memperoleh penghasilan di luar pekerjaannya di Indonesia; Pak Darto tetap subjek pajak dalam negeri karena pengecualian tidak berlaku bagi WNI", D: "Ms. Varo merupakan subjek pajak karena orang yang diperbantukan kepadanya memperoleh penghasilan lain di Indonesia; Mr. Brek merupakan subjek pajak; Pak Darto tetap subjek pajak dalam negeri karena pengecualian tidak berlaku bagi WNI" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Syarat pengecualian Pasal 3 ayat (1) huruf b UU PPh berlaku kumulatif dan sama bagi pejabat maupun orang yang diperbantukan: bukan WNI, di Indonesia tidak menerima atau memperoleh penghasilan di luar jabatan atau pekerjaannya, dan ada perlakuan timbal balik. Ms. Varo memenuhi semua syarat sehingga bukan subjek pajak. Mr. Brek memperoleh honorarium les privat di Indonesia, yaitu penghasilan di luar pekerjaannya, sehingga pengecualiannya gugur. Pak Darto WNI sehingga tetap subjek pajak dalam negeri.",
+        jejakHitung: [
+          ["Ms. Varo: bukan WNI, hanya gaji jabatan, timbal balik", "bukan subjek pajak"],
+          ["Mr. Brek: bukan WNI, diperbantukan, tinggal bersama", "syarat dasar terpenuhi"],
+          ["Mr. Brek: honorarium les privat di Indonesia", "penghasilan di luar pekerjaan → pengecualian gugur"],
+          ["Pak Darto: WNI", "tetap subjek pajak dalam negeri"]
+        ],
+        mengapaSalah: {
+          A: "Mengabaikan bahwa syarat \"di Indonesia tidak menerima atau memperoleh penghasilan di luar jabatan atau pekerjaannya\" juga berlaku bagi orang yang diperbantukan.",
+          B: "Syarat \"bukan warga negara Indonesia\" berlaku juga bagi orang yang bekerja pada pejabat; Pak Darto WNI sehingga tidak dikecualikan.",
+          D: "Syarat dinilai per orang; penghasilan lain milik Mr. Brek tidak menggugurkan pengecualian Ms. Varo, yang hanya menerima gaji jabatan."
+        },
+        jebakan: "Tinggal serumah dan diperbantukan kepada pejabat diplomatik tidak cukup: orang yang diperbantukan juga harus bukan WNI dan tidak memperoleh penghasilan lain di Indonesia."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf b UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 2 ayat (1) dan (3) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      kembaranDari: "A2-065",
+      sejak: "9.5.4"
     }
   ],
   kartu: [
@@ -8338,8 +8374,8 @@ UKP.register({
     },
     {
       id: "K-A2-04", judul: "Restitusi PPh Badan, kompensasi utang, dan imbalan bunga — PT Hijau Raya Agrindo", topik: "A2.9", estimasiMenit: 18,
-      narasi: "PT Hijau Raya Agrindo (tahun buku kalender, bukan WP kriteria tertentu, lebih bayar di atas ambang Pasal 17D) menyampaikan SPT Tahunan PPh Badan 2024 tepat waktu dengan lebih bayar Rp1.450.000.000 dan memohon restitusi; permohonan diterima lengkap Senin, 28 April 2025. Setelah pemeriksaan, SKPLB diterbitkan Kamis, 23 April 2026: pemeriksa tidak mengakui kredit PPh Pasal 22 Rp270.000.000 karena bukti pungut tidak ada, selebihnya diterima. Saat SKPLB terbit, perusahaan masih memiliki STP PPh Pasal 25 yang telah jatuh tempo dan belum dibayar sebesar Rp41.616.000 (pokok Rp40.000.000 dan bunga Rp1.616.000), tanpa utang pajak lain. Pemindahbukuan untuk melunasi STP dilakukan tepat waktu, tetapi sisa kelebihan baru ditransfer ke rekening perusahaan pada Selasa, 14 Juli 2026. Anggap tarif imbalan bunga (uplift 0%) yang berlaku pada tanggal dimulainya penghitungan 0,60% per bulan. Hitung hak perusahaan secara bertahap.",
-      data: [["Lebih bayar menurut SPT", "Rp1.450.000.000"], ["Permohonan diterima lengkap", "Senin, 28 April 2025"], ["Kredit PPh 22 tidak diakui", "Rp270.000.000"], ["SKPLB terbit", "Kamis, 23 April 2026"], ["STP PPh 25 belum dibayar", "Rp41.616.000"], ["Tanggal transfer pengembalian", "Selasa, 14 Juli 2026"], ["Tarif imbalan bunga (anggap)", "0,60% per bulan"]],
+      narasi: "PT Hijau Raya Agrindo (tahun buku kalender, bukan WP kriteria tertentu, lebih bayar di atas ambang Pasal 17D) menyampaikan SPT Tahunan PPh Badan 2024 tepat waktu dengan lebih bayar Rp1.450.000.000 dan memohon restitusi; permohonan diterima lengkap Senin, 28 April 2025. Setelah pemeriksaan, SKPLB diterbitkan Kamis, 23 April 2026: pemeriksa tidak mengakui kredit PPh Pasal 22 Rp270.000.000 karena bukti pungut tidak ada, selebihnya diterima. Saat SKPLB terbit, perusahaan masih memiliki STP PPh Pasal 25 yang telah jatuh tempo dan belum dibayar sebesar Rp41.616.000 (pokok Rp40.000.000 dan bunga Rp1.616.000), tanpa utang pajak lain. Pemindahbukuan untuk melunasi STP dilakukan tepat waktu, tetapi SKPKPP atas sisa kelebihan baru diterbitkan Selasa, 7 Juli 2026, dan dana ditransfer ke rekening perusahaan pada Selasa, 14 Juli 2026. Anggap tarif imbalan bunga (uplift 0%) yang berlaku pada tanggal dimulainya penghitungan 0,60% per bulan. Hitung hak perusahaan secara bertahap.",
+      data: [["Lebih bayar menurut SPT", "Rp1.450.000.000"], ["Permohonan diterima lengkap", "Senin, 28 April 2025"], ["Kredit PPh 22 tidak diakui", "Rp270.000.000"], ["SKPLB terbit", "Kamis, 23 April 2026"], ["STP PPh 25 belum dibayar", "Rp41.616.000"], ["SKPKPP terbit", "Selasa, 7 Juli 2026"], ["Tanggal transfer pengembalian", "Selasa, 14 Juli 2026"], ["Tarif imbalan bunga (anggap)", "0,60% per bulan"]],
       langkah: [
         { no: 1, pertanyaan: "Paling lambat kapan DJP harus menerbitkan surat ketetapan pajak atas permohonan restitusi ini?", tipe: "pilihan",
           opsi: { A: "27 April 2026", B: "27 Mei 2026", C: "30 April 2026", D: "27 Oktober 2025" }, jawaban: "A",
@@ -8356,8 +8392,8 @@ UKP.register({
           petunjuk: ["Lihat Pasal 11 ayat (2) UU KUP", "Jangka waktunya 1 bulan sejak SKPLB diterbitkan; tanggal terbit adalah hari pertama", "1 bulan sejak 23 April 2026 berakhir 22 Mei 2026"],
           penjelasan: "Pengembalian paling lama 1 bulan sejak SKPLB diterbitkan; transfer 14 Juli 2026 terlambat." },
         { no: 5, pertanyaan: "Berapa bulan imbalan bunga Pasal 11 ayat (3)?", tipe: "angka", jawaban: 2, toleransi: 0,
-          petunjuk: ["Hitung sejak batas 1 bulan berakhir (22 Mei 2026) sampai pengembalian", "23 Mei → 22 Juni = 1 bulan; 23 Juni → 14 Juli = 22 hari", "Bagian bulan dihitung penuh: 2 bulan"],
-          penjelasan: "Imbalan bunga dihitung sejak berakhirnya jangka 1 bulan sampai saat pengembalian, bagian bulan dihitung penuh, paling lama 24 bulan." },
+          petunjuk: ["Hitung sejak batas 1 bulan berakhir (22 Mei 2026) sampai SKPKPP terbit (7 Juli 2026); sampai transfer 14 Juli hasilnya sama", "23 Mei → 22 Juni = 1 bulan; 23 Juni → 7 Juli = 15 hari (sampai 14 Juli = 22 hari)", "Bagian bulan dihitung penuh: 2 bulan"],
+          penjelasan: "Imbalan bunga dihitung sejak berakhirnya jangka 1 bulan sampai saat pengembalian (Pasal 11 ayat (3) UU KUP); Pasal 140 ayat (2) PMK 81/2024 menghitung jumlah bulannya sampai tanggal penerbitan SKPKPP. Di kasus ini keduanya 2 bulan; bagian bulan dihitung penuh, paling lama 24 bulan." },
         { no: 6, pertanyaan: "Faktor uplift yang dipakai untuk imbalan bunga adalah ...", tipe: "pilihan",
           opsi: { A: "0%", B: "5%", C: "10%", D: "15%" }, jawaban: "A",
           petunjuk: ["Imbalan bunga diberikan pemerintah, bukan sanksi", "KMK tarif bunga mencantumkan imbalan bunga bersama Pasal 19", "Uplift 0%"],
@@ -8366,7 +8402,7 @@ UKP.register({
           petunjuk: ["Dasarnya jumlah yang terlambat dikembalikan", "1.138.384.000 × 0,60% = 6.830.304 per bulan", "6.830.304 × 2 = Rp13.660.608"],
           penjelasan: "Imbalan bunga = Rp1.138.384.000 × 0,60% × 2 = Rp13.660.608; bagian yang dipindahbukukan ke STP tepat waktu tidak diberi imbalan bunga." }
       ],
-      kesimpulan: "SKPLB terbit dalam 12 bulan (Pasal 17B) sebesar Rp1.180.000.000, diperhitungkan dulu dengan STP Rp41.616.000, lalu sisanya Rp1.138.384.000 wajib dikembalikan paling lama 22 Mei 2026. Karena baru ditransfer 14 Juli 2026, perusahaan berhak atas imbalan bunga Pasal 11 ayat (3) uplift 0% selama 2 bulan, yaitu Rp13.660.608.",
+      kesimpulan: "SKPLB terbit dalam 12 bulan (Pasal 17B) sebesar Rp1.180.000.000, diperhitungkan dulu dengan STP Rp41.616.000, lalu sisanya Rp1.138.384.000 wajib dikembalikan paling lama 22 Mei 2026. Karena SKPKPP baru terbit 7 Juli 2026 (dana ditransfer 14 Juli 2026), perusahaan berhak atas imbalan bunga Pasal 11 ayat (3) uplift 0% selama 2 bulan, yaitu Rp13.660.608.",
       kalkulatorRef: "sanksi-bunga"
     },
     {

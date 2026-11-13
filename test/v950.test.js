@@ -570,7 +570,7 @@ describe('v9.5 Latih: urutBank, bank= dan butir=', () => {
     assert.match(vb, /const nCek = nCekDari\(soalTopik\)/);
   });
   it('panel Latih menulis soal yang bisa dimulai; baris hitungan menyebut soal pengganti yang menunggu giliran', () => {
-    for (const x of ["' soal bisa dimulai'", "'soal bisa dimulai untuk saringan ini'", "' soal pengganti menunggu giliran.'", 'segBank, catatanBank, hitungBank, tautanBank, catatanButir']) assert.ok(vb.includes(x), x);
+    for (const x of ["' soal bisa dimulai'", "'soal bisa dimulai untuk saringan ini'", "' soal pengganti menunggu giliran.'", 'segBank, catatanBank, hitungBank, catatanBankKurang, tautanBank, catatanButir']) assert.ok(vb.includes(x), x);
     // pendek: kelebihan 1 sampai 3 huruf ditampilkan utuh; potongan di spasi terakhir
     assert.match(vb, /const pendek = \(t, n\) => \{ t = String\(t \|\| ''\); if \(t\.length <= n \+ 3\) return t;/);
   });

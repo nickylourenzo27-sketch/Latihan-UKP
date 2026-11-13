@@ -250,7 +250,7 @@ UKP.register({
           dasar: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf e UU PPh (UU HPP); PP 55/2022",
           berlakuSejak: "2022-01-01"
         },
-        { label: "Promosi/entertainment", nilai: "wajib daftar nominatif", dasar: "PMK 02/PMK.03/2010", berlakuSejak: "2010-01-05" },
+        { label: "Promosi/entertainment", nilai: "wajib daftar nominatif", dasar: "PMK 02/PMK.03/2010 Pasal 6 (promosi); SE-27/PJ.22/1986 (entertainment)", berlakuSejak: "2009-01-01" },
         {
           label: "Sanksi pajak, PPh badan",
           nilai: "koreksi positif (beda tetap)",
@@ -797,12 +797,7 @@ UKP.register({
       laporanUjian: ["B-2026-10"],
       stem: "Pihak-pihak berikut memperoleh penghasilan atau menjalankan kegiatan di Indonesia pada 2026. Semua pihak di bawah ini tidak termasuk subjek pajak menurut Pasal 3 UU PPh, KECUALI ...",
       kataKualifikasi: ["kecuali"],
-      opsi: {
-        A: "Kedutaan besar negara sahabat yang memberikan perlakuan timbal balik",
-        B: "Kantor perwakilan organisasi internasional yang ditetapkan Menteri Keuangan, Indonesia menjadi anggotanya, dan tidak menjalankan usaha di Indonesia",
-        C: "Kantor perwakilan organisasi internasional yang menyewakan sebagian ruang kantornya kepada perusahaan swasta untuk memperoleh penghasilan",
-        D: "Pejabat konsulat berkewarganegaraan asing yang tidak menjalankan usaha atau pekerjaan lain di Indonesia, dengan asas timbal balik"
-      },
+      opsi: { A: "Kedutaan besar negara sahabat yang memberikan perlakuan timbal balik", B: "Kantor perwakilan organisasi internasional yang ditetapkan Menteri Keuangan, Indonesia menjadi anggotanya, dan tidak menjalankan usaha di Indonesia", C: "Kantor perwakilan organisasi internasional yang menyewakan sebagian ruang kantornya kepada perusahaan swasta untuk memperoleh penghasilan", D: "Pejabat konsulat berkewarganegaraan asing yang tidak menjalankan usaha atau pekerjaan lain di Indonesia, dengan asas timbal balik" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
@@ -810,12 +805,12 @@ UKP.register({
         jejakHitung: [],
         mengapaSalah: {
           A: "Kantor perwakilan negara asing dikecualikan berdasarkan Pasal 3 ayat (1) huruf a.",
-          B: "Memenuhi seluruh syarat pengecualian Pasal 3 ayat (1) huruf c.",
+          B: "Memenuhi seluruh syarat Pasal 3 ayat (1) huruf c (Indonesia menjadi anggota dan tidak menjalankan usaha di Indonesia) dan telah ditetapkan dengan Keputusan Menteri Keuangan sebagaimana disyaratkan Pasal 3 ayat (2), sehingga bukan subjek pajak.",
           D: "Pejabat diplomatik/konsulat dikecualikan sepanjang bukan WNI dan tidak menjalankan usaha di Indonesia, dengan asas timbal balik."
         },
         jebakan: "Pengecualian organisasi internasional bersyarat; begitu ada kegiatan usaha di Indonesia, syaratnya gugur."
       },
-      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a–d UU PPh", berlakuSejak: "2009-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a–d dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 90,
       verifikasi: "✅"
     },
@@ -1136,7 +1131,7 @@ UKP.register({
         },
         jebakan: "Daftar nominatif adalah syarat formal: tanpa itu, biaya ditolak seluruhnya untuk bagian yang tidak tercantum."
       },
-      dasarHukum: [{ pasal: "PMK 02/PMK.03/2010", berlakuSejak: "2010-01-05" }, { pasal: "SE-27/PJ.22/1986", berlakuSejak: "1986-06-14" }, { pasal: "Pasal 6 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
+      dasarHukum: [{ pasal: "PMK 02/PMK.03/2010 Pasal 2 dan Pasal 6 ayat (1) dan (5)", berlakuSejak: "2009-01-01" }, { pasal: "SE-27/PJ.22/1986", berlakuSejak: "1986-06-14" }, { pasal: "Pasal 6 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 120,
       verifikasi: "✅"
     },
@@ -1314,7 +1309,7 @@ UKP.register({
         },
         jebakan: "Saldo yang dipakai adalah rata-rata saldo akhir bulan, dan modal termasuk pinjaman tanpa bunga dari pihak afiliasi."
       },
-      dasarHukum: [{ pasal: "Pasal 18 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 169/PMK.010/2015 Pasal 2–4", berlakuSejak: "2016-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 18 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 169/PMK.010/2015 Pasal 1 sampai Pasal 3 dan Lampiran (contoh 1)", berlakuSejak: "2016-01-01" }],
       anggaranDetik: 170,
       verifikasi: "✅"
     },
@@ -2803,11 +2798,7 @@ UKP.register({
         },
         jebakan: "Kasus panjang sengaja memuat data yang tidak dipakai; PPN adalah pajak yang dipungut dari pembeli, bukan bagian peredaran bruto penjual."
       },
-      dasarHukum: [
-        { pasal: "Pasal 6 ayat (1) huruf a dan ayat (2), Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "Pasal 31E ayat (1) UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" },
-        { pasal: "PMK 02/PMK.03/2010", berlakuSejak: "2010-01-05" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a dan ayat (2), Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 31E ayat (1) UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" }, { pasal: "SE-27/PJ.22/1986 (daftar nominatif entertainment)", berlakuSejak: "1986-06-14" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -3334,11 +3325,7 @@ UKP.register({
         },
         jebakan: "Pasal 31E bergantung pada definisi peredaran bruto: penghasilan final dan bukan objek masuk, PPN keluaran tidak."
       },
-      dasarHukum: [
-        { pasal: "Pasal 31E ayat (1) UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" },
-        { pasal: "Pasal 4 ayat (2) dan Pasal 9 ayat (1) UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PMK 02/PMK.03/2010; SE-27/PJ.22/1986 (daftar nominatif promosi dan entertainment)", berlakuSejak: "2010-01-05" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 31E ayat (1) UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09" }, { pasal: "Pasal 4 ayat (2) dan Pasal 9 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "SE-27/PJ.22/1986 (daftar nominatif entertainment)", berlakuSejak: "1986-06-14" }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -3696,34 +3683,27 @@ UKP.register({
       jenis: "konsep",
       kesulitan: 2,
       laporanUjian: ["C-2026-10"],
-      stem: "PT Silikon Global Indonesia adalah entitas konstituen grup multinasional dengan peredaran bruto konsolidasi sekitar EUR 2 miliar per tahun; entitas induk utamanya berkedudukan di Negara J yang telah menerapkan Income Inclusion Rule. Sejak 2023 PT Silikon menikmati pengurangan PPh badan 100% (tax holiday), sehingga tarif pajak efektif yurisdiksi Indonesia untuk grup tersebut pada Tahun Pajak 2025 diperkirakan 3%. Pernyataan yang paling tepat menurut PMK 136/2024 adalah ...",
+      stem: "PT Silikon Global Indonesia adalah entitas konstituen grup multinasional yang peredaran bruto konsolidasinya, menurut laporan keuangan konsolidasi entitas induk utama, sekitar EUR 2 miliar pada setiap Tahun Pajak 2021 sampai 2024; entitas induk utamanya berkedudukan di Negara J yang telah menerapkan Income Inclusion Rule (IIR). Sejak 2023 PT Silikon menikmati pengurangan PPh badan 100% (tax holiday), sehingga tarif pajak efektif yurisdiksi Indonesia untuk grup tersebut pada Tahun Pajak 2025 diperkirakan 3%. Pernyataan yang paling tepat menurut PMK 136/2024 adalah ...",
       kataKualifikasi: ["paling tepat"],
-      opsi: {
-        A: "Indonesia memberlakukan Pajak Minimum Domestik (DMTT) mulai Tahun Pajak 2025, sehingga pajak tambahan atas selisih tarif efektif yurisdiksi Indonesia terhadap 15% dapat terutang di Indonesia dan mengurangi pajak tambahan yang dipungut Negara J melalui IIR; ketentuan ini berlaku bagi grup dengan peredaran bruto konsolidasi paling sedikit EUR 750 juta.",
-        B: "Indonesia memberlakukan Pajak Minimum Domestik (DMTT) mulai Tahun Pajak 2026, sehingga pajak tambahan atas selisih tarif efektif yurisdiksi Indonesia terhadap 15% dapat terutang di Indonesia dan mengurangi pajak tambahan yang dipungut Negara J melalui IIR; ketentuan ini berlaku bagi grup dengan peredaran bruto konsolidasi paling sedikit EUR 750 juta.",
-        C: "Indonesia memberlakukan Pajak Minimum Domestik (DMTT) mulai Tahun Pajak 2025, sehingga pajak tambahan atas selisih tarif efektif yurisdiksi Indonesia terhadap 22% dapat terutang di Indonesia dan mengurangi pajak tambahan yang dipungut Negara J melalui IIR; ketentuan ini berlaku bagi grup dengan peredaran bruto konsolidasi paling sedikit EUR 750 juta.",
-        D: "Indonesia memberlakukan Pajak Minimum Domestik (DMTT) mulai Tahun Pajak 2025, sehingga pajak tambahan atas selisih tarif efektif yurisdiksi Indonesia terhadap 15% dapat terutang di Indonesia dan mengurangi pajak tambahan yang dipungut Negara J melalui IIR; ketentuan ini hanya berlaku bagi grup dengan peredaran bruto konsolidasi paling sedikit EUR 7,5 miliar, sehingga grup PT Silikon belum terkena."
-      },
+      opsi: { A: "Indonesia memberlakukan Pajak Minimum Domestik (DMTT) mulai Tahun Pajak 2025, sehingga pajak tambahan atas selisih tarif efektif yurisdiksi Indonesia terhadap 15% dapat terutang di Indonesia; sepanjang DMTT itu memenuhi kualifikasi QDMTT, jumlahnya dikurangkan dari pajak tambahan yang dihitung Negara J untuk IIR; ketentuan ini berlaku bagi grup yang peredaran bruto konsolidasinya paling sedikit EUR 750 juta dalam paling sedikit 2 dari 4 Tahun Pajak sebelum Tahun Pajak pengenaan.", B: "Indonesia memberlakukan Pajak Minimum Domestik (DMTT) mulai Tahun Pajak 2026, sehingga pajak tambahan atas selisih tarif efektif yurisdiksi Indonesia terhadap 15% dapat terutang di Indonesia; sepanjang DMTT itu memenuhi kualifikasi QDMTT, jumlahnya dikurangkan dari pajak tambahan yang dihitung Negara J untuk IIR; ketentuan ini berlaku bagi grup yang peredaran bruto konsolidasinya paling sedikit EUR 750 juta dalam paling sedikit 2 dari 4 Tahun Pajak sebelum Tahun Pajak pengenaan.", C: "Indonesia memberlakukan Pajak Minimum Domestik (DMTT) mulai Tahun Pajak 2025, sehingga pajak tambahan atas selisih tarif efektif yurisdiksi Indonesia terhadap 22% dapat terutang di Indonesia; sepanjang DMTT itu memenuhi kualifikasi QDMTT, jumlahnya dikurangkan dari pajak tambahan yang dihitung Negara J untuk IIR; ketentuan ini berlaku bagi grup yang peredaran bruto konsolidasinya paling sedikit EUR 750 juta dalam paling sedikit 2 dari 4 Tahun Pajak sebelum Tahun Pajak pengenaan.", D: "Indonesia memberlakukan Pajak Minimum Domestik (DMTT) mulai Tahun Pajak 2025, sehingga pajak tambahan atas selisih tarif efektif yurisdiksi Indonesia terhadap 15% dapat terutang di Indonesia; sepanjang DMTT itu memenuhi kualifikasi QDMTT, jumlahnya dikurangkan dari pajak tambahan yang dihitung Negara J untuk IIR; ketentuan ini hanya berlaku bagi grup yang peredaran bruto konsolidasinya paling sedikit EUR 7,5 miliar, sehingga grup PT Silikon belum terkena." },
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "PMK 136/2024 memberlakukan IIR dan DMTT mulai Tahun Pajak 2025 (UTPR 2026) bagi grup beromzet konsolidasi paling sedikit EUR 750 juta dengan tarif efektif minimum 15%. Dengan DMTT, pajak tambahan atas rendahnya tarif efektif akibat tax holiday dipungut di Indonesia lebih dulu, sehingga manfaat tax holiday bagi grup besar tergerus.",
+        inti: "PMK 136/2024 berlaku mulai 1 Januari 2025 (Pasal 74), sehingga IIR dan DMTT berlaku mulai Tahun Pajak 2025, sedangkan UTPR baru mulai 1 Januari 2026 (Pasal 73). GloBE mencakup grup yang peredaran bruto konsolidasinya paling sedikit EUR 750 juta dalam paling sedikit 2 dari 4 Tahun Pajak sebelum Tahun Pajak pengenaan (Pasal 2 ayat (1)), dengan Tarif Minimum 15% (Pasal 1 angka 33). Dengan DMTT, pajak tambahan atas rendahnya tarif efektif akibat tax holiday dipungut di Indonesia lebih dulu. Yang mengurangi pajak tambahan untuk IIR adalah QDMTT, yaitu DMTT yang memenuhi kualifikasi (Pasal 1 angka 42 dan Pasal 6 ayat (1)); pajak tambahan DMTT sendiri dihitung tanpa pengurangan itu (Pasal 6 ayat (6)).",
         jejakHitung: [
-          ["Omzet grup EUR 2 miliar", "≥ EUR 750 juta → tercakup"],
-          ["Tarif efektif 3% < 15%", "timbul pajak tambahan (top-up tax)"],
-          ["Saat berlaku", "IIR dan DMTT Tahun Pajak 2025; UTPR 2026"]
+          ["Omzet grup EUR 2 miliar pada 2021 sampai 2024 (4 dari 4 Tahun Pajak sebelum 2025)", "≥ EUR 750 juta dalam paling sedikit 2 dari 4 tahun → tercakup"],
+          ["Tarif efektif 3% < Tarif Minimum 15%", "persentase pajak tambahan 15% − 3% = 12%"],
+          ["Saat berlaku", "IIR dan DMTT Tahun Pajak 2025; UTPR 2026"],
+          ["Hubungan DMTT dengan IIR Negara J", "pajak tambahan untuk IIR dikurangkan dengan QDMTT (DMTT yang memenuhi kualifikasi)"]
         ],
         mengapaSalah: {
-          B: "Tahun Pajak 2026 adalah awal berlakunya UTPR; DMTT dan IIR berlaku mulai 2025.",
-          C: "Tarif acuan GloBE adalah tarif efektif minimum 15%, bukan tarif PPh badan 22%.",
-          D: "Ambang GloBE adalah EUR 750 juta; grup beromzet EUR 2 miliar tercakup."
+          B: "Tahun Pajak 2026 adalah awal berlakunya UTPR (Pasal 73); DMTT dan IIR berlaku mulai 2025 (Pasal 74).",
+          C: "Tarif acuan GloBE adalah Tarif Minimum 15% (Pasal 1 angka 33), bukan tarif PPh badan 22%.",
+          D: "Ambang GloBE adalah EUR 750 juta dalam paling sedikit 2 dari 4 Tahun Pajak sebelumnya (Pasal 2 ayat (1)); grup beromzet EUR 2 miliar tercakup."
         },
-        jebakan: "Hafalkan tiga pasangan: IIR/DMTT 2025 dan UTPR 2026; tarif minimum 15%; ambang EUR 750 juta."
+        jebakan: "Hafalkan tiga pasangan: IIR/DMTT 2025 dan UTPR 2026; Tarif Minimum 15%; ambang EUR 750 juta dalam 2 dari 4 Tahun Pajak sebelumnya. Yang dikurangkan dari pajak tambahan untuk IIR adalah QDMTT, yaitu DMTT yang memenuhi kualifikasi, bukan sembarang pajak minimum domestik."
       },
-      dasarHukum: [
-        { pasal: "PMK 136/2024 Pasal 73–74", berlakuSejak: "2025-01-01" },
-        { pasal: "PER-6/PJ/2026", berlakuSejak: "2026-05-04" }
-      ],
+      dasarHukum: [{ pasal: "PMK 136/2024 Pasal 1 angka 33 dan 42, Pasal 2 ayat (1), Pasal 6 ayat (1) dan (6)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 136/2024 Pasal 73–74", berlakuSejak: "2025-01-01" }, { pasal: "PER-6/PJ/2026", berlakuSejak: "2026-05-04" }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -4242,31 +4222,27 @@ UKP.register({
       kesulitan: 2,
       kasusId: "V-B6-08",
       laporanUjian: ["B-2026-10", "C-2026-10"],
-      stem: "Data untuk soal ini dan soal berikutnya (V-B6-08): PT Sehat Farma Nusantara (badan dalam negeri, pembukuan dalam Rupiah; transaksi valuta asing dicatat dengan kurs tengah BI tanggal transaksi) memakai lisensi formula obat dari Alpenwerk Pharma AG yang berkedudukan di Negara Alpinia (mitra P3B; tarif royalti menurut P3B 10%). Alpenwerk tidak mempunyai BUT di Indonesia, merupakan pemilik manfaat, dan Form DGT yang sah telah disampaikan melalui Coretax sebelum pembayaran. Royalti semester I 2026 sebesar USD80.000 jatuh tempo dan dibayar pada Jumat, 14 Agustus 2026; PT Sehat memotong PPh Pasal 26 dan membuat bukti potong pada tanggal itu, lalu mentransfer USD72.000 kepada Alpenwerk. Kurs KMK yang berlaku 12–18 Agustus 2026 Rp16.200 per USD dan kurs tengah BI 14 Agustus 2026 Rp16.260. PPh Pasal 26 disetor pada 15 September 2026, ketika kurs KMK yang berlaku Rp16.350 dan kurs tengah BI Rp16.310. PPh Pasal 26 yang wajib dipotong dan disetor PT Sehat dalam Rupiah adalah ...",
+      stem: "Data untuk soal ini dan soal berikutnya (V-B6-08): PT Sehat Farma Nusantara (badan dalam negeri, pembukuan dalam Rupiah; transaksi valuta asing dicatat dengan kurs tengah BI tanggal transaksi) memakai lisensi formula obat dari Alpenwerk Pharma AG yang berkedudukan di Negara Alpinia (mitra P3B; tarif royalti menurut P3B 10%). Alpenwerk tidak mempunyai BUT di Indonesia, merupakan pemilik manfaat, dan Form DGT yang sah telah disampaikan melalui Coretax sebelum pembayaran. Royalti semester I 2026 sebesar USD80.000 jatuh tempo dan dibayar pada Jumat, 14 Agustus 2026; PT Sehat memotong PPh Pasal 26 dan membuat bukti potong pada tanggal itu, lalu mentransfer USD72.000 kepada Alpenwerk. Kurs KMK yang berlaku Rabu 12 Agustus sampai Selasa 18 Agustus 2026 Rp16.200 per USD dan kurs tengah BI 14 Agustus 2026 Rp16.260. PPh Pasal 26 disetor pada Selasa, 18 Agustus 2026 (masih dalam periode kurs KMK yang sama), ketika kurs tengah BI Rp16.310. PPh Pasal 26 yang wajib dipotong dan disetor PT Sehat dalam Rupiah adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Rp259.200.000", B: "Rp130.080.000", C: "Rp129.600.000", D: "Rp130.800.000" },
+      opsi: { A: "Rp259.200.000", B: "Rp130.080.000", C: "Rp129.600.000", D: "Rp116.640.000" },
       kunci: "C",
-      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-baca" },
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
-        inti: "Atas royalti kepada pemilik manfaat di negara mitra P3B yang Form DGT-nya sah, PPh Pasal 26 dipotong dengan tarif P3B 10%. Jumlah valas dikonversi dengan kurs KMK yang berlaku saat pajak terutang/pemotongan (minggu 12–18 Agustus 2026), bukan kurs tengah BI (kurs pembukuan) dan bukan kurs saat setor.",
+        inti: "Atas royalti kepada pemilik manfaat di negara mitra P3B yang Form DGT-nya sah, PPh Pasal 26 dipotong dengan tarif P3B 10% dari jumlah bruto royalti. Jumlah valas dikonversi dengan kurs yang ditetapkan Menteri Keuangan (KMK mingguan), bukan kurs tengah BI yang dipakai untuk pembukuan. Pemotongan (14 Agustus) dan penyetoran (18 Agustus) jatuh dalam periode kurs KMK yang sama (Rabu 12 sampai Selasa 18 Agustus 2026), sehingga kursnya Rp16.200.",
         jejakHitung: [
           ["Tarif (Form DGT sah, pemilik manfaat)", "10% (P3B)"],
-          ["PPh 26 dalam valas = 10% × USD80.000", "USD8.000"],
-          ["Kurs KMK saat pemotongan (14 Agustus 2026)", "Rp16.200"],
+          ["PPh 26 dalam valas = 10% × USD80.000 (bruto)", "USD8.000"],
+          ["Kurs KMK periode 12–18 Agustus 2026 (potong 14 Agustus, setor 18 Agustus)", "Rp16.200"],
           ["PPh 26 = 8.000 × 16.200", "Rp129.600.000"]
         ],
         mengapaSalah: {
           A: "Memakai tarif domestik 20% (USD16.000 × 16.200), padahal Form DGT sah dan Alpenwerk pemilik manfaat sehingga tarif P3B 10% berlaku.",
-          B: "Memakai kurs tengah BI Rp16.260; kurs tengah BI untuk pembukuan, sedangkan PPh yang dipotong dalam valas dikonversi dengan kurs KMK.",
-          D: "Memakai kurs KMK saat penyetoran Rp16.350; kurs yang dipakai adalah yang berlaku saat pajak terutang atau saat pemotongan."
+          B: "Memakai kurs tengah BI Rp16.260; kurs tengah BI untuk pembukuan, sedangkan dasar pelunasan pajak dalam valas adalah kurs yang ditetapkan Menteri Keuangan.",
+          D: "Menghitung dari USD72.000 yang ditransfer (10% × 72.000 × 16.200); PPh Pasal 26 dihitung dari jumlah bruto royalti USD80.000, dan USD72.000 adalah sisa setelah pajak dipotong."
         },
-        jebakan: "Tiga kurs tersedia dalam soal (KMK saat potong, kurs tengah BI, KMK saat setor); hanya kurs KMK saat terutang/pemotongan yang menentukan Rupiah PPh 26."
+        jebakan: "Data memuat dua kurs untuk tanggal yang sama (KMK dan kurs tengah BI) serta dua jumlah (bruto dan yang ditransfer); dasar pajak adalah bruto dengan kurs KMK. Naskah KMK kurs tidak menyebut apakah periode kurs untuk PPh Pasal 26 atas penghasilan badan ditentukan saat terutang atau saat setor; di soal ini keduanya dalam periode yang sama."
       },
-      dasarHukum: [
-        { pasal: "Pasal 26 ayat (1) dan Pasal 32A UU PPh", berlakuSejak: "2009-01-01" },
-        { pasal: "PMK 112/2025 (penerapan P3B, Form DGT; menggantikan PER-25/PJ/2018 yang berlaku s.d. 30 Desember 2025)", berlakuSejak: "2025-12-31" },
-        { pasal: "KMK nilai kurs mingguan (berlaku Rabu–Selasa)" }
-      ],
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) dan Pasal 32A UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (penerapan P3B, Form DGT; menggantikan PER-25/PJ/2018 yang berlaku s.d. 30 Desember 2025)", berlakuSejak: "2025-12-31" }, { pasal: "KMK nilai kurs mingguan (mis. KMK 50/MK/EF.2/2026 diktum KESATU; berlaku Rabu sampai Selasa)", berlakuSejak: null }],
       anggaranDetik: 150,
       verifikasi: "✅"
     },
@@ -4278,29 +4254,29 @@ UKP.register({
       kesulitan: 3,
       kasusId: "V-B6-08",
       laporanUjian: ["B-2026-10", "C-2026-10"],
-      stem: "Melanjutkan data PT Sehat Farma Nusantara (V-B6-08): lisensi dipakai untuk memproduksi obat yang dijual di dalam negeri, Alpenwerk tidak mempunyai hubungan istimewa dengan PT Sehat, dan tarif royalti sesuai harga pasar. PT Sehat mencatat beban royalti dengan kurs tengah BI tanggal transaksi, mencatat utang PPh Pasal 26 sebesar jumlah Rupiah yang wajib disetor, dan membukukan selisihnya sebagai selisih kurs; penyetoran 15 September 2026 dicatat sebesar utang PPh Pasal 26 tersebut. Pernyataan yang tepat mengenai pencatatan dan perlakuan fiskal pembayaran royalti tersebut adalah ...",
+      stem: "Melanjutkan data PT Sehat Farma Nusantara (V-B6-08): lisensi dipakai untuk memproduksi obat yang dijual di dalam negeri, Alpenwerk tidak mempunyai hubungan istimewa dengan PT Sehat, dan tarif royalti sesuai harga pasar. PT Sehat mencatat beban royalti dengan kurs tengah BI tanggal transaksi, mencatat utang PPh Pasal 26 sebesar jumlah Rupiah yang wajib disetor, dan membukukan selisihnya sebagai selisih kurs; penyetoran 18 Agustus 2026 dicatat sebesar utang PPh Pasal 26 tersebut. Pernyataan yang tepat mengenai pencatatan dan perlakuan fiskal pembayaran royalti tersebut adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Beban royalti dicatat Rp1.296.000.000 dengan kurs KMK sehingga tidak timbul selisih kurs, dan seluruhnya dapat dikurangkan", B: "Beban royalti Rp1.300.800.000 dapat dikurangkan seluruhnya; keuntungan selisih kurs Rp480.000 diakui sebagai penghasilan, dan penyetoran PPh Pasal 26 tidak menimbulkan selisih kurs", C: "Beban royalti yang dapat dikurangkan hanya Rp1.170.720.000 (USD72.000 yang ditransfer), sedangkan PPh Pasal 26 Rp129.600.000 merupakan beban pajak yang dikoreksi positif", D: "Beban royalti Rp1.300.800.000 dapat dikurangkan, tetapi saat penyetoran timbul kerugian selisih kurs Rp1.200.000 karena kurs KMK naik menjadi Rp16.350" },
+      opsi: { A: "Beban royalti dicatat Rp1.296.000.000 dengan kurs KMK sehingga tidak timbul selisih kurs, dan seluruhnya dapat dikurangkan", B: "Beban royalti Rp1.300.800.000 dapat dikurangkan seluruhnya; keuntungan selisih kurs Rp480.000 diakui sebagai penghasilan, dan penyetoran PPh Pasal 26 tidak menimbulkan selisih kurs", C: "Beban royalti yang dapat dikurangkan hanya Rp1.170.720.000 (USD72.000 yang ditransfer), sedangkan PPh Pasal 26 Rp129.600.000 merupakan beban pajak yang dikoreksi positif", D: "Beban royalti Rp1.300.800.000 dapat dikurangkan, tetapi saat penyetoran 18 Agustus 2026 timbul kerugian selisih kurs Rp400.000 karena kurs tengah BI naik menjadi Rp16.310" },
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        inti: "Royalti bruto USD80.000 adalah biaya 3M (Pasal 6 ayat (1) huruf a) yang dicatat dengan kurs pembukuan Rp16.260. Bagian royalti yang dilunasi dengan PPh 26 Rupiah (kurs KMK) menimbulkan selisih: pajak Rp129.600.000 − bagian valas Rp130.080.000 = keuntungan selisih kurs Rp480.000, diakui mengikuti pembukuan yang taat asas. Utang PPh 26 sudah dalam Rupiah sehingga penyetoran tidak menimbulkan selisih kurs.",
+        inti: "Royalti bruto USD80.000 adalah biaya 3M (Pasal 6 ayat (1) huruf a) yang dicatat dengan kurs pembukuan Rp16.260. Bagian royalti yang dilunasi dengan PPh 26 Rupiah (kurs KMK) menimbulkan selisih: bagian valas Rp130.080.000 − pajak Rp129.600.000 = keuntungan selisih kurs Rp480.000, diakui mengikuti pembukuan yang taat asas. Utang PPh 26 sudah dalam Rupiah sehingga penyetoran tidak menimbulkan selisih kurs.",
         jejakHitung: [
           ["Debit beban royalti = 80.000 × 16.260", "Rp1.300.800.000"],
           ["Kredit kas = 72.000 × 16.260", "Rp1.170.720.000"],
           ["Kredit utang PPh 26 = 8.000 × 16.200 (kurs KMK)", "Rp129.600.000"],
           ["Bagian valas yang dilunasi dengan pajak = 8.000 × 16.260", "Rp130.080.000"],
           ["Kredit keuntungan selisih kurs = 130.080.000 − 129.600.000", "Rp480.000"],
-          ["Setor 15 September 2026 (utang Rupiah)", "tidak ada selisih kurs; tidak ada koreksi fiskal"]
+          ["Setor 18 Agustus 2026 (utang Rupiah Rp129.600.000)", "tidak ada selisih kurs; tidak ada koreksi fiskal"]
         ],
         mengapaSalah: {
-          A: "Kurs KMK hanya untuk menghitung DPP dan pajak terutang; pembukuan memakai kurs transaksi/kurs tengah BI.",
+          A: "Kurs KMK hanya untuk menghitung pajak yang dilunasi; pembukuan memakai kurs transaksi/kurs tengah BI.",
           C: "Biaya adalah royalti bruto; PPh 26 yang dipotong adalah pajak milik Alpenwerk yang dilunasi dari bagian royalti, bukan PPh yang ditanggung PT Sehat.",
-          D: "Utang PPh 26 sudah dinyatakan dalam Rupiah sejak pemotongan; kurs saat setor tidak dipakai sehingga tidak ada selisih kurs saat setor."
+          D: "Utang PPh 26 sudah dinyatakan dalam Rupiah sejak pemotongan dan disetor sebesar Rp129.600.000; kurs tengah BI tanggal setor tidak dipakai sehingga tidak ada selisih kurs saat setor."
         },
-        jebakan: "Selisih kurs diukur dengan kurs pembukuan; kurs KMK masuk ke selisih kurs hanya pada bagian valas yang dilunasi dengan pajak Rupiah."
+        jebakan: "Selisih kurs diukur dengan kurs pembukuan; kurs KMK masuk ke selisih kurs hanya pada bagian valas yang dilunasi dengan pajak Rupiah. Utang yang sudah dalam Rupiah tidak dijabarkan ulang dengan kurs apa pun."
       },
-      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a dan huruf e UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 4 ayat (1) huruf l UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 94/2010 Pasal 9", berlakuSejak: "2010-12-30" }, { pasal: "KMK nilai kurs mingguan", berlakuSejak: null }],
+      dasarHukum: [{ pasal: "Pasal 6 ayat (1) huruf a dan huruf e UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }, { pasal: "Pasal 4 ayat (1) huruf l UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PP 94/2010 Pasal 9", berlakuSejak: "2010-12-30" }, { pasal: "KMK nilai kurs mingguan (mis. KMK 50/MK/EF.2/2026 diktum KESATU; berlaku Rabu sampai Selasa)", berlakuSejak: null }],
       anggaranDetik: 200,
       verifikasi: "✅"
     },
@@ -6050,12 +6026,12 @@ UKP.register({
         jejakHitung: [],
         mengapaSalah: {
           A: "Kantor perwakilan negara asing dikecualikan berdasarkan Pasal 3 ayat (1) huruf a.",
-          B: "Memenuhi syarat Pasal 3 ayat (1) huruf c: Indonesia anggota dan kegiatannya hanya memberi pinjaman kepada pemerintah dari iuran anggota.",
+          B: "Memenuhi syarat Pasal 3 ayat (1) huruf c (Indonesia anggota dan kegiatannya hanya memberi pinjaman kepada pemerintah dari iuran anggota) dan telah ditetapkan dengan Keputusan Menteri Keuangan sebagaimana disyaratkan Pasal 3 ayat (2), sehingga dikecualikan.",
           D: "Orang yang diperbantukan kepada pejabat diplomatik, bekerja pada dan tinggal bersama mereka, bukan WNI, tanpa penghasilan lain, dengan timbal balik, dikecualikan berdasarkan Pasal 3 ayat (1) huruf b."
         },
         jebakan: "Pengecualian bagi orang pribadi dalam Pasal 3 selalu mensyaratkan bukan warga negara Indonesia; status organisasi yang dikecualikan tidak menular kepada pejabat berkewarganegaraan Indonesia."
       },
-      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a sampai d UU PPh", berlakuSejak: "2009-01-01" }],
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a sampai d dan ayat (2) UU PPh", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 90,
       verifikasi: "✅",
       kembaranDari: "B6-004",
@@ -9491,6 +9467,169 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "B6-094",
       sejak: "9.5.1"
+    },
+    {
+      id: "B6-284",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Sinar Elok Perkakas memproduksi peralatan dapur dan juga menyewakan dua lantai gedung kantornya kepada pihak lain; penghasilan sewa ruang tersebut dikenai PPh final. Dalam laporan laba rugi Tahun Pajak 2025 tercatat biaya promosi Rp684.000.000, terdiri atas iklan produk di televisi dan media daring, pameran produk, dan sponsorship lomba memasak Rp612.000.000 serta iklan penawaran sewa ruang kantor Rp72.000.000, dan biaya entertainment relasi usaha Rp180.000.000. Daftar nominatif yang dilampirkan pada SPT Tahunan PPh Badan memuat seluruh biaya promosi kecuali Rp58.000.000 (bagian biaya pameran dan sponsorship yang data penerimanya tidak lengkap), dan memuat biaya entertainment Rp146.000.000. Total koreksi fiskal positif atas biaya promosi dan biaya entertainment tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp164.000.000", B: "Rp92.000.000", C: "Rp130.000.000", D: "Rp106.000.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Biaya promosi untuk mendapatkan penghasilan yang dikenai PPh final tidak termasuk biaya promosi yang dapat dikurangkan (Pasal 3 huruf b PMK 02/PMK.03/2010), walaupun tercantum dalam daftar nominatif. Biaya promosi kepada pihak lain yang tidak tercantum dalam daftar nominatif tidak dapat dikurangkan (Pasal 6 ayat (5)), dan biaya entertainment yang tidak didukung daftar nominatif juga dikoreksi.",
+        jejakHitung: [
+          ["Iklan sewa ruang (untuk penghasilan PPh final)", "Rp72.000.000"],
+          ["Promosi produk tanpa daftar nominatif", "Rp58.000.000"],
+          ["Entertainment tanpa daftar nominatif = 180.000.000 − 146.000.000", "Rp34.000.000"],
+          ["Koreksi positif = 72.000.000 + 58.000.000 + 34.000.000", "Rp164.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Hanya mengoreksi pos tanpa daftar nominatif (58 juta + 34 juta); iklan sewa ruang adalah biaya promosi untuk penghasilan yang dikenai PPh final sehingga tetap tidak dapat dikurangkan walaupun tercantum dalam daftar nominatif.",
+          C: "Tidak mengoreksi entertainment Rp34.000.000; biaya entertainment juga harus didukung daftar nominatif yang dilampirkan pada SPT.",
+          D: "Menganggap promosi produk Rp58.000.000 tetap dapat dikurangkan; biaya promosi kepada pihak lain yang tidak dimuat dalam daftar nominatif tidak dapat dikurangkan."
+        },
+        jebakan: "Daftar nominatif adalah syarat formal, tetapi tercantum dalam daftar nominatif tidak membuat biaya promosi untuk penghasilan final menjadi dapat dikurangkan. Periksa dulu untuk penghasilan apa biaya itu dikeluarkan, lalu periksa daftar nominatifnya."
+      },
+      dasarHukum: [{ pasal: "PMK 02/PMK.03/2010 Pasal 3 huruf b dan Pasal 6", berlakuSejak: "2009-01-01" }, { pasal: "SE-27/PJ.22/1986", berlakuSejak: "1986-06-14" }, { pasal: "Pasal 6 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 130,
+      verifikasi: "✅",
+      kembaranDari: "B6-014",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B6-285",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Prima Kemasan Lestari (industri kemasan plastik; bukan bank, lembaga pembiayaan, atau perusahaan asuransi; tidak bergerak di bidang pertambangan atau infrastruktur; tidak memperoleh penghasilan yang dikenai PPh final) mempunyai data Tahun Pajak 2025 berikut. Rata-rata saldo akhir bulan: pinjaman bank Rp12.900.000.000, utang dagang berbunga Rp2.100.000.000, ekuitas menurut standar akuntansi keuangan Rp3.150.000.000, dan pinjaman tanpa bunga dari PT induk Rp750.000.000. Saldo per 31 Desember 2025: pinjaman bank Rp15.600.000.000, utang dagang berbunga Rp2.400.000.000, ekuitas Rp3.000.000.000, dan pinjaman tanpa bunga dari PT induk Rp750.000.000. Biaya pinjaman 2025 terdiri atas bunga bank Rp1.044.000.000, provisi pinjaman Rp30.000.000, dan bunga utang dagang Rp126.000.000. Koreksi fiskal positif biaya pinjaman berdasarkan ketentuan DER adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp192.000.000", B: "Rp240.000.000", C: "Rp200.000.000", D: "Rp0" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
+      pembahasan: {
+        inti: "Utang dan modal dihitung dari rata-rata saldo akhir bulan. Utang meliputi utang jangka panjang dan jangka pendek termasuk utang dagang berbunga (Rp15.000.000.000); modal meliputi ekuitas menurut standar akuntansi ditambah pinjaman tanpa bunga dari pihak yang mempunyai hubungan istimewa (Rp3.900.000.000). DER 3,85 : 1 tidak melebihi 4 : 1, sehingga tidak ada koreksi biaya pinjaman berdasarkan ketentuan DER.",
+        jejakHitung: [
+          ["Rata-rata utang = 12.900.000.000 + 2.100.000.000", "Rp15.000.000.000"],
+          ["Rata-rata modal = 3.150.000.000 + 750.000.000", "Rp3.900.000.000"],
+          ["DER = 15.000.000.000 ÷ 3.900.000.000", "3,85 : 1 (tidak melebihi 4 : 1)"],
+          ["Biaya pinjaman = 1.044.000.000 + 30.000.000 + 126.000.000", "Rp1.200.000.000"],
+          ["Koreksi berdasarkan DER", "Rp0"]
+        ],
+        mengapaSalah: {
+          A: "Tidak memasukkan pinjaman tanpa bunga dari PT induk ke modal: DER 15.000 ÷ 3.150 = 4,76 : 1, boleh 4 ÷ 4,76 × 1.200.000.000 = Rp1.008.000.000, koreksi Rp192.000.000. Pinjaman tanpa bunga dari pihak afiliasi termasuk modal.",
+          B: "Memperlakukan pinjaman tanpa bunga dari PT induk sebagai utang: DER 15.750 ÷ 3.150 = 5 : 1, koreksi 1/5 × 1.200.000.000 = Rp240.000.000. Pinjaman itu termasuk modal, bukan utang.",
+          C: "Memakai saldo 31 Desember 2025: DER 18.000 ÷ 3.750 = 4,8 : 1, koreksi 1.200.000.000 × (1 − 4/4,8) = Rp200.000.000. Yang dipakai adalah rata-rata saldo akhir bulan."
+        },
+        jebakan: "Saldo akhir tahun yang lebih tinggi menggoda untuk dipakai, padahal ketentuan DER memakai rata-rata saldo akhir bulan; pinjaman tanpa bunga dari pihak afiliasi menambah modal sehingga DER bisa turun di bawah 4 : 1."
+      },
+      dasarHukum: [{ pasal: "Pasal 18 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 169/PMK.010/2015 Pasal 1 sampai 3", berlakuSejak: "2016-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-020",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B6-288",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Sinar Kertas Nusantara, distributor alat tulis kantor (bukan bank atau lembaga pembiayaan; peredaran bruto 2026 Rp84 miliar sehingga tidak memperoleh fasilitas Pasal 31E, tarif 22%), menyusun rekonsiliasi fiskal Tahun Pajak 2026 dengan data koreksi berikut: penyusutan menurut akuntansi lebih besar daripada penyusutan fiskal Rp70.000.000; beban cadangan imbalan pascakerja yang belum dibayarkan Rp90.000.000; beban penyisihan piutang tak tertagih Rp35.000.000; biaya liburan keluarga pemegang saham yang dibebankan perusahaan Rp20.000.000; sanksi denda administrasi STP Rp9.000.000; dan penghasilan sewa sebagian gedung kantor yang telah dikenai PPh final Rp60.000.000. Menurut PSAK 212 (d/h PSAK 46), aset pajak tangguhan yang timbul dari koreksi Tahun Pajak 2026 tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp29.700.000", B: "Rp49.280.000", C: "Rp42.900.000", D: "Rp48.750.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "final-nonfinal", B: "salah-klasifikasi", D: "angka-usang" },
+      pembahasan: {
+        inti: "Hanya beda temporer yang menimbulkan pajak tangguhan: penyusutan akuntansi yang melebihi penyusutan fiskal, cadangan imbalan pascakerja yang belum dibayar, dan penyisihan piutang tak tertagih (perusahaan dagang tidak termasuk pengecualian Pasal 9 ayat (1) huruf c). Biaya pribadi pemegang saham (Pasal 9 ayat (1) huruf b), sanksi administrasi (Pasal 9 ayat (1) huruf k), dan penghasilan sewa yang dikenai PPh final (Pasal 4 ayat (2) huruf d) adalah beda tetap dan tidak menimbulkan pajak tangguhan.",
+        jejakHitung: [
+          ["Beda temporer = 70 + 90 + 35 (juta)", "Rp195.000.000"],
+          ["Aset pajak tangguhan = 22% × 195.000.000", "Rp42.900.000"],
+          ["Cek per pos: 15.400.000 + 19.800.000 + 7.700.000", "Rp42.900.000"]
+        ],
+        mengapaSalah: {
+          A: "Mengurangkan penghasilan sewa yang dikenai PPh final ((195 − 60) juta × 22%); penghasilan final adalah beda tetap, bukan beda temporer.",
+          B: "Memasukkan beda tetap biaya pribadi pemegang saham dan sanksi denda ((195 + 20 + 9) juta × 22%).",
+          D: "Memakai tarif lama 25% (25% × 195 juta); tarif badan sejak Tahun Pajak 2022 adalah 22%."
+        },
+        jebakan: "Soal lintas Akuntansi Perpajakan: pilah dulu beda tetap dan beda temporer, lalu kalikan beda temporer dengan tarif yang berlaku saat pemulihan (22%). Koreksi positif tidak otomatis menimbulkan aset pajak tangguhan."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan (d/h PSAK 46)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 9 ayat (1) huruf b, huruf c, dan huruf k serta Pasal 11 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) huruf d UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 17 ayat (1) huruf b UU PPh (UU HPP)", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 170,
+      verifikasi: "✅",
+      kembaranDari: "B6-018",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B6-289",
+      topik: "B6.8",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      laporanUjian: ["C-2026-10"],
+      stem: "PT Kobalt Timur Raya, produsen bahan baku baterai di Maluku Utara, adalah satu-satunya entitas konstituen di Indonesia dari sebuah grup multinasional. Entitas induk utamanya berkedudukan di Negara R yang sampai akhir 2025 belum menerapkan Income Inclusion Rule. Peredaran bruto dalam laporan keuangan konsolidasi entitas induk utama: 2021 EUR690 juta, 2022 EUR735 juta, 2023 EUR790 juta, dan 2024 EUR845 juta. Karena menikmati fasilitas pengurangan PPh badan, Tarif Pajak Efektif yurisdiksi Indonesia untuk grup itu pada Tahun Pajak 2025 sebesar 4%. Pernyataan yang paling tepat menurut PMK 136/2024 untuk Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Grup belum tercakup GloBE pada Tahun Pajak 2025, karena peredaran bruto konsolidasi paling sedikit EUR750 juta harus dipenuhi dalam 3 dari 4 Tahun Pajak sebelumnya, sehingga belum ada pajak tambahan yang terutang di Indonesia.", B: "Grup tercakup GloBE pada Tahun Pajak 2025; karena Negara R belum menerapkan IIR, pajak tambahan atas selisih Tarif Minimum 15% dengan tarif efektif 4% dikenakan di Indonesia melalui UTPR untuk Tahun Pajak 2025.", C: "Grup tercakup GloBE pada Tahun Pajak 2025; pajak tambahan berdasarkan DMTT atas selisih Tarif Minimum 15% dengan tarif efektif 4% dikenakan kepada PT Kobalt di Indonesia, walaupun Negara R belum menerapkan IIR.", D: "Grup tercakup GloBE pada Tahun Pajak 2025; pajak tambahan berdasarkan DMTT atas selisih tarif PPh badan 22% dengan tarif efektif 4% dikenakan kepada PT Kobalt di Indonesia, walaupun Negara R belum menerapkan IIR." },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "GloBE berlaku bila peredaran bruto konsolidasi grup paling sedikit EUR750 juta dalam paling sedikit 2 dari 4 Tahun Pajak sebelum Tahun Pajak pengenaan (Pasal 2 ayat (1)); di sini terpenuhi pada 2023 dan 2024. PMK 136/2024 berlaku 1 Januari 2025, kecuali UTPR yang baru berlaku 1 Januari 2026 (Pasal 73 dan 74). DMTT dikenakan kepada entitas konstituen di Indonesia (Pasal 52 ayat (1)) tanpa bergantung pada ada atau tidaknya IIR di negara entitas induk, dengan persentase pajak tambahan sebesar Tarif Minimum 15% dikurangi Tarif Pajak Efektif.",
+        jejakHitung: [
+          ["Tahun dengan peredaran bruto ≥ EUR750 juta (2021 sampai 2024)", "2023 dan 2024 = 2 dari 4 → tercakup"],
+          ["Tarif Pajak Efektif 4% < Tarif Minimum 15%", "persentase pajak tambahan 11%"],
+          ["Saat berlaku", "IIR dan DMTT 1 Januari 2025; UTPR 1 Januari 2026"]
+        ],
+        mengapaSalah: {
+          A: "Pasal 2 ayat (1) huruf b mensyaratkan 2 dari 4 Tahun Pajak sebelumnya, bukan 3; syarat itu terpenuhi pada 2023 dan 2024.",
+          B: "UTPR baru berlaku 1 Januari 2026 (Pasal 73); lagi pula pajak tambahan atas entitas Indonesia sendiri dikenakan melalui DMTT, bukan UTPR.",
+          D: "Persentase pajak tambahan adalah Tarif Minimum 15% dikurangi Tarif Pajak Efektif, bukan tarif PPh badan 22%."
+        },
+        jebakan: "Uji cakupan memakai 2 dari 4 Tahun Pajak sebelumnya; DMTT berdiri sendiri dan tidak menunggu IIR negara induk; UTPR baru 2026; acuan selalu Tarif Minimum 15%."
+      },
+      dasarHukum: [{ pasal: "PMK 136/2024 Pasal 2 ayat (1), Pasal 52 ayat (1), Pasal 73 dan 74", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      kembaranDari: "B6-095",
+      sejak: "9.5.4"
+    },
+    {
+      id: "B6-290",
+      topik: "B6.8",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      laporanUjian: ["C-2026-10"],
+      stem: "PT Kobalt Mandiri Halmahera menikmati pengurangan PPh badan (tax holiday) dan merupakan satu-satunya entitas konstituen di Indonesia dari grup multinasional dengan peredaran bruto konsolidasi di atas EUR1,8 miliar dalam empat tahun terakhir; Indonesia memungut DMTT. Data GloBE Tahun Pajak 2026: laba GloBE Rp400.000.000.000; pajak tercakup yang disesuaikan Rp24.000.000.000; biaya gaji yang memenuhi syarat Rp60.000.000.000; nilai tercatat harta berwujud yang memenuhi syarat Rp700.000.000.000 pada awal tahun dan Rp900.000.000.000 pada akhir tahun. Tidak ada safe harbour yang terpenuhi, tidak ada Pajak Tambahan Adisional Kini, dan tidak ada penyesuaian lain. Dengan persentase SBIE masa transisi yang berlaku untuk Tahun Pajak 2026, pajak tambahan berdasarkan DMTT PT Kobalt Mandiri adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp36.000.000.000", B: "Rp30.009.600.000", C: "Rp29.498.400.000", D: "Rp30.164.400.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", C: "salah-baca" },
+      pembahasan: {
+        inti: "Pajak tambahan DMTT = (Tarif Minimum 15% − Tarif Pajak Efektif) × (Laba GloBE Bersih − SBIE). Tarif Pajak Efektif 6%. SBIE Tahun Pajak 2026 memakai 9,4% atas biaya gaji dan 7,4% atas jumlah tercatat harta berwujud, yang dihitung dari rata-rata awal dan akhir tahun. Karena PT Kobalt Mandiri satu-satunya entitas konstituen di Indonesia, seluruh pajak tambahan dialokasikan kepadanya.",
+        jejakHitung: [
+          ["Tarif Pajak Efektif = 24 ÷ 400 (miliar)", "6%"],
+          ["Persentase pajak tambahan = 15% − 6%", "9%"],
+          ["Rata-rata harta berwujud = (700 M + 900 M) ÷ 2", "Rp800.000.000.000"],
+          ["SBIE = 9,4% × 60 M + 7,4% × 800 M", "Rp5.640.000.000 + Rp59.200.000.000 = Rp64.840.000.000"],
+          ["Laba ekses = 400.000.000.000 − 64.840.000.000", "Rp335.160.000.000"],
+          ["DMTT = 9% × 335.160.000.000", "Rp30.164.400.000"]
+        ],
+        mengapaSalah: {
+          A: "Lupa mengurangkan SBIE: 9% × Rp400 miliar.",
+          B: "Memakai persentase SBIE Tahun Pajak 2025 (9,6% dan 7,6%): SBIE Rp66,56 miliar, laba ekses Rp333,44 miliar.",
+          C: "Memakai nilai tercatat harta berwujud akhir tahun Rp900 miliar, padahal yang dipakai rata-rata awal dan akhir tahun (Rp800 miliar)."
+        },
+        jebakan: "Persentase SBIE turun setiap tahun (2025: 9,6% dan 7,6%; 2026: 9,4% dan 7,4%), dan harta berwujud dihitung dari rata-rata awal dan akhir tahun."
+      },
+      dasarHukum: [{ pasal: "PMK 136/2024 Pasal 6 ayat (3), (4), dan (6), Pasal 7 ayat (7), Pasal 8 ayat (5) dan (6), Pasal 53", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 200,
+      verifikasi: "✅",
+      kembaranDari: "B6-122",
+      sejak: "9.5.4"
     }
   ],
   kartu: [
@@ -9514,7 +9653,7 @@ UKP.register({
     { id: "KT-B6-18", topik: "B6.3", tipe: "angka", depan: "Batas perbandingan utang dan modal (DER) fiskal?", belakang: "4 : 1, dari rata-rata saldo akhir bulan", dasar: "PMK 169/PMK.010/2015", berlakuSejak: "2016-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-19", topik: "B6.3", tipe: "angka", depan: "Batas sumbangan PP 93/2010 yang dapat dibiayakan?", belakang: "5% neto fiskal tahun sebelumnya; tidak boleh menimbulkan rugi", dasar: "PP 93/2010 (berlaku sejak Tahun Pajak 2010, Pasal 10)", berlakuSejak: "2010-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-20", topik: "B6.3", tipe: "definisi", depan: "Natura/kenikmatan pegawai bagi pemberi kerja?", belakang: "Dapat dibiayakan sejak TP 2022 sepanjang terkait 3M", dasar: "Pasal 6 ayat (1) huruf a UU PPh (UU HPP); PP 55/2022", berlakuSejak: "2022-01-01", menggantikan: "tidak dapat dibiayakan (Pasal 9 ayat (1) huruf e lama)", dekTambahan: [] },
-    { id: "KT-B6-21", topik: "B6.3", tipe: "prosedur", depan: "Syarat biaya promosi dan entertainment dapat dikurangkan?", belakang: "Daftar nominatif lengkap dilampirkan pada SPT Tahunan", dasar: "PMK 02/PMK.03/2010; SE-27/PJ.22/1986", berlakuSejak: "2010-01-05", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-21", topik: "B6.3", tipe: "prosedur", depan: "Syarat biaya promosi dan entertainment dapat dikurangkan?", belakang: "Daftar nominatif lengkap dilampirkan pada SPT Tahunan", dasar: "PMK 02/PMK.03/2010 Pasal 6 (promosi); SE-27/PJ.22/1986 (entertainment)", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-22", topik: "B6.3", tipe: "prosedur", depan: "Syarat piutang tak tertagih dapat dibiayakan?", belakang: "Dibebankan, daftar piutang ke DJP, plus PN/PUPN, perjanjian, publikasi, atau pengakuan debitur", dasar: "Pasal 6 ayat (1) huruf h UU PPh; PMK 207/PMK.010/2015", berlakuSejak: "2015-11-11", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-23", topik: "B6.6", tipe: "prosedur", depan: "Batas kredit PPh Pasal 24?", belakang: "Per jenis penghasilan untuk tiap negara: terkecil antara pajak LN (memperhatikan P3B) dan (penghasilan LN jenis itu ÷ PKP) × PPh terutang, paling tinggi PPh terutang", dasar: "Pasal 24 ayat (2) UU PPh; Pasal 6 ayat (2) dan ayat (4) PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-24", topik: "B6.6", tipe: "pasal", depan: "Jangka waktu keputusan restitusi Pasal 17B UU KUP?", belakang: "12 bulan; lewat → dianggap dikabulkan, SKPLB ≤ 1 bulan", dasar: "Pasal 17B ayat (1)–(2) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
@@ -9548,7 +9687,7 @@ UKP.register({
     { id: "KT-B6-52", topik: "B6.5", tipe: "definisi", depan: "Sisa rugi badan yang menggabungkan diri (penggabungan nilai buku)?", belakang: "Tidak dapat dikompensasikan oleh badan penerima penggabungan", dasar: "Pasal 402 ayat (1) PMK 81/2024 (menggantikan PMK 52/PMK.010/2017 s.t.d.d. PMK 56/PMK.010/2021)", berlakuSejak: "2025-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-53", topik: "B6.6", tipe: "pasal", depan: "SKPLB terbit saat Wajib Pajak masih punya utang pajak?", belakang: "Diperhitungkan dulu dengan utang pajak; sisanya dikembalikan paling lama 1 bulan", dasar: "Pasal 11 ayat (1)–(2) UU KUP", berlakuSejak: "2008-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-54", topik: "B6.6", tipe: "definisi", depan: "Sifat PPh 22 BBM bagi penyalur/agen dan bagi pembeli pemakai?", belakang: "Final bagi penyalur/agen; kredit pajak bagi pembeli pemakai", dasar: "PMK 51/2025 Pasal 10 ayat (2) (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-55", topik: "B6.6", tipe: "angka", depan: "PPh 22 bendahara atas pembelian sampai Rp2.000.000?", belakang: "Tidak dipungut bila tidak lebih dari Rp2.000.000 (tidak termasuk PPN, bukan pembayaran yang dipecah); di atasnya dipungut 1,5% dan menjadi kredit penjual", dasar: "PMK 51/2025 (PPh Pasal 22; berlaku 1 Agustus 2025). PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-55", topik: "B6.6", tipe: "angka", depan: "PPh 22 bendahara atas pembelian sampai Rp2.000.000?", belakang: "Tidak dipungut bila tidak lebih dari Rp2.000.000 (tidak termasuk PPN, bukan pembayaran yang dipecah); di atasnya dipungut 1,5% dan menjadi kredit penjual", dasar: "Pasal 4 ayat (1) huruf e angka 1 butir a) PMK 51/2025 (berlaku 1 Agustus 2025); Januari sampai Juli 2025: Pasal 219 ayat (1) huruf e angka 1 PMK 81/2024 dengan batas yang sama. PMK 34/PMK.010/2017 dicabut PMK 81/2024 sejak 1 Januari 2025", berlakuSejak: "2025-08-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-56", topik: "B6.7", tipe: "prosedur", depan: "Apakah PPN keluaran masuk peredaran bruto Pasal 31E?", belakang: "Tidak; peredaran bruto memuat penghasilan final dan bukan objek, tanpa PPN", dasar: "Pasal 31E UU PPh; SE-02/PJ/2015", berlakuSejak: "2015-01-09", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-57", topik: "B6.7", tipe: "angka", depan: "Tiga tarif dalam kasus PPh 29 badan (laporan peserta UKP 2026)?", belakang: "22% umum; 19% perseroan terbuka; 11% bagian PKP Pasal 31E", dasar: "Pasal 17 ayat (1) huruf b dan ayat (2b), Pasal 31E UU PPh", berlakuSejak: "2022-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-58", topik: "B6.8", tipe: "angka", depan: "Tarif PPh dividen ke subjek luar negeri bagi penerima tax allowance?", belakang: "10%, atau lebih rendah menurut P3B", dasar: "PP 78/2019 Pasal 3", berlakuSejak: "2019-12-13", menggantikan: null, dekTambahan: [] },
@@ -9566,7 +9705,7 @@ UKP.register({
     { id: "KT-B6-70", topik: "B6.1", tipe: "pasal", depan: "Pembayaran BUT ke kantor pusat yang tidak dapat dibiayakan?", belakang: "Royalti, jasa manajemen/lain, bunga (kecuali perbankan), dan pengiriman laba", dasar: "Pasal 5 ayat (3) dan Pasal 9 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-71", topik: "B6.1", tipe: "pasal", depan: "Biaya administrasi kantor pusat bagi BUT?", belakang: "Dapat dibebankan sepanjang berkaitan dengan usaha atau kegiatan BUT; besarnya ditetapkan Direktur Jenderal Pajak", dasar: "Pasal 5 ayat (3) huruf a UU PPh", berlakuSejak: "2001-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-72", topik: "B6.1", tipe: "definisi", depan: "Syarat organisasi internasional bukan subjek pajak?", belakang: "Ditetapkan Menkeu, Indonesia anggota, tanpa usaha selain pinjaman pemerintah dari iuran", dasar: "Pasal 3 ayat (1) huruf c dan ayat (2) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
-    { id: "KT-B6-73", topik: "B6.6", tipe: "angka", depan: "Kurs untuk Rupiah PPh 26 atas pembayaran valas?", belakang: "Kurs KMK saat terutang/pemotongan; bukan kurs BI atau kurs setor", dasar: "KMK nilai kurs mingguan", berlakuSejak: null, menggantikan: null, dekTambahan: [] },
+    { id: "KT-B6-73", topik: "B6.6", tipe: "angka", depan: "Kurs untuk Rupiah PPh 26 atas pembayaran valas?", belakang: "Kurs yang ditetapkan Menteri Keuangan (KMK nilai kurs mingguan), bukan kurs tengah BI atau kurs bank. KMK kurs tidak menyebut tanggal penentu periodenya (saat terutang atau saat setor) untuk PPh Pasal 26 atas penghasilan badan; untuk PPh Pasal 21/26 orang pribadi: saat pembayaran atau saat terutang, mana yang lebih dahulu (Pasal 5 ayat (4) PMK 168/2023)", dasar: "KMK nilai kurs mingguan (mis. KMK 50/MK/EF.2/2026 diktum KESATU); Pasal 5 ayat (4) PMK 168/2023", berlakuSejak: null, menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-74", topik: "B6.6", tipe: "pasal", depan: "PPh 26 yang dipotong perusahaan atas pembayaran ke luar negeri?", belakang: "Pajak milik penerima; bukan kredit pajak perusahaan pemotong", dasar: "Pasal 26 ayat (1) dan Pasal 28 ayat (1) UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-75", topik: "B6.3", tipe: "prosedur", depan: "Royalti ke luar negeri dengan klausul gross-up?", belakang: "Bruto = neto ÷ (1 − tarif); seluruh bruto dapat dibiayakan", dasar: "Pasal 6 ayat (1) huruf a dan Pasal 9 ayat (1) huruf h UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },
     { id: "KT-B6-76", topik: "B6.6", tipe: "pasal", depan: "Pembelian barang dari luar negeri yang diimpor sendiri: dipotong PPh 26?", belakang: "Tidak; bukan objek PPh 26, PPh 22 impor saat impor", dasar: "Pasal 26 ayat (1) dan Pasal 22 UU PPh", berlakuSejak: "2009-01-01", menggantikan: null, dekTambahan: [] },

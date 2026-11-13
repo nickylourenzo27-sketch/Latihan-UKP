@@ -5,6 +5,8 @@
   // ================= KALKULATOR =================
   const tabelWrap = (label, tabel) => UKP.c.tabelWrap ? UKP.c.tabelWrap(label, tabel) : h('div', { class: 'tabel-wrap', tabindex: '0', role: 'region', 'aria-label': label }, tabel);
   const simBerjalan = () => (UKP.simulasiBerjalan ? UKP.simulasiBerjalan() : false);
+  // v9.5.4 S13: jumlah soal yang benar-benar dimulai tombol Latih satu topik (js/views-belajar.js, UKP.latihBank.nLatihTopik)
+  const nLatihTopik = (id, maks) => (UKP.latihBank && typeof UKP.latihBank.nLatihTopik === 'function' ? UKP.latihBank.nLatihTopik(id, maks) : (maks == null ? 10 : maks));
   // ---------- v7 (DESAIN-V7 §4): komponen Kontrak v7 milik P1 bila ada; cadangan lokal merender markup kontrak yang sama ----------
   const pakaiC = (nama, cadangan) => (...a) => (typeof UKP.c[nama] === 'function' ? UKP.c[nama] : cadangan)(...a);
   const sect = pakaiC('sect', o => { const id = o.id || U.id('sect'); return h('section', { class: 'sect' + (o.ganda ? ' ganda' : ''), 'aria-labelledby': id }, h('div', { class: 'sect-head' }, h('h2', { id }, o.judul), o.meta != null ? h('span', { class: 'meta' }, o.meta) : null, o.aksi || null), o.isi); });
@@ -628,13 +630,14 @@
   function bukaAksiTopik(id) {
     const t = K.topik(id); if (!t) { UKP.go('topik', { id }); return; }
     const pg = L.penguasaan(id); const st = L.statusTopik(id); const ada = st.tahap === 'dinilai';
+    const nLatih = nLatihTopik(id);   // v9.5.4 S13
     // K-18: status tunggal; nada pill hanya untuk label pengecualian (perlu disegarkan / dikuasai), selain itu netral
     UKP.dialog({ judul: t.id + ' · ' + t.judul, ukuran: 'sm', isi: () => h('div', { class: 'stack-sm' },
       h('div', { class: 'chip-row' }, ada ? UKP.c.pill('skor ' + st.skor, st.label === 'perlu disegarkan' ? 'attn' : st.label === 'dikuasai' ? 'ok' : null) : UKP.c.pill('belum dinilai'), ada && st.label ? UKP.c.pill(st.label) : null, UKP.c.pill(ada ? st.nSoal + ' soal terjawab' : st.teksSampel), ada && pg && pg.akurasi != null ? UKP.c.pill(Math.round(pg.akurasi * 100) + '% benar 30 hari') : null),
       h('p', { class: 'small muted' }, ada ? 'Pilih langkah berikutnya untuk topik ini.' : (L.TEKS_DINILAI ? L.TEKS_DINILAI.split('. ')[0] + '.' : 'Topik dinilai setelah 8 soal.') + ' Latih topik ini untuk melengkapinya.')),
       kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => { dlg.close(); UKP.go('ulang', { kode: t.kode }); } }, UKP.icon('dek'), 'Kartu ' + t.kode),
         h('button', { type: 'button', class: 'btn', onclick: () => { dlg.close(); UKP.go('topik', { id: t.id }); } }, UKP.icon('book'), 'Baca ringkasan'),
-        h('button', { type: 'button', class: 'btn btn-primary', autofocus: true, onclick: () => { dlg.close(); UKP.go('latih', { topik: t.id, kode: t.kode, n: 10, mulai: true }); } }, UKP.icon('pen'), 'Latih 10 soal')] });
+        nLatih ? h('button', { type: 'button', class: 'btn btn-primary', autofocus: true, onclick: () => { dlg.close(); UKP.go('latih', { topik: t.id, kode: t.kode, n: 10, mulai: true }); } }, UKP.icon('pen'), 'Latih ' + nLatih + ' soal') : null] });
   }
   UKP.views.kemajuan = function (params) {
     params = params || {}; const s = UKP.store.get(); const tingkat = s.profil.tingkat; const page = h('div', { class: 'page lebar halaman-kemajuan' });
@@ -698,7 +701,7 @@
           terakhirSel: (b, k) => { const t = topikDi(b, k); const x = t ? peta[t.id] : null; return x && x.p.terakhir ? x.p.terakhir : null; },
           tautan: (b, k) => { const t = topikDi(b, k); return t ? { view: 'topik', params: { id: t.id } } : null; },
           // panel aksi kecil non-modal (Momen 4); viz lama tanpa dukungan aksi tetap memakai tautan + panel dialog di bawah
-          aksi: (b, k) => { const t = topikDi(b, k); return t ? [{ label: 'Latih 10 soal topik ini', view: 'latih', params: { topik: t.id, kode: t.kode, n: 10, mulai: true } }, { label: 'Baca ringkasan', view: 'topik', params: { id: t.id } }, { label: 'Kartu ' + t.kode, view: 'ulang', params: { kode: t.kode } }] : null; } }));
+          aksi: (b, k) => { const t = topikDi(b, k); const nL = t ? nLatihTopik(t.id) : 0; return t ? [nL ? { label: 'Latih ' + nL + ' soal topik ini', view: 'latih', params: { topik: t.id, kode: t.kode, n: 10, mulai: true } } : null, { label: 'Baca ringkasan', view: 'topik', params: { id: t.id } }, { label: 'Kartu ' + t.kode, view: 'ulang', params: { kode: t.kode } }].filter(Boolean) : null; } }));
         // tautan sel dicegat (fase tangkap) → panel aksi; klik dengan pengubah tetap dibiarkan ke peramban
         kartu.addEventListener('click', e => { if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; const a = e.target.closest && e.target.closest('a[data-go="topik"]'); if (!a || !kartu.contains(a)) return; e.preventDefault(); e.stopPropagation(); let pr = {}; try { pr = JSON.parse(a.dataset.params || '{}'); } catch (er) {} if (pr.id) bukaAksiTopik(pr.id); }, true);
         wadah.appendChild(kartu);
@@ -713,7 +716,7 @@
             sisaB.length ? h('details', { class: 'lipat lipat-sisa' }, h('summary', null, 'Lihat semua ' + semuaB.length + ' topik'), h('div', { style: { padding: '0 var(--s-3) var(--s-3)' } }, V.batang({ judul: 'Topik ' + (awalB.length + 1) + '–' + semuaB.length, maks: 100, acuan: 60, format: n => 'skor ' + n, data: dataBatang(sisaB) }))) : null]; })()
           : h('ul', { class: 'bersih small' }, rows.slice(0, 40).map(x => h('li', null, UKP.link(x.t.id + ' ' + x.t.judul, 'topik', { id: x.t.id }), ' — skor ' + x.st.skor))),
         kurang ? h('p', { class: 'tiny muted' }, kurang + ' topik lain belum punya 8 soal terjawab, jadi belum dinilai.') : null,
-        h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-primary', onclick: () => UKP.go('latih', { topik: rows[0].t.id, kode: rows[0].t.kode, n: 10, mulai: true }) }, UKP.icon('pen'), 'Latih 10 terlemah'))));
+        nLatihTopik(rows[0].t.id) ? h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-primary', onclick: () => UKP.go('latih', { topik: rows[0].t.id, kode: rows[0].t.kode, n: 10, mulai: true }) }, UKP.icon('pen'), 'Latih ' + nLatihTopik(rows[0].t.id) + ' terlemah')) : null));
       // heatmap kelompok × jenis soal (akurasi; minimal 3 jawaban per sel) — sel bertautan ke Latih kelompok × jenis
       const jenis = ['konsep', 'klasifikasi', 'hitung', 'prosedur', 'kasus', 'baris-spt']; const agg = {};
       for (const j of s.jawaban) { if (j.opsi === '-') continue; const so = K.soal(j.soal); if (!so || !kel.includes(so.kode)) continue; const key = so.kode + '|' + so.jenis; agg[key] = agg[key] || { n: 0, b: 0 }; agg[key].n++; if (j.benar) agg[key].b++; }
@@ -1466,6 +1469,17 @@
   }
 
   // ================= PENGATURAN =================
+  // v9.5.4 S10: "Hapus semua data" juga menghapus hasil anggota yang disimpan di perangkat ini (ukp.tim.manual, ukp.tim.terima).
+  // Bukan di UKP.store.reset(), karena reset juga dipakai saat berganti akun. Kunci tim lain (hapusTertunda, kirim, id, idLokal) dan ukp.akses tidak disentuh.
+  // Jalur utama UKP.tim.hapusLokal() (js/tim.js); bila belum ada, dua kunci yang sama dihapus langsung.
+  const KUNCI_TIM_LOKAL = ['ukp.tim.manual', 'ukp.tim.terima'];
+  function hapusTimLokal() {
+    const T0 = UKP.tim;
+    if (T0 && typeof T0.hapusLokal === 'function') { try { T0.hapusLokal(); return 'tim'; } catch (e) { console.error(e); } }
+    try { KUNCI_TIM_LOKAL.forEach(k => root.localStorage.removeItem(k)); } catch (e) {}
+    return 'cadangan';
+  }
+  UKP.hapusTimLokal = hapusTimLokal;
   UKP.views.pengaturan = function () {
     const s = UKP.store.get(); const p = s.profil; const g = s.pengaturan; const page = h('div', { class: 'page lebar halaman-pengaturan' });
     page.appendChild(UKP.c.kop({ judul: 'Pengaturan', lead: 'Target, tampilan, Tutor, dan data Anda. Semua tersimpan otomatis di browser ini.',
@@ -1496,9 +1510,9 @@
         // v7.7: jawab langsung bawaan (profil.jawabLangsung !== false); sakelar menyala = mode lama "periksa dulu" (Periksa + keyakinan)
         UKP.c.sakelar({ id: 'sw-periksaDulu', judul: 'Periksa dulu sebelum lihat jawaban', bantu: 'Bila mati, jawaban dan pembahasan langsung muncul saat opsi dipilih. Bila menyala, pilih jawaban, tandai keyakinan (opsional), lalu tekan Periksa. Simulasi tidak berubah.', nilai: p.jawabLangsung === false, onchange: e => { p.jawabLangsung = !e.target.checked; simpan('pg-tampilan'); } }),
         UKP.c.sakelar({ id: 'sw-berandaLengkap', judul: 'Beranda lengkap (dasbor)', bantu: 'Menampilkan sesi hari ini, penguasaan, dan aktivitas di beranda. Bila mati, beranda hanya berisi aksi; sesi hari ini ada di Rencana dan penguasaan di Kemajuan › Ringkasan.', nilai: p.berandaLengkap === true, onchange: e => { p.berandaLengkap = e.target.checked; simpan('pg-tampilan'); } }),
-        sw('pg-tampilan', 'pintasan', 'Pintasan satu tombol', 'Tombol /, ?, dan pintasan simulasi (←/→, R, G). Matikan bila memakai input suara atau perangkat bantu; Ctrl/Cmd+K tetap membuka pencarian.', true)));
+        sw('pg-tampilan', 'pintasan', 'Pintasan satu tombol', 'Tombol /, ?, dan huruf pintasan simulasi J, K, R, G. Panah kiri dan kanan di simulasi tetap aktif. Matikan bila memakai input suara atau perangkat bantu; Ctrl/Cmd+K tetap membuka pencarian.', true)));
     const kartuTutor = grup('pg-tutor', 'Tutor AI', 'Tersedia saat halaman dibuka di aplikasi Claude; memakai kuota akun Anda, maks 20 pertanyaan/hari. Pembahasan statis selalu tersedia.',
-      sw('pg-tutor', 'tutorAktif', 'Tampilkan tombol Tutor', 'Tombol "Tanya Tutor" muncul setelah soal diperiksa, di topik, dan di kalkulator.'));
+      sw('pg-tutor', 'tutorAktif', 'Tampilkan tombol Tutor', 'Tombol "Tanya Tutor" muncul setelah soal diperiksa, di topik, dan di kalkulator. Tombol Tutor di bilah atas tetap ada.'));
     const kartuIngat = grup('pg-pengingat', 'Pengingat harian (kalender)', null, kartuPengingat('p'));
     // zona data: ekspor/impor, pindah perangkat, hapus semua (bahaya terpisah)
     const ta = h('textarea', { class: 'input mono', rows: 6, hidden: true, 'aria-label': 'Data progres', placeholder: 'Tempel teks ekspor dari perangkat lain di sini.', style: { fontSize: '12px' } });
@@ -1524,7 +1538,7 @@
       h('div', { class: 'btn-row' }, h('button', { class: 'btn', onclick: () => { if (ta.hidden) { ta.value = ''; ta.hidden = false; ta.focus(); return; } if (!ta.value.trim()) { galatImpor('Tempel teks ekspor ke kotak di atas dulu.'); ta.focus(); return; } impor(ta.value, GALAT_KOTAK); } }, UKP.icon('unggah'), 'Impor dari teks'), h('button', { type: 'button', class: 'btn', onclick: () => fileIn.click() }, UKP.icon('unggah'), 'Impor berkas…'), fileIn));
     const kartuBahaya = h('section', { class: 'card zona-data', 'aria-labelledby': 'pg-bahaya-j', style: { borderColor: 'var(--attn)' } }, h('div', { class: 'card-head' }, h('h2', { class: 'card-title', id: 'pg-bahaya-j' }, 'Zona data'), UKP.c.pill('tidak dapat dibatalkan', 'attn', 'peringatan')),
       h('p', { class: 'small muted' }, 'Hapus semua progres dari browser ini. Ekspor dulu bila ingin menyimpan salinan.'),
-      h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-danger btn-attn', onclick: async () => { if (await UKP.konfirmasi('Hapus semua progres?', 'Jawaban, kartu, kehadiran, dan simulasi akan dihapus permanen dari browser ini.', { ya: 'Hapus semua', bahaya: true })) { UKP.store.reset(); UKP.terapkanTema(); UKP.go('mulai', {}, { replace: true }); } } }, UKP.icon('hapus'), 'Hapus semua data')));
+      h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-danger btn-attn', onclick: async () => { if (await UKP.konfirmasi('Hapus semua progres?', 'Jawaban, kartu, kehadiran, dan simulasi akan dihapus permanen dari browser ini. Hasil anggota yang ditempel di Dasbor tim juga dihapus.', { ya: 'Hapus semua', bahaya: true })) { UKP.store.reset(); hapusTimLokal(); UKP.terapkanTema(); UKP.go('mulai', {}, { replace: true }); } } }, UKP.icon('hapus'), 'Hapus semua data')));
     const kartuOffline = grup('pg-offline', 'Versi offline (untuk pesawat)', null, ...isiKartuOffline(catatEkspor));
     // Tim (js/tim.js): bagikan ringkasan ke dasbor tim (db Artifact) + status sambungan + kode hasil untuk cadangan tanpa akun
     const T = UKP.tim; let kartuTim = null;
@@ -1563,6 +1577,10 @@
       let swTim = null;
       // mode masuk nama (deploy/server.js MASUK_NAMA=1): cookie ukp_nama "kunci|Nama Tampil" untuk akun tanpa sandi → "Masuk sebagai Rina"
       const namaTampilAkun = akun => { try { const m = /(?:^|;\s*)ukp_nama=([^;]+)/.exec(document.cookie || ''); if (m) { const v = decodeURIComponent(m[1]), j = v.indexOf('|'); if (j > 0 && v.slice(0, j) === akun) return v.slice(j + 1).slice(0, 40); } } catch (e) {} return null; };
+      // v9.5.4 S7: mode tanpa jalur kirim (status 'mati', bukan server tim, bukan mode server, bukan room). Sempit: 'tanpa-akun',
+      // room tamu, dan server tim yang sedang tidak terjangkau tidak termasuk, karena di sana sakelar berpengaruh nanti.
+      const tanpaJalurKirim = i => !!i && i.status === 'mati' && !i.menyambung && !i.server && !i.modeServer && !i.room;   // peninjau B: selama menyambung jalur belum diketahui
+      const BANTU_TANPA_JALUR = 'Berlaku saat tersambung: bila dimatikan, ringkasan Anda dihapus dari dasbor tim dan tidak dikirim lagi. Di sini tidak ada pengiriman otomatis.';
       function gambarTim() {
         const i = T.info(); let pill, teks;
         const tampilAkun = i.akun ? (namaTampilAkun(i.akun) || i.akun) : i.akun;
@@ -1570,9 +1588,10 @@
         pemimpinOn.hidden = !(i.room === 'tamu' && i.pemimpinOnline && i.aktif);
         // bantuan sakelar jujur sesuai jalur: jalur langsung hanya bisa menghapus lewat pemimpin yang sedang online
         const bantuSw = swTim && swTim.querySelector('.bantu');
+        // v9.5.4 S7: tanpa jalur kirim (website statis tanpa server dan tanpa room) sakelar tidak mengirim atau menghapus apa pun
         if (bantuSw) bantuSw.textContent = i.room === 'tamu' && i.status !== 'tersambung'
           ? 'Bila dimatikan, ringkasan Anda tidak dikirim lagi. Ringkasan yang sudah diterima dihapus dari dasbor pemimpin bila pemimpin online selagi halaman ini terbuka; bila tidak, minta pemimpin menghapusnya.'
-          : 'Bila dimatikan, ringkasan Anda dihapus dari dasbor tim dan tidak dikirim lagi.';
+          : tanpaJalurKirim(i) ? BANTU_TANPA_JALUR : 'Bila dimatikan, ringkasan Anda dihapus dari dasbor tim dan tidak dikirim lagi.';
         const tunda = i.hapusTertunda ? ' Ringkasan lama belum terhapus dari server; dicoba lagi otomatis saat tersambung.' : '';
         if (i.menyambung) { pill = UKP.c.pill('menyambung…', 'info'); teks = i.modeServer ? 'Memeriksa server tim.' : 'Memeriksa server tim atau akun Claude.'; }
         else if (i.server && i.akunBeda) { pill = UKP.c.pill('progres akun lain', 'warn'); teks = 'Masuk sebagai ' + tampilAkun + ', tetapi progres di perangkat ini milik akun ' + i.akunBeda + '. Tidak ada hasil yang dikirim sampai Anda memilih di bawah ini.'; }
@@ -1591,7 +1610,7 @@
         else if (i.status === 'tersambung') { pill = UKP.c.pill('tersambung', 'ok'); teks = i.terakhirKirim ? 'Terakhir dikirim ' + waktuPendek(i.terakhirKirim) + '. Dikirim otomatis setelah latihan atau simulasi selesai.' : 'Dikirim otomatis setelah latihan atau simulasi selesai.'; }
         else if (i.status === 'tanpa-akun') { pill = UKP.c.pill('belum masuk', 'warn'); teks = 'Masuk ke claude.ai dengan akun yang diundang pemimpin agar hasil terkirim otomatis. Sementara itu, kirim kode hasil.'; }
         else if (i.modeServer) { pill = UKP.c.pill('server tidak terjangkau', 'warn'); teks = 'Server tim tidak terjangkau. Progres tetap tersimpan di perangkat ini dan dikirim otomatis saat tersambung lagi.' + tunda; }
-        else { pill = UKP.c.pill('tidak tersambung', 'netral'); teks = 'Pengiriman otomatis hanya tersedia saat halaman dibuka di claude.ai dalam keadaan masuk. Di sini, salin kode hasil lalu kirimkan ke pemimpin tim.'; }
+        else { pill = UKP.c.pill('tidak tersambung', 'netral'); teks = 'Pengiriman otomatis hanya tersedia saat halaman dibuka di claude.ai dalam keadaan masuk. Di sini, salin kode hasil lalu kirimkan ke pemimpin tim.' + (!i.aktif ? ' Berbagi dimatikan. Kode hasil tetap bisa disalin bila Anda mau mengirimkannya.' : ''); }
         if ((i.status === 'tersambung' || i.status === 'langsung') && !i.aktif && i.galat && i.galat !== 'akun-berbeda' && !i.hapusTertunda) teks += ' Galat terakhir: ' + (i.galat === 'kuota' ? 'server menahan permintaan sementara' : 'permintaan ke server gagal') + '.';
         const banner = i.akunBeda && typeof UKP.timBannerAkun === 'function' ? UKP.timBannerAkun() : null;
         statusTim.replaceChildren(h('p', { class: 'small' }, h('span', { class: 'muted' }, 'Status: '), pill), h('p', { class: 'small muted' }, teks), pemimpinOn, banner);
@@ -1614,6 +1633,7 @@
           const i = T.info();
           if (!nyala && !terhapus && i.hapusTertunda) UKP.toast('Berbagi dimatikan, tetapi ringkasan lama belum terhapus dari server. Dicoba lagi otomatis saat tersambung.', { nada: 'attn', ms: 8000 });
           else if (!nyala && !terhapus && i.status === 'tersambung') UKP.toast('Berbagi dimatikan, tetapi ringkasan lama belum terhapus dari dasbor tim. Nyalakan lalu matikan lagi sakelar ini sebentar lagi untuk mencoba ulang.', { nada: 'attn', ms: 8000 });
+          else if (tanpaJalurKirim(i)) UKP.toast('Pilihan disimpan. Di sini tidak ada pengiriman otomatis. Hasil hanya sampai ke pemimpin tim lewat kode hasil yang Anda salin.', { nada: 'ok', ms: 6000 });
           else UKP.toast(nyala ? 'Hasil Anda dibagikan ke dasbor tim.' : 'Hasil Anda tidak lagi dibagikan.', { nada: 'ok', ms: 3000 });
         } }),
         fieldNama, statusTim, aksiTim,
@@ -1655,7 +1675,7 @@
   function tombolLatihSpt(kodeDaftar, topikId) {
     const kode = (kodeDaftar || []).find(k => nSoalBarisSpt(k) > 0);
     if (kode) return h('button', { type: 'button', class: 'btn btn-primary', onclick: () => UKP.go('latih', { jenis: 'baris-spt', kode, n: 10, mulai: true }) }, 'Latih soal baris SPT ' + kode + ' (' + nSoalBarisSpt(kode) + ')');
-    if (topikId && K.topik(topikId)) return h('button', { type: 'button', class: 'btn', onclick: () => UKP.go('latih', { topik: topikId, kode: topikId.split('.')[0], n: 10, mulai: true }) }, 'Latih soal topik ' + topikId);
+    if (topikId && K.topik(topikId) && nLatihTopik(topikId)) return h('button', { type: 'button', class: 'btn', onclick: () => UKP.go('latih', { topik: topikId, kode: topikId.split('.')[0], n: 10, mulai: true }) }, 'Latih soal topik ' + topikId);
     return null;
   }
   const barisFormulir = f => f.bagian.flatMap(b => b.baris.map(x => ({ b, x })));
@@ -2093,7 +2113,9 @@
       const k = konteks || {}; const daftar = [];
       const tombol = (label, ikon, fn) => h('button', { type: 'button', class: daftar.length ? 'btn' : 'btn btn-primary', onclick: () => { dlg.close('aksi'); setTimeout(fn, 30); } }, UKP.icon(ikon), label);
       if (k.soal) daftar.push(tombol('Buka pembahasan lengkap', 'book', () => { const u = document.querySelector('#main .umpan'); if (u) { try { u.scrollIntoView({ behavior: UKP.gulirHalus(), block: 'start' }); } catch (e) {} UKP.fokus(u.querySelector('.inti') || u.querySelector('p') || u); } else UKP.toast('Pembahasan tampil setelah jawaban diperiksa.'); }));
-      if (k.topik) daftar.push(tombol('Cek 5 soal topik ini', 'pen', () => UKP.go('latih', { topik: k.topik.id, kode: k.topik.kode, n: 5, mulai: true })));
+      // v9.5.4 C-3: angka = jumlah soal yang benar-benar dimulai (paling banyak 5, satu per keluarga); 0 → tanpa tombol
+      const nCek = k.topik ? nLatihTopik(k.topik.id, 5) : 0;
+      if (k.topik && nCek) daftar.push(tombol('Cek ' + nCek + ' soal topik ini', 'pen', () => UKP.go('latih', { topik: k.topik.id, kode: k.topik.kode, n: 5, mulai: true })));
       if (k.kalkulator) daftar.push(tombol('Lihat jejak hitung', 'calc', () => { const d = document.querySelector('#main details[data-kunci="jejak"]'); if (d) { d.open = true; try { d.scrollIntoView({ behavior: UKP.gulirHalus(), block: 'start' }); } catch (e) {} UKP.fokus(d.querySelector('summary')); } }));
       if (k.kasus) daftar.push(tombol('Kembali ke langkah aktif', 'kasus', () => { const el = document.querySelector('#main [aria-current="step"] input, #main [aria-current="step"] button, #main [aria-current="step"]'); if (el) UKP.fokus(el); }));
       daftar.push(tombol('Cari istilah', 'search', () => { if (UKP.cari) UKP.cari(); }));

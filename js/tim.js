@@ -63,7 +63,9 @@
   const isoWaktu = ms => { const d = new Date(ms); return isNaN(d) ? null : d.toISOString(); };
   const bulat = (x, n) => { const f = Math.pow(10, n || 0); return Math.round(x * f) / f; };
   const isObj = x => x != null && typeof x === 'object' && !Array.isArray(x);
-  const latihanSaja = j => isObj(j) && j.konteks !== 'simulasi' && j.opsi !== '-' && typeof j.pada === 'number';
+  // v9.5.4 S4: jawaban "Tidak tahu" (opsi '-') ikut dihitung sebagai soal yang dijawab salah, sama dengan Kemajuan, kartu Tren, dan daftar jawaban
+  const latihanSaja = j => isObj(j) && j.konteks !== 'simulasi' && typeof j.pada === 'number';
+  const benarLatih = j => !!j.benar && j.opsi !== '-';
   const kosongJawab = v => !v || v === '-' || v === 'kosong';
 
   function rangkaianDari(hadir, hariIni) {
@@ -84,14 +86,15 @@
     const latih = jawaban.filter(latihanSaja);
     let benar = 0, n7 = 0, b7 = 0, terakhir = 0; const perKel = {}, perTopik = {}, hariLatih = new Set();
     for (const j of latih) {
-      if (j.benar) benar++;
+      const jb = benarLatih(j);
+      if (jb) benar++;
       if (j.pada > terakhir) terakhir = j.pada;
       const d = hariDari(j.pada);
-      if (d >= awal7 && d <= hariIni) { n7++; if (j.benar) b7++; hariLatih.add(d); }
+      if (d >= awal7 && d <= hariIni) { n7++; if (jb) b7++; hariLatih.add(d); }
       if (d >= awal14 && d <= hariIni) {
         const kode = String(j.kode || String(j.soal || '').split('-')[0] || '');
-        if (KODE_RE.test(kode)) { const x = perKel[kode] = perKel[kode] || { n: 0, benar: 0 }; x.n++; if (j.benar) x.benar++; }
-        if (j.topik && TOPIK_RE.test(String(j.topik))) { const t = perTopik[j.topik] = perTopik[j.topik] || { id: String(j.topik), n: 0, benar: 0 }; t.n++; if (j.benar) t.benar++; }
+        if (KODE_RE.test(kode)) { const x = perKel[kode] = perKel[kode] || { n: 0, benar: 0 }; x.n++; if (jb) x.benar++; }
+        if (j.topik && TOPIK_RE.test(String(j.topik))) { const t = perTopik[j.topik] = perTopik[j.topik] || { id: String(j.topik), n: 0, benar: 0 }; t.n++; if (jb) t.benar++; }
       }
     }
     const lemah = Object.values(perTopik).filter(t => t.n >= 3 && t.benar < t.n)
@@ -685,6 +688,15 @@
     const sama = online.size === onlineIds.size && Array.from(online).every(x => onlineIds.has(x));
     if (!sama) { onlineIds = online; beri(); }
   }
+  // v9.5.4 S10: "Hapus semua data" (Pengaturan) → hapus hasil anggota yang disimpan di perangkat ini: kode hasil yang ditempel
+  // (ukp.tim.manual) dan ringkasan yang diterima lewat room (ukp.tim.terima). Kunci lain (hapusTertunda, kirim, id, idLokal) dan
+  // dokumen di db/server tidak disentuh. Keadaan tersimpan sama dengan menghapus dua kunci itu langsung. → true bila keduanya terhapus
+  function hapusLokal() {
+    let ok = true;
+    [KUNCI_MANUAL, KUNCI_TERIMA].forEach(k => { try { root.localStorage.removeItem(k); } catch (e) { ok = false; } });
+    petaTerima = null; beri();
+    return ok;
+  }
   function muatPetaTerima() { if (!petaTerima) { petaTerima = new Map(); daftarTerima().forEach(a => petaTerima.set(a.id, { a, sidik: sidikAnggota(a) })); } return petaTerima; }
   // terima satu pesan: abaikan bila isi sama atau lebih lama; simpan lokal, kabari feed, tulis dok anon bila isinya berbeda dari db
   // id anonim (tanpa by) diikat ke peer pertama yang memakainya; peer lain dengan id sama, atau peer yang berganti id, ditolak
@@ -1024,7 +1036,7 @@
     siap, status: () => status, info, kirimRingkasan, hapusRingkasan, pantau, pemimpin, bolehDasbor, profil,
     get aktif() { return aktifkah(); }, set aktif(v) { aturAktif(v); },
     kodeHasil, kodeHasilAsync, tempelKode, daftarManual, hapusManual, gabung,
-    siapRoom, daftarTerima, hapusTerima, dengarLangsung, statusLangsung, idAnon, keluarServer, gantiPemilikProgres,
+    siapRoom, daftarTerima, hapusTerima, hapusLokal, dengarLangsung, statusLangsung, idAnon, keluarServer, gantiPemilikProgres,
     adaArsip: nama => !!(typeof nama === 'string' && lsGet('ukp.arsip:' + nama, null)),
     KOLEKSI, BATAS_LULUS, MAKS_JAWAB, MAKS_BYTE,
     // untuk uji

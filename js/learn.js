@@ -430,12 +430,16 @@
       const w = Number(e.w) || 0; if (e.b) benar++; if (w > terakhir) terakhir = w;
       const hr = hariDari(w);
       if (hr >= awal7 && hr <= hariIni) { n7++; if (e.b) b7++; hari7.add(hr); }
-      if (hr >= awal14 && hr <= hariIni) hari14.add(hr);
-      const so = K.soal ? K.soal(e.s) : null;
-      const kode = String((so && so.kode) || kodeEntri(e));
-      const topik = String((so && so.topik) || e.t || '');
-      if (kode) { const x = perKel[kode] = perKel[kode] || { n: 0, benar: 0 }; x.n++; if (e.b) x.benar++; }
-      if (topik) { const t = perTopik[topik] = perTopik[topik] || { topik, id: topik, n: 0, benar: 0 }; t.n++; if (e.b) t.benar++; }
+      // v9.5.4 S5: per kelompok dan per topik hanya 14 hari terakhir (sesuai labelnya, sama dengan cadangan dokDari di views-tim);
+      // total, benar, terakhir, dan jawaban tetap dari semua entri
+      if (hr >= awal14 && hr <= hariIni) {
+        hari14.add(hr);
+        const so = K.soal ? K.soal(e.s) : null;
+        const kode = String((so && so.kode) || kodeEntri(e));
+        const topik = String((so && so.topik) || e.t || '');
+        if (kode) { const x = perKel[kode] = perKel[kode] || { n: 0, benar: 0 }; x.n++; if (e.b) x.benar++; }
+        if (topik) { const t = perTopik[topik] = perTopik[topik] || { topik, id: topik, n: 0, benar: 0 }; t.n++; if (e.b) t.benar++; }
+      }
     }
     const lemah = Object.values(perTopik).filter(t => t.n >= 3 && t.benar < t.n)
       .sort((a, b) => a.benar / a.n - b.benar / b.n || b.n - a.n || (a.topik < b.topik ? -1 : 1)).slice(0, 5);
@@ -729,6 +733,7 @@
   L.LABEL_JEBAKAN = { 'salah-klasifikasi': 'salah klasifikasi', 'lupa-pasal': 'lupa pasal', 'salah-baca': 'salah baca', 'salah-hitung': 'salah hitung', 'angka-usang': 'angka usang', 'final-nonfinal': 'final vs non-final' };
   L.MAKS_TEKS_ALASAN = 160;
   L.PRIORITAS_KELAS = { tersandung: 3, terbelah: 2, rapuh: 1, dikuasai: 0 };
+  L.LABEL_BELUM_MENJAWAB = 'Benar, tapi ada yang belum menjawab';   // v9.5.4 S1: kelas 'rapuh' karena ada yang tidak menjawab
   // potong teks ≤ n karakter (termasuk '…'), di batas kata bila memungkinkan
   L.potongTeks = function (t, n) {
     t = String(t == null ? '' : t).replace(/\s+/g, ' ').trim(); n = n || L.MAKS_TEKS_ALASAN;
@@ -763,20 +768,28 @@
     const belumMantap = benar.filter(n => j[n].k === 'ragu' || j[n].k === 'menebak');
     // v9.2 G1 (satu cara menghitung): kelas dinilai dari yang MENJAWAB (benar ÷ jawaban yang masuk); yang tidak menjawab disebut terpisah
     const nJawab = nBenar + nSalah;
+    // pemimpin (opsi.pemimpin) yang tidak menjawab tidak disebut di daftar "tidak menjawab" untuk kalimat pembahas
+    const pemimpin = typeof opsi.pemimpin === 'string' ? opsi.pemimpin : null;
+    // v9.5.4 C-1: opsi.pengamat (nama yang tidak menjawab satu soal pun sepanjang sesi tersimpan) juga dikecualikan
+    const pengamat = new Set((Array.isArray(opsi.pengamat) ? opsi.pengamat : []).filter(x => typeof x === 'string').map(kunciNama));
+    const tidakMenjawab = kosong.filter(n => !(pemimpin && kunciNama(n) === kunciNama(pemimpin)) && !pengamat.has(kunciNama(n)));
+    // v9.5.4 S1: 'dikuasai' ("Semua benar") hanya bila tidak ada yang salah DAN tidak ada yang tidak menjawab (pemimpin dikecualikan);
+    // tanpa salah tetapi ada yang tidak menjawab → 'rapuh' (masuk urutan bahas), label "Benar, tapi ada yang belum menjawab"
     let kelas;
-    if (nJawab && nSalah === 0) kelas = belumMantap.length ? 'rapuh' : 'dikuasai';
+    if (nJawab && nSalah === 0) kelas = belumMantap.length || tidakMenjawab.length ? 'rapuh' : 'dikuasai';
     else if (nBenar === 0 || nBenar / nJawab < 0.5) kelas = 'tersandung';
     else kelas = 'terbelah';
     const hit = n => { const k = Object.keys(hitung).find(x => kunciNama(x) === kunciNama(n)); return k != null ? Number(hitung[k]) || 0 : 0; };
     // penjelas: yang yakin diutamakan, yang Nebak dihindari bila ada orang benar lain; lalu rotasi (hitungPenjelas), lalu urutan
     const pilih = (calon, utamakanYakin) => { const bukanNebak = calon.filter(n => j[n].k !== 'menebak'); return (bukanNebak.length ? bukanNebak : calon).slice().sort((a, b) =>
       (utamakanYakin ? (j[b].k === 'yakin' ? 1 : 0) - (j[a].k === 'yakin' ? 1 : 0) : 0) || hit(a) - hit(b) || nama.indexOf(a) - nama.indexOf(b))[0] || null; };
-    // pemimpin (opsi.pemimpin) yang tidak menjawab tidak disebut di daftar "tidak menjawab" untuk kalimat pembahas
-    const pemimpin = typeof opsi.pemimpin === 'string' ? opsi.pemimpin : null;
-    const tidakMenjawab = kosong.filter(n => !(pemimpin && kunciNama(n) === kunciNama(pemimpin)));
     let penjelas = null, kepada = [], label, saran;
     if (kelas === 'dikuasai') { label = 'Semua benar'; saran = 'Lanjut'; }
-    else if (kelas === 'rapuh') {
+    else if (kelas === 'rapuh' && tidakMenjawab.length) {
+      // v9.5.4 S1: penjelas dari yang yakin lebih dulu; yang dijelaskan = yang tidak menjawab
+      label = L.LABEL_BELUM_MENJAWAB; kepada = tidakMenjawab.slice();
+      penjelas = pilih(benar, true); saran = penjelas + ' jelaskan ke ' + L.gabungNama(kepada);
+    } else if (kelas === 'rapuh') {
       label = 'Semua benar, tapi ada yang ragu';
       const ragu = belumMantap.filter(n => j[n].k === 'ragu');
       penjelas = pilih(ragu.length ? ragu : benar, !ragu.length); saran = penjelas + ', jelaskan singkat alasanmu';
@@ -814,22 +827,24 @@
   const soalUntukTriase = q => { const b = K.soal(q.id); return Object.assign({}, b || { id: q.id }, { kunci: q.kunci || (b && b.kunci) || '' }); };
   L.urutanBahas = function (sesi) {
     const perKelas = { dikuasai: 0, rapuh: 0, terbelah: 0, tersandung: 0 };
-    if (!isObjL(sesi)) return { daftar: [], nDikuasai: 0, perKelas };
+    if (!isObjL(sesi)) return { daftar: [], nDikuasai: 0, perKelas, pengamat: [] };
     const peserta = pesertaSesi(sesi); const bahas = isObjL(sesi.bahas) ? sesi.bahas : {};
-    const item = soalSesi(sesi).map((q, idx) => {
-      const so = soalUntukTriase(q), per = perPesertaSoal(q, peserta);
-      const awal = L.triaseSoal(so, per, { urutan: peserta }); perKelas[awal.kelas]++;
-      return { idx, q, so, per, awal };
-    });
+    const item = soalSesi(sesi).map((q, idx) => ({ idx, q, so: soalUntukTriase(q), per: perPesertaSoal(q, peserta) }));
+    // v9.5.4 C-1: peserta yang tidak menjawab satu soal pun sepanjang sesi = pemandu atau pengamat (rekaman tidak menyimpan pemimpin);
+    // ia tidak dihitung "belum menjawab" saat menentukan kelas soal, tidak masuk kepada, dan tidak disebut di saran
+    const namaK = new Map(), menjawab = new Set();
+    item.forEach(x => Object.keys(x.per).forEach(n => { const k = kunciNama(n); if (!k) return; if (!namaK.has(k)) namaK.set(k, n); if (jawabTriase(x.per[n], null).o !== '-') menjawab.add(k); }));
+    const pengamat = [...namaK.keys()].filter(k => !menjawab.has(k)).map(k => namaK.get(k));
+    item.forEach(x => { x.awal = L.triaseSoal(x.so, x.per, { urutan: peserta, pengamat }); perKelas[x.awal.kelas]++; });
     const hitung = {};
     const daftar = item.filter(x => x.awal.prioritas >= 1)
       .sort((a, b) => b.awal.prioritas - a.awal.prioritas || b.awal.yakinSalah.length - a.awal.yakinSalah.length || b.awal.nSalah - a.awal.nSalah || a.idx - b.idx)
       .map(x => {
-        const t = L.triaseSoal(x.so, x.per, { urutan: peserta, hitungPenjelas: hitung });
+        const t = L.triaseSoal(x.so, x.per, { urutan: peserta, hitungPenjelas: hitung, pengamat });
         if (t.penjelas) hitung[t.penjelas] = (hitung[t.penjelas] || 0) + 1;
         return Object.assign({ idx: x.idx, id: x.q.id, kode: x.q.kode || String(x.q.id).split('-')[0], topik: x.q.topik || '', kunci: x.q.kunci || '', sudah: !!bahas[x.q.id] }, t);
       });
-    return { daftar, nDikuasai: perKelas.dikuasai, perKelas };
+    return { daftar, nDikuasai: perKelas.dikuasai, perKelas, pengamat };
   };
   // tandai soal sudah/belum dibahas pada rekaman sesi → true bila sesi ada
   L.tandaiBahas = function (sesiId, soalId, sudah) {
@@ -1230,7 +1245,9 @@
     const s = L.siapBersama(UKP.store.get()); const u = utAktif(); if (!u) return null; opsi = isObjL(opsi) ? opsi : {};
     const kini = Date.now(); const arr = daftarSesi(s);
     const adaJawab = p => isObjL(u.jawaban[p]) && u.soalIds.some(id => OPSI_RE.test(u.jawaban[p][id] || ''));
-    const peserta = u.peserta.filter(p => !opsi.hanyaYangMengumpulkan || adaJawab(p));
+    // v9.5.3 A6: "hanya yang sudah mengumpulkan" = yang ada di u.terkumpul (termasuk yang mengumpulkan tanpa jawaban, skor 0), sama dengan hitungan di ruang ujian
+    const sudahKumpul = p => isObjL(u.terkumpul) && !!u.terkumpul[p];
+    const peserta = u.peserta.filter(p => !opsi.hanyaYangMengumpulkan || sudahKumpul(p));
     let id = 'sb-' + kini; let i = 1; while (arr.some(x => x.id === id)) id = 'sb-' + kini + '-' + (i++);
     const dS = isObjL(u.detikSoal) ? u.detikSoal : {};
     const soal = u.soalIds.map(sid => {
@@ -1906,11 +1923,14 @@
   // ---------- laporan mingguan ----------
   function statRentang(a, b) {
     const s = UKP.store.get();
-    const ja = s.jawaban.filter(j => { if (kosongSim(j) || j.opsi === '-') return false; const d = hariDari(j.pada); return d >= a && d <= b; });
+    // v9.5.4 S6: jumlah soal dan akurasi ikut menghitung "Tidak tahu" (sebagai salah), sama dengan Beranda dan Kemajuan;
+    // jaPola (tanpa "Tidak tahu") untuk analisis pola kesalahan
+    const ja = s.jawaban.filter(j => { if (kosongSim(j)) return false; const d = hariDari(j.pada); return d >= a && d <= b; });
+    const jaPola = ja.filter(j => j.opsi !== '-');
     const perTopik = {}; ja.forEach(j => { const x = perTopik[j.topik] = perTopik[j.topik] || { n: 0, b: 0 }; x.n++; if (j.benar) x.b++; });
     const hadirHari = Object.keys(s.hadir).filter(d => d >= a && d <= b && s.hadir[d] && s.hadir[d].status === 'HADIR');
     const n = ja.length, benar = ja.filter(j => j.benar).length;
-    return { ja, n, benar, akurasi: n ? benar / n : null, perTopik, hadir: hadirHari.length, menit: Math.round(hadirHari.reduce((t, d) => t + (s.hadir[d].menit || 0), 0)),
+    return { ja, jaPola, n, benar, akurasi: n ? benar / n : null, perTopik, hadir: hadirHari.length, menit: Math.round(hadirHari.reduce((t, d) => t + (s.hadir[d].menit || 0), 0)),
       sesi: s.sesi.filter(x => x && x.tgl >= a && x.tgl <= b).length,
       sim: s.simulasi.filter(x => x && x.selesai && hariDari(x.selesai) >= a && hariDari(x.selesai) <= b) };
   }
@@ -1937,15 +1957,23 @@
     const topikNaik = banding.filter(x => x.delta > 0).sort((x, y) => y.delta - x.delta).slice(0, 3);
     const topikTurun = banding.filter(x => x.delta < 0).sort((x, y) => x.delta - y.delta).slice(0, 3);
     // kesalahan berulang: pola topik + sebab minggu ini, diutamakan yang muncul ≥ 2 kali atau soal yang keliru berulang
-    const salahIni = st.ja.filter(j => !j.benar);
+    const salahIni = st.jaPola.filter(j => !j.benar);
     const salahSoal = {}; for (const j of s.jawaban) if (!j.benar && !kosongSim(j) && j.opsi !== '-' && hariDari(j.pada) <= akhir) salahSoal[j.soal] = (salahSoal[j.soal] || 0) + 1;
     const pola = {}; salahIni.forEach(j => { const k = j.topik + '|' + (j.tag || ''); const x = pola[k] = pola[k] || { topik: j.topik, kode: j.kode, judul: judul(j.topik), tag: j.tag || null, n: 0, soal: [] }; x.n++; if (!x.soal.includes(j.soal)) x.soal.push(j.soal); });
     const kesalahanBerulang = Object.values(pola).map(x => Object.assign(x, { ulang: x.n >= 2 || x.soal.some(id => salahSoal[id] >= 2), soal: x.soal.slice(0, 5) }))
       .sort((x, y) => (y.ulang - x.ulang) || (y.n - x.n)).slice(0, 3);
     const saran = [];
+    // v9.5.4 C-2/C-5: angka di saran = jumlah soal yang benar-benar dimulai (UKP.latihBank, paling banyak 10); 0 → saran tidak ditampilkan
+    const LB = UKP.latihBank || {};
+    const nKeluarga = arr => Math.min(10, new Set(arr.map(x => (K.akar && K.akar(x)) || x.id)).size);
+    const tgL = s.profil.tingkat;
+    const nUlangSalah = () => { try { if (typeof LB.nLatihSalah === 'function') return LB.nLatihSalah(10); } catch (e) {} const ids = new Set(L.bukuKesalahan(tgL, 200).map(j => j.soal)); return nKeluarga(K.semuaSoal(tgL).filter(x => ids.has(x.id))); };
+    const nLatihTp = id => { try { if (typeof LB.nLatihTopik === 'function') return LB.nLatihTopik(id, 10); } catch (e) {} const t = K.topik(id); return t ? nKeluarga(K.soalTopik(id, K.kelompok(tgL).includes(t.kode) ? tgL : undefined)) : 0; };
+    const nUS = st.n && st.akurasi < 0.6 ? nUlangSalah() : 0;
     if (!st.n) saran.push({ teks: 'Belum ada soal terjawab pada rentang ini. Mulai dengan sesi Kilat 5 menit setiap hari.', judul: 'Mulai dengan sesi Kilat 5 menit setiap hari', meta: 'belum ada soal terjawab pada rentang ini', view: 'beranda', label: 'Ke Hari Ini' });
-    else if (st.akurasi < 0.6) saran.push({ teks: 'Akurasi di bawah 60%. Ulangi 10 soal dari Buku Kesalahan sebelum menambah materi baru.', judul: 'Ulangi 10 soal dari Buku Kesalahan', meta: 'akurasi di bawah 60%; ulangi sebelum menambah materi baru', view: 'latih', params: { hanyaSalah: true, n: 10, mulai: true }, label: 'Ulangi 10 soal' });
-    if (kesalahanBerulang[0]) { const x = kesalahanBerulang[0]; saran.push({ teks: 'Kesalahan terbanyak di ' + x.topik + ' ' + x.judul + ' (' + x.n + '×). Latih 10 soal topik itu.', judul: 'Latih 10 soal ' + x.topik + ' ' + x.judul, meta: 'kesalahan terbanyak minggu ini (' + x.n + '×)', view: 'latih', params: { topik: x.topik, kode: x.kode || x.topik.split('.')[0], n: 10, mulai: true }, label: 'Latih topik ' + x.topik }); }
+    else if (st.akurasi < 0.6 && nUS) saran.push({ teks: 'Akurasi di bawah 60%. Ulangi ' + nUS + ' soal dari Buku Kesalahan sebelum menambah materi baru.', judul: 'Ulangi ' + nUS + ' soal dari Buku Kesalahan', meta: 'akurasi di bawah 60%; ulangi sebelum menambah materi baru', view: 'latih', params: { hanyaSalah: true, n: 10, mulai: true }, label: 'Ulangi ' + nUS + ' soal' });
+    const nKB = kesalahanBerulang[0] ? nLatihTp(kesalahanBerulang[0].topik) : 0;
+    if (kesalahanBerulang[0] && nKB) { const x = kesalahanBerulang[0]; saran.push({ teks: 'Kesalahan terbanyak di ' + x.topik + ' ' + x.judul + ' (' + x.n + '×). Latih ' + nKB + ' soal topik itu.', judul: 'Latih ' + nKB + ' soal ' + x.topik + ' ' + x.judul, meta: 'kesalahan terbanyak minggu ini (' + x.n + '×)', view: 'latih', params: { topik: x.topik, kode: x.kode || x.topik.split('.')[0], n: 10, mulai: true }, label: 'Latih topik ' + x.topik }); }
     if (topikTurun[0]) { const x = topikTurun[0]; saran.push({ teks: 'Akurasi ' + x.id + ' ' + x.judul + ' turun ' + Math.abs(x.delta) + ' poin. Baca ulang ringkasannya.', judul: 'Baca ulang ringkasan ' + x.id + ' ' + x.judul, meta: 'akurasi turun ' + Math.abs(x.delta) + ' poin', view: 'topik', params: { id: x.id }, label: 'Buka topik ' + x.id }); }
     if (st.hadir < 4) saran.push({ teks: 'Hadir ' + st.hadir + ' hari. Targetkan minimal 5 hari per minggu; konsistensi lebih menentukan daripada durasi.', judul: 'Targetkan minimal 5 hari hadir per minggu', meta: 'hadir ' + st.hadir + ' hari; konsistensi lebih menentukan daripada durasi', view: 'rencana', label: 'Lihat rencana' });
     const usang = salahIni.filter(j => j.tag === 'angka-usang').length;

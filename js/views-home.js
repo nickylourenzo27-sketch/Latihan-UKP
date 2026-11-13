@@ -502,7 +502,7 @@
       const jagaHadir = U.jamBelajar() >= 18 && UKP.hadir.rangkaian() > 0 && !tenggat;
       kartuSesi.append(kepalaKartu({ judul: 'Sesi hari ini', id: 'sesi-judul', meta: tenggat ? 'Hari tenggat pajak' : sesi.lelah ? 'Mode malam' : null }),
         segUkuran(), daftar,
-        tenggat ? h('p', { class: 'meta' }, 'Hari ini tanggal ' + tglNum + ', hari tenggat pajak. Sesi dikecilkan ke Kilat; melewati hari ini tidak memutus kehadiran (dicatat CUTI).') : sesi.lelah ? h('p', { class: 'meta' }, 'Sudah lewat pukul 21.00: materi baru ditunda, sesi ini kartu dan soal terlemah saja.') : null,
+        tenggat ? h('p', { class: 'meta' }, 'Hari ini tanggal ' + tglNum + ', hari tenggat pajak. Sesi dikecilkan ke Kilat.' + (s.hadir[hariIni] ? '' : ' Bila tidak sempat belajar, tekan Lewati hari ini agar kehadiran tidak putus (dicatat CUTI).')) : sesi.lelah ? h('p', { class: 'meta' }, 'Sudah lewat pukul 21.00: materi baru ditunda, sesi ini kartu dan soal terlemah saja.') : null,
         jagaHadir ? h('p', { class: 'meta' }, 'Kilat 5 menit cukup agar hari ini tetap tercatat hadir.') : null,
         h('div', { class: 'btn-row' }, tombolMulai, tenggat && !s.hadir[hariIni] ? h('button', { type: 'button', class: 'btn btn-ghost btn-text', onclick: () => { UKP.hadir.catat('CUTI', 0); UKP.toast('Kehadiran hari ini dicatat CUTI.'); UKP.render(); } }, 'Lewati hari ini') : null));
     }
@@ -615,18 +615,31 @@
     return sem ? tata : page;
   }
   UKP.c.dasborKemajuan = () => berandaDasbor({ sematkan: true });
+  UKP.berandaUji = { fmtSkor: x => fmtSkor(x), aktivitasTerakhir: s => aktivitasTerakhir(s) };   // v9.5.4: untuk uji
   UKP.c.sesiHariIni = () => berandaDasbor({ hanyaSesi: true });
   // ----- aktivitas terakhir (kartu Lanjutkan di Beranda) -----
+  // v9.5.4 S8: skor simulasi ditulis seperti halaman hasil Simulasi (fmtSkor di views-simulasi.js): satu desimal bila tidak bulat
+  const fmtSkor = x => { const v = Number(x) || 0; return UKP.fmt && UKP.fmt.angka ? UKP.fmt.angka(v, v % 1 ? 1 : 0) : String(v % 1 ? Math.round(v * 10) / 10 : v).replace('.', ','); };
+  // v9.5.4 S9: simulasi yang waktunya habis, belum dikirim, dan punya jawaban. Ujian tim yang sudah punya kartunya sendiri di Beranda
+  // (room, atau ujian tim di perangkat ini) tidak ikut, agar kartunya tidak ganda. Kedaluwarsa tanpa jawaban tetap diabaikan.
+  function simulasiHabisBelumDikirim(s) {
+    const sa = s.simulasiAktif;
+    if (!sa || sa.selesai || sa.tanpaWaktu || !Array.isArray(sa.soalIds) || !(Number(sa.akhir) <= Date.now())) return false;
+    if (!Object.keys(sa.jawaban || {}).length) return false;
+    if (sa.tim) { if (sa.tim.room) return false; const u = s.ujianTim; if (u && u.id === sa.tim.ujianId) return false; }
+    return true;
+  }
   function aktivitasTerakhir(s) {
     const a = s.sesiAktif;
     if (a && !a.selesai && a.blok && a.blok.length) return { judul: a.ukuran === 'diagnosis' ? 'Diagnosis' : 'Sesi belajar', meta: 'Langkah ' + (a.posisi + 1) + ' dari ' + a.blok.length, buka: () => UKP.go('sesi'), sesi: true };
-    if (UKP.simulasiBerjalan && UKP.simulasiBerjalan()) return { judul: 'Simulasi ujian', meta: 'Sedang berjalan', buka: () => UKP.go('simulasi', { jalan: true }) };
+    if (UKP.simulasiBerjalan && UKP.simulasiBerjalan()) return { judul: 'Simulasi ujian', meta: 'Sedang berjalan', buka: () => UKP.go('simulasi', { jalan: true }), berjalan: true };
+    if (simulasiHabisBelumDikirim(s)) return { judul: 'Simulasi ujian', meta: 'Waktu habis · belum dikirim', buka: () => UKP.go('simulasi'), habis: true };
     const cand = [];
     for (let i = s.jawaban.length - 1; i >= 0; i--) { const j = s.jawaban[i]; if (j && j.topik && j.konteks !== 'simulasi' && K.topik(j.topik) && !(L.dariSoalHari && L.dariSoalHari(j, s.soalHari))) { cand.push({ pada: j.pada || 0, jenis: 'latih', id: j.topik }); break; } }
     for (const id in s.topikDibaca) { const v = s.topikDibaca[id]; if (typeof v === 'number' && K.topik(id)) cand.push({ pada: v, jenis: 'baca', id }); }
     const sim = s.simulasi.filter(x => x && x.selesai).slice(-1)[0]; if (sim) cand.push({ pada: typeof sim.selesai === 'number' ? sim.selesai : 0, jenis: 'sim' });
     const x = cand.sort((a, b) => b.pada - a.pada)[0]; if (!x) return null;
-    if (x.jenis === 'sim') return { judul: 'Simulasi ujian', meta: 'Terakhir: skor ' + Math.round(sim.skor || 0), buka: () => UKP.go('simulasi') };
+    if (x.jenis === 'sim') return { judul: 'Simulasi ujian', meta: 'Terakhir: skor ' + fmtSkor(sim.skor), buka: () => UKP.go('simulasi') };
     const t = K.topik(x.id);
     if (x.jenis === 'latih') return { judul: t.id + ' ' + t.judul, meta: 'Latihan soal', buka: () => UKP.go('latih', { topik: t.id, kode: t.kode, n: 10, mulai: true }) };
     return { judul: t.id + ' ' + t.judul, meta: 'Baca materi', buka: () => UKP.go('topik', { id: t.id }) };
@@ -771,6 +784,21 @@
         h('h3', { class: 'cara-nama' }, judul), h('span', { class: 'cara-teks' }, teks), meta[i] ? h('span', { class: 'cara-meta' }, meta[i]) : null,
       ], tujuan[i][0], tujuan[i][1] || null, 'kartu-cara')))));
   }
+  // v9.5.4 S9: saat waktu simulasi berwaktu habis, hanya kartu Lanjutkan yang diganti di tempat (pola v9.5.3 A2 di views-simulasi.js):
+  // hanya bila kartu masih terpasang; ditunda selama ada dialog terbuka, pengguna sedang mengetik, atau fokus ada di dalam kartu.
+  // Kartu lain dan fokus tidak disentuh, karena yang diganti hanya simpul kartu ini.
+  const mengetikDi = el => !!el && (el.isContentEditable || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || (el.tagName === 'INPUT' && !/^(radio|checkbox|button|submit|reset|range|color|file)$/i.test(el.type || '')));
+  function segarkanSaatHabis(kartu, sa) {
+    if (!sa || sa.tanpaWaktu || !(Number(sa.akhir) > 0)) return;
+    const perbarui = () => {
+      if (!kartu.isConnected) return;
+      const ae = document.activeElement;
+      if (document.querySelector('dialog[open]') || mengetikDi(ae) || (ae && kartu.contains(ae))) { setTimeout(perbarui, 1000); return; }
+      if (UKP.simulasiBerjalan && UKP.simulasiBerjalan()) { setTimeout(perbarui, Math.min(2147483000, Math.max(1000, Number(UKP.store.get().simulasiAktif && UKP.store.get().simulasiAktif.akhir) - Date.now() + 500))); return; }
+      kartu.replaceWith(kartuLanjut(UKP.store.get()));
+    };
+    setTimeout(perbarui, Math.min(2147483000, Math.max(0, Number(sa.akhir) - Date.now()) + 500));
+  }
   // D3.4 kartu Lanjutkan (atau Mulai sesi pertama); tombolnya sekunder
   function kartuLanjut(s) {
     const tingkat = s.profil.tingkat; const hariIni = U.hariIni();
@@ -784,8 +812,10 @@
       h('div', { class: 'btn-row' }, tombol));
     if (akhir) {
       const sesi = !akhir.sesi && !hadir ? susun() : null;
-      return kartuAksi(akhir.meta, akhir.judul, sesi ? tautanAlt('atau mulai sesi harian · ' + sesi.menit + ' mnt', () => mulaiSesi(sesi)) : null,
+      const kartu = kartuAksi(akhir.meta, akhir.judul, sesi ? tautanAlt('atau mulai sesi harian · ' + sesi.menit + ' mnt', () => mulaiSesi(sesi)) : null,
         h('button', { type: 'button', class: 'btn', onclick: akhir.buka }, ikon('play'), 'Lanjutkan'));
+      if (akhir.berjalan) segarkanSaatHabis(kartu, s.simulasiAktif);
+      return kartu;
     }
     const sesi = susun(); const nDiag = K.kelompok(tingkat).length * 3; const menitDiag = Math.max(1, Math.round(nDiag * .8));
     const diag = () => { const d = L.susunDiagnosis(); if (!d) { UKP.toast('Konten untuk tingkat ini belum dimuat.'); return; } mulaiSesi(d); };
@@ -852,9 +882,9 @@
       let nTempo = 0; try { nTempo = UKP.srs.jatuhTempo(tingkat).length; } catch (e) {}
       const simAkhir = (s.simulasi || []).filter(x => x && x.selesai).slice(-1)[0];
       isi.appendChild(empatCara([
-        simAkhir ? 'Terakhir: skor ' + Math.round(simAkhir.skor || 0) : 'Belum ada riwayat simulasi',
+        simAkhir ? 'Terakhir: skor ' + fmtSkor(simAkhir.skor) : 'Belum ada riwayat simulasi',
         metaRoom(),
-        '20 soal acak, langsung dibahas',
+        p.jawabLangsung === false ? '20 soal acak, dibahas setelah Periksa' : '20 soal acak, langsung dibahas',   // v9.5.4 Sx-B3: ikut sakelar "Periksa dulu"
         nTempo ? nTempo + ' kartu jatuh tempo' : 'Peta materi ' + (UKP.namaTingkat[tingkat] || 'Tingkat ' + tingkat),
       ], [['simulasi'], ['room'], ['latih'], ['tingkat', { tingkat }]]));
       // D3.6 Alat lain

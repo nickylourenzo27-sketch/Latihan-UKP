@@ -7,6 +7,8 @@
   const ringkasStatus = (teks, aksi) => UKP.c.ringkasStatus(teks, aksi);
   const langkahBerikut = (items, o) => UKP.c.langkahBerikut(items, o);
   // baris .daftar-skor (K-05) yang bisa diklik; nilai null → "—" dengan bar putus-putus (data-tahap="awal")
+  // v9.5.4 C1: teks menit waktu per kelompok (tabel, daftar HP, label aksesibilitas); lebih dari 0 tapi dibulatkan 0 → "< 1"
+  const teksMenit = (m, label) => { const b = Math.round(m); return b === 0 && m > 0 ? (label ? 'kurang dari 1' : '< 1') : String(b); };
   const barisSkorLokal = o => { const judul = h('span', { class: 'judul', title: o.judul || null }, o.judul);
     const isi = [h('span', { class: 'kode' }, o.kode), o.meta ? h('span', { class: 'teks' }, judul, h('span', { class: 'meta' }, o.meta)) : judul, barMini(o.nilai == null ? 0 : o.nilai, { tahap: o.tahap || (o.nilai == null ? 'awal' : null), nada: o.nada || null, label: o.labelBar }), h('span', { class: 'nilai', style: o.nadaAngka ? { color: 'var(--' + o.nadaAngka + ')' } : null }, o.nilai == null ? '—' : String(o.nilai)), UKP.icon('chevron-kanan', 'chev', true)];
     return h('li', { class: 'baris-skor' }, o.onclick ? h('button', { type: 'button', 'aria-label': o.label || null, onclick: o.onclick }, isi) : h('a', { href: UKP.href(o.view, o.params), 'data-go': o.view, 'data-params': o.params ? JSON.stringify(o.params) : null, 'aria-label': o.label || null }, isi)); };
@@ -226,14 +228,22 @@
     if (params.hasil && params.ulas) return layarUlas(params.hasil, params.ulas, params);
     if (params.hasil) return layarHasil(params.hasil);
     if (aktif) {
-      const a = aktif; const nJawab = Object.keys(a.jawaban).length; const n = a.soalIds.length; const sisa = Math.max(0, Math.round((a.akhir - Date.now()) / 60000));
+      const a = aktif; const nJawab = Object.keys(a.jawaban).length; const n = a.soalIds.length; const sisa = Math.max(0, Math.ceil((a.akhir - Date.now()) / 60000));
       const buang = async () => { if (!nJawab || await UKP.konfirmasi('Buang simulasi?', 'Jawaban yang sudah diisi akan hilang dan tidak dinilai.', { ya: 'Buang', bahaya: true })) { s.simulasiAktif = null; UKP.store.save(); UKP.toast('Simulasi dibuang.'); UKP.render(); } };
       let teks, aksi;
       if (kedaluwarsa(a) && !nJawab) { teks = 'Simulasi ' + labelSim(a) + ' sudah melewati batas waktu tanpa satu jawaban pun, jadi tidak dinilai dan tidak dicatat.'; aksi = [h('button', { class: 'btn btn-primary', onclick: buang }, 'Buang dan susun baru')]; }
       else if (kedaluwarsa(a)) { teks = 'Waktu simulasi ' + labelSim(a) + ' sudah habis dengan ' + nJawab + '/' + n + ' soal terjawab. Kirim untuk melihat nilai; soal yang tidak dijawab dinilai salah.'; aksi = [h('button', { class: 'btn btn-primary', onclick: () => { const r = nilaiDanRekam(a, true); UKP.go('simulasi', { hasil: r.id }, { replace: true }); } }, 'Kirim dan lihat hasil'), h('button', { class: 'btn btn-danger btn-attn', onclick: buang }, UKP.icon('hapus'), 'Buang')]; }
       else { teks = 'Ada simulasi ' + labelSim(a) + ' yang belum dikirim: ' + nJawab + '/' + n + ' soal terjawab, ' + (a.tanpaWaktu ? 'tanpa batas waktu.' : 'sisa waktu ± ' + sisa + ' menit (waktu tetap berjalan).'); aksi = [h('button', { class: 'btn btn-primary', onclick: () => UKP.go('simulasi', { jalan: true }) }, UKP.icon('play'), 'Lanjutkan'), h('button', { class: 'btn btn-danger btn-attn', onclick: buang }, UKP.icon('hapus'), 'Buang')]; }
-      return h('div', { class: 'page' }, UKP.c.kop({ judul: 'Simulasi berjalan', meta: [UKP.c.pill(labelSim(a), 'nila'), UKP.c.pill(nJawab + '/' + n + ' terjawab'), a.tanpaWaktu ? UKP.c.pill('tanpa batas waktu') : UKP.c.pill(kedaluwarsa(a) ? 'waktu habis' : 'sisa ± ' + sisa + ' mnt', kedaluwarsa(a) ? 'attn' : 'warn', 'jam')] }),
+      const pg = h('div', { class: 'page' }, UKP.c.kop({ judul: 'Simulasi berjalan', meta: [UKP.c.pill(labelSim(a), 'nila'), UKP.c.pill(nJawab + '/' + n + ' terjawab'), a.tanpaWaktu ? UKP.c.pill('tanpa batas waktu') : UKP.c.pill(kedaluwarsa(a) ? 'waktu habis' : 'sisa ± ' + sisa + ' mnt', kedaluwarsa(a) ? 'attn' : 'warn', 'jam')] }),
         h('section', { class: 'card sorot', 'aria-label': 'Simulasi yang belum dikirim' }, UKP.c.progress({ label: 'Terjawab', nilai: nJawab, maks: n, teks: nJawab + ' dari ' + n }), h('p', null, teks), h('div', { class: 'btn-row' }, aksi)));
+      // v9.5.3 A2: selama waktu berjalan kartu digambar ulang tiap kali angka menit berganti, dan sekali lagi saat waktu habis, sehingga
+      // berganti ke "waktu habis" tanpa muat ulang. Hanya bila kartu ini masih tampil; ditunda selama ada dialog terbuka (Buang).
+      // UKP.render() memulihkan fokus ke tombol yang sama bila tombol itu masih ada.
+      if (!a.tanpaWaktu && !kedaluwarsa(a)) {
+        const segarkan = () => { if (!pg.isConnected) return; if (document.querySelector('dialog[open]')) { setTimeout(segarkan, 1000); return; } UKP.render(); };
+        setTimeout(segarkan, (((a.akhir - Date.now()) % 60000) || 60000) + 100);
+      }
+      return pg;
     }
     const UTI = () => UKP.ujianTimUI || {}; // v8.2 room (js/views-ujian-tim.js)
     const pemanduRoom = () => { try { return !!(UTI().pemanduRoom && UTI().pemanduRoom()); } catch (e) { return false; } };
@@ -333,12 +343,13 @@
     const tombolMulai = blok => h('button', { type: 'button', class: 'btn btn-primary btn-lg' + (blok ? ' btn-block' : ''), onclick: mulai }, UKP.icon('play'), 'Mulai simulasi');
     // aturan dan pintasan: dilipat agar ringkasan dan tombol tidak terdorong ke bawah
     const aturan = () => h('details', { class: 'lipat aturan-sim' }, h('summary', null, 'Aturan simulasi'),
-      h('ul', { style: { listStyle: 'none', margin: '0', padding: '0', display: 'grid', gap: '8px' } }, [['calc', 'Kalkulator, pencarian, dan Tutor nonaktif selama simulasi.'], ['check', 'Jawaban tersimpan otomatis.'], ['jam', 'Waktu tetap berjalan saat Anda keluar dari halaman.'], ['flag', 'Tandai soal ragu, lalu kembali lewat daftar soal.']].map(([ik, t]) => h('li', { class: 'small', style: { display: 'flex', gap: '8px', alignItems: 'flex-start' } }, h('span', { 'aria-hidden': 'true', style: { display: 'inline-grid', color: 'var(--muted)', marginTop: '2px' } }, UKP.icon(ik, null, true)), t))),
+      h('ul', { style: { listStyle: 'none', margin: '0', padding: '0', display: 'grid', gap: '8px' } }, [['calc', 'Kalkulator, pencarian, dan Tutor nonaktif selama simulasi.'], ['check', 'Jawaban tersimpan otomatis.'], ['jam', 'Waktu tetap berjalan saat Anda keluar dari halaman.'], ['flag', 'Tandai soal ragu, lalu kembali lewat daftar soal.']].map(([ik, t]) => h('li', { class: 'small' + (ik === 'jam' ? ' aturan-jam' : ''), hidden: ik === 'jam' && tanpaAktif() ? true : null, style: { display: 'flex', gap: '8px', alignItems: 'flex-start' } }, h('span', { 'aria-hidden': 'true', style: { display: 'inline-grid', color: 'var(--muted)', marginTop: '2px' } }, UKP.icon(ik, null, true)), t))),
       h('p', { class: 'meta petunjuk-kbd' }, 'Pintasan: ', UKP.c.kbd('←'), ' ', UKP.c.kbd('→'), ' soal · ', UKP.c.kbd('R'), ' ragu · ', UKP.c.kbd('G'), ' daftar soal · ', UKP.c.kbd('A'), '–', UKP.c.kbd('D'), ' jawab'));
+    // v9.5.3 A1: selama tanpaAktif() butir aturan "Waktu tetap berjalan" (li.aturan-jam) disembunyikan; terapkanTanpa() ikut memperbaruinya.
     // v9.5.2: "Tanpa batas waktu" hanya berlaku untuk simulasi sendiri. Ujian tim selalu berwaktu (mulaiTim menyetel tanpaWaktu = false),
     // jadi ringkasan tidak menulis "tanpa batas waktu" saat sakelar ujian tim menyala, dan isian Menit disembunyikan saat tidak dipakai.
     const tanpaAktif = () => !!cfg.tanpaWaktu && !(cfg.tim && UT);
-    function terapkanTanpa() { const t = tanpaAktif(); ['#sim-m', '#sim-m-to'].forEach(sel => { const inp = kartu.querySelector(sel); const f = inp && inp.closest ? inp.closest('.field') : null; if (f) f.hidden = t; }); }
+    function terapkanTanpa() { const t = tanpaAktif(); ['#sim-m', '#sim-m-to'].forEach(sel => { const inp = kartu.querySelector(sel); const f = inp && inp.closest ? inp.closest('.field') : null; if (f) f.hidden = t; }); page.querySelectorAll('.aturan-jam').forEach(li => { li.hidden = t; }); }
     function gambarRingkas() {
       const [m, n] = perkiraan();
       metaHP.textContent = (tanpaAktif() ? 'tanpa batas waktu' : m + ' mnt') + ' · ' + n + ' soal · batas ' + lulusBatas;
@@ -353,7 +364,8 @@
     function gambar(fokusSel) {
       kartu.replaceChildren(h('h2', { class: 'visually-hidden', id: 'sim-form-j' }, 'Atur simulasi'));
       const fUKP = fmt.UKP[tingkat] || {};
-      const seg = UKP.c.segmen({ id: 'sim-format', label: 'Format', aktif: cfg.format, penuh: true, opsi: [{ nilai: 'UKP', label: 'Komprehensif ' + tingkat, sub: (fUKP.menit || 180) + ' mnt · ±' + (fUKP.soalPerkiraan || 60) + ' soal' }, { nilai: 'USKP', label: 'Per kelompok', sub: '40 soal' }, { nilai: 'kustom', label: 'Kustom', sub: 'atur sendiri' }].concat(paket.length ? [{ nilai: 'tryout', label: 'Try Out', sub: (paketAktif() ? potAktif().sampai - potAktif().dari + 1 : 0) + ' soal · ' + menitTO() + ' mnt' }] : []), onPilih: v => { cfg.format = v; gambar('[data-format="' + v + '"]'); } });
+      // v9.5.3 Ax1: sub segmen Komprehensif mengikuti "terbagi dua malam"; sub Try Out ikut berubah saat Menit diketik (oninput #sim-m-to)
+      const seg = UKP.c.segmen({ id: 'sim-format', label: 'Format', aktif: cfg.format, penuh: true, opsi: [{ nilai: 'UKP', label: 'Komprehensif ' + tingkat, sub: (cfg.terbagi ? Math.round((fUKP.menit || 180) / 2) + ' mnt · ±' + Math.ceil((fUKP.soalPerkiraan || 60) / 2) : (fUKP.menit || 180) + ' mnt · ±' + (fUKP.soalPerkiraan || 60)) + ' soal' }, { nilai: 'USKP', label: 'Per kelompok', sub: '40 soal' }, { nilai: 'kustom', label: 'Kustom', sub: 'atur sendiri' }].concat(paket.length ? [{ nilai: 'tryout', label: 'Try Out', sub: (paketAktif() ? potAktif().sampai - potAktif().dari + 1 : 0) + ' soal · ' + menitTO() + ' mnt' }] : []), onPilih: v => { cfg.format = v; gambar('[data-format="' + v + '"]'); } });
       const segEl = seg.querySelector('.seg') || seg; segEl.classList.add('bersub'); // K-11: segmen ber-sub (P1 juga menambahkannya otomatis)
       seg.querySelectorAll('button[data-nilai]').forEach(b => { b.dataset.format = b.dataset.nilai; });
       kartu.appendChild(seg);
@@ -371,13 +383,14 @@
         kartu.append(paket.length > 1 ? h('div', { class: 'field' }, h('label', { for: 'sim-set' }, 'Paket'), h('select', { class: 'select', id: 'sim-set', onchange: e => { cfg.set = e.target.value; cfg.menitTO = null; cfg.bagianTO = 'semua'; gambar('#sim-set'); } }, paket.map(q => h('option', { value: q.set, selected: q.set === cfg.set ? true : null }, q.judul + ' · ' + q.n + ' soal')))) : null,
           p && p.n > 40 ? UKP.c.segmen({ id: 'sim-bagian-to', label: 'Bagian', aktif: potAktif().nilai, batas: true, opsi: potonganTO(p.n).map(x => ({ nilai: x.nilai, label: x.label })), onPilih: v => { cfg.bagianTO = v; cfg.menitTO = null; const inp = kartu.querySelector('#sim-m-to'); if (inp) inp.value = menitTO(); const sb = kartu.querySelector('[data-format="tryout"] small'); if (sb) sb.textContent = perkiraan()[1] + ' soal · ' + menitTO() + ' mnt'; const tp = kartu.querySelector('.to-penjelas'); if (tp) tp.textContent = teksTO(p, komposisi); gambarRingkas(); } }) : null,
           h('p', { class: 'small to-penjelas' }, teksTO(p, komposisi)),
-          h('div', { class: 'field' }, h('label', { for: 'sim-m-to' }, 'Menit'), h('div', { class: 'input-grup' }, h('input', { class: 'input angka', id: 'sim-m-to', type: 'number', inputmode: 'numeric', min: 5, max: 300, value: menitTO(), oninput: e => { const v = Number(e.target.value); if (v) cfg.menitTO = U.clamp(v, 5, 300); gambarRingkas(); } }), h('span', { class: 'imbuh', 'aria-hidden': 'true' }, 'mnt'))),
+          h('div', { class: 'field' }, h('label', { for: 'sim-m-to' }, 'Menit'), h('div', { class: 'input-grup' }, h('input', { class: 'input angka', id: 'sim-m-to', type: 'number', inputmode: 'numeric', min: 5, max: 300, value: menitTO(), oninput: e => { const v = Math.round(Number(e.target.value)); if (v) cfg.menitTO = U.clamp(v, 5, 300); const sb = kartu.querySelector('[data-format="tryout"] small'); if (sb) sb.textContent = perkiraan()[1] + ' soal · ' + menitTO() + ' mnt'; gambarRingkas(); }, onchange: e => { e.target.value = menitTO(); } }), h('span', { class: 'imbuh', 'aria-hidden': 'true' }, 'mnt'))),
           window.innerWidth < 900 ? UKP.c.banner('Try out ' + (p ? p.n : '') + ' soal sebaiknya dikerjakan di laptop, seperti ujian sesungguhnya.', 'info') : null);
       } else if (cfg.format === 'USKP') {
         kartu.append(h('div', { class: 'field' }, h('label', { for: 'sim-kode' }, 'Kelompok'), h('select', { class: 'select', id: 'sim-kode', onchange: e => { cfg.kodeUSKP = e.target.value; gambarRingkas(); } }, h('optgroup', { label: 'Tingkat ' + tingkat + ' (target)' }, kelT.map(k => opsiKel(k, cfg.kodeUSKP, true))), semuaKel.some(k => !kelT.includes(k)) ? h('optgroup', { label: 'Di luar target' }, semuaKel.filter(k => !kelT.includes(k)).map(k => opsiKel(k, cfg.kodeUSKP, true))) : null)),
           h('p', { class: 'small muted' }, 'Format per kelompok: 40 soal pilihan ganda, 2,5 poin per soal, memenuhi batas bila skor ≥ 60 (24 soal benar).'));
       } else {
-        kartu.append(h('div', { class: 'form-grid dua' }, h('div', { class: 'field' }, h('label', { for: 'sim-j' }, 'Jumlah soal'), h('input', { class: 'input angka', id: 'sim-j', type: 'number', inputmode: 'numeric', min: 5, max: 120, value: cfg.jumlah, oninput: e => { cfg.jumlah = U.clamp(Number(e.target.value) || 20, 5, 120); gambarRingkas(); } })), h('div', { class: 'field' }, h('label', { for: 'sim-m' }, 'Menit'), h('div', { class: 'input-grup' }, h('input', { class: 'input angka', id: 'sim-m', type: 'number', inputmode: 'numeric', min: 5, max: 300, value: cfg.menitKustom, oninput: e => { cfg.menitKustom = U.clamp(Number(e.target.value) || 50, 5, 300); gambarRingkas(); } }), h('span', { class: 'imbuh', 'aria-hidden': 'true' }, 'mnt')))),
+        // v9.5.3 A3: oninput menyimpan nilai yang dibatasi dan dibulatkan (7.5 soal tidak tertulis, yang jalan 7); onchange (isian ditinggalkan atau Enter) menulis balik nilai yang dipakai
+        kartu.append(h('div', { class: 'form-grid dua' }, h('div', { class: 'field' }, h('label', { for: 'sim-j' }, 'Jumlah soal'), h('input', { class: 'input angka', id: 'sim-j', type: 'number', inputmode: 'numeric', min: 5, max: 120, value: cfg.jumlah, oninput: e => { cfg.jumlah = U.clamp(Math.round(Number(e.target.value)) || 20, 5, 120); gambarRingkas(); }, onchange: e => { e.target.value = cfg.jumlah; } })), h('div', { class: 'field' }, h('label', { for: 'sim-m' }, 'Menit'), h('div', { class: 'input-grup' }, h('input', { class: 'input angka', id: 'sim-m', type: 'number', inputmode: 'numeric', min: 5, max: 300, value: cfg.menitKustom, oninput: e => { cfg.menitKustom = U.clamp(Math.round(Number(e.target.value)) || 50, 5, 300); gambarRingkas(); }, onchange: e => { e.target.value = cfg.menitKustom; } }), h('span', { class: 'imbuh', 'aria-hidden': 'true' }, 'mnt')))),
           h('div', { class: 'field' }, h('label', { for: 'sim-kode2' }, 'Kelompok (opsional)'), h('select', { class: 'select', id: 'sim-kode2', onchange: e => { cfg.kodeKustom = e.target.value || ''; gambarRingkas(); } }, h('option', { value: '', selected: !cfg.kodeKustom ? true : null }, 'Semua kelompok Tingkat ' + tingkat), semuaKel.map(k => opsiKel(k, cfg.kodeKustom, false)))));
       }
       if (!cfg.tim || !UT) kartu.append(sw('sim-tanpa', 'Tanpa batas waktu', 'Untuk kebutuhan aksesibilitas. Jawaban tetap dinilai; waktu terpakai tidak dinilai.', cfg.tanpaWaktu, e => { cfg.tanpaWaktu = e.target.checked; terapkanTanpa(); gambarRingkas(); }));
@@ -468,7 +481,7 @@
       tersimpanTeks.className = sempit ? 'visually-hidden' : ''; // HP: cukup ikon cek (teks tetap dibacakan)
       const judulBar = h('span', { class: 'small', style: { fontWeight: 600, fontFamily: 'var(--font-ui)' } }, 'Soal ' + (a.posisi + 1) + ' dari ' + a.soalIds.length + (so ? ' · ' + so.kode : ''), tinjau ? [' ', UKP.c.pill('tinjau ragu ' + (posTinjau + 1) + '/' + tinjau.length, 'warn', 'flag')] : null);
       const statusBar = h('span', { style: { display: 'flex', flexWrap: 'wrap', gap: '2px 12px', alignItems: 'center', minWidth: '0', fontFamily: 'var(--font-ui)' } }, tersimpanEl, statusJawab, pillTempo);
-      const timerEl = a.tanpaWaktu ? h('span', { class: 'timer', 'aria-label': 'Tanpa batas waktu' }, '∞') : h('span', null, h('span', { class: 'timer', role: 'timer', 'aria-label': 'Sisa waktu', 'data-sisa': sisa <= 300 ? 'sedikit' : null }, U.jam(sisa)), ' ', h('span', { class: 'sisa tiny', hidden: sisa > 300 ? true : null }, sisa > 300 ? null : 'Sisa < 5 mnt'));
+      const timerEl = a.tanpaWaktu ? h('span', { class: 'timer', 'aria-label': 'Tanpa batas waktu' }, '∞') : h('span', null, h('span', { class: 'timer', role: 'timer', 'aria-label': 'Sisa waktu', 'data-sisa': sisa <= 300 ? 'sedikit' : null }, U.jam(sisa)), ' ', h('span', { class: 'sisa tiny', hidden: sisa >= 300 ? true : null }, sisa >= 300 ? null : 'Sisa < 5 mnt'));
       const tombolBar = h('div', { class: 'btn-row ujian-bar-kanan', style: { flexWrap: 'nowrap', justifyContent: 'flex-end' } }, tinjau ? h('button', { type: 'button', class: 'btn btn-sm btn-ghost btn-text', onclick: () => { tinjau = null; gambar(false); UKP.umumkan('Mode tinjau ragu selesai.'); } }, 'Selesai tinjau') : null,
         lebar ? null : h('button', { type: 'button', class: 'btn btn-sm', 'aria-keyshortcuts': 'G', onclick: bukaDaftar }, 'Daftar soal'), h('button', { type: 'button', class: 'btn btn-sm', onclick: ringkasanKirim }, sempit ? 'Kirim' : 'Selesai dan kirim'));
       // HP: baris 1 = nomor soal + timer; baris 2 = status simpan/jawab + tombol; desktop: tiga zona dalam satu baris
@@ -539,10 +552,11 @@
       kiri.append(h('h1', { class: 'visually-hidden' }, 'Soal ' + (a.posisi + 1) + ' dari ' + a.soalIds.length), el, nav);
       window.scrollTo({ top: 0 });
     }
+    // v9.5.3 Ax3: teks "Sisa < 5 mnt" baru tampil di bawah 300 detik (tepat 05:00 bukan "kurang dari 5 menit")
     function tick() {
       if (a.tanpaWaktu || terkirim) return;
       const sisa = sisaDetik();
-      const t = bar.querySelector('.timer'); if (t) { t.textContent = U.jam(sisa); if (sisa <= 300) { t.dataset.sisa = 'sedikit'; const sp = bar.querySelector('.sisa'); if (sp) { sp.textContent = 'Sisa < 5 mnt'; sp.hidden = false; } } }
+      const t = bar.querySelector('.timer'); if (t) { t.textContent = U.jam(sisa); if (sisa <= 300) { t.dataset.sisa = 'sedikit'; const sp = bar.querySelector('.sisa'); if (sp && sisa < 300) { sp.textContent = 'Sisa < 5 mnt'; sp.hidden = false; } } }
       for (const m of [600, 300, 60]) if (sisa <= m && sisa > 0 && !diumumkan[m]) { diumumkan[m] = true; live.textContent = 'Sisa ' + (m / 60) + ' menit.'; }
       // penanda laju bergerak tiap menit; pengingat tempo dibacakan sekali per 3 kesempatan
       if (sisa % 60 === 0 || sisa === 300) { gambarProgres(); if (pillTempo.firstChild && Object.keys(diumumkan).filter(k => k.startsWith('pace')).length < 3 && !diumumkan['pace' + a.posisi]) { diumumkan['pace' + a.posisi] = true; live.textContent = 'Anda di belakang laju yang dibutuhkan. Pertimbangkan menandai ragu dan lanjut.'; } }
@@ -613,7 +627,7 @@
     }
     async function tanyaKeluar() {
       if (!terpasang || terkirim) return;
-      const keluar = await UKP.konfirmasi('Keluar dari simulasi?', 'Waktu tetap berjalan. Jawaban yang sudah diisi tersimpan dan bisa dilanjutkan dari halaman Simulasi.', { ya: 'Keluar', tidak: 'Lanjutkan ujian' });
+      const keluar = await UKP.konfirmasi('Keluar dari simulasi?', (a.tanpaWaktu ? '' : 'Waktu tetap berjalan. ') + 'Jawaban yang sudah diisi tersimpan dan bisa dilanjutkan dari halaman Simulasi.', { ya: 'Keluar', tidak: 'Lanjutkan ujian' });
       if (!terpasang || terkirim) return; // sudah berpindah halaman selama dialog terbuka
       if (keluar) { tokenPenjaga = null; catatWaktu(); simpan(); UKP.store.flush(); delete document.body.dataset.mode; const sebelum = !!(history.state && history.state.params && history.state.params.dariPraUjian); if (sebelum && history.length > 1) history.back(); else UKP.go('simulasi', {}, { replace: true }); }
       else { try { history.pushState(Object.assign({}, history.state || { view: 'simulasi', params: { jalan: true }, ujianToken: tokenPenjaga }, { penjaga: true }), '', location.hash); } catch (e) {} }
@@ -653,9 +667,11 @@
     const t = K.topik(topik) || { id: topik, judul: '' };
     const nBenar = idsTopik.filter(id => r.jawaban[id] === (K.soal(id) || {}).kunci).length; const nKosong = idsTopik.filter(id => !r.jawaban[id]).length; const nSalah = idsTopik.length - nBenar - nKosong;
     const jenis = nSalah ? 'salah' : nKosong ? 'kosong' : 'semua'; const nUlas = nSalah || nKosong || idsTopik.length;
+    // v9.5.4 S13: jumlah soal yang benar-benar dimulai (js/views-belajar.js, UKP.latihBank.nLatihTopik)
+    const nLatih = UKP.latihBank && typeof UKP.latihBank.nLatihTopik === 'function' ? UKP.latihBank.nLatihTopik(topik) : 10;
     UKP.dialog({ judul: t.id + (t.judul ? ' · ' + t.judul : ''), ukuran: 'sm', isi: () => h('div', { class: 'stack-sm' }, h('p', { class: 'meta' }, [nBenar + ' benar', nSalah ? nSalah + ' salah' : null, nKosong ? nKosong + ' tidak dijawab' : null].filter(Boolean).join(' · ') + ' dari ' + idsTopik.length + ' soal'), h('p', { class: 'small muted' }, 'Ulas pembahasan soal topik ini dari simulasi, atau latih 10 soal baru.')),
       kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => { dlg.close(); UKP.go('simulasi', { hasil: r.id, ulas: jenis, topik }); } }, UKP.icon('mata'), 'Ulas ' + nUlas + ' soal'),
-        K.topik(topik) ? h('button', { type: 'button', class: 'btn btn-primary', autofocus: true, onclick: () => { dlg.close(); UKP.go('latih', { topik, kode: t.kode, n: 10, mulai: true }); } }, UKP.icon('pen'), 'Latih 10 soal topik ini') : null] });
+        K.topik(topik) && nLatih ? h('button', { type: 'button', class: 'btn btn-primary', autofocus: true, onclick: () => { dlg.close(); UKP.go('latih', { topik, kode: t.kode, n: 10, mulai: true }); } }, UKP.icon('pen'), 'Latih ' + nLatih + ' soal topik ini') : null] });
   }
   function layarHasil(id) {
     const s = UKP.store.get(); const r = s.simulasi.find(x => x.id === id);
@@ -684,6 +700,9 @@
     // per kelompok, terlemah dulu
     const dijawabKel = {}; r.soalIds.forEach(sid => { if (r.jawaban[sid]) { const k = (K.soal(sid) || {}).kode; if (k) dijawabKel[k] = (dijawabKel[k] || 0) + 1; } });
     const rows = Object.entries(r.perKel).map(([k, v]) => { const pct = v.total ? Math.round(v.benar / v.total * 100) : 0; const anggaran = r.menit * (v.total / r.total); const pakai = (r.detikKel && r.detikKel[k] || 0) / 60; return { k, v, pct, anggaran, pakai, dijawab: dijawabKel[k] || 0 }; }).sort((a, b) => a.pct - b.pct || b.v.total - a.v.total);
+    // v9.5.4 C1: waktu di soal hanya bila berwaktu dan rekaman punya detikKel; keterangan bila waktu terpakai melebihi waktu di soal ≥ 1 menit
+    // (satu arah: waktu di soal lebih besar hanya terjadi bila pemandu room menambah waktu, dan itu bukan waktu di luar layar ujian)
+    const waktuKel = !r.tanpaWaktu && !!r.detikKel; const ketWaktu = waktuKel && Math.min(durasi, r.menit) - rows.reduce((t, x) => t + x.pakai, 0) >= 1;
     // langkah berikutnya (K-07): satu primer
     const lemah = rows.find(x => x.dijawab) || rows[0];
     const menitUlas = n => '± ' + Math.max(2, Math.round(n * 1.5)) + ' mnt';
@@ -696,11 +715,11 @@
     ], { label: 'Langkah berikutnya' }); daftarLangkah.classList.add('ringkas');
     const sectLangkah = sect({ id: 'hasil-lanjut-j', judul: 'Langkah berikutnya', isi: daftarLangkah });
     const tblKel = h('table', { class: 'tabel' }, h('caption', { class: 'visually-hidden' }, 'Hasil per kelompok, terlemah dulu'),
-      h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Kelompok'), h('th', { scope: 'col', class: 'num' }, 'Benar'), h('th', { scope: 'col', style: { minWidth: '9rem' } }, 'Skor'), r.tanpaWaktu ? null : h('th', { scope: 'col', class: 'num' }, 'Waktu terpakai'), h('th', { scope: 'col', class: 'aksi' }, h('span', { class: 'visually-hidden' }, 'Aksi')))),
+      h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Kelompok'), h('th', { scope: 'col', class: 'num' }, 'Benar'), h('th', { scope: 'col', style: { minWidth: '9rem' } }, 'Skor'), waktuKel ? h('th', { scope: 'col', class: 'num' }, 'Waktu di soal') : null, h('th', { scope: 'col', class: 'aksi' }, h('span', { class: 'visually-hidden' }, 'Aksi')))),
       h('tbody', null, rows.map(x => h('tr', null, h('th', { scope: 'row' }, h('span', { class: 'kode' }, x.k), ' ', h('span', { class: 'small' }, K.namaKelompok(x.k))), h('td', { class: 'num' }, x.v.benar + '/' + x.v.total),
         h('td', null, h('div', { style: { display: 'flex', alignItems: 'center', gap: '8px' } }, barMini(x.pct, { tahap: x.dijawab ? null : 'awal', label: x.dijawab ? 'Skor ' + x.k + ': ' + x.pct + ' dari 100, batas 60' : x.k + ': tidak dijawab' }),
           x.dijawab ? h('span', { class: 'mono small', style: { minWidth: '3.5ch', textAlign: 'right', fontWeight: 600, color: x.pct < 60 ? 'var(--attn)' : null } }, String(x.pct)) : h('span', { class: 'meta' }, 'tidak dijawab'))),
-        r.tanpaWaktu ? null : h('td', { class: 'num small', style: { whiteSpace: 'nowrap' } }, Math.round(x.pakai) + ' dari ' + Math.round(x.anggaran) + ' mnt'),
+        waktuKel ? h('td', { class: 'num small', style: { whiteSpace: 'nowrap' } }, teksMenit(x.pakai) + ' dari ' + teksMenit(x.anggaran) + ' mnt') : null,
         h('td', { class: 'aksi' }, h('button', { type: 'button', class: 'icon-btn sm', 'aria-label': 'Latih 10 soal ' + x.k, 'data-tip': 'Latih 10 soal ' + x.k, onclick: () => UKP.go('latih', { kode: x.k, n: 10, mulai: true }) }, UKP.icon('pen')))))));
     // per topik (P4-01): .daftar-skor terlemah dulu; topik tanpa jawaban = bar putus-putus netral, bukan merah
     const perTopik = {}; r.soalIds.forEach(sid => { const so = K.soal(sid); if (!so) return; const t = perTopik[so.topik] = perTopik[so.topik] || { b: 0, n: 0, isi: 0, ids: [] }; t.n++; t.ids.push(sid); if (r.jawaban[sid]) t.isi++; if (r.jawaban[sid] === so.kunci) t.b++; });
@@ -718,9 +737,9 @@
     // daftar (HP < 600, dan kolom kanan ≥ 1280 di samping Per topik) atau tabel (600–1279); benar dan waktu terpakai tetap tampil di .meta
     const lebarLayar = window.innerWidth; const daftarKel = lebarLayar < 600 || (lebarLayar >= 1280 && adaTopik);
     const daftarKelHP = daftarKel ? h('ul', { class: 'daftar-skor' }, rows.map(x => barisSkorLokal({ kode: x.k, judul: K.namaKelompok(x.k), nilai: x.dijawab ? x.pct : null, nadaAngka: x.dijawab && x.pct < 60 ? 'attn' : null, labelBar: x.dijawab ? x.pct + ' dari 100, batas 60' : 'tidak dijawab',
-      meta: (x.dijawab ? x.v.benar + '/' + x.v.total + ' benar' : x.v.total + ' soal tidak dijawab') + (r.tanpaWaktu ? '' : ' · ' + Math.round(x.pakai) + ' dari ' + Math.round(x.anggaran) + ' mnt'),
-      label: x.k + ' ' + K.namaKelompok(x.k) + ': ' + x.v.benar + ' dari ' + x.v.total + ' benar' + (r.tanpaWaktu ? '' : ', waktu terpakai ' + Math.round(x.pakai) + ' dari ' + Math.round(x.anggaran) + ' menit') + '. Latih 10 soal.', view: 'latih', params: { kode: x.k, n: 10, mulai: true } }))) : null;
-    const sectKel = sect({ id: 'hasil-kel-j', judul: 'Per kelompok', meta: 'terlemah dulu · batas 60', aksi: UKP.c.salin(() => 'Hasil ' + labelSim(r) + ' (' + fmtSkor(r.skor) + ')\n' + rows.map(x => x.k + '\t' + x.v.benar + '/' + x.v.total + '\t' + x.pct + '%').join('\n'), { ikonSaja: true, label: 'Salin tabel per kelompok', pesan: 'Tabel per kelompok disalin.', kelas: 'icon-btn sm salin-kop' }), isi: daftarKelHP || UKP.c.tabelWrap('Hasil per kelompok', tblKel) });
+      meta: (x.dijawab ? x.v.benar + '/' + x.v.total + ' benar' : x.v.total + ' soal tidak dijawab') + (waktuKel ? ' · di soal ' + teksMenit(x.pakai) + ' dari ' + teksMenit(x.anggaran) + ' mnt' : ''),
+      label: x.k + ' ' + K.namaKelompok(x.k) + ': ' + x.v.benar + ' dari ' + x.v.total + ' benar' + (waktuKel ? ', waktu di soal ' + teksMenit(x.pakai, 1) + ' dari ' + teksMenit(x.anggaran, 1) + ' menit' : '') + '. Latih 10 soal.', view: 'latih', params: { kode: x.k, n: 10, mulai: true } }))) : null;
+    const sectKel = sect({ id: 'hasil-kel-j', judul: 'Per kelompok', meta: 'terlemah dulu · batas 60', aksi: UKP.c.salin(() => 'Hasil ' + labelSim(r) + ' (' + fmtSkor(r.skor) + ')\n' + rows.map(x => x.k + '\t' + x.v.benar + '/' + x.v.total + '\t' + x.pct + '%').join('\n'), { ikonSaja: true, label: 'Salin tabel per kelompok', pesan: 'Tabel per kelompok disalin.', kelas: 'icon-btn sm salin-kop' }), isi: [daftarKelHP || UKP.c.tabelWrap('Hasil per kelompok', tblKel), ketWaktu ? h('p', { class: 'meta' }, 'Waktu di soal dihitung selama soal tampil di layar. Waktu saat Anda keluar dari layar ujian tetap masuk waktu terpakai.') : null] });
     sectKel.classList.add('hasil-kel'); { const b = sectKel.querySelector('.salin-kop'); if (b) b.style.marginLeft = 'auto'; }
     // ≥ 1280: skor | langkah dan per topik | per kelompok berdampingan (6 | 6; tanpa per topik 7 | 5) agar halaman hasil ≤ 1.300 px; < 1280 bertumpuk
     page.appendChild(h('div', { class: 'tata hasil-tata' + (adaTopik ? ' dua' : '') }, h('div', { class: 'kl-7' }, kartuSkor), h('div', { class: 'kl-5' }, sectLangkah), sectKel, sectTopik));

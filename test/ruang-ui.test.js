@@ -336,7 +336,7 @@ describe('ruang-ui: waktu mengerjakan dan membahas (v9.3 W2)', () => {
   });
   it('baris ringkas total waktu di dialog Mulai (seperti brief)', () => {
     assert.equal(M.teksRingkasWaktu(10, 126, 120), '10 soal · kira-kira 41 menit (21 mengerjakan + 20 membahas)');
-    assert.equal(M.teksRingkasWaktu(10, 126, 0), '10 soal · 21 menit mengerjakan · membahas tanpa batas');
+    assert.equal(M.teksRingkasWaktu(10, 126, 0), '10 soal · waktu latihan 21 menit, termasuk membahas · membahas per soal tanpa hitung mundur'); // v9.5.3 B3
     assert.equal(M.teksRingkasWaktu(20, 150, 60), '20 soal · kira-kira 70 menit (50 mengerjakan + 20 membahas)');
     assert.equal(M.teksRingkasWaktu(40, 126, 180), '40 soal · kira-kira 204 menit (84 mengerjakan + 120 membahas)');
   });

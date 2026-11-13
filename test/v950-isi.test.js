@@ -1,7 +1,7 @@
 /* Uji v9.5.0 (isi): cakupan materi dari salinan PDF yang lebih bersih, peta soal ke butir materi resmi, dan soal baru
    (soal pengganti untuk soal yang sudah dipakai dan soal untuk butir yang tipis). Jalankan: node --test test/ */
 'use strict';
-const BATAS_TIPIS = 0; const BATAS_KOSONG = 0; const JUMLAH_BARU = 1027; // dihitung saat rilis: butir Tingkat B dengan kurang dari 4 soal, butir tanpa soal, dan soal baru (field sejak)
+const BATAS_TIPIS = 0; const BATAS_KOSONG = 0; const JUMLAH_BARU = 1137; // dihitung saat rilis: butir Tingkat B dengan kurang dari 4 soal, butir tanpa soal, dan soal baru (field sejak)
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -79,9 +79,13 @@ describe('v9.5.0: peta soal ke butir materi resmi', () => {
 describe('v9.5.0: soal baru', () => {
   const baru = [...SOAL.values()].filter(s => s.sejak);
   const pengganti = baru.filter(s => s.kembaranDari);
-  it('jumlah soal baru paling sedikit JUMLAH_BARU, dan semuanya terverifikasi tanpa tanda', () => {
+  it('jumlah soal baru paling sedikit JUMLAH_BARU; bertanda hanya bila soal sumbernya juga bertanda', () => {
     assert.ok(baru.length >= JUMLAH_BARU, 'soal baru: ' + baru.length);
-    for (const s of baru) { assert.match(s.sejak, /^\d+\.\d+\.\d+$/, s.id); assert.equal(s.verifikasi, '✅', s.id); assert.ok(!s.peringatan && !s.sumber, s.id); }
+    // sejak v9.5.4: soal pengganti boleh bertanda ◐ hanya bila soal sumbernya juga bertanda (klaim yang sama belum bisa dipastikan dari naskah), dan wajib punya peringatan
+    for (const s of baru) { assert.match(s.sejak, /^\d+\.\d+\.\d+$/, s.id); assert.ok(!s.sumber, s.id);
+      if (s.verifikasi === '✅') { assert.ok(!s.peringatan, s.id); continue; }
+      assert.equal(s.verifikasi, '◐', s.id); assert.ok(typeof s.peringatan === 'string' && s.peringatan.length > 20, s.id + ': soal bertanda wajib punya peringatan');
+      const a = s.kembaranDari ? SOAL.get(s.kembaranDari) : null; assert.ok(a && a.verifikasi === '◐', s.id + ': soal baru bertanda harus soal pengganti dari soal sumber yang juga bertanda'); }
   });
   it('soal pengganti merujuk soal asli di modul yang sama dan menguji hal yang sama', () => {
     for (const s of pengganti) { const a = SOAL.get(s.kembaranDari); assert.ok(a, s.id + ': sumber tidak ada'); assert.ok(!a.kembaranDari, s.id + ': sumber adalah soal pengganti');

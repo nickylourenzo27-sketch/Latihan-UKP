@@ -80,7 +80,7 @@ function stateContoh() {
       j(10, 'B7', 'B7.2', false),                                                                                     // 14 hari, bukan 7
       j(30, 'A3', 'A3.1', true),                                                                                      // di luar 14 hari
       j(1, 'B6', 'B6.1', false, 'simulasi', 'c'),                                                                     // simulasi: bukan latihan
-      j(1, 'A2', 'A2.1', false, 'latih', '-'),                                                                        // "tidak tahu": diabaikan
+      j(1, 'A2', 'A2.1', false, 'latih', '-'),                                                                        // "tidak tahu": dihitung salah (v9.5.4 S4)
     ],
     sesi: [{ tgl: '2026-11-08', menit: 10 }, { tgl: '2026-11-01', menit: 10 }, { tgl: '2026-10-20', menit: 10 }],
     simulasi: [
@@ -99,13 +99,13 @@ test('ringkasan: dihitung dari jawaban, sesi, simulasi, dan hadir sesuai kontrak
   assert.equal(r.tingkat, 'B');
   assert.equal(r.versiApp, '7.5');
   assert.equal(r.diperbarui, new Date(KINI).toISOString());
-  assert.equal(r.latihan.total, 8);
+  assert.equal(r.latihan.total, 9);                     // v9.5.4 S4: "tidak tahu" ikut dihitung sebagai soal salah
   assert.equal(r.latihan.benar, 4);
-  assert.equal(r.latihan.akurasi7, 0.5);                // 3 dari 6 dalam 7 hari
+  assert.equal(r.latihan.akurasi7, 0.429);              // 3 dari 7 dalam 7 hari (termasuk "tidak tahu")
   assert.equal(r.latihan.sesi7, 1);                     // 8 Nov saja (1 Nov di luar 3–9 Nov)
   assert.equal(r.latihan.terakhir, new Date(KINI - HARI).toISOString());
-  assert.deepEqual(JSON.parse(JSON.stringify(r.latihan.perKelompok)), { A2: { n: 4, benar: 1 }, B7: { n: 3, benar: 2 } });
-  assert.deepEqual(JSON.parse(JSON.stringify(r.latihan.perTopikLemah)), [{ id: 'A2.1', n: 4, benar: 1 }, { id: 'B7.2', n: 3, benar: 2 }]);
+  assert.deepEqual(JSON.parse(JSON.stringify(r.latihan.perKelompok)), { A2: { n: 5, benar: 1 }, B7: { n: 3, benar: 2 } });
+  assert.deepEqual(JSON.parse(JSON.stringify(r.latihan.perTopikLemah)), [{ id: 'A2.1', n: 5, benar: 1 }, { id: 'B7.2', n: 3, benar: 2 }]);
   assert.equal(r.simulasi.length, 1);
   const s = r.simulasi[0];
   assert.equal(s.id, 'sim-1'); assert.equal(s.tingkat, 'B'); assert.equal(s.skor, 62.5);
@@ -158,7 +158,7 @@ test('jawaban per soal: simulasi dari rekaman (konten + cadangan log), keyakinan
   assert.equal(cari('A2-003').m, 'sesi'); assert.equal(cari('A2-004').m, 'sesi'); assert.equal(cari('A2-005').m, 'cek'); assert.equal(cari('A2-005').k, null);
   assert.equal(cari('A2-006'), undefined, 'lebih dari 30 hari');
   // statistik latihan lama tidak berubah (log simulasi tetap di luar latihan)
-  assert.equal(r.latihan.total, 13);
+  assert.equal(r.latihan.total, 14);   // v9.5.4 S4: termasuk "tidak tahu" dari stateContoh
   // batas 400 entri terbaru, ukuran seluruh ringkasan ≤ 120 KB
   const banyak = { profil: { nama: 'X' }, jawaban: Array.from({ length: 900 }, (_, i) => ({ soal: 'C10-' + String(i).padStart(3, '0'), topik: 'C10.8', kode: 'C10', benar: i % 2 === 0, opsi: 'ABCD'[i % 4], detik: 99, konteks: 'latih', keyakinan: 'menebak', pada: KINI - (900 - i) * 60000 })) };
   const rb = UKP.tim._ringkasan(banyak, { kini: KINI });
@@ -203,7 +203,7 @@ test('kode hasil: JSON dan deflate bolak-balik lewat tempelKode, disimpan di ukp
     const a = UKP.tim._bacaKode(k);
     assert.ok(a, 'kode terbaca');
     assert.equal(a.id, 'lokal-abc12345'); assert.equal(a.sumber, 'kode'); assert.equal(a.nama, 'Budi Santoso');
-    assert.equal(a.latihan.total, 8); assert.equal(a.simulasi[0].skor, 62.5); assert.equal(a.hadir.rangkaian, 3);
+    assert.equal(a.latihan.total, 9); assert.equal(a.simulasi[0].skor, 62.5); assert.equal(a.hadir.rangkaian, 3);
   }
   const a = UKP.tim.tempelKode(kz);
   assert.ok(a);
@@ -289,7 +289,7 @@ test('window.claude tiruan: tersambung, kirim satu kali per perubahan, pantau me
   await UKP.tim.kirimRingkasan({ segera: true });
   assert.equal(t.log.filter(x => x.op === 'set').length, 1);
   const d = t.dok.get('u_anggota1');
-  assert.equal(d.nama, 'Budi Santoso'); assert.equal(d.tingkat, 'B'); assert.equal(d.latihan.total, 8); assert.ok(Array.isArray(d.simulasi));
+  assert.equal(d.nama, 'Budi Santoso'); assert.equal(d.tingkat, 'B'); assert.equal(d.latihan.total, 9); assert.ok(Array.isArray(d.simulasi));
   assert.deepEqual(Object.keys(d).sort(), ['diperbarui', 'hadir', 'jawaban', 'latihan', 'nama', 'simulasi', 'tingkat', 'versiApp']);
   assert.equal(d.jawaban.length, 9); assert.equal(d.jawaban[0].m, 'latihan');
   assert.ok(simpan.get('ukp.tim.kirim'));
@@ -312,7 +312,7 @@ test('window.claude tiruan: tersambung, kirim satu kali per perubahan, pantau me
   UKP.tim.aktif = true;
   await UKP.tim.kirimRingkasan({ segera: true });
   assert.equal(t.log.filter(x => x.op === 'set').length, 2);
-  assert.equal(t.dok.get('u_anggota1').latihan.total, 9);
+  assert.equal(t.dok.get('u_anggota1').latihan.total, 10);   // v9.5.4 S4: 9 dari stateContoh (termasuk "tidak tahu") + 1
 });
 
 test('window.claude tiruan: debounce menggabungkan beberapa panggilan menjadi satu tulis', async () => {
@@ -451,7 +451,7 @@ test('room: pesan dinormalkan sebagai data tak tepercaya (id anonim, sumber room
   const r = UKP.tim._ringkasan(stateContoh(), { kini: KINI });
   const a = UKP.tim._pesanRoom({ ukp: 1, id: UUID.toUpperCase(), ringkasan: Object.assign({}, r, { nama: '=Budi\u0007', jawaban: [1, 2] }) });
   assert.ok(a); assert.equal(a.id, 'anon_' + UUID); assert.equal(a.sumber, 'room'); assert.equal(a.nama, 'Budi'); assert.ok(!('jawaban' in a));
-  assert.equal(a.latihan.total, 8);
+  assert.equal(a.latihan.total, 9);
   for (const salah of [null, 'teks', [], { id: UUID, ringkasan: r }, { ukp: 1, id: 'bukan-uuid', ringkasan: r }, { ukp: 1, id: '../' + UUID, ringkasan: r },
     { ukp: 1, id: UUID }, { ukp: 1, id: UUID, ringkasan: 'x' }, { ukp: 1, pemimpin: true, id: UUID, ringkasan: r }]) assert.equal(UKP.tim._pesanRoom(salah), null, JSON.stringify(salah && salah.id));
   // ringkasan besar dipangkas agar muatan presence/emit ≤ batas 4 KiB
@@ -518,8 +518,8 @@ test('room: tamu tanpa db terhubung langsung, pemimpin menerima, menyimpan, dan 
   // isi berubah: presence diperbarui → satu tulis baru; feed menerima selisih
   T.UKP.store.get().jawaban.push({ soal: 'A2-009', topik: 'A2.1', kode: 'A2', benar: true, opsi: 'a', detik: 20, konteks: 'latih', pada: Date.now() });
   await T.UKP.tim.kirimRingkasan({ selesai: true, segera: true }); await tunggu(60);
-  assert.equal(tulisAnon(), 2); assert.equal(tp.dok.get('anon_' + UUID).latihan.total, 9);
-  assert.ok(feed[feed.length - 1].sebelum && feed[feed.length - 1].anggota.latihan.total === 9);
+  assert.equal(tulisAnon(), 2); assert.equal(tp.dok.get('anon_' + UUID).latihan.total, 10);   // v9.5.4 S4
+  assert.ok(feed[feed.length - 1].sebelum && feed[feed.length - 1].anggota.latihan.total === 10);
   // pantau pemimpin melihat dok anon sebagai sumber room
   const daftar = await new Promise(r => { const lepas = P.UKP.tim.pantau(d => { if (d.length) { lepas(); r(d); } }); });
   assert.equal(daftar.find(a => a.id === 'anon_' + UUID).sumber, 'room');
@@ -693,7 +693,7 @@ ujiServer('server: api/saya 200 → mode server; PUT api/hasil dengan header UKP
   const put = st.log.filter(x => x.metode === 'PUT');
   assert.equal(put.length, 1); assert.equal(put[0].url, 'api/hasil');
   assert.equal(put[0].hdr['Content-Type'], 'application/json'); assert.equal(put[0].hdr['X-Requested-With'], 'UKP');
-  const body = JSON.parse(put[0].body); assert.equal(body.latihan.total, 8); assert.ok(Array.isArray(body.jawaban) && body.jawaban.length > 0, 'jawaban per soal ikut PUT');
+  const body = JSON.parse(put[0].body); assert.equal(body.latihan.total, 9); assert.ok(Array.isArray(body.jawaban) && body.jawaban.length > 0, 'jawaban per soal ikut PUT');
   assert.ok(UKP.tim.info().terakhirKirim);
   await UKP.tim.kirimRingkasan({ segera: true });
   assert.equal(st.log.filter(x => x.metode === 'PUT').length, 1, 'isi sama: tidak dikirim lagi');

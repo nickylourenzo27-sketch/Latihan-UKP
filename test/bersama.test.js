@@ -235,7 +235,7 @@ describe('v8.0: sesi latihan bersama', () => {
     assert.deepEqual(JSON.parse(JSON.stringify(e.topikTim)), [{ topik: 'X1.1', n: 5, benar: 3, akurasi: 60 }, { topik: 'X1.2', n: 5, benar: 4, akurasi: 80 }]); // v9.2 (V9 S2): penyebut = jawaban yang masuk
     // v8.1: keluaran v8.0 + mode, judul, tempo, skor, triase
     assert.deepEqual(JSON.parse(JSON.stringify(L.evaluasiSesi(null))), { nSoal: 0, nPeserta: 0, menit: 0, peserta: [], soal: [], tersulit: [], topikTim: [],
-      mode: 'latihan', judul: null, tempo: null, skor: null, triase: { daftar: [], nDikuasai: 0, perKelas: { dikuasai: 0, rapuh: 0, terbelah: 0, tersandung: 0 } } });
+      mode: 'latihan', judul: null, tempo: null, skor: null, triase: { daftar: [], nDikuasai: 0, perKelas: { dikuasai: 0, rapuh: 0, terbelah: 0, tersandung: 0 }, pengamat: [] } }); // v9.5.4 C-1: triase.pengamat
   });
   it('TIM_BAWAAN larik kosong (v9.1: tidak ada nama tim yang tertanam di kode)', () => {
     assert.ok(Array.isArray(L.TIM_BAWAAN));
@@ -569,7 +569,7 @@ describe('v9.3 W1: waktu membahas (pengaturan, catatan, tempo.bahas, rekap, angg
   it('papan: teks ringkas total waktu dan penyiar room meneruskan detikBahas (ruang.js lama mengabaikannya)', () => {
     const U2 = muatInti(['core.js', 'learn.js', 'views-belajar.js']);
     assert.equal(U2.c.teksWaktuBersama(10, 126, 120), '10 soal · kira-kira 41 menit (21 mengerjakan + 20 membahas)');
-    assert.equal(U2.c.teksWaktuBersama(10, 126, 0), '10 soal · 21 menit mengerjakan · membahas tanpa batas');
+    assert.equal(U2.c.teksWaktuBersama(10, 126, 0), '10 soal · waktu latihan 21 menit, termasuk membahas · membahas per soal tanpa hitung mundur'); // v9.5.3 B3
     const terima = []; let st = { aktivitas: null };
     const R = { state: () => JSON.parse(JSON.stringify(st)), mulaiLatihan: o => { terima.push(o); st.aktivitas = { jenis: 'latihan', id: o.id, soalIds: o.soalIds, idx: 0, fase: 'jawab' }; return true; },
       aturSoal: i => { terima.push('aturSoal:' + i); st.aktivitas.idx = i; st.aktivitas.fase = 'jawab'; return true; }, bukaKunci: () => { st.aktivitas.fase = 'kunci'; return true; }, akhiriAktivitas: () => { st.aktivitas = null; } };
