@@ -4904,8 +4904,9 @@ main .seg button[aria-pressed="true"]:hover, main .seg button[aria-checked="true
 main .seg button[aria-pressed="true"] small, main .seg button[aria-checked="true"] small,
 main .seg button[aria-pressed="true"] svg, main .seg button[aria-checked="true"] svg { color: inherit; opacity: .9; }
 /* tanda centang segmen menurun (HP < 480: .seg.bersub, .seg.seg-bank) mengikuti teks di atas isian, bukan --primary (tak terlihat di atas tinta) */
-main .seg button[aria-pressed="true"]::before, main .seg button[aria-checked="true"]::before { background: var(--primary-ink); }
-@media (forced-colors: active) { main .seg button[aria-pressed="true"]::before, main .seg button[aria-checked="true"]::before { background: CanvasText; } }
+/* pemilih memuat .bersub dan .seg-bank supaya menang atas aturan lama ".seg.bersub button:is(...)::before" (0,3,2) */
+main .seg.bersub button[aria-pressed="true"]::before, main .seg.bersub button[aria-checked="true"]::before, main .seg.seg-bank button[aria-pressed="true"]::before, main .seg.seg-bank button[aria-checked="true"]::before { background: var(--primary-ink); }
+@media (forced-colors: active) { main .seg.bersub button[aria-pressed="true"]::before, main .seg.bersub button[aria-checked="true"]::before, main .seg.seg-bank button[aria-pressed="true"]::before, main .seg.seg-bank button[aria-checked="true"]::before { background: CanvasText; } }
 /* pil keyakinan: kembalikan bentuk pil (aturan di atas tidak boleh menimpa) */
 main .keyakinan .seg { padding: 0; gap: var(--s-2); border: 0; background: transparent; }
 main .keyakinan .seg button { border-radius: var(--r-pill); border-color: var(--line-strong); color: var(--ink); min-height: 36px; }
@@ -4995,6 +4996,14 @@ body:not([data-mode="ujian"]) main > .page > .fokus-bar[style*="--p"]::after { h
 .soal .opsi label[data-dipilih] kbd, .soal .opsi label[data-hasil="kunci"] kbd { background: var(--primary-fill); border-color: var(--primary-fill); color: var(--primary-ink); }
 .soal .opsi label[data-hasil="salah"] { border-color: var(--attn); background: var(--attn-soft); box-shadow: inset 0 0 0 1px var(--attn); }
 .soal .opsi label[data-hasil="salah"] kbd { background: var(--attn); border-color: var(--attn); color: var(--attn-ink); }
+/* v9.6.2, HP: aturan lama menghitung lencana 28 px + jarak 12 px, sehingga teks opsi yang bertanda turun ke baris kedua di bawah lencana.
+   Dengan lencana 30 px + jarak 14 px, teks mengisi sisa baris pertama dan tanda (Kunci jawaban, Jawaban Anda) turun sejajar teks. */
+@media (max-width: 599px) {
+  main .soal .opsi:not(.opsi-tampil) label .teks { flex: 1 1 calc(100% - 46px); }
+  main .soal .opsi:not(.opsi-tampil) .tanda:not(:empty) { margin-left: 44px; }
+  /* tanda kosong tidak ikut dihitung, supaya opsi tanpa tanda tidak mendapat baris kosong di bawah teksnya */
+  main .soal .opsi:not(.opsi-tampil) .tanda:empty { display: none; }
+}
 /* setelah dikunci: opsi lain hanya teksnya diredam (--muted >= 7:1); tepi dan lencana tetap, tidak terlihat nonaktif */
 .soal .opsi.terkunci label:not([data-hasil]):not([data-dipilih]) .teks { color: var(--muted); }
 .soal .opsi .tanda:not(:empty) { min-height: 24px; padding: 0 10px; font-weight: var(--fw-semi); }
@@ -5011,13 +5020,16 @@ body:not([data-mode="ujian"]) main > .page > .fokus-bar[style*="--p"]::after { h
 @media (max-width: 599px) { .soal .umpan { padding: var(--s-4); } }
 .soal .umpan > .status.status-besar {
   margin-inline: calc(-1 * var(--s-5)); padding: var(--s-4) var(--s-5); gap: var(--s-3);
-  background: var(--v96-band-benar); border-bottom: 1px solid var(--line);
+  background: var(--v96-band-info); border-bottom: 1px solid var(--line);
 }
 .soal .umpan > .status.status-besar:first-child { margin-top: calc(-1 * var(--s-5)); }
 @media (max-width: 599px) {
   .soal .umpan > .status.status-besar { margin-inline: calc(-1 * var(--s-4)); padding: var(--s-3) var(--s-4); }
   .soal .umpan > .status.status-besar:first-child { margin-top: calc(-1 * var(--s-4)); }
 }
+/* v9.6.2: latar bawaan netral. Hijau hanya untuk data-hasil="benar"; panel latihan bersama memakai "sebagian" bila tidak semua benar,
+   dan dulu ikut hijau walau mayoritas salah. */
+.soal .umpan[data-hasil="benar"] > .status.status-besar { background: var(--v96-band-benar); }
 .soal .umpan[data-hasil="salah"] > .status.status-besar { background: var(--v96-band-salah); }
 .soal .umpan[data-hasil="info"] > .status.status-besar, .soal .umpan[data-hasil="kosong"] > .status.status-besar { background: var(--v96-band-info); }
 .soal .umpan > .status.status-besar > span > strong { display: block; font-family: var(--font-display); font-size: var(--v96-fs-vonis); line-height: 1.25; letter-spacing: -.01em; }

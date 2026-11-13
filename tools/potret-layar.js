@@ -229,9 +229,18 @@ function potongGambar(gambar) {
 async function kirim(gambar, ringkas, hasil, namaCek) {
   const api = process.env.GITHUB_API_URL || 'https://api.github.com'; const repo = process.env.GITHUB_REPOSITORY; const sha = process.env.GITHUB_SHA; const token = process.env.GITHUB_TOKEN;
   if (!repo || !sha || !token) throw new Error('GITHUB_REPOSITORY, GITHUB_SHA, atau GITHUB_TOKEN kosong');
+  // Check run yang baru dibuat kadang belum terbaca saat PATCH pertama (404 sesaat, terjadi 13 Nov 2026), dan API bisa menjawab 5xx
+  // atau 429 sebentar: permintaan seperti itu diulang sampai enam kali dengan jeda yang makin panjang.
   const panggil = async (cara, jalur, isi) => {
-    const r = await fetch(api + '/repos/' + repo + jalur, { method: cara, headers: { authorization: 'Bearer ' + token, accept: 'application/vnd.github+json', 'x-github-api-version': '2022-11-28', 'content-type': 'application/json', 'user-agent': 'potret-layar' }, body: JSON.stringify(isi) });
-    const teks = await r.text(); if (!r.ok) throw new Error(cara + ' ' + jalur + ' → ' + r.status + ' ' + teks.slice(0, 200)); return JSON.parse(teks);
+    let galat = null;
+    for (let coba = 0; coba < 6; coba++) {
+      if (coba) await tidur(1500 * coba);
+      const r = await fetch(api + '/repos/' + repo + jalur, { method: cara, headers: { authorization: 'Bearer ' + token, accept: 'application/vnd.github+json', 'x-github-api-version': '2022-11-28', 'content-type': 'application/json', 'user-agent': 'potret-layar' }, body: JSON.stringify(isi) });
+      const teks = await r.text(); if (r.ok) return JSON.parse(teks);
+      galat = new Error(cara + ' ' + jalur + ' → ' + r.status + ' ' + teks.slice(0, 200));
+      if (!((cara === 'PATCH' && r.status === 404) || r.status === 429 || r.status >= 500)) break;
+    }
+    throw galat;
   };
   const judul = namaCek || (NAMA_CEK + BROWSER); const catatan = potongGambar(gambar);
   const isiRingkas = ringkas + '\n\n' + hasil.map(x => '- ' + (x.ok ? 'lulus' : 'GAGAL') + ' `' + x.tag + '` ' + x.info).join('\n') + '\n\nGambar ada di catatan check run ini sebagai potongan base64 (' + catatan.length + ' potongan).';
