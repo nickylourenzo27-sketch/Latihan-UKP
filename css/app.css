@@ -5091,15 +5091,14 @@ body:not([data-mode="ujian"]) .soal-bersama .papan-kol { font-family: var(--font
 /* bar skor tim di atas lembar: berlatar halaman supaya label "batas lulus" tidak tampak yatim saat lembar digulir di bawahnya */
 .kop-tim-latih { position: relative; background: var(--bg); }
 
-/* HP anggota di room: stem dan opsi mengikuti lembar soal (baca saja; jawaban lewat tombol huruf besar) */
+/* HP anggota di room: stem mengikuti lembar soal. Daftar opsi adalah bacaan, BUKAN kendali: li tidak punya penangan klik dan
+   jawaban hanya masuk lewat tombol huruf besar di bawahnya. v9.6.3: baris opsi tanpa bingkai, tanpa latar, dan tidak setinggi tombol,
+   supaya tidak dikira bisa diketuk (v9.6.0 sampai v9.6.2 memberinya bingkai seperti opsi latihan). Lencana huruf kecil tetap. */
 .halaman-room .stem-room { font-size: var(--v96-fs-stem); line-height: 1.65; }
-.halaman-room .opsi-room { gap: 10px; }
-.halaman-room .opsi-room > li {
-  grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: start; min-height: 56px; padding: 13px 14px;
-  border: 1px solid var(--v96-opsi-garis); border-radius: var(--r-sm); background: var(--surface);
-}
+.halaman-room .opsi-room { gap: 8px; }
+.halaman-room .opsi-room > li { grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: start; }
 .halaman-room .opsi-room .huruf {
-  display: inline-block; width: 30px; height: 30px; margin-top: -3px; border-radius: 50%; line-height: 30px; text-align: center;
+  display: inline-block; width: 26px; height: 26px; margin-top: -1px; border-radius: 50%; line-height: 26px; text-align: center;
   background: var(--v96-huruf-bg); color: var(--v96-huruf-ink); font-family: var(--font-mono); font-size: var(--fs-caption);
 }
 .halaman-room .yakin-room { min-height: 48px; }

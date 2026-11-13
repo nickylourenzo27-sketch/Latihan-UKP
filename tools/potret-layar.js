@@ -87,6 +87,12 @@ const LANGKAH = {
   'latih-atur': async p => { await pergi(p, 'latih', { atur: 1 }); },
   'latih-soal': async p => { await mulaiLatih(p); },
   'latih-pembahasan': async p => { await mulaiLatih(p); await jawabSalah(p); },
+  // soal yang baru dijawab salah, digulir ke daftar opsi: memperlihatkan tanda "Jawaban Anda" dan "Kunci jawaban" pada opsi
+  'latih-terjawab': async p => {
+    await mulaiLatih(p); const k = await kunciLatih(p); if (!k || !k.kunci) throw new Error('kunci soal latihan tidak terbaca');
+    await pilihOpsi(p, k.huruf.find(x => x !== k.kunci), 900);
+    await p.evaluate(() => { const f = [...document.querySelectorAll('fieldset.opsi')].find(f => f.offsetParent); if (f) window.scrollTo(0, f.getBoundingClientRect().top + scrollY - 70); }); await tunggu(p, 300);
+  },
   'latih-hasil': async p => {
     await mulaiLatih(p);
     for (let i = 0; i < 5; i++) { await pilihOpsi(p, 'ABCDA'[i], 600); await klikTeks(p, '^\\s*Lanjut\\s*$', '', 800); }
@@ -99,6 +105,10 @@ const LANGKAH = {
     await mulaiBersama(p);
     for (let i = 0; i < 3; i++) { await isiPapan(p, ['ABA', 'CCB', 'DAD'][i]); await klik(p, '.aksi-buka-kunci', 1000); await klikTeks(p, '^\\s*Lanjut\\s*$', '', 1000); }
   },
+  'ujiantim-jalan': async p => {
+    await mulaiSim(p, 5, 15); await klik(p, '#sim-tim'); await klik(p, '[data-nilai="papan"]'); await klik(p, '.tim-mulai', 1300);
+    await p.evaluate(() => { [...document.querySelectorAll('.papan-opsi[aria-label="Jawaban B"]')].slice(0, 2).forEach(b => b.click()); }); await tunggu(p, 300);
+  },
   materi: async p => { await pergi(p, 'tingkat', { tingkat: 'B' }); },
   topik: async p => {
     const id = await p.evaluate(() => { for (const k of UKP.konten.kelompok('B')) { const t = (UKP.modul[k].topik || []).find(t => UKP.konten.punyaSoal(t.id, 'B')); if (t) return t.id; } return null; });
@@ -110,12 +120,14 @@ const LANGKAH = {
 };
 const LAYAR = [
   ['beranda', 'hp', 'light', 2], ['simulasi-atur', 'hp', 'light', 2], ['simulasi-jalan', 'hp', 'light', 1], ['simulasi-hasil', 'hp', 'light', 2],
-  ['latih-atur', 'hp', 'light', 2], ['latih-soal', 'hp', 'light', 1], ['latih-pembahasan', 'hp', 'light', 2], ['latih-hasil', 'hp', 'light', 2],
+  ['latih-atur', 'hp', 'light', 2], ['latih-soal', 'hp', 'light', 1], ['latih-terjawab', 'hp', 'light', 1], ['latih-pembahasan', 'hp', 'light', 2], ['latih-hasil', 'hp', 'light', 2],
+  ['bersama-papan', 'hp', 'light', 1], ['bersama-kunci', 'hp', 'light', 2],
   ['mabar-lobi', 'hp', 'light', 1], ['materi', 'hp', 'light', 1], ['topik', 'hp', 'light', 1], ['bank', 'hp', 'light', 1], ['kemajuan', 'hp', 'light', 1], ['pengaturan', 'hp', 'light', 1],
   ['beranda', 'hp', 'dark', 1], ['simulasi-atur', 'hp', 'dark', 1], ['latih-pembahasan', 'hp', 'dark', 2],
   ['beranda', 'laptop', 'light', 1], ['simulasi-atur', 'laptop', 'light', 1], ['latih-pembahasan', 'laptop', 'light', 1], ['simulasi-hasil', 'laptop', 'light', 1],
   ['bersama-papan', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'light', 1], ['bersama-evaluasi', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'dark', 1],
-].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^bersama-/.test(nama) ? BERSAMA : null }));
+  ['ujiantim-jalan', 'laptop', 'light', 1],
+].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null }));
 
 // ---------- potret ----------
 async function potret(root, keluar, pilih) {

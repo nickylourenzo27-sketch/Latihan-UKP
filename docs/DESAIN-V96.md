@@ -70,7 +70,7 @@ Pita tidak tampil di Beranda (punya pita sendiri), layar sesi (`body[data-mode="
 ## 6. Cara memeriksa
 
 1. `node --test test/`. Penjaga gaya ada di `test/v960-tampilan.test.js`; alat potret diuji `test/v960-potret.test.js`.
-2. Potret lokal: `node tools/potret-layar.js potret . <folder>` memotret 25 layar utama (32 gambar: HP terang, HP gelap, laptop) dengan Chromium. Soal yang tampil tetap karena `Math.random` diberi benih.
+2. Potret lokal: `node tools/potret-layar.js potret . <folder>` memotret 29 layar utama (37 gambar: HP terang, HP gelap, laptop) dengan Chromium. Soal yang tampil tetap karena `Math.random` diberi benih.
 3. Potret mesin Safari: tiap dorongan ke `main` menjalankan `.github/workflows/potret-webkit.yml` (WebKit, profil iPhone). Uji room WebKit di `cek-jalur-room.yml` ikut memotret layar pemimpin dan HP anggota. Gambar dikirim sebagai catatan check run "Potret layar webkit" dan "Potret room webkit".
 4. Ambil gambar: `node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder>` (butuh CLI `gh`). Situs tayang dari cabang `gh-pages`, jadi gambar bisa dilihat sebelum situs diperbarui.
 5. Yang juga perlu dilihat saat mengubah gaya: lebar 320, 390, 1280, dan 1366x768 tanpa gulir mendatar; tema gelap; `data-teks="besar"`; forced-colors; cetak; papan bersama dengan 10 nama; simulasi dan ujian tim yang sedang berjalan.
