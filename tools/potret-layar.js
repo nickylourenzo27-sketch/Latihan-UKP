@@ -226,16 +226,16 @@ function potongGambar(gambar) {
   }
   return catatan;
 }
-async function kirim(gambar, ringkas, hasil) {
+async function kirim(gambar, ringkas, hasil, namaCek) {
   const api = process.env.GITHUB_API_URL || 'https://api.github.com'; const repo = process.env.GITHUB_REPOSITORY; const sha = process.env.GITHUB_SHA; const token = process.env.GITHUB_TOKEN;
   if (!repo || !sha || !token) throw new Error('GITHUB_REPOSITORY, GITHUB_SHA, atau GITHUB_TOKEN kosong');
   const panggil = async (cara, jalur, isi) => {
     const r = await fetch(api + '/repos/' + repo + jalur, { method: cara, headers: { authorization: 'Bearer ' + token, accept: 'application/vnd.github+json', 'x-github-api-version': '2022-11-28', 'content-type': 'application/json', 'user-agent': 'potret-layar' }, body: JSON.stringify(isi) });
     const teks = await r.text(); if (!r.ok) throw new Error(cara + ' ' + jalur + ' → ' + r.status + ' ' + teks.slice(0, 200)); return JSON.parse(teks);
   };
-  const judul = 'Potret layar ' + BROWSER; const catatan = potongGambar(gambar);
+  const judul = namaCek || (NAMA_CEK + BROWSER); const catatan = potongGambar(gambar);
   const isiRingkas = ringkas + '\n\n' + hasil.map(x => '- ' + (x.ok ? 'lulus' : 'GAGAL') + ' `' + x.tag + '` ' + x.info).join('\n') + '\n\nGambar ada di catatan check run ini sebagai potongan base64 (' + catatan.length + ' potongan).';
-  const cek = await panggil('POST', '/check-runs', { name: NAMA_CEK + BROWSER, head_sha: sha, status: 'in_progress', output: { title: judul, summary: isiRingkas.slice(0, 60000) } });
+  const cek = await panggil('POST', '/check-runs', { name: judul, head_sha: sha, status: 'in_progress', output: { title: judul, summary: isiRingkas.slice(0, 60000) } });
   for (let i = 0; i < catatan.length; i += 4) await panggil('PATCH', '/check-runs/' + cek.id, { output: { title: judul, summary: isiRingkas.slice(0, 60000), annotations: catatan.slice(i, i + 4) } });
   await panggil('PATCH', '/check-runs/' + cek.id, { status: 'completed', conclusion: hasil.some(x => !x.ok) ? 'neutral' : 'success', output: { title: judul, summary: isiRingkas.slice(0, 60000) } });
   return cek.id;
@@ -252,14 +252,15 @@ function susun(catatan) {
 function ambil(repo, sha, keluar) {
   const { execFileSync } = require('node:child_process');
   const gh = jalur => JSON.parse(execFileSync('gh', ['api', '-H', 'Accept: application/vnd.github+json', jalur], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }));
-  const cek = (gh('repos/' + repo + '/commits/' + sha + '/check-runs?per_page=100').check_runs || []).filter(c => String(c.name).startsWith(NAMA_CEK));
+  const cek = (gh('repos/' + repo + '/commits/' + sha + '/check-runs?per_page=100').check_runs || []).filter(c => /^Potret (layar|room) /.test(String(c.name)) && !/\(/.test(String(c.name)));
   if (!cek.length) { console.log('belum ada check run "' + NAMA_CEK + '…" untuk ' + sha); return 1; }
   fs.mkdirSync(keluar, { recursive: true }); let kode = 0;
   for (const c of cek) {
+    const sub = cek.length > 1 ? path.join(keluar, c.name.replace(/\s+/g, '-').toLowerCase()) : keluar; fs.mkdirSync(sub, { recursive: true });
     console.log(c.name + ' · ' + c.status + ' · ' + (c.conclusion || '-') + ' · ' + ((c.output || {}).annotations_count || 0) + ' catatan');
-    if ((c.output || {}).summary) fs.writeFileSync(path.join(keluar, c.name.replace(/\s+/g, '-') + '.md'), c.output.summary);
+    if ((c.output || {}).summary) fs.writeFileSync(path.join(sub, 'ringkasan.md'), c.output.summary);
     const catatan = []; for (let hal = 1; hal < 50; hal++) { const a = gh('repos/' + repo + '/check-runs/' + c.id + '/annotations?per_page=100&page=' + hal); catatan.push(...a); if (a.length < 100) break; }
-    for (const g of susun(catatan)) { if (!g.lengkap) { console.log('  TIDAK LENGKAP ' + g.nama); kode = 1; continue; } fs.writeFileSync(path.join(keluar, g.nama + '.jpg'), g.buf); console.log('  ' + g.nama + '.jpg  ' + g.buf.length + ' bita'); }
+    for (const g of susun(catatan)) { if (!g.lengkap) { console.log('  TIDAK LENGKAP ' + g.nama); kode = 1; continue; } fs.writeFileSync(path.join(sub, g.nama + '.jpg'), g.buf); console.log('  ' + path.relative(keluar, path.join(sub, g.nama + '.jpg')) + '  ' + g.buf.length + ' bita'); }
   }
   return kode;
 }
@@ -272,4 +273,4 @@ if (require.main === module) {
     console.error('pakai: node tools/potret-layar.js potret <root> <folder> [nama,nama] | ambil <pemilik/repo> <sha> <folder> | daftar'); process.exit(2);
   })().catch(e => { console.error(e); process.exit(2); });
 }
-module.exports = { potongGambar, susun, LAYAR, POTONG, NAMA_CEK, langkah: Object.keys(LANGKAH) };
+module.exports = { potongGambar, susun, kirim, LAYAR, POTONG, NAMA_CEK, langkah: Object.keys(LANGKAH) };

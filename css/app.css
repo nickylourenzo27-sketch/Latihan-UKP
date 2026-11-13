@@ -4868,6 +4868,11 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
     body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita::before { left: 50%; right: auto; width: 100vw; margin-left: -50vw; }
   }
 }
+/* >= 1024 main ber-padding-top --s-8 */
+@media screen and (min-width: 1024px) {
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .kop-pita:first-child,
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > :first-child > .kop-pita:first-child { margin-top: calc(-1 * var(--s-8)); }
+}
 @media screen and (max-width: 599px) {
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita { padding-block: 24px 18px; }
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita h1::before { top: 11px; }
@@ -4875,8 +4880,9 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
 }
 /* warna paksa (Windows kontras tinggi): tanpa pita dan penanda; teks memakai warna sistem */
 @media (forced-colors: active) {
-  .page-head.kop-pita::before, .page-head.kop-pita h1::before { content: none; display: none; }
-  .page-head.kop-pita { padding-block: 0; }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita::before,
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita h1::before { content: none; display: none; }
+  /* padding pita dipertahankan supaya h1 tidak naik ke kop atas (margin-top negatif tetap berlaku) */
 }
 
 /* ---- kartu dan judul: radius 8, garis --line, tanpa bayangan; judul berhuruf display ---- */
@@ -4897,6 +4903,9 @@ main .seg button[aria-pressed="true"]:hover, main .seg button[aria-checked="true
 }
 main .seg button[aria-pressed="true"] small, main .seg button[aria-checked="true"] small,
 main .seg button[aria-pressed="true"] svg, main .seg button[aria-checked="true"] svg { color: inherit; opacity: .9; }
+/* tanda centang segmen menurun (HP < 480: .seg.bersub, .seg.seg-bank) mengikuti teks di atas isian, bukan --primary (tak terlihat di atas tinta) */
+main .seg button[aria-pressed="true"]::before, main .seg button[aria-checked="true"]::before { background: var(--primary-ink); }
+@media (forced-colors: active) { main .seg button[aria-pressed="true"]::before, main .seg button[aria-checked="true"]::before { background: CanvasText; } }
 /* pil keyakinan: kembalikan bentuk pil (aturan di atas tidak boleh menimpa) */
 main .keyakinan .seg { padding: 0; gap: var(--s-2); border: 0; background: transparent; }
 main .keyakinan .seg button { border-radius: var(--r-pill); border-color: var(--line-strong); color: var(--ink); min-height: 36px; }
@@ -5132,10 +5141,10 @@ main .bank-kel-nama .kode { font-family: var(--font-mono); font-weight: 600; col
 /* kartu Materi (.kartu-kelompok): tab bertinta diganti aksen kiri 3 px dan kode berwarna tingkat. Tab lama hanya ada bila peramban
    mendukung pemilih relasional (penentu kodenya di aturan lama), jadi penimpaan dibatasi lewat html:not(.tanpa-has) yang dipasang
    core.js; tanpa dukungan itu kartu tetap bergaris kiri warna tingkat seperti sebelumnya. */
-html:not(.tanpa-has) .card.kartu-kelompok::before {
+html:not(.tanpa-has) main .card.klik.kartu-kelompok::before { /* spesifisitas di atas aturan tab lama */
   border: 0; background: transparent; box-shadow: inset 3px 0 0 var(--tk, var(--line-strong));
   border-radius: var(--r-md) 0 0 var(--r-md); left: 0; top: 0; bottom: 0; color: var(--tk, var(--ink));
 }
-html:not(.tanpa-has) .card.kartu-kelompok { border-left-color: var(--line); --tab-w: 48px; }
+html:not(.tanpa-has) main .card.klik.kartu-kelompok { border-left-color: var(--line); --tab-w: 48px; }
 @media (forced-colors: active) { .card.kartu-kelompok::before { border-left: 3px solid CanvasText; } }
 /* ===== akhir v9.6 pengaturan sesi dan halaman baca ===== */

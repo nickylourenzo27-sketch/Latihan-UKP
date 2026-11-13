@@ -56,7 +56,16 @@ const initRelai = relai => {
     await page.waitForFunction(() => window.UKP && UKP.ruang && UKP.ruangUI && UKP.views && UKP.views.room, null, { timeout: 30000 });
     return { ctx, page, nama };
   }
-  const foto = async (o, apa) => { if (!dirGambar) return; fs.mkdirSync(dirGambar, { recursive: true }); try { await o.page.screenshot({ path: path.join(dirGambar, String(++n).padStart(2, '0') + '-' + o.nama.toLowerCase() + '-' + apa + '.png') }); } catch (e) {} };
+  // v9.6.1: KIRIM=1 (GitHub) → tiap potret juga disimpan sebagai JPEG seukuran piksel CSS dan dikirim di akhir sebagai catatan check run
+  // "Potret room <peramban>" (lihat tools/potret-layar.js), supaya layar pemimpin dan HP anggota bisa dilihat tanpa mengunduh artefak.
+  const KIRIM = process.env.KIRIM === '1'; const gambar = [];
+  const foto = async (o, apa) => {
+    if (!dirGambar && !KIRIM) return; const nama = String(++n).padStart(2, '0') + '-' + o.nama.toLowerCase() + '-' + apa;
+    try {
+      if (dirGambar) { fs.mkdirSync(dirGambar, { recursive: true }); await o.page.screenshot({ path: path.join(dirGambar, nama + '.png') }); }
+      if (KIRIM) gambar.push({ nama, buf: await o.page.screenshot({ type: 'jpeg', quality: 55, scale: 'css' }) });
+    } catch (e) {}
+  };
   const baris = (page, nama) => page.locator('.papan-baris', { has: page.locator('.papan-nama', { hasText: nama }) });
   let nicky, mita, nora;
   try {
@@ -177,6 +186,10 @@ const initRelai = relai => {
     const bersih = s => String(s).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A');
     hasil.filter(x => !x.ok).slice(0, 8).forEach(x => console.log('::warning title=Peramban GAGAL::' + bersih(x.nama + ' ' + JSON.stringify(x.info).slice(0, 400))));
     console.log('::' + (gagal ? 'error' : 'notice') + ' title=Peramban ' + BROWSER + ' ringkasan::' + bersih(lulus + ' lulus, ' + gagal + ' gagal · ' + hasil.filter(x => x.ok && x.info && x.info.ms != null).map(x => x.nama.split(':')[0].slice(0, 14) + ' ' + x.info.ms + 'ms').join('; ').slice(0, 700)));
+  }
+  if (KIRIM && gambar.length) {
+    try { const id = await require('./potret-layar.js').kirim(gambar, BROWSER + ' · ' + lulus + ' lulus, ' + gagal + ' gagal · ' + gambar.length + ' gambar', hasil.map(x => ({ ok: x.ok, tag: x.nama, info: '' })), 'Potret room ' + BROWSER); console.log('gambar dikirim ke check run ' + id); }
+    catch (e) { const pesan = String((e && e.message) || e).slice(0, 300); console.log('gambar TIDAK terkirim: ' + pesan); if (diGitHub) console.log('::warning title=Potret room tidak terkirim::' + pesan.replace(/%/g, '%25').replace(/\r?\n/g, '%0A')); }
   }
   await browser.close(); server.close();
   process.exit(gagal ? 1 : 0);

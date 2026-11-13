@@ -31,6 +31,8 @@ Permintaan pemilik: tampilan dibuat lebih bagus. Sejak v9.0 hanya Beranda yang m
 - **Batas yang dijaga.** Tanpa bayangan kartu, gradasi, atau blur. Radius 4, 6, dan 8. Tema gelap, teks besar, forced-colors, cetak, dan gerak kurang tetap didukung. Gaya baru tidak bergantung pada `border-image`, `color-mix()`, `:has()`, `@container`, atau penulisan bersarang, supaya Safari dan Android lama tetap menampilkan halaman dengan utuh.
 - **Di mana gayanya.** Lima bagian berpagar `/* ===== v9.6 tampilan: … ===== */` di akhir `css/app.css`, dengan token `--v96-*`.
 - **Potret Safari sebelum tayang.** `tools/potret-layar.js` memotret 25 layar utama (32 gambar: HP terang, HP gelap, dan laptop). Di GitHub alat ini berjalan dengan WebKit dan profil iPhone pada tiap dorongan ke `main` (`.github/workflows/potret-webkit.yml`), lalu mengirim gambarnya sebagai catatan check run "Potret layar webkit". Gambar diambil dengan `node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder>`. Situs tayang dari cabang `gh-pages`, jadi tampilan di mesin Safari bisa dilihat sebelum situs diperbarui.
+- **Polesan v9.6.1.** Di laptop pita kepala kini rapat ke kop atas. Di HP, pilihan format yang berbentuk daftar kembali punya tanda centang yang terlihat. Kartu kelompok di Materi memakai aksen kiri tipis.
+- **Potret room (v9.6.1).** Uji room di WebKit (`tools/uji-room-web.js` dengan `KIRIM=1`) ikut mengirim potret layar pemimpin dan HP anggota sebagai check run "Potret room webkit". Perintah `ambil` yang sama mengambil keduanya.
 - **Belum.** HP sungguhan dan Safari versi lama tidak bisa diuji dari lingkungan kerja ini.
 <!-- tampilan-960:selesai -->
 

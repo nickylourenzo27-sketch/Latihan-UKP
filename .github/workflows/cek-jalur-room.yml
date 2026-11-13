@@ -57,6 +57,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     continue-on-error: true
+    # v9.6.1: potret layar pemimpin dan HP anggota dikirim sebagai catatan check run "Potret room webkit" (butuh checks: write)
+    permissions:
+      contents: read
+      checks: write
     container:
       image: mcr.microsoft.com/playwright:v1.65.0-noble
       options: --ipc=host
@@ -68,4 +72,6 @@ jobs:
         env:
           BROWSER: webkit
           HOME: /root
+          KIRIM: '1'
+          GITHUB_TOKEN: ${{ github.token }}
         run: node tools/uji-room-web.js .
