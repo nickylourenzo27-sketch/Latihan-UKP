@@ -50,6 +50,9 @@ if (kurikulum) {
 }
 const soal = mod.soal || [];
 const soalIds = new Set(); const perTopik = {};
+// nomor paket (sumber.set + no, juga butir sumber.juga) di modul ini: nomor ganda di satu paket = galat
+const noPaket = new Map();
+const catatNoPaket = (set, no, p) => { const k = set + '#' + Number(no); if (noPaket.has(k)) errors.push(`${p}: nomor ${Number(no)} paket "${set}" ganda (sudah dipakai ${noPaket.get(k)})`); else noPaket.set(k, p); };
 soal.forEach((s, i) => {
   const p = `soal[${i}](${s.id})`;
   if (!s.id || !s.id.startsWith(kode + '-')) errors.push(`${p}: id harus "${kode}-nnn"`);
@@ -107,6 +110,21 @@ soal.forEach((s, i) => {
     else if (soalPeta.get(r).kembaranDari !== undefined) errors.push(`${p}: kembaranDari "${r}" adalah soal pengganti (harus menunjuk soal asli)`);
   }
   if (s.sejak !== undefined && !(typeof s.sejak === 'string' && /^\d+\.\d+\.\d+$/.test(s.sejak))) errors.push(`${p}: sejak "${s.sejak}" tidak valid (pola "9.5.0")`);
+  // v9.5.5 sumber.juga (opsional): soal yang sama dipakai juga oleh paket lain, [{ set, no, judul, tingkat }] (docs/SKEMA-KONTEN.md)
+  const sb = s.sumber && typeof s.sumber === 'object' ? s.sumber : null;
+  if (sb && sb.set && sb.no != null) catatNoPaket(sb.set, sb.no, p);
+  if (sb && sb.juga !== undefined) {
+    if (!Array.isArray(sb.juga)) errors.push(`${p}: sumber.juga harus larik [{ set, no, judul, tingkat }]`);
+    else sb.juga.forEach((j, x) => {
+      const q = `${p}.sumber.juga[${x}]`;
+      if (!j || typeof j !== 'object' || Array.isArray(j)) { errors.push(`${q}: harus objek { set, no, judul, tingkat }`); return; }
+      if (typeof j.set !== 'string' || !j.set) errors.push(`${q}: set hilang`);
+      if (!(Number.isInteger(j.no) && j.no > 0)) errors.push(`${q}: no harus bilangan bulat positif`);
+      if (typeof j.set === 'string' && j.set && j.set === sb.set) errors.push(`${q}: set "${j.set}" sama dengan paket utama sumber.set`);
+      else if (typeof j.set === 'string' && j.set && sb.juga.slice(0, x).some(k => k && k.set === j.set)) errors.push(`${q}: paket "${j.set}" ganda di sumber.juga`);
+      else if (typeof j.set === 'string' && j.set && Number.isInteger(j.no) && j.no > 0) catatNoPaket(j.set, j.no, q);
+    });
+  }
 });
 for (const t of topikIds) if ((perTopik[t] || 0) < 4) warns.push(`topik ${t}: hanya ${perTopik[t] || 0} soal (target ≥ 4)`);
 const nKasusGaya = soal.filter(s => s.jenis === 'kasus' || (s.stem || '').length >= 220).length;

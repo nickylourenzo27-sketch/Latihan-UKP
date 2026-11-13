@@ -2100,7 +2100,7 @@ UKP.register({
         },
         jebakan: "Opsi A dan B hanya berselisih Rp12.000.000 dan Rp24.000 dari kunci; tetapkan batas kawasan usaha dan NJOPTKP sebelum mengalikan."
       },
-      dasarHukum: [{ pasal: "Pasal 5–7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002" }, { pasal: "PMK 23/PMK.03/2014" }, { pasal: "Pasal 38 ayat (1) UU 1/2022", berlakuSejak: "2022-01-05" }],
+      dasarHukum: [{ pasal: "Pasal 5–7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "PP 25/2002", berlakuSejak: "2002-01-01" }, { pasal: "PMK 23/PMK.03/2014", berlakuSejak: "2014-01-01" }, { pasal: "Pasal 38 ayat (1) UU 1/2022", berlakuSejak: "2022-01-05" }],
       anggaranDetik: 180,
       verifikasi: "✅"
     },
@@ -7150,6 +7150,529 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "B8-103",
       sejak: "9.5.4"
+    },
+    {
+      id: "B8-237",
+      topik: "B8.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      kasusId: "V-B8-18",
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      stem: "Data untuk soal vignette V-B8-18: PT Lembah Karet Sejahtera memegang HGU kebun karet di Kabupaten Musi Banyuasin. Data penilaian objek per 1 Januari 2026: areal tanaman karet yang sudah disadap 1.850 ha dengan nilai tanah Rp3.800/m² dan Biaya Investasi Tanaman Rp4.600/m²; areal tanaman karet berumur dua tahun yang sudah ditanam tetapi belum dapat disadap 420 ha dengan nilai tanah Rp3.800/m² dan Biaya Investasi Tanaman Rp2.900/m²; areal pembibitan 25 ha dengan nilai tanah Rp3.800/m²; areal tidak produktif (bukit batu dan rawa) 160 ha dengan nilai Rp700/m²; serta areal emplasemen 38 ha dengan nilai Rp11.000/m², yang di dalamnya terdapat madrasah ibtidaiyah milik yayasan pendidikan nirlaba yang terbuka untuk umum 0,8 ha dan pemakaman umum desa 0,7 ha. Areal pabrik pengolahan karet yang sudah memperoleh Izin Usaha Perkebunan untuk Pengolahan tersendiri tidak termasuk dalam data tersebut. Data lain: produksi karet kering 2025 sebanyak 3.900 ton, 640 karyawan, serta 22 truk dan traktor bernilai buku Rp9.000.000.000. NJOP bumi yang masuk penghitungan PBB-P5L Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp189.790.000.000", B: "Rp177.445.000.000", C: "Rp189.625.000.000", D: "Rp188.505.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "NJOP bumi kebun adalah jumlah NJOP per jenis areal (Pasal 14 ayat (3) PMK 186/2019). Areal Produktif adalah areal yang telah ditanami tanaman perkebunan, sehingga karet muda yang sudah ditanam tetapi belum disadap tetap Areal Produktif dan dinilai tanah ditambah pengembangan tanah berupa tanaman (Biaya Investasi Tanaman). Areal pembibitan termasuk Areal Belum Produktif dan areal bukit batu serta rawa adalah Areal Tidak Produktif; keduanya tetap dinilai dengan nilai tanahnya. Madrasah nirlaba yang melayani kepentingan umum di bidang pendidikan dan pemakaman umum (Pasal 3 ayat (1) huruf a dan b UU PBB; Pasal 3 ayat (5) PMK 186/2019) dikeluarkan dari luas emplasemen. Data produksi, karyawan, serta truk dan traktor tidak dipakai.",
+        jejakHitung: [
+          ["Produktif (sudah disadap) 18.500.000 m² × (3.800 + 4.600)", "Rp155.400.000.000"],
+          ["Produktif (sudah ditanam, belum disadap) 4.200.000 m² × (3.800 + 2.900)", "Rp28.140.000.000"],
+          ["Belum produktif (pembibitan) 250.000 m² × 3.800", "Rp950.000.000"],
+          ["Tidak produktif 1.600.000 m² × 700", "Rp1.120.000.000"],
+          ["Emplasemen (38 − 0,8 − 0,7) = 36,5 ha = 365.000 m² × 11.000", "Rp4.015.000.000"],
+          ["NJOP bumi", "Rp189.625.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Madrasah nirlaba dan pemakaman umum tidak dikeluarkan dari luas emplasemen (+15.000 m² × Rp11.000), padahal Pasal 3 ayat (5) PMK 186/2019 menyatakan areal yang merupakan objek Pasal 3 ayat (1) UU PBB tidak dikenakan PBB",
+          B: "Karet muda yang belum disadap diperlakukan sebagai Areal Belum Produktif sehingga Biaya Investasi Tanamannya dibuang (−4.200.000 m² × Rp2.900); ukuran Pasal 14 ayat (1) huruf a adalah sudah ditanami, bukan sudah menghasilkan",
+          D: "Bukit batu dan rawa dianggap bukan objek, padahal Areal Tidak Produktif tetap bagian bumi kawasan perkebunan (Pasal 14 ayat (1) huruf c dan ayat (3) PMK 186/2019)"
+        },
+        jebakan: "Kata \"belum dapat disadap\" memancing orang menggolongkan karet muda sebagai areal belum produktif. Ukurannya sudah atau belum ditanami: pembibitan memang belum produktif, tetapi tanaman muda di lapangan sudah produktif. Ingat pula dua koreksi luas lain: areal tidak produktif tetap dihitung, dan objek Pasal 3 UU PBB dikeluarkan."
+      },
+      dasarHukum: [{ pasal: "Pasal 14 ayat (1) dan ayat (2) PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" }, { pasal: "Pasal 3 ayat (5) PMK 186/PMK.03/2019", berlakuSejak: "2020-01-01" }, { pasal: "Pasal 1 angka 1 dan Pasal 3 ayat (1) huruf a dan b UU PBB", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B8-068",
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-238",
+      topik: "B8.3",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      kasusId: "V-B8-18",
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      stem: "Lanjutan V-B8-18: PT Lembah Karet Sejahtera memegang HGU kebun karet di Kabupaten Musi Banyuasin. NJOP bumi kebunnya untuk Tahun Pajak 2026, setelah mengeluarkan madrasah nirlaba dan pemakaman umum serta tanpa areal pabrik pengolahan, adalah Rp189.625.000.000. Daftar aset per 1 Januari 2026 memuat: pabrik pengolahan karet remah di dalam areal HGU yang arealnya sudah memperoleh Izin Usaha Perkebunan untuk Pengolahan tersendiri Rp28.500.000.000; perumahan karyawan, kantor kebun, dan gudang lateks di emplasemen Rp7.800.000.000; jalan kebun beraspal dan jembatan beton di dalam areal kebun Rp4.600.000.000; bangunan madrasah nirlaba Rp650.000.000; kantor perwakilan di Kota Palembang (di luar HGU) dengan NJOP Rp5.200.000.000; serta truk tangki lateks dan traktor bernilai buku Rp9.000.000.000. Semua nilai bangunan di atas adalah nilai menurut penilaian per 1 Januari 2026. Selain kebun ini, perusahaan tidak memiliki objek PBB-P5L lain. PBB-P5L sektor perkebunan yang terutang atas kebun tersebut untuk Tahun Pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp404.026.000", B: "Rp461.026.000", C: "Rp404.050.000", D: "Rp414.426.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Bangunan objek PBB sektor perkebunan adalah konstruksi teknik di dalam kawasan perkebunan (Pasal 9 ayat (1) huruf a PMK 186/2019), sedangkan areal yang sudah diberi Izin Usaha Perkebunan untuk Pengolahan tidak termasuk kawasan perkebunan (Pasal 3 ayat (3)). Jadi pabrik karet remah keluar, dan yang masuk hanya perumahan, kantor, dan gudang lateks serta jalan dan jembatan kebun. Madrasah nirlaba dikecualikan (Pasal 3 ayat (1) huruf a UU PBB), kantor di Kota Palembang adalah objek PBB-P2, dan truk serta traktor adalah benda bergerak. NJOP objek dikurangi NJOPTKP Rp12.000.000 sekali, lalu dikali NJKP 40% dan tarif 0,5%.",
+        jejakHitung: [
+          ["NJOP bumi", "Rp189.625.000.000"],
+          ["Bangunan 7.800.000.000 + 4.600.000.000", "Rp12.400.000.000"],
+          ["NJOP objek", "Rp202.025.000.000"],
+          ["− NJOPTKP Rp12.000.000", "Rp202.013.000.000"],
+          ["NJKP 40%", "Rp80.805.200.000"],
+          ["PBB 0,5%", "Rp404.026.000"]
+        ],
+        mengapaSalah: {
+          B: "Pabrik karet remah ikut dihitung (+Rp28.500.000.000), padahal arealnya sudah diberi Izin Usaha Perkebunan untuk Pengolahan sehingga tidak termasuk kawasan perkebunan (Pasal 3 ayat (3) PMK 186/2019)",
+          C: "NJOPTKP Rp12.000.000 tidak dikurangkan (Pasal 2 ayat (3) PMK 23/PMK.03/2014)",
+          D: "Kantor perwakilan di Kota Palembang ikut dihitung, padahal objek PBB-P2 (Pasal 38 ayat (1) UU 1/2022) dan bukan bagian kawasan perkebunan"
+        },
+        jebakan: "Pabrik di dalam HGU tidak otomatis masuk PBB sektor perkebunan: bila arealnya sudah memegang Izin Usaha Perkebunan untuk Pengolahan, areal itu dikeluarkan dari kawasan perkebunan. Opsi C hanya berselisih Rp24.000 dari kunci; NJOPTKP tetap dikurangkan sekali."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (3) dan Pasal 9 ayat (1) huruf a PMK 186/PMK.03/2019", berlakuSejak: "2020-01-01" }, { pasal: "Pasal 3 ayat (1) huruf a, Pasal 5, Pasal 6, dan Pasal 7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 huruf a PP 25/2002", berlakuSejak: "2002-01-01" }, { pasal: "Pasal 2 ayat (3) PMK 23/PMK.03/2014", berlakuSejak: "2014-01-01" }, { pasal: "Pasal 38 ayat (1) UU 1/2022", berlakuSejak: "2022-01-05" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B8-069",
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-239",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-B8-18",
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      stem: "Lanjutan V-B8-18: SPPT PBB-P5L 2026 kebun karet PT Lembah Karet Sejahtera sebesar Rp404.026.000 diterbitkan pada 20 Februari 2026 dan diterima perusahaan pada 16 Maret 2026. Perusahaan membayar Rp250.000.000 pada 10 September 2026 dan melunasi sisanya pada 26 Oktober 2026. Asumsikan bagian dari bulan dihitung satu bulan penuh. Denda administrasi PBB yang akan ditagih dengan STP adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp16.161.040", B: "Rp9.241.560", C: "Rp38.506.500", D: "Rp6.161.040" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-baca", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Jatuh tempo SPPT adalah 6 bulan sejak tanggal diterima, yaitu 15 September 2026 (seperti contoh Penjelasan Pasal 11 ayat (1) UU PBB: diterima 1 Maret, jatuh tempo 31 Agustus). Pembayaran Rp250.000.000 pada 10 September 2026 tepat waktu, sehingga yang kurang dibayar pada saat jatuh tempo hanya Rp154.026.000. Sisa itu dilunasi 26 Oktober 2026, terlambat 1 bulan lebih beberapa hari yang dihitung 2 bulan. Denda 2% sebulan dihitung dari jumlah yang tidak atau kurang dibayar.",
+        jejakHitung: [
+          ["6 bulan sejak SPPT diterima 16 Maret 2026", "15 September 2026"],
+          ["Kurang dibayar saat jatuh tempo 404.026.000 − 250.000.000", "Rp154.026.000"],
+          ["16 September s.d. 26 Oktober 2026", "1 bulan 11 hari → 2 bulan"],
+          ["Denda 2 × 2% × 154.026.000", "Rp6.161.040"]
+        ],
+        mengapaSalah: {
+          A: "Denda dihitung dari seluruh SPPT (2 × 2% × Rp404.026.000), padahal Rp250.000.000 sudah dibayar sebelum jatuh tempo dan denda hanya atas jumlah yang tidak atau kurang dibayar",
+          B: "Jatuh tempo dihitung dari tanggal terbit (19 Agustus 2026) sehingga keterlambatan menjadi 3 bulan",
+          C: "Memakai denda 25% milik SKP Pasal 10 ayat (3) dan (4), bukan denda keterlambatan bayar Pasal 11 ayat (3)"
+        },
+        jebakan: "Titik awal jatuh tempo SPPT adalah tanggal diterima, bukan tanggal terbit. Pembayaran sebagian yang dilakukan sebelum jatuh tempo mengurangi dasar denda."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB beserta Penjelasannya", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B8-071",
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-240",
+      topik: "B8.3",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      kasusId: "V-B8-19",
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      stem: "Data untuk soal vignette V-B8-19: PT Kabel Samudra Nusantara mengoperasikan jaringan kabel serat optik bawah laut dan memiliki dua objek PBB-P5L sektor lainnya dengan NOP dan SPPT terpisah. Objek I di perairan Kabupaten Bangka Barat: NJOP bumi (perairan yang digunakan untuk jaringan kabel) Rp290.000.000 dan NJOP bangunan (jaringan kabel) Rp460.000.000. Objek II di perairan Kabupaten Natuna: NJOP bumi Rp1.150.000.000 dan NJOP bangunan (jaringan kabel) Rp2.850.000.000. Perusahaan juga memiliki kapal perbaikan kabel senilai Rp9.000.000.000 serta stasiun pendaratan kabel dan kantor di daratan Kota Pangkalpinang dengan NJOP Rp1.800.000.000. Jumlah PBB-P5L 2026 dalam kedua SPPT tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp8.714.000", B: "Rp8.726.000", C: "Rp9.476.000", D: "Rp8.738.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Perairan untuk jaringan kabel adalah bumi sektor lainnya dan jaringan kabel adalah bangunannya (Pasal 8 ayat (1) huruf d dan Pasal 9 ayat (2) huruf b PMK 186/2019 s.t.d.d. PMK 234/2022), sehingga NJOP tiap objek adalah bumi ditambah bangunan. NJKP ditentukan per objek: Objek II (NJOP Rp4 miliar) 40%, Objek I (NJOP Rp750 juta) 20% (Pasal 1 huruf b PP 25/2002). NJOPTKP diberikan sekali, pada objek yang NJOP-nya terbesar (Objek II). Kapal adalah benda bergerak, dan stasiun pendaratan serta kantor di daratan Kota Pangkalpinang bukan objek sektor lainnya.",
+        jejakHitung: [
+          ["Objek II NJOP 1.150.000.000 + 2.850.000.000", "Rp4.000.000.000 (≥ Rp1 miliar → 40%)"],
+          ["Objek II (4.000.000.000 − 12.000.000) × 40% × 0,5%", "Rp7.976.000"],
+          ["Objek I NJOP 290.000.000 + 460.000.000", "Rp750.000.000 (< Rp1 miliar → 20%)"],
+          ["Objek I 750.000.000 × 20% × 0,5%", "Rp750.000"],
+          ["Jumlah kedua SPPT", "Rp8.726.000"]
+        ],
+        mengapaSalah: {
+          A: "NJOPTKP dikurangkan pada kedua objek (Objek I menjadi Rp738.000)",
+          C: "Objek I memakai NJKP 40%, padahal NJOP-nya di bawah Rp1 miliar (Objek I menjadi Rp1.500.000)",
+          D: "NJOPTKP diberikan pada objek ber-NJOP terkecil (Objek I Rp738.000; Objek II Rp8.000.000), padahal Penjelasan Pasal 3 ayat (3) UU PBB memberikannya pada objek yang nilainya terbesar"
+        },
+        jebakan: "Dua pengecoh hanya berselisih Rp12.000 dari kunci. Tentukan dulu NJOP per objek (bumi + bangunan), lalu NJKP per objek, dan berikan NJOPTKP sekali pada objek terbesar."
+      },
+      dasarHukum: [{ pasal: "Pasal 1 huruf b PP 25/2002", berlakuSejak: "2002-01-01" }, { pasal: "Pasal 3 ayat (3) UU PBB beserta penjelasannya", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 2 ayat (3) PMK 23/PMK.03/2014", berlakuSejak: "2014-01-01" }, { pasal: "Pasal 2 huruf f, Pasal 8 ayat (1) huruf d, dan Pasal 9 ayat (2) huruf b PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022", berlakuSejak: "2023-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      kembaranDari: "B8-092",
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-241",
+      topik: "B8.5",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-B8-19",
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      stem: "Lanjutan V-B8-19: SPPT PBB-P5L 2026 PT Kabel Samudra Nusantara untuk Objek I (Rp750.000) dan Objek II (Rp7.976.000) sama-sama diterbitkan pada 27 Februari 2026. SPPT Objek I diterima pada 9 Maret 2026 dan dilunasi pada 18 Oktober 2026; SPPT Objek II diterima pada 23 Maret 2026 dan dilunasi pada 18 September 2026. Asumsikan bagian dari bulan dihitung satu bulan penuh. Jumlah denda administrasi yang ditagih dengan STP adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp189.520", B: "Rp15.000", C: "Rp30.000", D: "Rp187.500" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Jatuh tempo dihitung per SPPT, 6 bulan sejak tanggal masing-masing diterima. SPPT Objek I jatuh tempo 8 September 2026; pelunasan 18 Oktober 2026 terlambat 1 bulan 10 hari yang dihitung 2 bulan. SPPT Objek II jatuh tempo 22 September 2026; pelunasan 18 September 2026 tepat waktu sehingga tidak didenda. Denda hanya 2 × 2% × Rp750.000.",
+        jejakHitung: [
+          ["Objek I: 6 bulan sejak 9 Maret 2026", "8 September 2026"],
+          ["Objek I: 9 September s.d. 18 Oktober 2026", "1 bulan 10 hari → 2 bulan"],
+          ["Objek II: 6 bulan sejak 23 Maret 2026", "22 September 2026 (dibayar 18 September, tepat waktu)"],
+          ["Denda 2 × 2% × 750.000", "Rp30.000"]
+        ],
+        mengapaSalah: {
+          A: "Jatuh tempo dihitung dari tanggal terbit (26 Agustus 2026) sehingga Objek II ikut terlambat 1 bulan (Rp159.520) dan Objek I 2 bulan (Rp30.000)",
+          B: "Bagian bulan dibuang sehingga keterlambatan Objek I dihitung 1 bulan saja",
+          D: "Memakai denda 25% milik SKP atas Objek I"
+        },
+        jebakan: "Denda dihitung per SPPT dari tanggal diterima masing-masing; SPPT yang lunas sebelum jatuh temponya sendiri tidak didenda walaupun dibayar lebih dulu daripada SPPT lain."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1), (3), dan (4) UU PBB beserta Penjelasannya", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      kembaranDari: "B8-094",
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-242",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      kasusId: "V-B8-20",
+      laporanUjian: ["B-2026-10", "C-2026-10"],
+      stem: "Data untuk soal vignette V-B8-20: SPPT PBB-P5L 2026 PT Rimba Cendana Lestari (kebun kakao di Kabupaten Luwu Utara) sebesar Rp415.300.000 diterima pada 14 April 2026. Sejak 12 Oktober sampai 14 Oktober 2026 pembuatan kode billing PBB tidak dapat dilakukan karena kendala pada jaringan sistem elektronik Direktorat Jenderal Pajak (dibuktikan dengan pengumuman resmi), dan pokok PBB baru berhasil dilunasi penuh pada 15 Oktober 2026. Pada 6 November 2026 perusahaan menerima STP PBB berisi denda keterlambatan dan belum membayarnya; atas SPPT itu tidak pernah diajukan keberatan atau permohonan lain. Asumsikan bagian dari bulan dihitung satu bulan penuh. Jumlah denda dalam STP dan langkah yang tepat adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp8.306.000; mengajukan keberatan atas STP PBB paling lambat 3 bulan sejak STP diterima", B: "Rp8.306.000; melunasi STP PBB lebih dahulu, kemudian mengajukan permohonan pengurangan denda administratif PBB karena kendala jaringan sistem elektronik", C: "Rp16.612.000; mengajukan permohonan pengurangan PBB Pasal 19 UU PBB karena sebab lain yang luar biasa", D: "Rp8.306.000; mengajukan permohonan pengurangan denda administratif PBB karena denda timbul akibat kendala jaringan sistem elektronik, sebelum denda itu dibayar" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Jatuh tempo SPPT 6 bulan sejak diterima; menurut contoh Penjelasan Pasal 11 ayat (1) UU PBB, SPPT yang diterima 14 April 2026 jatuh tempo 13 Oktober 2026. Pelunasan 15 Oktober 2026 terlambat beberapa hari yang dihitung satu bulan, sehingga denda 2% × Rp415.300.000 = Rp8.306.000. Denda yang timbul karena kendala pada jaringan sistem elektronik memenuhi syarat bukan karena kesalahan Wajib Pajak (Pasal 27 ayat (3) huruf f PMK 118/2024), pokok sudah lunas (Pasal 23 ayat (5) huruf a), dan pengurangan hanya dapat diberikan atas denda yang belum dibayar (Pasal 27 ayat (4)). Jadi jalurnya permohonan pengurangan denda administratif PBB sebelum denda dibayar.",
+        jejakHitung: [
+          ["Jatuh tempo: 6 bulan sejak 14 April 2026", "13 Oktober 2026"],
+          ["Dilunasi 15 Oktober 2026", "terlambat 2 hari → 1 bulan"],
+          ["Denda 2% × 1 × Rp415.300.000", "Rp8.306.000"]
+        ],
+        mengapaSalah: {
+          A: "STP bukan objek keberatan PBB; keberatan hanya atas SPPT dan SKP PBB (Pasal 15 ayat (1) UU PBB; Pasal 9 ayat (1) PMK 118/2024).",
+          B: "Jumlah dendanya benar, tetapi bila STP dilunasi lebih dahulu, dendanya sudah dibayar dan tidak dapat lagi dikurangkan (Pasal 27 ayat (4) PMK 118/2024).",
+          C: "Keterlambatan hanya 1 bulan, bukan 2 bulan; lagi pula pengurangan Pasal 19 UU PBB mengurangi pokok PBB karena kondisi objek, subjek, atau bencana, bukan denda yang timbul karena gangguan sistem pembayaran."
+        },
+        jebakan: "Urutan langkah menentukan: pokok harus sudah lunas, tetapi denda yang dimohonkan pengurangan harus belum dibayar. Jangan mengira STP dapat diajukan keberatan."
+      },
+      dasarHukum: [{ pasal: "Pasal 11 ayat (1) dan (3) UU PBB beserta Penjelasannya", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 20 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 9 ayat (1), Pasal 21 huruf a, Pasal 23 ayat (5) huruf a, dan Pasal 27 ayat (3) huruf f serta ayat (4) PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2026-10-02" }],
+      anggaranDetik: 160,
+      verifikasi: "✅",
+      kembaranDari: "B8-105",
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-243",
+      topik: "B8.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Tambang Samudra memiliki satu objek PBB-P5L sektor pertambangan dengan data sebagai berikut. NJOP bumi Rp18.000.000.000,00; NJOP bangunan Rp2.012.000.000,00; NJOPTKP Rp12.000.000,00; NJKP 40%; Tarif 0,5%. Berapakah PBB-P5L yang terutang?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp40.024.000,00", B: "Rp35.976.000,00", C: "Rp20.000.000,00", D: "Rp40.000.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Dasar pengenaan PBB adalah NJOP bumi ditambah NJOP bangunan. Setiap Wajib Pajak PBB-P5L mendapat NJOPTKP Rp12.000.000, yang dikurangkan sekali dari objeknya. Untuk objek pertambangan, NJKP ditetapkan 40% dari NJOP tanpa melihat besar kecilnya NJOP. Pajak terutang adalah tarif 0,5% dikalikan NJKP. Jadi PBB-P5L PT Tambang Samudra Rp40.000.000,00.",
+        jejakHitung: [
+          ["NJOP bumi + NJOP bangunan", "Rp18.000.000.000 + Rp2.012.000.000 = Rp20.012.000.000"],
+          ["Dikurangi NJOPTKP", "Rp20.012.000.000 - Rp12.000.000 = Rp20.000.000.000"],
+          ["NJKP pertambangan 40%", "40% x Rp20.000.000.000 = Rp8.000.000.000"],
+          ["PBB terutang 0,5%", "0,5% x Rp8.000.000.000 = Rp40.000.000"]
+        ],
+        mengapaSalah: {
+          A: "NJOPTKP Rp12.000.000 tidak dikurangkan, padahal Wajib Pajak PBB-P5L berhak atasnya: 0,5% x 40% x Rp20.012.000.000.",
+          B: "NJOP bangunan tidak ikut dihitung, sehingga dasarnya hanya NJOP bumi dikurangi NJOPTKP.",
+          C: "Memakai NJKP 20%, padahal objek pertambangan selalu 40% dari NJOP."
+        },
+        jebakan: "NJKP 20% hanya untuk objek lain dengan NJOP di bawah Rp1 miliar; objek perkebunan, perhutanan, dan pertambangan selalu 40%."
+      },
+      dasarHukum: [{ pasal: "Pasal 5, Pasal 6 ayat (1), dan Pasal 7 UU PBB (UU 12/1985 s.t.d.d. UU 12/1994)", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 huruf a PP 25/2002", berlakuSejak: "2002-01-01" }, { pasal: "Pasal 2 ayat (2) sampai ayat (4) PMK 23/PMK.03/2014", berlakuSejak: "2014-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 10, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-244",
+      topik: "B8.2",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Wilayah kerja tambang PT Bara Utama memuat objek berikut. (1) Kuburan umum warga desa; (2) Kantor dan bengkel perusahaan; (3) Masjid yang digunakan untuk kepentingan umum tanpa maksud memperoleh keuntungan; (4) Areal tambang aktif. Berdasarkan Pasal 3 ayat (1) UU PBB (s.t.d.d. UU No. 12 Tahun 1994), bagian yang tidak dikenakan PBB-P5L adalah ...",
+      kataKualifikasi: ["tidak"],
+      opsi: { A: "(1) dan (2)", B: "(3) dan (4)", C: "(1) dan (3) saja", D: "(1), (2), dan (3)" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 3 ayat (1) UU PBB menyebut objek yang tidak dikenakan PBB. Huruf b memuat bumi yang digunakan untuk kuburan, sehingga kuburan umum warga (1) dikecualikan. Huruf a memuat objek yang digunakan semata-mata untuk melayani kepentingan umum di bidang ibadah tanpa maksud memperoleh keuntungan, sehingga masjid (3) juga dikecualikan. Kantor dan bengkel (2) serta areal tambang aktif (4) dipakai untuk usaha perusahaan dan tetap menjadi objek PBB-P5L.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Kantor dan bengkel perusahaan dipakai untuk kegiatan usaha, bukan untuk kepentingan umum, sehingga tetap objek PBB.",
+          B: "Areal tambang aktif adalah objek utama PBB-P5L sektor pertambangan dan tidak termasuk daftar Pasal 3 ayat (1).",
+          D: "Memasukkan kantor dan bengkel perusahaan (2) yang tidak memenuhi syarat pengecualian mana pun."
+        },
+        jebakan: "Letaknya di dalam wilayah kerja tambang tidak membuat kuburan atau masjid umum ikut dikenai PBB; yang menentukan adalah penggunaannya."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a dan huruf b UU PBB (UU 12/1985 s.t.d.d. UU 12/1994)", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 26, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-245",
+      topik: "B8.1",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "PT Kebun Raya menyelesaikan pembangunan gudang baru di dalam areal HGU-nya pada 1 Maret 2026. Gudang tersebut belum ada pada 1 Januari 2026. Menurut ketentuan saat terutang PBB, PBB atas gudang tersebut ...",
+      kataKualifikasi: [],
+      opsi: { A: "Terutang penuh untuk Tahun Pajak 2026 sejak gudang selesai dibangun", B: "Terutang secara proporsional sebesar 10/12 untuk Tahun Pajak 2026", C: "Terutang untuk Tahun Pajak 2026 sejak tanggal SPOP gudang disampaikan", D: "Baru terutang mulai Tahun Pajak 2027, tidak untuk Tahun Pajak 2026" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Menurut Pasal 8 ayat (2) UU PBB, pajak terutang ditentukan oleh keadaan objek pada tanggal 1 Januari. Pada 1 Januari 2026 gudang PT Kebun Raya belum ada, sehingga PBB Tahun Pajak 2026 dihitung tanpa gudang itu. Gudang baru masuk dasar pengenaan pada Tahun Pajak 2027, karena keadaan 1 Januari 2027 sudah memuatnya. Penjelasan pasal itu memberi contoh serupa: bangunan yang berdiri setelah 1 Januari baru dikenakan pada tahun berikutnya.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tanggal selesai dibangun tidak menentukan pajak terutang; yang menentukan keadaan pada 1 Januari.",
+          B: "UU PBB tidak mengenal pengenaan proporsional per bulan untuk objek yang muncul di tengah tahun.",
+          C: "Penyampaian SPOP adalah kewajiban pendaftaran, bukan saat yang menentukan pajak terutang."
+        },
+        jebakan: "Peserta sering mengira PBB berjalan per bulan seperti penyusutan, padahal pajak setahun dikunci pada keadaan 1 Januari."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (2) UU PBB (UU 12/1985 s.t.d.d. UU 12/1994)", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 42, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-246",
+      topik: "B8.4",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Di dalam HGU PT Sawit Mandiri terdapat kantor kebun, perumahan karyawan, dan gudang pupuk pada bidang tanah tersendiri. Dalam klasifikasi objek PBB sektor perkebunan menurut PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022, bidang tanah untuk kantor, perumahan, dan gudang tersebut digolongkan sebagai ...",
+      kataKualifikasi: [],
+      opsi: { A: "Emplasemen", B: "Areal produktif", C: "Areal belum produktif", D: "Areal tidak produktif" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 14 ayat (1) PMK 186/PMK.03/2019 membagi bumi objek PBB sektor perkebunan menjadi lima jenis areal: produktif, belum produktif, tidak produktif, pengaman, dan emplasemen. Areal emplasemen adalah areal yang di atasnya dimanfaatkan untuk bangunan serta fasilitas penunjangnya. Kantor kebun, perumahan karyawan, dan gudang pupuk adalah bangunan beserta fasilitas penunjang, sehingga bidang tanahnya digolongkan emplasemen. PMK 234/PMK.03/2022 tidak mengubah pasal ini.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Areal produktif adalah areal yang telah ditanami tanaman perkebunan, bukan tanah untuk bangunan.",
+          C: "Areal belum produktif adalah areal yang belum ditanami, termasuk yang sudah diolah dan areal pembibitan; tanah untuk bangunan tidak termasuk.",
+          D: "Areal tidak produktif adalah areal yang tidak dapat diusahakan untuk kegiatan usaha perkebunan, sedangkan kantor dan gudang justru menunjang usaha kebun."
+        },
+        jebakan: "Tanah bangunan di dalam HGU sering dikira areal tidak produktif karena tidak ditanami, padahal ada golongan sendiri: emplasemen."
+      },
+      dasarHukum: [{ pasal: "Pasal 14 ayat (1) huruf e PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 45, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-247",
+      topik: "B8.1",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      stem: "PT Batu Kencana menerima SPOP dari Direktorat Jenderal Pajak pada 18 Februari 2026. Menurut Pasal 9 ayat (2) UU PBB (UU No. 12 Tahun 1985 s.t.d.d. UU No. 12 Tahun 1994), SPOP yang telah diisi dengan jelas, benar, lengkap, dan ditandatangani harus disampaikan paling lambat pada tanggal ...",
+      kataKualifikasi: ["paling lambat"],
+      opsi: { A: "18 Maret 2026", B: "18 April 2026", C: "20 Maret 2026", D: "18 Agustus 2026" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 9 ayat (2) UU PBB mewajibkan SPOP yang sudah diisi jelas, benar, lengkap, dan ditandatangani disampaikan selambat-lambatnya 30 hari setelah tanggal SPOP diterima. Jangka waktunya dalam hari, bukan bulan. Hari pertama adalah sehari setelah tanggal terima, yaitu 19 Februari 2026. Februari 2026 hanya 28 hari, sehingga hari ke-30 jatuh pada 20 Maret 2026.",
+        jejakHitung: [
+          ["SPOP diterima", "18 Februari 2026"],
+          ["Hari tersisa di Februari 2026 (19 sampai 28 Februari)", "10 hari"],
+          ["Sisa di Maret", "30 - 10 = 20 hari"],
+          ["Batas akhir penyampaian SPOP", "20 Maret 2026"]
+        ],
+        mengapaSalah: {
+          A: "Menghitung satu bulan kalender, padahal 18 Februari sampai 18 Maret 2026 baru 28 hari karena Februari hanya 28 hari.",
+          B: "Kelebihan sekitar satu bulan; 18 April 2026 adalah 59 hari setelah tanggal terima.",
+          D: "Memakai jangka 6 bulan, yaitu jangka pelunasan SPPT menurut Pasal 11 ayat (1), bukan jangka penyampaian SPOP."
+        },
+        jebakan: "Jangka SPOP dihitung 30 hari, bukan satu bulan, sehingga bulan Februari yang pendek menggeser tanggalnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2) UU PBB (UU 12/1985 s.t.d.d. UU 12/1994)", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 56, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-248",
+      topik: "B8.4",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Di dalam areal IUPHHK-HTI PT Rimba Industri terdapat 80 hektare lahan berbatu cadas dan jurang yang tidak dapat ditanami dan tidak menghasilkan. Dalam klasifikasi objek PBB sektor perhutanan menurut PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022, lahan tersebut digolongkan sebagai ...",
+      kataKualifikasi: [],
+      opsi: { A: "Areal produktif", B: "Areal belum produktif", C: "Emplasemen", D: "Areal tidak produktif" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 15 ayat (1) PMK 186/PMK.03/2019 membagi bumi objek PBB sektor perhutanan menurut jenis areal. Huruf c angka 2 menggolongkan sebagai Areal Tidak Produktif Perhutanan areal yang tidak dapat diusahakan untuk kegiatan usaha perhutanan, antara lain areal tidak layak kelola. Lahan cadas dan jurang seluas 80 hektare yang tidak dapat ditanami dan tidak menghasilkan memenuhi rumusan itu. PMK 234/PMK.03/2022 tidak mengubah pasal ini.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Areal produktif pada hutan tanaman adalah areal yang telah ditanami, sedangkan lahan cadas ini tidak dapat ditanami.",
+          B: "Areal belum produktif adalah areal yang belum ditanami tetapi masih dapat diolah dan ditanami, bukan lahan yang mustahil diusahakan.",
+          C: "Emplasemen adalah areal yang di atasnya dimanfaatkan untuk bangunan serta fasilitas penunjangnya; lahan cadas ini tidak dibangun."
+        },
+        jebakan: "Bedakan \"belum ditanami\" (belum produktif, masih bisa diusahakan) dari \"tidak dapat diusahakan\" (tidak produktif)."
+      },
+      dasarHukum: [{ pasal: "Pasal 15 ayat (1) huruf c PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 62, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-249",
+      topik: "B8.4",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Karet Hijau menanam karet pada areal seluas 500 hektare dua tahun lalu, dan tanamannya belum menghasilkan getah. Dalam klasifikasi objek PBB sektor perkebunan menurut PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022, areal tersebut digolongkan sebagai ...",
+      kataKualifikasi: [],
+      opsi: { A: "Areal produktif", B: "Areal tidak produktif", C: "Areal belum produktif", D: "Emplasemen" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 14 ayat (1) PMK 186/PMK.03/2019 membagi bumi objek PBB sektor perkebunan menurut keadaan arealnya. Ukurannya adalah sudah atau belum ditanami tanaman perkebunan, bukan sudah atau belum menghasilkan. Areal yang telah ditanami tanaman perkebunan adalah areal produktif, dan nilainya meliputi tanah serta pengembangan tanah berupa tanaman. Karet PT Karet Hijau sudah ditanam di 500 hektare itu sejak dua tahun lalu, jadi arealnya areal produktif walaupun tanamannya belum menghasilkan getah.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Areal tidak produktif adalah areal yang tidak dapat diusahakan untuk kegiatan usaha perkebunan (Pasal 14 ayat (1) huruf c). Areal yang sudah ditanami karet jelas dapat diusahakan.",
+          C: "Areal belum produktif adalah areal yang belum ditanami: belum diolah, sudah diolah tetapi belum ditanami, atau pembibitan. Kata \"belum menghasilkan\" di stem tidak sama dengan \"belum ditanami\".",
+          D: "Emplasemen adalah areal yang di atasnya dimanfaatkan untuk bangunan serta fasilitas penunjangnya (Pasal 14 ayat (1) huruf e). Areal yang ditanami karet adalah areal tanaman, bukan areal bangunan."
+        },
+        jebakan: "Kata \"belum menghasilkan\" mendorong memilih areal belum produktif, padahal penentunya adalah apakah areal itu sudah ditanami."
+      },
+      dasarHukum: [{ pasal: "Pasal 14 ayat (1) huruf a, huruf b, huruf c, dan huruf e PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 64, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-250",
+      topik: "B8.1",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Berdasarkan UU No. 1 Tahun 2022 tentang HKPD, PBB atas bumi dan bangunan di luar kawasan usaha perkebunan, perhutanan, dan pertambangan (PBB-P2) merupakan ...",
+      kataKualifikasi: [],
+      opsi: { A: "Pajak pusat yang dipungut Direktorat Jenderal Pajak bersama PBB-P5L", B: "Pajak provinsi yang dipungut pemerintah provinsi lalu dibagihasilkan ke kabupaten/kota", C: "Pajak kabupaten/kota yang dipungut oleh pemerintah kabupaten/kota", D: "Pajak desa yang dipungut pemerintah desa tempat objek pajak berada" },
+      kunci: "C",
+      jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "UU 1/2022 (HKPD) membagi pajak daerah menjadi pajak provinsi (Pasal 4 ayat (1)) dan pajak kabupaten/kota (Pasal 4 ayat (2)). PBB-P2 tercantum pertama dalam daftar pajak yang dipungut pemerintah kabupaten/kota, disusul BPHTB, PBJT, dan jenis pajak kabupaten/kota lainnya. Pasal 38 ayat (1) mengecualikan kawasan usaha perkebunan, perhutanan, dan pertambangan dari objek PBB-P2. Kawasan itu tetap menjadi objek PBB-P5L yang dikelola Direktorat Jenderal Pajak menurut UU PBB.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pemungutan PBB perdesaan dan perkotaan oleh pemerintah pusat adalah keadaan lama. Menurut UU HKPD, PBB-P2 sudah menjadi pajak kabupaten/kota, dan yang tetap di pusat hanya PBB-P5L.",
+          B: "Daftar pajak provinsi dalam Pasal 4 ayat (1) UU HKPD (PKB, BBNKB, PAB, PBBKB, PAP, Pajak Rokok, Opsen Pajak MBLB) tidak memuat PBB-P2.",
+          D: "UU HKPD hanya mengenal pajak provinsi dan pajak kabupaten/kota. Tidak ada jenis pajak yang dipungut pemerintah desa."
+        },
+        jebakan: "Peserta yang terbiasa dengan PBB lama mengira seluruh PBB masih pajak pusat, padahal hanya PBB-P5L yang tetap di Direktorat Jenderal Pajak."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (2) huruf a UU 1/2022", berlakuSejak: "2022-01-05" }, { pasal: "Pasal 38 ayat (1) UU 1/2022", berlakuSejak: "2022-01-05" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 85, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-251",
+      topik: "B8.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Suatu objek PBB sektor perkebunan terdiri atas data berikut. Areal produktif 400 hektare dengan NJOP Rp1.500,00 per m2; Emplasemen 10 hektare dengan NJOP Rp50.000,00 per m2; Bangunan dengan NJOP total Rp2.000.000.000,00. Dalam soal ini NJOPTKP yang berlaku Rp10.000.000,00, NJKP 40%, dan tarif sesuai UU PBB. Berapakah PBB yang terutang?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp26.000.000,00", B: "Rp64.950.000,00", C: "Rp32.475.000,00", D: "Rp25.980.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        inti: "PBB terutang dihitung dengan mengalikan tarif 0,5% (Pasal 5 UU PBB) dengan NJKP (Pasal 7). NJKP objek perkebunan 40% dari NJOP (Pasal 6 ayat (3) UU PBB jo. Pasal 1 huruf a PP 25/2002), dan soal juga menyebut 40%. Mula-mula semua luas diubah ke meter persegi (1 hektare = 10.000 m2), lalu NJOP bumi areal produktif, emplasemen, dan bangunan dijumlahkan. NJOPTKP yang ditetapkan soal Rp10.000.000 dikurangkan sekali dari jumlah NJOP. Hasilnya dikalikan 40%, lalu dikalikan 0,5%.",
+        jejakHitung: [
+          ["NJOP areal produktif", "400 ha x 10.000 m2 x Rp1.500 = Rp6.000.000.000"],
+          ["NJOP emplasemen", "10 ha x 10.000 m2 x Rp50.000 = Rp5.000.000.000"],
+          ["NJOP bangunan", "Rp2.000.000.000"],
+          ["Jumlah NJOP", "Rp13.000.000.000"],
+          ["NJOP setelah NJOPTKP", "Rp13.000.000.000 - Rp10.000.000 = Rp12.990.000.000"],
+          ["NJKP 40%", "40% x Rp12.990.000.000 = Rp5.196.000.000"],
+          ["PBB terutang", "0,5% x Rp5.196.000.000 = Rp25.980.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp26.000.000 diperoleh bila NJOPTKP Rp10.000.000 tidak dikurangkan: 0,5% x 40% x Rp13.000.000.000.",
+          B: "Rp64.950.000 diperoleh bila tarif 0,5% langsung dikalikan dengan NJOP setelah NJOPTKP, tanpa NJKP 40% (sama dengan NJKP 100%).",
+          C: "Rp32.475.000 memakai NJKP 50%, padahal soal dan PP 25/2002 menetapkan 40% untuk objek perkebunan."
+        },
+        jebakan: "Luas dalam hektare harus diubah ke meter persegi sebelum dikalikan NJOP per m2, dan NJOPTKP dikurangkan sebelum NJKP diterapkan."
+      },
+      dasarHukum: [{ pasal: "Pasal 5, Pasal 6 ayat (3), dan Pasal 7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 huruf a PP 25/2002", berlakuSejak: "2002-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 99, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-252",
+      topik: "B8.6",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Pasangan keadaan dan upaya hukum non-keberatan PBB yang tepat adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "SPPT diterbitkan atas objek yang bukan milik dan tidak dimanfaatkan WP – pengurangan denda administrasi", B: "Objek pajak terkena banjir besar – pengurangan PBB terutang karena bencana alam", C: "Pokok PBB dirasa terlalu tinggi karena kondisi keuangan WP – pengurangan denda administrasi", D: "Luas bangunan dalam SPPT salah tulis – pengurangan PBB karena kondisi tertentu objek" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Upaya hukum non-keberatan PBB punya jalur masing-masing. Pengurangan PBB terutang diberikan Menteri Keuangan karena kondisi tertentu objek yang berhubungan dengan subjek pajak, atau karena objek terkena bencana alam atau sebab lain yang luar biasa (Pasal 19 ayat (1) UU PBB; Pasal 3 ayat (1) PMK 129/2023). Penjelasan Pasal 19 menyebut banjir sebagai bencana alam. Jadi objek yang terkena banjir besar tepat dipasangkan dengan pengurangan PBB karena bencana alam. Pengurangan denda administrasi (Pasal 20 UU PBB) hanya menyangkut denda. SPPT yang tidak benar dikurangkan atau dibatalkan menurut Pasal 21 huruf b PMK 118/2024.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "SPPT atas objek yang bukan milik dan tidak dimanfaatkan Wajib Pajak adalah SPPT yang tidak benar. Jalurnya pembatalan SPPT (Pasal 21 huruf b PMK 118/2024), bukan pengurangan denda.",
+          C: "Kesulitan keuangan Wajib Pajak masuk pengurangan PBB karena kondisi tertentu objek yang berhubungan dengan subjek pajak (Pasal 19 ayat (1) huruf a). Pengurangan denda tidak menurunkan pokok PBB.",
+          D: "Salah luas bangunan menyangkut data objek dan tidak ada hubungannya dengan kondisi tertentu objek yang terkait subjek pajak. Pengurangan karena kondisi tertentu adalah untuk Wajib Pajak yang kesulitan membayar."
+        },
+        jebakan: "Pengurangan PBB (Pasal 19) dan pengurangan denda administrasi (Pasal 20) sama-sama disebut \"pengurangan\", padahal yang pertama menyangkut pokok pajak dan yang kedua hanya denda."
+      },
+      dasarHukum: [{ pasal: "Pasal 19 ayat (1) dan Pasal 20 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 3 ayat (1) PMK 129/2023", berlakuSejak: "2023-12-30" }, { pasal: "Pasal 21 huruf a dan huruf b PMK 118/2024 s.t.d.d. PMK 71/2026", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 28, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "B8-253",
+      topik: "B8.2",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Di dalam areal HGU perkebunan PT Ortax Sawit terdapat masjid yang digunakan semata-mata untuk ibadah dan tidak mencari keuntungan, kantor kebun, dan areal tanaman kelapa sawit menghasilkan. Bagian yang TIDAK dikenakan PBB adalah ...",
+      kataKualifikasi: ["tidak"],
+      opsi: { A: "Kantor kebun saja", B: "Masjid dan kantor kebun", C: "Seluruh areal karena HGU merupakan tanah negara", D: "Masjid saja" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 3 ayat (1) huruf a UU PBB tidak mengenakan PBB atas objek yang digunakan semata-mata untuk melayani kepentingan umum di bidang ibadah dan tidak dimaksudkan untuk memperoleh keuntungan. Pasal 3 ayat (5) PMK 186/PMK.03/2019 menegaskan bahwa areal seperti itu tidak dikenakan PBB walaupun berada di kawasan perkebunan. Masjid di areal HGU PT Ortax Sawit memenuhi syarat itu. Kantor kebun adalah bangunan penunjang usaha perkebunan, dan areal sawit menghasilkan adalah areal produktif, sehingga keduanya tetap objek PBB sektor perkebunan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Kantor kebun dipakai untuk kegiatan usaha perkebunan yang mencari keuntungan, jadi tetap objek PBB. Yang tidak dikenakan justru masjidnya.",
+          B: "Hanya masjid yang memenuhi Pasal 3 ayat (1) huruf a UU PBB. Kantor kebun bukan tempat ibadah dan tetap dikenakan PBB.",
+          C: "HGU adalah hak atas tanah. Pengecualian tanah negara dalam Pasal 3 ayat (1) huruf c UU PBB hanya untuk tanah negara yang belum dibebani suatu hak, dan areal HGU termasuk kawasan perkebunan objek PBB."
+        },
+        jebakan: "Anggapan bahwa areal HGU adalah tanah negara yang bebas PBB, padahal yang dikecualikan hanya tanah negara yang belum dibebani suatu hak."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf a UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 3 ayat (2) dan ayat (5) PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 46, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
     }
   ],
   kartu: [

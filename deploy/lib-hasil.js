@@ -7,7 +7,7 @@
    { s: id soal, t: topik, o: 'A'–'D' | '-', b: 0|1, d: detik, w: epoch detik, m: 'latihan'|'simulasi'|'sesi'|'cek', sim?: id simulasi, k: 'yakin'|'ragu'|'menebak'|null }.
    Tidak ada teks bebas selain id/kode pendek. */
 
-const KODE_RE = /^(?:[A-E](?:[0-9]{1,2})?|TO-[ABC]-[0-9]{4}-[0-9]{2})$/; // kode kelompok, atau kode paket try out (format 'tryout')
+const KODE_RE = /^(?:[A-E](?:[0-9]{1,2})?|TO-[ABC]-[0-9]{4}-[0-9]{2}(?:-[0-9]{1,2})?)$/; // kode kelompok, atau kode paket try out (format 'tryout'; v9.5.5 akhiran pilihan -N, mis. TO-C-2026-11-1)
 const TOPIK_RE = /^[A-E][0-9]{0,2}\.[0-9A-Za-z]{1,6}(?:\.[0-9A-Za-z]{1,6})?$/;
 const MAKS_SIM = 10, MAKS_LEMAH = 8, BATAS_LULUS = 60;
 const MAKS_BYTE = 120 * 1024;

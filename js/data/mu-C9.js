@@ -4785,6 +4785,297 @@ UKP.register({
       dasarHukum: [{ pasal: "Pasal 24 ayat (1)–(3) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (4) dan Pasal 10 ayat (2) dan ayat (5) PMK 192/PMK.03/2018", berlakuSejak: "2018-12-31" }, { pasal: "Keputusan Menteri Keuangan tentang kurs mingguan sebagai dasar pelunasan pajak (kurs KMK)" }],
       anggaranDetik: 180,
       verifikasi: "✅"
+    },
+    {
+      id: "C9-163",
+      topik: "C9.4",
+      tingkat: ["C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Mega Tekstil menemukan dua pembanding independen yang andal dengan rasio laba operasi bersih terhadap penjualan masing-masing 4% dan 8%. Rentang kewajaran yang digunakan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "4% sampai dengan 8%", B: "5% sampai dengan 7%", C: "6% saja", D: "4% sampai dengan 6%" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-hitung", C: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Rentang kewajaran terbentuk bila ada dua atau lebih pembanding dengan nilai indikator yang berbeda. Bentuknya bergantung pada jumlah pembanding. Dua pembanding membentuk rentang dari nilai minimum sampai nilai maksimum (full range). Rentang interkuartil baru dipakai bila ada tiga atau lebih pembanding. PT Mega Tekstil hanya punya dua pembanding, 4% dan 8%, sehingga rentang kewajarannya 4% sampai dengan 8%.",
+        jejakHitung: [
+          ["Jumlah pembanding", "2 (4% dan 8%), jadi rentang penuh"],
+          ["Nilai minimum sampai maksimum", "4% sampai dengan 8%"],
+          ["Median (bukan rentang)", "(4% + 8%) / 2 = 6%"]
+        ],
+        mengapaSalah: {
+          B: "Angka 5% dan 7% adalah kuartil satu dan kuartil tiga hasil interpolasi. Rentang interkuartil hanya dipakai bila pembandingnya tiga atau lebih.",
+          C: "Angka 6% adalah median, yaitu titik penyesuaian bila harga transfer di luar rentang dan titik paling tepat tidak dapat ditentukan. Median bukan rentang kewajaran.",
+          D: "Rentang ini memotong batas atas di median 6%. Rentang penuh dari dua pembanding berakhir di nilai maksimum 8%."
+        },
+        jebakan: "Langsung menghitung rentang interkuartil tanpa melihat jumlah pembanding; dengan dua pembanding yang dipakai nilai minimum sampai maksimum."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 12 ayat (6) huruf a", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 25, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C9-164",
+      topik: "C9.4",
+      tingkat: ["C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "PT Sinar Kemasan menjual dua produk, yaitu kemasan plastik dan label cetak, kepada afiliasinya di luar negeri. Kedua transaksi tidak saling berkaitan dan masing-masing dapat diuji secara andal secara terpisah. Penerapan prinsip kewajaran dan kelaziman usaha atas transaksi tersebut dilakukan ...",
+      kataKualifikasi: [],
+      opsi: { A: "secara terpisah untuk setiap jenis transaksi", B: "secara digabung karena pihak lawan transaksinya sama", C: "secara digabung apabila nilai transaksi masing-masing di bawah Rp5.000.000.000,00", D: "secara terpisah hanya apabila pembandingnya berbeda" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Prinsip kewajaran dan kelaziman usaha pada dasarnya diterapkan terpisah untuk setiap jenis transaksi yang dipengaruhi hubungan istimewa. Penggabungan hanya boleh bila dua atau lebih jenis transaksi saling berkaitan dan memengaruhi penentuan harga transfer, sehingga pengujian terpisah tidak dapat dilakukan secara andal dan akurat. Penjualan kemasan plastik dan label cetak tidak saling berkaitan dan masing-masing dapat diuji andal, jadi pengujiannya terpisah per jenis transaksi.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Pihak lawan transaksi yang sama bukan syarat penggabungan. Syaratnya transaksi saling berkaitan sehingga tidak dapat diuji andal secara terpisah.",
+          C: "Tidak ada batas nilai Rp5.000.000.000,00 untuk menggabungkan transaksi. Angka itu dikenal sebagai salah satu ambang kewajiban dokumentasi, bukan syarat agregasi.",
+          D: "Pengujian terpisah adalah aturan pokok untuk setiap jenis transaksi, bukan hanya bila pembandingnya berbeda."
+        },
+        jebakan: "Mengira transaksi dengan afiliasi yang sama boleh digabung; penggabungan hanya untuk transaksi yang saling berkaitan dan tidak dapat diuji andal secara terpisah."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 4 ayat (2) dan ayat (3)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 41, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C9-165",
+      topik: "C9.4",
+      tingkat: ["C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Hubungan keluarga sebagai dasar hubungan istimewa menurut PMK 172 Tahun 2023 meliputi hubungan sedarah dan semenda dalam garis keturunan ...",
+      kataKualifikasi: [],
+      opsi: { A: "lurus satu derajat saja", B: "lurus dan/atau ke samping satu derajat", C: "lurus dan/atau ke samping paling banyak dua derajat", D: "lurus tanpa batas derajat dan ke samping satu derajat" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "angka-usang", D: "salah-baca" },
+      pembahasan: {
+        inti: "PMK 172/2023 membagi sebab hubungan istimewa menjadi kepemilikan atau penyertaan modal, penguasaan, dan hubungan keluarga sedarah atau semenda. Untuk hubungan keluarga, hubungan istimewa dianggap ada bila terdapat hubungan sedarah maupun semenda dalam garis keturunan lurus dan/atau ke samping satu derajat. Jadi batasnya satu derajat, baik ke atas dan ke bawah maupun ke samping.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Ketentuan tidak berhenti pada garis lurus. Hubungan ke samping satu derajat, misalnya saudara kandung atau ipar, juga termasuk.",
+          C: "Batasnya satu derajat, bukan dua derajat. Garis ke samping satu derajat hanya mencakup saudara (sedarah) dan ipar (semenda); hubungan keluarga ke samping yang lebih jauh tidak termasuk.",
+          D: "Garis lurus juga dibatasi satu derajat. Tidak ada garis keturunan lurus tanpa batas derajat."
+        },
+        jebakan: "Batas satu derajat berlaku untuk garis lurus maupun garis ke samping, dan untuk hubungan sedarah maupun semenda."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 2 ayat (2) huruf c dan ayat (6)", berlakuSejak: "2023-12-29" }, { pasal: "Pasal 18 ayat (4) huruf c UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 49, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C9-166",
+      topik: "C9.4",
+      tingkat: ["C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Arta Sentosa membayar royalti atas hak menggunakan harta tidak berwujud milik afiliasinya di luar negeri. Dalam tahapan pendahuluan, Wajib Pajak harus membuktikan hal-hal berikut, kecuali ...",
+      kataKualifikasi: ["kecuali"],
+      opsi: { A: "pemilik legal dan pemilik ekonomis harta tidak berwujud", B: "pihak yang melakukan fungsi pengembangan, peningkatan, pemeliharaan, perlindungan, dan eksploitasi (DEMPE)", C: "manfaat ekonomis penggunaan harta tidak berwujud bagi pengguna", D: "besarnya laba bersih seluruh grup usaha secara konsolidasi" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", C: "lupa-pasal" },
+      pembahasan: {
+        inti: "Transaksi penggunaan atau hak menggunakan harta tidak berwujud termasuk transaksi tertentu yang harus melalui tahapan pendahuluan sebelum tahapan umum. Dalam tahapan pendahuluan, Wajib Pajak membuktikan keberadaan, jenis, dan nilai harta tidak berwujud, pemilik legal dan pemilik ekonomisnya, penggunaannya, pihak yang berkontribusi dan melakukan aktivitas DEMPE, serta manfaat ekonomis bagi pihak yang menggunakannya. Laba bersih konsolidasi seluruh grup tidak termasuk daftar itu, sehingga opsi D adalah pengecualiannya.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pemilik legal dan pemilik ekonomis harta tidak berwujud termasuk hal yang wajib dibuktikan dalam tahapan pendahuluan, jadi bukan pengecualian.",
+          B: "Pihak yang melakukan aktivitas pengembangan, peningkatan, pemeliharaan, proteksi, dan eksploitasi (DEMPE) termasuk hal yang wajib dibuktikan, jadi bukan pengecualian.",
+          C: "Manfaat ekonomis yang diperoleh pengguna harta tidak berwujud termasuk hal yang wajib dibuktikan, jadi bukan pengecualian."
+        },
+        jebakan: "Kata \"kecuali\" meminta hal yang tidak ada dalam daftar pembuktian tahapan pendahuluan; laba konsolidasi grup terdengar relevan tetapi tidak disebut."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 4 ayat (5) dan ayat (6) huruf b, Pasal 13 ayat (3)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 68, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C9-167",
+      topik: "C9.3",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Bumi Lestari, Wajib Pajak badan dalam negeri, pada Tahun Pajak 2025 mempunyai data sebagai berikut: Penghasilan neto dalam negeri: Rp6.000.000.000,00; Penghasilan neto dari negara A: Rp2.000.000.000,00, pajak yang dibayar di negara A: Rp300.000.000,00; Penghasilan neto dari negara B: Rp2.000.000.000,00, pajak yang dibayar di negara B: Rp550.000.000,00. Penghasilan kena pajak seluruhnya Rp10.000.000.000,00 dan tidak ada kompensasi kerugian. Tarif PPh badan 22%. Total kredit pajak luar negeri yang dapat dikreditkan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp850.000.000,00", B: "Rp880.000.000,00", C: "Rp440.000.000,00", D: "Rp740.000.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Pajak luar negeri boleh dikreditkan sebesar pajak yang dibayar di luar negeri, tetapi tidak melebihi PPh terutang menurut UU PPh atas penghasilan itu (Pasal 24 ayat (1) dan (2) UU PPh). PMK 192/PMK.03/2018 mewajibkan batas itu dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2)), dan yang dikreditkan adalah jumlah paling sedikit antara pajak luar negeri dan batas proporsional penghasilan luar negeri terhadap PKP dikalikan PPh terutang (Pasal 6 ayat (4)). PPh terutang 22% x Rp10.000.000.000,00 = Rp2.200.000.000,00. Batas tiap negara Rp440.000.000,00. Negara A: dibayar Rp300.000.000,00, di bawah batas, jadi dikreditkan Rp300.000.000,00. Negara B: dibayar Rp550.000.000,00, dibatasi Rp440.000.000,00. Total kredit Rp740.000.000,00. Kelebihan Rp110.000.000,00 dari negara B tidak dapat dikreditkan dan tidak boleh ditutup dengan sisa batas negara A.",
+        jejakHitung: [
+          ["PPh terutang", "22% x Rp10.000.000.000,00 = Rp2.200.000.000,00"],
+          ["Batas negara A", "Rp2.000.000.000,00 / Rp10.000.000.000,00 x Rp2.200.000.000,00 = Rp440.000.000,00; kredit = Rp300.000.000,00 (lebih kecil)"],
+          ["Batas negara B", "Rp440.000.000,00; dibayar Rp550.000.000,00; kredit = Rp440.000.000,00"],
+          ["Total kredit", "Rp300.000.000,00 + Rp440.000.000,00 = Rp740.000.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Rp850.000.000,00 adalah seluruh pajak yang dibayar di dua negara tanpa batas. Angka yang sama muncul bila batas digabung untuk semua negara (batas gabungan Rp880.000.000,00 lebih besar dari Rp850.000.000,00), padahal batas dihitung tiap negara.",
+          B: "Rp880.000.000,00 adalah jumlah dua batas; kredit negara A tidak boleh melebihi pajak yang benar-benar dibayar, yaitu Rp300.000.000,00.",
+          C: "Rp440.000.000,00 hanya kredit negara B (atau batas satu negara); kredit negara A sebesar Rp300.000.000,00 terlupa."
+        },
+        jebakan: "Kelebihan pajak di negara B tergoda ditutup dengan sisa batas negara A; batas dihitung per jenis penghasilan untuk tiap negara dan tidak boleh digabung."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 24 ayat (1) dan ayat (2) s.t.d.t.d. UU 7/2021", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018 Pasal 6 ayat (2) dan ayat (4)", berlakuSejak: "2018-12-31" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 94, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C9-168",
+      topik: "C9.6",
+      tingkat: ["C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Menurut PMK 136 Tahun 2024, tarif pajak efektif (ETR) untuk keperluan pajak minimum global suatu yurisdiksi dihitung dengan membagi ...",
+      kataKualifikasi: [],
+      opsi: { A: "total pajak tercakup dengan total Penghasilan GloBE neto di yurisdiksi tersebut", B: "PPh terutang masing-masing entitas dengan laba komersial entitas yang bersangkutan", C: "seluruh pajak yang dibayar grup di dunia dengan seluruh laba grup secara global", D: "PPh badan yang dibayar dengan penghasilan kena pajak menurut SPT Tahunan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "PMK 136/2024 mendefinisikan Tarif Pajak Efektif sebagai jumlah pajak tercakup yang disesuaikan dari tiap Entitas Konstituen yang berdomisili di suatu negara atau yurisdiksi, dibagi jumlah Laba GloBE Bersih negara atau yurisdiksi itu untuk satu tahun pajak (Pasal 1 angka 32). Pasal 5 ayat (1) mewajibkan penghitungan itu per negara atau yurisdiksi untuk setiap Tahun Pajak. Jadi pembilangnya total pajak tercakup dan penyebutnya total laba atau penghasilan GloBE neto seluruh entitas di yurisdiksi yang sama, seperti opsi A. Angka per entitas, angka global grup, dan angka SPT Tahunan tidak dipakai.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "ETR GloBE tidak dihitung per entitas dan tidak memakai PPh terutang dibagi laba komersial; entitas di satu yurisdiksi digabung.",
+          C: "Penggabungan pajak dan laba seluruh grup di dunia (blending global) tidak dipakai; ETR dihitung per negara atau yurisdiksi.",
+          D: "PPh badan dibagi PKP menurut SPT memakai angka fiskal domestik, bukan pajak tercakup yang disesuaikan dan Laba GloBE Bersih."
+        },
+        jebakan: "ETR GloBE dihitung per yurisdiksi dengan menggabungkan semua entitas konstituen di sana, bukan per entitas dan bukan secara global."
+      },
+      dasarHukum: [{ pasal: "PMK 136/2024 Pasal 1 angka 32 dan Pasal 5 ayat (1)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 97, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C9-169",
+      topik: "C9.6",
+      tingkat: ["C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Menurut PMK 136 Tahun 2024, penghasilan yang dikecualikan dari penghitungan Penghasilan GloBE entitas konstituen adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "penghasilan dari pengoperasian kapal laut dalam lalu lintas internasional beserta kegiatan pendukung yang memenuhi syarat", B: "dividen dari kepemilikan saham kurang dari 10% yang dimiliki kurang dari satu tahun", C: "bunga yang diterima dari pihak ketiga", D: "penghasilan sewa tanah dan bangunan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Penghasilan pelayaran internasional dan penghasilan pelayaran internasional penunjang yang memenuhi syarat dikecualikan dari penghitungan Laba atau Rugi GloBE (PMK 136/2024 Pasal 26 ayat (1) dan (2)); termasuk di dalamnya pengangkutan penumpang atau barang dengan kapal dalam lalu lintas internasional (ayat (4)). Dividen hanya dikecualikan bila termasuk Dividen yang Dikecualikan, dan definisi itu tidak mencakup kepemilikan saham portofolio jangka pendek (Pasal 1 angka 23). Kepemilikan di bawah 10% adalah Kepemilikan Saham Portofolio (Pasal 1 angka 24), dan contoh di Lampiran menyebutnya jangka pendek bila dipegang kurang dari 12 bulan. Dividen di opsi B karena itu tetap dihitung. Bunga dari pihak ketiga dan sewa tanah dan bangunan tetap masuk Laba atau Rugi GloBE; pengecualian untuk penghasilan investasi hanya ada bila investasinya tidak terpisahkan dari usaha pelayaran internasional (Pasal 26 ayat (6) huruf e), dan opsi C tidak menyebut kaitan seperti itu. Jawabannya A.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Kepemilikan di bawah 10% yang dipegang kurang dari satu tahun adalah kepemilikan saham portofolio jangka pendek; dividennya dikeluarkan dari definisi Dividen yang Dikecualikan, jadi tetap masuk Laba GloBE.",
+          C: "Bunga dari pihak ketiga pada umumnya adalah penghasilan biasa dalam laba akuntansi dan tetap masuk Laba GloBE. PMK 136/2024 hanya mengecualikan penghasilan investasi yang menjadi bagian tidak terpisahkan dari usaha pelayaran internasional (Pasal 26 ayat (6) huruf e), dan opsi ini tidak menyebut kaitan itu.",
+          D: "Penghasilan sewa tanah dan bangunan tetap bagian dari Laba atau Rugi GloBE. Pengenaan PPh final atas sewa di Indonesia tidak membuatnya dikecualikan dari penghitungan GloBE."
+        },
+        jebakan: "Dividen kecil dan jangka pendek terdengar seperti dividen yang dikecualikan; justru kepemilikan portofolio jangka pendek adalah satu-satunya dividen yang tetap dihitung."
+      },
+      dasarHukum: [{ pasal: "PMK 136/2024 Pasal 26 ayat (1), ayat (2), dan ayat (4) (penghasilan pelayaran internasional)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 136/2024 Pasal 1 angka 23 dan angka 24 (Dividen yang Dikecualikan, Kepemilikan Saham Portofolio)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 100, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C9-170",
+      topik: "C9.1",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "BUT Ortax Engineering Co. Ltd (bukan usaha perbankan) mencatat beban 2026 berikut: (1) royalti kepada kantor pusatnya atas penggunaan perangkat lunak desain Rp600.000.000; (2) alokasi biaya administrasi kantor pusat yang berkaitan dengan kegiatan BUT, sebesar yang ditetapkan Direktur Jenderal Pajak, Rp250.000.000; (3) bunga pinjaman dari kantor pusatnya Rp150.000.000; (4) royalti lisensi teknologi kepada Ortax Rhein GmbH (Jerman), pihak independen tanpa hubungan istimewa yang tidak menyerahkan DGT, Rp400.000.000. Jumlah beban yang boleh dikurangkan dari penghasilan bruto BUT dan PPh yang wajib dipotong BUT atas royalti kepada Ortax Rhein GmbH adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp650.000.000,00; PPh Pasal 26 Rp80.000.000,00", B: "Rp800.000.000,00; PPh Pasal 26 Rp80.000.000,00", C: "Rp1.250.000.000,00; PPh Pasal 26 Rp80.000.000,00", D: "Rp650.000.000,00; PPh Pasal 23 Rp60.000.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 5 ayat (3) UU PPh mengatur laba BUT. Biaya administrasi kantor pusat boleh dibebankan sepanjang berkaitan dengan kegiatan BUT dan besarnya ditetapkan Direktur Jenderal Pajak, jadi pos (2) Rp250.000.000 boleh. Pembayaran kepada kantor pusat berupa royalti atas penggunaan harta dan bunga di luar usaha perbankan tidak boleh dibebankan, jadi pos (1) dan pos (3) dikeluarkan. Royalti kepada Ortax Rhein GmbH, pihak independen, adalah biaya usaha biasa sebesar Rp400.000.000. Beban yang boleh dikurangkan Rp650.000.000. Ortax Rhein GmbH adalah Wajib Pajak luar negeri tanpa BUT, dan BUT termasuk pihak pemotong menurut Pasal 26 ayat (1). Tanpa DGT, manfaat P3B tidak dapat diterapkan, sehingga dipotong 20% x Rp400.000.000 = Rp80.000.000.",
+        jejakHitung: [
+          ["Tidak boleh dibebankan", "royalti kantor pusat Rp600.000.000 dan bunga kantor pusat Rp150.000.000"],
+          ["Beban yang boleh dikurangkan", "Rp250.000.000 + Rp400.000.000 = Rp650.000.000"],
+          ["PPh Pasal 26 royalti", "20% x Rp400.000.000 = Rp80.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Rp800.000.000 ikut membebankan bunga kepada kantor pusat Rp150.000.000, padahal bunga itu tidak boleh dibebankan karena BUT bukan usaha perbankan.",
+          C: "Rp1.250.000.000 ikut membebankan royalti kepada kantor pusat Rp600.000.000, padahal royalti atas penggunaan harta yang dibayar kepada kantor pusat tidak boleh dibebankan.",
+          D: "Penerima royalti adalah Wajib Pajak luar negeri, sehingga yang dipotong PPh Pasal 26 20%, bukan PPh Pasal 23 15%."
+        },
+        jebakan: "Royalti dan bunga kepada kantor pusat tidak boleh dibebankan, tetapi royalti yang sama kepada pihak ketiga independen boleh dibebankan dan dipotong PPh Pasal 26."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 5 ayat (3) huruf a dan huruf b", berlakuSejak: "2001-01-01" }, { pasal: "UU PPh Pasal 26 ayat (1) huruf c", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (tanpa Form DGT berlaku tarif UU PPh)", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 42, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C9-171",
+      topik: "C9.4",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "PT Ortax Manufaktur dimiliki 100% oleh Ortax XYZ Pte. Ltd (Singapura) sejak 2020. Dalam pemeriksaan yang selesai pada 2026, DJP mengoreksi royalti yang dibayar kepada Ortax XYZ Pte. Ltd karena melebihi harga wajar sebesar Rp300 juta. PT Ortax Manufaktur tidak menyetujui koreksi tersebut, dan sampai SKP terbit tidak ada pengembalian kas atas selisihnya. Tarif dividen menurut P3B diasumsikan 10% dan seluruh persyaratan P3B terpenuhi. Bagaimana perlakuan atas selisih Rp300 juta tersebut?",
+      kataKualifikasi: [],
+      opsi: { A: "Diperlakukan sebagai dividen dan dikenai PPh Pasal 26 sebesar Rp30.000.000,00 sesuai P3B", B: "Diperlakukan sebagai dividen dan dikenai PPh Pasal 26 sebesar Rp60.000.000,00 tanpa manfaat P3B", C: "Diperlakukan sebagai royalti tambahan dan dikenai PPh Pasal 26 sebesar Rp60.000.000,00", D: "Tidak ada pajak tambahan karena koreksi atas royalti sudah menambah PKP PT Ortax Manufaktur" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 37 ayat (1) PMK 172/2023 menetapkan bahwa selisih antara nilai transaksi afiliasi yang tidak wajar dan nilai wajarnya, yang ditemukan saat Direktur Jenderal Pajak menentukan kembali penghasilan, merupakan pembagian laba secara tidak langsung yang diperlakukan sebagai dividen. Perlakuan ini gugur hanya bila selisih dikembalikan dalam bentuk kas atau setara kas sebelum surat ketetapan pajak terbit, atau bila Wajib Pajak menyetujui penentuan harga transfer oleh Direktur Jenderal Pajak (ayat (4) dan (5)). Keduanya tidak terjadi. Pasal 38 ayat (2) membolehkan manfaat P3B atas dividen itu. Karena stem menyatakan syarat P3B terpenuhi dan tarifnya 10%, PPh Pasal 26 = 10% x Rp300.000.000 = Rp30.000.000.",
+        jejakHitung: [
+          ["Selisih yang diperlakukan sebagai dividen", "Rp300.000.000"],
+          ["Tarif dividen menurut P3B (data soal)", "10%"],
+          ["PPh Pasal 26", "10% x Rp300.000.000 = Rp30.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Pasal 38 ayat (2) PMK 172/2023 membolehkan manfaat P3B atas dividen dari penyesuaian sekunder. Karena syarat P3B terpenuhi, tarif 20% tidak dipakai.",
+          C: "Selisih itu diperlakukan sebagai dividen menurut Pasal 37 ayat (1), bukan royalti tambahan.",
+          D: "Koreksi PKP adalah penyesuaian primer. Selisih yang tidak dikembalikan dan koreksi yang tidak disetujui tetap diperlakukan sebagai dividen dan dikenai PPh tersendiri."
+        },
+        jebakan: "Koreksi harga transfer tidak berhenti pada penambahan PKP: selisih yang tidak dikembalikan sebelum SKP terbit diperlakukan sebagai dividen."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 37 ayat (1), (2), (4), dan (5) serta Pasal 38 ayat (2)", berlakuSejak: "2023-12-29" }, { pasal: "UU PPh Pasal 26 ayat (1) huruf a", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 (penerapan tarif P3B)", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 49, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C9-172",
+      topik: "C9.2",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "BUT Ortax Engineering Co. Ltd, BUT dari perusahaan penduduk Negara M, memperoleh PKP tahun 2026 sebesar Rp4.000.000.000 dan membayar PPh badan 22%. Laba setelah pajak tidak ditanamkan kembali di Indonesia. Data P3B Indonesia–Negara M: (1) pasal non-diskriminasi menyatakan pajak atas BUT tidak boleh lebih berat daripada pajak atas perusahaan dalam negeri yang menjalankan kegiatan yang sama; (2) pasal dividen secara tegas menyatakan bahwa, terlepas dari ketentuan lain dalam P3B, laba BUT dapat dikenai pajak tambahan paling tinggi 10% dari laba setelah dikurangi pajak atas laba tersebut. Kantor pusat berpendapat branch profit tax melanggar non-diskriminasi karena PT dalam negeri tidak dikenai pajak tambahan. Analisis yang tepat adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "branch profit tax tidak dapat dikenakan karena pasal non-diskriminasi berlaku, sehingga terutang Rp0,00", B: "branch profit tax dapat dikenakan dengan tarif UU PPh 20% dari laba setelah pajak, yaitu Rp624.000.000,00", C: "branch profit tax dapat dikenakan dengan tarif P3B 10% dari laba setelah pajak, yaitu Rp312.000.000,00", D: "branch profit tax dapat dikenakan dengan tarif P3B 10% dari PKP, yaitu Rp400.000.000,00" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Pasal 26 ayat (4) UU PPh mengenakan pajak atas Penghasilan Kena Pajak BUT sesudah dikurangi PPh, kecuali penghasilan itu ditanamkan kembali di Indonesia. Menurut Pasal 1 ayat (3) PMK 14/PMK.03/2011, pengecualian itu hanya berlaku bila seluruhnya ditanamkan kembali. Laba BUT ini tidak ditanamkan kembali, jadi pajak itu terutang. Bila kantor pusat residen negara mitra P3B, tarifnya mengikuti P3B (Pasal 5 PMK 14/PMK.03/2011). Pasal dividen P3B ini tegas membolehkan pajak tambahan atas laba BUT terlepas dari ketentuan lain, sehingga pasal non-diskriminasi tidak menghapusnya. Yang dibatasi P3B hanyalah besarnya: tarif paling tinggi 10%, dihitung dari laba sesudah dikurangi PPh badan.",
+        jejakHitung: [
+          ["PPh badan", "22% x Rp4.000.000.000 = Rp880.000.000"],
+          ["Laba setelah pajak", "Rp4.000.000.000 - Rp880.000.000 = Rp3.120.000.000"],
+          ["Branch profit tax (tarif P3B)", "10% x Rp3.120.000.000 = Rp312.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Pasal dividen P3B secara tegas membolehkan pajak tambahan atas laba BUT terlepas dari ketentuan lain, jadi pasal non-diskriminasi tidak menghapusnya.",
+          B: "Tarif 20% UU PPh tidak dipakai karena P3B membatasi tarif paling tinggi 10%; 20% x Rp3.120.000.000 = Rp624.000.000.",
+          D: "Dasar pengenaannya laba setelah dikurangi PPh, bukan PKP; 10% x Rp4.000.000.000 = Rp400.000.000."
+        },
+        jebakan: "Dasar branch profit tax adalah PKP sesudah dikurangi PPh, dan tarif P3B menggantikan tarif 20% UU PPh."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 26 ayat (4) s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "PMK 14/PMK.03/2011 Pasal 1 dan Pasal 5", berlakuSejak: "2011-01-24" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 50, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
     }
   ],
   kartu: [

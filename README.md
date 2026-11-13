@@ -249,6 +249,32 @@ Teks di layar disamakan dengan perilaku aplikasi. Sapuan kedua memeriksa hasil d
 - **Yang sengaja tidak diubah.** Di papan latihan, pemimpin yang melewati satu soal tetap tidak disebut "belum menjawab". Di evaluasi sesudah sesi ia dihitung seperti peserta lain bila ia menjawab soal lainnya.
 <!-- isi-954:selesai -->
 
+<!-- isi-955:mulai -->
+### Tambahan v9.5.5
+
+**Isi**
+
+- **Dua paket Try Out UKP C.** 150 soal try out Tingkat C dari dua berkas tinjauan yang diserahkan pemimpin tim. Paket 1 berisi 100 soal dan Paket 2 berisi 50 soal, dalam urutan asli. Berkasnya berupa tangkapan layar, satu soal per halaman. Tiap halaman dibaca dua pembaca terpisah, lalu pemutus mencocokkan kedua bacaan dengan gambarnya dan membaca ulang semua angka. Tidak ada selisih di stem, opsi, maupun kunci. Stem dan opsi dipakai apa adanya; hanya daftar dan baris data yang dijadikan satu paragraf. Kode dan nama pada tanda air berkas sumber tidak disalin. Rinciannya ada di `docs/TRYOUT-C-2026-11.md`.
+- **Empat soal dipakai bersama.** Paket 2 nomor 11, 15, 34, dan 39 sama dengan soal Try Out UKP B nomor 75, 81, 17, dan 72 (A3-161, A3-162, B6-132, B6-141). Hanya urutan opsinya yang berbeda. Soal lama itu dipakai juga oleh Paket 2 lewat field `sumber.juga`, jadi bank tidak berisi soal ganda dan catatan jawaban tetap satu per soal. Soal baru yang masuk 146.
+- **Kunci dan pembahasan.** Tiap soal dikerjakan penyusun pembahasan dengan kutipan naskah, pengerja buta yang tidak melihat kunci, dan pemeriksa. Sesudah itu pembaca keempat mencocokkan tiap pembahasan dengan stem, opsi, dan naskahnya. Pengerja buta sampai ke kunci pada 144 dari 146 soal. Dua soal sisanya diuji ulang oleh tiga penguji terpisah dan seorang pemutus. Hasil akhir: 141 soal pasti dan 5 soal bertanda ◐. Tidak ada kunci try out yang diubah. Pembahasan ditulis sendiri dari bunyi naskah, bukan salinan penjelasan try out.
+- **Lima soal bertanda ◐.** B7-308 dan B7-317 bergantung pada standar akuntansi atau ketentuan yang tidak tertulis tegas di naskah pustaka. A2-275 dan A2-287 memakai cara hitung jangka waktu tanggal ke tanggal, berbeda dari cara yang dipakai aplikasi. A1-216 benar menurut petunjuk pengisian SPT sebelum diubah PER-12/PJ/2026; menurut petunjuk yang berlaku sejak 1 Oktober 2026 jawabannya opsi lain. Peringatan di tiap soal menjelaskannya.
+- **Sebaran.** Per kelompok: B7 33, A2 31, A4 15, C10 13, A3 12, B8 11, C9 10, A1 8, B6 8, A5 5. Tingkat tiap soal mengikuti materinya: 71 soal ikut bank Tingkat A, B, dan C; 52 soal ikut Tingkat B dan C; 23 soal hanya Tingkat C. Jadi 123 soal menambah bank Tingkat B. Tiap soal dipetakan ke butir cakupan resmi.
+- **Naskah peraturan.** Tujuh naskah ditambahkan ke pustaka untuk memeriksa soal ini: PER-3/PJ/2026, PER-10/PJ/2025, PMK 39/PMK.03/2017, PMK 63/PMK.03/2022, PP 137/2000, UU 12/2011, dan UU 19/1997. Naskah P3B dengan negara tertentu, dokumen OECD, dan standar akuntansi tetap tidak ada di pustaka.
+- **Soal pengganti.** 14 soal pengganti baru untuk soal lama yang kini bisa ditulis: 12 anggota vignette yang anggota lainnya bertanda ◐, dan 2 soal kurs yang datanya dirapikan di v9.5.4 (A3-111 dan A3-141). Semuanya diterima pemeriksa, 2 dengan perbaikan kecil. Kini 1.011 dari 1.062 soal lama Tingkat B punya soal pengganti. Sisanya 51: 35 bertanda ◐ dan 16 dilewati karena jawabannya bergantung pada kurs, standar akuntansi, tata letak formulir, atau putusan Mahkamah Konstitusi yang naskahnya tidak ada.
+- **Perbaikan soal lama.** A1-079: pos biaya promosi tanpa daftar nominatif diganti premi asuransi jiwa pemilik, karena PMK 02/PMK.03/2010 hanya menyebut SPT Tahunan PPh Badan. Stemnya kini menegaskan bahwa yang ditanya penghasilan neto usaha sebelum dana punia. Kunci tetap A. Tanggal berlaku yang kosong diisi pada A4-139, A4-166, dan B8-069.
+- **Angka.** Jumlah soal menjadi 2.791, dan soal baru sejak v9.5.0 berjumlah 1.297. Soal bertanda: 67 di modul Tingkat B dan Etika, 13 di modul Tingkat C.
+
+**Aplikasi**
+
+- **Tiga paket try out.** Simulasi, Latih, room, dan ujian tim menampilkan tiga paket dalam urutan tetap: Try Out UKP B, Try Out UKP C Paket 1, Try Out UKP C Paket 2. Paket bawaan mengikuti tingkat target, jadi tim bertarget B tetap melihat Try Out UKP B lebih dulu.
+- **Waktu bawaan.** Paket 50 soal memakai 105 menit (tempo ujian Tingkat C), bukan 210 menit. Bagiannya: Semua, 1–40, dan 41–50. Paket 100 soal tetap 210 menit.
+- **Soal anggota dua paket.** Satu soal bisa menjadi anggota lebih dari satu paket, dengan nomor urut sendiri di tiap paket. Jawabannya tetap dicatat sekali per soal.
+- **Kode paket.** Kode hasil dan ringkasan tim menerima kode paket berakhiran, misalnya `TO-C-2026-11-1`. Server tim di folder `deploy/`, bila dipakai, perlu dipasang ulang supaya menerima kode itu.
+- **Buku Kesalahan.** Tombol "Ulangi N dari Buku Kesalahan" menulis jumlah soal yang benar-benar dimulai, dan tidak tampil bila tidak ada soal.
+- **Bank soal Tingkat C.** Label tombol "Latih butir ini" tidak lagi ganda untuk dua butir bernama sama di subjek berbeda.
+- **Belum.** Uji di HP sungguhan tidak bisa dilakukan dari lingkungan kerja ini. Uji otomatis WebKit profil iPhone tetap berjalan di GitHub pada tiap rilis.
+<!-- isi-955:selesai -->
+
 ## Isi saat ini (status 9 November 2026, v7.8)
 
 | | Jumlah |

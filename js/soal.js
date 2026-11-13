@@ -184,7 +184,9 @@
       : h('span', { class: 'kesulitan', role: 'img', 'aria-label': 'Kesulitan ' + tingkatSulit + ' dari 3', title: 'Kesulitan ' + tingkatSulit + ' dari 3' }, [1, 2, 3].map(i => h('i', { 'data-on': i <= tingkatSulit ? '' : null })));
     // ikon jenis soal tidak ditampilkan saat simulasi berjalan (seperti ujian sungguhan); tampil di mode belajar dan ulas
     const ikonJ = mode !== 'ujian' || hanyaBaca ? UKP.c.ikonJenis(soal.jenis) : null;
-    const kop = h('div', { class: 'soal-kop' }, h('span', { class: 'soal-id', title: soal.id + ' · ' + namaKel + (topik ? ' · ' + topik.judul : '') }, ikonJ, h('span', null, soal.id), h('span', { class: 'topik' }, '· ' + (topik ? topik.judul : namaKel)), soal.sumber && soal.sumber.set ? h('span', { class: 'topik sumber-set', title: soal.sumber.judul || soal.sumber.set }, '· ' + String(soal.sumber.judul || soal.sumber.set).replace(/\s*\(.*$/, '') + ' no ' + soal.sumber.no) : null), kanan);
+    // v9.5.5 K-4e: chip tetap paket utama; bila soal juga anggota paket lain (sumber.juga), title menyebut semua paket beserta nomornya
+    const judulSumber = so => { const sb = so.sumber; const ag = K && K.anggotaSet ? K.anggotaSet(so) : []; return ag.length > 1 ? ag.map(a => (a.judul || a.set) + ' no ' + a.no).join(' · ') : sb.judul || sb.set; };
+    const kop = h('div', { class: 'soal-kop' }, h('span', { class: 'soal-id', title: soal.id + ' · ' + namaKel + (topik ? ' · ' + topik.judul : '') }, ikonJ, h('span', null, soal.id), h('span', { class: 'topik' }, '· ' + (topik ? topik.judul : namaKel)), soal.sumber && soal.sumber.set ? h('span', { class: 'topik sumber-set', title: judulSumber(soal) }, '· ' + String(soal.sumber.judul || soal.sumber.set).replace(/\s*\(.*$/, '') + ' no ' + soal.sumber.no) : null), kanan);
     // kutipan peraturan: di HP kutipan panjang diringkas dengan tombol "Tampilkan kutipan lengkap"
     let kutipan = null;
     if (soal.kutipan) {

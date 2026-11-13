@@ -772,7 +772,7 @@
   // D3.5 empat kartu-tautan. tujuan[i] = [view, params]
   function empatCara(meta, tujuan) {
     const KARTU = [
-      ['simulasi', 'Simulasi berwaktu', 'Kerjakan set tryout dengan batas waktu seperti ujian, lalu lihat skor dan riwayatnya.'],
+      ['simulasi', 'Simulasi berwaktu', 'Kerjakan simulasi komprehensif, per kelompok, atau paket try out dengan batas waktu seperti ujian, lalu lihat skor dan riwayatnya.'],
       ['mabar', 'Mode mabar', 'Satu layar, satu pemandu. Soal dibaca bersama, tiap anggota menjawab sendiri, hasil per orang langsung terlihat.'],
       ['yakin', 'Yakin, ragu, nebak', 'Tandai keyakinan tiap jawaban supaya ketahuan mana yang benar-benar paham dan mana yang kebetulan benar.'],
       ['materi', 'Materi dan kalkulator', 'Ringkasan per mata ujian, kalkulator pajak dengan contoh soal, dan kartu hafalan.'],

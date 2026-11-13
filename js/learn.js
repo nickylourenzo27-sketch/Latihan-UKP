@@ -47,12 +47,29 @@
     namaKelompok(kode) { const m = UKP.modul[kode]; return m ? m.meta.nama : kode; },
     // paket soal bersumber (mis. try out): soal.sumber = { set, no, judul, tingkat }. daftarSet() → [{ set, judul, label, tingkat, n, kelompok[], perKelompok{} }];
     // soalSet(set) → semua soal paket itu dalam urutan asli (sumber.no), lintas kelompok dan tanpa saring tingkat
+    // v9.5.5 K-4 satu soal anggota beberapa paket: sumber.juga = [{ set, no, judul, tingkat }]. anggotaSet(soal) → [{ set, no, judul, tingkat, utama }]
+    // (paket utama lebih dulu, lalu juga; butir juga yang cacat — bukan objek, tanpa set atau no bulat positif, set = paket lain yang sudah tercatat — diabaikan).
+    // noSet(soal, set) → nomor soal itu di paket set, atau null. Semua kode paket memakai dua pembantu ini.
+    anggotaSet(soal) {
+      const sb = soal && soal.sumber; if (!sb || typeof sb !== 'object') return [];
+      const out = []; if (sb.set) out.push({ set: sb.set, no: sb.no, judul: sb.judul, tingkat: sb.tingkat, utama: true });
+      if (Array.isArray(sb.juga)) sb.juga.forEach(j => { if (!j || typeof j !== 'object' || typeof j.set !== 'string' || !j.set || !(Number.isInteger(Number(j.no)) && Number(j.no) > 0) || out.some(a => a.set === j.set)) return; out.push({ set: j.set, no: Number(j.no), judul: j.judul, tingkat: j.tingkat, utama: false }); });
+      return out;
+    },
+    noSet(soal, set) { const a = set ? K.anggotaSet(soal).find(x => x.set === set) : null; return a && a.no != null && a.no !== '' && isFinite(Number(a.no)) ? Number(a.no) : null; },
     daftarSet() {
       const peta = new Map();
-      K.semuaKelompok().forEach(k => (UKP.modul[k].soal || []).forEach(x => { const sb = x.sumber; if (!sb || !sb.set) return; let d = peta.get(sb.set); if (!d) { d = { set: sb.set, judul: sb.judul || sb.set, label: String(sb.judul || sb.set).replace(/\s*\(.*$/, ''), tingkat: sb.tingkat || (String(sb.set).match(/^TO-([ABC])-/) || [])[1] || null, n: 0, kelompok: [], perKelompok: {} }; peta.set(sb.set, d); } d.n++; if (!d.perKelompok[k]) { d.kelompok.push(k); d.perKelompok[k] = 0; } d.perKelompok[k]++; }));
-      return [...peta.values()];
+      // judul dan tingkat paket dari anggota utama bila ada, kalau tidak dari butir juga (d.dariUtama dibuang sebelum dikembalikan)
+      const isi = (d, sb) => { d.judul = sb.judul || sb.set; d.label = String(sb.judul || sb.set).replace(/\s*\(.*$/, ''); d.tingkat = sb.tingkat || (String(sb.set).match(/^TO-([ABC])-/) || [])[1] || null; };
+      K.semuaKelompok().forEach(k => (UKP.modul[k].soal || []).forEach(x => K.anggotaSet(x).forEach(sb => { let d = peta.get(sb.set); if (!d) { d = { set: sb.set, judul: null, label: null, tingkat: null, n: 0, kelompok: [], perKelompok: {} }; isi(d, sb); d.dariUtama = sb.utama; peta.set(sb.set, d); } else if (sb.utama && !d.dariUtama) { isi(d, sb); d.dariUtama = true; } d.n++; if (!d.perKelompok[k]) { d.kelompok.push(k); d.perKelompok[k] = 0; } d.perKelompok[k]++; })));
+      peta.forEach(d => { delete d.dariUtama; });
+      // v9.5.5: urutan tetap menurut kode paket (TO-B-2026-11, TO-C-2026-11-1, TO-C-2026-11-2), bukan urutan modul
+      return [...peta.values()].sort((a, b) => String(a.set).localeCompare(String(b.set), 'en', { numeric: true }));
     },
-    soalSet(set) { if (!set) return []; return K.semuaKelompok().flatMap(k => (UKP.modul[k].soal || []).filter(x => x.sumber && x.sumber.set === set)).sort((a, b) => (Number(a.sumber.no) || 0) - (Number(b.sumber.no) || 0)); },
+    // v9.5.5 paket bawaan: paket pertama (urutan daftarSet) yang tingkatnya = tingkat target; bila tidak ada, paket pertama; tanpa paket → null
+    setBawaan(tingkat) { const d = K.daftarSet(); return d.find(p => p.tingkat === tingkat) || d[0] || null; },
+    // soalSet(set): anggota utama dan anggota lewat sumber.juga, urut menurut nomor di paket ITU (K.noSet); tiap soal sekali (satu soal = satu objek di satu modul)
+    soalSet(set) { if (!set) return []; return K.semuaKelompok().flatMap(k => (UKP.modul[k].soal || []).filter(x => K.anggotaSet(x).some(a => a.set === set))).sort((a, b) => (K.noSet(a, set) || 0) - (K.noSet(b, set) || 0)); },
     tingkatDari(kode) { return kode[0] === 'E' ? null : kode[0]; },
   };
 
@@ -1006,11 +1023,13 @@
     let terbaik = null;
     for (const d of K.daftarSet()) {
       if (!/^[A-Za-z0-9-]+$/.test(d.set)) continue;
-      const peta = new Map(K.soalSet(d.set).map(x => [x.id, Number(x.sumber.no)]));
+      const peta = new Map(K.soalSet(d.set).map(x => [x.id, K.noSet(x, d.set)])); // v9.5.5 K-4: nomor di paket d.set (soal bersama lewat sumber.juga)
       if (!ids.every(id => peta.has(id) && Number.isInteger(peta.get(id)) && peta.get(id) > 0)) continue;
       const nos = ids.map(id => peta.get(id)); const r = [];
       for (let i = 0; i < nos.length;) { let j = i; while (j + 1 < nos.length && nos[j + 1] === nos[j] + 1) j++; r.push(j > i ? nos[i] + '-' + nos[j] : String(nos[i])); i = j + 1; }
       const k = 's' + d.set + '~' + r.join('_');
+      // v9.5.5 K-4: paket bernomor bentrok (mis. soal utama dan soal lewat juga bernomor sama di modul berbeda) dilewati bila tidak terbaca kembali persis
+      if (JSON.stringify(bacaSoalKode(k)) !== JSON.stringify(ids)) continue;
       if (!terbaik || k.length < terbaik.length) terbaik = k;
     }
     return terbaik;
@@ -1019,7 +1038,7 @@
     if (t[0] === 's') {
       const i = t.indexOf('~'); if (i < 2) return null;
       const set = t.slice(1, i), rentang = t.slice(i + 1); if (!/^[0-9]+(-[0-9]+)?(_[0-9]+(-[0-9]+)?)*$/.test(rentang)) return null;
-      const peta = new Map(K.soalSet(set).map(x => [Number(x.sumber.no), x.id])); const out = [];
+      const peta = new Map(K.soalSet(set).map(x => [K.noSet(x, set), x.id])); const out = [];
       for (const r of rentang.split('_')) {
         const [a, b] = r.split('-').map(Number); const akhir = b == null ? a : b;
         if (!(a > 0) || akhir < a || out.length + akhir - a > 400) return null;

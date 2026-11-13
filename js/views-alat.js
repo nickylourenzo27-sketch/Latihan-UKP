@@ -7,6 +7,10 @@
   const simBerjalan = () => (UKP.simulasiBerjalan ? UKP.simulasiBerjalan() : false);
   // v9.5.4 S13: jumlah soal yang benar-benar dimulai tombol Latih satu topik (js/views-belajar.js, UKP.latihBank.nLatihTopik)
   const nLatihTopik = (id, maks) => (UKP.latihBank && typeof UKP.latihBank.nLatihTopik === 'function' ? UKP.latihBank.nLatihTopik(id, maks) : (maks == null ? 10 : maks));
+  // v9.5.5 K-1: jumlah soal yang benar-benar dimulai "Ulangi N dari Buku Kesalahan" (#latih { hanyaSalah, n: 10 }); cadangan sama dengan nLatihTopik
+  const nLatihSalah = maks => (UKP.latihBank && typeof UKP.latihBank.nLatihSalah === 'function' ? UKP.latihBank.nLatihSalah(maks) : (maks == null ? 10 : maks));
+  // tombol tab Buku Kesalahan; N = 0 → tidak ditampilkan (null). Parameter sesi tetap { hanyaSalah: true, n: 10, mulai: true }
+  UKP.c.tombolUlangSalah = function () { const n = nLatihSalah(10); return n ? h('button', { class: 'btn btn-primary', 'data-k': 'ulangi-salah', onclick: () => UKP.go('latih', { hanyaSalah: true, n: 10, mulai: true }) }, UKP.icon('repeat'), 'Ulangi ' + n + ' dari Buku Kesalahan') : null; };
   // ---------- v7 (DESAIN-V7 §4): komponen Kontrak v7 milik P1 bila ada; cadangan lokal merender markup kontrak yang sama ----------
   const pakaiC = (nama, cadangan) => (...a) => (typeof UKP.c[nama] === 'function' ? UKP.c[nama] : cadangan)(...a);
   const sect = pakaiC('sect', o => { const id = o.id || U.id('sect'); return h('section', { class: 'sect' + (o.ganda ? ' ganda' : ''), 'aria-labelledby': id }, h('div', { class: 'sect-head' }, h('h2', { id }, o.judul), o.meta != null ? h('span', { class: 'meta' }, o.meta) : null, o.aksi || null), o.isi); });
@@ -748,7 +752,7 @@
       const grup = {}; bk.forEach(j => { const k = j.tag || '_'; (grup[k] = grup[k] || []).push(j); });
       const urut = Object.keys(grup).sort((a, b) => (grup[b].length - grup[a].length) || ((a === '_') - (b === '_')));
       const namaGrup = k => k === '_' ? 'Tanpa tag sebab' : UKP.tagLabel(k);
-      wadah.append(h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-primary', onclick: () => UKP.go('latih', { hanyaSalah: true, n: 10, mulai: true }) }, UKP.icon('repeat'), 'Ulangi 10 dari Buku Kesalahan'),
+      wadah.append(h('div', { class: 'btn-row' }, UKP.c.tombolUlangSalah(),
         urut.length > 1 ? h('div', { class: 'chip-row', role: 'group', 'aria-label': 'Lompat ke sebab' }, urut.map((k, gi) => h('button', { type: 'button', class: 'chip', onclick: () => { const el = document.getElementById('bk-grup-' + gi); if (el) { try { el.scrollIntoView({ behavior: UKP.gulirHalus(), block: 'start' }); } catch (e) {} UKP.fokus(el); } } }, namaGrup(k) + ' · ' + grup[k].length))) : null));
       if (UKP.viz) wadah.appendChild(h('div', { class: 'card' }, UKP.viz.batang({ judul: 'Sebab kesalahan', sub: bk.length + ' soal terakhir yang keliru', maks: '560px', data: urut.map((k, i) => ({ label: namaGrup(k), nilai: grup[k].length, tone: i === 0 && k !== '_' ? 'warn' : null })), format: n => n + ' dari ' + bk.length + ' soal' })));
       urut.forEach((k, gi) => {

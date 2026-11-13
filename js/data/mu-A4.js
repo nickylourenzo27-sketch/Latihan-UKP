@@ -3787,24 +3787,30 @@ UKP.register({
     {
       id: "A4-139",
       topik: "A4.2",
-      tingkat: [ "A", "B", "C" ],
+      tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 3,
       stem: "Bapak Agus (bukan pengusaha jasa konstruksi) membangun sendiri rumah tinggal berkonstruksi beton dalam dua tahap tanpa kontraktor: tahap pertama seluas 150 m² dikerjakan Januari–Mei 2023 dengan biaya Rp900.000.000, dan tahap kedua berupa penambahan lantai seluas 120 m² dikerjakan Agustus–Desember 2026 dengan biaya Rp800.000.000 (seluruhnya tidak termasuk tanah). Berapa PPN atas kegiatan membangun sendiri yang harus disetor Bapak Agus?",
-      kataKualifikasi: [ "bukan", "tidak termasuk" ],
+      kataKualifikasi: ["bukan", "tidak termasuk"],
       opsi: { A: "Rp0,00", B: "Rp17.600.000,00", C: "Rp37.400.000,00", D: "Rp40.800.000,00" },
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
         inti: "KMS bertahap merupakan satu kesatuan hanya bila tenggang waktu antartahap tidak lebih dari 2 tahun (PMK 81/2024 Ps. 323 ayat (5) huruf b). Tahap pertama selesai Mei 2023 dan tahap kedua dimulai Agustus 2026 (sekitar 39 bulan), sehingga masing-masing tahap merupakan kegiatan terpisah (ayat (6)) dan diuji sendiri terhadap kriteria luas paling sedikit 200 m² (ayat (4)). Tahap pertama (150 m²) maupun tahap kedua (120 m²) tidak memenuhi kriteria, sehingga tidak ada PPN KMS terutang.",
-        jejakHitung: [ [ "Tenggang Mei 2023–Agustus 2026", "±39 bulan > 24 bulan → kegiatan terpisah" ], [ "Tahap 1: 150 m² < 200 m²", "bukan KMS terutang" ], [ "Tahap 2: 120 m² < 200 m²", "bukan KMS terutang" ], [ "PPN KMS yang disetor", "Rp0" ] ],
-        mengapaSalah: { B: "Menganggap tahap kedua terutang (2,2% × Rp800.000.000), padahal luasnya hanya 120 m².", C: "Menggabungkan kedua tahap (2,2% × Rp1.700.000.000), padahal tenggangnya lebih dari 2 tahun.", D: "Menggabungkan kedua tahap dan memakai besaran lama 20% × 12% (2,4% × Rp1.700.000.000)." },
+        jejakHitung: [
+          ["Tenggang Mei 2023–Agustus 2026", "±39 bulan > 24 bulan → kegiatan terpisah"],
+          ["Tahap 1: 150 m² < 200 m²", "bukan KMS terutang"],
+          ["Tahap 2: 120 m² < 200 m²", "bukan KMS terutang"],
+          ["PPN KMS yang disetor", "Rp0"]
+        ],
+        mengapaSalah: {
+          B: "Menganggap tahap kedua terutang (2,2% × Rp800.000.000), padahal luasnya hanya 120 m².",
+          C: "Menggabungkan kedua tahap (2,2% × Rp1.700.000.000), padahal tenggangnya lebih dari 2 tahun.",
+          D: "Menggabungkan kedua tahap dan memakai besaran lama 20% × 12% (2,4% × Rp1.700.000.000)."
+        },
         jebakan: "Bandingkan setiap opsi dengan dasar hukum: UU PPN Pasal 16C s.t.d.t.d. UU 6/2023."
       },
-      dasarHukum: [
-        { pasal: "UU PPN Pasal 16C s.t.d.t.d. UU 6/2023", berlakuSejak: null },
-        { pasal: "PMK 81/2024 s.t.d.t.d. PMK 1/2026 Pasal 323 ayat (3)–(6) dan Pasal 324 ayat (2)–(3) (ayat (2) diubah PMK 11/2025)", berlakuSejak: null }
-      ],
+      dasarHukum: [{ pasal: "UU PPN Pasal 16C s.t.d.t.d. UU 6/2023", berlakuSejak: "2022-04-01" }, { pasal: "PMK 81/2024 s.t.d.t.d. PMK 1/2026 Pasal 323 ayat (3)–(6) dan Pasal 324 ayat (2)–(3) (ayat (2) diubah PMK 11/2025)", berlakuSejak: null }],
       anggaranDetik: 150,
       verifikasi: "✅",
       sumber: { set: "TO-B-2026-11", no: 28, judul: "Try Out UKP B (transkrip 6 Nov 2026)", tingkat: "B" }
@@ -4527,7 +4533,7 @@ UKP.register({
         },
         jebakan: "Uji urutannya: tenggang antartahap (paling lama 2 tahun), lalu kriteria luas per kegiatan, lalu besaran 2,2%. Bandingkan dengan UU PPN Pasal 16C s.t.d.t.d. UU 6/2023 dan PMK 81/2024 Pasal 323 sampai 324."
       },
-      dasarHukum: [{ pasal: "UU PPN Pasal 16C s.t.d.t.d. UU 6/2023", berlakuSejak: null }, { pasal: "PMK 81/2024 s.t.d.t.d. PMK 1/2026 Pasal 323 ayat (3)–(6) dan Pasal 324 ayat (2)–(3) (ayat (2) diubah PMK 11/2025)", berlakuSejak: null }],
+      dasarHukum: [{ pasal: "UU PPN Pasal 16C s.t.d.t.d. UU 6/2023", berlakuSejak: "2022-04-01" }, { pasal: "PMK 81/2024 s.t.d.t.d. PMK 1/2026 Pasal 323 ayat (3)–(6) dan Pasal 324 ayat (2)–(3) (ayat (2) diubah PMK 11/2025)", berlakuSejak: null }],
       anggaranDetik: 150,
       verifikasi: "✅",
       kembaranDari: "A4-139",
@@ -12025,6 +12031,427 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "A4-040",
       sejak: "9.5.4"
+    },
+    {
+      id: "A4-418",
+      topik: "A4.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Seorang turis asing membeli Barang Kena Pajak dari PKP toko retail tertentu dan hendak meminta kembali PPN-nya (VAT refund). Menurut PMK 81 Tahun 2024, Barang Kena Pajak tersebut harus dibeli dalam jangka waktu paling lama ... sebelum keberangkatan turis ke luar Daerah Pabean.",
+      kataKualifikasi: ["paling lama"],
+      opsi: { A: "Satu bulan", B: "Tiga bulan", C: "Enam bulan", D: "Dua belas bulan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Turis Asing dapat meminta kembali PPN yang sudah dibayar atas Barang Bawaan. Salah satu syaratnya, pembelian Barang Bawaan dilakukan dalam jangka waktu 1 bulan sebelum keberangkatan ke luar Daerah Pabean (Pasal 265 ayat (2) huruf b PMK 81/2024). Jangka waktu 1 bulan itu ditegaskan sama dengan 30 hari kalender (ayat (4)). Jadi barang yang dibeli lebih awal dari 30 hari sebelum berangkat tidak memenuhi syarat. Syarat lain: nilai PPN paling sedikit Rp500.000,00.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Tiga bulan terlalu panjang. PMK 81/2024 membatasi pembelian dalam 1 bulan (30 hari kalender) sebelum keberangkatan.",
+          C: "Enam bulan tidak dikenal dalam syarat pengembalian PPN Turis Asing. Batasnya 1 bulan sebelum keberangkatan.",
+          D: "Dua belas bulan tidak ada dasarnya. Pasal 265 ayat (2) huruf b PMK 81/2024 menyebut 1 bulan."
+        },
+        jebakan: "Satu bulan di sini dihitung 30 hari kalender, bukan bulan kalender."
+      },
+      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 265 ayat (2) huruf b dan ayat (4)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 13, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-419",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      stem: "Berdasarkan PER-11/PJ/2025, e-Faktur wajib diunggah ke Direktorat Jenderal Pajak dan memperoleh persetujuan paling lambat ...",
+      kataKualifikasi: ["paling lambat"],
+      opsi: { A: "Tanggal 15 bulan berikutnya setelah tanggal pembuatan e-Faktur", B: "Akhir bulan berikutnya setelah tanggal pembuatan e-Faktur", C: "Tanggal 10 bulan berikutnya setelah tanggal pembuatan e-Faktur", D: "Tanggal 20 bulan berikutnya setelah tanggal pembuatan e-Faktur" },
+      kunci: "D",
+      jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "salah-baca" },
+      pembahasan: {
+        inti: "Menurut Pasal 44 ayat (1) PER-11/PJ/2025, e-Faktur wajib diunggah ke Direktorat Jenderal Pajak dan memperoleh persetujuan paling lambat tanggal 20 bulan berikutnya setelah tanggal pembuatannya. Persetujuan hanya diberikan bila unggahan dilakukan dalam jangka waktu itu (ayat (2)). e-Faktur yang tidak memperoleh persetujuan bukan Faktur Pajak (ayat (3)), sehingga pembeli tidak dapat memakainya sebagai dasar pengkreditan Pajak Masukan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tanggal 15 adalah batas unggah menurut aturan e-Faktur sebelum PER-11/PJ/2025. Kini batasnya tanggal 20.",
+          B: "Akhir bulan berikutnya adalah batas penyetoran PPN dan penyampaian SPT Masa PPN, bukan batas unggah e-Faktur.",
+          C: "Tanggal 10 tidak dipakai sebagai batas unggah e-Faktur dalam PER-11/PJ/2025."
+        },
+        jebakan: "Batas unggah e-Faktur (tanggal 20) sering tertukar dengan batas lama tanggal 15 atau dengan batas SPT Masa PPN di akhir bulan berikutnya."
+      },
+      dasarHukum: [{ pasal: "PER-11/PJ/2025 Pasal 44 ayat (1) sampai ayat (3)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 18, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-420",
+      topik: "A4.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      stem: "Pengusaha yang peredaran brutonya sampai dengan suatu bulan dalam tahun buku melebihi batasan pengusaha kecil (Rp4,8 miliar) wajib melaporkan usahanya untuk dikukuhkan sebagai Pengusaha Kena Pajak paling lambat ...",
+      kataKualifikasi: ["paling lambat"],
+      opsi: { A: "Awal tahun pajak berikutnya", B: "Akhir bulan berikutnya setelah bulan saat peredaran bruto melampaui batasan pengusaha kecil", C: "Akhir tahun buku saat peredaran bruto melampaui batasan pengusaha kecil", D: "30 hari kerja sejak peredaran bruto melampaui batasan pengusaha kecil" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "angka-usang", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 17 ayat (1) PMK 164/2023 mewajibkan Pengusaha melaporkan usahanya untuk dikukuhkan sebagai PKP bila sampai dengan suatu bulan dalam tahun buku peredaran brutonya melebihi batasan pengusaha kecil Rp4,8 miliar. Menurut ayat (3), kewajiban itu dilakukan paling lambat akhir tahun buku saat batasan terlampaui. Pasal 60 ayat (5) PMK 81/2024 merujuk jangka waktu ini ke Peraturan Menteri tersebut. Bila tidak melapor, kepala KPP atau KP2KP dapat mengukuhkan secara jabatan (ayat (7)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Awal tahun pajak berikutnya sudah melewati batas. Pelaporan harus selesai paling lambat akhir tahun buku saat batasan terlampaui.",
+          B: "Akhir bulan berikutnya adalah batas rezim lama Pasal 4 ayat (2) PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013, yang dicabut Pasal 24 huruf a PMK 164/2023.",
+          D: "Tenggat 30 hari kerja tidak diatur untuk pelaporan usaha sebagai PKP."
+        },
+        jebakan: "Batas lama \"akhir bulan berikutnya\" sudah dicabut sejak 29 Desember 2023; kini batasnya akhir tahun buku."
+      },
+      dasarHukum: [{ pasal: "PMK 164/2023 Pasal 17 ayat (1), ayat (3), dan ayat (7)", berlakuSejak: "2023-12-29" }, { pasal: "PMK 81/2024 Pasal 60 ayat (5)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 24, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-421",
+      topik: "A4.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Tembakau Nusantara, Pengusaha Kena Pajak produsen hasil tembakau, menyerahkan hasil tembakau yang Harga Jual Eceran (HJE)-nya Rp2.000.000,00. Menurut PMK 63/PMK.03/2022 sebagaimana telah diubah dengan PMK 11 Tahun 2025, berapakah PPN yang terutang atas penyerahan tersebut?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp198.000,00", B: "Rp220.000,00", C: "Rp240.000,00", D: "Rp165.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        inti: "PPN atas penyerahan hasil tembakau dihitung dari tarif PPN dikali Nilai Lain. Sejak PMK 11/2025, Nilai Lain = 11/12 x 100/(100 + 11/12 x t) x HJE, dengan t = 12. Hasilnya, menurut Pasal 4 ayat (2) huruf b PMK 63/PMK.03/2022 s.t.d.d. PMK 11/2025, PPN terutang setelah pembulatan sebesar 9,9% dari HJE. Untuk HJE Rp2.000.000,00, PPN terutang Rp198.000,00.",
+        jejakHitung: [
+          ["Nilai Lain (rumus)", "11/12 x 100/111 x Rp2.000.000,00 = Rp1.651.652,00 (dibulatkan)"],
+          ["PPN menurut rumus", "12% x Nilai Lain = Rp198.198,00, dibulatkan oleh PMK menjadi 9,9% x HJE"],
+          ["PPN terutang", "9,9% x Rp2.000.000,00 = Rp198.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Rp220.000,00 adalah 11% x HJE. Atas hasil tembakau tidak dipakai tarif efektif umum, tetapi 9,9% x HJE.",
+          C: "Rp240.000,00 adalah 12% x HJE penuh. HJE bukan Dasar Pengenaan Pajak; yang dipakai Nilai Lain.",
+          D: "Rp165.000,00 adalah 8,25% x HJE. Angka itu tidak dihasilkan rumus Nilai Lain hasil tembakau."
+        },
+        jebakan: "HJE bukan DPP. Tarif 12% dikalikan Nilai Lain, dan hasil pembulatannya 9,9% x HJE, bukan 11% atau 12% x HJE."
+      },
+      dasarHukum: [{ pasal: "PMK 63/PMK.03/2022 Pasal 4 ayat (1), ayat (1a), dan ayat (2) huruf b s.t.d.d. PMK 11/2025", berlakuSejak: "2025-02-04" }, { pasal: "PMK 63/PMK.03/2022 Pasal 3 ayat (2) huruf b", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 51, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-422",
+      topik: "A4.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Barokah Travel menjual paket perjalanan ibadah keagamaan yang juga mencakup perjalanan ke tempat lain. Harga paket yang ditagih kepada jemaah Rp40.000.000,00. Tagihan itu tidak merinci bagian perjalanan ibadah dan bagian perjalanan ke tempat lain. Menurut PMK 71/PMK.03/2022 sebagaimana telah diubah dengan PMK 11 Tahun 2025, berapakah PPN yang terutang atas paket tersebut?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp220.000,00", B: "Rp440.000,00", C: "Rp4.400.000,00", D: "Rp0,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Jasa penyelenggaraan perjalanan ibadah keagamaan yang juga mencakup perjalanan ke tempat lain dikenai PPN dengan besaran tertentu. Menurut Pasal 3 huruf d PMK 71/PMK.03/2022 s.t.d.d. PMK 11/2025, besarannya bergantung pada rincian tagihan. Bila tagihan dirinci, 10% x 11/12 x 12% dikali Harga Jual paket perjalanan ke tempat lain saja. Bila tidak dirinci, 5% x 11/12 x 12% dikali Harga Jual keseluruhan paket. Tagihan PT Barokah Travel tidak dirinci, jadi PPN = 0,55% x Rp40.000.000,00 = Rp220.000,00.",
+        jejakHitung: [
+          ["Besaran tertentu (tidak dirinci)", "5% x 11/12 x 12% = 0,55%"],
+          ["Dasar", "Harga Jual keseluruhan paket Rp40.000.000,00"],
+          ["PPN terutang", "0,55% x Rp40.000.000,00 = Rp220.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Rp440.000,00 memakai besaran 10% x 11/12 x 12% (1,1%) atas seluruh paket. Besaran 10% hanya untuk tagihan yang dirinci, dan hanya atas bagian perjalanan ke tempat lain.",
+          C: "Rp4.400.000,00 memakai 11/12 x 12% atas seluruh paket, seolah-olah PPN dihitung biasa. Jasa ini memakai besaran tertentu.",
+          D: "Rp0,00 keliru karena hanya perjalanan ibadah keagamaan murni yang tidak dikenai PPN. Paket ini juga mencakup perjalanan ke tempat lain."
+        },
+        jebakan: "Besaran 5% (bukan 10%) dipakai karena tagihan tidak dirinci, tetapi dasarnya justru seluruh harga paket."
+      },
+      dasarHukum: [{ pasal: "PMK 71/PMK.03/2022 Pasal 3 huruf d angka 2 s.t.d.d. PMK 11/2025", berlakuSejak: "2025-02-04" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 60, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-423",
+      topik: "A4.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Lestari adalah Pengusaha Kena Pajak yang menggunakan pedoman penghitungan pengkreditan Pajak Masukan. Menurut PER-11/PJ/2025, lampiran SPT Masa PPN bagi PKP pengguna pedoman tersebut yang tidak ada adalah lampiran ...",
+      kataKualifikasi: ["tidak"],
+      opsi: { A: "A1 dan A2", B: "B1 dan B2", C: "B3 dan C", D: "A2 dan B2" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 74 ayat (1) PER-11/PJ/2025 menyebut lampiran SPT Masa PPN bagi PKP yang memakai pedoman penghitungan pengkreditan Pajak Masukan secara tertutup: Formulir A1 (ekspor), Formulir A2 (Pajak Keluaran atas penyerahan dalam negeri dengan Faktur Pajak), Formulir B3 (Pajak Masukan yang tidak dikreditkan atau mendapat fasilitas), dan Formulir C (PPN yang dipungut oleh Pihak Lain). Formulir B1 dan B2, yang pada SPT Masa PPN biasa memuat rincian Pajak Masukan yang dikreditkan, tidak termasuk. Alasannya, PKP pengguna pedoman tidak mengkreditkan Pajak Masukan per Faktur Pajak, tetapi menghitungnya dengan pedoman. Jadi lampiran yang tidak ada adalah B1 dan B2.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Formulir A1 dan A2 tetap ada: keduanya disebut dalam daftar lampiran Pasal 74 ayat (1) PER-11/PJ/2025.",
+          C: "Formulir B3 dan C justru termasuk lampiran SPT Masa PPN bagi PKP pengguna pedoman menurut Pasal 74 ayat (1).",
+          D: "Formulir A2 tetap ada karena Pajak Keluaran atas penyerahan dalam negeri dengan Faktur Pajak tetap dilaporkan; hanya B2 yang benar dari pasangan ini."
+        },
+        jebakan: "Formulir B3 tetap ada walau berawalan B; yang hilang hanya daftar Pajak Masukan yang dikreditkan (B1 dan B2)."
+      },
+      dasarHukum: [{ pasal: "PER-11/PJ/2025 Pasal 74 ayat (1)", berlakuSejak: "2025-05-22" }, { pasal: "PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 Lampiran huruf E angka 2 (contoh format dan petunjuk pengisian SPT Masa PPN bagi PKP yang menggunakan pedoman penghitungan pengkreditan Pajak Masukan)", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 71, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-424",
+      topik: "A4.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "Dalam pengisian SPT Masa PPN bagi Pengusaha Kena Pajak menurut Lampiran E PER-11/PJ/2025, nilai PPN ditulis dalam rupiah penuh dengan kaidah pembulatan. PPN terutang yang dihitung sebesar Rp12.345.678,50 dicantumkan sebesar ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp12.345.678,00", B: "Rp12.345.680,00", C: "Rp12.346.000,00", D: "Rp12.345.679,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Pasal 129 ayat (2) huruf c PER-11/PJ/2025 mewajibkan jumlah DPP, PPN, dan PPnBM dalam SPT Masa PPN diisi dengan pembulatan ke rupiah penuh. Ayat (3) mengatur caranya: bagian desimal kurang dari 0,50 dibulatkan ke bawah, sedangkan desimal sama dengan atau lebih dari 0,50 dibulatkan ke atas. Petunjuk pengisian SPT Masa PPN dalam Lampiran huruf E (kini versi PER-12/PJ/2026) mengulang kaidah yang sama untuk kolom PPN dan PPnBM. Bagian desimal Rp12.345.678,50 tepat 0,50, sehingga masuk golongan sama dengan 0,50 dan dibulatkan ke atas menjadi Rp12.345.679,00. Pembulatan hanya ke satuan rupiah, bukan ke puluhan atau ribuan.",
+        jejakHitung: [
+          ["Bagian desimal", "Rp12.345.678,50 → desimal 0,50"],
+          ["Uji kaidah", "0,50 ≥ 0,5 → dibulatkan ke atas"],
+          ["Nilai di SPT", "Rp12.345.678 + Rp1 = Rp12.345.679,00"]
+        ],
+        mengapaSalah: {
+          A: "Rp12.345.678,00 adalah pembulatan ke bawah, yang hanya berlaku bila desimalnya kurang dari 0,5.",
+          B: "Rp12.345.680,00 membulatkan ke puluhan rupiah; petunjuk pengisian hanya meminta rupiah penuh.",
+          C: "Rp12.346.000,00 membulatkan ke ribuan rupiah; kaidah itu tidak ada dalam petunjuk pengisian SPT Masa PPN."
+        },
+        jebakan: "Desimal tepat 0,50 termasuk golongan \"sama dengan atau lebih dari 0,5\", jadi dibulatkan ke atas, bukan dibuang."
+      },
+      dasarHukum: [{ pasal: "PER-11/PJ/2025 Pasal 129 ayat (2) huruf c dan ayat (3)", berlakuSejak: "2025-05-22" }, { pasal: "PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 Lampiran huruf E angka 1 (petunjuk pengisian SPT Masa PPN, kaidah pembulatan kolom PPN dan PPnBM)", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 88, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-425",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Kriteria bangunan dalam kegiatan membangun sendiri yang terutang PPN adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "dibangun tidak dalam kegiatan usaha; konstruksi kayu/beton/bata/baja; untuk tempat tinggal atau usaha; luas paling sedikit 200 m²", B: "dibangun tidak dalam kegiatan usaha; konstruksi utama beton atau baja; hanya untuk tempat tinggal; luas paling sedikit 300 m²", C: "dibangun tidak dalam kegiatan usaha; konstruksi apa pun termasuk pagar dan kolam; hanya untuk usaha; luas paling sedikit 100 m²", D: "dibangun oleh kontraktor dalam kegiatan usahanya; untuk tempat tinggal atau usaha; luas paling sedikit 200 m²" },
+      kunci: "A",
+      jebakanOpsi: { B: "angka-usang", C: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 323 ayat (3) PMK 81/2024 merumuskan kegiatan membangun sendiri sebagai kegiatan membangun bangunan baru atau perluasan bangunan lama yang dilakukan tidak dalam kegiatan usaha atau pekerjaan, oleh orang pribadi atau badan, dengan hasil dipakai sendiri atau dipakai pihak lain. Ayat (4) memberi tiga kriteria bangunannya: konstruksi utama dapat berupa kayu, beton, pasangan batu bata atau bahan sejenis, dan/atau baja; diperuntukkan bagi tempat tinggal atau tempat kegiatan usaha; dan luas bangunan paling sedikit 200 m². Opsi A memuat semua unsur itu.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Konstruksi utama tidak terbatas pada beton atau baja, peruntukannya juga tempat kegiatan usaha, dan batas luasnya 200 m², bukan 300 m².",
+          C: "Kriterianya konstruksi teknik tertentu dan bangunan untuk tempat tinggal atau usaha dengan luas paling sedikit 200 m², bukan konstruksi apa pun hanya untuk usaha dengan luas 100 m².",
+          D: "Bangunan yang dibangun kontraktor dalam kegiatan usahanya adalah penyerahan jasa konstruksi biasa, bukan kegiatan membangun sendiri yang syaratnya dilakukan tidak dalam kegiatan usaha."
+        },
+        jebakan: "Peruntukannya tempat tinggal ATAU tempat kegiatan usaha, dan batas luasnya 200 m²; pengecoh sering mengganti salah satunya."
+      },
+      dasarHukum: [{ pasal: "UU PPN Pasal 16C s.t.d.t.d. UU 6/2023", berlakuSejak: "2022-04-01" }, { pasal: "PMK 81/2024 Pasal 323 ayat (3) dan (4)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 70,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 6, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-426",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Ketentuan yang tepat mengenai ekspor JKP yang dikenai PPN tarif 0% adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "berlaku untuk semua jenis JKP sepanjang pembayarannya diterima dalam mata uang asing melalui bank devisa di Indonesia", B: "berlaku untuk semua jenis JKP sepanjang penerima jasanya berkedudukan di luar Daerah Pabean", C: "berlaku hanya untuk jasa yang dihasilkan dan dimanfaatkan seluruhnya di luar Daerah Pabean", D: "hanya untuk kegiatan dan jenis JKP tertentu menurut PMK, dengan perjanjian tertulis dan bukti pembayaran" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 4 ayat (2) UU PPN menyerahkan batasan kegiatan dan jenis JKP yang atas ekspornya dikenai PPN kepada Peraturan Menteri Keuangan. Kini batasan itu ada di Pasal 279 sampai Pasal 282 PMK 81/2024: hanya kegiatan pelayanan dan jenis jasa yang disebut di Pasal 279 dan Pasal 280 yang dapat diperlakukan sebagai ekspor JKP. Pasal 282 ayat (1) menambahkan dua syarat: ada perikatan atau perjanjian tertulis yang memuat jenis jasa, rincian kegiatan, dan nilai penyerahan, serta ada pembayaran dengan bukti pembayaran yang sah dari Penerima Ekspor JKP. Bila syarat tidak terpenuhi, kegiatan itu dianggap penyerahan JKP di dalam Daerah Pabean (ayat (2)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Mata uang dan bank penerima pembayaran bukan syarat; ekspor JKP dibatasi pada kegiatan dan jenis jasa yang disebut Pasal 279 dan Pasal 280 PMK 81/2024.",
+          B: "Kedudukan penerima jasa di luar Daerah Pabean belum cukup; jenis jasanya harus termasuk daftar PMK dan ada perjanjian tertulis serta bukti pembayaran.",
+          C: "Jasa yang dihasilkan dan dimanfaatkan seluruhnya di luar Daerah Pabean justru tidak dikenai PPN (Pasal 282 ayat (3) PMK 81/2024); ekspor JKP adalah jasa yang dihasilkan di dalam Daerah Pabean untuk dimanfaatkan di luar Daerah Pabean."
+        },
+        jebakan: "Tidak semua jasa untuk pihak luar negeri menjadi ekspor JKP; hanya jenis jasa dalam daftar PMK dengan perjanjian tertulis dan bukti pembayaran."
+      },
+      dasarHukum: [{ pasal: "UU PPN Pasal 4 ayat (1) huruf h dan ayat (2) s.t.d.t.d. UU 6/2023", berlakuSejak: "2010-04-01" }, { pasal: "PMK 81/2024 Pasal 279, Pasal 280, dan Pasal 282 ayat (1) sampai (3)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 80,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 8, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-427",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Pernyataan yang tepat mengenai PPN atas impor BKP adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "PPN impor disetor sendiri oleh importir paling lambat tanggal 15 bulan berikutnya setelah impor", B: "PPN impor hanya terutang bila impor dilakukan dalam rangka kegiatan usaha", C: "PPN impor terutang bagi siapa pun yang memasukkan BKP ke Daerah Pabean, dipungut melalui DJBC", D: "PPN impor hanya terutang bila importirnya telah dikukuhkan sebagai PKP" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 4 ayat (1) huruf b UU PPN menetapkan impor Barang Kena Pajak sebagai objek PPN. Penjelasannya menegaskan dua hal: pajak atas impor dipungut melalui Direktorat Jenderal Bea dan Cukai, dan siapa pun yang memasukkan Barang Kena Pajak ke dalam Daerah Pabean tetap dikenai pajak, tanpa memperhatikan apakah impor itu dilakukan dalam rangka kegiatan usaha atau pekerjaannya. Status PKP importir juga tidak menentukan. Untuk PPN impor yang disetor sendiri, Pasal 94 ayat (3) huruf a PMK 81/2024 mengecualikannya dari batas tanggal 15 bulan berikutnya: PPN itu dilunasi bersamaan dengan saat pembayaran bea masuk.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "PPN impor yang disetor sendiri dikecualikan dari batas tanggal 15 bulan berikutnya; menurut Pasal 94 ayat (3) huruf a PMK 81/2024 dilunasi bersamaan dengan pembayaran bea masuk.",
+          B: "Syarat \"dalam rangka kegiatan usaha\" berlaku untuk penyerahan BKP di dalam Daerah Pabean, bukan untuk impor; impor oleh siapa pun tetap dikenai PPN.",
+          D: "Pengukuhan sebagai PKP tidak menjadi syarat; orang pribadi bukan PKP yang mengimpor BKP pun dikenai PPN impor."
+        },
+        jebakan: "Syarat pengusaha dan kegiatan usaha hanya melekat pada penyerahan BKP; untuk impor, setiap orang yang memasukkan BKP ke Daerah Pabean dikenai PPN."
+      },
+      dasarHukum: [{ pasal: "UU PPN Pasal 4 ayat (1) huruf b dan Penjelasannya", berlakuSejak: "2010-04-01" }, { pasal: "PMK 81/2024 Pasal 94 ayat (3) huruf a", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 13, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-428",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Ortax Manufaktur, PKP sejak 2023, pada September 2026 menjual tiga aktiva: (1) truk operasional yang dibeli pada 2021 sebelum dikukuhkan sebagai PKP; (2) sedan untuk operasional pemasaran yang dibeli pada 2024 dan Pajak Masukannya telah dikreditkan; (3) kapal pesiar yang dipakai untuk rekreasi pemegang saham dan Pajak Masukannya tidak dikreditkan karena tidak berhubungan langsung dengan kegiatan usaha. Analisis yang tepat menurut Ps. 16D UU PPN adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Sedan dan kapal pesiar terutang PPN, sedangkan truk tidak, karena dibeli pada 2021 sebelum PT Ortax Manufaktur dikukuhkan sebagai PKP.", B: "Hanya truk yang terutang PPN, karena sedan dan kapal pesiar sama-sama termasuk aktiva yang dikecualikan dari pengenaan PPN menurut Ps. 16D.", C: "Truk dan sedan terutang PPN; kapal pesiar tidak, karena Pajak Masukannya tidak dapat dikreditkan berdasarkan Ps. 9 ayat (8) huruf b.", D: "Hanya sedan yang terutang PPN, karena hanya aktiva yang Pajak Masukannya pernah dikreditkan yang dikenai Ps. 16D." },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 16D UU PPN mengenakan PPN atas penyerahan aktiva yang semula tidak untuk diperjualbelikan. Pengecualiannya hanya aktiva yang Pajak Masukannya tidak dapat dikreditkan menurut Pasal 9 ayat (8) huruf b (tidak berhubungan langsung dengan kegiatan usaha) dan huruf c lama (sedan dan station wagon, dihapus sejak 1 April 2022). Truk yang dibeli sebelum pengukuhan PKP tidak termasuk huruf b atau huruf c, sehingga penjualannya terutang. Sedan dibeli tahun 2024, dipakai untuk pemasaran, dan Pajak Masukannya telah dikreditkan, sehingga penjualannya juga terutang. Kapal pesiar untuk rekreasi pemegang saham tidak berhubungan langsung dengan kegiatan usaha (huruf b), sehingga penjualannya tidak dikenai PPN.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Truk tidak dikecualikan hanya karena dibeli sebelum pengukuhan PKP, sedangkan kapal pesiar justru dikecualikan karena Pajak Masukannya terkena Pasal 9 ayat (8) huruf b.",
+          B: "Pengecualian sedan hanya berlaku bagi sedan yang Pajak Masukannya dulu tidak dapat dikreditkan (perolehan sebelum 1 April 2022); sedan ini dibeli tahun 2024 dan Pajak Masukannya sudah dikreditkan.",
+          D: "Pasal 16D tidak mensyaratkan Pajak Masukan pernah dikreditkan; yang dikecualikan hanya aktiva menurut Pasal 9 ayat (8) huruf b dan huruf c, sehingga truk tetap terutang."
+        },
+        jebakan: "Yang menentukan pengecualian Pasal 16D adalah alasan Pajak Masukan tidak dapat dikreditkan (huruf b atau huruf c lama), bukan sekadar pernah dikreditkan atau belum."
+      },
+      dasarHukum: [{ pasal: "Pasal 16D UU PPN (merujuk Pasal 9 ayat (8) huruf b dan huruf c) dan Penjelasannya", berlakuSejak: "2010-04-01" }, { pasal: "Pasal 9 ayat (8) huruf b UU PPN (huruf c dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }, { pasal: "Pasal 9 ayat (9a) UU PPN (sisipan UU Cipta Kerja)", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 18, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-429",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Faktur Pajak dinyatakan memenuhi persyaratan material apabila ...",
+      kataKualifikasi: [],
+      opsi: { A: "telah diunggah dan memperoleh persetujuan DJP paling lambat tanggal 20 bulan berikutnya", B: "diisi secara benar, lengkap, dan jelas sesuai keterangan Pasal 13 ayat (5) UU PPN", C: "berisi keterangan yang sebenarnya atau sesungguhnya mengenai penyerahan BKP dan/atau JKP", D: "ditandatangani secara elektronik oleh pejabat yang telah didaftarkan sebagai penanda tangan" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Penjelasan Pasal 13 ayat (9) UU PPN membedakan dua syarat Faktur Pajak. Syarat formal menyangkut pengisian: benar, lengkap, dan jelas sesuai Pasal 13 ayat (5) atau ketentuan Direktur Jenderal Pajak. Syarat material menyangkut isi: keterangan dalam Faktur Pajak harus sesuai dengan penyerahan BKP atau JKP yang sungguh terjadi. Faktur yang rapi secara formal tetapi isinya tidak sesuai kenyataan tetap tidak memenuhi syarat material.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pengunggahan dan persetujuan sistem DJP adalah tata cara administrasi Faktur Pajak elektronik, bukan ukuran kebenaran isi faktur.",
+          B: "Diisi benar, lengkap, dan jelas sesuai Pasal 13 ayat (5) adalah syarat formal, bukan syarat material.",
+          D: "Tanda tangan elektronik oleh penanda tangan yang terdaftar adalah syarat bentuk dan tata cara, bukan syarat material."
+        },
+        jebakan: "Opsi B terdengar paling lengkap, padahal itu bunyi syarat formal; syarat material selalu tentang kesesuaian isi dengan transaksi yang sebenarnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 13 ayat (9) UU PPN dan Penjelasannya", berlakuSejak: "2010-04-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 30, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-430",
+      topik: "A4.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Dalam pemeriksaan atas SPT Masa PPN Maret 2026, PT Ortax Interior (PKP) memperlihatkan Faktur Pajak masukan dengan PPN Rp15.000.000 yang belum dilaporkan, sebelum surat pemberitahuan hasil pemeriksaan disampaikan. Selain itu, PT Ortax Interior menerima SKPKB yang diterbitkan hanya untuk menagih PPN atas pemanfaatan JKP dari luar Daerah Pabean dengan pokok Rp25.000.000; perusahaan menyetujui seluruh hasil pemeriksaan, melunasi pokok dan sanksinya, dan tidak menempuh upaya hukum. Bagaimana perlakuan kedua PM tersebut?",
+      kataKualifikasi: [],
+      opsi: { A: "Keduanya dapat dikreditkan: PM Rp15.000.000,00 diperhitungkan dalam ketetapan, dan pokok SKPKB Rp25.000.000,00 dikreditkan sebagai PM", B: "PM Rp15.000.000,00 dapat dikreditkan, sedangkan PM dalam SKPKB tidak dapat dikreditkan karena berasal dari ketetapan pajak", C: "PM dalam SKPKB dapat dikreditkan sebesar pokok ditambah sanksi, sedangkan PM Rp15.000.000,00 tidak dapat dikreditkan", D: "Keduanya tidak dapat dikreditkan karena tidak dilaporkan dalam SPT Masa PPN semula dan telah melewati batas 3 Masa Pajak" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Sejak UU Cipta Kerja, Pasal 9 ayat (9b) UU PPN membolehkan Pajak Masukan yang tidak dilaporkan dalam SPT Masa PPN tetapi diberitahukan atau ditemukan saat pemeriksaan untuk dikreditkan. Menurut Pasal 380 ayat (3) dan ayat (4) PMK 81/2024, Pajak Masukan itu diperhitungkan dalam ketetapan pajak yang akan diterbitkan, sepanjang surat pemberitahuan hasil pemeriksaan belum disampaikan. PT Ortax Interior memperlihatkan Faktur Pajak sebelum surat itu disampaikan, sehingga Rp15.000.000 dapat dikreditkan. Pasal 9 ayat (9c) dan Pasal 381 PMK 81/2024 membolehkan Pajak Masukan yang ditagih dengan ketetapan pajak dikreditkan sebesar pokok pajaknya. Syaratnya: ketetapan hanya menagih Pajak Masukan itu, hasil pemeriksaan disetujui seluruhnya, pokok dan sanksi sudah dilunasi, dan tidak ada upaya hukum. Semua syarat terpenuhi, sehingga pokok Rp25.000.000 dapat dikreditkan, tanpa sanksinya.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Pajak Masukan yang ditagih dengan ketetapan pajak justru dapat dikreditkan menurut Pasal 9 ayat (9c) UU PPN bila syarat Pasal 381 PMK 81/2024 terpenuhi.",
+          C: "Yang dapat dikreditkan hanya pokok pajak dalam ketetapan, bukan sanksinya; dan Pajak Masukan Rp15.000.000 tetap dapat dikreditkan karena diperlihatkan sebelum surat pemberitahuan hasil pemeriksaan disampaikan.",
+          D: "Batas 3 Masa Pajak Pasal 9 ayat (9) tidak menghalangi pengkreditan saat pemeriksaan (ayat (9b)) maupun pengkreditan pokok dalam ketetapan pajak (ayat (9c))."
+        },
+        jebakan: "Pengkreditan dari ketetapan pajak hanya sebesar pokok, dan baru boleh setelah pokok serta sanksi dilunasi tanpa upaya hukum apa pun."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (9b) dan ayat (9c) UU PPN (sisipan UU Cipta Kerja)", berlakuSejak: "2020-11-02" }, { pasal: "PMK 81/2024 Pasal 380 dan Pasal 381", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 31, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-431",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Ortax Kimia (PKP) menyerahkan BKP nonmewah kepada PT Ortax Farma (PKP) pada Juni 2026. Pada Agustus 2026 PT Ortax Farma mengembalikan sebagian barang dengan Harga Jual Rp20.000.000 dan membuat nota retur yang memenuhi ketentuan. PK PT Ortax Kimia Masa Agustus 2026 sebelum memperhitungkan retur adalah Rp30.000.000. Berapa PK Masa Agustus 2026 setelah retur?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp32.200.000,00", B: "Rp27.600.000,00", C: "Rp30.000.000,00", D: "Rp27.800.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", C: "lupa-pasal" },
+      pembahasan: {
+        inti: "Menurut Pasal 5A ayat (1) UU PPN dan Pasal 286 ayat (1) PMK 81/2024, PPN atas BKP yang dikembalikan mengurangi Pajak Keluaran penjual dalam Masa Pajak terjadinya pengembalian, yaitu Agustus 2026, bukan Juni 2026. Untuk BKP yang tidak tergolong mewah, PMK 131/2024 Pasal 3 menghitung PPN dengan tarif 12% dikali DPP nilai lain 11/12 dari harga jual. PPN atas barang yang diretur dihitung dengan cara yang sama, lalu dikurangkan dari Pajak Keluaran Agustus.",
+        jejakHitung: [
+          ["DPP nilai lain retur", "11/12 x Rp20.000.000 = Rp18.333.333,33"],
+          ["PPN atas retur", "12% x Rp18.333.333,33 = Rp2.200.000"],
+          ["PK Agustus 2026 setelah retur", "Rp30.000.000 - Rp2.200.000 = Rp27.800.000"]
+        ],
+        mengapaSalah: {
+          A: "PPN retur ditambahkan ke Pajak Keluaran, padahal Pasal 5A ayat (1) menyuruh mengurangkannya.",
+          B: "Memakai 12% x harga jual penuh (Rp2.400.000); BKP nonmewah memakai DPP nilai lain 11/12 sehingga PPN returnya Rp2.200.000.",
+          C: "Retur diabaikan, padahal pengembalian dengan nota retur yang sah mengurangi Pajak Keluaran pada Masa Pajak terjadinya pengembalian."
+        },
+        jebakan: "Retur dikurangkan pada Masa Pajak pengembalian (Agustus), dengan DPP nilai lain 11/12 untuk barang nonmewah, bukan 12% dari harga jual penuh."
+      },
+      dasarHukum: [{ pasal: "Pasal 5A ayat (1) UU PPN dan Penjelasannya", berlakuSejak: "2010-04-01" }, { pasal: "PMK 81/2024 Pasal 286 ayat (1) dan Pasal 288 (nota retur)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 131/2024 Pasal 3 ayat (1) sampai (3)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 38, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A4-432",
+      topik: "A4.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Manakah pernyataan yang tepat mengenai Nilai Impor dan Nilai Ekspor menurut UU PPN?",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "Nilai Impor adalah nilai CIF tanpa bea masuk dan pungutan lain; Nilai Ekspor adalah semua biaya yang diminta atau seharusnya diminta eksportir ditambah PPN 12%", B: "Nilai Impor adalah nilai FOB ditambah bea masuk dan cukai; Nilai Ekspor adalah harga jual yang diminta eksportir setelah dikurangi biaya angkut dan asuransi ke luar negeri", C: "Nilai Impor adalah dasar penghitungan bea masuk ditambah bea masuk, cukai, dan PPh Pasal 22 impor; Nilai Ekspor adalah nilai FOB tanpa biaya lain yang diminta eksportir", D: "Nilai Impor adalah dasar penghitungan bea masuk ditambah pungutan kepabeanan dan cukai, tanpa PPN/PPnBM; Nilai Ekspor mencakup semua biaya yang diminta atau seharusnya diminta eksportir" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 1 angka 20 UU PPN merumuskan Nilai Impor sebagai nilai yang menjadi dasar penghitungan bea masuk, ditambah pungutan menurut ketentuan kepabeanan dan cukai, dan tidak termasuk PPN serta PPnBM. Pasal 1 angka 26 merumuskan Nilai Ekspor sebagai nilai berupa uang yang mencakup semua biaya yang diminta atau seharusnya diminta oleh eksportir. Hanya opsi D yang memuat kedua unsur itu dengan tepat.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Nilai Impor justru ditambah bea masuk dan pungutan kepabeanan atau cukai, dan Nilai Ekspor tidak ditambah PPN.",
+          B: "Dasar Nilai Impor adalah dasar penghitungan bea masuk, bukan FOB; Nilai Ekspor mencakup semua biaya yang diminta eksportir, tidak dikurangi biaya angkut dan asuransi.",
+          C: "PPh Pasal 22 impor bukan pungutan menurut ketentuan kepabeanan dan cukai, dan Nilai Ekspor mencakup semua biaya yang diminta eksportir, bukan hanya FOB."
+        },
+        jebakan: "Nilai Impor memuat bea masuk dan pungutan kepabeanan serta cukai, tetapi tidak memuat PPN, PPnBM, atau PPh Pasal 22 impor."
+      },
+      dasarHukum: [{ pasal: "UU PPN Pasal 1 angka 20 dan angka 26", berlakuSejak: "2010-04-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 40, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
     }
   ],
   kartu: [

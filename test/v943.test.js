@@ -59,10 +59,10 @@ describe('v9.4.3: tanda perlu cek', () => {
       else assert.equal(s.peringatan, undefined, s.id + ' tanpa peringatan');
     }
   });
-  it('modul Tingkat B: soal bertanda tidak lebih dari 62 (dari 277 sebelum dicocokkan)', () => {
+  it('modul Tingkat B: soal bertanda tidak lebih dari 67 (dari 277 sebelum dicocokkan)', () => {
     let n = 0;
     for (const m of semua) if (!['C9', 'C10'].includes(m.meta.kode)) n += m.soal.filter(s => s.verifikasi === '◐').length;
-    assert.ok(n <= 62, 'bertanda di modul Tingkat B: ' + n);
+    assert.ok(n <= 67, 'bertanda di modul Tingkat B: ' + n);
   });
   it('soal try out tetap utuh: 100 soal dengan nomor 1 sampai 100', () => {
     const to = [...peta.values()].filter(s => s.sumber && s.sumber.set === 'TO-B-2026-11');

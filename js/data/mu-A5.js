@@ -5703,6 +5703,146 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "A5-101",
       sejak: "9.5.4"
+    },
+    {
+      id: "A5-207",
+      topik: "A5.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Menurut UU Nomor 10 Tahun 2020 tentang Bea Meterai, Bea Meterai atas Dokumen yang digunakan sebagai alat bukti di pengadilan terutang pada saat ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dokumen dibubuhi Tanda Tangan", B: "Dokumen diajukan ke pengadilan", C: "Dokumen diserahkan kepada pihak untuk siapa Dokumen tersebut dibuat", D: "Putusan pengadilan atas perkara tersebut dibacakan" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 3 ayat (1) huruf b UU 10/2020 menjadikan Dokumen yang dipakai sebagai alat bukti di pengadilan sebagai objek Bea Meterai tersendiri, di samping dokumen perdata. Pasal 8 ayat (1) mengatur saat terutang per jenis Dokumen. Untuk alat bukti di pengadilan, huruf d menetapkan saatnya ketika Dokumen diajukan ke pengadilan. Jadi Bea Meterainya baru terutang saat dokumen itu diajukan sebagai bukti, bukan saat dibuat atau ditandatangani.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Saat dibubuhi Tanda Tangan berlaku untuk surat perjanjian, akta notaris, dan akta PPAT (Pasal 8 ayat (1) huruf a), bukan untuk alat bukti di pengadilan.",
+          C: "Saat diserahkan kepada pihak untuk siapa Dokumen dibuat berlaku untuk surat keterangan, surat pernyataan, Dokumen lelang, dan Dokumen yang menyatakan jumlah uang (Pasal 8 ayat (1) huruf c).",
+          D: "Pasal 8 ayat (1) tidak mengenal saat terutang berupa pembacaan putusan. Bea Meterai sudah terutang ketika Dokumen diajukan, sebelum perkara diputus."
+        },
+        jebakan: "Mengira saat terutang selalu saat tanda tangan, padahal Pasal 8 ayat (1) membedakannya menurut jenis Dokumen."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf b dan Pasal 8 ayat (1) huruf d UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 1, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A5-208",
+      topik: "A5.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "CV Mawar menerbitkan kuitansi yang menyebutkan penerimaan uang sebesar tepat Rp5.000.000,00. Berdasarkan UU Nomor 10 Tahun 2020 tentang Bea Meterai, perlakuan Bea Meterai atas kuitansi tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Terutang Bea Meterai Rp10.000,00 karena nilai nominalnya telah mencapai Rp5.000.000,00", B: "Tidak terutang Bea Meterai karena nilai nominalnya tidak lebih dari Rp5.000.000,00", C: "Terutang Bea Meterai Rp10.000,00 karena setiap kuitansi yang diterbitkan badan usaha merupakan objek Bea Meterai tanpa melihat nilainya", D: "Tidak terutang Bea Meterai hanya apabila kuitansi dibuat dalam bentuk elektronik, sedangkan kuitansi kertas tetap terutang Rp10.000,00" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Kuitansi adalah Dokumen yang menyatakan jumlah uang dan menyebutkan penerimaan uang. Pasal 3 ayat (2) huruf g UU 10/2020 hanya menjadikannya objek Bea Meterai bila nilai nominalnya lebih dari Rp5.000.000. Kuitansi CV Mawar bernilai tepat Rp5.000.000, jadi belum melewati batas dan tidak terutang Bea Meterai. Bentuk kertas atau elektronik tidak mengubah hal ini, sebab Pasal 1 angka 2 mencakup tulisan elektronik dalam pengertian Dokumen. Seandainya nilainya di atas Rp5.000.000, tarifnya tetap Rp10.000 (Pasal 5).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Syarat Pasal 3 ayat (2) huruf g adalah lebih dari Rp5.000.000. Nilai yang tepat sama dengan Rp5.000.000 belum memenuhinya.",
+          C: "Penerbit badan usaha tidak menentukan. Kuitansi menjadi objek hanya bila nilai nominalnya lebih dari Rp5.000.000.",
+          D: "Dokumen menurut Pasal 1 angka 2 mencakup bentuk tulisan tangan, cetakan, dan elektronik, sehingga perlakuannya sama untuk kertas dan elektronik."
+        },
+        jebakan: "Membaca batas Rp5.000.000 sebagai \"mulai dari\", padahal bunyinya \"lebih dari\"."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (2) huruf g UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 1 angka 2 dan Pasal 5 UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 4, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A5-209",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 2,
+      stem: "Lampiran 1 (L1) SPT Masa Bea Meterai memuat ...",
+      kataKualifikasi: [],
+      opsi: { A: "Daftar pemungutan menggunakan Meterai Percetakan atas cek dan/atau bilyet giro", B: "Daftar pemungutan menggunakan Meterai Elektronik", C: "Daftar dokumen yang tidak dapat dibubuhi Meterai Elektronik", D: "Daftar dokumen yang mendapat fasilitas pembebasan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 78 ayat (1) PER-11/PJ/2025 menyusun SPT Masa Bea Meterai dari induk dan empat lampiran: L1 untuk pemungutan dengan Meterai Percetakan, L2 untuk pemungutan dengan Meterai Elektronik, L3 untuk dokumen yang tidak dapat dibubuhi Meterai Elektronik, dan L4 untuk dokumen yang mendapat fasilitas pembebasan. Petunjuk pengisian L1 di Lampiran huruf F menjelaskan bahwa formulir ini dipakai untuk melaporkan cek dan/atau bilyet giro yang dipungut dengan Meterai Percetakan. Jadi L1 berisi daftar pemungutan dengan Meterai Percetakan atas cek dan/atau bilyet giro.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Pemungutan dengan Meterai Elektronik dilaporkan di Formulir L2, bukan L1.",
+          C: "Dokumen yang tidak dapat dibubuhi Meterai Elektronik dilaporkan di Formulir L3.",
+          D: "Dokumen yang mendapat fasilitas pembebasan dilaporkan di Formulir L4."
+        },
+        jebakan: "Urutan L1 sampai L4 mudah tertukar; ingat L1 = Meterai Percetakan (cek dan bilyet giro), L2 = Meterai Elektronik."
+      },
+      dasarHukum: [{ pasal: "PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 Pasal 78 ayat (1) huruf b dan Lampiran huruf F (petunjuk pengisian Formulir L1 SPT Masa Bea Meterai)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 46, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A5-210",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      stem: "Batas waktu penyampaian SPT Masa Bea Meterai oleh Pemungut Bea Meterai menurut ketentuan pelaksanaannya adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Paling lama 10 hari setelah Masa Pajak berakhir", B: "Paling lama 15 hari setelah Masa Pajak berakhir", C: "Paling lama 20 hari setelah Masa Pajak berakhir", D: "Paling lama akhir bulan berikutnya setelah Masa Pajak berakhir" },
+      kunci: "B",
+      jebakanOpsi: { A: "angka-usang", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pemungut Bea Meterai wajib melaporkan Bea Meterai yang telah dipungutnya dengan SPT Masa Bea Meterai paling lama 15 hari setelah Masa Pajak berakhir (Pasal 171 ayat (18) PMK 81/2024). PMK 78/2024 Pasal 64 ayat (1) merumuskan hal yang sama sebagai paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir. Batas setor Bea Meterai yang dipungut juga tanggal 15 bulan berikutnya, sehingga setor dan lapor jatuh pada tanggal yang sama.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "PMK 81/2024 dan PMK 78/2024 tidak memakai batas 10 hari untuk pelaporan SPT Masa Bea Meterai; batas yang tertulis 15 hari.",
+          C: "Batas 20 hari dipakai untuk pelaporan PPh yang dipotong atau dipungut (Pasal 171 ayat (1)) dan SPT Masa Pajak Karbon (ayat (19)), bukan SPT Masa Bea Meterai.",
+          D: "Akhir bulan berikutnya adalah batas pelaporan SPT Masa PPN (Pasal 171 ayat (13) dan ayat (14)), bukan SPT Masa Bea Meterai."
+        },
+        jebakan: "Menyamakan batas lapor SPT Masa Bea Meterai dengan SPT Masa PPh (20 hari) atau SPT Masa PPN (akhir bulan berikutnya)."
+      },
+      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 171 ayat (18)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 78/2024 Pasal 64 ayat (1)", berlakuSejak: "2024-11-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 55, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A5-211",
+      topik: "A5.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Surat perjanjian sewa antara PT Harapan dan PT Sentosa ditandatangani oleh kedua pihak pada 12 Mei 2021 tanpa dibubuhi meterai. Pada 20 Oktober 2026, keadaan Bea Meterai atas surat perjanjian tersebut menurut Pasal 23 UU Nomor 10 Tahun 2020 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Telah kedaluwarsa, karena lebih dari 5 (lima) tahun sejak saat terutang pada 12 Mei 2021", B: "Belum kedaluwarsa, karena jangka waktu dihitung sejak surat perjanjian pertama kali diperiksa petugas pajak", C: "Belum kedaluwarsa, karena jangka kedaluwarsa Bea Meterai adalah 10 (sepuluh) tahun", D: "Tidak pernah kedaluwarsa, karena kewajiban Bea Meterai atas surat perjanjian melekat selama dokumennya masih ada" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "angka-usang", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Bea Meterai atas surat perjanjian terutang saat Dokumen dibubuhi Tanda Tangan (Pasal 8 ayat (1) huruf a angka 1 UU 10/2020), yaitu 12 Mei 2021. Pasal 23 menetapkan Bea Meterai yang terutang kedaluwarsa setelah jangka waktu 5 tahun sejak saat terutang, dan Penjelasannya menegaskan hal itu berlaku untuk semua Dokumen. Dengan tanggal 12 Mei 2021 sebagai hari pertama, hari terakhir jangka waktu adalah 11 Mei 2026 dan kedaluwarsa berlaku mulai 12 Mei 2026. Pada 20 Oktober 2026 jangka waktu itu sudah lewat, jadi Bea Meterainya telah kedaluwarsa.",
+        jejakHitung: [
+          ["Saat terutang (Tanda Tangan surat perjanjian)", "12 Mei 2021 (Rabu)"],
+          ["Hari terakhir jangka 5 tahun", "11 Mei 2026"],
+          ["Kedaluwarsa mulai", "12 Mei 2026"],
+          ["Tanggal yang ditanyakan", "20 Oktober 2026, 162 hari sesudah hari terakhir"]
+        ],
+        mengapaSalah: {
+          B: "Pasal 23 menghitung jangka waktu sejak saat terutang, bukan sejak dokumen diperiksa petugas pajak.",
+          C: "Jangka kedaluwarsa Bea Meterai menurut Pasal 23 UU 10/2020 adalah 5 tahun, bukan 10 tahun.",
+          D: "Pasal 23 berlaku untuk semua Dokumen, termasuk surat perjanjian, sehingga kewajiban Bea Meterai tidak melekat selamanya."
+        },
+        jebakan: "Mengira jangka kedaluwarsa dihitung sejak dokumen ditemukan atau diperiksa, padahal titik awalnya saat terutang."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) huruf a dan Pasal 23 UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 65, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
     }
   ],
   kartu: [

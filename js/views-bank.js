@@ -25,6 +25,10 @@
   const keLatih = p => UKP.go('latih', Object.assign({ atur: 1 }, p));
   const tile = o => UKP.viz && UKP.viz.statTile ? UKP.viz.statTile(o) : h('div', { class: 'stat' }, h('span', { class: 'label' }, o.label), h('span', { class: 'nilai' }, String(o.nilai)), o.sub ? h('span', { class: 'tiny muted' }, o.sub) : null);
 
+  // v9.5.5 K-2: label aksesibilitas tombol "Latih butir ini" = pembantu Cakupan (UKP.cakupan.labelLatih: nama subjek ditambahkan hanya bila
+  // label dasarnya ganda di tingkat itu); tanpa pembantu itu: label lama
+  const labelLatih = (b, tingkat, no) => UKP.cakupan && typeof UKP.cakupan.labelLatih === 'function' ? UKP.cakupan.labelLatih(b, tingkat) : 'Latih butir ' + (no || b.id) + ': ' + pendek(b.teks, 60);
+  UKP.c.labelLatihBank = labelLatih;
   // ---------- per butir materi resmi (tingkat target) ----------
   function bagianButir(tingkat) {
     const C = UKP.cakupanResmi; const T = C && C.tingkat && C.tingkat[tingkat];
@@ -45,7 +49,7 @@
         return h('li', { class: 'bank-butir-baris', 'data-kosong': arr.length ? null : '' },
           h('span', { class: 'bank-butir-teks' }, no ? h('span', { class: 'mono bank-butir-no' }, no) : null, h('span', { title: info ? info.teks : b.teks }, pendek(b.teks, 120))),
           arr.length ? h('span', { class: 'meta' }, angka(arr.length) + ' soal · ' + angka(r.baru) + ' belum dipakai' + (nTunggu(r) ? ' · ' + angka(nTunggu(r)) + ' pengganti menunggu' : '')) : UKP.c.pill('belum ada soal', 'warn'),
-          arr.length ? h('button', { type: 'button', class: 'btn btn-sm btn-ghost bank-butir-latih', 'aria-label': 'Latih butir ' + (no || b.id) + ': ' + pendek(b.teks, 60), onclick: () => keLatih({ butir: b.id }) }, 'Latih butir ini') : null);
+          arr.length ? h('button', { type: 'button', class: 'btn btn-sm btn-ghost bank-butir-latih', 'aria-label': labelLatih(b, tingkat, no), onclick: () => keLatih({ butir: b.id }) }, 'Latih butir ini') : null);
       });
       return h('details', { class: 'lipat bank-mu' },
         h('summary', null, h('span', { class: 'bank-mu-kop' }, h('span', null, (m.no ? m.no + '. ' : '') + m.nama), h('span', { class: 'meta' }, angka(daun.length) + ' butir' + (nTanpa ? ' · ' + angka(nTanpa) + ' belum ada soal' : '')))),

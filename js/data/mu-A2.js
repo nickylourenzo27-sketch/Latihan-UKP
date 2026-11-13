@@ -8201,6 +8201,875 @@ UKP.register({
       verifikasi: "✅",
       kembaranDari: "A2-065",
       sejak: "9.5.4"
+    },
+    {
+      id: "A2-266",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Dalam musyawarah Majelis, seorang Hakim Anggota yakin bahwa Banding PT Teratai harus dikabulkan. Padahal hasil penilaian pembuktian dan peraturan perundang-undangan perpajakan yang bersangkutan mendukung koreksi Terbanding. Menurut UU Pengadilan Pajak, pernyataan yang benar tentang dasar putusan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Keyakinan Hakim cukup menjadi dasar putusan walaupun tidak didukung hasil penilaian pembuktian", B: "Keyakinan Hakim harus didukung hasil penilaian pembuktian dan peraturan perundang-undangan perpajakan", C: "Peraturan perundang-undangan perpajakan tidak lagi mengikat Hakim yang sudah yakin atas penilaiannya sendiri", D: "Hasil penilaian pembuktian hanya menjadi pertimbangan tambahan apabila Hakim sudah yakin" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 78 UU 14/2002 menyebut tiga dasar putusan Pengadilan Pajak yang dipakai bersama: hasil penilaian pembuktian, peraturan perundang-undangan perpajakan yang bersangkutan, dan keyakinan Hakim. Keyakinan Hakim tidak berdiri sendiri; ia harus bertumpu pada pembuktian dan peraturan. Bila pembuktian dan peraturan mendukung koreksi Terbanding, keyakinan Hakim Anggota bahwa banding harus dikabulkan tidak cukup untuk menjadi dasar putusan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Keyakinan hanya salah satu dari tiga dasar dalam Pasal 78; tanpa hasil penilaian pembuktian, putusan kehilangan dasarnya.",
+          C: "Peraturan perundang-undangan perpajakan tetap menjadi dasar putusan menurut Pasal 78, apa pun keyakinan Hakim.",
+          D: "Pasal 78 menempatkan hasil penilaian pembuktian sebagai salah satu dari tiga dasar putusan yang dipakai bersama, bukan pertimbangan tambahan sesudah Hakim yakin."
+        },
+        jebakan: "Pasal 78 memakai kata \"dan\" serta \"serta\": ketiga dasar itu kumulatif, bukan pilihan."
+      },
+      dasarHukum: [{ pasal: "Pasal 78 UU 14/2002", berlakuSejak: "2002-04-12" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 2, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-267",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Zeta akan dibubarkan, dan Pejabat menerbitkan Surat Perintah Penagihan Seketika dan Sekaligus. PT Zeta memiliki utang pajak berikut. (a) SKPKB PPh Badan tahun 2024 yang belum jatuh tempo; (b) SKPKB PPN masa Mei 2025 yang telah jatuh tempo; (c) STP PPh Pasal 21 yang telah jatuh tempo. Cakupan penagihan seketika dan sekaligus tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Seluruh utang pajak dari semua jenis pajak, masa pajak, dan tahun pajak, termasuk yang belum jatuh tempo", B: "Hanya utang pajak yang telah jatuh tempo, yaitu butir (b) dan (c)", C: "Hanya utang pajak atas satu jenis pajak yang paling besar jumlahnya", D: "Hanya utang pajak tahun berjalan, yaitu butir (a)" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Penagihan seketika dan sekaligus dilakukan Jurusita Pajak tanpa menunggu tanggal jatuh tempo pembayaran, dan menurut definisinya meliputi seluruh utang pajak dari semua jenis pajak, Masa Pajak, dan Tahun Pajak. Badan usaha yang akan dibubarkan termasuk keadaan yang membolehkan Pejabat menerbitkan Surat Perintah Penagihan Seketika dan Sekaligus. Karena itu SKPKB PPh Badan 2024 yang belum jatuh tempo, SKPKB PPN Mei 2025, dan STP PPh Pasal 21 seluruhnya ikut ditagih.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Membatasi pada utang yang sudah jatuh tempo bertentangan dengan inti penagihan seketika dan sekaligus, yaitu menagih tanpa menunggu jatuh tempo.",
+          C: "Undang-undang tidak membatasi penagihan pada satu jenis pajak; cakupannya semua jenis pajak.",
+          D: "Butir (a) memang tercakup, tetapi butir (b) dan (c) juga; cakupannya bukan hanya tahun berjalan."
+        },
+        jebakan: "Kata \"sekaligus\" berarti semua utang dari semua jenis pajak, Masa Pajak, dan Tahun Pajak, termasuk yang belum jatuh tempo."
+      },
+      dasarHukum: [{ pasal: "Pasal 1 angka 11 dan Pasal 6 ayat (1) UU 19/1997 s.t.d.d. UU 19/2000 (UU PPSP)", berlakuSejak: "2000-08-02" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 3, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-268",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Direktorat Jenderal Pajak menerbitkan SKPKB atas nama PT Cipta Karya sebesar Rp750.000.000,00 pada 12 Mei 2026. PT Cipta Karya melunasi seluruhnya pada 20 Agustus 2026. Dengan asumsi tarif sanksi bunga 1,2% per bulan dan bagian bulan dihitung penuh, berapakah sanksi bunga atas keterlambatan pelunasan menurut Pasal 19 ayat (1) UU KUP?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp18.000.000,00", B: "Rp36.000.000,00", C: "Rp9.000.000,00", D: "Rp27.000.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-baca", C: "salah-hitung" },
+      pembahasan: {
+        inti: "SKPKB wajib dilunasi dalam jangka waktu 1 bulan sejak tanggal diterbitkan (Pasal 9 ayat (3) UU KUP). Tanggal terbit dihitung sebagai hari pertama, sehingga SKPKB yang terbit 12 Mei 2026 jatuh tempo 11 Juni 2026, sama dengan contoh Penjelasan Pasal 19 ayat (1) UU KUP (terbit 7 Oktober, batas pelunasan 6 November). Bila pelunasan lewat jatuh tempo, Pasal 19 ayat (1) mengenakan bunga per bulan sejak berakhirnya tanggal jatuh tempo sampai tanggal pembayaran, dan bagian bulan dihitung penuh. Bulan bunga pertama mulai 12 Juni 2026. Pelunasan 20 Agustus 2026 jatuh di bulan ketiga (12 Agustus sampai 11 September), jadi bunga dikenakan 3 bulan: 3 x 1,2% x Rp750.000.000,00 = Rp27.000.000,00.",
+        jejakHitung: [
+          ["Jatuh tempo pelunasan SKPKB", "1 bulan sejak 12 Mei 2026: hari terakhir 11 Juni 2026"],
+          ["Bulan bunga ke-1", "12 Juni sampai 11 Juli 2026"],
+          ["Bulan bunga ke-2", "12 Juli sampai 11 Agustus 2026"],
+          ["Bulan bunga ke-3 (bagian bulan, dihitung penuh)", "12 Agustus sampai 20 Agustus 2026"],
+          ["Sanksi bunga", "3 x 1,2% x Rp750.000.000,00 = Rp27.000.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Rp18.000.000,00 hanya menghitung 2 bulan penuh dan membuang 9 hari di bulan ketiga, padahal bagian bulan dihitung penuh 1 bulan.",
+          B: "Rp36.000.000,00 menghitung bunga sejak tanggal SKPKB diterbitkan (4 bulan). Bunga Pasal 19 ayat (1) baru dihitung sejak berakhirnya jatuh tempo pelunasan.",
+          C: "Rp9.000.000,00 hanya 1 bulan bunga, seolah-olah keterlambatan cuma sebagian bulan."
+        },
+        jebakan: "Bunga Pasal 19 ayat (1) dihitung sejak jatuh tempo pelunasan (1 bulan sejak terbit), bukan sejak tanggal SKPKB terbit, dan sisa hari dihitung 1 bulan penuh."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 19 ayat (1) UU KUP s.t.d.t.d. UU 6/2023", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 5, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-269",
+      topik: "A2.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Pengusaha yang peredaran brutonya sampai dengan suatu bulan dalam tahun buku melebihi batasan pengusaha kecil PPN wajib melaporkan usahanya untuk dikukuhkan sebagai Pengusaha Kena Pajak. Menurut PMK Nomor 164 Tahun 2023, apabila kewajiban tersebut tidak dilaksanakan sampai batas waktunya, maka ...",
+      kataKualifikasi: [],
+      opsi: { A: "Pengusaha tersebut tetap diperlakukan sebagai pengusaha kecil sampai ia sendiri mengajukan permohonan pengukuhan", B: "Kewajiban pengukuhan gugur dan diganti dengan kewajiban membayar PPh final atas peredaran bruto", C: "Pengusaha tersebut baru dapat dikukuhkan setelah peredaran brutonya melebihi batasan selama dua tahun buku berturut-turut", D: "Kepala Kantor Pelayanan Pajak atau kepala KP2KP dapat mengukuhkan pengusaha tersebut sebagai Pengusaha Kena Pajak secara jabatan" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "lupa-pasal" },
+      pembahasan: {
+        inti: "PMK 164/2023 Pasal 17 ayat (1) dan ayat (3) mewajibkan pengusaha yang peredaran brutonya sampai suatu bulan melebihi batasan pengusaha kecil untuk melaporkan usahanya paling lambat akhir tahun buku saat batasan itu terlampaui. Bila kewajiban ini tidak dijalankan, Pasal 17 ayat (7) memberi kewenangan kepada kepala KPP atau kepala KP2KP untuk mengukuhkan pengusaha itu sebagai PKP secara jabatan. Sejak dikukuhkan secara jabatan, PKP wajib memungut, menyetor, dan melaporkan PPN mulai Masa Pajak pengukuhannya (Pasal 19 ayat (1) huruf b), dan pengusaha yang tidak melapor dapat dikenai sanksi menurut UU KUP (PMK 81/2024 Pasal 60 ayat (6)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Status pengusaha kecil tidak bertahan menunggu permohonan. Pasal 17 ayat (7) justru memungkinkan pengukuhan tanpa permohonan.",
+          B: "Tidak ada ketentuan yang mengganti kewajiban pengukuhan PKP dengan PPh final. PPh dan PPN adalah kewajiban yang terpisah.",
+          C: "Syarat dua tahun buku berturut-turut tidak dikenal. Kewajiban timbul begitu peredaran bruto sampai suatu bulan dalam satu tahun buku melebihi batasan."
+        },
+        jebakan: "Pengukuhan PKP tidak bergantung pada kemauan pengusaha: bila tenggat lewat, KPP atau KP2KP dapat mengukuhkannya secara jabatan."
+      },
+      dasarHukum: [{ pasal: "PMK 164/2023 Pasal 17 ayat (1), (3), dan (7) serta Pasal 19 ayat (1)", berlakuSejak: "2023-12-29" }, { pasal: "PMK 81/2024 Pasal 60 ayat (5) dan (6)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 9, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-270",
+      topik: "A2.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      stem: "Bu Marini, orang pribadi karyawan, belum menerima BPA1 sehingga menyampaikan pemberitahuan perpanjangan SPT Tahunan PPh Tahun Pajak 2025 (tahun kalender), dan perpanjangan tersebut diterima. Dari penghitungan sementara terdapat PPh kurang bayar. Menurut PER-3/PJ/2026, paling lambat kapan kurang bayar sesuai penghitungan sementara tersebut harus dibayar agar tidak terlambat?",
+      kataKualifikasi: ["paling lambat"],
+      opsi: { A: "31 Mei 2026", B: "30 April 2026", C: "30 Juni 2026", D: "31 Maret 2026" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Batas penyampaian SPT Tahunan PPh orang pribadi adalah 3 bulan setelah akhir Tahun Pajak (Pasal 3 ayat (3) huruf b UU KUP; PER-3/PJ/2026 Pasal 4 huruf a), yaitu 31 Maret 2026 untuk Tahun Pajak 2025. Pegawai yang belum menerima bukti potong dari pemberi kerja boleh memperpanjang penyampaian SPT paling lama 2 bulan (PER-3/PJ/2026 Pasal 5 ayat (1) dan ayat (2) huruf b). Pemberitahuan perpanjangan harus disampaikan sebelum batas 31 Maret 2026 berakhir (Pasal 5 ayat (3)) dan wajib dilampiri Surat Setoran Pajak sebagai bukti pelunasan bila ada kekurangan pembayaran (Pasal 5 ayat (8) huruf b; Pasal 3 ayat (5) UU KUP). Jadi perpanjangan hanya menggeser penyampaian SPT sampai akhir masa perpanjangan 2 bulan (akhir Mei 2026), sedangkan kurang bayar menurut penghitungan sementara harus sudah lunas paling lambat 31 Maret 2026.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "31 Mei 2026 menunjuk akhir masa perpanjangan 2 bulan, yang hanya berlaku untuk penyampaian SPT. Pembayaran tidak ikut diperpanjang karena bukti pelunasannya harus dilampirkan pada pemberitahuan perpanjangan.",
+          B: "30 April 2026 adalah batas SPT Tahunan Wajib Pajak badan (4 bulan setelah akhir Tahun Pajak), bukan orang pribadi.",
+          C: "30 Juni 2026 tidak berkaitan dengan batas mana pun untuk SPT Tahunan orang pribadi Tahun Pajak 2025."
+        },
+        jebakan: "Perpanjangan SPT Tahunan hanya menunda penyampaian SPT; kurang bayar sementara tetap dilunasi sebelum batas waktu semula karena bukti setornya dilampirkan pada pemberitahuan perpanjangan."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (3) huruf b, ayat (4), dan ayat (5) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PER-3/PJ/2026 Pasal 4 huruf a dan Pasal 5 ayat (1), ayat (2) huruf b, ayat (3), dan ayat (8)", berlakuSejak: "2026-03-16" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 12, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-271",
+      topik: "A2.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      stem: "Pak Tomo adalah pengusaha kecil dengan tahun buku sama dengan tahun kalender. Sampai akhir Juni 2026, peredaran bruto kumulatifnya Rp4.300.000.000,00. Pada Juli 2026, Pak Tomo menjual Barang Kena Pajak senilai Rp600.000.000,00 sehingga peredaran bruto kumulatifnya menjadi Rp4.900.000.000,00. Menurut ketentuan pengukuhan PKP, batas waktu paling lambat Pak Tomo melaporkan usahanya untuk dikukuhkan sebagai PKP adalah ...",
+      kataKualifikasi: ["paling lambat"],
+      opsi: { A: "31 Juli 2026, yaitu akhir bulan saat batas Rp4,8 miliar terlampaui", B: "31 Agustus 2026, yaitu akhir bulan berikutnya setelah batas terlampaui", C: "31 Desember 2026, yaitu akhir tahun buku saat batas terlampaui", D: "31 Januari 2027, yaitu akhir bulan pertama tahun buku berikutnya" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pengusaha kecil adalah pengusaha yang dalam 1 tahun buku peredaran brutonya tidak lebih dari Rp4.800.000.000,00 (PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013 Pasal 1 ayat (1)). Pak Tomo melampaui batas itu pada Juli 2026, ketika peredaran bruto kumulatifnya menjadi Rp4.900.000.000,00. Menurut PMK 164/2023 Pasal 17 ayat (1) dan ayat (3), pengusaha yang sampai suatu bulan dalam tahun buku melampaui batasan wajib melaporkan usahanya untuk dikukuhkan sebagai PKP paling lambat akhir tahun buku saat batasan itu terlampaui. Tahun buku Pak Tomo sama dengan tahun kalender, sehingga batasnya 31 Desember 2026. PMK 81/2024 Pasal 60 ayat (5) menyerahkan jangka waktu ini kepada peraturan menteri tersebut.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Akhir bulan saat batas terlampaui (31 Juli 2026) tidak dikenal sebagai tenggat. Pasal 17 ayat (3) memakai akhir tahun buku.",
+          B: "Tenggat akhir bulan berikutnya adalah aturan lama PMK 68/PMK.03/2010 Pasal 4, yang sudah dicabut PMK 164/2023.",
+          D: "Januari 2027 adalah Masa Pajak pertama tahun buku berikutnya, yaitu saat PKP yang dikukuhkan tepat waktu mulai memungut PPN (Pasal 18 ayat (1)), bukan batas melaporkan usaha."
+        },
+        jebakan: "Sejak PMK 164/2023, batas melaporkan usaha untuk dikukuhkan PKP adalah akhir tahun buku saat batasan terlampaui, bukan akhir bulan berikutnya seperti aturan lama."
+      },
+      dasarHukum: [{ pasal: "PMK 164/2023 Pasal 17 ayat (1) dan (3) dan Pasal 18 ayat (1)", berlakuSejak: "2023-12-29" }, { pasal: "PMK 68/PMK.03/2010 s.t.d.d. PMK 197/PMK.03/2013 Pasal 1 ayat (1) (batas Rp4,8 miliar)", berlakuSejak: "2014-01-01" }, { pasal: "PMK 81/2024 Pasal 60 ayat (5)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 14, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-272",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Menurut UU PPSP, Surat Paksa adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Surat perintah melaksanakan penyitaan atas barang milik Penanggung Pajak", B: "Surat yang diterbitkan Pejabat untuk menegur Penanggung Pajak agar melunasi utang pajak", C: "Surat perintah membayar utang pajak dan biaya penagihan pajak", D: "Surat ketetapan yang menentukan jumlah pajak yang masih harus dibayar" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "UU PPSP mendefinisikan Surat Paksa sebagai surat perintah membayar utang pajak dan biaya penagihan pajak. Isinya perintah membayar, bukan perintah menyita, bukan teguran, dan bukan penetapan jumlah pajak. Ketiga surat lain itu punya nama dan fungsi sendiri dalam rangkaian penagihan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Itu Surat Perintah Melaksanakan Penyitaan, yang diterbitkan bila utang tidak dilunasi setelah Surat Paksa diberitahukan.",
+          B: "Itu Surat Teguran atau Surat Peringatan, yang mendahului Surat Paksa.",
+          D: "Itu surat ketetapan pajak menurut UU KUP, misalnya SKPKB, yang menjadi dasar timbulnya utang pajak."
+        },
+        jebakan: "Surat Paksa memerintahkan pembayaran utang pajak beserta biaya penagihan, bukan sekadar menegur atau langsung menyita."
+      },
+      dasarHukum: [{ pasal: "Pasal 1 angka 12 UU 19/1997 s.t.d.d. UU 19/2000 (UU PPSP)", berlakuSejak: "2000-08-02" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 15, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-273",
+      topik: "A2.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "PT Lintang Timur memiliki utang pajak yang belum dilunasi. Direktur Utama dan Direktur Operasional merupakan pengurus perusahaan. Direktur Operasional menyatakan dirinya hanya mengurus operasional cabang di luar kota. Menurut UU KUP, pernyataan yang paling tepat mengenai tanggung jawab pengurus adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Pengurus tidak bertanggung jawab atas utang pajak badan karena kekayaan badan terpisah dari kekayaan pribadi pengurus", B: "Pengurus bertanggung jawab pribadi dan/atau renteng, kecuali dapat membuktikan dan meyakinkan Direktur Jenderal Pajak sebaliknya", C: "Hanya Direktur Utama yang bertanggung jawab secara pribadi karena dialah yang menandatangani SPT perusahaan", D: "Pengurus baru bertanggung jawab secara pribadi setelah ada putusan pidana berkekuatan hukum tetap atas utang itu" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Dalam menjalankan hak dan kewajiban perpajakan, badan diwakili oleh pengurus (Pasal 32 ayat (1) huruf a UU KUP). Pengurus mencakup orang yang nyata-nyata berwenang ikut menentukan kebijakan atau mengambil keputusan dalam menjalankan perusahaan (Pasal 32 ayat (4)), sehingga Direktur Utama dan Direktur Operasional sama-sama pengurus. Menurut Pasal 32 ayat (2), wakil tersebut bertanggung jawab secara pribadi dan/atau secara renteng atas pembayaran pajak yang terutang. Pengecualiannya hanya bila ia dapat membuktikan dan meyakinkan Direktur Jenderal Pajak bahwa dalam kedudukannya ia benar-benar tidak mungkin dibebani tanggung jawab. Pernyataan Direktur Operasional bahwa ia hanya mengurus cabang belum membebaskannya; ia harus membuktikannya kepada Direktur Jenderal Pajak.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pemisahan kekayaan badan dan pribadi tidak berlaku untuk utang pajak: Pasal 32 ayat (2) UU KUP justru membebankan tanggung jawab pribadi dan/atau renteng kepada wakil.",
+          C: "Tanggung jawab melekat pada setiap pengurus sebagai wakil, bukan hanya pada penandatangan SPT.",
+          D: "Pasal 32 ayat (2) tidak mensyaratkan putusan pidana. Tanggung jawab itu bersifat administratif atas pembayaran pajak yang terutang."
+        },
+        jebakan: "Tanggung jawab pengurus atas utang pajak badan bersifat pribadi dan/atau renteng; pengecualiannya harus dibuktikan kepada Direktur Jenderal Pajak, bukan cukup dengan pengakuan sendiri."
+      },
+      dasarHukum: [{ pasal: "Pasal 32 ayat (1) huruf a, ayat (2), dan ayat (4) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 16, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-274",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Menurut UU PPSP, Surat Paksa mempunyai kekuatan eksekutorial dan kedudukan hukum yang sama dengan ...",
+      kataKualifikasi: [],
+      opsi: { A: "Putusan pengadilan yang telah mempunyai kekuatan hukum tetap", B: "Putusan pengadilan tingkat pertama yang masih dapat diajukan banding", C: "Keputusan keberatan yang diterbitkan Direktur Jenderal Pajak", D: "Surat ketetapan pajak yang telah melewati jatuh tempo pembayaran" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Surat Paksa berkepala kata-kata \"DEMI KEADILAN BERDASARKAN KETUHANAN YANG MAHA ESA\". Dengan kepala itu Surat Paksa mempunyai kekuatan eksekutorial dan kedudukan hukum yang sama dengan putusan pengadilan yang telah mempunyai kekuatan hukum tetap. Akibatnya Surat Paksa dapat langsung dijalankan tanpa perlu putusan pengadilan lebih dahulu.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Putusan yang masih dapat dibanding belum berkekuatan hukum tetap, padahal undang-undang menyamakan Surat Paksa dengan putusan yang sudah berkekuatan hukum tetap.",
+          C: "Keputusan keberatan adalah keputusan tata usaha Direktur Jenderal Pajak, bukan putusan pengadilan.",
+          D: "Surat ketetapan pajak adalah dasar utang pajak, bukan alas hak eksekusi yang disamakan dengan Surat Paksa."
+        },
+        jebakan: "Yang disamakan adalah putusan pengadilan yang TELAH berkekuatan hukum tetap, bukan putusan tingkat pertama."
+      },
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) UU 19/1997 s.t.d.d. UU 19/2000 (UU PPSP)", berlakuSejak: "2000-08-02" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 19, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-275",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Jurusita Pajak memberitahukan Surat Paksa kepada Tuan Gani pada tanggal 3 Maret 2026. Tuan Gani berpendapat bahwa pelaksanaan penagihan tersebut tidak sah dan hendak menggugatnya. Menurut UU PPSP s.t.d.d. UU 19 Tahun 2000, gugatan tersebut paling lambat diajukan pada tanggal ...",
+      kataKualifikasi: ["paling lambat"],
+      opsi: { A: "10 Maret 2026", B: "17 Maret 2026", C: "24 Maret 2026", D: "3 April 2026" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Gugatan Penanggung Pajak terhadap pelaksanaan Surat Paksa hanya dapat diajukan ke badan peradilan pajak, yaitu Pengadilan Pajak, dalam jangka waktu 14 hari sejak Surat Paksa dilaksanakan. UU Pengadilan Pajak juga menetapkan 14 hari sejak tanggal pelaksanaan penagihan. Pelaksanaan Surat Paksa di sini adalah pemberitahuannya oleh Jurusita Pajak pada 3 Maret 2026. Dengan cara tanggal ditambah 14 hari, batasnya 17 Maret 2026, satu-satunya opsi yang memakai jangka 14 hari.",
+        jejakHitung: [
+          ["Surat Paksa diberitahukan (dilaksanakan)", "3 Maret 2026"],
+          ["Jangka waktu gugatan", "14 hari"],
+          ["3 Maret 2026 + 14 hari", "17 Maret 2026 (Selasa)"]
+        ],
+        mengapaSalah: {
+          A: "10 Maret 2026 hanya 7 hari setelah pemberitahuan; jangka waktu gugatan 14 hari.",
+          C: "24 Maret 2026 sama dengan 21 hari, lebih panjang dari 14 hari yang ditetapkan undang-undang.",
+          D: "3 April 2026 sudah 31 hari setelah pemberitahuan, seolah memakai jangka sekitar sebulan seperti gugatan 30 hari yang berlaku untuk gugatan atas keputusan lain, bukan atas pelaksanaan penagihan."
+        },
+        jebakan: "Gugatan atas pelaksanaan penagihan berjangka 14 hari; jangka 30 hari hanya untuk gugatan atas keputusan selain pelaksanaan penagihan."
+      },
+      dasarHukum: [{ pasal: "Pasal 37 ayat (1) dan ayat (2) UU 19/1997 s.t.d.d. UU 19/2000 (UU PPSP)", berlakuSejak: "2000-08-02" }, { pasal: "Pasal 40 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" }],
+      anggaranDetik: 90,
+      verifikasi: "◐",
+      peringatan: "Kunci try out (B, 17 Maret 2026) menghitung 14 hari dengan cara tanggal pemberitahuan ditambah 14 hari. Naskah undang-undang tidak memberi contoh cara menghitung jangka waktu dalam hari. Bila tanggal pemberitahuan dihitung sebagai hari pertama, seperti cara hitung jangka bulan yang dipakai aplikasi ini, hari terakhir adalah 16 Maret 2026, yang tidak ada di opsi. B tetap pilihan terbaik karena hanya opsi itu yang memakai jangka gugatan 14 hari. Dalam praktik, ajukan gugatan paling lambat 16 Maret supaya aman.",
+      sumber: { set: "TO-C-2026-11-1", no: 23, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-276",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Nirwana berpendapat bahwa Surat Paksa yang diterbitkan atasnya baru dapat dilaksanakan apabila lebih dahulu dikuatkan putusan pengadilan negeri. Menurut UU PPSP (UU 19 Tahun 1997 s.t.d.d. UU 19 Tahun 2000), pendapat PT Nirwana ...",
+      kataKualifikasi: [],
+      opsi: { A: "Benar, karena Surat Paksa hanya surat administratif biasa yang belum dapat dieksekusi", B: "Tidak benar, karena Surat Paksa berkedudukan sama dengan putusan yang berkekuatan hukum tetap", C: "Benar, karena eksekusi atas barang selalu memerlukan penetapan ketua pengadilan negeri", D: "Tidak benar, karena Surat Paksa cukup dilaksanakan setelah disetujui Menteri Keuangan" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Surat Paksa mempunyai kekuatan eksekutorial dan kedudukan hukum yang sama dengan putusan pengadilan yang telah berkekuatan hukum tetap. Karena itu Surat Paksa tidak perlu dikuatkan atau ditetapkan lebih dulu oleh pengadilan negeri. Jurusita Pajak dapat langsung melanjutkan penagihan, termasuk penyitaan, bila utang tidak dilunasi. Pendapat PT Nirwana tidak benar.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Surat Paksa bukan surat administratif biasa; undang-undang memberinya kekuatan eksekutorial.",
+          C: "Undang-undang tidak mensyaratkan penetapan ketua pengadilan negeri untuk melaksanakan Surat Paksa atau menyita barang.",
+          D: "Kesimpulan \"tidak benar\" sudah tepat, tetapi alasannya keliru: undang-undang tidak mensyaratkan persetujuan Menteri Keuangan untuk melaksanakan Surat Paksa. Izin tertulis Menteri disyaratkan antara lain untuk penyanderaan, bukan untuk pelaksanaan Surat Paksa."
+        },
+        jebakan: "Opsi D juga menyimpulkan \"tidak benar\", tetapi alasannya salah; pilih opsi yang kesimpulan dan alasannya sama-sama tepat."
+      },
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) UU 19/1997 s.t.d.d. UU 19/2000 (UU PPSP)", berlakuSejak: "2000-08-02" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 28, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-277",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Empat Penanggung Pajak: (1) Tuan A, utang Rp100.000.000, itikad baik diragukan; (2) Tuan B, utang Rp750.000.000, selalu mengangsur tepat waktu dan itikad baik tidak diragukan; (3) Tuan C, utang Rp99.000.000, itikad baik diragukan; (4) Tuan D, utang Rp60.000.000, itikad buruk jelas. Menurut UU PPSP s.t.d.d. UU 19 Tahun 2000, yang memenuhi syarat nilai dan itikad untuk dapat disandera (dengan izin Menteri Keuangan) adalah ...",
+      kataKualifikasi: ["memenuhi syarat"],
+      opsi: { A: "Tuan A dan Tuan B", B: "Tuan A, Tuan C, dan Tuan D", C: "hanya Tuan A", D: "semua Penanggung Pajak tersebut" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        inti: "Penyanderaan hanya dapat dilakukan terhadap Penanggung Pajak yang memenuhi dua syarat sekaligus: utang pajak sekurang-kurangnya Rp100.000.000 dan itikad baiknya dalam melunasi utang pajak diragukan. Pelaksanaannya berdasarkan Surat Perintah Penyanderaan setelah ada izin tertulis Menteri Keuangan. Tuan A memenuhi keduanya karena utangnya tepat Rp100.000.000. Tuan B itikad baiknya tidak diragukan, sedangkan utang Tuan C dan Tuan D di bawah Rp100.000.000.",
+        jejakHitung: [
+          ["Tuan A", "Rp100.000.000 (≥ Rp100.000.000) dan itikad diragukan: memenuhi"],
+          ["Tuan B", "Rp750.000.000, tetapi itikad baik tidak diragukan: tidak memenuhi"],
+          ["Tuan C", "Rp99.000.000 (< Rp100.000.000): tidak memenuhi"],
+          ["Tuan D", "Rp60.000.000 (< Rp100.000.000): tidak memenuhi"]
+        ],
+        mengapaSalah: {
+          A: "Tuan B tidak memenuhi syarat itikad karena selalu mengangsur tepat waktu dan itikad baiknya tidak diragukan.",
+          B: "Utang Tuan C (Rp99.000.000) dan Tuan D (Rp60.000.000) di bawah batas Rp100.000.000, walaupun itikadnya buruk.",
+          D: "Kedua syarat bersifat kumulatif; hanya Tuan A yang memenuhi keduanya."
+        },
+        jebakan: "\"Sekurang-kurangnya Rp100.000.000\" berarti utang tepat Rp100.000.000 sudah memenuhi, sedangkan Rp99.000.000 tidak."
+      },
+      dasarHukum: [{ pasal: "Pasal 33 ayat (1) dan ayat (2) UU 19/1997 s.t.d.d. UU 19/2000 (UU PPSP)", berlakuSejak: "2000-08-02" }, { pasal: "PP 137/2000 Pasal 3 ayat (1) dan ayat (2)", berlakuSejak: "2001-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 30, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-278",
+      topik: "A2.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Menurut UU KUP, penyidikan tindak pidana di bidang perpajakan hanya dapat dilakukan oleh ...",
+      kataKualifikasi: ["hanya"],
+      opsi: { A: "Jaksa penuntut umum pada Kejaksaan Negeri di wilayah tempat Wajib Pajak terdaftar", B: "Penyidik Kepolisian Negara Republik Indonesia yang menerima laporan dari Direktorat Jenderal Pajak", C: "Pejabat pegawai negeri sipil tertentu di Direktorat Jenderal Pajak yang diberi wewenang khusus sebagai penyidik", D: "Pemeriksa Pajak pada Kantor Pelayanan Pajak yang sebelumnya memeriksa Wajib Pajak tersebut" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 44 ayat (1) UU KUP menyerahkan penyidikan tindak pidana di bidang perpajakan secara khusus kepada Pejabat Pegawai Negeri Sipil tertentu di lingkungan Direktorat Jenderal Pajak. Pejabat itu harus diberi wewenang khusus sebagai penyidik tindak pidana perpajakan. Kata \"hanya\" dalam pasal itu menutup kemungkinan pihak lain menjadi penyidik perkara pajak. Jaksa bertugas menuntut, penyidik Kepolisian tidak disebut dalam pasal itu, dan Pemeriksa Pajak menjalankan pemeriksaan, bukan penyidikan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Jaksa penuntut umum menerima berkas dari penyidik untuk dituntut. Jaksa tidak diberi wewenang menyidik tindak pidana perpajakan oleh Pasal 44 ayat (1).",
+          B: "Pasal 44 ayat (1) menyebut penyidik dari lingkungan Direktorat Jenderal Pajak, bukan penyidik Kepolisian.",
+          D: "Pemeriksa Pajak menjalankan pemeriksaan untuk menguji kepatuhan. Penyidikan hanya dijalankan PPNS yang diberi wewenang khusus sebagai penyidik."
+        },
+        jebakan: "Menyamakan pemeriksaan pajak dengan penyidikan, padahal penyidikan hanya oleh PPNS DJP yang diberi wewenang khusus."
+      },
+      dasarHukum: [{ pasal: "UU KUP Pasal 44 ayat (1) s.t.d.t.d. UU 6/2023", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 31, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-279",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 1,
+      stem: "Direktur Jenderal Pajak kalah dalam sengketa Banding PT Sakti tentang koreksi biaya jasa manajemen. Setelah putusan diucapkan, Direktur Jenderal Pajak menemukan dokumen tertulis yang membuktikan bahwa jasa tersebut tidak pernah diberikan. Dokumen itu belum pernah diajukan dalam persidangan. Menurut UU Pengadilan Pajak, alasan Peninjauan Kembali yang paling tepat bagi Direktur Jenderal Pajak adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Putusan diucapkan lebih lama dari jangka waktu putusan yang ditentukan", B: "Majelis tidak menerima argumen hukum tambahan dari Terbanding", C: "Terdapat bukti tertulis baru yang penting dan bersifat menentukan", D: "Majelis Hakim menilai bukti secara berbeda dari penilaian Terbanding" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 91 UU 14/2002 membatasi alasan Peninjauan Kembali pada lima hal. Huruf b: terdapat bukti tertulis baru yang penting dan bersifat menentukan, yang bila diketahui pada tahap persidangan akan menghasilkan putusan yang berbeda. Dokumen yang membuktikan jasa manajemen tidak pernah diberikan, baru ditemukan setelah putusan dan belum pernah diajukan di persidangan, cocok dengan alasan ini. Batas waktunya 3 bulan sejak bukti ditemukan (Pasal 92 ayat (2)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Keterlambatan pengucapan putusan tidak termasuk alasan Peninjauan Kembali dalam Pasal 91.",
+          B: "Penolakan argumen hukum tambahan bukan salah satu alasan dalam Pasal 91, dan argumen bukan bukti tertulis baru.",
+          D: "Perbedaan penilaian bukti oleh Majelis adalah inti kewenangan hakim, bukan alasan Peninjauan Kembali menurut Pasal 91."
+        },
+        jebakan: "Alasan Peninjauan Kembali bersifat limitatif; ketidakpuasan atas penilaian Majelis tidak cukup tanpa novum atau alasan lain dalam Pasal 91."
+      },
+      dasarHukum: [{ pasal: "Pasal 91 huruf b dan Pasal 92 ayat (2) UU 14/2002", berlakuSejak: "2002-04-12" }],
+      anggaranDetik: 70,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 37, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-280",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Bahari menerima dua keputusan: (i) Keputusan Direktur Jenderal Pajak yang menolak permohonan pengurangan sanksi administrasi, dan (ii) Surat Keputusan Keberatan yang menolak keberatannya atas surat ketetapan pajak. Upaya hukum ke Pengadilan Pajak yang tepat untuk (i) dan (ii) berturut-turut adalah ...",
+      kataKualifikasi: ["berturut-turut"],
+      opsi: { A: "(i) Banding, (ii) Banding", B: "(i) Gugatan, (ii) Gugatan", C: "(i) Gugatan, (ii) Banding", D: "(i) Keberatan, (ii) Gugatan" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Upaya ke Pengadilan Pajak ditentukan oleh jenis keputusan yang dipersoalkan. Banding hanya dapat diajukan atas Surat Keputusan Keberatan (Pasal 27 ayat (1) UU KUP; Pasal 31 ayat (2) UU 14/2002). Keputusan Direktur Jenderal Pajak atas permohonan pengurangan sanksi administrasi menurut Pasal 36 ayat (1) huruf a UU KUP bukan keputusan keberatan. Keputusan itu termasuk keputusan yang berkaitan dengan pelaksanaan keputusan perpajakan selain Pasal 25 ayat (1) dan Pasal 26, sehingga upayanya Gugatan (Pasal 23 ayat (2) huruf c UU KUP; Pasal 31 ayat (3) UU 14/2002). Jadi (i) digugat dan (ii) dibanding.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Keputusan penolakan pengurangan sanksi bukan Surat Keputusan Keberatan, sehingga tidak dapat dibanding; banding hanya untuk (ii).",
+          B: "Surat Keputusan Keberatan yang menolak keberatan diajukan banding, bukan gugatan. Gugatan atas SK Keberatan hanya untuk cacat prosedur penerbitan (Pasal 23 ayat (2) huruf d).",
+          D: "Keberatan bukan upaya ke Pengadilan Pajak, dan SK Keberatan yang menolak keberatan dibanding, bukan digugat."
+        },
+        jebakan: "Keputusan Pasal 36 sering dianggap sejenis keputusan keberatan, padahal upaya hukumnya gugatan, bukan banding."
+      },
+      dasarHukum: [{ pasal: "UU KUP Pasal 23 ayat (2) huruf c dan Pasal 36 ayat (1) huruf a s.t.d.t.d. UU 6/2023", berlakuSejak: "2008-01-01" }, { pasal: "UU KUP Pasal 27 ayat (1) s.t.d.t.d. UU 6/2023", berlakuSejak: "2008-01-01" }, { pasal: "UU 14/2002 Pasal 31 ayat (2) dan (3)", berlakuSejak: "2002-04-12" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 38, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-281",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Gugatan terhadap penerbitan keputusan yang dapat digugat (bukan pelaksanaan penagihan) menurut UU Pengadilan Pajak diajukan paling lama berapa hari sejak keputusan yang digugat diterima?",
+      kataKualifikasi: ["paling lama"],
+      opsi: { A: "14 hari", B: "30 hari", C: "60 hari", D: "3 bulan" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "UU 14/2002 membedakan dua jangka gugatan. Gugatan atas pelaksanaan penagihan diajukan dalam 14 hari sejak tanggal pelaksanaan penagihan (Pasal 40 ayat (2)). Gugatan atas Keputusan selain itu diajukan dalam 30 hari sejak tanggal Keputusan yang digugat diterima (Pasal 40 ayat (3)). Soal menanyakan gugatan atas penerbitan keputusan, bukan pelaksanaan penagihan, sehingga jangkanya 30 hari.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "14 hari adalah jangka gugatan atas pelaksanaan penagihan (Pasal 40 ayat (2)), yang dikecualikan oleh stem.",
+          C: "60 hari tidak dikenal sebagai jangka pengajuan gugatan dalam Pasal 40 UU 14/2002.",
+          D: "3 bulan adalah jangka pengajuan banding (Pasal 35 ayat (2)), bukan gugatan."
+        },
+        jebakan: "Jangka 14 hari dan 30 hari sama-sama untuk gugatan; pembedanya objek: pelaksanaan penagihan atau keputusan lain."
+      },
+      dasarHukum: [{ pasal: "UU 14/2002 Pasal 40 ayat (2) dan (3)", berlakuSejak: "2002-04-12" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 40, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-282",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      stem: "PT Kencana telah menerima Surat Teguran. PT Kencana kemudian membayar sebagian utang pajaknya, tetapi masih memiliki sisa utang yang belum dilunasi sampai batas waktu dalam Surat Teguran berakhir. Berdasarkan UU PPSP, tindakan apa yang dilakukan terhadap sisa utang pajak tersebut...",
+      kataKualifikasi: [],
+      opsi: { A: "Penerbitan Surat Paksa atas sisa utang pajak yang belum dilunasi", B: "Tidak Menerbitkan Surat Paksa, karena pembayaran yang dilakukan PT Kencana menghentikan penagihan", C: "Penerbitan Surat Teguran yang baru", D: "Tidak Menerbitkan Surat Paksa, karena Surat Paksa hanya dapat diterbitkan jika seluruh utang pajak tidak dibayar" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        inti: "Syarat Surat Paksa adalah Penanggung Pajak tidak melunasi utang pajak dan kepadanya sudah diterbitkan Surat Teguran (Pasal 8 ayat (1) huruf a UU PPSP). PMK 61/2023 Pasal 6 ayat (2) memakai ukuran yang sama: bila setelah lewat 21 hari sejak Surat Teguran disampaikan utang pajak belum lunas, Pejabat menerbitkan Surat Paksa. PT Kencana baru membayar sebagian, jadi utangnya belum lunas. Surat Paksa diterbitkan atas sisa utang yang belum dibayar.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Pembayaran sebagian hanya mengurangi utang. Tidak ada ketentuan yang menjadikan pembayaran sebagian alasan penagihan berhenti; penagihan berlanjut selama utang belum lunas.",
+          C: "Surat Teguran sudah diterbitkan dan tenggangnya sudah lewat. Langkah berikutnya menurut Pasal 6 ayat (2) PMK 61/2023 adalah Surat Paksa, bukan Surat Teguran ulang.",
+          D: "Syaratnya utang pajak tidak dilunasi, bukan tidak dibayar sama sekali. Sisa utang yang belum dibayar tetap memenuhi syarat itu."
+        },
+        jebakan: "Kata kuncinya \"tidak melunasi\": pembayaran sebagian belum melunasi, sehingga tahap penagihan berlanjut ke Surat Paksa atas sisanya."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) huruf a UU 19/1997 s.t.d.d. UU 19/2000 (UU PPSP)", berlakuSejak: "2000-08-02" }, { pasal: "PMK 61/2023 Pasal 6 ayat (2)", berlakuSejak: "2023-06-12" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 50, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-283",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Delta Raya mempunyai tiga anggota direksi, yaitu A, B, dan C. Perusahaan tersebut menunggak utang pajak. Direktorat Jenderal Pajak akan menagih kepada para direksi secara pribadi. Direktur C menyatakan baru menjabat setelah seluruh masa pajak terutang berakhir dan tidak mengelola keuangan perusahaan. Menurut UU KUP s.t.d.t.d. UU 6 Tahun 2023 dan UU PPSP s.t.d.d. UU 19 Tahun 2000, penilaian yang tepat adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Direksi tidak dapat ditagih secara pribadi, karena badan adalah subjek hukum tersendiri", B: "Hanya direktur utama yang bertanggung jawab secara pribadi atas utang pajak perseroan", C: "Direksi bertanggung jawab secara renteng, kecuali dapat meyakinkan Direktur Jenderal Pajak bahwa tidak dapat dibebani", D: "Tanggung jawab pribadi direksi baru timbul setelah perseroan dinyatakan pailit oleh pengadilan" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Badan diwakili oleh pengurusnya (Pasal 32 ayat (1) huruf a UU KUP), dan direksi termasuk pengurus. Menurut Pasal 32 ayat (2), wakil itu bertanggung jawab secara pribadi dan/atau secara renteng atas pembayaran pajak terutang. Tanggung jawab itu gugur hanya bila ia dapat membuktikan dan meyakinkan Direktur Jenderal Pajak bahwa dalam kedudukannya ia benar-benar tidak mungkin dibebani. Jadi ketiga anggota direksi pada dasarnya dapat ditagih. Keterangan Direktur C (baru menjabat setelah masa pajak berakhir dan tidak mengelola keuangan) adalah bahan pembuktian yang ia ajukan kepada Direktur Jenderal Pajak, bukan pembebasan otomatis.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Status badan sebagai subjek hukum tersendiri tidak menghapus tanggung jawab pribadi wakilnya; Pasal 32 ayat (2) UU KUP justru membebankannya.",
+          B: "Pasal 32 ayat (2) UU KUP berlaku untuk setiap wakil atau pengurus, tidak terbatas pada direktur utama.",
+          D: "Tanggung jawab wakil tidak digantungkan pada pernyataan pailit. Pailit hanya mengubah siapa yang mewakili badan (kurator, Pasal 32 ayat (1) huruf b)."
+        },
+        jebakan: "Pengecualian Pasal 32 ayat (2) bukan otomatis: direktur harus membuktikan dan meyakinkan Direktur Jenderal Pajak bahwa ia tidak mungkin dibebani."
+      },
+      dasarHukum: [{ pasal: "Pasal 32 ayat (1) huruf a dan ayat (2) UU KUP s.t.d.t.d. UU 6/2023", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 1 UU PPSP (Penanggung Pajak) dan penjelasannya", berlakuSejak: "2000-08-02" }],
+      anggaranDetik: 100,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 52, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-284",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Tuan Reza disandera atas izin Menteri Keuangan selama enam bulan, diperpanjang enam bulan, dan tetap tidak melunasi utang pajaknya sampai masa penyanderaan berakhir. Menurut UU PPSP s.t.d.d. UU 19 Tahun 2000, pernyataan yang paling tepat adalah ...",
+      kataKualifikasi: ["paling tepat"],
+      opsi: { A: "Utang pajak Tuan Reza hapus karena masa penyanderaan maksimum telah dijalani", B: "Utang pajak Tuan Reza tetap ada dan tindakan penagihan lain dapat diteruskan", C: "Utang pajak Tuan Reza berkurang sebanding dengan lamanya penyanderaan", D: "Penagihan hanya dapat diteruskan jika Menteri Keuangan memberi izin baru" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Penyanderaan paling lama 6 bulan dan dapat diperpanjang paling lama 6 bulan (Pasal 7 PP 137/2000; Pasal 66 ayat (3) dan Pasal 72 ayat (4) PMK 61/2023). Bila jangka waktunya berakhir, Penanggung Pajak dilepas (Pasal 10 ayat (1) huruf b PP 137/2000; Pasal 73 ayat (1) huruf b PMK 61/2023). Alasan pelepasan karena lunas disebut sendiri dalam huruf a, jadi berakhirnya masa sandera tidak sama dengan lunas. Utang Tuan Reza tetap ada, dan selama belum lunas tindakan penagihan seperti penyitaan dan lelang tetap dilakukan (Pasal 4 ayat (4) dan Pasal 6 PMK 61/2023).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Berakhirnya masa sandera hanya alasan untuk melepas Penanggung Pajak. Tidak ada ketentuan yang menjadikannya sebab hapusnya utang pajak.",
+          C: "Tidak ada ketentuan yang mengurangi utang pajak menurut lamanya sandera. Penyanderaan adalah alat paksa, bukan cara melunasi.",
+          D: "Izin Menteri Keuangan diperlukan untuk penyanderaan dan perpanjangannya. Tindakan penagihan lain, seperti penyitaan dan lelang, dilakukan Pejabat tanpa izin Menteri."
+        },
+        jebakan: "Pelepasan karena masa sandera habis dan pelepasan karena utang lunas adalah dua alasan berbeda; hanya pelunasan yang menghapus utang."
+      },
+      dasarHukum: [{ pasal: "Pasal 33 dan 34 UU PPSP", berlakuSejak: "2000-08-02" }, { pasal: "PP 137/2000 Pasal 7 dan Pasal 10 ayat (1)", berlakuSejak: "2001-01-01" }, { pasal: "PMK 61/2023 Pasal 4 ayat (4), Pasal 66 ayat (3), Pasal 72 ayat (4), dan Pasal 73 ayat (1)", berlakuSejak: "2023-06-12" }],
+      anggaranDetik: 70,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 57, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-285",
+      topik: "A2.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "PT Sinar Mandiri didirikan pada 1 Mei 2025 dengan tahun buku sama dengan tahun kalender. Menurut PER-3/PJ/2026, jenis SPT Tahunan PPh yang harus disampaikan untuk tahun 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "SPT Tahunan untuk Bagian Tahun Pajak", B: "SPT Tahunan untuk Tahun Pajak", C: "SPT Masa saja", D: "Tidak ada SPT sampai tahun berikutnya" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 3 PER-3/PJ/2026 membedakan SPT Tahunan PPh untuk suatu Tahun Pajak dan untuk suatu Bagian Tahun Pajak. SPT untuk Tahun Pajak hanya bagi Wajib Pajak yang kewajiban subjektifnya ada sejak awal sampai akhir Tahun Pajak. Bagi badan, kewajiban subjektif dimulai saat badan didirikan atau bertempat kedudukan di Indonesia. PT Sinar Mandiri didirikan 1 Mei 2025, jadi kewajiban subjektifnya dimulai di tengah Tahun Pajak 2025. Untuk tahun 2025 perseroan menyampaikan SPT Tahunan untuk Bagian Tahun Pajak, yaitu Mei sampai Desember 2025.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "SPT untuk Tahun Pajak mensyaratkan kewajiban subjektif ada sejak awal Tahun Pajak, sedangkan perseroan baru berdiri 1 Mei 2025. Bila tetap disampaikan, SPT itu dapat dianggap tidak disampaikan (Pasal 3 ayat (6)).",
+          C: "SPT Masa tidak menggantikan SPT Tahunan. Badan yang kewajiban subjektifnya dimulai dalam tahun berjalan tetap wajib menyampaikan SPT Tahunan untuk Bagian Tahun Pajak.",
+          D: "Tidak ada ketentuan yang menunda SPT Tahunan ke tahun berikutnya. Bagian Tahun Pajak 2025 dilaporkan sendiri dengan batas 4 bulan setelah akhir Bagian Tahun Pajak (Pasal 4 huruf b)."
+        },
+        jebakan: "Mengira badan yang berdiri di tengah tahun baru melapor SPT Tahunan mulai tahun penuh berikutnya."
+      },
+      dasarHukum: [{ pasal: "PER-3/PJ/2026 Pasal 3 ayat (2), ayat (3) huruf a, dan ayat (4) huruf b", berlakuSejak: "2026-03-16" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 58, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-286",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Pak Dhani, Wajib Pajak orang pribadi, menyampaikan SPT Tahunan PPh Tahun Pajak 2025 pada 10 Maret 2026. Ia kemudian menyadari bahwa SPT tersebut mengandung kekeliruan sehingga pajak kurang dibayar Rp100.000.000,00. Sebelum ada pemeriksaan, ia membetulkan sendiri SPT tersebut dan melunasi kekurangan pembayaran pada 12 Juni 2026. Batas waktu penyampaian SPT Tahunan orang pribadi Tahun Pajak 2025 adalah 31 Maret 2026. Jumlah bulan yang menjadi pengali sanksi bunga atas pembetulan tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "2 bulan, karena bagian bulan yang kurang dari satu bulan penuh diabaikan", B: "3 bulan, karena dihitung sejak batas waktu SPT dan bagian bulan dihitung penuh", C: "4 bulan, karena dihitung sejak tanggal SPT semula disampaikan", D: "6 bulan, karena dihitung sejak 1 Januari 2026 sampai tanggal pembayaran" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 8 ayat (2) UU KUP mengatur pembetulan sendiri SPT Tahunan yang membuat utang pajak lebih besar. Bunga dikenakan atas pajak yang kurang dibayar, dihitung sejak saat penyampaian SPT berakhir sampai tanggal pembayaran, paling lama 24 bulan, dan bagian dari bulan dihitung penuh 1 bulan. Titik mulainya batas waktu penyampaian, 31 Maret 2026, bukan tanggal SPT semula disampaikan. Bulan pertama mulai 1 April 2026. Pembayaran 12 Juni 2026 jatuh pada bulan ketiga, sehingga pengalinya 3 bulan.",
+        jejakHitung: [
+          ["Titik mulai", "batas penyampaian SPT Tahunan OP 31 Maret 2026"],
+          ["Bulan ke-1", "1 April sampai 30 April 2026"],
+          ["Bulan ke-2", "1 Mei sampai 31 Mei 2026"],
+          ["Bulan ke-3 (bagian bulan, dihitung penuh)", "1 Juni sampai 12 Juni 2026"],
+          ["Pengali bunga", "3 bulan"]
+        ],
+        mengapaSalah: {
+          A: "Bagian bulan 1 sampai 12 Juni 2026 tidak boleh diabaikan. Pasal 8 ayat (2) menghitungnya penuh 1 bulan.",
+          C: "Titik mulai yang dipakai adalah tanggal SPT semula disampaikan (10 Maret 2026). Pasal 8 ayat (2) memulai hitungan dari saat batas penyampaian SPT berakhir.",
+          D: "Hitungan sejak 1 Januari 2026 tidak dikenal untuk pembetulan SPT Tahunan. Bunga dimulai setelah batas penyampaian 31 Maret 2026."
+        },
+        jebakan: "Memulai hitungan bunga dari tanggal SPT semula disampaikan, padahal pasal memakai batas waktu penyampaian SPT."
+      },
+      dasarHukum: [{ pasal: "UU KUP Pasal 8 ayat (2) s.t.d.t.d. UU 6/2023", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 63, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-287",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Pengadilan Pajak menerima Surat Gugatan PT Samudra pada tanggal 15 Maret 2026. Putusan atas Gugatan tersebut diterbitkan paling lambat pada tanggal ...",
+      kataKualifikasi: ["paling lambat"],
+      opsi: { A: "15 Juni 2026", B: "15 September 2026", C: "15 Maret 2027", D: "15 September 2027" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        inti: "Putusan pemeriksaan dengan acara biasa atas Gugatan diambil dalam jangka waktu 6 bulan sejak Surat Gugatan diterima (Pasal 81 ayat (2) UU 14/2002). Jangka 12 bulan berlaku untuk banding (ayat (1)). Surat Gugatan diterima 15 Maret 2026, sehingga jangka 6 bulan berakhir sekitar pertengahan September 2026. Bila tanggal diterima dihitung sebagai hari pertama, seperti contoh di Penjelasan Pasal 11 ayat (1) UU PBB dan Penjelasan Pasal 19 ayat (1) UU KUP, hari terakhirnya 14 September 2026; opsi yang memakai jangka gugatan 6 bulan hanya 15 September 2026. Dalam hal khusus jangka itu dapat diperpanjang paling lama 3 bulan (ayat (4)), tetapi stem tidak menyebut perpanjangan.",
+        jejakHitung: [
+          ["Surat Gugatan diterima", "15 Maret 2026 (Minggu)"],
+          ["Jangka putusan Gugatan", "6 bulan (Pasal 81 ayat (2))"],
+          ["Tanggal yang sama 6 bulan kemudian", "15 September 2026 (Selasa)"],
+          ["Hari terakhir bila tanggal diterima dihitung hari pertama", "14 September 2026 (Senin)"]
+        ],
+        mengapaSalah: {
+          A: "15 Juni 2026 memakai jangka 3 bulan, padahal jangka putusan gugatan 6 bulan; 3 bulan adalah lama perpanjangan dalam hal khusus.",
+          C: "15 Maret 2027 memakai jangka 12 bulan, yaitu jangka putusan banding (Pasal 81 ayat (1)).",
+          D: "15 September 2027 memakai 18 bulan, yang tidak dikenal untuk putusan gugatan."
+        },
+        jebakan: "Jangka putusan gugatan (6 bulan) lebih pendek dari jangka putusan banding (12 bulan)."
+      },
+      dasarHukum: [{ pasal: "UU 14/2002 Pasal 81 ayat (1), (2), dan (4)", berlakuSejak: "2002-04-12" }],
+      anggaranDetik: 90,
+      verifikasi: "◐",
+      peringatan: "Kunci try out memakai cara tanggal ke tanggal: 15 Maret 2026 ditambah 6 bulan menjadi 15 September 2026. Menurut cara hitung yang dipakai aplikasi ini (tanggal diterima dihitung sebagai hari pertama, seperti contoh di Penjelasan Pasal 11 UU PBB dan Pasal 19 UU KUP), hari terakhir jangka 6 bulan adalah 14 September 2026, yang tidak ada di opsi. Opsi B tetap pilihan terbaik karena hanya opsi itu yang memakai jangka putusan gugatan 6 bulan menurut Pasal 81 ayat (2) UU 14/2002.",
+      sumber: { set: "TO-C-2026-11-1", no: 69, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-288",
+      topik: "A2.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Penyidik sedang menyidik PT Baruna Sakti atas dugaan tindak pidana tidak menyetorkan pajak yang telah dipungut. Jumlah pajak yang tidak disetor Rp300.000.000,00. Demi kepentingan penerimaan negara, Menteri Keuangan meminta Jaksa Agung menghentikan penyidikan. Agar penyidikan dapat dihentikan, jumlah yang harus dilunasi terlebih dahulu oleh PT Baruna Sakti adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp900.000.000,00, yaitu pajak yang tidak disetor ditambah denda 2 kali jumlah pajak tersebut", B: "Rp1.200.000.000,00, yaitu pajak yang tidak disetor ditambah denda 3 kali jumlah pajak tersebut", C: "Rp1.500.000.000,00, yaitu pajak yang tidak disetor ditambah denda 4 kali jumlah pajak tersebut", D: "Rp600.000.000,00, yaitu pajak yang tidak disetor ditambah denda 1 kali jumlah pajak tersebut" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Tidak menyetorkan pajak yang telah dipotong atau dipungut adalah tindak pidana Pasal 39 ayat (1) huruf i UU KUP. Pasal 44B ayat (1) memungkinkan Jaksa Agung menghentikan penyidikan atas permintaan Menteri Keuangan untuk kepentingan penerimaan negara. Menurut Pasal 44B ayat (2) huruf b, untuk perkara Pasal 39 penghentian itu baru dilakukan setelah kerugian pada pendapatan negara dilunasi bersama sanksi administratif berupa denda 3 kali kerugian tersebut. Kerugian Rp300.000.000,00 ditambah denda Rp900.000.000,00 menjadi Rp1.200.000.000,00.",
+        jejakHitung: [
+          ["Kerugian pada pendapatan negara", "Rp300.000.000,00"],
+          ["Denda 3 kali (Pasal 44B ayat (2) huruf b)", "3 x Rp300.000.000,00 = Rp900.000.000,00"],
+          ["Jumlah yang dilunasi", "Rp300.000.000,00 + Rp900.000.000,00 = Rp1.200.000.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Pengali denda 2 kali tidak ada dalam Pasal 44B ayat (2). Perkara Pasal 39 memakai denda 3 kali.",
+          C: "Denda 4 kali berlaku untuk perkara Pasal 39A (faktur pajak, bukti pemungutan, bukti pemotongan, atau bukti setoran yang tidak berdasarkan transaksi sebenarnya), bukan Pasal 39 ayat (1) huruf i.",
+          D: "Denda 1 kali berlaku untuk perkara kealpaan Pasal 38. Tidak menyetorkan pajak yang telah dipungut termasuk Pasal 39."
+        },
+        jebakan: "Pengali denda mengikuti pasal pidananya: 1 kali Pasal 38, 3 kali Pasal 39, 4 kali Pasal 39A, dan pokok kerugian tetap ikut dilunasi."
+      },
+      dasarHukum: [{ pasal: "UU KUP Pasal 44B ayat (1) dan ayat (2) huruf b s.t.d.t.d. UU 6/2023", berlakuSejak: "2021-10-29" }, { pasal: "UU KUP Pasal 39 ayat (1) huruf i s.t.d.t.d. UU 6/2023", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 70, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-289",
+      topik: "A2.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      stem: "Laporan keuangan PT Mitra Dwipa, Wajib Pajak badan, diaudit oleh akuntan publik. Audit tersebut belum selesai pada saat batas waktu penyampaian SPT Tahunan PPh Tahun Pajak 2025. Menurut Pasal 5 dan Pasal 6 PER-3/PJ/2026, PT Mitra Dwipa dapat memperpanjang penyampaian SPT dengan pemberitahuan yang dilampiri ...",
+      kataKualifikasi: [],
+      opsi: { A: "Penghitungan sementara PPh terutang, laporan keuangan sementara, SSP jika kurang bayar, dan surat pernyataan akuntan publik", B: "Laporan keuangan audit yang sudah final dan SSP lunas atas seluruh PPh terutang", C: "Surat pernyataan pemberi kerja bahwa BPA1 belum diberikan dan penghitungan sementara", D: "SPT Tahunan tahun sebelumnya dan bukti pembayaran PPh Pasal 25 setahun penuh" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 5 ayat (2) huruf c PER-3/PJ/2026 membolehkan Wajib Pajak badan yang audit laporan keuangannya belum selesai memperpanjang penyampaian SPT Tahunan paling lama 2 bulan. Menurut Pasal 5 ayat (7), pemberitahuannya menyebut alasan dan dilampiri penghitungan sementara PPh terutang, laporan keuangan sementara, Surat Setoran Pajak bila ada kekurangan pembayaran, dan surat pernyataan akuntan publik bahwa audit belum selesai. Bentuk usaha tetap juga melampirkan penghitungan sementara PPh Pasal 26 ayat (4). Menurut Pasal 6 ayat (2), DJP menyatakan pemberitahuan itu diterima, atau dianggap bukan pemberitahuan perpanjangan bila tidak sepenuhnya memenuhi Pasal 5.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Perpanjangan diminta justru karena audit belum selesai, sehingga laporan keuangan audit final belum ada. Lampirannya laporan keuangan sementara.",
+          C: "Surat pernyataan pemberi kerja tentang bukti potong PPh Pasal 21 adalah lampiran bagi orang pribadi tanpa usaha (Pasal 5 ayat (8)), bukan bagi badan.",
+          D: "SPT Tahunan tahun sebelumnya dan bukti angsuran PPh Pasal 25 tidak termasuk lampiran yang disebut Pasal 5 ayat (7)."
+        },
+        jebakan: "Mencampur lampiran perpanjangan untuk badan dengan lampiran untuk karyawan yang belum menerima bukti potong."
+      },
+      dasarHukum: [{ pasal: "PER-3/PJ/2026 Pasal 5 ayat (1), ayat (2) huruf c, dan ayat (7), serta Pasal 6 ayat (2)", berlakuSejak: "2026-03-16" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 72, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-290",
+      topik: "A2.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      stem: "Atas SKPKB yang diterbitkan untuk CV Sinar Jaya, sudah lewat 3 bulan dan CV tidak mengajukan keberatan. Kemudian CV menemukan bahwa SKPKB tersebut memuat objek yang sama yang dihitung dua kali, sehingga ketetapannya tidak benar. Upaya yang tersedia bagi CV Sinar Jaya adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Mengajukan keberatan, karena keberatan dapat diajukan kapan saja selama belum daluwarsa", B: "Langsung mengajukan banding ke Pengadilan Pajak", C: "Membetulkan SPT yang telah disampaikan", D: "Mengajukan permohonan pengurangan atau pembatalan surat ketetapan pajak yang tidak benar kepada Direktur Jenderal Pajak" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Keberatan atas SKPKB harus diajukan dalam 3 bulan sejak tanggal dikirim surat ketetapan pajak (Pasal 25 ayat (3) UU KUP). Tenggat itu sudah lewat, jadi CV Sinar Jaya tidak bisa lagi mengajukan keberatan. Jalur yang masih terbuka adalah Pasal 36 ayat (1) huruf b UU KUP: atas permohonan Wajib Pajak, Direktur Jenderal Pajak dapat mengurangkan atau membatalkan surat ketetapan pajak yang tidak benar. Objek yang dihitung dua kali membuat ketetapan itu tidak benar, dan karena tidak diajukan keberatan, permohonan ini dapat diajukan (PMK 118/2024 menata caranya).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Keberatan tidak bisa diajukan kapan saja. Pasal 25 ayat (3) UU KUP membatasinya 3 bulan sejak SKP dikirim, dan tenggat itu sudah lewat.",
+          B: "Banding hanya dapat diajukan atas Surat Keputusan Keberatan (Pasal 27 ayat (1) UU KUP). Di sini belum ada keputusan keberatan, jadi banding langsung tidak mungkin.",
+          C: "Pembetulan SPT hanya boleh selama belum dilakukan tindakan pemeriksaan (Pasal 8 ayat (1) UU KUP), dan SPT yang dibetulkan tidak mengubah SKPKB yang sudah terbit."
+        },
+        jebakan: "Peserta mengira keberatan masih bisa diajukan, padahal setelah 3 bulan lewat jalurnya pindah ke permohonan Pasal 36 ayat (1) huruf b."
+      },
+      dasarHukum: [{ pasal: "UU KUP Pasal 36 ayat (1) huruf b s.t.d.t.d. UU 6/2023", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 25 ayat (3) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "PMK 118/2024 s.t.d.d. PMK 71/2026 (tata cara permohonan pengurangan atau pembatalan SKP yang tidak benar)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 81, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-291",
+      topik: "A2.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "PT Samudra Logistik menerima surat keputusan keberatan Direktur Jenderal Bea dan Cukai yang menolak keberatannya atas penetapan bea masuk. Upaya hukum yang tersedia menurut UU Pengadilan Pajak adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Banding ke Pengadilan Pajak", B: "Gugatan ke Pengadilan Tata Usaha Negara", C: "Peninjauan Kembali langsung ke Mahkamah Agung", D: "Keberatan kedua kepada Menteri Keuangan" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Dalam UU 14/2002, Pajak mencakup semua pajak yang dipungut Pemerintah Pusat termasuk Bea Masuk dan Cukai (Pasal 1 angka 2), dan Direktur Jenderal Bea dan Cukai termasuk pejabat yang berwenang (Pasal 1 angka 1). Sengketa atas penetapan bea masuk karena itu adalah Sengketa Pajak yang diperiksa dan diputus Pengadilan Pajak (Pasal 31 ayat (1)). Dalam hal Banding, Pengadilan Pajak memeriksa dan memutus sengketa atas keputusan keberatan (Pasal 31 ayat (2)). Surat keputusan keberatan Direktur Jenderal Bea dan Cukai dengan demikian diajukan banding ke Pengadilan Pajak.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Sengketa atas bea masuk adalah Sengketa Pajak yang menjadi wewenang Pengadilan Pajak, bukan Pengadilan Tata Usaha Negara.",
+          C: "Peninjauan Kembali ke Mahkamah Agung diajukan atas putusan Pengadilan Pajak (Pasal 77 ayat (3)), bukan langsung atas keputusan keberatan.",
+          D: "Tidak ada keberatan kedua kepada Menteri Keuangan; upaya atas keputusan keberatan adalah banding ke Pengadilan Pajak."
+        },
+        jebakan: "Pengadilan Pajak juga memeriksa sengketa kepabeanan dan cukai karena UU 14/2002 memasukkan Bea Masuk dan Cukai ke dalam pengertian Pajak."
+      },
+      dasarHukum: [{ pasal: "UU 14/2002 Pasal 1 angka 1 dan 2 serta Pasal 31 ayat (1) dan (2)", berlakuSejak: "2002-04-12" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 82, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-292",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      stem: "Tuan Budi telah menerima Surat Teguran. Pada hari ke-15 sejak Surat Teguran disampaikan, utang pajak belum dilunasi dan Direktorat Jenderal Pajak akan menerbitkan Surat Paksa. Menurut PMK 61 Tahun 2023, penerbitan Surat Paksa tersebut ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dapat dilakukan, karena Surat Paksa terbit setelah 14 hari sejak Surat Teguran", B: "Dapat dilakukan, karena Surat Teguran dan Surat Paksa dapat diterbitkan bersamaan", C: "Belum dapat dilakukan, karena Surat Paksa baru dapat diterbitkan setelah lewat 21 hari sejak Surat Teguran disampaikan", D: "Belum dapat dilakukan, karena harus menunggu 2 × 24 jam sejak Surat Teguran" },
+      kunci: "C",
+      jebakanOpsi: { A: "angka-usang", B: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Menurut Pasal 6 ayat (2) PMK 61/2023, Surat Paksa diterbitkan bila setelah lewat 21 hari terhitung sejak tanggal Surat Teguran disampaikan utang pajak belum dilunasi. Hari ke-15 masih di dalam tenggang 21 hari itu, sehingga Surat Paksa belum dapat diterbitkan. Surat Paksa paling cepat terbit sesudah hari ke-21 lewat. Cara menghitung hari mana pun yang dipakai, hari ke-15 tetap belum cukup.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tenggang yang berlaku 21 hari, bukan 14 hari. Angka 14 hari dipakai untuk tahap lain, misalnya pengumuman lelang setelah penyitaan (Pasal 6 ayat (4) PMK 61/2023).",
+          B: "Surat Paksa dapat terbit tanpa didahului Surat Teguran hanya dalam dua keadaan Pasal 16 PMK 61/2023: sudah ada surat perintah Penagihan Seketika dan Sekaligus, atau Penanggung Pajak tidak memenuhi keputusan angsuran atau penundaan pembayaran. Keduanya tidak ada dalam kasus ini, dan ketentuan tidak mengenal penerbitan Surat Teguran dan Surat Paksa secara bersamaan.",
+          D: "Tenggang 2 kali 24 jam berlaku sejak Surat Paksa diberitahukan sampai penerbitan surat perintah melaksanakan Penyitaan (Pasal 6 ayat (3)), bukan untuk penerbitan Surat Paksa."
+        },
+        jebakan: "Tiap tahap penagihan punya tenggang sendiri: 7 hari, 21 hari, 2 kali 24 jam, 14 hari. Hafalkan pasangan tahap dan tenggangnya."
+      },
+      dasarHukum: [{ pasal: "PMK 61/2023 Pasal 6 ayat (2) dan ayat (3)", berlakuSejak: "2023-06-12" }, { pasal: "Pasal 8 ayat (1) huruf a UU PPSP", berlakuSejak: "2000-08-02" }],
+      anggaranDetik: 70,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 86, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-293",
+      topik: "A2.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Untuk Tahun Pajak 2025, penghasilan tidak kena pajak setahun bagi orang pribadi berstatus tidak kawin tanpa tanggungan adalah Rp54.000.000,00. Menurut Pasal 20 PER-3/PJ/2026, orang pribadi berstatus tidak kawin tanpa tanggungan yang tetap wajib menyampaikan SPT Tahunan PPh adalah ...",
+      kataKualifikasi: ["tetap wajib"],
+      opsi: { A: "Karyawan dengan satu pemberi kerja dan penghasilan neto setahun Rp48.000.000,00", B: "Karyawan dengan dua pemberi kerja dan total penghasilan neto setahun Rp50.000.000,00", C: "Pengusaha toko dengan penghasilan neto dari usahanya setahun Rp52.000.000,00", D: "Karyawan dengan satu pemberi kerja dan penghasilan neto setahun tepat Rp54.000.000,00" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 20 ayat (3) PER-3/PJ/2026 mengecualikan dua kelompok orang pribadi dari kewajiban menyampaikan SPT Tahunan PPh. Angka 1: orang pribadi yang melakukan kegiatan usaha atau pekerjaan bebas dengan penghasilan tidak melebihi PTKP. Angka 2: orang pribadi yang tidak melakukan kegiatan usaha atau pekerjaan bebas, menerima penghasilan dari 1 (satu) pemberi kerja, dan penghasilan netonya setahun tidak melebihi PTKP. Dengan PTKP Rp54.000.000,00, karyawan dengan dua pemberi kerja tidak memenuhi syarat satu pemberi kerja pada angka 2, walaupun netonya Rp50.000.000,00. Ia tetap wajib menyampaikan SPT Tahunan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Satu pemberi kerja dan neto Rp48.000.000,00 tidak melebihi PTKP Rp54.000.000,00, sehingga masuk pengecualian angka 2.",
+          C: "Pengusaha dengan penghasilan Rp52.000.000,00, tidak melebihi PTKP, masuk pengecualian angka 1 untuk orang pribadi yang melakukan kegiatan usaha.",
+          D: "Batasnya \"tidak melebihi\" PTKP. Neto tepat Rp54.000.000,00 sama dengan PTKP, jadi tetap dikecualikan."
+        },
+        jebakan: "Peserta hanya membandingkan penghasilan dengan PTKP dan lupa syarat 1 (satu) pemberi kerja untuk orang pribadi yang tidak menjalankan usaha."
+      },
+      dasarHukum: [{ pasal: "PER-3/PJ/2026 Pasal 20 ayat (3)", berlakuSejak: "2026-03-16" }, { pasal: "Pasal 7 ayat (1) UU PPh; PMK 101/PMK.010/2016", berlakuSejak: "2016-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 91, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-294",
+      topik: "A2.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Pernyataan yang tepat mengenai pencegahan dan penyanderaan dalam penagihan pajak adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "Pencegahan berlaku paling lama 12 bulan tanpa perpanjangan; gugatan atas keputusan pencegahan maupun pelaksanaan penyanderaan diajukan ke Pengadilan Tata Usaha Negara.", B: "Keduanya mensyaratkan utang minimal Rp50 juta; gugatan atas pencegahan maupun penyanderaan sama-sama diajukan ke Pengadilan Pajak.", C: "Keduanya mensyaratkan utang minimal Rp100 juta dan iktikad baik diragukan; gugatan pencegahan ke Pengadilan Pajak, gugatan penyanderaan ke Pengadilan Negeri.", D: "Pencegahan dilaksanakan oleh Jurusita Pajak tanpa keputusan Menteri; gugatan atas pencegahan ke Pengadilan Negeri dan atas penyanderaan ke Pengadilan Pajak." },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", D: "salah-baca" },
+      pembahasan: {
+        inti: "Pencegahan dan penyanderaan sama-sama hanya dapat dilakukan terhadap Penanggung Pajak yang mempunyai utang pajak paling sedikit Rp100.000.000,00 dan diragukan iktikad baiknya (Pasal 55 ayat (1) dan Pasal 64 ayat (1) PMK 61/2023; Pasal 3 ayat (1) PP 137/2000). Pencegahan ditetapkan dengan keputusan Menteri, paling lama 6 bulan, dan dapat diperpanjang (Pasal 56 dan Pasal 60 PMK 61/2023). Jalur gugatannya berbeda: gugatan atas keputusan pencegahan diajukan ke badan peradilan pajak (Pasal 23 ayat (2) huruf b UU KUP), sedangkan gugatan atas pelaksanaan penyanderaan hanya ke Pengadilan Negeri (Pasal 15 ayat (1) PP 137/2000; Pasal 76 ayat (1) PMK 61/2023).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pencegahan paling lama 6 bulan dan dapat diperpanjang, bukan 12 bulan tanpa perpanjangan. Gugatannya juga tidak ke Pengadilan Tata Usaha Negara.",
+          B: "Batas utangnya Rp100.000.000,00, bukan Rp50 juta. Gugatan atas penyanderaan diajukan ke Pengadilan Negeri, bukan Pengadilan Pajak.",
+          D: "Pencegahan ditetapkan dengan keputusan Menteri, bukan dilaksanakan Jurusita tanpa keputusan. Arah gugatannya pun terbalik."
+        },
+        jebakan: "Arah gugatan mudah tertukar: keputusan pencegahan digugat ke Pengadilan Pajak, sedangkan pelaksanaan penyanderaan ke Pengadilan Negeri."
+      },
+      dasarHukum: [{ pasal: "UU KUP Pasal 23 ayat (2) huruf b s.t.d.t.d. UU 6/2023", berlakuSejak: "2008-01-01" }, { pasal: "PP 137/2000 Pasal 3 ayat (1) dan Pasal 15 ayat (1)", berlakuSejak: "2001-01-01" }, { pasal: "PMK 61/2023 Pasal 55 ayat (1), Pasal 56 ayat (2) dan ayat (4), Pasal 60, Pasal 64 ayat (1), dan Pasal 76 ayat (1)", berlakuSejak: "2023-06-12" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 3, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-295",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 3,
+      stem: "Atas PT Ortax Distributor terdapat tiga temuan yang ditetapkan pada 2026: (1) hasil pemeriksaan atas SPT Tahunan PPh Badan 2024 yang disampaikan tepat waktu menunjukkan kurang bayar; (2) SPT Tahunan PPh Badan 2023 tidak disampaikan dan tetap tidak disampaikan setelah Surat Teguran, lalu diterbitkan SKPKB; (3) setelah SKPKB PPh Badan 2022 terbit, ditemukan data baru yang menambah pajak terutang. Pasangan sanksi yang tepat untuk temuan (1), (2), dan (3) adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "(1) bunga (acuan + 15%)/12; (2) bunga (acuan + 20%)/12; (3) kenaikan 100%.", B: "(1) bunga (acuan + 20%)/12; (2) bunga (acuan + 15%)/12; (3) bunga (acuan + 15%)/12.", C: "(1) bunga (acuan + 15%)/12; (2) kenaikan 75%; (3) kenaikan 100%.", D: "(1) kenaikan 75%; (2) bunga (acuan + 20%)/12; (3) kenaikan 50%." },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "angka-usang", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Temuan (1) adalah SKPKB karena pajak kurang dibayar (Pasal 13 ayat (1) huruf a UU KUP). Sanksinya bunga dengan tarif bulanan dari suku bunga acuan ditambah 15% dibagi 12 (Pasal 13 ayat (2) dan ayat (2b)). Temuan (2) adalah SKPKB karena SPT tidak disampaikan setelah ditegur (Pasal 13 ayat (1) huruf b). Untuk PPh yang tidak atau kurang dibayar, sanksinya sejak UU 7/2021 berupa bunga, bukan lagi kenaikan, dengan tarif acuan ditambah 20% dibagi 12 (Pasal 13 ayat (3) huruf a dan ayat (3c)). Temuan (3) adalah SKPKBT karena data baru, dengan kenaikan 100% dari kekurangan pajak (Pasal 15 ayat (2)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Tarif (1) dan (2) tertukar: acuan + 15% untuk huruf a, acuan + 20% untuk huruf b. SKPKBT juga dikenai kenaikan 100%, bukan bunga.",
+          C: "Kenaikan 75% atas PPh yang tidak dibayar pada SKPKB huruf b adalah aturan sebelum UU 7/2021. Kini PPh Badan yang tidak dibayar dikenai bunga acuan + 20%; kenaikan 75% hanya untuk PPN dan PPnBM serta PPh yang dipotong atau dipungut tetapi tidak disetor.",
+          D: "Temuan (1) dikenai bunga, bukan kenaikan 75%, dan SKPKBT dikenai kenaikan 100%, bukan 50%."
+        },
+        jebakan: "Banyak peserta masih memakai kenaikan 75% untuk SPT yang tidak disampaikan, padahal untuk PPh yang tidak dibayar kini bunga acuan + 20% dibagi 12."
+      },
+      dasarHukum: [{ pasal: "UU KUP Pasal 13 ayat (1) huruf a, ayat (2), dan ayat (2b)", berlakuSejak: "2020-11-02" }, { pasal: "UU KUP Pasal 13 ayat (1) huruf b, ayat (3) huruf a, ayat (3b), dan ayat (3c) s.t.d.t.d. UU 7/2021", berlakuSejak: "2021-10-29" }, { pasal: "UU KUP Pasal 15 ayat (2)", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 12, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "A2-296",
+      topik: "A2.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Pasangan peristiwa dan sanksi administratif yang tepat adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "SKPKB tidak dilunasi pada saat jatuh tempo — denda 2% per bulan.", B: "Terlambat menyampaikan SPT Masa PPh Pasal 21 — denda Rp500.000,00.", C: "Terlambat menyetor angsuran PPh Pasal 25 — bunga Ps. 9 ayat (2a).", D: "PKP terlambat membuat faktur pajak — kenaikan 75% dari PPN." },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Angsuran PPh Pasal 25 adalah pajak untuk suatu Masa Pajak yang jatuh temponya ditetapkan menurut Pasal 9 ayat (1) UU KUP. Bila dibayar setelah jatuh tempo, Pasal 9 ayat (2a) mengenakan sanksi bunga per bulan sejak jatuh tempo sampai tanggal bayar, paling lama 24 bulan, dengan tarif acuan ditambah 5% dibagi 12 (ayat (2c)). Pasangan lain salah jenis atau besaran sanksinya. SKPKB yang terlambat dilunasi dikenai bunga Pasal 19 ayat (1). Denda keterlambatan SPT Masa PPh Pasal 21 adalah Rp100.000,00 (Pasal 7 ayat (1)). Faktur pajak yang terlambat dibuat dikenai denda 1% dari DPP (Pasal 14 ayat (4)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "SKPKB yang tidak dilunasi saat jatuh tempo dikenai bunga per bulan menurut Pasal 19 ayat (1) UU KUP, bukan denda 2% per bulan.",
+          B: "Denda Rp500.000,00 berlaku untuk SPT Masa PPN. Untuk SPT Masa lainnya, termasuk PPh Pasal 21, dendanya Rp100.000,00.",
+          D: "PKP yang terlambat membuat faktur pajak dikenai denda 1% dari Dasar Pengenaan Pajak (Pasal 14 ayat (4) UU KUP), bukan kenaikan 75%."
+        },
+        jebakan: "Denda SPT Masa Rp500.000,00 khusus SPT Masa PPN; peserta sering memakainya juga untuk SPT Masa PPh Pasal 21."
+      },
+      dasarHukum: [{ pasal: "UU KUP Pasal 9 ayat (2a) dan ayat (2c) s.t.d.t.d. UU 6/2023", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 7 ayat (1) UU KUP", berlakuSejak: "2008-01-01" }, { pasal: "Pasal 14 ayat (4) UU KUP", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 19 ayat (1) UU KUP", berlakuSejak: "2020-11-02" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 36, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
     }
   ],
   kartu: [

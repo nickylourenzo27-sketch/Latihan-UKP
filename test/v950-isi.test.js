@@ -1,7 +1,7 @@
 /* Uji v9.5.0 (isi): cakupan materi dari salinan PDF yang lebih bersih, peta soal ke butir materi resmi, dan soal baru
    (soal pengganti untuk soal yang sudah dipakai dan soal untuk butir yang tipis). Jalankan: node --test test/ */
 'use strict';
-const BATAS_TIPIS = 0; const BATAS_KOSONG = 0; const JUMLAH_BARU = 1137; // dihitung saat rilis: butir Tingkat B dengan kurang dari 4 soal, butir tanpa soal, dan soal baru (field sejak)
+const BATAS_TIPIS = 0; const BATAS_KOSONG = 0; const JUMLAH_BARU = 1297; // dihitung saat rilis: butir Tingkat B dengan kurang dari 4 soal, butir tanpa soal, dan soal baru (field sejak)
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -77,10 +77,12 @@ describe('v9.5.0: peta soal ke butir materi resmi', () => {
 });
 
 describe('v9.5.0: soal baru', () => {
-  const baru = [...SOAL.values()].filter(s => s.sejak);
+  const semuaBaru = [...SOAL.values()].filter(s => s.sejak);
+  // v9.5.5: soal try out yang baru masuk (sumber.set) juga punya field sejak, tetapi bukan tulisan sendiri; aturannya ada di blok v9.5.5 di bawah
+  const baru = semuaBaru.filter(s => !(s.sumber && s.sumber.set));
   const pengganti = baru.filter(s => s.kembaranDari);
   it('jumlah soal baru paling sedikit JUMLAH_BARU; bertanda hanya bila soal sumbernya juga bertanda', () => {
-    assert.ok(baru.length >= JUMLAH_BARU, 'soal baru: ' + baru.length);
+    assert.ok(semuaBaru.length >= JUMLAH_BARU, 'soal baru: ' + semuaBaru.length);
     // sejak v9.5.4: soal pengganti boleh bertanda ◐ hanya bila soal sumbernya juga bertanda (klaim yang sama belum bisa dipastikan dari naskah), dan wajib punya peringatan
     for (const s of baru) { assert.match(s.sejak, /^\d+\.\d+\.\d+$/, s.id); assert.ok(!s.sumber, s.id);
       if (s.verifikasi === '✅') { assert.ok(!s.peringatan, s.id); continue; }
@@ -100,7 +102,36 @@ describe('v9.5.0: soal baru', () => {
     for (const h of ['A', 'B', 'C', 'D']) assert.ok(n[h] >= baru.length * 0.17 && n[h] <= baru.length * 0.33, 'kunci ' + h + ': ' + n[h] + ' dari ' + baru.length);
   });
   it('id soal unik dan soal try out tidak punya pengganti yang ikut paket try out', () => {
-    for (const s of baru) assert.ok(!(s.sumber && s.sumber.set), s.id);
-    const paket = [...SOAL.values()].filter(s => s.sumber && s.sumber.set); assert.equal(paket.length, 100);
+    for (const s of baru) assert.ok(!s.sumber, s.id);
+    for (const s of pengganti) assert.ok(!(s.sumber && s.sumber.set), s.id);
+    const paket = [...SOAL.values()].filter(s => s.sumber && s.sumber.set === 'TO-B-2026-11'); assert.equal(paket.length, 100);
+  });
+});
+
+describe('v9.5.5: dua paket Try Out UKP C', () => {
+  // anggota paket: soal dengan sumber.set = paket itu, ditambah soal lama yang juga dipakai paket itu (sumber.juga)
+  const anggota = set => { const out = []; for (const s of SOAL.values()) { const sb = s.sumber; if (!sb) continue; if (sb.set === set) out.push({ s, no: sb.no, juga: false }); for (const j of (sb.juga || [])) if (j.set === set) out.push({ s, no: j.no, juga: true }); } return out.sort((a, b) => a.no - b.no); };
+  const P1 = anggota('TO-C-2026-11-1'), P2 = anggota('TO-C-2026-11-2');
+  it('Paket 1 berisi 100 soal dan Paket 2 berisi 50 soal, bernomor urut tanpa ganda', () => {
+    assert.deepEqual(P1.map(x => x.no), Array.from({ length: 100 }, (_, i) => i + 1));
+    assert.deepEqual(P2.map(x => x.no), Array.from({ length: 50 }, (_, i) => i + 1));
+    assert.equal(new Set(P1.concat(P2).map(x => x.s.id)).size, 150, 'tidak ada soal yang masuk dua kali');
+    for (const x of P1.concat(P2)) if (!x.juga) { assert.equal(x.s.sumber.tingkat, 'C', x.s.id); assert.match(x.s.sumber.judul, /^Try Out UKP C Paket [12] \(/, x.s.id); }
+  });
+  it('empat soal Paket 2 adalah soal Try Out UKP B yang sama, dipakai bersama lewat sumber.juga', () => {
+    const j = P2.filter(x => x.juga); assert.deepEqual(j.map(x => x.s.id + ':' + x.no), ['A3-161:11', 'A3-162:15', 'B6-132:34', 'B6-141:39']);
+    for (const x of j) { assert.equal(x.s.sumber.set, 'TO-B-2026-11', x.s.id); assert.ok(!x.s.sejak, x.s.id + ': soal lama tidak diberi sejak'); }
+    assert.equal(P1.filter(x => x.juga).length, 0);
+  });
+  it('soal try out C yang baru: sejak 9.5.5, bertingkat C, bukan soal pengganti; yang bertanda punya peringatan', () => {
+    const baruC = P1.concat(P2).filter(x => !x.juga).map(x => x.s); assert.equal(baruC.length, 146);
+    for (const s of baruC) { assert.equal(s.sejak, '9.5.5', s.id); assert.ok(s.tingkat.includes('C'), s.id); assert.ok(!s.kembaranDari, s.id);
+      assert.ok(['A', 'B', 'C', 'D'].includes(s.kunci) && Object.keys(s.opsi).join('') === 'ABCD', s.id);
+      if (s.verifikasi === '✅') assert.ok(!s.peringatan, s.id); else { assert.equal(s.verifikasi, '◐', s.id); assert.ok(typeof s.peringatan === 'string' && s.peringatan.length >= 60, s.id + ': soal bertanda wajib punya peringatan'); }
+      const sendiri = JSON.stringify([s.pembahasan, s.peringatan || '', s.dasarHukum]); assert.ok(!sendiri.includes('—'), s.id + ': tanda pisah panjang di pembahasan'); }
+  });
+  it('berkas data tidak memuat kode dari tanda air berkas sumber', () => {
+    for (const f of fs.readdirSync(DATA).filter(f => /\.js$/.test(f))) { const t = fs.readFileSync(path.join(DATA, f), 'utf8');
+      for (const re of [/TRY-?\s?2026-?\s?0/i, /PST-?\s?0\d{3,}/i]) assert.ok(!re.test(t), f + ' memuat ' + re); }
   });
 });

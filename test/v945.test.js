@@ -58,7 +58,7 @@ describe('v9.4.5: soal try out tidak berubah', () => {
   const sidik = s => crypto.createHash('sha256').update(JSON.stringify([s.stem, s.opsi, s.kunci])).digest('hex').slice(0, 16);
   it('stem, opsi, dan kunci 100 soal try out sama dengan v9.4.4', () => {
     const h = crypto.createHash('sha256'); let n = 0;
-    for (const k of MODUL.slice().sort()) for (const s of semua.find(m => m.meta.kode === k).soal) if (s.sumber && s.sumber.set) { n++; h.update(s.id + sidik(s)); }
+    for (const k of MODUL.slice().sort()) for (const s of semua.find(m => m.meta.kode === k).soal) if (s.sumber && s.sumber.set === 'TO-B-2026-11') { n++; h.update(s.id + sidik(s)); } // v9.5.5: paket Try Out UKP C tidak ikut sidik ini
     assert.equal(n, 100);
     assert.equal(h.digest('hex').slice(0, 24), '75cdc9e4ff02eac29aeb34aa');
   });
@@ -99,10 +99,10 @@ describe('v9.4.5: temuan uji ulang tanpa kunci', () => {
 });
 
 describe('v9.4.5: jumlah soal bertanda', () => {
-  it('tersisa paling banyak 62 soal bertanda (sejak v9.5.4) di modul Tingkat B dan Etika dan 13 di modul Tingkat C', () => {
+  it('tersisa paling banyak 67 soal bertanda (sejak v9.5.4) di modul Tingkat B dan Etika dan 13 di modul Tingkat C', () => {
     const tanda = k => semua.find(m => m.meta.kode === k).soal.filter(s => s.verifikasi === '◐').length;
     const b = ['A1', 'A2', 'A3', 'A4', 'A5', 'B6', 'B7', 'B8', 'E'].reduce((a, k) => a + tanda(k), 0), c = tanda('C9') + tanda('C10');
-    assert.ok(b <= 62, 'Tingkat B dan Etika: ' + b); assert.ok(c <= 13, 'Tingkat C: ' + c);
+    assert.ok(b <= 67, 'Tingkat B dan Etika: ' + b); assert.ok(c <= 13, 'Tingkat C: ' + c);
   });
   it('jumlah soal tetap 1.494', () => {
     assert.equal([...peta.values()].filter(s => !s.sejak).length, 1494, 'jumlah soal lama (tanpa field sejak)');

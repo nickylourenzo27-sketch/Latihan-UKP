@@ -972,6 +972,8 @@ label.btn:focus-within, label.btn:has(input:focus-visible) { outline: 2px solid 
 .soal-kop .soal-id > span:not(.topik) { flex: none; white-space: nowrap; overflow-wrap: normal; }
 .soal-kop .soal-id > .topik { min-width: 0; }
 @media (max-width: 599px) { .soal-kop .topik { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%; } }
+/* v9.5.5: chip sumber paket (mis. "Try Out UKP C Paket 1 no 37") di HP turun ke baris sendiri dan terbaca utuh, tidak dipotong elipsis */
+@media (max-width: 599px) { .soal-kop .soal-id { flex-wrap: wrap; } .soal-kop .topik.sumber-set { display: block; flex-basis: 100%; white-space: normal; overflow: visible; text-overflow: clip; } }
 /* kesulitan: 3 batang 4 × 10 px; batang terisi = <i data-on> (aria-label di wadah) */
 .kesulitan { display: inline-flex; align-items: flex-end; gap: 2px; flex: none; }
 .kesulitan > i { display: block; width: 4px; height: 10px; border-radius: 1px; background: var(--line); }

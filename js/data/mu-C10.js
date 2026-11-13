@@ -4552,6 +4552,376 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "Pasal 24 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 6 ayat (2) UU PPh (kompensasi kerugian)", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 150, verifikasi: "✅"
+    },
+    {
+      id: "C10-154",
+      topik: "C10.1",
+      tingkat: ["C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Suatu P3B memberikan hak kepada Indonesia untuk mengenakan pajak atas jenis penghasilan tertentu yang diterima penduduk negara mitra, sedangkan UU PPh tidak menjadikan jenis penghasilan tersebut sebagai objek pajak. Atas penghasilan tersebut ...",
+      kataKualifikasi: [],
+      opsi: { A: "terutang pajak dengan tarif maksimum yang ditetapkan P3B karena P3B lebih tinggi dari UU PPh", B: "terutang pajak karena P3B diutamakan atas UU PPh jika terdapat perbedaan", C: "terutang pajak apabila Wajib Pajak luar negeri menyerahkan SKD", D: "tidak terutang pajak karena P3B hanya membagi hak pemajakan dan tidak menciptakan objek pajak baru di luar UU PPh" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-baca" },
+      pembahasan: {
+        inti: "PMK 112/2025 Pasal 2 ayat (1) menegaskan bahwa pengenaan PPh atas Wajib Pajak luar negeri yang memperoleh penghasilan dari Indonesia dilaksanakan menurut UU PPh. P3B hanya dapat dipakai dalam pelaksanaan pengenaan itu (ayat (2)). Manfaat P3B yang disebut ayat (6) berupa tarif pemotongan yang lebih rendah, pemajakan eksklusif di negara domisili, pembebasan dari PPh di Indonesia, atau jangka waktu penentuan BUT yang berbeda dari UU PPh. Tidak satu pun manfaat itu menambah objek pajak. Jadi bila UU PPh tidak menjadikan penghasilan itu objek pajak, hak pemajakan dalam P3B tidak dapat dipakai untuk memungut pajak, dan penghasilan itu tidak terutang PPh di Indonesia.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tarif dalam P3B adalah batas atas pemajakan negara sumber, bukan dasar untuk memungut pajak atas penghasilan yang bukan objek menurut UU PPh.",
+          B: "P3B diutamakan hanya untuk membatasi atau membebaskan pajak yang timbul menurut UU PPh; P3B tidak menciptakan utang pajak baru.",
+          C: "SKD atau Formulir DGT hanya bukti bahwa Wajib Pajak luar negeri adalah penduduk negara mitra, yang diperlukan untuk memperoleh manfaat P3B (PMK 112/2025 Pasal 2 ayat (3) huruf b); penyerahannya tidak membuat penghasilan menjadi objek pajak."
+        },
+        jebakan: "Hak pemajakan dalam P3B sering dikira dasar pemungutan; padahal P3B hanya membagi dan membatasi, sedangkan dasar pengenaan tetap UU PPh."
+      },
+      dasarHukum: [{ pasal: "PMK 112/2025 Pasal 2 ayat (1), ayat (2), dan ayat (6)", berlakuSejak: "2025-12-31" }, { pasal: "UU PPh Pasal 32A s.t.d.t.d. UU 7/2021", berlakuSejak: "2021-10-29" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-1", no: 79, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-155",
+      topik: "C10.8",
+      tingkat: ["C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Kelompok informasi berikut yang seluruhnya termasuk cakupan pertukaran informasi secara otomatis (AEOI) Indonesia dengan yurisdiksi mitra adalah ...",
+      kataKualifikasi: ["seluruhnya"],
+      opsi: { A: "rekening keuangan, aset kripto relevan, Dokumen Lokal, dan SPT Tahunan PPh Badan", B: "aset kripto relevan, Dokumen Induk, laporan per negara (CbCR), dan bukti potong yang diminta", C: "rekening keuangan, aset kripto relevan, laporan per negara (CbCR), dan GloBE Information Return", D: "rekening keuangan, laporan keuangan audit, faktur pajak, dan GloBE Information Return" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Empat kelompok informasi yang dipertukarkan secara otomatis punya dasar masing-masing. Rekening keuangan (CRS) dan aset kripto relevan (CARF) dilaporkan lembaga keuangan dan PJAK pelapor secara otomatis untuk AEOI (PMK 108/2025 Pasal 3 ayat (1)). Laporan per negara (CbCR) dipertukarkan DJP secara otomatis dengan yurisdiksi yang punya qualifying competent authority agreement (PMK 172/2023 Pasal 26 ayat (1)). GloBE Information Return dipertukarkan secara otomatis menurut PER-6/PJ/2026 Pasal 31. Dokumen Induk, Dokumen Lokal, SPT Tahunan, laporan keuangan audit, faktur pajak, dan bukti potong yang diminta tidak termasuk daftar itu; data seperti ini diperoleh lewat permintaan. Hanya opsi C yang keempat unsurnya termasuk AEOI.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Dokumen Lokal dan SPT Tahunan PPh Badan tidak termasuk informasi yang dipertukarkan secara otomatis; Dokumen Lokal diserahkan kepada DJP bila diminta.",
+          B: "Dokumen Induk bukan objek AEOI, dan \"bukti potong yang diminta\" adalah pertukaran berdasarkan permintaan, bukan otomatis.",
+          D: "Laporan keuangan audit dan faktur pajak tidak termasuk kelompok informasi AEOI."
+        },
+        jebakan: "Kata \"seluruhnya\" berarti satu unsur yang bukan AEOI sudah menggugurkan opsi; Dokumen Induk dan Dokumen Lokal sering tertukar dengan laporan per negara."
+      },
+      dasarHukum: [{ pasal: "PMK 108/2025 Pasal 2 ayat (3) huruf a dan Pasal 3 ayat (1) (AEOI-CRS dan AEOI-CARF)", berlakuSejak: "2026-01-01" }, { pasal: "PMK 172/2023 Pasal 26 ayat (1) (pertukaran laporan per negara secara otomatis)", berlakuSejak: "2023-12-29" }, { pasal: "PER-6/PJ/2026 Pasal 31 (pertukaran GIR secara otomatis)", berlakuSejak: "2026-05-04" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 1, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-156",
+      topik: "C10.1",
+      tingkat: ["C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Dalam P3B, yang dimaksud hak pemajakan terbatas bagi negara sumber adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Penghasilan dari harta tak gerak dipajaki di negara letak harta tanpa batasan tarif dalam P3B", B: "Laba usaha residen negara mitra tanpa BUT hanya dipajaki di negara domisili", C: "Dividen, bunga, dan royalti boleh dipajaki negara sumber dengan tarif paling tinggi sesuai P3B", D: "Gaji pegawai yang memenuhi syarat pasal pekerjaan P3B hanya dipajaki di negara domisili" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "P3B membagi hak pemajakan atas tiap jenis penghasilan ke dalam tiga pola. Hak pemajakan penuh: negara sumber boleh memajaki tanpa batas tarif dari P3B. Hak pemajakan terbatas: negara sumber tetap boleh memajaki, tetapi tarifnya dibatasi P3B. Pelepasan hak: negara sumber tidak memajaki sama sekali, sehingga pemajakan eksklusif ada di negara domisili. PMK 112/2025 Pasal 2 ayat (6) membedakan manfaat berupa tarif pemotongan yang lebih rendah dari UU PPh (huruf a) dari pemajakan eksklusif di negara domisili (huruf b). Dividen, bunga, dan royalti termasuk pola tarif yang dibatasi, jadi itulah hak pemajakan terbatas.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Penghasilan dari harta tak gerak boleh dipajaki negara letak harta tanpa batas tarif. Itu contoh hak pemajakan penuh, bukan terbatas.",
+          B: "Laba usaha tanpa BUT hanya dipajaki negara domisili. Negara sumber melepaskan haknya, jadi ini pelepasan hak pemajakan.",
+          D: "Gaji yang memenuhi syarat pasal pekerjaan hanya dipajaki negara domisili. Ini juga pelepasan hak oleh negara sumber, bukan pembatasan tarif."
+        },
+        jebakan: "Opsi yang menyebut \"hanya dipajaki di negara domisili\" terdengar seperti pembatasan, padahal itu pelepasan hak, bukan hak terbatas."
+      },
+      dasarHukum: [{ pasal: "PMK 112/2025 Pasal 2 ayat (5) dan ayat (6)", berlakuSejak: "2025-12-31" }, { pasal: "Pasal 26 ayat (1) UU PPh s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 4, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-157",
+      topik: "C10.8",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "DJP menyiapkan empat usulan permintaan informasi kepada otoritas pajak negara mitra. Usulan yang memenuhi syarat permintaan informasi adalah ...",
+      kataKualifikasi: ["memenuhi syarat"],
+      opsi: { A: "formula produksi rahasia milik Ortax Rhein GmbH yang tersimpan di negara mitra, untuk menilai kewajaran royalti yang dibayar PT Ortax Kimia kepada perusahaan itu", B: "data rekening Tuan Andi di negara mitra, yang tidak sedang diawasi atau diperiksa, untuk berjaga-jaga bila kelak diperlukan", C: "daftar seluruh WNI pemilik rekening di bank-bank negara mitra beserta saldonya untuk memetakan potensi pajak nasional", D: "data rekening PT Ortax Niaga di negara mitra; PT sedang diperiksa, diduga tidak melaporkan penghasilan, dan data domestik tidak memadai" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-baca" },
+      pembahasan: {
+        inti: "Permintaan informasi kepada negara mitra diatur PMK 39/PMK.03/2017 Pasal 3. Wajib pajaknya harus diduga menghindar, mengelak, atau belum memenuhi kewajiban (ayat (2)), dan sedang diawasi, diperiksa, ditagih, disidik, atau dalam upaya hukum (ayat (3)). Informasinya harus memenuhi kriteria ayat (4): sumber dalam negeri sudah diupayakan dan tidak tersedia, tidak spekulatif, didasari kecurigaan yang memadai, dan tidak membuka rahasia perdagangan, usaha, industri, atau keahlian. PT Ortax Niaga sedang diperiksa, diduga tidak melaporkan penghasilan, dan data domestiknya tidak memadai. Semua syarat itu terpenuhi.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Formula produksi rahasia adalah rahasia perdagangan atau industri. Pasal 3 ayat (4) huruf e PMK 39/PMK.03/2017 melarang informasi yang membuka rahasia seperti itu.",
+          B: "Tuan Andi tidak sedang diawasi atau diperiksa, dan permintaan \"berjaga-jaga\" bersifat spekulatif. Syarat ayat (3) dan ayat (4) huruf b dan c tidak terpenuhi.",
+          C: "Daftar seluruh WNI pemilik rekening tidak menyasar wajib pajak tertentu yang diduga bermasalah. Permintaan itu spekulatif dan tidak punya hubungan jelas dengan dasar permintaan."
+        },
+        jebakan: "Data rekening terdengar sah untuk diminta, padahal syaratnya ada pada wajib pajak tertentu yang sedang ditangani dan dugaan yang memadai."
+      },
+      dasarHukum: [{ pasal: "PMK 39/PMK.03/2017 Pasal 3 ayat (2) sampai ayat (4)", berlakuSejak: "2017-03-06" }, { pasal: "PER-10/PJ/2025 Pasal 4", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 5, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-158",
+      topik: "C10.5",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Ortax Nusantara Group (tahun buku sama dengan tahun kalender) adalah WPDN yang menjadi entitas induk sebuah grup usaha multinasional. Peredaran bruto konsolidasi grup pada tahun pajak 2025 sebesar Rp12 triliun dan pada tahun pajak 2026 sebesar Rp10,5 triliun. Kewajiban laporan per negara (CbCR) untuk tahun pajak 2026 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "wajib, dan laporan harus tersedia paling lama 30 April 2027", B: "wajib, dan laporan disampaikan paling lama 31 Desember 2027", C: "wajib, dan laporan disampaikan paling lama 31 Desember 2026", D: "tidak wajib, karena peredaran bruto konsolidasi tahun pajak 2026 di bawah Rp11 triliun" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "salah-baca" },
+      pembahasan: {
+        inti: "Menurut PMK 172/2023 Pasal 16 ayat (4), entitas induk Wajib Pajak dalam negeri wajib menyelenggarakan laporan per negara bila peredaran bruto konsolidasi grup paling sedikit Rp11 triliun pada tahun pajak sebelum tahun pajak yang dilaporkan. Untuk tahun pajak 2026 yang diuji adalah tahun pajak 2025, yaitu Rp12 triliun. Ambang terlampaui, jadi wajib. Peredaran bruto 2026 baru dipakai untuk tahun pajak 2027. Pasal 23 ayat (4) mewajibkan notifikasi dan laporan per negara disampaikan paling lama 12 bulan setelah akhir tahun pajak, yaitu 31 Desember 2027.",
+        jejakHitung: [
+          ["Tahun uji ambang untuk TP 2026", "TP 2025: Rp12 triliun ≥ Rp11 triliun, wajib"],
+          ["Batas penyampaian", "12 bulan setelah 31 Desember 2026 = 31 Desember 2027"]
+        ],
+        mengapaSalah: {
+          A: "Batas 4 bulan setelah akhir tahun pajak (30 April 2027) berlaku untuk dokumen induk dan dokumen lokal, bukan laporan per negara.",
+          C: "Tanggal itu adalah akhir tahun pajak yang dilaporkan. Laporan per negara baru wajib disampaikan paling lama 12 bulan sesudahnya.",
+          D: "Ambang diuji dengan peredaran bruto tahun pajak sebelumnya (2025), bukan peredaran bruto tahun pajak 2026."
+        },
+        jebakan: "Ambang laporan per negara memakai peredaran bruto konsolidasi tahun pajak sebelumnya, bukan tahun yang dilaporkan."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 16 ayat (4), Pasal 18 ayat (1) dan ayat (2), dan Pasal 23 ayat (4)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 10, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-159",
+      topik: "C10.9",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Ortax Rhein GmbH (Jerman) memiliki 30% saham PT Ortax Manufaktur sejak 2 Januari 2025. Pada 15 Juni 2026 PT Ortax Manufaktur membayar dividen Rp1.000.000.000 kepadanya. Ortax Rhein GmbH menyerahkan Formulir DGT yang sah dan merupakan beneficial owner. Diasumsikan P3B mengatur tarif dividen 10% bagi pemegang saham dengan kepemilikan paling rendah 25% dan 15% untuk lainnya. PPh Pasal 26 yang dipotong adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp150.000.000,00", B: "Rp200.000.000,00", C: "Rp100.000.000,00", D: "Rp0,00" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Pasal 26 ayat (1) UU PPh mengenakan 20% atas dividen kepada Wajib Pajak luar negeri. Bila ada P3B dan Formulir DGT sah, pemotong memakai tarif P3B. P3B di soal memuat dua tarif dividen. Menurut PMK 112/2025 Pasal 20 ayat (2), tarif yang lebih rendah berlaku bila beneficial owner memiliki persentase saham yang disyaratkan dan memegangnya paling singkat 365 hari kalender termasuk hari pembayaran dividen. Kepemilikan 30% memenuhi ambang 25%. Masa kepemilikan 2 Januari 2025 sampai 15 Juni 2026 adalah 530 hari. Jadi tarif 10% berlaku: 10% × Rp1.000.000.000 = Rp100.000.000,00.",
+        jejakHitung: [
+          ["Persentase kepemilikan", "30% ≥ 25%, memenuhi"],
+          ["Masa kepemilikan (2 Januari 2025 s.d. 15 Juni 2026)", "530 hari ≥ 365 hari, memenuhi"],
+          ["PPh Pasal 26", "10% × Rp1.000.000.000 = Rp100.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp150.000.000 memakai tarif 15%. Tarif itu hanya untuk yang tidak memenuhi syarat persentase atau masa kepemilikan, padahal keduanya terpenuhi.",
+          B: "Rp200.000.000 memakai tarif 20% UU PPh dan mengabaikan P3B, padahal Formulir DGT sah sudah diserahkan.",
+          D: "P3B hanya membatasi tarif dividen, tidak membebaskannya. Indonesia sebagai negara sumber tetap memotong PPh Pasal 26."
+        },
+        jebakan: "Selain persentase saham, tarif dividen yang lebih rendah mensyaratkan kepemilikan paling singkat 365 hari termasuk hari pembayaran."
+      },
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) huruf a UU PPh s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 Pasal 18 ayat (3) huruf b dan Pasal 20 ayat (1) sampai ayat (3)", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 17, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-160",
+      topik: "C10.4",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Ortax Investama memiliki 70% saham Ortax Pacific Ltd, badan nonbursa di Negara Q yang seluruh penghasilannya berupa penghasilan pasif. Tahun pajak Ortax Pacific mengikuti tahun kalender, dan menurut ketentuan Negara Q batas penyampaian SPT tahunannya untuk tahun pajak 2025 adalah 30 Juni 2026. Saat diperolehnya deemed dividend oleh PT Ortax Investama untuk tahun pajak 2025 Ortax Pacific adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "31 Juli 2026", B: "31 Desember 2026", C: "30 September 2026", D: "31 Oktober 2026" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        inti: "Pasal 18 ayat (2) UU PPh memberi wewenang kepada Menteri Keuangan menetapkan saat diperolehnya dividen dari badan usaha luar negeri nonbursa yang paling rendah 50% sahamnya dimiliki Wajib Pajak dalam negeri. PT Ortax Investama memiliki 70%, jadi Ortax Pacific dikendalikan langsung. Menurut PMK 107/PMK.03/2017 Pasal 3 ayat (1), deemed dividend dianggap diperoleh pada akhir bulan keempat setelah batas waktu penyampaian SPT Tahunan badan luar negeri itu untuk tahun pajak yang bersangkutan. Batas SPT di Negara Q adalah 30 Juni 2026. Bulan pertama sesudahnya Juli, keempat Oktober. Saat diperolehnya 31 Oktober 2026. Aturan bulan ketujuh setelah tahun pajak berakhir (ayat (2)) hanya dipakai bila tidak ada kewajiban atau batas waktu SPT, dan di sini batasnya ada.",
+        jejakHitung: [
+          ["Batas SPT Tahunan di Negara Q", "30 Juni 2026"],
+          ["Akhir bulan keempat sesudahnya", "Juli (1), Agustus (2), September (3), Oktober (4) = 31 Oktober 2026"]
+        ],
+        mengapaSalah: {
+          A: "31 Juli 2026 adalah akhir bulan ketujuh setelah tahun pajak 2025 berakhir. Aturan itu hanya dipakai bila tidak ada kewajiban atau batas waktu SPT di negara itu.",
+          B: "31 Desember 2026 adalah akhir bulan keenam setelah batas SPT, bukan akhir bulan keempat.",
+          C: "30 September 2026 adalah akhir bulan ketiga setelah batas SPT. Hitungannya kurang satu bulan."
+        },
+        jebakan: "Aturan bulan ketujuh setelah akhir tahun pajak mudah terpakai padahal negara itu punya batas waktu SPT, sehingga yang berlaku aturan bulan keempat."
+      },
+      dasarHukum: [{ pasal: "Pasal 18 ayat (2) UU PPh s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 3 ayat (1) dan ayat (2) PMK 107/PMK.03/2017 s.t.d.d. PMK 93/PMK.03/2019", berlakuSejak: "2019-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 19, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-161",
+      topik: "C10.9",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "Pada 2026 Ortax Mining Services Pty Ltd (Australia), beneficial owner yang menyerahkan Formulir DGT sah dan tidak mempunyai BUT lain di Indonesia, menerima dari PT Ortax Tambang Raya: (1) Rp800.000.000 atas penyerahan pengetahuan dan informasi teknis (know-how) berupa hasil riset dan pengalaman metalurgi pengolahan bijih; (2) Rp500.000.000 atas jasa konsultansi manajemen umum yang diberikan pegawainya selama 45 hari di Indonesia. Kutipan P3B Indonesia–Australia: royalti mencakup imbalan atas 'the supply of scientific, technical, industrial or commercial knowledge or information' dengan tarif maksimum 10%; pemberian jasa membentuk BUT bila lebih dari 120 hari dalam 12 bulan. Analisis yang tepat atas PPh Pasal 26 yang dipotong adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "(1) royalti 15% = Rp120.000.000,00; (2) laba usaha tanpa BUT, tidak dipotong; total Rp120.000.000,00", B: "(1) royalti 10% = Rp80.000.000,00; (2) jasa 20% = Rp100.000.000,00; total Rp180.000.000,00", C: "(1) royalti 10% = Rp80.000.000,00; (2) laba usaha tanpa BUT, tidak dipotong; total Rp80.000.000,00", D: "(1) dan (2) dipotong tarif UU PPh 20%; total Rp260.000.000,00" },
+      kunci: "C",
+      jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 26 ayat (1) UU PPh mengenakan 20% atas royalti dan imbalan jasa kepada Wajib Pajak luar negeri. Dengan Formulir DGT sah, PMK 112/2025 Pasal 2 ayat (5) mewajibkan pemotong memakai ketentuan P3B. (1) Know-how berupa hasil riset dan pengalaman metalurgi adalah pemberian pengetahuan atau informasi teknis. Menurut kutipan P3B di soal itu royalti, dengan tarif paling tinggi 10%: 10% × Rp800.000.000 = Rp80.000.000,00. (2) Konsultansi manajemen umum adalah jasa, bukan penyerahan pengetahuan. Jasa 45 hari tidak melewati 120 hari dalam 12 bulan, jadi tidak ada BUT. Laba usaha tanpa BUT hanya dipajaki di Australia, sehingga tidak dipotong. Total Rp80.000.000,00.",
+        jejakHitung: [
+          ["(1) Royalti know-how, tarif P3B", "10% × Rp800.000.000 = Rp80.000.000"],
+          ["(2) Jasa 45 hari, tanpa BUT", "Rp0"],
+          ["Total PPh Pasal 26", "Rp80.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Tarif royalti 15% tidak sesuai P3B, yang membatasinya paling tinggi 10%. Hasilnya Rp120.000.000.",
+          B: "Jasa konsultansi 45 hari tidak membentuk BUT, jadi Indonesia tidak berhak memotong 20% (Rp100.000.000).",
+          D: "Mengabaikan P3B padahal Formulir DGT sah dan penerima beneficial owner. Tarif 20% atas keduanya menghasilkan Rp260.000.000."
+        },
+        jebakan: "Pembeda royalti dan jasa adalah apakah yang diserahkan berupa pengetahuan atau informasi, bukan sekadar karena dibayar kepada pihak asing."
+      },
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) huruf c dan huruf d UU PPh s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 Pasal 2 ayat (5) dan ayat (6)", berlakuSejak: "2025-12-31" }, { pasal: "P3B Indonesia-Australia Pasal 5, Pasal 7, dan Pasal 12 (sebagaimana dikutip di soal)", berlakuSejak: null }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 20, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-162",
+      topik: "C10.7",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Pada Maret 2026, PT Ortax Farmasi mengajukan APA unilateral untuk periode 2027–2031 dan meminta pemberlakuan mundur (roll back) untuk tahun pajak 2024 dan 2025. Fakta: SKP PPh Badan tahun pajak 2024 telah terbit pada 2025; tahun pajak 2025 belum diperiksa dan belum daluwarsa; tidak ada proses pidana pajak; fakta dan kondisi transaksi afiliasi 2024–2025 tidak berbeda material dengan yang diusulkan. Analisis yang tepat adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "roll back dapat diberlakukan untuk 2024 dan 2025 karena fakta dan kondisi transaksi tidak berbeda material", B: "roll back tidak dapat diberlakukan untuk kedua tahun karena APA unilateral tidak mengenal roll back", C: "roll back hanya dapat diberlakukan untuk tahun pajak 2024 karena tahun pajak 2025 belum diperiksa", D: "roll back hanya dapat diberlakukan untuk tahun pajak 2025 karena SKP PPh Badan 2024 sudah terbit" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
+      pembahasan: {
+        inti: "Pemberlakuan Mundur (roll back) adalah penerapan hasil APA untuk tahun pajak sebelum Periode Kesepakatan Harga Transfer. Menurut Pasal 55 ayat (6) PMK 172/2023, roll back hanya berlaku untuk tahun pajak yang memenuhi empat syarat sekaligus: fakta dan kondisi transaksi afiliasi tidak berbeda material, belum daluwarsa penetapan, belum diterbitkan surat ketetapan pajak PPh badan, dan tidak sedang dalam proses pidana pajak. Tahun pajak 2025 memenuhi keempatnya. Tahun pajak 2024 gagal pada syarat ketiga karena SKP PPh Badan 2024 sudah terbit. Jadi roll back hanya dapat diberlakukan untuk 2025.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Kesamaan fakta dan kondisi hanya satu dari empat syarat. Tahun 2024 tetap gugur karena SKP PPh Badan-nya sudah terbit.",
+          B: "Pasal 55 ayat (4) PMK 172/2023 membolehkan APA, termasuk APA unilateral, mencakup Pemberlakuan Mundur bila diminta dalam permohonan.",
+          C: "Terbalik. Belum diperiksa bukan penghalang roll back; yang menghalangi adalah SKP yang sudah terbit, yaitu untuk tahun 2024."
+        },
+        jebakan: "Syarat roll back bersifat kumulatif per tahun pajak, dan SKP PPh badan yang sudah terbit langsung menggugurkan tahun itu."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 55 ayat (4) dan ayat (6)", berlakuSejak: "2023-12-29" }, { pasal: "UU PPh Pasal 18 ayat (3a) s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 21, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-163",
+      topik: "C10.1",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Ms. Mei, residen Singapura yang menyerahkan Formulir DGT sah, ditugaskan ke Indonesia selama 90 hari pada 2026. Kontrak kerjanya tetap dengan Ortax XYZ Pte. Ltd (Singapura), tetapi selama penugasan PT Ortax Logistik Indonesia, afiliasi residen Indonesia, memberi perintah kerja, mengawasi hasil kerjanya, serta membayar dan membebankan seluruh gajinya sebagai biaya. Pasal 15 ayat (2) P3B Indonesia–Singapura (2020) membebaskan gaji di negara tempat bekerja bila: kehadiran tidak lebih dari 183 hari dalam 12 bulan, gaji dibayar oleh atau atas nama pemberi kerja yang bukan residen negara tempat bekerja, dan gaji tidak dibebankan pada BUT di negara itu. Analisis yang tepat adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "Indonesia melepaskan hak pemajakan karena pemberi kerja formal menurut kontrak kerjanya tetap Ortax XYZ Pte. Ltd", B: "Indonesia berhak memajaki karena syarat kumulatif tentang pemberi kerja bukan residen Indonesia tidak terpenuhi", C: "Indonesia melepaskan hak pemajakan karena kehadiran tidak lebih dari 183 hari dan Formulir DGT sah", D: "Indonesia berhak memajaki hanya bila Ms. Mei menjadi subjek pajak dalam negeri Indonesia pada 2026" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Ms. Mei berada di Indonesia 90 hari, jadi ia tetap subjek pajak luar negeri dan gajinya atas pekerjaan di Indonesia termasuk imbalan yang dipotong PPh Pasal 26 menurut UU PPh. Indonesia hanya melepaskan hak pemajakan bila semua syarat Pasal 15 ayat (2) P3B yang dikutip di soal terpenuhi, karena syaratnya dihubungkan dengan kata \"dan\". Syarat 183 hari terpenuhi. Syarat kedua tidak terpenuhi: gaji dibayar oleh PT Ortax Logistik Indonesia, residen Indonesia, yang juga memberi perintah, mengawasi, dan membebankan gaji itu sebagai biaya. Karena satu syarat gagal, pembebasan tidak berlaku dan Indonesia berhak memajaki. Formulir DGT hanya membuka akses ke P3B, tidak menggantikan syarat pasal pekerjaan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Kontrak formal dengan Ortax XYZ Pte. Ltd tidak menolong, karena menurut data soal gaji dibayar dan dibebankan oleh afiliasi residen Indonesia.",
+          C: "Kehadiran di bawah 183 hari dan Formulir DGT hanya memenuhi sebagian syarat. Syarat pembayar gaji bukan residen Indonesia tetap gagal.",
+          D: "Hak pemajakan Indonesia di sini tidak bergantung pada status subjek pajak dalam negeri. Gaji dari pekerjaan di Indonesia yang tidak memenuhi syarat pembebasan P3B dipajaki sebagai penghasilan Wajib Pajak luar negeri."
+        },
+        jebakan: "Peserta berhenti pada syarat 183 hari, padahal syarat pasal pekerjaan P3B kumulatif dan pembayar gaji di sini residen Indonesia."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 2 ayat (4) dan Pasal 26 ayat (1) huruf d s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "PMK 112/2025 Pasal 2 ayat (3) sampai ayat (5)", berlakuSejak: "2025-12-31" }, { pasal: "P3B Indonesia-Singapura (2020) Pasal 15 ayat (2) (syaratnya dikutip di soal)", berlakuSejak: null }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 22, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-164",
+      topik: "C10.4",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Data PT Ortax Global Investama tahun pajak 2026: (1) menerima dividen dari Ortax Rhein GmbH (Jerman; kepemilikan 15%) yang telah dipotong pajak di Jerman dan tidak diinvestasikan di Indonesia; (2) memiliki langsung 70% saham Ortax Holdings Ltd, badan usaha luar negeri yang sahamnya tidak diperdagangkan di bursa, yang membukukan laba setelah pajak dari penghasilan bunga dan royalti tetapi tidak membagikan dividen; (3) memiliki cabang di Vietnam yang menderita rugi usaha. Pernyataan yang tepat adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "Rugi usaha cabang Vietnam dapat dikurangkan dari penghasilan dalam negeri tahun pajak 2026", B: "Atas penyertaan pada Ortax Holdings Ltd, perseroan dapat ditetapkan memperoleh deemed dividend walaupun belum dibagikan", C: "Dividen dari Ortax Rhein GmbH dikecualikan dari objek PPh tanpa syarat investasi karena berasal dari luar negeri", D: "Pajak yang dipotong di Jerman dapat dikreditkan seluruhnya walaupun jumlahnya melebihi PPh Indonesia yang terutang atas dividen tersebut" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "lupa-pasal", D: "lupa-pasal" },
+      pembahasan: {
+        inti: "Pasal 18 ayat (2) UU PPh memberi Menteri Keuangan wewenang menetapkan saat diperolehnya dividen oleh Wajib Pajak dalam negeri atas penyertaan pada badan usaha luar negeri yang sahamnya tidak diperdagangkan di bursa, bila penyertaannya paling rendah 50%. PT Ortax Global Investama memiliki langsung 70% saham Ortax Holdings Ltd yang tidak tercatat di bursa, dan labanya berasal dari bunga dan royalti. Karena itu perseroan dapat ditetapkan memperoleh dividen (deemed dividend) walaupun laba itu belum dibagikan. Ketentuan pelaksanaannya ada di PMK 107/PMK.03/2017 s.t.d.d. PMK 93/PMK.03/2019. Tiga pernyataan lain bertentangan dengan UU PPh.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Kerugian yang diderita di luar negeri tidak dapat dikompensasikan dengan penghasilan dalam negeri, menurut Penjelasan Pasal 4 ayat (1) UU PPh.",
+          C: "Dividen luar negeri dikecualikan dari objek PPh hanya bila diinvestasikan atau digunakan di Indonesia dalam jangka waktu tertentu dan memenuhi syarat Pasal 4 ayat (3) huruf f angka 2 UU PPh. Soal menyebut dividen itu tidak diinvestasikan.",
+          D: "Kredit pajak luar negeri dibatasi: tidak boleh melebihi pajak yang terutang menurut UU PPh atas penghasilan itu (Pasal 24 ayat (2))."
+        },
+        jebakan: "Pengecualian dividen luar negeri tidak otomatis; syarat investasi di Indonesia menentukan, sedangkan CFC tetap bisa menimbulkan deemed dividend."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 18 ayat (2) s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "PMK 107/PMK.03/2017 s.t.d.d. PMK 93/PMK.03/2019", berlakuSejak: "2019-01-01" }, { pasal: "UU PPh Pasal 4 ayat (3) huruf f angka 2 dan Pasal 24 ayat (2) s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 43, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-165",
+      topik: "C10.1",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Ortax Licensing Ltd, residen negara yang tidak memiliki P3B dengan Indonesia, mengalihkan hak menerima royalti dari PT Ortax Manufaktur kepada Ortax IP Pte. Ltd (Singapura) yang baru didirikan dua bulan sebelum pembayaran royalti pada 2026. Ortax IP Pte. Ltd hanya memiliki satu direktur, tanpa pegawai, dan tidak memiliki kegiatan lain. Formulir DGT telah disahkan otoritas Singapura. P3B Indonesia–Singapura (2020) Pasal 28 memuat principal purpose test (PPT). Analisis yang tepat atas permintaan tarif royalti P3B adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "Manfaat P3B tetap diberikan karena Formulir DGT telah disahkan oleh otoritas Singapura", B: "Manfaat P3B hanya dapat ditolak bila memperoleh manfaat P3B merupakan satu-satunya tujuan pengaturan", C: "PPT hanya dapat diterapkan bila Ortax IP Pte. Ltd terbukti bukan residen Singapura", D: "Manfaat P3B dapat ditolak karena memperoleh manfaat P3B merupakan salah satu tujuan utama pengaturan" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "salah-klasifikasi" },
+      pembahasan: {
+        inti: "Menurut Pasal 28 ayat (1) PMK 112/2025, uji tujuan utama (PPT) menolak manfaat P3B bila tujuan utama atau salah satu tujuan utama suatu transaksi atau pengaturan adalah memperoleh manfaat P3B. Wajib Pajak luar negeri juga hanya berhak atas manfaat P3B bila tidak menyalahgunakan P3B (Pasal 2 ayat (4) huruf c). Di kasus ini hak royalti dialihkan dari pihak di negara tanpa P3B ke entitas Singapura yang baru dua bulan berdiri, tanpa pegawai dan tanpa kegiatan lain. Waktu dan substansi pengaturan itu menunjukkan bahwa tarif royalti P3B setidaknya menjadi salah satu tujuan utamanya. Karena itu manfaat P3B dapat ditolak walaupun Formulir DGT sudah disahkan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Formulir DGT hanya membuktikan status residen. Syarat tidak menyalahgunakan P3B tetap harus dipenuhi.",
+          B: "Ambangnya bukan satu-satunya tujuan. Cukup bila memperoleh manfaat P3B menjadi salah satu tujuan utama.",
+          C: "PPT justru dipakai terhadap residen negara mitra yang menyalahgunakan P3B. Status residen Singapura tidak menghalanginya."
+        },
+        jebakan: "Formulir DGT yang sah sering dianggap cukup, padahal PPT menilai tujuan pengaturan, dan ambangnya salah satu tujuan utama."
+      },
+      dasarHukum: [{ pasal: "PMK 112/2025 Pasal 2 ayat (4) huruf c dan Pasal 28 ayat (1) sampai ayat (3)", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 44, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
+    },
+    {
+      id: "C10-166",
+      topik: "C10.5",
+      tingkat: ["C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Empat wajib pajak melakukan transaksi dengan pihak afiliasi yang berada di yurisdiksi dengan tarif PPh tidak lebih rendah daripada tarif PPh Indonesia. Berdasarkan data tahun pajak 2025, wajib pajak yang wajib menyelenggarakan dan menyimpan Dokumen Induk dan Dokumen Lokal untuk tahun pajak 2026 adalah wajib pajak dengan ...",
+      kataKualifikasi: ["wajib"],
+      opsi: { A: "peredaran bruto Rp48 miliar, pembelian barang dari afiliasi Rp18 miliar, dan pembayaran jasa kepada afiliasi Rp4,5 miliar", B: "peredaran bruto Rp45 miliar dan pembayaran jasa kepada afiliasi Rp4 miliar", C: "peredaran bruto Rp40 miliar dan pembelian barang dari afiliasi Rp15 miliar", D: "peredaran bruto Rp30 miliar dan pembayaran bunga kepada afiliasi Rp6 miliar" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-baca", C: "salah-baca" },
+      pembahasan: {
+        inti: "Pasal 16 ayat (3) PMK 172/2023 mewajibkan dokumen induk dan dokumen lokal bila, berdasarkan tahun pajak sebelumnya, salah satu kriteria terpenuhi: peredaran bruto lebih dari Rp50 miliar; transaksi afiliasi barang berwujud lebih dari Rp20 miliar; transaksi afiliasi lebih dari Rp5 miliar untuk masing-masing jasa, bunga, pemanfaatan barang tidak berwujud, atau transaksi lainnya; atau pihak afiliasi di yurisdiksi bertarif PPh lebih rendah. Kriteria terakhir tidak berlaku karena tarif afiliasi tidak lebih rendah. Tiap jenis transaksi dibandingkan dengan ambangnya sendiri; nilai beberapa jenis tidak digabung. Hanya wajib pajak D yang melewati satu ambang: bunga Rp6 miliar lebih dari Rp5 miliar.",
+        jejakHitung: [
+          ["A", "Rp48 miliar ≤ Rp50 miliar; barang Rp18 miliar ≤ Rp20 miliar; jasa Rp4,5 miliar ≤ Rp5 miliar: tidak wajib"],
+          ["B", "Rp45 miliar ≤ Rp50 miliar; jasa Rp4 miliar ≤ Rp5 miliar: tidak wajib"],
+          ["C", "Rp40 miliar ≤ Rp50 miliar; barang Rp15 miliar ≤ Rp20 miliar: tidak wajib"],
+          ["D", "bunga Rp6 miliar > Rp5 miliar: wajib, walau peredaran bruto Rp30 miliar"]
+        ],
+        mengapaSalah: {
+          A: "Tiap angka masih di bawah ambangnya. Pembelian barang dan jasa tidak dijumlahkan karena ambang berlaku per jenis transaksi.",
+          B: "Peredaran bruto Rp45 miliar dan jasa Rp4 miliar sama-sama belum melewati Rp50 miliar dan Rp5 miliar.",
+          C: "Peredaran bruto Rp40 miliar dan pembelian barang Rp15 miliar belum melewati Rp50 miliar dan Rp20 miliar."
+        },
+        jebakan: "Peredaran bruto kecil tidak membebaskan kewajiban bila satu jenis transaksi afiliasi melewati ambangnya sendiri."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 16 ayat (2) dan ayat (3)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-2", no: 47, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sejak: "9.5.5"
     }
   ],
   kartu: [

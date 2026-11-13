@@ -180,7 +180,7 @@
   function hash(str) { let h = 0x811c9dc5; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193); } return (h >>> 0).toString(36); }
 
   // ---------- normalisasi data anggota (dari db orang lain atau kode tempel: data tak tepercaya) ----------
-  const KODE_RE = /^(?:[A-E](?:[0-9]{1,2})?|TO-[ABC]-[0-9]{4}-[0-9]{2})$/; // kode kelompok, atau kode paket try out (format 'tryout')
+  const KODE_RE = /^(?:[A-E](?:[0-9]{1,2})?|TO-[ABC]-[0-9]{4}-[0-9]{2}(?:-[0-9]{1,2})?)$/; // kode kelompok, atau kode paket try out (format 'tryout'; v9.5.5 akhiran pilihan -N, mis. TO-C-2026-11-1)
   const TOPIK_RE = /^[A-E][0-9]{0,2}\.[0-9A-Za-z]{1,6}(?:\.[0-9A-Za-z]{1,6})?$/;
   const ID_RE = /^[A-Za-z0-9_:.@+~-]{1,120}$/;
   const SOAL_RE = /^[A-E][0-9]{0,2}-[0-9A-Za-z]{1,12}$/;
