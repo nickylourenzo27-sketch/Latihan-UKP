@@ -2148,7 +2148,7 @@
       page.appendChild(UKP.c.stepper(k, { onSelesai: () => UKP.go('kasus'), onProgres: (sel, n) => { const selesai = sel >= n; fbar.atur(selesai ? 'Semua ' + n + ' langkah selesai' : 'Langkah ' + (sel + 1) + ' dari ' + n + ' · ' + sel + ' selesai', sel / Math.max(1, n) * 100); modeFokus(!selesai); } }));
       return { node: page, unmount: () => modeFokus(false) };
     }
-    page.appendChild(kop({ judul: 'Studi kasus', lead: 'Alur hitung multi-langkah dengan data kasus, petunjuk bertahap, dan kalkulator terhubung.' }));
+    page.appendChild(kop({ pita: true, judul: 'Studi kasus', lead: 'Alur hitung multi-langkah dengan data kasus, petunjuk bertahap, dan kalkulator terhubung.' }));
     // params.kode: semua kasus kelompok itu, termasuk kelompok di luar tingkat target dan E
     const daftar = params.kode ? (((UKP.modul[params.kode] || {}).kasus) || []) : K.semuaKasus(tingkat);
     if (params.kode) page.appendChild(h('p', { class: 'small muted' }, 'Kelompok ' + params.kode + ' · ' + K.namaKelompok(params.kode) + (diTingkat(params.kode, tingkat) ? '' : ' (di luar Tingkat ' + tingkat + ')') + '. ', UKP.link('Tampilkan semua kasus Tingkat ' + tingkat, 'kasus')));
@@ -2352,7 +2352,7 @@
   // ================= STRATEGI PG =================
   UKP.views.strategi = function () {
     const page = h('div', { class: 'page' }); const list = (UKP.ref && UKP.ref.strategiPG) || [];
-    page.appendChild(kop({ judul: 'Strategi pilihan ganda', lead: 'Teknik lintas kelompok untuk ujian berbasis komputer: eliminasi, menandai ragu, alokasi waktu per kelompok, dan membaca kata kualifikasi.' }));
+    page.appendChild(kop({ pita: true, judul: 'Strategi pilihan ganda', lead: 'Teknik lintas kelompok untuk ujian berbasis komputer: eliminasi, menandai ragu, alokasi waktu per kelompok, dan membaca kata kualifikasi.' }));
     if (list.length) page.appendChild(sect({ judul: 'Teknik menjawab', meta: list.length + ' teknik', isi: h('div', { class: 'card-grid' }, list.map(x => h('div', { class: 'card' }, h('h3', { class: 'card-title' }, x.judul), h('p', { class: 'small' }, x.isi)))) }));
     page.appendChild(h('div', { class: 'card sorot' }, h('h2', { class: 'card-title' }, 'Latih soal jebakan "kecuali"'), h('p', { class: 'small muted' }, 'Hanya soal dengan kata kualifikasi (kecuali, bukan, paling lama, paling sedikit). Kata disorot bila pengaturan sorot aktif.'), h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-primary', onclick: () => UKP.go('latih', { kecuali: true, n: 10, mulai: true }) }, 'Latih 10 soal "kecuali"'), h('button', { class: 'btn', onclick: () => UKP.go('latih', { tempo: true, n: 10, mulai: true }) }, 'Latih 10 soal dengan waktu ketat'))));
     return page;

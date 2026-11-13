@@ -117,16 +117,24 @@ const LANGKAH = {
   bank: async p => { await pergi(p, 'bank', null, 1300); },
   kemajuan: async p => { await pergi(p, 'kemajuan', null, 1200); },
   pengaturan: async p => { await pergi(p, 'pengaturan', null, 1000); },
+  // halaman menu Lainnya yang berpita sejak v9.6.4
+  rencana: async p => { await pergi(p, 'rencana', null, 1100); },
+  referensi: async p => { await pergi(p, 'referensi', null, 1100); },
+  'info-ujian': async p => { await pergi(p, 'info-ujian', null, 1100); },
+  formulir: async p => { await pergi(p, 'formulir', null, 1100); },
+  kasus: async p => { await pergi(p, 'kasus', null, 1100); },
+  strategi: async p => { await pergi(p, 'strategi', null, 1100); },
 };
 const LAYAR = [
   ['beranda', 'hp', 'light', 2], ['simulasi-atur', 'hp', 'light', 2], ['simulasi-jalan', 'hp', 'light', 1], ['simulasi-hasil', 'hp', 'light', 2],
   ['latih-atur', 'hp', 'light', 2], ['latih-soal', 'hp', 'light', 1], ['latih-terjawab', 'hp', 'light', 1], ['latih-pembahasan', 'hp', 'light', 2], ['latih-hasil', 'hp', 'light', 2],
   ['bersama-papan', 'hp', 'light', 1], ['bersama-kunci', 'hp', 'light', 2],
   ['mabar-lobi', 'hp', 'light', 1], ['materi', 'hp', 'light', 1], ['topik', 'hp', 'light', 1], ['bank', 'hp', 'light', 1], ['kemajuan', 'hp', 'light', 1], ['pengaturan', 'hp', 'light', 1],
-  ['beranda', 'hp', 'dark', 1], ['simulasi-atur', 'hp', 'dark', 1], ['latih-pembahasan', 'hp', 'dark', 2],
+  ['rencana', 'hp', 'light', 1], ['referensi', 'hp', 'light', 1], ['info-ujian', 'hp', 'light', 1], ['formulir', 'hp', 'light', 1], ['kasus', 'hp', 'light', 1], ['strategi', 'hp', 'light', 1],
+  ['beranda', 'hp', 'dark', 1], ['simulasi-atur', 'hp', 'dark', 1], ['latih-atur', 'hp', 'dark', 1], ['latih-pembahasan', 'hp', 'dark', 2],
   ['beranda', 'laptop', 'light', 1], ['simulasi-atur', 'laptop', 'light', 1], ['latih-pembahasan', 'laptop', 'light', 1], ['simulasi-hasil', 'laptop', 'light', 1],
   ['bersama-papan', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'light', 1], ['bersama-evaluasi', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'dark', 1],
-  ['ujiantim-jalan', 'laptop', 'light', 1],
+  ['ujiantim-jalan', 'laptop', 'light', 1], ['referensi', 'laptop', 'light', 1],
 ].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null }));
 
 // ---------- potret ----------

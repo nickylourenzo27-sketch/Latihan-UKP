@@ -4795,7 +4795,13 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
   --v96-band-info: #EEF3F9;
   --v96-buku-bg: #F7F9FB;
   --v96-jebakan-bg: #FFF6DD;
-  --v96-papan-bg: var(--surface-3);
+  --v96-papan-bg: var(--surface-2);    /* v9.6.3: wadah papan biru keabuan (seperti v9.5) supaya belang dan baris aktif terlihat dari layar bersama */
+  --v96-papan-aktif: #FFFFFF;          /* baris papan yang sedang diisi lewat papan ketik */
+  --v96-papan-aktif-cincin: 2px var(--primary); /* v9.6.4: garis keliling baris aktif; terang tinta 2 px (14:1 di putih), supaya baris aktif di belang genap tetap jelas */
+  --v96-pita-garis: transparent;       /* garis bawah pita: hanya tema gelap */
+  --v96-skor-tepi: var(--primary);     /* tepi atas kartu Skor: tinta di terang, garis kuat (bukan kuning) di gelap */
+  --v96-kunci-ink: #14613F;            /* v9.6.4: teks pil "Kunci jawaban" di --ok-soft: 6,37:1 (--ok tinggal 4,53:1) */
+  --v96-jebakan-garis: #B07A00;        /* v9.6.4: garis kiri Jebakan di terang: 3,46:1 di --v96-jebakan-bg, 3,73:1 di putih (kuning 1,77:1) */
   --v96-kertas-pad: 16px;
   --v96-fs-stem: 1.0625rem;
   --v96-fs-vonis: 1.25rem;
@@ -4808,12 +4814,28 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
     --v96-kop-garis: #3A5273; --v96-opsi-hover: #162B48; --v96-huruf-bg: #1B3558; --v96-huruf-ink: #E8EEF6; --v96-seg-trek: #0C1B30;
     --v96-band-salah: #2C1B21; --v96-band-benar: #11292A; --v96-band-info: #152A44;
     --v96-buku-bg: #0C1B30; --v96-jebakan-bg: #2E2615; --v96-papan-bg: #142846;
+    --v96-papan-aktif: #1D3556; --v96-papan-aktif-cincin: 1px var(--line-strong); --v96-pita: #13335A; --v96-pita-garis: #2B4D77; --v96-skor-tepi: #5F7896;
+    --v96-kunci-ink: var(--ok); --v96-jebakan-garis: var(--highlight);
+    --v96-seg-pilih-bg: var(--v96-huruf-bg); --v96-seg-pilih-ink: var(--ink); --v96-seg-pilih-garis: var(--primary);
   }
 }
 :root[data-theme="dark"] {
   --v96-kop-garis: #3A5273; --v96-opsi-hover: #162B48; --v96-huruf-bg: #1B3558; --v96-huruf-ink: #E8EEF6; --v96-seg-trek: #0C1B30;
   --v96-band-salah: #2C1B21; --v96-band-benar: #11292A; --v96-band-info: #152A44;
   --v96-buku-bg: #0C1B30; --v96-jebakan-bg: #2E2615; --v96-papan-bg: #142846;
+  --v96-papan-aktif: #1D3556; --v96-papan-aktif-cincin: 1px var(--line-strong); --v96-pita: #13335A; --v96-pita-garis: #2B4D77; --v96-skor-tepi: #5F7896;
+  --v96-kunci-ink: var(--ok); --v96-jebakan-garis: var(--highlight);
+  --v96-seg-pilih-bg: var(--v96-huruf-bg); --v96-seg-pilih-ink: var(--ink); --v96-seg-pilih-garis: var(--primary);
+}
+/* v9.6.4: segmen terpilih di tema gelap (--v96-seg-pilih-*, hanya didefinisikan di dua pemilih gelap; di terang aturan segmen memakai cadangan
+   --primary-fill/--primary-ink): isian lembut, teks --ink 10,6:1, garis 2 px kuning 6,5:1 terhadap isian dan 9,1:1 terhadap trek. Kuning tetap hemat. */
+/* v9.6.4: cetak, token --v96-* tema gelap dikembalikan ke kertas putih (seperti blok cetak lama untuk token lama) */
+@media print {
+  :root:not([data-cetak]), :root[data-theme] {
+    --v96-huruf-bg: #FFFFFF; --v96-huruf-ink: #000000; --v96-band-salah: #FFFFFF; --v96-band-benar: #FFFFFF; --v96-band-info: #FFFFFF;
+    --v96-buku-bg: #FFFFFF; --v96-jebakan-bg: #FFFFFF; --v96-papan-bg: #FFFFFF; --v96-papan-aktif: #FFFFFF; --v96-opsi-hover: #FFFFFF;
+    --v96-seg-trek: #FFFFFF; --v96-kop-garis: #999999; --v96-kunci-ink: #1B7A52; --v96-jebakan-garis: #555555;
+  }
 }
 
 /* ---- kepala halaman berpita: header.page-head.kop-pita (UKP.c.kop({ pita: true })) ----
@@ -4840,6 +4862,7 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
     content: ""; position: absolute; z-index: -1; top: 0; bottom: 0;
     left: calc(-1 * var(--gutter)); right: calc(-1 * var(--gutter));
     background-color: var(--v96-pita); background-image: var(--v96-kisi); background-repeat: repeat; background-position: center top;
+    box-shadow: inset 0 -1px 0 var(--v96-pita-garis); /* v9.6.3: tema gelap, pita dibedakan dari latar halaman */
     pointer-events: none;
   }
   /* menempel ke kop atas: main punya padding-top --s-5; pita yang menjadi anak pertama halaman (atau anak pertama pembungkus pertamanya) naik sebesar itu */
@@ -4860,6 +4883,11 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
     font-family: var(--font-mono); font-size: .8125rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--v96-aksen);
   }
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .crumb a:hover { color: #FFD066; }
+  /* v9.6.3: pil peringatan (warn) di pita bernada netral bergaris; hanya ikonnya kuning (bukan teks oranye kecil di atas biru tua) */
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .pill[data-tone="warn"] { background: transparent; color: var(--v96-pita-teks); box-shadow: inset 0 0 0 1px var(--line-strong); }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .pill[data-tone="warn"] svg { color: var(--v96-aksen); }
+  /* tombol "Selengkapnya" lead: putih bergaris bawah, supaya kuning tetap hemat di pita */
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .lead-toggle { color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px; }
 }
 /* lebar penuh sungguhan: ::before 100vw dipusatkan pada header (halaman terpusat di main), luapan mendatar dipotong di main */
 @supports (overflow-x: clip) {
@@ -4872,6 +4900,10 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
 @media screen and (min-width: 1024px) {
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .kop-pita:first-child,
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > :first-child > .kop-pita:first-child { margin-top: calc(-1 * var(--s-8)); }
+  /* v9.6.3: pita lebih pendek di laptop (1366x768: kendali utama tetap di layar pertama); lead ringkas (Cakupan) 2 baris, "Selengkapnya" membuka semuanya */
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita { padding-block: 28px 22px; }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita h1::before { top: 13px; }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .lead.ringkas:not([data-terbuka]) { -webkit-line-clamp: 2; line-clamp: 2; }
 }
 @media screen and (max-width: 599px) {
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita { padding-block: 24px 18px; }
@@ -4894,35 +4926,49 @@ dialog h2 { font-family: var(--font-display); }
 
 /* ---- kendali segmen: trek lembut, pilihan terisi --primary-fill (tinta di terang, kuning di gelap).
    Pil keyakinan (.keyakinan .seg) tetap memakai aturan lamanya yang lebih spesifik. ---- */
-main .seg { padding: 3px; gap: 3px; border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--v96-seg-trek); }
-main .seg button { border-radius: var(--r-sm); min-height: 42px; color: var(--muted); border-color: transparent; }
-main .seg button:hover { background: var(--surface); color: var(--ink); }
+/* v9.6.4: segmen di dalam dialog (Target ujian, Buat room, Mulai latihan bersama) memakai gaya yang sama: dialog tidak berada di dalam main */
+main .seg, dialog .seg { padding: 3px; gap: 3px; border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--v96-seg-trek); }
+main .seg button, dialog .seg button { border-radius: var(--r-sm); min-height: 42px; color: var(--muted); border-color: transparent; }
+@media (max-width: 599px), (pointer: coarse) { main .seg button, dialog .seg button { min-height: 44px; } } /* v9.6.3: target sentuh 44 px di HP */
+main .seg button:hover, dialog .seg button:hover { background: var(--surface); color: var(--ink); }
 main .seg button[aria-pressed="true"], main .seg button[aria-checked="true"],
-main .seg button[aria-pressed="true"]:hover, main .seg button[aria-checked="true"]:hover {
-  background: var(--primary-fill); color: var(--primary-ink); border-color: var(--primary-fill); box-shadow: none; font-weight: 600;
+main .seg button[aria-pressed="true"]:hover, main .seg button[aria-checked="true"]:hover,
+dialog .seg button[aria-pressed="true"], dialog .seg button[aria-checked="true"],
+dialog .seg button[aria-pressed="true"]:hover, dialog .seg button[aria-checked="true"]:hover {
+  background: var(--v96-seg-pilih-bg, var(--primary-fill)); color: var(--v96-seg-pilih-ink, var(--primary-ink));
+  border-color: var(--v96-seg-pilih-garis, var(--primary-fill)); box-shadow: inset 0 0 0 1px var(--v96-seg-pilih-garis, transparent); font-weight: 600;
 }
 main .seg button[aria-pressed="true"] small, main .seg button[aria-checked="true"] small,
-main .seg button[aria-pressed="true"] svg, main .seg button[aria-checked="true"] svg { color: inherit; opacity: .9; }
+main .seg button[aria-pressed="true"] svg, main .seg button[aria-checked="true"] svg,
+dialog .seg button[aria-pressed="true"] small, dialog .seg button[aria-checked="true"] small,
+dialog .seg button[aria-pressed="true"] svg, dialog .seg button[aria-checked="true"] svg { color: inherit; opacity: .9; }
 /* tanda centang segmen menurun (HP < 480: .seg.bersub, .seg.seg-bank) mengikuti teks di atas isian, bukan --primary (tak terlihat di atas tinta) */
 /* pemilih memuat .bersub dan .seg-bank supaya menang atas aturan lama ".seg.bersub button:is(...)::before" (0,3,2) */
-main .seg.bersub button[aria-pressed="true"]::before, main .seg.bersub button[aria-checked="true"]::before, main .seg.seg-bank button[aria-pressed="true"]::before, main .seg.seg-bank button[aria-checked="true"]::before { background: var(--primary-ink); }
-@media (forced-colors: active) { main .seg.bersub button[aria-pressed="true"]::before, main .seg.bersub button[aria-checked="true"]::before, main .seg.seg-bank button[aria-pressed="true"]::before, main .seg.seg-bank button[aria-checked="true"]::before { background: CanvasText; } }
+main .seg.bersub button[aria-pressed="true"]::before, main .seg.bersub button[aria-checked="true"]::before, main .seg.seg-bank button[aria-pressed="true"]::before, main .seg.seg-bank button[aria-checked="true"]::before,
+dialog .seg.bersub button[aria-pressed="true"]::before, dialog .seg.bersub button[aria-checked="true"]::before { background: var(--primary-ink); }
+/* v9.6.4: tema gelap, isian terpilih lembut: centang mengikuti teks --ink (dulu tinta gelap di atas kuning) */
+main .seg.bersub button[aria-pressed="true"]::before, main .seg.bersub button[aria-checked="true"]::before, main .seg.seg-bank button[aria-pressed="true"]::before, main .seg.seg-bank button[aria-checked="true"]::before,
+dialog .seg.bersub button[aria-pressed="true"]::before, dialog .seg.bersub button[aria-checked="true"]::before { background: var(--v96-seg-pilih-ink, var(--primary-ink)); }
+@media (forced-colors: active) { main .seg.bersub button[aria-pressed="true"]::before, main .seg.bersub button[aria-checked="true"]::before, main .seg.seg-bank button[aria-pressed="true"]::before, main .seg.seg-bank button[aria-checked="true"]::before, dialog .seg.bersub button[aria-pressed="true"]::before, dialog .seg.bersub button[aria-checked="true"]::before { background: CanvasText; } }
 /* pil keyakinan: kembalikan bentuk pil (aturan di atas tidak boleh menimpa) */
-main .keyakinan .seg { padding: 0; gap: var(--s-2); border: 0; background: transparent; }
-main .keyakinan .seg button { border-radius: var(--r-pill); border-color: var(--line-strong); color: var(--ink); min-height: 36px; }
-main .keyakinan .seg button:hover { background: var(--primary-soft); color: var(--ink); }
+main .keyakinan .seg, dialog .keyakinan .seg { padding: 0; gap: var(--s-2); border: 0; background: transparent; }
+main .keyakinan .seg button, dialog .keyakinan .seg button { border-radius: var(--r-pill); border-color: var(--line-strong); color: var(--ink); min-height: 36px; }
+main .keyakinan .seg button:hover, dialog .keyakinan .seg button:hover { background: var(--primary-soft); color: var(--ink); }
 main .keyakinan .seg button[aria-pressed="true"], main .keyakinan .seg button[aria-checked="true"],
-main .keyakinan .seg button[aria-pressed="true"]:hover, main .keyakinan .seg button[aria-checked="true"]:hover {
-  background: var(--primary-fill); border-color: var(--primary-fill); color: var(--primary-ink);
+main .keyakinan .seg button[aria-pressed="true"]:hover, main .keyakinan .seg button[aria-checked="true"]:hover,
+dialog .keyakinan .seg button[aria-pressed="true"], dialog .keyakinan .seg button[aria-checked="true"],
+dialog .keyakinan .seg button[aria-pressed="true"]:hover, dialog .keyakinan .seg button[aria-checked="true"]:hover {
+  background: var(--primary-fill); border-color: var(--primary-fill); color: var(--primary-ink); box-shadow: none;
 }
 /* mode warna paksa: tombol terpilih tetap dibedakan */
 @media (forced-colors: active) {
-  main .seg button[aria-pressed="true"], main .seg button[aria-checked="true"] { border-color: Highlight; outline: 2px solid Highlight; outline-offset: -2px; }
+  main .seg button[aria-pressed="true"], main .seg button[aria-checked="true"],
+  dialog .seg button[aria-pressed="true"], dialog .seg button[aria-checked="true"] { border-color: Highlight; outline: 2px solid Highlight; outline-offset: -2px; }
 }
 
 /* ---- isian: imbuhan teks (mnt, Rp) tanpa blok abu-abu; imbuhan berikon diatur aturan lama ---- */
 .input-grup > .imbuh { background: transparent; padding-inline: 4px 14px; }
-.input-grup > .imbuh:first-child { padding-inline: 14px 4px; }
+.imbuh:first-child { padding-inline: 12px 4px; } /* v9.6.4: spesifisitas di bawah aturan lama ".input-grup > .imbuh:has(svg)", jadi imbuhan berikon (cari, saring) tetap 12/0 seperti dasar */
 
 /* ---- lipatan di dalam kartu: baris bergaris atas, bukan kotak di dalam kotak ---- */
 main .card > details.lipat { border: 0; border-top: 1px solid var(--line); border-radius: 0; background: transparent; }
@@ -4931,7 +4977,7 @@ main .card > details.lipat > summary:hover { background: transparent; color: var
 
 /* ---- tuts petunjuk: tanpa bingkai, berisi lembut, redup ---- */
 .petunjuk-kbd { color: var(--ink-faint); }
-.petunjuk-kbd kbd { border: 1px solid transparent; border-bottom-width: 1px; background: var(--v96-huruf-bg); color: var(--muted); box-shadow: none; }
+.petunjuk-kbd kbd { border: 1px solid var(--line); border-bottom-width: 1px; background: var(--v96-huruf-bg); color: var(--muted); box-shadow: none; } /* v9.6.4: garis 1 px supaya terbaca sebagai tuts */
 @media (forced-colors: active) { .petunjuk-kbd kbd { border-color: CanvasText; } }
 
 /* ---- bilah fokus (latihan, bukan ujian): tetap terang, judul display, garis kemajuan 3 px ---- */
@@ -4965,12 +5011,37 @@ body:not([data-mode="ujian"]) main > .page > .fokus-bar[style*="--p"]::after { h
   main > .page > .fokus-bar + .kop-tim-latih[hidden] + .latih-area { margin-top: calc(-1 * var(--jarak-bagian)); }
   main > .page > .fokus-bar + .latih-area > .soal:first-child,
   main > .page > .fokus-bar + .kop-tim-latih[hidden] + .latih-area > .soal:first-child { border-top: 0; }
+  /* v9.6.3: latihan bersama memakai jarak halaman --s-3 (bukan --jarak-bagian), jadi lembar dinaikkan sebesar itu saja (dulu masuk 20 px ke bawah bilah fokus) */
+  main > .page > .fokus-bar.fokus-bersama + .latih-area,
+  main > .page > .fokus-bar.fokus-bersama + .kop-tim-latih[hidden] + .latih-area { margin-top: calc(-1 * var(--s-3)); }
+  /* simulasi berjalan: lembar menempel ke bilah ujian, tanpa pita abu-abu kosong di antaranya */
+  .halaman-ujian > .ujian-bar + .konten-ujian { margin-top: calc(-1 * var(--jarak-bagian)); }
+  .halaman-ujian > .ujian-bar + .konten-ujian .soal { border-top: 0; }
+}
+/* v9.6.3: simulasi berjalan, bar Sebelumnya/Ragu-ragu/Berikutnya menjadi kaki lembar seperti di latihan (dulu bar abu-abu terpisah memotong lembar) */
+.halaman-ujian .konten-ujian .soal { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.halaman-ujian .konten-ujian .soal + .nav-ujian {
+  margin-top: calc(-1 * var(--jarak-blok) - 1px); padding-inline: var(--v96-kertas-pad);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 0 0 var(--r-md) var(--r-md);
+}
+@media (max-width: 599px) {
+  .halaman-ujian .konten-ujian .soal + .nav-ujian { margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); border-left: 0; border-right: 0; border-bottom: 0; border-radius: 0; }
+}
+/* tombol kecil di kepala simulasi (Daftar soal, Kirim): target sentuh 44 px di HP dan layar sentuh (v9.6.4: juga tablet sentuh, seperti target sentuh lain) */
+@media (max-width: 599px), (pointer: coarse) { .halaman-ujian .ujian-bar .btn-sm { min-height: 44px; } }
+/* v9.6.3: papan latihan bersama di laptop berlayar pendek (1366x768): lembar lebih rapat supaya baris papan terlihat tanpa menggulir */
+@media (min-width: 1024px) and (max-height: 800px) {
+  .latih-area > .soal.soal-bersama { --v96-kertas-pad: 16px; }
+  .latih-area > .soal.soal-bersama > .stem { font-size: 1.0625rem; line-height: 1.6; }
+  .latih-area > .soal.soal-bersama > .soal-kop { padding-bottom: var(--s-2); }
 }
 
 /* ---- kop dan stem ---- */
 .soal > .soal-kop { padding-bottom: var(--s-3); margin-bottom: var(--s-1); border-bottom: 1px dashed var(--v96-kop-garis); }
 .soal > .soal-kop .soal-id > span:not([class]) { font-family: var(--font-mono); font-size: var(--fs-12); font-weight: var(--fw-semi); letter-spacing: .04em; color: var(--ink); }
 .soal > .stem { font-size: var(--v96-fs-stem); font-weight: 400; line-height: 1.65; color: var(--ink); }
+/* v9.6.3, HP: topik panjang tetap sebaris dengan kode soal (dipotong elipsis, judul lengkap di title), tidak turun ke baris sendiri diawali "·" */
+@media (max-width: 599px) { .soal > .soal-kop .soal-id > .topik:not(.sumber-set) { flex: 1 1 0; } }
 .soal > .stem mark { padding: 1px .2em; border-radius: 3px; }
 
 /* ---- opsi A-D: baris 56 px, lencana huruf bulat sejajar baris pertama ---- */
@@ -5007,16 +5078,28 @@ body:not([data-mode="ujian"]) main > .page > .fokus-bar[style*="--p"]::after { h
 /* setelah dikunci: opsi lain hanya teksnya diredam (--muted >= 7:1); tepi dan lencana tetap, tidak terlihat nonaktif */
 .soal .opsi.terkunci label:not([data-hasil]):not([data-dipilih]) .teks { color: var(--muted); }
 .soal .opsi .tanda:not(:empty) { min-height: 24px; padding: 0 10px; font-weight: var(--fw-semi); }
-.soal .opsi label[data-hasil="kunci"] .tanda:not(:empty) { background: var(--ok-soft); color: var(--ok); box-shadow: inset 0 0 0 1px var(--ok); }
+.soal .opsi label[data-hasil="kunci"] .tanda:not(:empty) { background: var(--ok-soft); color: var(--v96-kunci-ink); box-shadow: inset 0 0 0 1px var(--ok); }
+/* v9.6.4: kunci sama dengan terpilih (garis 2 px --primary + --primary-soft); dulu kalah dari ".soal .opsi:not(.opsi-tampil) label" sehingga tinggal garis abu-abu */
+.soal .opsi:not(.opsi-tampil) label[data-hasil="kunci"] { border-color: var(--primary); background: var(--primary-soft); box-shadow: inset 0 0 0 1px var(--primary); }
 
 /* ---- keyakinan: 36 px laptop, 44 px HP / pointer kasar; "Tidak tahu" bergaris putus ---- */
 .soal .keyakinan .seg button { min-height: 36px; padding-inline: 16px; font-weight: var(--fw-med); }
 @media (max-width: 599px), (pointer: coarse) { main .soal .keyakinan .seg button, main .soal .keyakinan-tadi .seg button { min-height: 44px; } }
+/* v9.6.3: "Tidak tahu" rata kiri dengan baris keyakinan, bergaris putus (jelas bisa diketuk); 44 px di HP */
+main .soal .tidak-tahu-baris > .btn { margin-left: 0; padding-inline: 12px; border: 1px dashed var(--line-strong); }
+@media (max-width: 599px), (pointer: coarse) { main .soal .tidak-tahu-baris > .btn { min-height: 44px; } }
+/* v9.6.4: tombol teks kecil di dalam soal ("Tampilkan kutipan lengkap" di kutipan peraturan) 44 px di HP, juga di dialog soal */
+@media (max-width: 599px), (pointer: coarse) { .soal .kutipan > .btn.btn-text.btn-sm { min-height: 44px; } }
+/* v9.6.4: "Atur saringan" di bilah fokus tetap 36 px (tinggi bilah 48 px tidak berubah); area sentuhnya diperluas ke tinggi bilah penuh (6 px atas dan bawah) */
+@media (max-width: 599px), (pointer: coarse) { main .fokus-bar .tautan-atur::after { inset: -6px 0; } }
 
 /* ---- panel pembahasan: pita vonis lembut, inti besar, lipatan berjudul ---- */
 /* panel berpadding rata; pita vonis (status-besar, anak pertama) menutup tepi atas panel. Aksen kiri 4 px = garis kiri panel
    yang sudah ada (.umpan::before, warnanya mengikuti data-hasil), jadi tidak perlu :has() untuk menghindari garis dobel. */
-.soal .umpan { gap: var(--s-4); padding: var(--s-5); border-radius: var(--r-md); overflow: hidden; }
+.soal .umpan { gap: var(--s-4); padding: var(--s-5); border-radius: var(--r-md); }
+/* v9.6.3: tanpa overflow: hidden (dulu memotong cincin fokus pita vonis saat soal dijawab lewat papan ketik); sudut atas pita dibulatkan sendiri */
+.soal .umpan > .status.status-besar:first-child { border-radius: calc(var(--r-md) - 1px) calc(var(--r-md) - 1px) 0 0; }
+.soal .umpan > .status.status-besar:focus-visible { outline-offset: -3px; border-radius: calc(var(--r-md) - 1px) calc(var(--r-md) - 1px) 0 0; }
 @media (max-width: 599px) { .soal .umpan { padding: var(--s-4); } }
 .soal .umpan > .status.status-besar {
   margin-inline: calc(-1 * var(--s-5)); padding: var(--s-4) var(--s-5); gap: var(--s-3);
@@ -5051,7 +5134,7 @@ body:not([data-mode="ujian"]) main > .page > .fokus-bar[style*="--p"]::after { h
 .soal .umpan .umpan-salah-opsi > li[data-dipilih] { background: var(--attn-soft); }
 .soal .umpan .umpan-salah-opsi > li[data-dipilih] > strong:first-child { background: var(--attn); color: var(--attn-ink); }
 /* Jebakan (p.umpan-jebakan): catatan kuning */
-.soal .umpan .umpan-jebakan { margin-top: var(--s-3); padding: 10px 14px; border-left: 3px solid var(--highlight); border-radius: 0 var(--r-sm) var(--r-sm) 0; background: var(--v96-jebakan-bg); color: var(--ink); }
+.soal .umpan .umpan-jebakan { margin-top: var(--s-3); padding: 10px 14px; border-left: 3px solid var(--v96-jebakan-garis); border-radius: 0 var(--r-sm) var(--r-sm) 0; background: var(--v96-jebakan-bg); color: var(--ink); }
 /* jejak hitung: buku besar */
 .soal .umpan .jejak-wrap { padding: 6px 16px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--v96-buku-bg); }
 .soal .umpan .jejak td { padding-block: 7px; }
@@ -5070,8 +5153,9 @@ body:not([data-mode="ujian"]) main > .page > .fokus-bar[style*="--p"]::after { h
   .latih-area > .soal, .halaman-ujian .konten-ujian .soal { padding: 0; border: 0; margin-inline: 0; }
   .latih-area > .soal > .sticky-actions { margin: 0; border: 0; }
   .soal .umpan { overflow: visible; }
-  .soal .umpan > .status.status-besar { background: none; }
+  .soal .umpan > .status.status-besar, .soal .umpan[data-hasil] > .status.status-besar { background: none; } /* v9.6.4: [data-hasil] supaya menang atas latar per hasil */
   .soal .umpan .jejak-wrap, .soal .umpan .umpan-jebakan { background: none; }
+  .soal .opsi kbd, .soal .umpan .umpan-salah-opsi > li > strong:first-child, .petunjuk-kbd kbd { border: 1px solid #555555; } /* lencana tetap berbentuk tanpa latar */
 }
 /* ===== akhir v9.6 layar soal dan pembahasan ===== */
 
@@ -5084,9 +5168,22 @@ body:not([data-mode="ujian"]) .soal-bersama .papan-kol { font-family: var(--font
 /* HP: label kolom kapital mono terlalu lebar ("Tidak menjawab") */
 @media (max-width: 599px) { body:not([data-mode="ujian"]) .soal-bersama .papan-kol { font-family: var(--font-ui, inherit); font-size: .75rem; letter-spacing: 0; text-transform: none; } }
 .soal-bersama .papan-nama { font-weight: var(--fw-semi); }
-.soal-bersama .papan-baris[data-hasil] .papan-hasil-teks { padding: 1px 8px; border-radius: var(--r-pill); }
-.soal-bersama .papan-baris[data-hasil="salah"] .papan-hasil-teks { background: var(--attn-soft); }
-.soal-bersama .papan-baris[data-hasil="benar"] .papan-hasil-teks { background: var(--ok-soft); }
+/* hasil tiap orang: pil yang memuat ikon dan kata (v9.6.3: ikon dulu berdiri di luar pil) */
+.soal-bersama .papan-baris[data-hasil="salah"] .papan-hasil:not([hidden]), .soal-bersama .papan-baris[data-hasil="benar"] .papan-hasil:not([hidden]) { display: inline-flex; align-items: center; gap: 4px; justify-self: start; width: auto; padding: 1px 8px; border-radius: var(--r-pill); }
+.soal-bersama .papan-baris[data-hasil="salah"] .papan-hasil { background: var(--attn-soft); }
+.soal-bersama .papan-baris[data-hasil="benar"] .papan-hasil { background: var(--ok-soft); }
+/* v9.6.3: baris aktif (diisi lewat papan ketik) jelas dari jarak layar bersama: latar terang, garis kiri 3 px, dan garis tipis di sekeliling.
+   Tinggi baris tidak berubah (semua garis inset). */
+.soal-bersama .papan-daftar > .papan-baris[data-aktif]:not([data-jauh]) { background: var(--v96-papan-aktif); box-shadow: inset 3px 0 0 var(--primary), inset 0 0 0 var(--v96-papan-aktif-cincin); }
+/* v9.6.4: ujian tim tetap tenang: penanda lama (latar --surface-3, garis kiri saja), tanpa bingkai yang membentang melewati kolom berlebar tetap */
+main .soal-bersama-ujian .papan-daftar > .papan-baris[data-aktif]:not([data-jauh]) { background: var(--surface-3); box-shadow: inset 3px 0 0 var(--primary); }
+/* v9.6.3: papan ujian tim: --kol-y: auto membuat templat kolom bersama tidak sah, sehingga tiap baris menghitung kolomnya sendiri dan tombol zig-zag.
+   Templat tetap (seperti papan latihan sebelum v8.x T8) menyejajarkan kolom; ukuran tombol dan tinggi baris tidak berubah. */
+@media (min-width: 700px) {
+  .soal-bersama-ujian .papan-baris, .soal-bersama-ujian .papan-kepala { grid-template-columns: 18px minmax(6rem, 14rem) auto minmax(0, 1fr); }
+  /* kolom Ragu selebar tombol Ragu (3,5rem), supaya label kolom "Tidak menjawab" tepat di atas tombolnya */
+  .soal-bersama-ujian { --kol-y: 3.5rem; }
+}
 .chip-peserta { font-weight: var(--fw-semi); }
 /* bar skor tim di atas lembar: berlatar halaman supaya label "batas lulus" tidak tampak yatim saat lembar digulir di bawahnya */
 .kop-tim-latih { position: relative; background: var(--bg); }
@@ -5104,14 +5201,15 @@ body:not([data-mode="ujian"]) .soal-bersama .papan-kol { font-family: var(--font
 .halaman-room .yakin-room { min-height: 48px; }
 @media (forced-colors: active) {
   .halaman-room .opsi-room .huruf { border: 1px solid CanvasText; }
-  .soal-bersama .papan-baris[data-hasil] .papan-hasil-teks { border: 1px solid CanvasText; }
+  .soal-bersama .papan-baris[data-hasil="salah"] .papan-hasil, .soal-bersama .papan-baris[data-hasil="benar"] .papan-hasil { border: 1px solid CanvasText; }
+  .soal-bersama .papan-daftar > .papan-baris[data-aktif] { outline: 2px solid Highlight; outline-offset: -2px; }
 }
 /* ===== akhir v9.6 papan bersama dan HP anggota ===== */
 
 
 /* ===== v9.6 tampilan: hasil dan evaluasi ===== */
 /* skor: Plex Mono besar, kartu bertepi atas --primary (tinta terang, kuning gelap) */
-main .kartu-skor { border-top: 4px solid var(--primary); }
+main .kartu-skor { border-top: 4px solid var(--v96-skor-tepi); } /* v9.6.3: di tema gelap garis kuat, bukan kuning (kuning hemat) */
 .kartu-skor .card-title { font-family: var(--font-mono); font-size: var(--fs-12); font-weight: var(--fw-semi); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--muted); }
 .kartu-skor .skor-angka { margin-top: var(--s-3); margin-bottom: var(--s-2); line-height: 1; }
 .kartu-skor .skor-angka .angka { font-size: var(--v96-fs-skor); font-weight: var(--fw-semi); letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -5126,7 +5224,16 @@ main .langkah-berikut > li.primer .nomor { background: var(--highlight); border-
 .halaman-hasil .hasil-kel .daftar-skor, .halaman-hasil .hasil-topik .daftar-skor { padding-inline: var(--s-3); border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); }
 .halaman-hasil .hasil-kel .daftar-skor > li:last-child, .halaman-hasil .hasil-topik .daftar-skor > li:last-child { border-bottom: 0; }
 .halaman-hasil .daftar-skor .nilai { font-family: var(--font-mono); font-weight: var(--fw-semi); }
-main .baris-skor .kode { font-family: var(--font-mono); font-weight: 600; color: var(--primary); }
+main .baris-skor .kode { font-family: var(--font-mono); font-weight: 600; color: var(--v96-huruf-ink); } /* v9.6.3: tinta di terang, terang di gelap (dulu kuning di gelap) */
+/* v9.6.3: langkah selain yang utama: tombol hantu bertinta teks, supaya kuning di tema gelap hanya di langkah utama */
+.kartu-langkah .langkah-berikut > li:not(.primer) .aksi > .btn-ghost { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+/* v9.6.3, HP: tombol tiap langkah selebar kolom teks (dulu lebarnya berbeda-beda: penuh, 80 px, 144 px) */
+@media (max-width: 599px) {
+  .kartu-langkah .langkah-berikut > li > .aksi { justify-self: stretch; }
+  .kartu-langkah .langkah-berikut > li > .aksi > .btn { flex: 1 1 auto; }
+}
+/* v9.6.3, >= 1280 dua kolom: daftar Per topik di dalam kartu memakai batang 64 px seperti Per kelompok, supaya nama topik tidak terlipat 4 baris */
+@media (min-width: 1280px) { .halaman-hasil .tata.hasil-tata.dua > .hasil-topik .daftar-skor { --bar-w: 64px; } }
 /* latihan selesai */
 .latih-area > h1 + .ringkasan-latih { margin-top: var(--s-4); }
 .ringkasan-latih .stack-sm > p:not(.eyebrow):not(.small) { font-family: var(--font-display); font-size: var(--fs-h3); font-weight: var(--fw-semi); line-height: 1.35; }
@@ -5140,6 +5247,7 @@ main .stat-tile .nilai { font-variant-numeric: tabular-nums; }
 @media print {
   main .kartu-skor { border-top-color: #000; }
   .list-rows.daftar-kartu { overflow: visible; }
+  main .langkah-berikut > li.primer .nomor { background: none; border-color: #000000; color: #000000; } /* v9.6.4: --highlight transparan saat cetak */
 }
 /* ===== akhir v9.6 hasil dan evaluasi ===== */
 
@@ -5158,4 +5266,13 @@ html:not(.tanpa-has) main .card.klik.kartu-kelompok::before { /* spesifisitas di
 }
 html:not(.tanpa-has) main .card.klik.kartu-kelompok { border-left-color: var(--line); --tab-w: 48px; }
 @media (forced-colors: active) { .card.kartu-kelompok::before { border-left: 3px solid CanvasText; } }
+/* v9.6.3: kartu Kalkulator mengikuti kartu Materi: tab kode bertinta abu-abu diganti aksen kiri 3 px dan kode bertinta teks
+   (kartu ini memasang data-kode sendiri, jadi tidak bergantung pada pemilih relasional) */
+body[data-view="kalkulator"] main .card[data-kode]::before { /* v9.6.4: kartu ini tanpa data-tingkat: aksen tinta di terang, garis kuat di gelap (bukan kuning) */
+  border: 0; background: transparent; box-shadow: inset 3px 0 0 var(--tk, var(--v96-skor-tepi));
+  border-radius: var(--r-md) 0 0 var(--r-md); left: 0; top: 0; bottom: 0; color: var(--v96-huruf-ink); font-size: var(--fs-12);
+}
+@media (forced-colors: active) { body[data-view="kalkulator"] main .card[data-kode]::before { border-left: 3px solid CanvasText; } }
+/* v9.6.3: chip yang bisa diketuk (daftar isi Pengaturan, saringan) 44 px di HP. Chip mata ujian Beranda tidak diubah (Beranda di luar v9.6; sudah punya area sentuh 44 px) */
+@media (max-width: 599px), (pointer: coarse) { main .chip-row > :is(a, button).chip, dialog .chip-row > :is(a, button).chip { min-height: 44px; } } /* v9.6.4: juga chip di dialog (Yang ikut) */
 /* ===== akhir v9.6 pengaturan sesi dan halaman baca ===== */

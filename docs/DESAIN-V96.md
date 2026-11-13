@@ -1,6 +1,6 @@
 # Desain v9.6: tampilan halaman dalam
 
-Dokumen ini mencatat arah tampilan yang dipasang di v9.6.0 dan v9.6.1, aturan menulis gayanya, dan cara memeriksanya.
+Dokumen ini mencatat arah tampilan yang dipasang di v9.6.0 sampai v9.6.4, aturan menulis gayanya, dan cara memeriksanya.
 Sistem merek tetap yang ditetapkan di v8.3 dan v9.0 (lihat README bagian "Tampilan MABAR UKP"). Komponen dasar v7 ada di `docs/DESAIN-V7.md`.
 
 ## 1. Arah
@@ -39,19 +39,23 @@ Dua pemilih tema gelap harus mendefinisikan himpunan token yang sama.
 | `--v96-band-salah`, `--v96-band-benar`, `--v96-band-info`, `--v96-fs-vonis` | pita vonis |
 | `--v96-buku-bg`, `--v96-jebakan-bg` | jejak hitung dan catatan Jebakan |
 | `--v96-papan-bg` | wadah papan jawaban tiap orang |
-| `--v96-fs-skor` | angka skor di halaman hasil |
+| `--v96-fs-skor`, `--v96-skor-tepi` | angka skor dan tepi atas kartu Skor di halaman hasil |
+| `--v96-papan-aktif`, `--v96-papan-aktif-cincin` | latar dan garis keliling baris aktif papan bersama |
+| `--v96-pita-garis` | garis bawah pita di tema gelap |
+| `--v96-kunci-ink`, `--v96-jebakan-garis` | teks pil Kunci jawaban dan garis kiri catatan Jebakan (kontras tema terang) |
+| `--v96-seg-pilih-bg`, `-ink`, `-garis` | pilihan segmen aktif di tema gelap (hanya didefinisikan di dua pemilih gelap) |
 
 ## 4. Komponen dan kait kelas
 
 | komponen | kait | catatan |
 |---|---|---|
-| Kepala berpita | `UKP.c.kop({ pita: true })` memberi `.page-head.kop-pita` | Dipakai Simulasi, Latih soal, Peta materi, Cakupan, Bank soal, Kemajuan, Dasbor tim, Pengaturan, Kalkulator, Hasil simulasi, Evaluasi tim, dan Hasil ujian tim. Jangan menulis kelas `kop-pita` langsung. Halaman lain cukup menambah `pita: true`. |
-| Pilihan segmen | `.seg` (kecuali pil keyakinan) | Terpilih berisi `--primary-fill`. Bentuk daftar di HP (`.seg.bersub`, `.seg.seg-bank`) punya tanda centang berwarna teks. |
+| Kepala berpita | `UKP.c.kop({ pita: true })` memberi `.page-head.kop-pita` | Dipakai Simulasi, Latih soal, Peta materi, Cakupan, Bank soal, Kemajuan, Dasbor tim, Pengaturan, Kalkulator, Hasil simulasi, Evaluasi tim dan Hasil ujian tim di Dasbor, serta sejak v9.6.4 Rencana, Info ujian, Referensi, Peta formulir, Studi kasus, dan Strategi pilihan ganda. Jangan menulis kelas `kop-pita` langsung. Halaman lain cukup menambah `pita: true`. |
+| Pilihan segmen | `.seg` di `main` dan di `dialog` (kecuali pil keyakinan) | Tema terang: terpilih berisi `--primary-fill`. Tema gelap: latar `--v96-seg-pilih-bg` dengan garis dalam kuning 2 px, supaya kuning tetap hemat. Bentuk daftar di HP (`.seg.bersub`, `.seg.seg-bank`) punya tanda centang berwarna teks. Aturan segmen ditulis berpasangan `main .seg ..., dialog .seg ...`. |
 | Lembar soal | `.latih-area > .soal`, `.halaman-ujian .konten-ujian .soal` | Opsi minimal 56 px, lencana bulat 30 px sejajar baris pertama. |
 | Keadaan opsi | `[data-dipilih]`, `label[data-hasil="kunci" atau "salah"]` | Garis 2 px dibuat dari garis 1 px ditambah garis dalam 1 px. |
 | Pembahasan | `.status.status-besar`, `.umpan-salah-opsi`, `.umpan-jebakan` | Aksen kiri pita vonis memakai garis kiri panel yang sudah ada. |
 | Papan bersama | kelas papan lama | Tinggi baris dan ukuran tombol tidak diubah. Hasil tiap orang berupa pil. |
-| HP anggota di room | `.halaman-room .stem-room`, `.opsi-room`, `.yakin-room` | Hanya CSS. `js/ruang.js` tidak disentuh. |
+| HP anggota di room | `.halaman-room .stem-room`, `.opsi-room`, `.yakin-room` | Hanya CSS. `js/ruang.js` tidak disentuh. Daftar opsi adalah bacaan tanpa bingkai: `li` tidak punya penangan klik, dan jawaban hanya masuk lewat tombol huruf besar. |
 | Halaman hasil | `.kartu-langkah`, `.daftar-skor` | Satu langkah utama berisi kuning. |
 | Daftar dalam kartu | `.list-rows.daftar-kartu` | Simulasi terakhir, Buku Kesalahan terbaru, Keliru pada percobaan pertama. |
 | Kartu Materi | `.card.klik.kartu-kelompok` | Aksen kiri 3 px warna tingkat. Tanpa dukungan `:has` (kelas `html.tanpa-has`) kartu memakai garis kiri lama. |
@@ -65,18 +69,25 @@ Pita tidak tampil di Beranda (punya pita sendiri), layar sesi (`body[data-mode="
 - Fitur yang tidak dipakai, supaya Safari dan Android lama tetap utuh: `border-image`, `color-mix()`, `:has()`, `@container`, `@layer`, penulisan bersarang, `backdrop-filter`, dan satuan `dvh`. `test/v94-kb.test.js` juga menolak `:has(` sesudah blok v9.4 Kb.
 - Pita selebar layar dibuat dengan `::before`. Bawaannya selebar isi ditambah gutter. Di dalam `@supports (overflow-x: clip)` pita menjadi `100vw` yang dipusatkan dan luapan mendatar dipotong di `main`. `clip` tidak membuat wadah gulir, jadi `position: sticky` tetap jalan.
 - Bayangan hanya garis dalam (`inset`). Tanpa gradasi.
+- Yang bukan kendali jangan diberi rupa kendali. Di v9.6.0 daftar opsi HP anggota room sempat berbingkai seperti opsi latihan, sehingga tampak bisa diketuk (dibetulkan di v9.6.3).
+- Saat memberi gaya menurut `data-hasil`, tulis semua nilainya (`benar`, `salah`, `sebagian`, `info`, `kosong`) dan jadikan nilai netral sebagai bawaan. Di v9.6.0 pita vonis `sebagian` sempat ikut hijau (dibetulkan di v9.6.2).
+- Aturan lama untuk HP sering menghitung ukuran lama (mis. lencana 28 px). Sesudah mengubah ukuran komponen, ukur ulang layar HP yang memakainya.
+- `:where()` tidak dipakai untuk pita: peramban lama membuang seluruh aturan yang memuatnya, lalu teks putih pita bisa tampil di latar terang.
 - Perilaku dan teks layar tidak diubah oleh pekerjaan tampilan. Markup hanya boleh ditambah kelas atau pembungkus.
 
 ## 6. Cara memeriksa
 
 1. `node --test test/`. Penjaga gaya ada di `test/v960-tampilan.test.js`; alat potret diuji `test/v960-potret.test.js`.
-2. Potret lokal: `node tools/potret-layar.js potret . <folder>` memotret 29 layar utama (37 gambar: HP terang, HP gelap, laptop) dengan Chromium. Soal yang tampil tetap karena `Math.random` diberi benih.
+2. Potret lokal: `node tools/potret-layar.js potret . <folder>` memotret 37 layar (45 gambar: HP terang, HP gelap, laptop) dengan Chromium. Soal yang tampil tetap karena `Math.random` diberi benih.
 3. Potret mesin Safari: tiap dorongan ke `main` menjalankan `.github/workflows/potret-webkit.yml` (WebKit, profil iPhone). Uji room WebKit di `cek-jalur-room.yml` ikut memotret layar pemimpin dan HP anggota. Gambar dikirim sebagai catatan check run "Potret layar webkit" dan "Potret room webkit".
 4. Ambil gambar: `node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder>` (butuh CLI `gh`). Situs tayang dari cabang `gh-pages`, jadi gambar bisa dilihat sebelum situs diperbarui.
 5. Yang juga perlu dilihat saat mengubah gaya: lebar 320, 390, 1280, dan 1366x768 tanpa gulir mendatar; tema gelap; `data-teks="besar"`; forced-colors; cetak; papan bersama dengan 10 nama; simulasi dan ujian tim yang sedang berjalan.
 
 ## 7. Yang sengaja belum
 
-- Referensi, Info ujian, Strategi, Studi kasus, Topik, dan lobi Mode mabar belum berpita.
-- Pita Cakupan dan Dasbor tim lebih tinggi dari halaman lain karena isi kepalanya sendiri (remah, lead panjang, tombol).
+- Lobi Mode mabar, Evaluasi tim di alur latihan (`.eval-kop`), Latihan selesai, Topik, dan Etika & Profesi belum berpita. Kepalanya bukan buatan `UKP.c.kop`, jadi butuh perubahan markup; lobi dan layar room sengaja tidak diubah saat tim memakainya.
+- Pita Cakupan dan Dasbor tim lebih tinggi dari halaman lain karena isi kepalanya sendiri (remah, lead panjang, tombol). Lead Cakupan dipotong dua baris sampai tombol Selengkapnya diketuk.
+- Di layar pendek (tinggi 800 px ke bawah) stem latihan bersama memakai 17 px supaya lebih banyak baris papan terlihat. Soal berstem panjang tetap perlu digulir sebelum papan terlihat.
+- Dua tombol kecil di layar room (`.room-soal-lalu` 36 px, `.room-ganti-nama` 32 px) dan chip Yang ikut di dialog Mulai belum disesuaikan sepenuhnya dengan target sentuh 44 px.
+- Huruf pada "Mengapa opsi lain salah" masih memuat titik, dan kartu Soal hari ini di Beranda masih memakai huruf opsi kotak.
 - HP sungguhan dan Safari versi lama tidak bisa diuji dari lingkungan kerja. WebKit di GitHub adalah versi terbaru.
