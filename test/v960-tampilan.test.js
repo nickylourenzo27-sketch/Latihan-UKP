@@ -46,6 +46,22 @@ describe('v9.6: fitur CSS yang dihindari', () => {
     assert.ok(!/overflow-x:\s*clip/.test(tanpaKomentar.slice(0, i)), 'clip dipakai sebelum @supports');
     assert.match(tanpaKomentar.slice(0, i), /\.kop-pita::before\s*\{[^}]*left:\s*calc\(-1 \* var\(--gutter\)\)/, 'pita cadangan selebar isi + gutter');
   });
+  // v9.6.6: di mesin Safari seluler lama (potret WebKit lama, profil HP dan tablet) overflow-x: clip pada main membuat isi halaman
+  // yang tidak berlapis tidak tergambar. Karena itu potongan bawaan ada di akar dokumen, dan main hanya dipotong untuk penunjuk mouse.
+  it('overflow-x: clip pada main hanya untuk penunjuk mouse; bawaannya di akar dokumen', () => {
+    const i = tanpaKomentar.indexOf('@supports (overflow-x: clip)'); const j = tanpaKomentar.indexOf('@media screen', i);
+    assert.ok(i >= 0 && j > i, 'blok @supports dan @media screen ada');
+    const blok = tanpaKomentar.slice(i, j);
+    assert.match(blok, /@supports \(overflow-x: clip\) \{\s*html \{ overflow-x: clip; \}/, 'bawaan: potong di akar dokumen');
+    const mouse = blok.match(/@media \(hover: hover\) and \(pointer: fine\) \{([\s\S]*?)\n  \}/);
+    assert.ok(mouse, 'blok penunjuk mouse ada');
+    assert.match(mouse[1], /html \{ overflow-x: visible; \}/, 'mouse: akar kembali visible');
+    assert.match(mouse[1], /main \{ overflow-x: clip; \}/, 'mouse: potong di main');
+    // di seluruh bagian v9.6, main { overflow-x: clip } hanya boleh muncul satu kali, yaitu di blok penunjuk mouse itu
+    const semua = tanpaKomentar.match(/main\s*\{[^}]*overflow-x:\s*clip/g) || [];
+    assert.equal(semua.length, 1, 'main { overflow-x: clip } muncul ' + semua.length + ' kali');
+    assert.ok(!/main\s*\{[^}]*overflow-x:\s*clip/.test(blok.replace(mouse[0], '')), 'main dipotong di luar blok penunjuk mouse');
+  });
 });
 
 describe('v9.6: token --v96-*', () => {

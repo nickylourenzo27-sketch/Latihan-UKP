@@ -3,7 +3,11 @@
 # overflow-x: clip belum dikenal. potret-webkit.yml memotret dengan WebKit terbaru; workflow ini memakai paket dan image
 # Playwright lama, yang membawa WebKit lama:
 #   Playwright 1.23.0  -> WebKit 15.4  (image mcr.microsoft.com/playwright:v1.23.0-focal, Node 16)
+#   Playwright 1.27.0  -> WebKit 16.0  (image mcr.microsoft.com/playwright:v1.27.0-focal), ditambah di v9.6.6
 #   Playwright 1.34.0  -> WebKit 16.4  (image mcr.microsoft.com/playwright:v1.34.0-jammy)
+# Catatan v9.6.6: WebKit bawaan Playwright dibangun dari batang utama WebKit, jadi "15.4" di sini sudah mengenal sebagian fitur
+# Safari 16.0 (mis. overflow-x: clip). Di mesin 15.4 dan 16.0 inilah ditemukan bahwa overflow-x: clip pada main membuat isi
+# halaman yang tidak berlapis tidak tergambar pada profil HP (emulasi seluler); profil laptop tidak terkena.
 # Versi mesin yang sungguh dipakai dibaca dari browser.version() dan ditulis di nama check run, mis. "Potret layar webkit lama 15.4".
 # Gambar diambil seperti biasa dengan: node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder> (subfolder per check run).
 # Tag image di atas HARUS ada di registri mcr.microsoft.com; bila sebuah tag dihapus, entri matriks itu gagal saat menarik image
@@ -51,6 +55,8 @@ jobs:
         include:
           - playwright: '1.23.0'
             image: mcr.microsoft.com/playwright:v1.23.0-focal
+          - playwright: '1.27.0'
+            image: mcr.microsoft.com/playwright:v1.27.0-focal
           - playwright: '1.34.0'
             image: mcr.microsoft.com/playwright:v1.34.0-jammy
     container:

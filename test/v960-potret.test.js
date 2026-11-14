@@ -94,9 +94,9 @@ describe('v9.6.5: workflow potret WebKit lama', () => {
   const tanpaKomentar = y.split('\n').filter(b => !/^\s*#/.test(b)).join('\n');
   it('tiap entri matriks: versi paket npm sama dengan versi image, dan paket dipasang dari matriks', () => {
     const entri = [...tanpaKomentar.matchAll(/- playwright: '(\d+\.\d+\.\d+)'\s*\n\s*image: mcr\.microsoft\.com\/playwright:v(\d+\.\d+\.\d+)-(\w+)/g)];
-    assert.deepEqual(entri.map(m => m[1]), ['1.23.0', '1.34.0']);
+    assert.deepEqual(entri.map(m => m[1]), ['1.23.0', '1.27.0', '1.34.0']);
     for (const m of entri) assert.equal(m[1], m[2], 'versi paket ' + m[1] + ' = versi image ' + m[2]);
-    assert.deepEqual(entri.map(m => m[3]), ['focal', 'jammy']);
+    assert.deepEqual(entri.map(m => m[3]), ['focal', 'focal', 'jammy']);
     assert.match(tanpaKomentar, /image: \$\{\{ matrix\.image \}\}/);
     assert.match(tanpaKomentar, /npm install [^\n]*playwright@\$\{\{ matrix\.playwright \}\}/);
     assert.match(tanpaKomentar, /fail-fast: false/); assert.match(tanpaKomentar, /continue-on-error: true/);
