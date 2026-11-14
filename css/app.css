@@ -5310,3 +5310,5 @@ body[data-view="kalkulator"] main .card[data-kode]::before { /* v9.6.4: kartu in
 /* v9.6.3: chip yang bisa diketuk (daftar isi Pengaturan, saringan) 44 px di HP. Chip mata ujian Beranda tidak diubah (Beranda di luar v9.6; sudah punya area sentuh 44 px) */
 @media (max-width: 599px), (pointer: coarse) { main .chip-row > :is(a, button).chip, dialog .chip-row > :is(a, button).chip { min-height: 44px; } } /* v9.6.4: juga chip di dialog (Yang ikut) */
 /* ===== akhir v9.6 pengaturan sesi dan halaman baca ===== */
+/* percobaan b: main berlapis sendiri di mesin tanpa overflow-x: clip */
+@supports not (overflow-x: clip) { main { position: relative; z-index: 0; } }
