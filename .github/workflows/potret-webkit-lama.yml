@@ -12,6 +12,15 @@
 name: Potret layar di WebKit lama
 on:
   workflow_dispatch:
+    inputs:
+      layar:
+        description: 'Daftar tag layar dipisah koma (kosong = daftar bawaan)'
+        required: false
+        default: ''
+      diag:
+        description: 'JSON daftar pemilih untuk diagnosa gaya terhitung (kosong = tanpa diagnosa)'
+        required: false
+        default: ''
   push:
     branches: [main]
     paths:
@@ -56,4 +65,7 @@ jobs:
           KIRIM: '1'
           LABEL_CEK: lama
           GITHUB_TOKEN: ${{ github.token }}
+          # hanya terisi saat dijalankan manual: menimpa daftar layar dan meminta diagnosa
+          LAYAR_PILIH: ${{ github.event.inputs.layar }}
+          DIAG: ${{ github.event.inputs.diag }}
         run: node tools/potret-layar.js potret . /tmp/potret beranda-hp,simulasi-atur-hp,latih-atur-hp,latih-soal-hp,latih-terjawab-hp,latih-pembahasan-hp,simulasi-jalan-hp,simulasi-hasil-hp,mabar-lobi-hp,materi-hp,bank-hp,rencana-hp,bersama-papan-laptop,bersama-kunci-laptop,simulasi-atur-laptop,referensi-laptop

@@ -5,6 +5,7 @@
 // Potret : [BROWSER=chromium|webkit|firefox] [LABEL_CEK=lama] node tools/potret-layar.js potret <root> <folder> [nama,nama]
 // Ambil  : node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder>        (butuh CLI gh yang sudah masuk)
 // Daftar : node tools/potret-layar.js daftar
+// Env    : LAYAR_PILIH=tag,tag menimpa daftar layar di argumen; DIAG='["pemilih", "pemilih ?? pemilih-uji"]' menulis gaya terhitung ke ringkasan check run
 //
 // Tanpa data pengguna: profil contoh, riwayat dibuat skrip, service worker diblokir, tidak ada room yang dibuka.
 // Soal yang tampil dibuat tetap (Math.random diberi benih), supaya gambar dari dua mesin peramban bisa dibandingkan.
@@ -26,6 +27,7 @@ const PERANGKAT_IPHONE = 'iPhone 13';            // 390 x 664 (tinggi layar Safa
 const PERANGKAT_CADANGAN = ['iPhone 12', 'iPhone 11'];   // 390 x 664 dan 414 x 715, untuk Playwright yang belum mengenal iPhone 13
 const UA_IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1';
 const LABEL_CEK = String(process.env.LABEL_CEK || '').trim();
+const DIAG = (() => { try { const d = JSON.parse(process.env.DIAG || '[]'); return Array.isArray(d) ? d.map(String).slice(0, 40) : []; } catch (e) { return []; } })();
 const LAPTOP = { width: 1280, height: 800 };
 const POTONG = 60000;                            // huruf base64 per catatan (batas raw_details 64 KB)
 const NAMA_CEK = 'Potret layar ';                // + nama mesin peramban
@@ -200,7 +202,7 @@ async function potret(root, keluar, pilih) {
   const versiMesin = String(browser.version() || '?');
   const judul = namaCek(BROWSER, versiMesin, LABEL_CEK);
   console.log(judul + ' · Playwright ' + versiPW + (blokSW ? '' : ' (tanpa opsi serviceWorkers: navigator.serviceWorker disembunyikan)') + ' · Node ' + process.versions.node);
-  const hasil = []; const gambar = [];
+  const hasil = []; const gambar = []; const diag = [];
 
   async function buka(alat, tema, st) {
     const opsi = alat === 'hp' ? opsiHP(pw.devices, BROWSER) : { viewport: LAPTOP, deviceScaleFactor: 1 };
@@ -261,6 +263,22 @@ async function potret(root, keluar, pilih) {
         const nama = L.tag + (L.n > 1 ? '-' + (i + 1) : ''); fs.writeFileSync(path.join(keluar, nama + '.jpg'), buf); gambar.push({ nama, buf });
       }
       const ukur = await p.evaluate(() => ({ lebar: innerWidth, isi: document.documentElement.scrollWidth, h1: ((document.querySelector('main h1, .page h1') || {}).textContent || '').trim().slice(0, 40) }));
+      // v9.6.5: DIAG='["pemilih", "pemilih ?? pemilih-uji || pemilih-uji"]' → gaya terhitung, kotak, dan hasil matches() untuk paling banyak empat elemen
+      // per pemilih, ditulis ke log dan ke ringkasan check run. Dipakai untuk mencari sebab beda tampilan di mesin peramban lama.
+      if (DIAG.length) {
+        try {
+          const d = await p.evaluate(daftar => ({ has: (() => { try { return CSS.supports('selector(:has(a))'); } catch (e) { return 'galat'; } })(), html: document.documentElement.className, isi: daftar.map(entri => {
+            const bagian = String(entri).split(' ?? '); const sel = bagian[0]; const uji = bagian[1] ? bagian[1].split(' || ') : [];
+            let semua; try { semua = Array.from(document.querySelectorAll(sel)); } catch (e) { return { sel: sel, galat: String(e.message).slice(0, 80) }; }
+            return { sel: sel, n: semua.length, el: semua.slice(0, 4).map(e => { const c = getComputedStyle(e), r = e.getBoundingClientRect();
+              const o = { k: (e.tagName + '.' + String(e.className)).slice(0, 50), teks: (e.textContent || '').trim().slice(0, 20), r: [r.x, r.y, r.width, r.height].map(Math.round).join(','), disp: c.display, vis: c.visibility, op: c.opacity, col: c.color, bg: c.backgroundColor,
+                bt: c.borderTopWidth + ' ' + c.borderTopColor, fs: c.fontSize, fw: c.fontWeight, pos: c.position, basis: c.flexBasis, ml: c.marginLeft, clip: c.clip, tinggi: c.height, atr: Array.from(e.attributes).filter(x => /^(data-|aria-pressed|aria-checked|hidden)/.test(x.name)).map(x => x.name + '=' + x.value).join(' ') };
+              if (uji.length) { o.cocok = {}; uji.forEach(u => { try { o.cocok[u] = e.matches(u); } catch (x) { o.cocok[u] = 'galat'; } }); }
+              return o; }) };
+          }) }), DIAG);
+          diag.push({ tag: L.tag, d: d }); console.log('DIAG ' + L.tag + ' ' + JSON.stringify(d));
+        } catch (e) { console.log('DIAG ' + L.tag + ' gagal: ' + String((e && e.message) || e).slice(0, 200)); }
+      }
       baris.ok = ukur.isi <= ukur.lebar + 1 && o.galat.length === 0;
       baris.info = (ukur.isi > ukur.lebar + 1 ? 'gulir mendatar ' + ukur.isi + ' > ' + ukur.lebar + '; ' : '') + (o.galat.length ? 'galat halaman: ' + o.galat.slice(0, 2).join(' | ') + '; ' : '') + (ukur.h1 || '');
     } catch (e) {
@@ -280,7 +298,8 @@ async function potret(root, keluar, pilih) {
     console.log('::' + (gagal.length ? 'error' : 'notice') + ' title=' + bersih(judul) + '::' + bersih(ringkas));
   }
   if (process.env.KIRIM === '1') {
-    try { const id = await kirim(gambar, ringkas, hasil, judul); console.log('gambar dikirim ke check run ' + id); }
+    const ringkasKirim = ringkas + (diag.length ? '\n\nDiagnosa (DIAG):\n```json\n' + JSON.stringify(diag).slice(0, 45000) + '\n```' : '');
+    try { const id = await kirim(gambar, ringkasKirim, hasil, judul); console.log('gambar dikirim ke check run ' + id); }
     catch (e) { const pesan = String((e && e.message) || e).slice(0, 400); console.log('gambar TIDAK terkirim: ' + pesan); if (diGitHub) console.log('::warning title=Potret tidak terkirim::' + pesan.replace(/%/g, '%25').replace(/\r?\n/g, '%0A')); }
   }
   return gagal.length ? 1 : 0;
@@ -361,7 +380,7 @@ function ambil(repo, sha, keluar) {
 
 if (require.main === module) {
   (async () => {
-    if (MODE === 'potret' && process.argv[3] && process.argv[4]) process.exit(await potret(path.resolve(process.argv[3]), path.resolve(process.argv[4]), process.argv[5] ? process.argv[5].split(',') : null));
+    if (MODE === 'potret' && process.argv[3] && process.argv[4]) process.exit(await potret(path.resolve(process.argv[3]), path.resolve(process.argv[4]), (String(process.env.LAYAR_PILIH || '').trim() || process.argv[5]) ? (String(process.env.LAYAR_PILIH || '').trim() || process.argv[5]).split(',') : null));
     if (MODE === 'ambil' && process.argv[5]) process.exit(ambil(process.argv[3], process.argv[4], path.resolve(process.argv[5])));
     if (MODE === 'daftar') { console.log(LAYAR.map(l => l.tag + ' (' + l.n + ')').join('\n')); process.exit(0); }
     console.error('pakai: node tools/potret-layar.js potret <root> <folder> [nama,nama] | ambil <pemilik/repo> <sha> <folder> | daftar'); process.exit(2);
