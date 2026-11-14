@@ -4906,9 +4906,17 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .halaman-room > .stack > .page-head.kop-pita:first-child,
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .eval-tim > .eval-kop.kop-pita { margin-bottom: calc(var(--jarak-bagian) - var(--jarak-blok)); }
 }
-/* lebar penuh sungguhan: ::before 100vw dipusatkan pada header (halaman terpusat di main), luapan mendatar dipotong di main */
+/* lebar penuh sungguhan: ::before 100vw dipusatkan pada header (halaman terpusat di main). Luapan mendatarnya dipotong dengan
+   overflow-x: clip di akar dokumen. v9.6.6: hanya perangkat ber-mouse yang memotongnya di main (bilah gulir klasik membuat 100vw
+   lebih lebar dari area tampil, dan potongan di main menutup kemungkinan dokumen bergeser). Di layar sentuh main TIDAK diberi
+   overflow-x: clip: di mesin Safari seluler lama (potret WebKit lama, profil HP dan tablet) aturan itu membuat isi halaman yang
+   tidak berlapis tidak tergambar, sedangkan potongan di akar dokumen aman di mesin yang sama. */
 @supports (overflow-x: clip) {
-  main { overflow-x: clip; }
+  html { overflow-x: clip; }
+  @media (hover: hover) and (pointer: fine) {
+    html { overflow-x: visible; }
+    main { overflow-x: clip; }
+  }
   @media screen {
     body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita::before { left: 50%; right: auto; width: 100vw; margin-left: -50vw; }
   }
