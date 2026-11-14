@@ -33,6 +33,23 @@ describe('v9.6: bagian berpagar di akhir css/app.css', () => {
   });
 });
 
+// v9.6.6: pembaca aturan sederhana untuk seluruh css/app.css. Mengembalikan aturan daun { pemilih, isi, kurung }, dengan kurung =
+// daftar aturan-at pembungkus dari luar ke dalam. Cukup untuk berkas ini: tidak ada penulisan bersarang dan tidak ada kurawal di dalam nilai.
+const cssTanpaKomentar = baca('css/app.css').replace(/\/\*[\s\S]*?\*\//g, '');
+function aturanDaun(css) {
+  const hasil = []; const tumpuk = []; let awal = 0;
+  for (let i = 0; i < css.length; i++) {
+    const c = css[i];
+    if (c === '{') {
+      const kepala = css.slice(awal, i).trim().replace(/\s+/g, ' ');
+      if (kepala.charAt(0) === '@') { tumpuk.push(kepala); awal = i + 1; }
+      else { const j = css.indexOf('}', i); hasil.push({ pemilih: kepala.split(',').map(x => x.trim()), isi: css.slice(i + 1, j).trim(), kurung: tumpuk.slice() }); i = j; awal = j + 1; }
+    } else if (c === '}') { tumpuk.pop(); awal = i + 1; }
+    else if (c === ';' && tumpuk.length === 0) awal = i + 1;   // aturan-at tanpa blok di tingkat atas (mis. @charset)
+  }
+  return hasil;
+}
+
 describe('v9.6: fitur CSS yang dihindari', () => {
   for (const [nama, re] of [['border-image', /border-image/], ['color-mix()', /color-mix\(/], ['@container', /@container/], ['@layer', /@layer/], ['backdrop-filter', /backdrop-filter/], [':has()', /:has\(/], ['penulisan bersarang (&)', /^\s*&/m], ['satuan dvh/svh/lvh', /\d(?:dvh|svh|lvh)\b/]]) {
     it('tanpa ' + nama, () => { assert.ok(!re.test(tanpaKomentar), nama + ' ditemukan di bagian v9.6'); });
@@ -46,21 +63,28 @@ describe('v9.6: fitur CSS yang dihindari', () => {
     assert.ok(!/overflow-x:\s*clip/.test(tanpaKomentar.slice(0, i)), 'clip dipakai sebelum @supports');
     assert.match(tanpaKomentar.slice(0, i), /\.kop-pita::before\s*\{[^}]*left:\s*calc\(-1 \* var\(--gutter\)\)/, 'pita cadangan selebar isi + gutter');
   });
-  // v9.6.6: di mesin Safari seluler lama (potret WebKit lama, profil HP dan tablet) overflow-x: clip pada main membuat isi halaman
-  // yang tidak berlapis tidak tergambar. Karena itu potongan bawaan ada di akar dokumen, dan main hanya dipotong untuk penunjuk mouse.
-  it('overflow-x: clip pada main hanya untuk penunjuk mouse; bawaannya di akar dokumen', () => {
-    const i = tanpaKomentar.indexOf('@supports (overflow-x: clip)'); const j = tanpaKomentar.indexOf('@media screen', i);
-    assert.ok(i >= 0 && j > i, 'blok @supports dan @media screen ada');
-    const blok = tanpaKomentar.slice(i, j);
-    assert.match(blok, /@supports \(overflow-x: clip\) \{\s*html \{ overflow-x: clip; \}/, 'bawaan: potong di akar dokumen');
-    const mouse = blok.match(/@media \(hover: hover\) and \(pointer: fine\) \{([\s\S]*?)\n  \}/);
-    assert.ok(mouse, 'blok penunjuk mouse ada');
-    assert.match(mouse[1], /html \{ overflow-x: visible; \}/, 'mouse: akar kembali visible');
-    assert.match(mouse[1], /main \{ overflow-x: clip; \}/, 'mouse: potong di main');
-    // di seluruh bagian v9.6, main { overflow-x: clip } hanya boleh muncul satu kali, yaitu di blok penunjuk mouse itu
-    const semua = tanpaKomentar.match(/main\s*\{[^}]*overflow-x:\s*clip/g) || [];
-    assert.equal(semua.length, 1, 'main { overflow-x: clip } muncul ' + semua.length + ' kali');
-    assert.ok(!/main\s*\{[^}]*overflow-x:\s*clip/.test(blok.replace(mouse[0], '')), 'main dipotong di luar blok penunjuk mouse');
+  // v9.6.6: di WebKit seluler lama (potret WebKit lama 15.4 dan 16.0, emulasi seluler) overflow-x: clip pada main membuat isi halaman
+  // yang tidak berlapis tidak tergambar. Karena itu potongan bawaan ada di akar dokumen, dan main hanya dipotong untuk penunjuk mouse
+  // di luar WebKit iOS dan iPadOS. Pemeriksaan ini membaca SELURUH css/app.css, bukan hanya bagian v9.6.
+  it('overflow pada html, :root, body, dan main hanya ada di blok v9.6.6, dan main hanya dipotong untuk penunjuk mouse', () => {
+    const aturan = aturanDaun(cssTanpaKomentar);
+    const subjek = sel => sel.trim().split(/[\s>+~]+/).pop();   // bagian terakhir pemilih, mis. "body > main.x" menjadi "main.x"
+    const kena = r => r.pemilih.some(p => /^(main|html|body|:root)(?![\w-])/.test(subjek(p)));
+    const overflow = r => [...r.isi.matchAll(/(?:^|;|\s)(overflow(?:-x|-y|-inline|-block)?)\s*:\s*([^;}]+)/g)].map(m => m[1] + ': ' + m[2].trim());
+    const temuan = aturan.filter(r => kena(r) && overflow(r).length).map(r => ({ pemilih: r.pemilih.join(', '), isi: overflow(r).join('; '), kurung: r.kurung }));
+    const SUP = '@supports (overflow-x: clip)', MOUSE = '@media (hover: hover) and (pointer: fine)', BUKAN_IOS = '@supports not (-webkit-touch-callout: none)';
+    assert.deepEqual(temuan, [
+      { pemilih: 'html', isi: 'overflow-x: clip', kurung: [SUP] },
+      { pemilih: 'html', isi: 'overflow-x: visible', kurung: [SUP, MOUSE, BUKAN_IOS] },
+      { pemilih: 'main', isi: 'overflow-x: clip', kurung: [SUP, MOUSE, BUKAN_IOS] },
+    ]);
+  });
+  it('pembaca aturan dipakai uji di atas mengenali daftar pemilih, singkatan overflow, dan pemilih main berkelas', () => {
+    const contoh = '@media (min-width: 1px) { main, .x { overflow-x: clip; } main.app { overflow: clip visible; } } body > main { overflow-x: hidden; } :root { overflow-x: clip; } .a main { color: red; }';
+    const r = aturanDaun(contoh);
+    assert.deepEqual(r.map(x => x.pemilih.join(',')), ['main,.x', 'main.app', 'body > main', ':root', '.a main']);
+    assert.deepEqual(r[0].kurung, ['@media (min-width: 1px)']); assert.deepEqual(r[2].kurung, []);
+    assert.match(r[1].isi, /overflow: clip visible/);
   });
 });
 

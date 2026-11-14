@@ -30,6 +30,7 @@ const LABEL_CEK = String(process.env.LABEL_CEK || '').trim();
 const CSS_UJI = String(process.env.CSS_UJI || '');   // CSS percobaan, disuntik ke tiap halaman sesudah dimuat (diagnosa)
 const DIAG = (() => { try { const d = JSON.parse(process.env.DIAG || '[]'); return Array.isArray(d) ? d.map(String).slice(0, 40) : []; } catch (e) { return []; } })();
 const LAPTOP = { width: 1280, height: 800 };
+const TABLET = { width: 820, height: 1180 };   // v9.6.6: profil HP (emulasi seluler, sentuh) yang dilebarkan seukuran tablet
 const POTONG = 60000;                            // huruf base64 per catatan (batas raw_details 64 KB)
 const NAMA_CEK = 'Potret layar ';                // + nama mesin peramban
 const PESERTA = ['Nicky', 'Mita', 'Nora'];
@@ -161,7 +162,25 @@ const LAYAR = [
   ['bersama-papan', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'light', 1], ['bersama-evaluasi', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'dark', 1],
   ['ujiantim-jalan', 'laptop', 'light', 1], ['referensi', 'laptop', 'light', 1],
   ['uji-gambar', 'hp', 'light', 1],
-].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null, khusus: nama === 'uji-gambar' }));
+  ['materi', 'tablet', 'light', 1], ['bank', 'tablet', 'light', 1],
+].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null, khusus: nama === 'uji-gambar' || alat === 'tablet' }));
+
+// v9.6.6: opsi konteks per alat. 'tablet' = profil HP dengan layar 820 x 1180, jadi tetap emulasi seluler dan sentuh.
+function opsiAlat(alat, devices, browser) {
+  if (alat === 'hp') return opsiHP(devices, browser);
+  if (alat === 'tablet') return Object.assign(opsiHP(devices, browser), { viewport: Object.assign({}, TABLET), screen: Object.assign({}, TABLET) });
+  return { viewport: Object.assign({}, LAPTOP), deviceScaleFactor: 1 };
+}
+// v9.6.6: keluhan dari hasil ukur satu layar. (1) Gulir mendatar: lebar dokumen melebihi lebar layar. (2) Layar melebar: di peramban
+// seluler, isi yang meluap membuat layar tata letak melebar (innerWidth naik) alih-alih menambah gulir. (3) Di layar sentuh, main
+// tidak boleh dipotong dengan overflow-x: di WebKit seluler lama potongan itu membuat isi halaman tidak tergambar.
+function nilaiUkur(ukur, lebarLayar) {
+  const keluhan = [];
+  if (ukur.isi > ukur.lebar + 1) keluhan.push('gulir mendatar ' + ukur.isi + ' > ' + ukur.lebar);
+  if (lebarLayar && ukur.lebar > lebarLayar + 1) keluhan.push('layar melebar ' + ukur.lebar + ' > ' + lebarLayar);
+  if (ukur.sentuh && ukur.mainX && ukur.mainX !== 'visible') keluhan.push('main dipotong di layar sentuh (overflow-x: ' + ukur.mainX + ')');
+  return keluhan;
+}
 
 // ---------- versi Playwright dan opsi yang bergantung padanya ----------
 const bandingVersi = (a, b) => {
@@ -218,7 +237,7 @@ async function potret(root, keluar, pilih) {
   const hasil = []; const gambar = []; const diag = [];
 
   async function buka(alat, tema, st) {
-    const opsi = alat === 'hp' ? opsiHP(pw.devices, BROWSER) : { viewport: LAPTOP, deviceScaleFactor: 1 };
+    const opsi = opsiAlat(alat, pw.devices, BROWSER);
     // Playwright 1.24 ke atas: serviceWorkers: 'block'; versi lama: navigator.serviceWorker disembunyikan sebelum skrip aplikasi
     const ctx = await browser.newContext(Object.assign(opsi, opsiKonteks(versiPW), { colorScheme: tema }));
     if (!blokSW) await ctx.addInitScript(sembunyikanSW);
@@ -273,10 +292,12 @@ async function potret(root, keluar, pilih) {
       await tunggu(p, 350);
       for (let i = 0; i < L.n; i++) {
         if (i > 0) { await p.evaluate(() => window.scrollBy(0, Math.round(innerHeight * 0.82))); await tunggu(p, 350); }
-        const buf = await p.screenshot({ type: 'jpeg', quality: L.alat === 'hp' ? 62 : 50, fullPage: false });
+        // jangan memotret halaman utuh: di Chromium itu mematikan emulasi sentuh, lalu aturan untuk penunjuk mouse ikut berlaku
+        const buf = await p.screenshot({ type: 'jpeg', quality: L.alat === 'laptop' ? 50 : 62, fullPage: false });
         const nama = L.tag + (L.n > 1 ? '-' + (i + 1) : ''); fs.writeFileSync(path.join(keluar, nama + '.jpg'), buf); gambar.push({ nama, buf });
       }
-      const ukur = await p.evaluate(() => ({ lebar: innerWidth, isi: document.documentElement.scrollWidth, h1: ((document.querySelector('main h1, .page h1') || {}).textContent || '').trim().slice(0, 40) }));
+      const ukur = await p.evaluate(() => { const m = document.querySelector('main'); let sentuh = false; try { sentuh = matchMedia('(hover: none), (pointer: coarse)').matches; } catch (e) {}
+        return { lebar: innerWidth, isi: document.documentElement.scrollWidth, sentuh, mainX: m ? getComputedStyle(m).overflowX : '', h1: ((document.querySelector('main h1, .page h1') || {}).textContent || '').trim().slice(0, 40) }; });
       // v9.6.5: DIAG='["pemilih", "pemilih ?? pemilih-uji || pemilih-uji"]' → gaya terhitung, kotak, dan hasil matches() untuk paling banyak empat elemen
       // per pemilih, ditulis ke log dan ke ringkasan check run. Dipakai untuk mencari sebab beda tampilan di mesin peramban lama.
       if (DIAG.length) {
@@ -299,8 +320,9 @@ async function potret(root, keluar, pilih) {
           diag.push({ tag: L.tag, d: d }); console.log('DIAG ' + L.tag + ' ' + JSON.stringify(d));
         } catch (e) { console.log('DIAG ' + L.tag + ' gagal: ' + String((e && e.message) || e).slice(0, 200)); }
       }
-      baris.ok = ukur.isi <= ukur.lebar + 1 && o.galat.length === 0;
-      baris.info = (ukur.isi > ukur.lebar + 1 ? 'gulir mendatar ' + ukur.isi + ' > ' + ukur.lebar + '; ' : '') + (o.galat.length ? 'galat halaman: ' + o.galat.slice(0, 2).join(' | ') + '; ' : '') + (ukur.h1 || '');
+      const keluhan = nilaiUkur(ukur, (opsiAlat(L.alat, pw.devices, BROWSER).viewport || {}).width || 0);
+      baris.ok = keluhan.length === 0 && o.galat.length === 0;
+      baris.info = (keluhan.length ? keluhan.join('; ') + '; ' : '') + (o.galat.length ? 'galat halaman: ' + o.galat.slice(0, 2).join(' | ') + '; ' : '') + (ukur.h1 || '');
     } catch (e) {
       baris.info = String((e && e.message) || e).split('\n')[0].slice(0, 240);
       try { if (o) { const buf = await o.page.screenshot({ type: 'jpeg', quality: 50 }); fs.writeFileSync(path.join(keluar, '_gagal-' + L.tag + '.jpg'), buf); gambar.push({ nama: '_gagal-' + L.tag, buf }); } } catch (e2) {}
@@ -406,4 +428,4 @@ if (require.main === module) {
     console.error('pakai: node tools/potret-layar.js potret <root> <folder> [nama,nama] | ambil <pemilik/repo> <sha> <folder> | daftar'); process.exit(2);
   })().catch(e => { console.error(e); process.exit(2); });
 }
-module.exports = { potongGambar, susun, kirim, minta, LAYAR, POTONG, NAMA_CEK, langkah: Object.keys(LANGKAH), bandingVersi, versiPlaywright, bisaBlokSW, opsiKonteks, opsiHP, namaCek, pilihCek, namaSub };
+module.exports = { potongGambar, susun, kirim, minta, LAYAR, POTONG, NAMA_CEK, langkah: Object.keys(LANGKAH), bandingVersi, versiPlaywright, bisaBlokSW, opsiKonteks, opsiHP, opsiAlat, nilaiUkur, TABLET, namaCek, pilihCek, namaSub };

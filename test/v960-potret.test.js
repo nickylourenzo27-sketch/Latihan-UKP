@@ -51,7 +51,7 @@ describe('v9.6.0: potongan gambar untuk check run', () => {
 describe('v9.6.0: daftar layar yang dipotret', () => {
   it('tiap layar punya langkah dan tag unik', () => {
     const tag = alat.LAYAR.map(l => l.tag); assert.equal(new Set(tag).size, tag.length);
-    for (const l of alat.LAYAR) { assert.ok(alat.langkah.includes(l.nama), 'langkah untuk ' + l.nama); assert.ok(l.n >= 1 && l.n <= 3); assert.ok(['hp', 'laptop'].includes(l.alat)); assert.ok(['light', 'dark'].includes(l.tema)); }
+    for (const l of alat.LAYAR) { assert.ok(alat.langkah.includes(l.nama), 'langkah untuk ' + l.nama); assert.ok(l.n >= 1 && l.n <= 3); assert.ok(['hp', 'laptop', 'tablet'].includes(l.alat)); assert.ok(['light', 'dark'].includes(l.tema)); }
   });
   it('mencakup layar soal dan pembahasan di HP terang dan gelap, serta papan bersama di laptop', () => {
     const ada = t => alat.LAYAR.some(l => l.tag === t);
@@ -115,7 +115,7 @@ describe('v9.6.5: workflow potret WebKit lama', () => {
     const daftar = m[1].split(','); const tag = new Set(alat.LAYAR.map(l => l.tag));
     assert.ok(daftar.length >= 10 && daftar.length < alat.LAYAR.length, 'terbatas: ' + daftar.length);
     for (const t of daftar) assert.ok(tag.has(t), 'tag ada di LAYAR: ' + t);
-    for (const t of ['beranda-hp', 'mabar-lobi-hp', 'latih-pembahasan-hp', 'bersama-papan-laptop', 'referensi-laptop']) assert.ok(daftar.includes(t), t);
+    for (const t of ['beranda-hp', 'mabar-lobi-hp', 'latih-pembahasan-hp', 'bersama-papan-laptop', 'referensi-laptop', 'materi-tablet', 'bank-tablet']) assert.ok(daftar.includes(t), t);
   });
   it('nama job berkurung, jadi tidak ikut diambil sebagai check run potret', () => {
     const nama = (tanpaKomentar.match(/\n    name: (.+)/) || [])[1]; assert.ok(nama && /\(/.test(nama), nama);
@@ -147,6 +147,41 @@ describe('v9.6.5: jalan Playwright lama', () => {
     assert.equal(alat.opsiHP({ 'iPhone 12': tiruan }, 'webkit').userAgent, 'x');
     const c = alat.opsiHP({}, 'webkit'); assert.deepEqual(c.viewport, { width: 390, height: 664 }); assert.equal(c.isMobile, true); assert.match(c.userAgent, /iPhone/);
     assert.equal(alat.opsiHP(undefined, 'firefox').isMobile, undefined);
+  });
+});
+
+/* v9.6.6: profil tablet (emulasi seluler selebar tablet) dan penilaian hasil ukur */
+describe('v9.6.6: profil tablet dan penilaian hasil ukur', () => {
+  it('tablet = profil HP (emulasi seluler, sentuh) dengan layar 820 x 1180; laptop tanpa emulasi', () => {
+    const tiruan = { 'iPhone 13': { viewport: { width: 390, height: 664 }, screen: { width: 390, height: 844 }, userAgent: 'x', isMobile: true, hasTouch: true, deviceScaleFactor: 3, defaultBrowserType: 'webkit' } };
+    const t = alat.opsiAlat('tablet', tiruan, 'webkit');
+    assert.deepEqual(t.viewport, { width: 820, height: 1180 }); assert.deepEqual(t.screen, { width: 820, height: 1180 });
+    assert.equal(t.isMobile, true); assert.equal(t.hasTouch, true); assert.equal(t.deviceScaleFactor, 1);
+    const h = alat.opsiAlat('hp', tiruan, 'webkit'); assert.equal(h.viewport.width, 390); assert.equal(h.isMobile, true);
+    const l = alat.opsiAlat('laptop', tiruan, 'webkit'); assert.equal(l.viewport.width, 1280); assert.equal(l.isMobile, undefined); assert.equal(l.hasTouch, undefined);
+    assert.equal(tiruan['iPhone 13'].viewport.width, 390, 'daftar perangkat tidak ikut berubah');
+  });
+  it('layar tablet hanya dipotret bila diminta, dan dipakai workflow WebKit lama', () => {
+    const tablet = alat.LAYAR.filter(l => l.alat === 'tablet');
+    assert.deepEqual(tablet.map(l => l.tag), ['materi-tablet', 'bank-tablet']);
+    for (const l of tablet) assert.equal(l.khusus, true);
+    assert.equal(alat.LAYAR.filter(l => !l.khusus).length, 37, 'daftar bawaan tetap 37 layar');
+  });
+  it('gulir mendatar, layar yang melebar, dan main yang dipotong di layar sentuh menjadi keluhan', () => {
+    const baik = { lebar: 390, isi: 390, sentuh: true, mainX: 'visible' };
+    assert.deepEqual(alat.nilaiUkur(baik, 390), []);
+    assert.deepEqual(alat.nilaiUkur(Object.assign({}, baik, { isi: 391 }), 390), [], 'selisih 1 px dibiarkan (pembulatan)');
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { isi: 414 }), 390).join('; '), /gulir mendatar 414 > 390/);
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { lebar: 430, isi: 430 }), 390).join('; '), /layar melebar 430 > 390/);
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { mainX: 'clip' }), 390).join('; '), /main dipotong di layar sentuh \(overflow-x: clip\)/);
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { mainX: 'hidden' }), 390).join('; '), /main dipotong di layar sentuh/);
+    assert.deepEqual(alat.nilaiUkur({ lebar: 1280, isi: 1280, sentuh: false, mainX: 'clip' }, 1280), [], 'penunjuk mouse boleh memotong di main');
+    assert.deepEqual(alat.nilaiUkur({ lebar: 390, isi: 390, sentuh: true, mainX: '' }, 0), [], 'tanpa data tambahan tidak ada keluhan');
+  });
+  it('potret tidak memakai halaman utuh: di Chromium potret halaman utuh mematikan emulasi sentuh', () => {
+    const src = fs.readFileSync(path.join(ROOT, 'tools', 'potret-layar.js'), 'utf8');
+    assert.ok(!/fullPage:\s*true/.test(src), 'fullPage: true ditemukan');
+    assert.match(src, /matchMedia\('\(hover: none\), \(pointer: coarse\)'\)/);
   });
 });
 
