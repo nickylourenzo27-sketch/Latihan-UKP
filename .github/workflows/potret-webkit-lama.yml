@@ -1,0 +1,59 @@
+# Potret layar di mesin Safari VERSI LAMA (v9.6.5).
+# Gunanya: melihat tampilan di WebKit lama, mis. pita halaman dalam yang di WebKit 15.4 memakai cadangan karena
+# overflow-x: clip belum dikenal. potret-webkit.yml memotret dengan WebKit terbaru; workflow ini memakai paket dan image
+# Playwright lama, yang membawa WebKit lama:
+#   Playwright 1.23.0  -> WebKit 15.4  (image mcr.microsoft.com/playwright:v1.23.0-focal, Node 16)
+#   Playwright 1.34.0  -> WebKit 16.4  (image mcr.microsoft.com/playwright:v1.34.0-jammy)
+# Versi mesin yang sungguh dipakai dibaca dari browser.version() dan ditulis di nama check run, mis. "Potret layar webkit lama 15.4".
+# Gambar diambil seperti biasa dengan: node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder> (subfolder per check run).
+# Tag image di atas HARUS ada di registri mcr.microsoft.com; bila sebuah tag dihapus, entri matriks itu gagal saat menarik image
+# (tidak menggagalkan rilis: continue-on-error). Versi paket npm playwright HARUS sama dengan versi image di entri yang sama.
+# Hanya sebagian layar dipotret supaya cepat. Tidak ada data pengguna: profil contoh, service worker diblokir atau disembunyikan.
+name: Potret layar di WebKit lama
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'css/**'
+      - 'js/**'
+      - 'index.html'
+      - 'tools/potret-layar.js'
+      - '.github/workflows/potret-webkit-lama.yml'
+permissions:
+  contents: read
+  checks: write
+concurrency:
+  group: potret-webkit-lama-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  potret:
+    name: Potret Safari lama (Playwright ${{ matrix.playwright }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - playwright: '1.23.0'
+            image: mcr.microsoft.com/playwright:v1.23.0-focal
+          - playwright: '1.34.0'
+            image: mcr.microsoft.com/playwright:v1.34.0-jammy
+    container:
+      image: ${{ matrix.image }}
+      options: --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pasang Playwright (versi sama dengan image)
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm install --no-save --no-audit --no-fund playwright@${{ matrix.playwright }}
+      - name: Potret sebagian layar di WebKit lama
+        env:
+          BROWSER: webkit
+          HOME: /root
+          KIRIM: '1'
+          LABEL_CEK: lama
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/potret-layar.js potret . /tmp/potret beranda-hp,simulasi-atur-hp,latih-atur-hp,latih-soal-hp,latih-terjawab-hp,latih-pembahasan-hp,simulasi-jalan-hp,simulasi-hasil-hp,mabar-lobi-hp,materi-hp,bank-hp,rencana-hp,bersama-papan-laptop,bersama-kunci-laptop,simulasi-atur-laptop,referensi-laptop

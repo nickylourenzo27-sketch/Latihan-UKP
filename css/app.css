@@ -4806,6 +4806,10 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
   --v96-fs-stem: 1.0625rem;
   --v96-fs-vonis: 1.25rem;
   --v96-fs-skor: 3rem;
+  /* v9.6.5: token halaman untuk daftar menu yang terbuka dari pita (menu room ⋮). var() di :root diselesaikan di :root, jadi nilainya
+     mengikuti tema aktif (terang atau gelap) dan tidak ikut "pulau gelap" pita */
+  --v96-hal-surface: var(--surface); --v96-hal-surface-3: var(--surface-3); --v96-hal-ink: var(--ink); --v96-hal-muted: var(--muted);
+  --v96-hal-line: var(--line); --v96-hal-line-strong: var(--line-strong); --v96-hal-attn: var(--attn); --v96-hal-focus: var(--focus);
 }
 @media (min-width: 600px) { :root { --v96-kertas-pad: 24px; } }
 @media (min-width: 1024px) { :root { --v96-kertas-pad: 28px; --v96-fs-stem: 1.125rem; --v96-fs-vonis: 1.375rem; --v96-fs-skor: 3.5rem; } }
@@ -4854,7 +4858,8 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
     --seg-pilih: #25406A; --trek: #2B4D77; --kerangka: #2B4D77;
     --focus: #F2B01E; --btn-garis: #8FA3BC; --btn-edge: #8FA3BC; --link-hover: #FFD066;
     color-scheme: dark; color: var(--ink);
-    position: relative; isolation: isolate;
+    /* v9.6.5: z-index 1 (di bawah bilah lengket 5 dan kop situs 9) supaya daftar menu yang terbuka dari pita (menu room ⋮) tidak tertutup isi sesudahnya */
+    position: relative; isolation: isolate; z-index: var(--z-naik, 1);
     padding-block: 36px 28px; row-gap: 8px;
   }
   /* pita: latar biru tua + kisi 40 px. Cadangan (tanpa overflow-x: clip): selebar isi + gutter kiri-kanan, di HP = selebar layar */
@@ -4867,8 +4872,11 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
   }
   /* menempel ke kop atas: main punya padding-top --s-5; pita yang menjadi anak pertama halaman (atau anak pertama pembungkus pertamanya) naik sebesar itu */
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .kop-pita:first-child,
-  body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > :first-child > .kop-pita:first-child { margin-top: calc(-1 * var(--s-5)); }
-  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita h1 {
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > :first-child > .kop-pita:first-child,
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > :first-child > .visually-hidden:first-child + * > .kop-pita:first-child { margin-top: calc(-1 * var(--s-5)); }
+  /* v9.6.5: Evaluasi tim di akhir latihan bersama: .latih-area > h1 tersembunyi + .eval-tim > .eval-kop (kepala h2 .eval-judul bergaya h1 pita) */
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita h1,
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .eval-judul {
     font-family: var(--font-display); font-size: var(--v96-judul-h1); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; color: #FFFFFF; text-wrap: balance;
   }
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .lead { color: var(--v96-pita-teks); max-width: 60ch; }
@@ -4888,6 +4896,15 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .pill[data-tone="warn"] svg { color: var(--v96-aksen); }
   /* tombol "Selengkapnya" lead: putih bergaris bawah, supaya kuning tetap hemat di pita */
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .lead-toggle { color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px; }
+  /* v9.6.5: daftar menu yang terbuka dari pita menjulur ke atas isi halaman, jadi memakai token tema halaman (putih di terang), seperti menu Lainnya */
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .menu-lebih-isi {
+    --surface: var(--v96-hal-surface); --surface-3: var(--v96-hal-surface-3); --ink: var(--v96-hal-ink); --muted: var(--v96-hal-muted);
+    --line: var(--v96-hal-line); --line-strong: var(--v96-hal-line-strong); --attn: var(--v96-hal-attn); --focus: var(--v96-hal-focus);
+    color: var(--ink);
+  }
+  /* v9.6.5: jarak pita ke isi pertama sama dengan halaman berpita lain (--jarak-bagian), juga bila pita berada di dalam .stack (room, Evaluasi tim) */
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .halaman-room > .stack > .page-head.kop-pita:first-child,
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .eval-tim > .eval-kop.kop-pita { margin-bottom: calc(var(--jarak-bagian) - var(--jarak-blok)); }
 }
 /* lebar penuh sungguhan: ::before 100vw dipusatkan pada header (halaman terpusat di main), luapan mendatar dipotong di main */
 @supports (overflow-x: clip) {
@@ -4899,7 +4916,8 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
 /* >= 1024 main ber-padding-top --s-8 */
 @media screen and (min-width: 1024px) {
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .kop-pita:first-child,
-  body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > :first-child > .kop-pita:first-child { margin-top: calc(-1 * var(--s-8)); }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > :first-child > .kop-pita:first-child,
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > :first-child > .visually-hidden:first-child + * > .kop-pita:first-child { margin-top: calc(-1 * var(--s-8)); }
   /* v9.6.3: pita lebih pendek di laptop (1366x768: kendali utama tetap di layar pertama); lead ringkas (Cakupan) 2 baris, "Selengkapnya" membuka semuanya */
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita { padding-block: 28px 22px; }
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita h1::before { top: 13px; }
@@ -5199,6 +5217,14 @@ main .soal-bersama-ujian .papan-daftar > .papan-baris[data-aktif]:not([data-jauh
   background: var(--v96-huruf-bg); color: var(--v96-huruf-ink); font-family: var(--font-mono); font-size: var(--fs-caption);
 }
 .halaman-room .yakin-room { min-height: 48px; }
+/* v9.6.5: target sentuh 44 px di HP untuk dua tombol kecil room: "Soal sebelumnya" (btn-sm, dulu 36 px) dan "Bukan Anda? Ganti nama"
+   (tautan, dulu 32 px; markup dijaga test/v94-ka). Teks dan ukurannya tetap; hanya bidang ketuknya yang meninggi. */
+@media (max-width: 599px), (pointer: coarse) {
+  .halaman-room .baris-lalu > .room-soal-lalu { --btn-h: 44px; min-height: 44px; }
+  .halaman-room .identitas-room > .room-ganti-nama { min-height: 44px; }
+  /* v9.6.5: "Ke lobi room" di pemberitahuan Evaluasi tim (akhir sesi room, layar pemimpin) */
+  .latih-area .banner .ke-lobi-room { --btn-h: 44px; min-height: 44px; }
+}
 @media (forced-colors: active) {
   .halaman-room .opsi-room .huruf { border: 1px solid CanvasText; }
   .soal-bersama .papan-baris[data-hasil="salah"] .papan-hasil, .soal-bersama .papan-baris[data-hasil="benar"] .papan-hasil { border: 1px solid CanvasText; }
@@ -5236,6 +5262,8 @@ main .baris-skor .kode { font-family: var(--font-mono); font-weight: 600; color:
 @media (min-width: 1280px) { .halaman-hasil .tata.hasil-tata.dua > .hasil-topik .daftar-skor { --bar-w: 64px; } }
 /* latihan selesai */
 .latih-area > h1 + .ringkasan-latih { margin-top: var(--s-4); }
+/* v9.6.5: h1 Latihan selesai kini di dalam kepala berpita; jarak pita ke kartu Ringkasan sama dengan halaman berpita lain */
+.latih-area > .page-head + .ringkasan-latih { margin-top: var(--jarak-bagian); }
 .ringkasan-latih .stack-sm > p:not(.eyebrow):not(.small) { font-family: var(--font-display); font-size: var(--fs-h3); font-weight: var(--fw-semi); line-height: 1.35; }
 /* daftar baris dalam satu grup kartu (Keliru pada percobaan pertama, Simulasi terakhir, Buku Kesalahan terbaru): .list-rows.daftar-kartu */
 .list-rows.daftar-kartu { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); overflow: hidden; }

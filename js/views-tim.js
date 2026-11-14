@@ -1207,7 +1207,7 @@
     return d;
   }
   // komponen dasbor evaluasi tim (dipakai di akhir sesi latihan dan di #tim/sesi:<id>)
-  // opsi: onUlangi(soalIds) · onTutup() · labelTutup · ringkas (tanpa matriks dan topik) · tingkatJudul (1|2, bawaan 2) · tanpaKop · diDasbor (sembunyikan "Lihat di Dasbor tim")
+  // opsi: onUlangi(soalIds) · onTutup() · labelTutup · ringkas (tanpa matriks dan topik) · tingkatJudul (1|2, bawaan 2) · tanpaKop · diDasbor (sembunyikan "Lihat di Dasbor tim") · sesudahKop (v9.6.5)
   // v8.1: mode ujian (ev.mode 'ujian': skor per orang, per kelompok), bagian Tempo, Urutan bahas + mode bahas (menggantikan
   // "Soal paling banyak salah"), saringan matriks dan "Tampilkan semua" (> 30 soal), rekap untuk grup (salin / WhatsApp)
   function evaluasiBersama(sesi, opsi) {
@@ -1217,11 +1217,14 @@
     const wadah = h('div', { class: 'stack eval-tim', 'data-k': 'evaluasi-tim', 'data-mode': ujian ? 'ujian' : 'latihan' });
     if (!opsi.tanpaKop) {
       const H = opsi.tingkatJudul === 1 ? 'h1' : 'h2';
-      wadah.append(h('div', { class: 'eval-kop' }, h('p', { class: 'eyebrow' }, tanggalSesi(sn.mulai)),
+      // v9.6.5: kepala berpita (kelas dari js/core.js); di Dasbor kepala ini tidak dipakai (tanpaKop), pitanya datang dari kop halaman
+      wadah.append(h('div', { class: 'eval-kop' + (UKP.c.kelasPita ? ' ' + UKP.c.kelasPita : '') }, h('p', { class: 'eyebrow' }, tanggalSesi(sn.mulai)),
         h(H, { class: 'eval-judul' }, ujian ? 'Hasil ujian tim' : 'Evaluasi tim'),
         ujian && ev.judul ? h('p', { class: 'eval-subjudul' }, ev.judul) : null,
         h('p', { class: 'meta' }, metaSesi(ev, sesi) + (sn.tingkat ? ' · Tingkat ' + sn.tingkat : '') + (sesi && !sesi.selesai ? ' · belum selesai' : ''))));
     }
+    // v9.6.5: opsi.sesudahKop = simpul milik pemanggil (pemberitahuan "Ke lobi room" di akhir sesi room), ditaruh tepat sesudah kepala berpita supaya kepala tetap menempel ke kop atas
+    if (opsi.sesudahKop) wadah.append(opsi.sesudahKop);
     if (!ev.nSoal || !ev.nPeserta) { wadah.append(UKP.c.kosong('Belum ada soal yang dinilai', ujian ? 'Ujian ini belum berisi jawaban.' : 'Latihan bersama ini berakhir sebelum kunci jawaban soal pertama dibuka.', null, { ringkas: true })); return wadah; }
     const namaUrut = sn.peserta.length ? sn.peserta.filter(nm => ev.peserta.some(p => p.nama === nm)).concat(ev.peserta.map(p => p.nama).filter(nm => sn.peserta.indexOf(nm) < 0)) : ev.peserta.map(p => p.nama);
     const idsSalah = ev.soal.filter(q => q.nSalah + q.nKosong > 0).map(q => q.id);

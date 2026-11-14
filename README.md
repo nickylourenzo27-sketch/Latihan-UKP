@@ -44,7 +44,12 @@ Permintaan pemilik: tampilan dibuat lebih bagus. Sejak v9.0 hanya Beranda yang m
   - **HP:** tombol langkah berikutnya sama lebar; segmen, "Tidak tahu", chip, dan tombol kecil kepala simulasi minimal 44 px.
   - **Lain-lain:** kartu Kalkulator mengikuti pola kartu Materi; tuts petunjuk bergaris; warna cetak di tema gelap kembali ke kertas putih; kontras pil Kunci jawaban dan garis Jebakan dinaikkan; imbuhan berikon kembali ke lebar semula.
   - **Ditunda:** pita untuk lobi Mode mabar, Evaluasi tim di alur latihan, dan Latihan selesai (butuh perubahan markup di layar yang sedang dipakai tim); dua tombol kecil di layar room.
-- **Belum.** HP sungguhan dan Safari versi lama tidak bisa diuji dari lingkungan kerja ini.
+- **Tambahan v9.6.5.** Yang ditunda di v9.6.4 dikerjakan:
+  - **Pita di Mode mabar:** semua halaman room di luar sesi berpita (Room tim, lobi pemimpin dan anggota, Gabung, tautan tidak utuh, room ditutup). Layar soal, terkirim, dan hasil di HP anggota serta papan pemimpin tetap tanpa pita. Daftar menu room yang terbuka tampil utuh di atas kartu.
+  - **Pita di layar akhir sesi:** Evaluasi tim di akhir latihan bersama, Latihan selesai, Putaran ulang selesai, dan Latihan bersama selesai. Di akhir sesi room, pemberitahuan "Ke lobi room" kini berada tepat di bawah kepala Evaluasi tim.
+  - **Target sentuh room:** tombol "Soal sebelumnya", "Bukan Anda? Ganti nama", dan "Ke lobi room" minimal 44 px di HP.
+  - **Safari versi lama:** `.github/workflows/potret-webkit-lama.yml` memotret 16 layar di WebKit lama lewat paket Playwright 1.23.0 dan 1.34.0 (kira-kira Safari 15.4 dan 16.4). Alat potret kini jalan juga dengan Playwright dan Node lama.
+- **Belum.** HP sungguhan tidak bisa diuji dari lingkungan kerja ini. Safari versi lama hanya didekati dengan WebKit lama di GitHub, bukan perangkat asli.
 <!-- tampilan-960:selesai -->
 
 ## Mode mabar yang mudah dipahami (v9.1 dan v9.2)

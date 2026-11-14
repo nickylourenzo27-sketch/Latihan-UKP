@@ -1585,7 +1585,8 @@
             yakinKeliru ? h('span', { class: 'muted' }, ' Soal yang yakin tetapi keliru paling berharga untuk diulang.') : null);
         }
         const bukaSoal = r => UKP.dialog({ judul: 'Soal ' + r.soal.id, isi: () => h('div', { class: 'stack' }, UKP.c.soal(r.soal, { hanyaBaca: true, denganUmpan: true, fokus: false, jawabanAwal: r.jawab, detik: r.detik || 0, konteks: 'ulas', tanpaTutor: true })) });
-        area.append(h('h1', null, ulangRun ? 'Putaran ulang selesai' : 'Latihan selesai'),
+        // v9.6.5: kepala berpita lewat UKP.c.kop (h1 dan teksnya tetap)
+        area.append(UKP.c.kop({ judul: ulangRun ? 'Putaran ulang selesai' : 'Latihan selesai', pita: true }),
           h('div', { class: 'card sorot ringkasan-latih' }, h('div', { class: 'between' }, h('div', { class: 'stack-sm' }, h('p', { class: 'eyebrow' }, 'Ringkasan'), h('p', null, kalimat), kalibrasi, (() => { const kk = UKP.kalimatKesalahanLatih({ nKeliru: keliru.length, nBelumTahu: keliru.filter(r => r.jawab === '-').length, top, judul: top ? (K.topik(top[0]) || {}).judul : '', adaJawaban: !!idx }); return kk ? h('p', { class: 'small' + (kk.muted ? ' muted' : '') }, kk.teks) : null; })()), ring),
             // langkah berikutnya bernama (DESAIN-V7 D6): topik dengan kesalahan terbanyak disebut kode + judulnya
             (() => { const tt = top ? K.topik(top[0]) : null; const latihLagi = () => UKP.go('latih', Object.assign({}, f, { mulai: true }));
@@ -1605,13 +1606,16 @@
       function tampilEvaluasi(sesi) {
         const ulangi = ids => { const arr = (ids || []).map(id => K.soal(id)).filter(Boolean); if (arr.length) jalankan(U.acak(arr), { ulang: true }); };
         let el = null;
-        try { el = UKP.c.evaluasiBersama(sesi, { onUlangi: ulangi, onTutup: () => UKP.go('tim', { anggota: 'sesi:' + sesi.id }) }); } catch (e) { console.error(e); el = null; }
-        if (!el) { ringkasanBersama(Math.max(1, Math.round((Date.now() - mulaiWaktu) / 60000))); return; }
         // V3 (butir 10c): sesi room selesai → pemandu diarahkan kembali ke lobi room untuk sesi berikutnya (sesi "ulangi"/"lagi" dari sini berjalan di satu layar)
         const keLobi = roomPernah && peranRoom() === 'tuan'
           ? UKP.c.banner('Rekap sudah tampil di HP anggota. Latihan bersama berikutnya dimulai dari lobi room agar HP ikut.', 'info', null, h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn-sm ke-lobi-room', onclick: () => UKP.go('room') }, 'Ke lobi room')))
           : null;
-        area.append(h('h1', { class: 'visually-hidden' }, (oj.ulang ? 'Putaran ulang bersama selesai' : 'Latihan bersama selesai') + ': evaluasi tim'), keLobi, el);
+        // v9.6.5: kepala Evaluasi tim berpita menempel ke kop atas, jadi pemberitahuan "Ke lobi room" diserahkan ke komponen (opsi sesudahKop) dan tampil tepat di bawah kepala itu
+        try { el = UKP.c.evaluasiBersama(sesi, { onUlangi: ulangi, onTutup: () => UKP.go('tim', { anggota: 'sesi:' + sesi.id }), sesudahKop: keLobi }); } catch (e) { console.error(e); el = null; }
+        if (!el) { ringkasanBersama(Math.max(1, Math.round((Date.now() - mulaiWaktu) / 60000))); return; }
+        area.append(h('h1', { class: 'visually-hidden' }, (oj.ulang ? 'Putaran ulang bersama selesai' : 'Latihan bersama selesai') + ': evaluasi tim'), el);
+        // komponen versi lama tanpa opsi sesudahKop: pemberitahuan tetap tampil, sebelum evaluasi seperti dulu
+        if (keLobi && !keLobi.parentNode) el.before(keLobi);
         UKP.fokus(area.querySelector('h1')); window.scrollTo({ top: 0 });
       }
       // ringkasan latihan bersama: tabel per peserta (urutan daftar), soal yang salah oleh siapa pun, ulangi gabungan
@@ -1628,7 +1632,8 @@
         const kalimat = nSoal ? nSoal + (ulangRun ? ' soal diulang' : ' soal') + ' · bersama ' + peserta.length + ' orang' + (idx < daftar.length ? ' (berhenti di soal ' + (idx + 1) + ' dari ' + daftar.length + ')' : '') + ' · ' + menit + ' mnt.' : 'Belum ada soal yang dijawab.';
         const bukaSoal = r => UKP.dialog({ judul: 'Soal ' + r.soal.id, isi: () => h('div', { class: 'stack' }, UKP.c.soal(r.soal, { hanyaBaca: true, denganUmpan: true, fokus: false, jawabanAwal: '-', detik: r.detik || 0, konteks: 'ulas', tanpaTutor: true })) });
         const latihLagi = () => UKP.go('latih', Object.assign({}, f, { mulai: true }));
-        area.append(h('h1', null, ulangRun ? 'Putaran ulang bersama selesai' : 'Latihan bersama selesai'),
+        // v9.6.5: kepala berpita lewat UKP.c.kop, sama dengan Latihan selesai (h1 dan teksnya tetap)
+        area.append(UKP.c.kop({ judul: ulangRun ? 'Putaran ulang bersama selesai' : 'Latihan bersama selesai', pita: true }),
           h('div', { class: 'card sorot ringkasan-latih ringkasan-bersama' }, h('div', { class: 'stack-sm' }, h('p', { class: 'eyebrow' }, 'Ringkasan'), h('p', null, kalimat)),
             nSoal ? tabelWrap('Hasil per anggota', tbl) : null,
             h('p', { class: 'small muted' }, 'Jawaban tiap orang tersimpan di perangkat ini dan tampil di ', UKP.link('Dasbor tim', 'tim'), '.'),

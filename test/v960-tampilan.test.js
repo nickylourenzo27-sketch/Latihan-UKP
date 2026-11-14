@@ -26,9 +26,10 @@ describe('v9.6: bagian berpagar di akhir css/app.css', () => {
     buka.forEach((m, i) => { assert.ok(tutup[i].index > m.index, m[1] + ': penutup sesudah pembuka'); if (buka[i + 1]) assert.ok(tutup[i].index < buka[i + 1].index, m[1] + ': tidak tumpang tindih'); });
     for (const nama of ['dasar bersama', 'layar soal dan pembahasan', 'papan bersama dan HP anggota', 'hasil dan evaluasi', 'pengaturan sesi dan halaman baca']) assert.ok(buka.some(m => m[1] === nama), 'bagian "' + nama + '"');
   });
-  it('tidak ada aturan lain sesudah bagian v9.6 terakhir, dan tambahannya paling banyak 45 KB', () => {
+  it('tidak ada aturan lain sesudah bagian v9.6 terakhir, dan tambahannya paling banyak 50 KB', () => {
     const akhir = tutup[tutup.length - 1]; assert.equal(css.slice(akhir.index + akhir[0].length).trim(), '');
-    assert.ok(Buffer.byteLength(blok) <= 45 * 1024, 'besar bagian v9.6: ' + Buffer.byteLength(blok) + ' bita');
+    // batas semula 45 KB (v9.6.0); dinaikkan ke 50 KB di v9.6.5 untuk pita lobi, evaluasi, dan layar selesai
+    assert.ok(Buffer.byteLength(blok) <= 50 * 1024, 'besar bagian v9.6: ' + Buffer.byteLength(blok) + ' bita');
   });
 });
 
@@ -68,10 +69,15 @@ describe('v9.6: kepala halaman berpita', () => {
     const lain = fs.readdirSync(path.join(ROOT, 'js')).filter(f => /\.js$/.test(f) && !['core.js', 'views-home.js'].includes(f));
     for (const f of lain) assert.ok(!/kop-pita/.test(baca('js/' + f)), 'js/' + f + ' menulis kelas kop-pita sendiri');
   });
-  it('dua belas pemanggil atau lebih memakai pita: true; layar ujian tim dan room tidak', () => {
+  it('dua belas pemanggil atau lebih memakai pita: true; layar ujian tim tidak; di room hanya pembantu kop halaman lobi', () => {
     let n = 0; for (const f of fs.readdirSync(path.join(ROOT, 'js')).filter(f => /^views-.*\.js$/.test(f))) n += (baca('js/' + f).match(/pita: true/g) || []).length;
     assert.ok(n >= 11, 'pemanggil berpita: ' + n);
-    for (const f of ['js/views-ujian-tim.js', 'js/views-ruang.js']) assert.ok(!/pita: true/.test(baca(f)), f);
+    assert.ok(!/pita: true/.test(baca('js/views-ujian-tim.js')), 'js/views-ujian-tim.js');
+    // v9.6.5: halaman room di luar sesi (Room tim, lobi, gabung, tautan rusak, room ditutup) dibuat lewat satu pembantu kop;
+    // layar soal anggota dan papan pemimpin tidak memakai pembantu itu, jadi tidak pernah berpita
+    const room = baca('js/views-ruang.js'); const baris = room.split('\n').filter(b => /pita: true/.test(b));
+    assert.ok(baris.length <= 1, 'pita: true di views-ruang.js hanya di satu tempat');
+    for (const b of baris) assert.match(b, /const kop = \(judul, o\) =>/, 'pita room hanya di pembantu kop lobi');
   });
   it('pita selebar layar tidak berlaku di mode ujian dan fokus, dan hanya untuk layar (bukan cetak)', () => {
     const i = tanpaKomentar.indexOf('@supports (overflow-x: clip)'); const s = tanpaKomentar.slice(i, i + 600);

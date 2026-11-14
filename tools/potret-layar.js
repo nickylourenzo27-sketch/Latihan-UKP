@@ -2,19 +2,30 @@
 // Di GitHub dipakai dengan WebKit (mesin Safari) dan profil iPhone. Gambarnya dikirim sebagai catatan sebuah check run,
 // supaya bisa diambil lewat API GitHub tanpa mengunduh berkas artefak.
 //
-// Potret : [BROWSER=chromium|webkit|firefox] node tools/potret-layar.js potret <root> <folder> [nama,nama]
+// Potret : [BROWSER=chromium|webkit|firefox] [LABEL_CEK=lama] node tools/potret-layar.js potret <root> <folder> [nama,nama]
 // Ambil  : node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder>        (butuh CLI gh yang sudah masuk)
 // Daftar : node tools/potret-layar.js daftar
 //
 // Tanpa data pengguna: profil contoh, riwayat dibuat skrip, service worker diblokir, tidak ada room yang dibuka.
 // Soal yang tampil dibuat tetap (Math.random diberi benih), supaya gambar dari dua mesin peramban bisa dibandingkan.
+//
+// v9.6.5: juga jalan dengan Playwright lama dan Node 16 (image Docker lama, mesin Safari versi lama; lihat potret-webkit-lama.yml).
+// - Playwright di bawah 1.24 belum mengenal opsi serviceWorkers: 'block'; navigator.serviceWorker disembunyikan lewat addInitScript.
+// - Pengiriman ke check run memakai node:https (bukan fetch, yang belum global di Node 16).
+// - Tanpa sintaks atau API Node di atas versi 16. Perangkat 'iPhone 13' punya cadangan bila tidak dikenal.
+// - LABEL_CEK=<label>: nama check run menjadi "Potret layar <peramban> <label> <versi mesin>", mis. "Potret layar webkit lama 15.4".
+//   Tanpa LABEL_CEK nama tetap "Potret layar <peramban>".
+// - PW_ANGGAP_VERSI=<x.y.z>: hanya untuk menguji; alat berlaku seolah Playwright versi itu yang terpasang.
 'use strict';
-const http = require('node:http'); const fs = require('node:fs'); const path = require('node:path');
+const http = require('node:http'); const https = require('node:https'); const fs = require('node:fs'); const path = require('node:path');
 const MODE = process.argv[2];
 const BROWSER = String(process.env.BROWSER || 'chromium').toLowerCase();
 const diGitHub = !!process.env.GITHUB_ACTIONS;
 const LAMBAT = diGitHub ? 2 : 1;                 // mesin uji GitHub lebih lambat: jeda tunggu dua kali
 const PERANGKAT_IPHONE = 'iPhone 13';            // 390 x 664 (tinggi layar Safari dengan bilah alamat)
+const PERANGKAT_CADANGAN = ['iPhone 12', 'iPhone 11'];   // 390 x 664 dan 414 x 715, untuk Playwright yang belum mengenal iPhone 13
+const UA_IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1';
+const LABEL_CEK = String(process.env.LABEL_CEK || '').trim();
 const LAPTOP = { width: 1280, height: 800 };
 const POTONG = 60000;                            // huruf base64 per catatan (batas raw_details 64 KB)
 const NAMA_CEK = 'Potret layar ';                // + nama mesin peramban
@@ -137,28 +148,65 @@ const LAYAR = [
   ['ujiantim-jalan', 'laptop', 'light', 1], ['referensi', 'laptop', 'light', 1],
 ].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null }));
 
+// ---------- versi Playwright dan opsi yang bergantung padanya ----------
+const bandingVersi = (a, b) => {
+  const x = String(a).split('.').map(n => parseInt(n, 10) || 0), y = String(b).split('.').map(n => parseInt(n, 10) || 0);
+  for (let i = 0; i < 3; i++) { const d = (x[i] || 0) - (y[i] || 0); if (d) return d < 0 ? -1 : 1; }
+  return 0;
+};
+function versiPlaywright() {
+  if (process.env.PW_ANGGAP_VERSI) return String(process.env.PW_ANGGAP_VERSI).trim();
+  for (const nama of ['playwright', 'playwright-core']) {
+    try { return require(nama + '/package.json').version; } catch (e) {}
+    try { return JSON.parse(fs.readFileSync(path.join(path.dirname(require.resolve(nama)), 'package.json'), 'utf8')).version; } catch (e) {}
+  }
+  return '0.0.0';
+}
+// opsi serviceWorkers: 'block' baru ada sejak Playwright 1.24
+const bisaBlokSW = versi => bandingVersi(versi, '1.24.0') >= 0;
+const opsiKonteks = versi => (bisaBlokSW(versi) ? { serviceWorkers: 'block' } : {});
+// Dijalankan sebelum skrip aplikasi bila opsi di atas tidak ada: 'serviceWorker' in navigator menjadi false, jadi sw.js tidak didaftarkan.
+function sembunyikanSW() {
+  try { delete Navigator.prototype.serviceWorker; } catch (e) {}
+  try { if ('serviceWorker' in navigator) Object.defineProperty(navigator, 'serviceWorker', { value: undefined, configurable: true }); } catch (e) {}
+}
+function opsiHP(devices, browser) {
+  const d = devices || {}; let dasar = d[PERANGKAT_IPHONE];
+  for (const n of PERANGKAT_CADANGAN) if (!dasar) dasar = d[n];
+  const opsi = Object.assign({}, dasar || { viewport: { width: 390, height: 664 }, screen: { width: 390, height: 844 }, userAgent: UA_IPHONE, isMobile: true, hasTouch: true });
+  delete opsi.defaultBrowserType;
+  opsi.deviceScaleFactor = 1;                     // satu piksel per piksel CSS: gambar kecil, cukup untuk memeriksa tata letak
+  if ((browser || BROWSER) === 'firefox') delete opsi.isMobile;
+  return opsi;
+}
+// "Potret layar webkit" (jalur terbaru) atau "Potret layar webkit lama 15.4" (dengan LABEL_CEK)
+const namaCek = (browser, versiMesin, label) => NAMA_CEK + browser + (label ? ' ' + label + (versiMesin ? ' ' + versiMesin : '') : '');
+
 // ---------- potret ----------
 async function potret(root, keluar, pilih) {
   let pw; try { pw = require('playwright'); } catch (e) { pw = require('playwright-core'); }
   if (!['chromium', 'webkit', 'firefox'].includes(BROWSER)) throw new Error('BROWSER tidak dikenal: ' + BROWSER);
+  const versiPW = versiPlaywright(); const blokSW = bisaBlokSW(versiPW);
   fs.mkdirSync(keluar, { recursive: true });
+  let mintaSW = 0;
   const server = http.createServer((req, res) => {
     let u = decodeURIComponent(req.url.split('?')[0]); if (u === '/') u = '/index.html';
+    if (u === '/sw.js') mintaSW++;
     const f = path.join(root, u); if (!f.startsWith(root)) { res.writeHead(403); res.end(); return; }
     fs.readFile(f, (e, b) => { if (e) { res.writeHead(404); res.end('tidak ada'); return; } res.writeHead(200, { 'content-type': MIME[path.extname(f)] || 'application/octet-stream', 'cache-control': 'no-store' }); res.end(b); });
   });
   await new Promise(r => server.listen(0, '127.0.0.1', r)); const URL0 = 'http://127.0.0.1:' + server.address().port + '/index.html';
   const browser = await pw[BROWSER].launch();
+  const versiMesin = String(browser.version() || '?');
+  const judul = namaCek(BROWSER, versiMesin, LABEL_CEK);
+  console.log(judul + ' · Playwright ' + versiPW + (blokSW ? '' : ' (tanpa opsi serviceWorkers: navigator.serviceWorker disembunyikan)') + ' · Node ' + process.versions.node);
   const hasil = []; const gambar = [];
 
   async function buka(alat, tema, st) {
-    let opsi;
-    if (alat === 'hp') {
-      opsi = Object.assign({}, (pw.devices || {})[PERANGKAT_IPHONE] || { viewport: { width: 390, height: 664 } }); delete opsi.defaultBrowserType;
-      opsi.deviceScaleFactor = 1;                     // satu piksel per piksel CSS: gambar kecil, cukup untuk memeriksa tata letak
-      if (BROWSER === 'firefox') delete opsi.isMobile;
-    } else opsi = { viewport: LAPTOP, deviceScaleFactor: 1 };
-    const ctx = await browser.newContext(Object.assign(opsi, { serviceWorkers: 'block', colorScheme: tema }));
+    const opsi = alat === 'hp' ? opsiHP(pw.devices, BROWSER) : { viewport: LAPTOP, deviceScaleFactor: 1 };
+    // Playwright 1.24 ke atas: serviceWorkers: 'block'; versi lama: navigator.serviceWorker disembunyikan sebelum skrip aplikasi
+    const ctx = await browser.newContext(Object.assign(opsi, opsiKonteks(versiPW), { colorScheme: tema }));
+    if (!blokSW) await ctx.addInitScript(sembunyikanSW);
     st = JSON.parse(JSON.stringify(st || {}));
     st.profil = Object.assign({ tingkat: 'B', status: 'baru', onboardingSelesai: true, nama: PESERTA[0] }, st.profil || {});
     st.pengaturan = Object.assign({}, st.pengaturan || {}, { tema });
@@ -223,15 +271,16 @@ async function potret(root, keluar, pilih) {
   }
   await browser.close(); server.close();
   const gagal = hasil.filter(x => !x.ok); const versi = (fs.readFileSync(path.join(root, 'js', 'core.js'), 'utf8').match(/UKP\.versi = '([0-9.]+)'/) || [])[1] || '?';
-  const ringkas = BROWSER + ' · v' + versi + ' · ' + (hasil.length - gagal.length) + ' layar lulus, ' + gagal.length + ' gagal · ' + gambar.length + ' gambar';
+  if (mintaSW) console.log('PERINGATAN: sw.js diminta ' + mintaSW + ' kali (service worker tidak terblokir)');
+  const ringkas = BROWSER + ' ' + versiMesin + ' · Playwright ' + versiPW + ' · v' + versi + ' · ' + (hasil.length - gagal.length) + ' layar lulus, ' + gagal.length + ' gagal · ' + gambar.length + ' gambar';
   console.log(ringkas);
   if (diGitHub) {
     const bersih = s => String(s).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A');
     gagal.slice(0, 8).forEach(x => console.log('::warning title=Potret GAGAL::' + bersih(x.tag + ' ' + x.info)));
-    console.log('::' + (gagal.length ? 'error' : 'notice') + ' title=Potret layar ' + BROWSER + '::' + bersih(ringkas));
+    console.log('::' + (gagal.length ? 'error' : 'notice') + ' title=' + bersih(judul) + '::' + bersih(ringkas));
   }
   if (process.env.KIRIM === '1') {
-    try { const id = await kirim(gambar, ringkas, hasil); console.log('gambar dikirim ke check run ' + id); }
+    try { const id = await kirim(gambar, ringkas, hasil, judul); console.log('gambar dikirim ke check run ' + id); }
     catch (e) { const pesan = String((e && e.message) || e).slice(0, 400); console.log('gambar TIDAK terkirim: ' + pesan); if (diGitHub) console.log('::warning title=Potret tidak terkirim::' + pesan.replace(/%/g, '%25').replace(/\r?\n/g, '%0A')); }
   }
   return gagal.length ? 1 : 0;
@@ -246,6 +295,19 @@ function potongGambar(gambar) {
   }
   return catatan;
 }
+// Satu permintaan HTTP(S) dengan node:http atau node:https (bukan fetch, yang belum global di Node 16) → { status, teks }
+function minta(cara, alamat, kepala, isi) {
+  return new Promise((jadi, gagal) => {
+    const u = new URL(alamat); const data = isi == null ? null : Buffer.from(JSON.stringify(isi), 'utf8');
+    const h = Object.assign({}, kepala); if (data) h['content-length'] = String(data.length);
+    const req = (u.protocol === 'http:' ? http : https).request(u, { method: cara, headers: h }, res => {
+      const bagian = []; res.on('data', c => bagian.push(c)); res.on('error', gagal);
+      res.on('end', () => jadi({ status: res.statusCode, teks: Buffer.concat(bagian).toString('utf8') }));
+    });
+    req.setTimeout(120000, () => req.destroy(new Error('batas waktu ' + cara + ' ' + u.pathname)));
+    req.on('error', gagal); if (data) req.write(data); req.end();
+  });
+}
 async function kirim(gambar, ringkas, hasil, namaCek) {
   const api = process.env.GITHUB_API_URL || 'https://api.github.com'; const repo = process.env.GITHUB_REPOSITORY; const sha = process.env.GITHUB_SHA; const token = process.env.GITHUB_TOKEN;
   if (!repo || !sha || !token) throw new Error('GITHUB_REPOSITORY, GITHUB_SHA, atau GITHUB_TOKEN kosong');
@@ -255,9 +317,9 @@ async function kirim(gambar, ringkas, hasil, namaCek) {
     let galat = null;
     for (let coba = 0; coba < 6; coba++) {
       if (coba) await tidur(1500 * coba);
-      const r = await fetch(api + '/repos/' + repo + jalur, { method: cara, headers: { authorization: 'Bearer ' + token, accept: 'application/vnd.github+json', 'x-github-api-version': '2022-11-28', 'content-type': 'application/json', 'user-agent': 'potret-layar' }, body: JSON.stringify(isi) });
-      const teks = await r.text(); if (r.ok) return JSON.parse(teks);
-      galat = new Error(cara + ' ' + jalur + ' → ' + r.status + ' ' + teks.slice(0, 200));
+      const r = await minta(cara, api + '/repos/' + repo + jalur, { authorization: 'Bearer ' + token, accept: 'application/vnd.github+json', 'x-github-api-version': '2022-11-28', 'content-type': 'application/json', 'user-agent': 'potret-layar' }, isi);
+      if (r.status >= 200 && r.status < 300) return JSON.parse(r.teks || '{}');
+      galat = new Error(cara + ' ' + jalur + ' → ' + r.status + ' ' + r.teks.slice(0, 200));
       if (!((cara === 'PATCH' && r.status === 404) || r.status === 429 || r.status >= 500)) break;
     }
     throw galat;
@@ -278,14 +340,17 @@ function susun(catatan) {
   for (const [nama, g] of peta) { let lengkap = g.bagian.length === g.n; for (let i = 0; i < g.n; i++) if (typeof g.bagian[i] !== 'string' || !g.bagian[i].length) lengkap = false; out.push({ nama, lengkap, buf: lengkap ? Buffer.from(g.bagian.join(''), 'base64') : null }); }
   return out;
 }
+// check run potret: "Potret layar …" dan "Potret room …"; nama job (berkurung, mis. "Potret layar WebKit (profil iPhone)") dilewati
+const pilihCek = daftar => (daftar || []).filter(c => /^Potret (layar|room) /.test(String(c.name)) && !/\(/.test(String(c.name)));
+const namaSub = (nama, id, terpakai) => { let n = String(nama).replace(/\s+/g, '-').replace(/[^A-Za-z0-9._-]/g, '').toLowerCase(); if (terpakai.has(n)) n += '-' + id; terpakai.add(n); return n; };
 function ambil(repo, sha, keluar) {
   const { execFileSync } = require('node:child_process');
   const gh = jalur => JSON.parse(execFileSync('gh', ['api', '-H', 'Accept: application/vnd.github+json', jalur], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }));
-  const cek = (gh('repos/' + repo + '/commits/' + sha + '/check-runs?per_page=100').check_runs || []).filter(c => /^Potret (layar|room) /.test(String(c.name)) && !/\(/.test(String(c.name)));
+  const cek = pilihCek(gh('repos/' + repo + '/commits/' + sha + '/check-runs?per_page=100').check_runs);
   if (!cek.length) { console.log('belum ada check run "' + NAMA_CEK + '…" untuk ' + sha); return 1; }
-  fs.mkdirSync(keluar, { recursive: true }); let kode = 0;
+  fs.mkdirSync(keluar, { recursive: true }); let kode = 0; const terpakai = new Set();
   for (const c of cek) {
-    const sub = cek.length > 1 ? path.join(keluar, c.name.replace(/\s+/g, '-').toLowerCase()) : keluar; fs.mkdirSync(sub, { recursive: true });
+    const sub = cek.length > 1 ? path.join(keluar, namaSub(c.name, c.id, terpakai)) : keluar; fs.mkdirSync(sub, { recursive: true });
     console.log(c.name + ' · ' + c.status + ' · ' + (c.conclusion || '-') + ' · ' + ((c.output || {}).annotations_count || 0) + ' catatan');
     if ((c.output || {}).summary) fs.writeFileSync(path.join(sub, 'ringkasan.md'), c.output.summary);
     const catatan = []; for (let hal = 1; hal < 50; hal++) { const a = gh('repos/' + repo + '/check-runs/' + c.id + '/annotations?per_page=100&page=' + hal); catatan.push(...a); if (a.length < 100) break; }
@@ -302,4 +367,4 @@ if (require.main === module) {
     console.error('pakai: node tools/potret-layar.js potret <root> <folder> [nama,nama] | ambil <pemilik/repo> <sha> <folder> | daftar'); process.exit(2);
   })().catch(e => { console.error(e); process.exit(2); });
 }
-module.exports = { potongGambar, susun, kirim, LAYAR, POTONG, NAMA_CEK, langkah: Object.keys(LANGKAH) };
+module.exports = { potongGambar, susun, kirim, minta, LAYAR, POTONG, NAMA_CEK, langkah: Object.keys(LANGKAH), bandingVersi, versiPlaywright, bisaBlokSW, opsiKonteks, opsiHP, namaCek, pilihCek, namaSub };

@@ -1323,7 +1323,8 @@
         default: return layarKosong();
       }
     }
-    const kop = (judul, o) => { o = o || {}; return UKP.c.kop({ eyebrow: o.eyebrow || 'Mode mabar', judul, lead: o.lead || null, meta: o.meta || null, aksi: o.aksi || null }); };
+    // v9.6.5: halaman room di luar sesi berpita (layar soal anggota, terkirim, hasil, dan papan pemimpin tidak memakai pembantu ini)
+    const kop = (judul, o) => { o = o || {}; return UKP.c.kop({ eyebrow: o.eyebrow || 'Mode mabar', judul, lead: o.lead || null, meta: o.meta || null, aksi: o.aksi || null, pita: true }); };
     // V3: menu ⋮ sebaris dengan baris status (dulu di .page-actions, yang turun ke baris kosong sendiri di HP)
     const kopDenganMenu = (judul, o) => { o = Object.assign({}, o || {}); const m = UI.menu(); o.meta = [].concat(o.meta || []).filter(Boolean); if (m) o.meta.push(m); return kop(judul, o); };
 

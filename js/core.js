@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '9.6.4';
+  UKP.versi = '9.6.5';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
@@ -1131,6 +1131,8 @@
     const kelasKop = 'page-head' + (o.pita ? ' kop-pita' : '');
     return aksi || meta || o.eyebrow ? h('header', { class: kelasKop }, h('div', { class: 'page-head-teks' }, teks), aksi) : h('header', { class: kelasKop }, teks);
   };
+  // v9.6.5: kelas kepala berpita untuk kepala yang tidak dibuat UKP.c.kop (kepala Evaluasi tim di alur latihan). Gayanya sama dengan pita: true.
+  UKP.c.kelasPita = 'page-head kop-pita';
   const IKON_BANNER = { info: 'info', ok: 'cek-lingkar', warn: 'peringatan', attn: 'peringatan' };
   // banner (DESAIN-V6 C.18): ikon bernada · isi (judul opsional + kalimat + aksi) · tutup. id → penutupan diingat
   UKP.c.banner = (teks, tone, id, aksi, opsi) => {
