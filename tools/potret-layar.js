@@ -29,7 +29,7 @@ const UA_IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleW
 const LABEL_CEK = String(process.env.LABEL_CEK || '').trim();
 const CSS_UJI = String(process.env.CSS_UJI || '');   // CSS percobaan, disuntik ke tiap halaman sesudah dimuat (diagnosa)
 const DIAG = (() => { try { const d = JSON.parse(process.env.DIAG || '[]'); return Array.isArray(d) ? d.map(String).slice(0, 40) : []; } catch (e) { return []; } })();
-const LAPTOP = { width: 1280, height: 800 };
+const LAPTOP = { width: 390, height: 664 };   // percobaan e: desktop sempit, tanpa emulasi seluler
 const POTONG = 60000;                            // huruf base64 per catatan (batas raw_details 64 KB)
 const NAMA_CEK = 'Potret layar ';                // + nama mesin peramban
 const PESERTA = ['Nicky', 'Mita', 'Nora'];
@@ -241,7 +241,7 @@ async function potret(root, keluar, pilih) {
   const hasil = []; const gambar = []; const diag = [];
 
   async function buka(alat, tema, st) {
-    const opsi = alat === 'hp' ? opsiHP(pw.devices, BROWSER) : { viewport: LAPTOP, deviceScaleFactor: 1 };
+    const opsi = alat === 'hp' ? Object.assign(opsiHP(pw.devices, BROWSER), { viewport: { width: 820, height: 1180 }, screen: { width: 820, height: 1180 } }) : { viewport: LAPTOP, deviceScaleFactor: 1 };   // percobaan e: tablet beremulasi seluler
     // Playwright 1.24 ke atas: serviceWorkers: 'block'; versi lama: navigator.serviceWorker disembunyikan sebelum skrip aplikasi
     const ctx = await browser.newContext(Object.assign(opsi, opsiKonteks(versiPW), { colorScheme: tema }));
     if (!blokSW) await ctx.addInitScript(sembunyikanSW);
