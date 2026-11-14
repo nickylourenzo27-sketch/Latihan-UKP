@@ -268,6 +268,12 @@ async function potret(root, keluar, pilih) {
       if (DIAG.length) {
         try {
           const d = await p.evaluate(daftar => ({ has: (() => { try { return CSS.supports('selector(:has(a))'); } catch (e) { return 'galat'; } })(), html: document.documentElement.className, isi: daftar.map(entri => {
+            // "@x,y" = tumpukan elemen di titik itu (dari yang teratas), termasuk ringkasan ::before dan ::after-nya
+            if (String(entri).charAt(0) === '@') {
+              const xy = String(entri).slice(1).split(',').map(Number); let tumpuk; try { tumpuk = Array.from(document.elementsFromPoint(xy[0], xy[1])).slice(0, 12); } catch (e) { return { sel: entri, galat: String(e.message).slice(0, 80) }; }
+              const semu = (e, mana) => { const c = getComputedStyle(e, mana); return c && c.content && c.content !== 'none' && c.content !== 'normal' ? [c.position, c.zIndex, c.backgroundColor, c.width, c.height, c.top, c.left].join(' ') : ''; };
+              return { sel: entri, el: tumpuk.map(e => { const c = getComputedStyle(e), r = e.getBoundingClientRect(); return { k: (e.tagName + '.' + String(e.className)).slice(0, 44), r: [r.x, r.y, r.width, r.height].map(Math.round).join(','), pos: c.position, z: c.zIndex, bg: c.backgroundColor, op: c.opacity, anim: c.animationName, tf: c.transform === 'none' ? '' : 'tf', iso: c.isolation, b: semu(e, '::before'), a: semu(e, '::after') }; }) };
+            }
             const bagian = String(entri).split(' ?? '); const sel = bagian[0]; const uji = bagian[1] ? bagian[1].split(' || ') : [];
             let semua; try { semua = Array.from(document.querySelectorAll(sel)); } catch (e) { return { sel: sel, galat: String(e.message).slice(0, 80) }; }
             return { sel: sel, n: semua.length, el: semua.slice(0, 4).map(e => { const c = getComputedStyle(e), r = e.getBoundingClientRect();
