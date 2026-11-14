@@ -51,6 +51,8 @@ jobs:
         include:
           - playwright: '1.23.0'
             image: mcr.microsoft.com/playwright:v1.23.0-focal
+          - playwright: '1.27.0'
+            image: mcr.microsoft.com/playwright:v1.27.0-focal
           - playwright: '1.34.0'
             image: mcr.microsoft.com/playwright:v1.34.0-jammy
     container:

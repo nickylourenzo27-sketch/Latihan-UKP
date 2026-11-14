@@ -35,6 +35,24 @@ const NAMA_CEK = 'Potret layar ';                // + nama mesin peramban
 const PESERTA = ['Nicky', 'Mita', 'Nora'];
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.woff2': 'font/woff2', '.ico': 'image/x-icon' };
 
+// percobaan: halaman sederhana yang meniru pindah rute aplikasi. Isi dipasang lewat skrip sesudah cat pertama, lalu di
+// requestAnimationFrame diberi animasi pudar 120 ms; o.lepas = atribut animasi dicabut saat animationend (seperti aplikasi).
+const halamanAnimasi = o => '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>uji</title><style>'
+  + 'body{margin:0;background:#EEF2F7;font:16px sans-serif}'
+  + (o.bilah ? '.atas{position:sticky;top:0;z-index:9;height:40px;background:#0F2A4A;color:#fff}.bawah{position:fixed;left:0;right:0;bottom:0;z-index:9;height:48px;background:#fff;border-top:1px solid #7A8696}' : '')
+  + 'main{padding:16px' + (o.lapis ? ';position:relative;z-index:0' : '') + '}'
+  + '.hal>*{margin:0 0 8px}.kotak{padding:8px;background:#fff;border:1px solid #7A8696}.lapis{position:relative}'
+  + '@keyframes pudar{from{opacity:0}to{opacity:1}}main[data-masuk]>.hal{animation:pudar 120ms cubic-bezier(.2,0,0,1) both}'
+  + '</style></head><body>'
+  + (o.bilah ? '<div class="atas">BILAH LENGKET</div>' : '')
+  + '<main></main>'
+  + (o.bilah ? '<div class="bawah">BILAH BAWAH TETAP</div>' : '')
+  + '<script>(function(){var m=document.querySelector("main");var h=document.createElement("div");h.className="hal";'
+  + 'h.innerHTML="<h1>' + o.judul + '</h1><p>TEKS BIASA di dalam wadah beranimasi.</p><div class=\\"kotak\\">KOTAK BIASA berlatar putih</div><div class=\\"kotak lapis\\">KOTAK BERLAPIS (position: relative)</div><p>TEKS BIASA sesudah kotak berlapis.</p>";'
+  + 'setTimeout(function(){m.appendChild(h);requestAnimationFrame(function(){'
+  + (o.lepas ? 'm.addEventListener("animationend",function(){m.removeAttribute("data-masuk");});' : '')
+  + 'm.setAttribute("data-masuk","");});},300);})();</' + 'script></body></html>';
+
 // ---------- langkah bersama ----------
 const tidur = ms => new Promise(r => setTimeout(r, ms));
 const tunggu = (p, ms) => p.waitForTimeout(ms * LAMBAT);
@@ -142,6 +160,10 @@ const LANGKAH = {
       + '<p style="margin:8px 16px">TEKS BIASA sesudah kotak berlapis.</p></main></body></html>');
     await tunggu(p, 400);
   },
+  'uji-animasi': async p => { await p.setContent(halamanAnimasi({ judul: 'ANIMASI LEPAS', bilah: true, lepas: true })); await tunggu(p, 1200); },
+  'uji-animasi-tetap': async p => { await p.setContent(halamanAnimasi({ judul: 'ANIMASI TETAP', bilah: true, lepas: false })); await tunggu(p, 1200); },
+  'uji-animasi-lapis': async p => { await p.setContent(halamanAnimasi({ judul: 'ANIMASI LEPAS MAIN BERLAPIS', bilah: true, lepas: true, lapis: true })); await tunggu(p, 1200); },
+  'uji-animasi-polos': async p => { await p.setContent(halamanAnimasi({ judul: 'ANIMASI LEPAS TANPA BILAH', bilah: false, lepas: true })); await tunggu(p, 1200); },
   // halaman menu Lainnya yang berpita sejak v9.6.4
   rencana: async p => { await pergi(p, 'rencana', null, 1100); },
   referensi: async p => { await pergi(p, 'referensi', null, 1100); },
@@ -161,7 +183,8 @@ const LAYAR = [
   ['bersama-papan', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'light', 1], ['bersama-evaluasi', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'dark', 1],
   ['ujiantim-jalan', 'laptop', 'light', 1], ['referensi', 'laptop', 'light', 1],
   ['uji-gambar', 'hp', 'light', 1],
-].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null, khusus: nama === 'uji-gambar' }));
+  ['uji-animasi', 'hp', 'light', 1], ['uji-animasi-tetap', 'hp', 'light', 1], ['uji-animasi-lapis', 'hp', 'light', 1], ['uji-animasi-polos', 'hp', 'light', 1],
+].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null, khusus: /^uji-/.test(nama) }));
 
 // ---------- versi Playwright dan opsi yang bergantung padanya ----------
 const bandingVersi = (a, b) => {
