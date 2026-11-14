@@ -21,6 +21,10 @@ on:
         description: 'JSON daftar pemilih untuk diagnosa gaya terhitung (kosong = tanpa diagnosa)'
         required: false
         default: ''
+      css:
+        description: 'CSS percobaan yang disuntik ke tiap halaman (kosong = tanpa)'
+        required: false
+        default: ''
   push:
     branches: [main]
     paths:
@@ -68,4 +72,5 @@ jobs:
           # hanya terisi saat dijalankan manual: menimpa daftar layar dan meminta diagnosa
           LAYAR_PILIH: ${{ github.event.inputs.layar }}
           DIAG: ${{ github.event.inputs.diag }}
+          CSS_UJI: ${{ github.event.inputs.css }}
         run: node tools/potret-layar.js potret . /tmp/potret beranda-hp,simulasi-atur-hp,latih-atur-hp,latih-soal-hp,latih-terjawab-hp,latih-pembahasan-hp,simulasi-jalan-hp,simulasi-hasil-hp,mabar-lobi-hp,materi-hp,bank-hp,rencana-hp,bersama-papan-laptop,bersama-kunci-laptop,simulasi-atur-laptop,referensi-laptop

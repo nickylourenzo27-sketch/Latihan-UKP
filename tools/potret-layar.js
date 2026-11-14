@@ -27,6 +27,7 @@ const PERANGKAT_IPHONE = 'iPhone 13';            // 390 x 664 (tinggi layar Safa
 const PERANGKAT_CADANGAN = ['iPhone 12', 'iPhone 11'];   // 390 x 664 dan 414 x 715, untuk Playwright yang belum mengenal iPhone 13
 const UA_IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1';
 const LABEL_CEK = String(process.env.LABEL_CEK || '').trim();
+const CSS_UJI = String(process.env.CSS_UJI || '');   // CSS percobaan, disuntik ke tiap halaman sesudah dimuat (diagnosa)
 const DIAG = (() => { try { const d = JSON.parse(process.env.DIAG || '[]'); return Array.isArray(d) ? d.map(String).slice(0, 40) : []; } catch (e) { return []; } })();
 const LAPTOP = { width: 1280, height: 800 };
 const POTONG = 60000;                            // huruf base64 per catatan (batas raw_details 64 KB)
@@ -130,6 +131,17 @@ const LANGKAH = {
   bank: async p => { await pergi(p, 'bank', null, 1300); },
   kemajuan: async p => { await pergi(p, 'kemajuan', null, 1200); },
   pengaturan: async p => { await pergi(p, 'pengaturan', null, 1000); },
+  // v9.6.5, layar khusus (hanya bila diminta lewat daftar layar): halaman sangat sederhana berisi teks biasa, teks berlapis, dan bilah tetap.
+  // Bila teks biasa tidak tergambar di sini, yang lemah adalah potret mesin peramban itu, bukan gaya aplikasi.
+  'uji-gambar': async p => {
+    await p.setContent('<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>uji</title></head><body style="margin:0;background:#EEF2F7;font:16px sans-serif">'
+      + '<div style="position:fixed;top:0;left:0;right:0;height:40px;background:#0F2A4A;color:#fff">BILAH TETAP</div>'
+      + '<main><h1 style="margin:60px 16px 8px">JUDUL BIASA</h1><p style="margin:8px 16px">TEKS BIASA di alur normal, tanpa posisi.</p>'
+      + '<div style="margin:8px 16px;padding:8px;background:#fff;border:1px solid #7A8696">KOTAK BIASA berlatar putih</div>'
+      + '<div style="position:relative;margin:8px 16px;padding:8px;background:#fff;border:1px solid #7A8696">KOTAK BERLAPIS (position: relative)</div>'
+      + '<p style="margin:8px 16px">TEKS BIASA sesudah kotak berlapis.</p></main></body></html>');
+    await tunggu(p, 400);
+  },
   // halaman menu Lainnya yang berpita sejak v9.6.4
   rencana: async p => { await pergi(p, 'rencana', null, 1100); },
   referensi: async p => { await pergi(p, 'referensi', null, 1100); },
@@ -148,7 +160,8 @@ const LAYAR = [
   ['beranda', 'laptop', 'light', 1], ['simulasi-atur', 'laptop', 'light', 1], ['latih-pembahasan', 'laptop', 'light', 1], ['simulasi-hasil', 'laptop', 'light', 1],
   ['bersama-papan', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'light', 1], ['bersama-evaluasi', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'dark', 1],
   ['ujiantim-jalan', 'laptop', 'light', 1], ['referensi', 'laptop', 'light', 1],
-].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null }));
+  ['uji-gambar', 'hp', 'light', 1],
+].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null, khusus: nama === 'uji-gambar' }));
 
 // ---------- versi Playwright dan opsi yang bergantung padanya ----------
 const bandingVersi = (a, b) => {
@@ -222,6 +235,7 @@ async function potret(root, keluar, pilih) {
     await page.goto(URL0, { waitUntil: 'load' });
     await page.waitForFunction(() => window.UKP && UKP.go && UKP.konten && UKP.modul && Object.keys(UKP.modul).length > 0, null, { timeout: 30000 });
     await tunggu(page, 900);
+    if (CSS_UJI) { try { await page.addStyleTag({ content: CSS_UJI }); } catch (e) { console.log('CSS_UJI gagal dipasang: ' + String(e.message).slice(0, 120)); } }
     return { ctx, page, galat };
   }
 
@@ -245,7 +259,7 @@ async function potret(root, keluar, pilih) {
   } catch (e) { console.log('state awal tidak dibuat, memakai profil saja: ' + String(e.message).split('\n')[0]); awal = {}; }
 
   for (const L of LAYAR) {
-    if (pilih && !pilih.includes(L.nama) && !pilih.includes(L.tag)) continue;
+    if (pilih ? (!pilih.includes(L.nama) && !pilih.includes(L.tag)) : L.khusus) continue;   // layar khusus hanya bila diminta
     let o = null; const baris = { tag: L.tag, ok: false, info: '' };
     try {
       o = await buka(L.alat, L.tema, Object.assign(JSON.parse(JSON.stringify(awal)), L.tambah ? JSON.parse(JSON.stringify(L.tambah)) : {}));
