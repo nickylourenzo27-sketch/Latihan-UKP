@@ -173,13 +173,20 @@ function opsiAlat(alat, devices, browser) {
 }
 // v9.6.6: keluhan dari hasil ukur satu layar. (1) Gulir mendatar: lebar dokumen melebihi lebar layar. (2) Layar melebar: di peramban
 // seluler, isi yang meluap membuat layar tata letak melebar (innerWidth naik) alih-alih menambah gulir. (3) Di layar sentuh, main
-// tidak boleh dipotong dengan overflow-x: di WebKit seluler lama potongan itu membuat isi halaman tidak tergambar.
-function nilaiUkur(ukur, lebarLayar) {
-  const keluhan = [];
+// tidak boleh dipotong dengan overflow-x: di WebKit seluler lama potongan itu membuat isi halaman tidak tergambar. Profil hp dan
+// tablet dianggap layar sentuh menurut konfigurasinya, apa pun yang dilaporkan media penunjuk mesin itu. Kalau mesin melaporkan
+// penunjuk mouse pada emulasi seluler, aturan CSS untuk mouse ikut berlaku dan keluhan ini yang memberi tahu.
+function nilaiUkur(ukur, lebarLayar, alat) {
+  const keluhan = []; const seluler = alat === 'hp' || alat === 'tablet';
   if (ukur.isi > ukur.lebar + 1) keluhan.push('gulir mendatar ' + ukur.isi + ' > ' + ukur.lebar);
   if (lebarLayar && ukur.lebar > lebarLayar + 1) keluhan.push('layar melebar ' + ukur.lebar + ' > ' + lebarLayar);
-  if (ukur.sentuh && ukur.mainX && ukur.mainX !== 'visible') keluhan.push('main dipotong di layar sentuh (overflow-x: ' + ukur.mainX + ')');
+  if ((seluler || ukur.sentuh) && ukur.mainX && ukur.mainX !== 'visible') keluhan.push('main dipotong di layar sentuh (overflow-x: ' + ukur.mainX + ')');
   return keluhan;
+}
+// v9.6.6: satu baris per alat tentang media penunjuk dan overflow-x yang terhitung, untuk log dan ringkasan check run
+function barisMedia(alat, ukur) {
+  const ya = v => (v ? 'ya' : 'tidak');
+  return 'media ' + alat + ': sentuh=' + ya(ukur.sentuh) + ', mouse=' + ya(ukur.halus) + ', html=' + (ukur.htmlX || '?') + ', main=' + (ukur.mainX || '?') + ', touch-callout=' + ya(ukur.callout);
 }
 
 // ---------- versi Playwright dan opsi yang bergantung padanya ----------
@@ -234,7 +241,7 @@ async function potret(root, keluar, pilih) {
   const versiMesin = String(browser.version() || '?');
   const judul = namaCek(BROWSER, versiMesin, LABEL_CEK);
   console.log(judul + ' · Playwright ' + versiPW + (blokSW ? '' : ' (tanpa opsi serviceWorkers: navigator.serviceWorker disembunyikan)') + ' · Node ' + process.versions.node);
-  const hasil = []; const gambar = []; const diag = [];
+  const hasil = []; const gambar = []; const diag = []; const media = {};
 
   async function buka(alat, tema, st) {
     const opsi = opsiAlat(alat, pw.devices, BROWSER);
@@ -296,8 +303,11 @@ async function potret(root, keluar, pilih) {
         const buf = await p.screenshot({ type: 'jpeg', quality: L.alat === 'laptop' ? 50 : 62, fullPage: false });
         const nama = L.tag + (L.n > 1 ? '-' + (i + 1) : ''); fs.writeFileSync(path.join(keluar, nama + '.jpg'), buf); gambar.push({ nama, buf });
       }
-      const ukur = await p.evaluate(() => { const m = document.querySelector('main'); let sentuh = false; try { sentuh = matchMedia('(hover: none), (pointer: coarse)').matches; } catch (e) {}
-        return { lebar: innerWidth, isi: document.documentElement.scrollWidth, sentuh, mainX: m ? getComputedStyle(m).overflowX : '', h1: ((document.querySelector('main h1, .page h1') || {}).textContent || '').trim().slice(0, 40) }; });
+      const ukur = await p.evaluate(() => { const m = document.querySelector('main'); const cocok = q => { try { return matchMedia(q).matches; } catch (e) { return false; } };
+        let callout = false; try { callout = !!(window.CSS && CSS.supports && CSS.supports('-webkit-touch-callout', 'none')); } catch (e) {}
+        return { lebar: innerWidth, isi: document.documentElement.scrollWidth, sentuh: cocok('(hover: none), (pointer: coarse)'), halus: cocok('(hover: hover) and (pointer: fine)'), callout,
+          mainX: m ? getComputedStyle(m).overflowX : '', htmlX: getComputedStyle(document.documentElement).overflowX, h1: ((document.querySelector('main h1, .page h1') || {}).textContent || '').trim().slice(0, 40) }; });
+      if (!media[L.alat] && L.nama !== 'uji-gambar') { media[L.alat] = barisMedia(L.alat, ukur); console.log(media[L.alat]); }   // sekali per alat; halaman uji tidak memuat gaya aplikasi
       // v9.6.5: DIAG='["pemilih", "pemilih ?? pemilih-uji || pemilih-uji"]' → gaya terhitung, kotak, dan hasil matches() untuk paling banyak empat elemen
       // per pemilih, ditulis ke log dan ke ringkasan check run. Dipakai untuk mencari sebab beda tampilan di mesin peramban lama.
       if (DIAG.length) {
@@ -320,7 +330,7 @@ async function potret(root, keluar, pilih) {
           diag.push({ tag: L.tag, d: d }); console.log('DIAG ' + L.tag + ' ' + JSON.stringify(d));
         } catch (e) { console.log('DIAG ' + L.tag + ' gagal: ' + String((e && e.message) || e).slice(0, 200)); }
       }
-      const keluhan = nilaiUkur(ukur, (opsiAlat(L.alat, pw.devices, BROWSER).viewport || {}).width || 0);
+      const keluhan = nilaiUkur(ukur, (opsiAlat(L.alat, pw.devices, BROWSER).viewport || {}).width || 0, L.alat);
       baris.ok = keluhan.length === 0 && o.galat.length === 0;
       baris.info = (keluhan.length ? keluhan.join('; ') + '; ' : '') + (o.galat.length ? 'galat halaman: ' + o.galat.slice(0, 2).join(' | ') + '; ' : '') + (ukur.h1 || '');
     } catch (e) {
@@ -340,7 +350,7 @@ async function potret(root, keluar, pilih) {
     console.log('::' + (gagal.length ? 'error' : 'notice') + ' title=' + bersih(judul) + '::' + bersih(ringkas));
   }
   if (process.env.KIRIM === '1') {
-    const ringkasKirim = ringkas + (diag.length ? '\n\nDiagnosa (DIAG):\n```json\n' + JSON.stringify(diag).slice(0, 45000) + '\n```' : '');
+    const ringkasKirim = ringkas + (Object.keys(media).length ? '\n\n' + Object.keys(media).map(k => '- ' + media[k]).join('\n') : '') + (diag.length ? '\n\nDiagnosa (DIAG):\n```json\n' + JSON.stringify(diag).slice(0, 45000) + '\n```' : '');
     try { const id = await kirim(gambar, ringkasKirim, hasil, judul); console.log('gambar dikirim ke check run ' + id); }
     catch (e) { const pesan = String((e && e.message) || e).slice(0, 400); console.log('gambar TIDAK terkirim: ' + pesan); if (diGitHub) console.log('::warning title=Potret tidak terkirim::' + pesan.replace(/%/g, '%25').replace(/\r?\n/g, '%0A')); }
   }
@@ -428,4 +438,4 @@ if (require.main === module) {
     console.error('pakai: node tools/potret-layar.js potret <root> <folder> [nama,nama] | ambil <pemilik/repo> <sha> <folder> | daftar'); process.exit(2);
   })().catch(e => { console.error(e); process.exit(2); });
 }
-module.exports = { potongGambar, susun, kirim, minta, LAYAR, POTONG, NAMA_CEK, langkah: Object.keys(LANGKAH), bandingVersi, versiPlaywright, bisaBlokSW, opsiKonteks, opsiHP, opsiAlat, nilaiUkur, TABLET, namaCek, pilihCek, namaSub };
+module.exports = { potongGambar, susun, kirim, minta, LAYAR, POTONG, NAMA_CEK, langkah: Object.keys(LANGKAH), bandingVersi, versiPlaywright, bisaBlokSW, opsiKonteks, opsiHP, opsiAlat, nilaiUkur, barisMedia, TABLET, namaCek, pilihCek, namaSub };

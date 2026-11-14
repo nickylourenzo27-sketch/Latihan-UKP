@@ -169,19 +169,32 @@ describe('v9.6.6: profil tablet dan penilaian hasil ukur', () => {
   });
   it('gulir mendatar, layar yang melebar, dan main yang dipotong di layar sentuh menjadi keluhan', () => {
     const baik = { lebar: 390, isi: 390, sentuh: true, mainX: 'visible' };
-    assert.deepEqual(alat.nilaiUkur(baik, 390), []);
-    assert.deepEqual(alat.nilaiUkur(Object.assign({}, baik, { isi: 391 }), 390), [], 'selisih 1 px dibiarkan (pembulatan)');
-    assert.match(alat.nilaiUkur(Object.assign({}, baik, { isi: 414 }), 390).join('; '), /gulir mendatar 414 > 390/);
-    assert.match(alat.nilaiUkur(Object.assign({}, baik, { lebar: 430, isi: 430 }), 390).join('; '), /layar melebar 430 > 390/);
-    assert.match(alat.nilaiUkur(Object.assign({}, baik, { mainX: 'clip' }), 390).join('; '), /main dipotong di layar sentuh \(overflow-x: clip\)/);
-    assert.match(alat.nilaiUkur(Object.assign({}, baik, { mainX: 'hidden' }), 390).join('; '), /main dipotong di layar sentuh/);
-    assert.deepEqual(alat.nilaiUkur({ lebar: 1280, isi: 1280, sentuh: false, mainX: 'clip' }, 1280), [], 'penunjuk mouse boleh memotong di main');
-    assert.deepEqual(alat.nilaiUkur({ lebar: 390, isi: 390, sentuh: true, mainX: '' }, 0), [], 'tanpa data tambahan tidak ada keluhan');
+    assert.deepEqual(alat.nilaiUkur(baik, 390, 'hp'), []);
+    assert.deepEqual(alat.nilaiUkur(Object.assign({}, baik, { isi: 391 }), 390, 'hp'), [], 'selisih 1 px dibiarkan (pembulatan)');
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { isi: 414 }), 390, 'hp').join('; '), /gulir mendatar 414 > 390/);
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { lebar: 430, isi: 430 }), 390, 'hp').join('; '), /layar melebar 430 > 390/);
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { mainX: 'clip' }), 390, 'hp').join('; '), /main dipotong di layar sentuh \(overflow-x: clip\)/);
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { mainX: 'hidden' }), 820, 'tablet').join('; '), /main dipotong di layar sentuh/);
+    assert.deepEqual(alat.nilaiUkur({ lebar: 1280, isi: 1280, sentuh: false, mainX: 'clip' }, 1280, 'laptop'), [], 'penunjuk mouse boleh memotong di main');
+    assert.deepEqual(alat.nilaiUkur({ lebar: 390, isi: 390, sentuh: true, mainX: '' }, 0, 'hp'), [], 'tanpa data tambahan tidak ada keluhan');
+  });
+  it('profil hp dan tablet dianggap layar sentuh walau mesin melaporkan penunjuk mouse', () => {
+    const mouse = { lebar: 390, isi: 390, sentuh: false, halus: true, mainX: 'clip', htmlX: 'visible' };
+    assert.match(alat.nilaiUkur(mouse, 390, 'hp').join('; '), /main dipotong di layar sentuh/);
+    assert.match(alat.nilaiUkur(Object.assign({}, mouse, { lebar: 820, isi: 820 }), 820, 'tablet').join('; '), /main dipotong di layar sentuh/);
+    assert.match(alat.nilaiUkur({ lebar: 1280, isi: 1280, sentuh: true, mainX: 'clip' }, 1280, 'laptop').join('; '), /main dipotong di layar sentuh/, 'laptop layar sentuh');
+  });
+  it('baris media menyebut penunjuk, overflow-x html dan main, dan dukungan -webkit-touch-callout', () => {
+    assert.equal(alat.barisMedia('hp', { sentuh: true, halus: false, htmlX: 'clip', mainX: 'visible', callout: false }), 'media hp: sentuh=ya, mouse=tidak, html=clip, main=visible, touch-callout=tidak');
+    assert.equal(alat.barisMedia('laptop', { sentuh: false, halus: true, htmlX: 'visible', mainX: 'clip', callout: false }), 'media laptop: sentuh=tidak, mouse=ya, html=visible, main=clip, touch-callout=tidak');
   });
   it('potret tidak memakai halaman utuh: di Chromium potret halaman utuh mematikan emulasi sentuh', () => {
     const src = fs.readFileSync(path.join(ROOT, 'tools', 'potret-layar.js'), 'utf8');
-    assert.ok(!/fullPage:\s*true/.test(src), 'fullPage: true ditemukan');
-    assert.match(src, /matchMedia\('\(hover: none\), \(pointer: coarse\)'\)/);
+    const panggilan = [...src.matchAll(/\.screenshot\(\{([^}]*)\}\)/g)].map(m => m[1]);
+    assert.ok(panggilan.length >= 2, 'panggilan screenshot ditemukan: ' + panggilan.length);
+    for (const isi of panggilan) { const m = isi.match(/fullPage\s*:\s*([^,}]+)/); if (m) assert.equal(m[1].trim(), 'false', 'fullPage harus false: ' + isi); }
+    assert.ok(!/captureBeyondViewport/.test(src));
+    assert.match(src, /cocok\('\(hover: none\), \(pointer: coarse\)'\)/);
   });
 });
 
