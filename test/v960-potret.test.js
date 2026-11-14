@@ -51,7 +51,7 @@ describe('v9.6.0: potongan gambar untuk check run', () => {
 describe('v9.6.0: daftar layar yang dipotret', () => {
   it('tiap layar punya langkah dan tag unik', () => {
     const tag = alat.LAYAR.map(l => l.tag); assert.equal(new Set(tag).size, tag.length);
-    for (const l of alat.LAYAR) { assert.ok(alat.langkah.includes(l.nama), 'langkah untuk ' + l.nama); assert.ok(l.n >= 1 && l.n <= 3); assert.ok(['hp', 'laptop'].includes(l.alat)); assert.ok(['light', 'dark'].includes(l.tema)); }
+    for (const l of alat.LAYAR) { assert.ok(alat.langkah.includes(l.nama), 'langkah untuk ' + l.nama); assert.ok(l.n >= 1 && l.n <= 3); assert.ok(['hp', 'laptop', 'tablet'].includes(l.alat)); assert.ok(['light', 'dark'].includes(l.tema)); }
   });
   it('mencakup layar soal dan pembahasan di HP terang dan gelap, serta papan bersama di laptop', () => {
     const ada = t => alat.LAYAR.some(l => l.tag === t);
@@ -94,9 +94,9 @@ describe('v9.6.5: workflow potret WebKit lama', () => {
   const tanpaKomentar = y.split('\n').filter(b => !/^\s*#/.test(b)).join('\n');
   it('tiap entri matriks: versi paket npm sama dengan versi image, dan paket dipasang dari matriks', () => {
     const entri = [...tanpaKomentar.matchAll(/- playwright: '(\d+\.\d+\.\d+)'\s*\n\s*image: mcr\.microsoft\.com\/playwright:v(\d+\.\d+\.\d+)-(\w+)/g)];
-    assert.deepEqual(entri.map(m => m[1]), ['1.23.0', '1.34.0']);
+    assert.deepEqual(entri.map(m => m[1]), ['1.23.0', '1.27.0', '1.34.0']);
     for (const m of entri) assert.equal(m[1], m[2], 'versi paket ' + m[1] + ' = versi image ' + m[2]);
-    assert.deepEqual(entri.map(m => m[3]), ['focal', 'jammy']);
+    assert.deepEqual(entri.map(m => m[3]), ['focal', 'focal', 'jammy']);
     assert.match(tanpaKomentar, /image: \$\{\{ matrix\.image \}\}/);
     assert.match(tanpaKomentar, /npm install [^\n]*playwright@\$\{\{ matrix\.playwright \}\}/);
     assert.match(tanpaKomentar, /fail-fast: false/); assert.match(tanpaKomentar, /continue-on-error: true/);
@@ -115,7 +115,7 @@ describe('v9.6.5: workflow potret WebKit lama', () => {
     const daftar = m[1].split(','); const tag = new Set(alat.LAYAR.map(l => l.tag));
     assert.ok(daftar.length >= 10 && daftar.length < alat.LAYAR.length, 'terbatas: ' + daftar.length);
     for (const t of daftar) assert.ok(tag.has(t), 'tag ada di LAYAR: ' + t);
-    for (const t of ['beranda-hp', 'mabar-lobi-hp', 'latih-pembahasan-hp', 'bersama-papan-laptop', 'referensi-laptop']) assert.ok(daftar.includes(t), t);
+    for (const t of ['beranda-hp', 'mabar-lobi-hp', 'latih-pembahasan-hp', 'bersama-papan-laptop', 'referensi-laptop', 'materi-tablet', 'bank-tablet']) assert.ok(daftar.includes(t), t);
   });
   it('nama job berkurung, jadi tidak ikut diambil sebagai check run potret', () => {
     const nama = (tanpaKomentar.match(/\n    name: (.+)/) || [])[1]; assert.ok(nama && /\(/.test(nama), nama);
@@ -147,6 +147,54 @@ describe('v9.6.5: jalan Playwright lama', () => {
     assert.equal(alat.opsiHP({ 'iPhone 12': tiruan }, 'webkit').userAgent, 'x');
     const c = alat.opsiHP({}, 'webkit'); assert.deepEqual(c.viewport, { width: 390, height: 664 }); assert.equal(c.isMobile, true); assert.match(c.userAgent, /iPhone/);
     assert.equal(alat.opsiHP(undefined, 'firefox').isMobile, undefined);
+  });
+});
+
+/* v9.6.6: profil tablet (emulasi seluler selebar tablet) dan penilaian hasil ukur */
+describe('v9.6.6: profil tablet dan penilaian hasil ukur', () => {
+  it('tablet = profil HP (emulasi seluler, sentuh) dengan layar 820 x 1180; laptop tanpa emulasi', () => {
+    const tiruan = { 'iPhone 13': { viewport: { width: 390, height: 664 }, screen: { width: 390, height: 844 }, userAgent: 'x', isMobile: true, hasTouch: true, deviceScaleFactor: 3, defaultBrowserType: 'webkit' } };
+    const t = alat.opsiAlat('tablet', tiruan, 'webkit');
+    assert.deepEqual(t.viewport, { width: 820, height: 1180 }); assert.deepEqual(t.screen, { width: 820, height: 1180 });
+    assert.equal(t.isMobile, true); assert.equal(t.hasTouch, true); assert.equal(t.deviceScaleFactor, 1);
+    const h = alat.opsiAlat('hp', tiruan, 'webkit'); assert.equal(h.viewport.width, 390); assert.equal(h.isMobile, true);
+    const l = alat.opsiAlat('laptop', tiruan, 'webkit'); assert.equal(l.viewport.width, 1280); assert.equal(l.isMobile, undefined); assert.equal(l.hasTouch, undefined);
+    assert.equal(tiruan['iPhone 13'].viewport.width, 390, 'daftar perangkat tidak ikut berubah');
+  });
+  it('layar tablet hanya dipotret bila diminta, dan dipakai workflow WebKit lama', () => {
+    const tablet = alat.LAYAR.filter(l => l.alat === 'tablet');
+    assert.deepEqual(tablet.map(l => l.tag), ['materi-tablet', 'bank-tablet']);
+    for (const l of tablet) assert.equal(l.khusus, true);
+    assert.equal(alat.LAYAR.filter(l => !l.khusus).length, 37, 'daftar bawaan tetap 37 layar');
+  });
+  it('gulir mendatar, layar yang melebar, dan main yang dipotong di layar sentuh menjadi keluhan', () => {
+    const baik = { lebar: 390, isi: 390, sentuh: true, mainX: 'visible' };
+    assert.deepEqual(alat.nilaiUkur(baik, 390, 'hp'), []);
+    assert.deepEqual(alat.nilaiUkur(Object.assign({}, baik, { isi: 391 }), 390, 'hp'), [], 'selisih 1 px dibiarkan (pembulatan)');
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { isi: 414 }), 390, 'hp').join('; '), /gulir mendatar 414 > 390/);
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { lebar: 430, isi: 430 }), 390, 'hp').join('; '), /layar melebar 430 > 390/);
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { mainX: 'clip' }), 390, 'hp').join('; '), /main dipotong di layar sentuh \(overflow-x: clip\)/);
+    assert.match(alat.nilaiUkur(Object.assign({}, baik, { mainX: 'hidden' }), 820, 'tablet').join('; '), /main dipotong di layar sentuh/);
+    assert.deepEqual(alat.nilaiUkur({ lebar: 1280, isi: 1280, sentuh: false, mainX: 'clip' }, 1280, 'laptop'), [], 'penunjuk mouse boleh memotong di main');
+    assert.deepEqual(alat.nilaiUkur({ lebar: 390, isi: 390, sentuh: true, mainX: '' }, 0, 'hp'), [], 'tanpa data tambahan tidak ada keluhan');
+  });
+  it('profil hp dan tablet dianggap layar sentuh walau mesin melaporkan penunjuk mouse', () => {
+    const mouse = { lebar: 390, isi: 390, sentuh: false, halus: true, mainX: 'clip', htmlX: 'visible' };
+    assert.match(alat.nilaiUkur(mouse, 390, 'hp').join('; '), /main dipotong di layar sentuh/);
+    assert.match(alat.nilaiUkur(Object.assign({}, mouse, { lebar: 820, isi: 820 }), 820, 'tablet').join('; '), /main dipotong di layar sentuh/);
+    assert.match(alat.nilaiUkur({ lebar: 1280, isi: 1280, sentuh: true, mainX: 'clip' }, 1280, 'laptop').join('; '), /main dipotong di layar sentuh/, 'laptop layar sentuh');
+  });
+  it('baris media menyebut penunjuk, overflow-x html dan main, dan dukungan -webkit-touch-callout', () => {
+    assert.equal(alat.barisMedia('hp', { sentuh: true, halus: false, htmlX: 'clip', mainX: 'visible', callout: false }), 'media hp: sentuh=ya, mouse=tidak, html=clip, main=visible, touch-callout=tidak');
+    assert.equal(alat.barisMedia('laptop', { sentuh: false, halus: true, htmlX: 'visible', mainX: 'clip', callout: false }), 'media laptop: sentuh=tidak, mouse=ya, html=visible, main=clip, touch-callout=tidak');
+  });
+  it('potret tidak memakai halaman utuh: di Chromium potret halaman utuh mematikan emulasi sentuh', () => {
+    const src = fs.readFileSync(path.join(ROOT, 'tools', 'potret-layar.js'), 'utf8');
+    const panggilan = [...src.matchAll(/\.screenshot\(\{([^}]*)\}\)/g)].map(m => m[1]);
+    assert.ok(panggilan.length >= 2, 'panggilan screenshot ditemukan: ' + panggilan.length);
+    for (const isi of panggilan) { const m = isi.match(/fullPage\s*:\s*([^,}]+)/); if (m) assert.equal(m[1].trim(), 'false', 'fullPage harus false: ' + isi); }
+    assert.ok(!/captureBeyondViewport/.test(src));
+    assert.match(src, /cocok\('\(hover: none\), \(pointer: coarse\)'\)/);
   });
 });
 

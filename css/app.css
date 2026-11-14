@@ -4773,7 +4773,8 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
    imbuhan tanpa blok, lipatan dalam kartu sebagai baris, tuts petunjuk tenang, bilah fokus latihan.
    Keterbacaan lintas peramban (Safari/iPhone lama, Android WebView lama): tidak ada border-image, color-mix(), penulisan bersarang,
    @container, atau @layer, dan tidak ada pemilih relasional (test/v94-kb menolaknya setelah blok v9.4 Kb). Pita lebar penuh memakai ::before 100vw
-   yang dipusatkan; luapan mendatar dipotong di <main> dengan overflow-x: clip, dan peramban tanpa clip memakai pita selebar
+   yang dipusatkan; luapan mendatar dipotong dengan overflow-x: clip di akar dokumen (di main hanya untuk penunjuk mouse, lihat
+   blok @supports di bagian pita), dan peramban tanpa clip memakai pita selebar
    isi + gutter (di HP tetap selebar layar). Mode ujian dan sesi (body[data-mode]) tidak mendapat pita, kisi, atau warna baru. */
 
 /* ---- token --v96-* ---- */
@@ -4906,9 +4907,21 @@ dialog[data-cadangan][open]:not(.sheet) { animation: none; }
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .halaman-room > .stack > .page-head.kop-pita:first-child,
   body:not([data-mode="ujian"]):not([data-mode="fokus"]) .eval-tim > .eval-kop.kop-pita { margin-bottom: calc(var(--jarak-bagian) - var(--jarak-blok)); }
 }
-/* lebar penuh sungguhan: ::before 100vw dipusatkan pada header (halaman terpusat di main), luapan mendatar dipotong di main */
+/* lebar penuh sungguhan: ::before 100vw dipusatkan pada header (halaman terpusat di main). Luapan mendatarnya dipotong dengan
+   overflow-x: clip di akar dokumen. v9.6.6: main hanya dipotong bila penunjuk utamanya mouse dan mesinnya bukan WebKit iOS atau
+   iPadOS (bilah gulir yang memakan tempat membuat 100vw lebih lebar dari area tampil, dan potongan di main menutup kemungkinan
+   dokumen bergeser). Di layar sentuh main TIDAK diberi overflow-x: clip: di WebKit seluler lama (potret WebKit lama 15.4 dan 16.0,
+   emulasi seluler selebar HP dan tablet) aturan itu membuat isi halaman yang tidak berlapis tidak tergambar, sedangkan potongan
+   di akar dokumen aman di mesin yang sama. -webkit-touch-callout hanya dikenal WebKit iOS dan iPadOS; syarat itu menjaga iPad
+   yang memakai trackpad atau mouse tetap memotong di akar dokumen. */
 @supports (overflow-x: clip) {
-  main { overflow-x: clip; }
+  html { overflow-x: clip; }
+  @media (hover: hover) and (pointer: fine) {
+    @supports not (-webkit-touch-callout: none) {
+      html { overflow-x: visible; }
+      main { overflow-x: clip; }
+    }
+  }
   @media screen {
     body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita::before { left: 50%; right: auto; width: 100vw; margin-left: -50vw; }
   }
