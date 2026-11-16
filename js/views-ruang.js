@@ -1206,9 +1206,19 @@
       return b;
     }));
     const galat = h('p', { class: 'galat small', role: 'alert', hidden: true });
-    const tMulai = h('button', { type: 'button', class: 'btn btn-primary room-mulai', onclick: () => {
+    let sibukMulai = false; // v9.7.2 F5: klik kedua selama dialog persetujuan terbuka diabaikan
+    const tMulai = h('button', { type: 'button', class: 'btn btn-primary room-mulai', onclick: async () => {
       const dipilih = peserta.filter(p => ikut.has(kunciNama(p)));
       if (!dipilih.length) { galat.textContent = 'Pilih minimal satu orang.'; galat.hidden = false; return; }
+      // v9.7.2 D4: latihan bersama yang belum selesai di perangkat ini diakhiri dulu dengan persetujuan (penjaga yang sama dengan halaman Latih).
+      // Tanpa ini papan menahan sesi baru dan pemimpin jatuh ke halaman saringan, sedangkan room tidak ikut
+      const lb = UKP.latihBank;
+      if (lb && fn(lb, 'bolehGantiSesi')) {
+        if (sibukMulai) return;
+        sibukMulai = true;
+        let boleh = false; try { boleh = await lb.bolehGantiSesi(); } catch (e) { console.error(e); boleh = false; } finally { sibukMulai = false; }
+        if (!boleh || !tMulai.isConnected) return;
+      }
       const st2 = UKP.store.get(); if (fn(L, 'siapBersama')) L.siapBersama(st2);
       // daftar yang ikut → s.bersama.peserta; papan (views-belajar) meneruskannya ke UKP.ruang.mulaiLatihan({ peserta }) bila didukung
       st2.bersama.aktif = true; st2.bersama.peserta = dipilih.slice(0, 12); UKP.store.save();

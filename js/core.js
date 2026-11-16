@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '9.7.1';
+  UKP.versi = '9.7.2';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
@@ -929,7 +929,9 @@
     try { if (UKP.tip) UKP.tip.sembunyi(); } catch (e) {}
     if (typeof unmount === 'function') { try { unmount(); } catch (e) {} unmount = null; }
     tundaRender = false; if (!opsi.renderUlang) { clearTimeout(renderSinkronTimer); renderSinkronTimer = null; }
-    current = { view, params };
+    // v9.7.2: pulih = rute dipulihkan dari entri riwayat saat halaman dimuat ulang (UKP.mulaiDariHash), bukan navigasi baru.
+    // Kembali/maju (popstate) TIDAK memasang tanda ini
+    current = { view, params, pulih: !!opsi.pulih };
     document.body.dataset.view = view;
     main.textContent = '';
     let out;
@@ -976,7 +978,7 @@
     if (st && st.view && adaView(st.view)) {
       const r = arahkanInduk({ view: st.view, params: st.params || {} });
       if (r.dialihkan) { UKP.go(r.view, r.params, { replace: true }); return; }
-      render(r.view, r.params, {}); return;
+      render(r.view, r.params, { pulih: true }); return;
     }
     const s = load();
     // tautan tim (ikut ujian tim lewat kode, lembar jawab) boleh dibuka pengunjung baru tanpa onboarding (UKP.VIEW_TAMU)

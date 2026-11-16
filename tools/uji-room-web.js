@@ -155,6 +155,28 @@ const initRelai = relai => {
     await nicky.page.locator('.aksi-kanan .btn-primary').first().click();
     const msSoal2 = await tunggu(mita.page, () => /Soal 2 dari \d+/.test((document.querySelector('.fokus-bar') || {}).innerText || '') && document.querySelectorAll('.huruf-besar').length === 4, null, 10000);
     cek('Mita: soal 2 tampil setelah pemimpin Lanjut', msSoal2 >= 0, { ms: msSoal2 });
+    // 6b. v9.7.2: pemimpin memuat ulang halaman di tengah latihan; papan kembali di soal yang sama dan HP anggota tetap di soal itu (tanpa potret baru).
+    // G5: sesi yang sama (sesiId dan jumlah s.sesiBersama tidak berubah), jawaban HP Mita yang masuk sebelum muat ulang tetap ada di papan
+    const bacaPapan = () => nicky.page.evaluate(() => { const el = document.querySelector('.soal'); const m = /Soal (\d+) dari/.exec((document.querySelector('.fokus-bar') || {}).innerText || ''); const s = UKP.store.get(); const a = s.bersamaAktif;
+      const baris = [...document.querySelectorAll('.papan-baris')].map(li => ({ nama: ((li.querySelector('.papan-nama') || {}).firstChild || {}).textContent, jauh: li.hasAttribute('data-jauh') })).map(x => ({ nama: String(x.nama || '').trim(), jauh: x.jauh }));
+      return { soal: el ? el.dataset.id : null, no: m ? m[1] : null, rute: history.state && history.state.params, sesiId: a ? a.sesiId : null, nSesi: (s.sesiBersama || []).length, jauh: baris.filter(x => x.jauh).map(x => x.nama) }; });
+    const soal2 = await nicky.page.evaluate(() => { const el = document.querySelector('.soal'); const s = el && UKP.konten.soal(el.dataset.id); return s ? s.kunci : 'A'; });
+    await mita.page.click('.huruf-besar[data-huruf="' + soal2 + '"]'); await mita.page.click('.yakin-room[data-yakin="yakin"]');
+    const msJawab2 = await tunggu(nicky.page, () => [...document.querySelectorAll('.papan-baris[data-jauh]')].some(li => /Mita/.test((li.querySelector('.papan-nama') || {}).textContent || '')), null, 10000);
+    cek('pemimpin: jawaban Mita soal 2 masuk sebelum muat ulang', msJawab2 >= 0, { ms: msJawab2 });
+    await tidur(1500); // titik lanjut dan jawaban room tersimpan
+    const sebelumMuat = await bacaPapan();
+    await nicky.page.reload({ waitUntil: 'load' });
+    const msMuat = await tunggu(nicky.page, x => { const el = document.querySelector('.soal'); const m = /Soal (\d+) dari/.exec((document.querySelector('.fokus-bar') || {}).innerText || ''); return !!el && el.dataset.id === x.soal && !!m && m[1] === x.no && document.querySelectorAll('.papan-baris').length >= 3; }, sebelumMuat, 15000);
+    const sesudahMuat = await bacaPapan();
+    cek('pemimpin: muat ulang di tengah latihan kembali ke soal yang sama', msMuat >= 0 && !!sebelumMuat.soal, { ms: msMuat, sebelum: sebelumMuat, sesudah: sesudahMuat });
+    cek('pemimpin: sesi sama sesudah muat ulang (sesiId dan jumlah sesi bersama tidak berubah)', !!sebelumMuat.sesiId && sesudahMuat.sesiId === sebelumMuat.sesiId && sesudahMuat.nSesi === sebelumMuat.nSesi, { sebelum: [sebelumMuat.sesiId, sebelumMuat.nSesi], sesudah: [sesudahMuat.sesiId, sesudahMuat.nSesi] });
+    const msJauhMuat = await tunggu(nicky.page, () => [...document.querySelectorAll('.papan-baris[data-jauh]')].some(li => /Mita/.test((li.querySelector('.papan-nama') || {}).textContent || '')), null, 15000);
+    cek('pemimpin: jawaban Mita yang masuk sebelum muat ulang tetap ada di papan', sebelumMuat.jauh.includes('Mita') && msJauhMuat >= 0, { sebelum: sebelumMuat.jauh, ms: msJauhMuat, sesudah: (await bacaPapan()).jauh });
+    const msRoomMuat = await tunggu(nicky.page, id => { try { const a = UKP.ruang.state().aktivitas; return UKP.ruang.status().tersambung && !!a && a.soalIds[a.idx] === id; } catch (e) { return false; } }, sebelumMuat.soal, 15000);
+    await tidur(1500);
+    const hpMuat = await mita.page.evaluate(() => { let a = null; try { a = UKP.ruang.state().aktivitas; } catch (e) {} return { soal: a ? a.soalIds[a.idx] : null, id: a ? a.id : null, fase: a ? a.fase : null, bar: ((document.querySelector('.fokus-bar') || {}).innerText || '').replace(/\n+/g, ' | ').slice(0, 120), hasil: !!document.querySelector('.hasil-room') }; });
+    cek('Mita: tetap di soal yang sama sesudah pemimpin memuat ulang (tidak berpindah soal)', msRoomMuat >= 0 && hpMuat.soal === sebelumMuat.soal && hpMuat.id === sebelumMuat.sesiId && /Soal 2 dari \d+/.test(hpMuat.bar) && !hpMuat.hasil, { msRoom: msRoomMuat, hp: hpMuat });
     // 7. pemimpin mengakhiri latihan dari Menu (v9.2: "Akhiri latihan dan lihat hasil")
     await nicky.page.click('.fokus-menu summary'); await tidur(200);
     await nicky.page.locator('.fokus-menu .menu-lebih-isi button', { hasText: 'Akhiri latihan dan lihat hasil' }).click(); await tidur(300);

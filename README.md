@@ -16,6 +16,20 @@ Tampilan mengikuti kanvas desain pemilik ("MABAR UKP · Logo" dan "MABAR UKP · 
 - **Sambutan (v9.0).** Pengunjung baru di akar situs melihat halaman sambutan berkerangka sama, dengan tombol Masuk menuju formulir lima langkah. Tautan tim (`#room/<kode>`, `#ujiantim/<kode>`, `#lj`) tetap langsung ke layarnya.
 - **Mode mabar** adalah nama pintu fitur tim (halaman `#room`). Nama fitur di dalamnya tidak berubah.
 
+<!-- mabar-972:mulai -->
+## Muat ulang melanjutkan sesi Mode mabar (v9.7.2)
+
+Dulu, saat pemimpin memuat ulang halaman di tengah latihan bersama, halaman jatuh ke pilihan soal. Tombol Mulai di sana memulai latihan baru dari soal 1 dengan soal baru, dan HP anggota ikut pindah.
+
+- **Muat ulang tetap di soal yang sama.** Papan pemimpin kembali di soal, fase, dan sisa waktu yang sama. Jawaban yang sudah masuk tetap. HP anggota tidak pindah. Berlaku untuk latihan di room, latihan satu layar, dan putaran ulang soal yang salah.
+- **Sesi baru hanya dengan persetujuan.** Tombol Mulai di halaman Latih, baris Buku Kesalahan, dan dialog Mulai di lobi room bertanya dulu bila masih ada latihan bersama yang belum selesai. Pilihannya "Akhiri dan mulai baru" atau "Batal". Fokus awal ada di "Batal", jadi Enter dua kali pada tombol Mulai tidak mengakhiri latihan lama.
+- **Selesai tidak dimulai ulang.** Muat ulang layar hasil tidak lagi memulai latihan baru. Muat ulang di layar evaluasi tim membuka lagi evaluasi sesi itu di halaman Evaluasi tim (Dasbor tim).
+- **Satu papan untuk satu latihan.** Tab salinan yang dibuka saat papan masih hidup di tab lain menampilkan kartu Lanjutkan, bukan papan kedua. Begitu juga tombol yang diketuk: Lanjutkan di kartu (Beranda, halaman Latih, lobi) dan "Kembali ke latihan" atau "Kembali ke papan" di room. Kartu di tab itu menulis "Sedang terbuka di tab lain." Pemeriksaannya menunggu jawaban tab lain paling lama 350 ms. Tab yang sedang dibekukan peramban tidak menjawab, jadi tab salinan bisa saja tetap membuka papan. Sesudah latihan di tab pertama berakhir, muat ulang tab salinan menampilkan halaman Latih dan tidak memulai latihan baru sendiri.
+- **Soal yang sudah tidak ada.** Latihan yang sebagian soalnya sudah dihapus diakhiri dengan keterangan, tidak lagi ditawarkan berulang. Ini hanya berlaku bila semua berkas soal termuat. Bila ada berkas soal yang gagal dimuat (mis. jaringan putus sesaat), latihan tidak diakhiri. Kartu Lanjutkan tetap ada, dan halaman meminta dimuat ulang. Sesudah dimuat ulang dengan jaringan baik, papan lanjut di soal yang sama.
+- **Penyimpanan penuh.** Pemimpin diberi tahu sekali bahwa posisi latihan akan hilang bila halaman dimuat ulang, dan diminta menyimpan cadangan progres di Pengaturan, bagian Data dan pindah perangkat. Ini berlaku juga bila penyimpanan menjadi penuh di tengah latihan.
+
+Yang belum: latihan sendiri (bukan Mode mabar) masih mulai ulang dari soal 1 saat halaman dimuat ulang. Perbaikannya dijadwalkan di versi berikut. Pembersihan otomatis saat penyimpanan peramban penuh juga belum ada.
+<!-- mabar-972:selesai -->
 <!-- isi-971:mulai -->
 ## Sanksi pidana 2026 dan materi yang dilengkapi (v9.7.1)
 

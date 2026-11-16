@@ -916,7 +916,9 @@
     };
     const kartu = h('section', { class: 'card kartu-lanjut-bersama', 'aria-labelledby': jid },
       h('div', { class: 'kartu-lanjut-isi' }, ikon('tim', 'kartu-lanjut-ikon', true),
-        h('div', { class: 'stack-xs' }, h('h2', { class: 'kartu-lanjut-judul', id: jid }, 'Latihan bersama belum selesai'), h('p', { class: 'meta' }, meta))),
+        h('div', { class: 'stack-xs' }, h('h2', { class: 'kartu-lanjut-judul', id: jid }, 'Latihan bersama belum selesai'), h('p', { class: 'meta' }, meta),
+          // G2: papan sesi ini tadi terbuka di tab lain (jawaban kanal 'ukp-papan'); keterangan tetap ada walau toastnya sudah hilang
+          papanDiTabLain(ba.sesiId) ? h('p', { class: 'small kartu-lanjut-tablain' }, 'Sedang terbuka di tab lain.') : null)),
       h('div', { class: 'btn-row' },
         h('button', { type: 'button', class: 'btn btn-primary', onclick: () => UKP.go('latih', { lanjut: 1 }) }, ikon('play'), 'Lanjutkan latihan bersama'),
         h('button', { type: 'button', class: 'btn btn-ghost', onclick: akhiri }, 'Akhiri dan lihat hasil')));
@@ -1083,7 +1085,144 @@
     if (!arr.length) return 0;
     return Math.min(urutLatih(arr, { n, bank: 'campur', set }, {}).length, MR.MAKS_SOAL || 120);
   }
-  UKP.latihBank = { urutLatih, adaPetaResmi, saringResmi, luarResmi, teksBankKurang, jumlahMulaiRoom, nLatihTopik, nLatihDari, nLatihSalah };
+  // ================= v9.7.2: MUAT ULANG MELANJUTKAN LATIHAN BERSAMA =================
+  // Papan latihan bersama menulis rutenya menjadi { lanjut: 1, sesi: <id> } begitu sesi tercatat (jalankan). harusLanjut memutuskan saat
+  // halaman Latih dipasang: rute { lanjut } melanjutkan bila tanpa sesi (kartu Lanjutkan, Kembali ke latihan, entri versi lama) atau sesinya
+  // sama dengan titik lanjut. Entri sesi lain (mis. Kembali sesudah "Latih N soal lagi") tidak melanjutkan. Rute { mulai } / { ids } yang
+  // dipulihkan saat halaman dimuat ulang (tab yang memulai sesi di versi lama) juga melanjutkan selama latihan bersama aktif.
+  // o = { params, bisaLanjut, sesiId (titik lanjut), adaPeserta, pulih, utuh (opsional) }
+  function harusLanjut(o) {
+    if (!o || !o.bisaLanjut || o.utuh === false) return false;
+    const p = o.params || {};
+    if (p.lanjut) return !p.sesi || p.sesi === o.sesiId;
+    return !!o.pulih && !!o.adaPeserta && !!(p.mulai || p.ids);
+  }
+  // G3: setiap pelanjutan lewat rute { lanjut } (muat ulang, tab salinan, kembali/maju, kartu Lanjutkan, Kembali ke latihan atau ke papan
+  // di room) bertanya dulu lewat kanal 'ukp-papan' apakah papan sesi yang sama hidup di tab lain. G2: jawaban terakhir dicatat per tab,
+  // supaya kartu Lanjutkan di tab ini menulis "Sedang terbuka di tab lain." walau toastnya sudah hilang
+  let sesiDiTabLain = null;
+  const papanDiTabLain = sesiId => !!sesiId && sesiDiTabLain === sesiId;
+  const catatTabLain = sesiId => { sesiDiTabLain = sesiId || null; };
+  // nomor soal titik lanjut yang ditulis ke orang: soal yang sedang dibahas, atau soal berikutnya
+  function nomorLanjut(ba) {
+    const n = ba && Array.isArray(ba.soalIds) ? ba.soalIds.length : 0;
+    const iBahas = ba && ba.bahas && ba.bahas.soalId ? ba.soalIds.indexOf(ba.bahas.soalId) : -1;
+    return { no: iBahas >= 0 ? iBahas + 1 : Math.max(1, Math.min(n, (Number(ba && ba.idx) || 0) + 1)), n };
+  }
+  // teks dialog persetujuan sebelum latihan bersama baru menggantikan latihan yang belum selesai
+  function teksGantiSesi(ba) {
+    const x = nomorLanjut(ba);
+    return { judul: 'Akhiri latihan bersama yang belum selesai?',
+      isi: 'Latihan bersama soal ' + x.no + ' dari ' + x.n + ' belum selesai. Latihan itu masih bisa dilanjutkan dari kartu Lanjutkan di atas halaman Latih'
+        + (ba && ba.room ? ' atau tombol Kembali ke latihan di room' : '') + '. Bila Anda mulai baru, latihan itu diakhiri'
+        + (ba && ba.room ? ' dan HP anggota ikut pindah' : '') + '. Soal yang sudah dibahas tetap tersimpan di Dasbor tim.' };
+  }
+  // tutup latihan bersama lama dengan benar: waktu membahas terakhir dicatat, rekaman ditutup (sesi tanpa soal dibuang), titik lanjut
+  // dihapus, dan bila perangkat ini memandu room yang masih menjalankan sesi itu: rekaman diterbitkan dan aktivitas room diakhiri
+  // (HP anggota tidak tertinggal di soal lama). Hasil: salinan rekaman atau null
+  function akhiriSesiLama(ba) {
+    if (!ba || typeof ba.sesiId !== 'string') return null;
+    if (ba.bahas && typeof L.catatBahasSesi === 'function') { try { L.catatBahasSesi(ba.sesiId, ba.bahas.soalId, (Math.max(Number(ba.diperbarui) || 0, ba.bahas.mulai) - ba.bahas.mulai) / 1000); } catch (e) { console.error(e); } }
+    let sesi = null; try { sesi = L.akhiriSesiBersama ? L.akhiriSesiBersama(ba.sesiId) : null; } catch (e) { console.error(e); }
+    try { const a = UKP.store.get().bersamaAktif; if ((!a || a.sesiId === ba.sesiId) && L.simpanBersamaAktif) L.simpanBersamaAktif(null); } catch (e) { console.error(e); }
+    const R = ruangR();
+    if (R && peranRoom() === 'tuan') {
+      try {
+        const sr = buatSiarRoom(R, { sesiId: ba.sesiId, soalIds: ba.soalIds || [], akhirSesi: null });
+        if (sr.milikSesi()) {
+          if (sesi && typeof L.timDariSesi === 'function') {
+            const pj = {}; (sesi.soal || []).forEach(q => { if (q && q.penjelas) pj[q.id] = q.penjelas; });
+            let paham = {}, dariRoom = {}; try { paham = R.jawabanSemua(ba.sesiId) || {}; } catch (e) {} try { dariRoom = R.penjelasSemua(ba.sesiId) || {}; } catch (e) {}
+            try { const tim = L.timDariSesi(sesi, { paham, penjelas: Object.assign(pj, dariRoom) }); if (tim) { sesi.tim = tim; ubahSesiLokal(sesi.id, y => { y.tim = tim; }); } } catch (e) { console.error(e); }
+          }
+          sr.selesai(sesi);
+        }
+      } catch (e) { console.error(e); }
+    }
+    return sesi;
+  }
+  // v9.7.2 D4: satu penjaga untuk semua jalan yang memulai latihan bersama baru (tombol Mulai di Latih, baris Buku Kesalahan, dialog
+  // Mulai di lobi room). Tanpa latihan bersama yang belum selesai: true. Selain itu dialog "Akhiri dan mulai baru" / "Batal".
+  // Setuju: sesi lama diakhiri (akhiriSesiLama) lalu true. Batal: false (sesi lama dan room tidak berubah)
+  // Panggilan kedua selama dialog masih terbuka (mis. dua klik dalam satu tugas) memakai dialog dan janji yang sama,
+  // jadi hanya satu dialog yang tampil dan sesi lama diakhiri satu kali saja
+  let tanyaGanti = null;
+  function bolehGantiSesi() {
+    if (tanyaGanti) return tanyaGanti;
+    const ba = L.bersamaAktif ? L.bersamaAktif() : null; if (!ba) return Promise.resolve(true);
+    const t = teksGantiSesi(ba);
+    const janji = (async () => {
+      // G1: opsi bahaya memberi fokus awal pada "Batal", jadi Enter kedua pada tombol Mulai tidak mengakhiri sesi lama
+      const ya = await UKP.konfirmasi(t.judul, t.isi, { ya: 'Akhiri dan mulai baru', tidak: 'Batal', bahaya: true });
+      if (!ya) return false;
+      const kini = L.bersamaAktif ? L.bersamaAktif() : null; // keadaan terbaru (papan lain bisa menyimpan selama dialog terbuka)
+      akhiriSesiLama(kini && kini.sesiId === ba.sesiId ? kini : ba);
+      return true;
+    })();
+    tanyaGanti = janji;
+    const lepas = () => { if (tanyaGanti === janji) tanyaGanti = null; };
+    janji.then(lepas, lepas);
+    return janji;
+  }
+  // penjaga tombol yang memulai latihan bersama baru (tombol Mulai dan baris Buku Kesalahan di Latih). o.adaPeserta(): latihan bersama aktif;
+  // o.masihAda(): tampilan belum dilepas. Hasil: fungsi async (jalan) yang menjalankan jalan() sekali bila boleh. Klik berikutnya selama
+  // dialog terbuka diabaikan (satu sesi baru saja). Hasil janji: true bila jalan() dipanggil
+  function buatPenjagaMulai(o) {
+    let sibuk = false;
+    return async jalan => {
+      if (sibuk) return false;
+      sibuk = true;
+      try {
+        if (o.adaPeserta() && !(await bolehGantiSesi())) return false;
+        if (!o.masihAda()) return false;
+        jalan(); return true;
+      } finally { sibuk = false; }
+    };
+  }
+  // v9.7.2 F1: ada berkas data soal yang gagal dimuat saat halaman ini dibuka? Sumbernya penjaga muat di index.html (window.__ukpMuat
+  // mencatat "Berkas gagal dimuat: data/mu-B7.js") dan modul kelompok soal yang hilang (K.soal mencari soal lewat kode di depan id)
+  function dataSoalKurang(idsHilang) {
+    try {
+      const pm = root.__ukpMuat; const g = pm && typeof pm.galat === 'function' ? pm.galat() : [];
+      if ((g || []).some(x => /^Berkas gagal dimuat: .*\bdata\//.test(String(x)))) return true;
+    } catch (e) {}
+    const dikenal = UKP.urutanKelompok || [];
+    return (idsHilang || []).some(id => { const kode = String(id).split('-')[0]; return dikenal.includes(kode) && !(UKP.modul && UKP.modul[kode]); });
+  }
+  // titik lanjut latihan bersama: soal yang masih ada (arr), rusak (soalnya benar-benar sudah tidak ada: sesi boleh diakhiri), atau
+  // kurang (sebagian data soal gagal dimuat: sesi dibiarkan utuh, muat ulang halaman melanjutkannya)
+  function periksaLanjut(ba) {
+    if (!ba || !Array.isArray(ba.soalIds)) return { arr: null, rusak: false, kurang: false };
+    const arr = []; const hilang = [];
+    ba.soalIds.forEach(id => { const so = K.soal(id); if (so) arr.push(so); else hilang.push(id); });
+    if (!hilang.length) return { arr, rusak: false, kurang: false };
+    const kurang = dataSoalKurang(hilang);
+    return { arr, rusak: !kurang, kurang };
+  }
+  // v9.7.2 F2: #latih tanpa params langsung memulai latihan hanya pada navigasi baru. Rute yang dipulihkan saat halaman dimuat ulang
+  // selama latihan bersama aktif menampilkan saringan (mis. tab salinan sesudah latihan di tab pertama berakhir)
+  function bolehLangsungMulai(o) {
+    const p = (o && o.params) || {};
+    if (!o || o.bisaLanjut) return false;
+    if (Object.keys(p).some(k => p[k] != null && p[k] !== '' && p[k] !== false)) return false;
+    return !(o.pulih && o.adaPeserta);
+  }
+  // v9.7.2 D6: muat ulang atau tutup tab menyimpan titik lanjut saat itu juga. Hasil: fungsi pelepas pendengar
+  function pasangSimpanPergi(simpan) {
+    const f = () => { try { simpan(); } catch (e) { console.error(e); } try { UKP.store.flush(); } catch (e) {} };
+    root.addEventListener('pagehide', f);
+    return () => root.removeEventListener('pagehide', f);
+  }
+  // v9.7.2 D5: peringatan penyimpanan penuh cukup sekali per sesi. Dipanggil sesudah tulisan ke penyimpanan dicoba. Hasil: true bila toast tampil
+  const penuhDiberitahu = new Set();
+  function beritaPenuh(sesiId) {
+    if (!sesiId || UKP.store.ok || penuhDiberitahu.has(sesiId)) return false;
+    penuhDiberitahu.add(sesiId);
+    // G6: langkah yang bisa dilakukan orang: simpan cadangan lewat Ekspor di Pengaturan (kartu "Data dan pindah perangkat")
+    UKP.toast('Penyimpanan peramban penuh atau tidak tersedia. Posisi latihan ini akan hilang bila halaman dimuat ulang. Simpan cadangan progres di Pengaturan, bagian Data dan pindah perangkat.', { ms: 12000 });
+    return true;
+  }
+  UKP.latihBank = { harusLanjut, papanDiTabLain, catatTabLain, nomorLanjut, teksGantiSesi, akhiriSesiLama, bolehGantiSesi, buatPenjagaMulai, dataSoalKurang, periksaLanjut, bolehLangsungMulai, pasangSimpanPergi, beritaPenuh, urutLatih, adaPetaResmi, saringResmi, luarResmi, teksBankKurang, jumlahMulaiRoom, nLatihTopik, nLatihDari, nLatihSalah };
 
   // ================= LATIH =================
   UKP.views.latih = function (params) {
@@ -1095,6 +1234,10 @@
     const hentikanSesi = () => { clearInterval(timerSesi); timerSesi = null; };
     let padaLepas = null; // v8.1: simpan keadaan sesi bersama yang bisa dilanjutkan saat unmount
     let padaLepasRoom = null; // v8.2 B2: lepas pendengar room saat unmount (aktivitas room TIDAK diakhiri; pemandu bisa kembali)
+    let lepasJalan = null; // v9.7.2: lepas pendengar pagehide dan kanal papan milik putaran jalankan() yang sedang tampil
+    let dilepas = false; // v9.7.2: tampilan sudah dilepas router (pekerjaan tertunda tidak boleh memulai apa pun)
+    // v9.7.2 D4 dan F5: satu penjaga untuk tombol Mulai dan baris Buku Kesalahan (dialog persetujuan, klik kedua diabaikan)
+    const penjagaMulai = buatPenjagaMulai({ adaPeserta: () => !!pesertaAktif(), masihAda: () => !dilepas && page.isConnected });
     // paket soal bersumber (try out): f.set = kode paket (soal.sumber.set); pool = seluruh soal paket, lintas tingkat
     const paket = K.daftarSet ? K.daftarSet() : []; const paketDari = set => paket.find(p => p.set === set) || null;
     const f = { set: params.set && paketDari(params.set) ? params.set : '', kode: params.kode || '', topik: params.topik || '', jenis: params.jenis || '', kesulitan: params.kesulitan ? String(params.kesulitan) : '', n: params.n === 'semua' ? 'semua' : Number(params.n) || 20, hanyaSalah: !!params.hanyaSalah, kecuali: !!params.kecuali, tempo: !!params.tempo, baru2025: !!params.baru2025, gayaUkp: !!params.gayaUkp, laporan: params.laporan ? String(params.laporan).toUpperCase() : '' };
@@ -1170,10 +1313,11 @@
       // v9.5: selain itu L.urutBank lewat urutLatih (yang terakhir salah didahulukan saat diulang)
       jalankan(urutLatih(arr, f, { sudah: f.n === 'semua' ? benarHariIni() : null, salah: L.idSalahTerakhir ? L.idSalahTerakhir(s) : new Set() }), oj); return true;
     }
-    const keSaringan = () => { modeFokus(false); hentikanTempo(); UKP.go('latih', Object.assign({}, f, { mulai: null, atur: 1 })); };
+    const keSaringan = () => { modeFokus(false); hentikanTempo(); UKP.go('latih', Object.assign({}, f, { mulai: null, lanjut: null, sesi: null, atur: 1 })); };
     // oj.ulang: putaran ulang soal yang salah (dari ringkasan); hasilnya tetap tercatat seperti jawaban biasa
     function jalankan(daftar, oj) {
       oj = oj || {};
+      if (lepasJalan) { try { lepasJalan(); } catch (e) {} lepasJalan = null; }
       hentikanTempo(); page.innerHTML = ''; let idx = 0, benar = 0; const mulaiWaktu = Date.now();
       // v7.7: satu putaran tanpa jeda (penyebut tetap); soal yang salah dikumpulkan untuk "Ulangi N soal yang salah" di ringkasan
       const riwayat = [];
@@ -1210,6 +1354,9 @@
       // sesi baru: sesi lama yang masih bisa dilanjutkan ditutup lebih dulu (tetap tersimpan bila berisi soal)
       if (peserta && !sesiLama && L.bersamaAktif) { const ba = L.bersamaAktif(); if (ba && L.akhiriSesiBersama) L.akhiriSesiBersama(ba.sesiId); }
       const sesiId = sesiLama ? sesiLama.id : peserta && L.mulaiSesiBersama ? L.mulaiSesiBersama(peserta, daftar.map(x => x.id), anggaranSesi, { tempo: tb.mode, detikPerSoal: detikTempo, detikBahas: detikBahasT, mode: 'latihan' }) : null;
+      // v9.7.2 D1: entri riwayat papan bersama = { lanjut: 1, sesi } (mulai/ids dibuang), jadi muat ulang melanjutkan sesi ini.
+      // sesi mengikat entri ke sesinya: Kembali ke entri sesi lain tidak membuka papan ini lagi
+      if (sesiId && typeof UKP.perbaruiParams === 'function') UKP.perbaruiParams({ mulai: null, ids: null, evaluasi: null, lanjut: 1, sesi: sesiId }, 'latih');
       let sesiSelesai = false;
       // rotasi penjelas: hitungan per nama dalam sesi ini (dinaikkan setiap kali seseorang ditunjuk menjelaskan)
       const hitungPenjelas = {};
@@ -1286,12 +1433,28 @@
         try { L.catatBahasSesi(sesiId, fb.soalId, (Date.now() - fb.mulai) / 1000); } catch (e) { console.error(e); }
       };
       // v8.1 lanjutkan sesi: keadaan disimpan saat mulai, setiap perubahan papan, kunci dibuka, Lanjut, dan tiap ±5 detik; null saat sesi berakhir
+      let sudahTulis = false; // v9.7.2 D5: titik lanjut pertama sesi ini sudah ditulis paksa
+      let tCekPenuh = null; // v9.7.2 F4: pemeriksaan penyimpanan penuh sesudah tulisan berikutnya
       const simpanAktif = () => {
         if (!sesiId || sesiSelesai || !L.simpanBersamaAktif) return;
         L.simpanBersamaAktif({ sesiId, soalIds: daftar.map(x => x.id), idx: idx + (kunciTerbuka ? 1 : 0), sisaDetik: tanpaBatas ? 0 : Math.max(0, sisaSesi()), anggaranDetik: anggaranSesi, tempo: tb.mode, detikPerSoal: detikTempo, lamaDetik: lamaSesi(), ulang: oj.ulang ? 1 : null, room: roomNiat ? 1 : roomPernah ? 'terbit' : null,
           detikBahas: detikBahasT, bahas: faseBahas ? { soalId: faseBahas.soalId, mulai: faseBahas.mulai } : null,
           draf: !kunciTerbuka && lajuJalan && daftar[idx] ? { soalId: daftar[idx].id, jb: (drafSoal && drafSoal.jb) || {}, yb: (drafSoal && drafSoal.yb) || {}, detikSoal: detikSoalKini() } : null });
+        // v9.7.2 D5: titik lanjut pertama ditulis segera; bila penyimpanan peramban menolak, orang diberi tahu sekali per sesi.
+        // F4: tulisan berikutnya diperiksa juga (penyimpanan bisa penuh di tengah sesi), sesudah store.save benar-benar menulis (jeda 60 ms)
+        if (!sudahTulis) { sudahTulis = true; try { UKP.store.flush(); } catch (e) {} beritaPenuh(sesiId); }
+        else if (!tCekPenuh && !penuhDiberitahu.has(sesiId)) tCekPenuh = setTimeout(() => { tCekPenuh = null; beritaPenuh(sesiId); }, 150);
       };
+      if (sesiId) {
+        // v9.7.2 D6: muat ulang atau tutup tab menyimpan titik lanjut saat itu juga (sisa waktu tidak mundur sampai 5 detik)
+        const lepasPergi = pasangSimpanPergi(() => { if (page.isConnected) simpanAktif(); });
+        // v9.7.2 D3: papan yang hidup menjawab tab lain yang hendak melanjutkan sesi yang sama secara otomatis
+        let kanal = null;
+        if (typeof BroadcastChannel === 'function') {
+          try { kanal = new BroadcastChannel('ukp-papan'); kanal.onmessage = ev => { const d = ev && ev.data; if (d && d.tanya === sesiId && !sesiSelesai && page.isConnected && kanal) { try { kanal.postMessage({ pegang: sesiId }); } catch (e) {} } }; } catch (e) { kanal = null; }
+        }
+        lepasJalan = () => { lepasPergi(); if (kanal) { try { kanal.close(); } catch (e) {} kanal = null; } };
+      }
       const lepasAktif = () => { if (sesiId && L.simpanBersamaAktif) { const a = UKP.store.get().bersamaAktif; if (!a || a.sesiId === sesiId) L.simpanBersamaAktif(null); } };
       padaLepas = peserta ? simpanAktif : null; // unmount (pindah halaman di tengah sesi): simpan titik lanjut terakhir
       let tik = 0;
@@ -1590,7 +1753,7 @@
         area.append(UKP.c.kop({ judul: ulangRun ? 'Putaran ulang selesai' : 'Latihan selesai', pita: true }),
           h('div', { class: 'card sorot ringkasan-latih' }, h('div', { class: 'between' }, h('div', { class: 'stack-sm' }, h('p', { class: 'eyebrow' }, 'Ringkasan'), h('p', null, kalimat), kalibrasi, (() => { const kk = UKP.kalimatKesalahanLatih({ nKeliru: keliru.length, nBelumTahu: keliru.filter(r => r.jawab === '-').length, top, judul: top ? (K.topik(top[0]) || {}).judul : '', adaJawaban: !!idx }); return kk ? h('p', { class: 'small' + (kk.muted ? ' muted' : '') }, kk.teks) : null; })()), ring),
             // langkah berikutnya bernama (DESAIN-V7 D6): topik dengan kesalahan terbanyak disebut kode + judulnya
-            (() => { const tt = top ? K.topik(top[0]) : null; const latihLagi = () => UKP.go('latih', Object.assign({}, f, { mulai: true }));
+            (() => { const tt = top ? K.topik(top[0]) : null; const latihLagi = () => UKP.go('latih', Object.assign({}, f, { mulai: true, lanjut: null, sesi: null }));
               const ulangSalah = keliru.map(r => r.soal).filter((x, i, a) => a.indexOf(x) === i);
               return h('div', { class: 'btn-row' },
                 tt && nLatihTopik(tt.id) ? h('button', { type: 'button', class: 'btn btn-primary', title: tt.id + ' ' + tt.judul, onclick: () => UKP.go('latih', { topik: tt.id, kode: tt.kode, n: 10, mulai: true }) }, 'Latih ' + nLatihTopik(tt.id) + ' soal ' + tt.id + ' ' + pendek(tt.judul, 32))
@@ -1617,6 +1780,8 @@
         area.append(h('h1', { class: 'visually-hidden' }, (oj.ulang ? 'Putaran ulang bersama selesai' : 'Latihan bersama selesai') + ': evaluasi tim'), el);
         // komponen versi lama tanpa opsi sesudahKop: pemberitahuan tetap tampil, sebelum evaluasi seperti dulu
         if (keLobi && !keLobi.parentNode) el.before(keLobi);
+        // G4: rute entri ini menjadi { evaluasi: <id> }, jadi muat ulang membuka lagi evaluasi sesi ini (halaman #tim/sesi:<id>), bukan halaman Latih
+        if (sesi.id && typeof UKP.perbaruiParams === 'function') UKP.perbaruiParams({ lanjut: null, sesi: null, mulai: null, ids: null, room: null, evaluasi: sesi.id }, 'latih');
         UKP.fokus(area.querySelector('h1')); window.scrollTo({ top: 0 });
       }
       // ringkasan latihan bersama: tabel per peserta (urutan daftar), soal yang salah oleh siapa pun, ulangi gabungan
@@ -1632,7 +1797,7 @@
             h('td', { class: 'angka' }, x.p == null ? '–' : x.p + '%')))));
         const kalimat = nSoal ? nSoal + (ulangRun ? ' soal diulang' : ' soal') + ' · bersama ' + peserta.length + ' orang' + (idx < daftar.length ? ' (berhenti di soal ' + (idx + 1) + ' dari ' + daftar.length + ')' : '') + ' · ' + menit + ' mnt.' : 'Belum ada soal yang dijawab.';
         const bukaSoal = r => UKP.dialog({ judul: 'Soal ' + r.soal.id, isi: () => h('div', { class: 'stack' }, UKP.c.soal(r.soal, { hanyaBaca: true, denganUmpan: true, fokus: false, jawabanAwal: '-', detik: r.detik || 0, konteks: 'ulas', tanpaTutor: true })) });
-        const latihLagi = () => UKP.go('latih', Object.assign({}, f, { mulai: true }));
+        const latihLagi = () => UKP.go('latih', Object.assign({}, f, { mulai: true, lanjut: null, sesi: null }));
         // v9.6.5: kepala berpita lewat UKP.c.kop, sama dengan Latihan selesai (h1 dan teksnya tetap)
         area.append(UKP.c.kop({ judul: ulangRun ? 'Putaran ulang bersama selesai' : 'Latihan bersama selesai', pita: true }),
           h('div', { class: 'card sorot ringkasan-latih ringkasan-bersama' }, h('div', { class: 'stack-sm' }, h('p', { class: 'eyebrow' }, 'Ringkasan'), h('p', null, kalimat)),
@@ -1781,17 +1946,67 @@
       if (peserta) simpanAktif();
     }
     let tUmum = null; // jeda pengumuman jumlah cocok
-    const hasil = () => ({ node: page, unmount: () => { if (padaLepas) { try { padaLepas(); } catch (e) {} } if (padaLepasRoom) { try { padaLepasRoom(); } catch (e) {} } hentikanTempo(); hentikanSesi(); clearTimeout(tUmum); modeFokus(false); } });
+    const hasil = () => ({ node: page, unmount: () => { dilepas = true; if (padaLepas) { try { padaLepas(); } catch (e) {} } if (padaLepasRoom) { try { padaLepasRoom(); } catch (e) {} } if (lepasJalan) { try { lepasJalan(); } catch (e) {} lepasJalan = null; } hentikanTempo(); hentikanSesi(); clearTimeout(tUmum); modeFokus(false); } });
+    // G4: layar evaluasi latihan bersama menulis rute { evaluasi: <id> }. Muat ulang, atau kembali ke entri itu, membuka evaluasi sesi
+    // yang sudah selesai di halaman yang sudah ada untuk rekaman sesi (#tim/sesi:<id>), sama dengan tombol Lihat hasil lengkap
+    if (typeof params.evaluasi === 'string' && !params.lanjut && !params.mulai && !params.ids) {
+      const sesiEv = L.sesiBersamaDari ? L.sesiBersamaDari(params.evaluasi) : null;
+      if (sesiEv && sesiEv.selesai) {
+        page.appendChild(h('p', { class: 'meta', role: 'status' }, 'Membuka evaluasi tim…'));
+        setTimeout(() => { if (!dilepas) UKP.go('tim', { anggota: 'sesi:' + sesiEv.id }, { replace: true }); }, 0);
+        return hasil();
+      }
+    }
     // v7.7: #latih tanpa params (ubin Beranda, menu Latih) langsung mulai: acak dari tingkat target, 20 soal, jawab langsung.
     // Halaman saringan tetap lewat params apa pun (mis. { atur: 1 } dari "Atur saringan", atau kode/n tanpa mulai)
     // v8.1: sesi bersama yang bisa dilanjutkan → #latih tanpa params TIDAK memulai sesi baru; saringan menampilkan kartu "Lanjutkan"
-    const bisaLanjut = L.bersamaAktif ? L.bersamaAktif() : null;
-    if (!bisaLanjut && s.bersamaAktif && L.simpanBersamaAktif) L.simpanBersamaAktif(null); // keadaan kedaluwarsa dibersihkan
-    if (params.lanjut && bisaLanjut) {
-      const arr = bisaLanjut.soalIds.map(id => K.soal(id)).filter(Boolean);
-      if (arr.length === bisaLanjut.soalIds.length) { jalankan(arr, { lanjut: bisaLanjut, ulang: !!bisaLanjut.ulang }); return hasil(); }
+    const bisaLanjut0 = L.bersamaAktif ? L.bersamaAktif() : null;
+    if (!bisaLanjut0 && s.bersamaAktif && L.simpanBersamaAktif) L.simpanBersamaAktif(null); // keadaan kedaluwarsa dibersihkan
+    // v9.7.2 D7: titik lanjut yang soalnya tidak lengkap lagi (soal dihapus di versi baru) diakhiri di sini, supaya Beranda dan lobi room
+    // berhenti menawarkannya (dulu: kartu Lanjutkan berputar kembali ke saringan). Banner menjelaskannya sekali.
+    // F1: hanya bila semua berkas data soal termuat. Bila ada yang gagal dimuat (gangguan jaringan sesaat), sesi dan titik lanjut dibiarkan
+    // utuh, papan tidak dilanjutkan otomatis, kartu Lanjutkan tetap tampil, dan banner meminta halaman dimuat ulang
+    const cekLanjut = periksaLanjut(bisaLanjut0);
+    const arrLanjut = cekLanjut.arr;
+    const lanjutRusak = !!bisaLanjut0 && cekLanjut.rusak;
+    const lanjutKurangData = !!bisaLanjut0 && cekLanjut.kurang;
+    if (lanjutRusak) akhiriSesiLama(bisaLanjut0);
+    const bisaLanjut = lanjutRusak ? null : bisaLanjut0;
+    const pulihRute = !!(UKP.sekarang && UKP.sekarang().pulih);
+    if (harusLanjut({ params, bisaLanjut: !!bisaLanjut, sesiId: bisaLanjut && bisaLanjut.sesiId, adaPeserta: !!pesertaAktif(), pulih: pulihRute, utuh: !lanjutKurangData })) {
+      const mulaiLanjut = () => { catatTabLain(null); jalankan(arrLanjut, { lanjut: bisaLanjut, ulang: !!bisaLanjut.ulang }); };
+      // v9.7.2 D3 dan G3: sebelum papan dipasang, tanya dulu lewat kanal 'ukp-papan' apakah papan sesi ini hidup di tab lain. Berlaku untuk
+      // semua jalan: rute yang dipulihkan, entri riwayat, dan tombol yang diketuk (kartu Lanjutkan, Kembali ke latihan, Kembali ke papan).
+      // Paling lama 350 ms; tanpa jawaban (atau tanpa BroadcastChannel) papan dilanjutkan
+      if (typeof BroadcastChannel === 'function') {
+        let kanal = null; try { kanal = new BroadcastChannel('ukp-papan'); } catch (e) { kanal = null; }
+        if (kanal) {
+          let beres = false; let tunda = null;
+          const akhir = dipegang => {
+            if (beres) return; beres = true; clearTimeout(tunda); try { kanal.close(); } catch (e) {}
+            if (dilepas || !page.isConnected) return;
+            if (!dipegang) { mulaiLanjut(); return; }
+            // papan sesi ini sedang terbuka di tab lain: tab ini menampilkan saringan dengan kartu Lanjutkan dan keterangan G2.
+            // F2: rute menjadi { atur: 1 }, jadi muat ulang tab ini sesudah latihan di tab pertama berakhir tidak memulai latihan baru
+            catatTabLain(bisaLanjut.sesiId);
+            UKP.perbaruiParams({ lanjut: null, sesi: null, mulai: null, ids: null, room: null, atur: 1 }, 'latih');
+            UKP.render();
+            // G2: toast bertahan 10 detik; kartu Lanjutkan juga menulis keterangannya
+            UKP.toast('Latihan ini sedang terbuka di tab lain.', { ms: 10000 });
+          };
+          kanal.onmessage = ev => { const d = ev && ev.data; if (d && d.pegang === bisaLanjut.sesiId) akhir(true); };
+          page.appendChild(h('p', { class: 'meta', role: 'status' }, 'Melanjutkan latihan bersama…'));
+          tunda = setTimeout(() => akhir(false), 350);
+          try { kanal.postMessage({ tanya: bisaLanjut.sesiId }); } catch (e) { akhir(false); }
+          const out = hasil(); const lepasAsli = out.unmount;
+          out.unmount = () => { if (!beres) { beres = true; clearTimeout(tunda); try { kanal.close(); } catch (e) {} } lepasAsli(); };
+          return out;
+        }
+      }
+      mulaiLanjut(); return hasil();
     }
-    const langsungMulai = !bisaLanjut && !Object.keys(params).some(k => params[k] != null && params[k] !== '' && params[k] !== false);
+    // F2: rute yang dipulihkan saat muat ulang selama latihan bersama aktif tidak langsung memulai (bolehLangsungMulai)
+    const langsungMulai = bolehLangsungMulai({ params, bisaLanjut: !!bisaLanjut, pulih: pulihRute, adaPeserta: !!pesertaAktif() });
     // params.mulai / params.ids juga tidak memulai sesi bersama baru selama ada sesi yang bisa dilanjutkan (mis. muat ulang halaman:
     // history.state masih membawa { mulai: true }); saringan menampilkan kartu "Lanjutkan"
     const tahanMulai = !!bisaLanjut && !!pesertaAktif();
@@ -1803,6 +2018,10 @@
     page.classList.add('lebar');
     // v8.1: kartu "Sesi bersama belum selesai" paling atas
     const kartuLanjut = bisaLanjut ? UKP.c.kartuLanjutBersama() : null; if (kartuLanjut) page.appendChild(kartuLanjut);
+    if (lanjutRusak) page.appendChild(h('div', { class: 'banner', 'data-tone': 'warn', role: 'note' }, ikon('peringatan'), h('span', null, 'Latihan bersama yang belum selesai tidak bisa dilanjutkan karena sebagian soalnya sudah tidak ada. Latihan itu sudah diakhiri. Soal yang sudah dibahas tetap tersimpan di Dasbor tim.')));
+    if (lanjutKurangData) page.appendChild(h('div', { class: 'banner banner-muat-kurang', 'data-tone': 'warn', role: 'alert' }, ikon('peringatan'),
+      h('span', null, 'Sebagian data soal gagal dimuat. Muat ulang halaman untuk melanjutkan latihan. Latihan bersama yang belum selesai tetap tersimpan.'),
+      h('button', { type: 'button', class: 'btn btn-ghost', onclick: () => root.location.reload() }, 'Muat ulang')));
     page.appendChild(kop({ pita: true, judul: 'Latih soal', lead: 'Pilih kelompok dan jumlah soal. Setiap jawaban langsung dibahas: inti jawaban, langkah hitung, dan dasar hukumnya.' }));
     if ((params.mulai && !tahanMulai) || langsungMulai) page.appendChild(h('div', { class: 'banner', 'data-tone': 'warn', role: 'note' }, ikon('peringatan'), h('span', null, 'Tidak ada soal yang cocok dengan filter ini. Longgarkan filter di bawah lalu mulai lagi.')));
     const semuaKel = K.semuaKelompok(); const luar = semuaKel.filter(k => !kelTingkat.includes(k));
@@ -1899,8 +2118,10 @@
     let modeLatih = 'sendiri'; // v8.2 B2: 'sendiri' | 'bersama' (segmen di atas kartu saringan)
     const klikMulai = e => {
       if (modeLatih === 'bersama' && peranRoom() === 'anggota') { UKP.go('room'); return; }
+      // dibaca sebelum await (e.currentTarget kosong sesudahnya)
       if (e.currentTarget.getAttribute('aria-disabled') === 'true') { UKP.toast('Tidak ada soal yang cocok dengan saringan.'); return; }
-      if (!mulai({ room: modeLatih === 'bersama' && !!pesertaAktif() && peranRoom() === 'tuan' })) { hitung(); UKP.toast('Tidak ada soal yang cocok dengan saringan.'); }
+      // v9.7.2 D4: latihan bersama baru menggantikan latihan bersama yang belum selesai hanya dengan persetujuan (penjagaMulai)
+      return penjagaMulai(() => { if (!mulai({ room: modeLatih === 'bersama' && !!pesertaAktif() && peranRoom() === 'tuan' })) { hitung(); UKP.toast('Tidak ada soal yang cocok dengan saringan.'); } });
     };
     const tombolMulai = h('button', { type: 'button', class: 'btn btn-primary btn-block', onclick: klikMulai });
     const tombolMulaiHp = h('button', { type: 'button', class: 'btn btn-primary', onclick: klikMulai });
@@ -2019,7 +2240,7 @@
       chipAktif, tombolMulai,
       h('button', { type: 'button', class: 'btn btn-ghost rata', onclick: () => UKP.go('latih', { atur: 1 }, { replace: true }) }, ikon('atur-ulang', null, true), 'Atur ulang saringan')));
     const bk = L.bukuKesalahan(tingkat, 5);
-    if (bk.length) page.appendChild(sect({ judul: 'Buku Kesalahan terbaru', meta: bk.length + ' soal', isi: h('div', { class: 'list-rows daftar-kartu' }, bk.map(j => { const so = K.soal(j.soal); return so ? h('a', { class: 'row-link', href: '#latih', onclick: e => { e.preventDefault(); jalankan([so]); } }, h('span', { class: 'kode' }, so.id.split('-').pop()), h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, pendek(so.stem, 90)), h('span', { class: 'row-meta' }, h('span', { class: 'kode' }, so.id), j.tag ? pill(UKP.tagLabel(j.tag), 'warn') : null)), ikon('chevron-kanan', 'chev', true)) : null; })) }));
+    if (bk.length) page.appendChild(sect({ judul: 'Buku Kesalahan terbaru', meta: bk.length + ' soal', isi: h('div', { class: 'list-rows daftar-kartu' }, bk.map(j => { const so = K.soal(j.soal); return so ? h('a', { class: 'row-link', href: '#latih', onclick: e => { e.preventDefault(); return penjagaMulai(() => jalankan([so])); } }, h('span', { class: 'kode' }, so.id.split('-').pop()), h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, pendek(so.stem, 90)), h('span', { class: 'row-meta' }, h('span', { class: 'kode' }, so.id), j.tag ? pill(UKP.tagLabel(j.tag), 'warn') : null)), ikon('chevron-kanan', 'chev', true)) : null; })) }));
     return hasil();
   };
 
