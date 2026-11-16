@@ -95,6 +95,8 @@ Berkas asal punya 10 studi kasus dengan 49 soal. Teks kasus ditaruh di awal stem
 
 Batas soal ◐ untuk paket ini 17, dijaga di `test/_harap-970.js`.
 
+Sejak v9.7.1 jumlahnya 18. Lihat "Catatan susulan v9.7.1" di akhir dokumen.
+
 ## Butir cakupan
 
 Delapan soal tidak punya butir resmi Tingkat B. Soal itu diterima sebagai soal paket di luar daftar butir resmi Tingkat B. Butir terdekat tidak diberikan, karena itu memalsukan peta.
@@ -177,3 +179,16 @@ Sesudah pasang ulang: perbarui `test/_harap-970.js` (termasuk `sidikLM` dan `sid
 - Pemeriksa menerima 260 soal dan memperbaiki 55.
 - 8 soal di luar daftar butir resmi Tingkat B.
 - Penjelasan mudah: 315 soal paket dan 2.791 soal lama.
+
+## Catatan susulan v9.7.1 (16 Nov 2026)
+
+Angka di atas adalah keadaan v9.7.0. Di v9.7.1 dua soal paket berubah. Stem, opsi, kunci, dan butir cakupannya tetap.
+
+- **Nomor 108 (A2-336).** Kini bertanda ◐. Kuncinya mengikuti bunyi Pasal 39 ayat (1) UU KUP sebelum 2 Januari 2026. Sejak tanggal itu ancamannya penjara paling lama 6 tahun dan/atau denda paling banyak 4 kali, tanpa batas bawah (UU 1/2026). Soal paket tidak diubah, jadi bunyi baru ditulis di pembahasan dan "Catatan sumber". Opsi lain tetap salah, jadi kunci tidak berubah.
+- **Nomor 80 (A2-308).** Pembahasan jebakan dan Penjelasan mudah kini memuat pengecualian denda keberatan 30%. Denda itu tidak dikenakan bila WP banding, kecuali banding dicabut atau tidak dapat diterima. Tandanya tetap ✅.
+
+Akibatnya:
+
+- Soal paket bertanda ◐ menjadi 18 dan soal pasti 297.
+- Batas `batasTanda` di `test/_harap-970.js` naik dari 17 menjadi 18. `sidikLM` diperbarui. `sidikPetaLM` tetap.
+- Rincian isi v9.7.1 ada di `docs/ISI-9.7.1.md`.

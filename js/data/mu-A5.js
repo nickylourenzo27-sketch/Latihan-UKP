@@ -48,7 +48,7 @@ UKP.register({
       { label: "Pengesahan pemeteraian kemudian", nilai: "pejabat yang ditetapkan Menteri: Pejabat Pos (bila dibayar dengan meterai tempel) atau Pejabat DJP (meterai tempel, meterai elektronik, dan/atau SSP)", dasar: "UU 10/2020 Ps. 1; PMK 78/2024 Ps. 51", berlakuSejak: "2024-11-01" },
       { label: "Daluwarsa", nilai: "5 tahun sejak saat terutang, untuk semua dokumen (pasal menyebut bea meterai yang terutang; sanksi 100% mengikuti pokoknya)", dasar: "UU 10/2020 Ps. 23 dan Penjelasannya", berlakuSejak: "2021-01-01" },
       { label: "Larangan pejabat", nilai: "pejabat yang berwenang (antara lain hakim, panitera, jurusita, notaris, PPAT, pegawai ASN, anggota TNI/Polri, dan pejabat negara) dilarang menerima, mempertimbangkan, atau menyimpan dokumen yang bea meterainya tidak atau kurang dibayar", dasar: "UU 10/2020 Ps. 21", berlakuSejak: "2021-01-01" },
-      { label: "Pidana memalsu/memakai meterai palsu", nilai: "penjara maks. 7 tahun, denda maks. Rp500 juta", dasar: "UU 10/2020 Ps. 24–25", berlakuSejak: "2021-01-01" },
+      { label: "Pidana memalsu/memakai meterai palsu", nilai: "penjara maks. 7 tahun dan denda maks. Rp500 juta (bunyi UU 10/2020); sejak 2 Jan 2026 disesuaikan UU 1/2026, perlu dicek", dasar: "UU 10/2020 Ps. 24–25", berlakuSejak: "2021-01-01" },
       { label: "Sanksi bea meterai di SPT PPh", nilai: "lazimnya dikoreksi positif sebagai sanksi administrasi di bidang perpajakan (UU PPh Ps. 9(1)k), tetapi naskah tidak menggolongkan sanksi 100% bea meterai secara tegas ke bunga, denda, atau kenaikan; pokok bea meterai boleh dibiayakan", dasar: "UU PPh Ps. 9(1)k dan 6(1)a; UU 10/2020 Ps. 11(3), 18(2), dan 19(2)", berlakuSejak: "2009-01-01" },
       { label: "Angka usang (pengecoh)", nilai: "tarif Rp3.000/Rp6.000; ambang Rp250 rb/Rp1 jt; sanksi 200%; setor tgl 10, lapor tgl 20", dasar: "UU 13/1985; PMK 151/2021 (dicabut)", berlakuSejak: "2021-01-01" }
     ]
@@ -277,15 +277,15 @@ UKP.register({
         "Sanksi administratif bea meterai sebesar 100% dari bea meterai yang terutang, dibayar bersama pokok pada saat pemeteraian kemudian oleh pihak yang terutang (Pasal 18 UU 10/2020); turun dari 200% pada UU 13/1985.",
         "Sanksi dihitung per dokumen: Rp10.000 × 100% = Rp10.000, sehingga total per dokumen yang lewat saat terutang Rp20.000.",
         "Pemungut tunduk pada Pasal 11, bukan Pasal 18: bea meterai yang tidak atau kurang dipungut dan/atau tidak atau kurang disetor ditetapkan dengan SKP ditambah sanksi 100%; terlambat menyetor dan/atau tidak atau terlambat melapor ditagih dengan STP sesuai UU KUP (bunga Pasal 9 ayat (2a), denda Pasal 7 ayat (1)).",
-        "Pidana pemalsuan (Pasal 24–25): meniru atau memalsu meterai, serta memakai, menjual, menawarkan, menyediakan untuk dijual, atau memasukkan ke Indonesia meterai palsu, diancam pidana penjara paling lama 7 tahun dan denda paling banyak Rp500.000.000.",
-        "Meterai bekas (Pasal 26): menghilangkan tanda pemakaian pada meterai yang sudah dipakai agar tampak belum dipakai, atau memakai/menjual meterai bekas tersebut, diancam pidana penjara paling lama 3 tahun dan denda paling banyak Rp200.000.000; pejabat yang melanggar larangan Pasal 21 dikenai sanksi administratif kepegawaian, bukan pidana.",
+        "Pidana pemalsuan (Pasal 24–25): meniru atau memalsu meterai, serta memakai, menjual, menawarkan, menyediakan untuk dijual, atau memasukkan ke Indonesia meterai palsu, diancam pidana penjara paling lama 7 tahun dan denda paling banyak Rp500.000.000 (bunyi UU 10/2020). Sejak 2 Januari 2026, menurut aturan umum UU 1/2026, 'dan' menjadi 'dan/atau' dan dendanya menjadi paling banyak kategori V; nilai kategori dan bunyi barunya belum dicocokkan ke Lampiran I UU 1/2026.",
+        "Meterai bekas (Pasal 26): menghilangkan tanda pemakaian pada meterai yang sudah dipakai agar tampak belum dipakai, atau memakai/menjual meterai bekas tersebut, diancam pidana penjara paling lama 3 tahun atau pidana denda paling banyak Rp200.000.000 (bunyi UU 10/2020; penyesuaian oleh UU 1/2026 perlu dicek); pejabat yang melanggar larangan Pasal 21 dikenai sanksi administratif kepegawaian, bukan pidana.",
         "Tidak membubuhkan meterai bukan tindak pidana dan tidak membatalkan perjanjian; akibatnya administratif (pemeteraian kemudian + 100%) dan dokumen tidak dapat dipakai sebagai alat bukti sebelum dimeteraikan."
       ],
       poinKunci: [
         { label: "Sanksi administratif", nilai: "100% dari bea meterai terutang", dasar: "Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" },
         { label: "Sanksi lama UU 13/1985", nilai: "200% — tidak berlaku lagi", dasar: "UU 13/1985 Pasal 8 (dicabut)", berlakuSejak: "2021-01-01" },
-        { label: "Pidana meniru/memalsu meterai", nilai: "penjara paling lama 7 tahun, denda paling banyak Rp500 juta", dasar: "Pasal 24 UU 10/2020", berlakuSejak: "2021-01-01" },
-        { label: "Pidana meterai bekas", nilai: "penjara paling lama 3 tahun, denda paling banyak Rp200 juta", dasar: "Pasal 26 UU 10/2020", berlakuSejak: "2021-01-01" },
+        { label: "Pidana meniru/memalsu meterai", nilai: "penjara paling lama 7 tahun dan denda paling banyak Rp500 juta (bunyi UU 10/2020); sejak 2 Jan 2026 disesuaikan UU 1/2026, perlu dicek", dasar: "Pasal 24 UU 10/2020", berlakuSejak: "2021-01-01" },
+        { label: "Pidana meterai bekas", nilai: "penjara paling lama 3 tahun atau denda paling banyak Rp200 juta (bunyi UU 10/2020); penyesuaian UU 1/2026 perlu dicek", dasar: "Pasal 26 UU 10/2020", berlakuSejak: "2021-01-01" },
         { label: "Sanksi pemungut", nilai: "tidak pungut/setor: SKP + 100%; terlambat setor/lapor: STP sesuai UU KUP", dasar: "Pasal 11 UU 10/2020", berlakuSejak: "2021-01-01" }
       ],
       dasarHukum: [
@@ -5858,7 +5858,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
-        mudah: "Ada dua perbuatan yang akibatnya sangat berbeda. Membuat meterai tiruan lalu menjualnya sebagai meterai asli adalah tindak pidana, ancamannya penjara paling lama 7 tahun dan denda paling banyak Rp500 juta. Tidak membubuhkan meterai bukan pidana, cukup dimeteraikan kemudian: bea meterai ditambah sanksi 100% per dokumen. Ancaman 3 tahun atau Rp200 juta itu untuk memakai ulang meterai bekas, bukan meterai tiruan. Cara ingat: memalsu itu pidana, lalai cukup bayar plus sanksi.",
+        mudah: "Ada dua perbuatan yang akibatnya sangat berbeda. Membuat meterai tiruan lalu menjualnya sebagai meterai asli adalah tindak pidana, ancamannya penjara paling lama 7 tahun dan denda paling banyak Rp500 juta. Tidak membubuhkan meterai bukan pidana, cukup dimeteraikan kemudian: bea meterai ditambah sanksi 100% per dokumen. Ancaman 3 tahun atau Rp200 juta itu untuk memakai ulang meterai bekas, bukan meterai tiruan. Kedua angka pidana itu bunyi undang-undang bea meterai. Sejak 2 Januari 2026 ada aturan penyesuaian pidana, dan bunyi barunya belum dicocokkan. Cara ingat: memalsu itu pidana, lalai cukup bayar plus sanksi.",
         inti: "Meniru atau memalsu meterai dengan maksud memakai atau meminta orang lain memakainya sebagai meterai asli (Pasal 24), serta menjual atau menawarkan meterai yang dipalsu (Pasal 25), diancam pidana penjara paling lama 7 tahun dan denda paling banyak Rp500.000.000. Tidak membubuhkan meterai bukan tindak pidana; akibatnya pemeteraian kemudian dengan sanksi administratif 100% (Pasal 17 dan 18).",
         jejakHitung: [],
         mengapaSalah: {
@@ -5870,7 +5870,8 @@ UKP.register({
       },
       dasarHukum: [{ pasal: "Pasal 24–26 UU 10/2020 (ketentuan pidana)", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 17 dan Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }],
       anggaranDetik: 120,
-      verifikasi: "✅",
+      verifikasi: "◐",
+      peringatan: "Angka pidana di opsi dan pembahasan adalah bunyi UU 10/2020. Sejak 2 Januari 2026 ancaman Pasal 24 dan 25 disesuaikan UU 1/2026. Menurut aturan umumnya, 'dan' menjadi 'dan/atau' dan denda menjadi paling banyak kategori V, yang nilainya belum dicocokkan ke naskah. Penyesuaian ancaman Pasal 26 juga perlu dicek. Kunci tidak berubah, karena pembedanya: tidak membubuhkan meterai bukan pidana dan sanksinya 100%, dan ancaman 3 tahun atau Rp200 juta adalah untuk meterai bekas, bukan meterai tiruan.",
       kembaranDari: "A5-098",
       sejak: "9.5.4"
     },

@@ -81,12 +81,17 @@ describe('v9.5.0: soal baru', () => {
   // v9.5.5: soal try out yang baru masuk (sumber.set) juga punya field sejak, tetapi bukan tulisan sendiri; aturannya ada di blok v9.5.5 di bawah
   const baru = semuaBaru.filter(s => !(s.sumber && s.sumber.set));
   const pengganti = baru.filter(s => s.kembaranDari);
+  // soal pengganti yang boleh bertanda walau soal sumbernya tidak (alasan di bawah)
+  const TANDA_SENDIRI = new Set(['A5-204']);
   it('jumlah soal baru paling sedikit JUMLAH_BARU; bertanda hanya bila soal sumbernya juga bertanda', () => {
     assert.ok(semuaBaru.length >= JUMLAH_BARU, 'soal baru: ' + semuaBaru.length);
     // sejak v9.5.4: soal pengganti boleh bertanda ◐ hanya bila soal sumbernya juga bertanda (klaim yang sama belum bisa dipastikan dari naskah), dan wajib punya peringatan
     for (const s of baru) { assert.match(s.sejak, /^\d+\.\d+\.\d+$/, s.id); assert.ok(!s.sumber, s.id);
       if (s.verifikasi === '✅') { assert.ok(!s.peringatan, s.id); continue; }
       assert.equal(s.verifikasi, '◐', s.id); assert.ok(typeof s.peringatan === 'string' && s.peringatan.length > 20, s.id + ': soal bertanda wajib punya peringatan');
+      // v9.7.1: satu pengecualian. A5-204 memuat angka ancaman pidana Bea Meterai yang disesuaikan UU 1/2026, jadi diberi ◐.
+      // Soal sumbernya A5-098 hanya menulis 'diancam pidana menurut UU 10/2020' tanpa angka, jadi tetap ✅.
+      if (TANDA_SENDIRI.has(s.id)) continue;
       const a = s.kembaranDari ? SOAL.get(s.kembaranDari) : null; assert.ok(a && a.verifikasi === '◐', s.id + ': soal baru bertanda harus soal pengganti dari soal sumber yang juga bertanda'); }
   });
   it('soal pengganti merujuk soal asli di modul yang sama dan menguji hal yang sama', () => {

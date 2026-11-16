@@ -610,7 +610,7 @@ UKP.register({
       ringkasan: [
         "Hubungan istimewa (Pasal 18 ayat (4)) terjadi bila: (a) kepemilikan langsung atau tidak langsung paling rendah 25%, atau hubungan antara dua WP atau lebih yang sama-sama dimiliki paling rendah 25% oleh pihak yang sama; (b) penguasaan melalui manajemen atau teknologi walaupun tanpa kepemilikan, termasuk bila para pihak secara komersial atau finansial diketahui atau menyatakan diri berada dalam satu grup usaha yang sama (PP 55/2022 Pasal 33; PMK 172/2023 Pasal 2 ayat (5)); (c) hubungan keluarga sedarah atau semenda dalam garis lurus dan/atau ke samping satu derajat.",
         "Kepemilikan tidak langsung dihitung berantai: A memiliki 50% B dan B memiliki 50% C → A memiliki 25% C secara tidak langsung (berhubungan istimewa).",
-        "DJP berwenang menentukan kembali penghasilan dan biaya transaksi afiliasi berdasarkan prinsip kewajaran dan kelaziman usaha (PKKU/arm's length) (Pasal 18 ayat (3)); selisihnya menjadi koreksi positif dan dapat diikuti penyesuaian sekunder (selisih diperlakukan sebagai dividen) menurut PMK 172/2023.",
+        "DJP berwenang menentukan kembali penghasilan dan biaya transaksi afiliasi berdasarkan prinsip kewajaran dan kelaziman usaha (PKKU/arm's length) (Pasal 18 ayat (3)); selisihnya menjadi koreksi positif. Selisih itu juga diperlakukan sebagai dividen dan dikenai PPh (penyesuaian sekunder, Pasal 37 ayat (1) dan (2) PMK 172/2023), baik untuk transaksi lintas negara maupun dalam negeri, dan dapat memakai manfaat P3B (Pasal 38). Penyesuaian sekunder tidak berlaku bila selisih itu dikembalikan atau ditambahkan dalam bentuk kas atau setara kas sebelum surat ketetapan pajak terbit, dan/atau WP menyetujui penentuan harga transfer oleh DJP (Pasal 37 ayat (4) dan (5)).",
         "Dokumentasi penentuan harga transfer wajib menurut ambang PMK 172/2023 (Pasal 16 ayat (3) dan (4)): Dokumen Induk dan Dokumen Lokal harus tersedia paling lama 4 bulan setelah akhir tahun pajak dan ikhtisarnya dilampirkan pada SPT Tahunan PPh Badan; Laporan per Negara bagi grup besar harus tersedia paling lama 12 bulan setelah akhir tahun pajak dan dilampirkan pada SPT Tahunan tahun pajak berikutnya.",
         "Transaksi afiliasi dan pernyataan dokumentasi dilaporkan pada lampiran transaksi hubungan istimewa SPT 1771 (lampiran khusus 3A/3A-1/3A-2 format lama); penyertaan modal dan utang-piutang dengan pemegang saham/afiliasi pada 1771-VI. Format lama hanya untuk Tahun Pajak sampai 2024 (Pasal 138 huruf a PER-11/PJ/2025); sejak Tahun Pajak 2025 padanannya Lampiran 10A sampai 10D (transaksi hubungan istimewa, pernyataan, dan ikhtisar dokumen induk dan dokumen lokal) serta Lampiran 2 Bagian B (penyertaan modal, utang, dan piutang pada perusahaan afiliasi)."
       ],
@@ -646,8 +646,7 @@ UKP.register({
         jawaban: "30%; berhubungan istimewa",
         langkah: [["60% × 50%", "30%"], ["Ambang Pasal 18 ayat (4) huruf a", "≥ 25% → berhubungan istimewa"]]
       },
-      verifikasi: "◐",
-      peringatan: "Ambang dokumentasi TP sudah dicocokkan dengan PMK 172/2023 Pasal 16 ayat (3) dan (4): peredaran bruto tahun sebelumnya lebih dari Rp50 miliar; transaksi afiliasi barang berwujud lebih dari Rp20 miliar atau selain barang berwujud masing-masing lebih dari Rp5 miliar; afiliasi di yurisdiksi bertarif lebih rendah; Laporan per Negara bila peredaran bruto konsolidasi paling sedikit Rp11 triliun. Rujukan PP 55/2022 Pasal 33 dan penyesuaian sekunder belum dicocokkan dengan naskah."
+      verifikasi: "✅"
     },
     {
       id: "B6.11",

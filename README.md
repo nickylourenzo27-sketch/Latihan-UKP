@@ -16,6 +16,22 @@ Tampilan mengikuti kanvas desain pemilik ("MABAR UKP · Logo" dan "MABAR UKP · 
 - **Sambutan (v9.0).** Pengunjung baru di akar situs melihat halaman sambutan berkerangka sama, dengan tombol Masuk menuju formulir lima langkah. Tautan tim (`#room/<kode>`, `#ujiantim/<kode>`, `#lj`) tetap langsung ke layarnya.
 - **Mode mabar** adalah nama pintu fitur tim (halaman `#room`). Nama fitur di dalamnya tidak berubah.
 
+<!-- isi-971:mulai -->
+## Sanksi pidana 2026 dan materi yang dilengkapi (v9.7.1)
+
+Ringkasan materi kiriman pemimpin tim 16 Nov 2026 dicocokkan dengan naskah peraturan. Butir yang berbeda dari naskah tidak dipakai. Butir yang benar dan belum dimuat ditambahkan. Tidak ada soal baru. Huruf kunci semua soal tetap sama.
+
+- **Sanksi pidana pajak sejak 2 Januari 2026.** UU 1/2026 tentang Penyesuaian Pidana menyesuaikan ancaman pidana di UU KUP dan UU Bea Meterai. Yang pasti: Pasal 39 ayat (1) UU KUP kini penjara paling lama 6 tahun dan/atau denda paling banyak 4 kali pajak yang tidak atau kurang dibayar (siaran resmi DJP 11 Mei 2026). Ringkasan topik A2.8 ditulis ulang. Opsi soal A2-107, A2-254, A2-258, dan E-068 dibetulkan; kuncinya tetap.
+- **Yang belum pasti.** Bunyi baru pasal pidana lain ada di Lampiran I UU 1/2026, yang belum didapat. Pasal 39A dan 41A UU KUP serta Pasal 24 dan 25 UU Bea Meterai ditulis "menurut aturan umum UU 1/2026". Pasal 38, 41, 41B, 41C UU KUP, Pasal 26 UU Bea Meterai, dan Pasal 7 UU 9/2017 tidak diberi angka baru.
+- **Materi yang dilengkapi.** Daluwarsa penuntutan 10 tahun, denda keberatan 30%, hak mendahulu, barang yang tidak boleh disita, WP kriteria tertentu, PPN jasa luar negeri, PPh 22 bendahara, PBB sektor lainnya, penyesuaian sekunder, APA, MAP, pencegahan penghindaran BUT, dan pajak minimum global.
+- **Laporan tahunan APA.** PMK 172/2023 tidak mengenal laporan itu. Topik C10.7 ditulis ulang. Soal C10-044, C10-093, C10-095, dan C10-148 dibetulkan; kuncinya tetap.
+- **Tabel rujukan.** Entri baru UU 1/2026 (bertanda perlu dicek) dan istilah baru "Daluwarsa penuntutan". Delapan entri peraturan, dua istilah glosarium, dua angka hari ini, dan tiga tabel angka diperbarui. Glosarium PBB sektor P5L kini memuat NJKP 40% dan 20% (PP 25/2002).
+- **Soal bertanda perlu dicek.** 11 soal kini bertanda ◐: A2-111, A2-112, A2-258, A2-259, A2-336, A4-142, A4-169, A5-204, C10-049, E-068, E-080. Tidak ada tanda soal yang dicabut. Tanda topik B6.10 dan C10.7 dicabut.
+- **Paket.** Soal paket latihan nomor 108 (A2-336) kini bertanda ◐ karena kuncinya mengikuti bunyi lama Pasal 39 ayat (1). Nomor 80 (A2-308) hanya berubah pembahasannya. Soal try out A4-142 berubah pembahasannya dan kini bertanda ◐ (soal try out B bertanda menjadi 6).
+- **Angka.** 88 tempat berubah dibanding v9.7.0: 19 topik, 14 kartu diubah, 12 kartu baru, 1 kasus, 19 soal, 6 lembar ringkas, 1 tips, dan 16 entri rujukan. Kartu hafalan menjadi 914. Entri peraturan menjadi 128. Soal bertanda ◐ di bank menjadi 108 (paket latihan 18).
+- **Rincian.** Tabel per pasal, alasan tiap tanda, dan penjaga uji yang diperbarui ada di `docs/ISI-9.7.1.md`.
+<!-- isi-971:selesai -->
+
 <!-- isi-970:mulai -->
 ## Soal tambahan dan Penjelasan mudah (v9.7.0)
 

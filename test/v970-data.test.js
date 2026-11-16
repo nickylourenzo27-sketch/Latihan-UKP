@@ -15,11 +15,26 @@ const sha = t => crypto.createHash('sha256').update(t).digest('hex');
 // Sidik soal lama: semua soal di luar paket LM, tanpa kode dan tanpa pembahasan.mudah.
 // v9.7.0: bukan lagi sidik v9.6.6 (e8b33bb43ba410ec0a71ff0b), karena tiga pembetulan pembahasan v9.7.0 mengubah satu teks alasan opsi salah
 // di A2-013 (opsi B), A2-184 (opsi C), dan C9-017 (opsi A). Stem, opsi, dan kunci ketiganya tetap. Perbarui bila soal lama berubah lagi.
-const SIDIK_LAMA = { n: 2791, sidik: '9c36e5832b07e521aa9005be' };
+// v9.7.1: bukan lagi sidik v9.7.0 (9c36e5832b07e521aa9005be). Sanksi pidana pajak disesuaikan UU 1/2026 dan usul audit dipasang pada
+// A2-107, A2-111, A2-254, A2-258, A4-142, A4-169, A5-204, E-068, E-080 (pembahasan, dasarHukum, verifikasi, peringatan; opsi A2-107, A2-254,
+// A2-258, dan E-068 dibetulkan). Huruf kunci semua soal tetap; stem, opsi, dan kunci soal try out A4-142 tetap.
+// v9.7.1 putaran 2: bukan lagi sidik putaran 1 (2196fc011d861f9ffffe0076). Usul putaran 2 dipasang pada A2-111, A2-112, A2-180, A2-258,
+// A2-259, C10-044, C10-049, C10-093, C10-095, C10-148, E-068, E-080 (pembahasan, dasarHukum, verifikasi, peringatan). Kewajiban selama APA
+// diselaraskan dengan PMK 172/2023: stem dan opsi C10-044, opsi pengecoh C10-093, serta stem C10-095 dan C10-148 dibetulkan. Kuncinya tetap.
+// v9.7.1 polesan akhir: bukan lagi sidik putaran 2 (f0ce62d6d729740afe155598). Peringatan A5-204 dilengkapi: pembeda kuncinya juga
+// ancaman 3 tahun atau Rp200 juta yang berlaku untuk meterai bekas, bukan meterai tiruan. Stem, opsi, dan kunci tetap.
+const SIDIK_LAMA = { n: 2791, sidik: '4535074d59fb980e9a2bff93' };
 // Sidik penjelasan mudah soal lama: baris "id:mudah" semua soal di luar paket LM, urut id, digabung dengan baris baru, sha256 24 huruf pertama.
 // Nilainya dihitung dari pohon v9.7.0 yang terbukti sama persis dengan mudah-bank.json (2.791 soal). Perbarui bila penjelasan mudah soal lama diubah.
 // Sebelum rilis, tiga teks (A3-029, A4-086, E-044) diubah supaya tidak mengulang nama tokoh soal; berkas isi di luar repo ikut diubah.
-const SIDIK_MUDAH = { n: 2791, sidik: '7115c5234a9d2c210856669d' };
+// v9.7.1: bukan lagi sidik v9.7.0 (7115c5234a9d2c210856669d). Penjelasan mudah diselaraskan dengan pembahasan baru pada
+// A2-107, A2-254, A4-142, dan E-068.
+// v9.7.1 putaran 2: bukan lagi sidik putaran 1 (95f5f07678b377c8a93c2bd4). Penjelasan mudah diubah pada A2-111, A2-112, A2-258,
+// A4-142, A5-204, C10-044, C10-049, C10-093, dan E-080. Untuk A4-142 kata "penjara dan/atau denda" dihapus karena bunyi baru Pasal 39A
+// baru tingkat Turunan; "diancam pidana" benar menurut bunyi lama maupun baru.
+// v9.7.1 polesan akhir: bukan lagi sidik putaran 2 (c6d402b89c6f9ef18ae2d1c1). Penjelasan mudah E-080 ditambah satu kalimat:
+// bunyi pasti ancaman sesudah 2 Januari 2026 belum dicocokkan.
+const SIDIK_MUDAH = { n: 2791, sidik: '77656aa495797f8f3dbc1c64' };
 // sha256 (16 huruf pertama) token dan pasangan token nama yang tidak boleh ditulis di berkas proyek. Namanya sengaja tidak ditulis.
 const SIDIK_NAMA = ['b3a8951420e0a46e', 'f5a180e8092bfd8a', '45528769b64cd18b', '423a2d91b863827b'];
 
