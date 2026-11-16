@@ -155,7 +155,7 @@
   /* tata letak */
   --w-sidebar: 256px; --w-rail: 84px; --w-baca: 760px; --w-lebar: 1200px; --w-panel: 320px;
   --fokus-bar-h: 48px; --w-teks: 68ch; /* v7: bar mode fokus · lebar baris prosa */
-  --topbar-h: 56px; --nav-h: 56px; --kolom-gap: 24px; --bar-h: 52px; /* bar-h: tinggi .sesi-bar/.ujian-bar (scroll-padding) */
+  --topbar-h: 56px; --nav-h: 64px; --kolom-gap: 24px; --bar-h: 52px; /* bar-h: tinggi .sesi-bar/.ujian-bar (scroll-padding) */
 
   /* ikon mask (warna dari background: currentColor) */
   --ikon-cek: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
@@ -166,15 +166,16 @@
 
   /* warna — terang (kontras WCAG 2.x: lihat tabel B.6; diuji ulang dengan skrip token) */
   /* v8.3 MABAR UKP: tinta #0F2A4A + aksen kuning #F2B01E */
-  --bg: #F6F7F9; --surface: #FFFFFF; --surface-2: #E9EEF4; --surface-3: #F9FAFB; --zebra: #F8F9FB;
+  /* v10 langkah tegas: --bg, --surface-2, --line, --primary-soft, --ok-soft, --attn-soft memakai nilai arah akhir (lihat bagian v10) */
+  --bg: #F5F6F8; --surface: #FFFFFF; --surface-2: #EEF2F7; --surface-3: #F9FAFB; --zebra: #F8F9FB;
   --ink: #18212F; --muted: #4B5563; --ink-faint: #5B6675;
-  --line: #DDE2E8; --line-subtle: #E8ECF1; --line-strong: #7A8696; /* line-strong: batas kontrol ≥ 3:1 */
-  --primary: #0F2A4A; --primary-ink: #FFFFFF; --primary-soft: #E3EAF3; --primary-strong: #0A1F38;
+  --line: #DFE4EA; --line-subtle: #E8ECF1; --line-strong: #7A8696; /* line-strong: batas kontrol ≥ 3:1 */
+  --primary: #0F2A4A; --primary-ink: #FFFFFF; --primary-soft: #E6EDF6; --primary-strong: #0A1F38;
   --primary-fill: #0F2A4A; --primary-fill-hover: #1D4573; --primary-fill-press: #0A1F38;
   --accent-2: #2B5C9B; --accent-2-soft: #E4ECF6;
   --highlight: #F2B01E; --highlight-ink: #0F2A4A;
-  --ok: #1B7A52; --ok-soft: #DDF2E6;
-  --attn: #B3261E; --attn-soft: #FBE7E5; --attn-ink: #FFFFFF;
+  --ok: #1B7A52; --ok-soft: #E4F4EB;
+  --attn: #B3261E; --attn-soft: #FCEBEA; --attn-ink: #FFFFFF;
   --warn: #8A5A00; --warn-soft: #FFF1CC;
   --info: #1D4573; --info-soft: #E3EDF7;
   --flag: #8A4B08;
@@ -201,19 +202,19 @@
   :root:not([data-theme="light"]) {
     --bg: #0A1626; --surface: #0F2038; --surface-2: #162B48; --surface-3: #1D3556; --zebra: #12243F;
     --ink: #E8EEF6; --muted: #A7B4C5; --ink-faint: #919FB2; /* brief #8F9DB0: 4,49 di --surface-3 */
-    --line: #223A5A; --line-subtle: #1A2F4C; --line-strong: #5F7896;
+    --line: #223A5A; --line-subtle: #1A2F4C; --line-strong: #6A82A1;
     --primary: #F2B01E; --primary-ink: #0F2A4A; --primary-soft: #1B3558; --primary-strong: #FFD066;
     --primary-fill: #F2B01E; --primary-fill-hover: #FFC43D; --primary-fill-press: #D99A0B;
     --accent-2: #9CC2F0; --accent-2-soft: #172C47;
     --highlight: #F2B01E; --highlight-ink: #0F2A4A;
-    --ok: #6CC69A; --ok-soft: #12302A;
-    --attn: #FF8A80; --attn-soft: #3A1F24; --attn-ink: #0A1626;
+    --ok: #6CC69A; --ok-soft: #123328;
+    --attn: #FF8A80; --attn-soft: #3A1F26; --attn-ink: #0A1626;
     --warn: #FFB067; --warn-soft: #3A2A1A;
     --info: #8FB8EA; --info-soft: #172C47;
     --flag: #F6C177;
     --tingkat-a: #7ED3B4; --tingkat-b: #8FB8EA; --tingkat-c: #D98A98;
     --tint-a: #12302A; --tint-b: #172C47; --tint-c: #3A2230;
-    --seg-pilih: #25406A; --kerangka: #223A5A;
+    --seg-pilih: #2A4A73; --kerangka: #223A5A;
     --trek: #223A5A; --viz-netral: #7C8CA3;
     --toast-bg: #E8EEF6; --toast-ink: #0A1626; --toast-aksi: #0F2A4A;
     --focus: #F2B01E; --scrim: rgba(0, 0, 0, .6);
@@ -227,19 +228,19 @@
 :root[data-theme="dark"] {
   --bg: #0A1626; --surface: #0F2038; --surface-2: #162B48; --surface-3: #1D3556; --zebra: #12243F;
   --ink: #E8EEF6; --muted: #A7B4C5; --ink-faint: #919FB2;
-  --line: #223A5A; --line-subtle: #1A2F4C; --line-strong: #5F7896;
+  --line: #223A5A; --line-subtle: #1A2F4C; --line-strong: #6A82A1;
   --primary: #F2B01E; --primary-ink: #0F2A4A; --primary-soft: #1B3558; --primary-strong: #FFD066;
   --primary-fill: #F2B01E; --primary-fill-hover: #FFC43D; --primary-fill-press: #D99A0B;
   --accent-2: #9CC2F0; --accent-2-soft: #172C47;
   --highlight: #F2B01E; --highlight-ink: #0F2A4A;
-  --ok: #6CC69A; --ok-soft: #12302A;
-  --attn: #FF8A80; --attn-soft: #3A1F24; --attn-ink: #0A1626;
+  --ok: #6CC69A; --ok-soft: #123328;
+  --attn: #FF8A80; --attn-soft: #3A1F26; --attn-ink: #0A1626;
   --warn: #FFB067; --warn-soft: #3A2A1A;
   --info: #8FB8EA; --info-soft: #172C47;
   --flag: #F6C177;
   --tingkat-a: #7ED3B4; --tingkat-b: #8FB8EA; --tingkat-c: #D98A98;
   --tint-a: #12302A; --tint-b: #172C47; --tint-c: #3A2230;
-  --seg-pilih: #25406A; --kerangka: #223A5A;
+  --seg-pilih: #2A4A73; --kerangka: #223A5A;
   --trek: #223A5A; --viz-netral: #7C8CA3;
   --toast-bg: #E8EEF6; --toast-ink: #0A1626; --toast-aksi: #0F2A4A;
   --focus: #F2B01E; --scrim: rgba(0, 0, 0, .6);
@@ -3758,9 +3759,9 @@ main > .page.halaman-room > .bar-bawah-room { margin-top: auto; }
    Tombol datar: garis 1,5 px, tanpa tepi bawah tebal, tanpa bayangan/gradasi. Utama: terang isi tinta, gelap isi kuning.
    Terpilih = garis 2 px --primary + latar --primary-soft (opsi, chip, kartu radio); keyakinan = pil berisi.
    Token tambahan: --btn-garis (garis tombol sekunder) · --link-hover · utilitas .pita-kisi (token --pita-*). */
-:root { --btn-garis: #0F2A4A; --link-hover: #1D4573; --garis-btn-w: 1.5px; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --btn-garis: #8FA3BC; --link-hover: #FFD066; } }
-:root[data-theme="dark"] { --btn-garis: #8FA3BC; --link-hover: #FFD066; }
+:root { --btn-garis: #7A8696; --link-hover: #1D4573; --garis-btn-w: 1.5px; } /* v10: garis tombol kedua = garis kendali (dulu #0F2A4A, gelap #8FA3BC) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --btn-garis: #6A82A1; --link-hover: #FFD066; } }
+:root[data-theme="dark"] { --btn-garis: #6A82A1; --link-hover: #FFD066; }
 
 /* huruf judul */
 h1, h2, h3, .card-title, .lanjut-judul, .kartu-lanjut-judul, .ubin-judul, .dlg-head h2, .fokus-judul, .langkah-judul,
@@ -5334,3 +5335,170 @@ body[data-view="kalkulator"] main .card[data-kode]::before { /* v9.6.4: kartu in
 /* v9.6.3: chip yang bisa diketuk (daftar isi Pengaturan, saringan) 44 px di HP. Chip mata ujian Beranda tidak diubah (Beranda di luar v9.6; sudah punya area sentuh 44 px) */
 @media (max-width: 599px), (pointer: coarse) { main .chip-row > :is(a, button).chip, dialog .chip-row > :is(a, button).chip { min-height: 44px; } } /* v9.6.4: juga chip di dialog (Yang ikut) */
 /* ===== akhir v9.6 pengaturan sesi dan halaman baca ===== */
+
+
+/* ===== v10 langkah tegas: mulai ===== */
+/* Arah akhir "Langkah Tegas" (dokumen arah desain v10, bagian 3, 4, dan 9). Satu bagian berpagar dengan tiga sub-bagian:
+   dasar (token dan primitif global), latih (layar Latih dan pembahasan), beranda (Beranda). Tiap agen hanya menulis di sub-bagiannya.
+   Aturan pagar sama dengan v9.6 (test/v960-tampilan.test.js): tanpa :has(), color-mix(), @container, @layer, penulisan bersarang,
+   dvh, border-image, backdrop-filter, dan gradasi; bayangan hanya none, inset, atau satu token var(--bayang-melayang); warna hanya
+   lewat token (literal hanya di dalam definisi token). Batas 48 KB untuk seluruh bagian. */
+
+/* v10 dasar: mulai */
+/* ---- token --v10-*: nilai arah akhir. Warna tema ditulis tiga kali (:root, media gelap, data-theme gelap) dengan himpunan sama.
+   Token lama yang nilainya ikut diganti ada di blok token awal berkas (--bg, --surface-2, --line, --primary-soft, --ok-soft,
+   --attn-soft, --line-strong gelap, --seg-pilih gelap, --btn-garis, --nav-h); token lama lain tidak diubah. ---- */
+:root {
+  /* warna, tema terang */
+  --v10-latar: #F5F6F8; --v10-permukaan: #FFFFFF; --v10-permukaan-2: #EEF2F7;
+  --v10-garis: #DFE4EA;              /* garis rambut, hanya pemisah */
+  --v10-garis-kendali: #7A8696;      /* batas kendali, 3,70:1 di permukaan */
+  --v10-teks: #18212F;               /* 16,19:1 */
+  --v10-redup: #4B5563;              /* 7,56:1; 6,99:1 di latar */
+  --v10-aksi: #0F2A4A; --v10-aksi-teks: #FFFFFF; --v10-aksi-tekan: #0A1F38; --v10-aksi-lembut: #E6EDF6;
+  --v10-tautan: #1D4573;             /* tombol teks dan tautan, 9,76:1 */
+  --v10-isi: #0F2A4A; --v10-isi-teks: #FFFFFF; --v10-isi-garis: #0F2A4A;   /* keadaan terisi: dipilih, sudah menjawab */
+  --v10-data: #1D4573;               /* bilah dan grafik */
+  --v10-penanda: #0F2A4A;            /* penanda aktif (tab bawah, menu atas, tab): biru tua di terang, kuning di gelap */
+  --v10-benar: #1B7A52; --v10-benar-lembut: #E4F4EB;
+  --v10-salah: #B3261E; --v10-salah-lembut: #FCEBEA;
+  --v10-peringatan: #8A5A00;
+  --v10-fokus: #0F2A4A;
+  /* merek, sama di kedua tema (hanya di :root) */
+  --v10-merek: #0F2A4A; --v10-merek-teks: #FFFFFF; --v10-merek-redup: #C9D3E0; --v10-merek-garis: rgba(255, 255, 255, .22); --v10-merek-data: #8FB8EA;
+  --v10-aksen: #F2B01E; --v10-aksen-teks: #0F2A4A; --v10-aksen-tekan: #FFC23A;
+  --v10-ruas-sisa: rgba(255, 255, 255, .35);   /* ruas kop sesi yang belum dikerjakan, 3,06:1 di pita */
+  --v10-pita-sorot: rgba(255, 255, 255, .1);   /* latar tekan tombol ikon di pita */
+  /* huruf: ukuran/tinggi baris HP */
+  --v10-huruf-merek: var(--font-display); --v10-huruf: var(--font-ui); --v10-huruf-kode: var(--font-mono);
+  --v10-t-sorot: 32px; --v10-tb-sorot: 38px;
+  --v10-t-skor: 88px;  --v10-tb-skor: 88px;
+  --v10-t-judul: 24px; --v10-tb-judul: 30px;
+  --v10-t-vonis: 20px; --v10-tb-vonis: 26px;
+  --v10-t-soal: 17px;  --v10-tb-soal: 27px;
+  --v10-t-badan: 16px; --v10-tb-badan: 25px;
+  --v10-t-label: 14px; --v10-tb-label: 20px;
+  --v10-t-label-kecil: 13px; --v10-tb-label-kecil: 18px;   /* judul bagian 13/600 redup, meta soal */
+  --v10-t-mikro: 12px; --v10-tb-mikro: 16px;
+  /* jarak */
+  --v10-j-1: 4px; --v10-j-2: 8px; --v10-j-3: 12px; --v10-j-4: 16px; --v10-j-5: 20px; --v10-j-6: 24px; --v10-j-8: 32px; --v10-j-10: 40px; --v10-j-12: 48px;
+  --v10-tepi: 16px;
+  /* radius, garis, sasaran */
+  --v10-r-kendali: 8px; --v10-r-kartu: 12px; --v10-r-pil: 999px;
+  --v10-tebal-rambut: 1px; --v10-tebal-kendali: 1.5px; --v10-tebal-pilih: 2px; --v10-tebal-penanda: 3px;
+  --v10-sasaran: 44px; --v10-tombol-h: 48px; --v10-tombol-besar-h: 52px;
+  /* bayangan: satu-satunya bayangan berblur, untuk kartu yang menumpang di pita */
+  --bayang-melayang: 0 1px 2px rgba(15, 42, 74, .06), 0 6px 20px rgba(15, 42, 74, .09);
+  /* gerak */
+  --v10-d-tekan: 80ms; --v10-d-warna: 120ms; --v10-d-muncul: 180ms; --v10-d-panel: 240ms; --v10-d-angka: 480ms;
+  --v10-k-keluar: cubic-bezier(.2, .8, .2, 1); --v10-k-standar: cubic-bezier(.4, 0, .2, 1);
+}
+@media (min-width: 375px) { :root { --v10-tepi: 20px; } }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --v10-latar: #0A1626; --v10-permukaan: #0F2038; --v10-permukaan-2: #162B48; --v10-garis: #223A5A; --v10-garis-kendali: #6A82A1;
+    --v10-teks: #E8EEF6; --v10-redup: #A7B4C5; --v10-aksi: #F2B01E; --v10-aksi-teks: #0F2A4A; --v10-aksi-tekan: #D99A0B; --v10-aksi-lembut: #1B3558;
+    --v10-tautan: #9CC2F0; --v10-isi: #2A4A73; --v10-isi-teks: #FFFFFF; --v10-isi-garis: #8FB8EA; --v10-data: #8FB8EA; --v10-penanda: #F2B01E;
+    --v10-benar: #6CC69A; --v10-benar-lembut: #123328; --v10-salah: #FF8A80; --v10-salah-lembut: #3A1F26; --v10-peringatan: #FFB067;
+    --v10-fokus: #F2B01E;
+    --bayang-melayang: 0 0 0 1px #34557E, 0 8px 24px rgba(0, 0, 0, .35);   /* garis 1 px supaya kartu tidak menyatu dengan pita */
+  }
+}
+:root[data-theme="dark"] {
+  --v10-latar: #0A1626; --v10-permukaan: #0F2038; --v10-permukaan-2: #162B48; --v10-garis: #223A5A; --v10-garis-kendali: #6A82A1;
+  --v10-teks: #E8EEF6; --v10-redup: #A7B4C5; --v10-aksi: #F2B01E; --v10-aksi-teks: #0F2A4A; --v10-aksi-tekan: #D99A0B; --v10-aksi-lembut: #1B3558;
+  --v10-tautan: #9CC2F0; --v10-isi: #2A4A73; --v10-isi-teks: #FFFFFF; --v10-isi-garis: #8FB8EA; --v10-data: #8FB8EA; --v10-penanda: #F2B01E;
+  --v10-benar: #6CC69A; --v10-benar-lembut: #123328; --v10-salah: #FF8A80; --v10-salah-lembut: #3A1F26; --v10-peringatan: #FFB067;
+  --v10-fokus: #F2B01E;
+  --bayang-melayang: 0 0 0 1px #34557E, 0 8px 24px rgba(0, 0, 0, .35);
+}
+/* cetak: token warna v10 kembali ke kertas putih seperti token lama */
+@media print {
+  :root:not([data-cetak]), :root[data-theme] {
+    --v10-latar: #FFFFFF; --v10-permukaan: #FFFFFF; --v10-permukaan-2: #FFFFFF; --v10-garis: #B9C2CE; --v10-garis-kendali: #555555;
+    --v10-teks: #000000; --v10-redup: #333333; --v10-aksi: #0F2A4A; --v10-aksi-teks: #FFFFFF; --v10-aksi-tekan: #0F2A4A; --v10-aksi-lembut: #FFFFFF;
+    --v10-tautan: #1D4573; --v10-isi: #0F2A4A; --v10-isi-teks: #FFFFFF; --v10-isi-garis: #0F2A4A; --v10-data: #1D4573; --v10-penanda: #0F2A4A;
+    --v10-benar: #1B7A52; --v10-benar-lembut: #FFFFFF; --v10-salah: #B3261E; --v10-salah-lembut: #FFFFFF; --v10-peringatan: #8A5A00;
+    --v10-fokus: #0F2A4A;
+    --bayang-melayang: none;
+  }
+}
+
+/* ---- gulir: elemen yang difokus lewat Tab tidak tertutup kop atas (bawah sudah dijaga aturan lama: bar bawah + 80 px) ---- */
+html { scroll-padding-top: calc(var(--topbar-h) + 16px + env(safe-area-inset-top, 0px)); }
+
+/* ---- tombol tiga tingkat ----
+   utama  : .btn-primary, isi --primary-fill (biru tua di terang, kuning di gelap; di pita dan kartu melayang selalu kuning)
+   kedua  : .btn, garis kendali 1,5 px (token --btn-garis, nilainya diganti di blok v8.3) dan teks --ink
+   teks   : .btn-ghost / .btn-text / .tautan-kop, warna tautan, selalu bergaris bawah, sasaran 44 px (btn-sm lewat ::after lama)
+   Radius tombol 8 px. Tinggi tetap dari aturan lama (48 HP, 44 laptop), jadi tata letak tidak bergeser. */
+.btn { border-radius: var(--v10-r-kendali); }
+:is(.btn-ghost, .btn-text) {
+  color: var(--v10-tautan); text-decoration: underline; text-decoration-thickness: var(--v10-tebal-rambut); text-underline-offset: 4px;
+}
+:is(.btn-ghost, .btn-text):hover, :is(.btn-ghost, .btn-text):active {
+  background: transparent; color: var(--v10-tautan); text-decoration: underline; text-decoration-thickness: var(--v10-tebal-pilih);
+}
+:is(.btn-ghost, .btn-text):is(:disabled, [aria-disabled="true"]),
+:is(.btn-ghost, .btn-text):is(:disabled, [aria-disabled="true"]):is(:hover, :active) { color: var(--v10-redup); text-decoration: none; }
+.tautan-kop, .tautan-kop:hover { color: var(--v10-tautan); text-decoration: underline; text-decoration-thickness: var(--v10-tebal-rambut); text-underline-offset: 4px; }
+.tautan-kop:hover { text-decoration-thickness: var(--v10-tebal-pilih); }
+/* tombol teks di pita biru tua: putih bergaris bawah (kuning tetap hemat); daftar menu yang terbuka dari pita memakai warna halaman */
+@media screen {
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita :is(.btn-ghost, .btn-text, .tautan-kop),
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita :is(.btn-ghost, .btn-text, .tautan-kop):is(:hover, :active),
+  .beranda-pita .pita-teks :is(.btn-ghost, .btn-text, .tautan-kop),
+  .beranda-pita .pita-teks :is(.btn-ghost, .btn-text, .tautan-kop):is(:hover, :active) { color: var(--v10-merek-teks); }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]) .page-head.kop-pita .menu-lebih-isi :is(.btn-ghost, .btn-text, .tautan-kop) { color: var(--v10-tautan); }
+}
+/* kartu yang menumpang di tepi bawah pita (kartu langkah Beranda dan sejenisnya): bayangan melayang, tombol utama kuning di kedua tema */
+.v10-melayang { border-color: transparent; box-shadow: var(--bayang-melayang); }
+.v10-melayang .btn-primary, .v10-melayang .btn-primary:is(:hover, :active) { background: var(--v10-aksen); border-color: var(--v10-aksen); color: var(--v10-aksen-teks); }
+.v10-melayang .btn-primary:hover { background: var(--v10-aksen-tekan); border-color: var(--v10-aksen-tekan); }
+
+/* ---- kartu: satu rupa, radius 12 ---- */
+.card { border-radius: var(--v10-r-kartu); }
+
+/* ---- bar bawah (HP): 64 px (token --nav-h), label 12 px, aktif = teks tebal dan garis 3 x 20 px di dalam bar, 6 px dari tepi atas,
+   tepat di atas ikon; warnanya --v10-penanda (biru tua di terang, kuning di gelap; kuning di putih hanya 1,91:1) ---- */
+.bottomnav span:not(.badge) { font-size: var(--v10-t-mikro); line-height: var(--v10-tb-mikro); }
+.bottomnav [aria-current="page"], .bottomnav [aria-current="page"] svg { color: var(--v10-teks); }
+/* Teks besar: aturan lama (min(.6875rem, 3vw), kekhususan lebih tinggi) membuat label 9,6 px di 320; kini 13 px, lebih besar dari biasa */
+:root[data-teks="besar"] .bottomnav span:not(.badge) { font-size: var(--v10-t-label-kecil); line-height: var(--v10-tb-mikro); }
+.bottomnav [aria-current="page"] span:not(.badge) { font-weight: 700; }
+.bottomnav [aria-current="page"] svg { stroke-width: 2.2; }
+.bottomnav [aria-current="page"]::before {
+  content: ""; position: absolute; top: 6px; left: calc(50% - 10px); width: 20px; height: var(--v10-tebal-penanda); border-radius: 2px; background: var(--v10-penanda);
+}
+@media (forced-colors: active) { .bottomnav [aria-current="page"]::before { background: Highlight; forced-color-adjust: none; } }
+
+/* ---- menu atas (laptop) dan tab halaman: penanda aktif 3 px --v10-penanda ----
+   Menu atas: aksen kuning v9.0 (box-shadow) dihapus karena kuning di putih 1,91:1; garis naik 2 px ke dalam kop supaya biru tua
+   berada di atas putih dan tidak menempel ke pita biru tua di bawah kop. */
+@media (min-width: 1024px) {
+  .kop-nav > :is(a, .kop-lainnya)[aria-current="page"]::after { bottom: 2px; height: var(--v10-tebal-penanda); background: var(--v10-penanda); box-shadow: none; }
+}
+:is(.tabs, .tablist) [role="tab"]::after { height: var(--v10-tebal-penanda); }
+:is(.tabs, .tablist) [role="tab"][aria-selected="true"]::after { background: var(--v10-penanda); }
+
+/* ---- bantalan sentuh 44 px tanpa menggeser tata letak (temuan audit HP): tautan lewati ke konten (posisi absolut) dan saran nama
+   peserta di Pengaturan (36 px; bidang ketuk diperluas dengan ::after, seperti .btn-sm dan .icon-btn.sm) ---- */
+.skip { display: inline-flex; align-items: center; min-height: var(--v10-sasaran); }
+.bersama-saran { position: relative; }
+.bersama-saran::after { content: ""; position: absolute; inset: -4px 0; }
+
+/* ---- "Tidak tahu" di bawah opsi Latih: tombol teks bergaris bawah (primitif di atas); garis putus v9.6 dijadikan transparan supaya
+   tidak ada dua tanda untuk satu tingkat tombol (lebar garis tetap, tata letak tidak bergeser) ---- */
+main .soal .tidak-tahu-baris > .btn-text { border-color: transparent; }
+
+/* ---- cincin fokus: 2 px, jarak 2 px, warna --focus (nilai sama dengan --v10-fokus); di segmen di dalam tombol supaya utuh ---- */
+main .seg button:focus-visible, dialog .seg button:focus-visible { outline: 2px solid var(--focus); outline-offset: -4px; }
+:is(.btn-ghost, .btn-text, .tautan-kop):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; text-decoration-thickness: var(--v10-tebal-pilih); }
+/* v10 dasar: selesai */
+
+/* v10 latih: mulai */
+/* v10 latih: selesai */
+
+/* v10 beranda: mulai */
+/* v10 beranda: selesai */
+/* ===== v10 langkah tegas: selesai ===== */

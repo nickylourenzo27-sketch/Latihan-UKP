@@ -16,8 +16,11 @@ const baca = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const BUKA = /\/\* ===== v9\.6 tampilan: (.+?) ===== \*\//g, TUTUP = /\/\* ===== akhir v9\.6 (.+?) ===== \*\//g;
 const buka = [...css.matchAll(BUKA)], tutup = [...css.matchAll(TUTUP)];
 const awal = buka.length ? buka[0].index : -1;
-const blok = awal >= 0 ? css.slice(awal) : '';
+// v10: bagian v9.6 berakhir di penutup v9.6 terakhir; sesudahnya hanya boleh satu bagian berpagar v10 (lihat uji v10 di bawah)
+const akhirV96 = tutup.length ? tutup[tutup.length - 1].index + tutup[tutup.length - 1][0].length : css.length;
+const blok = awal >= 0 ? css.slice(awal, akhirV96) : '';
 const tanpaKomentar = blok.replace(/\/\*[\s\S]*?\*\//g, '');
+const V10_BUKA = '/* ===== v10 langkah tegas: mulai ===== */', V10_TUTUP = '/* ===== v10 langkah tegas: selesai ===== */';
 
 describe('v9.6: bagian berpagar di akhir css/app.css', () => {
   it('lima bagian atau lebih, tiap pembuka punya penutup bernama sama dan berurutan', () => {
@@ -26,8 +29,10 @@ describe('v9.6: bagian berpagar di akhir css/app.css', () => {
     buka.forEach((m, i) => { assert.ok(tutup[i].index > m.index, m[1] + ': penutup sesudah pembuka'); if (buka[i + 1]) assert.ok(tutup[i].index < buka[i + 1].index, m[1] + ': tidak tumpang tindih'); });
     for (const nama of ['dasar bersama', 'layar soal dan pembahasan', 'papan bersama dan HP anggota', 'hasil dan evaluasi', 'pengaturan sesi dan halaman baca']) assert.ok(buka.some(m => m[1] === nama), 'bagian "' + nama + '"');
   });
-  it('tidak ada aturan lain sesudah bagian v9.6 terakhir, dan tambahannya paling banyak 50 KB', () => {
-    const akhir = tutup[tutup.length - 1]; assert.equal(css.slice(akhir.index + akhir[0].length).trim(), '');
+  it('tidak ada aturan lain sesudah bagian v9.6 terakhir selain satu bagian berpagar v10, dan tambahannya paling banyak 50 KB', () => {
+    // v10: sesudah penutup v9.6 terakhir hanya boleh kosong atau tepat satu bagian "v10 langkah tegas" (isinya dijaga uji v10)
+    const sisa = css.slice(akhirV96).trim();
+    assert.ok(sisa === '' || (sisa.startsWith(V10_BUKA) && sisa.endsWith(V10_TUTUP)), 'aturan lain sesudah bagian v9.6 terakhir');
     // batas semula 45 KB (v9.6.0); dinaikkan ke 50 KB di v9.6.5 untuk pita lobi, evaluasi, dan layar selesai
     assert.ok(Buffer.byteLength(blok) <= 50 * 1024, 'besar bagian v9.6: ' + Buffer.byteLength(blok) + ' bita');
   });
@@ -188,5 +193,133 @@ describe('v9.6: keadaan yang harus terlihat', () => {
     assert.match(baca('js/soal.js'), /umpan-salah-opsi/); assert.match(baca('js/soal.js'), /umpan-jebakan/);
     assert.match(baca('js/views-simulasi.js'), /kartu-langkah/); assert.match(baca('js/views-belajar.js'), /daftar-kartu/);
     for (const k of ['umpan-salah-opsi', 'umpan-jebakan', 'kartu-langkah', 'daftar-kartu']) assert.ok(tanpaKomentar.includes('.' + k), 'gaya untuk .' + k);
+  });
+});
+
+// ---------- v10 langkah tegas: satu bagian berpagar sesudah bagian v9.6 terakhir ----------
+// Pagar v10 (Tahap 0 arah desain v10): satu pembuka dan satu penutup, letaknya tepat sesudah penutup v9.6 terakhir, tidak ada aturan
+// sesudah penutup, besar seluruh bagian paling banyak 48 KB, tiga sub-bagian berurutan (dasar, latih, beranda). Larangan fitur sama
+// dengan v9.6; bayangan hanya none, inset, atau var(--bayang-melayang); warna literal hanya di dalam definisi token.
+const V10_BATAS = 48 * 1024;
+const V10_SUB = ['dasar', 'latih', 'beranda'];
+function periksaPagarV10(teks) {
+  const masalah = [];
+  const nBuka = teks.split(V10_BUKA).length - 1, nTutup = teks.split(V10_TUTUP).length - 1;
+  if (nBuka !== 1 || nTutup !== 1) { masalah.push('pembuka ' + nBuka + ', penutup ' + nTutup + ' (harus tepat satu)'); return { masalah, isi: '' }; }
+  const i = teks.indexOf(V10_BUKA), j = teks.indexOf(V10_TUTUP);
+  if (j < i) { masalah.push('penutup sebelum pembuka'); return { masalah, isi: '' }; }
+  const tutup96 = [...teks.matchAll(/\/\* ===== akhir v9\.6 (.+?) ===== \*\//g)].pop();
+  if (!tutup96) masalah.push('bagian v9.6 tidak ada');
+  else if (teks.slice(tutup96.index + tutup96[0].length, i).trim() !== '') masalah.push('ada aturan antara penutup v9.6 terakhir dan pembuka v10');
+  if (teks.slice(j + V10_TUTUP.length).trim() !== '') masalah.push('ada aturan sesudah penutup v10');
+  const isi = teks.slice(i, j + V10_TUTUP.length);
+  if (Buffer.byteLength(isi) > V10_BATAS) masalah.push('besar bagian v10 ' + Buffer.byteLength(isi) + ' bita, batas ' + V10_BATAS);
+  let posisi = -1;
+  for (const nama of V10_SUB) {
+    const a = '/* v10 ' + nama + ': mulai */', b = '/* v10 ' + nama + ': selesai */';
+    const ia = isi.indexOf(a), ib = isi.indexOf(b);
+    if (ia < 0 || ib < 0 || isi.split(a).length !== 2 || isi.split(b).length !== 2) { masalah.push('sub-bagian ' + nama + ' harus punya tepat satu pembuka dan penutup'); continue; }
+    if (ib < ia || ia < posisi) masalah.push('urutan sub-bagian ' + nama);
+    posisi = ib;
+  }
+  // di antara sub-bagian (di luar ketiganya) hanya komentar
+  const luar = isi.replace(/\/\* v10 (dasar|latih|beranda): mulai \*\/[\s\S]*?\/\* v10 \1: selesai \*\//g, '').replace(/\/\*[\s\S]*?\*\//g, '').trim();
+  if (luar !== '') masalah.push('aturan di luar sub-bagian: ' + luar.slice(0, 80));
+  return { masalah, isi };
+}
+const pagarV10 = periksaPagarV10(css);
+const v10Tanpa = pagarV10.isi.replace(/\/\*[\s\S]*?\*\//g, '');
+// deklarasi (properti kecil, nilai) dari semua aturan gaya, termasuk yang di dalam @media
+const deklarasi = teks => { const out = []; for (const r of aturanGaya(teks)) for (const d of pecahAtas(r.isi, /;/)) { const k = d.indexOf(':'); if (k > 0) out.push({ r, prop: d.slice(0, k).trim().toLowerCase(), nilai: d.slice(k + 1).trim() }); } return out; };
+// bayangan: box-shadow seluruhnya none atau var(--bayang-melayang), atau setiap lapis (dipecah di koma tingkat atas) diawali inset;
+// text-shadow hanya none; drop-shadow() tidak dipakai
+function masalahBayangV10(teks) {
+  const out = [];
+  for (const { r, prop, nilai } of deklarasi(teks)) {
+    const v = nilai.replace(/\s*!important$/i, '').trim().toLowerCase(), tanda = r.pemilih.join(', ') + ' { ' + prop + ': ' + nilai + ' }';
+    if (prop === 'box-shadow' && v !== 'none' && v !== 'var(--bayang-melayang)' && !pecahAtas(v, /,/).every(l => /^inset\b/.test(l))) out.push(tanda);
+    if (prop === 'text-shadow' && v !== 'none') out.push(tanda);
+    if (!prop.startsWith('--') && /drop-shadow\(/.test(v)) out.push(tanda);
+  }
+  return out;
+}
+// warna literal di luar definisi token: hex, rgb(), hsl(), dan nama warna CSS (transparent, currentColor, dan warna sistem seperti Highlight boleh)
+const NAMA_WARNA = ('aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond blue blueviolet brown burlywood cadetblue chartreuse chocolate coral ' +
+  'cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldenrod darkgray darkgreen darkgrey darkkhaki darkmagenta darkolivegreen darkorange darkorchid darkred ' +
+  'darksalmon darkseagreen darkslateblue darkslategray darkslategrey darkturquoise darkviolet deeppink deepskyblue dimgray dimgrey dodgerblue firebrick floralwhite ' +
+  'forestgreen fuchsia gainsboro ghostwhite gold goldenrod gray green greenyellow grey honeydew hotpink indianred indigo ivory khaki lavender lavenderblush lawngreen ' +
+  'lemonchiffon lightblue lightcoral lightcyan lightgoldenrodyellow lightgray lightgreen lightgrey lightpink lightsalmon lightseagreen lightskyblue lightslategray ' +
+  'lightslategrey lightsteelblue lightyellow lime limegreen linen magenta maroon mediumaquamarine mediumblue mediumorchid mediumpurple mediumseagreen mediumslateblue ' +
+  'mediumspringgreen mediumturquoise mediumvioletred midnightblue mintcream mistyrose moccasin navajowhite navy oldlace olive olivedrab orange orangered orchid ' +
+  'palegoldenrod palegreen paleturquoise palevioletred papayawhip peachpuff peru pink plum powderblue purple rebeccapurple red rosybrown royalblue saddlebrown salmon ' +
+  'sandybrown seagreen seashell sienna silver skyblue slateblue slategray slategrey snow springgreen steelblue tan teal thistle tomato turquoise violet wheat white ' +
+  'whitesmoke yellow yellowgreen').split(' ');
+const RE_NAMA_WARNA = new RegExp('(^|[^\\w-])(' + NAMA_WARNA.join('|') + ')(?![\\w-])', 'i');
+function masalahWarnaV10(teks) {
+  const out = [], literal = /#[0-9a-f]{3,8}\b|\brgba?\(|\bhsla?\(/i;
+  for (const { r, prop, nilai } of deklarasi(teks)) {
+    if (prop.startsWith('--')) continue;
+    const v = nilai.replace(/(["'])(?:\\.|(?!\1).)*\1/g, '').replace(/var\(--[\w-]+/g, 'var(');   // string dan nama token bukan warna
+    if (literal.test(v) || RE_NAMA_WARNA.test(v)) out.push(r.pemilih.join(', ') + ' { ' + prop + ': ' + nilai + ' }');
+  }
+  return out;
+}
+// var(--x) tanpa cadangan harus punya definisi --x: di seluruh berkas (token bukan v10 juga)
+function tokenTakAdaV10(teks, seluruh) {
+  const ada = new Set([...seluruh.matchAll(/(--[\w-]+)\s*:/g)].map(m => m[1].toLowerCase()));
+  return [...new Set([...teks.matchAll(/var\(\s*(--[\w-]+)\s*\)/g)].map(m => m[1].toLowerCase()))].filter(t => !ada.has(t));
+}
+
+describe('v10: bagian berpagar "v10 langkah tegas" di akhir css/app.css', () => {
+  it('satu bagian sesudah penutup v9.6 terakhir, tiga sub-bagian berurutan, tanpa aturan sesudah penutup, paling banyak 48 KB', () => {
+    assert.deepEqual(pagarV10.masalah, []);
+  });
+  it('pemeriksa pagar menolak aturan sesudah penutup, bagian yang terlalu besar, pagar ganda, dan sub-bagian yang hilang', () => {
+    assert.match(periksaPagarV10(css + '\n.x { color: red; }\n').masalah.join('|'), /sesudah penutup v10/);
+    const besar = css.replace('/* v10 beranda: mulai */', '/* v10 beranda: mulai */\n/*' + 'x'.repeat(V10_BATAS) + '*/');
+    assert.match(periksaPagarV10(besar).masalah.join('|'), /besar bagian v10/);
+    assert.match(periksaPagarV10(css + '\n' + V10_BUKA + '\n' + V10_TUTUP + '\n').masalah.join('|'), /tepat satu/);
+    assert.match(periksaPagarV10(css.replace('/* v10 latih: mulai */', '')).masalah.join('|'), /sub-bagian latih/);
+    assert.match(periksaPagarV10(css.replace(V10_BUKA, '.y { color: red; }\n' + V10_BUKA)).masalah.join('|'), /antara penutup v9\.6/);
+    assert.match(periksaPagarV10(css.replace('/* v10 dasar: selesai */', '/* v10 dasar: selesai */\n.z { color: red; }')).masalah.join('|'), /di luar sub-bagian/);
+  });
+  // larangan fitur tidak peka huruf besar (":HAS(" juga ditolak)
+  for (const [nama, re] of [['border-image', /border-image/i], ['color-mix()', /color-mix\(/i], ['@container', /@container/i], ['@layer', /@layer/i], ['backdrop-filter', /backdrop-filter/i], [':has()', /:has\(/i], ['penulisan bersarang (&)', /^\s*&/m], ['satuan dvh/svh/lvh', /\d(?:dvh|svh|lvh)\b/i]]) {
+    it('tanpa ' + nama, () => { assert.ok(!re.test(v10Tanpa), nama + ' ditemukan di bagian v10'); });
+  }
+  it('tanpa aturan bersarang (blok gaya di dalam blok gaya)', () => {
+    for (const r of aturanGaya(v10Tanpa.toLowerCase())) assert.ok(!r.kurung.some(k => k.charAt(0) !== '@'), 'bersarang: ' + r.pemilih.join(', '));
+  });
+  it('bayangan hanya none, inset, atau var(--bayang-melayang); tanpa gradasi', () => {
+    assert.deepEqual(masalahBayangV10(v10Tanpa), []);
+    assert.ok(!/(linear|radial|conic)-gradient\(/i.test(v10Tanpa), 'gradasi ditemukan');
+  });
+  it('warna literal (hex, rgb, hsl, nama warna) hanya di dalam definisi token (properti --*)', () => {
+    assert.deepEqual(masalahWarnaV10(v10Tanpa), []);
+  });
+  it('setiap var(--x) tanpa cadangan di bagian v10 didefinisikan di css/app.css', () => {
+    assert.deepEqual(tokenTakAdaV10(v10Tanpa, cssKecil), []);
+  });
+  it('pemeriksa bayangan, warna, fitur, dan token menolak contoh yang lolos sebelum v10 dasar diperiksa', () => {
+    // lapis berblur di belakang inset atau none, drop-shadow, text-shadow berblur
+    for (const salah of ['.x { box-shadow: inset 0 0 0 1px var(--v10-garis), 0 8px 24px var(--v10-teks); }', '.x { box-shadow: none, 0 8px 24px var(--v10-teks); }',
+      '.x { filter: drop-shadow(0 2px 4px var(--v10-teks)); }', '.x { text-shadow: 0 1px 2px var(--v10-teks); }', '.x { Box-Shadow: 0 4px 12px var(--v10-teks); }',
+      '.x { box-shadow: var(--bayang-melayang), 0 4px 12px var(--v10-teks); }']) assert.notDeepEqual(masalahBayangV10(salah), [], salah);
+    for (const benar of ['.x { box-shadow: none; }', '.x { box-shadow: var(--bayang-melayang); }', '.x { box-shadow: inset 0 0 0 1px var(--v10-garis), inset 0 -2px 0 var(--v10-penanda); }', '.x { text-shadow: none; }']) assert.deepEqual(masalahBayangV10(benar), [], benar);
+    for (const salah of ['.x { color: white; background: black; }', '.x { border-color: Red; }', '.x { outline: 2px solid rebeccapurple; }']) assert.notDeepEqual(masalahWarnaV10(salah), [], salah);
+    for (const benar of ['.x { white-space: nowrap; color: currentColor; background: transparent; }', '@media (forced-colors: active) { .x { background: Highlight; } }', '.x { --v10-coba: white; }']) assert.deepEqual(masalahWarnaV10(benar), [], benar);
+    assert.ok(/:has\(/i.test('.x-coba:HAS(> a) { color: var(--v10-teks); }'));
+    assert.deepEqual(tokenTakAdaV10('.x { color: var(--tak-ada-sama-sekali); }', cssKecil), ['--tak-ada-sama-sekali']);
+    assert.deepEqual(tokenTakAdaV10('.x { color: var(--tak-ada-sama-sekali, var(--v10-teks)); background: var(--surface); }', cssKecil), []);
+  });
+  it('token --v10-* yang dipakai didefinisikan; tiap token tema gelap ditulis di dua pemilih gelap dengan himpunan sama dan punya nilai terang', () => {
+    const dasar = new Set([...v10Tanpa.matchAll(/(--v10-[a-z0-9-]+)\s*:/g)].map(m => m[1]));
+    for (const t of new Set([...v10Tanpa.matchAll(/var\((--v10-[a-z0-9-]+)/g)].map(m => m[1]))) assert.ok(dasar.has(t), t + ' dipakai tetapi tidak didefinisikan');
+    // gabungan semua blok dengan pemilih itu di bagian v10 (sub-bagian latih dan beranda boleh menambah token, asal di tiga tempat)
+    const himpunan = sel => { const out = new Set(); for (const r of aturanGaya(v10Tanpa)) if (r.pemilih.length === 1 && r.pemilih[0] === sel) for (const m of r.isi.matchAll(/(--[a-z0-9-]+)\s*:/g)) out.add(m[1]); return out; };
+    const a = himpunan(':root:not([data-theme="light"])'), b = himpunan(':root[data-theme="dark"]'), root = himpunan(':root');
+    assert.ok(a.size >= 20, 'token gelap: ' + a.size); assert.deepEqual([...a].sort(), [...b].sort());
+    for (const t of a) assert.ok(root.has(t), t + ' gelap tanpa nilai terang di :root');
+    assert.ok(root.has('--bayang-melayang') && a.has('--bayang-melayang'), '--bayang-melayang di :root dan tema gelap');
   });
 });
