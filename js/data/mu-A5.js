@@ -320,6 +320,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: dari empat dokumen, mana yang wajib bermeterai. Surat perjanjian selalu kena meterai berapa pun nilainya, jadi sewa ruko Rp3 juta setahun tetap kena. Kuitansi baru kena kalau nilainya lebih dari Rp5 juta, sehingga kuitansi Rp4 juta lolos. Tanda terima gaji dan surat pengiriman barang memang dibebaskan, besar kecilnya nilai tidak berpengaruh. Cara ingat: perjanjian selalu kena, gaji dan surat jalan selalu bebas.",
         inti: "Surat perjanjian terutang tanpa batasan nilai (Pasal 3 ayat (2) huruf a); kuitansi baru terutang bila nilainya lebih dari Rp5.000.000 (huruf g), sedangkan tanda terima gaji dan dokumen pengiriman barang dikecualikan Pasal 7 berapa pun nilainya.",
         jejakHitung: [],
         mengapaSalah: { A: "Kuitansi Rp4.000.000 tidak melebihi Rp5.000.000; ambang lama Rp1.000.000 (UU 13/1985) sudah tidak berlaku", C: "Tanda terima gaji (Pasal 7 huruf c) dan surat pengiriman barang (Pasal 7 huruf a) dikecualikan berapa pun nilainya", D: "Mengabaikan ambang Rp5.000.000 sekaligus seluruh pengecualian Pasal 7" },
@@ -338,6 +339,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari ambangnya: kuitansi baru kena meterai kalau nilainya lebih dari Rp5 juta. Kuitansi Rp2 juta jelas tidak kena, dan kuitansi tepat Rp5 juta juga tidak kena karena belum melewati Rp5 juta. Yang kena hanya kuitansi Rp5,5 juta dan Rp30 juta, masing-masing Rp10.000. Jadi 2 x Rp10.000 = Rp20.000. Cara ingat: \"lebih dari\" berarti angka yang pas di batas belum kena.",
         inti: "Hanya kuitansi yang nilainya lebih dari Rp5.000.000 yang terutang, yaitu Rp5.500.000 dan Rp30.000.000; tarif tetap Rp10.000 per dokumen.",
         jejakHitung: [ ["Kuitansi Rp2.000.000 dan Rp5.000.000", "tidak terutang (tidak lebih dari Rp5 juta)"], ["Kuitansi Rp5.500.000", "Rp10.000"], ["Kuitansi Rp30.000.000", "Rp10.000"], ["Total 2 × Rp10.000", "Rp20.000"] ],
         mengapaSalah: { A: "Memakai tarif lama Rp6.000 dari UU 13/1985 untuk dua kuitansi", B: "Menghitung kuitansi tepat Rp5.000.000 sebagai terutang; syaratnya 'lebih dari'", C: "Menganggap semua kuitansi terutang tanpa ambang" },
@@ -356,6 +358,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-baca", D: "angka-usang" },
       pembahasan: {
+        mudah: "Kuncinya ada di angka uang yang tertulis di kuitansi, bukan harga jasanya. Klien 1: PPN 12% dari 11/12 x Rp4,48 juta = Rp492.800, jadi uang diterima Rp4.972.800, belum lewat Rp5 juta. Klien 2: Rp4,8 juta + PPN Rp528.000 dikurangi PPh 23 Rp96.000 = Rp5.232.000, sudah lewat. Surat pelunasan klien 3 Rp6,5 juta juga lewat, jadi 2 x Rp10.000 = Rp20.000.",
         inti: "Yang diuji adalah jumlah uang yang dinyatakan dalam dokumen. Klien 1 hanya Rp4.972.800 (tidak terutang); klien 2 Rp5.232.000 dan klien 3 Rp6.500.000 (keduanya terutang).",
         jejakHitung: [ ["Klien 1: PPN = 4.480.000 × 11/12 × 12%", "Rp492.800"], ["Klien 1: uang diterima", "Rp4.972.800 → tidak terutang"], ["Klien 2: PPN = 4.800.000 × 11/12 × 12%", "Rp528.000"], ["Klien 2: PPh 23 = 2% × 4.800.000", "Rp96.000"], ["Klien 2: 4.800.000 + 528.000 − 96.000", "Rp5.232.000 → terutang"], ["Klien 3: pengakuan pelunasan Rp6.500.000", "terutang"], ["Total 2 × Rp10.000", "Rp20.000"] ],
         mengapaSalah: { B: "Mengabaikan DPP 11/12 sehingga PPN klien 1 menjadi Rp537.600 dan totalnya Rp5.017.600 seolah terutang", C: "Menguji harga sebelum PPN pada klien 2 (Rp4.800.000) sehingga hanya klien 3 yang terutang", D: "Memakai tarif lama Rp6.000 per dokumen untuk tiga dokumen" },
@@ -373,6 +376,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini menanyakan berapa dokumen yang benar-benar kena meterai. Setiap rangkap asli perjanjian yang ditandatangani dihitung satu dokumen, jadi ada 3 dokumen. Fotokopi untuk arsip tidak ditandatangani, sehingga tidak kena meterai selama tidak dipakai sebagai alat bukti. Jadi 3 x Rp10.000 = Rp30.000. Cara ingat: yang dihitung rangkap asli bertanda tangan, bukan fotokopinya.",
         inti: "Surat perjanjian beserta rangkapnya merupakan objek; tiap rangkap asli yang ditandatangani terutang Rp10.000, sedangkan fotokopi arsip bukan dokumen yang ditandatangani dan tidak terutang kecuali diajukan sebagai alat bukti.",
         jejakHitung: [ ["Rangkap asli yang ditandatangani", "3"], ["Tarif per dokumen", "Rp10.000"], ["Fotokopi arsip", "tidak terutang"], ["Total 3 × Rp10.000", "Rp30.000"] ],
         mengapaSalah: { A: "Memakai tarif lama Rp6.000 × 3", B: "Mengabaikan frasa 'beserta rangkapnya' sehingga hanya menghitung satu dokumen", C: "Menghitung fotokopi sebagai dokumen terutang (3 + 5 = 8 dokumen)" },
@@ -390,6 +394,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Perhatikan kata \"kecuali\": kita mencari dokumen yang justru kena meterai. Ada tiga dokumen yang memang dibebaskan berapa pun nilainya: konosemen (dokumen pengangkutan barang), tanda terima uang untuk keperluan intern perusahaan, dan tanda terima uang pensiun. Surat pernyataan kesanggupan ganti rugi berbeda, karena itu dokumen perdata biasa. Ia kena meterai saat diserahkan kepada pemilik barang, jadi tidak boleh masuk daftar bebas.",
         inti: "Surat pernyataan termasuk dokumen perdata Pasal 3 ayat (2) huruf a dan terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat; tiga dokumen lain dikecualikan tegas oleh Pasal 7.",
         jejakHitung: [],
         mengapaSalah: { A: "Konosemen adalah dokumen lalu lintas barang (Pasal 7 huruf a)", B: "Tanda penerimaan uang untuk keperluan intern organisasi dikecualikan Pasal 7 huruf f", D: "Tanda terima pensiun dikecualikan Pasal 7 huruf c" },
@@ -408,6 +413,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Bedakan dulu siapa penerima uangnya. Pembayaran karena hubungan kerja, seperti THR, bonus, dan pesangon pegawai, dibebaskan dari meterai berapa pun nilainya. Narasumber yang bukan pegawai tidak punya hubungan kerja dengan yayasan, jadi kuitansi honor Rp7,5 juta tetap kena karena lebih dari Rp5 juta. Kuitansi sewa aula Rp15 juta juga kena. Cara ingat: bebasnya karena status pegawai, bukan karena jenis uangnya.",
         inti: "Pengecualian Pasal 7 huruf c hanya untuk pembayaran yang berkaitan dengan hubungan kerja (THR, bonus, pesangon). Narasumber bukan pegawai tidak memiliki hubungan kerja dengan yayasan, sehingga kuitansi honorariumnya terutang karena melebihi Rp5.000.000; kuitansi pelunasan sewa juga terutang.",
         jejakHitung: [],
         mengapaSalah: { B: "Menganggap honorarium narasumber sebagai pembayaran hubungan kerja; narasumber bukan pegawai", C: "Mengabaikan pengecualian Pasal 7 huruf c untuk THR, bonus, dan pesangon", D: "Pesangon adalah pembayaran yang berkaitan dengan hubungan kerja sehingga dikecualikan" },
@@ -425,6 +431,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Hal pertama yang perlu diluruskan: meterai bukan syarat sah perjanjian, melainkan pajak atas dokumen. Jadi perjanjian tanpa meterai tetap sah. Hanya saja, pajaknya sudah terutang sejak ditandatangani 4 Mei 2026 dan belum dibayar. Sebelum dipakai sebagai bukti di pengadilan, rangkap itu harus dimeteraikan kemudian: Rp10.000 ditambah sanksi 100%, totalnya Rp20.000.",
         inti: "Bea meterai adalah pajak atas dokumen, bukan syarat sah perjanjian. Perjanjian ini sudah terutang saat ditandatangani 4 Mei 2026 dan tidak dilunasi, sehingga pemeteraian kemudian meliputi pokok Rp10.000 dan sanksi 100%.",
         jejakHitung: [ ["Saat terutang", "4 Mei 2026 (dibubuhi tanda tangan)"], ["Pokok", "Rp10.000"], ["Sanksi 100% (Pasal 18)", "Rp10.000"], ["Total pemeteraian kemudian", "Rp20.000"] ],
         mengapaSalah: { A: "Keabsahan perjanjian diatur hukum perdata; meterai hanya kewajiban pajak atas dokumen", C: "Dokumen yang diajukan sebagai alat bukti wajib dilunasi bea meterainya lebih dulu melalui pemeteraian kemudian", D: "Tanpa sanksi hanya berlaku bagi dokumen yang semula bukan objek; perjanjian ini sudah terutang sejak ditandatangani" },
@@ -442,6 +449,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Lihat setiap dokumen satu per satu, beserta isinya. Invoice tanggal 1 September masih berupa tagihan, belum menyebut ada uang diterima, jadi belum kena meterai. Kuitansi Rp3 juta tidak kena karena belum lewat Rp5 juta. Setelah dicap lunas dengan tulisan Rp8 juta, invoice itu berubah menjadi bukti pelunasan di atas Rp5 juta. Ia kena meterai saat diserahkan ke CV Mekar pada 20 Oktober 2026.",
         inti: "Invoice yang belum dibayar tidak menyebutkan penerimaan uang atau pengakuan pelunasan sehingga bukan objek. Setelah dibubuhi keterangan 'telah dibayar lunas Rp8.000.000', invoice itu menjadi dokumen pengakuan pelunasan utang bernilai lebih dari Rp5.000.000 (Pasal 3 ayat (2) huruf g) yang terutang saat diserahkan kepada CV Mekar (Pasal 8 ayat (1) huruf c); kuitansi Rp3.000.000 tidak terutang.",
         jejakHitung: [ ["Invoice 1 September 2026 (belum dibayar)", "bukan objek"], ["Kuitansi Rp3.000.000", "tidak lebih dari Rp5 juta → tidak terutang"], ["Invoice bercap lunas Rp8.000.000", "pengakuan pelunasan > Rp5 juta → Rp10.000"], ["Saat terutang", "20 Oktober 2026 (diserahkan)"] ],
         mengapaSalah: { A: "Pada 1 September invoice hanya tagihan; ia tidak menyebutkan penerimaan uang atau pengakuan pelunasan", C: "Setiap dokumen diuji sendiri; kuitansi Rp3.000.000 tidak melebihi ambang meskipun total pembayaran Rp8.000.000", D: "Yang diuji adalah jumlah uang yang dinyatakan dalam dokumen pelunasan (Rp8.000.000), bukan nilai pembayaran terakhir" },
@@ -459,6 +467,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Langsung ke aturannya: sejak aturan meterai yang baru, dokumen tidak harus berbentuk kertas, dan tanda tangan elektronik juga dihitung sebagai tanda tangan. Jadi perjanjian PDF ini terutang Rp10.000 saat ditandatangani, walaupun tidak pernah dicetak. Pelunasannya memakai meterai elektronik, yaitu meterai digital resmi dengan kode unik. Gambar meterai tempel hasil pindai tidak dihitung sebagai meterai.",
         inti: "Pasal 1 UU 10/2020 menegaskan dokumen mencakup bentuk elektronik dan tanda tangan mencakup tanda tangan elektronik, sehingga perjanjian elektronik terutang saat ditandatangani dan dilunasi dengan e-meterai.",
         jejakHitung: [],
         mengapaSalah: { A: "Definisi dokumen sejak UU 10/2020 mencakup dokumen elektronik", B: "Pencetakan tidak menentukan terutangnya bea meterai", D: "Gambar pindai bukan meterai elektronik yang diterbitkan Peruri dengan kode unik" },
@@ -476,6 +485,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang menentukan di sini adalah pemakaiannya sebagai alat bukti di pengadilan. Setiap dokumen yang diajukan sebagai bukti wajib bermeterai, apa pun jenisnya dan berapa pun nilainya. Jadi cetakan WhatsApp, kuitansi Rp3 juta, fotokopi perjanjian, dan surat elektronik semuanya kena saat diajukan. Cara ingat: masuk ke meja hakim sebagai bukti berarti wajib bermeterai.",
         inti: "Pasal 3 ayat (1) huruf b menjadikan setiap dokumen yang digunakan sebagai alat bukti di pengadilan sebagai objek, terlepas dari jenis dan nilainya; saat terutangnya adalah saat diajukan ke pengadilan dan pihak terutang adalah yang mengajukan.",
         jejakHitung: [],
         mengapaSalah: { A: "Kuitansi Rp3 juta justru tidak terutang sebagai dokumen perdata; ia terutang karena diajukan sebagai alat bukti, sama seperti tiga dokumen lain", C: "Fotokopi dan surat elektronik yang diajukan sebagai alat bukti juga terutang", D: "Objek Pasal 3 ayat (1) huruf b berdiri sendiri, tidak bergantung pada daftar dokumen perdata" },
@@ -497,6 +507,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soalnya berbentuk \"kecuali\", jadi kita mencari dokumen yang tidak termasuk kelompok yang bisa dibebaskan. Pembebasan meterai hanya untuk kelompok tertentu: penanganan bencana alam, kegiatan keagamaan dan sosial nonkomersial, program pemerintah atau kebijakan moneter, dan perjanjian internasional. Perjanjian kredit konsumtif biasa antara bank dan nasabah tidak masuk kelompok mana pun. Karena itu dokumen tersebut tetap kena meterai.",
         inti: "Pembebasan Pasal 22 terbatas pada dokumen penanganan bencana alam, keagamaan/sosial nonkomersial, program pemerintah dan kebijakan lembaga moneter/jasa keuangan, serta perjanjian internasional; perjanjian kredit konsumtif biasa tetap terutang.",
         jejakHitung: [],
         mengapaSalah: {
@@ -518,6 +529,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Ingat, setiap dokumen dinilai sendiri, nilainya tidak dijumlahkan. Tiga kuitansi cicilan masing-masing Rp4 juta, semuanya belum lewat Rp5 juta, jadi tidak kena. Surat keterangan lunas berbeda karena menyebut utang Rp12 juta sudah dilunasi. Dokumen itu kena Rp10.000, sehingga totalnya Rp10.000. Cara ingat: cicilan dinilai satu per satu, surat lunas dinilai dari total utangnya.",
         inti: "Setiap dokumen diuji sendiri-sendiri. Tiga kuitansi cicilan masing-masing Rp4.000.000 tidak terutang, sedangkan surat keterangan lunas menyatakan pengakuan pelunasan utang Rp12.000.000 sehingga terutang Rp10.000.",
         jejakHitung: [ ["Kuitansi cicilan 3 × Rp4.000.000", "masing-masing tidak lebih dari Rp5 juta → tidak terutang"], ["Surat keterangan lunas Rp12.000.000", "pengakuan pelunasan → terutang"], ["Total", "Rp10.000"] ],
         mengapaSalah: { A: "Menjumlahkan nilai transaksi Rp12.000.000 lalu menganggap ketiga kuitansi cicilan ikut terutang (3 kuitansi + surat lunas); tiap kuitansi Rp4.000.000 diuji atas nilainya sendiri", B: "Surat keterangan lunas adalah dokumen pengakuan pelunasan utang di atas Rp5 juta (huruf g angka 2), sekaligus surat keterangan (huruf a)", C: "Menguji cicilan secara kumulatif (kuitansi ke-2 = Rp8 juta dan ke-3 = Rp12 juta dianggap melewati Rp5 juta) lalu menambah surat lunas (3 × Rp10.000); nilai cicilan tidak dikumulasikan" },
@@ -535,6 +547,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Cara paling aman: periksa dokumen satu per satu. Perjanjian sewa ada 2 rangkap asli, jadi 2 x Rp10.000 = Rp20.000. Kuitansi Rp4,8 juta tidak kena, kuitansi Rp15 juta kena Rp10.000, dan surat jalan dibebaskan walaupun nilainya Rp20 juta. Surat pernyataan direksi kena Rp10.000, sehingga totalnya Rp20.000 + Rp10.000 + Rp10.000 = Rp40.000.",
         inti: "Yang terutang: 2 rangkap perjanjian (Rp20.000), kuitansi Rp15.000.000 (Rp10.000), dan surat pernyataan (Rp10.000); kuitansi Rp4.800.000 di bawah ambang dan surat jalan dikecualikan Pasal 7 huruf a.",
         jejakHitung: [ ["Perjanjian sewa 2 rangkap × Rp10.000", "Rp20.000"], ["Kuitansi Rp4.800.000", "tidak terutang"], ["Kuitansi Rp15.000.000", "Rp10.000"], ["Surat jalan (Pasal 7 huruf a)", "bukan objek"], ["Surat pernyataan direksi", "Rp10.000"], ["Total", "Rp40.000"] ],
         mengapaSalah: { B: "Menghitung perjanjian sebagai satu dokumen padahal ada 2 rangkap asli", C: "Menghitung surat jalan sebagai dokumen bernilai lebih dari Rp5 juta", D: "Mengabaikan ambang kuitansi dan pengecualian surat jalan (6 dokumen × Rp10.000)" },
@@ -552,6 +565,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pertanyaannya: siapa yang menanggung meterai menurut aturan. Untuk dokumen yang dibuat bersama, seperti perjanjian, tiap pihak menanggung rangkap yang ia terima. Untuk dokumen sepihak seperti kuitansi, yang menanggung adalah penerima dokumen, di sini PT Bumi. Para pihak sebenarnya boleh sepakat lain, tetapi perjanjian ini tidak mengaturnya. Cara ingat: yang menerima dokumen, dialah yang terutang.",
         inti: "Dokumen yang dibuat dua pihak atau lebih terutang oleh masing-masing pihak atas dokumen yang diterimanya, sedangkan dokumen sepihak seperti kuitansi terutang oleh pihak yang menerima dokumen (Pasal 9). Para pihak boleh bersepakat menentukan siapa yang membayar (Pasal 9 ayat (6)), tetapi kasus ini tidak memuat klausul semacam itu.",
         jejakHitung: [],
         mengapaSalah: { A: "Posisi sebagai penyewa atau pembuat kuitansi tidak menentukan pihak terutang", C: "Untuk dokumen sepihak, yang terutang adalah penerima dokumen, bukan pembuatnya", D: "Pemilik gudang hanya terutang atas rangkap yang diterimanya" },
@@ -570,6 +584,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Dua dokumen ini sama-sama ditandatangani 30 Juni, tetapi patokan waktunya berbeda. Perjanjian yang dibuat bersama kena meterai saat ditandatangani, jadi perjanjian distribusi terutang 30 Juni 2026. Surat pernyataan baru kena saat diserahkan kepada pihak yang dituju, jadi terutang 6 Juli 2026 ketika diterima CV Lintas. Cara ingat: perjanjian saat tanda tangan, surat pernyataan saat diserahkan.",
         inti: "Surat perjanjian terutang saat dibubuhi tanda tangan, sedangkan surat pernyataan terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat (Pasal 8 ayat (1) huruf a dan c).",
         jejakHitung: [],
         mengapaSalah: { A: "Kedua aturan tertukar", B: "Tanda tangan bukan saat terutang surat pernyataan", C: "Penyerahan bukan saat terutang surat perjanjian" },
@@ -587,6 +602,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya: kuitansi bernilai lebih dari Rp5 juta kena meterai saat diserahkan kepada orang yang dituju, bukan saat ditandatangani. Kuitansi Rp12 juta ini ditandatangani 28 Juni, tetapi baru diserahkan kepada pembayar pada 2 Juli 2026. Jadi tanggal terutangnya 2 Juli 2026. Tanggal uang masuk dan akhir bulan tidak berpengaruh sama sekali.",
         inti: "Dokumen yang menyatakan jumlah uang lebih dari Rp5.000.000 terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat (Pasal 8 ayat (1) huruf c), bukan saat ditandatangani.",
         jejakHitung: [],
         mengapaSalah: { A: "Saat tanda tangan berlaku untuk perjanjian dan akta, bukan kuitansi", C: "Penerimaan uang adalah peristiwa ekonomi, bukan saat terutang dokumen", D: "Bea meterai tidak mengenal Masa Pajak untuk pihak yang terutang; konsep masa hanya relevan bagi pemungut" },
@@ -604,6 +620,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kontrak ini dibuat dan ditandatangani di luar negeri. Untuk dokumen dari luar negeri, meterai baru terutang saat dokumen itu dipakai di Indonesia. Tiba di kantor PT Delta pada 1 Februari belum dihitung sebagai pemakaian. Pemakaian pertamanya adalah untuk klaim asuransi di Jakarta, jadi terutang pada 10 Maret 2026. Cara ingat: dokumen luar negeri kena saat dipakai di sini.",
         inti: "Dokumen yang dibuat di luar negeri terutang bea meterai pada saat digunakan di Indonesia (Pasal 8 ayat (1) huruf e), oleh pihak yang menerima manfaat.",
         jejakHitung: [],
         mengapaSalah: { B: "Saat tanda tangan berlaku untuk dokumen yang dibuat di Indonesia", C: "Kedatangan fisik dokumen bukan 'penggunaan'", D: "Dokumen luar negeri menjadi objek begitu digunakan di Indonesia" },
@@ -621,6 +638,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Obligasi termasuk surat berharga, dan aturannya khusus. Surat berharga kena meterai saat selesai dibuat, dan yang menanggung adalah penerbitnya. Sertifikat obligasi selesai dibuat dan ditandatangani pada 7 September 2026, jadi terutang tanggal itu oleh PT Energi Tbk. Penyerahan ke lembaga penyimpanan dan pembelian oleh investor tidak mengubah hal ini.",
         inti: "Surat berharga terutang pada saat selesai dibuat (Pasal 8 ayat (1) huruf b) dan pihak yang terutang adalah penerbitnya (Pasal 9).",
         jejakHitung: [],
         mengapaSalah: { A: "Penerima manfaat adalah pihak terutang untuk dokumen yang dibuat di luar negeri", B: "Saat diserahkan dan penerima dokumen berlaku untuk dokumen sepihak seperti kuitansi, bukan surat berharga", C: "Pencatatan dan perdagangan menghasilkan dokumen transaksi surat berharga yang terpisah" },
@@ -638,6 +656,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Ini soal \"kecuali\", jadi carilah pernyataan yang salah. Dokumen sepihak ditanggung penerimanya, alat bukti ditanggung pihak yang mengajukan, dan para pihak boleh sepakat soal siapa yang membayar. Ketiganya benar. Yang salah adalah pernyataan tentang dokumen luar negeri: yang terutang adalah pihak di Indonesia yang menerima manfaat dokumen itu, bukan pembuatnya di luar negeri.",
         inti: "Untuk dokumen luar negeri yang digunakan di Indonesia, pihak terutang adalah pihak yang menerima manfaat atas dokumen tersebut (Pasal 9), bukan pembuatnya di luar negeri.",
         jejakHitung: [],
         mengapaSalah: { A: "Sesuai Pasal 9 untuk dokumen sepihak", B: "Sesuai Pasal 9 untuk dokumen alat bukti di pengadilan", D: "Sesuai Pasal 9 ayat (6): para pihak boleh bersepakat menentukan pihak yang membayar bea meterai" },
@@ -655,6 +674,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Yang diuji adalah pasangan dokumen dan waktu terutangnya. Kutipan risalah lelang kena meterai saat diserahkan kepada pihak yang dituju, jadi pasangan itulah yang tepat. Akta PPAT kena saat ditandatangani, surat berharga saat selesai dibuat, dan surat pernyataan saat diserahkan, bukan saat konsepnya diketik. Cara ingat lima patokan waktu: ditandatangani, selesai dibuat, diserahkan, diajukan ke pengadilan, dan dipakai di Indonesia.",
         inti: "Dokumen lelang (kutipan, minuta, salinan, grosse risalah lelang) terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat (Pasal 8 ayat (1) huruf c).",
         jejakHitung: [],
         mengapaSalah: { A: "Akta PPAT terutang saat dibubuhi tanda tangan (huruf a)", B: "Surat berharga terutang saat selesai dibuat (huruf b)", D: "Surat pernyataan terutang saat diserahkan, bukan saat konsep selesai" },
@@ -672,6 +692,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Mulai dari rangkapnya: setiap rangkap asli perjanjian adalah dokumen sendiri yang kena Rp10.000 sejak ditandatangani 14 Januari 2026. Rangkap Tuan Haris sudah bermeterai elektronik, jadi lunas. Rangkap bank belum dibayar, sehingga saat dipakai sebagai bukti harus dimeteraikan kemudian: Rp10.000 ditambah sanksi 100% = Rp20.000. Klausul \"ditanggung debitur\" hanya mengatur siapa yang membayar, tidak menghapus sanksinya.",
         inti: "Surat perjanjian terutang beserta rangkapnya, sehingga tiap rangkap asli terutang Rp10.000 sejak ditandatangani 14 Januari 2026. Rangkap bank tidak dilunasi sehingga pemeteraian kemudian meliputi pokok dan sanksi 100%; rangkap debitur sudah lunas.",
         jejakHitung: [ ["Rangkap bank terutang sejak", "14 Januari 2026"], ["Pokok", "Rp10.000"], ["Sanksi 100%", "Rp10.000"], ["Rangkap debitur (sudah bermeterai sah)", "Rp0"], ["Total", "Rp20.000"] ],
         mengapaSalah: { B: "Tanpa sanksi hanya untuk dokumen yang semula tidak terutang; rangkap ini sudah terutang sejak ditandatangani", C: "Setiap rangkap asli adalah dokumen tersendiri yang terutang", D: "Rangkap debitur sudah dilunasi dengan meterai elektronik yang sah" },
@@ -689,6 +710,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Dokumen lelang, seperti kutipan dan salinan risalah lelang, kena meterai saat diserahkan kepada pihak yang dituju. Tanggal lelangnya sendiri tidak menentukan. Kutipan diserahkan ke Tuan Rudi pada 24 Agustus dan salinan ke Bank Arta pada 26 Agustus 2026, jadi masing-masing terutang pada tanggal penyerahannya. Tiap dokumen Rp10.000, sehingga totalnya Rp20.000.",
         inti: "Dokumen lelang (kutipan, minuta, salinan, dan grosse risalah lelang) adalah objek dan terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat (Pasal 8 ayat (1) huruf c); tiap dokumen terutang Rp10.000.",
         jejakHitung: [ ["Kutipan risalah lelang (diserahkan 24 Agustus 2026)", "Rp10.000"], ["Salinan risalah lelang (diserahkan 26 Agustus 2026)", "Rp10.000"], ["Total", "Rp20.000"] ],
         mengapaSalah: { A: "Saat terutang mengikuti penyerahan masing-masing dokumen", B: "Pelaksanaan lelang bukan saat terutang, dan setiap dokumen lelang terutang sendiri", D: "Pengecualian Pasal 7 untuk tanda bukti penerimaan uang negara tidak mencakup dokumen lelang" },
@@ -706,6 +728,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Ada dua hal yang perlu digabung di sini. Pertama, dokumen yang ditandatangani di luar negeri baru terutang saat dipakai di Indonesia, yaitu 3 Maret 2026 saat diajukan ke bank, dan yang terutang PT Nusa Agri sebagai penerima manfaat. Kedua, saat dipakai itu meterainya tidak dibayar. Karena terlambat, pelunasannya Rp10.000 ditambah sanksi 100%, jadi totalnya Rp20.000.",
         inti: "Dokumen luar negeri terutang saat digunakan di Indonesia (3 Maret 2026) oleh penerima manfaat. Karena saat itu bea meterai tidak dilunasi, pemeteraian kemudian sesudahnya meliputi pokok dan sanksi 100%; bebas sanksi hanya bila bea meterai dilunasi paling lambat saat dokumen digunakan.",
         jejakHitung: [ ["Saat terutang", "3 Maret 2026 (digunakan di Indonesia)"], ["Pokok", "Rp10.000"], ["Sanksi 100% (tidak dilunasi saat digunakan)", "Rp10.000"], ["Total", "Rp20.000"] ],
         mengapaSalah: { A: "Dokumen luar negeri menjadi objek begitu digunakan di Indonesia", B: "Bebas sanksi hanya jika bea meterai dilunasi paling lambat saat dokumen digunakan; di sini dokumen sudah digunakan tanpa dilunasi", C: "Saat terutang bukan saat tanda tangan di luar negeri, dan yang terutang penerima manfaat" },
@@ -723,6 +746,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "angka-usang" },
       pembahasan: {
+        mudah: "Jangan terkecoh nilai Rp180 miliar dan 120 halaman: meterai bertarif tetap Rp10.000 per dokumen, bukan persentase dari nilai kontrak. Yang dihitung adalah rangkap asli yang ditandatangani, yaitu 4 rangkap. Dua fotokopi arsip tanpa tanda tangan tidak kena. Jadi 4 x Rp10.000 = Rp40.000. Cara ingat: berapa pun nilainya, satu dokumen tetap Rp10.000.",
         inti: "Tarif bea meterai tetap Rp10.000 per dokumen tanpa memandang nilai transaksi dan jumlah halaman; tiap rangkap asli yang ditandatangani adalah dokumen terutang, sedangkan fotokopi arsip tidak.",
         jejakHitung: [ ["Tarif tetap (Pasal 5)", "Rp10.000 per dokumen"], ["Nilai Rp180 miliar dan 120 halaman", "tidak memengaruhi"], ["Rangkap asli bertanda tangan", "4"], ["Fotokopi arsip", "tidak terutang"], ["Total 4 × Rp10.000", "Rp40.000"] ],
         mengapaSalah: { B: "Menghitung 2 fotokopi tidak bertanda tangan sebagai dokumen terutang", C: "Mengabaikan frasa 'beserta rangkapnya' sehingga hanya menghitung satu perjanjian", D: "Memakai tarif lama Rp6.000 × 4" },
@@ -740,6 +764,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", D: "angka-usang" },
       pembahasan: {
+        mudah: "Meterai tempel lama Rp6.000 hanya boleh dipakai sampai akhir 2021. Perjanjian ini ditandatangani 10 Februari 2025, jadi meterai lama itu tidak sah dan dianggap tidak ada, walaupun jumlahnya Rp12.000. Artinya bea meterai belum dibayar sejak tanggal tanda tangan. Pemeteraian kemudian menjadi Rp10.000 ditambah sanksi 100% = Rp20.000.",
         inti: "Meterai tempel Rp3.000 dan Rp6.000 hanya dapat dipakai selama masa peralihan sampai 31 Desember 2021 dengan nilai gabungan paling sedikit Rp9.000. Pada 10 Februari 2025 meterai itu tidak sah sehingga bea meterai dianggap tidak dibayar dan dikenai sanksi 100% saat dimeteraikan kemudian.",
         jejakHitung: [ ["Batas pemakaian meterai lama", "31 Desember 2021"], ["Status pelunasan 10 Februari 2025", "tidak dibayar"], ["Pokok", "Rp10.000"], ["Sanksi 100%", "Rp10.000"], ["Total", "Rp20.000"] ],
         mengapaSalah: { A: "Dokumen sudah lewat saat terutang tanpa pelunasan sah, sehingga sanksi 100% tetap dikenakan", B: "Meterai lama tidak berlaku lagi sejak 1 Januari 2022 berapa pun jumlah nilainya", D: "Sanksi 200% adalah ketentuan UU 13/1985 yang sudah dicabut" },
@@ -757,6 +782,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya adalah alat pelunasan yang sah untuk dokumen elektronik, yaitu meterai elektronik resmi dengan kode unik. Gambar meterai tempel hasil pindai bukan meterai, walaupun nomor serinya asli. Jadi kontrak yang terutang sejak tanda tangan 1 September 2026 dianggap belum dibayar. Pelunasannya menjadi Rp10.000 ditambah sanksi 100% = Rp20.000, ada atau tidak ada pemeriksaan.",
         inti: "Dokumen elektronik dilunasi dengan meterai elektronik yang memiliki kode unik dan keterangan tertentu dari Peruri. Gambar meterai tempel hasil pindai bukan meterai yang sah, sehingga bea meterai yang terutang saat tanda tangan 1 September 2026 dianggap tidak dibayar.",
         jejakHitung: [ ["Saat terutang", "1 September 2026 (tanda tangan elektronik)"], ["Pelunasan dengan gambar pindai", "tidak sah"], ["Pokok + sanksi 100%", "Rp20.000"] ],
         mengapaSalah: { B: "Meterai tempel hanya sah bila fisiknya direkatkan pada dokumen kertas; salinan gambar bukan meterai", C: "Dokumen elektronik termasuk pengertian dokumen dalam Pasal 1 UU 10/2020", D: "Sanksi melekat karena bea meterai tidak dilunasi pada saat terutang, bukan karena ditemukan pemeriksa" },
@@ -774,6 +800,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya: bagaimana menempel meterai tempel supaya sah. Meterai harus direkatkan utuh dan tidak rusak di tempat tanda tangan. Lalu tanda tangan dibuat menimpa sebagian meterai dan sebagian kertas, sehingga keduanya terikat. Menempel tanpa tersentuh tanda tangan, di halaman lampiran, atau memakai fotokopi meterai tidak melunasi. Cara ingat: meterai utuh, tanda tangan setengah di meterai setengah di kertas.",
         inti: "Meterai tempel direkatkan seluruhnya dengan utuh pada dokumen di tempat tanda tangan, dan tanda tangan dibubuhkan sebagian di atas kertas dan sebagian di atas meterai tempel.",
         jejakHitung: [],
         mengapaSalah: { A: "Tanda tangan yang tidak mengenai meterai membuat pembubuhan tidak memenuhi tata cara", B: "Meterai harus dibubuhkan di tempat tanda tangan dokumen yang terutang", C: "Fotokopi meterai bukan meterai; tiap rangkap memerlukan meterai asli tersendiri" },
@@ -791,6 +818,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Meterai dihitung per dokumen, bukan per penanda tangan atau per halaman. Perjanjian punya 3 rangkap asli, dan lampiran yang dijilid menyatu tidak dihitung terpisah. Adendum ditandatangani belakangan sebagai dokumen baru, juga 3 rangkap. Jadi ada 6 dokumen, dan 6 x Rp10.000 = Rp60.000. Cara ingat: hitung rangkap asli tiap dokumen, abaikan jumlah pihak dan halaman.",
         inti: "Bea meterai dikenakan per dokumen, bukan per penanda tangan atau per halaman. Perjanjian (3 rangkap) dan adendum (3 rangkap) adalah dokumen yang ditandatangani pada saat berbeda sehingga masing-masing terutang; lampiran yang menyatu tidak dihitung terpisah.",
         jejakHitung: [ ["Perjanjian KSO: 3 rangkap asli", "3 dokumen"], ["Lampiran teknis (satu kesatuan)", "0 dokumen"], ["Adendum: 3 rangkap asli", "3 dokumen"], ["Total 6 × Rp10.000", "Rp60.000"] ],
         mengapaSalah: { A: "Menganggap adendum bagian dari perjanjian awal, padahal ditandatangani terpisah sebagai perjanjian baru", B: "Mengalikan dengan 3 penanda tangan (18 × Rp10.000); jumlah pihak tidak menambah dokumen", D: "Menghitung lampiran sebagai dokumen tersendiri pada tiap rangkap (9 dokumen)" },
@@ -809,6 +837,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Karena ada kata kecuali, soal ini mencari sarana yang sudah tidak boleh dipakai pada 2026. Meterai lama Rp3.000 dan Rp6.000 hanya boleh digabung menjadi minimal Rp9.000 selama masa peralihan yang berakhir 31 Desember 2021. Sesudah itu meterai lama tidak sah lagi, jadi gabungan Rp9.000 untuk kuitansi kertas tidak bisa dipakai. Meterai tempel Rp10.000, meterai elektronik untuk dokumen elektronik, dan setoran dengan kode billing untuk pemeteraian kemudian semuanya masih sah. Cara ingat: sejak 2022 hanya meterai Rp10.000 yang berlaku.",
         inti: "Gabungan meterai lama dengan nilai paling sedikit Rp9.000 hanya diperbolehkan selama masa peralihan sampai 31 Desember 2021; pada 2026 meterai Rp3.000 dan Rp6.000 tidak sah lagi.",
         jejakHitung: [],
         mengapaSalah: { A: "Meterai elektronik adalah sarana sah untuk dokumen elektronik", B: "Meterai tempel Rp10.000 desain 2021 adalah meterai yang berlaku", D: "SSP adalah sarana pembayaran yang disebut Pasal 12, antara lain untuk pemeteraian kemudian" },
@@ -826,6 +855,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
+        mudah: "Kuncinya ada di kata salinan. Akta notaris terutang bea meterai, dan begitu juga setiap salinan yang ditandatangani notaris. Minuta, yaitu naskah asli akta yang disimpan notaris, dihitung 1 dokumen, ditambah 3 salinan bertanda tangan notaris, jadi 4 dokumen. Fotokopi arsip tanpa tanda tangan bukan salinan resmi, jadi tidak dihitung. Hasilnya 4 x Rp10.000 = Rp40.000. Cara ingat: naskah asli dan tiap salinan yang diteken notaris bayar sendiri-sendiri.",
         inti: "Objek bea meterai mencakup akta notaris beserta grosse, salinan, dan kutipannya; minuta dan tiap salinan yang ditandatangani notaris terutang Rp10.000, sedangkan fotokopi arsip tidak.",
         jejakHitung: [ ["Minuta akta", "1 dokumen"], ["Salinan akta bertanda tangan notaris", "3 dokumen"], ["Fotokopi arsip", "tidak terutang"], ["Total 4 × Rp10.000", "Rp40.000"] ],
         mengapaSalah: { B: "Hanya menghitung salinan dan melupakan minuta akta", C: "Menganggap satu akta beserta salinannya cukup satu meterai", D: "Memakai tarif lama Rp6.000 × 4" },
@@ -843,6 +873,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang ditanya di sini cara sah melunasi bea meterai untuk ribuan kontrak elektronik. Dokumen elektronik dilunasi dengan meterai elektronik berkode unik yang dibeli dari Peruri atau distributor resmi, Rp10.000 untuk setiap kontrak. Perusahaan tidak perlu menunggu ditetapkan sebagai pemungut untuk memakainya. Gambar meterai buatan sendiri bukan meterai, dan setoran sekali sebulan keliru karena tarifnya per dokumen, bukan per bulan. Cara ingat: dokumen elektronik pakai meterai elektronik, satu kontrak satu meterai.",
         inti: "Dokumen elektronik dilunasi dengan meterai elektronik berkode unik yang diperoleh dari Peruri atau distributor resmi, Rp10.000 untuk setiap kontrak; status pemungut tidak menjadi syarat untuk memakai meterai elektronik.",
         jejakHitung: [ ["Kontrak per bulan", "±2.000 dokumen"], ["Bea meterai per kontrak", "Rp10.000"], ["Kebutuhan meterai elektronik", "±Rp20.000.000 per bulan"] ],
         mengapaSalah: { A: "Pemungut adalah kewajiban tambahan bagi pihak yang ditetapkan, bukan izin memakai meterai elektronik", B: "Gambar meterai buatan sendiri bukan meterai dan dapat masuk ranah pidana pemalsuan", C: "Tarif berlaku per dokumen, bukan per bulan" },
@@ -860,6 +891,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
+        mudah: "Mulai dari ambangnya: tanda terima baru terutang bea meterai bila nilainya lebih dari Rp5 juta. Dokumen yang nilainya tepat Rp5 juta atau di bawahnya tidak dipungut, walaupun platformnya sudah menjadi pemungut. Jadi yang dihitung hanya 12.500 dokumen. Hasilnya 12.500 x Rp10.000 = Rp125 juta. Cara ingat: syaratnya lebih dari Rp5 juta, jadi tepat Rp5 juta belum kena.",
         inti: "Pemungut hanya memungut atas dokumen yang merupakan objek, yaitu tanda terima bernilai lebih dari Rp5.000.000; tarif Rp10.000 per dokumen.",
         jejakHitung: [ ["Dokumen lebih dari Rp5 juta", "12.500"], ["Dokumen tepat Rp5 juta dan di bawahnya", "tidak terutang"], ["12.500 × Rp10.000", "Rp125.000.000"] ],
         mengapaSalah: { A: "Ikut menghitung 3.200 dokumen tepat Rp5.000.000 (15.700 × Rp10.000)", C: "Memungut atas seluruh 56.700 dokumen tanpa ambang", D: "Memakai tarif lama Rp6.000 × 12.500" },
@@ -882,6 +914,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pertanyaannya sederhana, yaitu kapan pemungut bea meterai paling lambat menyetor dan melapor. Aturan yang berlaku sekarang menyamakan keduanya, yaitu tanggal 15 bulan berikutnya setelah masa pajak berakhir. Untuk Masa September 2026, setor dan lapor sama-sama paling lambat 15 Oktober 2026, dan hari itu memang hari kerja. Pola setor tanggal 10 dan lapor tanggal 20 adalah aturan lama yang sudah dicabut. Cara ingat: pemungut bea meterai setor dan lapor sama-sama tanggal 15.",
         inti: "PMK 78/2024 menyamakan tenggat penyetoran dan pelaporan SPT Masa Bea Meterai pemungut, yaitu paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir.",
         jejakHitung: [],
         mengapaSalah: {
@@ -908,6 +941,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Di sini bea meterainya disetor penuh, hanya terlambat, jadi sanksinya bunga dan denda menurut aturan umum pajak, bukan sanksi 100%. Bunga dihitung per bulan, dan sisa hari yang tidak genap sebulan tetap dihitung satu bulan. Dari 15 Oktober ke 2 Desember ada 1 bulan lebih 17 hari, jadi 2 bulan, sehingga Rp125 juta x 1,01% x 2 = Rp2.525.000. Ditambah denda telat lapor SPT Masa Rp100.000, totalnya Rp2.625.000. Cara ingat: telat setor kena bunga, telat lapor kena denda.",
         inti: "Bea meterai disetor penuh walau terlambat, sehingga menurut Pasal 11 UU 10/2020 pemungut ditagih dengan STP sesuai UU KUP: bunga Pasal 9 ayat (2a) atas keterlambatan setor (bagian bulan dihitung penuh) dan denda Pasal 7 ayat (1) Rp100.000 atas keterlambatan SPT Masa.",
         jejakHitung: [
           ["15 Oktober → 15 November 2026", "1 bulan"],
@@ -940,6 +974,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "lupa-pasal", D: "angka-usang" },
       pembahasan: {
+        mudah: "Kuncinya ada di satuan dokumen: yang terutang bea meterai adalah setiap lembar cek dan bilyet giro, bukan bukunya. Cek 3 buku x 25 lembar = 75 lembar, dan bilyet giro 2 buku x 25 lembar = 50 lembar, jadi 125 lembar. Hasilnya 125 x Rp10.000 = Rp1.250.000, dipungut oleh bank sebagai pemungut. Jumlahnya tetap sama walaupun saat pemungutannya sebenarnya ketika bank menerima lembar itu dari percetakan. Cara ingat: hitung lembarnya, bukan bukunya.",
         inti: "Cek dan bilyet giro adalah surat berharga; setiap lembar merupakan satu dokumen yang bea meterainya Rp10.000 dan dipungut oleh bank selaku pemungut melalui Meterai Percetakan. Pemungutan itu dilakukan pada saat bank menerima lembar cek dan bilyet giro dari Wajib Pajak pemegang izin pembuatan Meterai Percetakan (Pasal 61 huruf a PMK 78/2024), bukan saat buku diserahkan kepada nasabah; jumlahnya tetap 125 × Rp10.000, sedangkan Masa Pajak pelaporannya mengikuti bulan penerimaan dari percetakan.",
         jejakHitung: [
           ["Lembar cek 3 × 25", "75"],
@@ -966,6 +1001,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini apakah perusahaan otomatis menjadi pemungut bea meterai. Jawabannya tidak, karena kedudukan pemungut baru ada setelah perusahaan ditetapkan dengan keputusan Kepala KPP. Banyaknya dokumen hanya menjadi alasan untuk ditetapkan, bukan penetapan itu sendiri. Selama belum ditetapkan, bea meterai atas tiap tanda terima tetap harus dilunasi dengan meterai oleh pihak yang terutang. Cara ingat: memenuhi syarat belum sama dengan sudah ditetapkan.",
         inti: "Kedudukan pemungut lahir dari keputusan penetapan Kepala KPP (PMK 78/2024). Sebelum ada penetapan, kewajiban tetap pada pihak yang terutang untuk melunasi bea meterai atas tiap dokumen objek.",
         jejakHitung: [],
         mengapaSalah: { B: "Volume dokumen hanya menjadi dasar penetapan, bukan penetapan itu sendiri", C: "Mekanisme deposit e-meterai bagi pemungut dihapus oleh PMK 78/2024", D: "Bea meterai dilaporkan dalam SPT Masa Bea Meterai oleh pemungut, bukan SPT Masa PPN" },
@@ -987,6 +1023,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "angka-usang" },
       pembahasan: {
+        mudah: "Tenggat dasarnya, pemungut menyetor dan melapor bea meterai paling lambat tanggal 15 bulan berikutnya. Untuk Masa Oktober 2026 berarti 15 November 2026, tetapi hari itu Minggu. Bila tenggat jatuh pada hari libur, setor dan lapor boleh dilakukan pada hari kerja berikutnya, bukan dimajukan. Jadi keduanya paling lambat Senin, 16 November 2026. Cara ingat: tenggat yang jatuh di hari libur bergeser ke hari kerja sesudahnya.",
         inti: "Tenggat setor dan lapor pemungut adalah tanggal 15 bulan berikutnya; bila jatuh pada hari libur (termasuk Sabtu, Minggu, libur nasional), penyetoran dan pelaporan dapat dilakukan pada hari kerja berikutnya.",
         jejakHitung: [
           ["Tenggat normal Masa Oktober 2026", "15 November 2026 (Minggu)"],
@@ -1016,6 +1053,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Soal ini membedakan dua kesalahan pemungut yang sanksinya berbeda. Bea meterai yang sudah dipungut dari nasabah tetapi tidak disetor sama sekali ditetapkan dengan SKP, yaitu surat ketetapan pajak, berisi pokok ditambah sanksi 100%. Untuk 300 dokumen, pokoknya 300 x Rp10.000 = Rp3 juta, ditambah sanksi Rp3 juta. Untuk 200 dokumen yang disetor penuh tetapi telat 20 hari, cukup ditagih bunga lewat STP, yaitu surat tagihan pajak. Cara ingat: tidak disetor kena 100%, telat disetor kena bunga.",
         inti: "Pasal 11 membedakan dua pelanggaran pemungut. Bea meterai yang sudah dipungut tetapi tidak disetor ditetapkan dengan SKP sebesar pokok ditambah sanksi 100%, sedangkan setoran yang lengkap tetapi terlambat ditagih dengan STP berupa bunga Pasal 9 ayat (2a) UU KUP.",
         jejakHitung: [
           ["(1) Pokok tidak disetor: 300 × Rp10.000", "Rp3.000.000"],
@@ -1045,6 +1083,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Perhatikan bahwa setorannya tepat waktu pada 15 Juli 2026, jadi tidak ada bunga sama sekali. Yang terlambat hanya laporannya, yaitu SPT Masa yang baru masuk 3 Agustus 2026. Telat lapor SPT Masa seperti ini dikenai denda tetap Rp100.000. Denda Rp500.000 khusus SPT Masa PPN, dan Rp1 juta untuk SPT Tahunan PPh badan. Cara ingat: bunga untuk telat bayar, denda untuk telat lapor.",
         inti: "Penyetoran tepat waktu sehingga tidak ada bunga; yang terlambat hanya penyampaian SPT Masa, dikenai denda Pasal 7 ayat (1) UU KUP untuk SPT Masa lainnya Rp100.000.",
         jejakHitung: [
           ["Setoran 15 Juli 2026", "tepat waktu → tanpa bunga"],
@@ -1071,6 +1110,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-hitung", D: "angka-usang" },
       pembahasan: {
+        mudah: "Langkah pertama, buang dokumen yang bukan objek atau sudah kedaluwarsa, lalu sisanya dikenai Rp10.000 ditambah sanksi 100%. Empat kuitansi Rp4,5 juta bukan objek karena tidak lebih dari Rp5 juta. Batas tagihnya 5 tahun dari tanggal terutang, jadi kuitansi 10 Mei 2021 sudah kedaluwarsa, sedangkan kuitansi 25 November 2021 masih bisa ditagih. Tersisa 6 kuitansi, 2 perjanjian, dan 1 kuitansi, yaitu 9 dokumen, sehingga 9 x Rp20.000 = Rp180.000. Cara ingat: kedaluwarsa dihitung per tanggal dokumen, bukan per tahun.",
         inti: "Yang masih dapat ditagih adalah dokumen objek yang belum lewat 5 tahun sejak saat terutang: 6 kuitansi, 2 rangkap perjanjian, dan kuitansi 25 November 2021 (daluwarsa baru 25 November 2026). Masing-masing Rp10.000 + sanksi 100%; bila kekurangan ini ditetapkan pemeriksa, jumlah yang sama dituangkan dalam SKP (Pasal 19).",
         jejakHitung: [ ["Kuitansi (1) Rp6–25 juta", "6 dokumen"], ["Rangkap perjanjian (2)", "2 dokumen"], ["Kuitansi (3) Rp4.500.000", "bukan objek"], ["Kuitansi (4) 10 Mei 2021", "daluwarsa 10 Mei 2026"], ["Kuitansi (5) 25 November 2021", "belum daluwarsa → 1 dokumen"], ["Dokumen ditagih", "9"], ["9 × (Rp10.000 + Rp10.000)", "Rp180.000"] ],
         mengapaSalah: { B: "Lupa daluwarsa kuitansi 10 Mei 2021 (10 × Rp20.000)", C: "Menganggap kedua kuitansi tahun 2021 sudah daluwarsa hanya karena 2026 − 2021 = 5 tahun, tanpa melihat tanggal saat terutangnya (8 × Rp20.000)", D: "Memakai sanksi 200% dari UU 13/1985 (9 × Rp30.000)" },
@@ -1088,6 +1128,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Intuisi kita sering keliru di sini, karena yang menanggung bea meterai kuitansi bukan pembuatnya. Kuitansi adalah dokumen sepihak, artinya dibuat satu pihak lalu diserahkan ke pihak lain, dan bea meterainya terutang oleh pihak yang menerima. Karena kuitansi diterima CV Sumber Rejeki dan tidak ada kesepakatan lain, CV yang wajib melakukan pemeteraian kemudian. Sanksi 100% tidak dibebankan ke pihak lain, jadi ikut dibayar CV bersama pokoknya. Cara ingat: dokumen sepihak, penerima yang bayar.",
         inti: "Kuitansi dibuat sepihak oleh pemasok dan diserahkan kepada CV, sehingga yang terutang adalah penerima dokumen (Pasal 9). Sanksi 100% dibayar bersama pokok oleh pihak yang terutang saat pemeteraian kemudian (Pasal 18).",
         jejakHitung: [],
         mengapaSalah: { A: "Pokok dan sanksi tidak dipisah antarpihak; keduanya dibayar pihak yang terutang", B: "Pembuat dokumen sepihak bukan pihak terutang menurut Pasal 9", D: "Pencatatan dalam pembukuan tidak menghapus kewajiban bea meterai" },
@@ -1110,6 +1151,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini tanggal persis bea meterai tidak bisa ditagih lagi. Batasnya 5 tahun sejak saat terutang, yaitu saat kuitansi diserahkan pada 25 November 2021, dihitung per tanggal dan tidak dibulatkan ke akhir tahun. Kalau 25 November 2021 dihitung sebagai hari pertama, hari terakhirnya 24 November 2026. Jadi mulai 25 November 2026 bea meterai itu kedaluwarsa, dan pemeriksaan 14 Oktober 2026 masih sempat menagih. Cara ingat: hitung dari tanggal terutang, bukan tanggal ditemukan.",
         inti: "Kuitansi terutang saat diserahkan (25 November 2021). Menurut Pasal 23 UU 10/2020, Bea Meterai yang terutang menjadi kedaluwarsa setelah jangka waktu 5 tahun sejak saat terutang. Dengan 25 November 2021 sebagai hari pertama, hari terakhir jangka waktu itu 24 November 2026, sehingga bea meterai kedaluwarsa mulai 25 November 2026. Pemeriksaan 14 Oktober 2026 masih di dalam jangka waktu; sanksi 100% dihitung dari bea meterai itu sehingga mengikuti pokoknya.",
         jejakHitung: [
           ["Saat terutang (diserahkan)", "25 November 2021"],
@@ -1140,6 +1182,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Dokumen apa pun yang dipakai sebagai alat bukti di pengadilan menjadi terutang bea meterai pada saat diajukan. Karena kuitansi ini semula tidak terutang, tidak ada yang terlambat, jadi cukup bayar pokok tanpa sanksi. Lima kuitansi x Rp10.000 = Rp50.000. Bila dilunasi dengan meterai tempel, pengesahannya bisa dilakukan pejabat pos. Cara ingat: semula bukan objek berarti tanpa sanksi, tetapi pokoknya tetap dibayar.",
         inti: "Dokumen yang digunakan sebagai alat bukti di pengadilan adalah objek tersendiri (Pasal 3 ayat (1) huruf b) yang terutang saat diajukan. Karena sebelumnya bukan objek, pemeteraian kemudian cukup sebesar bea meterai terutang tanpa sanksi (Pasal 18 ayat (1) huruf b UU 10/2020; Pasal 49 huruf c PMK 78/2024). Untuk lima kuitansi, pembayaran lazimnya dengan meterai tempel atau meterai elektronik; SSP dipakai bila pemeteraian kemudian lebih dari 50 dokumen atau bila meterai tempel/meterai elektronik tidak dapat digunakan (Pasal 42 PMK 78/2024). Bila dibayar dengan meterai tempel, pengesahannya dapat dilakukan Pejabat Pos (Pasal 51 ayat (2) PMK 78/2024).",
         jejakHitung: [
           ["Kuitansi", "5 dokumen"],
@@ -1166,6 +1209,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Daftar alat bukti ini memuat tiga perlakuan yang berbeda. Dua perjanjian sudah terutang sejak ditandatangani pada 2024 dan tidak dilunasi, jadi masing-masing Rp10.000 ditambah sanksi Rp10.000, sehingga 2 x Rp20.000 = Rp40.000. Tiga cetakan surel dan percakapan serta kuitansi Rp4 juta baru terutang karena diajukan sebagai bukti, jadi cukup pokok, yaitu 4 x Rp10.000 = Rp40.000. Kuitansi yang sudah bermeterai elektronik sah tidak perlu apa-apa, jadi totalnya Rp80.000. Cara ingat: telat bayar kena sanksi, baru terutang cukup pokok.",
         inti: "Perjanjian sudah terutang sejak ditandatangani dan tidak dilunasi sehingga dikenai pokok + sanksi 100%; surel, percakapan, dan kuitansi Rp4.000.000 baru terutang karena diajukan sebagai alat bukti sehingga cukup pokok; kuitansi yang sudah bermeterai sah tidak perlu dimeteraikan lagi.",
         jejakHitung: [ ["(1) 2 perjanjian × (Rp10.000 + Rp10.000)", "Rp40.000"], ["(2) 3 cetakan × Rp10.000", "Rp30.000"], ["(3) 1 kuitansi Rp4 juta × Rp10.000", "Rp10.000"], ["(4) sudah bermeterai sah", "Rp0"], ["Total", "Rp80.000"] ],
         mengapaSalah: { A: "Hanya menghitung perjanjian; dokumen yang diajukan sebagai alat bukti juga terutang", B: "Mengenakan sanksi pada semua dokumen tak bermeterai (6 × Rp20.000), padahal dokumen (2) dan (3) semula bukan objek", C: "Tidak mengenakan sanksi pada perjanjian yang sudah terutang sejak 2024 (6 × Rp10.000)" },
@@ -1188,6 +1232,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Batas penagihannya 5 tahun dari tanggal terutang masing-masing dokumen, bukan dari tanggal ditemukan atau tahun pembuatan. Pada pemeriksaan 20 Oktober 2026, kuitansi 15 Oktober 2021 sudah kedaluwarsa lima hari sebelumnya, begitu juga kuitansi 30 September 2021 dan surat pernyataan 1 Maret 2021. Hanya perjanjian sewa 3 Desember 2021 yang baru kedaluwarsa mulai 3 Desember 2026, jadi masih bisa ditagih. Cara ingat: cek tanggalnya satu per satu, selisih beberapa hari pun menentukan.",
         inti: "Bea meterai kedaluwarsa setelah 5 tahun sejak saat terutang, sehingga tidak dapat ditagih lagi mulai tanggal yang sama pada tahun kelima: (1) mulai 15 Oktober 2026, (3) mulai 30 September 2026, dan (4) mulai 1 Maret 2026, semuanya sudah lewat pada 20 Oktober 2026; hanya (2) yang baru kedaluwarsa mulai 3 Desember 2026.",
         jejakHitung: [
           ["(1) terutang 15 Oktober 2021", "kedaluwarsa mulai 15 Oktober 2026 → lewat"],
@@ -1214,6 +1259,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "angka-usang", D: "angka-usang" },
       pembahasan: {
+        mudah: "Kuitansi Rp7 juta sudah terutang bea meterai sejak diterima Tuan Andi pada 9 Maret 2026, karena nilainya lebih dari Rp5 juta. Waktu itu tidak dilunasi, jadi pemeteraian kemudian harus membayar pokok ditambah sanksi 100%. Hitungannya Rp10.000 + Rp10.000 = Rp20.000. Alasan memakai kuitansi untuk klaim ke kantor tidak menghapus sanksinya. Cara ingat: sudah terutang tetapi telat dilunasi, bayar dua kali lipat.",
         inti: "Kuitansi lebih dari Rp5.000.000 terutang sejak diserahkan 9 Maret 2026 dan tidak dilunasi, sehingga pemeteraian kemudian meliputi pokok Rp10.000 dan sanksi 100%.",
         jejakHitung: [ ["Pokok", "Rp10.000"], ["Sanksi 100%", "Rp10.000"], ["Total", "Rp20.000"] ],
         mengapaSalah: { A: "Melupakan sanksi 100% karena saat terutang sudah lewat", C: "Memakai sanksi 200% UU 13/1985", D: "Memakai tarif lama Rp6.000 ditambah sanksi 100%" },
@@ -1231,6 +1277,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "angka-usang", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Yang ditanya hanya sanksinya, bukan pokok. Meterai tempel Rp6.000 tidak sah lagi sejak 2022, jadi tiga perjanjian tahun 2024 dianggap belum membayar bea meterai, sama seperti tujuh kuitansi tanpa meterai. Ada 10 dokumen dengan sanksi 100% dari Rp10.000 per dokumen, sehingga 10 x Rp10.000 = Rp100.000. Pokoknya juga Rp100.000, tetapi tidak ditanyakan. Cara ingat: meterai lama di dokumen baru sama dengan tanpa meterai.",
         inti: "Meterai Rp6.000 tidak sah sejak 2022 sehingga ketiga perjanjian dianggap tidak dibayar, sama seperti tujuh kuitansi. Sanksi 100% × Rp10.000 untuk 10 dokumen.",
         jejakHitung: [ ["Kuitansi tanpa meterai", "7 dokumen"], ["Perjanjian bermeterai lama (tidak sah)", "3 dokumen"], ["Sanksi 100% × Rp10.000 × 10", "Rp100.000"], ["Pokok (tidak ditanya)", "Rp100.000"] ],
         mengapaSalah: { B: "Menganggap meterai Rp6.000 masih sah sehingga hanya 7 kuitansi dikenai sanksi", C: "Memperlakukan perjanjian sebagai kurang bayar Rp4.000 per dokumen (70.000 + 3 × 4.000)", D: "Menjumlahkan pokok dan sanksi, padahal yang ditanya sanksi saja" },
@@ -1248,6 +1295,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Ancaman pidana bea meterai berkaitan dengan meterai palsu atau meterai bekas, bukan soal lupa atau telat membayar. Menjual kembali meterai bekas setelah menghapus tanda tangan dan tanggalnya termasuk perbuatan yang diancam pidana. Tidak membubuhkan meterai cukup diselesaikan dengan pemeteraian kemudian dan sanksi 100%, sedangkan pemungut yang telat setor ditagih bunga. Tanda tangan yang tidak mengenai meterai juga urusan tata cara, jadi hanya perbuatan Tuan Joko yang pidana. Cara ingat: pidana untuk meterai palsu atau bekas.",
         inti: "Ketentuan pidana UU 10/2020 menyasar pemalsuan meterai serta penghilangan tanda pemakaian dan peredaran meterai bekas. Tidak membubuhkan meterai, keterlambatan pemungut, dan pembubuhan yang tidak sesuai tata cara diselesaikan secara administratif.",
         jejakHitung: [],
         mengapaSalah: { A: "Hanya (2) yang masuk ketentuan pidana Pasal 24–26", B: "Tidak membubuhkan meterai berakibat pemeteraian kemudian dan sanksi 100%, bukan pidana", C: "Keterlambatan setor pemungut ditagih dengan STP sesuai UU KUP (Pasal 11), bukan pidana" },
@@ -1270,6 +1318,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Ada dua pihak dengan aturan sanksi yang berbeda. PT Wahana adalah pihak terutang yang tidak melunasi, jadi kena sanksi 100% per dokumen, yaitu 30 x Rp10.000 = Rp300.000. Bank Wahana adalah pemungut yang menyetor penuh tetapi telat, jadi kena bunga, dan sisa hari yang tidak genap sebulan dihitung sebulan. Dari 15 September ke 21 Oktober ada 2 bulan, sehingga Rp2,5 juta x 1,01% x 2 = Rp50.500. Cara ingat: pihak terutang kena 100%, pemungut yang telat kena bunga.",
         inti: "Pihak terutang yang tidak melunasi dikenai sanksi 100% per dokumen (Pasal 18; bila ditemukan pemeriksaan, ditetapkan dengan SKP menurut Pasal 19 UU 10/2020); pemungut yang menyetor penuh tetapi terlambat ditagih dengan STP berupa bunga Pasal 9 ayat (2a) UU KUP (Pasal 11 UU 10/2020), bagian bulan dihitung penuh.",
         jejakHitung: [
           ["PT Wahana: 30 × 100% × Rp10.000", "Rp300.000"],
@@ -1296,6 +1345,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "angka-usang" },
       pembahasan: {
+        mudah: "Soal ini mencari pelunasan yang tidak kena sanksi 100%. Sanksi itu hanya untuk dokumen yang bea meterainya sudah terutang tetapi tidak atau kurang dibayar. Perjanjian dari Tokyo dilunasi sebelum dipakai di Indonesia, dan kuitansi Rp3 juta baru terutang karena dijadikan alat bukti, jadi keduanya cukup Rp10.000. Perjanjian Maret 2026 sudah terutang sejak diteken walau dilunasi sukarela, dan meterai Rp6.000 sudah tidak sah, jadi keduanya kena sanksi. Cara ingat: yang menentukan sudah terutang atau belum, bukan sukarela atau tidak.",
         inti: "Sanksi 100% hanya untuk dokumen yang bea meterainya sudah terutang tetapi tidak atau kurang dibayar. Dokumen luar negeri yang dilunasi sebelum digunakan di Indonesia (sebelum saat terutangnya) dan dokumen yang semula bukan objek lalu diajukan sebagai alat bukti cukup membayar Rp10.000.",
         jejakHitung: [],
         mengapaSalah: { B: "Dokumen yang semula bukan objek dan baru terutang karena diajukan sebagai alat bukti juga tidak dikenai sanksi", C: "Inisiatif sukarela tidak menghapus sanksi; bea meterai sudah terutang sejak Maret 2026", D: "Meterai Rp6.000 tidak sah sejak 2022 sehingga dokumen (4) dianggap tidak dibayar" },
@@ -1313,6 +1363,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pilah dulu dokumennya menurut siapa yang menerima, karena dokumen terutang oleh pihak yang menerimanya. PT Graha Hunian hanya menerima 4 rangkap PPJB, yaitu perjanjian pengikatan jual beli, sedangkan kuitansi uang muka dan rangkap lainnya diterima pembeli. Karena tidak bermeterai sejak 2025, tiap rangkap kena Rp10.000 ditambah sanksi Rp10.000, jadi Rp20.000. Hasilnya 4 x Rp20.000 = Rp80.000. Cara ingat: siapa yang memegang dokumen, dia yang menanggung meterainya.",
         inti: "PT Graha Hunian hanya terutang atas 4 rangkap PPJB yang diterimanya. Kuitansi uang muka adalah dokumen sepihak yang terutang oleh penerimanya (pembeli), dan rangkap PPJB pembeli terutang oleh pembeli.",
         jejakHitung: [ ["Rangkap PPJB milik PT Graha Hunian", "4 dokumen"], ["Per dokumen: Rp10.000 + sanksi 100%", "Rp20.000"], ["4 × Rp20.000", "Rp80.000"], ["Kuitansi uang muka dan rangkap pembeli", "terutang oleh pembeli"] ],
         mengapaSalah: { A: "Menghitung seluruh 12 dokumen seolah semuanya terutang oleh PT Graha Hunian", B: "Ikut menghitung 4 kuitansi yang dibuat PT Graha Hunian (atau kedua rangkap PPJB), padahal terutang oleh pembeli", C: "Tidak mengenakan sanksi 100% atas dokumen yang sudah lewat saat terutang" },
@@ -1330,6 +1381,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Catatan pelatihan itu memakai aturan lama yang sudah dicabut. Aturan sekarang menurunkan sanksi pemeteraian kemudian dari 200% menjadi 100%, dan 100% itu dihitung dari bea meterai yang terutang, bukan dari nilai dokumen. Jadi per dokumen Rp10.000 + 100% x Rp10.000 = Rp20.000, dibayar oleh pihak yang terutang. Bunga bulanan adalah sanksi untuk pemungut yang telat setor, bukan untuk pemeteraian kemudian. Cara ingat: sanksi sekarang 100% dari Rp10.000, jadi total Rp20.000 per dokumen.",
         inti: "UU 10/2020 menurunkan sanksi pemeteraian kemudian dari 200% (UU 13/1985) menjadi 100% dari bea meterai yang terutang, dibayar bersama pokok oleh pihak yang terutang.",
         jejakHitung: [ ["Pokok", "Rp10.000"], ["Sanksi 100% × Rp10.000", "Rp10.000"], ["Total per dokumen", "Rp20.000"] ],
         mengapaSalah: { A: "Sanksi 200% adalah ketentuan UU 13/1985 yang dicabut", C: "Dasar sanksi adalah bea meterai terutang, bukan nilai dokumen", D: "Bunga bulanan adalah rezim UU KUP untuk pemungut, bukan untuk pihak terutang" },
@@ -1352,6 +1404,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Bandingkan keempat kalimat di tiga titik, yaitu batas nilai, saat terutang, dan siapa yang menanggung. Kuitansi terutang bila nilainya lebih dari Rp5 juta, saat diserahkan kepada pihak yang dituju, dan ditanggung penerimanya. Jadi kuitansi Rp5 juta tidak terutang, sedangkan kuitansi Rp5,25 juta terutang Rp10.000 pada 12 Oktober 2026 dan ditanggung pelanggan. Tanggal tanda tangan 8 Oktober tidak menentukan, karena kuitansi baru terutang saat diserahkan. Cara ingat: kuitansi lebih dari Rp5 juta, terutang saat diserahkan, penerima yang bayar.",
         inti: "Tiga unsur harus benar sekaligus: ambang 'lebih dari' Rp5.000.000 (Pasal 3 ayat (2) huruf g), saat terutang ketika dokumen diserahkan kepada pihak untuk siapa dokumen dibuat (Pasal 8 ayat (1) huruf c), dan pihak terutang dokumen sepihak adalah penerima dokumen (Pasal 9). Hanya opsi C yang memuat ketiganya.",
         jejakHitung: [ ["Kuitansi Rp5.000.000", "tidak 'lebih dari' Rp5 juta → tidak terutang"], ["Kuitansi Rp5.250.000", "terutang Rp10.000"], ["Saat terutang", "12 Oktober 2026 (diserahkan), bukan 8 Oktober 2026 (ditandatangani)"], ["Pihak terutang", "pelanggan sebagai penerima kuitansi"] ],
         mengapaSalah: { A: "Saat 'dibubuhi tanda tangan' berlaku untuk surat perjanjian, akta notaris, dan akta PPAT; kuitansi terutang saat diserahkan, sehingga tanggal 8 Oktober 2026 keliru", B: "Frasa 'paling sedikit' membuat kuitansi tepat Rp5.000.000 ikut terutang, padahal undang-undang memakai 'lebih dari'", D: "Pasal 9 menetapkan dokumen sepihak terutang oleh penerima dokumen, bukan oleh pembuatnya" },
@@ -1374,6 +1427,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Ini kontrak elektronik, dan aturannya sama dengan kontrak kertas, yaitu terutang saat ditandatangani, termasuk dengan tanda tangan elektronik. Tarifnya tetap Rp10.000 per dokumen, tidak peduli nilainya Rp1,2 miliar, tebalnya 48 halaman, atau penanda tangannya empat orang. Pelunasannya dengan meterai elektronik yang punya kode unik, bukan gambar meterai hasil pindai. Kontrak ini tidak pernah dicetak, dan pencetakan memang tidak menentukan saat terutang. Cara ingat: satu kontrak satu meterai, terutang saat diteken.",
         inti: "Dokumen elektronik termasuk 'dokumen' dan tanda tangan elektronik termasuk 'tanda tangan' (Pasal 1), sehingga surat perjanjian elektronik terutang saat dibubuhi tanda tangan (Pasal 8 ayat (1) huruf a), dengan tarif tetap Rp10.000 per dokumen (Pasal 5), dan dilunasi dengan meterai elektronik (Pasal 12; PP 86/2021).",
         jejakHitung: [ ["Jenis dokumen", "surat perjanjian elektronik (Pasal 3 ayat (2) huruf a)"], ["Saat terutang", "5 Oktober 2026, saat dibubuhi tanda tangan elektronik"], ["Tarif", "Rp10.000 per dokumen"], ["Sarana pelunasan", "meterai elektronik berkode unik"] ],
         mengapaSalah: { B: "Pencetakan dan penyerahan tidak menentukan saat terutang surat perjanjian; dokumen elektronik terutang saat dibubuhi tanda tangan elektronik", C: "Tarif tetap per dokumen, bukan per penanda tangan, per halaman, atau per nilai kontrak", D: "Gambar pindai bukan meterai; meterai elektronik diterbitkan Peruri dengan kode unik dan keterangan tertentu" },
@@ -1396,6 +1450,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "angka-usang" },
       pembahasan: {
+        mudah: "Ada dua hal yang dicari, yaitu jumlah setoran dan tenggatnya. Hanya tanda terima lebih dari Rp5 juta yang dipungut, jadi 2.740 x Rp10.000 = Rp27.400.000, sedangkan 8.115 tanda terima lainnya diabaikan. Tenggat normalnya 15 Agustus 2026, tetapi hari itu Sabtu, disusul Minggu dan libur nasional 17 Agustus. Bila tenggat jatuh pada hari libur, setor dan lapor bergeser ke hari kerja berikutnya, yaitu Selasa, 18 Agustus 2026. Cara ingat: lompati semua hari libur yang berurutan, termasuk libur nasional.",
         inti: "Bea meterai yang dipungut 2.740 × Rp10.000 = Rp27.400.000 (tanda terima ≤ Rp5 juta bukan objek). Tenggat setor (Pasal 63 ayat (1) PMK 78/2024) dan lapor (Pasal 64 ayat (1)) pemungut sama-sama tanggal 15 bulan berikutnya. Menurut Pasal 65, bila batas akhir itu hari libur (Sabtu, Minggu, libur nasional, hari libur Pemilu, atau cuti bersama nasional), setor dan lapor dapat dilakukan paling lama pada hari kerja berikutnya. Karena 15 sampai 17 Agustus 2026 berturut-turut Sabtu, Minggu, dan libur nasional, keduanya bergeser ke Selasa, 18 Agustus 2026. PMK 81/2024 memuat tenggat yang sama (Pasal 94 ayat (2) huruf k dan Pasal 100; Pasal 171 ayat (18) dan Pasal 173).",
         jejakHitung: [
           ["Dokumen objek pemungutan", "2.740 (8.115 tanda terima ≤ Rp5 juta tidak terutang)"],
@@ -1428,6 +1483,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Perusahaan hanya menanggung 56 rangkap yang dipegangnya, sedangkan rangkap penyewa ditanggung penyewa. Perjanjian yang tidak dilunasi saat diteken tetap kena sanksi 100% walau dibayar sukarela, jadi 56 x Rp20.000 = Rp1.120.000. Karena dokumennya lebih dari 50, boleh dibayar sekali lewat kode billing, lalu dibuat daftar dokumen dengan bukti setor yang sudah tervalidasi. Pengesahannya oleh Pejabat DJP, karena Pejabat Pos hanya untuk pelunasan dengan meterai tempel. Cara ingat: sukarela tidak menghapus sanksi.",
         inti: "Perjanjian yang tidak dilunasi saat ditandatangani tetap dikenai sanksi 100% walaupun dilunasi sukarela sebelum pemeriksaan (Pasal 18 UU 10/2020; Pasal 49 huruf a PMK 78/2024). Karena dokumennya lebih dari 50, pembayaran boleh memakai SSP dengan kode billing (Pasal 42 huruf a PMK 78/2024), disertai daftar dokumen dan bukti setor bervalidasi NTPN (Pasal 43 ayat (1)). Pemeteraian kemudian yang dibayar dengan SSP disahkan Pejabat DJP (Pasal 51 ayat (4)). Perusahaan hanya menanggung rangkap yang diterimanya (Pasal 9 ayat (2) UU 10/2020).",
         jejakHitung: [
           ["Rangkap yang terutang oleh perusahaan (Pasal 9 ayat (2))", "56 dokumen"],
@@ -1456,6 +1512,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Ada dua saringan di soal ini: apakah dokumennya kena meterai, lalu siapa yang menanggung, yaitu pihak yang menerima dokumen. PT Sinar menerima empat dokumen kena meterai: rangkap perjanjian miliknya, kuitansi pemasok Rp6,2 juta dan Rp27,75 juta, serta surat pernyataan dari apotek. Kuitansi buatannya ditanggung apotek atau di bawah batas, kuitansi pemasok Rp3,8 juta juga di bawah batas, dan tanda terima gaji serta surat jalan bukan objek. Kontrak Swiss belum dipakai di Indonesia, jadi belum terutang. Hasilnya 4 x Rp10.000 = Rp40.000.",
         inti: "Pilah objek dulu, lalu pihak terutang. PT Sinar terutang atas rangkap perjanjian yang diterimanya, dua kuitansi pemasok di atas Rp5 juta yang diterimanya, dan surat pernyataan yang diterimanya. Kuitansi buatannya terutang oleh apotek penerima, sedangkan kontrak Swiss belum terutang karena belum digunakan di Indonesia.",
         jejakHitung: [ ["(1) Rangkap perjanjian milik PT Sinar", "1 dokumen (rangkap apotek terutang oleh apotek)"], ["(2) Kuitansi buatan PT Sinar Rp12,3 juta dan Rp48 juta", "terutang oleh apotek penerima → 0"], ["(3) Kuitansi pemasok Rp6,2 juta dan Rp27,75 juta", "2 dokumen (Rp3,8 juta bukan objek)"], ["(4) Tanda terima gaji dan (5) surat jalan", "bukan objek (Pasal 7 huruf c dan a)"], ["(6) Surat pernyataan diterima PT Sinar", "1 dokumen"], ["(7) Kontrak Swiss", "belum terutang (terutang saat digunakan di Indonesia)"], ["Total 4 × Rp10.000", "Rp40.000"] ],
         mengapaSalah: { A: "Menganggap pembuat dokumen sebagai pihak terutang: rangkap perjanjian ditambah dua kuitansi buatan PT Sinar, tanpa kuitansi pemasok dan surat pernyataan yang diterimanya (3 × Rp10.000)", C: "Menganggap kontrak Swiss sudah terutang saat ditandatangani di Basel (5 × Rp10.000)", D: "Menghitung semua dokumen objek yang dibuat atau diterima PT Sinar tanpa memilah pihak terutang: 1 + 2 + 2 + 1 (6 × Rp10.000)" },
@@ -1473,6 +1530,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Dokumen yang terlambat dimeteraikan harus dibayar Rp10.000 ditambah denda Rp10.000, jadi Rp20.000 per dokumen. Empat dokumen September 2026 menjadi Rp80.000. Kuitansi 2 Oktober 2021 sudah lewat lima tahun saat diperiksa, jadi tidak ditagih, sedangkan kuitansi 28 Oktober 2021 belum lewat dan kena Rp20.000. Meterai lama Rp6.000 sudah tidak berlaku sejak 2022, jadi perjanjian angkutan dianggap belum bayar dan kena Rp20.000. Totalnya Rp80.000 + Rp20.000 + Rp20.000 = Rp120.000.",
         inti: "Dokumen yang tidak dilunasi pada saat terutang dimeteraikan kemudian sebesar Rp10.000 + sanksi 100% per dokumen, kecuali sudah daluwarsa 5 tahun sejak saat terutang. Meterai tempel Rp6.000 tidak sah sejak 1 Januari 2022 sehingga dokumen (d) dianggap tidak dibayar sama sekali.",
         jejakHitung: [ ["Empat dokumen September 2026", "4 × Rp20.000 = Rp80.000"], ["(a) diterima 2 Oktober 2021", "daluwarsa 2 Oktober 2026 → Rp0"], ["(b) diterima 28 Oktober 2021", "daluwarsa 28 Oktober 2026, belum lewat → Rp20.000"], ["(c) bermeterai elektronik sah", "Rp0"], ["(d) meterai Rp6.000 tidak sah", "Rp10.000 + Rp10.000 = Rp20.000"], ["Kontrak Swiss (belum digunakan)", "belum terutang → Rp0"], ["Total", "Rp120.000"] ],
         mengapaSalah: { A: "Menganggap kedua kuitansi 2021 daluwarsa hanya karena 2026 − 2021 = 5 tahun; kuitansi 28 Oktober 2021 baru daluwarsa 28 Oktober 2026 (Rp80.000 + Rp20.000)", B: "Memperlakukan meterai Rp6.000 sebagai pembayaran sebagian (kurang Rp4.000 + sanksi Rp4.000); meterai lama tidak sah sejak 1 Januari 2022", D: "Mengabaikan daluwarsa kuitansi 2 Oktober 2021 (atau ikut mengenakan Rp20.000 pada kontrak Swiss yang belum terutang)" },
@@ -1490,6 +1548,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada di daftar dokumen yang memang dibebaskan dari meterai berapa pun nilainya. Slip setoran simpanan, surat bukti gadai, tanda terima uang antarbagian koperasi sendiri, dan bukti setor pajak termasuk daftar itu. Sisanya rangkap perjanjian pinjaman yang dipegang koperasi dan kuitansi sewa dari pemilik gedung yang diterima koperasi. Rangkap milik Tuan Bagas ditanggung Tuan Bagas sendiri. Jadi 2 x Rp10.000 = Rp20.000.",
         inti: "Slip simpanan, surat gadai, tanda terima uang intern, dan bukti penerimaan negara atas pajak dikecualikan Pasal 7 berapa pun nilainya. Objek yang terutang oleh koperasi hanya rangkap perjanjian yang diterimanya dan kuitansi sewa yang diterimanya.",
         jejakHitung: [ ["(1) Slip setoran simpanan", "bukan objek (Pasal 7 huruf g)"], ["(2) Surat bukti gadai", "bukan objek (Pasal 7 huruf h)"], ["(3) Rangkap perjanjian milik koperasi", "Rp10.000 (rangkap Tuan Bagas terutang oleh Tuan Bagas)"], ["(4) Kuitansi sewa Rp27.000.000 yang diterima koperasi", "Rp10.000"], ["(5) Tanda terima uang intern", "bukan objek (Pasal 7 huruf f)"], ["(6) Bukti penerimaan negara atas pajak", "bukan objek (Pasal 7 huruf e)"], ["Total 2 × Rp10.000", "Rp20.000"] ],
         mengapaSalah: { A: "Ikut menghitung rangkap perjanjian yang diterima Tuan Bagas; rangkap itu terutang oleh Tuan Bagas sendiri (Pasal 9)", B: "Menghitung tanda terima setoran kas intern (Pasal 7 huruf f) dan bukti penerimaan negara atas setoran pajak (Pasal 7 huruf e) sebagai objek", D: "Menganggap 35 surat bukti gadai sebagai perjanjian pinjam-meminjam yang terutang; surat gadai dikecualikan Pasal 7 huruf h" },
@@ -1511,6 +1570,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Cek termasuk surat berharga, jadi tiap lembarnya kena meterai Rp10.000 tanpa melihat nominal yang ditulis. Batas Rp5 juta hanya untuk kuitansi atau tanda terima uang, bukan untuk cek. Karena Bank Arta sudah ditunjuk sebagai pemungut, bea meterainya sudah dipungut bank lewat meterai yang dicetak pada cek sebelum buku cek sampai ke nasabah. Jadi CV Bangun Karya tidak perlu menempel meterai lagi. Cara ingat: cek dihitung per lembar, dan bila banknya pemungut, meterainya sudah lunas sejak dicetak.",
         inti: "Cek termasuk surat berharga (Pasal 3 ayat (2) huruf d UU 10/2020) yang terutang tanpa ambang nilai dan dihitung per lembar. Bank yang ditetapkan sebagai pemungut memungut bea meterainya dengan Meterai Percetakan (Pasal 62 ayat (1) huruf a PMK 78/2024) pada saat menerima cek dari pemegang izin pembuatan Meterai Percetakan (Pasal 61 huruf a), jadi sebelum buku cek diserahkan kepada nasabah. Dokumen itu sudah lunas sehingga nasabah tidak membubuhkan meterai lagi.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1532,6 +1592,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari pajaknya dulu. Untuk narasumber bukan pegawai, yang dikenai pajak hanya separuh honor: 50% x Rp12 juta = Rp6 juta, lalu 5% x Rp6 juta = Rp300 ribu. Uang yang diterima Dr. Sari Rp11,7 juta, lebih dari Rp5 juta, jadi kuitansinya kena meterai Rp10.000. Yang menanggung adalah PT Cipta Edukasi karena dialah penerima kuitansi. Tanda terima lembur pegawai bebas meterai karena terkait hubungan kerja.",
         inti: "Bagi bukan pegawai, PPh 21 = 5% × 50% × Rp12.000.000 = Rp300.000, sehingga uang yang diterima Rp11.700.000. Kuitansi itu menyebutkan penerimaan uang lebih dari Rp5.000.000 dan terutang oleh PT Cipta Edukasi sebagai penerima dokumen; tanda terima lembur pegawai dikecualikan Pasal 7 huruf c.",
         jejakHitung: [ ["Dasar pemotongan = 50% × Rp12.000.000", "Rp6.000.000"], ["PPh 21 = 5% × Rp6.000.000 (lapisan pertama Pasal 17)", "Rp300.000"], ["Uang diterima = 12.000.000 − 300.000", "Rp11.700.000 (> Rp5.000.000)"], ["Bea meterai kuitansi", "Rp10.000, terutang oleh PT Cipta Edukasi (penerima)"], ["Tanda terima lembur pegawai", "bukan objek (Pasal 7 huruf c)"] ],
         mengapaSalah: { A: "Tidak menerapkan dasar 50% × penghasilan bruto bagi bukan pegawai: 5% × Rp12.000.000", B: "Kuitansi adalah dokumen sepihak yang terutang oleh pihak yang menerima dokumen (Pasal 9), yaitu PT Cipta Edukasi", D: "Uang lembur pegawai berkaitan dengan hubungan kerja sehingga tanda terimanya dikecualikan Pasal 7 huruf c" },
@@ -1553,6 +1614,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya: dokumen mana yang kena meterai. Perjanjian pembukaan rekening efek jelas kena, dan konfirmasi transaksi pembelian saham juga kena karena itu dokumen jual beli surat berharga. Pengeluaran efek oleh kustodian, buku tabungan, dan pemberitahuan kupon obligasi masuk daftar dokumen yang dibebaskan. Pembebasan itu berlaku berapa pun nilainya, jadi saldo Rp200 juta atau kupon Rp7,5 juta tidak mengubah apa pun. Jadi hanya perjanjian rekening dan konfirmasi transaksi.",
         inti: "Perjanjian pembukaan rekening (Pasal 3 ayat (2) huruf a) dan konfirmasi transaksi surat berharga (huruf e) adalah objek. Pengeluaran efek oleh kustodian kepada nasabah dan dokumen yang menyebutkan simpanan uang seperti buku tabungan (Pasal 7 huruf g beserta Penjelasannya) serta tanda pembagian bunga atau imbal hasil surat berharga (huruf i) dikecualikan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1575,6 +1637,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Tanda terima uang yang hanya beredar di dalam satu perusahaan tidak kena meterai. Cabang Surabaya dan kantor pusat masih satu badan, walau nomor identitas tempat usahanya beda, begitu pula kas kecil ke staf. Anak perusahaan lain cerita: ia badan hukum sendiri, jadi kuitansi Rp42 juta ke induk kena meterai. Yang menanggung adalah penerima kuitansi, yaitu PT Gemilang Retail Tbk. Cara ingat: induk dan anak itu dua orang, cabang dan pusat itu satu orang.",
         inti: "Tanda terima antara cabang dan pusat, maupun kas kecil kepada staf, dibuat untuk keperluan intern satu badan sehingga bukan objek. Anak perusahaan adalah badan hukum lain, sehingga kuitansinya kepada induk merupakan dokumen penerimaan uang lebih dari Rp5.000.000 yang terutang oleh penerima dokumen.",
         jejakHitung: [],
         mengapaSalah: { A: "Kuitansi adalah dokumen sepihak yang terutang oleh pihak yang menerima dokumen (Pasal 9)", B: "NITKU hanya identitas tempat kegiatan usaha; cabang dan pusat tetap satu organisasi sehingga tanda terimanya bersifat intern", D: "Tanda terima (1) dan (3) dibuat untuk keperluan intern satu badan sehingga dikecualikan Pasal 7 huruf f" },
@@ -1592,6 +1655,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "angka-usang" },
       pembahasan: {
+        mudah: "Satu transaksi sewa ini menghasilkan dua dokumen terpisah. Surat perjanjian sewa kena meterai berapa pun nilainya, dan kuitansi Rp18 juta juga kena karena di atas Rp5 juta. Masing-masing Rp10.000, jadi totalnya Rp20.000. Jumlah penanda tangan tidak berpengaruh. Cara ingat: hitung per dokumen, bukan per transaksi atau per orang.",
         inti: "Surat perjanjian terutang tanpa ambang nilai dan kuitansi Rp18.000.000 melebihi Rp5.000.000; masing-masing dokumen terutang Rp10.000.",
         jejakHitung: [ ["Surat perjanjian (1 rangkap)", "Rp10.000"], ["Kuitansi Rp18.000.000", "Rp10.000"], ["Total", "Rp20.000"] ],
         mengapaSalah: { A: "Menganggap perjanjian dan kuitansi satu transaksi sehingga cukup satu meterai; keduanya dokumen terpisah", C: "Menghitung perjanjian per penanda tangan; bea meterai dikenakan per dokumen", D: "Memakai tarif lama Rp6.000 per dokumen (UU 13/1985)" },
@@ -1609,6 +1673,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini menguji kapan meterai mulai wajib untuk tiap jenis dokumen. Perjanjian dan akta terutang saat ditandatangani, jadi PPJB pada 3 Maret dan akta jual beli serta salinannya pada 10 Juli 2026. Kuitansi baru terutang saat diserahkan kepada pembeli, jadi kuitansi uang muka pada 20 Maret, bukan 18 Maret saat kasir menandatanganinya. Pendaftaran ke kantor pertanahan tidak ada hubungannya. Cara ingat: perjanjian ikut tanda tangan, kuitansi ikut serah terima.",
         inti: "Surat perjanjian dan akta PPAT beserta salinannya terutang saat dibubuhi tanda tangan, sedangkan kuitansi terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat.",
         jejakHitung: [],
         mengapaSalah: { A: "Kuitansi terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat (Pasal 8 ayat (1) huruf c), bukan saat ditandatangani kasir", B: "PPJB adalah surat perjanjian tersendiri yang terutang saat ditandatangani, tidak menunggu akta jual beli", C: "Akta PPAT beserta salinannya terutang saat dibubuhi tanda tangan (Pasal 8 ayat (1) huruf a), bukan saat pendaftaran" },
@@ -1626,6 +1691,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Hitung dokumennya satu per satu, siapa pun yang membayar. PPJB dua rangkap asli kena Rp20.000. Akta jual beli ditambah dua salinannya kena Rp30.000, lalu kuitansi uang muka dan pelunasan masing-masing Rp10.000. Kuitansi tanda jadi Rp4,5 juta tidak kena karena belum lewat Rp5 juta. Jadi Rp20.000 + Rp30.000 + Rp20.000 = Rp70.000, dan harga rumah tidak memengaruhi tarif.",
         inti: "Hitung per dokumen: 2 rangkap PPJB, kuitansi uang muka, kuitansi pelunasan, serta akta jual beli beserta 2 salinannya; tanda jadi Rp4.500.000 bukan objek. Harga rumah tidak memengaruhi tarif.",
         jejakHitung: [ ["(a) PPJB 2 rangkap", "Rp20.000"], ["(b) Tanda jadi Rp4.500.000", "tidak terutang"], ["(c) Uang muka Rp180.000.000", "Rp10.000"], ["(d) Akta jual beli + 2 salinan", "Rp30.000"], ["(e) Pelunasan Rp1.065.500.000", "Rp10.000"], ["Total", "Rp70.000"] ],
         mengapaSalah: { A: "Ikut menghitung kuitansi tanda jadi Rp4.500.000 yang tidak lebih dari Rp5.000.000", B: "Menganggap salinan akta PPAT bukan objek; Pasal 3 ayat (2) huruf c mencakup akta PPAT beserta salinan dan kutipannya", C: "Menghitung PPJB sebagai satu dokumen; setiap rangkap asli yang ditandatangani terutang Rp10.000" },
@@ -1648,6 +1714,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "angka-usang", D: "salah-baca" },
       pembahasan: {
+        mudah: "Bagian pajaknya sederhana: penjualan tanah dan bangunan kena 2,5% dari harga, jadi 2,5% x Rp1,25 miliar = Rp31,25 juta. Untuk meterai, kuitansi ditanggung penerimanya, yaitu Ny. Larasati. Akta jual beli dan salinannya sudah disepakati dibayar pembeli. Yang tersisa untuk PT Puri Asri hanya rangkap PPJB yang ia pegang sendiri, yaitu Rp10.000.",
         inti: "PPh final 2,5% × Rp1.250.000.000 = Rp31.250.000. Pihak yang terutang ditentukan Pasal 9 ayat (1) dan (2) UU 10/2020: kuitansi terutang oleh Ny. Larasati sebagai penerima, dan tiap pihak terutang atas rangkap PPJB yang diterimanya. Pasal 9 ayat (6) membolehkan para pihak menentukan pihak yang membayar, sehingga bea meterai akta jual beli dan seluruh salinannya, termasuk salinan yang diterima PT Puri Asri, dibayar pembeli. Yang dibayar sendiri oleh PT Puri Asri hanya rangkap PPJB miliknya: Rp10.000.",
         jejakHitung: [
           ["PPh final = 2,5% × Rp1.250.000.000", "Rp31.250.000"],
@@ -1675,6 +1742,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Tiap rangkap asli yang ditandatangani dihitung sebagai dokumen sendiri, jadi tiga rangkap berarti Rp30.000. Semuanya terutang saat ditandatangani, yaitu 9 September 2026. Kesepakatan bahwa penyewa menanggung meterai itu sah, tetapi hanya mengatur siapa yang membayar. Kesepakatan itu tidak mengubah jumlah dokumen ataupun tanggal terutangnya. Jadi CV Tambang Jaya melunasi Rp30.000 yang terutang sejak 9 September 2026.",
         inti: "Tiap rangkap asli terutang Rp10.000 saat ditandatangani. Kesepakatan dalam Pasal 14 sah menurut Pasal 9 dan hanya menentukan siapa yang membayar, tanpa mengubah jumlah dokumen maupun saat terutang.",
         jejakHitung: [],
         mengapaSalah: { A: "Setiap rangkap asli adalah dokumen tersendiri (Pasal 3 ayat (2) huruf a: surat perjanjian beserta rangkapnya)", B: "Surat perjanjian terutang saat dibubuhi tanda tangan (Pasal 8 ayat (1) huruf a), bukan saat diserahkan", C: "Pasal 9 UU 10/2020 membolehkan para pihak bersepakat menentukan pihak yang membayar bea meterai" },
@@ -1692,6 +1760,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Yang ditanya: dokumen mana yang saat terutangnya jatuh di September. Perjanjian dan akta notaris dihitung dari tanggal tanda tangan, yaitu 29 dan 30 September. Promes, sebagai surat berharga, dihitung saat selesai dibuat, yaitu 28 September. Kuitansi dan surat pernyataan baru terutang saat diserahkan, dan kontrak Osaka saat dipakai di Indonesia, semuanya Oktober. Jadi perjanjian, promes, dan akta notaris.",
         inti: "Perjanjian dan akta notaris terutang saat ditandatangani, surat berharga saat selesai dibuat, kuitansi dan surat pernyataan saat diserahkan, dan dokumen luar negeri saat digunakan di Indonesia.",
         jejakHitung: [ ["(1) Perjanjian", "29 September (tanda tangan)"], ["(2) Kuitansi", "1 Oktober (diserahkan)"], ["(3) Promes", "28 September (selesai dibuat)"], ["(4) Surat pernyataan", "5 Oktober (diserahkan)"], ["(5) Kontrak Osaka", "7 Oktober (digunakan di Indonesia)"], ["(6) Akta notaris", "30 September (tanda tangan)"] ],
         mengapaSalah: { B: "Memakai saat tanda tangan untuk semua dokumen; kuitansi dan surat pernyataan terutang saat diserahkan (Oktober)", C: "Surat berharga seperti promes terutang saat selesai dibuat (Pasal 8 ayat (1) huruf b), yaitu 28 September 2026", D: "Dokumen yang dibuat di luar negeri terutang saat digunakan di Indonesia (7 Oktober 2026), bukan saat ditandatangani di Osaka" },
@@ -1710,6 +1779,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Cap tanda tangan direksi dan cap jempol petani tetap dianggap tanda tangan. Jadi perjanjian sudah terutang pada 7 Oktober 2026, bukan menunggu rangkap dibagikan. Ada 120 x 2 = 240 rangkap, masing-masing Rp10.000, totalnya Rp2,4 juta. PT menanggung 120 rangkap yang ia pegang, dan tiap petani menanggung satu rangkap miliknya. Cara ingat: bentuk tanda tangan apa pun tidak menunda saat terutang.",
         inti: "Cap tanda tangan dan cap jempol termasuk tanda tangan, sehingga 240 rangkap terutang saat dibubuhi tanda tangan pada 7 Oktober 2026; dokumen yang dibuat dua pihak terutang oleh masing-masing pihak atas rangkap yang diterimanya.",
         jejakHitung: [ ["Jumlah rangkap 120 × 2", "240"], ["Bea meterai 240 × Rp10.000", "Rp2.400.000"], ["Saat terutang", "7 Oktober 2026"], ["Tanggungan PT / tiap petani", "Rp1.200.000 / Rp10.000"] ],
         mengapaSalah: { B: "Cap tanda tangan dan cap jempol termasuk 'tanda tangan' menurut Pasal 1", C: "Surat perjanjian terutang saat dibubuhi tanda tangan, bukan saat rangkap dibagikan", D: "Rangkap petani juga dibubuhi tanda tangan (cap jempol) dan terutang oleh petani penerima rangkap" },
@@ -1727,6 +1797,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Saring dua kali: apakah dokumennya kena meterai, lalu apakah PT Sentra yang menanggung. Dari kuitansi pemasok, hanya Rp5,1 juta, Rp22 juta, dan Rp68 juta yang lewat batas lebih dari Rp5 juta. Lalu tambah rangkap perjanjian milik PT Sentra, promes yang ia terbitkan, surat pernyataan pelanggan yang ia terima, dan kontrak Korea yang dipakai di Indonesia pada September. Kuitansi buatannya, surat ke bank, dan tanda terima intern tidak dihitung. Jadi 7 x Rp10.000 = Rp70.000.",
         inti: "PT Sentra terutang atas tiga kuitansi pemasok di atas Rp5.000.000 yang diterimanya, rangkap perjanjiannya, promes yang diterbitkannya, surat pernyataan yang diterimanya, dan kontrak Korea yang digunakannya di Indonesia sebagai penerima manfaat.",
         jejakHitung: [ ["(1) Kuitansi pemasok Rp5,1 juta, Rp22 juta, Rp68 juta", "3 dokumen"], ["(2) Kuitansi buatan PT Sentra", "terutang oleh pelanggan → 0"], ["(3) Rangkap perjanjian milik PT Sentra", "1 dokumen"], ["(4) Promes (penerbit)", "1 dokumen"], ["(5) Surat pernyataan yang diterima", "1 dokumen"], ["(6) Surat pernyataan yang diserahkan ke bank", "terutang oleh bank → 0"], ["(7) Tanda terima intern", "bukan objek (Pasal 7 huruf f)"], ["(8) Kontrak Korea, digunakan 18 September", "1 dokumen"], ["Total 7 × Rp10.000", "Rp70.000"] ],
         mengapaSalah: { A: "Menganggap promes terutang oleh bank penerima; surat berharga terutang oleh penerbitnya (Pasal 9)", B: "Menghitung kuitansi tepat Rp5.000.000 sebagai objek; syaratnya lebih dari Rp5.000.000", C: "Membebankan ketiga rangkap perjanjian distribusi kepada PT Sentra; tiap pihak terutang atas rangkap yang diterimanya" },
@@ -1744,6 +1815,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "angka-usang", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya ada di tanggal salinan itu ditandatangani notaris. Salinan akta adalah dokumen baru yang kena meterai sendiri, terutang saat notaris menandatanganinya pada 12 Oktober 2026. Karena itu tarifnya mengikuti aturan sekarang, Rp10.000, bukan Rp6.000 seperti tahun 2019. Tidak ada denda, sebab salinan baru itu masih bisa dilunasi tepat waktu. Cara ingat: tarif ikut tanggal tanda tangan salinan, bukan umur akta aslinya.",
         inti: "Akta notaris beserta grosse, salinan, dan kutipannya terutang saat dibubuhi tanda tangan. Salinan yang ditandatangani notaris pada 2026 adalah dokumen baru yang terutang Rp10.000 menurut UU 10/2020.",
         jejakHitung: [],
         mengapaSalah: { B: "Saat terutang salinan adalah 12 Oktober 2026, sehingga berlaku tarif UU 10/2020; meterai Rp6.000 tidak sah sejak 2022", C: "Pasal 3 ayat (2) huruf b menyebut akta notaris beserta grosse, salinan, dan kutipannya; tiap salinan adalah dokumen tersendiri", D: "Salinan baru terutang pada 12 Oktober 2026 dan dapat dilunasi tepat waktu; usia minuta tidak menimbulkan sanksi" },
@@ -1761,6 +1833,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pembagiannya ada tiga kelompok. Dokumen yang sudah bermeterai sah tidak dibayar lagi. Dokumen kena meterai yang dulu tidak dilunasi membayar Rp10.000 plus denda Rp10.000: adendum, dua kuitansi besar, dan surat pernyataan, jadi 4 x Rp20.000 = Rp80.000. Kuitansi Rp4,8 juta dan enam cetakan surel baru kena karena dipakai sebagai bukti di pengadilan, jadi cukup Rp10.000 tanpa denda, 7 x Rp10.000 = Rp70.000. Totalnya Rp150.000.",
         inti: "Dokumen objek yang tidak dilunasi pada saat terutang dimeteraikan kemudian dengan pokok + sanksi 100%; dokumen yang semula bukan objek dan baru terutang karena diajukan ke pengadilan cukup pokok; dokumen yang sudah lunas tidak dimeteraikan lagi.",
         jejakHitung: [ ["(1) Perjanjian bermeterai elektronik sah", "Rp0"], ["(2) Adendum tanpa meterai (terutang sejak 3 Maret 2025)", "Rp10.000 + Rp10.000 = Rp20.000"], ["(3) Kuitansi Rp250 juta dan Rp180 juta", "2 × Rp20.000 = Rp40.000"], ["(3) Kuitansi Rp4.800.000 (semula bukan objek)", "Rp10.000 tanpa sanksi"], ["(3) Kuitansi Rp75 juta bermeterai sah", "Rp0"], ["(4) Enam cetakan surel/percakapan", "6 × Rp10.000 = Rp60.000"], ["(5) Surat pernyataan tanpa meterai", "Rp20.000"], ["Total", "Rp150.000"] ],
         mengapaSalah: { A: "Mengenakan sanksi 100% pada kuitansi Rp4.800.000; dokumen yang semula bukan objek dan baru terutang karena diajukan sebagai alat bukti cukup Rp10.000", C: "Memeteraikan ulang perjanjian dan kuitansi Rp75.000.000 yang sudah lunas; bea meterai dikenakan satu kali untuk setiap dokumen", D: "Mengabaikan cetakan surel dan percakapan; setiap dokumen yang diajukan sebagai alat bukti adalah objek (Pasal 3 ayat (1) huruf b)" },
@@ -1778,6 +1851,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Untuk dokumen yang dipakai sebagai bukti di pengadilan, aturannya sederhana. Meterai terutang saat dokumen itu diajukan ke pengadilan, yaitu 18 November 2026. Yang menanggung adalah pihak yang mengajukannya, yaitu PT Mitra Bangun. Siapa yang dulu membuat atau mengirim surel tidak penting, dan meterai juga bukan biaya perkara yang dibebankan ke pihak kalah. Cara ingat: yang membawa bukti ke sidang, dia yang bayar.",
         inti: "Dokumen yang digunakan sebagai alat bukti terutang saat diajukan ke pengadilan dan terutang oleh pihak yang mengajukannya.",
         jejakHitung: [],
         mengapaSalah: { B: "Dokumen alat bukti terutang saat diajukan ke pengadilan (Pasal 8 ayat (1) huruf d), bukan saat dibuat atau dikirim", C: "Pasal 9: dokumen alat bukti terutang oleh pihak yang mengajukan, bukan pembuatnya", D: "Bea meterai bukan biaya perkara yang dibebankan kepada pihak yang kalah" },
@@ -1801,6 +1875,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Usulan menunda bayar sampai putusan tidak bisa dipakai, karena hakim dan panitera dilarang menerima dokumen yang meterainya belum lunas. Jadi semua harus beres sebelum sidang. Bea meterainya dibayar dengan meterai tempel, sedangkan dendanya dibayar dengan kode billing. Setelah itu pembayarannya disahkan pejabat Direktorat Jenderal Pajak, bukan oleh panitera. Cara ingat: bayar dulu, sahkan dulu, baru ajukan bukti.",
         inti: "Pemeteraian kemudian harus dituntaskan sebelum alat bukti diajukan: bea meterai dibayar dengan meterai (tempel atau elektronik), sanksi administratif dibayar dengan SSP (Pasal 50 PMK 78/2024), lalu pembayaran disahkan pejabat yang ditetapkan Menteri. Karena ada sanksi yang dibayar dengan SSP, pengesahnya Pejabat DJP (Pasal 51 ayat (4) dan (5)); Pejabat Pos hanya mengesahkan pembayaran dengan meterai tempel. Tanpa itu, hakim dan panitera dilarang menerima atau mempertimbangkan dokumen tersebut (Pasal 21 UU 10/2020).",
         jejakHitung: [
           ["Bea meterai 11 dokumen × Rp10.000 (meterai tempel)", "Rp110.000"],
@@ -1827,6 +1902,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Dua hal yang perlu diingat soal tarif. Bea meterai itu tarif tetap Rp10.000 per dokumen, tidak peduli nilai kontrak Rp7,8 miliar atau tebalnya 64 halaman. Meterai juga dibayar sekali saja untuk satu dokumen. Kontrak yang sejak awal sudah lunas tetap lunas ketika belakangan dipakai sebagai bukti di pengadilan. Cara ingat: satu dokumen, satu meterai, satu kali.",
         inti: "Pasal 4 menetapkan bea meterai dikenakan satu kali untuk setiap dokumen dan Pasal 5 menetapkan tarif tetap Rp10.000. Kontrak yang sudah lunas tetap lunas ketika kemudian diajukan sebagai alat bukti.",
         jejakHitung: [],
         mengapaSalah: { A: "Pasal 4: bea meterai dikenakan satu kali untuk setiap dokumen; dokumen yang sudah lunas tidak dimeteraikan ulang", B: "Tarif bea meterai tetap per dokumen (Pasal 5), tidak proporsional terhadap nilai", D: "Satuan pengenaan adalah dokumen, bukan penanda tangan" },
@@ -1844,6 +1920,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuitansi baru kena meterai bila nilainya lebih dari Rp5 juta, jadi yang tepat Rp5 juta tidak ikut. Dari 1.240 kuitansi, hanya 860 kuitansi Rp5.250.000 yang lewat batas. Bea meterainya 860 x Rp10.000 = Rp8,6 juta. Biaya layanan Rp1.500 dari distributor bukan bea meterai, jadi tidak ikut dihitung. Cara ingat: lebih dari Rp5 juta berarti Rp5 juta pas belum kena.",
         inti: "Hanya kuitansi lebih dari Rp5.000.000 yang terutang dan dilunasi dengan meterai elektronik Rp10.000 per dokumen; kesepakatan bahwa perusahaan menanggung bea meterai sah menurut Pasal 9, dan biaya layanan distributor bukan bagian dari bea meterai.",
         jejakHitung: [ ["Kuitansi Rp5.250.000 (> Rp5 juta)", "860 dokumen"], ["Kuitansi Rp5.000.000 dan Rp4.750.000", "tidak terutang"], ["Bea meterai 860 × Rp10.000", "Rp8.600.000"], ["Biaya layanan 860 × Rp1.500 (bukan bea meterai)", "Rp1.290.000"] ],
         mengapaSalah: { A: "Ikut menghitung 300 kuitansi tepat Rp5.000.000; syaratnya lebih dari Rp5.000.000", B: "Memasukkan biaya layanan Rp1.500 per dokumen; biaya layanan bukan bea meterai", C: "Menganggap seluruh kuitansi terutang tanpa ambang nilai" },
@@ -1862,6 +1939,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Dokumen dari luar negeri baru terutang saat mulai dipakai di Indonesia, di sini 4 November 2026. Selama dilunasi paling lambat hari itu, cukup Rp10.000 per dokumen tanpa denda. Alat bayarnya menyesuaikan bentuk dokumen. Perjanjian berbentuk PDF memakai meterai elektronik, sedangkan surat pernyataan kertas memakai meterai tempel atau surat setoran pajak. Cara ingat: dokumen digital pakai meterai digital, kertas pakai meterai kertas.",
         inti: "Dokumen luar negeri terutang saat digunakan di Indonesia oleh penerima manfaat. Bila dilunasi paling lambat saat itu, cukup Rp10.000 per dokumen, dengan sarana yang sesuai bentuk dokumen: meterai elektronik untuk PDF, meterai tempel atau SSP untuk kertas.",
         jejakHitung: [],
         mengapaSalah: { A: "Dokumen elektronik dilunasi dengan meterai elektronik; meterai tempel untuk dokumen kertas", B: "Dokumen luar negeri baru terutang saat digunakan di Indonesia; pelunasan sebelum saat itu tanpa sanksi", C: "Pasal 8 ayat (1) huruf e menjadikan dokumen luar negeri terutang saat digunakan di Indonesia" },
@@ -1879,6 +1957,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Meterai tiruan tidak dihitung sebagai pembayaran. Gambar meterai elektronik hasil tangkapan layar dan meterai tempel bekas tidak sah, jadi 15 kontrak dan 3 perjanjian itu dianggap belum bayar. Karena terlambat, tiap dokumen membayar Rp10.000 plus denda Rp10.000: 18 x Rp20.000 = Rp360.000. Kuitansi Rp4 juta tidak dihitung karena di bawah batas Rp5 juta.",
         inti: "Gambar meterai elektronik hasil salinan dan meterai tempel bekas tidak melunasi bea meterai, sehingga 18 dokumen dianggap tidak dibayar dan dimeteraikan kemudian dengan pokok + sanksi 100%.",
         jejakHitung: [ ["Kontrak dengan gambar tangkapan layar", "15 dokumen"], ["Perjanjian dengan meterai bekas", "3 dokumen"], ["Dokumen tidak dilunasi", "18"], ["18 × (Rp10.000 + Rp10.000)", "Rp360.000"], ["Kuitansi Rp4.000.000", "bukan objek"] ],
         mengapaSalah: { A: "Menganggap meterai tempel bekas tetap melunasi bea meterai; meterai yang sudah dipakai tidak dapat melunasi dokumen lain", B: "Hanya menghitung pokok; dokumen yang tidak dilunasi pada saat terutang dikenai sanksi 100%", D: "Ikut menghitung 6 kuitansi Rp4.000.000 yang bukan objek" },
@@ -1896,6 +1975,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Akta notaris punya beberapa turunan yang ditandatangani notaris, dan masing-masing kena meterai sendiri. Hitungannya: minuta, grosse, dua salinan, dan satu kutipan, jadi lima dokumen. Lima x Rp10.000 = Rp50.000. Tiga fotokopi buatan bank tidak ditandatangani, jadi tidak kena. Cara ingat: yang bertanda tangan notaris dihitung, fotokopi biasa tidak.",
         inti: "Akta notaris beserta grosse, salinan, dan kutipannya masing-masing terutang Rp10.000 saat dibubuhi tanda tangan; fotokopi tanpa tanda tangan tidak terutang.",
         jejakHitung: [ ["Minuta akta", "Rp10.000"], ["Grosse akta", "Rp10.000"], ["Dua salinan", "Rp20.000"], ["Satu kutipan", "Rp10.000"], ["Tiga fotokopi tanpa tanda tangan", "tidak terutang"], ["Total", "Rp50.000"] ],
         mengapaSalah: { B: "Menganggap grosse akta bukan objek; Pasal 3 ayat (2) huruf b mencakup grosse, salinan, dan kutipan", C: "Ikut menghitung 3 fotokopi tanpa tanda tangan", D: "Menganggap akta beserta seluruh turunannya satu dokumen" },
@@ -1913,6 +1993,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "angka-usang", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Hitung per dokumen saja. Perjanjian pembiayaan dibuat dua rangkap asli, dan perjanjian kena meterai berapa pun nilainya, jadi 2 x Rp10.000 = Rp20.000. Kuitansi uang muka Rp48 juta lebih dari Rp5 juta, jadi tambah Rp10.000. Totalnya Rp30.000, dan tebal 18 halaman atau nilai Rp240 juta tidak berpengaruh.",
         inti: "Dua rangkap perjanjian dan satu kuitansi di atas Rp5.000.000 masing-masing terutang Rp10.000.",
         jejakHitung: [ ["Perjanjian 2 rangkap", "Rp20.000"], ["Kuitansi uang muka Rp48.000.000", "Rp10.000"], ["Total", "Rp30.000"] ],
         mengapaSalah: { A: "Menghitung perjanjian 2 rangkap sebagai satu dokumen", B: "Memakai tarif lama Rp6.000 per dokumen", D: "Menganggap hanya kuitansi di atas Rp5.000.000 yang terutang; surat perjanjian terutang tanpa ambang nilai" },
@@ -1930,6 +2011,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pemungut hanya memungut bea meterai atas tanda terima yang nilainya lebih dari Rp5 juta dan benar-benar diserahkan ke pengguna. Dokumen tepat Rp5 juta dan di bawahnya tidak dihitung. Dari 18.640 dokumen, 140 dibatalkan sebelum diserahkan, jadi tidak pernah ada dokumennya dan tersisa 18.500 dokumen. Lalu 18.500 x Rp10.000 = Rp185 juta. Nilai transaksi dan pendapatan platform tidak memengaruhi hitungan.",
         inti: "Objek pemungutan hanya tanda terima bernilai lebih dari Rp5.000.000 yang benar-benar diterbitkan kepada pengguna: 18.640 − 140 = 18.500 dokumen × Rp10.000.",
         jejakHitung: [ ["Dokumen > Rp5 juta", "18.640"], ["Dikurangi dokumen batal (tidak pernah diserahkan)", "(140)"], ["Dokumen objek", "18.500"], ["Bea meterai 18.500 × Rp10.000", "Rp185.000.000"], ["Dokumen tepat Rp5 juta dan di bawahnya", "bukan objek"] ],
         mengapaSalah: { A: "Ikut menghitung 140 dokumen yang dibatalkan dan tidak pernah diserahkan; tanpa penyerahan tidak ada saat terutang", C: "Ikut menghitung 5.210 dokumen tepat Rp5.000.000; syaratnya lebih dari Rp5.000.000", D: "Mengabaikan ambang Pasal 3 ayat (2) huruf g sehingga seluruh dokumen dianggap objek" },
@@ -1953,6 +2035,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Baris dokumen di SPT hanya diisi dokumen yang benar-benar dipungut: 18.500 dokumen dengan bea meterai Rp185 juta. Dokumen batal dan dokumen tepat Rp5 juta tidak masuk. Untuk baris kurang atau lebih disetor, petunjuk pengisian formulir resmi menyuruh menyalin jumlah meterai yang dipungut, yaitu Rp185 juta juga. Formulir itu tidak punya baris untuk mengurangkan setoran yang sudah dibayar, jadi barisnya tidak diisi nihil.",
         inti: "Bagian B angka 4a hanya memuat tanda terima bernilai lebih dari Rp5.000.000 yang benar-benar diserahkan dan dipungut (18.500; Rp185.000.000). Menurut petunjuk pengisian Lampiran huruf F PER-11/PJ/2025, Bagian D angka 1 diisi sesuai baris JUMLAH kolom c Bagian C (cara pemungutan), yaitu Rp185.000.000; induk resmi tidak memuat baris tersendiri untuk bea meterai yang sudah disetor, sehingga setoran 13 November 2026 tidak mengurangi isian D.1.",
         jejakHitung: [
           ["Bagian B angka 4a kolom b: dokumen objek 18.640 − 140 batal", "18.500"],
@@ -1985,6 +2068,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Untuk pemungut bea meterai, setor dan lapor sama-sama paling lambat tanggal 15 bulan berikutnya, bukan tanggal 20 atau akhir bulan. Tanggal 15 November 2026 jatuh hari Minggu, jadi tenggatnya bergeser ke hari kerja sesudahnya, yaitu Senin 16 November 2026. Bukti setornya NTPN, sedangkan bukti lapornya bukti penerimaan elektronik dari Coretax. Cara ingat: tenggat yang jatuh di hari libur digeser ke hari kerja berikutnya, bukan dimajukan.",
         inti: "Setor (Pasal 63 ayat (1) PMK 78/2024) dan lapor (Pasal 64 ayat (1)) pemungut sama-sama paling lambat tanggal 15 bulan berikutnya; karena 15 November 2026 hari Minggu, keduanya bergeser ke Senin, 16 November 2026 (Pasal 65 PMK 78/2024; padanannya Pasal 100 dan Pasal 173 PMK 81/2024). Bukti setor adalah NTPN dan bukti lapor adalah bukti penerimaan elektronik dari Coretax.",
         jejakHitung: [
           ["Dokumen objek 18.500 × Rp10.000", "Rp185.000.000"],
@@ -2015,6 +2099,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada tiga temuan, dan sanksinya dibedakan menurut jenis kesalahannya. Yang dipungut tapi tidak disetor (1.200) dan yang sama sekali tidak dipungut (300) sama-sama kena sanksi 100%: 1.500 x Rp10.000 = Rp15 juta. Yang disetor penuh tapi telat cukup kena bunga: telat 18 sampai 28 Agustus dihitung 1 bulan, jadi Rp150 juta x 1,01% = Rp1.515.000. Totalnya Rp16.515.000. Cara ingat: tidak disetor kena 100%, cuma telat kena bunga.",
         inti: "Pasal 11 membedakan: bea meterai yang tidak dipungut atau tidak disetor ditetapkan dengan SKP sebesar pokok + sanksi 100%, sedangkan setoran penuh yang terlambat ditagih STP berupa bunga Pasal 9 ayat (2a) UU KUP.",
         jejakHitung: [
           ["Dokumen tidak disetor + tidak dipungut", "1.200 + 300 = 1.500"],
@@ -2045,6 +2130,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "angka-usang", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: apa akibat keputusan penetapan pemungut bagi dokumen sebelum dan sesudah tanggal mulainya. Status pemungut baru berlaku sejak masa yang tertulis di keputusan, jadi tidak berlaku surut ke Oktober. Tetapi tanda terima Oktober di atas Rp5 juta tetap kena bea meterai, hanya saja dilunasi sendiri oleh pihak yang terutang dengan meterai. Cara ingat: status pemungut hanya mengubah siapa yang memungut, bukan apakah dokumennya terutang.",
         inti: "Status pemungut lahir dari keputusan Kepala KPP dan berlaku sejak masa yang ditetapkan. Sebelum itu, bea meterai atas dokumen objek tetap terutang dan dilunasi oleh pihak yang terutang dengan meterai.",
         jejakHitung: [],
         mengapaSalah: { A: "Kedudukan pemungut berlaku sejak masa yang ditetapkan dalam keputusan, bukan surut", B: "Mekanisme deposit PMK 151/2021 dihapus PMK 78/2024", C: "Status pemungut tidak menentukan terutangnya bea meterai; dokumen objek tetap terutang oleh pihak yang terutang" },
@@ -2067,6 +2153,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada di kapan bank memungut dan satuan hitungnya. Untuk cek dan bilyet giro, bea meterai dihitung per lembar dan dipungut saat bank menerimanya dari percetakan, bukan saat diserahkan ke nasabah: (30 + 18) x 25 = 1.200 lembar, jadi Rp12 juta. Tanda terima digital hanya yang di atas Rp5 juta yang kena: 4.120 x Rp10.000 = Rp41,2 juta. Cara ingat: cek dan giro dihitung lembarnya saat datang dari percetakan.",
         inti: "Cek dan bilyet giro dihitung per lembar dan dipungut pada saat bank menerima cek dan bilyet giro yang telah dibubuhi Meterai Percetakan dari pemegang izin (Pasal 61 huruf a PMK 78/2024), bukan saat diserahkan kepada nasabah: (30 + 18) × 25 = 1.200 lembar × Rp10.000. Dokumen jumlah uang dipungut saat diserahkan dan hanya yang bernilai lebih dari Rp5.000.000: 4.120 × Rp10.000. Rincian per objek ini diisi pada Bagian B induk SPT Masa Bea Meterai: angka 1 (cek dan bilyet giro, sesuai data Formulir L1) dan angka 4a (dokumen yang menyebutkan penerimaan uang, sesuai data Formulir L2 dan L3).",
         jejakHitung: [
           ["Cek diterima dari percetakan 30 × 25", "750 lembar"],
@@ -2098,6 +2185,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari jenis pelanggarannya: bea meterai sudah dipungut dan disetor penuh, hanya telat, jadi yang ditagih bunga keterlambatan plus denda telat lapor. Pokoknya 8.450 x Rp10.000 = Rp84,5 juta. Telat dari 15 September sampai 21 Oktober itu 1 bulan 6 hari, dibulatkan 2 bulan: Rp84,5 juta x 1,01% x 2 = Rp1.706.900. Ditambah denda SPT Masa Rp100.000, totalnya Rp1.806.900. Nilai transaksi dan jumlah nasabah hanya pengecoh.",
         inti: "Setoran penuh yang terlambat ditagih STP: bunga Pasal 9 ayat (2a) atas Rp84.500.000 selama 2 bulan (bagian bulan dihitung penuh) ditambah denda SPT Masa Rp100.000.",
         jejakHitung: [
           ["Pokok 8.450 × Rp10.000", "Rp84.500.000"],
@@ -2130,6 +2218,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Soal ini menanyakan siapa yang menanggung akibat kalau pemungut lupa memungut. Kewajiban memungut dan menyetor bea meterai bilyet giro ada pada bank, bukan pada nasabah. Pemungut yang tidak memungut diberi surat ketetapan pajak berisi pokok plus sanksi 100%: 40 lembar x Rp10.000 = Rp400.000, ditambah sanksi Rp400.000. Alasan salah sistem tidak mengubah jenis sanksinya. Cara ingat: tidak dipungut berarti ketetapan plus 100%, bukan sekadar bunga.",
         inti: "Pemungut yang tidak memungut bea meterai atas dokumen yang wajib dipungutnya diterbitkan SKP sebesar bea meterai yang tidak dipungut (40 × Rp10.000) ditambah sanksi 100% (Pasal 11 ayat (2) dan (3) UU 10/2020; Pasal 67 PMK 78/2024). Pemungutan atas bilyet giro seharusnya dilakukan dengan Meterai Percetakan pada saat bank menerima bilyet giro dari pemegang izin pembuatan Meterai Percetakan (Pasal 61 huruf a dan Pasal 62 ayat (1) huruf a PMK 78/2024), sehingga masa yang ditetapkan mengikuti bulan penerimaan itu; jumlahnya tetap Rp800.000.",
         jejakHitung: [
           ["Pokok 40 lembar × Rp10.000", "Rp400.000"],
@@ -2159,6 +2248,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Bea meterai di sini disetor penuh, hanya terlambat, jadi sanksinya cukup bunga, bukan 100%. Lama terlambat dihitung dari tanggal jatuh tempo: 15 September sampai 5 Oktober baru 20 hari, dan bagian bulan dihitung satu bulan. Jadi bunganya 1,01% x Rp20 juta x 1 bulan = Rp202.000. Cara ingat: hitung bulan dari tanggal jatuh tempo, bukan dari berapa kali ganti bulan kalender.",
         inti: "Keterlambatan 20 hari dihitung 1 bulan; bunga = Rp20.000.000 × 1,01% × 1.",
         jejakHitung: [
           ["15 September–5 Oktober 2026", "20 hari → 1 bulan"],
@@ -2183,6 +2273,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Di sini kita menguji tiap dokumen satu per satu: sudah lewat 5 tahun atau belum sejak saat terutangnya. Kuitansi dan surat pernyataan terutang saat diserahkan, perjanjian saat ditandatangani, dokumen luar negeri saat dipakai di Indonesia. Per 27 Oktober 2026, dokumen nomor 2, 3, 4, dan 6 masih bisa ditagih; nomor 1 dan 5 sudah lewat, nomor 7 tidak kena karena di bawah Rp5 juta. Jadi 4 x Rp20.000 = Rp80.000.",
         inti: "Daluwarsa 5 tahun dihitung dari saat terutang masing-masing dokumen. Per 27 Oktober 2026, dokumen (2), (3), (4), dan (6) belum daluwarsa sehingga masing-masing dibayar Rp20.000; (1) dan (5) sudah daluwarsa, dan (7) bukan objek.",
         jejakHitung: [ ["(1) Diserahkan 26 Oktober 2021", "daluwarsa 26 Oktober 2026 → Rp0"], ["(2) Diserahkan 29 Oktober 2021", "daluwarsa 29 Oktober 2026 → Rp20.000"], ["(3) Ditandatangani 28 Oktober 2021", "daluwarsa 28 Oktober 2026 → Rp20.000"], ["(4) Diserahkan 3 November 2021", "daluwarsa 3 November 2026 → Rp20.000"], ["(5) Ditandatangani 15 Juli 2021", "sudah daluwarsa → Rp0"], ["(6) Digunakan di Indonesia 2 November 2021", "daluwarsa 2 November 2026 → Rp20.000"], ["(7) Kuitansi Rp4.500.000", "bukan objek"], ["Total 4 × Rp20.000", "Rp80.000"] ],
         mengapaSalah: { A: "Menghitung daluwarsa kuitansi (2) dan surat pernyataan (4) dari tanggal tanda tangan; keduanya terutang saat diserahkan", B: "Menghitung daluwarsa kontrak Tokyo dari tanggal tanda tangan; dokumen luar negeri terutang saat digunakan di Indonesia (2 November 2021)", C: "Mengabaikan daluwarsa 5 tahun sehingga dokumen (1) dan (5) ikut ditagih" },
@@ -2201,6 +2292,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada di tanggal 14 Juli 2026. Dokumen dari luar negeri baru terutang saat dipakai di Indonesia, dan boleh dilunasi tanpa sanksi asalkan paling lambat saat dipakai itu. Karena sudah dipakai tanpa dilunasi, pelunasannya sekarang menjadi pemeteraian kemudian: pokok Rp10.000 plus sanksi Rp10.000, lalu disahkan pejabat yang ditunjuk. Walaupun dilakukan sukarela sebelum diperiksa, sanksinya tetap ada.",
         inti: "Saat terutang dokumen luar negeri adalah saat digunakan di Indonesia (14 Juli 2026). Karena tidak dilunasi saat itu, pelunasan sesudahnya merupakan pemeteraian kemudian atas dokumen yang tidak dibayar: pokok + sanksi 100%, lalu disahkan pejabat yang ditetapkan Menteri, meskipun dilakukan sukarela.",
         jejakHitung: [ ["Saat terutang", "14 Juli 2026 (digunakan di Indonesia)"], ["Pokok", "Rp10.000"], ["Sanksi 100%", "Rp10.000"], ["Jumlah", "Rp20.000 + pengesahan"] ],
         mengapaSalah: { A: "Saat digunakan (14 Juli 2026) sudah lewat tanpa pelunasan, sehingga dokumen termasuk yang bea meterainya tidak dibayar", B: "Setiap pemeteraian kemudian memerlukan pengesahan pejabat yang ditetapkan Menteri (Pasal 1)", D: "Dokumen luar negeri terutang saat digunakan di Indonesia (Pasal 8 ayat (1) huruf e)" },
@@ -2222,6 +2314,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Ada dua hal yang terpisah di soal ini. Tagihan bea meterai kuitansi itu memang hangus setelah 5 tahun sejak diserahkan, yaitu Agustus 2026. Tetapi dokumen yang mau dipakai sebagai alat bukti di pengadilan tetap harus dimeteraikan kemudian lebih dulu. Jadi kuitansi itu bebas dari tagihan lama, namun belum boleh langsung diajukan ke hakim. Cara ingat: daluwarsa menghapus tagihan lama, bukan syarat meterai untuk alat bukti.",
         inti: "Pasal 23 UU 10/2020: bea meterai yang terutang kedaluwarsa 5 tahun sejak saat terutang (kuitansi terutang saat diserahkan 4 Agustus 2021, sehingga kedaluwarsa pada Agustus 2026). Namun Penjelasan Pasal 3 ayat (1) huruf b menegaskan dokumen yang bea meterainya belum dibayar lunas tetapi telah kedaluwarsa tetap harus dimeteraikan kemudian saat akan dijadikan alat bukti di pengadilan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2243,6 +2336,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "angka-usang", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang ditanya di sini jumlah yang dibayar saat kuitansi tanpa meterai dilunasi belakangan. Kesembilan kuitansi bernilai di atas Rp5 juta, jadi masing-masing terutang Rp10.000. Karena tidak dilunasi saat diterima, pemeteraian kemudian kena sanksi 100%: Rp90.000 pokok + Rp90.000 sanksi = Rp180.000. Membayar sukarela sebelum diperiksa tidak menghapus sanksi itu. Cara ingat: telat bermeterai berarti bayar dua kali lipat.",
         inti: "Kuitansi di atas Rp5.000.000 yang tidak dilunasi saat diserahkan dimeteraikan kemudian dengan pokok Rp10.000 + sanksi 100% per dokumen, termasuk bila dilakukan sukarela.",
         jejakHitung: [ ["Pokok 9 × Rp10.000", "Rp90.000"], ["Sanksi 100%", "Rp90.000"], ["Total", "Rp180.000"] ],
         mengapaSalah: { A: "Menganggap pelunasan sukarela sebelum pemeriksaan bebas sanksi", C: "Memakai sanksi 200% warisan UU 13/1985", D: "Menghitung pokok dan sanksi masing-masing Rp20.000 per dokumen" },
@@ -2265,6 +2359,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari jalurnya: ketetapan bea meterai dilawan dengan keberatan, bukan langsung gugatan. Batasnya 3 bulan sejak surat dikirim, dan tanggal kirim dihitung hari pertama, jadi hari terakhirnya 4 Januari 2027. Dalam keberatan, perusahaan menyebut hitungannya sendiri: 42 kuitansi x Rp10.000 = Rp420.000, ditambah sanksi 100% sehingga Rp840.000. Sanksi atas dokumen yang diakui tidak hilang hanya karena keberatan diajukan.",
         inti: "Surat ketetapan bea meterai diterbitkan menurut tata cara UU KUP (Pasal 19 UU 10/2020), sehingga diuji melalui keberatan dalam jangka waktu 3 bulan sejak tanggal dikirim. Tanggal dikirim (5 Oktober 2026) dihitung sebagai hari pertama, sehingga hari terakhirnya 4 Januari 2027 (Senin). Yang dikemukakan adalah bea meterai terutang menurut WP: 42 dokumen × Rp10.000 = Rp420.000. Sanksi 100% melekat pada bea meterai yang tidak dibayar, sehingga jumlah ketetapan menurut WP Rp840.000.",
         jejakHitung: [
           ["Dokumen objek menurut WP", "62 − 20 = 42"],
@@ -2292,6 +2387,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Langkah pertama, pisahkan dokumen yang terutang dari yang tidak. Yang terutang: 38 kuitansi, 12 rangkap perjanjian, 6 surat pernyataan, dan 4 kuitansi bergambar meterai pindaian, karena gambar pindai bukan meterai sah. Jumlahnya 60 dokumen, sanksinya 100% x 60 x Rp10.000 = Rp600.000. Kuitansi sampai Rp5 juta dan surat jalan tidak kena, dan status Tbk tidak berpengaruh.",
         inti: "Dokumen terutang yang tidak dilunasi: 38 + 12 + 6 + 4 = 60 dokumen. Sanksi 100% dari bea meterai terutang = 60 × Rp10.000.",
         jejakHitung: [ ["Kuitansi pemasok tanpa meterai", "38"], ["Rangkap perjanjian", "12"], ["Surat pernyataan", "6"], ["Kuitansi dengan gambar pindai", "4"], ["Jumlah dokumen", "60"], ["Sanksi 100% = 60 × Rp10.000", "Rp600.000"] ],
         mengapaSalah: { A: "Menganggap 4 kuitansi bergambar meterai hasil pindai sudah lunas; gambar pindai bukan meterai yang sah", C: "Menjumlahkan pokok dan sanksi; yang ditanya hanya sanksi", D: "Ikut menghitung 25 kuitansi tidak lebih dari Rp5.000.000 dan 40 surat jalan (Pasal 7 huruf a) yang bukan objek" },
@@ -2316,6 +2412,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Pertanyaannya, beban mana yang tidak boleh mengurangi laba kena pajak. Pokok bea meterai dan meterai elektronik untuk operasional adalah pajak yang berkaitan dengan usaha, jadi boleh jadi biaya. Bunga STP Rp2.150.000 adalah sanksi, jadi dikoreksi, begitu pula sanksi bea meterai Rp600.000 menurut praktik yang lazim, sehingga totalnya Rp2.750.000. Perlu diketahui, aturan bea meterai tidak tegas menggolongkan sanksi 100% itu, jadi poin ini masih ada ruang tafsir.",
         inti: "Bunga dalam STP adalah sanksi administrasi berupa bunga yang tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k UU PPh). Sanksi 100% bea meterai Rp600.000 lazimnya dikoreksi positif sebagai sanksi administrasi di bidang perpajakan menurut Pasal 9 ayat (1) huruf k UU PPh, tetapi naskah (Pasal 18 ayat (2) dan Pasal 19 ayat (2) UU 10/2020; Pasal 49 PMK 78/2024) hanya menyebutnya \"sanksi administratif\" dan tidak menggolongkannya secara tegas ke bunga, denda, atau kenaikan; kunci mengikuti praktik yang lazim itu. Penyesuaian fiskal positif = Rp600.000 + Rp2.150.000 = Rp2.750.000. Pokok bea meterai dan pembelian meterai elektronik adalah pajak selain PPh yang berkaitan dengan usaha sehingga dapat dibebankan.",
         jejakHitung: [
           ["Pokok bea meterai dan meterai elektronik operasional", "dapat dibebankan → tidak dikoreksi"],
@@ -2342,6 +2439,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "angka-usang" },
       pembahasan: {
+        mudah: "Soal ini membedakan perbuatan pidana dan kelalaian biasa. Menjual meterai bekas yang tanda pemakaiannya dihapus termasuk perbuatan yang diancam pidana, sama seperti memalsukan meterai. Sedangkan tidak membubuhkan meterai hanya berakibat administrasi: bayar bea meterai plus sanksi 100% lewat pemeteraian kemudian. Angka 200% berasal dari undang-undang lama yang sudah diganti. Cara ingat: mengakali meterai itu pidana, lupa bermeterai cukup bayar pokok plus sanksi.",
         inti: "Ketentuan pidana UU 10/2020 menyasar pemalsuan meterai serta pemakaian dan peredaran meterai palsu atau bekas. Tidak membubuhkan meterai hanya menimbulkan pemeteraian kemudian dengan sanksi administratif 100%.",
         jejakHitung: [],
         mengapaSalah: { A: "Tidak membubuhkan meterai bukan tindak pidana; akibatnya administratif", B: "Penjualan meterai bekas yang tanda pemakaiannya dihilangkan diancam pidana (Pasal 26)", C: "Sanksi 200% adalah ketentuan UU 13/1985; kini 100%" },
@@ -2363,6 +2461,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Perusahaan ini punya dua peran, sebagai pihak yang terutang dan sebagai pemungut, dan sanksinya beda. Kuitansi pemasok tanpa meterai dilunasi lewat pemeteraian kemudian dengan sanksi 100%. Sebagai pemungut, bea meterai yang tidak disetor ditetapkan dengan surat ketetapan plus 100%, sedangkan setoran yang hanya telat cukup ditagih bunga lewat STP. Cara ingat: tidak bayar kena 100%, cuma telat kena bunga.",
         inti: "Tiga rezim berbeda: pihak terutang yang tidak melunasi membayar pokok + 100% (Pasal 18); pemungut yang tidak memungut/menyetor diterbitkan SKP + 100%; pemungut yang terlambat menyetor atau melapor ditagih STP sesuai UU KUP (Pasal 11).",
         jejakHitung: [],
         mengapaSalah: {
@@ -2389,6 +2488,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada dua jebakan di soal ini: lama bunga dan tarifnya. Telat dari 10 Juni 2024 sampai 20 Oktober 2026 itu 28 bulan 10 hari, dibulatkan 29 bulan, tetapi bunga paling lama hanya 24 bulan. Tarifnya yang berlaku saat penghitungan sanksi dimulai, yaitu 0,94%. Jadi Rp50 juta x 0,94% x 24 = Rp11,28 juta. Cara ingat: bunga telat setor ada atapnya, 24 bulan.",
         inti: "Keterlambatan 10 Juni 2024–20 Oktober 2026 adalah 28 bulan 10 hari (29 bulan), tetapi bunga dibatasi 24 bulan: Rp50.000.000 × 0,94% × 24.",
         jejakHitung: [
           ["10 Juni 2024–20 Oktober 2026", "28 bulan 10 hari → 29 bulan"],
@@ -2414,6 +2514,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Kuncinya, meterai palsu sama saja dengan tidak bermeterai. Jadi 120 kuitansi dan 60 perjanjian, total 180 dokumen, dianggap belum lunas dan harus dimeteraikan kemudian dengan sanksi 100%. Hitungannya 180 x Rp10.000 = Rp1,8 juta pokok, ditambah Rp1,8 juta sanksi, menjadi Rp3,6 juta. Harga beli Rp7.000 tidak dihitung sebagai pembayaran, dan 20 lembar sisa yang belum dipakai tidak menimbulkan bea meterai.",
         inti: "Meterai palsu tidak melunasi bea meterai, sehingga 180 dokumen dianggap tidak dibayar dan dimeteraikan kemudian dengan pokok + sanksi 100%. Meterai yang belum dipakai tidak menimbulkan bea meterai.",
         jejakHitung: [ ["Dokumen bermeterai palsu", "120 + 60 = 180"], ["Pokok 180 × Rp10.000", "Rp1.800.000"], ["Sanksi 100%", "Rp1.800.000"], ["Total", "Rp3.600.000"] ],
         mengapaSalah: { A: "Hanya menghitung pokok dengan alasan perusahaan beritikad baik; dokumen yang tidak dilunasi tetap dikenai sanksi 100%", B: "Ikut menghitung 20 meterai sisa yang belum dipakai pada dokumen apa pun", D: "Menganggap meterai palsu melunasi Rp7.000 sehingga hanya kekurangan Rp3.000 ditambah sanksinya yang dibayar" },
@@ -2437,6 +2538,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Pembayaran Rp280.000 ini berisi dua bagian yang perlakuannya beda. Pokok bea meterai Rp140.000 adalah pajak yang berkaitan dengan usaha, jadi tetap boleh menjadi biaya. Sanksi Rp140.000 menurut praktik yang lazim tidak boleh jadi biaya, sehingga dikoreksi positif Rp140.000, artinya ditambahkan kembali ke laba. Perlu dicatat, aturan bea meterai tidak tegas menggolongkan sanksi ini, jadi masih ada sedikit ruang tafsir.",
         inti: "Sanksi 100% bea meterai Rp140.000 lazimnya dikoreksi positif sebagai sanksi administrasi di bidang perpajakan menurut Pasal 9 ayat (1) huruf k UU PPh, tetapi naskah (Pasal 18 ayat (2) dan Pasal 19 ayat (2) UU 10/2020; Pasal 49 PMK 78/2024) hanya menyebutnya \"sanksi administratif\" dan tidak menggolongkannya secara tegas ke bunga, denda, atau kenaikan; kunci mengikuti praktik yang lazim itu, sehingga dikoreksi positif Rp140.000. Pokok bea meterai Rp140.000 adalah pajak selain PPh yang tetap menjadi biaya (Pasal 6 ayat (1) huruf a angka 9 UU PPh). Di Lampiran 3A-1, koreksi itu diisi pada Kolom (7) PENYESUAIAN FISKAL POSITIF akun beban yang memuatnya, dengan kode penyesuaian FPO-08 (sanksi administratif).",
         jejakHitung: [
           ["Pokok bea meterai (biaya)", "Rp140.000"],
@@ -2466,6 +2568,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Untuk dokumen yang dibuat di luar negeri, Bea Meterai tidak terutang saat ditandatangani, tetapi saat dokumen itu dipakai di Indonesia. Yang menanggungnya adalah pihak yang mendapat manfaat dari dokumen tersebut. Distributor dalam negeri memakai naskahnya untuk mengajukan kredit ke bank di Jakarta pada 5 Maret 2026, jadi ia yang terutang pada tanggal itu. Naskah milik perusahaan Singapura tidak pernah dipakai di sini, jadi tidak terutang. Cara ingat: dokumen luar negeri kena meterai saat dipakai di Indonesia, oleh yang memanfaatkannya.",
         inti: "Untuk dokumen objek Bea Meterai yang dibuat di luar negeri, Bea Meterai terutang saat dokumen digunakan di Indonesia dan terutang oleh pihak yang menerima manfaat atas dokumen. Utang timbul saat PT Ortax Distributor memakai naskahnya untuk permohonan kredit di Jakarta; naskah Ortax XYZ Pte. Ltd. tidak digunakan di Indonesia sehingga tidak terutang.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2492,6 +2595,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini menguji kapan perjanjian yang ditandatangani di luar negeri mulai kena bea meterai. Aturannya: dokumen dari luar negeri baru terutang saat benar-benar dipakai di Indonesia, oleh pihak yang mendapat manfaat dari dokumen itu. Tiba di Surabaya lalu disimpan di arsip belum termasuk dipakai. Baru pada 22 April 2026, saat dilampirkan dalam tender, naskah itu dipakai, jadi PT Sarana Gudang Lestari yang terutang.",
         inti: "Surat perjanjian (Pasal 3 ayat (2) huruf a) yang dibuat di luar negeri terutang Bea Meterai pada saat digunakan di Indonesia (Pasal 8 ayat (1) huruf e) dan terutang oleh pihak yang menerima manfaat atas Dokumen (Pasal 9 ayat (5)). Naskah PT Sarana Gudang Lestari baru digunakan di Indonesia pada 22 April 2026 ketika dilampirkan dalam penawaran tender; naskah Kinabalu Leasing Sdn. Bhd. tidak digunakan di Indonesia sehingga tidak terutang.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2519,6 +2623,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kita cek empat dokumen ini satu per satu. Kuitansi Rp7.250.000 di atas Rp5 juta, jadi kena. Surat perjanjian kena berapa pun nilainya, walaupun hanya Rp2,4 juta. Tanda terima uang lembur pegawai dan konosemen, yaitu dokumen pengiriman barang, termasuk yang dibebaskan tanpa melihat nilainya. Jadi yang terutang hanya kuitansi dan perjanjian. Cara ingat: batas Rp5 juta hanya untuk dokumen uang, bukan untuk perjanjian.",
         inti: "Kuitansi pelunasan Rp7.250.000 melebihi ambang Rp5.000.000 sehingga terutang (Pasal 3 ayat (2) huruf g), dan surat perjanjian terutang berapa pun nilainya (Pasal 3 ayat (2) huruf a). Uang lembur adalah pembayaran yang berkaitan dengan hubungan kerja (Pasal 7 huruf c) dan konosemen adalah dokumen lalu lintas barang (Pasal 7 huruf a); keduanya tidak dikenai bea meterai berapa pun nilainya.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2547,6 +2652,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "angka-usang", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini dokumen uang mana yang melewati batas. Bea meterai Rp10.000 hanya untuk dokumen yang menyebut uang lebih dari Rp5 juta, dan yang tepat Rp5 juta tidak termasuk. Jadi yang kena kuitansi Rp5.250.000, kuitansi Rp12 juta, dan surat keterangan lunas Rp8 juta, karena isinya pengakuan utang sudah dilunasi. Hasilnya 3 x Rp10.000 = Rp30.000. Cara ingat: harus lebih dari Rp5 juta, bukan sama dengan.",
         inti: "Yang terutang hanya dokumen yang menyatakan jumlah uang lebih dari Rp5.000.000: kuitansi Rp5.250.000, kuitansi Rp12.000.000, dan surat keterangan lunas Rp8.000.000 (pengakuan pelunasan utang). Tarif tetap Rp10.000 per dokumen.",
         jejakHitung: [
           ["Kuitansi Rp3.500.000 dan Rp5.000.000", "tidak terutang (tidak lebih dari Rp5 juta)"],
@@ -2581,6 +2687,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya, batas Rp5 juta diuji dari angka yang benar-benar tertulis di dokumen. Klien 1: PPN = 11/12 x 12% x Rp4,5 juta = Rp495.000, jadi kuitansi Rp4.995.000, belum lewat batas. Klien 2: Rp4.560.000 + PPN Rp501.600 dikurangi PPh 23 Rp91.200 = Rp4.970.400, juga belum lewat. Nota klien 3 mengakui utang Rp5,8 juta sudah diperhitungkan, itu termasuk pelunasan, jadi hanya satu dokumen kena Rp10.000.",
         inti: "Ambang diuji pada jumlah uang yang dinyatakan dalam dokumen. Kuitansi klien 1 menyatakan Rp4.995.000 dan kuitansi klien 2 menyatakan Rp4.970.400; keduanya tidak lebih dari Rp5.000.000. Nota klien 3 berisi pengakuan bahwa utang Rp5.800.000 telah diperhitungkan (huruf g angka 2) sehingga terutang Rp10.000.",
         jejakHitung: [
           ["Klien 1: PPN = 4.500.000 × 11/12 × 12%", "Rp495.000"],
@@ -2616,6 +2723,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "angka-usang" },
       pembahasan: {
+        mudah: "Mulai dari aturan dasarnya: surat perjanjian dan setiap rangkapnya kena bea meterai saat ditandatangani. Ada 4 rangkap asli yang semuanya ditandatangani ketiga pihak, termasuk yang disimpan ketua konsorsium, jadi 4 x Rp10.000 = Rp40.000. Fotokopi tanpa tanda tangan basah bukan rangkap yang ditandatangani, jadi tidak dihitung. Cara ingat: yang menentukan adalah tanda tangannya, bukan siapa yang menyimpan.",
         inti: "Surat perjanjian beserta rangkapnya adalah objek bea meterai dan terutang saat dibubuhi tanda tangan. Keempat rangkap asli ditandatangani sehingga masing-masing terutang Rp10.000; fotokopi tanpa tanda tangan untuk arsip bukan rangkap yang ditandatangani dan tidak terutang.",
         jejakHitung: [
           ["Rangkap asli yang ditandatangani", "4"],
@@ -2648,6 +2756,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kata kecuali di sini membalik pertanyaan: yang dicari justru dokumen yang tetap kena bea meterai. Surat penyimpanan barang, tanda terima tunjangan pegawai, dan tanda pembayaran bunga obligasi termasuk dokumen yang tidak dikenai bea meterai berapa pun nilainya. Kuitansi uang muka Rp15 juta diserahkan kepada pembeli, yaitu pihak di luar perusahaan, dan nilainya di atas Rp5 juta, jadi tetap terutang. Itulah satu-satunya yang tidak masuk kelompok bebas.",
         inti: "Kuitansi uang muka Rp15.000.000 menyebutkan penerimaan uang lebih dari Rp5.000.000 (Pasal 3 ayat (2) huruf g) dan terutang saat diserahkan kepada pembeli; ia tidak termasuk pengecualian Pasal 7. Tiga dokumen lain dikecualikan tegas oleh Pasal 7.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2676,6 +2785,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Langkah pertama, tanya dulu: penerimanya pegawai atau bukan. Bonus pegawai tetap dan surat permohonan pencairan tunjangan cuti berkaitan dengan hubungan kerja, jadi dibebaskan berapa pun nilainya. Konsultan dan juri bukan pegawai, jadi kuitansinya diuji dengan batas Rp5 juta: Rp8,5 juta kena, Rp4,75 juta tidak. Hasilnya hanya kuitansi konsultan yang terutang. Cara ingat: urusan gaji pegawai bebas, orang luar diuji batas Rp5 juta.",
         inti: "Bonus pegawai tetap dan surat permohonan pencairan tunjangan cuti termasuk pengecualian Pasal 7 huruf c (pembayaran yang berkaitan dengan hubungan kerja, serta surat yang diserahkan untuk mendapatkan pembayaran itu). Konsultan dan juri bukan pegawai sehingga kuitansinya diuji dengan ambang Pasal 3 ayat (2) huruf g: Rp8.500.000 terutang, Rp4.750.000 tidak.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2703,6 +2813,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini nasib kuitansi kecil yang mau dipakai sebagai bukti di pengadilan. Saat diserahkan, kuitansi Rp4,5 juta tidak terutang karena belum lebih dari Rp5 juta, jadi tidak ada utang bea meterai yang tertunggak. Begitu diajukan sebagai alat bukti di pengadilan, kuitansi itu terutang berapa pun nilainya, dan yang membayar adalah pihak yang mengajukannya, yaitu Nyonya Sari. Jumlahnya Rp10.000 saja tanpa sanksi, karena sejak awal tidak ada yang terlambat dibayar.",
         inti: "Kuitansi Rp4.500.000 tidak terutang saat diserahkan karena tidak lebih dari Rp5.000.000, sehingga tidak ada bea meterai yang kurang dibayar. Saat diajukan sebagai alat bukti di pengadilan, kuitansi menjadi objek Pasal 3 ayat (1) huruf b dan dilunasi melalui pemeteraian kemudian sebesar bea meterai terutang saja (Pasal 18 ayat (1) huruf b), tanpa sanksi. Pihak Yang Terutang adalah pihak yang mengajukan dokumen (Pasal 9 ayat (4)).",
         jejakHitung: [
           ["Saat diserahkan 8 Juni 2026", "Rp4.500.000, tidak lebih dari Rp5 juta → tidak terutang"],
@@ -2735,6 +2846,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Di sini status sebuah dokumen bisa berubah. Kuitansi Rp6 juta menyebut uang diterima di atas Rp5 juta, jadi terutang saat diserahkan 21 Agustus. Invoice yang belum dibayar hanya tagihan, belum kena. Setelah dicap LUNAS dengan tulisan telah dibayar Rp9,6 juta, invoice itu berisi pengakuan pelunasan, jadi terutang saat diserahkan 14 September. Cara ingat: tiap dokumen diuji sendiri, walaupun untuk satu tagihan yang sama.",
         inti: "Kuitansi Rp6.000.000 menyebutkan penerimaan uang lebih dari Rp5.000.000 dan terutang saat diserahkan pada 21 Agustus 2026. Invoice yang belum dibayar hanya tagihan dan bukan objek; setelah dibubuhi keterangan \"telah dibayar lunas Rp9.600.000\", invoice itu berisi pengakuan pelunasan utang di atas ambang dan terutang saat diserahkan pada 14 September 2026. Bea meterai dikenakan sekali untuk setiap dokumen, sehingga kedua dokumen masing-masing terutang.",
         jejakHitung: [
           ["Invoice 3 Agustus 2026 (belum dibayar)", "bukan objek"],
@@ -2767,6 +2879,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Dokumen elektronik juga termasuk dokumen menurut aturan bea meterai, dan tanda tangan elektronik juga dihitung tanda tangan. Kuitansi PDF Rp7,8 juta menyebut uang di atas Rp5 juta, jadi terutang Rp10.000 saat dikirim ke klien, bukan saat dicetak. Karena sistem meterai elektronik berjalan normal, pelunasannya dengan membubuhkan meterai elektronik. Setoran pakai surat setoran pajak hanya untuk keadaan khusus, misalnya sistemnya tidak bisa diakses.",
         inti: "Pasal 1 UU 10/2020 menegaskan dokumen mencakup bentuk elektronik dan tanda tangan mencakup tanda tangan elektronik. Kuitansi Rp7.800.000 menyebutkan penerimaan uang lebih dari Rp5.000.000, terutang saat diserahkan kepada klien, dan dilunasi dengan membubuhkan Meterai Elektronik melalui Sistem Meterai Elektronik (PMK 78/2024 Pasal 16).",
         jejakHitung: [],
         mengapaSalah: {
@@ -2794,6 +2907,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya ada di cara dokumen itu dipakai, bukan isinya. Begitu sebuah dokumen diajukan sebagai alat bukti di pengadilan, ia menjadi objek bea meterai, berapa pun nilainya dan apa pun jenisnya, termasuk surel dan daftar harga. Bea meterainya terutang saat diajukan, dan yang menanggung adalah pihak yang mengajukan, di sini Tuan Hendra walaupun ia tergugat dan bukan pembuat dokumen. Cara ingat: alat bukti di pengadilan, yang bayar si pengaju.",
         inti: "Pasal 3 ayat (1) huruf b menjadikan dokumen yang digunakan sebagai alat bukti di pengadilan sebagai objek bea meterai, termasuk dokumen yang sebelumnya tidak dikenai bea meterai karena bukan objek Pasal 3 ayat (2), berapa pun nilainya. Bea meterai terutang saat dokumen diajukan ke pengadilan (Pasal 8 ayat (1) huruf d) oleh pihak yang mengajukan dokumen (Pasal 9 ayat (4)), yaitu Tuan Hendra, dan dilunasi melalui Pemeteraian Kemudian.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2821,6 +2935,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini mencari dokumen yang tidak bisa dibebaskan dari bea meterai. Pembebasan untuk pengalihan tanah atau bangunan hanya diberikan bila bangunannya dipakai semata-mata untuk kegiatan keagamaan atau sosial yang tidak mencari untung. Ruko yang disewakan ke pedagang dipakai untuk usaha, jadi tidak memenuhi syarat itu walaupun hasil sewanya untuk membiayai panti. Dokumen penyehatan lembaga jasa keuangan, bangunan panti jompo, dan perjanjian dengan organisasi internasional justru termasuk yang bisa dibebaskan. Cara ingat: lihat dipakai untuk apa bangunannya, bukan siapa pemiliknya.",
         inti: "Pasal 22 ayat (1) huruf b hanya mencakup pengalihan hak atas tanah dan/atau bangunan yang digunakan untuk kegiatan yang semata-mata keagamaan dan/atau sosial yang tidak bersifat komersial. Ruko yang disewakan kepada pedagang dipakai untuk kegiatan komersial; tujuan akhir hasil sewa (membiayai panti) tidak mengubah penggunaan bangunannya.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2848,6 +2963,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Setiap kuitansi dinilai sendiri-sendiri dari angka yang tertulis di kuitansi itu, tidak dijumlahkan. Kuitansi baru kena meterai kalau nilainya lebih dari Rp5 juta, jadi dua kuitansi Rp5 juta tidak kena, sedangkan dua kuitansi Rp6 juta kena. Surat keterangan lunas juga kena karena menyebut pelunasan utang Rp22 juta. Jadi ada 3 dokumen x Rp10.000 = Rp30.000. Cara ingat: tepat Rp5 juta belum kena, harus lewat Rp5 juta.",
         inti: "Tiap dokumen diuji atas nilai yang tercantum di dokumen itu sendiri. Kuitansi Rp5.000.000 tidak melebihi Rp5.000.000 sehingga tidak terutang; dua kuitansi Rp6.000.000 terutang; surat keterangan lunas berisi pengakuan pelunasan utang Rp22.000.000 sehingga terutang. Total 3 dokumen × Rp10.000 = Rp30.000.",
         jejakHitung: [
           ["Kuitansi 2 × Rp5.000.000", "tidak lebih dari Rp5.000.000 → tidak terutang"],
@@ -2881,6 +2997,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dengan memilah dokumen satu per satu. Perjanjian dibuat 3 rangkap asli, dan tiap rangkap asli kena Rp10.000, jadi Rp30.000. Kuitansi Rp7,5 juta kena Rp10.000, sedangkan kuitansi tepat Rp5 juta tidak kena karena belum lebih dari Rp5 juta. Konosemen, yaitu dokumen pengiriman barang, dikecualikan berapa pun nilainya, sedangkan surat kuasa tetap kena Rp10.000 karena sejenis surat pernyataan. Totalnya Rp30.000 + Rp10.000 + Rp10.000 = Rp50.000.",
         inti: "Yang terutang: 3 rangkap perjanjian (Rp30.000), kuitansi Rp7.500.000 (Rp10.000), dan surat kuasa sebagai surat yang sejenis dengan surat pernyataan (Rp10.000). Kuitansi Rp5.000.000 tidak melebihi ambang dan konosemen dikecualikan Pasal 7 huruf a.",
         jejakHitung: [
           ["Perjanjian 3 rangkap × Rp10.000", "Rp30.000"],
@@ -2916,6 +3033,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini adalah siapa yang terutang menurut undang-undang, bukan siapa yang membayar. Dokumen yang dibuat beberapa pihak terutang oleh masing-masing pihak atas rangkap yang diterimanya. Dokumen sepihak seperti kuitansi terutang oleh penerimanya, yaitu PT Sentra Boga, bukan pembuatnya. Klausul bahwa PT Laras Pangan menanggung meterai hanya mengatur siapa yang mengeluarkan uang, tidak memindahkan status pihak terutang. Cara ingat: kesepakatan boleh mengatur pembayar, tetapi tidak mengubah pihak terutang.",
         inti: "Dokumen yang dibuat dua pihak atau lebih terutang oleh masing-masing pihak atas dokumen yang diterimanya (Pasal 9 ayat (2)); dokumen sepihak seperti kuitansi terutang oleh pihak yang menerima dokumen (ayat (1)). Klausul bahwa PT Laras Pangan menanggung meterai hanya menentukan pihak yang membayar (ayat (6)), tidak mengubah pihak yang terutang.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2944,6 +3062,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kedua dokumen ini sama-sama ditandatangani, tetapi saat terutangnya berbeda. Surat perjanjian beserta rangkapnya terutang pada saat ditandatangani, jadi dokumen Q terutang 4 September 2026, walaupun rangkapnya baru dikirim 9 September. Kutipan risalah lelang termasuk dokumen yang terutang saat diserahkan kepada orang yang dituju, jadi dokumen P terutang 10 September 2026 saat diterima Tuan Bagas. Cara ingat: perjanjian dan akta ikut tanda tangan, dokumen lelang ikut penyerahan.",
         inti: "Kutipan risalah lelang adalah dokumen lelang yang terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat (huruf c), yaitu 10 September 2026. Surat perjanjian beserta rangkapnya terutang saat dibubuhi tanda tangan (huruf a), yaitu 4 September 2026, walaupun rangkapnya baru dikirim kemudian.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2971,6 +3090,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Surat keterangan lunas ini menyebut pelunasan utang Rp18 juta, jadi termasuk dokumen yang menyatakan jumlah uang lebih dari Rp5 juta, sama seperti kuitansi. Dokumen semacam ini terutang saat diserahkan kepada pihak yang dituju, karena baru saat itu dokumennya berguna bagi penerima. Kurir hanya perantara, jadi penyerahan baru terjadi ketika CV Rimba Jati menerimanya pada 3 November 2026. Tanggal pelunasan, tanda tangan, dan penyerahan ke kurir belum menentukan. Cara ingat: kuitansi dan sejenisnya terutang saat sampai di tangan penerima.",
         inti: "Dokumen yang berisi pengakuan pelunasan utang lebih dari Rp5.000.000 (sekaligus surat keterangan) terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat (Pasal 8 ayat (1) huruf c), yaitu saat diterima CV Rimba Jati pada 3 November 2026.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2998,6 +3118,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Perjanjian ini ditandatangani di luar negeri, jadi aturannya berbeda dari perjanjian dalam negeri. Dokumen buatan luar negeri baru terutang saat pertama kali digunakan di Indonesia, misalnya dijadikan dasar pencatatan pembukuan atau lampiran laporan. Tiba di Surabaya belum termasuk menggunakan. Pemakaian pertama terjadi 16 Maret 2026 saat dicatat di pembukuan, dan bea meterai hanya dikenakan sekali, jadi pelampiran ke bank tidak dihitung lagi. Cara ingat: dokumen luar negeri ikut pemakaian pertama di sini.",
         inti: "Dokumen yang dibuat di luar negeri terutang pada saat digunakan di Indonesia (Pasal 8 ayat (1) huruf e). Penjelasannya memberi contoh perjanjian utang piutang luar negeri yang digunakan saat dijadikan dasar penagihan, dasar pencatatan atau pembukuan, atau lampiran laporan. Penggunaan pertama terjadi 16 Maret 2026; bea meterai dikenakan satu kali (Pasal 4).",
         jejakHitung: [],
         mengapaSalah: {
@@ -3025,6 +3146,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Surat kolektif saham termasuk surat berharga, dan surat berharga punya aturan khusus. Bea meterainya terutang begitu suratnya selesai dibuat, yaitu 2 Oktober 2026, bukan saat diserahkan atau dicatat. Yang terutang adalah penerbitnya, PT Arta Selaras, bukan pemegang saham yang menerimanya. Walaupun terlihat seperti dokumen sepihak yang diterima orang lain, surat berharga dikecualikan dari aturan penerima. Cara ingat: surat berharga, selesai dibuat dan penerbit yang menanggung.",
         inti: "Surat berharga, termasuk surat kolektif saham, terutang pada saat selesai dibuat (Pasal 8 ayat (1) huruf b) dan terutang oleh pihak yang menerbitkannya (Pasal 9 ayat (3)). Penjelasan Pasal 3 ayat (2) huruf d: bea meterai hanya terutang atas surat kolektif sahamnya.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3052,6 +3174,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-baca", D: "salah-baca" },
       pembahasan: {
+        mudah: "Ini soal kecuali, jadi kita mencari pernyataan yang salah. Untuk surat berharga, yang terutang adalah penerbitnya, bukan penerimanya, walaupun surat itu dibuat satu pihak saja. Tiga pernyataan lain sudah benar: dokumen luar negeri ditanggung penerima manfaat, alat bukti di pengadilan ditanggung pihak yang mengajukan, dan dokumen dua pihak ditanggung masing-masing atas rangkap yang diterimanya. Cara ingat: surat berharga selalu penerbit.",
         inti: "Pasal 9 ayat (3) mengecualikan surat berharga dari aturan dokumen sepihak dan dokumen dua pihak: bea meterai atas surat berharga terutang oleh pihak yang menerbitkannya, bukan penerimanya.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3079,6 +3202,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Langsung ke aturannya: tiap jenis dokumen punya peristiwa sendiri yang membuat bea meterainya terutang. Konfirmasi transaksi saham di bursa termasuk dokumen transaksi surat berharga, yang terutang saat selesai dibuat oleh sistem perusahaan. Pasangan lain tertukar: perjanjian terutang saat ditandatangani, kuitansi saat diserahkan ke penerima, dan kontrak luar negeri saat digunakan di Indonesia, bukan saat tiba. Cara ingat lima peristiwanya: tanda tangan, selesai dibuat, diserahkan, diajukan ke pengadilan, dan dipakai di Indonesia.",
         inti: "Dokumen transaksi surat berharga terutang saat selesai dibuat (Pasal 8 ayat (1) huruf b angka 2). Penjelasan huruf b memberi contoh trade confirmation pembelian saham di bursa: terutang saat dibuat secara sistem oleh perusahaan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3106,6 +3230,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Setiap rangkap asli perjanjian adalah dokumen tersendiri yang terutang Rp10.000 sejak ditandatangani pada 3 Februari 2026. Meterai elektronik di rangkap CV Arunika Niaga hanya melunasi rangkap itu, bukan rangkap PT Lestari Gudang. Karena rangkap PT Lestari Gudang sudah terutang tetapi tidak dibayar, pemeteraian kemudian (melunasi meterai belakangan) berarti pokok Rp10.000 ditambah sanksi 100% Rp10.000, jadi Rp20.000. Membawanya ke pengadilan tidak menghapus sanksi, sebab utang meterainya sudah ada sejak tanda tangan. Cara ingat: tiap rangkap bayar sendiri.",
         inti: "Surat perjanjian terutang beserta rangkapnya; tiap rangkap asli adalah satu Dokumen yang terutang Rp10.000 sejak dibubuhi tanda tangan pada 3 Februari 2026. Rangkap PT Lestari Gudang tidak dilunasi, sehingga pemeteraian kemudian meliputi bea meterai terutang ditambah sanksi 100%. Pengajuan ke pengadilan tidak mengubahnya menjadi dokumen tanpa sanksi, karena dokumen itu sudah terutang sejak ditandatangani.",
         jejakHitung: [
           ["Rangkap PT Lestari Gudang terutang sejak", "3 Februari 2026 (ditandatangani)"],
@@ -3139,6 +3264,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya adalah kapan dan berapa bea meterai untuk dua kutipan risalah lelang. Kutipan risalah lelang terutang saat diserahkan kepada pemenangnya, dan tiap kutipan dihitung sebagai dokumen sendiri. Jadi kutipan lot 1 terutang 19 Mei dan lot 2 terutang 22 Mei 2026, masing-masing Rp10.000, total Rp20.000. Barang milik negara dan setoran hasil lelang ke kas negara tidak membuat kutipan itu bebas meterai, karena pengecualiannya hanya untuk tanda bukti penerimaan uang negara.",
         inti: "Kutipan risalah lelang adalah Dokumen lelang yang menjadi objek bea meterai (Pasal 3 ayat (2) huruf f) dan terutang pada saat diserahkan kepada pihak untuk siapa dokumen dibuat (Pasal 8 ayat (1) huruf c angka 2). Tiap kutipan adalah dokumen tersendiri dengan saat terutang masing-masing; tarif Rp10.000 per dokumen.",
         jejakHitung: [
           ["Kutipan lot 1 (diserahkan 19 Mei 2026)", "Rp10.000"],
@@ -3170,6 +3296,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada di dua hal: kapan dokumen luar negeri terutang dan apakah sanksi bisa hilang. Dokumen buatan luar negeri terutang saat dipakai di Indonesia, di sini 6 April 2026 ketika dijadikan dasar pencatatan pembukuan, dan yang menanggung adalah penerima manfaatnya, PT Sagara Kimia. Karena tidak dibayar pada saat itu, pemeteraian kemudian meliputi pokok Rp10.000 ditambah sanksi 100% Rp10.000, jadi Rp20.000. Melunasi atas kemauan sendiri tidak menghapus sanksinya.",
         inti: "Dokumen yang dibuat di luar negeri terutang pada saat digunakan di Indonesia, termasuk saat dijadikan dasar pencatatan atau pembukuan (Pasal 8 ayat (1) huruf e dan Penjelasannya), yaitu 6 April 2026, dan terutang oleh pihak yang menerima manfaat (Pasal 9 ayat (5)). Pembayaran wajib dilakukan pada saat terutang; karena tidak dilunasi, pemeteraian kemudian meliputi pokok dan sanksi 100%, walaupun dilakukan atas kemauan sendiri.",
         jejakHitung: [
           ["Saat terutang", "6 April 2026 (dasar pencatatan pembukuan di Indonesia)"],
@@ -3203,6 +3330,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Bea meterai itu tarifnya tetap Rp10.000 per dokumen, tidak peduli nilai kontrak Rp42,5 miliar atau tebal 85 halaman. Yang dihitung adalah rangkap asli yang ditandatangani, yaitu 3 rangkap, dan jumlah penanda tangan tidak menambah dokumen. Fotokopi tanpa tanda tangan tidak dihitung. Jadi 3 x Rp10.000 = Rp30.000. Cara ingat: hitung lembar asli bertanda tangan, bukan pihak, halaman, atau nilai.",
         inti: "Tarif bea meterai tetap Rp10.000 per Dokumen tanpa memandang nilai kontrak dan jumlah halaman. Tiap rangkap asli yang ditandatangani adalah satu Dokumen yang terutang, berapa pun jumlah penanda tangannya; fotokopi tanpa tanda tangan tidak pernah dibubuhi tanda tangan sehingga tidak terutang.",
         jejakHitung: [
           ["Tarif tetap (Pasal 5)", "Rp10.000 per dokumen"],
@@ -3236,6 +3364,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Mulai dari menghitung dokumen asli yang ditandatangani. Perjanjian konsorsium ada 4 rangkap, dan adendum ditandatangani terpisah pada 14 September sehingga 4 rangkapnya juga dihitung, totalnya 8 dokumen. Spesifikasi teknis dijilid menyatu dan tidak ditandatangani sendiri, jadi bukan dokumen terpisah, dan jumlah penanda tangan tidak menambah dokumen. Hasilnya 8 x Rp10.000 = Rp80.000. Cara ingat: yang jadi pengali hanya rangkap asli, bukan pihak atau halaman.",
         inti: "Bea meterai dikenakan satu kali untuk setiap Dokumen, bukan per penanda tangan atau per halaman. Perjanjian (4 rangkap) dan adendum (4 rangkap) ditandatangani pada saat berbeda sehingga masing-masing rangkap terutang; spesifikasi teknis yang dijilid menyatu dan tidak ditandatangani tersendiri bukan dokumen terpisah.",
         jejakHitung: [
           ["Perjanjian konsorsium: 4 rangkap asli", "4 dokumen"],
@@ -3268,6 +3397,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Akta notaris kena bea meterai bersama salinan dan kutipannya, dan masing-masing dihitung sebagai dokumen. Minuta, yaitu akta asli yang disimpan notaris, dihitung 1. Ada 4 salinan dan 1 kutipan yang ditandatangani notaris, jadi totalnya 6 dokumen, sedangkan 3 fotokopi tanpa tanda tangan tidak dihitung. Hasilnya 6 x Rp10.000 = Rp60.000. Cara ingat: jangan lupa minutanya, dan kutipan untuk bank tetap dihitung.",
         inti: "Objek bea meterai mencakup akta notaris beserta grosse, salinan, dan kutipannya; akta notaris itu sendiri (minuta yang ditandatangani para pihak) adalah dokumen asli yang terutang saat dibubuhi tanda tangan, dan salinan serta kutipan dikenai bea meterai yang sama dengan aslinya. Minuta, tiap salinan, dan kutipan yang ditandatangani notaris masing-masing terutang Rp10.000, sedangkan fotokopi tanpa tanda tangan tidak.",
         jejakHitung: [
           ["Minuta akta", "1 dokumen"],
@@ -3302,6 +3432,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pemungut hanya memungut atas dokumen yang memang kena meterai, jadi kita saring dulu sebelum mengalikan tarif. Tanda terima baru kena kalau nilainya lebih dari Rp5 juta, sehingga yang tepat Rp5 juta dan di bawahnya dibuang. Dari 18.400 dokumen di atas Rp5 juta, 1.400 tanda terima gaji dikecualikan, sisa 17.000 dokumen. Jadi 17.000 x Rp10.000 = Rp170 juta. Cara ingat: dua saringan dulu, yaitu batas nilai dan pengecualian, baru dikali tarif.",
         inti: "Pemungut hanya memungut atas Dokumen tertentu yang merupakan objek: dokumen yang menyebutkan penerimaan uang dengan nilai nominal lebih dari Rp5.000.000. Tanda terima pembayaran gaji tidak dikenai bea meterai (Pasal 7 huruf c) walaupun nilainya di atas ambang. Tarif Rp10.000 per dokumen.",
         jejakHitung: [
           ["Dokumen lebih dari Rp5 juta", "18.400"],
@@ -3336,6 +3467,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Pemungut bea meterai wajib menyetor dan melapor paling lambat tanggal 15 bulan berikutnya, jadi untuk Masa Juli batasnya 15 Agustus 2026. Kalau tanggal itu hari libur, batasnya bergeser ke hari kerja berikutnya. Tanggal 15 Sabtu, 16 Minggu, dan 17 libur nasional, sehingga hari kerja pertamanya Selasa, 18 Agustus 2026, untuk setor dan lapor sekaligus. Tanggal 20 adalah tenggat SPT Masa PPh, bukan bea meterai.",
         inti: "Penyetoran dan pelaporan SPT Masa Bea Meterai oleh pemungut sama-sama paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir (PMK 78/2024 Pasal 63 ayat (1) dan Pasal 64 ayat (1)). Bila batas itu hari libur (Sabtu, Minggu, hari libur nasional, cuti bersama), setor dan lapor dapat dilakukan paling lama pada hari kerja berikutnya (Pasal 65). 15 Agustus Sabtu, 16 Agustus Minggu, 17 Agustus libur nasional, sehingga batasnya 18 Agustus 2026.",
         jejakHitung: [
           ["Batas normal setor dan lapor Masa Juli 2026", "15 Agustus 2026 (Sabtu)"],
@@ -3369,6 +3501,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Karena bea meterainya disetor penuh tetapi terlambat, sanksinya bunga keterlambatan ditambah denda telat lapor, bukan sanksi 100%. Bulan bunga dihitung mulai 19 Agustus, dan bagian bulan dihitung satu bulan penuh, jadi sampai 2 November ada 3 bulan. Bunganya 0,93% x 3 x Rp170 juta = Rp4.743.000. Ditambah denda SPT Masa lainnya Rp100.000, totalnya Rp4.843.000. Cara ingat: terlambat setor kena bunga, tidak setor sama sekali baru kena 100%.",
         inti: "Bea meterai disetor penuh walau terlambat, sehingga pemungut diterbitkan STP sesuai UU KUP (Pasal 11 ayat (4) UU 10/2020): bunga Pasal 9 ayat (2a) atas keterlambatan setor, dihitung sejak berakhirnya tanggal jatuh tempo dengan bagian bulan dihitung penuh, ditambah denda Pasal 7 ayat (1) Rp100.000 untuk SPT Masa lainnya yang terlambat.",
         jejakHitung: [
           ["19 Agustus s.d. 18 September 2026", "1 bulan"],
@@ -3404,6 +3537,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Satuan yang dihitung adalah lembar, bukan buku, karena tiap lembar cek atau bilyet giro adalah satu surat berharga. Cek ada 6 x 25 = 150 lembar dan bilyet giro 4 x 50 = 200 lembar, jadi 350 lembar. Bank memungut Rp10.000 per lembar saat menerimanya dari percetakan di bulan Mei, sehingga 350 x Rp10.000 = Rp3.500.000. Cara ingat: hitung lembarnya, dan cek serta bilyet giro dihitung terpisah karena isi bukunya beda.",
         inti: "Cek dan bilyet giro adalah surat berharga; setiap lembar merupakan satu dokumen yang bea meterainya Rp10.000 dan dipungut bank selaku pemungut melalui Meterai Percetakan. Pemungutan dilakukan pada saat bank menerima lembar cek dan bilyet giro dari Wajib Pajak pemegang izin pembuatan Meterai Percetakan (PMK 78/2024 Pasal 61 huruf a), sehingga masuk Masa Mei 2026.",
         jejakHitung: [
           ["Lembar cek 6 x 25", "150"],
@@ -3436,6 +3570,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "angka-usang" },
       pembahasan: {
+        mudah: "Pemungut bea meterai menyetor dan melapor dengan batas yang sama, yaitu tanggal 15 bulan berikutnya, di sini 15 Agustus 2026. Bila batas itu jatuh pada hari libur, batasnya mundur ke hari kerja berikutnya, bukan maju ke hari sebelumnya. Hari libur di sini mencakup Sabtu, Minggu, dan libur nasional, jadi 15, 16, dan 17 Agustus semuanya dilewati. Hasilnya Selasa, 18 Agustus 2026, untuk setor maupun lapor. Aturan lama setor tanggal 10 dan lapor tanggal 20 sudah tidak berlaku.",
         inti: "Pemungut wajib menyetor dan melaporkan bea meterai paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir (Pasal 63 ayat (1) dan Pasal 64 ayat (1) PMK 78/2024). Bila batas akhir itu hari libur, penyetoran dan pelaporan dapat dilakukan paling lama pada hari kerja berikutnya (Pasal 65 ayat (1)); hari libur meliputi hari Sabtu, hari Minggu, dan hari libur nasional (Pasal 65 ayat (2)). Sabtu 15, Minggu 16, dan Senin 17 Agustus 2026 semuanya hari libur, sehingga hari kerja berikutnya adalah Selasa, 18 Agustus 2026.",
         jejakHitung: [
           ["Batas akhir normal Masa Juli 2026", "15 Agustus 2026 (Sabtu)"],
@@ -3468,6 +3603,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Prinsipnya, sanksi 100% hanya untuk bea meterai yang tidak masuk ke kas negara. Untuk 250 dokumen yang tidak dipungut dan tidak disetor, terbit SKP sebesar 250 x Rp10.000 = Rp2,5 juta ditambah sanksi 100% Rp2,5 juta. Untuk 400 dokumen lain, uangnya sudah disetor penuh dari dana perusahaan, jadi tidak ada sanksi. SPT Masa yang telat lapor ditagih lewat STP berupa denda Rp100.000. Cara ingat: uang sudah masuk kas negara berarti tidak ada sanksi 100%.",
         inti: "Pemungut yang tidak memungut dan/atau tidak menyetor diterbitkan surat ketetapan pajak sebesar bea meterai yang tidak disetor ditambah sanksi 100% (Pasal 11 ayat (2) dan (3) UU 10/2020). Contoh dalam Penjelasan Pasal 11 ayat (3) menegaskan bahwa dokumen yang tidak dipungut tetapi bea meterainya disetor ke kas negara tidak dikenai sanksi, sehingga sanksi hanya untuk 250 dokumen. Keterlambatan penyampaian SPT Masa Bea Meterai ditagih dengan STP (Pasal 11 ayat (4) huruf b) berupa denda Pasal 7 ayat (1) UU KUP untuk SPT Masa lainnya, Rp100.000.",
         jejakHitung: [
           ["(1) Pokok tidak dipungut dan tidak disetor: 250 × Rp10.000", "Rp2.500.000"],
@@ -3500,6 +3636,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Tidak ada dokumen yang dipungut bukan berarti tidak perlu lapor. Pemungut tetap wajib menyampaikan SPT Masa Bea Meterai walaupun isinya nihil, dan tiap SPT Masa yang terlambat kena denda Rp100.000. Di sini dua SPT Masa, untuk Agustus dan September, sama-sama terlambat, jadi 2 x Rp100.000 = Rp200.000. Tidak ada bunga karena tidak ada setoran yang terlambat. Cara ingat: SPT nihil tetap wajib, dan denda dihitung per SPT.",
         inti: "Pemungut tetap wajib menyampaikan SPT Masa Bea Meterai walaupun tidak ada dokumen yang wajib dipungut (Pasal 64 ayat (4) PMK 78/2024). Tiap SPT Masa nihil yang terlambat dikenai denda Pasal 7 ayat (1) UU KUP untuk SPT Masa lainnya, Rp100.000, ditagih dengan STP (Pasal 11 ayat (4) huruf b UU 10/2020). Dua SPT Masa terlambat sehingga dendanya 2 × Rp100.000. Tidak ada bunga karena tidak ada setoran yang terlambat.",
         jejakHitung: [
           ["Dokumen dipungut Masa Agustus dan September 2026", "tidak ada (SPT nihil tetap wajib)"],
@@ -3534,6 +3671,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kita saring dokumennya satu per satu. Tujuh kuitansi di atas Rp5 juta dihitung, dari perjanjian hanya 3 rangkap yang dipegang perusahaan, dan tiga kuitansi tepat Rp5 juta tidak dihitung. Kuitansi 3 Agustus 2021 sudah kedaluwarsa sejak 3 Agustus 2026, sedangkan kuitansi yang diserahkan 21 Oktober 2021 baru kedaluwarsa 21 Oktober 2026 sehingga masih dihitung. Jadi 11 dokumen x (Rp10.000 + sanksi Rp10.000) = Rp220.000.",
         inti: "Yang masih harus dilunasi adalah dokumen objek bea meterai yang belum kedaluwarsa (5 tahun sejak saat terutang). Kuitansi (1) bernilai lebih dari Rp5.000.000 sehingga objek (7 dokumen). Perjanjian (2) terutang oleh masing-masing pihak atas rangkap yang diterimanya, sehingga perusahaan menanggung 3 rangkap. Kuitansi (3) tepat Rp5.000.000 tidak lebih dari Rp5.000.000 sehingga bukan objek. Kuitansi (4) terutang 3 Agustus 2021 dan kedaluwarsa mulai 3 Agustus 2026, sebelum pemeriksaan. Kuitansi (5) terutang saat diserahkan, 21 Oktober 2021, dan baru kedaluwarsa mulai 21 Oktober 2026. Jadi 11 dokumen masing-masing Rp10.000 ditambah sanksi 100%.",
         jejakHitung: [
           ["Kuitansi (1) Rp5,5 juta sampai Rp30 juta", "7 dokumen"],
@@ -3570,6 +3708,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini siapa yang harus melunasi rangkap-rangkap perjanjian sewa. Untuk dokumen yang dibuat dua pihak, tiap pihak menanggung rangkap yang ia terima, tidak peduli siapa yang menyusun atau siapa yang mendapat manfaat. Jadi perusahaan melunasi 3 rangkap miliknya dan pemilik gudang 3 rangkap miliknya. Karena perjanjian sudah terutang sejak ditandatangani tetapi tidak dibayar, pemeteraian kemudian disertai sanksi 100%. Cara ingat: siapa pegang rangkap, dia yang bayar.",
         inti: "Dokumen yang dibuat oleh dua pihak atau lebih terutang bea meterai oleh masing-masing pihak atas dokumen yang diterimanya (Pasal 9 ayat (2) UU 10/2020). Pihak yang wajib melakukan pemeteraian kemudian adalah Pihak Yang Terutang menurut Pasal 9 (Pasal 17 ayat (2)), dan karena bea meterai perjanjian sudah terutang sejak ditandatangani tetapi tidak dibayar, pemeteraian kemudian dilakukan sebesar bea meterai ditambah sanksi 100% (Pasal 18). Perusahaan melunasi 3 rangkap miliknya; pemilik gudang atas 3 rangkap miliknya.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3598,6 +3737,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Ada dua langkah di sini. Pertama, kuitansi terutang saat diserahkan ke penerima, bukan saat ditandatangani, jadi saat terutangnya 21 Oktober 2021. Kedua, bea meterai kedaluwarsa setelah 5 tahun sejak saat itu, dihitung per tanggal, tidak dibulatkan ke akhir tahun. Dengan 21 Oktober 2021 sebagai hari pertama, hari terakhirnya 20 Oktober 2026, sehingga kedaluwarsa mulai 21 Oktober 2026. Pemeriksaan 9 September 2026 masih di dalam masa itu.",
         inti: "Kuitansi adalah dokumen yang menyatakan jumlah uang; bea meterainya terutang saat dokumen diserahkan kepada pihak untuk siapa dokumen itu dibuat, bukan saat ditandatangani (Pasal 8 ayat (1) huruf c UU 10/2020 dan Penjelasannya). Saat terutangnya 21 Oktober 2021. Menurut Pasal 23, bea meterai kedaluwarsa setelah jangka waktu 5 tahun sejak saat terutang. Dengan 21 Oktober 2021 sebagai hari pertama, hari terakhir jangka waktu adalah 20 Oktober 2026, sehingga kedaluwarsa mulai 21 Oktober 2026. Pemeriksaan 9 September 2026 masih di dalam jangka waktu.",
         jejakHitung: [
           ["Saat terutang (kuitansi diserahkan)", "21 Oktober 2021"],
@@ -3630,6 +3770,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuitansi di bawah Rp5 juta biasanya tidak kena meterai, tetapi begitu diajukan sebagai alat bukti di pengadilan, ia menjadi dokumen yang kena bea meterai. Karena semula tidak kena, cukup bayar pokoknya tanpa sanksi: 62 x Rp10.000 = Rp620.000. Karena jumlahnya lebih dari 50 dokumen, boleh dibayar dengan Surat Setoran Pajak, dan yang mengesahkan adalah Pejabat DJP. Pejabat Pos hanya mengesahkan yang dibayar dengan meterai tempel. Cara ingat: semula tidak kena berarti tanpa sanksi, tetapi pokok tetap dibayar.",
         inti: "Dokumen yang digunakan sebagai alat bukti di pengadilan adalah objek tersendiri (Pasal 3 ayat (1) huruf b UU 10/2020) yang terutang saat diajukan. Karena semula bukan objek, pemeteraian kemudian cukup sebesar bea meterai yang terutang tanpa sanksi (Pasal 18 ayat (1) huruf b UU 10/2020; Pasal 49 huruf c PMK 78/2024). Pemeteraian kemudian lebih dari 50 dokumen dapat dibayar dengan Surat Setoran Pajak (Pasal 42 huruf a PMK 78/2024). Pejabat Pos hanya mengesahkan pemeteraian kemudian yang dibayar dengan meterai tempel (Pasal 51 ayat (2)); yang dibayar dengan Surat Setoran Pajak disahkan Pejabat DJP (Pasal 51 ayat (4)).",
         jejakHitung: [
           ["Kuitansi diajukan sebagai alat bukti", "62 dokumen"],
@@ -3663,6 +3804,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pilah daftar bukti ini ke tiga kelompok. Surat pernyataan dan empat kuitansi Rp7,5 juta sejak awal wajib bermeterai tetapi dibiarkan, jadi tiap dokumen Rp10.000 plus denda Rp10.000: 5 x Rp20.000 = Rp100.000. Dua kuitansi Rp3 juta dan lima cetakan percakapan baru wajib karena dibawa ke pengadilan, jadi cukup 7 x Rp10.000 = Rp70.000. Perjanjian yang sudah bermeterai sah tidak dibayar lagi, sehingga totalnya Rp170.000. Cara ingat: yang sejak awal wajib tapi dibiarkan kena denda, yang baru wajib karena pengadilan tidak.",
         inti: "Surat pernyataan dan kuitansi Rp7.500.000 sudah terutang sejak diserahkan dan tidak dilunasi, sehingga pemeteraian kemudian sebesar pokok ditambah sanksi 100% (Pasal 17 ayat (1) huruf a dan Pasal 18 ayat (1) huruf a). Kuitansi Rp3.000.000 serta cetakan percakapan tertulis (tulisan dalam bentuk cetakan, termasuk Dokumen menurut Pasal 1 angka 2) baru terutang karena diajukan sebagai alat bukti, sehingga cukup pokok (Pasal 17 ayat (1) huruf b dan Pasal 18 ayat (1) huruf b). Perjanjian yang sudah bermeterai sah tidak perlu dimeteraikan lagi karena bea meterai dikenakan satu kali untuk setiap dokumen (Pasal 4).",
         jejakHitung: [
           ["(1) 1 surat pernyataan × (Rp10.000 + Rp10.000)", "Rp20.000"],
@@ -3698,6 +3840,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang ditanya di sini dokumen mana yang belum kedaluwarsa. Hak menagih bea meterai habis 5 tahun sejak saat terutang, dan untuk kuitansi serta surat pernyataan saat terutangnya adalah tanggal diserahkan, bukan tanggal ditandatangani. Kuitansi Rp9 juta diserahkan 26 Agustus 2021 dan surat pernyataan 15 November 2021, jadi pada 11 Agustus 2026 keduanya belum lewat 5 tahun. Perjanjian 2 Juli 2021 dan kuitansi 30 Juni 2021 sudah lewat. Cara ingat: kuitansi dihitung dari tanggal serah.",
         inti: "Bea meterai kedaluwarsa setelah 5 tahun sejak saat terutang (Pasal 23). Saat terutang kuitansi dan surat pernyataan adalah saat diserahkan, sedangkan surat perjanjian saat ditandatangani (Pasal 8 ayat (1)). (1) terutang 26 Agustus 2021, kedaluwarsa mulai 26 Agustus 2026, masih dapat ditagih; (2) kedaluwarsa mulai 2 Juli 2026, lewat; (3) kedaluwarsa mulai 15 November 2026, masih dapat ditagih; (4) kedaluwarsa mulai 30 Juni 2026, lewat.",
         jejakHitung: [
           ["(1) terutang 26 Agustus 2021 (diserahkan)", "kedaluwarsa mulai 26 Agustus 2026 → masih ditagih"],
@@ -3731,6 +3874,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Soal ini menggabungkan dua jenis denda. PT Kirana menerima kuitansi tanpa meterai, jadi dendanya 100% per dokumen, tetapi hanya 45 kuitansi di atas Rp5 juta yang wajib; yang Rp4 juta bukan objek, sehingga 45 x Rp10.000 = Rp450.000. PT Bursa Niaga sudah menyetor penuh tetapi telat, jadi kena bunga, dan bagian bulan dihitung sebulan penuh. Dari 16 Juli sampai 28 September ada 3 bulan, sehingga Rp3,8 juta x 0,97% x 3 = Rp110.580. Cara ingat: penerima yang tidak bayar kena 100%, pemungut yang telat setor kena bunga.",
         inti: "Pihak Yang Terutang yang tidak melunasi bea meterai dikenai sanksi 100% per dokumen (Pasal 18 ayat (2); bila ditemukan pemeriksaan ditetapkan dengan surat ketetapan pajak menurut Pasal 19 UU 10/2020). Hanya 45 kuitansi di atas Rp5.000.000 yang objek; kuitansi Rp4.000.000 bukan objek. Pemungut yang menyetor penuh tetapi terlambat ditagih dengan STP berupa bunga Pasal 9 ayat (2a) UU KUP (Pasal 11 ayat (4) UU 10/2020), bagian bulan dihitung penuh. Dari 16 Juli sampai 28 September 2026 terdapat 2 bulan penuh dan 1 bagian bulan, jadi 3 bulan.",
         jejakHitung: [
           ["PT Kirana: 45 × 100% × Rp10.000", "Rp450.000"],
@@ -3765,6 +3909,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya ada di satu pertanyaan: apakah saat wajib bayar sudah lewat tanpa dibayar? Surat kuasa wajib bermeterai sejak diserahkan pada Februari, tetapi baru dibayar Juli, jadi kena denda. Perjanjian Kuala Lumpur sudah dipakai untuk pembukuan sejak Februari, padahal baru dibayar September, jadi juga kena denda. Perjanjian Singapura dibayar sebelum dipakai di Indonesia, dan tanda terima Rp4,5 juta baru wajib karena dibawa ke pengadilan, jadi keduanya tanpa denda. Cara ingat: denda hanya untuk yang terlambat dari saat wajibnya.",
         inti: "Sanksi 100% hanya melekat pada dokumen yang bea meterainya sudah terutang tetapi tidak dibayar sampai lewat saat terutangnya. Surat kuasa termasuk surat sejenis surat pernyataan yang terutang saat diserahkan (Februari 2026), dan perjanjian Kuala Lumpur sudah terutang sejak dijadikan dasar pencatatan di Indonesia (Februari 2026). Perjanjian Singapura dilunasi sebelum digunakan di Indonesia, dan tanda terima Rp4.500.000 semula bukan objek sehingga cukup Rp10.000 tanpa sanksi.",
         jejakHitung: [
           ["(1) Surat kuasa (surat sejenis surat pernyataan)", "terutang 9 Februari 2026, belum dibayar → Rp10.000 + sanksi 100%"],
@@ -3797,6 +3942,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Mulai dari pertanyaan siapa yang menerima tiap dokumen, karena penerimalah yang menanggung bea meterai. CV menerima 3 rangkap kontrak miliknya dan 3 kuitansi pemasok yang nilainya di atas Rp5 juta (Rp12 juta, Rp7,5 juta, Rp30 juta); kuitansi Rp5 juta dan Rp4,8 juta bukan objek. Kuitansi termin buatan CV ditanggung pemberi kerja. Semua sudah telat, jadi tiap dokumen Rp10.000 plus denda Rp10.000: 6 x Rp20.000 = Rp120.000. Cara ingat: kuitansi yang kita buat, orang lain yang bayar meterainya.",
         inti: "CV Karya Baja Mandiri terutang atas 3 rangkap kontrak yang diterimanya dan atas kuitansi pemasok yang diterimanya dengan nilai lebih dari Rp5.000.000 (Rp12.000.000, Rp7.500.000, dan Rp30.000.000). Kuitansi termin buatannya terutang oleh pemberi kerja sebagai penerima. Keenam dokumen sudah lewat saat terutang sehingga masing-masing dilunasi Rp10.000 ditambah sanksi 100%.",
         jejakHitung: [
           ["Rangkap kontrak milik CV", "3 dokumen"],
@@ -3830,6 +3976,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini meminta kalimat baku yang benar di tiga titik sekaligus. Pertama, batasnya lebih dari Rp5 juta, jadi surat Rp5 juta tidak terutang dan surat Rp6,4 juta terutang. Kedua, surat semacam ini terutang saat diserahkan, yaitu 21 September, bukan saat ditandatangani 16 September. Ketiga, yang menanggung adalah penerima surat, yaitu distributor, karena surat dibuat sepihak. Kalimat yang benar adalah yang memuat ketiganya: lebih dari Rp5 juta, saat diserahkan, dan ditanggung penerima.",
         inti: "Dokumen yang berisi pengakuan bahwa utang telah dilunasi atau diperhitungkan termasuk objek Pasal 3 ayat (2) huruf g bila nilainya lebih dari Rp5.000.000, terutang saat diserahkan kepada pihak untuk siapa dokumen dibuat (Pasal 8 ayat (1) huruf c), dan sebagai dokumen sepihak terutang oleh penerimanya (Pasal 9 ayat (1)). Hanya opsi D yang memuat ketiga unsur itu.",
         jejakHitung: [
           ["Surat konfirmasi Rp5.000.000", "tidak lebih dari Rp5 juta → tidak terutang"],
@@ -3862,6 +4009,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Langsung ke aturannya: berkas PDF tetap dihitung dokumen, dan gambar tanda tangan hasil pindai tetap dihitung tanda tangan. Kontrak atau surat perjanjian kena Rp10.000 berapa pun nilainya, karena batas Rp5 juta hanya untuk dokumen penerimaan uang seperti kuitansi. Kontrak ini terutang saat ditandatangani, yaitu 7 Oktober 2026. Karena dokumennya elektronik, cara bayarnya dengan meterai elektronik yang punya kode unik, bukan gambar meterai tempel yang dipindai.",
         inti: "Dokumen elektronik termasuk Dokumen, dan Tanda Tangan mencakup teraan tanda tangan, tanda lain pengganti tanda tangan, serta tanda tangan elektronik (Pasal 1 UU 10/2020). Surat perjanjian terutang saat dibubuhi tanda tangan (Pasal 8 ayat (1) huruf a) dengan tarif tetap Rp10.000 tanpa ambang nilai (Pasal 5), dan dokumen elektronik dilunasi dengan meterai elektronik berkode unik (Pasal 12 dan Pasal 14).",
         jejakHitung: [
           ["Jenis dokumen", "surat perjanjian elektronik (Pasal 3 ayat (2) huruf a)"],
@@ -3896,6 +4044,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-baca", D: "angka-usang" },
       pembahasan: {
+        mudah: "Ada dua hal yang dicari: berapa yang disetor dan kapan tenggatnya. Hanya kuitansi di atas Rp5 juta yang kena, jadi yang tepat Rp5 juta dan di bawahnya diabaikan: 4.615 x Rp10.000 = Rp46.150.000. Tenggat normalnya 15 Mei 2026, tetapi hari itu cuti bersama nasional, lalu disusul Sabtu dan Minggu. Karena itu setor dan lapor bergeser ke hari kerja berikutnya, Senin 18 Mei 2026. Cara ingat: cuti bersama nasional ikut dianggap hari libur.",
         inti: "Bea meterai yang dipungut hanya atas kuitansi bernilai lebih dari Rp5.000.000: 4.615 × Rp10.000 = Rp46.150.000. Tenggat setor dan lapor Masa April 2026 adalah 15 Mei 2026; karena 15 Mei cuti bersama secara nasional, disusul Sabtu dan Minggu, keduanya bergeser ke hari kerja berikutnya, Senin 18 Mei 2026.",
         jejakHitung: [
           ["Dokumen objek pemungutan", "4.615 (kuitansi tepat Rp5.000.000 dan di bawahnya tidak terutang)"],
@@ -3930,6 +4079,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Dua langkah: pilah dulu mana yang objek, lalu lihat siapa penerimanya. PT Arunika menerima 2 rangkap perjanjian sewa dan 2 kuitansi pemasok di atas Rp5 juta (Rp8,75 juta dan Rp15,2 juta). Perjanjian Osaka juga sudah terutang karena dipakai untuk pembukuan di Indonesia pada 24 Agustus. Kuitansi buatannya ditanggung pembeli, surat pernyataannya ditanggung bank, sedangkan tanda terima lembur dan surat jalan bukan objek. Totalnya 5 x Rp10.000 = Rp50.000.",
         inti: "Pilah objek dulu, lalu pihak terutang. PT Arunika terutang atas dua rangkap perjanjian yang diterimanya, dua kuitansi pemasok bernilai lebih dari Rp5.000.000 yang diterimanya, dan perjanjian Osaka yang sudah digunakan di Indonesia sebagai dasar pembukuan. Kuitansi buatannya terutang oleh pembeli dan surat pernyataannya terutang oleh bank sebagai penerima.",
         jejakHitung: [
           ["(1) Rangkap perjanjian yang diterima PT Arunika", "2 dokumen (rangkap CV terutang oleh CV)"],
@@ -3966,6 +4116,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "lupa-pasal", C: "salah-baca" },
       pembahasan: {
+        mudah: "Hitung per kelompok dokumen. Lima dokumen Agustus 2026 belum dibayar, jadi tiap dokumen Rp10.000 plus denda Rp10.000: 5 x Rp20.000 = Rp100.000. Kuitansi 9 November 2021 belum lewat 5 tahun pada 4 November 2026, jadi Rp20.000, sedangkan kuitansi 27 Oktober 2021 sudah kedaluwarsa. Meterai tempel lama hanya berlaku sampai akhir 2021, jadi dua perjanjian 2023 dan 2024 dianggap belum bayar: 2 x Rp20.000 = Rp40.000. Totalnya Rp160.000.",
         inti: "Dokumen yang tidak dilunasi pada saat terutang dimeteraikan kemudian sebesar Rp10.000 ditambah sanksi 100% per dokumen, kecuali bea meterainya sudah kedaluwarsa setelah 5 tahun sejak saat terutang. Meterai tempel lama hanya dapat dipakai sampai 31 Desember 2021, sehingga dua perjanjian 2023 dan 2024 dianggap tidak dibayar walaupun nilai tempelnya Rp12.000.",
         jejakHitung: [
           ["Lima dokumen Agustus 2026", "5 × Rp20.000 = Rp100.000"],
@@ -3999,6 +4150,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya hanya bea meterai yang ditanggung PT Cendekia sendiri. Sertifikat kursus, tanda terima gaji, tanda pembagian dividen, dan setoran intern antarbagian memang dibebaskan, berapa pun nilainya. Kuitansi biaya kursus dibuat PT Cendekia, jadi yang menanggung pesertanya sebagai penerima. Sisanya tiga dokumen yang diterima PT Cendekia: rangkap perjanjian sewa miliknya, kuitansi proyektor, dan surat pernyataan peserta, sehingga 3 x Rp10.000 = Rp30.000.",
         inti: "Sertifikat kursus, tanda terima gaji, tanda pembagian dividen, dan tanda terima uang intern dikecualikan Pasal 7 berapa pun nilainya. Kuitansi biaya kursus terutang oleh peserta sebagai penerima. Yang terutang oleh PT Cendekia hanya rangkap perjanjian yang diterimanya, kuitansi proyektor yang diterimanya, dan surat pernyataan yang diterimanya.",
         jejakHitung: [
           ["(1) Sertifikat kelulusan kursus", "bukan objek (Pasal 7 huruf b dan Penjelasannya)"],
@@ -4034,6 +4186,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Bilyet giro termasuk surat berharga, dan surat berharga kena Rp10.000 per lembar tanpa melihat nominal yang ditulis. Batas Rp5 juta hanya berlaku untuk dokumen penerimaan uang seperti kuitansi, jadi lembar Rp3,2 juta pun tetap kena. Bank yang ditunjuk sebagai pemungut sudah memungutnya lewat meterai yang tercetak di tiap lembar sebelum buku diserahkan. Jadi perusahaan tidak perlu menempel meterai lagi. Cara ingat: satu lembar giro, satu meterai, sudah tercetak dari bank.",
         inti: "Bilyet giro termasuk surat berharga (Pasal 3 ayat (2) huruf d UU 10/2020 dan Penjelasannya) yang terutang tanpa ambang nilai, satu kali untuk setiap dokumen, yaitu per lembar. Bank yang ditetapkan sebagai pemungut memungut bea meterai cek dan bilyet giro dengan Meterai Percetakan (Pasal 62 ayat (1) huruf a PMK 78/2024) pada saat menerima dokumen dari pemegang izin pembuatan Meterai Percetakan (Pasal 61 huruf a), jadi sebelum buku diserahkan kepada nasabah. Lembar itu sudah lunas, sehingga nasabah tidak membubuhkan meterai lagi.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4061,6 +4214,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari PPh 21 dulu, karena hasilnya menentukan nilai kuitansi. Untuk bukan pegawai, dasarnya 50% dari Rp5,25 juta = Rp2,625 juta, lalu dikali tarif 5% = Rp131.250, jadi uang yang diterima Rp5.118.750. Angka itu lebih dari Rp5 juta, sehingga kuitansinya kena Rp10.000, ditanggung PT Galeri sebagai penerima kuitansi. Tanda terima insentif pegawai tetap dibebaskan karena termasuk tanda terima gaji. Cara ingat: lihat angka bersih di kuitansi, bukan honor brutonya.",
         inti: "Bagi bukan pegawai, PPh 21 = 5% × 50% × Rp5.250.000 = Rp131.250, sehingga uang yang diterima Rp5.118.750. Kuitansi itu menyebutkan penerimaan uang lebih dari Rp5.000.000 dan terutang oleh PT Galeri Rupa Kencana sebagai penerima dokumen; tanda terima insentif pegawai tetap dikecualikan Pasal 7 huruf c.",
         jejakHitung: [
           ["Dasar pemotongan = 50% × Rp5.250.000", "Rp2.625.000"],
@@ -4094,6 +4248,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Soal ini meminta kita memisahkan dokumen yang kena dari yang dibebaskan. Surat kuasa diperlakukan seperti surat pernyataan, dan konfirmasi penjualan obligasi di luar bursa adalah dokumen transaksi surat berharga, jadi keduanya kena. Laporan saldo efek dan rekening koran hanya menunjukkan simpanan, sedangkan pemberitahuan dividen adalah tanda pembagian keuntungan, jadi ketiganya dibebaskan. Nilai Rp9,6 juta atau saldo Rp480 juta tidak mengubah apa pun.",
         inti: "Surat kuasa termasuk \"surat lainnya yang sejenis\" dengan surat pernyataan (Pasal 3 ayat (2) huruf a dan Penjelasannya), dan konfirmasi transaksi penjualan obligasi di luar bursa adalah Dokumen transaksi surat berharga (huruf e). Statement of account dan rekening koran giro adalah dokumen yang menyebutkan simpanan surat berharga atau simpanan uang (Pasal 7 huruf g), sedangkan pemberitahuan dividen adalah tanda pembagian keuntungan dari surat berharga (Pasal 7 huruf i); ketiganya tidak dikenai bea meterai.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4122,6 +4277,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya: dokumen di dalam satu badan dianggap urusan intern dan tidak kena bea meterai. SMP dan panitia guru adalah bagian dari yayasan, jadi setoran uang sekolah dan tanda terima panjar tidak kena. Koperasi punya badan hukum sendiri, jadi kuitansi sewa kantin Rp27 juta adalah kuitansi ke pihak luar dan nilainya di atas Rp5 juta. Kuitansi itu ditanggung koperasi sebagai penerimanya, bukan yayasan sebagai pembuatnya.",
         inti: "Tanda terima dari unit SMP kepada bendahara yayasan dan tanda terima panjar kepada panitia guru dibuat untuk keperluan intern satu badan (yayasan), sehingga tidak dikenai bea meterai. Koperasi adalah badan hukum lain, sehingga kuitansi sewa Rp27.000.000 yang dibuat yayasan merupakan dokumen penerimaan uang lebih dari Rp5.000.000; dokumen sepihak ini terutang oleh pihak yang menerimanya, yaitu koperasi.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4149,6 +4305,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "angka-usang" },
       pembahasan: {
+        mudah: "Hitung per lembar dokumen. Perjanjian sewa dibuat 2 rangkap asli, dan tiap rangkap kena Rp10.000 berapa pun nilai sewanya, jadi Rp20.000. Kuitansi uang muka Rp4,8 juta tidak lebih dari Rp5 juta, jadi tidak kena. Kuitansi pelunasan Rp43,2 juta kena Rp10.000, sehingga totalnya Rp20.000 + Rp10.000 = Rp30.000. Cara ingat: perjanjian selalu kena per rangkap, kuitansi hanya bila di atas Rp5 juta.",
         inti: "Setiap rangkap asli surat perjanjian adalah dokumen tersendiri yang terutang tanpa ambang nilai, sehingga 2 rangkap terutang 2 × Rp10.000. Kuitansi uang muka Rp4.800.000 tidak lebih dari Rp5.000.000 sehingga bukan objek, sedangkan kuitansi pelunasan Rp43.200.000 terutang Rp10.000.",
         jejakHitung: [
           ["Surat perjanjian 2 rangkap × Rp10.000", "Rp20.000"],
@@ -4182,6 +4339,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya kapan tiap dokumen mulai wajib bermeterai. Perjanjian dan akta, termasuk salinan akta, terutang saat ditandatangani, jadi PPJB 12 Februari dan akta beserta salinannya 15 Juni 2026. Surat pernyataan dan kuitansi terutang saat diserahkan, jadi surat pernyataan 23 Februari dan kuitansi uang muka 5 Maret. Tanggal tanda tangan surat pernyataan dan kuitansi hanyalah pengecoh. Cara ingat: perjanjian ikut tanggal tanda tangan, kuitansi ikut tanggal serah.",
         inti: "Surat perjanjian (PPJB) serta akta PPAT beserta salinannya terutang saat dibubuhi tanda tangan (Pasal 8 ayat (1) huruf a), sedangkan surat pernyataan dan kuitansi terutang saat diserahkan kepada pihak untuk siapa dokumen itu dibuat (Pasal 8 ayat (1) huruf c).",
         jejakHitung: [],
         mengapaSalah: {
@@ -4210,6 +4368,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Tarifnya tetap Rp10.000 per dokumen, jadi harga ruko Rp2,16 miliar tidak berpengaruh. Hitung dokumennya: 2 rangkap PPJB, surat pernyataan, kuitansi uang muka, kuitansi pelunasan, serta akta jual beli dengan 2 salinannya, totalnya 8 dokumen. Kuitansi tanda jadi tepat Rp5 juta tidak ikut karena syaratnya harus lebih dari Rp5 juta. Jadi 8 x Rp10.000 = Rp80.000.",
         inti: "Hitung per dokumen dengan tarif tetap Rp10.000: 2 rangkap PPJB, surat pernyataan, kuitansi uang muka, kuitansi pelunasan, serta akta jual beli beserta 2 salinannya. Kuitansi tanda jadi tepat Rp5.000.000 tidak lebih dari Rp5.000.000 sehingga bukan objek. Harga ruko tidak memengaruhi tarif.",
         jejakHitung: [
           ["(a) PPJB 2 rangkap", "Rp20.000"],
@@ -4246,6 +4405,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Ada dua hitungan di sini. PPh final penjualan ruko oleh pengembang 2,5% dari harga: 2,5% x Rp2,16 miliar = Rp54 juta. Untuk bea meterai, PT Griya menanggung dokumen yang diterimanya, yaitu rangkap PPJB miliknya dan surat pernyataan pembeli, jadi 2 x Rp10.000 = Rp20.000. Kuitansi buatan PT Griya ditanggung pembeli sebagai penerima, dan akta beserta salinannya juga dibayar pembeli sesuai kesepakatan.",
         inti: "PPh final 2,5% × Rp2.160.000.000 = Rp54.000.000. Tanpa kesepakatan, PT Griya Pesona membayar bea meterai atas rangkap PPJB yang diterimanya (dokumen dua pihak, Pasal 9 ayat (2)) dan atas surat pernyataan pembeli yang diterimanya (dokumen sepihak, Pasal 9 ayat (1)). Kuitansi yang dibuatnya terutang oleh Tn. Yudhistira sebagai penerima, sedangkan bea meterai akta jual beli beserta salinannya, termasuk salinan untuk PT Griya Pesona, dibayar pembeli sesuai kesepakatan yang dibolehkan Pasal 9 ayat (6).",
         jejakHitung: [
           ["PPh final = 2,5% × Rp2.160.000.000", "Rp54.000.000"],
@@ -4280,6 +4440,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini menguji dua hal: berapa dokumennya dan apa arti klausul pembebanan. Yang dihitung adalah rangkap asli, bukan jumlah pihak, jadi 4 rangkap x Rp10.000 = Rp40.000, semuanya terutang saat ditandatangani 14 Agustus 2026. Klausul dalam perjanjian itu sah, tetapi hanya menentukan siapa yang membayar. PT Arunika melunasi keempat rangkap, dan tanggal terutangnya tidak berubah. Cara ingat: kesepakatan mengubah siapa yang bayar, bukan kapan dan berapa.",
         inti: "Rangkap adalah satuan jumlah dokumen, sehingga keempat rangkap asli masing-masing terutang Rp10.000 saat ditandatangani pada 14 Agustus 2026. Tanpa kesepakatan, tiap pihak terutang atas rangkap yang diterimanya; Pasal 9 ayat (6) membolehkan para pihak menentukan pihak yang membayar, sehingga PT Arunika melunasi keempat rangkap tanpa mengubah jumlah dokumen maupun saat terutang.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4307,6 +4468,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Mulai dengan menentukan tanggal terutang tiap dokumen, lalu pilih yang jatuh di bulan Juli. Perjanjian sewa dan akta notaris ikut tanggal tanda tangan, yaitu 28 dan 31 Juli. Aksep sebagai surat berharga ikut tanggal selesai dibuat, 30 Juli, dan perjanjian Singapura ikut tanggal pertama dipakai di Indonesia, 29 Juli. Kuitansi dan surat pernyataan ikut tanggal diserahkan, yaitu Agustus, jadi tidak masuk Juli.",
         inti: "Surat perjanjian dan akta notaris terutang saat ditandatangani, surat berharga saat selesai dibuat, kuitansi dan surat pernyataan saat diserahkan, dan dokumen yang dibuat di luar negeri saat digunakan di Indonesia. Yang jatuh pada Juli 2026: (1) 28 Juli, (3) 30 Juli, (5) 29 Juli, dan (6) 31 Juli.",
         jejakHitung: [
           ["(1) Perjanjian sewa", "28 Juli (tanda tangan)"],
@@ -4342,6 +4504,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Pertama, cap nama direktur dan paraf peternak tetap dihitung sebagai tanda tangan menurut aturan bea meterai. Jadi semua perjanjian terutang saat ditandatangani 24 September 2026, bukan saat rangkap dibagikan 2 Oktober. Jumlahnya 60 perjanjian x 2 rangkap = 120 rangkap, sehingga 120 x Rp10.000 = Rp1.200.000. Karena perjanjian menyebut PT yang menanggung, PT membayar semuanya, termasuk rangkap milik peternak.",
         inti: "Teraan cap nama dan paraf termasuk Tanda Tangan menurut Pasal 1 angka 3, sehingga 120 rangkap terutang saat dibubuhi tanda tangan pada 24 September 2026. Tanpa kesepakatan, tiap pihak terutang atas rangkap yang diterimanya; karena perjanjian menentukan PT yang menanggung, PT membayar seluruh 120 rangkap (Pasal 9 ayat (6)).",
         jejakHitung: [
           ["Jumlah rangkap 60 × 2", "120"],
@@ -4374,6 +4537,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kita pilah dulu siapa penerima tiap dokumen: PT Mitra Farmasi menerima 3 kuitansi pemasok di atas Rp5 juta, 2 rangkap perjanjian rumah sakit, dan surat pernyataan apotek. Ia juga menerbitkan bilyet giro dan memakai perjanjian Jerman untuk pembukuan di Indonesia. Itu 8 dokumen, jadi 8 x Rp10.000 = Rp80.000. Kuitansi buatannya ditanggung apotek, surat kuasa ditanggung konsultan, dan setoran cabang ke pusat adalah urusan intern. Cara ingat: surat berharga ditanggung penerbitnya, kuitansi ditanggung penerimanya.",
         inti: "PT Mitra Farmasi terutang atas tiga kuitansi pemasok di atas Rp5.000.000 yang diterimanya, 2 rangkap perjanjian yang diterimanya, bilyet giro yang diterbitkannya, surat pernyataan yang diterimanya, dan perjanjian distribusi Jerman yang digunakannya di Indonesia sebagai penerima manfaat: 8 dokumen × Rp10.000.",
         jejakHitung: [
           ["(1) Kuitansi pemasok Rp5,25 juta, Rp18,5 juta, Rp91 juta", "3 dokumen"],
@@ -4411,6 +4575,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", C: "salah-baca" },
       pembahasan: {
+        mudah: "Yang menentukan di sini adalah kapan kutipan itu ditandatangani, bukan kapan aktanya dibuat. Kutipan akta notaris dihitung sebagai dokumen tersendiri dan terutang saat notaris menandatanganinya, yaitu 4 November 2026. Karena itu tarif yang dipakai tarif sekarang, Rp10.000 per kutipan, jadi dua kutipan Rp20.000. Bila dibayar saat itu, tidak ada denda, dan meterai lama di minuta tahun 2020 tidak ada hubungannya.",
         inti: "Akta notaris beserta grosse, salinan, dan kutipannya adalah objek bea meterai (Pasal 3 ayat (2) huruf b) yang terutang pada saat dibubuhi tanda tangan (Pasal 8 ayat (1) huruf a angka 2). Kedua kutipan ditandatangani notaris pada 4 November 2026, sehingga masing-masing terutang Rp10.000 menurut tarif UU 10/2020 (Pasal 5), seluruhnya Rp20.000.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4439,6 +4604,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Pilah alat bukti ke tiga kelompok. Yang sudah bermeterai sah, yaitu perjanjian dan kuitansi Rp146 juta, tidak dibayar lagi. Yang sejak awal wajib tetapi dibiarkan, yaitu adendum, kuitansi Rp320 juta, dan surat pernyataan, kena Rp10.000 plus denda Rp10.000, jadi 3 x Rp20.000 = Rp60.000. Yang baru wajib karena dibawa ke pengadilan, yaitu kuitansi tepat Rp5 juta dan empat cetakan percakapan, cukup 5 x Rp10.000 = Rp50.000, sehingga totalnya Rp110.000.",
         inti: "Dokumen objek yang tidak dilunasi pada saat terutang dimeteraikan kemudian sebesar bea meterai ditambah sanksi 100%; dokumen yang semula bukan objek dan baru terutang karena diajukan sebagai alat bukti cukup dilunasi bea meterainya; dokumen yang sudah lunas tidak dimeteraikan lagi.",
         jejakHitung: [
           ["(1) Perjanjian bermeterai tempel sah", "Rp0"],
@@ -4476,6 +4642,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuitansi ini nilainya tepat Rp5 juta, padahal kuitansi baru kena bila lebih dari Rp5 juta. Jadi saat diserahkan pada Juni 2025 kuitansi itu belum wajib bermeterai. Ia baru wajib karena dipakai sebagai alat bukti, sehingga terutang saat diajukan ke pengadilan, 25 November 2026. Yang menanggung adalah pihak yang mengajukannya, yaitu PT Presisi Mekatama, bukan pembuat kuitansi. Cara ingat: dokumen yang wajib karena pengadilan ditanggung pihak yang membawanya.",
         inti: "Kuitansi Rp5.000.000 tidak lebih dari Rp5.000.000, sehingga saat diserahkan bukan objek Pasal 3 ayat (2) huruf g. Ia menjadi objek karena digunakan sebagai alat bukti (Pasal 3 ayat (1) huruf b), terutang saat diajukan ke pengadilan (Pasal 8 ayat (1) huruf d), oleh pihak yang mengajukan (Pasal 9 ayat (4)).",
         jejakHitung: [],
         mengapaSalah: {
@@ -4505,6 +4672,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Menempel meterai saja belum cukup untuk pemeteraian kemudian. Pokoknya, Rp80.000, dibayar dengan meterai, sedangkan dendanya, Rp30.000, dibayar lewat setoran pajak dengan kode billing. Setelah itu pembayarannya harus disahkan pejabat pajak, bukan hakim. Semua itu selesai sebelum sidang, karena hakim tidak boleh menerima dokumen yang bea meterainya belum beres. Cara ingat: pokok pakai meterai, denda pakai setoran, lalu minta pengesahan pejabat pajak.",
         inti: "Pemeteraian kemudian dituntaskan sebelum alat bukti diajukan: bea meterai dibayar dengan meterai, sanksi administratif dibayar dengan SSP (Pasal 50 PMK 78/2024), lalu pembayaran disahkan pejabat yang ditetapkan Menteri. Pejabat DJP mengesahkan pembayaran dengan meterai tempel, meterai elektronik, dan/atau SSP setelah memastikan sanksinya dibayar (Pasal 51 ayat (4) dan (5)). Tanpa itu, hakim dan panitera dilarang menerima atau mempertimbangkan dokumen tersebut (Pasal 21 UU 10/2020).",
         jejakHitung: [
           ["Bea meterai 8 dokumen × Rp10.000 (meterai tempel)", "Rp80.000"],
@@ -4537,6 +4705,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Langsung ke aturannya: bea meterai dikenakan sekali untuk setiap dokumen, dengan tarif tetap Rp10.000. Nilai Rp12,6 miliar, 140 halaman, empat penanda tangan, dan paraf di tiap halaman tidak menambah apa pun. Kontrak ini sudah dibayar dengan meterai elektronik sah saat ditandatangani. Jadi ketika kelak dibawa ke pengadilan, kontrak itu tidak perlu dimeteraikan lagi. Cara ingat: satu dokumen, satu meterai, cukup sekali.",
         inti: "Pasal 4 menetapkan bea meterai dikenakan satu kali untuk setiap dokumen dan Pasal 5 menetapkan tarif tetap Rp10.000. Penjelasan Pasal 3 ayat (1) huruf b: dokumen objek yang telah dibayar bea meterainya tidak wajib lagi dimeteraikan kemudian saat digunakan sebagai alat bukti di pengadilan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4564,6 +4733,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Kita pilah dulu dokumen mana yang kena bea meterai. Kuitansi baru kena kalau nilainya lebih dari Rp5 juta, jadi yang tepat Rp5 juta bebas, dan tanda terima gaji pegawai memang dibebaskan. Tinggal 512 kuitansi Rp7,8 juta: 512 x Rp10.000 = Rp5.120.000. Biaya layanan Rp2.000 itu ongkos ke distributor, bukan bea meterai. Cara ingat: syaratnya \"lebih dari\" Rp5 juta, bukan \"paling sedikit\".",
         inti: "Hanya kuitansi yang menyatakan penerimaan uang lebih dari Rp5.000.000 yang terutang (Pasal 3 ayat (2) huruf g), masing-masing Rp10.000 (Pasal 5). Tanda terima gaji dikecualikan (Pasal 7 huruf c). Kesepakatan bahwa perusahaan menanggung bea meterai sah menurut Pasal 9 ayat (6), dan biaya layanan distributor bukan bagian dari bea meterai.",
         jejakHitung: [
           ["Kuitansi Rp7.800.000 (> Rp5.000.000)", "512 dokumen"],
@@ -4598,6 +4768,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Dokumen yang dibuat di luar negeri baru kena bea meterai saat dipakai di Indonesia, dan yang membayar adalah pihak yang menerima manfaat. Perjanjian lisensi berbentuk PDF, jadi cukup dilunasi Rp10.000 dengan meterai elektronik paling lambat 19 November 2026, tanpa denda. Tanda terima JPY45.000 dirupiahkan: 45.000 x Rp106,40 = Rp4.788.000. Karena tidak lebih dari Rp5 juta, tanda terima itu tidak kena bea meterai.",
         inti: "Dokumen Pasal 3 ayat (2) yang dibuat di luar negeri terutang saat digunakan di Indonesia (Pasal 8 ayat (1) huruf e) oleh penerima manfaat (Pasal 9 ayat (5)); bila dilunasi paling lambat saat itu, cukup Rp10.000 tanpa sanksi, dan dokumen elektronik dilunasi dengan meterai elektronik. Tanda terima JPY45.000 × Rp106,40 = Rp4.788.000, tidak lebih dari Rp5.000.000, sehingga bukan objek Pasal 3 ayat (2) huruf g.",
         jejakHitung: [
           ["Tanda terima JPY45.000 × Rp106,40", "Rp4.788.000 (tidak lebih dari Rp5.000.000, bukan objek)"],
@@ -4628,6 +4799,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang dihitung di sini adalah setiap lembar akta yang ditandatangani notaris. Aturannya, akta asli (minuta) serta grosse, salinan, dan kutipannya masing-masing kena Rp10.000. Hitungannya: minuta 1, grosse 1, salinan 3 (termasuk yang ditandatangani 2 November), kutipan 2, total 7 dokumen x Rp10.000 = Rp70.000. Fotokopi tanpa tanda tangan tidak dihitung. Cara ingat: ada tanda tangan notaris, ada meterai.",
         inti: "Akta notaris beserta grosse, salinan, dan kutipannya masing-masing terutang Rp10.000 pada saat dibubuhi tanda tangan, termasuk salinan yang ditandatangani belakangan; fotokopi tanpa tanda tangan tidak terutang.",
         jejakHitung: [
           ["Minuta akta", "Rp10.000"],
@@ -4662,6 +4834,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "angka-usang", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada di jumlah rangkap, bukan di tebal halaman atau besar nilai sewa. Setiap rangkap asli perjanjian dihitung sebagai dokumen sendiri, jadi 3 rangkap x Rp10.000 = Rp30.000. Kuitansi sewa Rp48 juta kena Rp10.000, sedangkan kuitansi jaminan Rp4,5 juta tidak, karena belum lebih dari Rp5 juta. Totalnya Rp30.000 + Rp10.000 = Rp40.000.",
         inti: "Setiap rangkap surat perjanjian adalah dokumen yang terutang Rp10.000; kuitansi terutang hanya bila menyatakan penerimaan uang lebih dari Rp5.000.000.",
         jejakHitung: [
           ["Perjanjian sewa 3 rangkap", "3 × Rp10.000 = Rp30.000"],
@@ -4695,6 +4868,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pemungut menyetor bea meterai untuk tanda terima yang diserahkan kepada pengguna dalam bulan itu. Jadi yang menentukan masa adalah tanggal penyerahan, bukan tanggal dibuat, dan hanya tanda terima di atas Rp5 juta yang kena. Untuk Juli hanya 18.920 lembar: 18.920 x Rp10.000 = Rp189.200.000. Yang 1.260 lembar diserahkan 1 Agustus, jadi masuk masa Agustus. Nilai transaksi dan pendapatan platform tidak dipakai sama sekali.",
         inti: "Tanda terima yang menyebutkan penerimaan uang menjadi objek bila nilainya lebih dari Rp5.000.000 (Pasal 3 ayat (2) huruf g UU 10/2020), terutang dan dipungut pada saat diserahkan kepada pihak yang terutang (Pasal 8 ayat (1) huruf c UU 10/2020; Pasal 61 huruf c PMK 78/2024). Untuk Masa Juli 2026 hanya 18.920 tanda terima yang diserahkan pada Juli: 18.920 × Rp10.000 = Rp189.200.000. Tanda terima yang diserahkan 1 Agustus 2026 masuk Masa Agustus 2026.",
         jejakHitung: [
           ["Tanda terima > Rp5 juta yang diserahkan pada Juli 2026", "18.920"],
@@ -4728,6 +4902,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari aturan pengisian SPT-nya. Baris dokumen yang menyebut penerimaan uang diisi gabungan yang dibubuhi meterai elektronik dan yang dibubuhi tanda pemungutan: 18.350 + 570 = 18.920 dokumen, senilai Rp189.200.000. Baris \"kurang atau (lebih) disetor\" di induk SPT, yaitu lembar utamanya, diisi sama dengan jumlah yang dipungut, Rp189.200.000. Lembar itu tidak punya baris untuk mengurangkan setoran yang sudah dibayar, jadi isinya tidak nihil.",
         inti: "Menurut petunjuk pengisian induk SPT Masa Bea Meterai, Bagian B angka 4a kolom b dan c diisi sesuai data Formulir L2 DAN Formulir L3, sehingga tanda terima yang dibubuhi Meterai Elektronik dan yang dibubuhi tanda pemungutan dijumlahkan: 18.920 dokumen, Rp189.200.000. Bagian D angka 1 diisi sesuai baris JUMLAH kolom c Bagian C (Cara Pemungutan), yaitu Rp189.200.000 (L2 Rp183.500.000 + L3 Rp5.700.000); induk tidak memuat baris pengurang untuk setoran yang sudah dilakukan.",
         jejakHitung: [
           ["Formulir L2 (Meterai Elektronik) 18.350 × Rp10.000", "Rp183.500.000"],
@@ -4764,6 +4939,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pemungut bea meterai harus setor dan lapor paling lambat tanggal 15 bulan berikutnya. Untuk masa Juli, batasnya 15 Agustus 2026, tetapi itu hari Sabtu. Batas yang jatuh pada hari libur bergeser ke hari kerja berikutnya, dan Minggu 16 serta libur nasional 17 Agustus juga dilewati. Jadi setor dan lapor sama-sama paling lambat Selasa, 18 Agustus 2026. Cara ingat: tenggat yang jatuh pada hari libur bergeser ke hari kerja sesudahnya, tidak dimajukan.",
         inti: "Setor dan lapor bea meterai oleh pemungut sama-sama paling lambat tanggal 15 bulan berikutnya (Pasal 63 ayat (1) dan Pasal 64 ayat (1) PMK 78/2024). Tanggal 15 Agustus 2026 hari Sabtu; menurut Pasal 65, batas itu bergeser ke hari kerja berikutnya. Minggu 16 Agustus dan Senin 17 Agustus (libur nasional) juga hari libur menurut Pasal 65 ayat (2), sehingga hari kerja berikutnya adalah Selasa, 18 Agustus 2026.",
         jejakHitung: [
           ["Batas setor dan lapor Masa Juli 2026", "15 Agustus 2026 (Sabtu)"],
@@ -4796,6 +4972,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada dua jenis kesalahan dengan sanksi berbeda. Bea meterai yang tidak disetor atau tidak dipungut kena sanksi 100%: 1.340 dokumen x Rp10.000 = Rp13,4 juta. Setoran Rp162 juta yang terlambat cukup kena bunga; dari 15 Juni sampai 3 Agustus ada 1 bulan lebih, dihitung 2 bulan, jadi Rp162 juta x 0,93% x 2 = Rp3.013.200. Ditambah denda SPT terlambat Rp100.000, totalnya Rp16.513.200. Cara ingat: tidak setor kena 100%, telat setor cukup bunga.",
         inti: "Pasal 11 UU 10/2020 membedakan: bea meterai yang tidak dipungut atau tidak disetor ditetapkan dengan SKP sebesar pokok ditambah sanksi 100% (ayat (2) dan (3)); setoran penuh yang terlambat dan SPT yang terlambat disampaikan ditagih dengan STP sesuai UU KUP (ayat (4)), yaitu bunga Pasal 9 ayat (2a) dan denda Pasal 7 ayat (1) Rp100.000 untuk SPT Masa lainnya.",
         jejakHitung: [
           ["Dokumen tidak disetor + tidak dipungut", "930 + 410 = 1.340"],
@@ -4831,6 +5008,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya: cek dan bilyet giro dipungut saat bank menerimanya dari percetakan, dihitung per lembar. Yang diterima September: 16 x 25 = 400 lembar cek dan 14 x 20 = 280 lembar bilyet giro, jadi 680 lembar x Rp10.000 = Rp6.800.000. Tanda terima dipungut saat diserahkan, dan hanya yang di atas Rp5 juta: 3.640 x Rp10.000 = Rp36.400.000. Jumlah buku yang diserahkan ke nasabah tidak menentukan.",
         inti: "Bea meterai atas cek dan bilyet giro dipungut pada saat bank menerima dokumen itu dari pemegang izin pembuatan Meterai Percetakan (Pasal 61 huruf a PMK 78/2024) dan dihitung per lembar (Formulir L1 kolom (7)): 16 × 25 + 14 × 20 = 680 lembar × Rp10.000 = Rp6.800.000; penyerahan kepada nasabah tidak menentukan. Tanda terima dipungut saat diserahkan dan hanya yang bernilai lebih dari Rp5.000.000: 3.640 × Rp10.000 = Rp36.400.000. Rincian ini diisi pada Bagian B angka 1 dan angka 4a induk SPT Masa Bea Meterai.",
         jejakHitung: [
           ["Cek diterima dari percetakan 16 × 25", "400 lembar"],
@@ -4865,6 +5043,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Bea meterainya disetor penuh, hanya terlambat, jadi sanksinya bunga dan denda, bukan 100%. Pokoknya 6.180 x Rp10.000 = Rp61,8 juta. Dari 15 Juni sampai 2 September ada 2 bulan lebih, dan sisa hari dihitung sebulan penuh, jadi 3 bulan: Rp61,8 juta x 0,96% x 3 = Rp1.779.840. Ditambah denda SPT terlambat Rp100.000, totalnya Rp1.879.840. Nilai transaksi dan jumlah nasabah hanya pengecoh.",
         inti: "Setoran penuh yang terlambat dan SPT yang terlambat ditagih dengan STP (Pasal 11 ayat (4) UU 10/2020): bunga Pasal 9 ayat (2a) UU KUP atas Rp61.800.000 selama 3 bulan (bagian bulan dihitung penuh) ditambah denda SPT Masa lainnya Rp100.000 (Pasal 7 ayat (1) UU KUP).",
         jejakHitung: [
           ["Pokok 6.180 × Rp10.000", "Rp61.800.000"],
@@ -4899,6 +5078,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: apakah gangguan sistem meterai elektronik membebaskan pemungut. Jawabannya tidak, karena untuk keadaan itu pemungut tetap wajib memungut dengan membubuhkan tanda pemungutan bertulisan bea meterai lunas. Karena sama sekali tidak memungut, pemungut dikenai ketetapan pajak: pokok 65 x Rp10.000 = Rp650.000, ditambah sanksi 100% Rp650.000. Akibatnya ditanggung pemungut, bukan pembeli.",
         inti: "Kegagalan sistem Meterai Elektronik tidak membebaskan pemungut: Pasal 62 ayat (2) PMK 78/2024 mewajibkannya tetap memungut dengan membubuhkan tanda pemungutan (\"BEA METERAI LUNAS\", tarif, nama pemungut). Karena tidak memungut, pemungut diterbitkan SKP sebesar bea meterai yang tidak dipungut (65 × Rp10.000) ditambah sanksi 100% (Pasal 11 ayat (2) dan (3) UU 10/2020; Pasal 67 PMK 78/2024).",
         jejakHitung: [
           ["Pokok 65 tanda terima × Rp10.000", "Rp650.000"],
@@ -4930,6 +5110,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Bea meterainya sudah disetor penuh, hanya terlambat, jadi sanksinya cukup bunga. Hitung bulan mulai sehari setelah jatuh tempo: 16 April sampai 15 Mei itu 1 bulan, lalu sisa sampai 11 Juni dihitung 1 bulan penuh. Jadi 2 bulan: Rp36,5 juta x 0,97% x 2 = Rp708.100. Tidak ada denda SPT karena laporannya tepat waktu. Cara ingat: hitung dari tanggal jatuh tempo, bukan dari pergantian nama bulan.",
         inti: "Keterlambatan 15 April sampai 11 Juni 2026 adalah 1 bulan lebih; bagian bulan dihitung penuh sehingga 2 bulan. Bunga = Rp36.500.000 × 0,97% × 2.",
         jejakHitung: [
           ["16 April–15 Mei 2026", "1 bulan"],
@@ -4961,6 +5142,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Utang bea meterai hapus setelah 5 tahun, dihitung dari saat terutang masing-masing dokumen. Kuitansi dan surat pernyataan terutang saat diserahkan, perjanjian saat ditandatangani, dokumen luar negeri saat dipakai di Indonesia. Dokumen (1) dan (3) terutang 4 dan 8 November 2021, jadi per 16 November 2026 sudah hapus. Dokumen (2), (4), dan (5) belum, masing-masing Rp10.000 + sanksi 100% = Rp20.000, jadi totalnya Rp60.000; kuitansi tepat Rp5 juta bukan objek.",
         inti: "Kedaluwarsa 5 tahun dihitung dari saat terutang masing-masing dokumen (Pasal 23 UU 10/2020). Per 16 November 2026, dokumen (2), (4), dan (5) belum kedaluwarsa sehingga masing-masing dibayar Rp10.000 + sanksi 100% = Rp20.000 (Pasal 18 ayat (1) huruf a dan ayat (2)); (1) dan (3) sudah kedaluwarsa; (6) bukan objek.",
         jejakHitung: [
           ["(1) Kuitansi diserahkan 4 November 2021", "jangka waktu berakhir 3 November 2026 → Rp0"],
@@ -4996,6 +5178,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Perjanjian terutang bea meterai saat ditandatangani, 9 Maret 2021, jadi utang bea meterainya sudah hapus pada Maret 2026. Tetapi ada aturan tersendiri: dokumen yang mau dipakai sebagai alat bukti di pengadilan tetap harus dimeteraikan dulu. Untuk keperluan alat bukti ini, yang dibayar hanya Rp10.000 tanpa sanksi. Tanggal jatuh tempo utangnya tidak memengaruhi hitungan 5 tahun.",
         inti: "Surat perjanjian terutang bea meterai saat dibubuhi tanda tangan, 9 Maret 2021 (Pasal 8 ayat (1) huruf a), dan bea meterai itu kedaluwarsa setelah 5 tahun sejak saat terutang (Pasal 23), yaitu sejak 9 Maret 2026. Namun Penjelasan Pasal 3 ayat (1) huruf b menegaskan dokumen yang bea meterainya belum dibayar lunas tetapi telah kedaluwarsa tetap harus dimeteraikan kemudian saat akan dijadikan alat bukti di pengadilan. Untuk dokumen alat bukti, yang dibayar hanya bea meterai yang berlaku saat pemeteraian kemudian (Rp10.000), tanpa sanksi (Pasal 18 ayat (1) huruf b UU 10/2020; Pasal 49 huruf c PMK 78/2024).",
         jejakHitung: [],
         mengapaSalah: {
@@ -5024,6 +5207,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Bila tidak setuju dengan jumlah ketetapan pajak, jalannya keberatan, bukan gugatan, dalam 3 bulan sejak surat dikirim. Dihitung dari 9 September 2026, hari terakhirnya 8 Desember 2026. Kuitansi tepat Rp5 juta bukan objek, jadi yang diakui 33 dokumen x Rp10.000 = Rp330.000. Sanksi 100% atas dokumen yang diakui tetap ikut, sehingga menurut perusahaan ketetapannya Rp660.000.",
         inti: "Surat ketetapan bea meterai diterbitkan menurut tata cara UU KUP (Pasal 19 UU 10/2020), sehingga sengketa jumlahnya ditempuh dengan keberatan dalam jangka waktu 3 bulan sejak tanggal dikirim. Tanggal dikirim (9 September 2026) dihitung sebagai hari pertama, sehingga hari terakhirnya 8 Desember 2026. Kuitansi bernilai tepat Rp5.000.000 bukan objek karena Pasal 3 ayat (2) huruf g mensyaratkan nilai nominal LEBIH DARI Rp5.000.000. Yang dikemukakan adalah bea meterai terutang menurut wajib pajak: 33 × Rp10.000 = Rp330.000; sanksi 100% melekat pada bea meterai yang memang tidak dibayar, sehingga jumlah ketetapan menurut wajib pajak Rp660.000.",
         jejakHitung: [
           ["Dokumen objek menurut wajib pajak", "48 − 15 = 33"],
@@ -5058,6 +5242,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Langkah pertama: tentukan siapa yang menanggung tiap dokumen. Dokumen sepihak ditanggung penerimanya, dan rangkap perjanjian ditanggung pemegangnya. Yang ditanggung perusahaan: 46 kuitansi pemasok, 9 rangkap perjanjian, dan 8 surat pernyataan, total 63 dokumen. Sanksi 100% = 63 x Rp10.000 = Rp630.000. Kuitansi tepat Rp5 juta, tanda terima upah, dan kuitansi yang diserahkan ke pembeli tidak ikut.",
         inti: "Dokumen sepihak terutang oleh penerimanya dan dokumen dua pihak terutang oleh masing-masing pihak atas dokumen yang diterimanya (Pasal 9 ayat (1) dan ayat (2) UU 10/2020). Yang terutang oleh perusahaan: 46 kuitansi pemasok, 9 rangkap perjanjian yang dipegangnya, dan 8 surat pernyataan yang diterimanya = 63 dokumen. Sanksi 100% dari bea meterai terutang = 63 × Rp10.000.",
         jejakHitung: [
           ["Kuitansi pemasok di atas Rp5.000.000 (diterima perusahaan)", "46"],
@@ -5092,6 +5277,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kita pisahkan pajaknya dari sanksinya. Pokok bea meterai dan pembelian meterai elektronik adalah pajak yang berkaitan dengan usaha, jadi boleh jadi biaya. Sanksi 100% bea meterai Rp630.000 dan denda STP Rp500.000 dikoreksi, jadi koreksi positifnya Rp1.130.000. Perlu dicatat, aturan belum tegas menggolongkan sanksi 100% bea meterai sebagai sanksi yang tidak boleh dibiayakan, dan kunci mengikuti praktik yang lazim.",
         inti: "Denda dalam STP adalah sanksi administrasi berupa denda yang tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k UU PPh). Sanksi 100% bea meterai Rp630.000 lazimnya dikoreksi positif sebagai sanksi administrasi di bidang perpajakan menurut Pasal 9 ayat (1) huruf k UU PPh, tetapi naskah (Pasal 18 ayat (2) dan Pasal 19 ayat (2) UU 10/2020; Pasal 49 PMK 78/2024) hanya menyebutnya \"sanksi administratif\" dan tidak menggolongkannya secara tegas ke bunga, denda, atau kenaikan; kunci mengikuti praktik yang lazim itu. Penyesuaian fiskal positif = Rp630.000 + Rp500.000 = Rp1.130.000. Pokok bea meterai dan pembelian meterai elektronik untuk dokumen operasional adalah pajak selain PPh yang berkaitan dengan usaha sehingga dapat dibebankan (Pasal 6 ayat (1) huruf a angka 9 UU PPh).",
         jejakHitung: [
           ["Pokok bea meterai Rp630.000 dan meterai elektronik Rp21.500.000", "dapat dibebankan, tidak dikoreksi"],
@@ -5126,6 +5312,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
+        mudah: "Tiga temuan ini punya akibat yang berbeda. Pemungut yang tidak memungut sama sekali dikenai ketetapan pajak sebesar bea meterai itu ditambah sanksi 100%. Pemungut yang sudah setor penuh tetapi telat lapor cukup ditagih dengan STP menurut aturan umum pajak. Penerima perjanjian yang belum bermeterai melunasinya lewat pemeteraian kemudian, sebesar Rp10.000 ditambah sanksi 100%, bukan 200% seperti aturan lama.",
         inti: "Tiga rezim berbeda: pemungut yang tidak memungut (atau tidak menyetor) diterbitkan SKP sebesar bea meterai yang tidak dipungut ditambah sanksi 100% (Pasal 11 ayat (2) dan ayat (3)); pemungut yang terlambat menyetor atau tidak atau terlambat melapor ditagih STP sesuai UU KUP (Pasal 11 ayat (4)); pihak terutang yang tidak melunasi bea meterai atas dokumen yang diterimanya membayar melalui pemeteraian kemudian sebesar pokok ditambah sanksi 100% (Pasal 17 dan Pasal 18).",
         jejakHitung: [],
         mengapaSalah: {
@@ -5154,6 +5341,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Setoran yang terlambat kena bunga per bulan, dengan sisa hari dihitung sebulan penuh. Dari 16 Agustus 2025 sampai 4 Mei 2026 ada 8 bulan lebih, jadi dihitung 9 bulan. Tarifnya dikunci saat hitungan dimulai, yaitu Agustus 2025 sebesar 0,79%, bukan tarif Mei 2026. Jadi Rp36,4 juta x 0,79% x 9 = Rp2.588.040. Cara ingat: tarif bunga ikut bulan awal keterlambatan.",
         inti: "Bunga dihitung sejak berakhirnya jatuh tempo 15 Agustus 2025 (bulan pertama mulai 16 Agustus 2025) sampai 4 Mei 2026: 8 bulan 19 hari, dibulatkan menjadi 9 bulan karena bagian bulan dihitung penuh, masih di bawah batas 24 bulan. Tarif yang dipakai adalah tarif yang berlaku saat penghitungan sanksi dimulai (Agustus 2025): Rp36.400.000 × 0,79% × 9.",
         jejakHitung: [
           ["Bulan ke-1: 16 Agustus–15 September 2025; bulan ke-9: 16 April–15 Mei 2026", "pembayaran 4 Mei 2026 jatuh di bulan ke-9"],
@@ -5186,6 +5374,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Kuncinya ada di masa berlaku meterai lama. Meterai Rp3.000 dan Rp6.000 hanya boleh dipakai sampai akhir 2021, termasuk aturan gabungan Rp9.000. Pada Mei 2025 meterai itu sudah tidak sah, jadi kuitansi dianggap tidak bermeterai sama sekali. Karena terlambat, pemeteraian kemudiannya Rp10.000 ditambah sanksi 100%, totalnya Rp20.000.",
         inti: "Meterai tempel cetakan UU 13/1985 hanya dapat dipakai sampai 1 tahun setelah UU 10/2020 berlaku (1 Januari 2021), yaitu sampai 31 Desember 2021; nilai gabungan paling sedikit Rp9.000 hanya berlaku dalam masa itu. Pada 14 Mei 2025 meterai Rp3.000 bukan lagi meterai yang sah dan berlaku, sehingga pembayaran tidak sah dan kuitansi dianggap tidak dibubuhi meterai (Pasal 44 ayat (1) huruf a dan Pasal 45 PMK 78/2024). Kuitansi lebih dari Rp5.000.000 terutang saat diserahkan, sehingga pemeteraian kemudian meliputi pokok Rp10.000 ditambah sanksi 100%.",
         jejakHitung: [
           ["Batas pemakaian meterai lama", "31 Desember 2021"],
@@ -5219,6 +5408,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-baca" },
       pembahasan: {
+        mudah: "Meterai elektronik hanya sah bila dibubuhkan lewat sistem resminya untuk dokumen itu sendiri. Menyalin gambar dan kode QR dari kontrak lain sama saja dengan tidak membayar, jadi kuitansi dianggap tidak bermeterai. Kuitansi Rp36 juta ini terutang sejak diserahkan 7 Juli 2026 dan ditanggung penerimanya. Karena sudah lewat, pelunasannya lewat pemeteraian kemudian: Rp10.000 ditambah sanksi 100%.",
         inti: "Kuitansi lebih dari Rp5.000.000 terutang bea meterai saat diserahkan, 7 Juli 2026, dan terutang oleh penerimanya, CV Mitra Armada (Pasal 9 ayat (1) UU 10/2020). Dokumen elektronik dilunasi dengan membubuhkan meterai elektronik melalui Sistem Meterai Elektronik (Pasal 16 ayat (1) PMK 78/2024), dan pembayaran hanya sah bila pembubuhannya melalui sistem itu (Pasal 44 ayat (2)). Gambar hasil salinan tidak dibubuhkan melalui sistem, sehingga pembayaran tidak sah dan dokumen dianggap tidak dibubuhi meterai (Pasal 45); pelunasannya melalui pemeteraian kemudian dengan sanksi 100%.",
         jejakHitung: [
           ["Saat terutang", "7 Juli 2026 (kuitansi diserahkan)"],
@@ -5250,6 +5440,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya: cara menempel meterai tempel supaya pembayarannya sah. Meterai harus utuh, tidak sobek, dan ditempel di tempat tanda tangan. Tanda tangan dibubuhkan menyilang, sebagian di kertas dan sebagian di meterai, lengkap dengan tanggal, bulan, dan tahun. Kalau salah satu tidak dipenuhi, dokumen dianggap tidak bermeterai. Cara ingat: utuh, di tempat tanda tangan, tanda tangan menyeberang.",
         inti: "Pembubuhan meterai tempel dilakukan dengan merekatkan meterai seluruhnya dengan utuh dan tidak rusak di tempat tanda tangan akan dibubuhkan, lalu tanda tangan dibubuhkan sebagian di atas kertas dan sebagian di atas meterai disertai tanggal, bulan, dan tahun penandatanganan (Pasal 7 ayat (2) PMK 78/2024). Bila tata cara ini tidak dipenuhi, pembayaran tidak sah dan dokumen dianggap tidak bermeterai (Pasal 44 ayat (1) huruf b dan Pasal 45).",
         jejakHitung: [],
         mengapaSalah: {
@@ -5278,6 +5469,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini mencari sarana yang tidak sah. Meterai tempel lama Rp6.000 hanya boleh dipakai sampai akhir 2021, jadi pada 2026 sudah tidak berlaku, berapa pun lembar yang ditempel. Nilai gabungan Rp12.000 tidak menolong karena yang dinilai adalah keabsahan meterainya. Meterai elektronik, meterai tempel Rp10.000, dan Surat Setoran Pajak saat meterai tempel tidak tersedia semuanya sah.",
         inti: "Meterai tempel cetakan UU 13/1985 (Rp3.000 dan Rp6.000) hanya dapat dipakai sampai 1 tahun setelah UU 10/2020 berlaku, yaitu sampai 31 Desember 2021 (Pasal 28 huruf b). Pada November 2026 meterai Rp6.000 bukan lagi meterai yang sah dan berlaku, berapa pun jumlah lembarnya, sehingga pembayaran dengannya tidak sah (Pasal 44 ayat (1) huruf a dan Pasal 45 PMK 78/2024). Sarana lain sah: meterai elektronik untuk dokumen elektronik, meterai tempel Rp10.000 untuk dokumen kertas, dan Surat Setoran Pajak dalam keadaan Pasal 42 PMK 78/2024.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5305,6 +5497,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Perusahaan biasa pun boleh membeli meterai elektronik, karena distributor menjualnya kepada masyarakat umum. Tidak perlu menjadi pemungut dan tidak perlu menyetor deposit, sebab deposit hanya syarat bagi distributor. Tarifnya Rp10.000 untuk setiap perjanjian, bukan per bulan. Jadi beli meterai elektronik lalu bubuhkan lewat sistemnya pada tiap perjanjian saat ditandatangani.",
         inti: "Perjanjian terutang bea meterai saat dibubuhi tanda tangan, dengan tarif tetap Rp10.000 per dokumen. Dokumen elektronik dilunasi dengan membubuhkan meterai elektronik melalui Sistem Meterai Elektronik (Pasal 16 ayat (1) PMK 78/2024). Distributor menjual meterai elektronik kepada pengecer dan masyarakat umum (Pasal 20 ayat (2)), sehingga perusahaan yang bukan pemungut dapat membelinya dan membubuhkannya sendiri. Para pihak boleh sepakat siapa yang membayar (Pasal 9 ayat (6) UU 10/2020).",
         jejakHitung: [
           ["Perjanjian per bulan", "±300 dokumen"],
@@ -5336,6 +5529,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kedudukan sebagai pemungut lahir dari surat penetapan, tetapi baru berlaku awal bulan berikutnya. Surat bertanggal 18 Agustus 2026, jadi perusahaan menjadi pemungut mulai 1 September 2026. Sebelum itu, bea meterai tiap tanda terima tetap dibayar sendiri oleh pihak yang terutang. Pemungut juga tidak perlu menyetor deposit untuk memperoleh meterai elektronik.",
         inti: "Kedudukan pemungut lahir dari surat penetapan Kepala KPP (Pasal 56 ayat (2) PMK 78/2024), dan penetapan itu mulai berlaku sejak awal bulan berikutnya setelah tanggal surat penetapan (Pasal 59 ayat (4)). Surat bertanggal 18 Agustus 2026 berlaku mulai 1 September 2026. Sebelum itu, bea meterai atas tiap dokumen tetap dibayar oleh pihak yang terutang pada saat terutang (Pasal 6 ayat (1)). Meterai elektronik untuk pemungut disediakan tanpa Deposit (Pasal 19 ayat (6)).",
         jejakHitung: [
           ["Bukti Penerimaan permohonan lengkap", "11 Agustus 2026"],
@@ -5367,6 +5561,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "angka-usang" },
       pembahasan: {
+        mudah: "Mulai dari batas nilai: kuitansi baru kena bea meterai kalau lebih dari Rp5 juta. Jadi yang kena hanya kuitansi Rp12,5 juta dan Rp6,2 juta, sedangkan yang tepat Rp5 juta tidak. Keduanya dimeteraikan setelah lewat waktunya, jadi tiap kuitansi Rp10.000 + sanksi 100% = Rp20.000. Totalnya 2 x Rp20.000 = Rp40.000.",
         inti: "Hanya kuitansi bernilai lebih dari Rp5.000.000 yang terutang bea meterai (Pasal 3 ayat (2) huruf g UU 10/2020), yaitu kuitansi Rp12.500.000 dan Rp6.200.000; kuitansi Rp5.000.000 tidak melebihi batas. Kedua kuitansi terutang saat diserahkan kepada Nn. Laras sebagai penerima dan tidak dilunasi, sehingga pemeteraian kemudian meliputi pokok Rp10.000 ditambah sanksi 100% untuk tiap kuitansi.",
         jejakHitung: [
           ["Kuitansi terutang (> Rp5.000.000)", "2 dokumen"],
@@ -5399,6 +5594,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kita pilah dokumennya dulu. Sembilan kuitansi di atas Rp5 juta jelas tidak bermeterai, dan empat perjanjian bermeterai lama juga dianggap tidak bermeterai karena meterai lama hanya berlaku sampai akhir 2021. Dua kuitansi di bawah Rp5 juta bukan objek. Jadi sanksi 100% untuk 13 dokumen: 13 x Rp10.000 = Rp130.000, dan pokoknya tidak ikut dijumlahkan karena yang ditanya hanya sanksi.",
         inti: "Meterai lama Rp6.000 dan Rp3.000 hanya dapat dipakai sampai akhir 2021, sehingga keempat perjanjian yang ditandatangani pada 2024 dianggap tidak dibubuhi meterai, sama seperti sembilan kuitansi tanpa meterai. Dua kuitansi bernilai tidak lebih dari Rp5.000.000 bukan objek bea meterai. Sanksi 100% × Rp10.000 dikenakan atas 13 dokumen.",
         jejakHitung: [
           ["Kuitansi > Rp5.000.000 tanpa meterai", "9 dokumen"],
@@ -5432,6 +5628,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ancaman pidana bea meterai menyangkut meterai palsu. Membuat tiruan meterai lalu memakainya seperti asli, serta menyimpan dan menawarkan meterai palsu, sama-sama pidana. Pemungut yang telat lapor cukup ditagih dengan STP, dan notaris yang melekatkan dokumen belum bermeterai dikenai sanksi administratif. Jadi yang pidana hanya peristiwa (1) dan (2). Cara ingat: pidana untuk pemalsuan, administratif untuk kelalaian.",
         inti: "Meniru atau memalsu meterai dengan maksud memakainya sebagai meterai asli diancam pidana Pasal 24, dan memakai, menawarkan, atau mempunyai persediaan untuk dijual meterai palsu diancam pidana Pasal 25. Pemungut yang terlambat melapor ditagih dengan STP menurut UU KUP (Pasal 11 ayat (4)), dan pejabat seperti notaris yang menerima atau melekatkan dokumen yang bea meterainya belum dibayar dikenai sanksi administratif (Pasal 21 ayat (2)).",
         jejakHitung: [],
         mengapaSalah: {
@@ -5459,6 +5656,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada di cara membayar, bukan cuma besarnya. Dokumen yang bea meterainya tidak dibayar harus dimeteraikan kemudian: bea meterai Rp10.000 ditambah sanksi 100%, jadi totalnya Rp20.000. Bea meterainya boleh dilunasi dengan meterai tempel, meterai elektronik, atau Surat Setoran Pajak, tetapi sanksinya hanya lewat Surat Setoran Pajak. Jadi SOP lama yang menempel meterai kedua untuk sanksi sudah keliru. Cara ingat: pokok boleh pakai meterai, sanksi wajib setor.",
         inti: "Atas dokumen yang bea meterainya tidak dibayar, pemeteraian kemudian meliputi bea meterai terutang ditambah sanksi administratif 100% dari bea meterai terutang (Pasal 18 UU 10/2020; Pasal 49 huruf a PMK 78/2024 untuk dokumen yang terutang sejak 1 Januari 2021). Bea meterainya dapat dibayar dengan meterai tempel, meterai elektronik, atau Surat Setoran Pajak, sedangkan sanksinya dibayar dengan Surat Setoran Pajak atau sarana yang disamakan (Pasal 50 PMK 78/2024).",
         jejakHitung: [
           ["Pokok", "Rp10.000"],
@@ -5491,6 +5689,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dari pertanyaan siapa yang menanggung. Kuitansi itu dokumen sepihak, jadi bea meterainya ditanggung penerima kuitansi, bukan pembuatnya. CV hanya menanggung 64 kuitansi dari pemasok, sedangkan 30 kuitansi untuk pelanggan ditanggung pelanggan. Karena terlambat, tiap kuitansi kena Rp10.000 plus sanksi 100%: 64 x Rp20.000 = Rp1.280.000, walaupun dibayar sukarela. Lebih dari 50 dokumen boleh disetor dengan kode billing, lalu disahkan Pejabat DJP, bukan Pejabat Pos.",
         inti: "Kuitansi adalah dokumen sepihak, sehingga bea meterainya terutang oleh penerima dokumen (Pasal 9 ayat (1) UU 10/2020): CV hanya menanggung 64 kuitansi dari pemasok, sedangkan 30 kuitansi yang diserahkan kepada pelanggan terutang oleh pelanggan. Karena tidak dilunasi saat diserahkan, pelunasannya adalah pemeteraian kemudian dengan pokok ditambah sanksi 100% walaupun sukarela (Pasal 18 UU 10/2020; Pasal 49 huruf a PMK 78/2024). Jumlahnya lebih dari 50 dokumen, sehingga boleh dibayar dengan Surat Setoran Pajak (Pasal 42 huruf a), disertai daftar dokumen dan bukti setor bervalidasi NTPN (Pasal 43 ayat (1)), lalu disahkan Pejabat DJP (Pasal 51 ayat (4)).",
         jejakHitung: [
           ["Kuitansi yang terutang oleh CV (diterima CV, Pasal 9 ayat (1))", "64 dokumen"],
@@ -5525,6 +5724,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini dokumen mana yang dianggap belum bermeterai. Meterai elektronik hanya sah bila dibubuhkan lewat sistem resminya, jadi 8 kontrak bergambar pindaian dianggap kosong. Meterai tempel asli pun tidak sah bila ditempel jauh dari tanda tangan, jadi 6 perjanjian ikut dihitung. Kuitansi tepat Rp5 juta bukan objek karena batasnya harus lebih dari Rp5 juta. Hasilnya 14 dokumen x (Rp10.000 + sanksi Rp10.000) = Rp280.000.",
         inti: "Meterai elektronik hanya sah bila dibubuhkan melalui Sistem Meterai Elektronik dengan kode unik (Pasal 44 ayat (2) PMK 78/2024), sehingga 8 kontrak bergambar pindaian dianggap tidak bermeterai. Meterai tempel asli pun tidak sah bila tidak direkatkan di tempat tanda tangan dan tidak ditandatangani sebagian di atasnya (Pasal 7 ayat (2) dan Pasal 44 ayat (1) huruf b), sehingga 6 perjanjian juga dianggap tidak dibubuhi meterai (Pasal 45). Keempat belas dokumen itu dimeteraikan kemudian dengan pokok ditambah sanksi 100%. Kuitansi tepat Rp5.000.000 bukan objek karena batasnya lebih dari Rp5.000.000.",
         jejakHitung: [
           ["Kontrak dengan gambar pindaian (tidak melalui Sistem Meterai Elektronik)", "8 dokumen"],
@@ -5559,6 +5759,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "angka-usang" },
       pembahasan: {
+        mudah: "Soal ini menguji kapan status pemungut mulai berlaku. Penetapan pemungut berlaku sejak awal bulan berikutnya sesudah tanggal surat, jadi surat 14 Agustus 2026 baru berlaku 1 September 2026. Tanda terima 15 sampai 31 Agustus tetap kena bea meterai, karena terutangnya tidak bergantung pada status pemungut. Hanya saja yang membayar adalah pihak yang terutang sendiri, belum dipungut perusahaan. Cara ingat: tanggal surat bukan tanggal mulai.",
         inti: "Penetapan pemungut, termasuk penetapan secara jabatan, mulai berlaku sejak awal bulan berikutnya setelah tanggal surat penetapan (Pasal 59 ayat (4) PMK 78/2024): surat 14 Agustus 2026 berlaku 1 September 2026. Sebelum itu perusahaan belum pemungut, tetapi dokumen objek tetap terutang dan dibayar oleh Pihak Yang Terutang pada saat terutang (Pasal 6 ayat (1)).",
         jejakHitung: [
           ["Tanggal surat penetapan", "14 Agustus 2026"],
@@ -5591,6 +5792,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Dokumen yang dibuat di luar negeri baru terutang bea meterai saat dipakai di Indonesia. Perjanjian distribusi sudah dipakai untuk mengajukan kredit pada 8 Juli 2026 tanpa dilunasi, jadi kena Rp10.000 plus sanksi 100%, totalnya Rp20.000. Pokoknya boleh dengan meterai atau setoran pajak, sanksinya dengan setoran pajak, lalu wajib disahkan pejabat. Perjanjian kerahasiaan masih di arsip, jadi belum terutang sama sekali. Cara ingat: dokumen luar negeri terutang saat dipakai di sini.",
         inti: "Dokumen yang dibuat di luar negeri terutang pada saat digunakan di Indonesia (Pasal 8 ayat (1) huruf e UU 10/2020). Perjanjian distribusi sudah digunakan pada 8 Juli 2026 tanpa dilunasi, sehingga menjadi dokumen yang bea meterainya tidak dibayar: dimeteraikan kemudian dengan pokok Rp10.000 (dibayar dengan meterai tempel, meterai elektronik, atau Surat Setoran Pajak, Pasal 50 ayat (1) PMK 78/2024) ditambah sanksi 100%, sanksinya dibayar dengan Surat Setoran Pajak (Pasal 50 ayat (2) PMK 78/2024), lalu disahkan pejabat (Pasal 1 angka 6). Perjanjian kerahasiaan belum digunakan di Indonesia sehingga belum terutang; bila kelak digunakan, cukup dilunasi Rp10.000 paling lambat saat digunakan.",
         jejakHitung: [
           ["Perjanjian distribusi: saat terutang", "8 Juli 2026 (digunakan di Indonesia)"],
@@ -5623,6 +5825,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", C: "salah-baca" },
       pembahasan: {
+        mudah: "Langkah pertama, saring dulu mana yang benar-benar objek. Kuitansi baru kena bea meterai bila nilainya lebih dari Rp5 juta, jadi hanya 11 kuitansi yang dihitung, sedangkan 4 kuitansi kecil diabaikan. Tiap kuitansi yang terlambat kena Rp10.000 ditambah sanksi 100%, walaupun dibayar sukarela sebelum pemeriksaan. Jadi 11 x Rp20.000 = Rp220.000. Cara ingat: saring objek dulu, baru kali dua.",
         inti: "Hanya kuitansi bernilai lebih dari Rp5.000.000 yang menjadi objek (Pasal 3 ayat (2) huruf g UU 10/2020). Kuitansi objek yang tidak dilunasi saat diserahkan dimeteraikan kemudian dengan pokok Rp10.000 ditambah sanksi 100% per dokumen, termasuk bila dilakukan sukarela (Pasal 17 dan 18).",
         jejakHitung: [
           ["Kuitansi objek (lebih dari Rp5.000.000)", "11 dokumen"],
@@ -5655,6 +5858,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
+        mudah: "Ada dua perbuatan yang akibatnya sangat berbeda. Membuat meterai tiruan lalu menjualnya sebagai meterai asli adalah tindak pidana, ancamannya penjara paling lama 7 tahun dan denda paling banyak Rp500 juta. Tidak membubuhkan meterai bukan pidana, cukup dimeteraikan kemudian: bea meterai ditambah sanksi 100% per dokumen. Ancaman 3 tahun atau Rp200 juta itu untuk memakai ulang meterai bekas, bukan meterai tiruan. Cara ingat: memalsu itu pidana, lalai cukup bayar plus sanksi.",
         inti: "Meniru atau memalsu meterai dengan maksud memakai atau meminta orang lain memakainya sebagai meterai asli (Pasal 24), serta menjual atau menawarkan meterai yang dipalsu (Pasal 25), diancam pidana penjara paling lama 7 tahun dan denda paling banyak Rp500.000.000. Tidak membubuhkan meterai bukan tindak pidana; akibatnya pemeteraian kemudian dengan sanksi administratif 100% (Pasal 17 dan 18).",
         jejakHitung: [],
         mengapaSalah: {
@@ -5682,6 +5886,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Meterai palsu dianggap tidak pernah ada, jadi dokumennya dianggap belum bermeterai dan harga beli Rp8.500 tidak dihitung sebagai pembayaran. Perusahaan hanya menanggung 72 kuitansi di atas Rp5 juta yang diterimanya dan 20 rangkap perjanjian yang dipegangnya, sedangkan rangkap mitra ditanggung mitra. Jadi 92 dokumen x (Rp10.000 + sanksi Rp10.000) = Rp1.840.000. Kuitansi kecil dan 14 meterai sisa tidak dihitung. Cara ingat: tiap pihak menanggung rangkap yang ia pegang.",
         inti: "Meterai palsu tidak memenuhi syarat sah pembayaran (Pasal 44 ayat (1) PMK 78/2024), sehingga dokumen dianggap tidak dibubuhi meterai (Pasal 45). Yang dimeteraikan kemudian oleh perusahaan hanyalah dokumen objek yang terutang olehnya: 72 kuitansi lebih dari Rp5.000.000 yang diterimanya (Pasal 9 ayat (1)) dan 20 rangkap perjanjian yang dipegangnya (Pasal 9 ayat (2)). Kuitansi Rp5.000.000 ke bawah bukan objek, rangkap mitra terutang oleh mitra, dan meterai sisa tidak menimbulkan bea meterai.",
         jejakHitung: [
           ["Kuitansi objek yang diterima perusahaan", "72"],
@@ -5716,6 +5921,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Yang ditanya di sini adalah kapan meterai mulai wajib dibayar untuk dokumen yang dipakai sebagai bukti di pengadilan. Untuk jenis dokumen ini, pemicunya adalah saat dokumen itu dipakai, bukan saat dibuat. Jadi meterainya baru terutang ketika dokumen diajukan ke pengadilan. Saat ditandatangani, saat diserahkan, atau saat putusan dibacakan bukan patokannya. Cara ingat: dokumen bukti kena meterai saat masuk ke pengadilan.",
         inti: "Pasal 3 ayat (1) huruf b UU 10/2020 menjadikan Dokumen yang dipakai sebagai alat bukti di pengadilan sebagai objek Bea Meterai tersendiri, di samping dokumen perdata. Pasal 8 ayat (1) mengatur saat terutang per jenis Dokumen. Untuk alat bukti di pengadilan, huruf d menetapkan saatnya ketika Dokumen diajukan ke pengadilan. Jadi Bea Meterainya baru terutang saat dokumen itu diajukan sebagai bukti, bukan saat dibuat atau ditandatangani.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5743,6 +5949,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Perhatikan batas nilainya. Kuitansi baru kena meterai bila nilainya lebih dari Rp5 juta, bukan sama dengan Rp5 juta. Kuitansi CV Mawar tepat Rp5 juta, jadi belum melewati batas dan tidak terutang meterai. Bentuk kertas atau elektronik tidak mengubah hal ini. Cara ingat: Rp5 juta pas masih bebas, Rp5 juta lebih satu rupiah baru kena Rp10 ribu.",
         inti: "Kuitansi adalah Dokumen yang menyatakan jumlah uang dan menyebutkan penerimaan uang. Pasal 3 ayat (2) huruf g UU 10/2020 hanya menjadikannya objek Bea Meterai bila nilai nominalnya lebih dari Rp5.000.000. Kuitansi CV Mawar bernilai tepat Rp5.000.000, jadi belum melewati batas dan tidak terutang Bea Meterai. Bentuk kertas atau elektronik tidak mengubah hal ini, sebab Pasal 1 angka 2 mencakup tulisan elektronik dalam pengertian Dokumen. Seandainya nilainya di atas Rp5.000.000, tarifnya tetap Rp10.000 (Pasal 5).",
         jejakHitung: [],
         mengapaSalah: {
@@ -5770,6 +5977,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-baca", D: "salah-baca" },
       pembahasan: {
+        mudah: "SPT Masa Bea Meterai punya empat lampiran, dan soal ini menanyakan isi lampiran pertama (L1). L1 dipakai untuk melaporkan cek dan bilyet giro yang bea meterainya dipungut dengan Meterai Percetakan, yaitu tanda meterai yang dicetak. L2 untuk Meterai Elektronik, L3 untuk dokumen yang tidak bisa dibubuhi Meterai Elektronik, dan L4 untuk dokumen yang dibebaskan. Cara ingat: L1 = cetak (cek dan giro), L2 = elektronik.",
         inti: "Pasal 78 ayat (1) PER-11/PJ/2025 menyusun SPT Masa Bea Meterai dari induk dan empat lampiran: L1 untuk pemungutan dengan Meterai Percetakan, L2 untuk pemungutan dengan Meterai Elektronik, L3 untuk dokumen yang tidak dapat dibubuhi Meterai Elektronik, dan L4 untuk dokumen yang mendapat fasilitas pembebasan. Petunjuk pengisian L1 di Lampiran huruf F menjelaskan bahwa formulir ini dipakai untuk melaporkan cek dan/atau bilyet giro yang dipungut dengan Meterai Percetakan. Jadi L1 berisi daftar pemungutan dengan Meterai Percetakan atas cek dan/atau bilyet giro.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5797,6 +6005,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini menanyakan batas lapor SPT Masa Bea Meterai bagi pemungut. Batasnya paling lama 15 hari setelah masa pajak berakhir, atau tanggal 15 bulan berikutnya. Batas setor bea meterai yang dipungut juga tanggal 15, jadi setor dan lapor jatuh di hari yang sama. Jangan tertukar dengan SPT Masa PPh potong pungut yang 20 hari, atau SPT Masa PPN yang akhir bulan berikutnya. Cara ingat: bea meterai, setor dan lapor tanggal 15.",
         inti: "Pemungut Bea Meterai wajib melaporkan Bea Meterai yang telah dipungutnya dengan SPT Masa Bea Meterai paling lama 15 hari setelah Masa Pajak berakhir (Pasal 171 ayat (18) PMK 81/2024). PMK 78/2024 Pasal 64 ayat (1) merumuskan hal yang sama sebagai paling lambat tanggal 15 bulan berikutnya setelah Masa Pajak berakhir. Batas setor Bea Meterai yang dipungut juga tanggal 15 bulan berikutnya, sehingga setor dan lapor jatuh pada tanggal yang sama.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5824,6 +6033,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dari kapan bea meterai surat perjanjian itu terutang, yaitu saat ditandatangani, 12 Mei 2021. Bea meterai yang belum dibayar kedaluwarsa setelah 5 tahun sejak saat terutang, berlaku untuk semua dokumen. Jangka 5 tahun itu berakhir 11 Mei 2026, jadi mulai 12 Mei 2026 sudah kedaluwarsa. Tanggal 20 Oktober 2026 sudah lewat batas itu, sehingga bea meterainya telah kedaluwarsa. Cara ingat: bea meterai kedaluwarsa 5 tahun dihitung dari tanda tangan, bukan dari saat diperiksa.",
         inti: "Bea Meterai atas surat perjanjian terutang saat Dokumen dibubuhi Tanda Tangan (Pasal 8 ayat (1) huruf a angka 1 UU 10/2020), yaitu 12 Mei 2021. Pasal 23 menetapkan Bea Meterai yang terutang kedaluwarsa setelah jangka waktu 5 tahun sejak saat terutang, dan Penjelasannya menegaskan hal itu berlaku untuk semua Dokumen. Dengan tanggal 12 Mei 2021 sebagai hari pertama, hari terakhir jangka waktu adalah 11 Mei 2026 dan kedaluwarsa berlaku mulai 12 Mei 2026. Pada 20 Oktober 2026 jangka waktu itu sudah lewat, jadi Bea Meterainya telah kedaluwarsa.",
         jejakHitung: [
           ["Saat terutang (Tanda Tangan surat perjanjian)", "12 Mei 2021 (Rabu)"],
@@ -5843,6 +6053,480 @@ UKP.register({
       verifikasi: "✅",
       sumber: { set: "TO-C-2026-11-1", no: 65, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
       sejak: "9.5.5"
+    },
+    {
+      id: "A5-212",
+      topik: "A5.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "PT Upsilon menerbitkan kuitansi penerimaan uang sebesar tepat Rp5.000.000. Bea meterai yang terutang adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "Tidak terutang bea meterai", B: "Rp10.000", C: "Rp3.000", D: "Rp6.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "angka-usang", D: "angka-usang" },
+      pembahasan: {
+        mudah: "Yang perlu diingat di sini adalah batas nilai kuitansi. Kuitansi baru kena bea meterai kalau nilainya LEBIH DARI Rp5 juta. Kuitansi PT Upsilon nilainya tepat Rp5 juta, jadi belum melewati batas. Karena itu tidak ada bea meterai yang terutang. Cara ingat: tepat Rp5 juta belum kena, Rp5.000.001 baru kena Rp10.000.",
+        inti: "Pasal 3 ayat (2) huruf g UU 10/2020 menjadikan dokumen yang menyebutkan penerimaan uang sebagai objek bea meterai hanya bila nilai nominalnya lebih dari Rp5.000.000. Kuitansi sebesar tepat Rp5.000.000 tidak melebihi batas itu, sehingga bukan objek bea meterai dan tidak ada bea meterai yang terutang. Bila nilainya melebihi batas, tarifnya Rp10.000 (Pasal 5).",
+        jejakHitung: [
+          ["Nilai kuitansi", "Rp5.000.000"],
+          ["Syarat objek", "lebih dari Rp5.000.000"],
+          ["Rp5.000.000 lebih dari Rp5.000.000?", "tidak, jadi tidak terutang"]
+        ],
+        mengapaSalah: {
+          B: "Tarif Rp10.000 baru berlaku bila nilai kuitansi lebih dari Rp5.000.000; nilai tepat Rp5.000.000 belum melewati batas.",
+          C: "Rp3.000 adalah tarif lama menurut UU 13/1985 yang sudah dicabut UU 10/2020, dan kuitansi ini memang tidak terutang.",
+          D: "Rp6.000 juga tarif lama UU 13/1985; sejak 2021 tarifnya tunggal Rp10.000 dan itu pun hanya untuk kuitansi di atas Rp5.000.000."
+        },
+        jebakan: "Kata \"lebih dari\" berarti nilai tepat Rp5.000.000 belum terutang bea meterai."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (2) huruf g UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 5 UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp5.000", alasan: "Rp5.000 tidak pernah menjadi tarif bea meterai; angka ini mencampuradukkan batas nilai Rp5 juta dengan besarnya tarif." },
+      sumber: { set: "LM-B-2026-11", no: 53, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-213",
+      topik: "A5.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Atas kuitansi yang dibuat sepihak, pihak yang terutang bea meterai adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Pembuat kuitansi", B: "Penerima kuitansi", C: "Pejabat pembuat dokumen", D: "Kedua pihak secara tanggung renteng" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Siapa yang menanggung bea meterai kuitansi? Kuitansi dibuat oleh satu pihak saja, yaitu yang menerima uang, lalu diserahkan kepada yang membayar. Untuk dokumen sepihak, yang menanggung adalah pihak yang menerima dokumennya. Jadi yang terutang adalah penerima kuitansi, bukan pembuatnya. Cara ingat: dokumen sepihak, yang memegang kertasnya yang bayar meterai.",
+        inti: "Pasal 9 ayat (1) UU 10/2020 menetapkan bahwa untuk dokumen yang dibuat sepihak, bea meterai terutang oleh pihak yang menerima dokumen. Kuitansi adalah dokumen sepihak yang dibuat penerima uang dan diserahkan kepada pembayar, sehingga pihak yang terutang adalah penerima kuitansi. Pasal 9 ayat (6) tetap membolehkan para pihak bersepakat lain tentang siapa yang membayar.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pembuat kuitansi justru pihak yang menyerahkan dokumen; Pasal 9 ayat (1) membebankan bea meterai dokumen sepihak kepada penerimanya.",
+          C: "Pejabat pembuat dokumen bukan pihak dalam kuitansi; pejabat hanya dilarang menerima dokumen yang bea meterainya kurang dibayar (Pasal 21).",
+          D: "Tanggung renteng tidak dikenal dalam Pasal 9; \"masing-masing pihak\" hanya untuk dokumen yang dibuat dua pihak atau lebih, dan itu pun atas dokumen yang diterima masing-masing."
+        },
+        jebakan: "Banyak orang mengira pembuat kuitansi yang membayar meterai, padahal untuk dokumen sepihak yang terutang adalah penerimanya."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Notaris yang mengesahkan dokumen", alasan: "Notaris tidak terlibat dalam pembuatan kuitansi, dan Pasal 9 tidak menunjuk notaris sebagai pihak yang terutang." },
+      sumber: { set: "LM-B-2026-11", no: 54, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-214",
+      topik: "A5.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Tarif bea meterai menurut UU 10/2020 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tarif tetap Rp10.000", B: "Rp3.000 dan Rp6.000", C: "0,1% dari nilai dokumen", D: "Rp10.000 hanya untuk nilai di atas Rp10 juta" },
+      kunci: "A",
+      jebakanOpsi: { B: "angka-usang", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Pertanyaannya sederhana: berapa tarif bea meterai sekarang? Sejak 2021 tarifnya hanya satu, yaitu Rp10.000 per dokumen. Tarif ini tetap, tidak dihitung dari persentase nilai dokumen. Tarif lama Rp3.000 dan Rp6.000 sudah tidak dipakai. Cara ingat: satu dokumen, satu meterai Rp10.000.",
+        inti: "Pasal 5 UU 10/2020 menetapkan bahwa dokumen yang menjadi objek bea meterai menurut Pasal 3 dikenai bea meterai dengan tarif tetap sebesar Rp10.000. Tarif ini berlaku untuk semua objek tanpa membedakan nilai dokumen, menggantikan tarif Rp3.000 dan Rp6.000 dari UU 13/1985. Batas nilai Rp5.000.000 hanya syarat objek untuk dokumen penerimaan uang, bukan syarat tarif.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Dua lapis tarif Rp3.000 dan Rp6.000 adalah susunan lama UU 13/1985; UU 10/2020 memakai satu tarif tetap.",
+          C: "Bea meterai bukan pajak persentase; Pasal 5 menetapkan tarif tetap per dokumen, bukan 0,1% dari nilai.",
+          D: "Tarif Rp10.000 tidak dibatasi nilai Rp10 juta; batas nilai yang ada hanya Rp5.000.000 dan itu pun syarat objek untuk dokumen penerimaan uang."
+        },
+        jebakan: "Tarif lama Rp3.000 dan Rp6.000 masih sering muncul sebagai pengecoh, padahal sejak 2021 tarifnya tunggal Rp10.000."
+      },
+      dasarHukum: [{ pasal: "Pasal 5 UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 45,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp6.000", alasan: "Rp6.000 adalah salah satu tarif lama menurut UU 13/1985 yang sudah dicabut sejak 1 Januari 2021." },
+      sumber: { set: "LM-B-2026-11", no: 55, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-215",
+      topik: "A5.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Surat perjanjian sewa-menyewa dengan nilai Rp2.000.000 yang digunakan sebagai alat bukti perdata ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tidak terutang karena nilainya di bawah Rp5 juta", B: "Terutang Rp6.000", C: "Terutang bea meterai Rp10.000", D: "Terutang Rp3.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", D: "angka-usang" },
+      pembahasan: {
+        mudah: "Kita perlu tahu apakah batas Rp5 juta juga berlaku untuk surat perjanjian. Batas Rp5 juta hanya untuk kuitansi atau dokumen yang menyebut penerimaan uang. Surat perjanjian kena bea meterai berapa pun nilainya. Jadi perjanjian sewa Rp2 juta tetap terutang Rp10.000. Cara ingat: batas Rp5 juta milik kuitansi, bukan milik perjanjian.",
+        inti: "Pasal 3 ayat (2) huruf a UU 10/2020 memasukkan surat perjanjian beserta rangkapnya sebagai dokumen perdata yang dikenai bea meterai tanpa batas nilai. Batas lebih dari Rp5.000.000 hanya melekat pada dokumen penerimaan uang atau pelunasan utang (huruf g). Karena itu perjanjian sewa Rp2.000.000 tetap terutang bea meterai dengan tarif tetap Rp10.000 (Pasal 5).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Batas Rp5.000.000 hanya berlaku untuk dokumen yang menyebut penerimaan uang atau pelunasan utang, bukan untuk surat perjanjian.",
+          B: "Rp6.000 adalah tarif lama UU 13/1985; sejak 2021 tarifnya Rp10.000.",
+          D: "Rp3.000 adalah tarif lama UU 13/1985 untuk nilai kecil; UU 10/2020 tidak lagi membedakan tarif menurut nilai."
+        },
+        jebakan: "Batas Rp5 juta sering diterapkan ke semua dokumen, padahal surat perjanjian terutang berapa pun nilainya."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (2) huruf a UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 5 UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Terutang 0,5% dari nilai", alasan: "Bea meterai memakai tarif tetap per dokumen, bukan persentase dari nilai perjanjian." },
+      sumber: { set: "LM-B-2026-11", no: 56, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-216",
+      topik: "A5.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Dokumen berikut yang tidak dikenai bea meterai adalah ...",
+      kataKualifikasi: ["tidak"],
+      opsi: { A: "Surat perjanjian kerja sama", B: "Kuitansi penerimaan uang Rp7.000.000", C: "Ijazah", D: "Akta notaris" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Di sini kita diminta mencari dokumen yang tidak dikenai bea meterai. Undang-undang punya daftar dokumen yang memang dikecualikan, dan ijazah ada di daftar itu. Perjanjian kerja sama, akta notaris, dan akta PPAT justru objek bea meterai. Kuitansi Rp7 juta juga kena karena nilainya lebih dari Rp5 juta. Cara ingat: ijazah, slip gaji, dan bukti bayar pajak bebas meterai.",
+        inti: "Pasal 7 huruf b UU 10/2020 menyatakan bea meterai tidak dikenakan atas segala bentuk ijazah. Sebaliknya, surat perjanjian (Pasal 3 ayat (2) huruf a), akta notaris (huruf b), akta PPAT (huruf c), dan dokumen penerimaan uang bernilai lebih dari Rp5.000.000 (huruf g) adalah objek bea meterai. Kuitansi Rp7.000.000 melebihi batas, sehingga terutang.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Surat perjanjian kerja sama adalah objek bea meterai menurut Pasal 3 ayat (2) huruf a, berapa pun nilainya.",
+          B: "Kuitansi Rp7.000.000 melebihi batas Rp5.000.000, sehingga terutang bea meterai menurut Pasal 3 ayat (2) huruf g.",
+          D: "Akta notaris beserta grosse, salinan, dan kutipannya termasuk objek menurut Pasal 3 ayat (2) huruf b."
+        },
+        jebakan: "Kata \"tidak\" di stem: cari satu-satunya dokumen yang masuk daftar pengecualian, yaitu ijazah."
+      },
+      dasarHukum: [{ pasal: "Pasal 7 huruf b UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 3 ayat (2) huruf a, b, c, dan g UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Akta PPAT", alasan: "Akta PPAT beserta salinan dan kutipannya termasuk objek menurut Pasal 3 ayat (2) huruf c." },
+      sumber: { set: "LM-B-2026-11", no: 57, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-217",
+      topik: "A5.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Tanda bukti penerimaan pembayaran pajak ...",
+      kataKualifikasi: [],
+      opsi: { A: "Terutang Rp10.000 bila lebih dari Rp5 juta", B: "Tidak dikenai bea meterai", C: "Terutang Rp6.000", D: "Terutang Rp10.000 berapa pun nilainya" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "angka-usang", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Pertanyaannya tentang bukti bayar pajak, misalnya bukti setor dari bank. Dokumen seperti ini masuk daftar yang dibebaskan dari bea meterai. Jadi berapa pun nilai pajaknya, tidak perlu meterai. Batas Rp5 juta untuk kuitansi biasa tidak berlaku di sini. Cara ingat: membayar pajak tidak dikenai pajak lagi atas bukti bayarnya.",
+        inti: "Pasal 7 huruf e UU 10/2020 menyatakan bea meterai tidak dikenakan atas kuitansi untuk semua jenis pajak dan penerimaan lain yang dipersamakan, yang berasal dari kas negara, kas pemerintah daerah, bank, dan lembaga lain yang ditunjuk. Pengecualian ini tidak bergantung pada nilai, sehingga tanda bukti penerimaan pembayaran pajak tidak dikenai bea meterai.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Batas Rp5.000.000 berlaku untuk kuitansi biasa; bukti penerimaan pembayaran pajak dikecualikan berapa pun nilainya.",
+          C: "Rp6.000 tarif lama UU 13/1985, dan dokumen ini memang tidak dikenai bea meterai.",
+          D: "Tarif Rp10.000 hanya untuk dokumen objek; bukti penerimaan pembayaran pajak masuk daftar pengecualian Pasal 7."
+        },
+        jebakan: "Bukti bayar pajak terlihat seperti kuitansi biasa, padahal ia dikecualikan berapa pun nilainya."
+      },
+      dasarHukum: [{ pasal: "Pasal 7 huruf e UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 45,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Terutang Rp3.000", alasan: "Rp3.000 tarif lama UU 13/1985, dan dokumen ini memang tidak dikenai bea meterai." },
+      sumber: { set: "LM-B-2026-11", no: 58, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-218",
+      topik: "A5.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Saat terutangnya bea meterai atas surat perjanjian adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Saat dokumen diajukan ke pengadilan", B: "Saat dokumen diserahkan", C: "Saat dokumen selesai dicetak", D: "Saat dokumen dibubuhi tanda tangan" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Kapan bea meterai surat perjanjian mulai terutang? Undang-undang menetapkan patokan yang berbeda untuk tiap jenis dokumen. Untuk surat perjanjian, patokannya saat dokumen ditandatangani. Saat diserahkan dipakai untuk kuitansi dan surat keterangan, sedangkan saat selesai dibuat untuk cek dan surat berharga lain. Cara ingat: perjanjian dan akta mengikuti tanda tangan, kuitansi mengikuti penyerahan.",
+        inti: "Pasal 8 ayat (1) huruf a UU 10/2020 menetapkan bea meterai terutang pada saat dokumen dibubuhi tanda tangan untuk surat perjanjian beserta rangkapnya, akta notaris, dan akta PPAT. Saat diserahkan (huruf c) berlaku untuk surat keterangan dan dokumen penerimaan uang, saat diajukan ke pengadilan (huruf d) untuk alat bukti, dan saat selesai dibuat (huruf b) untuk surat berharga.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Saat diajukan ke pengadilan adalah saat terutang untuk dokumen yang dipakai sebagai alat bukti (Pasal 8 ayat (1) huruf d), bukan untuk perjanjian biasa.",
+          B: "Saat diserahkan berlaku untuk surat keterangan, dokumen lelang, dan kuitansi (Pasal 8 ayat (1) huruf c), bukan surat perjanjian.",
+          C: "Saat selesai dibuat berlaku untuk surat berharga dan dokumen transaksi surat berharga (Pasal 8 ayat (1) huruf b), dan \"selesai dicetak\" bukan rumusan naskah."
+        },
+        jebakan: "Saat terutang berbeda per jenis dokumen; untuk perjanjian yang menentukan adalah tanda tangan, bukan penyerahan."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) huruf a UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Saat pembayaran dilakukan", alasan: "Saat pembayaran tidak dikenal sebagai saat terutang bea meterai dalam Pasal 8." },
+      sumber: { set: "LM-B-2026-11", no: 59, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-219",
+      topik: "A5.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Saat terutangnya bea meterai atas surat berharga (misalnya cek) adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Saat ditandatangani penerima", B: "Saat diserahkan ke bank", C: "Saat dokumen selesai dibuat", D: "Saat dicairkan" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Intinya, kita perlu tahu kapan bea meterai cek mulai terutang. Cek termasuk surat berharga. Untuk surat berharga, bea meterai terutang begitu dokumennya selesai dibuat oleh penerbit. Tidak perlu menunggu cek ditandatangani penerima, disetor ke bank, atau dicairkan. Cara ingat: surat berharga terutang sejak lahir, yaitu saat selesai dibuat.",
+        inti: "Penjelasan Pasal 3 ayat (2) huruf d UU 10/2020 menyebut cek dan bilyet giro sebagai surat berharga. Pasal 8 ayat (1) huruf b menetapkan bea meterai atas surat berharga dengan nama dan dalam bentuk apa pun terutang pada saat dokumen selesai dibuat. Penerimaan, penyetoran ke bank, atau pencairan cek terjadi sesudahnya dan tidak menentukan saat terutang.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tanda tangan penerima tidak menentukan saat terutang surat berharga; saat dibubuhi tanda tangan hanya untuk perjanjian dan akta (Pasal 8 ayat (1) huruf a).",
+          B: "Penyerahan ke bank terjadi sesudah cek dibuat; Pasal 8 ayat (1) huruf b memakai saat dokumen selesai dibuat.",
+          D: "Pencairan adalah pelaksanaan pembayaran cek, bukan saat terutang bea meterai."
+        },
+        jebakan: "Cek terasa seperti kuitansi yang terutang saat diserahkan, padahal sebagai surat berharga ia terutang saat selesai dibuat."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) huruf b UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 3 ayat (2) huruf d UU 10/2020 dan Penjelasannya", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Akhir bulan", alasan: "Akhir bulan tidak disebut sebagai saat terutang dalam Pasal 8; saat terutang melekat pada peristiwa atas dokumen, bukan pada kalender." },
+      sumber: { set: "LM-B-2026-11", no: 60, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-220",
+      topik: "A5.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Atas surat perjanjian yang dibuat oleh dua pihak, pihak yang terutang bea meterai adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Masing-masing pihak atas dokumen yang diterimanya", B: "Notaris", C: "Hanya pihak yang lebih besar nilainya", D: "Hanya pihak pertama" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Siapa yang menanggung meterai perjanjian yang dibuat dua pihak? Biasanya perjanjian dibuat rangkap, satu untuk tiap pihak. Aturannya, tiap pihak menanggung bea meterai atas lembar yang ia terima. Jadi bukan hanya pihak pertama atau pihak yang nilainya lebih besar. Cara ingat: siapa memegang lembar perjanjian, dialah yang menanggung meterainya.",
+        inti: "Pasal 9 ayat (2) UU 10/2020 menetapkan bahwa untuk dokumen yang dibuat oleh dua pihak atau lebih, bea meterai terutang oleh masing-masing pihak atas dokumen yang diterimanya. Perjanjian yang dibuat rangkap dua dengan demikian terutang dua kali Rp10.000, satu oleh tiap pihak. Pasal 9 ayat (6) tetap membolehkan para pihak bersepakat tentang siapa yang membayar.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Notaris bukan pihak dalam perjanjian di bawah tangan dan tidak ditunjuk sebagai pihak yang terutang dalam Pasal 9.",
+          C: "Besar kecilnya nilai bagian tiap pihak tidak menentukan pihak yang terutang; Pasal 9 ayat (2) memakai dokumen yang diterima masing-masing.",
+          D: "Pasal 9 ayat (2) membebankan kepada masing-masing pihak, bukan hanya pihak pertama; pembebanan kepada satu pihak hanya bisa lewat kesepakatan."
+        },
+        jebakan: "Jangan memilih satu pihak saja: aturan dasarnya masing-masing pihak atas lembar yang diterimanya, kecuali para pihak sepakat lain."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2) UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 45,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Pemerintah", alasan: "Pemerintah bukan pihak yang terutang; bea meterai justru dibayar kepada negara." },
+      sumber: { set: "LM-B-2026-11", no: 61, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-221",
+      topik: "A5.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Pihak yang terutang bea meterai atas surat berharga adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Pihak yang menerima surat berharga", B: "Pihak yang menerbitkan surat berharga", C: "Kedua pihak", D: "Bank tempat pencairan" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Yang dicari adalah pihak yang menanggung meterai surat berharga, misalnya cek atau saham. Aturan umumnya, dokumen sepihak ditanggung penerimanya. Tetapi surat berharga punya aturan khusus: yang menanggung adalah pihak yang menerbitkannya. Jadi penerbit cek yang membayar, bukan penerima cek atau bank. Cara ingat: surat berharga itu pengecualian, penerbitnya yang bayar.",
+        inti: "Pasal 9 ayat (3) UU 10/2020 mengecualikan surat berharga dari aturan umum ayat (1) dan ayat (2): bea meterai atas surat berharga terutang oleh pihak yang menerbitkan surat berharga. Jadi meskipun cek atau saham diterima pihak lain, penerbitnya yang terutang. Bank tempat pencairan dan notaris tidak ditunjuk sebagai pihak yang terutang.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Penerima dokumen adalah pihak terutang untuk dokumen sepihak (Pasal 9 ayat (1)); surat berharga dikecualikan oleh ayat (3).",
+          C: "Kedua pihak adalah pola dokumen yang dibuat dua pihak (Pasal 9 ayat (2)), yang juga dikecualikan untuk surat berharga.",
+          D: "Bank tempat pencairan hanya melaksanakan pembayaran; ia bisa ditetapkan sebagai pemungut, tetapi bukan pihak yang terutang."
+        },
+        jebakan: "Aturan umum dokumen sepihak (penerima yang terutang) tidak berlaku untuk surat berharga; yang terutang penerbitnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (3) UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Notaris", alasan: "Notaris tidak terlibat dalam penerbitan surat berharga seperti cek dan tidak disebut dalam Pasal 9." },
+      sumber: { set: "LM-B-2026-11", no: 62, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-222",
+      topik: "A5.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Cek senilai Rp1.000.000 ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dikecualikan dari bea meterai", B: "Tidak terutang karena di bawah Rp5 juta", C: "Terutang Rp3.000", D: "Terutang bea meterai Rp10.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "angka-usang" },
+      pembahasan: {
+        mudah: "Apakah cek Rp1 juta kena bea meterai? Cek termasuk surat berharga. Surat berharga kena bea meterai berapa pun nilainya, karena batas Rp5 juta hanya untuk kuitansi. Jadi cek Rp1 juta tetap terutang Rp10.000. Cara ingat: cek dan bilyet giro selalu bermeterai, kecil atau besar nilainya.",
+        inti: "Pasal 3 ayat (2) huruf d UU 10/2020 menjadikan surat berharga dengan nama dan dalam bentuk apa pun sebagai objek bea meterai, dan Penjelasannya menyebut cek dan bilyet giro sebagai contoh. Objek ini tidak memakai batas nilai; batas lebih dari Rp5.000.000 hanya untuk dokumen penerimaan uang (huruf g). Tarifnya tetap Rp10.000 (Pasal 5).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Cek tidak termasuk daftar pengecualian Pasal 7; yang dikecualikan antara lain tanda pembagian keuntungan atau bunga surat berharga, bukan cek.",
+          B: "Batas Rp5.000.000 hanya untuk dokumen penerimaan uang atau pelunasan utang; surat berharga terutang tanpa batas nilai.",
+          C: "Rp3.000 adalah tarif lama UU 13/1985 yang dulu berlaku untuk cek; sejak 2021 tarifnya Rp10.000."
+        },
+        jebakan: "Batas Rp5 juta sering diterapkan ke cek, padahal cek sebagai surat berharga terutang berapa pun nilainya."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (2) huruf d UU 10/2020 dan Penjelasannya", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 5 UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 45,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Terutang 0,1%", alasan: "Bea meterai tidak memakai tarif persentase; tarifnya tetap Rp10.000 per dokumen." },
+      sumber: { set: "LM-B-2026-11", no: 63, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-223",
+      topik: "A5.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "Kuitansi penerimaan uang Rp8.000.000 yang terutang bea meterai tetapi tidak dibubuhi meterai, kemudian dilakukan pemeteraian kemudian. Jumlah yang harus dibayar adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp15.000", B: "Rp30.000", C: "Rp20.000 (bea meterai Rp10.000 + sanksi 100%)", D: "Rp10.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "angka-usang", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Berapa yang harus dibayar bila kuitansi yang wajib bermeterai ternyata belum bermeterai? Kuitansi Rp8 juta memang terutang karena nilainya lebih dari Rp5 juta. Kalau dilunasi belakangan lewat pemeteraian kemudian, ada denda 100%. Hitungannya Rp10.000 bea meterai ditambah Rp10.000 sanksi, jadi Rp20.000. Cara ingat: lupa meterai, bayar dua kali lipat.",
+        inti: "Kuitansi Rp8.000.000 terutang menurut Pasal 3 ayat (2) huruf g UU 10/2020 dengan tarif Rp10.000. Dokumen yang bea meterainya tidak dibayar dilunasi melalui pemeteraian kemudian (Pasal 17 ayat (1) huruf a), sebesar bea meterai terutang ditambah sanksi administratif (Pasal 18 ayat (1) huruf a) yang besarnya 100% (Pasal 18 ayat (2); Pasal 49 huruf a PMK 78/2024 untuk dokumen terutang sejak 1 Januari 2021).",
+        jejakHitung: [
+          ["Kuitansi Rp8.000.000 lebih dari Rp5.000.000?", "ya, terutang"],
+          ["Bea meterai terutang", "Rp10.000"],
+          ["Sanksi administratif 100%", "100% x Rp10.000 = Rp10.000"],
+          ["Jumlah pemeteraian kemudian", "Rp10.000 + Rp10.000 = Rp20.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp15.000 memakai sanksi 50%; sanksi pemeteraian kemudian untuk dokumen yang kurang bayar adalah 100%.",
+          B: "Rp30.000 memakai sanksi 200%, yang hanya berlaku untuk dokumen yang terutang sebelum 1 Januari 2021 (Pasal 49 huruf b PMK 78/2024).",
+          D: "Rp10.000 hanya bea meterainya; sanksi 100% untuk dokumen yang tidak dibayar terlewat."
+        },
+        jebakan: "Pemeteraian kemudian atas dokumen yang lupa dimeterai selalu ditambah sanksi 100%, bukan hanya membayar Rp10.000."
+      },
+      dasarHukum: [{ pasal: "Pasal 17 dan Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 49 huruf a PMK 78/2024", berlakuSejak: "2024-11-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp40.000", alasan: "Rp40.000 sama dengan bea meterai ditambah sanksi 300%; tidak ada sanksi sebesar itu dalam UU 10/2020." },
+      sumber: { set: "LM-B-2026-11", no: 64, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-224",
+      topik: "A5.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Surat pribadi yang semula tidak terutang bea meterai akan digunakan sebagai alat bukti di pengadilan. Bea meterai yang dibayar melalui pemeteraian kemudian adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp10.000 tanpa sanksi, terutang oleh pihak yang mengajukan dokumen", B: "Rp30.000", C: "Rp20.000 termasuk sanksi 100%", D: "Rp0" },
+      kunci: "A",
+      jebakanOpsi: { B: "angka-usang", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Kasusnya adalah surat pribadi yang tadinya bebas meterai, lalu dipakai sebagai bukti di pengadilan. Saat dipakai di pengadilan, surat itu menjadi objek bea meterai. Tidak ada denda, karena sebelumnya memang belum ada kewajiban yang dilanggar. Yang membayar Rp10.000 adalah pihak yang mengajukan surat itu. Cara ingat: dokumen untuk bukti pengadilan dibayar tanpa sanksi oleh yang mengajukannya.",
+        inti: "Pasal 3 ayat (1) huruf b UU 10/2020 menjadikan dokumen yang digunakan sebagai alat bukti di pengadilan sebagai objek bea meterai, dan Pasal 17 ayat (1) huruf b mengharuskan pelunasannya lewat pemeteraian kemudian. Menurut Pasal 18 ayat (1) huruf b, jumlahnya hanya bea meterai terutang tanpa sanksi. Pihak yang terutang adalah pihak yang mengajukan dokumen (Pasal 9 ayat (4) jo. Pasal 17 ayat (2)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Rp30.000 sama dengan bea meterai ditambah sanksi 200% menurut aturan lama; dokumen alat bukti tidak dikenai sanksi sama sekali.",
+          C: "Sanksi 100% hanya untuk dokumen yang bea meterainya tidak atau kurang dibayar (Pasal 18 ayat (1) huruf a); surat ini semula tidak terutang, jadi tanpa sanksi.",
+          D: "Begitu dipakai sebagai alat bukti di pengadilan, dokumen menjadi objek menurut Pasal 3 ayat (1) huruf b, sehingga tidak lagi nol."
+        },
+        jebakan: "Pemeteraian kemudian tidak selalu bersanksi: untuk dokumen yang baru menjadi objek karena dipakai di pengadilan, cukup bea meterainya saja."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf b UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 9 ayat (4) UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 17 dan Pasal 18 UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp10.000 terutang oleh hakim", alasan: "Hakim tidak mengajukan dokumen; Pasal 9 ayat (4) membebankan bea meterai kepada pihak yang mengajukan dokumen ke pengadilan." },
+      sumber: { set: "LM-B-2026-11", no: 65, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-225",
+      topik: "A5.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Bentuk meterai yang dapat digunakan untuk membayar bea meterai menurut UU 10/2020 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Meterai tempel dan cap stempel perusahaan", B: "Meterai tempel, meterai elektronik, dan meterai dalam bentuk lain", C: "Hanya meterai tempel", D: "Hanya meterai elektronik" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "angka-usang", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Bentuk meterai apa saja yang sah sekarang? Selain meterai tempel biasa, kini ada meterai elektronik untuk dokumen digital. Ada juga meterai dalam bentuk lain yang ditetapkan Menteri Keuangan, misalnya meterai teraan dari mesin. Cap stempel perusahaan atau tanda tangan bukan meterai. Cara ingat: tiga bentuk meterai, yaitu tempel, elektronik, dan bentuk lain.",
+        inti: "Pasal 12 ayat (2) UU 10/2020 menetapkan bahwa meterai untuk membayar bea meterai berupa meterai tempel, meterai elektronik, atau meterai dalam bentuk lain yang ditetapkan Menteri (misalnya meterai teraan digital, komputerisasi, dan percetakan menurut Pasal 15). Selain meterai, Pasal 12 ayat (1) juga membolehkan pembayaran dengan surat setoran pajak.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Cap stempel perusahaan bukan meterai; meterai harus dikeluarkan Pemerintah dan memiliki unsur pengaman (Pasal 1 angka 4).",
+          C: "Meterai tempel bukan satu-satunya bentuk; UU 10/2020 menambah meterai elektronik dan meterai dalam bentuk lain.",
+          D: "Meterai elektronik hanya salah satu bentuk; meterai tempel tetap sah."
+        },
+        jebakan: "Meterai elektronik tidak menggantikan meterai tempel; keduanya sah bersama meterai dalam bentuk lain."
+      },
+      dasarHukum: [{ pasal: "Pasal 12 ayat (2) UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 45,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Tanda tangan basah", alasan: "Tanda tangan basah adalah tanda tangan, bukan meterai, dan tidak melunasi bea meterai." },
+      sumber: { set: "LM-B-2026-11", no: 66, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-226",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 2,
+      stem: "Pihak yang ditetapkan sebagai pemungut bea meterai antara lain wajib pajak yang menerbitkan atau memfasilitasi penerbitan dokumen penerimaan uang bernilai lebih dari Rp5 juta dengan jumlah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Berapa pun jumlahnya", B: "Lebih dari 100 dokumen per bulan", C: "Lebih dari 1.000 dokumen dalam satu bulan", D: "Lebih dari 10.000 dokumen per tahun" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Kita perlu tahu kapan penerbit kuitansi di atas Rp5 juta ditunjuk sebagai pemungut bea meterai. Pemungut adalah pihak yang ditugasi menarik meterai dari pelanggannya lalu menyetorkannya ke negara. Aturan lama memakai patokan lebih dari 1.000 dokumen dalam sebulan, dan soal ini memakai patokan itu. Aturan yang berlaku sekarang tidak lagi menyebut angka, hanya jumlah tertentu menurut pertimbangan Dirjen Pajak.",
+        inti: "Pasal 10 UU 10/2020 menyerahkan penetapan pemungut kepada Peraturan Menteri. PMK 151/PMK.03/2021 memakai patokan lebih dari 1.000 dokumen dalam satu bulan, tetapi PMK itu dicabut PMK 78/2024 (Pasal 81 huruf c) sejak 1 November 2024. Pasal 56 ayat (3) huruf c PMK 78/2024 kini menetapkan kriteria penerbit atau fasilitator dokumen penerimaan uang di atas Rp5.000.000 \"dengan jumlah tertentu berdasarkan pertimbangan Direktur Jenderal Pajak\", tanpa angka.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Penetapan pemungut untuk dokumen penerimaan uang mensyaratkan jumlah tertentu; tidak setiap penerbit kuitansi otomatis menjadi pemungut.",
+          B: "Patokan 100 dokumen per bulan tidak pernah dipakai, baik dalam aturan lama maupun aturan sekarang.",
+          D: "Patokan 10.000 dokumen per tahun tidak dikenal; aturan lama memakai lebih dari 1.000 dokumen dalam satu bulan."
+        },
+        jebakan: "Angka 1.000 dokumen sebulan berasal dari aturan yang sudah dicabut; aturan sekarang menyerahkan jumlahnya pada pertimbangan Dirjen Pajak."
+      },
+      dasarHukum: [{ pasal: "Pasal 56 ayat (3) huruf c PMK 78/2024", berlakuSejak: "2024-11-01" }, { pasal: "Pasal 81 huruf c PMK 78/2024 (mencabut PMK 151/PMK.03/2021)", berlakuSejak: "2024-11-01" }, { pasal: "Pasal 10 UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "◐",
+      peringatan: "Patokan lebih dari 1.000 dokumen dalam satu bulan berasal dari aturan lama (PMK 151/PMK.03/2021) yang sudah dicabut sejak 1 November 2024. Aturan yang berlaku sekarang (Pasal 56 ayat (3) huruf c PMK 78/2024) tidak menyebut angka, hanya \"jumlah tertentu\" menurut pertimbangan Direktur Jenderal Pajak. Jadi menurut aturan November 2026 tidak ada pilihan yang pasti benar; aplikasi memakai patokan aturan lama karena itu yang paling mendekati.",
+      opsiLepas: { teks: "Lebih dari 500 dokumen per hari", alasan: "Patokan per hari tidak dikenal; aturan lama memakai hitungan per bulan." },
+      sumber: { set: "LM-B-2026-11", no: 67, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A5-227",
+      topik: "A5.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Dokumen elektronik (misalnya perjanjian yang ditandatangani digital) yang memenuhi kriteria objek ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tidak terutang karena tidak berbentuk kertas", B: "Hanya terutang bila dicetak", C: "Tetap terutang bea meterai", D: "Terutang setengah tarif" },
+      kunci: "C",
+      jebakanOpsi: { A: "angka-usang", B: "salah-baca", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Bagaimana dengan perjanjian yang dibuat dan ditandatangani secara digital? Sejak 2021, yang disebut dokumen tidak harus kertas, dokumen elektronik juga termasuk. Jadi perjanjian digital tetap kena bea meterai Rp10.000, yang bisa dibayar dengan meterai elektronik. Tidak perlu dicetak dulu dan tarifnya tidak dipotong. Cara ingat: kertas atau digital, meterainya sama.",
+        inti: "Pasal 1 angka 2 UU 10/2020 mendefinisikan dokumen sebagai tulisan dalam bentuk tulisan tangan, cetakan, atau elektronik yang dapat dipakai sebagai alat bukti atau keterangan. Karena itu dokumen elektronik yang memenuhi kriteria objek Pasal 3, misalnya surat perjanjian, tetap terutang bea meterai dengan tarif penuh Rp10.000, dan dapat dilunasi dengan meterai elektronik (Pasal 12 ayat (2) huruf b).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pandangan bahwa dokumen harus kertas berasal dari UU 13/1985; UU 10/2020 tegas memasukkan bentuk elektronik.",
+          B: "Dokumen elektronik sudah terutang tanpa dicetak; dicetak atau tidak, ia memenuhi definisi dokumen.",
+          D: "Tidak ada tarif setengah; Pasal 5 menetapkan tarif tetap Rp10.000 untuk semua objek."
+        },
+        jebakan: "Dokumen digital sering dikira bebas meterai, padahal definisi dokumen di UU 10/2020 mencakup bentuk elektronik."
+      },
+      dasarHukum: [{ pasal: "Pasal 1 angka 2 UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "Pasal 3 ayat (2) huruf a UU 10/2020", berlakuSejak: "2021-01-01" }],
+      anggaranDetik: 45,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Dikenai PPN sebagai pengganti", alasan: "PPN adalah pajak atas penyerahan barang atau jasa, bukan pengganti bea meterai; dokumen elektronik tetap kena bea meterai." },
+      sumber: { set: "LM-B-2026-11", no: 68, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
+      sejak: "9.7.0"
     }
   ],
   kartu: [

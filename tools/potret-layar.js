@@ -102,6 +102,17 @@ const LANGKAH = {
   'latih-atur': async p => { await pergi(p, 'latih', { atur: 1 }); },
   'latih-soal': async p => { await mulaiLatih(p); },
   'latih-pembahasan': async p => { await mulaiLatih(p); await jawabSalah(p); },
+  // v9.7.0 paket keempat (LM-B-2026-11): pemilih paket dan pilihan mata uji di Simulasi; pembahasan soal paket dengan blok Penjelasan mudah
+  'simulasi-paket': async p => {
+    await pergi(p, 'simulasi', { format: 'tryout', kode: 'LM-B-2026-11', bagian: 'b2' }, 900);
+    await p.evaluate(() => { const n = document.querySelectorAll('#sim-set option').length; if (n < 4) throw new Error('pemilih paket berisi ' + n + ' paket'); if (!document.querySelector('#sim-bagian-mu')) throw new Error('pilihan mata uji tidak ada'); });
+    // pemilih paket dan pilihan mata uji digulir ke tengah layar (di HP keduanya di bawah daftar Format)
+    await p.evaluate(() => { const e = document.querySelector('#sim-set'); window.scrollBy(0, Math.round(e.getBoundingClientRect().top - innerHeight * 0.3)); }); await tunggu(p, 300);
+  },
+  'latih-pembahasan-paket': async p => {
+    await pergi(p, 'latih', { set: 'LM-B-2026-11', n: 'semua' }, 900); await klikTeks(p, '^\\s*Mulai latihan', '', 1300); await jawabSalah(p);
+    await p.evaluate(() => { const e = document.querySelector('.umpan-mudah'); if (!e) throw new Error('blok Penjelasan mudah tidak ada'); window.scrollBy(0, Math.round(e.getBoundingClientRect().top - innerHeight * 0.2)); }); await tunggu(p, 300);
+  },
   // soal yang baru dijawab salah, digulir ke daftar opsi: memperlihatkan tanda "Jawaban Anda" dan "Kunci jawaban" pada opsi
   'latih-terjawab': async p => {
     await mulaiLatih(p); const k = await kunciLatih(p); if (!k || !k.kunci) throw new Error('kunci soal latihan tidak terbaca');
@@ -161,6 +172,7 @@ const LAYAR = [
   ['beranda', 'laptop', 'light', 1], ['simulasi-atur', 'laptop', 'light', 1], ['latih-pembahasan', 'laptop', 'light', 1], ['simulasi-hasil', 'laptop', 'light', 1],
   ['bersama-papan', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'light', 1], ['bersama-evaluasi', 'laptop', 'light', 1], ['bersama-kunci', 'laptop', 'dark', 1],
   ['ujiantim-jalan', 'laptop', 'light', 1], ['referensi', 'laptop', 'light', 1],
+  ['simulasi-paket', 'hp', 'light', 1], ['latih-pembahasan-paket', 'hp', 'light', 2], ['latih-pembahasan-paket', 'hp', 'dark', 1], ['latih-pembahasan-paket', 'laptop', 'light', 1],
   ['uji-gambar', 'hp', 'light', 1],
   ['materi', 'tablet', 'light', 1], ['bank', 'tablet', 'light', 1],
 ].map(([nama, alat, tema, n]) => ({ nama, alat, tema, n, tag: nama + '-' + alat + (tema === 'dark' ? '-gelap' : ''), tambah: /^(bersama|ujiantim)-/.test(nama) ? BERSAMA : null, khusus: nama === 'uji-gambar' || alat === 'tablet' }));

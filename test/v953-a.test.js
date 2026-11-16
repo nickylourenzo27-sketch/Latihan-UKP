@@ -66,14 +66,14 @@ describe('v9.5.3 A3: isian Jumlah soal dan Menit menulis balik nilai yang dipaka
   it('nilai desimal dibulatkan sebelum dibatasi, jadi yang tertulis balik sama dengan yang dijalankan', () => {
     const bulat = v => Math.max(5, Math.min(120, Math.round(Number(v)) || 20));
     assert.equal(bulat('7.5'), 8); assert.equal(bulat('7.4'), 7); assert.equal(bulat(''), 20); assert.equal(bulat('-4'), 5); assert.equal(bulat('0.4'), 20);
-    assert.ok(sim.includes("const v = Math.round(Number(e.target.value)); if (v) cfg.menitTO = U.clamp(v, 5, 300);"));
+    assert.ok(sim.includes("const v = Math.round(Number(e.target.value)); if (v) cfg.menitTO = U.clamp(v, 5, maksMenitTO());"));
   });
 });
 
 describe('v9.5.3 Ax1 dan Ax3: label segmen dan bar ujian', () => {
   it('sub Komprehensif mengikuti terbagi; sub Try Out ikut berubah saat Menit diketik', () => {
     assert.ok(sim.includes("sub: (cfg.terbagi ? Math.round((fUKP.menit || 180) / 2) + ' mnt · ±' + Math.ceil((fUKP.soalPerkiraan || 60) / 2) : (fUKP.menit || 180) + ' mnt · ±' + (fUKP.soalPerkiraan || 60)) + ' soal'"));
-    assert.ok(/if \(v\) cfg\.menitTO = U\.clamp\(v, 5, 300\); const sb = kartu\.querySelector\('\[data-format="tryout"\] small'\); if \(sb\) sb\.textContent = perkiraan\(\)\[1\] \+ ' soal · ' \+ menitTO\(\) \+ ' mnt';/.test(sim));
+    assert.ok(/if \(v\) cfg\.menitTO = U\.clamp\(v, 5, maksMenitTO\(\)\); const sb = kartu\.querySelector\('\[data-format="tryout"\] small'\); if \(sb\) sb\.textContent = perkiraan\(\)\[1\] \+ ' soal · ' \+ menitTO\(\) \+ ' mnt';/.test(sim));
   });
   it('"Sisa < 5 mnt" baru tampil di bawah 300 detik', () => {
     assert.ok(sim.includes("h('span', { class: 'sisa tiny', hidden: sisa >= 300 ? true : null }, sisa >= 300 ? null : 'Sisa < 5 mnt')"));

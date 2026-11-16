@@ -178,7 +178,8 @@ describe('v9.5.4 S13: tombol "Latih N soal <topik>" memakai jumlah soal yang ben
       }
     }
     assert.ok(dicek > 100);
-    UKP.store.get().profil.tingkat = 'A'; assert.equal(LB.nLatihTopik('A2.4'), 7, 'A2.4 target A: 7 keluarga');
+    // v9.7.0: patokan pindah dari A2.4 ke A1.5, karena paket Latihan UKP B menambah soal A2.4 sehingga jumlahnya mencapai batas 10
+    UKP.store.get().profil.tingkat = 'A'; assert.equal(LB.nLatihTopik('A1.5'), 9, 'A1.5 target A: 9 keluarga');
     UKP.store.get().profil.tingkat = 'B'; assert.equal(LB.nLatihTopik('B7.8'), 0, 'B7.8 target B: tanpa soal');
     assert.equal(LB.nLatihTopik('Z9.9'), 0);
   });

@@ -371,7 +371,7 @@
   const bolehMengingatkan = () => { const v = UKP.sekarang().view; return v !== 'mulai' && v !== 'sesi' && !(UKP.simulasiBerjalan && UKP.simulasiBerjalan()); };
 
   // ---------- offline (PWA) ----------
-  // Service worker (sw.js) menyimpan semua aset (HTML, CSS, JS, data materi ±5 MB, ikon) di Cache Storage sehingga aplikasi tetap
+  // Service worker (sw.js) menyimpan semua aset (HTML, CSS, JS, data materi ±15 MB, ikon) di Cache Storage sehingga aplikasi tetap
   // bisa dibuka tanpa internet, mis. di pesawat. Didaftarkan hanya bila 'serviceWorker' in navigator dan halaman dibuka lewat http(s):
   // file:// tidak mendukung service worker, dan versi berkas tunggal (window.UKP_OFFLINE) sudah memuat semuanya sendiri.
   // Artifact claude.ai: pendaftaran memakai jalur relatif 'sw.js' dengan scope './' (sw.js, manifest.webmanifest, dan icons/* harus ikut

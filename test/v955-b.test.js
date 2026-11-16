@@ -36,7 +36,8 @@ function muat() {
   for (const f of fs.readdirSync(path.join(ROOT, 'js', 'data')).filter(f => /^(ref|mu-.*|cakupan|peta-butir)\.js$/.test(f)).sort()) jalankan('js/data/' + f);
   // v9.5.5 (rilis): data asli kini memuat dua paket Try Out UKP C. Uji di berkas ini memakai soal tiruan berkode paket sama,
   // jadi paket C asli dilepas dari salinan data uji ini (data di js/data tidak disentuh). Data asli diuji di test/v955-data.test.js.
-  for (const k of Object.keys(ctx.UKP.modul)) { const m = ctx.UKP.modul[k]; m.soal = (m.soal || []).filter(x => !(x.sumber && /^TO-C-/.test(String(x.sumber.set)))); m.soal.forEach(x => { if (x.sumber && x.sumber.juga) delete x.sumber.juga; }); }
+  for (const k of Object.keys(ctx.UKP.modul)) { const m = ctx.UKP.modul[k]; m.soal = (m.soal || []).filter(x => !(x.sumber && /^(TO-C-|LM-)/.test(String(x.sumber.set)))); // v9.7.0 paket LM diuji di test/v970-*.test.js
+  m.soal.forEach(x => { if (x.sumber && x.sumber.juga) delete x.sumber.juga; }); }
   for (const b of ['learn.js', 'tim.js', 'views-belajar.js', 'views-simulasi.js']) jalankan('js/' + b);
   return { UKP: ctx.UKP, ctx };
 }
@@ -126,7 +127,7 @@ describe('v9.5.5 K-4b sampai K-4d: paket P (10) dan Q (6 + 2 bersama)', () => {
     assert.deepEqual(J(q.kelompok.slice().sort()), Object.keys(hit(Q.concat([P[1], P[8]]))).sort());
     assert.equal(Object.values(q.perKelompok).reduce((a, b) => a + b, 0), 8);
     assert.equal(q.judul, 'Paket Q (uji)'); assert.equal(q.label, 'Paket Q'); assert.equal(q.tingkat, 'C');
-    assert.deepEqual(J(d.map(x => x.set)), ['P', 'Q', B], 'urutan menurut kode paket');
+    assert.deepEqual(J(d.map(x => x.set)), [B, 'P', 'Q'], 'urutan: paket TO- lebih dulu, lalu paket lain, masing-masing menurut kode (v9.7.0)');
     assert.ok(!('dariUtama' in p), 'field bantu tidak ikut keluar');
   });
   it('daftarSet: paket yang hanya punya anggota lewat juga memakai judul dan tingkat butir juga', () => {

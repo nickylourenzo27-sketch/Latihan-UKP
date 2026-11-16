@@ -9,6 +9,7 @@ const os = require('node:os');
 const path = require('node:path');
 const vm = require('node:vm');
 const { execFileSync } = require('node:child_process');
+const { LM, LM_TANPA_B_NO } = require('./_harap-970');
 
 const ROOT = path.join(__dirname, '..');
 const HARI = 86400000;
@@ -632,9 +633,9 @@ describe('v9.5 saringan butir resmi (resmi=1)', () => {
       assert.equal(resmi.length + luar.length, semua.length, t);
       assert.ok(luar.every(x => x.kode !== 'E'), 'Etika tidak dihitung');
     }
-    // Tingkat B: 89 soal modul di luar daftar butir resmi; soal try out semuanya punya butir B
+    // Tingkat B: 89 soal modul di luar daftar butir resmi; soal try out semuanya punya butir B; paket LM kecuali 8 soal di luar daftar butir resmi B (test/_harap-970.js)
     assert.equal(LB.luarResmi('B').filter(x => !x.sejak).length, 89, 'soal lama di luar daftar butir resmi');
-    for (const p of K.daftarSet()) { const a = K.soalSet(p.set); if (p.tingkat === 'B') assert.equal(LB.saringResmi(a, 'B').length, a.length, p.set); }
+    for (const p of K.daftarSet()) { let a = K.soalSet(p.set); if (p.set === LM) a = a.filter(x => !LM_TANPA_B_NO.includes(K.noSet(x, LM))); if (p.tingkat === 'B') assert.equal(LB.saringResmi(a, 'B').length, a.length, p.set); }
     // tingkat lain dari soal yang sama: butir A tidak meloloskan soal untuk target B
     const soalA = K.semuaSoal('B').find(x => !punyaTingkat(K, x, 'B') && punyaTingkat(K, x, 'A'));
     if (soalA) assert.equal(LB.saringResmi([soalA], 'B').length, 0);

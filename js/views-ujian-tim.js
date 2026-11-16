@@ -757,14 +757,15 @@
   UKP.views.lj = function () {
     const LJ = L.lembarJawab; const ut = UT();
     let lj = LJ.ambil() || { ujianId: null, judul: '', nama: namaProfil(), n: 40, jawaban: [], ragu: [] };
-    const rapikan = () => { const n = Math.max(1, Math.min(200, Math.round(Number(lj.n) || 40))); lj.n = n; lj.jawaban = Array.from({ length: n }, (_, i) => /^[A-D]$/.test(lj.jawaban[i] || '') ? lj.jawaban[i] : '-'); lj.ragu = Array.from({ length: n }, (_, i) => !!lj.ragu[i]); };
+    // v9.7.0: 400 seperti L.lembarJawab.simpan dan bacaSoalKode (paket 315 soal)
+    const rapikan = () => { const n = Math.max(1, Math.min(400, Math.round(Number(lj.n) || 40))); lj.n = n; lj.jawaban = Array.from({ length: n }, (_, i) => /^[A-D]$/.test(lj.jawaban[i] || '') ? lj.jawaban[i] : '-'); lj.ragu = Array.from({ length: n }, (_, i) => !!lj.ragu[i]); };
     rapikan();
     const simpan = () => { lj = LJ.simpan(lj); };
     const page = h('div', { class: 'page halaman-lj' });
     page.appendChild(UKP.c.kop({ judul: 'Lembar jawab', lead: 'Isi jawaban saat soal ditayangkan di layar bersama. Tersimpan otomatis di HP ini.' }));
     const id = U.id('lj');
     const inNama = h('input', { class: 'input', id: id + '-nama', type: 'text', maxlength: String(L.MAKS_NAMA_PESERTA || 24), autocomplete: 'name', autocapitalize: 'words', value: lj.nama || '' });
-    const inN = h('input', { class: 'input angka', id: id + '-n', type: 'number', inputmode: 'numeric', min: 1, max: 200, value: lj.n });
+    const inN = h('input', { class: 'input angka', id: id + '-n', type: 'number', inputmode: 'numeric', min: 1, max: 400, value: lj.n });
     const inKode = h('input', { class: 'input mono', id: id + '-kode', type: 'text', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', placeholder: 'UT1.… (opsional)' });
     const infoUjian = h('p', { class: 'meta lj-ujian', 'aria-live': 'polite' });
     const galatKode = h('p', { class: 'galat small', role: 'alert', hidden: true });
@@ -775,7 +776,7 @@
     const aksi = h('div', { class: 'btn-row lj-aksi' });
     const tulisInfo = () => { infoUjian.textContent = lj.ujianId ? 'Ujian: ' + (lj.judul || 'Ujian tim') + ' · ' + lj.n + ' soal' : ''; };
     inNama.addEventListener('change', () => { lj.nama = L.rapikanNamaPeserta(inNama.value); simpan(); gambarAksi(); perbaruiSyarat(); });
-    inN.addEventListener('change', () => { const v = Math.round(Number(inN.value)); if (!v || v < 1 || dikunci()) { inN.value = lj.n; return; } lj.n = Math.min(200, v); inN.value = lj.n; rapikan(); simpan(); gambarDaftar(); gambarTinjau(); });
+    inN.addEventListener('change', () => { const v = Math.round(Number(inN.value)); if (!v || v < 1 || dikunci()) { inN.value = lj.n; return; } lj.n = Math.min(400, v); inN.value = lj.n; rapikan(); simpan(); gambarDaftar(); gambarTinjau(); });
     // v9.4 H4: tinjauan jawaban sendiri SETELAH mengirim. Butuh urutan soal dari kode ujian (disimpan terpisah: ukp.lj.tinjau, hanya lembar yang tampil);
     // kunci jawaban baru tampil setelah anggota menyalin atau mengirim kode jawabannya lalu menyatakan sudah mengirim.
     // v9.4 FA3/FA4: sejak kunci tampil, lembar ujian ITU terkunci selamanya di HP ini (ukp.lj.beku per ujianId, lihat bacaBeku di atas)
@@ -838,7 +839,7 @@
       if (L.pakai) L.pakai.catatBanyak(info.soalIds, 'ujian', Date.now(), true);  // v9.5: lembar jawab ujian ini dimulai (disimpan oleh simpan())
       if (rc.aksi === 'pulihkan') pulihkan(b); else if (rc.aksi === 'kosong') { lj.jawaban = []; lj.ragu = []; }
       { const lama = bacaTinjau(); const sama = lama && lama.ujianId === info.id && lama.soalIds.length === info.soalIds.length;
-        if (!(rc.aksi === 'tetap' && sama)) tulisTinjau(b ? { ujianId: info.id, soalIds: info.soalIds.slice(0, 200), dikunci: true, t: b.t } : { ujianId: info.id, soalIds: info.soalIds.slice(0, 200), dikunci: false }); }
+        if (!(rc.aksi === 'tetap' && sama)) tulisTinjau(b ? { ujianId: info.id, soalIds: info.soalIds.slice(0, 400), dikunci: true, t: b.t } : { ujianId: info.id, soalIds: info.soalIds.slice(0, 400), dikunci: false }); }
       rapikan(); simpan(); tulisInfo(); gambarDaftar(); gambarTinjau(); gambarAksi();
       UKP.umumkan(b ? 'Kunci jawaban ujian ini sudah terbuka di HP ini. Lembar dikunci.' : 'Lembar jawab disesuaikan: ' + lj.n + ' soal.');
     });

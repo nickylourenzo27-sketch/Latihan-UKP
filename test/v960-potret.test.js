@@ -55,7 +55,7 @@ describe('v9.6.0: daftar layar yang dipotret', () => {
   });
   it('mencakup layar soal dan pembahasan di HP terang dan gelap, serta papan bersama di laptop', () => {
     const ada = t => alat.LAYAR.some(l => l.tag === t);
-    for (const t of ['beranda-hp', 'latih-soal-hp', 'latih-pembahasan-hp', 'latih-pembahasan-hp-gelap', 'simulasi-atur-hp', 'simulasi-jalan-hp', 'simulasi-hasil-hp', 'bersama-papan-laptop', 'bersama-kunci-laptop', 'bersama-kunci-laptop-gelap']) assert.ok(ada(t), t);
+    for (const t of ['beranda-hp', 'latih-soal-hp', 'latih-pembahasan-hp', 'latih-pembahasan-hp-gelap', 'simulasi-atur-hp', 'simulasi-jalan-hp', 'simulasi-hasil-hp', 'bersama-papan-laptop', 'bersama-kunci-laptop', 'bersama-kunci-laptop-gelap', 'simulasi-paket-hp', 'latih-pembahasan-paket-hp', 'latih-pembahasan-paket-hp-gelap', 'latih-pembahasan-paket-laptop']) assert.ok(ada(t), t);
   });
   it('layar bersama memakai nama contoh, bukan nama anggota tim', () => {
     const src = fs.readFileSync(path.join(ROOT, 'tools', 'potret-layar.js'), 'utf8');
@@ -165,7 +165,7 @@ describe('v9.6.6: profil tablet dan penilaian hasil ukur', () => {
     const tablet = alat.LAYAR.filter(l => l.alat === 'tablet');
     assert.deepEqual(tablet.map(l => l.tag), ['materi-tablet', 'bank-tablet']);
     for (const l of tablet) assert.equal(l.khusus, true);
-    assert.equal(alat.LAYAR.filter(l => !l.khusus).length, 37, 'daftar bawaan tetap 37 layar');
+    assert.equal(alat.LAYAR.filter(l => !l.khusus).length, 41, 'daftar bawaan tetap 41 layar (v9.7.0 menambah empat)');
   });
   it('gulir mendatar, layar yang melebar, dan main yang dipotong di layar sentuh menjadi keluhan', () => {
     const baik = { lebar: 390, isi: 390, sentuh: true, mainX: 'visible' };

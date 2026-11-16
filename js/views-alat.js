@@ -1463,7 +1463,7 @@
         progresWadah.hidden = true;
         status.textContent = location.protocol === 'file:' ? 'Browser tidak mengizinkan halaman file:// membaca berkas lain. Halaman ini sudah berjalan dari berkas lokal: salin seluruh folder MABAR UKP untuk dipakai tanpa internet, atau buka lewat alamat hosting lalu coba lagi.' : 'Berkas offline gagal dibuat (' + ((e && e.message) || 'galat') + '). Pastikan masih tersambung internet, muat ulang halaman, lalu coba lagi.';
       } finally { btn.disabled = false; btn.removeAttribute('aria-busy'); }
-    } }, UKP.icon('unduh'), 'Unduh berkas offline (±5 MB)');
+    } }, UKP.icon('unduh'), 'Unduh berkas offline (±15 MB)');
     return [h('ul', { class: 'bersih small' },
         h('li', null, 'Satu berkas HTML berisi seluruh materi, soal, kartu, studi kasus, kalkulator, dan referensi. Unduh saat masih tersambung internet, lalu buka tanpa jaringan.'),
         h('li', null, 'Tutor AI tidak tersedia offline; pembahasan statis tetap lengkap.'),

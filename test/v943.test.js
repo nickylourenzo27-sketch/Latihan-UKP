@@ -61,7 +61,8 @@ describe('v9.4.3: tanda perlu cek', () => {
   });
   it('modul Tingkat B: soal bertanda tidak lebih dari 67 (dari 277 sebelum dicocokkan)', () => {
     let n = 0;
-    for (const m of semua) if (!['C9', 'C10'].includes(m.meta.kode)) n += m.soal.filter(s => s.verifikasi === '◐').length;
+    // v9.7.0: paket LM punya batas sendiri di test/v970-data.test.js
+    for (const m of semua) if (!['C9', 'C10'].includes(m.meta.kode)) n += m.soal.filter(s => s.verifikasi === '◐' && !(s.sumber && s.sumber.set === 'LM-B-2026-11')).length;
     assert.ok(n <= 67, 'bertanda di modul Tingkat B: ' + n);
   });
   it('soal try out tetap utuh: 100 soal dengan nomor 1 sampai 100', () => {

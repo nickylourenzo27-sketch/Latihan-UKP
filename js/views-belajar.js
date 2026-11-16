@@ -1074,10 +1074,11 @@
   }
   // v9.5.3 B2: jumlah soal yang benar-benar dimulai dialog room "Mulai latihan bersama" (p = { n, set | topik }): pool yang sama dengan
   // #latih { mulai, n, set | topik } (soal tingkat profil, atau soal paket), lalu urutLatih seperti mulai(), dibatasi MR.MAKS_SOAL
+  // v9.7.0: p.kode bersama p.set = satu mata uji paket (soal paket di modul itu), sama dengan basis() di Latih
   function jumlahMulaiRoom(p) {
     p = p || {}; const st = UKP.store.get(); const t = st && st.profil ? st.profil.tingkat : 'B';
     const n = Number(p.n) || 20; const set = p.set && K.daftarSet && K.daftarSet().some(x => x.set === p.set) ? p.set : '';
-    let arr = set ? K.soalSet(set) : K.semuaSoal(t);
+    let arr = set ? K.soalSet(set).filter(x => !p.kode || x.kode === p.kode) : K.semuaSoal(t);
     if (p.topik) arr = arr.filter(x => x.topik === p.topik);
     if (!arr.length) return 0;
     return Math.min(urutLatih(arr, { n, bank: 'campur', set }, {}).length, MR.MAKS_SOAL || 120);
@@ -1831,8 +1832,8 @@
     isiTopik();
     const selKes = h('select', { class: 'select', id: 'f-kes', onchange: e => { f.kesulitan = e.target.value; hitung(); } }, h('option', { value: '' }, 'Semua kesulitan'), [1, 2, 3].map(k => h('option', { value: k, selected: f.kesulitan === String(k) ? true : null }, k === 1 ? '1 · mudah' : k === 2 ? '2 · sedang' : '3 · sulit')));
     const segN = h('div', { class: 'seg batas', role: 'group', 'aria-labelledby': 'f-n-lbl' }, [10, 20, 50, 'semua'].map(n => h('button', { type: 'button', 'aria-pressed': String(String(f.n) === String(n)), onclick: e => { f.n = n; segN.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b === e.currentTarget))); perbaruiTombol(nCocok); } }, n === 'semua' ? 'Semua' : n)));
-    // Sumber soal: Semua soal · <paket try out…>; bawaan tersembunyi bila belum ada soal ber-sumber
-    const segSet = paket.length ? h('div', { class: 'seg batas', role: 'group', 'aria-labelledby': 'f-set-lbl' }, [['', 'Semua soal']].concat(paket.map(p => [p.set, p.label])).map(([v, l]) => h('button', { type: 'button', 'aria-pressed': String(f.set === v), onclick: e => { f.set = v; segSet.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b === e.currentTarget))); hitung(); } }, l))) : null;
+    // Sumber soal: Semua soal · <paket bersumber…>; select (empat paket atau lebih tidak muat sebagai segmen di HP); tersembunyi bila belum ada soal ber-sumber
+    const segSet = paket.length ? h('select', { class: 'select', id: 'f-set', onchange: e => { f.set = e.target.value; hitung(); } }, [['', 'Semua soal']].concat(paket.map(p => [p.set, p.label + ' · ' + p.n + ' soal'])).map(([v, l]) => h('option', { value: v, selected: f.set === v ? true : null }, l))) : null;
     const catatanSet = h('p', { class: 'small muted', hidden: true });
     // v9.5 Pilih soal: Campur · Belum pernah dipakai · Pengganti soal lama (nonaktif bila data belum punya soal pengganti)
     const adaPengganti = !!(K.adaPengganti && K.adaPengganti());
@@ -1924,7 +1925,7 @@
       const nL = nLanjutKini(); ringkasLanjut.textContent = 'Saringan lanjutan' + (nL ? ' · ' + nL + ' aktif' : '');
       const chip = (teks, ganti) => h('button', { type: 'button', class: 'chip', 'aria-label': 'Hapus saringan ' + teks, onclick: () => hapusSaring(ganti) }, teks, ikon('x', null, true));
       const aktif = [f.kode ? chip(f.kode + (f.topik ? ' · ' + f.topik : ''), { kode: '', topik: '' }) : null, f.jenis ? chip(JENIS_LABEL[f.jenis] || f.jenis, { jenis: '' }) : null, f.kesulitan ? chip('kesulitan ' + f.kesulitan, { kesulitan: '' }) : null,
-        f.set ? chip((paketDari(f.set) || {}).label || 'Try Out', { set: '' }) : null, f.laporan ? chip('mirip ujian ' + tingkatLap(f.laporan), { laporan: '' }) : null, f.hanyaSalah ? chip('pernah keliru', { hanyaSalah: false }) : null, f.gayaUkp ? chip('kasus berangkai', { gayaUkp: false }) : null,
+        f.set ? chip((paketDari(f.set) || {}).label || 'Paket soal', { set: '' }) : null, f.laporan ? chip('mirip ujian ' + tingkatLap(f.laporan), { laporan: '' }) : null, f.hanyaSalah ? chip('pernah keliru', { hanyaSalah: false }) : null, f.gayaUkp ? chip('kasus berangkai', { gayaUkp: false }) : null,
         f.kecuali ? chip('soal "kecuali"', { kecuali: false }) : null, f.baru2025 ? chip('ketentuan 2025+', { baru2025: false }) : null, f.tempo && modeLatih !== 'bersama' ? chip('waktu ketat', { tempo: false }) : null,
         f.butir ? chipButir() : null, resmiAktif(f) ? chip('butir resmi', { resmi: false }) : null, f.bank !== 'campur' ? chip(f.bank === 'baru' ? 'belum pernah dipakai' : 'pengganti soal lama', { bank: '' }) : null].filter(Boolean);
       function chipButir() {
@@ -1954,7 +1955,7 @@
       // wilayah aria-live (tersembunyi visual) diperbarui setelah 500 ms diam, bukan pada setiap klik
       clearTimeout(tUmum); if (lama == null) jumlah.textContent = teks; else tUmum = setTimeout(() => { jumlah.textContent = teks; }, 500);
       perbaruiLaporan();
-      catatanSet.hidden = !f.set; if (f.set) { const p = paketDari(f.set); catatanSet.textContent = p ? p.judul + ': ' + p.n + ' soal' + (p.tingkat ? ' setara UKP Tingkat ' + p.tingkat : '') + '; kelompok ' + p.kelompok.join(', ') + '. Pilih "Semua" untuk urutan asli try out.' : ''; }
+      catatanSet.hidden = !f.set; if (f.set) { const p = paketDari(f.set); const bg = K.bagianSet ? K.bagianSet(f.set) : []; catatanSet.textContent = p ? p.judul + ': ' + p.n + ' soal' + (p.tingkat ? ' setara UKP Tingkat ' + p.tingkat : '') + (bg.length ? '; ' + bg.length + ' mata uji. Untuk satu mata uji, pilih Kelompok di bawah atau Mata uji di Simulasi' : '; kelompok ' + p.kelompok.join(', ')) + '. Pilih "Semua" untuk urutan asli paket.' : ''; }
       const lt = luarTingkat(f.kode); catatanKode.hidden = !lt;
       if (lt) catatanKode.textContent = f.kode === 'E' ? 'Etika & Profesi tidak diujikan di UKP; latihan ini untuk ujian profesi asosiasi.' : f.kode + ' di luar Tingkat ' + tingkat + ' (target Anda): semua soal kelompok ini dipakai; hasilnya tidak dihitung ke kesiapan tingkat.';
       perbaruiTombol(lama);
@@ -1999,7 +2000,7 @@
     tata.appendChild(h('div', { class: 'card kl-8 latih-form' },
       segModeEl, panelBersama,
       h('div', { class: 'field' }, h('span', { class: 'label', id: 'f-n-lbl' }, 'Jumlah soal'), segN),
-      segSet ? h('div', { class: 'field' }, h('span', { class: 'label', id: 'f-set-lbl' }, 'Sumber soal'), segSet, catatanSet) : null,
+      segSet ? h('div', { class: 'field' }, h('label', { for: 'f-set' }, 'Sumber soal'), segSet, catatanSet) : null,
       h('div', { class: 'field field-bank' }, h('span', { class: 'label', id: 'f-bank-lbl' }, 'Pilih soal'), segBank, catatanBank, hitungBank, catatanBankKurang, tautanBank, catatanButir),
       h('div', { class: 'form-grid dua' }, h('div', { class: 'field' }, h('label', { for: 'f-kode' }, 'Kelompok'), selKode, catatanKode), h('div', { class: 'field' }, h('label', { for: 'f-topik' }, 'Topik'), selTopik), h('div', { class: 'field' }, h('label', { for: 'f-jenis' }, 'Jenis soal'), selJenis), h('div', { class: 'field' }, h('label', { for: 'f-kes' }, 'Kesulitan'), selKes)),
       togg('hanyaSalah', 'Hanya soal yang pernah keliru', 'Diambil dari Buku Kesalahan.'),

@@ -431,6 +431,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kedua negara sama-sama menganggap Tuan Tanaka penduduknya, jadi perjanjian pajak memakai uji pemutus yang dijalankan berurutan. Uji pertama adalah tempat tinggal tetap, dan ia punya di dua negara: apartemen sewaan di Jakarta yang selalu tersedia dan rumah keluarga di Osaka. Karena seri, kita lanjut ke uji kedua, yaitu di mana pusat hidupnya: keluarga, tabungan, investasi, dan asosiasi profesinya semua di Jepang. Maka ia residen Jepang, dan uji hari tinggal maupun kewarganegaraan tidak perlu dipakai. Cara ingat: rumah, lalu pusat hidup, lalu kebiasaan tinggal, lalu kewarganegaraan.",
         inti: "Tie-breaker diuji berurutan. Tempat tinggal tetap (termasuk apartemen sewaan yang terus tersedia) ada di kedua negara, sehingga uji berikutnya adalah pusat kepentingan vital: keluarga, aset, dan hubungan ekonomi utamanya di Jepang. Ia residen Jepang untuk keperluan P3B.",
         jejakHitung: [],
         mengapaSalah: {
@@ -457,6 +458,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada di jenis penghasilannya: ini honor komisaris, bukan gaji karyawan. Untuk honor komisaris, perjanjian pajak memberi hak memajaki kepada negara tempat perusahaan berada, tanpa batas tarif dan tanpa uji 183 hari. Karena tidak ada batas tarif, berlaku PPh 26 biasa untuk penerima luar negeri, yaitu 20% dari bruto: 20% x Rp240 juta = Rp48 juta. Form DGT tetap sah, tetapi tidak menurunkan tarif di sini. Cara ingat: komisaris dipajaki di negara kantornya.",
         inti: "Honorarium komisaris masuk Pasal 16 P3B (bukan Pasal 15 pekerjaan) sehingga Indonesia sebagai negara tempat perusahaan berkedudukan berhak memajaki tanpa batas tarif. Karena P3B tidak membatasi tarif, berlaku PPh 26 domestik 20% × Rp240.000.000 = Rp48.000.000.",
         jejakHitung: [["Pasal P3B", "Pasal 16 (fee komisaris)"], ["Batas tarif P3B", "tidak ada → tarif domestik"], ["PPh 26 = 20% × Rp240.000.000", "Rp48.000.000"]],
         mengapaSalah: {
@@ -482,6 +484,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Tarif rendah dari perjanjian pajak hanya untuk penerima yang benar-benar pemilik penghasilan, bukan sekadar perantara. Alpha tidak punya pegawai dan kantor, direksinya sewaan, dan dalam lima hari meneruskan 95% dividen ke induk di negara tanpa perjanjian. Jadi Alpha cuma \"pipa\" penyalur, sehingga manfaat perjanjian ditolak walaupun Form DGT-nya lengkap. Yang berlaku tarif biasa 20%: 20% x Rp2 miliar = Rp400 juta. Cara ingat: formulir lengkap tidak menolong kalau penerimanya hanya perantara.",
         inti: "Tarif P3B atas dividen hanya untuk beneficial owner. Alpha tidak bersubstansi dan meneruskan hampir seluruh dividen (conduit), sehingga manfaat P3B ditolak dan berlaku 20% × Rp2.000.000.000 = Rp400.000.000.",
         jejakHitung: [["Uji beneficial owner", "gagal (conduit, tanpa substansi)"], ["Tarif", "20% domestik"], ["PPh 26 = 20% × Rp2.000.000.000", "Rp400.000.000"]],
         mengapaSalah: {
@@ -506,6 +509,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "angka-usang", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: tarif mana yang dipakai saat royalti dibayar, padahal Form DGT baru datang sesudahnya. Tarif perjanjian 10% hanya bisa dipakai bila Form DGT sudah diterima dan dicek pemotong saat memotong. Pada 20 Februari formulirnya belum ada, jadi dipotong tarif biasa: 20% x Rp500 juta = Rp100 juta. Kelebihan Rp50 juta dimintakan kembali lewat permohonan yang diajukan PT Mitra Kimia dengan surat kuasa Kaigen. Aturan tenggat formulir ini belum sepenuhnya tegas, jadi jawaban ini mengikuti urutan cek formulir saat pemotongan.",
         inti: "Menurut PMK 112/2025, tarif P3B diterapkan pemotong atas dasar Formulir DGT yang disampaikan WPLN \"dalam rangka pemotongan\" (Pasal 8 ayat (1)), lalu dicek dan diunggah melalui portal wajib pajak sebelum memotong sesuai P3B (Pasal 10 ayat (1) dan (3)). Pada saat royalti dibayar dan PPh 26 dipotong (20 Februari 2026) Kaigen belum menyampaikan Formulir DGT, sehingga syarat Pasal 2 ayat (3) huruf b belum terpenuhi dan pemotongan mengikuti UU PPh: 20% × Rp500.000.000 = Rp100.000.000. Kelebihan di atas tarif P3B adalah kelebihan pemotongan terkait P3B karena persyaratan administratif terlambat dipenuhi (Pasal 15 PMK 112/2025 jo. Pasal 122 ayat (1) huruf e dan Pasal 133 huruf b PMK 81/2024). Permohonan pengembaliannya diajukan PT Mitra Kimia sebagai pemotong dengan surat kuasa Kaigen (Pasal 134 ayat (1) dan Pasal 135 ayat (2) huruf d); Kaigen sendiri hanya mengajukan bila pemotong tidak dapat ditemukan atau tidak dapat membetulkan SPT (Pasal 134 ayat (2)).",
         jejakHitung: [
           ["PPh 26 = 20% × Rp500.000.000", "Rp100.000.000"],
@@ -537,6 +541,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari aturan keuntungan jual saham di perjanjian pajak. Negara tempat perusahaan berada baru boleh memajaki bila nilai perusahaan itu sebagian besar, yaitu lebih dari separuh, berupa tanah dan bangunan. Di sini tanah dan bangunan PT Kencana Retail hanya 15%, sisanya persediaan dan piutang. Jadi hanya negara asal Orchid yang berhak memajaki, dan dengan Form DGT sah PT Prima tidak memotong apa pun alias nihil. Cara ingat: jual saham biasa dipajaki negara penjual, kecuali perusahaannya kaya tanah dan bangunan.",
         inti: "Saham PT Kencana Retail tidak memenuhi kriteria ayat (4) karena nilai harta tak geraknya hanya 15% (bukan lebih dari 50%). Keuntungan masuk ayat (5) sehingga hanya negara residen penjual yang berhak memajaki. Menurut Pasal 238 ayat (2) PMK 81/2024, PPh 26 atas penjualan saham perseroan nonbursa hanya dipotong bila menurut P3B hak pemajakannya ada pada Indonesia; dengan Form DGT sah, PPh 26 tidak dipotong.",
         jejakHitung: [],
         mengapaSalah: {
@@ -563,6 +568,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Masalah di soal ini adalah penyalahgunaan perjanjian pajak. Anak usaha baru tidak punya pegawai dan tidak mengurus merek, sedangkan memo grup terang-terangan menyebut tujuannya menghemat pajak 10%. Uji tujuan utama dari perjanjian multilateral menolak manfaat perjanjian bila salah satu tujuan utama skema adalah mendapat tarif rendah itu. Aturan utang berlebih, aturan anak usaha luar negeri, dan aturan jual saham perusahaan antara mengurus hal lain, bukan royalti. Cara ingat: niat cari tarif murah tanpa kegiatan nyata ditangkis uji tujuan utama.",
         inti: "Skema tanpa substansi yang salah satu tujuan utamanya memperoleh tarif P3B adalah penyalahgunaan P3B; PPT (MLI, berlaku bagi Indonesia sejak 1 Agustus 2020) dan uji beneficial owner dalam PMK 112/2025 menjadi dasar menolak tarif 10%.",
         jejakHitung: [],
         mengapaSalah: {
@@ -589,6 +595,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Satu pembagian dividen, tetapi tiga penerima dengan aturan berbeda. Fuji Holdings adalah perusahaan dengan kepemilikan 60%, jadi dapat tarif perjanjian 10%: 10% x Rp3 miliar = Rp300 juta. PT Sentosa adalah perusahaan dalam negeri, dan dividen untuknya bukan objek pajak, jadi nol. Mr. Kenta orang pribadi, jadi tarifnya 15%: 15% x Rp500 juta = Rp75 juta, sehingga totalnya Rp375 juta. Cara ingat: cek dulu siapa penerimanya sebelum memilih tarif.",
         inti: "Fuji Holdings (perusahaan, ≥ 25%) 10% × Rp3.000.000.000 = Rp300.000.000; PT Sentosa (badan dalam negeri) dividen dikecualikan dari objek → nihil; Mr. Kenta (orang pribadi) 15% × Rp500.000.000 = Rp75.000.000. Total Rp375.000.000.",
         jejakHitung: [["Fuji Holdings: 60% × Rp5 M × 10%", "Rp300.000.000"], ["PT Sentosa: dividen ke badan DN (bukan objek)", "Rp0"], ["Mr. Kenta: 10% × Rp5 M × 15%", "Rp75.000.000"], ["Total", "Rp375.000.000"]],
         mengapaSalah: {
@@ -615,6 +622,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya: apakah kehadiran tim di Jakarta sudah cukup lama untuk membuat Lionstar punya kantor tetap kena pajak, atau BUT. Menurut perjanjian, BUT jasa baru muncul bila kehadiran lebih dari 90 hari. Hitung harinya: 3 Maret sampai 30 April = 59 hari, ditambah Juli 31 hari, total tepat 90 hari, belum lebih. Tanpa BUT, fee ini laba usaha yang hanya dipajaki Singapura, jadi pemotongan nihil. Angka 90 hari ini dari kutipan yang disederhanakan, jadi cek teks perjanjian aslinya di dunia nyata.",
         inti: "Kehadiran 59 hari (3 Maret–30 April) + 31 hari (Juli) = 90 hari, tidak lebih dari 90 hari, sehingga tidak ada BUT menurut P3B. Fee adalah laba usaha (Pasal 7 P3B) yang hanya dipajaki Singapura; dengan SKD sah PPh 26 nihil.",
         jejakHitung: [["3 Maret–30 April 2026", "59 hari"], ["1–31 Juli 2026", "31 hari"], ["Total", "90 hari (tidak lebih dari 90)"]],
         mengapaSalah: {
@@ -641,6 +649,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Begitu menjadi BUT, Lionstar dipajaki seperti perusahaan di Indonesia, lalu sisa labanya kena pajak tambahan saat dianggap dikirim ke kantor pusat. Pertama, pajak badan 22% x Rp1,2 miliar = Rp264 juta, sehingga laba setelah pajak Rp936 juta. Kedua, pajak laba cabang dengan tarif perjanjian 10% x Rp936 juta = Rp93,6 juta. Jumlahnya Rp264 juta + Rp93,6 juta = Rp357,6 juta. Cara ingat: pajak laba cabang dihitung dari laba sesudah pajak badan.",
         inti: "PPh badan 22% × Rp1.200.000.000 = Rp264.000.000; laba setelah pajak Rp936.000.000; BPT 10% = Rp93.600.000; jumlah Rp357.600.000.",
         jejakHitung: [["PPh badan = 22% × Rp1.200.000.000", "Rp264.000.000"], ["Laba setelah pajak", "Rp936.000.000"], ["BPT = 10% × Rp936.000.000", "Rp93.600.000"], ["Jumlah", "Rp357.600.000"]],
         mengapaSalah: {
@@ -667,6 +676,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya: sesudah terdaftar sebagai BUT dengan NPWP, Lionstar diperlakukan seperti perusahaan dalam negeri untuk urusan pemotongan. Jadi aturan pemotongan untuk penerima luar negeri dan Form DGT tidak dipakai lagi. Jasa konsultan yang dibayar ke perusahaan dalam negeri kena PPh 23 dengan tarif 2%: 2% x Rp500 juta = Rp10 juta, dengan bukti potong biasa. Tarif dua kali lipat hanya kalau penerima tidak punya NPWP. Cara ingat: sudah jadi BUT, keluar dari PPh 26 dan masuk PPh 23.",
         inti: "BUT diperlakukan sebagai subjek pajak dalam negeri untuk pemotongan; imbalan jasa konsultan dipotong PPh 23 2% × Rp500.000.000 = Rp10.000.000 dan dibuatkan BPPU. PPh 23 ini menjadi kredit pajak BUT.",
         jejakHitung: [
           ["PPh 23 = 2% × Rp500.000.000", "Rp10.000.000"]
@@ -695,6 +705,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini meminta yang BUKAN BUT, jadi cari kegiatan yang hanya sekadar penunjang. Perjanjian pajak mengecualikan tempat yang semata-mata dipakai untuk menyimpan atau memamerkan barang sendiri, karena itu hanya kegiatan persiapan atau penunjang, bukan usaha intinya. Gudang di Cikarang hanya untuk simpan dan pamer, jadi bukan BUT. Sebaliknya, agen tidak bebas yang rutin menandatangani kontrak, proyek instalasi 8 bulan, dan cabang yang berjualan semuanya BUT. Cara ingat: simpan dan pamer saja belum dianggap berbisnis di sini.",
         inti: "Penyimpanan dan pameran barang semata-mata adalah kegiatan persiapan/penunjang yang dikecualikan dari BUT oleh Pasal 5 ayat (4) P3B.",
         jejakHitung: [],
         mengapaSalah: {
@@ -720,6 +731,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kita mulai dari laba Rp2 miliar, lalu cek pembayaran BUT ke kantor pusatnya sendiri. Royalti, jasa manajemen, dan bunga ke kantor pusat tidak boleh jadi biaya, karena itu pada dasarnya membayar ke diri sendiri, kecuali bunga pada usaha bank. Biaya administrasi kantor pusat yang wajar dan terkait BUT tetap boleh. Jadi tambahkan kembali Rp400 juta + Rp300 juta + Rp200 juta = Rp900 juta, hasilnya Rp2,9 miliar. Cara ingat: bayar ke diri sendiri tidak boleh, bagi biaya bersama yang wajar boleh.",
         inti: "Pasal 5 ayat (3) UU PPh: royalti, imbalan jasa manajemen, dan bunga (kecuali usaha perbankan) yang dibayar BUT ke kantor pusat tidak dapat dibiayakan; biaya administrasi kantor pusat yang berkaitan dengan BUT tetap boleh. PKP = Rp2.000.000.000 + Rp900.000.000 = Rp2.900.000.000.",
         jejakHitung: [["Laba komersial", "Rp2.000.000.000"], ["Koreksi positif royalti + jasa manajemen + bunga", "Rp900.000.000"], ["Biaya administrasi kantor pusat (boleh)", "Rp0 koreksi"], ["PKP", "Rp2.900.000.000"]],
         mengapaSalah: {
@@ -746,6 +758,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pajak laba cabang bisa bebas hanya bila seluruh laba setelah pajak ditanam lagi di Indonesia. Pertama, laba setelah pajak = Rp5 miliar dikurangi 22% = Rp3,9 miliar. Yang ditanam hanya Rp2,4 miliar, belum seluruhnya, jadi tidak ada pembebasan dan tidak ada pengurangan dasar. Lalu pakai tarif perjanjian: 10% x Rp3,9 miliar = Rp390 juta. Cara ingat: bebasnya semua atau tidak sama sekali.",
         inti: "Laba setelah pajak = Rp5.000.000.000 − 22% × Rp5.000.000.000 = Rp3.900.000.000. Pengecualian PPh Pasal 26 ayat (4) hanya diberikan bila SELURUH laba setelah pajak ditanamkan kembali (Pasal 1 ayat (3) PMK 14/PMK.03/2011). Yang ditanamkan kembali hanya Rp2.400.000.000, sehingga pengecualian tidak berlaku dan BPT dihitung atas seluruh laba setelah pajak dengan tarif P3B (Pasal 5): 10% × Rp3.900.000.000 = Rp390.000.000.",
         jejakHitung: [
           ["PPh badan = 22% × Rp5.000.000.000", "Rp1.100.000.000"],
@@ -777,6 +790,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya: apakah distributor ini membuat Kanagawa punya kantor tetap kena pajak di Indonesia. Agen bebas, yaitu pihak yang berdiri sendiri secara hukum dan ekonomi, tidak menimbulkan BUT. PT Sumber Niaga membeli dan menjual atas nama serta risikonya sendiri, melayani empat prinsipal lain, dan tidak berwenang meneken kontrak untuk Kanagawa. Jadi ia agen bebas, dan labanya dipajaki sebagai perusahaan Indonesia biasa. Cara ingat: punya banyak bos dan menanggung risiko sendiri berarti bebas.",
         inti: "Distributor yang bertindak atas nama dan risiko sendiri, melayani banyak prinsipal, dan tidak menutup kontrak atas nama prinsipal adalah agen bebas dalam kegiatan usaha yang wajar; tidak menimbulkan BUT. Laba PT Sumber Niaga dipajaki sebagai WPDN.",
         jejakHitung: [],
         mengapaSalah: {
@@ -802,6 +816,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Perusahaan dalam negeri dipajaki atas penghasilan dari seluruh dunia, jadi penghasilan luar negeri digabung dengan angka sebelum dipotong pajak luar negeri. Rugi cabang di luar negeri tidak ikut digabung. Jadi Rp6 miliar + Rp2 miliar laba Malaysia + Rp1 miliar bunga Jepang = Rp9 miliar, rugi Vietnam diabaikan. PPh terutang 22% x Rp9 miliar = Rp1,98 miliar. Cara ingat: laba luar negeri masuk utuh, rugi luar negeri ditinggal.",
         inti: "Penghasilan LN digabung sebesar penghasilan neto sebelum dikurangi pajak LN (Pasal 4 ayat (2) PMK 192/PMK.03/2018): Rp6.000.000.000 + Rp2.000.000.000 + Rp1.000.000.000 = Rp9.000.000.000; rugi Vietnam tidak digabung (Pasal 4 ayat (3)). PPh terutang 22% = Rp1.980.000.000.",
         jejakHitung: [
           ["Neto DN", "Rp6.000.000.000"],
@@ -835,6 +850,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pajak luar negeri boleh mengurangi pajak Indonesia, tetapi dibatasi dan dihitung per negara. Malaysia: batasnya 2/9 x Rp1,98 miliar = Rp440 juta, padahal dibayar Rp480 juta, jadi yang diakui Rp440 juta. Jepang: yang diakui hanya pajak sesuai tarif perjanjian 10% x Rp1 miliar = Rp100 juta, masih di bawah batas Rp220 juta. Vietnam rugi sehingga tidak ada kredit, totalnya Rp440 juta + Rp100 juta = Rp540 juta. Cara ingat: ambil yang terkecil antara pajak dibayar, tarif perjanjian, dan batas.",
         inti: "Kredit dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018); di sini tiap negara hanya memberi satu jenis penghasilan. Laba usaha cabang Malaysia: batas 2.000/9.000 × Rp1.980.000.000 = Rp440.000.000 (dibayar Rp480.000.000 → kredit Rp440.000.000). Bunga Jepang: pajak yang seharusnya menurut P3B 10% = Rp100.000.000, batas Rp220.000.000 → kredit Rp100.000.000. Rugi cabang Vietnam tidak diperhitungkan. Total Rp540.000.000.",
         jejakHitung: [
           ["Batas Malaysia = 2.000/9.000 × 1.980 jt", "Rp440.000.000"],
@@ -868,6 +884,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada dua masalah terpisah. Potongan Jepang yang melebihi tarif perjanjian bukan urusan Indonesia, jadi kelebihan Rp100 juta itu dimintakan kembali ke otoritas pajak Jepang. Kelebihan itu tidak diminta ke DJP, tidak dibiayakan, dan tidak dibawa ke tahun depan. Rugi cabang Vietnam juga tidak boleh mengurangi penghasilan dalam negeri maupun laba negara lain. Cara ingat: kelebihan potongan diurus di negara yang memotong, rugi luar negeri tidak dibawa pulang.",
         inti: "Pajak yang dipotong melebihi tarif P3B bukan beban Indonesia; WP memintanya kembali ke negara sumber (Jepang). Kerugian di LN tidak boleh digabungkan dalam menghitung PKP di Indonesia.",
         jejakHitung: [],
         mengapaSalah: {
@@ -892,6 +909,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini mencari satu penentuan sumber yang KELIRU. Untuk keuntungan jual saham, sumbernya adalah negara tempat perusahaan penerbit saham didirikan, bukan negara pembelinya. Gamma didirikan di Singapura, jadi sumbernya Singapura, bukan Jepang. Tiga lainnya benar: dividen ikut negara perusahaan pembagi, sewa ikut letak bangunan, dan royalti ikut negara pihak yang membayar. Cara ingat: lihat asal sahamnya, bukan siapa pembelinya.",
         inti: "Sumber penghasilan penjualan saham adalah negara tempat badan penerbit saham didirikan atau berkedudukan (Singapura), bukan negara pembeli.",
         jejakHitung: [],
         mengapaSalah: {
@@ -919,6 +937,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Langsung ke aturannya: bila pajak luar negeri yang dulu sudah dikreditkan kemudian dikembalikan, SPT lama tidak dibuka lagi. Uang kembalian itu ditambahkan ke PPh terutang pada tahun diterimanya, yaitu 2026. Yang ditambahkan adalah jumlah pajaknya, Rp60 juta, bukan penghasilan yang dikali 22% lagi. Cara ingat: pajak yang dikembalikan, pajak juga yang ditambah, di tahun kembalinya.",
         inti: "Pasal 24 ayat (5): pengembalian pajak LN tidak membuka kembali tahun 2024, tetapi menambah PPh terutang pada tahun pengembalian (2026) sebesar jumlah yang dikembalikan, Rp60.000.000.",
         jejakHitung: [],
         mengapaSalah: {
@@ -944,6 +963,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Kuncinya ada di cara menghindari pajak ganda yang dipilih. Karena dividen Thailand diinvestasikan di Indonesia sesuai semua syarat, dividen itu dibebaskan dari pajak Indonesia. Kalau Indonesia tidak memajaki penghasilan itu, tidak ada pajak Indonesia yang bisa dikurangi pajak Thailand, sehingga Rp300 juta tidak bisa dikreditkan. Pajak Thailand juga tidak boleh dipakai untuk mengurangi pajak atas penghasilan lain. Cara ingat: pilih bebas atau kredit, tidak bisa dua-duanya.",
         inti: "Dengan metode pembebasan (Pasal 4 ayat (3) huruf f angka 2 UU PPh), dividen LN yang diinvestasikan sesuai syarat bukan objek PPh; karena tidak ada PPh Indonesia atas penghasilan itu, pajak Thailand tidak dapat dikreditkan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -969,6 +989,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya hanya lokasi pelaporan di SPT Tahunan badan versi baru. Di formulir baru, kredit pajak yang dipotong pihak dalam negeri dan kredit pajak luar negeri digabung dalam satu lampiran, yaitu Lampiran 3, dengan bagian berbeda. Rincian penghasilan luar negeri dan kreditnya per jenis dan per negara diisi di situ. Lampiran 4 untuk penghasilan final dan bukan objek, 10A untuk transaksi afiliasi, 12A untuk pajak laba cabang BUT. Cara ingat: semua kredit pajak berkumpul di Lampiran 3.",
         inti: "Dalam SPT Tahunan PPh Badan bentuk PER-11/PJ/2025, Lampiran 3 dipakai untuk melaporkan penghasilan, PPh yang dipotong/dipungut pihak lain, dan kredit pajak luar negeri. Bagian A memuat penghasilan dari luar negeri dan pajaknya; kredit dihitung per jenis penghasilan untuk tiap negara atau yurisdiksi (Pasal 6 ayat (2) PMK 192/PMK.03/2018). Pertanyaan pada Induk SPT bagian pengurang PPh terutang mengarahkan pengisian ke Lampiran 3.",
         jejakHitung: [],
         mengapaSalah: {
@@ -995,6 +1016,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Aturan perbandingan utang dan modal membatasi biaya bunga bila utang lebih dari 4 kali modal. Hitung utangnya: hanya yang berbunga, Rp30 miliar + Rp20 miliar = Rp50 miliar; modalnya ekuitas Rp9 miliar + pinjaman tanpa bunga pemegang saham Rp1 miliar = Rp10 miliar. Perbandingannya 5 banding 1, jadi yang boleh hanya 4/5 bagian. Biaya yang boleh = 4/5 x Rp4,5 miliar = Rp3,6 miliar. Cara ingat: utang dagang tanpa bunga tidak dihitung, pinjaman pemilik tanpa bunga dianggap modal.",
         inti: "Utang DER = pinjaman bank + pinjaman induk = Rp50 miliar (utang dagang tanpa bunga tidak dihitung). Modal = ekuitas + pinjaman tanpa bunga pemegang saham = Rp10 miliar. DER 5:1 > 4:1 sehingga biaya pinjaman yang dapat dibebankan = (4 × 10 ÷ 50) × Rp4,5 miliar = Rp3.600.000.000; koreksi positif Rp900.000.000.",
         jejakHitung: [["Utang (berbunga)", "Rp50.000.000.000"], ["Modal (ekuitas + pinjaman tanpa bunga)", "Rp10.000.000.000"], ["DER", "5 : 1"], ["Porsi = (4 × 10) ÷ 50", "80%"], ["Dapat dibebankan = 80% × Rp4.500.000.000", "Rp3.600.000.000"], ["Koreksi positif", "Rp900.000.000"]],
         mengapaSalah: {
@@ -1020,6 +1042,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada dua syarat terpisah agar bunga utang luar negeri boleh jadi biaya: perbandingan utang dan modal tidak melebihi batas, dan utangnya dilaporkan ke DJP. PT Samudra Kimia lolos syarat pertama karena hanya 2 banding 1. Tetapi syarat kedua tidak dipenuhi, sehingga seluruh bunga Rp1,2 miliar tidak boleh dibiayakan dan dikoreksi positif. Sanksinya bukan denda, melainkan biaya itu hilang. Cara ingat: lolos hitungan tetap gagal kalau lupa lapor.",
         inti: "Kewajiban melaporkan utang swasta luar negeri berdiri sendiri di luar uji DER; bila tidak dilaporkan, biaya pinjaman atas utang tersebut tidak dapat dibebankan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1045,6 +1068,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Aturan anak usaha luar negeri yang dikuasai berlaku bila perusahaan dalam negeri bersama-sama memiliki minimal 50%. Kepemilikan PT Andalas dan PT Bukit dijumlah: 40% + 20% = 60%, jadi aturan ini berlaku walaupun PT Andalas sendiri hanya 40%. Karena Merak Holdings tidak wajib SPT di negaranya, dividen dianggap diterima pada bulan ke-7 setelah tahun buku berakhir. Tahun bukunya selesai Desember 2025, jadi jatuh pada Juli 2026. Cara ingat: tanpa SPT di sana, pakai bulan ketujuh.",
         inti: "Ambang 50% dihitung bersama WPDN lain: 40% + 20% = 60%. Karena Merak Holdings tidak wajib SPT di negaranya, deemed dividend dianggap diperoleh bulan ke-7 setelah tahun pajak berakhir, yaitu Juli 2026.",
         jejakHitung: [
           ["Kepemilikan WPDN bersama", "40% + 20% = 60% (≥ 50%)"],
@@ -1075,6 +1099,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "final-nonfinal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Ambang penguasaan memakai kepemilikan gabungan, tetapi dividen yang dianggap diterima tetap dihitung dari porsi masing-masing. Laba bersih Merak Rp9 miliar, porsi PT Andalas 40% x Rp9 miliar = Rp3,6 miliar. Dividen itu dianggap diterima Juli 2026, jadi masuk SPT Tahunan 2026 dan kena tarif biasa 22%: 22% x Rp3,6 miliar = Rp792 juta. Cara ingat: ambang pakai angka bersama, porsi pakai angka sendiri.",
         inti: "Deemed dividend = porsi kepemilikan PT Andalas 40% × Rp9.000.000.000 = Rp3.600.000.000, diperoleh Juli 2026 sehingga masuk SPT Tahunan 2026 dan dikenai tarif umum 22% = Rp792.000.000.",
         jejakHitung: [
           ["Laba neto CFC (bunga + royalti − biaya)", "Rp9.000.000.000"],
@@ -1106,6 +1131,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Di sini penjualan terjadi di luar negeri, tetapi yang dijual sebenarnya perusahaan cangkang di negara bebas pajak yang menguasai perusahaan Indonesia. Aturan khusus menganggapnya sama dengan menjual saham perusahaan Indonesia. Pertama, perkiraan untungnya 25% x Rp800 miliar = Rp200 miliar. Lalu pajaknya 20% x Rp200 miliar = Rp40 miliar, tanpa keringanan karena tidak ada perjanjian pajak. Cara ingat: bungkus luar negeri dibuka, isinya tetap aset Indonesia.",
         inti: "Penjualan saham conduit di negara tax haven yang mempunyai hubungan istimewa dengan PT Jembatan Emas dianggap penjualan saham badan Indonesia: 20% × 25% × Rp800.000.000.000 = Rp40.000.000.000. Karena penjual di negara tanpa P3B, tidak ada pembatasan tarif.",
         jejakHitung: [["Perkiraan neto = 25% × Rp800.000.000.000", "Rp200.000.000.000"], ["PPh 26 = 20% × Rp200.000.000.000", "Rp40.000.000.000"]],
         mengapaSalah: {
@@ -1131,6 +1157,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini mencari yang BUKAN hubungan istimewa. Hubungan istimewa muncul karena kepemilikan minimal 25%, langsung atau lewat pemilik yang sama, atau karena dikuasai manajemen yang sama, atau karena hubungan keluarga. PT Elang Perkasa hanya punya 20% dan tidak punya hubungan pengurusan, teknologi, atau keluarga, jadi bukan pihak istimewa. Tiga pihak lain memenuhi salah satu jalur itu. Cara ingat: patokannya 25%, ditambah jalur penguasaan.",
         inti: "Kepemilikan 20% di bawah ambang 25% dan tidak ada penguasaan atau hubungan keluarga, sehingga PT Elang Perkasa bukan pihak hubungan istimewa.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1155,6 +1182,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Cocokkan tiap skema dengan alatnya. Laba ditahan di anak usaha luar negeri yang dikuasai ditangani aturan anak usaha luar negeri (CFC); utang berlebih 8 banding 1 ditangani aturan perbandingan utang dan modal. Penjualan saham perusahaan antara ditangani aturan jual saham perusahaan cangkang. Skema berlapis yang tidak terjangkau aturan khusus ditangani aturan umum anti-penghindaran (GAAR). Cara ingat: pakai aturan khusus dulu, aturan umum jadi jaring terakhir.",
         inti: "Penahanan laba di anak usaha LN yang dikuasai → CFC; utang berlebih → DER; penjualan saham conduit → Pasal 18 ayat (3c) jo. 26 ayat (2a); skema tanpa substansi yang tidak tercakup instrumen khusus → GAAR. Dasarnya: CFC Pasal 18 ayat (2) UU PPh, DER Pasal 18 ayat (1) UU PPh, dan GAAR substance over form PP 55/2022.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1182,6 +1210,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: berapa penghasilan PT Sinar Komponen yang ditambahkan pemeriksa karena harga jualnya ke induk terlalu murah. Harga Rp45.000 berada di bawah rentang harga pihak independen Rp48.000 sampai Rp55.000, jadi dianggap tidak wajar. Karena tidak ada alasan memilih titik lain, harga dinaikkan ke titik tengah (median) Rp51.000. Selisih Rp6.000 x 200.000 unit = Rp1,2 miliar. Cara ingat: di luar rentang dan tidak ada titik paling tepat, pakai median, bukan batas bawah.",
         inti: "Tujuh pembanding membentuk rentang interkuartil (Pasal 12 ayat (6) huruf b PMK 172/2023). Harga Rp45.000 di luar rentang Rp48.000–Rp55.000 sehingga tidak wajar. Karena tidak ada dasar untuk menentukan titik yang paling tepat, harga disesuaikan ke titik tengah (median) Rp51.000 (Pasal 12 ayat (7) huruf c): (51.000 − 45.000) × 200.000 = Rp1.200.000.000.",
         jejakHitung: [
           ["Harga transaksi", "Rp45.000 (di bawah rentang Rp48.000–Rp55.000)"],
@@ -1212,6 +1241,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Koreksi harga ini kena pajak dua lapis. Lapis pertama, tambahan laba Rp1,2 miliar kena PPh badan 22%, yaitu Rp264 juta. Lapis kedua, karena uangnya tidak dikembalikan, selisih itu dianggap dividen terselubung ke induk di Singapura. Induk punya Form DGT sah dan memegang 90% saham, lebih dari batas 25%, jadi tarif perjanjian pajaknya 10%: Rp120 juta. Totalnya Rp264 juta + Rp120 juta = Rp384 juta. Cara ingat: koreksi kena PPh badan, uang yang tidak kembali kena PPh 26 sebagai dividen.",
         inti: "PPh badan 22% × Rp1.200.000.000 = Rp264.000.000. Secondary adjustment: selisih dianggap dividen kepada Sinar Holdings; tarif P3B 10% (kepemilikan 90%) = Rp120.000.000. Jumlah Rp384.000.000.",
         jejakHitung: [["PPh badan = 22% × Rp1.200.000.000", "Rp264.000.000"], ["Dividen terselubung (secondary adjustment)", "Rp1.200.000.000"], ["PPh 26 = 10% × Rp1.200.000.000", "Rp120.000.000"], ["Jumlah", "Rp384.000.000"]],
         mengapaSalah: {
@@ -1237,6 +1267,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada pada alasan selisih itu dianggap dividen: uang Rp1,2 miliar seolah dinikmati induk dan tidak kembali ke anak usaha. Jadi cara menghindarinya adalah induk benar-benar mengembalikan uang itu dalam bentuk kas atau setara kas, sesuai syarat dan jangka waktu yang diatur. Nota kredit tanpa uang mengalir, APA, atau membebankan selisih sebagai biaya tidak menghapus kenyataan bahwa uangnya masih di induk. Cara ingat: uang kembali sungguhan, dividen terselubung hilang.",
         inti: "Secondary adjustment dikecualikan bila kelebihan yang dinikmati afiliasi dikembalikan kepada WP dalam bentuk kas atau setara kas sesuai syarat PMK 172/2023, sehingga tidak ada dividen terselubung. Pengembalian itu harus memenuhi syarat dan jangka waktu yang diatur PMK 172/2023.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1262,6 +1293,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Masalahnya bukan sekadar sengketa dengan DJP, tetapi laba yang sama dipajaki Indonesia dan Singapura. Jalan untuk meminta Singapura ikut menyesuaikan adalah MAP, yaitu perundingan antara otoritas pajak kedua negara. MAP diajukan ke DJP dalam batas waktu perjanjian pajak dan boleh berjalan bersamaan dengan keberatan yang sudah diajukan. Pengadilan Pajak tidak bisa memerintah otoritas negara lain, dan APA hanya untuk tahun ke depan. Cara ingat: pajak berganda antarnegara diselesaikan antarotoritas lewat MAP.",
         inti: "Pajak berganda ekonomi akibat koreksi TP diselesaikan lewat MAP (Pasal 25 P3B) agar Singapura memberi corresponding adjustment. PMK 172/2023 membolehkan MAP berjalan bersamaan dengan keberatan; hasil MAP dilaksanakan dengan keputusan yang mengubah ketetapan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1287,6 +1319,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari aturan ambangnya: dokumentasi harga transfer wajib bila salah satu ambang terlewati, diuji memakai data tahun sebelumnya (2024). Omzet Rp42 miliar belum sampai Rp50 miliar, dan pembelian barang afiliasi Rp18 miliar belum sampai Rp20 miliar. Tetapi jasa afiliasi Rp6 miliar sudah melewati Rp5 miliar, jadi Master File dan Local File wajib. CbCR tidak wajib karena itu urusan induk grup beromzet sangat besar. Cara ingat: ambangnya pakai kata \"atau\", satu saja terlewati sudah wajib.",
         inti: "Ambang diuji dengan data tahun pajak sebelumnya dan bersifat alternatif: omzet (Rp42 miliar) dan barang (Rp18 miliar) belum melewati ambang, tetapi jasa afiliasi Rp6 miliar melebihi Rp5 miliar, sehingga Master File dan Local File wajib.",
         jejakHitung: [
           ["Peredaran bruto 2024 vs Rp50 miliar", "tidak melewati"],
@@ -1317,6 +1350,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini menanyakan dua tenggat yang berbeda untuk dua jenis dokumen. Master File dan Local File harus sudah tersedia paling lama 4 bulan setelah tahun pajak berakhir. CbCR, laporan per negara milik induk grup besar, diberi waktu lebih lama, yaitu 12 bulan. Tahun pajak 2025 berakhir 31 Desember 2025, jadi tenggatnya 30 April 2026 dan 31 Desember 2026. Cara ingat: dokumen perusahaan 4 bulan, laporan grup 12 bulan.",
         inti: "Master File dan Local File tersedia paling lama 4 bulan setelah akhir tahun pajak (30 April 2026); CbCR paling lama 12 bulan setelah akhir tahun pajak (31 Desember 2026).",
         jejakHitung: [["Akhir tahun pajak", "31 Desember 2025"], ["+ 4 bulan (Master/Local File)", "30 April 2026"], ["+ 12 bulan (CbCR)", "31 Desember 2026"]],
         mengapaSalah: {
@@ -1342,6 +1376,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pilih metode menurut pekerjaan perusahaannya dan data pembanding yang tersedia. PT Mesin Presisi hanya memproduksi pesanan induk, jadi wajarnya dinilai dari berapa persen untung di atas biayanya: metode biaya plus. PT Niaga Prima hanya membeli lalu menjual lagi, jadi dinilai dari margin kotor yang biasa didapat distributor: metode harga penjualan kembali. Data mark-up biaya dan data margin kotor yang tersedia cocok dengan pilihan itu. Cara ingat: pabrik dilihat dari biaya, pedagang dilihat dari harga jual.",
         inti: "Produsen kontrak berfungsi rutin dan dinilai dari mark-up atas biaya (biaya plus); distributor tanpa pengolahan dinilai dari margin kotor penjualan kembali (harga penjualan kembali). Ketersediaan data pembanding menguatkan pilihan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1367,6 +1402,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Biaya jasa ke induk hanya boleh dikurangkan bila jasanya benar-benar memberi manfaat bagi PT Hikari. Laporan konsolidasi dan rapat investor adalah kepentingan induk sebagai pemegang saham, jadi Rp600 juta itu tidak boleh. Pelatihan pajak yang sama persis sudah dibeli dari konsultan lokal, jadi Rp600 juta itu dobel dan juga tidak boleh. Yang tersisa hanya layanan TI yang dipakai sehari-hari dengan harga wajar, Rp1,2 miliar. Cara ingat: jasa untuk induk sendiri atau jasa dobel tidak bisa dibiayakan.",
         inti: "Uji manfaat PKKU: aktivitas pemegang saham (a) dan jasa duplikatif (c) tidak memberi manfaat ekonomi bagi PT Hikari sehingga tidak dapat dibebankan; hanya layanan TI (b) Rp1.200.000.000 yang lolos.",
         jejakHitung: [["(a) aktivitas pemegang saham", "dikoreksi Rp600.000.000"], ["(b) layanan TI bermanfaat dan wajar", "boleh Rp1.200.000.000"], ["(c) jasa duplikatif", "dikoreksi Rp600.000.000"], ["Dapat dibebankan", "Rp1.200.000.000"]],
         mengapaSalah: {
@@ -1393,6 +1429,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang ditanya adalah tenggat MAP, dan tenggat ini mengikuti perjanjian pajak, yaitu 3 tahun sejak pemberitahuan pertama. Pemberitahuan diterima 10 Maret 2024, dan tanggal itu dihitung sebagai hari pertama. Karena itu jangka 3 tahun habis sehari sebelum tanggal yang sama tiga tahun kemudian, yaitu 9 Maret 2027. Tenggat 3 bulan itu untuk keberatan, bukan MAP. Cara ingat: \"N tahun sejak\" berakhir sehari sebelum tanggal yang sama N tahun kemudian.",
         inti: "Jangka waktu MAP mengikuti P3B: 3 tahun sejak pemberitahuan pertama (10 Maret 2024). Tanggal pemberitahuan dihitung sebagai hari pertama (cara hitung contoh Penjelasan Pasal 11 UU PBB dan Penjelasan Pasal 19 ayat (1) UU KUP), sehingga hari terakhir pengajuan adalah 9 Maret 2027.",
         jejakHitung: [
           ["Pemberitahuan pertama (hari pertama)", "10 Maret 2024"],
@@ -1423,6 +1460,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada pada sifat MAP: perjanjian pajak hanya mewajibkan kedua otoritas berusaha mencapai kesepakatan, bukan menjamin berhasil. Kalau tidak sepakat, ketetapan pajak yang sudah terbit tetap berlaku. Karena itu MAP bukan pengadilan, tidak punya batas 12 bulan yang membuat permohonan otomatis dikabulkan, dan justru biasa dipakai untuk sengketa harga transfer. Itulah sebabnya hak keberatan sebaiknya tetap dijaga. Cara ingat: MAP itu wajib berusaha, tidak wajib berhasil.",
         inti: "Pasal 25 P3B mewajibkan otoritas berupaya (endeavour) menyelesaikan kasus, bukan menjamin hasil; karena itu hak keberatan tetap perlu dijaga.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1448,6 +1486,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Hasil MAP tidak hanya di atas kertas, tetapi dijalankan dengan keputusan yang mengubah SKPKB. Koreksi yang tadinya Rp2 miliar disepakati turun menjadi Rp800 juta, jadi pajaknya dihitung dari angka baru itu. Pokok PPh = 22% x Rp800 juta = Rp176 juta, turun dari Rp440 juta. Jangan menghitung 22% dari bagian yang dibatalkan. Cara ingat: yang dipajaki adalah koreksi yang tersisa setelah disepakati.",
         inti: "Hasil MAP dilaksanakan dengan keputusan yang mengubah SKPKB: koreksi menjadi Rp800.000.000 sehingga pokok PPh = 22% × Rp800.000.000 = Rp176.000.000 (turun dari Rp440.000.000); sanksi ikut dihitung ulang.",
         jejakHitung: [["Koreksi semula × 22%", "Rp440.000.000"], ["Koreksi hasil MAP", "Rp800.000.000"], ["Pokok PPh = 22% × Rp800.000.000", "Rp176.000.000"]],
         mengapaSalah: {
@@ -1473,6 +1512,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Perusahaan ingin dua jalur sekaligus, jadi harus memenuhi dua tenggat yang aturannya berbeda. Keberatan tetap 3 bulan sejak SKPKB dikirim, dan mengajukan MAP tidak menghentikan hitungan itu. SKPKB dikirim 15 Juli 2026 dan tanggal itu hari pertama, jadi hari terakhir keberatan 14 Oktober 2026. MAP diajukan dalam batas waktu perjanjian pajak dan boleh berjalan bersamaan. Cara ingat: keberatan ikut aturan dalam negeri, MAP ikut perjanjian pajak.",
         inti: "Keberatan tetap tunduk pada Pasal 25 ayat (3) UU KUP (3 bulan sejak SKP dikirim; 15 Juli 2026 dihitung sebagai hari pertama, sehingga paling lama 14 Oktober 2026), sedangkan MAP mengikuti P3B; PMK 172/2023 membolehkan keduanya berjalan bersamaan.",
         jejakHitung: [
           ["SKPKB dikirim (hari pertama)", "15 Juli 2026"],
@@ -1502,6 +1542,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Perusahaan ingin kepastian untuk lima tahun ke depan dan di dua negara sekaligus. APA adalah kesepakatan harga transfer di muka untuk tahun-tahun mendatang. Kalau hanya dengan DJP (unilateral), otoritas Korea Selatan masih bisa mengoreksi. Yang mengikat kedua negara adalah APA bilateral, yang dirundingkan DJP bersama otoritas Korea Selatan. MAP untuk sengketa yang sudah terjadi, dan Form DGT hanya soal tarif potong. Cara ingat: ke depan pakai APA, dua negara berarti bilateral.",
         inti: "Kepastian di dua negara untuk periode ke depan hanya diberikan APA bilateral, yang disepakati DJP dan otoritas mitra melalui mekanisme MAP.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1527,6 +1568,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada dua hal yang ditanya: lamanya periode APA dan siapa yang bersepakat. Periode APA paling lama 5 tahun pajak, dihitung dari tahun pertama periode, bukan dari tahun pengajuan. Mulai 2027, lima tahunnya adalah 2027, 2028, 2029, 2030, dan 2031. Karena bilateral, kesepakatannya dibuat DJP dengan otoritas pajak Jepang lewat mekanisme MAP, bukan hanya perusahaan dengan DJP. Cara ingat: lima tahun dari tahun pertama, bilateral berarti dua otoritas.",
         inti: "Periode APA paling lama 5 tahun pajak sejak tahun pajak pertama periode APA (2027–2031). APA bilateral disepakati DJP dengan otoritas pajak negara mitra melalui mekanisme MAP, sehingga memberi kepastian di kedua negara.",
         jejakHitung: [["Tahun pertama", "2027"], ["Periode paling lama", "5 tahun pajak"], ["Tahun terakhir", "2031"], ["Pihak yang bersepakat (bilateral)", "DJP dan otoritas pajak Jepang (melalui MAP)"]],
         mengapaSalah: {
@@ -1552,6 +1594,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Roll-back artinya isi APA ikut diterapkan ke tahun-tahun sebelum periode APA. Syaratnya, fakta transaksinya sama dan tahun itu belum diterbitkan ketetapan pajak, serta tidak sedang diperiksa bukti permulaan atau disidik. Tahun 2023 sudah terbit SKPKB, jadi tidak bisa masuk. Tahun 2024 dan 2025 memenuhi semua syarat, jadi keduanya bisa dicakup. Cara ingat: cek status ketetapan tiap tahun, yang sudah ada SKP gugur.",
         inti: "Roll-back dapat diterapkan pada tahun sebelum periode APA yang fakta dan kondisinya sama dan belum diterbitkan ketetapan; 2023 sudah terbit SKPKB sehingga dikecualikan, tersisa 2024 dan 2025.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1578,6 +1621,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "APA bukan izin lima tahun tanpa syarat. Kesepakatan itu berdiri di atas asumsi kritis, yaitu keadaan usaha yang dianggap tetap, seperti kapasitas produksi dan fungsi usaha. Karena itu selama periode APA perusahaan wajib melaporkan pelaksanaannya setiap tahun. Bila asumsi kritis berubah, seperti lini produksi ditutup, perubahan itu wajib diberitahukan supaya APA bisa dievaluasi atau disesuaikan. Cara ingat: APA dijaga dengan laporan tahunan dan kabar bila keadaan berubah.",
         inti: "Selama periode APA, WP wajib melaporkan pelaksanaan APA setiap tahun dan menjaga asumsi kritis; perubahan asumsi kritis membuka evaluasi atau perubahan APA. Pemberitahuan perubahan asumsi kritis memungkinkan APA dievaluasi atau disesuaikan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1603,6 +1647,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari margin yang benar-benar terjadi: laba Rp4 miliar dibagi penjualan Rp200 miliar = 2%, di bawah rentang 3% sampai 5%. Klausul APA menyuruh laba dinaikkan ke titik terendah, yaitu 3% x Rp200 miliar = Rp6 miliar. Jadi penyesuaiannya Rp6 miliar dikurangi Rp4 miliar = Rp2 miliar. Tambahan PPh = 22% x Rp2 miliar = Rp440 juta. Cara ingat: ikuti titik yang disepakati di APA, bukan median.",
         inti: "Margin realisasi 2,0% di bawah rentang. Laba harus disesuaikan ke 3,0% × Rp200 miliar = Rp6 miliar; penyesuaian Rp2 miliar; PPh 22% = Rp440.000.000.",
         jejakHitung: [["Margin realisasi = 4 ÷ 200", "2,0%"], ["Laba pada titik terendah = 3,0% × Rp200.000.000.000", "Rp6.000.000.000"], ["Penyesuaian = 6 M − 4 M", "Rp2.000.000.000"], ["PPh = 22% × Rp2.000.000.000", "Rp440.000.000"]],
         mengapaSalah: {
@@ -1627,6 +1672,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Langkah pertama, tentukan siapa pelapornya dan lewat jalur mana. Bank yang diawasi OJK mengirim laporan rekening nasabah asing (CRS) ke OJK paling lambat 1 Agustus, lalu OJK meneruskannya ke DJP paling lambat 31 Agustus. Karena 1 Agustus 2027 hari Minggu, batasnya bergeser ke Senin, 2 Agustus 2027. PT Arta Kelola Dana tidak diawasi OJK, jadi melapor langsung ke DJP lewat Portal Wajib Pajak paling lambat 30 April 2027. Cara ingat: diawasi OJK lewat OJK, lainnya langsung ke DJP.",
         inti: "Data tahun 2026 mengikuti PMK 108/2025. Laporan CRS bank (LJK di bawah pengawasan OJK) disampaikan kepada OJK paling lambat 1 Agustus (Pasal 9 ayat (1) huruf a, Pasal 11 ayat (5)); karena 1 Agustus 2027 jatuh pada hari Minggu, batasnya bergeser ke hari kerja berikutnya, Senin, 2 Agustus 2027 (Pasal 11 ayat (7)). OJK meneruskannya kepada DJP paling lambat 31 Agustus 2027. Entitas lain menyampaikan laporan langsung kepada DJP melalui Portal Wajib Pajak paling lambat 30 April 2027 (Pasal 11 ayat (6)). Laporan domestik bank tidak melalui OJK: semua pelapor menyampaikannya langsung kepada DJP paling lambat 30 April (Pasal 36 dan Pasal 37). Laporan nihil tetap wajib bila tidak ada rekening yang wajib dilaporkan.",
         jejakHitung: [
           ["Laporan CRS bank (LJK di bawah pengawasan OJK)", "OJK: 1 Agustus 2027 (Minggu) → Senin, 2 Agustus 2027; OJK → DJP paling lambat 31 Agustus 2027"],
@@ -1656,6 +1702,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "angka-usang", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang ditanya: rekening siapa yang wajib dilaporkan bank untuk kepentingan pajak dalam negeri. Rekening orang pribadi di bank dilaporkan bila jumlah semua rekeningnya di bank yang sama minimal Rp1 miliar, sedangkan rekening badan dilaporkan berapa pun saldonya. Ani Rp850 juta tidak dilaporkan, Budi Rp1,2 miliar dilaporkan, Citra Rp600 juta + Rp500 juta = Rp1,1 miliar dilaporkan. PT Dwi Karya Mandiri juga dilaporkan walau hanya Rp75 juta. Cara ingat: orang pribadi dijumlah dulu lalu dibanding Rp1 miliar, badan tanpa batas.",
         inti: "Untuk kepentingan domestik, rekening orang pribadi pada Lembaga Simpanan dilaporkan bila saldo agregat seluruh rekeningnya pada lembaga yang sama per 31 Desember paling sedikit Rp1 miliar: Budi (Rp1,2 miliar) dan Citra (Rp600 juta + Rp500 juta = Rp1,1 miliar) dilaporkan, Ani (Rp850 juta) tidak. Rekening entitas pada Lembaga Simpanan dilaporkan tanpa batas minimum, sehingga rekening PT Dwi Karya Mandiri (Rp75 juta) juga dilaporkan.",
         jejakHitung: [["Ani", "Rp850.000.000 < Rp1 M → tidak dilaporkan"], ["Budi", "Rp1.200.000.000 ≥ Rp1 M → dilaporkan"], ["Citra = 600 jt + 500 jt", "Rp1.100.000.000 ≥ Rp1 M → dilaporkan"], ["PT Dwi Karya Mandiri (entitas)", "Tanpa batas saldo → dilaporkan"]],
         mengapaSalah: {
@@ -1681,6 +1728,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Jenis pertukaran informasi dibedakan menurut siapa yang memulai. Di sini DJP sendiri yang meminta data rekening tertentu untuk satu kasus kepada otoritas Singapura, jadi namanya pertukaran informasi atas permintaan. Pertukaran otomatis dikirim rutin tanpa diminta, sedangkan pertukaran spontan dikirim atas inisiatif negara pemberi. MAP bukan alat mengumpulkan informasi, tetapi untuk menyelesaikan pemajakan yang tidak sesuai perjanjian. Cara ingat: diminta untuk kasus tertentu berarti atas permintaan.",
         inti: "Permintaan informasi spesifik atas kasus tertentu kepada otoritas mitra adalah exchange of information on request berdasarkan Pasal 26 P3B.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1706,6 +1754,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada di UU 9/2017: untuk kepentingan pajak, aturan rahasia bank tidak berlaku terhadap DJP. Jadi bank tidak boleh menolak permintaan DJP dengan alasan rahasia bank, dan tidak perlu izin OJK per nasabah. Pimpinan atau pegawai yang tidak memenuhi kewajiban ini diancam kurungan paling lama 1 tahun atau denda paling banyak Rp1 miliar. Peraturan menteri yang lama memang diganti, tetapi ancaman pidananya ada di undang-undang dan tetap berlaku. Cara ingat: urusan pajak, rahasia bank tidak berlaku bagi DJP.",
         inti: "UU 9/2017 menyatakan ketentuan kerahasiaan dalam UU Perbankan dan UU sektor keuangan lain tidak berlaku bagi akses DJP; pelanggaran kewajiban diancam pidana kurungan paling lama 1 tahun atau denda paling banyak Rp1 miliar bagi pimpinan/pegawai, dan denda paling banyak Rp1 miliar bagi lembaga keuangan. PMK 108/2025 hanya mengganti petunjuk teknis (PMK 70/PMK.03/2017); dasar kewajiban dan sanksinya tetap UU 9/2017.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1730,6 +1779,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini tentang rekening baru, bukan rekening lama. Sejak 1 Januari 2026, setiap pembukaan rekening baru wajib melalui prosedur identifikasi, termasuk mengisi pernyataan diri tentang negara domisili pajak. Kalau calon nasabah menolak, lembaga keuangan dilarang membuka rekening itu. Label rekening tidak terdokumentasi hanya untuk rekening lama tertentu, dan tidak ada izin DJP atau batas saldo sebagai jalan keluar. Cara ingat: tanpa pernyataan diri, rekening baru tidak dibuka.",
         inti: "Rekening baru yang dibuka sejak 1 Januari 2026 tunduk pada prosedur identifikasi (uji tuntas) menurut PMK 108/2025: lembaga keuangan dilarang melayani pembukaan rekening baru bagi calon nasabah yang menolak prosedur identifikasi rekening keuangan, termasuk self-certification.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1756,6 +1806,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Satu masa, tiga pembayaran, tiga perlakuan berbeda. Royalti ke Jepang memakai tarif perjanjian pajak 10%: 10% x Rp800 juta = Rp80 juta. Jasa konsultansi ke Singapura bukan royalti dan Redpoint tidak punya BUT (tempat usaha tetap) di Indonesia, jadi hak memajakinya milik Singapura dan potongannya nol. Bunga ke Cayman tidak ada perjanjian pajak, jadi 20% x Rp300 juta = Rp60 juta, totalnya Rp140 juta. Cara ingat: cek dulu ada perjanjian atau tidak, lalu jenis penghasilannya.",
         inti: "(a) Royalti: tarif P3B 10% × Rp800 juta = Rp80 juta. (b) Jasa: laba usaha tanpa BUT (Pasal 7 P3B) sehingga nihil. (c) Bunga ke Cayman Islands tanpa P3B: 20% × Rp300 juta = Rp60 juta. Total Rp140.000.000.",
         jejakHitung: [["(a) 10% × Rp800.000.000", "Rp80.000.000"], ["(b) Pasal 7 P3B, tanpa BUT", "Rp0"], ["(c) 20% × Rp300.000.000", "Rp60.000.000"], ["Total", "Rp140.000.000"]],
         mengapaSalah: {
@@ -1781,6 +1832,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Perjanjian pajak hanya mengatur pajak penghasilan, jadi PPN tetap berlaku. Royalti dan jasa dari luar negeri yang dipakai di Indonesia kena PPN yang disetor sendiri oleh pemakainya, sedangkan bunga termasuk jasa keuangan yang dibebaskan. Dasarnya Rp800 juta + Rp500 juta = Rp1,3 miliar, lalu diambil 11/12 bagiannya sebagai dasar pengenaan. PPN = 12% x 11/12 x Rp1,3 miliar = Rp143 juta, dan PPN ini bisa dikreditkan sebagai pajak masukan. Cara ingat: perjanjian pajak tidak menyentuh PPN.",
         inti: "Royalti (BKP tidak berwujud) dan jasa konsultansi (JKP) yang dimanfaatkan di Indonesia terutang PPN: 12% × 11/12 × Rp1.300.000.000 = Rp143.000.000, disetor sendiri oleh penerima dan dapat dikreditkan. Bunga adalah imbalan jasa keuangan yang dibebaskan dari PPN.",
         jejakHitung: [["DPP penggantian (royalti + jasa)", "Rp1.300.000.000"], ["DPP nilai lain 11/12", "Rp1.191.666.667"], ["PPN = 12% × DPP", "Rp143.000.000"]],
         mengapaSalah: {
@@ -1807,6 +1859,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
+        mudah: "Ada tiga hal yang dicocokkan: jenis bukti potong, tanggal setor, dan tanggal lapor. Potongan PPh 26 untuk badan luar negeri memakai BPNR, yaitu bukti potong untuk penerima bukan penduduk, dan dilaporkan di SPT Masa PPh Unifikasi. Setornya paling lambat tanggal 15 bulan berikutnya, jadi 15 April 2026. Lapornya paling lambat 20 hari setelah masa berakhir, jadi 20 April 2026. Cara ingat: penerima luar negeri pakai BPNR, setor tanggal 15, lapor tanggal 20.",
         inti: "PPh 26 kepada badan LN dibuatkan BPNR dan masuk SPT Masa PPh Unifikasi; setor paling lambat tanggal 15 bulan berikutnya (15 April 2026) dan lapor paling lambat 20 hari setelah masa berakhir (20 April 2026).",
         jejakHitung: [],
         mengapaSalah: {
@@ -1832,6 +1885,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "lupa-pasal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Di sini pajak ditanggung pembayar, jadi Rp900 juta yang diterima Kaigen adalah angka bersih. Kita cari dulu angka kotornya dengan tarif yang benar-benar berlaku, yaitu tarif perjanjian 10%. Bruto = Rp900 juta dibagi 0,9 = Rp1 miliar. PPh 26 = 10% x Rp1 miliar = Rp100 juta, dan Rp1 miliar dikurangi Rp100 juta pas Rp900 juta. Cara ingat: bila pajak ditanggung, naikkan dulu ke bruto, baru kalikan tarif.",
         inti: "Gross-up dengan tarif P3B: bruto = Rp900.000.000 ÷ (1 − 10%) = Rp1.000.000.000; PPh 26 = 10% × Rp1.000.000.000 = Rp100.000.000.",
         jejakHitung: [["Bruto = 900.000.000 ÷ 0,9", "Rp1.000.000.000"], ["PPh 26 = 10% × bruto", "Rp100.000.000"], ["Cek: bruto − PPh", "Rp900.000.000"]],
         mengapaSalah: {
@@ -1857,6 +1911,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Hitung dulu pajaknya: tanpa Form DGT, tarif PPh 26 tetap 20%, jadi 20% x Rp250 juta = Rp50 juta. Terlambat dari 15 Oktober sampai 10 Desember adalah 1 bulan 25 hari, dan sisa hari dihitung satu bulan penuh, jadi 2 bulan. Bunga = Rp50 juta x 1,01% x 2 = Rp1.010.000. Tarif bunganya mengikuti tarif bulanan yang ditetapkan Menteri Keuangan, bukan 2% tetap seperti dulu. Cara ingat: bagian bulan dibulatkan ke atas menjadi satu bulan.",
         inti: "Tanpa SKD, PPh 26 = 20% × Rp250.000.000 = Rp50.000.000. Dari 15 Oktober s.d. 10 Desember 2026 = 1 bulan 25 hari, dibulatkan menjadi 2 bulan. Bunga = Rp50.000.000 × 1,01% × 2 = Rp1.010.000.",
         jejakHitung: [
           ["PPh 26 = 20% × Rp250.000.000", "Rp50.000.000"],
@@ -1887,6 +1942,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Premi asuransi ke luar negeri tidak dipotong 20% dari seluruh premi, tetapi dari perkiraan bagian labanya. Bagian itu tergantung siapa pembayarnya: tertanggung 50%, perusahaan asuransi 10%, perusahaan reasuransi 5%. Jadi 20% x 50% x Rp400 juta = Rp40 juta, 20% x 10% x Rp1 miliar = Rp20 juta, dan 20% x 5% x Rp2 miliar = Rp20 juta. Cara ingat: makin jauh pembayar dari tertanggung asli, makin kecil persentasenya.",
         inti: "Perkiraan neto premi: 50% (tertanggung), 10% (perusahaan asuransi), 5% (reasuransi). PPh 26 efektif 10%, 2%, 1%: Rp40.000.000; Rp20.000.000; Rp20.000.000.",
         jejakHitung: [
           ["(i) 20% × 50% × Rp400.000.000", "Rp40.000.000"],
@@ -1917,6 +1973,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada pada profesi penerimanya: penyanyi. Untuk artis, perjanjian pajak memberi hak memajaki kepada negara tempat ia tampil, tanpa melihat lama tinggal atau ada tidaknya kantor tetap. Jadi aturan 183 hari tidak menolong, dan karena tidak ada batas tarif, dipakai tarif biasa 20%: 20% x Rp1,5 miliar = Rp300 juta. Penerimanya orang pribadi yang dibayar atas kegiatannya, jadi laporannya masuk SPT Masa PPh 21/26, bukan BPNR di SPT Masa PPh Unifikasi. Cara ingat: artis dipajaki di panggungnya.",
         inti: "Pasal 17 P3B mengesampingkan uji 183 hari dan tempat tetap: Indonesia berhak memajaki tanpa batas tarif, sehingga PPh 26 20% × Rp1.500.000.000 = Rp300.000.000. Karena penerima orang pribadi atas jasa/kegiatan, pelaporannya melalui SPT Masa PPh 21/26, bukan BPNR.",
         jejakHitung: [["PPh 26 = 20% × Rp1.500.000.000", "Rp300.000.000"]],
         mengapaSalah: {
@@ -1943,6 +2000,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya adalah tarif PPh 26 atas bunga ke Belanda. Perjanjian pajak dengan Belanda memberi tarif bunga bertingkat menurut lamanya pinjaman, dan pinjaman lebih dari 2 tahun mendapat tarif 5%. Syaratnya terpenuhi: penerima adalah pemilik manfaat sebenarnya dan Form DGT sah sebelum bayar. Jadi 5% x Rp400 juta = Rp20 juta. Cara ingat: cek dulu jangka pinjamannya sebelum memilih tarif bunga.",
         inti: "Pinjaman berjangka 5 tahun (lebih dari 2 tahun) sehingga tarif P3B 5%: 5% × Rp400.000.000 = Rp20.000.000.",
         jejakHitung: [["Jangka pinjaman", "5 tahun (> 2 tahun)"], ["PPh 26 = 5% × Rp400.000.000", "Rp20.000.000"]],
         mengapaSalah: {
@@ -1968,6 +2026,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", C: "salah-baca" },
       pembahasan: {
+        mudah: "Mulai dari kapan PPh 26 lahir: saat dibayar, saat disediakan untuk dibayar, atau saat jatuh tempo, mana yang paling dulu. Mencatat royalti sebagai biaya dan utang kepada induk pada 31 Desember 2025 dianggap sudah menyediakan pembayaran. Maka pajaknya terutang Masa Desember 2025, walaupun uangnya baru keluar Maret 2026. Setornya paling lambat tanggal 15 bulan berikutnya, yaitu 15 Januari 2026. Cara ingat: utang ke afiliasi dicatat, pajaknya ikut lahir.",
         inti: "PPh 26 terutang saat dibayar, disediakan untuk dibayarkan, atau jatuh tempo, mana yang lebih dahulu. Pembebanan sebagai utang kepada afiliasi pada 31 Desember 2025 berarti disediakan untuk dibayarkan, sehingga terutang Masa Desember 2025 (20% × Rp600.000.000 = Rp120.000.000) dan disetor paling lambat 15 Januari 2026.",
         jejakHitung: [["PPh 26 = 20% × Rp600.000.000", "Rp120.000.000"], ["Saat terutang", "Desember 2025"], ["Batas setor", "15 Januari 2026"]],
         mengapaSalah: {
@@ -1988,6 +2047,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini menguji mana dari tiga pembayaran yang benar-benar kena PPh 26. Harga mesin yang diimpor sendiri adalah pembelian barang, pajaknya sudah PPh 22 impor di Bea Cukai, jadi bukan PPh 26. Supervisi 10 hari tanpa kantor tetap di sini adalah laba usaha yang menurut perjanjian hanya dipajaki Belanda. Tinggal lisensi perangkat lunak yang tergolong royalti: 10% x Rp100 juta = Rp10 juta. Cara ingat: beli barang dari luar negeri bukan objek PPh 26.",
         inti: "Harga barang yang dibayar kepada penjual luar negeri tidak tercantum sebagai objek Pasal 26 ayat (1), dan Pasal 26 ayat (2) hanya untuk penjualan harta yang berada di Indonesia; atas impor mesin itu berlaku PPh Pasal 22 impor yang dipungut Bea Cukai. Supervisi 10 hari tanpa BUT adalah laba usaha yang hanya dipajaki Belanda. Yang dipotong hanya royalti: 10% × Rp100.000.000 = Rp10.000.000.",
         jejakHitung: [["(1) Harga mesin impor", "bukan objek PPh 26 (PPh 22 impor saat impor)"], ["(2) Supervisi 10 hari, tanpa BUT", "Pasal 7 P3B → Rp0"], ["(3) Royalti = 10% × Rp100.000.000", "Rp10.000.000"], ["Total PPh 26", "Rp10.000.000"]],
         mengapaSalah: {
@@ -2012,6 +2072,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soalnya berbentuk negatif: cari pembayaran ke luar negeri yang TIDAK kena PPh 26. PPh 26 hanya untuk jenis penghasilan yang ada dalam daftarnya, seperti bunga, royalti, sewa, imbalan jasa, dan premi asuransi ke luar negeri. Imbalan jaminan utang dihitung sebagai bunga, sewa crane jelas sewa, dan premi asuransi kapal juga masuk daftar. Harga suku cadang adalah pembelian barang, dan pajaknya sudah dipungut sebagai PPh 22 impor. Cara ingat: jual beli barang ke luar negeri tidak dipotong PPh 26.",
         inti: "Objek PPh 26 terbatas pada daftar Pasal 26 ayat (1) dan (2): dividen, bunga (termasuk imbalan jaminan pengembalian utang), royalti, sewa dan penggunaan harta, imbalan jasa/pekerjaan/kegiatan, hadiah, pensiun, premi swap, pembebasan utang, penjualan harta di Indonesia, serta premi asuransi/reasuransi ke luar negeri. Harga pembelian barang dari pemasok luar negeri tidak termasuk; atas impornya dipungut PPh 22 impor.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2039,6 +2100,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Arah soalnya negatif: cari pihak yang gugur dari pengecualian sehingga menjadi subjek pajak. Kedutaan, diplomat, dan sopir asing yang tinggal bersamanya dikecualikan selama syaratnya terpenuhi, misalnya bukan WNI dan tidak punya penghasilan lain di sini. Organisasi internasional juga dikecualikan, tetapi dengan syarat tidak berbisnis mencari penghasilan dari Indonesia. Begitu kantor organisasi kopi itu menjual kopi ke toko ritel, syaratnya gugur dan ia menjadi subjek pajak. Cara ingat: setiap pengecualian punya syarat, cari syarat yang dilanggar.",
         inti: "Pengecualian organisasi internasional bersyarat: selain keanggotaan Indonesia, organisasi tidak boleh menjalankan usaha atau kegiatan lain untuk memperoleh penghasilan dari Indonesia selain pinjaman kepada pemerintah dari iuran anggota. Penjualan kopi kemasan kepada ritel menggugurkan syarat itu, sehingga organisasi tersebut menjadi subjek pajak atas penghasilannya dari Indonesia.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2065,6 +2127,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Pertama, cek apakah pengecualian untuk pejabat organisasi internasional masih berlaku bagi Dr. Tan. Pengecualian itu gugur karena ia punya pekerjaan lain berbayar di Indonesia, yaitu mengajar. Statusnya lalu dilihat dari tempat tinggal: ia tinggal di Jakarta sejak 2023, jadi wajib pajak dalam negeri, bukan luar negeri. Honor bukan pegawai dihitung dari separuh bruto: 50% x Rp120 juta = Rp60 juta, lalu 5% x Rp60 juta = Rp3 juta. Cara ingat: kewarganegaraan tidak menentukan status pajak, tempat tinggallah yang menentukan.",
         inti: "Pengecualian huruf d gugur karena Dr. Tan menjalankan pekerjaan lain (mengajar berbayar) untuk memperoleh penghasilan dari Indonesia. Status subjeknya lalu ditentukan Pasal 2 ayat (3): ia tinggal di Jakarta sejak 2023 sehingga subjek pajak dalam negeri, dan honornya dipotong PPh 21 bukan pegawai: 5% × 50% × Rp120.000.000 = Rp3.000.000.",
         jejakHitung: [["Syarat huruf d", "gugur: ada pekerjaan lain berpenghasilan dari Indonesia"], ["Status", "subjek pajak dalam negeri (tinggal di Jakarta sejak 2023)"], ["DPP bukan pegawai = 50% × Rp120.000.000", "Rp60.000.000"], ["PPh 21 = 5% × Rp60.000.000", "Rp3.000.000"]],
         mengapaSalah: {
@@ -2089,6 +2152,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini memisahkan dua jenis dividen. Dividen dari perusahaan dalam negeri untuk badan dalam negeri tidak kena pajak, sedangkan dividen luar negeri baru bebas bila diinvestasikan di Indonesia. Karena dividen Korea tidak diinvestasikan, ia masuk sebesar Rp1 miliar sebelum dipotong pajak Korea: Rp4 miliar + Rp1 miliar = Rp5 miliar, pajaknya 22% = Rp1,1 miliar. Pajak Korea Rp100 juta masih di bawah batas kredit Rp220 juta, jadi dikreditkan penuh. Rp1,1 miliar dikurangi Rp100 juta, Rp40 juta, dan Rp600 juta = Rp360 juta kurang bayar.",
         inti: "Dividen dari afiliasi dalam negeri yang diterima WP badan dalam negeri bukan objek PPh. Dividen dari afiliasi luar negeri hanya dikecualikan bila diinvestasikan di Indonesia sesuai syarat; karena tidak, dividen Korea masuk PKP sebesar jumlah sebelum dipotong pajak Korea (penghasilan neto, Pasal 4 ayat (2) huruf c PMK 192/PMK.03/2018) dan pajak Korea dikreditkan menurut batas per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018). Kepemilikan 30% di bawah 50% sehingga tidak ada deemed dividend CFC.",
         jejakHitung: [
           ["Neto usaha", "Rp4.000.000.000"],
@@ -2122,6 +2186,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Kuncinya ada di tarif 19%. Karena syarat perusahaan terbuka terpenuhi, tarif 22% turun 3% menjadi 19% atas seluruh laba, termasuk laba cabang Filipina: 19% x Rp10 miliar = Rp1,9 miliar. Batas kredit pajak luar negeri ikut memakai tarif itu: 2/10 x Rp1,9 miliar = Rp380 juta, padahal pajak Filipina Rp500 juta. Jadi kurang bayarnya Rp1,9 miliar dikurangi Rp380 juta dan Rp1 miliar = Rp520 juta. Cara ingat: tarif turun, batas kredit ikut turun, sisanya hangus.",
         inti: "Tarif 19% berlaku atas seluruh PKP termasuk laba cabang Filipina, sehingga batas kredit Pasal 24 ikut turun: 2.000/10.000 × Rp1.900.000.000 = Rp380.000.000. Pajak Filipina Rp500.000.000 hanya dapat dikreditkan Rp380.000.000; PPh 29 = Rp1.900.000.000 − Rp380.000.000 − Rp1.000.000.000 = Rp520.000.000.",
         jejakHitung: [
           ["PKP = 8.000 + 2.000 (juta)", "Rp10.000.000.000"],
@@ -2154,6 +2219,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Empat kalimat itu hanya berbeda di satu bagian, jadi bandingkan syaratnya satu per satu. Laba BUT bebas dari pajak atas laba cabang bila seluruhnya ditanamkan kembali di Indonesia, misalnya sebagai pendiri perusahaan baru. Batas waktunya sampai akhir tahun pajak berikutnya, yaitu akhir 2026, bukan 4 bulan. Sahamnya tidak boleh dialihkan minimal 2 tahun sesudah perusahaan baru mulai berproduksi, dan tidak perlu izin tertulis Dirjen Pajak, cukup diberitahukan bersama SPT Tahunan. Cara ingat: tahun berikutnya, 2 tahun, tanpa izin.",
         inti: "PMK 14/PMK.03/2011 mengecualikan laba setelah pajak BUT dari PPh Pasal 26 ayat (4) bila ditanamkan kembali di Indonesia dalam bentuk yang diatur (antara lain penyertaan modal pada perusahaan baru sebagai pendiri/peserta pendiri), dilakukan paling lambat dalam tahun pajak berikutnya, dan tidak dialihkan paling singkat 2 tahun sesudah perusahaan baru berproduksi komersial. Penanaman kembali diberitahukan bersama SPT Tahunan, bukan menunggu persetujuan.",
         jejakHitung: [
           ["BPT bila tidak ditanamkan kembali = 10% × Rp6.000.000.000", "Rp600.000.000"],
@@ -2182,6 +2248,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya adalah daftar syarat yang benar untuk memakai tarif perjanjian pajak. Syaratnya: penerima bukan wajib pajak dalam negeri, menyerahkan Form DGT sah kepada pemotong saat pemotongan, ia pemilik manfaat sebenarnya, dan tidak menyalahgunakan perjanjian. Syarat pemilik manfaat berlaku untuk semua jenis penghasilan, termasuk royalti, dan Form DGT tidak bisa menyusul sampai batas SPT Masa. Kewarganegaraan pemegang saham tidak menjadi syarat. Cara ingat: Form DGT harus ada saat memotong, pemilik manfaat berlaku untuk semua penghasilan.",
         inti: "PMK 112/2025: WPLN berhak atas manfaat P3B bila bukan subjek pajak dalam negeri, penduduk negara mitra, dan tidak menyalahgunakan P3B, termasuk merupakan beneficial owner (Pasal 2 ayat (4) dan Pasal 8 ayat (2)). Formulir DGT disampaikan kepada pemotong dalam rangka pemotongan (Pasal 8 ayat (1)); pemotong mengeceknya, mengunggahnya melalui portal wajib pajak, lalu memotong sesuai P3B (Pasal 10 ayat (3)); bila syaratnya tidak terpenuhi saat pemotongan, dipotong menurut UU PPh (Pasal 10 ayat (4)). Bila terpenuhi, PPh 26 = 15% × Rp900.000.000 = Rp135.000.000; bila tidak, 20% = Rp180.000.000.",
         jejakHitung: [
           ["PPh 26 dengan tarif P3B = 15% × Rp900.000.000", "Rp135.000.000"],
@@ -2212,6 +2279,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari jenis penerimanya: Kumo adalah badan di luar negeri. Untuk penerima badan luar negeri, bukti potongnya BPNR, bukan BPPU yang untuk penerima dalam negeri, dan bukan BP21 yang untuk PPh 21. Form DGT sah sudah terekam sebelum bayar, jadi tarif 10%: 10% x Rp450 juta = Rp45 juta. Setor paling lambat 15 Oktober 2026 dan lapor SPT Masa PPh Unifikasi paling lambat 20 Oktober 2026. Cara ingat: badan luar negeri pakai BPNR, setor tanggal 15, lapor tanggal 20.",
         inti: "Penerima adalah badan luar negeri sehingga bukti potongnya BPNR (BPPU untuk penerima dalam negeri; BP21 untuk PPh 21). Form DGT sah terekam sebelum pembayaran, jadi tarif P3B 10% berlaku. PPh 26 Masa September disetor paling lambat 15 Oktober 2026 dan SPT Masa PPh Unifikasi disampaikan paling lambat 20 Oktober 2026 (keduanya hari kerja).",
         jejakHitung: [["PPh 26 = 10% × Rp450.000.000", "Rp45.000.000"], ["Batas setor", "15 Oktober 2026"], ["Batas SPT Masa PPh Unifikasi", "20 Oktober 2026"]],
         mengapaSalah: {
@@ -2237,6 +2305,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Di sini posisinya terbalik: perusahaan Indonesia yang menerima penghasilan dari Jepang. Agar Jepang memakai tarif perjanjian 10%, ia perlu bukti bahwa ia penduduk Indonesia, yaitu surat keterangan domisili yang dimohonkan lewat Coretax. Form DGT tidak cocok karena itu formulir untuk orang asing yang menerima penghasilan dari Indonesia. Dengan surat itu, Jepang memotong Rp200 juta dan jumlah itu bisa dikreditkan, sedangkan potongan 20,42% tidak bisa dikreditkan seluruhnya. Cara ingat: Form DGT untuk orang asing, surat domisili untuk kita.",
         inti: "Bukti residen Indonesia untuk dipakai di negara mitra adalah SKD bagi subjek pajak dalam negeri, yang sejak 2025 dimohonkan melalui layanan Coretax. Dengan SKD, Jepang memotong 10% (Rp200.000.000) dan jumlah itu dikreditkan dalam batas untuk royalti dari Jepang. Bila dibiarkan 20,42%, kelebihan di atas tarif P3B tidak dapat dikreditkan di Indonesia dan harus diminta kembali ke Jepang. Kredit pajak Jepang 10% diambil dalam SPT Tahunan PPh Badan 2026, paling banyak sebesar batas yang dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018).",
         jejakHitung: [
           ["Pajak Jepang sesuai P3B = 10% × Rp2.000.000.000", "Rp200.000.000"],
@@ -2262,6 +2331,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini sengaja dicampur data yang tidak dipakai, jadi pilah dulu mana yang kena PPh 26. Royalti dan bunga dengan Form DGT sah memakai tarif 10%: Rp60 juta dan Rp40 juta. Imbalan jaminan dihitung seperti bunga, dan karena induk Hong Kong belum memberi Form DGT, tarifnya 20%: Rp20 juta. Jasa Mr. Rossi hanya dipajaki Italia, bahan baku impor bukan objek, dan gaji urusan PPh 21, sehingga totalnya Rp120 juta. Cara ingat: tanpa Form DGT, kembali ke tarif 20%.",
         inti: "Hanya tiga pembayaran yang dipotong: royalti 10% × Rp600.000.000 = Rp60.000.000; bunga 10% × Rp400.000.000 = Rp40.000.000; imbalan jaminan (termasuk bunga) tanpa Form DGT 20% × Rp100.000.000 = Rp20.000.000. Jasa Mr. Rossi hanya dipajaki Italia, pembelian bahan baku impor bukan objek PPh 26, dan data gaji, PPh 21, serta PPh 22 impor tidak dipakai. Total Rp120.000.000.",
         jejakHitung: [["(1) Royalti 10% × Rp600.000.000", "Rp60.000.000"], ["(2) Bunga 10% × Rp400.000.000", "Rp40.000.000"], ["(3) Jasa Mr. Rossi (P3B: hanya Italia)", "Rp0"], ["(4) Bahan baku impor", "bukan objek PPh 26"], ["(5) Imbalan jaminan 20% × Rp100.000.000 (tanpa Form DGT)", "Rp20.000.000"], ["Total PPh 26", "Rp120.000.000"]],
         mengapaSalah: {
@@ -2282,6 +2352,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pertanyaannya beralih ke PPN, bukan PPh. Kalau kita memakai hak cipta atau jasa dari luar negeri di Indonesia, kita sendiri yang memungut dan menyetor PPN-nya, dan perjanjian pajak tidak mengubah apa pun. Dasarnya jumlah sebelum dipotong PPh 26: Rp600 juta + Rp200 juta = Rp800 juta. PPN = 12% x 11/12 x Rp800 juta = Rp88 juta, sedangkan impor bahan baku sudah dipungut Bea Cukai. Cara ingat: perjanjian pajak hanya mengatur PPh, bukan PPN.",
         inti: "PPN pemanfaatan BKP tidak berwujud (royalti hak cipta) dan JKP (jasa desain yang dimanfaatkan di Indonesia) dari luar daerah pabean dipungut sendiri oleh penerima dan tidak dipengaruhi P3B. DPP adalah jumlah yang dibayar sebelum dipotong PPh 26, dengan nilai lain 11/12: 12% × 11/12 × (Rp600.000.000 + Rp200.000.000) = Rp88.000.000. Impor bahan baku sudah dipungut PPN impor oleh Bea Cukai.",
         jejakHitung: [["DPP royalti (BKP tidak berwujud)", "Rp600.000.000"], ["DPP jasa desain (JKP dari luar daerah pabean)", "Rp200.000.000"], ["DPP nilai lain = 11/12 × Rp800.000.000", "Rp733.333.333"], ["PPN = 12% × Rp733.333.333", "Rp88.000.000"]],
         mengapaSalah: {
@@ -2308,6 +2379,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-baca" },
       pembahasan: {
+        mudah: "Banyak orang berhenti di 107 hari, padahal itu baru satu dari tiga syarat yang semuanya harus terpenuhi. Gaji pegawai asing bebas di Indonesia hanya bila tinggal tidak lebih dari 183 hari, dibayar pemberi kerja asing, dan tidak dibebankan kepada BUT di sini. Gaji Faiz dialokasikan dan tunjangannya dibayar BUT, jadi syarat ketiga gagal dan Indonesia berhak memajaki seluruhnya. PPh 26 = 20% x (Rp270 juta + Rp30 juta) = Rp60 juta. Cara ingat: tanyakan siapa yang menanggung biayanya.",
         inti: "Ketiga syarat Pasal 15 ayat (2) bersifat kumulatif. Syarat 183 hari dan pemberi kerja nonresiden terpenuhi, tetapi seluruh imbalan (gaji yang dialokasikan dan tunjangan) dibebankan kepada BUT di Indonesia sehingga syarat (c) gagal dan Indonesia berhak memajaki. Faiz adalah WPLN (107 hari, tanpa niat menetap), maka BUT memotong PPh 26 20% × Rp300.000.000 = Rp60.000.000 dan melaporkannya dalam SPT Masa PPh 21/26.",
         jejakHitung: [["Hari di Indonesia", "107 hari (≤ 183) → syarat (a) terpenuhi"], ["Pembayar", "kantor pusat Malaysia → syarat (b) terpenuhi"], ["Dibebankan kepada BUT di Indonesia", "ya → syarat (c) gagal, Indonesia berhak memajaki"], ["Imbalan = Rp270.000.000 + Rp30.000.000", "Rp300.000.000"], ["PPh 26 = 20% × Rp300.000.000", "Rp60.000.000"]],
         mengapaSalah: {
@@ -2332,6 +2404,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Dr. Becker tinggal di Cilegon sejak 2024, jadi ia wajib pajak dalam negeri walaupun warga Jerman. Orang asing berkeahlian khusus boleh dipajaki hanya atas penghasilan dari Indonesia selama 4 tahun pajak, asal mengajukan permohonan dan disetujui Dirjen Pajak. Empat tahunnya 2024 sampai 2027, sehingga untuk 2026 hanya gaji Rp1,44 miliar yang dipajaki, sewa dan bunga dari Jerman tidak. Mulai 2028 seluruh penghasilannya ikut dipajaki. Cara ingat: fasilitas ini harus disetujui dan hanya 4 tahun.",
         inti: "Dr. Becker bertempat tinggal di Indonesia sejak 2024 sehingga subjek pajak dalam negeri (Pasal 2 ayat (3) huruf a UU PPh). Pasal 4 ayat (1a) UU PPh membatasi objek PPh WNA berkeahlian tertentu pada penghasilan dari Indonesia selama 4 tahun pajak sejak menjadi subjek pajak dalam negeri, yaitu 2024 sampai 2027 (Pasal 444 ayat (1) PMK 81/2024). Perlakuan ini dipilih dengan permohonan dan berlaku karena DJP telah menerbitkan surat persetujuan (Pasal 446 dan 447 PMK 81/2024). Untuk 2026 hanya gaji Rp1.440.000.000 yang dikenai PPh; sewa dan bunga dari Jerman tidak termasuk. Mulai 2028 seluruh penghasilan dikenai PPh dengan kredit Pasal 24.",
         jejakHitung: [
           ["Menjadi SPDN", "Tahun Pajak 2024"],
@@ -2364,6 +2437,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya, cek berlakunya dokumen pada setiap tanggal bayar, bukan sekali setahun. Form DGT lama berlaku sampai 30 September 2026, jadi bunga Januari, April, dan Juli memakai 10%: 3 x Rp60 juta = Rp180 juta. Pada 15 Oktober dokumen lama sudah habis dan Form DGT baru baru terekam 20 Oktober, sehingga dipotong 20% = Rp120 juta. Totalnya Rp300 juta, dan kelebihan Rp60 juta bisa diminta kembali. Aturan peralihan untuk dokumen lama ini sumbernya belum dicocokkan penuh, jadi anggap jawaban ini masih perlu dikonfirmasi.",
         inti: "Tiga pembayaran pertama (Januari, April, Juli) masih dalam periode SKD lama yang tetap berlaku sampai 30 September 2026: 3 × 10% × Rp600.000.000 = Rp180.000.000. Pembayaran 15 Oktober 2026 terjadi setelah SKD lama berakhir, sedangkan Form DGT baru terekam 20 Oktober 2026 (setelah pembayaran), sehingga dipotong 20% = Rp120.000.000. Total Rp300.000.000; kelebihan Rp60.000.000 di atas tarif P3B dapat dimintakan kembali melalui permohonan pengembalian yang diajukan PT Samudra Kabel Nusantara sebagai pemotong dengan surat kuasa Pacific Cable (PMK 81/2024 Pasal 133 huruf b dan Pasal 134 ayat (1)).",
         jejakHitung: [
           ["Januari, April, Juli: 3 × 10% × Rp600.000.000", "Rp180.000.000"],
@@ -2395,6 +2469,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari laba pembukuan BUT: Rp40 miliar dikurangi Rp28 miliar dan Rp6 miliar = Rp6 miliar. Royalti yang dibayar BUT ke kantor pusatnya sendiri tidak boleh jadi biaya, jadi Rp1 miliar ditambahkan kembali, sedangkan alokasi biaya administrasi yang wajar tetap boleh. Penjualan barang sejenis langsung oleh kantor pusat di Indonesia ikut dihitung sebagai laba BUT, tetapi labanya saja, Rp1,5 miliar, bukan harga jualnya. Jadi Rp6 miliar + Rp1 miliar + Rp1,5 miliar = Rp8,5 miliar.",
         inti: "Laba komersial BUT Rp6 miliar. Royalti kepada kantor pusat tidak dapat dibiayakan (Pasal 5 ayat (3)) sehingga ditambahkan Rp1 miliar, sedangkan alokasi biaya administrasi yang wajar tetap boleh. Karena P3B memuat limited force of attraction, laba neto penjualan langsung kantor pusat atas barang sejenis (Rp1,5 miliar) diatribusikan kepada BUT. PKP = Rp6 M + Rp1 M + Rp1,5 M = Rp8,5 miliar. Bunga deposito final dan PPh 22 impor (kredit pajak) tidak memengaruhi PKP.",
         jejakHitung: [["Laba komersial BUT = 40.000 − 28.000 − 6.000 (juta)", "Rp6.000.000.000"], ["Koreksi royalti kepada kantor pusat", "+Rp1.000.000.000"], ["Force of attraction: laba neto penjualan langsung kantor pusat", "+Rp1.500.000.000"], ["PKP BUT", "Rp8.500.000.000"]],
         mengapaSalah: {
@@ -2421,6 +2496,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Soal ini menanyakan dua hal: lampiran mana dan berapa pajak atas laba cabangnya. Di formulir SPT Tahunan Badan yang baru, hitungan pajak laba cabang BUT ada di Lampiran 12A. Pembebasan hanya berlaku bila seluruh laba setelah pajak ditanamkan kembali, sedangkan di sini hanya sebagian. Laba setelah pajak Rp6 miliar dikurangi Rp1,32 miliar = Rp4,68 miliar, lalu 10% = Rp468 juta. Cara ingat: tanam kembali semuanya atau tidak bebas sama sekali.",
         inti: "Di SPT Tahunan PPh Badan bentuk PER-11/PJ/2025 (TP 2025 dan seterusnya), PPh Pasal 26 ayat (4) BUT dihitung pada Lampiran 12A, sedangkan pemberitahuan penanaman kembali pada Lampiran 12B. Pengecualian BPT hanya diberikan bila SELURUH laba setelah pajak ditanamkan kembali (Pasal 1 ayat (3) PMK 14/PMK.03/2011). Karena hanya Rp2.680.000.000 dari Rp4.680.000.000 yang ditanamkan kembali, pengecualian tidak berlaku: BPT = 10% × Rp4.680.000.000 = Rp468.000.000.",
         jejakHitung: [
           ["Laba setelah pajak = 6.000.000.000 − 1.320.000.000", "Rp4.680.000.000"],
@@ -2453,6 +2529,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya: apakah tim survei asing ini sudah menjadi BUT, lalu pajak apa yang dipotong. Karena negaranya belum punya perjanjian pajak dengan Indonesia, berlaku aturan dalam negeri: jasa lebih dari 60 hari dalam 12 bulan sudah menjadi BUT. Harinya dijumlahkan walau tidak berturut-turut, 30 + 20 + 15 = 65 hari. Pembayaran kepada BUT yang punya NPWP dipotong PPh 23: 2% x Rp3 miliar = Rp60 juta. Cara ingat: hari dijumlahkan, lewat 60 hari berarti BUT.",
         inti: "Tanpa P3B, berlaku time test domestik: hari pemberian jasa dijumlahkan dalam 12 bulan (30 + 20 + 15 = 65 hari) dan melebihi 60 hari, sehingga Atlas mempunyai BUT. BUT diperlakukan sebagai WP badan: terdaftar melalui Coretax, PPh badan 22%, SPT Tahunan PPh Badan (untuk Tahun Pajak 2025 dan seterusnya dalam bentuk PER-11/PJ/2025 sebagaimana diubah PER-12/PJ/2026, bukan formulir 1771 lama), dan branch profit tax. Pembayaran oleh WPDN kepada BUT ber-NPWP dipotong PPh 23: 2% × Rp3.000.000.000 = Rp60.000.000.",
         jejakHitung: [
           ["Hari pemberian jasa = 30 + 20 + 15", "65 hari > 60 hari dalam 12 bulan"],
@@ -2482,6 +2559,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari laba yang digabung: Rp6 miliar + royalti Jepang Rp1 miliar + laba Vietnam Rp2 miliar = Rp9 miliar, pajaknya 22% = Rp1,98 miliar. Dividen Korea dikecualikan karena diinvestasikan, dan rugi Filipina tidak boleh mengurangi laba. Kredit Jepang hanya sebesar tarif perjanjian 10% = Rp100 juta, sedangkan Vietnam Rp400 juta masih di bawah batasnya Rp440 juta. Rp1,98 miliar dikurangi Rp500 juta, Rp80 juta, dan Rp1,1 miliar = Rp300 juta. Cara ingat: potongan di atas tarif perjanjian diminta kembali ke negara sumber.",
         inti: "PKP = Rp6 M + Rp1 M (royalti Jepang, sebesar penghasilan neto sebelum dipotong pajak Jepang; tidak ada pengurang penghasilan bruto yang disebut) + Rp2 M (laba cabang Vietnam, sebesar penghasilan neto sebelum pajak Vietnam) = Rp9 M; dividen Korea dikecualikan dan rugi Filipina tidak digabung. PPh 22% = Rp1,98 M. Jepang: dibayar Rp204,2 juta dan batas proporsional Rp220 juta, tetapi kredit dibatasi tarif P3B 10% = Rp100 juta. Vietnam: batas Rp440 juta, dibayar Rp400 juta → Rp400 juta. Kredit PPh 24 Rp500 juta; PPh 29 = Rp1.980 jt − Rp500 jt − Rp80 jt − Rp1.100 jt = Rp300 juta.",
         jejakHitung: [
           ["PKP = 6.000 + 1.000 + 2.000 (juta)", "Rp9.000.000.000"],
@@ -2513,6 +2591,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Empat rumusan itu hanya beda di ujung kalimat, jadi baca sampai habis. Kredit pajak luar negeri di Indonesia dihitung per negara dan per jenis penghasilan, dengan batas tertentu. Laba Vietnam digabung sebelum dikurangi pajak Vietnam, dan rugi Filipina tidak boleh mengurangi laba mana pun. Pajak Vietnam yang melebihi batas hangus: tidak bisa dikreditkan, tidak bisa jadi biaya, dan tidak bisa dibawa ke tahun depan. Cara ingat: lebih dari batas berarti hangus.",
         inti: "Pasal 24 memakai ordinary credit yang dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018): penghasilan luar negeri digabungkan sebesar penghasilan neto, yaitu sebelum dikurangi pajak luar negeri (Pasal 4 ayat (2) huruf a PMK 192/PMK.03/2018 untuk penghasilan usaha cabang), rugi di luar negeri tidak diperhitungkan (Pasal 4 ayat (3)), dan sisa pajak luar negeri di atas batas hangus, yaitu tidak diperhitungkan dengan PPh terutang, tidak dibiayakan (Pasal 7 PMK 192/PMK.03/2018; Pasal 9 ayat (1) huruf h UU PPh), dan tidak dapat dibawa ke tahun lain.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2538,6 +2617,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Bunga dari Jepang ikut digabung dengan penghasilan kerja: Rp534 juta + Rp120 juta dikurangi PTKP Rp54 juta = Rp600 juta, pajaknya dengan tarif bertingkat Rp124 juta. Pajak Jepang boleh dikreditkan paling banyak sebesar tarif perjanjian 10% = Rp12 juta, walau yang dipotong Rp18,378 juta karena formulirnya tidak diserahkan. Rp12 juta itu masih di bawah batas kredit Rp24,8 juta. Kurang bayarnya Rp124 juta dikurangi PPh 21 Rp89 juta dan Rp12 juta = Rp23 juta, sedangkan kelebihan potongan diminta kembali ke Jepang.",
         inti: "PKP = Rp534 jt + Rp120 jt − Rp54 jt = Rp600 jt; PPh Pasal 17 = Rp124 jt. Kredit PPh 24 = terkecil antara pajak Jepang yang dibayar (Rp18,378 jt), pajak menurut P3B 10% (Rp12 jt), dan batas (120/600) × Rp124 jt = Rp24,8 jt, yaitu Rp12 jt. PPh 29 = Rp124 jt − Rp89 jt − Rp12 jt = Rp23 jt; kelebihan pemotongan di Jepang diminta kembali ke Jepang.",
         jejakHitung: [
           ["PKP = 534.000.000 + 120.000.000 − 54.000.000", "Rp600.000.000"],
@@ -2570,6 +2650,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Soal ini menguji batas utang, yaitu utang berbunga paling banyak 4 kali modal. Rata-rata utang berbunga dari saldo akhir bulan: (6 x Rp80 miliar + 6 x Rp100 miliar) / 12 = Rp90 miliar. Pinjaman tanpa bunga dari pemegang saham dihitung sebagai modal, jadi modal Rp16 miliar + Rp4 miliar = Rp20 miliar, dan utang yang diizinkan 4 x Rp20 miliar = Rp80 miliar. Biaya pinjaman yang boleh 80/90 x Rp9 miliar = Rp8 miliar, sehingga koreksinya Rp1 miliar. Cara ingat: utang dagang tanpa bunga tidak ikut dihitung.",
         inti: "Rata-rata utang berbunga = (6 × Rp80 M + 6 × Rp100 M) ÷ 12 = Rp90 M; modal = Rp16 M + Rp4 M (pinjaman tanpa bunga dari pemegang saham) = Rp20 M; DER 4,5 : 1. Biaya pinjaman yang dapat dibebankan = (4 × 20 ÷ 90) × Rp9 M = Rp8 M, sehingga koreksi Rp1 M.",
         jejakHitung: [["Rata-rata utang berbunga = (6 × 80 + 6 × 100) ÷ 12 (miliar)", "Rp90.000.000.000"], ["Modal = 16 M + 4 M", "Rp20.000.000.000"], ["DER", "90 : 20 = 4,5 : 1 (> 4 : 1)"], ["Biaya dapat dibebankan = (80 ÷ 90) × Rp9.000.000.000", "Rp8.000.000.000"], ["Koreksi fiskal positif", "Rp1.000.000.000"]],
         mengapaSalah: {
@@ -2596,6 +2677,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang terjadi di sini: saham dibeli lewat perusahaan perantara milik sendiri di Singapura, lalu harganya dinaikkan Rp150 miliar tanpa ada perubahan apa pun. Aturan anti penghindaran mengizinkan DJP menganggap perusahaan Indonesia sebagai pembeli sebenarnya, asal ada hubungan istimewa dan harganya tidak wajar. Keduanya terpenuhi: perantara itu 100% miliknya dan kenaikan harganya tanpa nilai tambah. Jadi harga perolehan saham ditetapkan Rp500 miliar, dan perjanjian pajak tidak menghalanginya.",
         inti: "Pasal 18 ayat (3b) memungkinkan DJP menetapkan PT Mega Tambang sebagai pembeli sebenarnya bila ada hubungan istimewa dengan SPV dan penetapan harga tidak wajar. Kedua syarat terpenuhi (kepemilikan 100% dan mark-up 30% tanpa nilai tambah), sehingga harga perolehan saham bagi PT Mega Tambang ditetapkan Rp500 miliar.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2621,6 +2703,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Yang dicari adalah wajib pajak yang tidak termasuk pengecualian, sehingga tetap terkena batas utang 4 kali modal. Aturan ini dibuat untuk perusahaan dengan tarif pajak biasa. Bank, perusahaan pembiayaan, dan perusahaan yang seluruh penghasilannya kena PPh final termasuk daftar yang dikecualikan. Industri tekstil dengan tarif umum tidak termasuk pengecualian, jadi tetap wajib dibatasi. Cara ingat: lembaga keuangan dan wajib pajak final dikecualikan.",
         inti: "Pengecualian DER berlaku bagi bank, lembaga pembiayaan, asuransi/reasuransi, pertambangan migas/minerba yang kontraknya mengatur DER, WP yang seluruh penghasilannya dikenai PPh final, dan infrastruktur. Industri tekstil bertarif umum tidak dikecualikan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2646,6 +2729,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Kuncinya membedakan selisih yang tidak pernah kembali dan selisih yang hanya soal waktu. Laba fiskal: Rp10 miliar + Rp1 miliar + Rp500 juta = Rp11,5 miliar, jadi pajak kini 22% = Rp2,53 miliar. Koreksi bunga tidak pernah bisa jadi biaya, tetapi selisih penyusutan nanti berbalik. Karena itu 22% x Rp500 juta = Rp110 juta dicatat sebagai aset pajak tangguhan, yaitu penghematan pajak di tahun depan. Beban pajak menjadi Rp2,53 miliar dikurangi Rp110 juta = Rp2,42 miliar. Cara ingat: angsuran PPh 25 dan PPh 26 yang dipotong tidak mengubah beban pajak.",
         inti: "Koreksi DER adalah beda tetap (tidak pernah dapat dibebankan), sedangkan selisih penyusutan adalah beda temporer yang dapat dikurangkan. PKP = Rp10 M + Rp1 M + Rp0,5 M = Rp11,5 M; pajak kini 22% = Rp2,53 M. Aset pajak tangguhan 22% × Rp0,5 M = Rp110 juta menimbulkan manfaat pajak tangguhan, sehingga beban pajak = Rp2,53 M − Rp0,11 M = Rp2,42 M.",
         jejakHitung: [["PKP = 10.000 + 1.000 + 500 (juta)", "Rp11.500.000.000"], ["Pajak kini 22%", "Rp2.530.000.000"], ["Manfaat pajak tangguhan = 22% × Rp500.000.000", "(Rp110.000.000)"], ["Beban pajak penghasilan", "Rp2.420.000.000"]],
         mengapaSalah: {
@@ -2671,6 +2755,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari margin laba PT Elektra: Rp5 miliar dibagi Rp250 miliar = 2%, padahal perusahaan pembanding berada di 3,2% sampai 5,6%. Karena di bawah rentang dan tidak ada alasan memilih titik tertentu, laba disesuaikan ke tengahnya, yaitu median 4,4%. Laba wajar 4,4% x Rp250 miliar = Rp11 miliar, dikurangi laba yang dilaporkan Rp5 miliar, sehingga koreksinya Rp6 miliar. Cara ingat: koreksi itu selisihnya, bukan laba wajarnya.",
         inti: "Margin laba operasi 2,0% (Rp5 M ÷ Rp250 M) berada di bawah rentang interkuartil 3,2%–5,6% sehingga tidak wajar. Karena tidak ada dasar untuk menentukan titik yang paling tepat, margin disesuaikan ke median 4,4% (Pasal 12 ayat (7) huruf c PMK 172/2023): laba operasi wajar 4,4% × Rp250 M = Rp11 M; koreksi primer Rp6 M (PPh badan 22% = Rp1,32 M).",
         jejakHitung: [
           ["Margin realisasi = 5.000 ÷ 250.000", "2,0% (di bawah rentang)"],
@@ -2702,6 +2787,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
+        mudah: "Yang ditanya: di lampiran mana transaksi dengan perusahaan afiliasi dan ringkasan dokumen harga transfer dilaporkan untuk tahun 2025. Mulai tahun pajak 2025, SPT badan dibuat di Coretax dengan kelompok Lampiran 10. Daftar transaksi afiliasi masuk Lampiran 10A, pernyataannya Lampiran 10B, dan ringkasan Master File serta Local File masuk Lampiran 10D. Lampiran 3A formulir lama hanya untuk tahun pajak sampai 2024. Cara ingat: tahun 2025 ke atas, transaksi afiliasi ada di keluarga Lampiran 10.",
         inti: "Untuk Tahun Pajak 2025, SPT Tahunan PPh Badan mengikuti PER-11/PJ/2025. Pasal 85 ayat (1) huruf b menyediakan Lampiran 10A untuk daftar transaksi yang dipengaruhi hubungan istimewa, Lampiran 10B untuk pernyataannya, dan Lampiran 10D untuk ikhtisar Dokumen Induk dan Dokumen Lokal. Ikhtisar itu wajib dilampirkan pada SPT Tahunan PPh Badan (Pasal 19 ayat (2) PMK 172/2023).",
         jejakHitung: [
           ["Tahun pajak yang dilaporkan", "2025 → struktur PER-11/PJ/2025 (Coretax)"],
@@ -2732,6 +2818,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya ada pada dasar pembagi: pembanding diukur dari laba atas total biaya, jadi PT Presisi juga harus diukur dengan total biaya Rp90 miliar, bukan biaya produksi saja. Labanya Rp94,5 miliar dikurangi Rp90 miliar = Rp4,5 miliar, atau 5%, di bawah rentang 7% sampai 11%. Laba wajar memakai median: 9% x Rp90 miliar = Rp8,1 miliar. Koreksinya Rp8,1 miliar dikurangi Rp4,5 miliar = Rp3,6 miliar.",
         inti: "Mark-up realisasi = Rp4,5 M ÷ Rp90 M = 5,0%, di bawah rentang 7,0%–11,0%. Karena tidak ada dasar untuk menentukan titik yang paling tepat, indikator disesuaikan ke median (Pasal 12 ayat (7) huruf c PMK 172/2023): laba wajar 9,0% × Rp90 M = Rp8,1 M; koreksi = Rp8,1 M − Rp4,5 M = Rp3,6 M.",
         jejakHitung: [
           ["Laba operasi = 94.500 − 90.000 (juta)", "Rp4.500.000.000 (5,0% atas total biaya)"],
@@ -2762,6 +2849,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini menguji siapa yang pantas menikmati hasil dari sebuah merek. Dalam harga transfer, yang dilihat bukan sekadar siapa pemilik nama di sertifikat, tetapi siapa yang sungguh mengembangkan, merawat, melindungi, dan memakai merek itu serta menanggung risikonya. Semua pekerjaan itu dilakukan dan dibiayai PT Rasa Nusantara, sedangkan induknya hanya punya dua pegawai administrasi. Jadi pemilik hukum yang pasif tidak berhak atas seluruh royalti, dan sudah dipotongnya PPh 26 tidak membuat royalti itu otomatis wajar.",
         inti: "Imbal hasil atas harta tak berwujud mengikuti pihak yang menjalankan fungsi DEMPE dan mengendalikan risikonya, bukan semata pemilik hukum. Karena fungsi itu dijalankan PT Rasa Nusantara, royalti kepada pemilik hukum yang hanya administratif dapat dikoreksi sebagian atau seluruhnya. DEMPE adalah pengembangan, peningkatan, pemeliharaan, perlindungan, dan eksploitasi harta tak berwujud.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2790,6 +2878,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang terjadi di sini: Jepang menaikkan laba induk, padahal laba yang sama sudah dipajaki di Indonesia, jadi ada pajak dobel. Jalan keluarnya adalah prosedur persetujuan bersama (MAP), yaitu perundingan antara DJP dan otoritas Jepang. PT Hikari Indonesia mengajukannya ke DJP dalam 3 tahun sejak pemberitahuan 5 Februari 2026, jadi paling lambat 4 Februari 2029. Laba 2024 baru boleh diturunkan sesudah kedua negara sepakat, bukan lewat keberatan atau pembetulan sendiri.",
         inti: "Penyesuaian berkaitan (Pasal 9 ayat (2) P3B) atas koreksi otoritas mitra dilakukan melalui MAP, yang dapat dimohonkan WPDN kepada DJP dalam batas waktu P3B: 3 tahun sejak 5 Februari 2026; tanggal itu dihitung sebagai hari pertama, sehingga paling lambat 4 Februari 2029. Penurunan laba dilakukan berdasarkan persetujuan bersama, bukan secara sepihak.",
         jejakHitung: [
           ["Pemberitahuan pertama (hari pertama)", "5 Februari 2026"],
@@ -2819,6 +2908,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Hasil perundingan kedua negara menyepakati penyesuaian Rp2 miliar, jadi angka itulah yang dipakai, bukan koreksi awal Rp3 miliar. Penghasilan kena pajak turun dari Rp25 miliar menjadi Rp23 miliar, sehingga pajaknya 22% x Rp23 miliar = Rp5,06 miliar. Pajak yang sudah dibayar tetap Rp5,5 miliar (Rp800 juta ditambah Rp4,7 miliar). Selisihnya Rp440 juta menjadi kelebihan bayar. Cara ingat: pakai angka hasil kesepakatan.",
         inti: "Penyesuaian berkaitan menurunkan PKP 2024 sebesar jumlah yang disepakati (Rp2 M): PKP Rp23 M dan PPh Rp5,06 M. Kredit pajak tetap Rp5,5 M sehingga timbul lebih bayar Rp440 juta yang dikembalikan setelah keputusan pelaksanaan persetujuan bersama terbit.",
         jejakHitung: [["PKP setelah penyesuaian = 25 M − 2 M", "Rp23.000.000.000"], ["PPh terutang 22%", "Rp5.060.000.000"], ["Kredit pajak = 800 jt + 4.700 jt", "Rp5.500.000.000"], ["Lebih bayar", "Rp440.000.000"]],
         mengapaSalah: {
@@ -2844,6 +2934,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pertanyaannya: siapa saja yang boleh memulai MAP, yaitu perundingan antarnegara untuk menyelesaikan masalah pajak lintas negara. Ternyata pintunya ada empat: Wajib Pajak dalam negeri, WNI yang tinggal di negara mitra dan diperlakukan diskriminatif di sana, inisiatif DJP sendiri, dan permintaan otoritas negara mitra. Jadi Ibu Sari boleh mengadu ke DJP walaupun ia residen Australia, dan PT Kanguru Mining juga boleh. MAP tidak menunggu surat ketetapan dan berbeda dari keberatan.",
         inti: "MAP dapat dimulai atas permohonan WPDN, permohonan WNI yang menjadi residen negara mitra dan mengalami perlakuan diskriminatif, inisiatif DJP, atau permintaan otoritas negara mitra; jadi baik Ibu Sari maupun PT Kanguru Mining dapat memohon MAP kepada DJP.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2869,6 +2960,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Sesudah perundingan, koreksi turun dari Rp2,5 miliar menjadi Rp1 miliar, dan sanksinya ikut dihitung ulang karena bunga selalu menempel pada pokok. Pokok baru 22% x Rp1 miliar = Rp220 juta, bunganya Rp220 juta x 1,8% x 18 bulan = Rp71,28 juta, jadi total Rp291,28 juta. Yang sudah dibayar Rp728,2 juta, sehingga yang dikembalikan Rp436,92 juta. Cara ingat: pokok turun, bunganya ikut turun.",
         inti: "Pokok baru = 22% × Rp1 M = Rp220 juta; sanksi baru = Rp220 jt × 1,80% × 18 = Rp71,28 juta; kewajiban setelah MAP Rp291,28 juta. Kelebihan = Rp728,2 jt − Rp291,28 jt = Rp436,92 juta (pokok Rp330 jt + sanksi Rp106,92 jt).",
         jejakHitung: [["Pokok baru = 22% × Rp1.000.000.000", "Rp220.000.000"], ["Sanksi baru = Rp220.000.000 × 1,80% × 18", "Rp71.280.000"], ["Kewajiban setelah MAP", "Rp291.280.000"], ["Kelebihan = Rp728.200.000 − Rp291.280.000", "Rp436.920.000"]],
         mengapaSalah: {
@@ -2895,6 +2987,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kesepakatan harga transfer (APA) itu ibarat kontrak dengan masa berlaku: ia hanya melindungi periode yang disepakati, di sini 2027 sampai 2031. Sesudah itu tidak ada perpanjangan otomatis, baik lewat laporan tahunan maupun lewat MAP tiap tahun. Kalau ingin kepastian yang sama untuk 2032 sampai 2036, PT Seojin harus mengajukan APA baru sebelum periode itu dimulai. Cara ingat: APA tidak memperpanjang dirinya sendiri.",
         inti: "Pasal 18 ayat (3a) menyebut APA berlaku untuk periode tertentu dan dirundingkan kembali setelah periode berakhir. APA 2027–2031 tidak otomatis berlanjut; PT Seojin perlu mengajukan permohonan APA baru untuk 2032–2036 sebelum tahun pajak pertama periode itu dimulai.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2920,6 +3013,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "APA menyatakan royalti wajar paling tinggi 3% dari penjualan, jadi hanya kelebihannya yang dikoreksi. Batasnya 3% x Rp180 miliar = Rp5,4 miliar, sedangkan yang dibayar Rp8,1 miliar, sehingga koreksinya Rp2,7 miliar. Tambahan PPh badan dihitung dengan tarif badan 22%: 22% x Rp2,7 miliar = Rp594 juta. Tarif 15% itu milik PPh 26 yang ditanggung penerima royalti, bukan tarif untuk koreksi.",
         inti: "Hanya kelebihan di atas 3% yang dikoreksi: Rp8,1 M − Rp5,4 M = Rp2,7 M; tambahan PPh badan 22% = Rp594 juta. Tarif PPh 26 15% adalah pajak penerima royalti, bukan tarif koreksi bagi pembayar.",
         jejakHitung: [["Batas royalti = 3% × Rp180.000.000.000", "Rp5.400.000.000"], ["Royalti dibayar", "Rp8.100.000.000"], ["Koreksi = 8,1 M − 5,4 M", "Rp2.700.000.000"], ["Tambahan PPh = 22% × Rp2.700.000.000", "Rp594.000.000"]],
         mengapaSalah: {
@@ -2945,6 +3039,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Langsung ke aturannya: selama APA berlaku, pemeriksa tidak lagi menguji ulang apakah harganya wajar, melainkan hanya mengecek apakah perusahaan mematuhi APA dan asumsi dasarnya masih terpenuhi. Royalti 2,8% masih di bawah batas 3%, dan fungsi pemasaran tetap dijalankan PT Seojin. Jadi tidak ada koreksi walaupun pemeriksa menemukan pembanding baru dengan median 2,2%. Cara ingat: APA membatasi apa yang diperiksa, bukan meniadakan pemeriksaan.",
         inti: "Selama periode APA, pemeriksaan atas transaksi yang dicakup hanya menguji kepatuhan terhadap APA dan terpenuhinya asumsi kritis. Royalti 2,8% berada dalam kriteria (≤ 3%) dan asumsi kritis terpenuhi, sehingga tidak ada koreksi meskipun ada pembanding baru.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2970,6 +3065,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada pada kata unilateral, artinya APA itu hanya disepakati PT Lotus dengan DJP. Otoritas Vietnam tidak ikut menandatangani, jadi mereka tidak terikat dan tetap boleh mengoreksi. Kalau laba yang sama akhirnya dipajaki dua negara, jalannya adalah MAP berdasarkan perjanjian pajak Indonesia dan Vietnam, yaitu perundingan antara kedua otoritas. Cara ingat: ingin aman di dua negara, pilih APA bilateral sejak awal.",
         inti: "APA unilateral hanya mengikat DJP dan Wajib Pajak. Pajak berganda akibat koreksi otoritas mitra diselesaikan melalui MAP berdasarkan Pasal 25 P3B.",
         jejakHitung: [],
         mengapaSalah: {
@@ -2995,6 +3091,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya hanya laporan untuk dikirim ke luar negeri (CRS), bukan laporan dalam negeri. Laporan CRS berisi rekening milik penduduk negara tujuan pelaporan, di sini Akiko dari Jepang dan Daniel dari Singapura, berapa pun saldonya. Batas Rp1 miliar hanya dipakai untuk laporan domestik nasabah orang pribadi. Budi, Citra, dan Eko penduduk Indonesia, jadi datanya tidak dikirim ke negara lain. Cara ingat: CRS mengikuti negara tempat tinggal nasabah, bukan besar saldonya.",
         inti: "Laporan CRS memuat rekening milik residen yurisdiksi tujuan pelaporan: Akiko dan Daniel. Ambang Rp1 miliar hanya berlaku untuk laporan domestik rekening orang pribadi di Lembaga Simpanan, sehingga rekening Akiko (Rp450 juta) dan Daniel (Rp800 juta) tetap masuk laporan CRS. Nasabah residen Indonesia (Budi, Citra, Eko) tidak dipertukarkan; mereka diuji terhadap ambang laporan domestik.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3020,6 +3117,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "angka-usang", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Ada dua laporan yang dipisah: CRS untuk luar negeri dan laporan domestik untuk DJP. CRS berisi Akiko dan Daniel tanpa batas saldo. Laporan domestik berisi orang pribadi yang total saldonya di bank yang sama paling sedikit Rp1 miliar: Budi Rp700 juta ditambah Rp400 juta = Rp1,1 miliar, dan Eko Rp1,5 miliar. Citra hanya Rp900 juta di bank ini, karena saldo di bank lain tidak dijumlahkan. Semua data tahun 2026 memakai PMK 108/2025, termasuk rekening lama.",
         inti: "Data tahun 2026 (disampaikan pada 2027) dilaporkan menurut PMK 108/2025, termasuk untuk rekening yang dibuka sebelum 2026; rezim PMK 70/PMK.03/2017 hanya untuk identifikasi atas informasi yang tercatat sampai 31 Desember 2025. Laporan domestik memuat rekening orang pribadi di Lembaga Simpanan dengan saldo agregat pada lembaga yang sama paling sedikit Rp1 miliar: Budi (Rp1,1 miliar) dan Eko (Rp1,5 miliar); Citra hanya Rp900 juta di bank ini karena saldo di bank lain tidak diagregasi. Laporan CRS memuat Akiko dan Daniel; saldo keduanya (Rp450 juta dan Rp800 juta) di bawah Rp1 miliar, tetapi laporan CRS tidak memakai ambang Rp1 miliar. Salurannya berbeda: laporan CRS bank disampaikan kepada OJK paling lambat 1 Agustus 2027, yang jatuh pada hari Minggu sehingga bergeser ke Senin, 2 Agustus 2027, lalu OJK meneruskannya kepada DJP paling lambat 31 Agustus 2027; laporan domestik disampaikan bank langsung kepada DJP melalui Portal Wajib Pajak paling lambat 30 April 2027.",
         jejakHitung: [
           ["Budi = 700 jt + 400 jt", "Rp1.100.000.000 ≥ Rp1 M"],
@@ -3052,6 +3150,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini menguji kapan negara mitra boleh menolak permintaan informasi. Alasan bahwa datanya dipegang bank atau nama pinjaman (nominee) tidak boleh dipakai untuk menolak, jadi mutasi rekening Bright Star harus diberikan. Sebaliknya, rahasia dagang seperti formula pemurnian milik pembeli independen boleh ditolak, apalagi tidak diperlukan untuk menghitung harga jual. Cara ingat: rahasia bank tidak melindungi, rahasia dagang bisa melindungi.",
         inti: "Pasal 26 ayat (5) P3B melarang penolakan semata-mata karena informasi dipegang bank atau nominee, sehingga permintaan (1) harus dipenuhi. Pasal 26 ayat (3) membolehkan penolakan atas informasi yang mengungkapkan rahasia dagang, seperti formula proses milik pihak ketiga pada permintaan (2).",
         jejakHitung: [],
         mengapaSalah: {
@@ -3077,6 +3176,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", C: "angka-usang" },
       pembahasan: {
+        mudah: "Ibu Laras belum diperiksa, karena surat permintaan penjelasan (SP2DK) bukan pemeriksaan, jadi ia masih boleh membetulkan SPT dengan sanksi bunga. Tambahan bunga deposito Rp80 juta masih kena lapisan tarif 25%, sehingga kurang bayarnya Rp20 juta. Bunga dihitung dari batas pembayaran sampai 15 Oktober 2026, yaitu 18 bulan lebih beberapa hari yang dibulatkan menjadi 19 bulan. Jadi Rp20 juta x 0,8% x 19 = Rp3.040.000. Cara ingat: sisa hari dihitung satu bulan penuh.",
         inti: "SP2DK bukan pemeriksaan, sehingga pembetulan Pasal 8 ayat (1) masih dapat dilakukan dengan sanksi bunga Pasal 8 ayat (2). PKP naik dari Rp300 juta menjadi Rp380 juta, seluruhnya di lapisan 25%, sehingga kurang bayar Rp20 juta. Bunga dihitung sejak jatuh tempo pembayaran PPh 29 (batas SPT 31 Maret 2025, yang bertepatan dengan libur Idulfitri sehingga bergeser ke hari kerja berikutnya, 8 April 2025) sampai 15 Oktober 2026 = 18 bulan lebih beberapa hari, dihitung penuh 19 bulan (dari 31 Maret 2025 pun tetap 19 bulan): Rp20.000.000 × 0,80% × 19 = Rp3.040.000. Data rekening tahun 2024 itu dipertukarkan pada 2025, sebelum PMK 108/2025 berlaku; penerimaannya oleh DJP berdasarkan Konvensi MAC dan perjanjian otoritas berwenang dengan Singapura, sedangkan PMK 108/2025 mengatur kewajiban lembaga keuangan di Indonesia.",
         jejakHitung: [["Kurang bayar = 25% × Rp80.000.000", "Rp20.000.000"], ["Jangka waktu 8 April 2025 (hari kerja setelah libur Idulfitri) – 15 Oktober 2026", "18 bulan 7 hari → 19 bulan"], ["Bunga = Rp20.000.000 × 0,80% × 19", "Rp3.040.000"]],
         mengapaSalah: {
@@ -3102,6 +3202,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "PPh 26 hanya untuk penerima luar negeri, jadi PT Fajar Investama dan Ny. Ratna tidak dihitung. Harbour Rich memiliki 30%, memenuhi ambang 25%, sehingga 5% x Rp3 miliar = Rp150 juta. Lion Gate hanya 15%, jadi kena tarif 15% x Rp1,5 miliar = Rp225 juta, dan John Carter tanpa Form DGT kena 20% x Rp500 juta = Rp100 juta. Totalnya Rp475 juta. Cara ingat: cocokkan persentase saham dengan ambangnya, lalu cek Form DGT tiap penerima.",
         inti: "Harbour Rich (30% ≥ 25%): 5% × Rp3 M = Rp150 jt. Lion Gate (15% < 25%): 15% × Rp1,5 M = Rp225 jt. John Carter tanpa Form DGT: 20% × Rp500 jt = Rp100 jt. Total PPh 26 Rp475 jt. Dividen kepada PT Fajar Investama bukan objek, dan dividen Ny. Ratna dikenai PPh final 10% (Pasal 17 ayat (2c)), bukan PPh 26.",
         jejakHitung: [["Harbour Rich = 5% × Rp3.000.000.000", "Rp150.000.000"], ["Lion Gate = 15% × Rp1.500.000.000", "Rp225.000.000"], ["John Carter (tanpa SKD) = 20% × Rp500.000.000", "Rp100.000.000"], ["Total PPh 26", "Rp475.000.000"]],
         mengapaSalah: {
@@ -3127,6 +3228,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "angka-usang", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Form DGT baru tercatat sesudah royalti dibayar, jadi potongan 20% saat itu memang sudah benar. Namun karena Kumo sebenarnya berhak atas tarif perjanjian 10%, kelebihannya bisa diminta kembali: Rp140 juta dikurangi Rp70 juta = Rp70 juta. Yang mengajukan adalah pemotongnya, PT Layar Kreatif, dengan surat kuasa dari Kumo. Kumo baru boleh mengajukan sendiri bila pemotongnya tidak bisa ditemukan atau tidak bisa membetulkan SPT.",
         inti: "Form DGT terekam setelah pembayaran, sehingga pemotongan 20% sudah benar (PMK 112/2025 Pasal 10 ayat (4)). Keterlambatan itu termasuk kelebihan pemotongan terkait P3B (PMK 81/2024 Pasal 133 huruf b), yang menurut Pasal 134 ayat (1) diminta kembali oleh Wajib Pajak pemotong, yaitu PT Layar Kreatif, dengan permohonan yang dilampiri surat kuasa dari Kumo (Pasal 135 ayat (2) huruf d). Jumlahnya (20% − 10%) × Rp700.000.000 = Rp70.000.000.",
         jejakHitung: [
           ["Dipotong 20% × Rp700.000.000", "Rp140.000.000"],
@@ -3158,6 +3260,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari siapa penerimanya: Kumo adalah badan di Jepang, jadi bukti potongnya BPNR, bukti potong untuk penerima luar negeri, dengan nomor identitas pajak dari negaranya. Form DGT sah sudah tercatat sebelum pembayaran, sehingga kita memilih fasilitas SKD dan boleh memakai tarif perjanjian 10%. PPh-nya 10% x Rp500 juta = Rp50 juta. Cara ingat: BPNR dengan fasilitas SKD memakai tarif perjanjian, tanpa fasilitas memakai 20%.",
         inti: "Penerima adalah badan luar negeri sehingga bukti potongnya BPNR. Form DGT sah terekam sebelum pembayaran, jadi fasilitas SKD WPLN dipilih dan tarif P3B 10% berlaku: 10% × Rp500.000.000 = Rp50.000.000.",
         jejakHitung: [
           ["Jenis bukti potong", "Penerima badan luar negeri (Jepang) → BPNR, identitas TIN negara domisili"],
@@ -3191,6 +3294,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Perjanjian pajak menghitung batas 120 hari dalam jangka 12 bulan berjalan, bukan per tahun kalender, dan hanya untuk proyek yang sama atau berhubungan. Sejak 15 Oktober 2025, kehadiran untuk proyek PT Surya adalah 47 hari, lalu 55 hari, lalu 20 hari, total 122 hari. Itu melewati 120 hari, sehingga Brightwell punya BUT jasa, yaitu dianggap punya tempat usaha di Indonesia. Pelatihan untuk PT Kencana tidak ikut dihitung karena kontraknya tidak berhubungan.",
         inti: "Time test P3B dihitung dalam jangka 12 bulan bergulir untuk proyek yang sama atau berhubungan, bukan per tahun kalender. Jendela 15 Oktober 2025–14 Oktober 2026 memuat 47 + 55 + 20 = 122 hari untuk kontrak PT Surya, lebih dari 120 hari, sehingga Brightwell memiliki BUT jasa; time test P3B mengesampingkan batas 60 hari UU PPh.",
         jejakHitung: [
           ["15 Oktober–30 November 2025", "17 + 30 = 47 hari"],
@@ -3223,6 +3327,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "BUT dihitung seperti perusahaan tersendiri: penghasilannya hanya fee dari PT Surya, dikurangi biaya yang benar-benar untuk BUT. Rp9,6 miliar dikurangi biaya langsung Rp4,4 miliar dan jatah biaya kantor pusat Rp600 juta = Rp4,6 miliar. Royalti dan bunga ke kantor pusat sendiri tidak boleh dikurangkan, dan jasa desain yang dikerjakan di luar negeri tidak ikut. PPh badan 22% x Rp4,6 miliar = Rp1,012 miliar. Laba sesudah pajak Rp3,588 miliar lalu kena PPh 26 atas laba BUT 10% = Rp358,8 juta.",
         inti: "Pendekatan entitas terpisah Pasal 7 P3B: laba BUT adalah fee yang dihasilkan melalui BUT dikurangi biaya untuk BUT, termasuk alokasi wajar biaya eksekutif dan administrasi umum kantor pusat; royalti dan bunga internal kepada kantor pusat tidak dikurangkan. PKP Rp4.600.000.000, PPh badan 22% Rp1.012.000.000, dan branch profit tax 10% × Rp3.588.000.000 = Rp358.800.000.",
         jejakHitung: [
           ["Fee melalui BUT", "Rp9.600.000.000"],
@@ -3257,6 +3362,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya: apakah kantor perwakilan yang hanya mengumpulkan informasi dianggap tempat usaha tetap (BUT). Menurut undang-undang domestik iya, tetapi bagi penduduk negara mitra perjanjian pajaklah yang diutamakan. Perjanjian itu menyatakan tempat yang hanya untuk kegiatan persiapan atau penunjang, seperti riset pasar dan pameran, bukan BUT. Pegawainya juga tidak boleh menawar harga atau menandatangani kontrak, jadi kantor itu bukan BUT.",
         inti: "Pasal 2 ayat (5) UU PPh menyebut kantor perwakilan sebagai BUT, tetapi bagi residen negara mitra yang berhak atas P3B berlaku Pasal 5 ayat (4) P3B: tempat usaha yang semata-mata dipakai untuk kegiatan persiapan atau penunjang (pengumpulan informasi, promosi, pameran) tidak merupakan BUT. P3B diterapkan sebagai ketentuan khusus (Pasal 32A UU PPh).",
         jejakHitung: [],
         mengapaSalah: {
@@ -3282,6 +3388,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Batasnya proyek instalasi lebih dari 6 bulan. Aplikasi menghitung sejak pekerjaan di lokasi dimulai, yaitu persiapan 20 Maret, sampai serah terima 30 September, jadi 6 bulan 11 hari. Masa terhenti karena banjir dan uji akhir oleh subkontraktor tetap ikut dihitung, sehingga hasilnya BUT. Perlu diingat, masih ada keraguan apakah pekerjaan persiapan sudah termasuk mulai mengerjakan proyek, karena bila dihitung dari 1 April hasilnya tepat 6 bulan.",
         inti: "Untuk penerapan P3B, proyek instalasi menjadi BUT bila dikerjakan melebihi periode dalam P3B (Pasal 7 ayat (4) PMK 35/PMK.03/2019). Periode dihitung sejak proyek mulai dikerjakan, yaitu pekerjaan persiapan di lokasi 20 Maret, sampai pekerjaan selesai dan diserahkan 30 September; penghentian sementara karena banjir tidak menunda penghitungan, dan waktu pengerjaan subkontraktor (uji akhir) ikut diperhitungkan (Pasal 7 ayat (5) dan (6)). Durasinya 6 bulan 11 hari menurut kalender, atau 7 bulan bila bagian bulan dihitung penuh (Pasal 7 ayat (6) huruf e); keduanya lebih dari 6 bulan, sehingga timbul BUT.",
         jejakHitung: [
           ["Mulai: pekerjaan persiapan di lokasi", "20 Maret 2026"],
@@ -3316,6 +3423,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya: lisensi itu dikelola, ditagih, dan dibukukan oleh BUT Orion di Jakarta, jadi royaltinya dianggap bagian usaha BUT, bukan royalti ke luar negeri. BUT diperlakukan seperti wajib pajak dalam negeri, sehingga yang dipotong PPh 23, bukan PPh 26 tarif perjanjian. PPh 23 atas royalti 15% x Rp800 juta = Rp120 juta dengan bukti potong BPPU, dan nanti BUT menguranginya dari pajak tahunannya. Bunga yang dibayar langsung ke kantor pusat tetap kena PPh 26.",
         inti: "Hak atas perangkat lunak dikelola dan dibukukan oleh BUT sehingga royalti berhubungan efektif dengan BUT: Pasal 12 ayat (4) P3B mengalihkannya ke Pasal 7, dan Pasal 5 ayat (1) huruf c UU PPh menjadikannya penghasilan BUT. Pembayaran kepada BUT dipotong PPh 23 royalti 15% × Rp800.000.000 = Rp120.000.000 dengan BPPU, lalu dikreditkan BUT dalam SPT Tahunannya.",
         jejakHitung: [
           ["Hubungan efektif", "Lisensi dikelola, ditagih, dan dibukukan BUT → Pasal 7 P3B, bukan Pasal 12"],
@@ -3345,6 +3453,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "angka-usang", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini menanyakan metode harga transfer yang pas bila kedua pihak sama-sama punya kekayaan unik. PT Aurora punya galur dan paten, afiliasinya di Singapura punya formula dan merek, keduanya menanggung risiko, dan kerjanya menyatu sampai tidak bisa dipisah. Dalam keadaan begitu laba gabungan paling adil dibagi sesuai kontribusi masing-masing, yaitu metode pembagian laba. Metode yang menguji satu pihak saja tidak cocok, dan pembanding harga juga tidak ada.",
         inti: "Pasal 9 ayat (6) PMK 172/2023: metode pembagian laba sesuai bila para pihak sama-sama memiliki kontribusi unik dan bernilai, kegiatan usahanya sangat terintegrasi sehingga kontribusi masing-masing tidak dapat dianalisis terpisah, dan para pihak berbagi risiko yang signifikan. Ketiganya terpenuhi di sini, sehingga metode satu sisi seperti TNMM atau biaya plus tidak dapat menangkap nilai kontribusi masing-masing; CUP tidak dapat dipakai karena tidak ada pembanding.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3371,6 +3480,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Harga ke pembeli Jepang USD12.900 per ton itu sudah termasuk ongkos kapal dan asuransi USD300, jadi harus disamakan dulu ke syarat FOB: USD12.900 dikurangi USD300 = USD12.600. Harga ke afiliasi USD12.000, sehingga kurangnya USD600 x 40.000 ton = USD24 juta. Aplikasi mengubahnya ke rupiah dengan kurs yang dipakai mencatat penjualan, Rp15.900, sehingga koreksinya Rp381,6 miliar. Pemakaian kurs ini hasil penalaran dan belum ada aturan yang tegas.",
         inti: "CUP internal disesuaikan untuk perbedaan syarat penyerahan: harga wajar FOB = USD12.900 − USD300 = USD12.600 per ton. Selisih USD600 × 40.000 ton = USD24.000.000, dijabarkan dengan kurs yang dipakai mencatat penjualan (kurs tengah BI tanggal transaksi Rp15.900) = Rp381.600.000.000.",
         jejakHitung: [
           ["Harga CUP disesuaikan ke FOB = 12.900 − 300", "USD12.600 per ton"],
@@ -3403,6 +3513,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Ada dua transaksi, dan masing-masing diuji sendiri. Jasa maklon menghasilkan Rp3,6 miliar dibagi Rp60 miliar = 6%, masih di dalam rentang 5% sampai 9%, jadi aman dan tidak dikoreksi. Distribusi kain hanya 1%, di bawah 2%, jadi disesuaikan ke median 3%: 3% x Rp120 miliar = Rp3,6 miliar, dikurangi laba Rp1,2 miliar = Rp2,4 miliar. Cara ingat: yang di dalam rentang dibiarkan, yang di luar ditarik ke median.",
         inti: "Indikator yang berada di dalam rentang interkuartil (rentang kewajaran bila pembanding tiga atau lebih) memenuhi prinsip kewajaran dan tidak dikoreksi. Bila di luar rentang, Pasal 12 ayat (7) PMK 172/2023 memakai titik yang paling tepat di dalam rentang sesuai kesebandingannya, atau median bila titik paling tepat tidak dapat ditentukan; stem menyatakan data pembanding tidak memberi dasar menentukan titik paling tepat, jadi dipakai median. Segmen (1): 6,0% berada dalam 5,0%–9,0% sehingga tidak dikoreksi. Segmen (2): 1,0% di bawah 2,0% sehingga disesuaikan ke median 3,0%: 3,0% × Rp120.000.000.000 − Rp1.200.000.000 = Rp2.400.000.000.",
         jejakHitung: [
           ["Segmen (1) net cost plus = 3.600.000.000 ÷ 60.000.000.000", "6,0% → dalam rentang 5,0%–9,0%, tanpa koreksi"],
@@ -3435,6 +3546,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada dua hal yang harus dipilih: kapan pajaknya terutang dan kurs mana yang dipakai. PPh 26 terutang saat pembayaran, saat disediakan untuk dibayar, atau saat jatuh tempo, mana yang lebih dulu. Royalti sudah dicatat sebagai utang ke induk pada 30 Juni, jadi masanya Juni dan kursnya kurs KMK minggu itu, Rp16.380. Hitungannya 10% x USD320.000 x Rp16.380 = Rp524.160.000. Cara ingat: pajak memakai kurs KMK pada saat terutang.",
         inti: "PPh 26 terutang pada saat pembayaran, disediakan untuk dibayarkan, atau jatuh tempo, mana yang lebih dahulu; pembebanan royalti sebagai utang kepada induk pada 30 Juni 2026 adalah saat disediakan untuk dibayarkan. DPP valuta asing dikonversi dengan kurs KMK yang berlaku pada saat terutang: 10% × USD320.000 × Rp16.380 = Rp524.160.000, Masa Pajak Juni 2026.",
         jejakHitung: [
           ["Saat terutang", "30 Juni 2026 (dibebankan sebagai utang kepada afiliasi) → Masa Juni 2026"],
@@ -3467,6 +3579,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini untung atau rugi kurs milik PT Sakura sendiri saat melunasi utang royalti. Utang yang dilunasi dalam dolar hanya bagian neto USD288.000, karena potongan pajaknya sudah disetor dalam rupiah. Utang dicatat 288.000 x Rp16.415 = sekitar Rp4,73 miliar, lalu dibayar 288.000 x Rp16.305 = sekitar Rp4,70 miliar, jadi PT Sakura untung Rp31,68 juta. Untung kurs ini penghasilan biasa PT Sakura, karena sifat final hanya melekat pada royalti yang diterima Tsubasa. Cara ingat: pelunasan diukur dengan kurs bank yang benar-benar dibayar.",
         inti: "Utang royalti neto USD288.000 tercatat USD288.000 × Rp16.415 = Rp4.727.520.000 dan dilunasi USD288.000 × Rp16.305 = Rp4.695.840.000, sehingga timbul keuntungan selisih kurs Rp31.680.000. Keuntungan itu penghasilan (Pasal 4 ayat (1) huruf l UU PPh) karena mengikuti pembukuan yang taat asas; sifat final PPh 26 hanya melekat pada penghasilan Tsubasa, bukan pada selisih kurs PT Sakura.",
         jejakHitung: [
           ["Saldo utang royalti = 288.000 × 16.415", "Rp4.727.520.000"],
@@ -3499,6 +3612,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada di tiga hal: siapa penerimanya, kapan pajaknya terutang, dan kurs apa yang dipakai. Penerimanya perusahaan Jepang, jadi bukti potongnya BPNR, yaitu bukti potong untuk penerima luar negeri. Pajak terutang saat royalti dicatat sebagai utang kepada induk pada 30 Juni, bukan saat dibayar Agustus, sehingga masuk Masa Juni dan memakai kurs KMK minggu itu. Hitungannya USD320.000 x Rp16.380 = Rp5.241,6 juta, dipotong 10% karena Form DGT sah, dan disetor paling lambat 15 Juli 2026. Cara ingat: pajak dipotong memakai kurs KMK, pembukuan memakai kurs tengah BI.",
         inti: "Penerima badan luar negeri sehingga bukti potongnya BPNR. PPh 26 terutang 30 Juni 2026 (disediakan untuk dibayarkan kepada afiliasi), jadi masuk Masa Juni 2026 dan DPP dikonversi dengan kurs KMK yang berlaku saat itu: USD320.000 × Rp16.380 = Rp5.241.600.000. Form DGT sah → fasilitas SKD, tarif 10% (PPh Rp524.160.000); setor paling lambat 15 Juli 2026 dan SPT Masa PPh Unifikasi Juni paling lambat 20 Juli 2026.",
         jejakHitung: [
           ["Jenis bukti potong", "Penerima badan luar negeri → BPNR"],
@@ -3530,6 +3644,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dari aturannya: penjual saham luar negeri tanpa BUT kena PPh 26 sebesar 20% dari perkiraan penghasilan neto, yaitu 25% dari harga jual. Artinya pajaknya efektif 5% dari harga jual, dan harga perolehan dahulu tidak dihitung sama sekali. Jadi 5% x USD2.400.000 = USD120.000. Lalu dirupiahkan dengan kurs KMK saat terutang: USD120.000 x Rp16.440 = Rp1.972,8 juta. Cara ingat: saham nonbursa oleh pihak asing kena 5% dari harga jual, pakai kurs KMK.",
         inti: "Penjualan langsung saham perseroan Indonesia nonbursa oleh WPLN selain BUT dikenai PPh 26 sebesar 20% × perkiraan penghasilan neto 25% dari harga jual (efektif 5%, final; Pasal 238 PMK 81/2024), dipotong pembeli WPDN (Pasal 239 ayat (1)); harga perolehan tidak diperhitungkan. DPP dikonversi dengan kurs KMK yang berlaku saat terutang: 5% × USD2.400.000 × Rp16.440 = Rp1.972.800.000.",
         jejakHitung: [
           ["Perkiraan neto = 25% × USD2.400.000", "USD600.000"],
@@ -3560,6 +3675,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini menanyakan cara meminta kembali pajak yang terlanjur dipotong terlalu besar. Form DGT baru terekam setelah royalti dibayar, jadi memotong 20% saat itu sudah benar, padahal menurut perjanjian pajak cukup 10%. Kelebihannya tidak dikompensasikan, tetapi diminta lewat permohonan pengembalian oleh PT Arunika sebagai pemotong dengan surat kuasa dari Merlion. Pajak yang seharusnya 10% x USD150.000 x Rp16.360 = Rp245,4 juta, jadi kelebihannya Rp490,8 juta dikurangi Rp245,4 juta = Rp245,4 juta. Cara ingat: yang dikembalikan rupiah yang dulu disetor, bukan dihitung ulang dengan kurs baru.",
         inti: "Form DGT terekam setelah pembayaran, sehingga pemotong wajib memotong 20% (Rp490.800.000) (PMK 112/2025 Pasal 10 ayat (4)). Keterlambatan pemenuhan persyaratan P3B setelah pemotongan adalah kelebihan pemotongan terkait P3B (PMK 81/2024 Pasal 133 huruf b) yang diminta kembali oleh pemotong, PT Arunika, dengan permohonan yang dilampiri surat kuasa Merlion (Pasal 134 ayat (1) dan Pasal 135 ayat (2) huruf d). Jumlahnya selisih antara PPh rupiah yang disetor dan PPh menurut tarif P3B, keduanya dengan kurs KMK saat terutang: Rp490.800.000 − Rp245.400.000 = Rp245.400.000. Kurs saat permohonan tidak dipakai karena yang dikembalikan adalah pajak rupiah yang telah disetor ke Kas Negara (Pasal 136 ayat (3) huruf a menjadikan setoran itu syarat pengembalian).",
         jejakHitung: [
           ["PPh dipotong = 20% × 150.000 × 16.360", "Rp490.800.000"],
@@ -3591,6 +3707,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada dua pembayaran yang perlu dipisah, yaitu jasa inspeksi dan harga suku cadang. Imbalan jasa termasuk laba usaha, dan tanpa BUT hanya negara asal Kestrel yang boleh memajakinya, sehingga PPh 26 nihil. Walau nihil, bukti potong BPNR tetap dibuat dengan fasilitas perjanjian pajak, dengan DPP USD60.000 x Rp16.290 = Rp977,4 juta memakai kurs KMK. Suku cadang adalah harga barang, sudah kena PPh 22 impor, jadi tidak dibuatkan BPNR. Cara ingat: pajak nihil karena perjanjian pajak tetap dilaporkan lewat bukti potong.",
         inti: "Imbalan jasa adalah laba usaha yang tanpa BUT hanya dipajaki negara domisili, sehingga dengan Form DGT sah PPh 26 nihil; bukti potong BPNR tetap dibuat dengan fasilitas SKD dan DPP dikonversi dengan kurs KMK: USD60.000 × Rp16.290 = Rp977.400.000. Harga suku cadang bukan objek PPh 26 (impornya sudah dipungut PPh 22 impor) dan tidak dibuatkan BPNR.",
         jejakHitung: [
           ["Jasa inspeksi: DPP = 60.000 × 16.290", "Rp977.400.000"],
@@ -3621,6 +3738,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Langsung ke aturannya: PPh 26 terutang pada saat dibayar, disediakan untuk dibayar, atau jatuh tempo, mana yang paling dulu terjadi. Di soal ini jatuh tempo Senin 31 Agustus lebih dulu daripada transfer 9 September. Kurs untuk pajak adalah kurs KMK, kurs mingguan yang berlaku Rabu sampai Selasa, jadi yang memuat 31 Agustus adalah minggu 26 Agustus sampai 1 September. Kurs tengah BI hanya untuk pembukuan, dan kurs bank hanya menentukan rupiah yang dibayar. Cara ingat: kurs pajak dikunci pada saat terutang.",
         inti: "PPh Pasal 26 terutang pada saat pembayaran, disediakan untuk dibayarkan, atau jatuh tempo, mana yang lebih dahulu; di sini jatuh tempo 31 Agustus 2026. DPP dalam valuta asing dikonversi dengan kurs KMK (kurs pajak mingguan yang berlaku Rabu–Selasa) pada saat terutang, yaitu KMK 26 Agustus–1 September 2026. Kurs tengah BI hanya untuk pembukuan, sedangkan kurs bank menentukan rupiah yang dibayar dan selisih kurs pelunasan, bukan DPP pajak.",
         jejakHitung: [["Saat terutang", "Jatuh tempo Senin, 31 Agustus 2026 (lebih dahulu daripada pembayaran 9 September)"], ["Minggu KMK yang memuat 31 Agustus 2026", "Rabu, 26 Agustus–Selasa, 1 September 2026"], ["Kurs untuk DPP PPh Pasal 26", "Kurs KMK 26 Agustus–1 September 2026"]],
         mengapaSalah: {
@@ -3646,6 +3764,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "angka-usang" },
       pembahasan: {
+        mudah: "Pajak minimum global adalah aturan agar grup besar membayar pajak paling sedikit 15% di tiap negara tempatnya beroperasi. Grup ini masuk cakupan karena pendapatan konsolidasinya paling sedikit EUR 750 juta pada minimal 2 dari 4 tahun sebelumnya, dan di sini EUR 900 juta setiap tahun. Tarif 15% diuji per negara dengan menggabungkan semua entitas grup di negara itu, bukan per perusahaan. Bila tarif efektif di Indonesia kurang dari 15%, kekurangannya dipungut lebih dulu oleh Indonesia lewat DMTT, yaitu pajak tambahan minimum domestik. Cara ingat: 750 juta euro, 15%, per negara.",
         inti: "PMK 136/2024 berlaku bagi grup PMN dengan pendapatan konsolidasi paling sedikit EUR 750 juta dalam sekurang-kurangnya 2 dari 4 tahun pajak sebelumnya (di sini EUR 900 juta setiap tahun). ETR minimum 15% diuji per yurisdiksi; bila di bawah 15%, pajak tambahan atas yurisdiksi Indonesia dipungut lebih dulu melalui DMTT, sedangkan IIR dan UTPR menjadi lapis berikutnya. IIR dan DMTT berlaku tahun pajak 2025, UTPR tahun pajak 2026.",
         jejakHitung: [
           ["Ambang cakupan", "EUR 900 juta ≥ EUR 750 juta pada 2022–2025 → masuk cakupan"],
@@ -3677,6 +3796,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Hak pemajakan ada tiga macam: penuh berarti Indonesia boleh memajaki dengan tarif sendiri, terbatas berarti boleh tetapi tarifnya dibatasi, pelepasan berarti Indonesia tidak boleh memajaki. Dividen boleh dipajaki tetapi dibatasi 10%, jadi terbatas. Jasa konsultansi tanpa BUT adalah laba usaha yang hanya dipajaki Valdora, jadi pelepasan. Honor komisaris dan sewa vila di Badung boleh dipajaki Indonesia tanpa batas tarif, jadi keduanya penuh. Cara ingat: harta tak bergerak dan jabatan komisaris ikut tempatnya.",
         inti: "Dividen boleh dipajaki Indonesia tetapi dibatasi 10% (hak pemajakan terbatas). Imbalan jasa adalah laba usaha yang tanpa BUT hanya dapat dipajaki Valdora, sehingga Indonesia melepaskan hak pemajakannya. Fee komisaris (Pasal 16) dan penghasilan harta tak gerak (Pasal 6) dapat dipajaki Indonesia tanpa batas tarif, sehingga Indonesia mempunyai hak pemajakan penuh dan berlaku tarif domestik.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3702,6 +3822,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada di jenis hak pemajakan tiap pembayaran. Dividen dibatasi perjanjian pajak, jadi dipotong 10% x Rp1 miliar = Rp100 juta. Jasa teknik tanpa BUT hanya dipajaki Valdora, jadi tidak dipotong sama sekali. Honor komisaris tidak dibatasi, sehingga dipotong tarif biasa 20% x Rp150 juta = Rp30 juta, dan totalnya Rp130 juta. Cara ingat: terbatas pakai tarif perjanjian, pelepasan nol, penuh pakai 20%.",
         inti: "Dividen (hak terbatas) dipotong 10%, imbalan jasa tanpa BUT (pelepasan) tidak dipotong, dan fee komisaris (hak penuh) dipotong tarif domestik 20%.",
         jejakHitung: [["Dividen: 10% × Rp1.000.000.000", "Rp100.000.000"], ["Jasa tanpa BUT (pelepasan hak)", "Rp0"], ["Fee komisaris: 20% × Rp150.000.000", "Rp30.000.000"], ["Jumlah PPh Pasal 26", "Rp130.000.000"]],
         mengapaSalah: {
@@ -3727,6 +3848,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pilah dulu ketiga pembayaran menurut ketentuan perjanjian pajak yang dikutip. Pensiun karena pekerjaan masa lalu hanya dipajaki negara tempat penerima tinggal, jadi Indonesia tidak memotong apa pun. Honor grup musik boleh dipajaki penuh di tempat pertunjukan, jadi 20% x Rp300 juta = Rp60 juta. Bunga dibatasi 10%, jadi 10% x Rp500 juta = Rp50 juta, dan totalnya Rp110 juta. Cara ingat: pensiun ikut tempat tinggal, artis ikut tempat tampil.",
         inti: "Pensiun swasta termasuk pelepasan hak pemajakan negara sumber (tidak dipotong), honorarium artis termasuk hak penuh (20% domestik), dan bunga termasuk hak terbatas (10%).",
         jejakHitung: [["Pensiun (pelepasan hak)", "Rp0"], ["Artis: 20% × Rp300.000.000", "Rp60.000.000"], ["Bunga: 10% × Rp500.000.000", "Rp50.000.000"], ["Jumlah PPh Pasal 26", "Rp110.000.000"]],
         mengapaSalah: {
@@ -3752,6 +3874,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pasal nondiskriminasi dalam perjanjian pajak intinya melarang Indonesia memajaki BUT perusahaan Austral lebih berat daripada perusahaan Indonesia yang usahanya sama. Pengecualiannya hal yang memang diizinkan perjanjian, misalnya pajak atas laba cabang. Aturan ini tidak mewajibkan Indonesia memberi PTKP atau tanggungan keluarga kepada orang yang bukan residen. Penagihan untuk negara lain tetap dilakukan petugas Indonesia, dan data bank tidak boleh menjadi alasan menolak pertukaran informasi. Cara ingat: nondiskriminasi melarang perlakuan lebih berat, bukan memberi keringanan pribadi.",
         inti: "Nondiskriminasi (Pasal 24 Model OECD) melindungi warga negara dan BUT negara mitra dari perlakuan pajak yang lebih berat dalam keadaan yang sama. Branch profit tax lazim dikecualikan secara tegas dalam P3B Indonesia, dan pasal itu tidak mewajibkan pemberian pengurangan pribadi kepada nonresiden.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3776,6 +3899,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini jenis pemajakan berganda yang terjadi dan cara meringankannya. Wajib pajaknya cuma satu, PT Arunika, tetapi dipajaki dua negara atas bunga yang sama: Indonesia karena PT Arunika residen di sini, Selandra karena bunganya bersumber di sana. Itu disebut pemajakan berganda yuridis. Walau belum ada perjanjian pajak, Indonesia tetap memberi keringanan sepihak lewat kredit pajak luar negeri, dengan batas yang dihitung per jenis penghasilan untuk tiap negara. Cara ingat: satu wajib pajak berarti yuridis, dua wajib pajak berarti ekonomis.",
         inti: "Satu wajib pajak (PT Arunika) dipajaki dua negara atas penghasilan yang sama: Indonesia berdasarkan asas domisili (penghasilan dari seluruh dunia, Pasal 4 ayat (1) UU PPh) dan Selandra berdasarkan asas sumber. Itu pemajakan berganda yuridis; tanpa P3B, Indonesia memberi keringanan sepihak melalui kredit Pasal 24 (ordinary credit yang dihitung per jenis penghasilan untuk tiap negara, Pasal 6 ayat (2) PMK 192/PMK.03/2018).",
         jejakHitung: [],
         mengapaSalah: {
@@ -3803,6 +3927,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini tentang bantuan penagihan, yaitu Indonesia membantu menagih utang pajak milik negara lain. Begitu klaim pajak Rhenia diterima, nilainya disamakan dengan utang pajak di Indonesia. DJP lalu menagihnya dengan alat penagihan Indonesia sendiri, seperti surat paksa, penyitaan, dan lelang, oleh juru sita pajak Indonesia. Petugas Rhenia tidak boleh menyita sendiri di wilayah Indonesia. Cara ingat: negara yang diminta yang menagih, dengan hukumnya sendiri.",
         inti: "Setelah klaim pajak negara mitra diterima, nilainya dipersamakan dengan utang pajak dan ditagih DJP dengan instrumen hukum Indonesia (UU PPSP). Kewenangan eksekusi tetap pada otoritas negara yang diminta.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3828,6 +3953,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dari batas kewenangan: juru sita pajak Indonesia hanya bisa bertindak di wilayah Indonesia. Utang Rp9 miliar baru tertutup Rp3,5 miliar dari lelang, jadi sisanya Rp5,5 miliar, sedangkan harta yang tersisa berupa deposito di bank Rhenia. Karena itu DJP meminta bantuan penagihan kepada Rhenia dengan mengirim klaim atas utang yang sudah tidak disengketakan. Penagihan deposito itu lalu dilakukan otoritas Rhenia menurut hukum Rhenia. Cara ingat: harta di luar negeri ditagih lewat tangan negara tempat harta itu berada.",
         inti: "Kewenangan juru sita pajak berhenti di wilayah Indonesia. Untuk harta di negara mitra, DJP meminta bantuan penagihan secara resiprokal (Pasal 20A UU KUP) dengan menyampaikan klaim pajak atas utang yang sudah tidak disengketakan; otoritas Rhenia menagih dengan instrumen hukumnya sendiri.",
         jejakHitung: [["Utang menurut SKPKB", "Rp9.000.000.000"], ["Hasil lelang harta di Indonesia", "Rp3.500.000.000"], ["Sisa yang dimintakan bantuan penagihan", "Rp5.500.000.000"]],
         mengapaSalah: {
@@ -3853,6 +3979,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang perlu dipahami dulu, utang pajak tidak hilang hanya karena orangnya mau pindah negara. Pencegahan ke luar negeri, yaitu larangan sementara pergi ke luar negeri, bisa dikenakan bila utangnya paling sedikit Rp100 juta dan iktikad baik penanggung pajak diragukan. Utang Mr. Ricci Rp1,2 miliar dan ia berencana pergi sambil memindahkan tabungan, dan aturan ini berlaku juga untuk WNA. Bila ia telanjur pergi dan hartanya sudah di Valdora, barulah DJP meminta bantuan penagihan kepada Valdora. Cara ingat: cegah dulu selagi di sini, minta bantuan negara lain bila sudah pergi.",
         inti: "Utang Rp1,2 miliar memenuhi batas pencegahan (paling sedikit Rp100 juta) bila penanggung pajak diragukan itikad baiknya, dan pencegahan berlaku bagi penanggung pajak tanpa memandang kewarganegaraan. Berakhirnya kewajiban subjektif tidak menghapus utang pajak; bila harta telanjur berada di Valdora, DJP meminta bantuan penagihan secara resiprokal.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3878,6 +4005,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Perhatikan arah soalnya: yang dicari justru yang BUKAN pertukaran otomatis. Pertukaran otomatis berarti data dikirim rutin tiap tahun tanpa ada yang meminta, seperti data rekening bank, data transaksi kripto, dan laporan per negara grup usaha. Kontrak dan mutasi rekening afiliasi yang diminta DJP untuk pemeriksaan satu perusahaan adalah pertukaran informasi atas permintaan. Jadi jawabannya arus informasi untuk pemeriksaan PT Cahaya Mineral. Cara ingat: rutin dan massal berarti otomatis, khusus satu kasus berarti atas permintaan.",
         inti: "Informasi rekening keuangan (CRS), aset kripto (CARF; pertukaran pertama 2027 untuk data 2026), dan CbCR dipertukarkan otomatis secara berkala tanpa permintaan. Dokumen yang diminta untuk pemeriksaan kasus tertentu adalah pertukaran informasi atas permintaan (on request).",
         jejakHitung: [],
         mengapaSalah: {
@@ -3902,6 +4030,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya ada di aturan baru yang menggantikan SOP lama kedua perusahaan. Sejak 1 Januari 2026, PMK 108/2025 mencabut PMK 70/PMK.03/2017 dan menambah kewajiban baru bagi penyedia jasa aset kripto. Bank tetap melaporkan data rekening keuangan melalui OJK paling lambat 1 Agustus seperti biasa. Penyedia jasa kripto melaporkan transaksi aset kripto mulai data tahun 2026, yang pertama kali dipertukarkan dengan negara lain pada 2027. Cara ingat: bank lapor lewat OJK, kripto ikut aturan baru mulai data 2026.",
         inti: "PMK 108/2025 menggantikan PMK 70/PMK.03/2017 sejak 1 Januari 2026 dan menambahkan kewajiban CARF bagi penyedia jasa aset kripto; data 2026 dipertukarkan pertama kali pada 2027. Laporan CRS lembaga jasa keuangan tetap melalui OJK paling lambat 1 Agustus.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3927,6 +4056,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Sejak aturan baru, pengelola uang elektronik tertentu ikut dianggap lembaga simpanan, jadi wajib lapor walau bukan bank. Untuk akun orang pribadi, akun baru dilaporkan bila saldonya paling sedikit Rp1 miliar, padahal saldo tertinggi di sini hanya Rp20 juta dan Rp15 juta. Akun milik badan usaha dilaporkan tanpa memakai ambang Rp1 miliar itu, sehingga 120 akun merchant PT Saku Rupiah Pay wajib dilaporkan. PT Dompet Nusa Digital tidak punya akun yang wajib dilaporkan, tetapi tetap harus mengirim laporan nihil. Cara ingat: tidak ada data tetap lapor nihil.",
         inti: "PMK 108/2025 memasukkan pengelola produk uang elektronik tertentu (penyelenggara jasa pembayaran/e-wallet) ke dalam Lembaga Simpanan, sehingga keduanya wajib melakukan uji tuntas dan menyampaikan laporan atas data tahun 2026. Untuk kepentingan domestik, akun orang pribadi di Lembaga Simpanan dilaporkan hanya bila saldo agregatnya pada lembaga yang sama per 31 Desember paling sedikit Rp1 miliar (tidak ada yang mencapainya), sedangkan akun entitas dilaporkan tanpa ambang Rp1 miliar; stem menetapkan bahwa seluruh akun merchant memenuhi definisi rekening keuangan. PT Dompet Nusa Digital tidak mempunyai rekening yang wajib dilaporkan sehingga tetap menyampaikan laporan nihil; PT Saku Rupiah Pay melaporkan 120 akun badan usaha.",
         jejakHitung: [
           ["Akun OP tertinggi PT Dompet Nusa Digital", "Rp20.000.000 < Rp1 M → tidak dilaporkan"],
@@ -3958,6 +4088,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pertama tentukan kapan pajak terutang: bunga jatuh tempo dan dicatat sebagai utang pada 30 September, lebih dulu daripada transfer 12 Oktober. Jadi Masa Pajaknya September dan kursnya kurs KMK yang berlaku 30 September, yaitu Rp16.400. Form DGT sah sudah terekam sebelum itu, sehingga tarifnya 10% sesuai perjanjian pajak. Hitungannya USD40.000 x Rp16.400 = Rp656 juta, lalu 10% x Rp656 juta = Rp65,6 juta. Cara ingat: yang paling dulu terjadi menentukan masa dan kurs.",
         inti: "PPh 26 terutang pada saat dibayar, disediakan untuk dibayarkan, atau jatuh tempo, mana yang lebih dahulu; di sini 30 September 2026 (Masa September). Form DGT sah sudah terekam sebelum saat terutang sehingga tarif P3B 10% berlaku, dan DPP valas dikonversi dengan kurs KMK yang berlaku pada saat terutang (Rp16.400), bukan kurs tengah BI yang dipakai pembukuan.",
         jejakHitung: [["Saat terutang (jatuh tempo, lebih dahulu daripada transfer)", "30 September 2026 → Masa September"], ["Kurs KMK yang berlaku 30 September 2026", "Rp16.400"], ["DPP = USD40.000 × Rp16.400", "Rp656.000.000"], ["PPh 26 = 10% × Rp656.000.000", "Rp65.600.000"], ["Batas setor", "15 Oktober 2026"]],
         mengapaSalah: {
@@ -3984,6 +4115,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "PPh 26 Masa September dihitung sendiri tanpa dicampur urusan lain: 10% x USD40.000 x Rp16.400 = Rp65,6 juta. Kelebihan potong bunga kuartal II tidak boleh dikurangkan begitu saja ke masa lain, tetapi diminta kembali lewat permohonan pengembalian. Rugi selisih kurs adalah urusan pembukuan dan PPh badan PT Bintang, bukan pengurang pajak yang dipotong. Jadi setor utuh Rp65,6 juta paling lambat 15 Oktober dan lapor paling lambat 20 Oktober 2026. Cara ingat: setor tanggal 15, lapor tanggal 20, kelebihan dulu lewat pengembalian.",
         inti: "Kewajiban PPh 26 Masa September berdiri sendiri: terutang saat bunga kuartal III jatuh tempo (30 September 2026), dihitung 10% × USD40.000 × kurs KMK Rp16.400 = Rp65.600.000, disetor paling lambat tanggal 15 (PMK 81/2024 Pasal 94 ayat (2) huruf g) dan dilaporkan paling lambat 20 hari setelah masa berakhir (Pasal 171 ayat (1) huruf g). Kelebihan potong kuartal II karena Form DGT terekam setelah pemotongan adalah kelebihan pemotongan terkait P3B (Pasal 133 huruf b) yang dipulihkan melalui permohonan pengembalian pajak yang seharusnya tidak terutang, diajukan PT Bintang sebagai pemotong dengan surat kuasa Harbour Credit (Pasal 134 ayat (1); PMK 112/2025 Pasal 15), bukan dikompensasikan ke PPh 26 masa lain. Selisih kurs pembukuan (kurs tengah BI) adalah pos komersial/fiskal dalam PPh Badan PT Bintang, bukan pengurang PPh yang dipotong.",
         jejakHitung: [
           ["Saat terutang bunga kuartal III", "30 September 2026 → Masa September"],
@@ -4017,6 +4149,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Tarif perjanjian pajak hanya boleh dipakai bila penerima adalah pemilik manfaat sebenarnya atas bunga itu. Harbour Credit wajib meneruskan 98% bunga ke induknya di negara tanpa perjanjian pajak, hampir tanpa pegawai dan tanpa risiko, jadi ia hanya perantara. Karena itu tarifnya kembali 20%, yaitu 20% x Rp656 juta = Rp131,2 juta, sedangkan yang dipotong baru Rp65,6 juta. Kekurangan Rp65,6 juta ditagih kepada PT Bintang sebagai pemotong lewat SKPKB PPh 26 ditambah sanksi bunga. Cara ingat: Form DGT terekam tidak menjamin tarif perjanjian bila penerimanya cuma perantara.",
         inti: "Tarif P3B hanya tersedia bagi penerima yang merupakan beneficial owner (Pasal 26 ayat (1a) UU PPh; PMK 112/2025). Perusahaan antara yang wajib meneruskan hampir seluruh bunga, tanpa substansi dan tanpa menanggung risiko, adalah conduit; karena pemilik manfaatnya berada di negara tanpa P3B, tarif yang berlaku 20%. Pemotong yang kurang memotong ditagih melalui SKPKB PPh Pasal 26 dengan sanksi bunga Pasal 13 ayat (2) UU KUP, dan permohonan pengembalian atas kuartal II juga tidak dapat dikabulkan.",
         jejakHitung: [["PPh 26 seharusnya = 20% × Rp656.000.000", "Rp131.200.000"], ["Telah dipotong 10%", "Rp65.600.000"], ["Pokok kekurangan dalam SKPKB PPh 26", "Rp65.600.000"], ["Ditambah", "Sanksi bunga Pasal 13 ayat (2) UU KUP"]],
         mengapaSalah: {
@@ -4042,6 +4175,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada dua penjual, jadi kita hitung masing-masing. Nordlys dilindungi perjanjian pajak yang menyerahkan pajak penjualan saham hanya ke negaranya, jadi PPh 26-nya nol. Kestrel tidak punya perjanjian pajak, sehingga kena 20% dari perkiraan neto 25% harga jual, efektif 5%, tanpa melihat harga perolehannya. Jadi 5% x USD2 juta = USD100.000, lalu x Rp16.500 kurs KMK = Rp1.650 juta. Cara ingat: harga perolehan tidak dipakai, yang dipakai harga jual dan kurs KMK.",
         inti: "Nordlys berhak atas P3B yang menyerahkan hak pemajakan keuntungan pengalihan saham hanya kepada negara domisili, sehingga PPh 26-nya tidak dipotong (Pasal 238 ayat (2) PMK 81/2024: pemotongan hanya bila menurut P3B hak pemajakan ada pada Indonesia; bukti potong tetap dibuat dengan fasilitas P3B). Kestrel tidak berhak atas P3B: PPh 26 = 20% × perkiraan neto 25% × harga jual (efektif 5%, Pasal 238 ayat (1) dan (3)), tanpa memperhitungkan harga perolehan, dipotong pembeli (Pasal 239 ayat (1)) dan dikonversi dengan kurs KMK pada saat terutang.",
         jejakHitung: [
           ["Nordlys (P3B: hanya negara domisili; Form DGT sah)", "PPh 26 Rp0"],
@@ -4074,6 +4208,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "final-nonfinal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini nasib PPh 26 yang dipotong saat Mr. Tanaka masih dianggap orang asing. Sejak Mei ia menetap, keluarganya pindah, dan ia berada di Indonesia lebih dari 183 hari, sehingga statusnya berubah menjadi subjek pajak dalam negeri. Bagi orang yang berubah status seperti ini, potongan PPh 26 tidak bersifat final. Jadi gaji Februari sampai April ikut dilaporkan dalam SPT Tahunan 2026, dan PPh 26 Rp48 juta dikreditkan bersama PPh 21. Cara ingat: berubah jadi penduduk, potongan lama menjadi kredit pajak.",
         inti: "Pasal 26 ayat (5) UU PPh mengecualikan dari sifat final pemotongan PPh 26 atas WPLN yang berubah status menjadi WPDN atau BUT. Setelah menjadi subjek pajak dalam negeri (berada lebih dari 183 hari dan berniat tinggal), Mr. Tanaka melaporkan penghasilan 2026 dalam SPT Tahunan dan mengkreditkan PPh 26 yang telah dipotong bersama PPh 21.",
         jejakHitung: [["PPh 26 Februari–April = 3 × 20% × Rp80.000.000", "Rp48.000.000"], ["Status sejak Mei 2026", "Subjek pajak dalam negeri (Pasal 2 ayat (3) huruf a UU PPh)"], ["Perlakuan dalam SPT Tahunan 2026", "Kredit pajak bersama PPh 21 (tidak final)"]],
         mengapaSalah: {
@@ -4098,6 +4233,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari pengecualiannya: penjualan harta yang sudah punya pajak final khusus tidak dikenai PPh 26, siapa pun penjualnya. Jual tanah dan bangunan kena final 2,5%, yaitu Rp250 juta, dan jual saham di bursa kena final 0,1%, yaitu Rp10 juta. Saham perusahaan tertutup kena 20% dari perkiraan neto 25%, efektif 5%, yaitu Rp500 juta. Premi swap bukan penjualan harta, jadi kena 20% dari jumlah bruto, yaitu Rp2 miliar. Cara ingat: tanah 2,5%, bursa 0,1%, saham tertutup 5%, premi swap 20%.",
         inti: "Pasal 26 ayat (2) UU PPh mengenakan PPh 26 atas penjualan harta di Indonesia kecuali yang diatur Pasal 4 ayat (2). Pengalihan tanah dan/atau bangunan dikenai PPh final 2,5% dan penjualan saham di bursa PPh final 0,1%, siapa pun penjualnya. Saham nonbursa dikenai 20% × perkiraan neto 25% (efektif 5%), sedangkan premi swap adalah objek Pasal 26 ayat (1) dengan 20% × bruto.",
         jejakHitung: [
           ["(1) Tanah dan bangunan: 2,5% × Rp10 M", "Rp250.000.000 (PPh final Pasal 4 ayat (2))"],
@@ -4129,6 +4265,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-baca", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada di saat terutang dan cara membaca kurs yen. Sewa dicatat sebagai utang pada 31 Agustus, jadi masuk Masa Agustus dan memakai kurs KMK 26 Agustus sampai 1 September. Kurs yen ditulis per 100 yen, sehingga JPY18 juta dibagi 100 dulu: 180.000 x Rp10.950 = Rp1.971 juta. Perjanjian pajak menganggap sewa peralatan sebagai royalti dengan batas 10%, jadi pajaknya 10% x Rp1.971 juta = Rp197,1 juta. Cara ingat: kurs yen per 100, bagi seratus dulu.",
         inti: "Sewa dibebankan sebagai utang pada 31 Agustus sehingga PPh 26 terutang Masa Agustus dengan kurs KMK 26 Agustus–1 September. Kurs yen dinyatakan per 100 JPY, jadi jumlah yen dibagi 100 sebelum dikalikan kurs. P3B dalam soal memasukkan sewa peralatan ke royalti dengan batas 10% dan Form DGT sah sudah terekam.",
         jejakHitung: [["Saat terutang", "31 Agustus 2026 (dibebankan sebagai utang) → Masa Agustus"], ["DPP = JPY18.000.000 ÷ 100 × Rp10.950", "Rp1.971.000.000"], ["PPh 26 = 10% × Rp1.971.000.000", "Rp197.100.000"], ["Batas setor", "15 September 2026"]],
         mengapaSalah: {
@@ -4154,6 +4291,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini mencari pembayaran yang pajaknya nol karena perjanjian pajak. Konsultan independen hanya boleh dipajaki Indonesia bila punya tempat tetap atau berada di sini lebih dari 120 hari, padahal ia tanpa tempat tetap dan hanya 12 hari. Jadi imbalannya hanya dipajaki negara asalnya dan PPh 26 nihil, walau bukti potong tetap dibuat. Penyanyi dan komisaris tetap kena 20%, dan gaji teknisi juga kena karena dibebankan kepada BUT di Batam. Cara ingat: jasa bebas memakai uji tempat tetap atau 120 hari.",
         inti: "Jasa pekerjaan bebas tanpa tempat tetap dan kehadiran 12 hari (tidak lebih dari 120 hari) hanya dipajaki di negara domisili, sehingga PPh 26 nihil; bukti potong tetap dibuat dengan fasilitas P3B. Artis dan komisaris dapat dipajaki penuh di Indonesia (PPh 26 20%), sedangkan gaji yang dibebankan kepada BUT di Indonesia tidak memenuhi syarat Pasal 15 ayat (2) sehingga juga dipajaki Indonesia.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4179,6 +4317,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Bunga dan royalti yang dibayar cabang ke kantor pusatnya sendiri tidak boleh jadi biaya, begitu pula biaya riset pasar Eropa yang tidak ada hubungannya dengan cabang. Biaya administrasi kantor pusat yang wajar dan berkaitan dengan cabang tetap boleh. Jadi laba kena pajak cabang Surabaya adalah Rp5 miliar ditambah Rp400 juta, Rp350 juta, dan Rp250 juta = Rp6 miliar. Penjualan langsung kantor pusat ke Gresik tidak dimasukkan, karena perjanjian pajak hanya memajaki laba yang memang dihasilkan cabang. Cara ingat: cabang hanya menanggung laba dan biaya miliknya sendiri.",
         inti: "Bunga (bukan usaha perbankan) dan royalti kepada kantor pusat tidak dapat dibiayakan (Pasal 5 ayat (3) UU PPh), begitu pula alokasi biaya yang tidak berkaitan dengan kegiatan BUT; alokasi administrasi umum yang berkaitan tetap boleh. Karena P3B tidak memuat force of attraction dan Form DGT sah, laba penjualan langsung kantor pusat tidak diatribusikan kepada BUT (Pasal 32A UU PPh).",
         jejakHitung: [["Laba komersial BUT", "Rp5.000.000.000"], ["+ Bunga kepada kantor pusat (bukan bank)", "Rp400.000.000"], ["+ Royalti kepada kantor pusat", "Rp350.000.000"], ["+ Alokasi riset yang tidak berkaitan dengan BUT", "Rp250.000.000"], ["Alokasi administrasi umum yang berkaitan", "Tetap dapat dikurangkan"], ["Penjualan langsung kantor pusat", "Tidak diatribusikan (P3B tanpa force of attraction)"], ["PKP", "Rp6.000.000.000"]],
         mengapaSalah: {
@@ -4204,6 +4343,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-baca" },
       pembahasan: {
+        mudah: "Pajak atas laba cabang dihitung dari laba setelah PPh badan yang terutang, bukan setelah dikurangi kredit pajak. PPh badan = 22% x Rp6 miliar = Rp1,32 miliar, jadi laba setelah pajak Rp4,68 miliar. Karena Form DGT sah, tarifnya dibatasi 10%: 10% x Rp4,68 miliar = Rp468 juta. Kredit PPh 22, PPh 23, dan angsuran PPh 25 hanya menentukan kurang bayar akhir tahun, tidak mengubah dasar ini. Cara ingat: laba cabang dikurangi pajak terutang, bukan pajak kurang bayar.",
         inti: "Dasar branch profit tax adalah PKP dikurangi PPh terutang (bukan PPh kurang bayar), dengan tarif P3B 10% karena Form DGT sah. Kredit pajak hanya memengaruhi PPh Pasal 29, bukan dasar branch profit tax.",
         jejakHitung: [["PPh badan = 22% × Rp6.000.000.000", "Rp1.320.000.000"], ["PKP − PPh terutang", "Rp4.680.000.000"], ["Branch profit tax = 10% × Rp4.680.000.000", "Rp468.000.000"], ["Catatan: PPh 29 = 1.320 − 300 − 100 − 600 (juta)", "Rp320.000.000"]],
         mengapaSalah: {
@@ -4229,6 +4369,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Ini lanjutan soal sebelumnya, yang laba BUT setelah koreksinya Rp6 miliar; BUT adalah cabang atau tempat usaha perusahaan asing di Indonesia. Karena tidak ada perjanjian pajak, laba kantor pusat dari menjual pompa sejenis langsung ke pembeli Indonesia ikut dihitung sebagai laba BUT. Jadi PKP Rp6 miliar + Rp1,2 miliar = Rp7,2 miliar, dan PPh 22% = Rp1,584 miliar. Pajak laba cabang memakai tarif dalam negeri 20% dari sisa laba setelah pajak: 20% x Rp5,616 miliar = Rp1,1232 miliar. Cara ingat: tanpa perjanjian, barang sejenis ikut ditarik ke BUT dan tarifnya 20%.",
         inti: "Tanpa P3B berlaku Pasal 5 ayat (1) huruf b UU PPh: penghasilan kantor pusat dari penjualan barang sejenis dengan yang dijual BUT di Indonesia diatribusikan kepada BUT (force of attraction). Alokasi administrasi umum yang berkaitan dengan BUT tetap dapat dibebankan. Branch profit tax memakai tarif domestik 20% × (PKP − PPh terutang).",
         jejakHitung: [["PKP = Rp6.000.000.000 + laba penjualan langsung Rp1.200.000.000", "Rp7.200.000.000"], ["PPh badan = 22% × Rp7.200.000.000", "Rp1.584.000.000"], ["PKP − PPh terutang", "Rp5.616.000.000"], ["Branch profit tax = 20% × Rp5.616.000.000", "Rp1.123.200.000"]],
         mengapaSalah: {
@@ -4255,6 +4396,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-baca" },
       pembahasan: {
+        mudah: "Yang ditanya di sini adalah agen mana yang membuat perusahaan asing dianggap punya usaha tetap (BUT) di Indonesia. Ukurannya bukan status badan hukum agen, tetapi apakah agen itu bebas atau tidak. PT Arus biasa menandatangani kontrak atas nama Fjordline tanpa minta izin dan hampir seluruh pendapatannya dari Fjordline, jadi ia agen tidak bebas dan menimbulkan BUT. PT Lintas hanya meneruskan pesanan, melayani sembilan prinsipal, dan menanggung risiko sendiri, jadi ia agen bebas. Cara ingat: yang bisa tanda tangan kontrak dan bergantung pada satu prinsipal itulah yang menimbulkan BUT.",
         inti: "Agen yang biasa menutup kontrak atas nama prinsipal tanpa persetujuan kantor pusat dan bergantung hampir seluruhnya pada satu prinsipal adalah agen tidak bebas, sehingga Fjordline mempunyai BUT dan laba penjualan melalui PT Arus diatribusikan kepada BUT (komisi PT Arus menjadi biaya BUT). PT Lintas tidak berwenang menutup kontrak, melayani banyak prinsipal, dan menanggung risiko sendiri, sehingga merupakan agen bebas.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4280,6 +4422,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Mulai dari fakta penting: Valdora tidak punya perjanjian pajak dengan Indonesia, jadi yang dipakai murni aturan UU PPh. Menurut UU PPh, gudang, kantor perwakilan, dan proyek instalasi langsung dianggap BUT tanpa melihat lamanya atau tujuannya. Pengecualian untuk kegiatan persiapan dan batas waktu proyek hanya ada dalam perjanjian pajak. Satu-satunya yang diuji waktunya adalah pemberian jasa, yaitu harus lebih dari 60 hari dalam 12 bulan, sehingga pelatihan 45 hari bukan BUT. Cara ingat: tanpa perjanjian, hanya jasa yang punya batas hari.",
         inti: "Pengecualian kegiatan persiapan/penunjang dan time test proyek konstruksi berasal dari P3B. Tanpa P3B, Pasal 2 ayat (5) UU PPh berlaku apa adanya: gudang, kantor perwakilan, dan proyek konstruksi, instalasi, atau perakitan merupakan BUT tanpa batas waktu; hanya pemberian jasa yang diuji lebih dari 60 hari dalam 12 bulan, sehingga pelatihan 45 hari bukan BUT.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4305,6 +4448,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini menanyakan nasib pajak yang dipotong sebelum Brightstone terdaftar sebagai BUT, yaitu tempat usaha tetap perusahaan asing di Indonesia. Tim hadir 172 hari, lebih dari batas 90 hari, jadi sejak awal kegiatan itu sudah BUT dan seluruh imbalan Rp3 miliar menjadi penghasilan BUT. Bagi perusahaan asing yang berubah status menjadi BUT, PPh 26 yang sudah dipotong tidak final, artinya boleh dihitung sebagai pajak yang sudah dibayar. Maka PPh 26 Rp300 juta dan PPh 23 Rp30 juta dikreditkan bersama, total Rp330 juta, dalam SPT Tahunan BUT. Cara ingat: berubah jadi BUT, potongan lama ikut diperhitungkan, bukan diminta kembali.",
         inti: "Kehadiran 172 hari melebihi 90 hari sehingga terbentuk BUT jasa, dan seluruh imbalan dari kegiatan itu, termasuk Januari–Maret, adalah penghasilan BUT. Pasal 26 ayat (5) UU PPh menyatakan pemotongan PPh 26 tidak final bagi WPLN yang berubah status menjadi BUT, sehingga Rp300 juta dikreditkan bersama PPh 23 Rp30 juta dalam SPT Tahunan BUT.",
         jejakHitung: [["Hari kehadiran 10 Januari–30 Juni 2026", "172 hari > 90 hari → BUT jasa"], ["Penghasilan bruto BUT", "Rp3.000.000.000"], ["Kredit PPh 26 (tidak final, Pasal 26 ayat (5))", "Rp300.000.000"], ["Kredit PPh 23", "Rp30.000.000"], ["Jumlah kredit pajak", "Rp330.000.000"]],
         mengapaSalah: {
@@ -4330,6 +4474,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang perlu diuji adalah apakah tiap proyek melewati batas 3 bulan dalam perjanjian pajak. Proyek 1 berjalan 83 hari dan Proyek 2 berjalan 81 hari, keduanya kurang dari 3 bulan. Dua proyek hanya boleh dijumlahkan bila berhubungan, padahal pemberi kerja, kontrak, dan lokasinya terpisah. Karena Form DGT, yaitu bukti bahwa Nordhavn penduduk negara mitra, sah, perjanjian pajak dipakai dan mengalahkan aturan dalam negeri, sehingga tidak ada BUT dan laba usahanya tidak dipajaki Indonesia. Cara ingat: proyek yang tidak berhubungan diuji sendiri-sendiri, tidak ditotal.",
         inti: "Time test proyek diuji per lokasi atau proyek; proyek yang terpisah secara komersial dan geografis tidak dijumlahkan. Proyek 1 dan Proyek 2 masing-masing kurang dari 3 bulan, dan time test jasa pun hanya menjumlahkan hari untuk proyek yang sama atau berhubungan. Dengan Form DGT sah, P3B mengesampingkan Pasal 2 ayat (5) UU PPh (Pasal 32A).",
         jejakHitung: [["Proyek 1: 2 Februari–25 April 2026", "83 hari (kurang dari 3 bulan)"], ["Proyek 2: 1 Juni–20 Agustus 2026", "81 hari (kurang dari 3 bulan)"], ["Keterkaitan", "Tidak berhubungan → tidak dijumlahkan"], ["Kesimpulan", "Tidak ada BUT; laba usaha hanya dipajaki negara domisili"]],
         mengapaSalah: {
@@ -4356,6 +4501,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Masalahnya, perusahaan ini dianggap penduduk oleh dua negara sekaligus. Perjanjian pajak dalam soal tidak memberi aturan otomatis untuk memilih, tetapi menyerahkannya pada kesepakatan kedua otoritas pajak lewat MAP, yaitu perundingan antarotoritas. Karena didirikan di Indonesia, perusahaan mengajukan permohonan MAP kepada DJP, dan selama belum ada kesepakatan, fasilitas perjanjian pajak belum bisa dinikmati kecuali yang disepakati. APA tidak cocok karena APA mengatur harga transaksi antarperusahaan satu grup, bukan status penduduk. Cara ingat: penduduk ganda badan diselesaikan dengan berunding, bukan dipilih sepihak.",
         inti: "Untuk badan berstatus residen ganda, P3B dalam kutipan tidak memakai tie-breaker otomatis; pejabat berwenang menentukannya kasus per kasus melalui MAP dengan memperhatikan manajemen efektif, tempat pendirian, dan faktor lain. WPDN dapat memulai MAP dengan permohonan kepada DJP (PMK 172/2023); sampai ada kesepakatan, manfaat P3B tidak tersedia kecuali yang disepakati.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4382,6 +4528,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Tasman merasa dipajaki tidak sesuai perjanjian pajak, jadi ia mengadu ke otoritas pajak negaranya sendiri, Australia, dalam waktu tiga tahun sejak pemberitahuan pertama. Otoritas Australia lalu berunding dengan DJP lewat MAP. MAP tidak menunggu upaya hukum di Indonesia, jadi PT Andalas, yang menerima SKPKB atau surat tagihan kurang bayar, tetap perlu menjaga haknya dengan keberatan paling lama 3 bulan. Cara ingat: pihak asing mengadu ke negaranya sendiri, pemotong di Indonesia menempuh keberatan.",
         inti: "Ketentuan MAP dalam kutipan memberi hak kepada orang yang dikenai pajak tidak sesuai P3B untuk mengajukan kasusnya kepada pejabat berwenang negara tempat ia menjadi penduduk, yaitu Australia; otoritas Australia kemudian merundingkannya dengan DJP. MAP berjalan terlepas dari upaya hukum domestik, sehingga PT Andalas tetap menjaga tenggat keberatan 3 bulan atas SKPKB.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4407,6 +4554,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pertanyaannya, apakah APA, yaitu kesepakatan harga transaksi antarperusahaan satu grup yang dibuat di muka, tetap melindungi bila dibuat dari data yang tidak benar. Kesepakatan itu berdiri di atas informasi dari Wajib Pajak, padahal perusahaan menyembunyikan fungsi riset dan paten miliknya. Karena itu DJP boleh membatalkan APA setelah meminta klarifikasi, lalu transaksinya diperiksa seperti biasa dengan prinsip harga wajar. Perubahan asumsi setelah kesepakatan adalah urusan lain, yaitu peninjauan kembali. Cara ingat: APA dari data palsu bisa dibatalkan, bukan diperbaiki diam-diam.",
         inti: "APA disepakati atas dasar informasi yang disampaikan Wajib Pajak. Bila dari evaluasi terdapat indikasi Wajib Pajak menyampaikan informasi tidak benar atau tidak menyampaikan informasi yang dapat memengaruhi kesepakatan, DJP meminta klarifikasi (tanggapan dalam 21 hari) lalu membatalkan APA (Pasal 70 ayat (1) dan (4) PMK 172/2023). Setelah dibatalkan, Wajib Pajak tidak dapat mengajukan APA lagi untuk periode itu dan DJP dapat melakukan pemeriksaan, sehingga transaksi afiliasi diuji dengan PKKU umum (Pasal 70 ayat (7)). Peninjauan kembali karena perubahan material terhadap asumsi kritis adalah mekanisme lain (Pasal 68 ayat (7) huruf a).",
         jejakHitung: [],
         mengapaSalah: {
@@ -4433,6 +4581,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Langsung ke aturannya: setiap tahun diuji sendiri, dan klausul hanya menaikkan penghasilan bila markup di bawah 5%. Tahun 2027 markupnya Rp4,5 miliar dari biaya Rp150 miliar, hanya 3%, jadi penjualan dinaikkan ke 105% x Rp150 miliar = Rp157,5 miliar, selisihnya Rp3 miliar. Tahun 2028 markupnya 9%, di atas rentang, dan tidak ada penyesuaian turun, jadi tidak bisa menutup kekurangan 2027. Tambahan PPh 22% x Rp3 miliar = Rp660 juta. Cara ingat: di bawah rentang dinaikkan ke batas bawah, di atas rentang dibiarkan.",
         inti: "Setiap tahun diuji sendiri terhadap klausul APA. Markup 2027 hanya 3,0% sehingga penghasilan dinaikkan ke titik terendah 5,0%; markup 2028 9,0% berada di atas rentang dan menurut klausul tidak disesuaikan ke bawah, sehingga tidak dapat mengimbangi kekurangan 2027.",
         jejakHitung: [["Markup 2027 = Rp4,5 M ÷ Rp150 M", "3,0% (di bawah 5,0%)"], ["Penjualan pada titik terendah = 105% × Rp150.000.000.000", "Rp157.500.000.000"], ["Penyesuaian 2027 = 157,5 M − 154,5 M", "Rp3.000.000.000"], ["Markup 2028 = Rp14,4 M ÷ Rp160 M", "9,0% (di atas 8,0%) → tanpa penyesuaian"], ["Tambahan PPh = 22% × Rp3.000.000.000", "Rp660.000.000"]],
         mengapaSalah: {
@@ -4458,6 +4607,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Walau anak usaha tidak membagikan dividen, aturan anti-penghindaran menganggap dividen tetap diterima pada waktu tertentu. Bila negara anak usaha punya batas waktu SPT, dividen dianggap diterima pada bulan keempat sesudah batas itu; aturan bulan ketujuh hanya dipakai bila tidak ada batas waktu SPT. Tahun buku berakhir 31 Maret 2025, batas SPT jatuh 31 Juli 2025, dan empat bulan sesudahnya adalah November 2025, jadi masuk SPT 2025. Jumlahnya sesuai porsi saham: 70% x Rp8 miliar = Rp5,6 miliar. Cara ingat: ada batas SPT, tambah empat bulan.",
         inti: "Bila badan usaha luar negeri wajib menyampaikan SPT di negaranya dengan batas waktu tertentu, dividen dianggap diperoleh pada bulan keempat setelah batas waktu itu; aturan bulan ketujuh hanya bila tidak ada kewajiban atau batas waktu SPT. Batas SPT Arvenia 31 Juli 2025, sehingga dividen dianggap diterima November 2025 sebesar porsi 70%.",
         jejakHitung: [["Akhir tahun buku Arvenia Trading", "31 Maret 2025"], ["Batas SPT di Arvenia (4 bulan)", "31 Juli 2025"], ["Bulan keempat setelah batas SPT", "November 2025 → SPT Tahunan 2025"], ["Deemed dividend = 70% × Rp8.000.000.000", "Rp5.600.000.000"]],
         mengapaSalah: {
@@ -4483,6 +4633,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Soal ini menguji batas utang dibanding modal, paling banyak 4 banding 1. Pinjaman tanpa bunga dari induk dihitung sebagai modal, jadi modal Rp25 miliar, sedangkan utang berbunga Rp125 miliar, rasionya 5 banding 1. Biaya pinjaman yang boleh dibebankan 4/5 x Rp12 miliar = Rp9,6 miliar, sehingga koreksi Rp2,4 miliar. PPh 26 tetap dipotong atas seluruh bunga ke induk dengan tarif perjanjian: 10% x Rp5 miliar = Rp500 juta. Cara ingat: batas rasio hanya memangkas biaya, tidak memangkas pajak yang dipotong.",
         inti: "Modal mencakup pinjaman tanpa bunga dari pihak hubungan istimewa, sedangkan utang hanya yang dibebani bunga. DER 5 : 1 melampaui 4 : 1 sehingga biaya pinjaman yang dapat dibebankan = (4 × modal ÷ utang) × seluruh biaya pinjaman. Pembatasan DER hanya memengaruhi biaya fiskal; PPh 26 tetap dipotong atas seluruh bunga yang dibayar kepada induk dengan tarif P3B.",
         jejakHitung: [["Modal = Rp20 M + Rp5 M (pinjaman tanpa bunga afiliasi)", "Rp25.000.000.000"], ["Utang berbunga = Rp75 M + Rp50 M", "Rp125.000.000.000"], ["DER", "125 : 25 = 5 : 1 (> 4 : 1)"], ["Biaya dapat dibebankan = (4 × 25 ÷ 125) × Rp12 M", "Rp9.600.000.000"], ["Koreksi fiskal positif", "Rp2.400.000.000"], ["PPh 26 = 10% × Rp5.000.000.000", "Rp500.000.000"]],
         mengapaSalah: {
@@ -4507,6 +4658,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pajak luar negeri yang boleh dikurangkan dihitung per jenis penghasilan, jadi laba cabang dan royalti Malaysia diuji terpisah. Penghasilan kena pajak Rp10 miliar dan PPh terutang Rp2,2 miliar. Laba cabang Rp1,5 miliar adalah 15% dari Rp10 miliar, jadi batasnya 15% x Rp2,2 miliar = Rp330 juta, lebih kecil dari pajak Malaysia Rp360 juta, sehingga kredit Rp330 juta. Royalti 5% dari total, batasnya Rp110 juta, pajak Malaysia Rp50 juta, jadi kredit Rp50 juta dan totalnya Rp380 juta. Cara ingat: tiap jenis penghasilan punya batas sendiri, kelebihan satu tidak menutup yang lain.",
         inti: "Kredit PPh Pasal 24 dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018). Laba usaha cabang Malaysia dan royalti Malaysia dihitung sendiri-sendiri: masing-masing kredit = nilai terkecil antara pajak Malaysia (sesuai P3B) dan (penghasilan jenis itu ÷ PKP) × PPh terutang. Kelebihan pajak cabang tidak tertutup oleh rendahnya pajak royalti dari negara yang sama.",
         jejakHitung: [
           ["PKP = 8.000 + 1.500 + 500 (juta)", "Rp10.000.000.000"],
@@ -4541,6 +4693,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari PKP: rugi dalam negeri Rp1 miliar boleh mengurangi laba cabang Rp4 miliar, jadi PKP Rp3 miliar dan PPh terutang 22% = Rp660 juta. Batas proporsional terlihat Rp880 juta, tetapi kredit tidak pernah boleh melebihi seluruh PPh yang terutang. Jadi kredit hanya Rp660 juta dan PPh kurang bayar nihil. Sisa pajak Filipina Rp340 juta hangus, artinya tidak bisa dikreditkan, dijadikan biaya, atau dibawa ke tahun depan. Cara ingat: kredit pajak luar negeri paling banyak sebesar pajak kita sendiri.",
         inti: "Rugi dalam negeri mengurangi penghasilan luar negeri dalam PKP (yang tidak digabung adalah rugi di luar negeri). Karena penghasilan Filipina lebih besar daripada PKP, rasio batas melebihi 100%, sehingga kredit dibatasi seluruh PPh terutang. Sisa pajak Filipina hangus: tidak dikreditkan, tidak dibiayakan, dan tidak dibawa ke tahun lain.",
         jejakHitung: [["PKP = −1.000 + 4.000 (juta)", "Rp3.000.000.000"], ["PPh terutang 22%", "Rp660.000.000"], ["Batas rasio = 4.000/3.000 × Rp660.000.000", "Rp880.000.000 → dibatasi PPh terutang"], ["Kredit = min(1.000; 880; 660) (juta)", "Rp660.000.000"], ["Sisa pajak Filipina yang hangus", "Rp340.000.000"]],
         mengapaSalah: {
@@ -4565,6 +4718,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Perjanjian pajak antarnegara hanya membagi siapa yang boleh memajaki dan membatasi besarnya. Perjanjian itu tidak bisa menciptakan pajak baru yang tidak ada di undang-undang Indonesia. Jadi bila UU PPh tidak menjadikan penghasilan itu objek pajak, Indonesia tetap tidak bisa memungutnya walaupun perjanjian memberi hak. Surat keterangan domisili juga hanya syarat memakai manfaat perjanjian, bukan dasar memungut pajak. Cara ingat: perjanjian pajak bisa mengurangi pajak, tidak bisa menambah.",
         inti: "PMK 112/2025 Pasal 2 ayat (1) menegaskan bahwa pengenaan PPh atas Wajib Pajak luar negeri yang memperoleh penghasilan dari Indonesia dilaksanakan menurut UU PPh. P3B hanya dapat dipakai dalam pelaksanaan pengenaan itu (ayat (2)). Manfaat P3B yang disebut ayat (6) berupa tarif pemotongan yang lebih rendah, pemajakan eksklusif di negara domisili, pembebasan dari PPh di Indonesia, atau jangka waktu penentuan BUT yang berbeda dari UU PPh. Tidak satu pun manfaat itu menambah objek pajak. Jadi bila UU PPh tidak menjadikan penghasilan itu objek pajak, hak pemajakan dalam P3B tidak dapat dipakai untuk memungut pajak, dan penghasilan itu tidak terutang PPh di Indonesia.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4592,6 +4746,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kata kuncinya \"seluruhnya\": satu unsur saja yang bukan pertukaran otomatis sudah menggugurkan pilihan itu. Ada empat yang dipertukarkan otomatis secara rutin: data rekening keuangan, aset kripto, laporan per negara (CbCR), dan GloBE Information Return. Dokumen Induk, Dokumen Lokal, SPT, laporan keuangan audit, faktur, dan bukti potong tidak dikirim otomatis, melainkan diperoleh lewat permintaan. Jadi hanya kelompok rekening, kripto, CbCR, dan GloBE Information Return yang benar.",
         inti: "Empat kelompok informasi yang dipertukarkan secara otomatis punya dasar masing-masing. Rekening keuangan (CRS) dan aset kripto relevan (CARF) dilaporkan lembaga keuangan dan PJAK pelapor secara otomatis untuk AEOI (PMK 108/2025 Pasal 3 ayat (1)). Laporan per negara (CbCR) dipertukarkan DJP secara otomatis dengan yurisdiksi yang punya qualifying competent authority agreement (PMK 172/2023 Pasal 26 ayat (1)). GloBE Information Return dipertukarkan secara otomatis menurut PER-6/PJ/2026 Pasal 31. Dokumen Induk, Dokumen Lokal, SPT Tahunan, laporan keuangan audit, faktur pajak, dan bukti potong yang diminta tidak termasuk daftar itu; data seperti ini diperoleh lewat permintaan. Hanya opsi C yang keempat unsurnya termasuk AEOI.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4619,6 +4774,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Dalam perjanjian pajak, negara sumber bisa mendapat hak penuh, hak terbatas, atau tidak mendapat hak sama sekali. Hak terbatas artinya negara sumber tetap boleh memajaki, tetapi tarifnya dibatasi perjanjian. Itulah yang berlaku untuk dividen, bunga, dan royalti. Pilihan yang berbunyi \"hanya dipajaki di negara domisili\" berarti negara sumber melepas haknya, bukan hak terbatas. Cara ingat: terbatas berarti boleh memajaki tapi tarifnya dipatok.",
         inti: "P3B membagi hak pemajakan atas tiap jenis penghasilan ke dalam tiga pola. Hak pemajakan penuh: negara sumber boleh memajaki tanpa batas tarif dari P3B. Hak pemajakan terbatas: negara sumber tetap boleh memajaki, tetapi tarifnya dibatasi P3B. Pelepasan hak: negara sumber tidak memajaki sama sekali, sehingga pemajakan eksklusif ada di negara domisili. PMK 112/2025 Pasal 2 ayat (6) membedakan manfaat berupa tarif pemotongan yang lebih rendah dari UU PPh (huruf a) dari pemajakan eksklusif di negara domisili (huruf b). Dividen, bunga, dan royalti termasuk pola tarif yang dibatasi, jadi itulah hak pemajakan terbatas.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4646,6 +4802,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", C: "salah-baca" },
       pembahasan: {
+        mudah: "Minta data ke negara lain tidak boleh asal. Wajib pajaknya harus sedang ditangani, misalnya diperiksa, dan ada dugaan kuat ia tidak memenuhi kewajiban. Data di dalam negeri juga harus sudah dicari dan tidak cukup, permintaannya tidak boleh sekadar berjaga-jaga, dan tidak boleh membuka rahasia dagang. Rekening perusahaan yang sedang diperiksa, diduga menyembunyikan penghasilan, dan data domestiknya kurang memenuhi semua syarat itu. Cara ingat: ada kasus nyata, bukan memancing data.",
         inti: "Permintaan informasi kepada negara mitra diatur PMK 39/PMK.03/2017 Pasal 3. Wajib pajaknya harus diduga menghindar, mengelak, atau belum memenuhi kewajiban (ayat (2)), dan sedang diawasi, diperiksa, ditagih, disidik, atau dalam upaya hukum (ayat (3)). Informasinya harus memenuhi kriteria ayat (4): sumber dalam negeri sudah diupayakan dan tidak tersedia, tidak spekulatif, didasari kecurigaan yang memadai, dan tidak membuka rahasia perdagangan, usaha, industri, atau keahlian. PT Ortax Niaga sedang diperiksa, diduga tidak melaporkan penghasilan, dan data domestiknya tidak memadai. Semua syarat itu terpenuhi.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4673,6 +4830,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya ada pada tahun yang dipakai untuk menguji ambang. Kewajiban laporan per negara untuk tahun pajak 2026 dilihat dari peredaran bruto grup tahun sebelumnya, 2025, yaitu Rp12 triliun, di atas ambang Rp11 triliun. Jadi wajib, walaupun omzet 2026 turun menjadi Rp10,5 triliun. Laporannya disampaikan paling lama 12 bulan setelah akhir tahun pajak, yaitu 31 Desember 2027. Cara ingat: ambang pakai tahun lalu, lapor setahun setelah tutup buku.",
         inti: "Menurut PMK 172/2023 Pasal 16 ayat (4), entitas induk Wajib Pajak dalam negeri wajib menyelenggarakan laporan per negara bila peredaran bruto konsolidasi grup paling sedikit Rp11 triliun pada tahun pajak sebelum tahun pajak yang dilaporkan. Untuk tahun pajak 2026 yang diuji adalah tahun pajak 2025, yaitu Rp12 triliun. Ambang terlampaui, jadi wajib. Peredaran bruto 2026 baru dipakai untuk tahun pajak 2027. Pasal 23 ayat (4) mewajibkan notifikasi dan laporan per negara disampaikan paling lama 12 bulan setelah akhir tahun pajak, yaitu 31 Desember 2027.",
         jejakHitung: [
           ["Tahun uji ambang untuk TP 2026", "TP 2025: Rp12 triliun ≥ Rp11 triliun, wajib"],
@@ -4703,6 +4861,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Dividen ke perusahaan luar negeri pada dasarnya dipotong 20%, tetapi dengan perjanjian pajak dan formulir DGT yang sah, tarif perjanjian yang dipakai. Tarif rendah 10% butuh dua syarat: memiliki saham paling sedikit 25% dan sudah memegangnya minimal 365 hari termasuk hari dividen dibayar. Kepemilikannya 30%, dan dari 2 Januari 2025 sampai 15 Juni 2026 sudah 530 hari, jadi keduanya terpenuhi. Hasilnya 10% x Rp1 miliar = Rp100 juta. Cara ingat: tarif dividen rendah perlu saham cukup besar dan dipegang cukup lama.",
         inti: "Pasal 26 ayat (1) UU PPh mengenakan 20% atas dividen kepada Wajib Pajak luar negeri. Bila ada P3B dan Formulir DGT sah, pemotong memakai tarif P3B. P3B di soal memuat dua tarif dividen. Menurut PMK 112/2025 Pasal 20 ayat (2), tarif yang lebih rendah berlaku bila beneficial owner memiliki persentase saham yang disyaratkan dan memegangnya paling singkat 365 hari kalender termasuk hari pembayaran dividen. Kepemilikan 30% memenuhi ambang 25%. Masa kepemilikan 2 Januari 2025 sampai 15 Juni 2026 adalah 530 hari. Jadi tarif 10% berlaku: 10% × Rp1.000.000.000 = Rp100.000.000,00.",
         jejakHitung: [
           ["Persentase kepemilikan", "30% ≥ 25%, memenuhi"],
@@ -4734,6 +4893,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang ditanya adalah kapan perusahaan Indonesia dianggap menerima dividen dari anak usaha luar negeri yang dikuasainya, walau dividennya belum dibagi. Sahamnya 70%, sudah minimal 50%, dan anak usaha itu tidak tercatat di bursa, jadi aturan dividen anggapan ini berlaku. Saatnya adalah akhir bulan keempat sesudah batas lapor SPT tahunan di negara anak usaha itu. Batasnya 30 Juni 2026, lalu hitung Juli, Agustus, September, Oktober, jadi 31 Oktober 2026. Cara ingat: ada batas SPT di sana, tambah empat bulan; aturan bulan ketujuh hanya dipakai bila batas SPT tidak ada.",
         inti: "Pasal 18 ayat (2) UU PPh memberi wewenang kepada Menteri Keuangan menetapkan saat diperolehnya dividen dari badan usaha luar negeri nonbursa yang paling rendah 50% sahamnya dimiliki Wajib Pajak dalam negeri. PT Ortax Investama memiliki 70%, jadi Ortax Pacific dikendalikan langsung. Menurut PMK 107/PMK.03/2017 Pasal 3 ayat (1), deemed dividend dianggap diperoleh pada akhir bulan keempat setelah batas waktu penyampaian SPT Tahunan badan luar negeri itu untuk tahun pajak yang bersangkutan. Batas SPT di Negara Q adalah 30 Juni 2026. Bulan pertama sesudahnya Juli, keempat Oktober. Saat diperolehnya 31 Oktober 2026. Aturan bulan ketujuh setelah tahun pajak berakhir (ayat (2)) hanya dipakai bila tidak ada kewajiban atau batas waktu SPT, dan di sini batasnya ada.",
         jejakHitung: [
           ["Batas SPT Tahunan di Negara Q", "30 Juni 2026"],
@@ -4764,6 +4924,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Ada dua pembayaran, dan kuncinya membedakan mana royalti dan mana jasa. Know-how berupa hasil riset dan pengalaman teknis adalah penyerahan pengetahuan, jadi royalti dengan tarif perjanjian paling tinggi 10%: 10% x Rp800 juta = Rp80 juta. Konsultansi manajemen umum adalah jasa, dan 45 hari belum melewati 120 hari, jadi tidak ada BUT (tempat usaha tetap di Indonesia). Tanpa BUT, laba jasa itu hanya dipajaki di Australia, sehingga totalnya Rp80 juta. Cara ingat: menyerahkan ilmu itu royalti, mengerjakan sesuatu itu jasa.",
         inti: "Pasal 26 ayat (1) UU PPh mengenakan 20% atas royalti dan imbalan jasa kepada Wajib Pajak luar negeri. Dengan Formulir DGT sah, PMK 112/2025 Pasal 2 ayat (5) mewajibkan pemotong memakai ketentuan P3B. (1) Know-how berupa hasil riset dan pengalaman metalurgi adalah pemberian pengetahuan atau informasi teknis. Menurut kutipan P3B di soal itu royalti, dengan tarif paling tinggi 10%: 10% × Rp800.000.000 = Rp80.000.000,00. (2) Konsultansi manajemen umum adalah jasa, bukan penyerahan pengetahuan. Jasa 45 hari tidak melewati 120 hari dalam 12 bulan, jadi tidak ada BUT. Laba usaha tanpa BUT hanya dipajaki di Australia, sehingga tidak dipotong. Total Rp80.000.000,00.",
         jejakHitung: [
           ["(1) Royalti know-how, tarif P3B", "10% × Rp800.000.000 = Rp80.000.000"],
@@ -4795,6 +4956,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Roll back artinya hasil kesepakatan harga transfer (APA) diberlakukan juga ke tahun-tahun sebelum periodenya. Setiap tahun harus lolos empat syarat sekaligus: kondisi transaksinya tidak jauh beda, belum daluwarsa, belum terbit surat ketetapan pajak PPh badan, dan tidak sedang proses pidana. Tahun 2025 lolos semuanya; belum diperiksa justru bukan penghalang. Tahun 2024 gugur karena surat ketetapan pajaknya sudah terbit pada 2025. Cara ingat: satu syarat gagal, tahun itu gugur.",
         inti: "Pemberlakuan Mundur (roll back) adalah penerapan hasil APA untuk tahun pajak sebelum Periode Kesepakatan Harga Transfer. Menurut Pasal 55 ayat (6) PMK 172/2023, roll back hanya berlaku untuk tahun pajak yang memenuhi empat syarat sekaligus: fakta dan kondisi transaksi afiliasi tidak berbeda material, belum daluwarsa penetapan, belum diterbitkan surat ketetapan pajak PPh badan, dan tidak sedang dalam proses pidana pajak. Tahun pajak 2025 memenuhi keempatnya. Tahun pajak 2024 gagal pada syarat ketiga karena SKP PPh Badan 2024 sudah terbit. Jadi roll back hanya dapat diberlakukan untuk 2025.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4822,6 +4984,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Coba lihat syarat pembebasan gaji di perjanjian pajak: semuanya disambung kata dan, jadi harus terpenuhi semua. Syarat tidak lebih dari 183 hari memang lolos karena Ms. Mei hanya 90 hari di sini. Tetapi gajinya dibayar dan dibebankan oleh afiliasi di Indonesia, yang juga memberi perintah dan mengawasinya, jadi pembayar gajinya residen Indonesia. Satu syarat gagal, sehingga pembebasan tidak berlaku dan Indonesia berhak memajaki. Cara ingat: formulir DGT hanya membuka pintu perjanjian, syaratnya tetap harus lolos.",
         inti: "Ms. Mei berada di Indonesia 90 hari, jadi ia tetap subjek pajak luar negeri dan gajinya atas pekerjaan di Indonesia termasuk imbalan yang dipotong PPh Pasal 26 menurut UU PPh. Indonesia hanya melepaskan hak pemajakan bila semua syarat Pasal 15 ayat (2) P3B yang dikutip di soal terpenuhi, karena syaratnya dihubungkan dengan kata \"dan\". Syarat 183 hari terpenuhi. Syarat kedua tidak terpenuhi: gaji dibayar oleh PT Ortax Logistik Indonesia, residen Indonesia, yang juga memberi perintah, mengawasi, dan membebankan gaji itu sebagai biaya. Karena satu syarat gagal, pembebasan tidak berlaku dan Indonesia berhak memajaki. Formulir DGT hanya membuka akses ke P3B, tidak menggantikan syarat pasal pekerjaan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4849,6 +5012,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "lupa-pasal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pernyataan yang benar adalah soal dividen anggapan. Bila perusahaan Indonesia memegang minimal 50% saham badan luar negeri yang tidak tercatat di bursa, ia dapat dianggap menerima dividen walau laba belum dibagi. Kepemilikan 70% memenuhi syarat itu. Rugi cabang luar negeri tidak boleh mengurangi penghasilan dalam negeri, dan dividen luar negeri bebas hanya bila diinvestasikan di Indonesia. Kredit pajak luar negeri juga dibatasi sebesar pajak Indonesia atas penghasilan itu. Cara ingat: kuasai minimal 50%, laba ditahan pun bisa dianggap dividen.",
         inti: "Pasal 18 ayat (2) UU PPh memberi Menteri Keuangan wewenang menetapkan saat diperolehnya dividen oleh Wajib Pajak dalam negeri atas penyertaan pada badan usaha luar negeri yang sahamnya tidak diperdagangkan di bursa, bila penyertaannya paling rendah 50%. PT Ortax Global Investama memiliki langsung 70% saham Ortax Holdings Ltd yang tidak tercatat di bursa, dan labanya berasal dari bunga dan royalti. Karena itu perseroan dapat ditetapkan memperoleh dividen (deemed dividend) walaupun laba itu belum dibagikan. Ketentuan pelaksanaannya ada di PMK 107/PMK.03/2017 s.t.d.d. PMK 93/PMK.03/2019. Tiga pernyataan lain bertentangan dengan UU PPh.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4876,6 +5040,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Formulir DGT hanya membuktikan penerima residen negara mitra, belum menjamin ia berhak atas tarif perjanjian. Ada uji tujuan utama (PPT): manfaat perjanjian ditolak bila tarif rendah itu menjadi salah satu tujuan utama pengaturan, tidak harus satu-satunya. Di sini hak royalti dipindah dari negara tanpa perjanjian ke perusahaan Singapura yang baru dua bulan berdiri, tanpa pegawai dan tanpa kegiatan. Polanya jelas mengejar tarif perjanjian, jadi manfaatnya dapat ditolak. Cara ingat: cukup salah satu tujuan utama, bukan satu-satunya.",
         inti: "Menurut Pasal 28 ayat (1) PMK 112/2025, uji tujuan utama (PPT) menolak manfaat P3B bila tujuan utama atau salah satu tujuan utama suatu transaksi atau pengaturan adalah memperoleh manfaat P3B. Wajib Pajak luar negeri juga hanya berhak atas manfaat P3B bila tidak menyalahgunakan P3B (Pasal 2 ayat (4) huruf c). Di kasus ini hak royalti dialihkan dari pihak di negara tanpa P3B ke entitas Singapura yang baru dua bulan berdiri, tanpa pegawai dan tanpa kegiatan lain. Waktu dan substansi pengaturan itu menunjukkan bahwa tarif royalti P3B setidaknya menjadi salah satu tujuan utamanya. Karena itu manfaat P3B dapat ditolak walaupun Formulir DGT sudah disahkan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4903,6 +5068,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-baca", C: "salah-baca" },
       pembahasan: {
+        mudah: "Dokumen induk dan dokumen lokal wajib dibuat bila data tahun lalu melewati salah satu ambang. Ambangnya: peredaran bruto di atas Rp50 miliar, transaksi barang dengan afiliasi (perusahaan satu grup) di atas Rp20 miliar, atau jasa, bunga, dan transaksi lain di atas Rp5 miliar per jenis. Tiap jenis dibandingkan dengan ambangnya sendiri, tidak dijumlah. Hanya wajib pajak dengan bunga ke afiliasi Rp6 miliar yang lewat ambang, walau peredaran brutonya cuma Rp30 miliar. Cara ingat: satu ambang terlewati, dokumen wajib.",
         inti: "Pasal 16 ayat (3) PMK 172/2023 mewajibkan dokumen induk dan dokumen lokal bila, berdasarkan tahun pajak sebelumnya, salah satu kriteria terpenuhi: peredaran bruto lebih dari Rp50 miliar; transaksi afiliasi barang berwujud lebih dari Rp20 miliar; transaksi afiliasi lebih dari Rp5 miliar untuk masing-masing jasa, bunga, pemanfaatan barang tidak berwujud, atau transaksi lainnya; atau pihak afiliasi di yurisdiksi bertarif PPh lebih rendah. Kriteria terakhir tidak berlaku karena tarif afiliasi tidak lebih rendah. Tiap jenis transaksi dibandingkan dengan ambangnya sendiri; nilai beberapa jenis tidak digabung. Hanya wajib pajak D yang melewati satu ambang: bunga Rp6 miliar lebih dari Rp5 miliar.",
         jejakHitung: [
           ["A", "Rp48 miliar ≤ Rp50 miliar; barang Rp18 miliar ≤ Rp20 miliar; jasa Rp4,5 miliar ≤ Rp5 miliar: tidak wajib"],

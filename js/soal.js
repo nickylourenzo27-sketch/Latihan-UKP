@@ -128,6 +128,8 @@
       + '.umpan::before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:3px;border-radius:var(--r-md,8px) 0 0 var(--r-md,8px);background:var(--ok);transform-origin:top}'
       + '.umpan[data-hasil="salah"]::before{background:var(--attn)}.umpan[data-hasil="info"]::before{background:var(--info)}'
       + '.umpan > .blok + .blok{padding-top:var(--s-3,12px);border-top:1px solid var(--line-subtle,var(--line))}.umpan .status{font-weight:400}'
+      // v9.7: penjelasan mudah tetap berupa catatan bergaris kiri bila app.css belum termuat
+      + '.umpan .umpan-mudah{padding:12px 14px;border-left:3px solid var(--info);background:var(--info-soft)}.umpan .umpan-mudah-judul{font-weight:600;color:var(--info)}.umpan .umpan-mudah-isi{margin:4px 0 0}'
       + '@media (prefers-reduced-motion:no-preference){:root:not([data-gerak="kurang"]) .umpan::before{animation:ukp-garis var(--dur-sedang,160ms) var(--ease-keluar,ease-out) both}}');
   }
 
@@ -185,7 +187,7 @@
     // ikon jenis soal tidak ditampilkan saat simulasi berjalan (seperti ujian sungguhan); tampil di mode belajar dan ulas
     const ikonJ = mode !== 'ujian' || hanyaBaca ? UKP.c.ikonJenis(soal.jenis) : null;
     // v9.5.5 K-4e: chip tetap paket utama; bila soal juga anggota paket lain (sumber.juga), title menyebut semua paket beserta nomornya
-    const judulSumber = so => { const sb = so.sumber; const ag = K && K.anggotaSet ? K.anggotaSet(so) : []; return ag.length > 1 ? ag.map(a => (a.judul || a.set) + ' no ' + a.no).join(' · ') : sb.judul || sb.set; };
+    const judulSumber = so => { const sb = so.sumber; const ag = K && K.anggotaSet ? K.anggotaSet(so) : []; return ag.length > 1 ? ag.map(a => (a.judul || a.set) + ' no ' + a.no).join(' · ') : (sb.judul || sb.set) + (typeof sb.bagian === 'string' && sb.bagian ? ' · ' + sb.bagian : ''); };
     const kop = h('div', { class: 'soal-kop' }, h('span', { class: 'soal-id', title: soal.id + ' · ' + namaKel + (topik ? ' · ' + topik.judul : '') }, ikonJ, h('span', null, soal.id), h('span', { class: 'topik' }, '· ' + (topik ? topik.judul : namaKel)), soal.sumber && soal.sumber.set ? h('span', { class: 'topik sumber-set', title: judulSumber(soal) }, '· ' + String(soal.sumber.judul || soal.sumber.set).replace(/\s*\(.*$/, '') + ' no ' + soal.sumber.no) : null), kanan);
     // kutipan peraturan: di HP kutipan panjang diringkas dengan tombol "Tampilkan kutipan lengkap"
     let kutipan = null;
@@ -662,8 +664,9 @@
       cadanganUmpan();
       umpan.replaceChildren(panel);
       if (lewatToast) UKP.toast(kartu.perubahan ? 'Kartu dari soal ini masuk dek Ulang dan Dek Perubahan.' : 'Kartu dari soal ini masuk dek Ulang.', { aksi: { label: 'Urungkan', onclick: () => { if (UKP.belajar.hapusKartuOtomatis(kartu.id)) UKP.toast('Kartu dibatalkan. Soal tetap tercatat di Buku Kesalahan.'); } } });
-      // jawab langsung: fokus ke baris status ("Benar" / "Salah · kunci B"); periksa dulu: ke kalimat inti. Enter di sana = Lanjut
-      intiEl = (langsung && panel.querySelector('.status')) || panel.querySelector('.inti');
+      // jawab langsung: fokus ke baris status ("Benar" / "Salah · kunci B"); periksa dulu: ke penjelasan mudah bila ada, kalau tidak
+      // ke kalimat inti. Enter di sana = Lanjut
+      intiEl = (langsung && panel.querySelector('.status')) || panel.querySelector('.umpan-mudah-isi') || panel.querySelector('.inti');
       const kombo = komboYakin(yk, benar);
       live.textContent = (benar ? 'Benar.' : jawab === '-' ? 'Belum tahu. Kunci ' + soal.kunci + '.' : 'Kurang tepat. Jawaban Anda ' + jawab + ', kunci ' + soal.kunci + '.') + (kombo ? ' ' + kombo[2] + '.' : '');
       aksi.replaceChildren(...[aksiKiri].concat(tombolSetelah(benar, jawab, detik, yk)).filter(Boolean)); aksi.hidden = false;
@@ -812,9 +815,10 @@
         if (mode !== 'belajar' || hanyaBaca) return;
         if (!terkunci && langsung) { if (t.tagName === 'INPUT' && t.type === 'radio') { e.preventDefault(); pilih(t.value, true); } return; }
         if (!terkunci && (t.tagName === 'INPUT' || t === fs || t === wrap)) { e.preventDefault(); periksa(); return; }
+        // v9.7: periksa dulu dengan penjelasan mudah: intiEl = .umpan-mudah-isi, tetapi .inti (difokuskan Tutor) tetap berarti Lanjut seperti v9.6.6
         // penanda 'Tadi Anda' (diklik dengan mouse, fokus tertinggal di tombol): Enter = Lanjut, Spasi tetap memilih/melepas
         if (terkunci && segTadi && t.closest && t.closest('.keyakinan-tadi')) { const b = aksi.querySelector('.btn-primary'); if (b) { e.preventDefault(); b.click(); } return; }
-        if (terkunci && intiEl && (t === intiEl || (langsung && (t === fs || t === wrap)))) { const b = aksi.querySelector('.btn-primary'); if (b) { e.preventDefault(); b.click(); } }
+        if (terkunci && intiEl && (t === intiEl || (langsung && (t === fs || t === wrap)) || (!langsung && t.classList && t.classList.contains('inti') && umpan.contains(t)))) { const b = aksi.querySelector('.btn-primary'); if (b) { e.preventDefault(); b.click(); } }
         return;
       }
       if (terkunci && segTadi && e.key && e.key.length === 1 && TOMBOL_YAKIN[e.key.toUpperCase()]) { if (pintasanAktif()) { e.preventDefault(); const v = TOMBOL_YAKIN[e.key.toUpperCase()]; aturTadi(keyakinan === v ? null : v, true); } return; }
@@ -954,8 +958,13 @@
     const kombo = kosong ? null : komboYakin(opsiU.keyakinan, benar);
     const komboEl = kombo ? elKombo(opsiU.keyakinan, benar) : null;
     const status = h('p', { class: 'status blok' + (langsung ? ' status-besar' : ''), tabindex: langsung ? '-1' : null }, ikonStatus, h('span', null, h('strong', { 'data-hasil': hasil }, judulStatus), ket ? h('span', { class: 'status-ket' }, ' ' + ket) : null, komboEl));
-    // kalimat inti (fokus setelah Periksa; Enter di sini = Lanjut)
-    const inti = h('p', { class: 'inti blok', tabindex: '-1' }, (pb.inti || '').trim() || ket || (langsung ? 'Kunci jawaban ' + soal.kunci + '.' : judulStatus));
+    // v9.7 penjelasan mudah (pembahasan.mudah): bahasa sehari-hari, dibaca sesudah vonis dan sebelum pembahasan menurut ketentuan.
+    // Hanya bila berisi; tanpa mudah tidak ada simpul tambahan, jadi soal lama tampil sama dengan v9.6.6
+    const teksMudah = typeof pb.mudah === 'string' ? pb.mudah.trim() : '';
+    const mudahEl = teksMudah ? h('div', { class: 'umpan-mudah' }, h('p', { class: 'umpan-mudah-judul' }, 'Penjelasan mudah'), h('p', { class: 'umpan-mudah-isi', tabindex: '-1' }, teksMudah)) : null;
+    // kalimat inti (fokus setelah Periksa bila tanpa penjelasan mudah; Enter di sini = Lanjut)
+    const teksInti = (pb.inti || '').trim();
+    const inti = h('p', { class: 'inti blok', tabindex: '-1' }, mudahEl && teksInti ? h('span', { class: 'inti-ket' }, 'Menurut ketentuan: ') : null, teksInti || ket || (langsung ? 'Kunci jawaban ' + soal.kunci + '.' : judulStatus));
     const salahLain = HURUF.filter(k => k !== soal.kunci && pb.mengapaSalah && pb.mengapaSalah[k]);
     let jejak = null;
     if (pb.jejakHitung && pb.jejakHitung.length) {
@@ -1011,10 +1020,16 @@
       tag ? h('span', { class: 'pill tag-sebab', 'data-tone': 'warn', title: 'Jenis kesalahan' }, h('span', { class: 'visually-hidden' }, 'Jenis kesalahan: '), UKP.tagLabel(tag)) : null,
       waktuTeks ? h('span', { class: 'meta waktu-soal' }, waktuTeks) : null) : null;
     const bukaSalah = langsung && !benar && !kosong && !!(pb.mengapaSalah && pb.mengapaSalah[dipilih]); // jawab langsung & salah: alasan opsi yang dipilih langsung terlihat
-    const lipatSalah = salahLain.length || pb.jebakan ? h('details', { class: 'lipat blok', open: bukaSalah ? true : null }, h('summary', null, langsung ? 'Mengapa opsi lain salah' : 'Mengapa opsi lain keliru'), h('ul', { class: 'bersih small umpan-salah-opsi' }, (bukaSalah ? [dipilih].concat(salahLain.filter(k => k !== dipilih)) : salahLain).map(k => h('li', { 'data-dipilih': bukaSalah && k === dipilih ? '' : null }, h('strong', null, k + '. '), pb.mengapaSalah[k]))), pb.jebakan ? h('p', { class: 'small umpan-jebakan' }, h('strong', null, 'Jebakan: '), pb.jebakan) : null) : null;
+    // v9.7 opsi berkas asal yang dilepas (soal lima opsi dijadikan empat): butir terakhir, tanpa strong di depan (strong pertama = lencana huruf)
+    const ol = soal.opsiLepas && typeof soal.opsiLepas === 'object' ? soal.opsiLepas : null;
+    const teksLepas = ol && typeof ol.teks === 'string' ? ol.teks.trim().replace(/[\s.]+$/, '') : '';
+    const alasanLepas = teksLepas && typeof ol.alasan === 'string' ? ol.alasan.trim() : '';
+    const lepasEl = teksLepas ? h('li', { class: 'umpan-lepas' }, h('span', { class: 'umpan-lepas-ket' }, 'Pilihan berkas asal yang tidak dipakai: '), '\u201c' + teksLepas + '\u201d.' + (alasanLepas ? ' ' + alasanLepas : '')) : null;
+    const lipatSalah = salahLain.length || pb.jebakan || lepasEl ? h('details', { class: 'lipat blok', open: bukaSalah ? true : null }, h('summary', null, langsung ? 'Mengapa opsi lain salah' : 'Mengapa opsi lain keliru'), h('ul', { class: 'bersih small umpan-salah-opsi' }, (bukaSalah ? [dipilih].concat(salahLain.filter(k => k !== dipilih)) : salahLain).map(k => h('li', { 'data-dipilih': bukaSalah && k === dipilih ? '' : null }, h('strong', null, k + '. '), pb.mengapaSalah[k])), lepasEl), pb.jebakan ? h('p', { class: 'small umpan-jebakan' }, h('strong', null, 'Jebakan: '), pb.jebakan) : null) : null;
     const panel = h('div', { class: 'umpan', 'data-hasil': hasil, 'data-langsung': langsung ? '' : null },
       status,
       kartuDitonjolkan ? kartuEl : null,
+      mudahEl,
       inti,
       langsung ? lipatSalah : null,
       jejak,

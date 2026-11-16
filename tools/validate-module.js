@@ -82,6 +82,14 @@ soal.forEach((s, i) => {
   else if (s.jenis === 'hitung' && pb.jejakHitung.length < 2) errors.push(`${p}: soal hitung butuh jejakHitung ≥ 2 baris`);
   if (!pb.mengapaSalah || ['A', 'B', 'C', 'D'].filter(k => k !== s.kunci).some(k => !pb.mengapaSalah[k])) errors.push(`${p}: pembahasan.mengapaSalah tidak lengkap`);
   if (!pb.jebakan) warns.push(`${p}: pembahasan.jebakan kosong`);
+  // v9.7.0 field baru (docs/SKEMA-KONTEN.md): pembahasan.mudah, opsiLepas, sumber.bagian, pola kasusId
+  if (pb.mudah !== undefined && !(typeof pb.mudah === 'string' && pb.mudah.trim().length >= 140 && pb.mudah.length <= 650 && pb.mudah === pb.mudah.trim())) errors.push(`${p}: pembahasan.mudah harus teks 140 sampai 650 huruf tanpa spasi di tepi`);
+  if (s.sumber && s.sumber.set === 'LM-B-2026-11' && pb.mudah === undefined) errors.push(`${p}: pembahasan.mudah wajib untuk paket LM-B-2026-11`);
+  if (s.opsiLepas !== undefined) { const o = s.opsiLepas; const sah = o && typeof o === 'object' && !Array.isArray(o) && Object.keys(o).sort().join() === 'alasan,teks' && typeof o.teks === 'string' && o.teks.trim() && typeof o.alasan === 'string' && o.alasan.trim();
+    if (!sah) errors.push(`${p}: opsiLepas harus { teks, alasan } berisi teks`); else if (Object.values(opsi).some(v => String(v).trim().toLowerCase() === o.teks.trim().toLowerCase())) errors.push(`${p}: opsiLepas.teks sama dengan salah satu opsi`); }
+  if (s.sumber && s.sumber.bagian !== undefined && !(typeof s.sumber.bagian === 'string' && s.sumber.bagian.trim())) errors.push(`${p}: sumber.bagian harus teks`);
+  if (s.kasusId !== undefined && !new RegExp('^V-' + kode + '-\\d{2,}$').test(String(s.kasusId))) errors.push(`${p}: kasusId "${s.kasusId}" harus V-${kode}-<nomor>`);
+  if (s.kasusId && s.sumber && s.sumber.set === 'LM-B-2026-11' && !String(s.stem).startsWith('Data untuk soal vignette ' + s.kasusId + ': ')) errors.push(`${p}: stem soal kasus paket harus berawalan "Data untuk soal vignette ${s.kasusId}: "`);
   if (!Array.isArray(s.dasarHukum) || !s.dasarHukum.length || !s.dasarHukum[0].pasal) errors.push(`${p}: dasarHukum kosong`);
   if (typeof s.anggaranDetik !== 'number') errors.push(`${p}: anggaranDetik hilang`);
   if (!['✅', '◐'].includes(s.verifikasi)) errors.push(`${p}: verifikasi harus ✅ atau ◐`);

@@ -63,13 +63,22 @@
       const isi = (d, sb) => { d.judul = sb.judul || sb.set; d.label = String(sb.judul || sb.set).replace(/\s*\(.*$/, ''); d.tingkat = sb.tingkat || (String(sb.set).match(/^TO-([ABC])-/) || [])[1] || null; };
       K.semuaKelompok().forEach(k => (UKP.modul[k].soal || []).forEach(x => K.anggotaSet(x).forEach(sb => { let d = peta.get(sb.set); if (!d) { d = { set: sb.set, judul: null, label: null, tingkat: null, n: 0, kelompok: [], perKelompok: {} }; isi(d, sb); d.dariUtama = sb.utama; peta.set(sb.set, d); } else if (sb.utama && !d.dariUtama) { isi(d, sb); d.dariUtama = true; } d.n++; if (!d.perKelompok[k]) { d.kelompok.push(k); d.perKelompok[k] = 0; } d.perKelompok[k]++; })));
       peta.forEach(d => { delete d.dariUtama; });
-      // v9.5.5: urutan tetap menurut kode paket (TO-B-2026-11, TO-C-2026-11-1, TO-C-2026-11-2), bukan urutan modul
-      return [...peta.values()].sort((a, b) => String(a.set).localeCompare(String(b.set), 'en', { numeric: true }));
+      // v9.7.0: paket try out (kode berawalan TO-) lebih dulu, lalu paket lain (mis. LM-B-2026-11); di dalam tiap kelompok menurut kode paket
+      const urutJenis = p => /^TO-/.test(String(p.set)) ? 0 : 1;
+      return [...peta.values()].sort((a, b) => urutJenis(a) - urutJenis(b) || String(a.set).localeCompare(String(b.set), 'en', { numeric: true }));
     },
     // v9.5.5 paket bawaan: paket pertama (urutan daftarSet) yang tingkatnya = tingkat target; bila tidak ada, paket pertama; tanpa paket → null
     setBawaan(tingkat) { const d = K.daftarSet(); return d.find(p => p.tingkat === tingkat) || d[0] || null; },
     // soalSet(set): anggota utama dan anggota lewat sumber.juga, urut menurut nomor di paket ITU (K.noSet); tiap soal sekali (satu soal = satu objek di satu modul)
     soalSet(set) { if (!set) return []; return K.semuaKelompok().flatMap(k => (UKP.modul[k].soal || []).filter(x => K.anggotaSet(x).some(a => a.set === set))).sort((a, b) => (K.noSet(a, set) || 0) - (K.noSet(b, set) || 0)); },
+    // v9.7.0 bagian paket (sumber.bagian, mis. nama mata uji): [{ nama, n, dari, sampai }] urut soalSet; dari dan sampai = posisi 1-based di soalSet (bukan nomor paket).
+    // Hanya bila SEMUA soal paket punya sumber.bagian dan tiap nama membentuk satu rentang; selain itu [] (paket try out memakai potongan nomor).
+    bagianSet(set) {
+      const a = K.soalSet(set); const out = [];
+      for (let i = 0; i < a.length; i++) { const sb = a[i].sumber && a[i].sumber.set === set ? a[i].sumber : null; const nama = sb && typeof sb.bagian === 'string' && sb.bagian.trim() ? sb.bagian.trim() : null; if (!nama) return [];
+        const akhir = out[out.length - 1]; if (akhir && akhir.nama === nama) { akhir.sampai = i + 1; akhir.n++; } else out.push({ nama, n: 1, dari: i + 1, sampai: i + 1 }); }
+      return new Set(out.map(b => b.nama)).size === out.length ? out : [];
+    },
     tingkatDari(kode) { return kode[0] === 'E' ? null : kode[0]; },
   };
 

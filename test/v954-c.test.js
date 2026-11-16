@@ -168,11 +168,12 @@ describe('v9.5.4 C-2 dan C-5: angka saran Laporan mingguan = jumlah soal yang be
   function laporan(opsi) {
     const { UKP } = muat({ profil: { tingkat: 'A' }, setelah: opsi.tanpaViews ? [] : ['views-belajar.js'] });
     const K = UKP.konten, L = UKP.belajar;
-    const so = K.semuaSoal('A').filter(x => x.topik === 'A2.4').slice(0, opsi.nSalah);
+    // v9.7.0: topik contoh pindah dari A2.4 ke A1.5 (9 keluarga), karena paket Latihan UKP B menambah soal A2.4 sampai batas 10
+    const so = K.semuaSoal('A').filter(x => x.topik === 'A1.5').slice(0, opsi.nSalah);
     so.forEach(x => L.catatJawaban(x, x.kunci === 'A' ? 'B' : 'A', 30, 'latih'));
     return { UKP, lap: L.laporanMingguan({ minggu: 'ini', paksa: true }), so };
   }
-  it('4 soal salah di A2.4 (target A): "Ulangi 4 soal" dan "Latih 7 soal A2.4", sama dengan sesi yang dimulai', () => {
+  it('4 soal salah di A1.5 (target A): "Ulangi 4 soal" dan "Latih 9 soal A1.5", sama dengan sesi yang dimulai', () => {
     const { UKP, lap, so } = laporan({ nSalah: 4 });
     const LB = UKP.latihBank; const K = UKP.konten;
     const fam = new Set(so.map(x => K.akar(x) || x.id)).size;
@@ -185,9 +186,9 @@ describe('v9.5.4 C-2 dan C-5: angka saran Laporan mingguan = jumlah soal yang be
     assert.ok(ul, JSON.stringify(judul)); assert.equal(ul.judul, 'Ulangi ' + fam + ' soal dari Buku Kesalahan'); assert.equal(ul.label, 'Ulangi ' + fam + ' soal');
     assert.ok(ul.teks.includes('Ulangi ' + fam + ' soal dari Buku Kesalahan'));
     assert.deepEqual(J(ul.params), { hanyaSalah: true, n: 10, mulai: true });
-    const lt = lap.saran.find(x => /A2\.4/.test(x.judul) && /^Latih/.test(x.judul));
-    assert.equal(LB.nLatihTopik('A2.4'), 7);
-    assert.ok(lt.judul.startsWith('Latih 7 soal A2.4')); assert.ok(lt.teks.endsWith('Latih 7 soal topik itu.'));
+    const lt = lap.saran.find(x => /A1\.5/.test(x.judul) && /^Latih/.test(x.judul));
+    assert.equal(LB.nLatihTopik('A1.5'), 9);
+    assert.ok(lt.judul.startsWith('Latih 9 soal A1.5')); assert.ok(lt.teks.endsWith('Latih 9 soal topik itu.'));
     assert.ok(!judul.some(j => /\b10 soal\b/.test(j)), JSON.stringify(judul));
   });
   it('lebih dari 10 keluarga salah: angka paling banyak 10', () => {

@@ -16,6 +16,41 @@ Tampilan mengikuti kanvas desain pemilik ("MABAR UKP · Logo" dan "MABAR UKP · 
 - **Sambutan (v9.0).** Pengunjung baru di akar situs melihat halaman sambutan berkerangka sama, dengan tombol Masuk menuju formulir lima langkah. Tautan tim (`#room/<kode>`, `#ujiantim/<kode>`, `#lj`) tetap langsung ke layarnya.
 - **Mode mabar** adalah nama pintu fitur tim (halaman `#room`). Nama fitur di dalamnya tidak berubah.
 
+<!-- isi-970:mulai -->
+## Soal tambahan dan Penjelasan mudah (v9.7.0)
+
+**Isi**
+
+- **Paket Latihan UKP B per mata uji.** 315 soal dari berkas latihan per mata uji kiriman pemimpin tim 16 Nov 2026. Kodenya `LM-B-2026-11`. Semua soal dipakai, tidak ada yang ditolak. Nomor paket 1 sampai 315 utuh, dalam urutan berkas asal.
+- **Delapan mata uji.** Akuntansi Perpajakan 52, Bea Meterai 16, KUP, PPSP, dan Pengadilan Pajak 46, PBB-P5L 17, PPh Badan dan SPT PPh Badan 53, PPh Orang Pribadi dan SPT PPh OP 30, PPh Pemotongan/Pemungutan 56, PPN dan SPT PPN 45. Tiap mata uji masuk ke satu modul (B7, A5, A2, B8, B6, A1, A3, A4).
+- **Empat opsi.** Berkas asal memakai lima opsi. Satu opsi salah per soal dilepas, lalu opsi diberi huruf baru A sampai D. Opsi yang dilepas tetap disimpan di `opsiLepas` dan tampil sebagai butir terakhir "Mengapa opsi lain salah".
+- **Studi kasus.** 10 kasus dengan 49 soal. Teks kasus ada di awal stem tiap soal kasus, dan tiap kasus punya `kasusId` baru.
+- **Kunci dan pemeriksaan.** Dikerjakan dalam 22 batch oleh penyusun, pengerja buta, dan pemeriksa. Pengerja buta cocok dengan kunci akhir pada 312 dari 315 soal. Pemeriksa menerima 260 soal apa adanya dan memperbaiki 55. 5 kunci berbeda dari berkas asal karena aturannya sudah berganti (B7-360, B7-369, B6-351, A4-459, A4-472). Alasannya tertulis di "Catatan sumber" tiap soal itu.
+- **Angka.** 298 soal pasti dan 17 bertanda ◐. Kunci A 79, B 87, C 72, D 77. Delapan soal ada di luar daftar butir resmi Tingkat B (nomor 64, 67, 206, 209 sampai 213). Soal itu tidak ikut saringan "butir resmi" di Latih Tingkat B. Jumlah soal di bank menjadi 3.106. Rinciannya ada di `docs/LATIHAN-B-2026-11.md`.
+
+**Penjelasan mudah**
+
+- **Di mana tampil.** Panel pembahasan kini punya blok "Penjelasan mudah". Letaknya sesudah tanda benar atau salah, sebelum pembahasan "Menurut ketentuan". Isinya satu paragraf bahasa sehari-hari: mengapa jawabannya itu, tanpa nomor pasal dan tanpa huruf opsi.
+- **Soal baru dan soal lama.** Semua 315 soal paket punya Penjelasan mudah. Kalimat pembuka 176 di antaranya diragamkan sesudah pemeriksaan. 2.791 soal lama juga mendapat Penjelasan mudah: pemeriksa menerima 2.429 dan menulis ulang 362. Jadi semua 3.106 soal di bank kini punya Penjelasan mudah.
+- **Tiga pembahasan soal lama dibetulkan.** Pemeriksa Penjelasan mudah menemukan tiga alasan opsi salah yang kurang tepat. A2-013: alasan opsi Rp542.380 kini menyebut denda Rp100.000 ikut dijumlah. A2-184: periode Diktum KESATU huruf a diselaraskan menjadi sampai 30 Juni 2027, sama dengan inti pembahasan. C9-017: asal angka Rp1.100.000.000 (PPh badan 22% atas Rp5 miliar) kini ditulis. Stem, opsi, dan kunci ketiganya tidak berubah.
+- **Penjaga.** Isi Penjelasan mudah soal lama, isi lengkap 315 soal paket, dan peta butirnya dikunci dengan sidik di `test/v970-data.test.js` dan `test/_harap-970.js`.
+
+**Aplikasi**
+
+- **Urutan paket.** Tiga paket try out tetap lebih dulu, lalu paket Latihan UKP B per mata uji. Paket bawaan tiap tingkat tidak berubah.
+- **Pilihan mata uji.** Di Simulasi, paket bermata uji punya daftar pilihan "Mata uji". Satu mata uji memakan 34 sampai 118 menit. Di dialog Mulai latihan bersama, paket ini bisa dipilih utuh atau per mata uji; jumlah soal mengikuti isi mata uji itu bila lebih sedikit dari jumlah yang dipilih.
+- **Sumber soal.** Di Latih, Sumber soal kini berupa daftar pilihan untuk semua paket.
+- **Kata "Paket soal".** Label format di Simulasi dan label umum lain memakai "Paket soal", bukan "Try Out". Nama tiga paket try out tetap.
+- **Menit.** Batas isian menit untuk paket besar naik di atas 300, mengikuti waktu bawaan paket utuh (662 menit untuk paket ini). Tiga paket try out tetap paling banyak 300 menit.
+- **Banner saran laptop.** Di HP, banner "sebaiknya dikerjakan di laptop" pada Simulasi paket kini memakai jumlah soal bagian yang dipilih, dan hanya tampil bila 40 soal atau lebih.
+- **Catatan paket di Latih.** Untuk paket bermata uji, catatan di bawah Sumber soal menunjukkan cara memilih satu mata uji: lewat Kelompok di Latih atau Mata uji di Simulasi.
+- **Lembar jawab ujian tim.** Kini sampai 400 nomor (sebelumnya 200).
+- **Kode paket.** Dasbor tim dan kode hasil menerima kode paket `LM-`. Server tim di folder `deploy/`, bila dipakai, perlu dipasang ulang supaya menerima kode itu. HP yang masih memakai versi lama melihat soal paket ini di room sebagai soal yang tidak ada di versi aplikasinya.
+- **Ukuran.** Berkas soal `js/data/mu-*.js` bertambah dari 9.288.104 menjadi 11.479.641 byte. Berkas offline kini 14.933.640 byte (14,24 MB) dengan font dan 14.754.868 byte (14,07 MB) tanpa font, masih di bawah 16 MB. Label tombol unduh menjadi ±15 MB. Rinciannya ada di `docs/OFFLINE.md`.
+- **Potret layar.** Empat layar baru (lima gambar): pemilih paket dan mata uji di Simulasi (HP), dan pembahasan soal paket dengan Penjelasan mudah (HP terang, HP gelap, laptop).
+- **Belum.** Uji di HP sungguhan tidak bisa dilakukan dari lingkungan kerja ini. Uji otomatis WebKit profil iPhone tetap berjalan di GitHub pada tiap rilis.
+<!-- isi-970:selesai -->
+
 <!-- tampilan-960:mulai -->
 ## Tampilan halaman dalam (v9.6.0)
 
@@ -30,7 +65,7 @@ Permintaan pemilik: tampilan dibuat lebih bagus. Sejak v9.0 hanya Beranda yang m
 - **Mode ujian tetap tenang.** Simulasi dan ujian tim yang sedang berjalan hanya mendapat lembar dan lencana, tanpa pita atau warna baru.
 - **Batas yang dijaga.** Tanpa bayangan kartu, gradasi, atau blur. Radius 4, 6, dan 8. Tema gelap, teks besar, forced-colors, cetak, dan gerak kurang tetap didukung. Gaya baru tidak bergantung pada `border-image`, `color-mix()`, `:has()`, `@container`, atau penulisan bersarang, supaya Safari dan Android lama tetap menampilkan halaman dengan utuh.
 - **Di mana gayanya.** Lima bagian berpagar `/* ===== v9.6 tampilan: … ===== */` di akhir `css/app.css`, dengan token `--v96-*`. Arah, token, kait kelas, dan aturan menulisnya ada di `docs/DESAIN-V96.md`; `test/v960-tampilan.test.js` menjaganya.
-- **Potret Safari sebelum tayang.** `tools/potret-layar.js` memotret 37 layar (45 gambar: HP terang, HP gelap, dan laptop). Di GitHub alat ini berjalan dengan WebKit dan profil iPhone pada tiap dorongan ke `main` (`.github/workflows/potret-webkit.yml`), lalu mengirim gambarnya sebagai catatan check run "Potret layar webkit". Gambar diambil dengan `node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder>`. Situs tayang dari cabang `gh-pages`, jadi tampilan di mesin Safari bisa dilihat sebelum situs diperbarui.
+- **Potret Safari sebelum tayang.** `tools/potret-layar.js` memotret 41 layar (50 gambar: HP terang, HP gelap, dan laptop). Di GitHub alat ini berjalan dengan WebKit dan profil iPhone pada tiap dorongan ke `main` (`.github/workflows/potret-webkit.yml`), lalu mengirim gambarnya sebagai catatan check run "Potret layar webkit". Gambar diambil dengan `node tools/potret-layar.js ambil <pemilik/repo> <sha> <folder>`. Situs tayang dari cabang `gh-pages`, jadi tampilan di mesin Safari bisa dilihat sebelum situs diperbarui.
 - **Polesan v9.6.1.** Di laptop pita kepala kini rapat ke kop atas. Kartu kelompok di Materi memakai aksen kiri tipis.
 - **Perbaikan v9.6.2.** Tiga cacat dari pemeriksaan sesudah terbit: di HP, opsi yang bertanda Kunci jawaban atau Jawaban Anda kembali sebaris dengan lencananya (aturan lama menghitung lencana 28 px); pita vonis latihan bersama kini netral bila hanya sebagian tim benar, dan hijau hanya bila benar; tanda centang pilihan format berbentuk daftar di HP terlihat lagi (aturan lama lebih spesifik daripada aturan baru).
 - **Potret room (v9.6.1).** Uji room di WebKit (`tools/uji-room-web.js` dengan `KIRIM=1`) ikut mengirim potret layar pemimpin dan HP anggota sebagai check run "Potret room webkit". Perintah `ambil` yang sama mengambil keduanya.
@@ -340,9 +375,9 @@ cd uskp-learn && python3 -m http.server 8080   # lalu buka http://localhost:8080
 node tools/build-offline.js                    # dist/pelatih-ukp-offline.html: satu berkas mandiri untuk dipakai tanpa internet
 ```
 
-**Tanpa internet (mis. di pesawat):** pakai berkas tunggal `dist/pelatih-ukp-offline.html` (±5,4 MB; semua CSS, skrip, data, dan font tertanam), dari `node tools/build-offline.js` atau tombol Pengaturan › **Versi offline (untuk pesawat)** › *Unduh berkas offline*. Simpan di perangkat, lalu buka dengan klik dua kali (laptop) atau lewat Files › Chrome (Android); di iPhone gunakan Documents by Readdle, atau lebih aman pasang PWA dari alamat hosting (*Tambahkan ke Layar Utama*). Tutor AI tidak tersedia offline, dan progres versi offline terpisah dari versi daring: pindahkan lewat Ekspor/Impor di Pengaturan › Data. Rincian: `docs/OFFLINE.md`.
+**Tanpa internet (mis. di pesawat):** pakai berkas tunggal `dist/pelatih-ukp-offline.html` (±15 MB; semua CSS, skrip, data, dan font tertanam), dari `node tools/build-offline.js` atau tombol Pengaturan › **Versi offline (untuk pesawat)** › *Unduh berkas offline*. Simpan di perangkat, lalu buka dengan klik dua kali (laptop) atau lewat Files › Chrome (Android); di iPhone gunakan Documents by Readdle, atau lebih aman pasang PWA dari alamat hosting (*Tambahkan ke Layar Utama*). Tutor AI tidak tersedia offline, dan progres versi offline terpisah dari versi daring: pindahkan lewat Ekspor/Impor di Pengaturan › Data. Rincian: `docs/OFFLINE.md`.
 
-**Sebagai aplikasi (PWA).** Bila dihosting di alamat https (GitHub Pages, Netlify, Cloudflare Pages) dan dibuka sekali saat daring, service worker (`sw.js`) menyimpan seluruh aset (±5,5 MB) sehingga aplikasi tetap terbuka tanpa internet; di HP pilih "Tambahkan ke Layar Utama". Setelah aset berubah, jalankan `node tools/build-artifact.js` agar versi cache di `sw.js` diperbarui. Artifact claude.ai sendiri tetap memerlukan internet untuk dibuka dan tidak memakai service worker (pendaftaran dilewati di host Artifact/iframe); untuk pesawat pakai berkas offline atau PWA dari hosting statis. Bila halaman lambat atau ada berkas gagal dimuat, penjaga muat di `index.html` menampilkan progres modul dan panel pemulihan (muat ulang, bersihkan cache, salin laporan) — lihat `docs/OFFLINE.md`.
+**Sebagai aplikasi (PWA).** Bila dihosting di alamat https (GitHub Pages, Netlify, Cloudflare Pages) dan dibuka sekali saat daring, service worker (`sw.js`) menyimpan seluruh aset (±15 MB) sehingga aplikasi tetap terbuka tanpa internet; di HP pilih "Tambahkan ke Layar Utama". Setelah aset berubah, jalankan `node tools/build-artifact.js` agar versi cache di `sw.js` diperbarui. Artifact claude.ai sendiri tetap memerlukan internet untuk dibuka dan tidak memakai service worker (pendaftaran dilewati di host Artifact/iframe); untuk pesawat pakai berkas offline atau PWA dari hosting statis. Bila halaman lambat atau ada berkas gagal dimuat, penjaga muat di `index.html` menampilkan progres modul dan panel pemulihan (muat ulang, bersihkan cache, salin laporan) — lihat `docs/OFFLINE.md`.
 
 Pengujian:
 

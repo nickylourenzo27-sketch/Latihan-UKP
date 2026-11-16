@@ -5194,6 +5194,17 @@ main .soal .tidak-tahu-baris > .btn { margin-left: 0; padding-inline: 12px; bord
   .soal .umpan .jejak-wrap, .soal .umpan .umpan-jebakan { background: none; }
   .soal .opsi kbd, .soal .umpan .umpan-salah-opsi > li > strong:first-child, .petunjuk-kbd kbd { border: 1px solid #555555; } /* lencana tetap berbentuk tanpa latar */
 }
+/* v9.7 penjelasan mudah (div.umpan-mudah: sesudah status, sebelum inti) dan opsi berkas asal yang dilepas (li.umpan-lepas).
+   Pemilih .umpan, bukan .soal .umpan, supaya sama di ulas hasil simulasi. Kontras terang/gelap: isi 14,5/12,4; judul 8,8/7,1; lepas 7,6/7,8 */
+.umpan .umpan-mudah { padding: 12px 14px; border-left: 3px solid var(--info); border-radius: 0 var(--r-sm) var(--r-sm) 0; background: var(--v96-band-info); }
+.umpan .umpan-mudah-judul { margin: 0; font-family: var(--font-display); font-size: var(--fs-caption); font-weight: var(--fw-semi); color: var(--info); }
+.umpan .umpan-mudah-isi { margin: 4px 0 0; font-size: calc(var(--fs-body) + .0625rem); line-height: 1.7; color: var(--ink); }
+.umpan .umpan-mudah + .inti { font-size: var(--fs-body); line-height: var(--lh-body); }
+.umpan .inti-ket, .umpan .umpan-lepas-ket { font-weight: var(--fw-semi); }
+.umpan .umpan-salah-opsi > li.umpan-lepas { margin-top: 6px; padding-top: 8px; border-top: 1px dashed var(--v96-kop-garis); color: var(--muted); }
+.umpan .umpan-salah-opsi > li + li.umpan-lepas { margin-top: 6px; } /* menang atas .soal .umpan ... li + li (2 px) */
+@media (forced-colors: active) { .umpan .umpan-mudah { border-left-color: CanvasText; } }
+@media print { .umpan .umpan-mudah { background: none; border-left-color: #555555; } }
 /* ===== akhir v9.6 layar soal dan pembahasan ===== */
 
 

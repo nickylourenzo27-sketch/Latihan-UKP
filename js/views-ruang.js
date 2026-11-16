@@ -1120,6 +1120,49 @@
   };
   UI.menu = function () { const item = UI.itemMenu(); if (!item.length) return null; const m = UKP.c.menuLebih({ label: 'Menu room', item }); m.classList.add('menu-room'); m.dataset.butir = item.map(x => x.teks).join('|'); return m; };
 
+  // v9.7.0 pilihan sumber dialog Mulai latihan bersama: tiap paket ("set:<kode>"), lalu untuk paket bermata uji (K.bagianSet) yang tiap
+  // bagiannya berada di satu modul dan modulnya berbeda antarbagian, satu pilihan per mata uji ("set:<kode>|kode:<modul>").
+  // Bentuk pilihan: [nilai, label ringkas]; pilihan per mata uji menambah [grup, teks opsi]. Label ringkas = label paket tanpa akhiran
+  // " per mata uji" · nama mata uji (dipakai kalimat "Sumber: ..."). Di daftar, pilihan itu dikelompokkan dalam optgroup berlabel label paket.
+  function opsiSumberPaket(paket, Kx) {
+    const out = [];
+    (paket || []).forEach(p => {
+      const label = p.label || p.judul || p.set; out.push(['set:' + p.set, label]);
+      const bg = Kx && typeof Kx.bagianSet === 'function' ? Kx.bagianSet(p.set) : [];
+      if (!bg.length) return;
+      const semua = Kx.soalSet(p.set);
+      const modulBagian = bg.map(b => { const kd = new Set(semua.slice(b.dari - 1, b.sampai).map(x => x.kode)); return kd.size === 1 ? [...kd][0] : null; });
+      if (modulBagian.some(k => !k)) return;
+      // dua mata uji di satu modul akan memberi dua pilihan bernilai sama yang mencampur soal: paket itu hanya mendapat pilihan utuh
+      if (new Set(modulBagian).size !== modulBagian.length) return;
+      const pendek = String(label).replace(/\s+per mata uji$/i, '');
+      bg.forEach((b, i) => out.push(['set:' + p.set + '|kode:' + modulBagian[i], pendek + ' · ' + b.nama, label, b.nama]));
+    });
+    return out;
+  }
+  // nilai pilihan sumber menjadi parameter #latih: { n, set?, kode?, topik? }
+  function uraiSumber(nilai, n) {
+    const p = { n }; const v = String(nilai || '');
+    if (v.startsWith('set:')) { const bag = v.slice(4).split('|kode:'); p.set = bag[0]; if (bag[1]) p.kode = bag[1]; }
+    else if (v.startsWith('topik:')) p.topik = v.slice(6);
+    return p;
+  }
+  // susunan daftar: pilihan berurutan dengan grup yang sama menjadi satu kelompok { grup, opsi: [[nilai, teks]] }; teks opsi bergrup = nama mata uji
+  function kelompokPilihan(pilihan) {
+    const out = [];
+    (pilihan || []).forEach(p => {
+      const grup = p[2] || null; const akhir = out[out.length - 1];
+      if (grup && akhir && akhir.grup === grup) akhir.opsi.push([p[0], p[3]]);
+      else out.push({ grup, opsi: [[p[0], grup ? p[3] : p[1]]] });
+    });
+    return out;
+  }
+  const isiPilihanSumber = pilihan => kelompokPilihan(pilihan).map(k => {
+    const opsi = k.opsi.map(o => h('option', { value: o[0] }, o[1]));
+    return k.grup ? h('optgroup', { label: k.grup }, opsi) : opsi[0];
+  });
+  UI._sumberMulai = { opsiSumberPaket, uraiSumber, kelompokPilihan };
+
   // Mulai latihan bersama (pemimpin): jumlah, sumber, tempo, yang ikut → s.bersama → #latih { mulai, n, …, room: 1 }
   UI.dialogMulaiLatihan = function () {
     const s = UKP.store.get(); if (fn(L, 'siapBersama')) L.siapBersama(s);
@@ -1135,12 +1178,14 @@
     const paket = K && fn(K, 'daftarSet') ? K.daftarSet() : [];
     const lemah = fn(L, 'topikTerlemah') ? aman(() => L.topikTerlemah(tingkat, 1), []) : [];
     const sid = UKP.util.id('sumber');
-    const pilihan = [['acak', 'Acak Tingkat ' + tingkat]].concat(paket.map(p => ['set:' + p.set, p.label || p.judul || p.set]))
+    const pilihan = [['acak', 'Acak Tingkat ' + tingkat]].concat(opsiSumberPaket(paket, K))
       .concat(lemah[0] && lemah[0].topik ? [['topik:' + lemah[0].topik.id, 'Topik terlemah: ' + (lemah[0].topik.judul || lemah[0].topik.id)]] : []);
     // v9.5.3 B2: tombol dan ringkas memakai jumlah soal yang benar-benar dimulai untuk sumber terpilih (UKP.latihBank.jumlahMulaiRoom)
-    const pSumber = () => { const p = { n }; if (sumber.startsWith('set:')) p.set = sumber.slice(4); else if (sumber.startsWith('topik:')) p.topik = sumber.slice(6); return p; };
+    const pSumber = () => { const p = { n }; return Object.assign(p, uraiSumber(sumber, n)); };
+    // v9.7.0 ringkas menyebut sumber terpilih (mis. "Latihan UKP B · PPN")
+    const labelSumber = () => { const x = pilihan.find(q => q[0] === sumber); return x ? x[1] : ''; };
     const nEfektif = () => { const lb = UKP.latihBank; if (!lb || typeof lb.jumlahMulaiRoom !== 'function') return n; const x = aman(() => lb.jumlahMulaiRoom(pSumber()), null); return typeof x === 'number' && x >= 0 ? Math.min(n, x) : n; };
-    const sel = h('select', { class: 'select', id: sid, onchange: e => { sumber = e.target.value; aturN(n); } }, pilihan.map(p => h('option', { value: p[0] }, p[1])));
+    const sel = h('select', { class: 'select', id: sid, onchange: e => { sumber = e.target.value; aturN(n); } }, isiPilihanSumber(pilihan));
     const tempoUjian = fn(L, 'tempoUjian') ? L.tempoUjian(tingkat) : 126;
     const desimal = x => String(Math.round(x * 10) / 10).replace('.', ',');
     // v9.3 W2: waktu membahas per soal (detik; 0 = Bebas), disimpan lewat L.aturBahasBersama saat Mulai
@@ -1152,7 +1197,7 @@
     const detikTempo = () => (tempo === 'bebas' ? 0 : tempo === 'longgar' ? (L.TEMPO_LONGGAR || 150) : tempoUjian);
     const penjelasTempo = h('p', { class: 'meta penjelas-tempo-room', hidden: tempo !== 'bebas' }, 'Tanpa batas: tidak ada hitung mundur. Cocok untuk belajar sambil membahas.');
     const ringkas = h('p', { class: 'meta ringkas-waktu-room', 'aria-live': 'polite' });
-    const perbaruiRingkas = () => { ringkas.textContent = teksRingkasWaktu(nEfektif(), detikTempo(), bahas); };
+    const perbaruiRingkas = () => { ringkas.textContent = teksRingkasWaktu(nEfektif(), detikTempo(), bahas); if (labelSumber()) ringkas.textContent = 'Sumber: ' + labelSumber() + '. ' + ringkas.textContent; };
     const saya = i && i.nama ? i.nama : rapikan(s.profil && s.profil.nama);
     const chipIkut = h('div', { class: 'chip-row chip-ikut', role: 'group', 'aria-label': 'Yang ikut' }, peserta.map(p => {
       const b = h('button', { type: 'button', class: 'chip', 'aria-pressed': String(ikut.has(kunciNama(p))), onclick: () => { const k = kunciNama(p); if (ikut.has(k)) ikut.delete(k); else ikut.add(k); b.setAttribute('aria-pressed', String(ikut.has(k))); } },

@@ -125,7 +125,8 @@ describe('v9.4.4: tanda perlu cek dan keutuhan bank soal', () => {
   });
   it('soal bertanda: Tingkat B paling banyak 67, Tingkat C paling banyak 13 (dari 109 sebelum dicocokkan)', () => {
     let b = 0, c = 0;
-    for (const m of semua) { const n = m.soal.filter(s => s.verifikasi === '◐').length; if (['C9', 'C10'].includes(m.meta.kode)) c += n; else b += n; }
+    // v9.7.0: paket LM punya batas sendiri di test/v970-data.test.js
+    for (const m of semua) { const n = m.soal.filter(s => s.verifikasi === '◐' && !(s.sumber && s.sumber.set === 'LM-B-2026-11')).length; if (['C9', 'C10'].includes(m.meta.kode)) c += n; else b += n; }
     assert.ok(b <= 67, 'bertanda di modul Tingkat B: ' + b);
     assert.ok(c <= 13, 'bertanda di modul Tingkat C: ' + c);
   });

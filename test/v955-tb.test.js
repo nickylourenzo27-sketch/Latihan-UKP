@@ -33,7 +33,8 @@ function muat() {
   for (const f of fs.readdirSync(path.join(ROOT, 'js', 'data')).filter(f => /^(ref|mu-.*|cakupan|peta-butir)\.js$/.test(f)).sort()) jalankan('js/data/' + f);
   // v9.5.5 (rilis): data asli kini memuat dua paket Try Out UKP C. Uji di berkas ini memakai soal tiruan berkode paket sama,
   // jadi paket C asli dilepas dari salinan data uji ini (data di js/data tidak disentuh). Data asli diuji di test/v955-data.test.js.
-  for (const k of Object.keys(ctx.UKP.modul)) { const m = ctx.UKP.modul[k]; m.soal = (m.soal || []).filter(x => !(x.sumber && /^TO-C-/.test(String(x.sumber.set)))); m.soal.forEach(x => { if (x.sumber && x.sumber.juga) delete x.sumber.juga; }); }
+  for (const k of Object.keys(ctx.UKP.modul)) { const m = ctx.UKP.modul[k]; m.soal = (m.soal || []).filter(x => !(x.sumber && /^(TO-C-|LM-)/.test(String(x.sumber.set)))); // v9.7.0 paket LM diuji di test/v970-*.test.js
+  m.soal.forEach(x => { if (x.sumber && x.sumber.juga) delete x.sumber.juga; }); }
   for (const b of ['learn.js', 'tim.js', 'views-belajar.js', 'views-simulasi.js']) jalankan('js/' + b);
   return ctx.UKP;
 }

@@ -55,7 +55,8 @@ function muat() {
   for (const f of fs.readdirSync(path.join(ROOT, 'js', 'data')).filter(f => /^(ref|mu-.*|cakupan|peta-butir)\.js$/.test(f)).sort()) jalankan('js/data/' + f);
   // v9.5.5 (rilis): data asli kini memuat dua paket Try Out UKP C. Uji di berkas ini memakai soal tiruan berkode paket sama,
   // jadi paket C asli dilepas dari salinan data uji ini (data di js/data tidak disentuh). Data asli diuji di test/v955-data.test.js.
-  for (const k of Object.keys(ctx.UKP.modul)) { const m = ctx.UKP.modul[k]; m.soal = (m.soal || []).filter(x => !(x.sumber && /^TO-C-/.test(String(x.sumber.set)))); m.soal.forEach(x => { if (x.sumber && x.sumber.juga) delete x.sumber.juga; }); }
+  for (const k of Object.keys(ctx.UKP.modul)) { const m = ctx.UKP.modul[k]; m.soal = (m.soal || []).filter(x => !(x.sumber && /^(TO-C-|LM-)/.test(String(x.sumber.set)))); // v9.7.0 paket LM diuji di test/v970-*.test.js
+  m.soal.forEach(x => { if (x.sumber && x.sumber.juga) delete x.sumber.juga; }); }
   for (const b of ['learn.js', 'tim.js', 'views-belajar.js', 'views-simulasi.js', 'views-alat.js', 'views-bank.js']) jalankan('js/' + b);
   return { UKP: ctx.UKP, ctx };
 }
@@ -185,8 +186,8 @@ describe('v9.5.5 K-3a: kode paket berakhiran di kode hasil dan ringkasan tim', (
   });
   it('normalAnggota (data tak tepercaya): kode paket sah lolos, bentuk lain tetap ditolak', () => {
     const coba = kode => T._normalAnggota({ nama: 'X', simulasi: [{ id: 's', format: 'tryout', kode, jumlah: 10, benar: 5, skor: 50 }] }, 'id1', 'kode').simulasi[0].kode;
-    for (const k of [B, C1, C2, 'TO-A-2027-01-12', 'A1', 'C10']) assert.equal(coba(k), k, k);
-    for (const k of ['TO-C-2026-11-123', 'TO-C-2026-11-', 'TO-D-2026-11', 'TO-C-2026-1-1', 'TO-C-2026-11-1 ', 'TO-C-2026-11-a']) assert.equal(coba(k), null, k);
+    for (const k of [B, C1, C2, 'TO-A-2027-01-12', 'A1', 'C10', 'LM-B-2026-11']) assert.equal(coba(k), k, k);
+    for (const k of ['TO-C-2026-11-123', 'TO-C-2026-11-', 'TO-D-2026-11', 'TO-C-2026-1-1', 'TO-C-2026-11-1 ', 'TO-C-2026-11-a', 'LM-D-2026-11', 'LX-B-2026-11']) assert.equal(coba(k), null, k);
   });
   it('server tim (deploy/lib-hasil.js) menerima kode paket yang sama', () => {
     const lib = require(path.join(ROOT, 'deploy', 'lib-hasil.js'));
@@ -195,6 +196,9 @@ describe('v9.5.5 K-3a: kode paket berakhiran di kode hasil dan ringkasan tim', (
     const n = lib.normalkan(raw, 'Nicky', kini);
     assert.deepEqual(n.simulasi.map(x => x.kode), [C1, C2, B]);
     assert.equal(lib.normalkan({ simulasi: [{ kode: 'TO-C-2026-11-123' }] }, 'X', kini).simulasi[0].kode, null);
+    // v9.7.0 paket latihan LM-B-2026-11
+    assert.equal(lib.normalkan({ simulasi: [{ kode: 'LM-B-2026-11' }] }, 'X', kini).simulasi[0].kode, 'LM-B-2026-11');
+    for (const k of ['LM-D-2026-11', 'LX-B-2026-11']) assert.equal(lib.normalkan({ simulasi: [{ kode: k }] }, 'X', kini).simulasi[0].kode, null, k);
   });
 });
 

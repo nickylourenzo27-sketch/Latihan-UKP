@@ -9,6 +9,7 @@ const vm = require('node:vm');
 const ROOT = path.join(__dirname, '..');
 const J = x => JSON.parse(JSON.stringify(x));
 const B = 'TO-B-2026-11', C1 = 'TO-C-2026-11-1', C2 = 'TO-C-2026-11-2';
+const { LM, HARAP } = require('./_harap-970'); // v9.7.0 paket keempat
 function muat() {
   const noop = () => {};
   const el = () => ({ appendChild: noop, setAttribute: noop, removeAttribute: noop, addEventListener: noop, style: { setProperty: noop }, dataset: {}, classList: { add: noop, remove: noop } });
@@ -30,12 +31,12 @@ function muat() {
 
 describe('v9.5.5 data asli: tiga paket try out', () => {
   const UKP = muat(); const K = UKP.konten;
-  it('daftarSet: Try Out UKP B 100 soal, Paket 1 100 soal, Paket 2 50 soal, dalam urutan kode paket', () => {
+  it('daftarSet: empat paket, tiga try out menurut kode paket lalu paket latihan LM (v9.7.0)', () => {
     const d = K.daftarSet();
-    assert.deepEqual(J(d.map(p => p.set)), [B, C1, C2]);
-    assert.deepEqual(J(d.map(p => p.n)), [100, 100, 50]);
-    assert.deepEqual(J(d.map(p => p.tingkat)), ['B', 'C', 'C']);
-    assert.deepEqual(J(d.map(p => p.label)), ['Try Out UKP B', 'Try Out UKP C Paket 1', 'Try Out UKP C Paket 2']);
+    assert.deepEqual(J(d.map(p => p.set)), [B, C1, C2, LM]);
+    assert.deepEqual(J(d.map(p => p.n)), [100, 100, 50, HARAP.jumlah]);
+    assert.deepEqual(J(d.map(p => p.tingkat)), ['B', 'C', 'C', 'B']);
+    assert.deepEqual(J(d.map(p => p.label)), ['Try Out UKP B', 'Try Out UKP C Paket 1', 'Try Out UKP C Paket 2', 'Latihan UKP B per mata uji']);
     for (const p of d) assert.equal(Object.values(p.perKelompok).reduce((a, n) => a + n, 0), p.n, p.set + ': jumlah per kelompok');
   });
   it('soalSet: urutan nomor asli tanpa ganda; empat soal Try Out UKP B muncul di Paket 2 pada nomor 11, 15, 34, 39', () => {

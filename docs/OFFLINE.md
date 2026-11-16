@@ -27,7 +27,7 @@ Ada dua jalur offline. Keduanya saling melengkapi:
 5. **PWA**: `<link rel="manifest">` dibuang (manifest hanya berlaku di http(s); dari `file://` hanya memicu galat konsol). Ikon berkas lokal disematkan sebagai data URI; ikon yang sudah berupa data URI dibiarkan. `js/app.js` tidak mendaftarkan service worker bila `window.UKP_OFFLINE` atau bukan http(s).
 6. Judul menjadi `MABAR UKP (offline)`. Komentar `<!--ARTIFACT-START-->`, `<!--ARTIFACT-HEAD-END-->`, `<!--ARTIFACT-BODY-START-->`, `<!--ARTIFACT-BODY-END-->` dipertahankan.
 
-Pemeriksaan otomatis saat build (gagal → kode keluar 1): tidak ada lagi `<script src>`/stylesheet/manifest lokal, tidak ada rujukan Google Fonts di luar isi skrip, jumlah tag `<script>` = jumlah skrip + 1 (deteksi tag yang terputus), semua penanda ARTIFACT ada, dan `UKP_OFFLINE` mendahului core.js. Ukuran akhir dicetak; target **< 8 MB** (saat ini ±5,4 MB, sebagian besar `js/data/*.js`).
+Pemeriksaan otomatis saat build (gagal → kode keluar 1): tidak ada lagi `<script src>`/stylesheet/manifest lokal, tidak ada rujukan Google Fonts di luar isi skrip, jumlah tag `<script>` = jumlah skrip + 1 (deteksi tag yang terputus), semua penanda ARTIFACT ada, dan `UKP_OFFLINE` mendahului core.js. Ukuran akhir dicetak; target **< 8 MB**. Target itu hanya peringatan: build tetap berhasil bila dilampaui. Ukuran di v9.7.0: 14.754.868 byte (14,07 MB) tanpa font, diukur dengan `node tools/build-offline.js --tanpa-font` pada 16 Nov 2026. Dengan font tertanam (enam berkas woff2) ukurannya 14.933.640 byte (14,24 MB), diukur dengan `node tools/build-offline.js` pada hari yang sama; font menambah sekitar 179 KB. Sebagian besar isinya `js/data/*.js` (11.479.641 byte untuk 11 berkas `mu-*.js`). Sejak v9.6.6 (12.542.604 byte) berkas bertambah karena paket Latihan UKP B per mata uji (315 soal) dan Penjelasan mudah untuk 2.791 soal lama. Sisa terhadap batas 16 MB (16.777.216 byte) sekitar 2,0 juta byte (1,93 MB) tanpa font dan 1,84 juta byte dengan font; bila 16 MB dihitung 16.000.000 byte, sisanya sekitar 1,25 juta byte tanpa font dan 1,07 juta byte dengan font.
 
 ### Perilaku aplikasi saat `window.UKP_OFFLINE`
 
@@ -57,9 +57,17 @@ dist/pelatih-ukp-offline.html ditulis: 5.636.850 byte (5,38 MB) · 1 stylesheet,
 ukuran di bawah target 8 MB (2,62 MB tersisa)
 ```
 
+Contoh di atas dari versi lama. Keluaran v9.7.0 dengan `--tanpa-font` (16 Nov 2026, sebelum nomor versi distempel, jadi tertulis versi 9.0):
+
+```
+font: dilewati (--tanpa-font); font sistem dipakai
+dist/pelatih-ukp-offline.html ditulis: 14.754.868 byte (14,07 MB) · 1 stylesheet, 32 skrip, font sistem · versi 9.0 2026-11-16
+peringatan: ukuran 14,07 MB melampaui target 8 MB
+```
+
 **Cache font** (`dist/fonts/*.woff2` + `dist/fonts/fonts.json`): berkas woff2 diunduh ulang hanya bila URL sumbernya berubah. Bila CSS Google Fonts tidak dapat diambil, cache dipakai; bila cache juga tidak ada, build **tetap berhasil** dengan peringatan dan berkas memakai font sistem (`--font-ui`/`--font-mono` di `css/app.css` sudah punya cadangan `system-ui`/`ui-monospace`).
 
-### Dari browser (Pengaturan › Versi offline › *Unduh berkas offline (±5 MB)*)
+### Dari browser (Pengaturan › Versi offline › *Unduh berkas offline (±15 MB)*)
 
 Padanan build di sisi klien (`UKP.berkasOffline` di `js/views-alat.js`):
 
@@ -124,5 +132,5 @@ node tools/build-offline.js && node --test test/
 Uji browser (Playwright, Chromium) yang dijalankan untuk fitur ini:
 
 1. `dist/pelatih-ukp-offline.html` dibuka lewat `file://` dengan `context.route('**/*')` membatalkan semua permintaan selain `file:`/`data:`/`blob:` dan `context.setOffline(true)`: **0 permintaan jaringan**, tanpa galat konsol; onboarding 5 layar → diagnosis 3 soal → Hari Ini → Latih 3 soal (jawaban tercatat) → Kalkulator PPN → Referensi; dialog Tutor menampilkan "Tidak tersedia offline" tanpa kotak tanya; kartu Pengaturan menampilkan "Anda sedang memakai versi offline"; *Ekspor progres* menghasilkan JSON sah; `document.fonts` memuat `Public Sans` dan `JetBrains Mono` (status `loaded`); muat ulang mempertahankan progres; tanpa gulir horizontal di 390 px.
-2. `index.html` lewat `python3 -m http.server`: klik *Unduh berkas offline* → `page.waitForEvent('download')` menangkap `pelatih-ukp-offline.html` (±5,4 MB, 25 dari 25 langkah, font tertanam) → berkas hasil diuji ulang seperti butir 1 (lulus).
+2. `index.html` lewat `python3 -m http.server`: klik *Unduh berkas offline* → `page.waitForEvent('download')` menangkap `pelatih-ukp-offline.html` (±5,4 MB saat uji ini dijalankan di versi awal; di v9.7.0 berkasnya sekitar 15 MB; 25 dari 25 langkah, font tertanam) → berkas hasil diuji ulang seperti butir 1 (lulus).
 3. Jalur degradasi: font Google diblok → berkas tetap jadi dengan font sistem; tombol di halaman `file://` → pesan penjelasan, tombol aktif kembali; `navigator.onLine === false` di versi daring → Tutor menampilkan pesan offline.

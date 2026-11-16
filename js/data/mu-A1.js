@@ -456,6 +456,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya: apakah Mr. Lee dianggap penduduk Indonesia untuk urusan pajak. Aturannya, orang asing jadi subjek pajak dalam negeri bila berada di Indonesia lebih dari 183 hari dalam 12 bulan mana saja, tidak harus berturut-turut dan tidak dipotong per tahun kalender. Oktober sampai Januari ada 123 hari, Maret sampai April ada 61 hari, jadi totalnya 184 hari dalam 12 bulan sejak 1 Oktober 2025. Karena 184 lebih dari 183, ia subjek pajak dalam negeri. Cara ingat: hitung hari dalam jendela 12 bulan, bukan per tahun.",
         inti: "Pasal 2 ayat (3) huruf a UU PPh menguji kehadiran lebih dari 183 hari dalam jangka waktu 12 bulan, tidak terikat tahun kalender dan tidak harus berturut-turut. 123 + 61 = 184 hari, sehingga Mr. Lee menjadi subjek pajak dalam negeri.",
         jejakHitung: [ ["1 Okt 2025–31 Jan 2026 (31 + 30 + 31 + 31)", "123 hari"], ["1 Mar–30 Apr 2026 (31 + 30)", "61 hari"], ["Jumlah dalam 12 bulan sejak 1 Okt 2025", "184 hari"], ["Uji Pasal 2 ayat (3) huruf a", "184 > 183 → SPDN"] ],
         mengapaSalah: { A: "Memotong hitungan per tahun kalender (92 + 92); undang-undang memakai jangka waktu 12 bulan", B: "Tidak ada syarat berturut-turut; kunjungan terpisah dalam 12 bulan dijumlahkan", C: "Tempat pembayaran gaji tidak menentukan status subjek; yang menentukan tempat tinggal dan lama kehadiran" },
@@ -474,6 +475,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada di pertanyaan: siapa yang menanggung pajak laba toko di tiap periode. Kewajiban pajak Bapak Surya berhenti pada hari ia meninggal, jadi laba sampai 14 Mei masuk SPT almarhum untuk sebagian tahun. Setelah itu, selama warisan belum dibagi, warisan itu sendiri yang menjadi pembayar pajak atas laba toko. Begitu warisan dibagi pada 10 Desember, laba berikutnya menjadi penghasilan masing-masing ahli waris. Cara ingat: harta warisannya bukan objek pajak, tetapi laba yang dihasilkan warisan tetap kena pajak.",
         inti: "Kewajiban subjektif Bapak Surya berakhir pada 14 Mei 2026 sehingga ia terutang untuk bagian tahun pajak. Sejak itu warisan yang belum terbagi menggantikan yang berhak sebagai subjek pajak sampai warisan selesai dibagi pada 10 Desember 2026; setelah itu penghasilan menjadi milik masing-masing ahli waris.",
         jejakHitung: [],
         mengapaSalah: { A: "Kewajiban almarhum berakhir pada tanggal meninggal, tidak berlaku surut ke awal tahun; ahli waris baru menanggung setelah warisan dibagi", C: "Yang dikecualikan Pasal 4 ayat (3) adalah harta warisan yang diterima ahli waris, bukan laba yang dihasilkan usaha warisan", D: "Bila kewajiban subjektif berakhir dalam tahun berjalan, bagian tahun pajak menggantikan tahun pajak" },
@@ -491,6 +493,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini bertanya ke arah sebaliknya: siapa yang TIDAK dikecualikan dan tetap kena pajak Indonesia. Kantor kedutaan, duta besar, staf diplomatik, dan orang yang ikut tinggal bersama mereka memang dikecualikan, dengan syarat bukan warga negara Indonesia. Sopir di sini warga negara Indonesia, jadi pengecualian itu tidak berlaku baginya. Ia tetap subjek pajak dalam negeri dan menghitung serta melaporkan pajaknya sendiri, karena kedutaan tidak memotong pajak gajinya. Cara ingat: pengecualian diplomatik hanya untuk orang asing.",
         inti: "Pengecualian bagi orang yang diperbantukan kepada pejabat diplomatik hanya berlaku bila mereka bukan WNI. Sopir WNI tetap SPDN; karena kantor perwakilan negara asing bukan pemotong PPh 21, ia menghitung dan melaporkan sendiri penghasilannya.",
         jejakHitung: [],
         mengapaSalah: { A: "Pejabat diplomatik WNA tanpa penghasilan lain di Indonesia dikecualikan, dengan syarat timbal balik", B: "Orang yang diperbantukan, tinggal bersama, bukan WNI, dan tanpa penghasilan lain dikecualikan", C: "Kantor perwakilan negara asing dikecualikan oleh Pasal 3 ayat (1) huruf a" },
@@ -512,6 +515,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Mulai dari fasilitas khusus untuk orang asing berkeahlian tertentu. Selama 4 tahun pajak sejak pertama kali menjadi penduduk pajak Indonesia, ia hanya dipajaki atas penghasilan dari Indonesia, asalkan permohonannya disetujui pajak dan ia tidak memakai perjanjian pajak antarnegara. Dr. Hana mulai 2024, jadi fasilitasnya berlaku 2024 sampai 2027, dan 2026 masih di dalamnya. Akibatnya hanya gaji dari perusahaan di Jakarta yang dipajaki, sedangkan dividen Jepang dan royalti Jerman tidak. Cara ingat: fasilitas ini mempersempit sumber penghasilan, bukan membebaskan semua pajak.",
         inti: "Pasal 4 ayat (1a) UU PPh (hasil UU Cipta Kerja) membatasi pemajakan WNA SPDN berkeahlian tertentu hanya atas penghasilan dari Indonesia selama 4 tahun pajak sejak pertama kali menjadi SPDN: 2024, 2025, 2026, dan 2027 (Pasal 444 ayat (1) PMK 81/2024). Fasilitas tidak berlaku bagi WNA yang memanfaatkan P3B (Pasal 4 ayat (1c)) dan harus dimohonkan; dengan surat persetujuan DJP, SPT Tahunan hanya memuat penghasilan dari Indonesia (Pasal 446 dan 447 PMK 81/2024). Dividen Jepang dan royalti Jerman tahun 2026 tidak dipajaki di Indonesia.",
         jejakHitung: [
           ["Menjadi SPDN", "Tahun Pajak 2024"],
@@ -539,6 +543,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Pertama tentukan dulu status Mr. Daniel: ia tinggal di Malaysia dan hanya 20 hari di sini, jadi ia subjek pajak luar negeri. Imbalan jasa dari perusahaan Indonesia untuk orang luar negeri dipotong pajak 20% dari jumlah kotor oleh perusahaan pembayar. Karena ia tidak menyerahkan surat keterangan domisili, tarif perjanjian pajak tidak bisa dipakai, jadi 20% x Rp150 juta = Rp30 juta. Potongan itu sudah tuntas, sehingga ia tidak perlu lapor SPT Tahunan. Cara ingat: kurang dari 183 hari mengubah status, bukan menghapus pajaknya.",
         inti: "Mr. Daniel adalah SPLN (tinggal di Malaysia, hadir 20 hari). Imbalan jasa yang bersumber dari Indonesia dipotong PPh 26 20% dari bruto; tanpa DGT sebelum pembayaran tarif P3B tidak dapat dipakai. PPh 26 bagi SPLN tanpa BUT bersifat final sehingga tidak ada SPT Tahunan; PT Sinar Mandiri melaporkannya dalam SPT Masa PPh 21/26.",
         jejakHitung: [ ["Status", "SPLN (20 hari, tinggal di Malaysia)"], ["Tarif", "PPh 26 20% × bruto (DGT tidak diserahkan)"], ["PPh 26 = 20% × Rp150.000.000", "Rp30.000.000"] ],
         mengapaSalah: { A: "PPh 21 bukan pegawai berlaku bagi penerima dalam negeri; penerima SPLN dikenai PPh 26", C: "PPh 26 atas SPLN tanpa BUT bersifat final (Pasal 26 ayat (5)); tidak ada kewajiban SPT Tahunan", D: "Batas 183 hari menentukan status subjek dalam/luar negeri, bukan menghapus objek; penghasilan bersumber di Indonesia tetap dipajaki" },
@@ -556,6 +561,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "final-nonfinal", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang dicari di sini hanya penghasilan yang dijumlahkan lalu dikenai tarif berlapis biasa. Bunga deposito dan hadiah undian sudah kena pajak final, artinya pajaknya selesai saat dipotong, jadi tidak ikut dijumlahkan. Hibah dari ayah kandung dan klaim asuransi kesehatan malah bukan penghasilan yang dipajaki sama sekali. Tinggal gaji dan imbalan jasa konsultasi, yang pajaknya belum final. Cara ingat: semua dilaporkan di SPT, tetapi yang dijumlahkan hanya yang tidak final.",
         inti: "Bunga deposito dan hadiah undian dikenai PPh final Pasal 4 ayat (2) sehingga tidak digabung; hibah dari ayah kandung dan klaim asuransi kesehatan bukan objek Pasal 4 ayat (3). Yang digabung hanya gaji dan imbalan jasa konsultasi.",
         jejakHitung: [ ["(1) Gaji", "non-final → digabung"], ["(2) Bunga deposito", "final 20%"], ["(3) Hibah ayah kandung", "bukan objek"], ["(4) Hadiah undian", "final 25%"], ["(5) Klaim asuransi kesehatan", "bukan objek"], ["(6) Imbalan konsultasi", "non-final → digabung"] ],
         mengapaSalah: { A: "Bunga deposito dan hadiah undian dikenai PPh final; dilaporkan tetapi tidak digabung", B: "Hibah dari keluarga sedarah garis lurus satu derajat tanpa hubungan usaha bukan objek PPh", D: "Pembayaran klaim asuransi kesehatan dari perusahaan asuransi kepada OP bukan objek PPh" },
@@ -578,6 +584,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Dividen dalam negeri untuk orang pribadi bisa bebas pajak, asalkan diinvestasikan di Indonesia sesuai syarat dan realisasinya dilaporkan. Ibu Maya menginvestasikan Rp250 juta dengan benar, jadi bagian itu bebas. Sisanya Rp400 juta dikurangi Rp250 juta = Rp150 juta tetap kena pajak final 10%. Jadi 10% x Rp150 juta = Rp15 juta, yang ia setor sendiri. Cara ingat: yang diinvestasikan bebas, yang dibelanjakan tetap kena 10%.",
         inti: "Hanya bagian dividen yang tidak diinvestasikan (Rp150.000.000) dikenai PPh final 10% yang disetor sendiri; bagian yang diinvestasikan sesuai kriteria, tata cara, dan jangka waktu (Pasal 33 sampai dengan Pasal 36 PMK 18/PMK.03/2021) serta dilaporkan realisasinya (Pasal 370 ayat (1) dan Pasal 374 PMK 81/2024) dikecualikan dari objek.",
         jejakHitung: [
           ["Dividen diterima", "Rp400.000.000"],
@@ -604,6 +611,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya: fasilitas dari kantor umumnya bebas pajak bagi pegawai, kecuali beberapa yang dikecualikan. Makan siang untuk semua pegawai, laptop dan ponsel kerja, serta parsel hari raya keagamaan termasuk yang bebas. Klub golf tidak termasuk fasilitas olahraga yang dibebaskan, jadi kena pajak. Mobil hanya bebas untuk pegawai yang bukan pemegang saham dan bergaji kotor paling banyak Rp100 juta sebulan, sedangkan Tuan Dimas punya saham 2%, jadi mobilnya kena pajak. Cara ingat: punya saham sedikit saja sudah menggugurkan pembebasan mobil.",
         inti: "Golf dikecualikan dari fasilitas olahraga yang dibebaskan, sehingga objek. Kendaraan hanya dikecualikan bagi pegawai yang bukan pemegang saham dan berpenghasilan bruto ≤ Rp100 juta/bulan; Tuan Dimas pemegang saham sehingga objek. Makanan untuk seluruh pegawai, peralatan kerja, dan bingkisan hari raya keagamaan dikecualikan.",
         jejakHitung: [ ["(1) Makan di tempat kerja untuk seluruh pegawai", "dikecualikan"], ["(2) Laptop dan ponsel kerja", "dikecualikan"], ["(3) Parsel hari raya keagamaan", "dikecualikan"], ["(4) Klub golf", "objek"], ["(5) Mobil, pegawai pemegang saham", "objek"] ],
         mengapaSalah: { B: "Melewatkan syarat 'bukan pemegang saham' pada pengecualian kendaraan", C: "Bingkisan hari raya keagamaan termasuk natura yang dikecualikan PMK 66/2023", D: "Laptop dan ponsel untuk bekerja adalah peralatan kerja yang dikecualikan" },
@@ -621,6 +629,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "final-nonfinal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Bunga deposito kena pajak final 20%, dan di sini Rp6 juta itu memang 20% dari Rp30 juta. Final artinya pajaknya selesai saat bank memotong. Karena itu bunganya tidak dijumlahkan dengan gaji, dan Rp6 juta itu juga tidak boleh dipakai mengurangi pajak terutang. Tetapi bunga itu tetap dicantumkan di SPT pada bagian penghasilan final supaya laporannya lengkap. Cara ingat: final berarti tidak dihitung ulang dan tidak dikreditkan, tetapi tetap dilaporkan.",
         inti: "Bunga deposito dikenai PPh final 20%: tetap dilaporkan di SPT pada bagian penghasilan final, tetapi tidak masuk PKP dan PPh-nya bukan kredit pajak.",
         jejakHitung: [ ["PPh final 20% × Rp30.000.000", "Rp6.000.000"], ["Masuk PKP?", "tidak"], ["Dikreditkan?", "tidak"] ],
         mengapaSalah: { A: "Mencampur rezim final ke penghitungan tarif umum", C: "Penghasilan final tetap wajib dilaporkan agar SPT benar, lengkap, dan jelas", D: "Menggabungkan penghasilan final ke PKP menimbulkan pemajakan ganda" },
@@ -638,6 +647,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "final-nonfinal", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pak Yusuf punya dua jenis sewa dengan aturan berbeda. Sewa ruko (tanah dan bangunan) kena pajak final 10%, jadi tidak dijumlahkan, biayanya tidak dihitung, dan potongan Rp12 juta tidak bisa mengurangi pajak terutang. Sewa truk tidak final: Rp90 juta dikurangi biaya Rp30 juta = Rp60 juta yang dijumlahkan. Potongan 2% atas sewa truk, yaitu Rp1,8 juta, boleh dipakai mengurangi pajak terutang. Cara ingat: sewa bangunan final, sewa barang lain tidak final.",
         inti: "Sewa ruko (tanah/bangunan) dikenai PPh final 10%: tidak digabung, biayanya tidak dapat dikurangkan, PPh-nya tidak dikreditkan. Sewa truk dipotong PPh 23 2% (tidak final): neto Rp90.000.000 − Rp30.000.000 = Rp60.000.000, dan PPh 23 Rp1.800.000 menjadi kredit.",
         jejakHitung: [ ["Sewa ruko: PPh final 10% × Rp120.000.000", "Rp12.000.000 (tidak digabung, tidak dikreditkan)"], ["Sewa truk bruto", "Rp90.000.000"], ["Biaya truk", "Rp30.000.000"], ["Neto sewa truk", "Rp60.000.000"], ["Kredit PPh 23 2% × Rp90.000.000", "Rp1.800.000"] ],
         mengapaSalah: { A: "Menggabungkan sewa ruko yang final dan mengkreditkan PPh finalnya", B: "Lupa mengurangkan biaya truk padahal Pak Yusuf menyelenggarakan pembukuan", D: "PPh final sewa ruko Rp12.000.000 tidak dapat dikreditkan" },
@@ -655,6 +665,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "final-nonfinal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari laba pembukuan Rp540 juta, lalu tambahkan kembali beban yang tidak boleh jadi biaya pajak. Itu adalah PPh 25 Rp36 juta, gaji untuk dirinya sendiri Rp120 juta, asuransi jiwa pribadi Rp12 juta, sumbangan Rp8 juta, dan sanksi Rp3 juta, sehingga totalnya Rp719 juta. Lalu kurangi bunga deposito Rp20 juta karena sudah kena pajak final, hasilnya Rp699 juta. Makan siang dan seragam karyawan boleh jadi biaya, jadi tidak diubah. Cara ingat: pemilik usaha perorangan tidak bisa menggaji dirinya sendiri, itu pengambilan pribadi.",
         inti: "Koreksi positif atas PPh, prive, premi asuransi pribadi, sumbangan, dan sanksi; koreksi negatif atas bunga deposito yang final. Natura untuk karyawan boleh dibiayakan sejak UU HPP.",
         jejakHitung: [ ["Laba komersial", "Rp540.000.000"], ["+ PPh 25 dibebankan (Ps. 9(1) h)", "Rp36.000.000"], ["+ 'Gaji' pemilik/prive (Ps. 9(1) i)", "Rp120.000.000"], ["+ Premi asuransi jiwa pribadi (Ps. 9(1) d)", "Rp12.000.000"], ["+ Sumbangan (Ps. 9(1) g)", "Rp8.000.000"], ["+ Sanksi STP (Ps. 9(1) k)", "Rp3.000.000"], ["− Bunga deposito (final)", "Rp20.000.000"], ["Natura karyawan", "tidak dikoreksi"], ["Neto fiskal", "Rp699.000.000"] ],
         mengapaSalah: { A: "Mengoreksi natura karyawan seperti aturan sebelum UU HPP", B: "Lupa mengeluarkan bunga deposito yang sudah dikenai PPh final", C: "Menganggap 'gaji' pemilik usaha perseorangan sebagai biaya; itu pengambilan pribadi (prive)" },
@@ -672,6 +683,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kerugian fiskal hanya boleh dipakai mengurangi laba selama 5 tahun sesudah tahun ruginya. Rugi 2020 berlaku 2021 sampai 2025 dan sudah terpakai Rp180 juta, sehingga sisa Rp70 juta hangus setelah 2025. Rugi 2022 berlaku 2023 sampai 2027 dan belum terpakai sama sekali. Laba 2026 setelah zakat masih Rp684 juta, cukup untuk menampung seluruh Rp120 juta. Cara ingat: sisa rugi yang tampak belum terpakai belum tentu masih berlaku, cek batas 5 tahunnya.",
         inti: "Rugi 2020 hanya dapat dikompensasikan pada 2021–2025; sisanya Rp70.000.000 hangus setelah 2025. Rugi 2022 Rp120.000.000 berlaku sampai 2027 dan seluruhnya dapat dikurangkan pada 2026 karena neto setelah zakat Rp684.000.000.",
         jejakHitung: [ ["Rugi 2020", "Rp250.000.000"], ["Dipakai 2021–2025 (40 + 60 + 50 + 30 juta)", "Rp180.000.000"], ["Sisa rugi 2020 (hangus akhir 2025)", "Rp70.000.000"], ["Rugi 2022 (berlaku 2023–2027)", "Rp120.000.000"], ["Neto setelah zakat 2026", "Rp684.000.000"], ["Kompensasi 2026", "Rp120.000.000"] ],
         mengapaSalah: { A: "Ikut mengompensasikan sisa rugi 2020 yang sudah lewat 5 tahun", C: "Menjumlahkan seluruh rugi tanpa memperhitungkan pemakaian dan daluwarsa", D: "WP OP yang menyelenggarakan pembukuan berhak mengompensasikan kerugian" },
@@ -689,6 +701,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Hitung dulu penghasilan kena pajaknya: Rp699 juta dikurangi zakat Rp15 juta, kompensasi rugi Rp120 juta, dan PTKP kawin dua anak Rp67,5 juta, hasilnya Rp496,5 juta. PTKP adalah bagian penghasilan yang dibebaskan dari pajak sesuai jumlah tanggungan. Lalu pakai tarif berlapis: 5% x Rp60 juta = Rp3 juta, dan 15% x Rp190 juta = Rp28,5 juta. Sisanya 25% x Rp246,5 juta = Rp61,625 juta, jadi totalnya Rp93.125.000. Cara ingat: kurangi zakat, rugi, dan PTKP dulu, baru pakai tarif berlapis.",
         inti: "PKP = 699 − 15 − 120 − 67,5 juta = Rp496.500.000, masih di lapisan 25%.",
         jejakHitung: [ ["Neto − zakat − kompensasi", "Rp564.000.000"], ["PTKP K/2", "Rp67.500.000"], ["PKP", "Rp496.500.000"], ["5% × Rp60.000.000", "Rp3.000.000"], ["15% × Rp190.000.000", "Rp28.500.000"], ["25% × Rp246.500.000", "Rp61.625.000"], ["PPh terutang", "Rp93.125.000"] ],
         mengapaSalah: { A: "Memakai lapisan lama pra-UU HPP (5% hanya s.d. Rp50 juta)", B: "Lupa mengurangkan zakat sehingga PKP Rp511.500.000 masuk lapisan 30%", C: "Ikut mengompensasikan sisa rugi 2020 yang telah hangus (kompensasi Rp190.000.000)" },
@@ -706,6 +719,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang dicari adalah pengeluaran yang BOLEH jadi biaya klinik. Sejak aturan baru, bingkisan hari raya dan makan siang untuk pegawai boleh dibiayakan, asalkan untuk menjalankan usaha. Asuransi kesehatan dr. Kevin dan keluarganya adalah keperluan pribadi, jadi tidak boleh. Angsuran PPh 25 juga bukan biaya, melainkan cicilan pajak yang nanti dikurangkan dari pajak terutang, dan sanksi pajak pun tidak boleh dibiayakan. Cara ingat: fasilitas untuk karyawan boleh, keperluan pribadi pemilik, pajak penghasilan, dan denda tidak boleh.",
         inti: "Natura/kenikmatan untuk pegawai dapat dibiayakan sejak UU HPP sepanjang biaya 3M. Premi asuransi pribadi, PPh, dan sanksi pajak tidak boleh dikurangkan (Pasal 9 ayat (1) huruf d, h, k).",
         jejakHitung: [],
         mengapaSalah: { B: "Premi asuransi kesehatan yang dibayar OP untuk dirinya dan keluarganya tidak boleh dikurangkan (Pasal 9 ayat (1) huruf d)", C: "PPh, termasuk angsuran PPh 25, bukan biaya; ia kredit pajak (Pasal 9 ayat (1) huruf h)", D: "Sanksi administrasi pajak tidak boleh dikurangkan (Pasal 9 ayat (1) huruf k)" },
@@ -723,6 +737,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Penyusutan pajak dihitung sejak bulan beli: laptop dari Maret ada 10 bulan, mobil boks dari April ada 9 bulan. Menurut pajak, laptop 25% x Rp24 juta x 10/12 = Rp5 juta dan mobil 12,5% x Rp320 juta x 9/12 = Rp30 juta, totalnya Rp35 juta. Menurut buku, laptop Rp24 juta dibagi 2 tahun x 10/12 = Rp10 juta dan mobil Rp320 juta dibagi 5 tahun x 9/12 = Rp48 juta, totalnya Rp58 juta. Biaya di buku lebih besar Rp23 juta, jadi labanya dikoreksi naik Rp23 juta. Cara ingat: biaya buku lebih besar dari biaya pajak berarti koreksi positif.",
         inti: "Penyusutan fiskal dimulai pada bulan perolehan dan dihitung proporsional: laptop 25% × 10/12, mobil boks 12,5% × 9/12. Penyusutan komersial lebih besar sehingga selisihnya dikoreksi positif.",
         jejakHitung: [ ["Fiskal laptop: 24 jt × 25% × 10/12", "Rp5.000.000"], ["Fiskal mobil boks: 320 jt × 12,5% × 9/12", "Rp30.000.000"], ["Total fiskal", "Rp35.000.000"], ["Komersial laptop: 24 jt ÷ 2 × 10/12", "Rp10.000.000"], ["Komersial mobil boks: 320 jt ÷ 5 × 9/12", "Rp48.000.000"], ["Total komersial", "Rp58.000.000"], ["Koreksi = 58 jt − 35 jt", "positif Rp23.000.000"] ],
         mengapaSalah: { A: "Menghitung penyusutan fiskal setahun penuh (Rp6 juta + Rp40 juta) tanpa proporsi bulan", B: "Memakai tarif saldo menurun (50% dan 25%) padahal metode yang dipilih garis lurus", C: "Memasukkan mobil boks ke Kelompok 3 (6,25%)" },
@@ -740,6 +755,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Rp40 juta itu dikeluarkan untuk ruko yang sewanya sudah kena pajak final. Aturannya, biaya untuk mendapatkan penghasilan final tidak boleh mengurangi penghasilan toko yang dikenai tarif biasa. Pajak final sewa juga dihitung dari sewa kotor, jadi biaya ruko tidak mengubah pajak sewanya. Karena itu seluruh Rp40 juta dikeluarkan dari biaya toko, alias dikoreksi positif. Cara ingat: penghasilannya final, biayanya ikut tidak dihitung.",
         inti: "Biaya yang berkaitan dengan penghasilan yang dikenai PPh final tidak dapat dikurangkan dari penghasilan yang dikenai tarif umum. PPh final sewa tanah/bangunan dihitung dari bruto, sehingga biaya ruko tidak berpengaruh pada PPh finalnya.",
         jejakHitung: [],
         mengapaSalah: { A: "Biaya 3M hanya dapat dikurangkan dari penghasilan yang dikenai tarif umum, bukan untuk penghasilan final", B: "PPh final sewa 10% dihitung dari jumlah bruto nilai sewa", C: "PBB atas harta usaha biasa memang boleh dibiayakan; di sini seluruh biaya ruko terkait penghasilan final sehingga seluruhnya dikoreksi" },
@@ -761,6 +777,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dari laba buku Rp410 juta, lalu cari beban yang tidak boleh jadi biaya. Bunga KPR rumah pribadi adalah keperluan pribadi, jadi ditambahkan kembali Rp24 juta. Bunga deposito Rp8 juta sudah kena pajak final, jadi dikeluarkan: Rp410 juta + Rp24 juta − Rp8 juta = Rp426 juta. PPh 21 karyawan yang ditanggung apotek kini dianggap fasilitas untuk pegawai, jadi boleh dibiayakan, begitu juga PBB gedung, pelatihan, dan makan siang karyawan. Cara ingat: yang dilarang hanya pajak penghasilan milik pengusaha sendiri, bukan pajak karyawan yang ia tanggung.",
         inti: "Koreksi positif hanya atas bunga KPR rumah pribadi (biaya untuk kepentingan pribadi, Pasal 9 ayat (1) huruf i) dan koreksi negatif atas bunga deposito yang final. PPh 21 yang ditanggung pemberi kerja adalah penggantian dalam bentuk kenikmatan bagi pegawai (contoh dalam Lampiran PMK 168/2023), sehingga dapat dibiayakan menurut Pasal 6 ayat (1) huruf n UU PPh dan Pasal 2 ayat (1) PMK 66/2023; larangan Pasal 9 ayat (1) huruf h hanya mengenai PPh yang terutang oleh Wajib Pajak sendiri. PBB gedung usaha (pajak selain PPh), pelatihan, dan makan siang seluruh karyawan juga boleh dibiayakan.",
         jejakHitung: [
           ["Laba komersial", "Rp410.000.000"],
@@ -794,6 +811,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Kuncinya ada di bagian mana yang termasuk pekerjaan bebas. Gaji dari RS Harapan adalah gaji pegawai, jadi tidak ikut, tetapi jasa sebagai dokter tamu di RS Sehat termasuk pekerjaan bebas. Jasa dokter tamu 12 x Rp20 juta = Rp240 juta, ditambah praktik pribadi Rp290 juta, jadi Rp530 juta. Dengan norma 50%, penghasilan netonya 50% x Rp530 juta = Rp265 juta. Cara ingat: norma adalah persentase dari omzet pekerjaan bebas, bukan dari gaji.",
         inti: "Jasa medis sebagai dokter tamu adalah peredaran bruto pekerjaan bebas. Peredaran bruto Rp240.000.000 + Rp290.000.000 = Rp530.000.000 (kurang dari Rp4,8 miliar, pemberitahuan tepat waktu), neto = 50% × Rp530.000.000.",
         jejakHitung: [
           ["Jasa medis RS Sehat (12 × Rp20.000.000)", "Rp240.000.000"],
@@ -826,6 +844,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Jumlahkan dulu penghasilan yang dikenai tarif biasa: gaji Rp206,4 juta dan pekerjaan bebas Rp265 juta. Kurangi zakat Rp6 juta dan PTKP kawin dua anak Rp67,5 juta, yaitu bagian penghasilan yang bebas pajak, sehingga penghasilan kena pajak Rp397,9 juta. Pajaknya Rp3 juta untuk Rp60 juta pertama, Rp28,5 juta untuk Rp190 juta berikutnya, dan 25% x Rp147,9 juta = Rp36,975 juta, totalnya Rp68.475.000. Bunga deposito tidak ikut karena sudah final, dan jasa dokter tidak boleh memakai pajak final UMKM. Cara ingat: dokter memakai norma lalu tarif berlapis.",
         inti: "PKP = 206.400.000 + 265.000.000 − 6.000.000 − 67.500.000 = Rp397.900.000; bunga deposito final tidak ikut.",
         jejakHitung: [
           ["Neto pekerjaan + pekerjaan bebas", "Rp471.400.000"],
@@ -855,6 +874,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "PPh 29 adalah sisa pajak yang masih harus dibayar setelah pajak terutang dikurangi semua potongan dan cicilan yang sah. Potongan yang sah: PPh 21 RS Harapan Rp14,835 juta, PPh 21 RS Sehat 12 x Rp500 ribu = Rp6 juta, dan PPh 25 12 x Rp3,5 juta = Rp42 juta. Rp68,475 juta dikurangi ketiganya tinggal Rp5.640.000. Pajak final bunga deposito tidak boleh ikut dikurangkan. Cara ingat: pajak final tidak pernah dipakai mengurangi pajak terutang.",
         inti: "Kredit yang sah: PPh 21 dari kedua rumah sakit dan PPh 25 yang disetor; PPh final bunga deposito tidak dikreditkan.",
         jejakHitung: [ ["PPh terutang", "Rp68.475.000"], ["− PPh 21 RS Harapan", "Rp14.835.000"], ["− PPh 21 jasa medis (12 × Rp500.000)", "Rp6.000.000"], ["− PPh 25 (12 × Rp3.500.000)", "Rp42.000.000"], ["PPh 29 kurang bayar", "Rp5.640.000"] ],
         mengapaSalah: { B: "Ikut mengkreditkan PPh final bunga deposito", C: "Lupa mengkreditkan PPh 21 jasa medis dari RS Sehat", D: "Lupa mengkreditkan PPh 25 yang telah disetor sendiri" },
@@ -877,6 +897,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Angsuran bulanan tahun depan dihitung dari pajak tahun ini dikurangi pajak yang dipotong pihak lain, lalu dibagi 12. Yang dikurangkan hanya PPh 21 dari kedua rumah sakit, Rp14,835 juta + Rp6 juta = Rp20,835 juta. Rp68,475 juta dikurangi Rp20,835 juta = Rp47,64 juta, lalu dibagi 12 = Rp3.970.000. Cicilan PPh 25 yang sudah dibayar dan pajak final bunga tidak dikurangkan. Cara ingat: menghitung angsuran tidak mengurangkan angsuran yang lalu.",
         inti: "Pasal 25 ayat (1): PPh terutang dikurangi PPh 21/22/23 dan PPh 24, dibagi 12. PPh 25 tahun berjalan dan PPh final tidak dikurangkan.",
         jejakHitung: [
           ["PPh terutang 2026", "Rp68.475.000"],
@@ -903,6 +924,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Norma artinya penghasilan neto ditetapkan sebagai persentase tertentu dari omzet. Karena persentase itu sudah memperhitungkan biaya, Ibu Wulan tidak perlu pembukuan lengkap, cukup mencatat penerimaan kotornya. Biaya nyata seperti sewa studio atau gaji asisten tidak boleh dikurangkan lagi. Hak memakai norma juga tidak berlaku selamanya, karena bergantung pada omzet di bawah Rp4,8 miliar. Cara ingat: norma itu pengganti biaya, bukan tambahan pengurang.",
         inti: "Pengguna NPPN cukup menyelenggarakan pencatatan (Pasal 28 ayat (2) UU KUP). Norma sudah memperhitungkan biaya sehingga biaya riil tidak dikurangkan lagi; hak memakai norma bergantung pada peredaran bruto kurang dari Rp4,8 miliar.",
         jejakHitung: [],
         mengapaSalah: { B: "Tidak ada pilihan 'hasil yang lebih kecil'; pengguna norma cukup pencatatan", C: "Biaya riil sudah tercakup dalam persentase norma", D: "Hak NPPN bersyarat peredaran bruto kurang dari Rp4,8 miliar dan pemberitahuan dalam 3 bulan pertama tahun pajak" },
@@ -920,6 +942,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "angka-usang", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini mencari yang TIDAK berhak memakai norma. Syarat pertama norma: pemakainya harus orang pribadi, dan omzetnya di bawah Rp4,8 miliar. CV adalah badan usaha, jadi wajib membuat pembukuan lengkap berapa pun omzetnya. Arsitek, pedagang grosir, dan penerjemah lepas semuanya orang pribadi dengan omzet di bawah batas, dan status pegawai tidak menghalangi. Cara ingat: cek dulu orang atau badan, baru cek angkanya.",
         inti: "NPPN hanya untuk Wajib Pajak orang pribadi (Pasal 14 ayat (2) UU PPh); badan seperti CV wajib menyelenggarakan pembukuan.",
         jejakHitung: [],
         mengapaSalah: { B: "Rp3,9 miliar masih kurang dari Rp4,8 miliar", C: "Batas Rp600 juta adalah ketentuan lama sebelum UU 36/2008; kini kurang dari Rp4,8 miliar", D: "Status pegawai tidak menghalangi NPPN atas penghasilan pekerjaan bebasnya" },
@@ -941,6 +964,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Satu orang bisa punya dua cara hitung pajak sekaligus. Jasa arsitek termasuk pekerjaan bebas, yang tidak boleh memakai pajak final 0,5%, jadi netonya dihitung dengan norma: 35% x Rp600 juta = Rp210 juta, lalu dikenai tarif berlapis biasa. Toko kelontong tetap boleh memakai pajak final 0,5% selama total omzet yang diuji tidak lebih dari Rp4,8 miliar. Totalnya Rp900 juta + Rp600 juta = Rp1,5 miliar, masih di bawah batas. Cara ingat: dagang boleh final, pekerjaan bebas tidak.",
         inti: "Jasa sehubungan dengan pekerjaan bebas orang pribadi, termasuk arsitek, dikecualikan dari PPh final 0,5% (Pasal 56 ayat (3) huruf a dan ayat (4) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018) dan tetap dikecualikan setelah PP 20/2026. Usaha dagang WP yang sama tetap boleh memakai 0,5% selama peredaran bruto yang diuji tidak melebihi Rp4,8 miliar; sejak PP 20/2026 uji itu menjumlahkan peredaran bruto usaha, pekerjaan bebas, dan luar negeri (Pasal 58 ayat (1) huruf a). Penghasilan arsitek dihitung dengan NPPN dan dikenai tarif Pasal 17.",
         jejakHitung: [
           ["Uji batas: peredaran bruto 2025 (usaha + pekerjaan bebas)", "di bawah Rp2 miliar ≤ Rp4,8 miliar"],
@@ -968,6 +992,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya: apakah pemberitahuan memakai norma pada 10 April masih sah. Pemberitahuan harus disampaikan dalam 3 bulan pertama tahun pajak, jadi paling lambat 31 Maret 2026. Karena Budi terlambat, ia dianggap memilih pembukuan, sehingga netonya tidak boleh dihitung dengan norma 50%. Bila ia tidak membuat pembukuan, kantor pajak yang dapat menetapkan netonya dengan norma. Cara ingat: norma dipilih di awal tahun, paling lambat akhir Maret.",
         inti: "Tiga bulan pertama Tahun Pajak 2026 berakhir 31 Maret 2026. Pemberitahuan 10 April 2026 terlambat; menurut ayat (4) Budi dianggap memilih pembukuan, sehingga wajib menghitung neto berdasarkan pembukuan. Bila pembukuan tidak diselenggarakan, DJP dapat menghitung neto secara jabatan dengan norma (Pasal 14 ayat (5)).",
         jejakHitung: [],
         mengapaSalah: { B: "Batasnya 3 bulan pertama (s.d. 31 Maret), bukan 4 bulan", C: "Batas peredaran bruto hanya syarat kelayakan; pemberitahuan tetap wajib", D: "Pemberitahuan harus dalam 3 bulan pertama tahun pajak yang bersangkutan, tidak dapat menyusul bersama SPT" },
@@ -985,6 +1010,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Aturannya: rugi tertua dipakai lebih dulu, dan tiap rugi hanya berlaku 5 tahun sesudah tahun ruginya. Laba 2023 sampai 2025 sebesar Rp130 juta memakai rugi 2021, sehingga sisanya Rp70 juta, dan 2026 adalah tahun terakhirnya. Laba 2026 Rp180 juta memakai sisa rugi 2021 Rp70 juta, lalu rugi 2022 sebesar Rp110 juta. Rugi 2022 masih sisa Rp150 juta − Rp110 juta = Rp40 juta, yang boleh dipakai sampai 2027. Cara ingat: yang tua dipakai dulu sebelum hangus.",
         inti: "Rugi tertua dipakai lebih dahulu. Laba 2023–2025 (Rp130 juta) memakai rugi 2021, sisa Rp70 juta yang batas akhirnya 2026. Laba 2026 Rp180 juta memakai sisa rugi 2021 Rp70 juta, lalu rugi 2022 Rp110 juta; sisa rugi 2022 Rp40 juta berlaku sampai 2027.",
         jejakHitung: [ ["Rugi 2021 dipakai 2023–2025 (60 + 40 + 30 juta)", "Rp130.000.000"], ["Sisa rugi 2021 (batas akhir 2026)", "Rp70.000.000"], ["Rugi 2022 utuh (batas akhir 2027)", "Rp150.000.000"], ["Laba 2026 → pakai rugi 2021 dahulu", "Rp70.000.000"], ["Lalu rugi 2022", "Rp110.000.000"], ["Sisa rugi 2022 ke 2027", "Rp40.000.000"] ],
         mengapaSalah: { A: "Menghitung 5 tahun termasuk tahun rugi; rugi 2021 masih boleh dipakai sampai 2026", C: "Memakai rugi terbaru lebih dahulu dan membawa rugi 2021 melewati batas 5 tahun", D: "Kompensasi tidak boleh melebihi penghasilan neto tahun berjalan dan tidak menciptakan rugi baru" },
@@ -1002,6 +1028,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang dicari adalah kerugian yang BOLEH mengurangi laba 2026. Rugi usaha dalam negeri boleh dipakai 5 tahun sesudah tahun ruginya, jadi rugi 2021 masih bisa dipakai sampai 2026. Rugi 2020 sudah habis masanya pada 2025. Rugi jual saham di bursa terkait penghasilan yang kena pajak final, dan rugi cabang Malaysia tidak boleh dicampur dengan laba dalam negeri. Cara ingat: tiga yang gugur punya tiga alasan, yaitu final, luar negeri, dan kedaluwarsa.",
         inti: "Rugi 2021 masih dalam batas 5 tahun (2022–2026). Rugi saham di bursa terkait transaksi yang dikenai PPh final; rugi luar negeri tidak digabung dengan penghasilan dalam negeri; rugi 2020 berakhir pada 2025.",
         jejakHitung: [],
         mengapaSalah: { B: "Transaksi saham di bursa dikenai PPh final 0,1%, sehingga ruginya tidak masuk penghitungan tarif umum", C: "Kerugian di luar negeri tidak dapat dikompensasikan dengan penghasilan dalam negeri (PMK 192/PMK.03/2018)", D: "Rugi 2020 hanya dapat dipakai 2021–2025" },
@@ -1019,6 +1046,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pertama, hitung sisanya: rugi Rp80 juta dipakai Rp50 juta di 2026, jadi tersisa Rp30 juta. Lalu tentukan batas waktunya: rugi boleh dipakai 5 tahun berturut-turut mulai tahun sesudah tahun rugi. Rugi 2025 dihitung mulai 2026, sehingga lima tahunnya adalah 2026 sampai 2030. Jadi sisa Rp30 juta masih boleh dipakai paling lambat Tahun Pajak 2030. Cara ingat: tahun rugi tidak ikut dihitung, mulai hitung dari tahun berikutnya.",
         inti: "Rugi 2025 dikompensasikan mulai 2026 berturut-turut sampai 5 tahun (2026–2030). Setelah dipakai Rp50.000.000, sisanya Rp30.000.000.",
         jejakHitung: [ ["Rugi 2025", "Rp80.000.000"], ["Dipakai 2026", "Rp50.000.000"], ["Sisa", "Rp30.000.000"], ["Lima tahun sejak tahun berikutnya", "2026–2030"] ],
         mengapaSalah: { A: "Menghitung 2025 sebagai tahun pertama", C: "Lupa bahwa Rp50.000.000 sudah dipakai pada 2026", D: "Kompensasi dibatasi 5 tahun" },
@@ -1040,6 +1068,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada di angka rugi mana yang dipakai, angka di SPT atau angka hasil pemeriksaan. Begitu pemeriksa pajak menetapkan rugi 2023 hanya Rp120 juta dan Ibu Dewi tidak keberatan, angka itulah yang berlaku. Rp80 juta sudah dipakai di 2024, jadi sisanya Rp120 juta dikurangi Rp80 juta = Rp40 juta. Laba 2025 Rp100 juta cukup menampung semuanya, sehingga kompensasi 2025 Rp40 juta. Cara ingat: sisa rugi dihitung dari angka ketetapan terakhir, bukan dari SPT awal.",
         inti: "Jumlah rugi yang dapat dikompensasikan mengikuti ketetapan DJP (Rp120.000.000). Setelah dipakai Rp80.000.000 pada 2024, sisa yang dapat dipakai pada 2025 hanya Rp40.000.000.",
         jejakHitung: [
           ["Rugi 2023 menurut SKP", "Rp120.000.000"],
@@ -1067,6 +1096,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Yang ditanya di sini berapa tanggungan yang boleh dihitung. Tanggungan hanya keluarga garis lurus (anak, orang tua, mertua) yang ditanggung penuh, paling banyak tiga, dan keadaannya dilihat pada 1 Januari. Dua anak dan ibu mertua masuk, adik tidak karena saudara itu garis ke samping, dan bayi yang lahir Maret baru dihitung tahun depan. Jadi Rp54 juta + Rp4,5 juta (kawin) + 3 x Rp4,5 juta = Rp72 juta. Cara ingat: lurus ke atas atau ke bawah boleh, ke samping tidak.",
         inti: "Tanggungan yang sah: dua anak kandung dan ibu mertua (semenda garis lurus) = 3. Adik kandung adalah garis ke samping, dan anak yang lahir Maret 2026 belum dihitung karena status ditentukan pada awal tahun.",
         jejakHitung: [ ["WP sendiri", "Rp54.000.000"], ["Tambahan kawin", "Rp4.500.000"], ["3 tanggungan × Rp4.500.000", "Rp13.500.000"], ["PTKP K/3", "Rp72.000.000"] ],
         mengapaSalah: { A: "Tidak menghitung ibu mertua; mertua adalah keluarga semenda dalam garis keturunan lurus", C: "Menghitung lima tanggungan; maksimal 3 dan adik kandung tidak termasuk", D: "Menambahkan PTKP istri Rp54.000.000 padahal istri tidak berpenghasilan" },
@@ -1084,6 +1114,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Mulai dari syarat agar gaji istri tidak digabung: hanya dari satu pemberi kerja, sudah dipotong PPh 21, dan tidak terkait usaha keluarga. Bu Dina juga bekerja di yayasan, jadi syarat pertama gugur dan semua penghasilannya digabung ke Pak Fajar, dengan tambahan PTKP istri Rp54 juta. Upah yayasan Rp2 juta x 12 = Rp24 juta, sehingga neto gabungan Rp180 juta + Rp96 juta + Rp24 juta = Rp300 juta. Dikurangi PTKP Rp121,5 juta tersisa Rp178,5 juta, pajaknya 5% x Rp60 juta + 15% x Rp118,5 juta = Rp20.775.000. Cara ingat: satu pekerjaan tambahan saja sudah membuat penghasilan istri digabung.",
         inti: "Penghasilan Bu Dina tidak semata-mata dari satu pemberi kerja, sehingga seluruhnya digabung dengan penghasilan Pak Fajar dan PTKP ditambah Rp54.000.000 (K/I/2). PPh 21 Bu Dina menjadi kredit pajak.",
         jejakHitung: [ ["Neto gabungan 180 + 96 + 24 juta", "Rp300.000.000"], ["PTKP K/I/2 (67,5 + 54 juta)", "Rp121.500.000"], ["PKP", "Rp178.500.000"], ["5% × Rp60.000.000", "Rp3.000.000"], ["15% × Rp118.500.000", "Rp17.775.000"], ["PPh terutang", "Rp20.775.000"] ],
         mengapaSalah: { A: "Menganggap gaji PT Beta tetap final dan hanya menggabung upah yayasan dengan PTKP K/2", C: "Menggabung penghasilan istri tetapi lupa menambah PTKP istri Rp54.000.000", D: "Mengabaikan seluruh penghasilan Bu Dina seolah final" },
@@ -1102,6 +1133,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "salah-baca" },
       pembahasan: {
+        mudah: "Pisah harta bukan berarti pajaknya dihitung sendiri-sendiri. Caranya, penghasilan suami dan istri dijumlah dulu, pajaknya dihitung sekali, lalu dibagi sesuai besar penghasilan masing-masing. Neto Rp500 juta dikurangi PTKP Rp117 juta menjadi Rp383 juta, dan pajaknya Rp64,75 juta. Bagian Bu Hesti 200/500 x Rp64,75 juta = Rp25,9 juta. Cara ingat: pisah harta berarti gabung dulu, baru dibagi.",
         inti: "Neto suami dan istri digabung, PTKP memakai K/I/1, lalu PPh gabungan dibagi sebanding neto: bagian Bu Hesti 200/500.",
         jejakHitung: [ ["Neto gabungan", "Rp500.000.000"], ["PTKP K/I/1 (54 + 4,5 + 54 + 4,5 juta)", "Rp117.000.000"], ["PKP gabungan", "Rp383.000.000"], ["PPh gabungan = Rp31.500.000 + 25% × Rp133.000.000", "Rp64.750.000"], ["Bagian Bu Hesti = 200/500 × Rp64.750.000", "Rp25.900.000"] ],
         mengapaSalah: { A: "Menghitung Bu Hesti terpisah dengan PTKP TK/0 seperti status HB", B: "Memakai PTKP K/1 tanpa tambahan PTKP istri", C: "Membagi sama rata 50:50, bukan sebanding penghasilan neto" },
@@ -1119,6 +1151,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Status PTKP dikunci pada keadaan 1 Januari, jadi perubahan di tengah tahun baru berpengaruh tahun berikutnya. Pada 1 Januari 2026 Yoga masih lajang dan sudah menanggung penuh ibu kandungnya. Jadi statusnya TK/1, yaitu Rp54 juta + Rp4,5 juta = Rp58,5 juta. Pernikahan Juni 2026 baru dihitung untuk tahun 2027, dan PTKP tidak pernah dihitung per bulan. Cara ingat: lihat foto keluarga pada 1 Januari.",
         inti: "Status PTKP mengikuti keadaan 1 Januari 2026: belum kawin dengan satu tanggungan (ibu kandung, sedarah garis lurus).",
         jejakHitung: [ ["Status 1 Januari 2026", "belum kawin, 1 tanggungan"], ["Rp54.000.000 + Rp4.500.000", "Rp58.500.000"] ],
         mengapaSalah: { A: "Memakai status setelah menikah; perubahan di tengah tahun berlaku tahun berikutnya", B: "Lupa menghitung ibu kandung yang ditanggung sepenuhnya", C: "PTKP tidak diproporsikan menurut bulan" },
@@ -1136,6 +1169,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Yang ditanya di sini status istri yang memilih mengurus pajaknya sendiri padahal tidak ada perjanjian pisah harta. Statusnya disebut MT, artinya memilih terpisah. Walau NPWP-nya sendiri, hitungannya sama seperti pisah harta: penghasilan suami dan istri digabung, dikurangi PTKP gabungan, lalu pajaknya dibagi sebanding penghasilan, dan masing-masing lapor SPT sendiri. Hitung terpisah tanpa digabung hanya untuk suami istri yang hidup berpisah karena putusan hakim. Cara ingat: MT dan PH beda alasan, tetapi caranya sama, gabung lalu bagi.",
         inti: "Istri yang memilih menjalankan hak dan kewajiban sendiri berstatus MT (Pasal 8 ayat (2) huruf c); perlakuannya sama dengan PH: digabung lalu dibagi proporsional. Perlakuan terpisah tanpa penggabungan hanya untuk HB berdasarkan putusan hakim.",
         jejakHitung: [],
         mengapaSalah: { A: "Perlakuan terpisah tanpa penggabungan hanya berlaku bagi HB", B: "Undang-undang memberi istri pilihan menjalankan hak dan kewajiban sendiri tanpa perjanjian pisah harta", D: "PH mensyaratkan perjanjian pisah harta tertulis; memilih NPWP sendiri tanpa perjanjian adalah MT" },
@@ -1153,6 +1187,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "lupa-pasal", D: "angka-usang" },
       pembahasan: {
+        mudah: "Soal ini menguji urutan hitung dan pembulatan. Zakat lewat BAZNAS mengurangi penghasilan, lalu dikurangi PTKP, dan hasilnya dibulatkan ke bawah ke ribuan penuh sebelum dikali tarif. Rp312.456.789 dikurangi Rp2,4 juta dan Rp58,5 juta menjadi Rp251.556.789, dibulatkan menjadi Rp251.556.000. Pajaknya Rp31,5 juta (untuk Rp250 juta pertama) + 25% x Rp1.556.000 = Rp31.889.000. Cara ingat: bulatkan ke bawah dulu, baru pakai tarif.",
         inti: "PKP dibulatkan ke bawah dalam ribuan rupiah penuh sebelum tarif diterapkan.",
         jejakHitung: [ ["Neto − zakat", "Rp310.056.789"], ["− PTKP TK/1", "Rp58.500.000"], ["PKP sebelum pembulatan", "Rp251.556.789"], ["PKP dibulatkan ke bawah", "Rp251.556.000"], ["Rp31.500.000 + 25% × Rp1.556.000", "Rp31.889.000"] ],
         mengapaSalah: { B: "Tidak membulatkan PKP ke bawah dalam ribuan", C: "Tidak mengurangkan zakat BAZNAS", D: "Memakai lapisan lama pra-UU HPP (5% hanya s.d. Rp50 juta)" },
@@ -1171,6 +1206,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Tidak semua zakat dan sumbangan boleh mengurangi penghasilan. Yang boleh hanya zakat yang dibayar lewat lembaga resmi seperti BAZNAS, jadi infak ke kotak amal masjid dan zakat langsung ke tetangga tidak dihitung. Rp150 juta dikurangi zakat Rp6 juta dan PTKP Rp63 juta menjadi Rp81 juta. Pajaknya 5% x Rp60 juta + 15% x Rp21 juta = Rp6.150.000. Cara ingat: zakat lewat lembaga resmi mengurangi penghasilan, bukan mengurangi pajak.",
         inti: "Hanya zakat melalui BAZNAS yang dapat dikurangkan; infak sukarela dan zakat langsung kepada perorangan tidak diterima lembaga yang dibentuk/disahkan pemerintah.",
         jejakHitung: [ ["Neto", "Rp150.000.000"], ["− Zakat BAZNAS", "Rp6.000.000"], ["− PTKP K/1", "Rp63.000.000"], ["PKP", "Rp81.000.000"], ["5% × 60 jt + 15% × 21 jt", "Rp6.150.000"] ],
         mengapaSalah: { A: "Mengurangkan seluruh Rp11 juta, termasuk infak dan zakat langsung yang tidak memenuhi syarat", B: "Memperlakukan zakat sebagai kredit pajak (mengurangi PPh), padahal zakat mengurangi penghasilan", D: "Tidak mengurangkan zakat BAZNAS sama sekali" },
@@ -1188,6 +1224,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "angka-usang", D: "salah-baca" },
       pembahasan: {
+        mudah: "Tarif pajak orang pribadi bertingkat seperti anak tangga, dan tiap potongan penghasilan kena tarifnya sendiri. Sampai Rp500 juta pajaknya sudah tetap Rp94 juta, lalu bagian Rp500 juta sampai Rp5 miliar kena 30%, dan di atas Rp5 miliar kena 35%. Jadi Rp94 juta + 30% x Rp4,5 miliar (Rp1,35 miliar) + 35% x Rp600 juta (Rp210 juta) = Rp1,654 miliar. Jangan kalikan semuanya dengan 35%, dan jangan lupa anak tangga 35% itu. Cara ingat: tarif 35% hanya untuk bagian di atas Rp5 miliar.",
         inti: "Tarif berlapis: PPh s.d. Rp500 juta Rp94 juta, lapisan 30% sampai Rp5 miliar, dan 35% untuk kelebihannya.",
         jejakHitung: [ ["PPh s.d. Rp500.000.000", "Rp94.000.000"], ["30% × Rp4.500.000.000", "Rp1.350.000.000"], ["35% × Rp600.000.000", "Rp210.000.000"], ["PPh terutang", "Rp1.654.000.000"] ],
         mengapaSalah: { B: "Mengalikan seluruh PKP dengan tarif tertinggi 35%, bukan berlapis", C: "Memakai struktur lama pra-UU HPP: lapisan pertama Rp50 juta dan tarif tertinggi 30%", D: "Lupa lapisan 35% di atas Rp5 miliar sehingga seluruh kelebihan di atas Rp500 juta dikenai 30%" },
@@ -1209,6 +1246,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini batas pajak luar negeri yang boleh mengurangi pajak di Indonesia. Pajak yang dibayar di Singapura boleh dikurangkan, tetapi paling banyak sebesar bagian pajak Indonesia yang berasal dari penghasilan Singapura itu. Penghasilan Rp458,5 juta dikurangi PTKP Rp58,5 juta = Rp400 juta, pajaknya Rp69 juta. Bagian sewa Singapura 100/400 x Rp69 juta = Rp17,25 juta, lebih kecil dari Rp20 juta yang dibayar, jadi yang boleh dikurangkan Rp17,25 juta. Cara ingat: ambil yang lebih kecil antara pajak di luar negeri dan batas bagiannya.",
         inti: "PKP = 358,5 + 100 − 58,5 juta = Rp400.000.000; PPh terutang Rp69.000.000. Batas untuk penghasilan sewa dari Singapura (dihitung per jenis penghasilan untuk tiap negara) = 100/400 × Rp69.000.000 = Rp17.250.000, lebih kecil dari pajak yang dibayar di Singapura.",
         jejakHitung: [
           ["Neto dalam negeri + luar negeri", "Rp458.500.000"],
@@ -1237,6 +1275,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kredit pajak artinya pajak yang sudah dipotong atau dibayar di muka dan nanti mengurangi pajak di SPT. Yang boleh hanya yang tidak final: PPh 21 gaji Rp48 juta, PPh 21 konsultan Rp4 juta, PPh 22 mobil sangat mewah Rp125 juta, dan PPh 25 Rp24 juta, totalnya Rp201 juta. PPh final bunga deposito sudah selesai di tempat, jadi tidak ikut. Sanksi bunga dalam STP juga bukan pajak atas penghasilan, jadi tidak ikut. Cara ingat: pajak final dan sanksi tidak pernah jadi kredit.",
         inti: "Kredit pajak: PPh 21 (BPA1 dan bukan pegawai), PPh 22 barang sangat mewah, dan PPh 25. PPh final dan sanksi tidak dapat dikreditkan.",
         jejakHitung: [ ["PPh 21 BPA1", "Rp48.000.000"], ["PPh 21 bukan pegawai", "Rp4.000.000"], ["PPh 22 barang sangat mewah", "Rp125.000.000"], ["PPh 25", "Rp24.000.000"], ["Jumlah kredit", "Rp201.000.000"] ],
         mengapaSalah: { B: "Ikut mengkreditkan PPh final bunga deposito", C: "Ikut mengkreditkan sanksi STP; sanksi bukan pajak terutang", D: "Tidak mengkreditkan PPh 22 barang sangat mewah, padahal pungutan itu bersifat tidak final bagi pembeli" },
@@ -1258,6 +1297,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ada dua kesalahan di sini, dan masing-masing punya sanksi sendiri. Pertama, SPT orang pribadi terlambat dilapor dari batas 31 Maret, dendanya tetap Rp100 ribu. Kedua, kekurangan pajak Rp8 juta baru dibayar 10 April, sehingga kena bunga; 31 Maret sampai 10 April dihitung satu bulan, jadi Rp8 juta x 1,10% = Rp88 ribu. Jumlahnya Rp100 ribu + Rp88 ribu = Rp188 ribu. Cara ingat: telat lapor kena denda, telat bayar kena bunga.",
         inti: "Dua sanksi berjalan bersamaan: denda Pasal 7 ayat (1) Rp100.000 karena SPT terlambat dan bunga Pasal 9 ayat (2b) karena PPh 29 dibayar setelah batas waktu SPT; 31 Maret–10 April dihitung 1 bulan.",
         jejakHitung: [
           ["Denda SPT Tahunan OP terlambat", "Rp100.000"],
@@ -1285,6 +1325,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "final-nonfinal", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari memilah mana yang boleh mengurangi pajak. PPh 21 gaji Rp20 juta, PPh 21 bukan pegawai Rp3 juta, dan PPh 25 Rp12 juta boleh, totalnya Rp35 juta; PPh final sewa rumah tidak ikut. Rp35 juta dibanding pajak terutang Rp30 juta berarti lebih bayar Rp5 juta. Sebelum uangnya dikembalikan, kelebihan itu dipakai dulu melunasi utang STP Rp1,2 juta, jadi yang diterima Rp3,8 juta. Cara ingat: kelebihan bayar melunasi utang pajak dulu, sisanya baru dikembalikan.",
         inti: "Kredit sah Rp35.000.000 (PPh final tidak termasuk) melebihi PPh terutang Rp30.000.000, sehingga lebih bayar Rp5.000.000; sebelum dikembalikan, kelebihan diperhitungkan dengan utang STP Rp1.200.000.",
         jejakHitung: [ ["Kredit 20 + 3 + 12 juta", "Rp35.000.000"], ["PPh terutang", "Rp30.000.000"], ["Lebih bayar", "Rp5.000.000"], ["− Utang STP", "Rp1.200.000"], ["Dikembalikan", "Rp3.800.000"] ],
         mengapaSalah: { A: "Ikut mengkreditkan PPh final sewa rumah", B: "Pasal 28A mewajibkan kelebihan diperhitungkan dengan utang pajak berikut sanksinya terlebih dahulu", C: "PPh 25 adalah kredit pajak menurut Pasal 28 ayat (1)" },
@@ -1306,6 +1347,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang ditanya di sini cicilan pajak bulanan tahun 2026. Tuan Sapto bukan pengusaha tertentu, jadi rumusnya: pajak terutang tahun lalu dikurangi pajak yang dipotong atau dipungut pihak lain (PPh 21, 22, 23), lalu dibagi 12. Rp54,6 juta dikurangi Rp26,4 juta (Rp18 juta + Rp2,4 juta + Rp6 juta) = Rp28,2 juta, dibagi 12 = Rp2.350.000. PPh 25 tahun lalu tidak ikut dikurangkan, karena itu cicilan yang sedang dihitung ulang. Cara ingat: yang dikurangkan hanya potongan pihak lain, bukan cicilan sendiri.",
         inti: "Tuan Sapto menjalankan bengkel di rumah tinggalnya tanpa tempat usaha lain, sehingga bukan Wajib Pajak orang pribadi pengusaha tertentu, dan SPT-nya tidak memuat kompensasi kerugian maupun penghasilan tidak teratur; angsurannya mengikuti Pasal 25 ayat (1). Dasar angsuran = PPh terutang − PPh 21, 22, 23 (dan 24 bila ada), lalu dibagi 12; PPh 25 tahun lalu tidak dikurangkan.",
         jejakHitung: [
           ["PPh terutang 2025", "Rp54.600.000"],
@@ -1336,6 +1378,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "final-nonfinal", B: "angka-usang", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada pada status Ibu Maria sebagai pengusaha tertentu, yaitu pedagang eceran dengan toko yang terpisah dari rumah. Pengusaha seperti ini mencicil pajak 0,75% dari omzet bulanan, dihitung untuk masing-masing toko. Toko A 0,75% x Rp320 juta = Rp2,4 juta dan Toko B 0,75% x Rp180 juta = Rp1,35 juta, disetor paling lambat 15 April 2026. Tarif 0,5% tidak berlaku karena ia tidak pernah memakai PPh final UMKM dan omzet 2025-nya di atas Rp4,8 miliar. Cara ingat: pengusaha tertentu 0,75% per toko, setor tanggal 15.",
         inti: "Ibu Maria berdagang di dua toko yang berbeda dengan tempat tinggalnya, jadi ia Wajib Pajak orang pribadi pengusaha tertentu: angsurannya 0,75% × peredaran bruto bulanan masing-masing tempat usaha, disetor paling lambat tanggal 15 bulan berikutnya, dan menjadi kredit di SPT Tahunan.",
         jejakHitung: [
           ["Toko A: 0,75% × Rp320.000.000", "Rp2.400.000"],
@@ -1365,6 +1408,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", D: "angka-usang" },
       pembahasan: {
+        mudah: "Yang ditanya di sini apakah pedagang eceran pengguna PPh final UMKM masih harus mencicil 0,75%. Jawabannya tidak, karena cicilan 0,75% hanya untuk pengusaha yang memakai tarif umum, sedangkan Bu Yanti cukup membayar PPh final 0,5%. Bagi orang pribadi, omzet sampai Rp500 juta setahun bebas pajak, jadi pembayaran 0,5% baru dimulai setelah omzet yang terkumpul sejak Januari melewati Rp500 juta. Tidak ada pembayaran ganda atas omzet yang sama. Cara ingat: pilih satu jalur, final 0,5% atau cicilan 0,75%, tidak dua-duanya.",
         inti: "WP yang seluruh penghasilan usahanya dikenai PPh final membayar PPh final, bukan angsuran PPh 25 OPPT; bagi OP, bagian peredaran bruto sampai Rp500 juta setahun tidak dikenai PPh.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1387,6 +1431,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Ini soal cicilan bulanan dari pajak tahun lalu. Rumusnya: pajak terutang dikurangi pajak yang sudah dipotong, dipungut, atau dibayar di luar negeri (PPh 21, 22, 23, dan 24), lalu dibagi 12. Rp96 juta dikurangi Rp30 juta + Rp4,8 juta + Rp13,2 juta (Rp48 juta) menyisakan Rp48 juta, dibagi 12 = Rp4 juta. PPh 25 tahun lalu dan PPh final sewa ruko tidak ikut dikurangkan. Cara ingat: PPh 24, yaitu pajak luar negeri, ikut dikurangkan dan paling sering terlewat.",
         inti: "Kutipan hanya mengurangkan PPh 21, 22, 23, dan 24; PPh 25 tahun lalu dan PPh final tidak dikurangkan.",
         jejakHitung: [ ["PPh terutang", "Rp96.000.000"], ["− PPh 21 + PPh 23 + PPh 24 (30 + 4,8 + 13,2 juta)", "Rp48.000.000"], ["Dasar angsuran", "Rp48.000.000"], ["÷ 12", "Rp4.000.000"] ],
         mengapaSalah: { A: "Lupa mengurangkan PPh 24 yang boleh dikreditkan (huruf b kutipan)", B: "Ikut mengurangkan PPh 25 tahun lalu", C: "Ikut mengurangkan PPh final sewa ruko" },
@@ -1404,6 +1449,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Bagi orang pribadi, omzet Rp500 juta pertama dalam setahun bebas PPh final, dan batas ini dihitung menumpuk sejak Januari. Januari dan Februari baru Rp400 juta, jadi belum ada pajak. Sampai Maret omzet menjadi Rp660 juta, sehingga yang kena pajak hanya kelebihannya, Rp160 juta. Pajaknya 0,5% x Rp160 juta = Rp800 ribu. Cara ingat: Rp500 juta itu jatah setahun yang terpakai bertahap, bukan jatah per bulan.",
         inti: "Bagian Rp500 juta tidak kena pajak dihitung kumulatif sejak Januari. Kumulatif s.d. Februari Rp400 juta (nihil); Maret mencapai Rp660 juta, sehingga yang dikenai 0,5% hanya kelebihan Rp160 juta.",
         jejakHitung: [ ["Kumulatif Januari–Februari", "Rp400.000.000 (nihil)"], ["Kumulatif s.d. Maret", "Rp660.000.000"], ["Kena pajak Maret = Rp660 juta − Rp500 juta", "Rp160.000.000"], ["0,5% × Rp160.000.000", "Rp800.000"] ],
         mengapaSalah: { A: "Mengenakan 0,5% atas seluruh omzet Maret tanpa memperhatikan sisa bagian Rp500 juta (pola PP 23/2018)", B: "Membagi rata Rp500 juta menjadi kira-kira Rp41,67 juta per bulan", D: "Menganggap Rp500 juta berlaku per bulan" },
@@ -1422,6 +1468,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Keduanya sama-sama penghasilan yang pajaknya dianggap sudah selesai, jadi tidak digabung ke hitungan tarif umum. Omzet toko dan PPh final UMKM yang sudah disetor dilaporkan di lampiran penghasilan final. Gaji Bu Sinta juga dianggap selesai bagi keluarga, karena hanya dari satu pemberi kerja, sudah dipotong PPh 21, dan tidak terkait usaha keluarga. Gajinya dilaporkan di lampiran final SPT suami, dan Bu Sinta dicantumkan di daftar anggota keluarga. Cara ingat: tidak digabung bukan berarti tidak dilapor.",
         inti: "Penghasilan istri yang memenuhi tiga syarat Pasal 8 ayat (1) bersifat final bagi keluarga dan dilaporkan suami pada lampiran penghasilan final; istri didaftarkan dalam daftar anggota keluarga agar penghasilannya tidak dianggap penghasilan suami. PPh final UMKM juga dilaporkan pada lampiran penghasilan final tanpa digabung.",
         jejakHitung: [],
         mengapaSalah: { B: "Penghasilan istri dari satu pemberi kerja yang telah dipotong PPh 21 tidak digabung", C: "Penghasilan yang dikenai PPh final UMKM tidak dihitung ulang dengan NPPN dan PPh-nya tidak dikreditkan", D: "Penghasilan istri tetap dilaporkan dalam SPT suami karena keluarga merupakan satu kesatuan" },
@@ -1439,6 +1486,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dari memisahkan penghasilan yang sudah final dari yang belum. Omzet toko kena PPh final UMKM, dan gaji istri memenuhi syarat sehingga dianggap selesai bagi keluarga, jadi keduanya tidak masuk hitungan tarif umum. Yang tersisa hanya bunga pinjaman Rp30 juta, lebih kecil dari PTKP K/1 Rp63 juta, sehingga penghasilan kena pajaknya nihil. Tambahan PTKP istri hanya diberikan bila gaji istri digabung, dan bunga itu tetap wajib dilaporkan walau tidak dipotong. Cara ingat: tidak dipotong bukan berarti bebas pajak.",
         inti: "Penghasilan toko (final) dan penghasilan istri (final bagi keluarga) tidak masuk PKP. Satu-satunya penghasilan non-final adalah bunga pinjaman Rp30.000.000, lebih kecil dari PTKP K/1 Rp63.000.000.",
         jejakHitung: [ ["Neto non-final (bunga pinjaman)", "Rp30.000.000"], ["PTKP K/1", "Rp63.000.000"], ["PKP", "nihil"] ],
         mengapaSalah: { A: "Tambahan PTKP istri hanya bila penghasilan istri digabung; di sini tidak digabung", C: "PTKP tidak dikurangkan dari peredaran bruto PPh final", D: "Bunga dari orang pribadi adalah objek non-final Pasal 4 ayat (1) huruf f yang tetap wajib dilaporkan, walaupun tidak dipotong" },
@@ -1460,6 +1508,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "angka-usang" },
       pembahasan: {
+        mudah: "Yang ditanya di sini kapan Bu Melati harus pindah dari tarif 0,5% ke tarif umum. Batas Rp4,8 miliar diuji dengan omzet tahun sebelumnya; omzet 2025 Rp3,6 miliar, jadi sepanjang 2026 ia boleh memakai 0,5%. Meski omzet 2026 menembus Rp4,8 miliar pada Oktober, tarif 0,5% tetap dipakai sampai Desember 2026. Mulai 2027 ia memakai tarif umum dan tidak bisa kembali ke PPh final, dan aturan lama tujuh tahun sejak terdaftar sudah dihapus. Cara ingat: lewat batas di tengah tahun, pindah jalur tahun depan.",
         inti: "Batas Rp4,8 miliar diuji atas peredaran bruto tahun pajak sebelumnya (Pasal 58 ayat (1)); peredaran bruto 2025 Rp3,6 miliar sehingga 2026 boleh memakai 0,5%. Bila batas terlampaui dalam tahun berjalan, tarif 0,5% tetap dipakai sampai akhir tahun pajak itu (Pasal 61 ayat (1) PP 55/2022), lalu mulai tahun berikutnya dikenai tarif Pasal 17 (Pasal 61 ayat (2)) dan untuk tahun-tahun berikutnya tidak dapat lagi memakai PPh final (Pasal 57 ayat (2) huruf e dan ayat (4) s.t.d.d. PP 20/2026). Jangka waktu 7 tahun bagi OP (Pasal 59) sudah dihapus PP 20/2026.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1485,6 +1534,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Sejak perubahan aturan UMKM tahun 2026, pengguna baru PPh final UMKM hanya orang pribadi, PT perorangan yang didirikan satu orang, dan koperasi. CV baru dan PT dengan dua pemegang saham tidak lagi termasuk. Notaris juga tidak bisa, karena jasa pekerjaan bebas, yaitu keahlian yang dijalankan sendiri, sejak dulu dikecualikan. Ibu Wati orang pribadi yang berdagang pakaian, jadi dialah yang boleh memakai tarif 0,5%. Cara ingat: pengguna baru tinggal orang pribadi, PT satu orang, dan koperasi.",
         inti: "Sejak PP 20/2026 penerima baru PPh final UMKM hanya OP, PT perorangan yang didirikan 1 orang, dan koperasi. Jasa pekerjaan bebas tetap dikecualikan (Pasal 56 ayat (3) huruf a PP 55/2022, seperti Pasal 2 ayat (3) huruf a PP 23/2018); itu bukan perubahan PP 20/2026. Penjual pakaian daring adalah usaha dagang OP.",
         jejakHitung: [],
         mengapaSalah: {
@@ -1506,6 +1556,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang diuji bukan omzet toko saja, melainkan semua penghasilan usaha dan pekerjaan bebas ditambah seluruh penghasilan dari luar negeri. Aturan ini dibuat supaya orang tidak memecah penghasilannya agar tampak kecil. Jumlahnya Rp3,9 miliar + Rp0,7 miliar + Rp0,4 miliar = Rp5,0 miliar, melebihi batas Rp4,8 miliar. Karena itu toko daringnya tidak boleh lagi memakai PPh final 0,5% pada 2027. Cara ingat: tiap bagian boleh kecil, yang dihitung jumlahnya.",
         inti: "PP 20/2026 menguji batas Rp4,8 miliar dari akumulasi penghasilan usaha dan jasa pekerjaan bebas ditambah seluruh penghasilan dari luar negeri: Rp3,9 + Rp0,7 + Rp0,4 miliar = Rp5,0 miliar.",
         jejakHitung: [ ["Usaha toko daring", "Rp3,9 miliar"], ["Jasa pekerjaan bebas", "Rp0,7 miliar"], ["Penghasilan luar negeri", "Rp0,4 miliar"], ["Total diuji", "Rp5,0 miliar > Rp4,8 miliar"] ],
         mengapaSalah: { A: "Itu cara uji sebelum PP 20/2026", B: "PP 20/2026 justru menambahkan seluruh penghasilan dari luar negeri", D: "Batas tidak diuji per jenis kegiatan; tujuannya mencegah pemecahan penghasilan" },
@@ -1527,6 +1578,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Kuncinya ada pada dokumen yang membuat pemotong tahu ia tidak perlu memotong. Omzet Bu Ani masih di bawah Rp500 juta setahun, bagian yang bebas pajak bagi orang pribadi pengguna PPh final UMKM. Caranya, ia menyerahkan surat pernyataan kepada PT Sentosa bahwa omzetnya tahun ini belum melebihi Rp500 juta. Pemotong tidak bisa menebak sendiri omzetnya, dan SKB PPh 23 adalah jalur lain yang tidak dipakai di sini. Cara ingat: omzet belum Rp500 juta, cukup surat pernyataan.",
         inti: "WP OP PPh final UMKM yang peredaran brutonya belum melebihi Rp500 juta menyerahkan surat pernyataan kepada pemotong/pemungut agar tidak dipotong (PMK 164/2023).",
         jejakHitung: [],
         mengapaSalah: {
@@ -1549,6 +1601,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dengan memilah empat penghasilan itu. Gaji dan honor juri digabung dan dikenai tarif umum, bunga deposito sudah final, dan hibah dari ayah kandung bukan objek pajak; dua yang terakhir tetap dilaporkan tetapi tidak dihitung. Rp96 juta + Rp10 juta dikurangi PTKP Rp63 juta = Rp43 juta, pajaknya 5% = Rp2.150.000. Dikurangi PPh 21 yang sudah dipotong, Rp1.650.000 + Rp250.000, sisanya kurang bayar Rp250.000. Cara ingat: honor sampingan sering membuat kurang bayar, karena potongannya hanya dihitung dari separuh honor.",
         inti: "Gaji (BPA1) dan honorarium juri adalah penghasilan non-final yang digabung; PPh 21 atas keduanya menjadi kredit. Bunga deposito dilaporkan pada bagian penghasilan final tanpa kredit, dan hibah dari ayah kandung dilaporkan sebagai penghasilan yang bukan objek. Karena PPh 21 bukan pegawai hanya dihitung dari 50% bruto, SPT menjadi kurang bayar Rp250.000.",
         jejakHitung: [ ["Neto pekerjaan (BPA1) + honorarium juri", "Rp106.000.000"], ["− PTKP K/1", "Rp63.000.000"], ["PKP", "Rp43.000.000"], ["PPh terutang 5% × Rp43.000.000", "Rp2.150.000"], ["Kredit PPh 21 (Rp1.650.000 + Rp250.000)", "Rp1.900.000"], ["Bunga deposito (final) dan hibah ayah (bukan objek)", "dilaporkan, tidak masuk PKP"], ["Status SPT", "kurang bayar Rp250.000"] ],
         mengapaSalah: { B: "Bunga deposito dikenai PPh final: tidak digabung dan PPh-nya tidak dapat dikreditkan (PKP Rp51 juta, kredit Rp3,5 juta)", C: "PPh 21 bukan pegawai tidak bersifat final; honorarium digabung dan PPh 21-nya menjadi kredit", D: "Hibah dari keluarga sedarah garis lurus satu derajat tanpa hubungan usaha bukan objek PPh (Pasal 4 ayat (3) huruf a angka 2), walaupun berupa uang; tetap dilaporkan sebagai penghasilan bukan objek" },
@@ -1566,6 +1619,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Terlambat lapor tetap kena denda walaupun SPT-nya lebih bayar. Batasnya 31 Maret 2026 dan Tuan Rendra baru lapor 5 Mei, jadi dendanya Rp100 ribu. Bunga tidak ada, karena bunga hanya muncul bila ada pajak yang terlambat dibayar, sedangkan di sini justru ada kelebihan. Kelebihannya tetap dikembalikan, tetapi dipakai dulu untuk melunasi utang pajak, termasuk denda tadi. Cara ingat: denda untuk telat lapor, bunga untuk telat bayar.",
         inti: "Denda Pasal 7 ayat (1) dikenakan atas keterlambatan penyampaian SPT apa pun statusnya. Bunga hanya timbul bila ada pajak yang terlambat dibayar. Kelebihan pembayaran dikembalikan setelah diperhitungkan dengan utang pajak, termasuk denda keterlambatan tersebut.",
         jejakHitung: [ ["Batas SPT", "31 Maret 2026"], ["Disampaikan", "5 Mei 2026 (terlambat)"], ["Denda Pasal 7 ayat (1)", "Rp100.000"], ["Bunga", "tidak ada (tidak ada kurang bayar)"] ],
         mengapaSalah: { A: "Bunga dikenakan atas pajak yang kurang/terlambat dibayar, bukan atas lebih bayar", B: "Status lebih bayar tidak menghapus denda keterlambatan penyampaian", D: "SPT lebih bayar baru dianggap tidak disampaikan bila disampaikan lewat 3 tahun setelah berakhirnya tahun pajak dan WP telah ditegur (Pasal 3 ayat (7) UU KUP)" },
@@ -1587,6 +1641,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini cara benar menunda lapor SPT tahunan. Pemberitahuan harus dikirim sebelum batas 31 Maret, dan perpanjangannya paling lama 2 bulan. Pemberitahuan itu dilampiri hitungan sementara pajaknya, dan bila ada kekurangan, kekurangan itu harus dilunasi dulu dengan buktinya. Jadi yang ditunda hanya laporannya, bukan pembayarannya. Cara ingat: perpanjangan 2 bulan, kirim sebelum batas, bayar dulu kekurangannya.",
         inti: "Perpanjangan paling lama 2 bulan dengan pemberitahuan tertulis/elektronik yang disampaikan sebelum batas waktu penyampaian SPT berakhir, disertai penghitungan sementara dan bukti pelunasan kekurangan pajak menurut penghitungan sementara (Pasal 3 ayat (4) dan (5) UU KUP; Pasal 174 dan 175 PMK 81/2024); bila penghitungan sementara kurang, selisihnya dikenai bunga Pasal 19 ayat (3).",
         jejakHitung: [],
         mengapaSalah: {
@@ -1613,6 +1668,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Daftar harta dan daftar utang di SPT diisi terpisah, tidak boleh saling dikurangkan. Rumah dicatat sebesar harga belinya, Rp1,2 miliar, walaupun dibiayai KPR, karena rumah itu sudah milik Ibu Sekar sejak dibeli. Sisa pokok KPR pada akhir tahun, Rp850 juta, dicatat di daftar utang. NJOP Rp950 juta hanya mengisi kolom nilai saat ini dan tidak menggantikan harga perolehan. Cara ingat: harta pakai harga beli, utang pakai sisa akhir tahun.",
         inti: "Harta dilaporkan sebesar harga perolehan, sedangkan utang dilaporkan terpisah sebesar sisa utang pada akhir tahun; keduanya tidak saling dikompensasikan. Di Coretax, Lampiran 1 Tabel 5 juga meminta kolom nilai saat ini, yang untuk rumah dapat diisi NJOP, tetapi kolom itu tidak menggantikan harga perolehan.",
         jejakHitung: [
           ["Lampiran 1 Tabel 5, harga perolehan rumah", "Rp1.200.000.000"],
@@ -1642,6 +1698,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya: pembetulan atas kemauan sendiri hanya kena bunga atas pajak yang kurang dibayar. PKP naik dari Rp140 juta ke Rp160 juta, masih di lapisan tarif 15%, jadi tambahan honor Rp20 juta kena 15% = Rp3 juta. Dikurangi PPh 21 yang sudah dipotong Rp500 ribu, kurang bayarnya Rp2,5 juta. Bunga dihitung dari tenggat SPT 31 Maret sampai 15 Juni, yaitu 2 bulan 15 hari yang dibulatkan menjadi 3 bulan, sehingga Rp2,5 juta x 1,10% x 3 = Rp82.500. Cara ingat: bunga dihitung dari tenggat SPT, bukan dari tanggal SPT pertama dikirim.",
         inti: "Tambahan PKP Rp20 juta masih di lapisan 15% (PKP baru Rp160 juta), sehingga tambahan PPh Rp3 juta; dikurangi kredit PPh 21 bukan pegawai Rp500 ribu, kurang bayar Rp2,5 juta. Bunga dihitung sejak berakhirnya batas waktu SPT (31 Maret) sampai 15 Juni = 2 bulan 15 hari, dibulatkan 3 bulan.",
         jejakHitung: [
           ["Tambahan PPh 15% × Rp20.000.000", "Rp3.000.000"],
@@ -1669,6 +1726,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: siapa saja yang lepas dari pajak Indonesia. Organisasi internasional dibebaskan bila ditetapkan Menteri Keuangan, Indonesia ikut menjadi anggota, dan tidak berbisnis selain memberi pinjaman kepada pemerintah dari iuran anggota. Pejabatnya ikut dibebaskan asal bukan WNI dan tidak punya penghasilan lain dari Indonesia, jadi kepala kantor asal Kanada bebas. Staf WNI tetap wajib pajak dalam negeri, walaupun gajinya dibayar organisasi itu. Cara ingat: pembebasan untuk orangnya selalu mensyaratkan bukan WNI.",
         inti: "Pasal 3 ayat (1) huruf c dan d UU PPh mengecualikan organisasi internasional yang ditetapkan Menteri Keuangan (Indonesia menjadi anggota dan tidak berusaha selain memberi pinjaman kepada pemerintah dari iuran anggota) serta pejabat perwakilannya yang bukan WNI dan tidak memperoleh penghasilan lain dari Indonesia. Staf WNI tidak termasuk pengecualian.",
         jejakHitung: [],
         mengapaSalah: { A: "Pengecualian bagi pejabat mensyaratkan bukan WNI; sumber pembayaran gaji tidak menentukan", C: "Organisasi internasional dikecualikan hanya bila ditetapkan Menteri Keuangan, Indonesia menjadi anggota, dan tidak menjalankan usaha", D: "Pasal 3 adalah ketentuan khusus yang mengecualikan pejabat yang memenuhi syarat terlepas dari lamanya berada di Indonesia" },
@@ -1686,6 +1744,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "final-nonfinal", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Dua penjualan saham ini diperlakukan berbeda karena tempat jualnya beda. Saham yang dijual di bursa kena pajak final 0,1% dari harga jual, bukan dari untungnya: 0,1% x Rp500 juta = Rp500 ribu, dan selesai di situ tanpa digabung. Saham perusahaan tertutup yang dijual ke teman tidak punya tarif khusus, jadi untungnya Rp300 juta dikurangi Rp180 juta = Rp120 juta digabung dengan penghasilan lain dan kena tarif biasa. Cara ingat: bursa final dari harga jual, luar bursa untungnya digabung.",
         inti: "Penjualan saham di bursa dikenai PPh final 0,1% dari nilai transaksi (bukan dari keuntungan) dan tidak digabung. Penjualan saham perusahaan tertutup di luar bursa menghasilkan keuntungan pengalihan harta (Pasal 4 ayat (1) huruf d) yang tidak final dan digabung ke PKP.",
         jejakHitung: [ ["(a) Saham di bursa: 0,1% × Rp500.000.000", "Rp500.000 (final)"], ["(b) Keuntungan saham non-bursa: Rp300 juta − Rp180 juta", "Rp120.000.000 (digabung)"] ],
         mengapaSalah: { A: "Keuntungan saham di bursa tidak digabung karena transaksinya sudah dikenai PPh final", C: "Tarif final 0,1% hanya untuk transaksi di bursa efek", D: "PPh final 0,1% dihitung dari nilai transaksi penjualan, bukan dari keuntungannya" },
@@ -1703,6 +1762,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Status PH (pisah harta) artinya pajak dihitung dulu untuk satu keluarga, baru dibagi. Penghasilan Pak Bagas Rp600 juta ditambah Bu Laila Rp200 juta = Rp800 juta, dikurangi PTKP K/I/2 Rp121,5 juta (termasuk tambahan untuk istri yang berpenghasilan) sehingga PKP Rp678,5 juta. Dengan tarif berlapis, pajak keluarga Rp147,55 juta. Bagian Pak Bagas sebanding penghasilannya, 600 dari 800 atau 75%, jadi Rp110.662.500. Cara ingat: PH itu gabung dulu, lalu bagi sesuai porsi penghasilan.",
         inti: "Status PH: neto suami Rp600 juta dan istri Rp200 juta digabung, PTKP K/I/2, PPh gabungan dibagi sebanding neto; bagian Pak Bagas 600/800 = 75%.",
         jejakHitung: [ ["Neto Pak Bagas (240 + 240 + 120 juta)", "Rp600.000.000"], ["Neto gabungan (+ Rp200 juta)", "Rp800.000.000"], ["PTKP K/I/2", "Rp121.500.000"], ["PKP gabungan", "Rp678.500.000"], ["PPh gabungan = Rp94.000.000 + 30% × Rp178.500.000", "Rp147.550.000"], ["Bagian Pak Bagas = 600/800 × Rp147.550.000", "Rp110.662.500"] ],
         mengapaSalah: { A: "Menghitung Pak Bagas terpisah dengan PTKP K/2 tanpa penggabungan, seperti status HB", B: "Membagi PPh gabungan sama rata 50:50", C: "Menggabungkan penghasilan tetapi lupa menambah PTKP istri Rp54.000.000" },
@@ -1720,6 +1780,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari aturan dasarnya: pada status PH suami dan istri masing-masing mengisi SPT sendiri, dan tiap orang hanya mengurangkan pajak yang dipotong atas namanya. Pajak Pak Bagas Rp110.662.500 dikurangi PPh 21 dari kantornya Rp19.875.000 dan PPh 25 yang ia setor 12 x Rp5 juta = Rp60 juta. Hasilnya Rp30.787.500 yang harus dilunasi. PPh final saham tidak boleh dikurangkan, dan PPh 21 Bu Laila dipakai di SPT Bu Laila. Cara ingat: kredit pajak ikut nama di bukti potong.",
         inti: "Pada status PH masing-masing suami dan istri menyampaikan SPT sendiri dan mengkreditkan pajak yang dipotong atas penghasilannya sendiri. Kredit Pak Bagas: PPh 21 miliknya dan PPh 25; PPh final saham tidak dikreditkan, dan PPh 21 Bu Laila dikreditkan di SPT Bu Laila.",
         jejakHitung: [ ["Bagian PPh terutang Pak Bagas", "Rp110.662.500"], ["− PPh 21 (BPA1 PT Andalan)", "Rp19.875.000"], ["− PPh 25 (12 × Rp5.000.000)", "Rp60.000.000"], ["PPh 29 Pak Bagas", "Rp30.787.500"] ],
         mengapaSalah: { B: "Ikut mengkreditkan PPh final penjualan saham di bursa", C: "Lupa mengkreditkan PPh 25 yang telah disetor", D: "Ikut mengkreditkan PPh 21 Bu Laila, padahal pada status PH kredit itu milik SPT istri" },
@@ -1742,6 +1803,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Soal ini menguji bahwa syarat bebas pajak bagi orang asing di konsulat diperiksa per orang. Syaratnya: bukan WNI, negaranya memberi perlakuan yang sama kepada Indonesia, dan tidak punya penghasilan lain di Indonesia di luar tugasnya. Mr. Pierre menerima honor mengajar dari universitas, jadi syarat terakhir gugur dan ia menjadi subjek pajak. Sopirnya tetap memenuhi semua syarat, sehingga tetap dibebaskan. Cara ingat: penghasilan sampingan menggugurkan pembebasan orang itu saja, bukan orang lain.",
         inti: "Pasal 3 ayat (1) huruf b UU PPh mengecualikan pejabat perwakilan diplomatik/konsulat dan orang yang diperbantukan kepada mereka yang bekerja pada dan tinggal bersama mereka, dengan syarat bukan WNI, di Indonesia tidak menerima penghasilan lain di luar jabatan atau pekerjaannya, dan ada perlakuan timbal balik. Syarat diuji pada masing-masing orang: honorarium mengajar menggugurkan pengecualian Mr. Pierre, sedangkan Mr. Jean tetap memenuhi semua syarat.",
         jejakHitung: [ ["Syarat Pasal 3 ayat (1) huruf b", "bukan WNI + tanpa penghasilan lain di Indonesia + timbal balik"], ["Mr. Pierre: honorarium universitas", "syarat 'tanpa penghasilan lain' gugur → subjek pajak"], ["Mr. Jean: WNA, tinggal bersama, tanpa penghasilan lain", "tetap dikecualikan"] ],
         mengapaSalah: { A: "Mengabaikan syarat 'tidak menerima atau memperoleh penghasilan lain di luar jabatannya'; honorarium mengajar adalah penghasilan lain di Indonesia", C: "Syarat pengecualian diuji pada diri masing-masing orang; status Mr. Jean tidak ikut gugur karena atasannya memperoleh penghasilan lain", D: "Pengecualian Pasal 3 tidak memakai uji 183 hari; uji itu dipakai Pasal 2 untuk membedakan subjek pajak dalam dan luar negeri" },
@@ -1759,6 +1821,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Periksa satu per satu siapa yang memenuhi syarat dibebaskan. Kedutaan sebagai kantor dibebaskan, begitu juga diplomat asing yang tidak punya penghasilan lain di Indonesia. Penerjemah WNI tetap kena pajak karena pembebasan hanya untuk orang yang bukan WNI. Mr. Kofi menyewakan apartemen di Jakarta, jadi ia punya penghasilan lain dan tetap kena pajak, sedangkan Mr. Lars dibebaskan; jawabannya penerjemah dan Mr. Kofi. Cara ingat: WNI atau punya penghasilan sampingan berarti tetap kena pajak.",
         inti: "Kantor perwakilan negara asing (1) dikecualikan. Staf diplomatik WNA tanpa penghasilan lain dengan perlakuan timbal balik (2) dikecualikan. Penerjemah WNI (3) tetap subjek pajak karena pengecualian mensyaratkan bukan WNI. Pejabat organisasi internasional dikecualikan hanya bila bukan WNI dan tidak menjalankan usaha, kegiatan, atau pekerjaan lain untuk memperoleh penghasilan dari Indonesia: Mr. Kofi (4) menyewakan apartemen sehingga tetap subjek pajak, sedangkan Mr. Lars (5) dikecualikan.",
         jejakHitung: [ ["(1) Kantor perwakilan negara asing", "dikecualikan (Pasal 3 ayat (1) huruf a)"], ["(2) Staf diplomatik WNA, tanpa penghasilan lain, timbal balik", "dikecualikan (huruf b)"], ["(3) Penerjemah WNI yang tinggal bersama Dubes", "subjek pajak"], ["(4) Pejabat organisasi internasional yang menyewakan apartemen", "subjek pajak (syarat huruf d gugur)"], ["(5) Pejabat organisasi internasional tanpa penghasilan lain", "dikecualikan (huruf d)"] ],
         mengapaSalah: { A: "Melewatkan syarat huruf d: pejabat organisasi internasional yang memperoleh penghasilan lain dari Indonesia (sewa apartemen) tidak dikecualikan", C: "Pejabat organisasi internasional yang ditetapkan Menteri Keuangan, bukan WNI, dan tanpa penghasilan lain dari Indonesia dikecualikan", D: "Kantor perwakilan negara asing dikecualikan dari subjek pajak oleh Pasal 3 ayat (1) huruf a" },
@@ -1776,6 +1839,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Yang dicari adalah penghasilan Pak Darma yang ikut dihitung dengan tarif biasa. Gaji neto Rp180 juta masuk, dan bengkel dihitung dengan norma, yaitu untung yang ditaksir dari persentase omzet: 20% x Rp900 juta = Rp180 juta. Untung saham perusahaan tertutup Rp250 juta dikurangi Rp160 juta = Rp90 juta juga digabung. Saham di bursa sudah kena pajak final, jadi tidak dimasukkan, dan totalnya Rp450 juta. Cara ingat: yang sudah final tidak dihitung ulang.",
         inti: "Neto Pak Darma = neto pekerjaan + neto bengkel menurut NPPN + keuntungan saham non-bursa. Penjualan saham di bursa dikenai PPh final 0,1% dari nilai transaksi sehingga keuntungannya tidak digabung.",
         jejakHitung: [ ["(1) Neto pekerjaan (BPA1)", "Rp180.000.000"], ["(2) Neto bengkel = 20% × Rp900.000.000", "Rp180.000.000"], ["(3) Saham di bursa", "PPh final 0,1% — tidak digabung"], ["(4) Keuntungan saham non-bursa = Rp250 juta − Rp160 juta", "Rp90.000.000"], ["Neto Pak Darma yang digabung", "Rp450.000.000"] ],
         mengapaSalah: { B: "Mengurangkan PPh final Rp400.000 dari neto; PPh bukan pengurang penghasilan dan PPh final saham berada di luar penghitungan tarif umum", C: "Menganggap keuntungan saham perusahaan tertutup ikut final seperti saham di bursa; di luar bursa keuntungannya objek Pasal 4 ayat (1) huruf d yang digabung", D: "Ikut menggabungkan keuntungan saham di bursa Rp150.000.000 yang sudah dikenai PPh final 0,1%" },
@@ -1793,6 +1857,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Status MT artinya istri memilih mengurus pajaknya sendiri, dan banyak yang mengira pajak suami istri lalu dihitung terpisah. Padahal MT dihitung seperti pisah harta: penghasilan digabung dulu, baru pajaknya dibagi. Rp450 juta ditambah Rp150 juta = Rp600 juta, dikurangi PTKP K/I/3 Rp126 juta sehingga PKP Rp474 juta dan pajak keluarga Rp87,5 juta. Bagian Bu Ayu sebanding penghasilannya, 150 dari 600 atau seperempat, jadi Rp21.875.000. Cara ingat: MT tetap gabung dulu, bagi kemudian.",
         inti: "Status MT diperlakukan seperti PH: neto suami dan istri digabung, PTKP memakai K/I/3, lalu PPh gabungan dibagi menurut perbandingan penghasilan neto (Pasal 8 ayat (2) huruf c dan ayat (3)).",
         jejakHitung: [ ["Neto gabungan Rp450 juta + Rp150 juta", "Rp600.000.000"], ["PTKP K/I/3 (54 + 4,5 + 3 × 4,5 + 54 juta)", "Rp126.000.000"], ["PKP gabungan", "Rp474.000.000"], ["PPh = Rp31.500.000 + 25% × Rp224.000.000", "Rp87.500.000"], ["Bagian Bu Ayu = 150/600 × Rp87.500.000", "Rp21.875.000"] ],
         mengapaSalah: { A: "Menggabung penghasilan tetapi memakai PTKP K/3 tanpa tambahan Rp54.000.000 untuk istri (PKP Rp528 juta, PPh Rp102,4 juta × 25%)", B: "Menghitung Bu Ayu terpisah dengan PTKP TK/0 seperti status HB", D: "Membagi PPh gabungan sama rata; Pasal 8 ayat (3) memakai perbandingan penghasilan neto" },
@@ -1810,6 +1875,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "final-nonfinal", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pajak yang sudah dibayar lebih dulu boleh mengurangi utang pajak akhir tahun, asal atas nama Pak Darma dan tidak final. Dari Rp65.625.000 kurangi PPh 21 kantor Rp10,2 juta, PPh 23 dari pelanggan bengkel Rp6 juta, dan PPh 25 yang ia setor 12 x Rp2 juta = Rp24 juta. Sisanya Rp25.425.000. PPh final saham tidak dikurangkan, dan PPh 25 Bu Ayu dipakai di SPT Bu Ayu sendiri. Cara ingat: yang boleh dikurangkan hanya pajak tidak final atas nama sendiri.",
         inti: "Pada status MT tiap pasangan menyampaikan SPT sendiri dan mengkreditkan pajak atas namanya. Kredit Pak Darma: PPh 21 BPA1, PPh 23 atas jasa bengkel, dan PPh 25 yang ia setor; PPh final saham tidak dikreditkan dan PPh 25 Bu Ayu menjadi kredit di SPT Bu Ayu.",
         jejakHitung: [ ["Bagian PPh terutang Pak Darma (75% × Rp87.500.000)", "Rp65.625.000"], ["− PPh 21 (BPA1)", "Rp10.200.000"], ["− PPh 23 (BPPU jasa bengkel)", "Rp6.000.000"], ["− PPh 25 Pak Darma (12 × Rp2.000.000)", "Rp24.000.000"], ["PPh final saham bursa dan PPh 25 Bu Ayu", "tidak dikreditkan di SPT Pak Darma"], ["PPh Pasal 29", "Rp25.425.000"] ],
         mengapaSalah: { A: "Ikut mengkreditkan PPh final 0,1% atas penjualan saham di bursa", B: "Ikut mengkreditkan PPh 25 yang disetor Bu Ayu; pada status MT kredit itu milik SPT Bu Ayu", C: "Lupa mengkreditkan PPh 23 yang dipotong pelanggan badan; pengguna NPPN tetap mengkreditkan PPh 23" },
@@ -1831,6 +1897,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Keempat kalimat hampir kembar, jadi cari tiga hal kecil yang membedakannya. Pertama, pembetulan sendiri boleh selama pemeriksaan belum dimulai, bukan sampai ketetapan pajak terbit. Kedua, bunga dihitung sejak tenggat SPT berakhir, yaitu 31 Maret 2025, bukan sejak SPT pembetulan dikirim. Ketiga, tambahan bunganya 5% di atas suku bunga acuan; tambahan 10% dipakai bila kesalahan baru diakui saat diperiksa. Cara ingat: lapor sendiri lebih murah, tambahannya 5%.",
         inti: "Pasal 8 ayat (1) membolehkan pembetulan atas kemauan sendiri selama DJP belum melakukan tindakan pemeriksaan. Pasal 8 ayat (2) mengenakan bunga atas kurang bayar akibat pembetulan SPT Tahunan dengan tarif KMK uplift 5% per bulan, dihitung sejak berakhirnya batas waktu penyampaian SPT (31 Maret 2025) sampai tanggal pembayaran, paling lama 24 bulan dan bagian bulan dihitung penuh.",
         jejakHitung: [
           ["Syarat pembetulan (Pasal 8 ayat (1))", "DJP belum melakukan tindakan pemeriksaan"],
@@ -1861,6 +1928,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Dividen dari perusahaan Indonesia bisa bebas pajak bagi Ibu Wening, asal ditanam lagi di Indonesia paling lambat akhir bulan ketiga sesudah tahun 2026 berakhir dan ditahan minimal 3 tahun pajak. Bagian yang tidak ditanam kena pajak 10% yang final, disetor sendiri, dan tidak digabung dengan penghasilan lain. Apa pun pilihannya, seluruh dividen tetap ditulis di SPT 2026. Cara ingat: bulan ketiga, tahan 3 tahun, sisanya final 10%, semuanya tetap dilaporkan.",
         inti: "Dividen dalam negeri bagi OP dalam negeri dikecualikan dari objek sepanjang diinvestasikan di Indonesia (paling lambat akhir bulan ketiga setelah tahun pajak dividen diterima) dan ditahan paling sedikit 3 tahun pajak (Pasal 36 PMK 18/PMK.03/2021), serta dilaporkan realisasinya (Pasal 370 ayat (1) dan Pasal 374 PMK 81/2024); bagian yang tidak diinvestasikan dikenai PPh final 10% yang disetor sendiri (Pasal 373 PMK 81/2024). Penghasilan bukan objek maupun final tetap dilaporkan dalam SPT.",
         jejakHitung: [
           ["Batas waktu investasi", "akhir Maret 2027 (bulan ketiga setelah TP 2026)"],
@@ -1892,6 +1960,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Urutan langkah adalah inti soal ini, dan aturannya: kekurangan pajak di SPT Tahunan wajib dilunasi sebelum SPT dikirim. Jadi buat konsep SPT, cek lampirannya, lalu bayar Rp4.750.000 dengan kode billing atau dari Deposit Pajak. Sesudah lunas, baru SPT ditandatangani secara elektronik, dikirim, dan bukti terimanya disimpan. Tidak ada tenggat bayar sebulan sesudah lapor, dan SPT tidak perlu dicetak di kertas. Cara ingat: bayar dulu, baru kirim.",
         inti: "Pasal 9 ayat (2) UU KUP mewajibkan kekurangan pajak menurut SPT Tahunan PPh dibayar lunas sebelum SPT disampaikan. SPT elektronik dibuat dan disampaikan melalui Portal Wajib Pajak (Coretax) dan ditandatangani dengan Tanda Tangan Elektronik, yaitu sertifikat elektronik atau Kode Otorisasi DJP (PER-11/PJ/2025 Pasal 1 angka 55 dan Pasal 99 ayat (2)); setelah lolos pengecekan NPWP dan penelitian, DJP menerbitkan bukti penerimaan elektronik (Pasal 105 ayat (3)). Jadi PPh 29 dilunasi dahulu, baru SPT ditandatangani dan dikirim.",
         jejakHitung: [
           ["Langkah 1", "buat konsep SPT Tahunan OP TP 2026"],
@@ -1919,6 +1988,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "final-nonfinal", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Angsuran bulanan tahun depan dihitung dari pajak setahun dikurangi pajak tidak final yang sudah dipotong orang lain. Rp21,6 juta dikurangi PPh 21 Rp4,8 juta dan Rp1,2 juta serta PPh 23 sewa truk Rp2,4 juta, sehingga sisa Rp13,2 juta. Dibagi 12 bulan menjadi Rp1,1 juta. Sewa kios kena pajak final, dan PPh 25 tahun lalu juga tidak ikut dikurangkan. Cara ingat: lihat jenis pajaknya, bukan nama bukti potongnya, karena bukti yang sama bisa memuat pajak final.",
         inti: "Hanya PPh tidak final yang dipotong/dipungut pihak lain (PPh 21 pada BPA2 dan BP21, PPh 23 pada BPPU sewa truk) yang mengurangi dasar angsuran. BPPU sewa kios memuat PPh Pasal 4 ayat (2) yang final, dan PPh 25 tahun berjalan tidak ikut dikurangkan.",
         jejakHitung: [ ["PPh terutang SPT 2026", "Rp21.600.000"], ["− PPh 21 (BPA2 Rp4.800.000 + BP21 Rp1.200.000)", "Rp6.000.000"], ["− PPh 23 (BPPU sewa truk)", "Rp2.400.000"], ["BPPU sewa kios (PPh 4 ayat (2) final) dan PPh 25 2026", "tidak dikurangkan"], ["Dasar angsuran", "Rp13.200.000"], ["÷ 12", "Rp1.100.000"] ],
         mengapaSalah: { A: "Menganggap semua BPPU kredit pajak; BPPU juga dipakai untuk PPh Pasal 4 ayat (2) final yang tidak mengurangi dasar angsuran", B: "Ikut mengurangkan PPh 25 yang disetor selama 2026; Pasal 25 ayat (1) tidak menyebut PPh 25", C: "Menganggap BPPU selalu memuat PPh final sehingga PPh 23 sewa truk tidak dikurangkan" },
@@ -1936,6 +2006,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "final-nonfinal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Tugas kita: ubah laba pembukuan menjadi laba menurut pajak dengan menambah biaya yang tidak boleh dan mengurangi penghasilan yang sudah final. Tambahkan PPh 25 Rp30 juta, listrik rumah pribadi Rp9,6 juta, sanksi bunga Rp1,2 juta, dan kelebihan penyusutan Rp10 juta (Rp40 juta dikurangi 12,5% x Rp240 juta). Kurangi bunga deposito Rp14 juta. Hasilnya Rp612,4 juta menjadi Rp649,2 juta. Gaji, THR, PBB, listrik toko, dan iklan tetap boleh jadi biaya.",
         inti: "Koreksi positif: PPh 25 yang dibebankan, biaya pribadi rumah tinggal, sanksi STP, dan kelebihan penyusutan komersial atas penyusutan fiskal (Rp40 juta − 12,5% × Rp240 juta). Koreksi negatif: bunga deposito final. Gaji, THR/bingkisan hari raya, PBB toko, listrik toko, dan iklan adalah biaya 3M; data PPN, peredaran bruto, dan hibah tidak memengaruhi neto usaha.",
         jejakHitung: [ ["Laba komersial", "Rp612.400.000"], ["+ PPh 25 dibebankan (Pasal 9 ayat (1) huruf h)", "Rp30.000.000"], ["+ Listrik/air rumah pribadi (huruf i)", "Rp9.600.000"], ["+ Selisih penyusutan (Rp40 juta − 12,5% × Rp240 juta)", "Rp10.000.000"], ["+ Sanksi bunga STP (huruf k)", "Rp1.200.000"], ["− Bunga deposito (final)", "Rp14.000.000"], ["Data tidak dipakai", "PPN, peredaran bruto, gaji, THR, PBB, listrik toko, iklan, hibah"], ["Neto fiskal", "Rp649.200.000"] ],
         mengapaSalah: { A: "Ikut mengoreksi PBB toko; PBB adalah pajak selain PPh yang boleh dibiayakan", C: "Lupa mengeluarkan bunga deposito yang telah dikenai PPh final", D: "Lupa mengoreksi kelebihan penyusutan komersial di atas penyusutan fiskal Kelompok 2" },
@@ -1953,6 +2024,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Hitungannya: penghasilan Rp649,2 juta dikurangi zakat lewat BAZNAS Rp12 juta, rugi 2022 Rp18 juta, dan PTKP TK/2 Rp63 juta, sehingga PKP Rp556,2 juta. Pajaknya Rp94 juta untuk Rp500 juta pertama ditambah 30% x Rp56,2 juta = Rp16,86 juta, total Rp110.860.000. Ibunya baru ditanggung Juli, padahal tanggungan dilihat per 1 Januari. Infak sukarela tidak bisa dikurangkan, dan sisa rugi 2020 sudah hangus. Cara ingat: tanggungan dilihat awal tahun, rugi hanya bertahan 5 tahun.",
         inti: "PKP = neto − zakat BAZNAS − kompensasi rugi 2022 − PTKP TK/2. Status PTKP dikunci pada 1 Januari 2026 (ibu kandung baru ditanggung Juli), infak sukarela tidak dapat dikurangkan, dan sisa rugi 2020 sudah lewat 5 tahun. Bunga deposito, hibah ayah, PPh 25, dan data rumah tidak memengaruhi PPh terutang.",
         jejakHitung: [ ["Neto fiskal usaha", "Rp649.200.000"], ["− Zakat BAZNAS", "Rp12.000.000"], ["− Kompensasi rugi 2022 (rugi 2020 hangus akhir 2025)", "Rp18.000.000"], ["− PTKP TK/2 (status 1 Januari 2026)", "Rp63.000.000"], ["PKP", "Rp556.200.000"], ["PPh s.d. Rp500.000.000", "Rp94.000.000"], ["30% × Rp56.200.000", "Rp16.860.000"], ["PPh terutang", "Rp110.860.000"] ],
         mengapaSalah: { A: "Menghitung ibu kandung sebagai tanggungan 2026 (TK/3); tanggungan yang baru ada sejak Juli baru dihitung tahun berikutnya", B: "Ikut mengurangkan infak masjid; hanya zakat/sumbangan keagamaan wajib melalui lembaga resmi yang dapat dikurangkan", C: "Ikut mengompensasikan sisa rugi 2020 yang hanya berlaku sampai Tahun Pajak 2025" },
@@ -1974,6 +2046,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Langsung ke aturannya: WNI bisa diperlakukan sebagai subjek pajak luar negeri bila memenuhi dua uji sekaligus. Uji pertama, berada di luar Indonesia lebih dari 183 hari dalam 12 bulan. Uji kedua, terbukti tempat tinggal, pusat kegiatan, kebiasaan hidup, dan status pajaknya sudah di negara lain. Sdr. Rudi lulus uji hari karena hanya 21 hari di Indonesia, tetapi syarat lainnya tetap harus dipenuhi. Cara ingat: lama di luar negeri saja belum cukup.",
         inti: "UU Cipta Kerja menambahkan kriteria pada Pasal 2 ayat (4) UU PPh: WNI yang berada di luar Indonesia lebih dari 183 hari dalam jangka waktu 12 bulan dan memenuhi persyaratan tempat tinggal, pusat kegiatan utama, tempat menjalankan kebiasaan, status subjek pajak, dan/atau persyaratan tertentu lainnya (dirinci PMK 18/PMK.03/2021) merupakan subjek pajak luar negeri. Uji hari dan uji persyaratan bersifat kumulatif.",
         jejakHitung: [
           ["Hari di luar Indonesia, 1 Feb 2026–31 Jan 2027", "365 − 21 = 344 hari"],
@@ -2000,6 +2073,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "final-nonfinal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada pada memilah: penghasilan final dan yang bukan objek pajak tidak ikut digabung. Yang digabung: gaji neto Rp150 juta, bunga pinjaman dari CV Rp24 juta, hibah dari paman Rp50 juta, dan hadiah lomba Rp15 juta, totalnya Rp239 juta. Hibah dari paman kena pajak karena yang dibebaskan hanya hibah dari orang tua atau anak. Bunga SBN, hadiah undian, dan jual tanah sudah final, sedangkan hibah ibu dan uang asuransi jiwa bukan objek. Cara ingat: lomba digabung, undian final.",
         inti: "Yang digabung hanya penghasilan tidak final: neto pekerjaan (BPA1), bunga pinjaman dari CV yang dipotong PPh 23, hibah dari paman (bukan keluarga sedarah garis lurus satu derajat), dan hadiah lomba yang dipotong PPh 21. Bunga SBN, hadiah undian, dan penjualan tanah dikenai PPh final; hibah dari ibu kandung dan uang pertanggungan asuransi jiwa bukan objek pajak.",
         jejakHitung: [ ["(1) Neto pekerjaan menurut BPA1", "Rp150.000.000"], ["(2) Bunga pinjaman dari CV (PPh 23, tidak final)", "Rp24.000.000"], ["(4) Hibah dari paman (objek, tidak final)", "Rp50.000.000"], ["(7) Hadiah lomba (PPh 21, tidak final)", "Rp15.000.000"], ["(3), (8), (9) PPh final; (5), (6) bukan objek", "dilaporkan, tidak digabung"], ["Jumlah neto yang digabung", "Rp239.000.000"] ],
         mengapaSalah: { B: "Mengeluarkan hadiah lomba karya tulis; hadiah lomba dipotong PPh 21 yang tidak final, berbeda dengan hadiah undian yang final 25%", C: "Ikut menggabungkan bunga SBN ritel Rp18.000.000 yang telah dikenai PPh final 10%", D: "Menganggap hibah dari paman bukan objek; pengecualian Pasal 4 ayat (3) huruf a angka 2 hanya bagi keluarga sedarah garis lurus satu derajat (orang tua atau anak)" },
@@ -2022,6 +2096,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "final-nonfinal", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Jual rumah atau tanah kena pajak final 2,5% dari harga jualnya, tidak peduli untung atau rugi. Jadi 2,5% x Rp1,35 miliar = Rp33.750.000 tetap terutang walaupun Ibu Melinda rugi Rp150 juta. Pajak ini tidak bisa mengurangi pajak akhir tahun, dan ruginya juga tidak bisa dibawa ke tahun berikutnya. Di SPT 2026 penjualan itu ditulis sebagai penghasilan final dan rumahnya dicoret dari daftar harta. Cara ingat: tanah dan bangunan dihitung dari harga jual, bukan dari untung.",
         inti: "PP 34/2016 mengenakan PPh final 2,5% atas jumlah bruto nilai pengalihan hak atas tanah dan/atau bangunan tanpa memperhitungkan untung atau rugi. PPh final itu dibayar sendiri sebelum akta ditandatangani, tidak dapat dikreditkan, dan transaksinya dilaporkan pada bagian penghasilan final SPT; rumah yang dijual dikeluarkan dari daftar harta.",
         jejakHitung: [ ["Dasar pengenaan: jumlah bruto nilai pengalihan", "Rp1.350.000.000"], ["Tarif PP 34/2016", "2,5%"], ["PPh final", "Rp33.750.000"], ["Rugi ekonomis Rp150.000.000", "tidak mengurangi PPh final dan tidak dikompensasikan"] ],
         mengapaSalah: { A: "Dasar pengenaannya jumlah bruto nilai pengalihan, bukan keuntungan; PPh tetap terutang walaupun rugi", B: "PPh final atas pengalihan tanah/bangunan tidak dapat dikreditkan dalam SPT Tahunan", C: "Kerugian atas transaksi yang dikenai PPh final tidak dapat dikompensasikan; kompensasi Pasal 6 ayat (2) hanya untuk rugi fiskal atas penghasilan yang dikenai tarif umum" },
@@ -2044,6 +2119,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "final-nonfinal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pesangon dan JHT yang diterima sekaligus kena pajak final berlapis, masing-masing dihitung terpisah dan Rp50 juta pertamanya bebas. Pesangon Rp150 juta: Rp50 juta pertama 0%, Rp50 juta berikutnya 5% = Rp2,5 juta, sisa Rp50 juta 15% = Rp7,5 juta. JHT Rp80 juta: Rp50 juta pertama 0%, sisa Rp30 juta kena 5% = Rp1,5 juta. Totalnya Rp11,5 juta, dilaporkan sebagai penghasilan final, tidak digabung, dan pajaknya tidak dikurangkan lagi. Cara ingat: tiap jenis punya jatah bebas Rp50 juta sendiri.",
         inti: "PP 68/2009 mengenakan PPh 21 final berlapis atas pesangon (0%/5%/15%/25%) dan atas JHT yang dibayar sekaligus (0% s.d. Rp50 juta, 5% di atasnya). Keduanya dilaporkan pada bagian penghasilan final SPT dan tidak dikurangi PTKP; warung UMKM tidak memengaruhi penghitungan ini.",
         jejakHitung: [ ["Pesangon: 0% × Rp50.000.000", "Rp0"], ["5% × Rp50.000.000 (di atas Rp50 jt s.d. Rp100 jt)", "Rp2.500.000"], ["15% × Rp50.000.000 (di atas Rp100 jt s.d. Rp150 jt)", "Rp7.500.000"], ["JHT: 0% × Rp50.000.000 + 5% × Rp30.000.000", "Rp1.500.000"], ["Jumlah PPh 21 final", "Rp11.500.000"] ],
         mengapaSalah: { A: "Lapisan 0% untuk Rp50 juta pertama JHT terlewat (5% × Rp80.000.000 = Rp4.000.000)", C: "Pesangon dan JHT yang dibayar sekaligus dikenai PPh final, sehingga tidak digabung dan PPh-nya bukan kredit pajak", D: "JHT yang dibayar sekaligus tetap objek PPh 21 final dengan tarif 5% atas bagian di atas Rp50 juta" },
@@ -2061,6 +2137,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Saat truk dijual, untungnya menurut pajak dihitung dari nilai buku menurut pajak, bukan dari pembukuan. Penyusutan pajak 12,5% x Rp400 juta = Rp50 juta setahun, jadi sampai Juni 2026 terkumpul Rp175 juta dan nilai bukunya Rp225 juta. Harga jual Rp250 juta dikurangi Rp225 juta memberi untung Rp25 juta, padahal pembukuan mencatat Rp130 juta, jadi laba dikurangi Rp105 juta. Penyusutan pembukuan Rp40 juta lebih besar Rp15 juta dari versi pajak Rp25 juta, jadi laba ditambah Rp15 juta. Hasil bersihnya koreksi negatif, yaitu laba dikurangi, sebesar Rp90 juta.",
         inti: "Penyusutan fiskal Kelompok 2 adalah 12,5% × Rp400 juta = Rp50 juta setahun, sehingga nilai sisa buku fiskal saat dijual Rp225 juta dan keuntungan fiskal hanya Rp25 juta. Koreksi penyusutan 2026 +Rp15 juta (Rp40 juta − Rp25 juta) dan koreksi laba penjualan −Rp105 juta (Rp25 juta − Rp130 juta), sehingga neto koreksi negatif Rp90 juta.",
         jejakHitung: [ ["Penyusutan fiskal setahun (12,5% × Rp400.000.000)", "Rp50.000.000"], ["Akumulasi fiskal 2023–2025 + 6 bulan 2026", "Rp150.000.000 + Rp25.000.000 = Rp175.000.000"], ["Nilai sisa buku fiskal", "Rp225.000.000"], ["Keuntungan fiskal (Rp250.000.000 − Rp225.000.000)", "Rp25.000.000"], ["Koreksi penyusutan 2026 (Rp40.000.000 − Rp25.000.000)", "+Rp15.000.000"], ["Koreksi laba penjualan (Rp25.000.000 − Rp130.000.000)", "−Rp105.000.000"], ["Koreksi neto", "−Rp90.000.000"] ],
         mengapaSalah: { A: "Hanya mengoreksi laba penjualan; kelebihan penyusutan komersial 2026 atas penyusutan fiskal juga harus dikoreksi positif", B: "Hanya mengoreksi penyusutan; laba penjualan komersial dihitung dari nilai sisa buku komersial sehingga harus diganti dengan keuntungan fiskal (Pasal 11 ayat (8))", D: "Tanda koreksi penyusutan terbalik: penyusutan komersial yang lebih besar dari penyusutan fiskal menghasilkan koreksi positif" },
@@ -2078,6 +2155,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "salah-baca" },
       pembahasan: {
+        mudah: "Mulai dari apa yang boleh disusutkan: hanya bangunan, karena tanah dianggap tidak aus. Bangunan permanen disusutkan 20 tahun, artinya 5% x Rp1,2 miliar = Rp60 juta setahun. Ruko dibeli April, jadi tahun 2026 baru terpakai 9 bulan: Rp60 juta x 9/12 = Rp45 juta. NJOP dan PBB hanya pengalih karena dasar penyusutan adalah harga beli bangunan. Cara ingat: tanah tidak disusutkan, dan penyusutan dihitung mulai bulan beli.",
         inti: "Hanya bangunan yang disusutkan; tanah tidak. Bangunan permanen disusutkan 20 tahun (5% garis lurus) mulai bulan perolehan, sehingga 2026 dihitung 9 bulan (April–Desember).",
         jejakHitung: [ ["Tanah Rp800.000.000", "tidak disusutkan"], ["Bangunan permanen: 5% × Rp1.200.000.000", "Rp60.000.000 setahun"], ["April–Desember 2026", "9 bulan"], ["Rp60.000.000 × 9/12", "Rp45.000.000"], ["NJOP dan PBB", "bukan dasar penyusutan (PBB toko boleh dibiayakan)"] ],
         mengapaSalah: { A: "Ikut menyusutkan tanah (5% × Rp2 miliar × 9/12); tanah bukan harta yang dapat disusutkan", B: "Menyusutkan setahun penuh; penyusutan dimulai pada bulan perolehan dan dihitung proporsional bulan", C: "Memakai NJOP Rp1,65 miliar sebagai dasar; dasar penyusutan adalah harga perolehan bangunan" },
@@ -2100,6 +2178,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya adalah laba bengkel menurut pajak sebelum dana punia dikurangkan. Sewa ruko dan bunga deposito sudah kena pajak final, jadi dikeluarkan dari laba Rp136 juta, begitu juga biayanya: pajak final sewa dan perawatan bagian yang disewakan Rp18 juta ditambahkan kembali. Biaya yang tidak boleh juga ditambahkan: sumbangan panitia Rp10 juta, asuransi jiwa pribadi Rp18 juta, serta PPh 25 dan sekolah anak Rp72 juta. Dana punia Rp20 juta ikut ditambahkan karena di SPT dikurangkan tersendiri sesudah angka ini. Hasilnya Rp735 juta menjadi Rp737 juta.",
         inti: "Koreksi negatif atas penghasilan final (sewa ruko dan bunga deposito); koreksi positif atas PPh final dan biaya pemeliharaan yang terkait penghasilan final, sumbangan panitia, premi asuransi jiwa yang dibayar Pak Wayan untuk dirinya sendiri, PPh 25, biaya sekolah anak (pribadi), serta dana punia wajib yang dibukukan sebagai beban. Dana punia wajib memang dapat dikurangkan, tetapi stem menanyakan neto usaha SEBELUM dana punia: di SPT Tahunan orang pribadi, zakat atau sumbangan keagamaan wajib dilaporkan tersendiri sebagai pengurang penghasilan neto (induk Bagian C Angka 3, rincian di Lampiran 5), sesudah penghasilan neto dari usaha.",
         jejakHitung: [
           ["Laba komersial", "Rp735.000.000"],
@@ -2136,6 +2215,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Rugi boleh dipakai mengurangi laba selama 5 tahun, dihitung mulai tahun sesudah rugi terjadi. Rugi 2021 Rp900 juta berlaku 2022 sampai 2026, dan sampai 2025 sudah terpakai Rp700 juta, jadi sisa Rp200 juta masih bisa dipakai pada 2026. Rugi jual saham perusahaan Timor Leste tidak dihitung karena terjadi di luar negeri. Rugi saham di bursa juga tidak dihitung karena transaksinya kena pajak final. Cara ingat: tahun rugi tidak ikut dihitung dalam jatah 5 tahun.",
         inti: "Rugi 2021 dapat dikompensasikan pada 2022–2026. Setelah terpakai Rp700 juta sampai 2025, sisanya Rp200 juta masih dapat dipakai pada 2026 (tahun kelima). Kerugian yang diderita di luar negeri (rugi penjualan saham perusahaan Timor Leste) tidak dapat diperhitungkan dalam PKP, dan rugi penjualan saham di bursa (transaksi ber-PPh final) tidak dikompensasikan.",
         jejakHitung: [
           ["Rugi 2021", "Rp900.000.000"],
@@ -2170,6 +2250,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Ikuti urutan isian SPT dari atas ke bawah. Penghasilan Rp737 juta dikurangi dana punia wajib Rp20 juta, lalu kompensasi rugi Rp200 juta, lalu PTKP K/3 Rp72 juta, sehingga PKP Rp445 juta. Pajaknya Rp31,5 juta untuk Rp250 juta pertama ditambah 25% x Rp195 juta, total Rp80,25 juta. Tanggungan dihitung paling banyak 3 orang walaupun yang ditanggung empat, dan dana punia tetap diisi di baris pengurang karena di pembukuan sudah dikeluarkan dari biaya. Cara ingat: biaya keagamaan wajib tetap dipakai, hanya pindah baris.",
         inti: "Urutan induk 1770: penghasilan neto dikurangi zakat/sumbangan keagamaan wajib (angka 6), lalu kompensasi kerugian (angka 8), lalu PTKP (angka 10) menghasilkan PKP (angka 11). Tanggungan dibatasi 3 orang sehingga PTKP K/3 Rp72 juta. Di SPT Tahunan OP Coretax (Lampiran huruf G PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026) komponen yang sama diisi pada induk Bagian C: Angka 2 penghasilan neto setahun, Angka 3 pengurang penghasilan neto (dana punia dan kompensasi kerugian, rinciannya di Lampiran 5), Angka 5 PTKP, Angka 6 PKP, dan Angka 7 PPh terutang.",
         jejakHitung: [
           ["Angka 1/5: neto usaha", "Rp737.000.000"],
@@ -2206,6 +2287,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Ada dua periode. Sebelum SPT 2026 dikirim pada 25 Maret 2027, angsuran Januari dan Februari sama dengan Desember 2026, yaitu Rp4 juta. Mulai Maret dipakai angka baru: rugi lama sudah habis, jadi dasarnya penghasilan penuh Rp717 juta dikurangi PTKP Rp72 juta, dengan pajak Rp137,5 juta. Dikurangi PPh 22 dan PPh 23 Rp10,35 juta, lalu dibagi 12 menjadi Rp10.595.833 untuk April. Aplikasi memakai cara ini, walau ada satu aturan pelaksana yang bunyinya bisa dibaca lain.",
         inti: "Bengkel Pak Wayan menyatu dengan tempat tinggalnya dan di Indonesia ia tidak mempunyai tempat kegiatan usaha lain, sehingga ia bukan Wajib Pajak orang pribadi pengusaha tertentu dan angsurannya mengikuti Pasal 25 UU PPh. Bulan-bulan sebelum SPT 2026 disampaikan (25 Maret 2027), yaitu Januari–Februari 2027, memakai angsuran Desember 2026 Rp4.000.000 (ayat (2)). Karena SPT 2026 memuat kompensasi kerugian, angsuran sejak Masa Maret 2027 dihitung menurut ayat (6) huruf a: penghasilan neto 2026 dikurangi sisa kerugian yang masih dapat dikompensasikan pada 2027. Sisa rugi 2021 habis pada 2026, jadi dasarnya neto penuh Rp717.000.000; setelah PTKP, PKP Rp645.000.000 dan PPh Pasal 17 Rp137.500.000; dikurangi PPh 22 dan PPh 23 Rp10.350.000 lalu dibagi 12 = Rp10.595.833. PPh final dan PPh 25 tahun lalu tidak dikurangkan.",
         jejakHitung: [
           ["Masa Februari 2027 (sebelum SPT disampaikan 25 Maret 2027)", "= angsuran Desember 2026 = Rp4.000.000"],
@@ -2242,6 +2324,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Norma dipilih per kegiatan, menurut kota tempat kegiatan itu dijalankan, bukan tempat tinggal pemiliknya. Toko di Kota Bekasi bukan ibu kota provinsi, jadi memakai 25% x Rp1,8 miliar = Rp450 juta. Kantor konsultan di Jakarta termasuk 10 ibu kota provinsi, jadi 50% x Rp900 juta = Rp450 juta. Totalnya Rp900 juta, dan PPh 21 yang dipotong klien tidak mengurangi angka ini. Aplikasi memakai kaidah tempat kegiatan, walau petunjuk rincinya belum bisa dicocokkan langsung.",
         inti: "Persentase norma dipilih per kegiatan menurut wilayah tempat kegiatan dijalankan. Toko di Kota Bekasi (bukan ibu kota provinsi) memakai persentase daerah lainnya, sedangkan jasa konsultan di Jakarta memakai persentase 10 ibu kota provinsi. PPh 21 yang dipotong adalah kredit pajak, bukan pengurang neto.",
         jejakHitung: [
           ["Toko di Kota Bekasi (daerah lainnya): 25% × Rp1.800.000.000", "Rp450.000.000"],
@@ -2276,6 +2359,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Soal ini menguji angka apa yang masuk ke tiap baris SPT. Baris penghasilan usaha diisi untung menurut norma, bukan omzetnya: 50% x Rp360 juta = Rp180 juta, sedangkan gaji neto Rp84 juta masuk baris pekerjaan. Semua PPh 21 yang dipotong, Rp1,5 juta dari kantor dan Rp9 juta dari klien, dijumlah menjadi Rp10,5 juta sebagai pengurang pajak. Bunga deposito masuk lampiran penghasilan final dan pajaknya tidak ikut dikurangkan. Cara ingat: baris penghasilan diisi untung, pajak yang dipotong masuk baris kredit.",
         inti: "Pengguna NPPN mengisi angka 1 dengan neto norma (50% × Rp360 juta = Rp180 juta), neto BPA1 pada angka 2, dan seluruh PPh 21 yang dipotong (BPA1 dan bukti potong bukan pegawai) sebagai kredit pada angka 15. Bunga deposito dilaporkan pada lampiran penghasilan final tanpa kredit. Latar Tahun Pajak 2024 dipakai karena Formulir 1770 hanya untuk Tahun Pajak sampai 2024 (Pasal 138 huruf a PER-11/PJ/2025); untuk Tahun Pajak 2025 ke atas susunan barisnya mengikuti SPT Tahunan Coretax.",
         jejakHitung: [
           ["Angka 1: 50% × Rp360.000.000", "Rp180.000.000"],
@@ -2306,6 +2390,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Untuk NPPN, kota dibagi tiga kelompok: 10 ibu kota provinsi tertentu, ibu kota provinsi lainnya, dan daerah lainnya. Sepuluh kota itu adalah Medan, Palembang, Jakarta, Bandung, Semarang, Surabaya, Denpasar, Manado, Makassar, dan Pontianak. Pontianak ada di daftar, jadi pasangan Pontianak dengan kelompok 10 ibu kota provinsi yang benar. Yogyakarta memang ibu kota provinsi tetapi tidak masuk sepuluh, Denpasar justru masuk sepuluh, dan Batam bukan ibu kota provinsi. Cara ingat: hafalkan sepuluh kotanya, jangan menebak dari besarnya kota.",
         inti: "Sepuluh ibu kota provinsi dalam PER-17/PJ/2015 adalah Medan, Palembang, Jakarta, Bandung, Semarang, Surabaya, Denpasar, Manado, Makassar, dan Pontianak; Pontianak termasuk di dalamnya.",
         jejakHitung: [
           ["Kelompok 10 ibu kota provinsi", "Medan, Palembang, Jakarta, Bandung, Semarang, Surabaya, Denpasar, Manado, Makassar, Pontianak"],
@@ -2331,6 +2416,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Rugi boleh ditutup dengan laba lima tahun berikutnya, dihitung mulai tahun sesudah rugi. Rugi 2022 berarti boleh dipakai 2023 sampai 2027, jadi 2027 masih tahun terakhir yang sah. Selama 2023 sampai 2026 sudah terpakai Rp20 juta + Rp15 juta + Rp10 juta + Rp25 juta = Rp70 juta. Sisanya Rp90 juta dikurangi Rp70 juta = Rp20 juta, itulah yang dipakai pada 2027 walaupun labanya Rp60 juta. Cara ingat: tahun ruginya sendiri tidak ikut dihitung.",
         inti: "Rugi 2022 dapat dikompensasikan pada 2023–2027. Setelah terpakai Rp70 juta pada 2023–2026, sisanya Rp20 juta dipakai pada 2027 sebagai tahun kelima.",
         jejakHitung: [ ["Rugi 2022", "Rp90.000.000"], ["Terpakai 2023–2026 (Rp20 jt + Rp15 jt + Rp10 jt + Rp25 jt)", "Rp70.000.000"], ["Sisa", "Rp20.000.000"], ["2027 = tahun kelima", "masih dapat dikompensasikan"] ],
         mengapaSalah: { B: "Tahun 2022 tidak dihitung; lima tahun dimulai 2023 sehingga 2027 masih termasuk", C: "Kompensasi tidak boleh melebihi sisa rugi yang belum dikompensasikan", D: "Sebagian rugi sudah terpakai pada 2023–2026; yang tersisa hanya Rp20.000.000" },
@@ -2353,6 +2439,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada di ketetapan pemeriksaan yang mengecilkan rugi 2024 dari Rp300 juta menjadi Rp120 juta, dan Ibu Meiliana menerimanya. Rugi yang boleh dipakai di tahun berikutnya mengikuti angka ketetapan itu, bukan angka laporannya sendiri. Jadi SPT 2025 dibetulkan: kompensasinya turun menjadi Rp120 juta, labanya naik Rp180 juta, dan kekurangan pajaknya dilunasi dulu. Waktu untuk membetulkan adalah 3 bulan sejak ketetapan diterima, bukan 1 bulan. Cara ingat: rugi berubah karena ketetapan, SPT tahun berikutnya ikut dibetulkan dalam 3 bulan.",
         inti: "Pasal 8 ayat (6) memberi kesempatan membetulkan SPT tahun berikutnya dalam jangka waktu 3 bulan setelah menerima SKP yang mengubah rugi fiskal. Kompensasi dalam SPT 2025 disesuaikan dengan rugi menurut SKP (Rp120.000.000), sehingga penghasilan neto setelah kompensasi naik Rp180.000.000 dan kekurangan pajaknya dilunasi.",
         jejakHitung: [
           ["Rugi 2024 menurut SKP", "Rp120.000.000"],
@@ -2379,6 +2466,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Ir. Anton memakai norma, yaitu cara menghitung laba dengan persentase tetap dari seluruh penerimaan tanpa menghitung biaya satu per satu. Penerimaannya dari klien badan dan klien orang pribadi dijumlah: Rp720 juta + Rp180 juta = Rp900 juta. Lalu 40% x Rp900 juta = Rp360 juta. Sewa kantor, gaji asisten, dan gaji Bu Mira tidak dikurangkan lagi karena biaya sudah dianggap ada di dalam persentase itu. Bunga deposito (pajaknya sudah final) dan hibah dari ayah tidak termasuk penerimaan pekerjaannya.",
         inti: "Pengguna NPPN menghitung neto = persentase norma × seluruh peredaran bruto pekerjaan bebas (dari klien badan maupun orang pribadi). Biaya riil seperti sewa kantor dan gaji (termasuk gaji Bu Mira) tidak dikurangkan lagi, dan PPh 21 yang dipotong klien adalah kredit pajak.",
         jejakHitung: [ ["Peredaran bruto (Rp720.000.000 + Rp180.000.000)", "Rp900.000.000"], ["Neto = 40% × Rp900.000.000", "Rp360.000.000"], ["Sewa kantor, gaji asisten, gaji Bu Mira", "tidak dikurangkan (sudah tercermin dalam norma)"], ["Bunga deposito (final) dan hibah ayah (bukan objek)", "di luar peredaran bruto"] ],
         mengapaSalah: { A: "Mengurangkan gaji Bu Mira (Rp84 juta); pada NPPN biaya riil tidak dikurangkan", B: "Mengurangkan PPh 21 bukan pegawai (2,5% × Rp720 juta = Rp18 juta); PPh yang dipotong adalah kredit pajak", C: "Memasukkan bunga deposito ke peredaran bruto; bunga deposito dikenai PPh final" },
@@ -2396,6 +2484,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dari gaji Bu Mira. Gaji istri tetap digabung ke SPT suami bila pekerjaannya berhubungan dengan usaha atau pekerjaan bebas suami, dan di sini ia bekerja di kantor Ir. Anton sendiri. Karena digabung, keluarga mendapat tambahan PTKP Rp54 juta untuk istri, sedangkan ibu yang baru ditanggung sejak Mei belum dihitung karena status dilihat per 1 Januari. Hitungannya: Rp360 juta + Rp79,8 juta - zakat Rp9 juta - PTKP Rp121,5 juta = Rp309,3 juta. Pajaknya Rp31,5 juta untuk Rp250 juta pertama, ditambah 25% x Rp59,3 juta, totalnya Rp46.325.000.",
         inti: "Penghasilan Bu Mira tidak memenuhi syarat ketiga Pasal 8 ayat (1) karena pekerjaannya berhubungan dengan pekerjaan bebas suami, sehingga digabung. Karena digabung, PTKP bertambah Rp54 juta untuk istri (K/I/2). Ibu kandung yang baru ditanggung sejak Mei belum dihitung karena status PTKP ditentukan pada 1 Januari.",
         jejakHitung: [ ["Neto Ir. Anton (NPPN)", "Rp360.000.000"], ["+ Neto Bu Mira (digabung)", "Rp79.800.000"], ["− Zakat BAZNAS", "Rp9.000.000"], ["− PTKP K/I/2 (Rp54 jt + Rp4,5 jt + Rp54 jt + 2 × Rp4,5 jt)", "Rp121.500.000"], ["PKP", "Rp309.300.000"], ["Rp31.500.000 + 25% × Rp59.300.000", "Rp46.325.000"] ],
         mengapaSalah: { A: "Menganggap penghasilan Bu Mira final (tidak digabung) dengan PTKP K/2; syarat 'tidak ada hubungannya dengan usaha atau pekerjaan bebas suami' tidak terpenuhi", C: "Menghitung ibu kandung sebagai tanggungan 2026 (K/I/3); tanggungan yang baru ada sejak Mei dihitung mulai 2027", D: "Menggabungkan penghasilan Bu Mira tetapi tidak menambah PTKP Rp54 juta untuk istri yang penghasilannya digabung" },
@@ -2419,6 +2508,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya adalah sisa pajak yang harus dibayar sendiri, yaitu pajak terutang dikurangi pajak yang sudah dibayar di muka atau dipotong pihak lain. Yang boleh dikurangkan: PPh 21 dari klien Rp18 juta, PPh 21 Bu Mira Rp1,29 juta (karena gajinya ikut digabung), dan PPh 25 Rp18 juta. Rp46.325.000 - Rp18 juta - Rp1,29 juta - Rp18 juta = Rp9.035.000. Pajak final bunga deposito tidak ikut dikurangkan, dan bunga denda STP adalah sanksi, bukan setoran pajak. Cara ingat: sanksi dan pajak final tidak pernah jadi pengurang.",
         inti: "Karena penghasilan Bu Mira digabung, PPh 21 pada BPA1-nya ikut menjadi kredit dalam SPT Ir. Anton. Kredit lainnya PPh 21 bukan pegawai dan PPh 25. PPh final deposito dan bunga STP bukan kredit pajak.",
         jejakHitung: [
           ["PPh terutang", "Rp46.325.000"],
@@ -2452,6 +2542,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Suami istri yang hidup berpisah karena putusan hakim diperlakukan seperti dua orang yang terpisah penuh. Masing-masing menghitung pajak atas penghasilannya sendiri, memakai PTKP sendiri, dan menyampaikan SPT sendiri, tanpa digabung. Cara gabung dulu lalu dibagi sebanding penghasilan hanya untuk pasangan dengan perjanjian pisah harta atau istri yang memilih berpajak sendiri. Kesepakatan tertulis di antara mereka tidak cukup, dan tidak perlu menunggu cerai. Cara ingat: putusan hakim berarti pisah total.",
         inti: "Pasal 8 ayat (2) huruf a UU PPh: suami-istri yang hidup berpisah berdasarkan putusan hakim (HB) dikenai pajak secara terpisah tanpa penggabungan. Mekanisme 'gabung lalu bagi proporsional' (Pasal 8 ayat (3)) hanya untuk PH dan MT.",
         jejakHitung: [ ["HB (putusan hakim)", "terpisah penuh, tanpa penggabungan"], ["PH (perjanjian pisah harta) dan MT (istri memilih sendiri)", "digabung, lalu dibagi sebanding neto"], ["KK", "digabung dalam SPT suami"] ],
         mengapaSalah: { B: "Pemisahan penuh mensyaratkan putusan hakim; kesepakatan tertulis bukan dasar status HB (perjanjian pisah harta pun tetap digabung lalu dibagi)", C: "Penggabungan lalu pembagian proporsional berlaku untuk PH dan MT, bukan HB", D: "Status HB tidak menunggu perceraian; putusan hakim tentang hidup berpisah sudah cukup" },
@@ -2469,6 +2560,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "angka-usang", C: "salah-baca" },
       pembahasan: {
+        mudah: "Langkah pertama yang sering terlewat: PKP dibulatkan ke bawah ke ribuan penuh, jadi Rp1.234.567.890 menjadi Rp1.234.567.000. Tarifnya berlapis, dan pajak untuk Rp500 juta pertama sudah pasti Rp94 juta. Sisanya Rp734.567.000 kena 30%, yaitu Rp220.370.100. Totalnya Rp94 juta + Rp220.370.100 = Rp314.370.100. Cara ingat: bulatkan dulu ke ribuan, baru hitung per lapisan.",
         inti: "PKP dibulatkan ke bawah menjadi Rp1.234.567.000. PPh = Rp94.000.000 (atas Rp500 juta pertama) + 30% × Rp734.567.000.",
         jejakHitung: [ ["PKP dibulatkan ke bawah dalam ribuan", "Rp1.234.567.000"], ["PPh atas Rp500.000.000 pertama", "Rp94.000.000"], ["30% × Rp734.567.000", "Rp220.370.100"], ["PPh terutang", "Rp314.370.100"] ],
         mengapaSalah: { A: "Tidak membulatkan PKP ke bawah dalam ribuan rupiah penuh", B: "Memakai lapisan lama UU 36/2008 (5% hanya s.d. Rp50 juta), sehingga PPh atas Rp500 juta pertama menjadi Rp95 juta", C: "Mengalikan seluruh PKP dengan 30%; tarif Pasal 17 berlapis" },
@@ -2490,6 +2582,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Pertama pilah dulu mana penghasilan yang ikut dihitung. Dividen Thailand yang tidak diinvestasikan di Indonesia ikut digabung, sedangkan dividen dalam negeri yang diinvestasikan bukan objek pajak, dan infak sukarela tidak boleh dikurangkan. PKP = Rp4,85 miliar + Rp320 juta - zakat Rp110 juta - PTKP Rp54 juta = Rp5,006 miliar. Pajak untuk Rp5 miliar pertama Rp1,444 miliar, lalu Rp6 juta sisanya kena 35%, yaitu Rp2,1 juta, total Rp1.446.100.000. Cara ingat: lewat Rp5 miliar, lapisan 35% mulai berlaku.",
         inti: "Dividen luar negeri yang tidak diinvestasikan di Indonesia digabung dan dikenai tarif Pasal 17 (pajak Thailand nanti menjadi kredit PPh 24), sedangkan dividen dalam negeri yang diinvestasikan bukan objek. PKP = neto dalam negeri + dividen Thailand − zakat − PTKP = Rp5.006.000.000, sehingga Rp6 juta teratas terkena lapisan 35%.",
         jejakHitung: [
           ["Neto dalam negeri + dividen Thailand", "Rp5.170.000.000"],
@@ -2525,6 +2618,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Zakat bisa mengurangi penghasilan bila dibayar ke lembaga resmi seperti BAZNAS atau LAZ, ada buktinya, dan dikurangkan di tahun dibayarnya. Zakat yang dipotong kantor dari gaji tetap milik Bu Ratna, dan zakat toko yang dibayar 30 Desember 2026 masih masuk tahun 2026. Jadi Rp4,8 juta + Rp12 juta = Rp16,8 juta dikurangkan di SPT 2026 Bu Ratna. Zakat yang diberikan langsung ke tetangga dan infak musala tidak memenuhi syarat. Cara ingat: lembaga resmi, ada bukti, tahun bayar.",
         inti: "Zakat yang dipotong melalui pemberi kerja dan zakat yang dibayar sendiri ke LAZ resmi sama-sama menjadi pengurang bagi Bu Ratna pada tahun dibayarkan (2026). Zakat yang diberikan langsung kepada perorangan dan infak sukarela tidak memenuhi syarat.",
         jejakHitung: [ ["(1) Zakat melalui pemberi kerja ke BAZNAS", "Rp4.800.000"], ["(2) Zakat penghasilan usaha ke LAZ resmi, dibayar 2026", "Rp12.000.000"], ["(3) langsung ke perorangan; (4) infak sukarela", "tidak dapat dikurangkan"], ["Jumlah yang dapat dikurangkan", "Rp16.800.000"] ],
         mengapaSalah: { A: "Zakat yang dipotong dari gaji adalah zakat pegawai; pengurangnya ada pada penghitungan PPh pegawai, bukan pada SPT perusahaan", C: "Zakat yang diberikan langsung kepada perorangan tidak memenuhi syarat penerima (BAZNAS, LAZ, atau lembaga resmi)", D: "Zakat dikurangkan pada tahun pajak dibayarkan; pembayaran 30 Desember 2026 masuk SPT 2026" },
@@ -2547,6 +2641,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Masalah orang yang pindah kerja: tiap kantor menghitung pajak seolah-olah ia hanya bekerja di situ, memakai PTKP setahun penuh dan tarif 5% dari awal. Di SPT, kedua penghasilan digabung dan PTKP dipakai sekali: Rp270 juta - Rp58,5 juta = Rp211,5 juta. Pajaknya Rp3 juta + 15% x Rp151,5 juta = Rp25.725.000, dikurangi PPh 21 kedua kantor Rp10.950.000, sisa Rp14.775.000. Pajak final deposito tidak dikurangkan, dan premi asuransi jiwa untuk diri sendiri bukan pengurang.",
         inti: "Dalam SPT, neto kedua BPA1 digabung dan PTKP TK/1 hanya dipakai sekali. Masing-masing pemberi kerja telah memperhitungkan PTKP setahun penuh dan lapisan 5% dari awal, sehingga jumlah kreditnya lebih kecil daripada PPh terutang dan timbul kurang bayar.",
         jejakHitung: [
           ["Neto pekerjaan (Rp120.000.000 + Rp150.000.000)", "Rp270.000.000"],
@@ -2582,6 +2677,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini menguji letak angka di formulir SPT, angkanya sama dengan soal sebelumnya. Penghasilan dari dua kantor dijumlah Rp270 juta di baris penghasilan dari pekerjaan, PTKP TK/1 Rp58,5 juta ditulis sekali, dan PPh 21 kedua kantor Rp10.950.000 masuk baris pajak yang sudah dipotong. Bunga deposito dan pajak finalnya dicatat di lampiran penghasilan final, tidak ikut dijumlah dan tidak dikurangkan. Hasilnya kurang bayar Rp14.775.000. Cara ingat: penghasilan final punya tempat sendiri di lampiran.",
         inti: "Neto kedua BPA1 dijumlahkan di Lampiran 1 Bagian D lalu dipindahkan ke induk Bagian B angka 1 huruf a, PTKP TK/1 dicantumkan sekali di Bagian C angka 5, dan PPh 21 dari kedua BPA1 dijumlahkan di Lampiran 1 Bagian E lalu dipindahkan ke Bagian D angka 10 huruf a sebagai kredit. Bunga deposito dilaporkan di Lampiran 2 Bagian A (penghasilan yang dikenai PPh final) tanpa dikreditkan. Hasilnya kurang bayar Rp14.775.000 di Bagian E angka 11 huruf a.",
         jejakHitung: [
           ["Bagian B angka 1 huruf a (Rp120.000.000 + Rp150.000.000)", "Rp270.000.000"],
@@ -2614,6 +2710,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Pajak yang sudah dibayar di luar negeri boleh mengurangi pajak di Indonesia, tetapi ada batasnya untuk tiap negara dan jenis penghasilan. Batasnya adalah porsi penghasilan negara itu dalam PKP dikali pajak Indonesia, lalu diambil yang lebih kecil antara batas itu dan pajak yang benar-benar dibayar. PKP Rp1 miliar karena rugi Vietnam tidak ikut dikurangkan, dan pajaknya Rp244 juta. Singapura: batas 200/1.000 x Rp244 juta = Rp48,8 juta, dibayar Rp40 juta, jadi diakui Rp40 juta. Malaysia: batas Rp24,4 juta, dibayar Rp30 juta, jadi diakui Rp24,4 juta, sehingga totalnya Rp64,4 juta.",
         inti: "Batas kredit dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018): (neto jenis itu dari negara itu ÷ PKP) × PPh terutang, dan yang dikreditkan adalah yang paling sedikit antara batas itu dan pajak yang benar-benar dibayar. Di soal ini tiap negara hanya memberi satu jenis penghasilan (sewa dari Singapura, usaha restoran dari Malaysia). Rugi di Vietnam tidak digabung (Pasal 4 ayat (3)).",
         jejakHitung: [
           ["PKP (Rp763 jt + Rp200 jt + Rp100 jt − PTKP K/1 Rp63 jt; rugi Vietnam tidak digabung)", "Rp1.000.000.000"],
@@ -2645,6 +2742,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Angsuran bulanan tahun ini dihitung dari pajak tahun lalu, tetapi penghasilan yang tidak rutin seperti untung jual saham dibuang dulu. Hitung ulang pajak atas laba usaha saja: Rp300 juta - PTKP Rp58,5 juta = Rp241,5 juta, pajaknya Rp30.225.000. Kurangi PPh 22 dan PPh 23 sebesar Rp7,2 juta, sehingga tersisa Rp23.025.000, lalu bagi 12 = Rp1.918.750. PPh 25 yang disetor tahun lalu tidak dikurangkan karena itu sendiri adalah angsuran. Cara ingat: angsuran hanya dari penghasilan yang berulang.",
         inti: "Penghasilan tidak teratur dikeluarkan dari dasar angsuran: PPh dihitung ulang atas penghasilan teratur saja (PKP Rp241,5 juta, PPh Rp30.225.000), lalu dikurangi PPh 22 dan PPh 23, kemudian dibagi 12.",
         jejakHitung: [
           ["PKP tanpa penghasilan tidak teratur (Rp300.000.000 − PTKP K/0 Rp58.500.000)", "Rp241.500.000"],
@@ -2676,6 +2774,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Pengusaha tertentu adalah orang pribadi yang berdagang atau menjual jasa di tempat usaha yang terpisah dari rumah tinggalnya. Untuk mereka, angsuran bulanan dihitung 0,75% dari omzet tiap tempat usaha. Ibu Dewi berdagang pakaian di toko pusat perbelanjaan, jadi cocok. Bapak Andi berusaha di rumahnya sendiri, dokter adalah pekerjaan bebas yang dikecualikan, dan sewa gedung sudah kena pajak final sehingga tidak ada angsuran. Cara ingat: dagang atau jasa, tempatnya bukan di rumah.",
         inti: "Wajib Pajak orang pribadi pengusaha tertentu adalah orang pribadi yang melakukan kegiatan usaha perdagangan atau jasa, tidak termasuk jasa sehubungan dengan pekerjaan bebas, pada satu atau lebih tempat kegiatan usaha yang berbeda dengan tempat tinggalnya; angsurannya 0,75% × peredaran bruto bulanan tiap tempat usaha. Ibu Dewi berdagang di dua toko di pusat perbelanjaan, jadi termasuk.",
         jejakHitung: [
           ["Kriteria OPPT", "usaha dagang atau jasa (bukan pekerjaan bebas) di tempat usaha yang berbeda dengan tempat tinggal"],
@@ -2707,6 +2806,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Dalam PPh final UMKM, omzet Rp500 juta pertama dalam setahun bebas pajak, dan jatah itu dipakai sekali saja. Sampai Maret omzetnya sudah Rp550 juta, jadi jatahnya habis dan seluruh omzet April Rp200 juta kena 0,5%, yaitu Rp1 juta. Dari jumlah itu, Rp400 ribu sudah dipungut bendahara dinas atas penjualan Rp80 juta. Jadi yang masih disetor sendiri Rp1 juta - Rp400 ribu = Rp600 ribu. Cara ingat: jatah Rp500 juta setahun sekali, lalu kurangi yang sudah dipungut pembeli.",
         inti: "Bagian Rp500 juta habis pada Maret (kumulatif Rp550 juta), sehingga seluruh peredaran bruto April Rp200 juta dikenai 0,5% = Rp1.000.000. Bagian Rp80 juta telah dipungut bendahara (Rp400.000) sebagai pelunasan PPh final, sehingga yang disetor sendiri Rp600.000.",
         jejakHitung: [
           ["Kumulatif s.d. Maret (Rp150 jt + Rp170 jt + Rp230 jt)", "Rp550.000.000 (Rp500 juta habis di Maret)"],
@@ -2739,6 +2839,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "angka-usang" },
       pembahasan: {
+        mudah: "Kuncinya ada di status keluarga. Karena Bu Sinta tidak berpajak sendiri, suami istri dianggap satu Wajib Pajak, jadi omzet keduanya dijumlah dan jatah bebas Rp500 juta hanya dipakai sekali. Omzet keluarga Rp420 juta + Rp360 juta = Rp780 juta, dikurangi Rp500 juta tersisa Rp280 juta. Pajaknya 0,5% x Rp280 juta = Rp1,4 juta. Cara ingat: satu keluarga satu NPWP, satu jatah Rp500 juta.",
         inti: "Pada status KK, peredaran bruto istri digabung dengan suami sebagai satu Wajib Pajak, sehingga bagian Rp500 juta yang tidak dikenai pajak hanya berlaku sekali untuk keluarga: 0,5% × (Rp780 juta − Rp500 juta).",
         jejakHitung: [
           ["Peredaran bruto keluarga (Rp420 jt + Rp360 jt)", "Rp780.000.000"],
@@ -2770,6 +2871,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "angka-usang" },
       pembahasan: {
+        mudah: "Terlambat setor kena bunga per bulan, dihitung dari tanggal jatuh tempo sampai tanggal bayar, dan sisa hari dihitung satu bulan penuh. Jatuh temponya 15 Juni 2026, dibayar 3 Agustus 2026, jaraknya 1 bulan 19 hari sehingga dihitung 2 bulan. Bunganya Rp1.150.000 x 1,05% x 2 = Rp24.150. Cara ingat: mulai hitung dari tanggal 15, dan bulan yang baru sebagian tetap dihitung penuh.",
         inti: "Dari jatuh tempo 15 Juni 2026 sampai pembayaran 3 Agustus 2026 terdapat 1 bulan 19 hari, dihitung 2 bulan. Bunga = Rp1.150.000 × 1,05% × 2 = Rp24.150.",
         jejakHitung: [
           ["Jatuh tempo (tanggal 15 bulan berikutnya)", "15 Juni 2026"],
@@ -2801,6 +2903,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Penghasilan 2025 diperoleh saat Bapak Hendrik masih hidup, jadi SPT 2025 tetap harus disampaikan, dan yang mengerjakan adalah wakil ahli warisnya. SPT itu memang terlambat karena batasnya 31 Maret 2026. Namun undang-undang membebaskan denda keterlambatan SPT bagi orang pribadi yang sudah meninggal dunia. Jadi kewajibannya tetap ada, dendanya tidak ada. Cara ingat: terlambat tidak selalu didenda, cek dulu daftar pengecualiannya.",
         inti: "Kewajiban menyampaikan SPT Tahun Pajak 2025 tetap ada karena penghasilan 2025 diperoleh saat almarhum masih menjadi subjek pajak, dan dilaksanakan oleh wakil/ahli waris; Pasal 7 ayat (2) mengecualikan denda keterlambatan bagi Wajib Pajak orang pribadi yang telah meninggal dunia.",
         jejakHitung: [ ["Batas SPT Tahun Pajak 2025", "31 Maret 2026"], ["Disampaikan", "12 Mei 2026 (terlambat)"], ["Pasal 7 ayat (2): WP orang pribadi meninggal dunia", "denda tidak dikenakan"] ],
         mengapaSalah: { A: "Mengabaikan pengecualian Pasal 7 ayat (2) bagi Wajib Pajak orang pribadi yang telah meninggal dunia", B: "Denda Rp1.000.000 berlaku untuk SPT Tahunan badan; lagi pula denda dikecualikan karena Wajib Pajak telah meninggal dunia", C: "Kewajiban atas Tahun Pajak 2025 tidak hilang karena kematian pada 2026; SPT disampaikan oleh wakil/ahli waris" },
@@ -2822,6 +2925,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada di dua hal: kapan status keluarga dilihat dan siapa yang boleh jadi tanggungan. Status dilihat pada awal tahun pajak, jadi anak yang lahir Desember baru menambah PTKP tahun berikutnya. Tanggungan hanya keluarga sedarah atau semenda garis lurus (misalnya orang tua, mertua, anak) dan anak angkat yang ditanggung penuh, paling banyak 3 orang. Saudara kandung dan keponakan itu garis ke samping, jadi tidak dihitung. Cara ingat: awal tahun, garis lurus, maksimal tiga.",
         inti: "PTKP diberikan untuk diri WP, tambahan kawin, tambahan istri yang penghasilannya digabung, dan Rp4,5 juta untuk setiap anggota keluarga sedarah dan semenda dalam garis keturunan lurus serta anak angkat yang ditanggung sepenuhnya, paling banyak 3 orang. Penerapannya ditentukan menurut keadaan pada awal tahun pajak atau awal bagian tahun pajak.",
         jejakHitung: [],
         mengapaSalah: { A: "PTKP ditentukan menurut keadaan awal tahun pajak, bukan akhir tahun; anak yang lahir pada Desember baru diperhitungkan tahun berikutnya.", B: "Saudara kandung dan keponakan adalah keluarga garis ke samping, bukan garis keturunan lurus, sehingga tidak diakui sebagai tanggungan.", C: "Tanggungan dibatasi paling banyak 3 orang untuk setiap keluarga." },
@@ -2847,6 +2951,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari neto: arsitek yang memakai norma cukup mengalikan omzet dengan persentase norma, 45% x Rp360 juta = Rp162 juta. Ibu kandung yang ditanggung penuh adalah keluarga garis lurus, jadi statusnya TK/1 dengan PTKP Rp58,5 juta. Penghasilan kena pajaknya Rp162 juta dikurangi Rp58,5 juta = Rp103,5 juta, lalu dikenai tarif berlapis: 5% x Rp60 juta + 15% x Rp43,5 juta = Rp9.525.000. PPh final 0,5% tidak bisa dipakai karena arsitek termasuk pekerjaan bebas. Cara ingat: neto norma, kurangi PTKP, lalu tarif berlapis.",
         inti: "Peredaran bruto di bawah Rp4,8 miliar dan NPPN telah diberitahukan tepat waktu, sehingga neto dihitung dengan persentase NPPN. Jasa arsitek adalah pekerjaan bebas yang dikecualikan dari PPh final 0,5%. Ibu kandung adalah keluarga sedarah garis lurus yang ditanggung sepenuhnya, sehingga status TK/1 dengan PTKP Rp58.500.000; tarif Ps. 17 diterapkan per lapisan.",
         jejakHitung: [ [ "Neto = 45% × Rp360.000.000", "Rp162.000.000" ], [ "PTKP TK/1", "Rp58.500.000" ], [ "PKP = Rp162.000.000 − Rp58.500.000", "Rp103.500.000" ], [ "PPh = 5% × Rp60.000.000 + 15% × Rp43.500.000", "Rp9.525.000" ] ],
         mengapaSalah: { A: "Memakai PTKP TK/0 Rp54.000.000 tanpa tanggungan ibu kandung.", B: "0,5% × peredaran bruto (PP 55/2022) tidak berlaku bagi pekerjaan bebas.", D: "Menerapkan tarif 5% atas seluruh PKP tanpa lapisan progresif." },
@@ -2873,6 +2978,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Istri yang memilih mengurus pajaknya sendiri (status MT) tetap dihitung bersama suami. Penghasilan neto digabung menjadi Rp280 juta, dikurangi PTKP gabungan Rp117 juta, sehingga penghasilan kena pajak Rp163 juta. Pajaknya 5% x Rp60 juta + 15% x Rp103 juta = Rp18,45 juta. Bagian istri sebanding penghasilannya: 200/280 x Rp18,45 juta = Rp13.178.571. Cara ingat: MT dihitung gabung dulu, baru dibagi menurut porsi penghasilan.",
         inti: "Istri yang memilih menjalankan hak dan kewajiban perpajakannya sendiri (MT) dikenai pajak berdasarkan penggabungan penghasilan neto suami-istri, lalu PPh dibagi sebanding dengan penghasilan neto masing-masing (UU PPh Ps. 8 ayat (2) huruf c dan ayat (3)). PTKP gabungan K/I/1 = Rp117.000.000. PPh 21 yang dipotong dari gaji Tuan Hasan tidak memengaruhi beban Nyonya Lina; kredit pajak diperhitungkan masing-masing.",
         jejakHitung: [ [ "Neto gabungan = Rp80.000.000 + Rp200.000.000", "Rp280.000.000" ], [ "PTKP K/I/1 = Rp54.000.000 + Rp4.500.000 + Rp54.000.000 + Rp4.500.000", "Rp117.000.000" ], [ "PKP gabungan", "Rp163.000.000" ], [ "PPh gabungan = 5% × Rp60.000.000 + 15% × Rp103.000.000", "Rp18.450.000" ], [ "PPh Nyonya Lina = 200/280 × Rp18.450.000", "Rp13.178.571" ] ],
         mengapaSalah: { B: "Menghitung Nyonya Lina terpisah penuh dengan PTKP TK/0: (Rp200.000.000 − Rp54.000.000) → PPh Rp15.900.000.", C: "Membagi PPh gabungan sama rata (Rp18.450.000 ÷ 2), bukan menurut perbandingan neto.", D: "Tidak memasukkan tambahan PTKP istri Rp54.000.000 (PTKP K/1 Rp63.000.000), sehingga PPh gabungan Rp26.550.000 dan bagian istri Rp18.964.286." },
@@ -2898,6 +3004,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
+        mudah: "PTKP adalah bagian penghasilan yang tidak dikenai pajak, besarnya menurut status kawin dan jumlah tanggungan. Tanggungan yang diakui hanya keluarga garis lurus seperti orang tua dan anak, jadi ibu kandung dan anak dihitung, sedangkan keponakan tidak. Istri tidak berpenghasilan, jadi tidak ada tambahan Rp54 juta. Hitungannya Rp54 juta + Rp4,5 juta + 2 x Rp4,5 juta = Rp67,5 juta (K/2). Hal yang belum pasti: data ibu kandung di soal ini hasil susun ulang, dan tanpa ibu kandung jawabannya Rp63 juta.",
         inti: "Ibu kandung (sedarah garis lurus ke atas) dan anak kandung (sedarah garis lurus ke bawah) yang ditanggung sepenuhnya diakui; keponakan adalah keluarga sedarah garis ke samping sehingga tidak diakui. Tambahan Rp54 juta untuk istri hanya diberikan bila penghasilan istri digabung dengan penghasilan suami, sedangkan istri tidak berpenghasilan. Status Tuan Bram K/2.",
         jejakHitung: [
           ["PTKP diri", "Rp54.000.000"],
@@ -2930,6 +3037,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Tambahan PTKP diberikan untuk tanggungan keluarga garis lurus, yaitu orang tua, mertua, atau anak, serta anak angkat, paling banyak tiga orang. Statusnya dilihat pada 1 Januari. Ibu mertua dan anak angkat diakui, jadi ada dua tanggungan. Keponakan adalah keluarga ke samping sehingga tidak dihitung, dan anak yang lahir Agustus baru dihitung tahun depan. Hasilnya K/2.",
         inti: "Tambahan PTKP Rp4.500.000 diberikan untuk setiap anggota keluarga sedarah dan semenda dalam garis keturunan lurus serta anak angkat yang menjadi tanggungan sepenuhnya, paling banyak 3 orang (Pasal 7 ayat (1) huruf d UU PPh). Ibu mertua adalah keluarga semenda garis lurus dan anak angkat disebut tegas, sehingga keduanya diakui. Keponakan adalah keluarga garis ke samping. Status ditentukan menurut keadaan awal tahun pajak (Pasal 7 ayat (2)), sehingga anak yang lahir Agustus 2026 belum diperhitungkan. Status Tuan Dimas K/2 (PTKP Rp67.500.000).",
         jejakHitung: [],
         mengapaSalah: {
@@ -2957,6 +3065,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Dokter tidak boleh memakai PPh final 0,5% UMKM karena praktiknya termasuk pekerjaan bebas, jadi ia memakai tarif biasa yang berlapis. Labanya dihitung dengan norma: 40% x Rp540 juta = Rp216 juta. Status PTKP dilihat per 1 Januari, saat itu istri dan dua anak (K/2) Rp67,5 juta, sehingga PKP Rp148,5 juta. Pajaknya 5% x Rp60 juta + 15% x Rp88,5 juta = Rp16.275.000. Cara ingat: anak yang lahir di tengah tahun baru dihitung tahun depan.",
         inti: "Peredaran bruto kurang dari Rp4,8 miliar dan pemberitahuan NPPN disampaikan dalam 3 bulan pertama tahun pajak, sehingga neto dihitung dengan persentase norma (Pasal 14 ayat (2) UU PPh). Jasa dokter adalah jasa sehubungan dengan pekerjaan bebas yang dikecualikan dari PPh final 0,5% (Pasal 56 ayat (3) huruf a dan ayat (4) huruf a PP 55/2022). PTKP mengikuti keadaan 1 Januari 2026: kawin dengan 2 tanggungan (K/2) Rp67.500.000. Tarif Pasal 17 ayat (1) huruf a diterapkan per lapisan.",
         jejakHitung: [
           ["Neto = 40% × Rp540.000.000", "Rp216.000.000"],
@@ -2990,6 +3099,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Istri yang memilih berpajak sendiri tetap dihitung bersama dulu, baru pajaknya dibagi. Neto digabung Rp150 juta + Rp260 juta = Rp410 juta, dikurangi PTKP gabungan termasuk tambahan Rp54 juta untuk istri, total Rp121,5 juta, sehingga PKP Rp288,5 juta. Pajak gabungannya Rp41.125.000. Bagian Tuan Arif sebanding penghasilannya: 150/410 x Rp41.125.000 = Rp15.045.732. Cara ingat: gabung dulu, hitung pajaknya, lalu bagi menurut besar penghasilan.",
         inti: "Istri yang memilih menjalankan hak dan kewajiban perpajakannya sendiri (MT) dikenai pajak berdasarkan penggabungan penghasilan neto suami-istri, lalu PPh dibagi menurut perbandingan penghasilan neto (Pasal 8 ayat (2) huruf c dan ayat (3) UU PPh). Usaha istri tidak dikenai PPh final karena peredaran brutonya di atas Rp4,8 miliar. PTKP gabungan K/I/2 = Rp121.500.000: petunjuk pengisian Lampiran 4 Bagian B SPT Tahunan OP (PENGHITUNGAN PPH TERUTANG WAJIB PAJAK DAN SUAMI/ISTRI untuk PH atau MT) memberikan tambahan Rp54.000.000 untuk istri yang penghasilannya digabung (Angka 5 huruf (c)), dan contoh Angka 8 di petunjuk itu (neto gabungan Rp250.000.000, PPh Rp14.625.000) juga memakai PTKP K/I.",
         jejakHitung: [
           ["Neto gabungan = Rp150.000.000 + Rp260.000.000", "Rp410.000.000"],
@@ -3023,6 +3133,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Tuan Hiroshi tinggal di Jepang dan hanya 35 hari di Indonesia, jadi ia Wajib Pajak luar negeri. Imbalan jasanya dipotong PPh 26 sebesar 20% dari bruto, kecuali ia bisa memakai perjanjian pajak Indonesia dan Jepang. Untuk itu Formulir DGT harus disahkan otoritas pajak Jepang, padahal bagian pengesahannya kosong dan tidak ada surat domisili. Jadi dipotong 20% x Rp180 juta = Rp36 juta, dan potongan itu final sehingga ia tidak perlu SPT Tahunan. Cara ingat: formulir DGT tanpa pengesahan sama saja tidak ada.",
         inti: "Tuan Hiroshi adalah subjek pajak luar negeri (bertempat tinggal di Jepang, hadir 35 hari). Imbalan jasa yang dibayar subjek pajak dalam negeri kepadanya dipotong PPh Pasal 26 sebesar 20% dari bruto. Manfaat P3B hanya dapat diberikan bila Formulir DGT memenuhi Pasal 8 ayat (3) PMK 112/2025, termasuk disahkan pejabat berwenang negara mitra; karena pengesahan kosong dan tidak ada surat keterangan domisili pengganti, pemotong wajib memotong menurut UU PPh (Pasal 10 ayat (4)). PPh Pasal 26 atas Wajib Pajak luar negeri tanpa BUT bersifat final, sehingga tidak ada SPT Tahunan.",
         jejakHitung: [
           ["Status", "Subjek pajak luar negeri (tinggal di Osaka, 35 hari di Indonesia)"],
@@ -3054,6 +3165,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Fasilitas dari kantor pada dasarnya penghasilan bagi pegawai, kecuali yang dikecualikan. Makan untuk semua pegawai, alat kerja dan pulsa, parsel hari raya untuk semua pegawai, dan klub tenis sampai Rp1,5 juta setahun termasuk yang dikecualikan. Mobil dinas juga bebas karena Nyonya Ratih tidak punya saham dan gajinya di bawah Rp100 juta sebulan, walau mobil dipakai pribadi. Apartemen pribadi hanya bebas sampai Rp2 juta sebulan, sehingga kelebihannya Rp5,5 juta sebulan menjadi penghasilan. Jadi hanya apartemen yang kena pajak.",
         inti: "Makanan di tempat kerja untuk seluruh pegawai, peralatan kerja beserta pulsa, dan bingkisan hari raya keagamaan (termasuk Tahun Baru Imlek) yang diterima seluruh pegawai dikecualikan. Fasilitas olahraga selain golf dan sejenisnya dikecualikan sampai Rp1.500.000 setahun, sehingga klub tenis Rp1.200.000 dikecualikan. Fasilitas kendaraan dikecualikan bagi pegawai yang tidak memiliki penyertaan modal dan rata-rata bruto 12 bulan terakhir sampai Rp100.000.000 per bulan; kedua syarat dipenuhi. Tempat tinggal individual hanya dikecualikan sampai Rp2.000.000 per bulan; selisih Rp5.500.000 per bulan merupakan objek.",
         jejakHitung: [
           ["(1) Makan di kantin untuk seluruh pegawai", "dikecualikan"],
@@ -3088,6 +3200,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "final-nonfinal", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pisahkan dua jenis sewa ini. Sewa ruko adalah sewa bangunan yang pajaknya final 10%, jadi tidak digabung dan pajaknya tidak boleh dikurangkan, walaupun disetor sendiri. Sewa forklift kena potongan 2% yang tidak final, jadi labanya digabung: Rp84 juta - biaya Rp31,5 juta = Rp52,5 juta. Potongan Rp1.680.000 dari PT Gudang Raya menjadi pengurang pajak di SPT. Cara ingat: pajak final berhenti di situ, pajak tidak final dihitung lagi di SPT.",
         inti: "Sewa ruko (bangunan) dikenai PPh final 10% dari bruto; karena penyewa bukan pemotong pajak, PPh itu disetor sendiri oleh Bapak Teguh, tetapi tetap final: tidak digabung, biayanya tidak dikurangkan, dan PPh-nya tidak dikreditkan. Sewa forklift dipotong PPh Pasal 23 sebesar 2% yang tidak final: neto Rp84.000.000 - Rp31.500.000 = Rp52.500.000 digabung, dan PPh Pasal 23 Rp1.680.000 menjadi kredit pajak.",
         jejakHitung: [
           ["Sewa ruko: PPh final 10% x Rp96.000.000 disetor sendiri", "Rp9.600.000 (tidak digabung, tidak dikreditkan)"],
@@ -3122,6 +3235,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "angka-usang", C: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Laba buku perlu disesuaikan menjadi laba menurut pajak. Yang ditambahkan kembali karena tidak boleh jadi biaya: PPh 25 Rp42 juta, gaji pemilik sendiri Rp144 juta, asuransi kesehatan pribadi Rp9 juta, sumbangan Rp6,5 juta, dan denda STP Rp2 juta. Sewa lantai atas Rp30 juta dikeluarkan karena pajaknya sudah final, sedangkan seragam dan makan karyawan kini boleh jadi biaya. Rp612 juta + Rp203,5 juta - Rp30 juta = Rp785,5 juta. Cara ingat: pengeluaran pribadi pemilik, pajak, dan denda selalu dikembalikan.",
         inti: "Koreksi positif atas PPh Pasal 25, \"gaji\" pemilik (biaya untuk kepentingan pribadi), premi asuransi kesehatan pribadi, sumbangan, dan sanksi denda; koreksi negatif atas sewa yang telah dikenai PPh final. Seragam dan makan karyawan (natura) boleh dibiayakan sejak UU HPP sehingga tidak dikoreksi.",
         jejakHitung: [
           ["Laba komersial", "Rp612.000.000"],
@@ -3160,6 +3274,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Setiap rugi boleh dipakai selama lima tahun, dihitung mulai tahun sesudah rugi itu terjadi. Rugi 2021 berlaku 2022 sampai 2026 dan sudah terpakai Rp50 juta + Rp70 juta + Rp80 juta = Rp200 juta. Sisanya Rp100 juta masih boleh dipakai di 2026, tahun terakhirnya. Rugi 2023 Rp90 juta berlaku sampai 2028 dan belum terpakai. Labanya cukup besar, jadi Rp100 juta + Rp90 juta = Rp190 juta. Cara ingat: 2026 masih tahun kelima bagi rugi 2021.",
         inti: "Rugi 2021 dapat dikompensasikan mulai 2022 berturut-turut sampai 5 tahun, yaitu 2022 sampai 2026. Sisanya Rp100.000.000 (Rp300 juta dikurangi Rp200 juta yang sudah dipakai) masih boleh dikurangkan pada 2026, tahun terakhirnya. Rugi 2023 Rp90.000.000 berlaku 2024 sampai 2028 dan belum terpakai. Neto setelah zakat Rp767.500.000 cukup untuk menampung keduanya.",
         jejakHitung: [
           ["Rugi 2021", "Rp300.000.000"],
@@ -3195,6 +3310,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Tinggal menyusun urutannya: laba fiskal dikurangi zakat, kompensasi rugi, lalu PTKP. Rp785,5 juta - Rp18 juta - Rp190 juta - PTKP K/1 Rp63 juta = Rp514,5 juta. Pajak untuk Rp500 juta pertama Rp94 juta, dan hanya Rp14,5 juta sisanya yang kena 30%, yaitu Rp4,35 juta. Totalnya Rp98.350.000. Cara ingat: tarif 30% hanya untuk bagian di atas Rp500 juta, bukan untuk seluruh PKP.",
         inti: "PKP = 785,5 - 18 - 190 - 63 juta = Rp514.500.000, sehingga sebagian kecil masuk lapisan 30%.",
         jejakHitung: [
           ["Neto - zakat - kompensasi", "Rp577.500.000"],
@@ -3233,6 +3349,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Yang ditanya hanya penghasilan dari pekerjaan bebas, yaitu kerja sebagai ahli yang bukan karyawan. Gaji dari PT bukan bagian ini, tetapi honor dari CV sebagai tenaga ahli bukan pegawai ikut dihitung. Jadi peredaran brutonya 10 x Rp16 juta = Rp160 juta ditambah praktik mandiri Rp320 juta, totalnya Rp480 juta. Netonya 45% x Rp480 juta = Rp216 juta. Batas Rp500 juta bebas pajak hanya untuk pajak final UMKM, dan jasa arsitek tidak boleh memakai jalur itu.",
         inti: "Honorarium tenaga ahli dari CV Ruang Kriya adalah peredaran bruto pekerjaan bebas, sedangkan gaji PT Cipta Bangun Persada bukan. Peredaran bruto Rp160.000.000 + Rp320.000.000 = Rp480.000.000 (kurang dari Rp4,8 miliar, pemberitahuan dalam 3 bulan pertama), neto = 45% x Rp480.000.000. Jasa pekerjaan bebas dikecualikan dari PPh final 0,5% (Pasal 56 ayat (3) huruf a PP 55/2022), sehingga bagian peredaran bruto sampai Rp500 juta yang tidak dikenai pajak tidak berlaku baginya.",
         jejakHitung: [
           ["Honorarium CV Ruang Kriya (10 x Rp16.000.000)", "Rp160.000.000"],
@@ -3267,6 +3384,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "angka-usang", B: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Mulai dari menjumlahkan penghasilan yang kena tarif biasa: gaji Rp205,4 juta dan pekerjaan bebas Rp216 juta. Kurangi zakat lewat BAZNAS Rp7,2 juta dan PTKP K/3 Rp72 juta, yaitu bagian penghasilan yang bebas pajak, hasilnya Rp342,2 juta. Bunga deposito tidak ikut karena pajaknya sudah final. Pajaknya bertangga: 5% x Rp60 juta = Rp3 juta, 15% x Rp190 juta = Rp28,5 juta, dan 25% x Rp92,2 juta = Rp23,05 juta, totalnya Rp54,55 juta.",
         inti: "PKP = 205.400.000 + 216.000.000 - 7.200.000 - 72.000.000 = Rp342.200.000; bunga deposito yang dikenai PPh final tidak ikut.",
         jejakHitung: [
           ["Neto pekerjaan + pekerjaan bebas", "Rp421.400.000"],
@@ -3304,6 +3422,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "final-nonfinal", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya adalah sisa pajak kurang bayar, yaitu sisa pajak yang masih harus dibayar sendiri sesudah dikurangi pajak yang sudah dipotong atau disetor sepanjang tahun. Yang boleh dikurangkan: potongan dari PT Rp14,01 juta, potongan dari CV 10 x Rp400 ribu = Rp4 juta, dan setoran bulanan 12 x Rp2,75 juta = Rp33 juta. Pajak final bunga deposito tidak boleh ikut dikurangkan. Jadi Rp54,55 juta dikurangi Rp51,01 juta = Rp3,54 juta.",
         inti: "Kredit pajak yang sah: PPh 21 dari PT Cipta Bangun Persada dan CV Ruang Kriya serta PPh 25 yang disetor sendiri; PPh final bunga deposito tidak dapat dikreditkan.",
         jejakHitung: [
           ["PPh terutang", "Rp54.550.000"],
@@ -3338,6 +3457,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Angsuran bulanan tahun depan dihitung dari pajak tahun ini dikurangi pajak yang dipotong pihak lain, lalu dibagi 12. Setoran bulanan yang sudah ia bayar sendiri tidak dikurangkan, begitu juga pajak final deposito. Jadi Rp54,55 juta dikurangi potongan PPh 21 Rp18,01 juta = Rp36,54 juta. Dibagi 12 hasilnya Rp3.045.000 per bulan. Cara ingat: angsuran hanya dikurangi potongan orang lain, bukan setoran sendiri.",
         inti: "Pasal 25 ayat (1): PPh terutang tahun lalu dikurangi PPh 21, 22, 23, dan PPh 24, lalu dibagi 12. PPh 25 tahun berjalan dan PPh final tidak dikurangkan.",
         jejakHitung: [
           ["PPh terutang 2026", "Rp54.550.000"],
@@ -3370,6 +3490,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kuncinya ada di kata norma: dokter ini boleh tidak membuat neraca dan laba rugi, tetapi tetap wajib mencatat penerimaannya. Catatan itulah dasar untuk mengalikan persen norma. Kalau ia tidak mencatat atau tidak bisa menunjukkan buktinya, netonya tetap dihitung dengan norma, tetapi omzetnya ditaksir dengan cara lain oleh petugas pajak. PPh 21 yang dipotong klinik bukan pengurang omzet, melainkan kredit pajak. Cara ingat: norma bebas pembukuan, bukan bebas pencatatan.",
         inti: "Pengguna NPPN dikecualikan dari pembukuan tetapi wajib menyelenggarakan pencatatan (Pasal 14 ayat (3) UU PPh; Pasal 28 ayat (2) UU KUP). Bila pencatatan tidak atau tidak sepenuhnya diselenggarakan atau bukti pendukungnya tidak diperlihatkan, neto dihitung dengan norma dan peredaran bruto dihitung dengan cara lain (Pasal 14 ayat (5)).",
         jejakHitung: [],
         mengapaSalah: {
@@ -3397,6 +3518,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Soal ini mencari yang TIDAK boleh memakai norma. Syaratnya, peredaran bruto setahun harus kurang dari Rp4,8 miliar. Pedagang dengan omzet tepat Rp4,8 miliar tidak kurang dari batas itu, jadi ia wajib pembukuan. Penyanyi Rp3,1 miliar, notaris yang juga dosen Rp900 juta, dan bengkel Rp4,75 miliar semuanya masih di bawah batas. Cara ingat: batas norma itu kurang dari, jadi angka yang pas sama sudah gagal.",
         inti: "Syarat NPPN adalah peredaran bruto setahun KURANG DARI Rp4,8 miliar (Pasal 14 ayat (2) UU PPh). Peredaran bruto tepat Rp4.800.000.000 tidak kurang dari batas itu, sehingga pedagang bahan bangunan wajib menyelenggarakan pembukuan.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3424,6 +3546,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Ibu Ratna punya dua kegiatan yang aturannya beda. Jasa dokter gigi termasuk pekerjaan bebas, dan pekerjaan bebas tidak boleh memakai pajak final 0,5%, jadi netonya dihitung dengan norma: 40% x Rp750 juta = Rp300 juta, lalu kena tarif biasa. Rumah makan tetap boleh final 0,5% selama omzet yang diuji tidak melebihi Rp4,8 miliar. Uji itu memakai omzet tahun sebelumnya dari kedua kegiatan, yaitu Rp1,7 miliar pada 2025, jadi masih jauh di bawah batas.",
         inti: "Jasa sehubungan dengan pekerjaan bebas orang pribadi, termasuk dokter, dikecualikan dari PPh final 0,5% (Pasal 56 ayat (3) huruf a dan ayat (4) huruf a PP 55/2022). Usaha rumah makan tetap boleh memakai PPh final selama peredaran bruto yang diuji tidak melebihi Rp4,8 miliar; menurut PP 20/2026 uji itu menjumlahkan peredaran bruto usaha dan pekerjaan bebas Tahun Pajak terakhir sebelumnya (Pasal 58 ayat (1) huruf a). Penghasilan dokter gigi dihitung dengan NPPN (peredaran bruto kurang dari Rp4,8 miliar) dan dikenai tarif Pasal 17.",
         jejakHitung: [
           ["Uji batas: peredaran bruto 2025 (usaha + pekerjaan bebas)", "Rp1,7 miliar ≤ Rp4,8 miliar"],
@@ -3457,6 +3580,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Kita cek dua hal: tanggal pemberitahuan dan kewajiban catatannya. Pemberitahuan norma harus masuk dalam tiga bulan pertama tahun pajak itu, yaitu Januari sampai Maret, jadi 31 Maret 2026 masih sah. Omzetnya Rp2,4 miliar, di bawah Rp4,8 miliar, sehingga ia boleh memakai norma. Pengguna norma cukup membuat pencatatan, tidak perlu neraca dan laba rugi. Cara ingat: tenggat norma jatuh pada 31 Maret tahun yang sama.",
         inti: "Tiga bulan pertama Tahun Pajak 2026 adalah Januari sampai Maret, sehingga pemberitahuan pada 31 Maret 2026 masih tepat waktu (Pasal 14 ayat (2)). Peredaran brutonya kurang dari Rp4,8 miliar, jadi ia boleh menghitung neto dengan norma dan wajib menyelenggarakan pencatatan (ayat (3)); mencatat penerimaan bruto tanpa neraca dan laba rugi sudah sesuai.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3484,6 +3608,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-baca" },
       pembahasan: {
+        mudah: "PTKP mengikuti keadaan keluarga pada 1 Januari. Tanggungan yang dihitung hanya keluarga garis lurus ke atas atau ke bawah, termasuk mertua, bukan saudara ke samping. Pada awal 2026 tanggungannya anak kandung dan ayah mertua, jadi dua orang. Keponakan tidak dihitung, dan bayi yang lahir Juli baru dihitung tahun depan. Rp54 juta + Rp4,5 juta kawin + 2 x Rp4,5 juta = Rp67,5 juta.",
         inti: "Tanggungan yang sah pada 1 Januari 2026: anak kandung (sedarah garis lurus) dan ayah mertua (semenda garis lurus) = 2. Keponakan adalah keluarga garis ke samping, dan anak yang lahir Juli 2026 belum dihitung karena status ditentukan pada awal tahun pajak (Pasal 7 ayat (2)).",
         jejakHitung: [
           ["WP sendiri", "Rp54.000.000"],
@@ -3517,6 +3642,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Penentunya adalah syarat istri bekerja hanya pada satu pemberi kerja. Bu Lestari punya kerja kedua di bimbingan belajar, jadi seluruh penghasilannya digabung ke suami dan PTKP mendapat tambahan Rp54 juta untuk istri. Neto gabungan Rp150 juta + Rp84 juta + Rp18 juta = Rp252 juta. PTKP Rp126 juta karena tanggungan paling banyak tiga walau anaknya empat, sehingga penghasilan kena pajak Rp126 juta. Pajaknya 5% x Rp60 juta + 15% x Rp66 juta = Rp12,9 juta.",
         inti: "Penghasilan Bu Lestari tidak semata-mata dari satu pemberi kerja, sehingga seluruhnya digabung dengan penghasilan Pak Yusuf (Pasal 8 ayat (1)) dan PTKP ditambah Rp54.000.000 untuk istri; tanggungan tetap paling banyak 3 orang walaupun anaknya empat (K/I/3). PPh 21 Bu Lestari menjadi kredit pajak.",
         jejakHitung: [
           ["Neto gabungan 150 + 84 + (1,5 × 12) juta", "Rp252.000.000"],
@@ -3553,6 +3679,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Istri yang memilih mengurus pajak sendiri tetap dihitung bersama suami dulu, baru dibagi. Neto digabung Rp600 juta, dikurangi PTKP Rp121,5 juta (termasuk tambahan Rp54 juta untuk istri), jadi Rp478,5 juta. Pajak gabungannya Rp31,5 juta + 25% x Rp228,5 juta = Rp88,625 juta. Bagian Pak Irfan sebanding netonya, 240/600 x Rp88,625 juta = Rp35,45 juta. Cara ingat: gabung dulu, bagi menurut besar penghasilan.",
         inti: "Untuk MT (Pasal 8 ayat (2) huruf c), neto suami dan istri digabung, PTKP memakai K/I/2, lalu PPh gabungan dibagi sebanding neto: bagian Pak Irfan 240/600.",
         jejakHitung: [
           ["Neto gabungan", "Rp600.000.000"],
@@ -3586,6 +3713,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Pernikahan di bulan September menggoda kita memakai status kawin, padahal status PTKP dibaca pada 1 Januari. Saat itu Fikri belum kawin dan menanggung ayah serta ibu kandung, jadi dua tanggungan. Adik kandung tidak dihitung karena saudara ke samping. PTKP-nya Rp54 juta + 2 x Rp4,5 juta = Rp63 juta, tanpa dibagi per bulan. Status kawinnya baru dipakai mulai 2027.",
         inti: "Status PTKP mengikuti keadaan 1 Januari 2026: belum kawin dengan dua tanggungan (ayah dan ibu kandung, sedarah garis lurus). Adik kandung adalah garis ke samping.",
         jejakHitung: [
           ["Status 1 Januari 2026", "belum kawin, 2 tanggungan"],
@@ -3617,6 +3745,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Suami istri yang hidup berpisah karena putusan hakim dianggap terpisah penuh untuk pajak, walaupun belum bercerai. Masing-masing menghitung penghasilan kena pajak dan pajaknya sendiri, dengan PTKP masing-masing. Cara gabung dulu lalu dibagi sebanding penghasilan hanya dipakai untuk pisah harta lewat perjanjian dan istri yang memilih mengurus pajak sendiri. Cara ingat: putusan hakim berarti benar-benar sendiri-sendiri, tanpa digabung.",
         inti: "Suami-istri yang hidup berpisah berdasarkan putusan hakim berstatus HB (Pasal 8 ayat (2) huruf a); penghitungan Penghasilan Kena Pajak dan pengenaan pajaknya dilakukan sendiri-sendiri. Penggabungan lalu pembagian sebanding neto (Pasal 8 ayat (3)) hanya untuk PH dan MT (ayat (2) huruf b dan c).",
         jejakHitung: [],
         mengapaSalah: {
@@ -3644,6 +3773,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "angka-usang" },
       pembahasan: {
+        mudah: "Ada dua jebakan di sini: zakat yang mana yang boleh dikurangkan, dan pembulatan. Zakat hanya mengurangi penghasilan bila dibayar ke lembaga amil zakat resmi, jadi hanya Rp3,15 juta; yang diberikan langsung ke tetangga tidak. Rp287.643.540 dikurangi Rp3,15 juta dan PTKP Rp67,5 juta = Rp216.993.540, dibulatkan ke bawah menjadi Rp216.993.000. Pajaknya Rp3 juta + 15% x Rp156.993.000 = Rp26.548.950.",
         inti: "Hanya zakat yang diterima badan atau lembaga amil zakat yang dibentuk atau disahkan pemerintah yang dapat dikurangkan (Pasal 9 ayat (1) huruf g UU PPh; Pasal 9 ayat (1) PMK 114/2025); zakat langsung kepada tetangga tidak. PKP dibulatkan ke bawah dalam ribuan rupiah penuh sebelum tarif diterapkan (Pasal 17 ayat (4)).",
         jejakHitung: [
           ["Neto − zakat ke LAZ", "Rp284.493.540"],
@@ -3678,6 +3808,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Dari tiga pengeluaran, hanya zakat Rp5 juta ke lembaga amil zakat resmi yang boleh dikurangkan. Sedekah ke panti asuhan bukan zakat lewat lembaga, dan panitia musala tidak disahkan pemerintah. Rp210 juta dikurangi Rp5 juta dan PTKP Rp67,5 juta = Rp137,5 juta. Pajaknya 5% x Rp60 juta + 15% x Rp77,5 juta = Rp14.625.000. Cara ingat: zakat mengurangi penghasilan, bukan mengurangi pajaknya.",
         inti: "Hanya zakat Rp5.000.000 kepada lembaga amil zakat yang disahkan pemerintah, ber-NPWP, dan didukung bukti setor yang dapat dikurangkan dari penghasilan. Sedekah kepada panti asuhan bukan zakat yang diterima badan atau lembaga amil zakat, dan zakat melalui panitia musala tidak diterima lembaga yang dibentuk atau disahkan pemerintah.",
         jejakHitung: [
           ["Penghasilan neto", "Rp210.000.000"],
@@ -3711,6 +3842,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "angka-usang", D: "salah-baca" },
       pembahasan: {
+        mudah: "Tarif orang pribadi itu bertangga, jadi tiap potong penghasilan kena tarif sesuai anak tangganya. Untuk Rp500 juta pertama pajaknya sudah pasti Rp94 juta. Lalu Rp4,5 miliar berikutnya kena 30% = Rp1,35 miliar, dan sisa Rp1,25 miliar di atas Rp5 miliar kena 35% = Rp437,5 juta. Totalnya Rp1.881.500.000. Cara ingat: hitung lapis demi lapis, jangan kalikan semuanya dengan tarif tertinggi.",
         inti: "Tarif berlapis: PPh atas PKP sampai Rp500 juta Rp94 juta, lapisan 30% untuk Rp500 juta sampai Rp5 miliar, dan 35% untuk kelebihan di atas Rp5 miliar.",
         jejakHitung: [
           ["PPh s.d. Rp500.000.000", "Rp94.000.000"],
@@ -3743,6 +3875,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pak Gilang kena dua sanksi yang berbeda. Pertama, denda Rp100 ribu karena SPT orang pribadi dilaporkan lewat 31 Maret. Kedua, bunga karena kurang bayar dilunasi lewat 31 Maret; bunga dihitung sampai tanggal bayar 8 April, jadi bagian bulan dihitung 1 bulan penuh. Bunganya Rp12,6 juta x 0,97% = Rp122.220, sehingga total Rp222.220. Cara ingat: bunga ikut tanggal bayar, denda ikut tanggal lapor.",
         inti: "Ada dua pelanggaran: SPT Tahunan OP terlambat (denda Pasal 7 ayat (1) Rp100.000) dan PPh Pasal 29 dibayar setelah batas waktu penyampaian SPT (bunga Pasal 9 ayat (2b)). Bunga dihitung sejak batas waktu SPT berakhir sampai tanggal pembayaran (8 April 2026), bukan sampai tanggal SPT disampaikan; 31 Maret sampai 8 April dihitung 1 bulan.",
         jejakHitung: [
           ["Denda SPT Tahunan OP terlambat", "Rp100.000"],
@@ -3776,6 +3909,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "final-nonfinal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Langkah pertama, jumlahkan kredit pajak yang sah: PPh 21 Rp18 juta, PPh 23 sewa mobil Rp1,8 juta, dan setoran bulanan Rp27 juta, totalnya Rp46,8 juta. Pajak final deposito tidak ikut. Karena lebih besar dari pajak terutang Rp42,5 juta, ada lebih bayar Rp4,3 juta. Sebelum dikembalikan, kelebihan itu dipakai dulu melunasi utang STP Rp1,45 juta, jadi yang diterima Rp2,85 juta.",
         inti: "Kredit pajak yang sah Rp46.800.000 (PPh 21, PPh 23, dan PPh 25; PPh final bunga deposito tidak termasuk) melebihi PPh terutang Rp42.500.000, sehingga lebih bayar Rp4.300.000. Sebelum dikembalikan, kelebihan diperhitungkan dengan utang STP Rp1.450.000.",
         jejakHitung: [
           ["Kredit 18 + 1,8 + 27 juta", "Rp46.800.000"],
@@ -3810,6 +3944,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "angka-usang", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Bagi pemakai pajak final UMKM orang pribadi, omzet Rp500 juta pertama setahun tidak kena pajak, dan batas itu dihitung menumpuk sejak Januari. Sampai Maret omzetnya baru Rp415 juta, jadi belum bayar. Pada April jumlahnya menjadi Rp590 juta, sehingga yang kena hanya kelebihannya Rp90 juta. Pajaknya 0,5% x Rp90 juta = Rp450.000. Cara ingat: Rp500 juta itu jatah setahun, bukan per bulan.",
         inti: "Bagian peredaran bruto Rp500 juta yang tidak dikenai PPh dihitung kumulatif sejak Januari. Kumulatif sampai Maret Rp415 juta (nihil); pada April kumulatif menjadi Rp590 juta, sehingga yang dikenai 0,5% hanya kelebihannya Rp90 juta.",
         jejakHitung: [
           ["Kumulatif Januari–Maret", "Rp415.000.000 (nihil)"],
@@ -3844,6 +3979,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang perlu dipahami, penghasilan istri hanya bisa dipisah bila ia bekerja pada satu pemberi kerja saja. Bu Ratih pindah kerja, jadi ada dua pemberi kerja dan penghasilannya digabung sebagai penghasilan suami. Karena itu gajinya masuk lampiran penghasilan dari pekerjaan, dan PPh 21 dari kedua bukti potong dicantumkan sebagai kredit pajak. Omzet toko tetap direkap terpisah, dan pajak final yang disetor dilaporkan di bagian penghasilan final, tanpa digabung.",
         inti: "Pengecualian Pasal 8 ayat (1) hanya untuk penghasilan istri yang semata-mata dari satu pemberi kerja. Bu Ratih bekerja pada dua pemberi kerja, sehingga penghasilannya dianggap penghasilan suami: dilaporkan pada Lampiran 1 Bagian D (penghasilan neto dalam negeri dari pekerjaan) dan PPh 21 menurut kedua BPA1 dicantumkan pada Lampiran 1 Bagian E sebagai kredit pajak. Peredaran bruto toko direkap pada Lampiran 3B Bagian A dan PPh final yang disetor dilaporkan pada Lampiran 2 Bagian A, tanpa digabung ke penghasilan neto.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3874,6 +4010,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Bu Ratih bekerja di dua tempat, jadi penghasilannya digabung ke suami dan PTKP mendapat tambahan Rp54 juta untuk istri. PTKP-nya Rp117 juta. Omzet toko sudah kena pajak final, jadi tidak ikut, sedangkan bunga pinjaman dari teman tetap dihitung walau tidak dipotong pajak. Rp96 juta + Rp24 juta = Rp120 juta, dikurangi Rp117 juta, sisa penghasilan kena pajak Rp3 juta.",
         inti: "Penghasilan Bu Ratih berasal dari dua pemberi kerja, sehingga tidak memenuhi pengecualian Pasal 8 ayat (1) dan digabung dengan penghasilan suami. Karena digabung, PTKP mendapat tambahan Rp54.000.000 untuk istri (K/I/1). Penghasilan toko tetap final dan tidak masuk PKP, sedangkan bunga pinjaman dari orang pribadi adalah penghasilan non-final yang wajib dihitung.",
         jejakHitung: [
           ["Neto pekerjaan Bu Ratih (digabung)", "Rp96.000.000"],
@@ -3906,6 +4043,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Perpanjangan hanya menggeser batas lapor paling lama dua bulan, jadi batas Kirana menjadi akhir Mei 2026. Ia melapor 16 Juni, berarti tetap terlambat dan kena denda Rp100 ribu, walaupun SPT-nya lebih bayar. Bunga tidak ada karena tidak ada pajak yang telat dibayar. Kelebihan Rp1,75 juta tetap dikembalikan, setelah dipotong dulu untuk utang pajak seperti denda tadi. Cara ingat: lewat batas perpanjangan sama dengan terlambat.",
         inti: "Perpanjangan paling lama 2 bulan, sehingga batas penyampaian bergeser ke akhir Mei 2026; SPT yang disampaikan 16 Juni 2026 tetap terlambat dan dikenai denda Pasal 7 ayat (1) Rp100.000 apa pun status SPT-nya. Bunga hanya timbul bila ada pajak yang terlambat dibayar. Kelebihan pembayaran dikembalikan setelah diperhitungkan dengan utang pajak, termasuk denda tersebut.",
         jejakHitung: [
           ["Batas SPT semula", "31 Maret 2026"],
@@ -3939,6 +4077,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Untuk memperpanjang lapor SPT, pemberitahuan harus masuk sebelum 31 Maret, dan perpanjangannya paling lama dua bulan. Lampiran wajibnya penghitungan sementara dan laporan keuangan sementara. Bukti setor hanya dilampirkan bila ada kurang bayar, dan surat pernyataan akuntan publik hanya bila laporan keuangannya diaudit. Ny. Laras tidak kurang bayar dan tidak diaudit, jadi keduanya tidak perlu. Cara ingat: lampiran mengikuti keadaan.",
         inti: "Perpanjangan paling lama 2 bulan dengan pemberitahuan yang disampaikan sebelum batas waktu SPT berakhir, dilampiri penghitungan sementara dan laporan keuangan sementara (Pasal 3 ayat (4) dan (5) UU KUP; Pasal 174 ayat (1) dan Pasal 175 ayat (1) PMK 81/2024). Surat Setoran Pajak hanya dilampirkan dalam hal terdapat kekurangan pembayaran pajak, dan surat pernyataan akuntan publik hanya bila laporan keuangan diaudit.",
         jejakHitung: [],
         mengapaSalah: {
@@ -3966,6 +4105,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dari tambahan pajaknya: penghasilan kena pajak naik dari Rp240 juta ke Rp270 juta, melewati batas Rp250 juta. Jadi Rp10 juta kena 15% dan Rp20 juta kena 25%, totalnya Rp6,5 juta, dikurangi potongan PPh 21 Rp750 ribu menjadi Rp5,75 juta. Bunga dihitung dari 31 Maret sampai 20 Agustus, 4 bulan lebih dihitung 5 bulan. Rp5,75 juta x 0,95% x 5 = Rp273.125.",
         inti: "Tambahan PKP Rp30 juta melintasi batas lapisan Rp250 juta (PKP baru Rp270 juta): Rp10 juta kena 15% dan Rp20 juta kena 25%, sehingga tambahan PPh Rp6,5 juta; dikurangi kredit PPh 21 bukan pegawai Rp750 ribu, kurang bayar Rp5,75 juta. Bunga dihitung sejak batas waktu penyampaian SPT berakhir (31 Maret) sampai 20 Agustus = 4 bulan 20 hari, dihitung 5 bulan.",
         jejakHitung: [
           ["Tambahan PPh 15% × Rp10 jt + 25% × Rp20 jt", "Rp6.500.000"],
@@ -4001,6 +4141,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Yang membedakan adalah tempat sahamnya dijual. Saham yang dijual di bursa kena pajak final 0,1% dari nilai jualnya, berapa pun untungnya: 0,1% x Rp600 juta = Rp600 ribu, dan untungnya tidak digabung. Saham perseroan tertutup yang dijual ke orang lain di luar bursa tidak final. Untungnya Rp400 juta dikurangi Rp250 juta = Rp150 juta digabung dengan penghasilan lain. Cara ingat: bursa final dari nilai jual, luar bursa untungnya digabung.",
         inti: "Penjualan saham di bursa efek dikenai PPh final 0,1% dari jumlah bruto nilai transaksi penjualan (Pasal 4 ayat (2) huruf c UU PPh; Pasal 244 PMK 81/2024), berapa pun keuntungannya, dan tidak digabung. Penjualan saham perseroan tertutup di luar bursa menghasilkan keuntungan pengalihan harta (Pasal 4 ayat (1) huruf d) yang tidak final dan digabung dengan penghasilan lain.",
         jejakHitung: [
           ["(a) Keuntungan saham perseroan tertutup: Rp400 juta − Rp250 juta", "Rp150.000.000 (digabung)"],
@@ -4033,6 +4174,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Pisah harta lewat perjanjian tidak berarti dihitung sendiri-sendiri. Neto Tuan Reza Rp480 juta dan Ny. Mira Rp120 juta digabung jadi Rp600 juta, dikurangi PTKP Rp117 juta (termasuk tambahan Rp54 juta untuk istri), sisa Rp483 juta. Pajak gabungannya Rp31,5 juta + 25% x Rp233 juta = Rp89,75 juta. Bagian Tuan Reza 480/600 = 80%, yaitu Rp71,8 juta.",
         inti: "Status PH: penghasilan neto suami Rp480 juta dan istri Rp120 juta dijumlahkan, dikurangi PTKP K/I/1, lalu PPh atas jumlah itu dibagi sebanding penghasilan neto masing-masing (Pasal 8 ayat (2) huruf b dan ayat (3) UU PPh); bagian Tuan Reza 480/600 = 80%.",
         jejakHitung: [
           ["Neto Tuan Reza (180 + 150 + 150 juta)", "Rp480.000.000"],
@@ -4069,6 +4211,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pada pisah harta, suami dan istri masing-masing punya SPT, jadi kredit pajak mengikuti nama pemilik bukti potong atau bukti setor. Tuan Reza boleh mengurangkan PPh 21 Rp11,55 juta dan setoran bulanannya 12 x Rp2,5 juta = Rp30 juta. Setoran Ny. Mira masuk SPT Ny. Mira, dan pajak final saham bursa bukan kredit pajak. Jadi Rp71,8 juta dikurangi Rp41,55 juta = Rp30,25 juta.",
         inti: "Pada status PH suami dan istri masing-masing menyampaikan SPT dan mengkreditkan pajak atas penghasilannya sendiri. Kredit Tuan Reza: PPh Pasal 21 dari BPA1 miliknya dan PPh Pasal 25 yang ia setor (Pasal 28 ayat (1) UU PPh). PPh final saham bursa tidak dikreditkan, dan PPh Pasal 25 Ny. Mira menjadi kredit di SPT Ny. Mira.",
         jejakHitung: [
           ["Bagian PPh terutang Tuan Reza", "Rp71.800.000"],
@@ -4104,6 +4247,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Kita kumpulkan penghasilan Tuan Yudha yang kena tarif biasa satu per satu. Gaji Rp160 juta, katering dengan norma 15% x Rp1,2 miliar = Rp180 juta, dan untung saham perseroan tertutup Rp500 juta dikurangi Rp380 juta = Rp120 juta. Untung saham di bursa Rp90 juta tidak ikut karena penjualannya sudah kena pajak final 0,1%. Totalnya Rp460 juta. Cara ingat: norma dikalikan omzet, dan untung saham bursa tidak digabung.",
         inti: "Neto Tuan Yudha = neto pekerjaan + neto katering menurut NPPN (Pasal 14 ayat (2) UU PPh: peredaran bruto kurang dari Rp4,8 miliar dan diberitahukan dalam 3 bulan pertama) + keuntungan saham perseroan tertutup. Penjualan saham di bursa dikenai PPh final 0,1% dari nilai transaksi sehingga keuntungannya tidak digabung.",
         jejakHitung: [
           ["(1) Neto pekerjaan (BPA1)", "Rp160.000.000"],
@@ -4139,6 +4283,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Status MT, yaitu istri memilih mengurus pajaknya sendiri, tetap dihitung seperti satu keluarga lebih dulu. Gabungkan neto Rp460 juta + Rp115 juta = Rp575 juta, kurangi PTKP K/I/2 Rp121,5 juta, sehingga PKP Rp453,5 juta dan PPh keluarga Rp82.375.000. Bagian Ny. Rina mengikuti porsi netonya: 115/575 = 20%, jadi 20% x Rp82.375.000 = Rp16.475.000. Cara ingat: MT dan pisah harta dihitung bersama dulu, lalu dibagi sesuai porsi neto.",
         inti: "Status MT (Pasal 8 ayat (2) huruf c) dikenai pajak seperti PH: penghasilan neto suami dan istri digabung, PTKP memakai K/I/2, lalu PPh atas jumlah itu dibagi menurut perbandingan penghasilan neto (Pasal 8 ayat (3)). Bagian Ny. Rina 115/575 = 20%.",
         jejakHitung: [
           ["Neto gabungan Rp460 juta + Rp115 juta", "Rp575.000.000"],
@@ -4174,6 +4319,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "final-nonfinal", B: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya, pada status MT Tuan Yudha hanya boleh mengurangkan pajak yang dipotong atau disetor atas namanya sendiri. Kreditnya PPh 21 dari kantor Rp7.875.000, PPh 23 jasa katering Rp4.200.000, dan angsuran bulanan 12 x Rp1,5 juta = Rp18 juta. Rp65,9 juta dikurangi ketiganya tinggal Rp35.825.000. PPh final saham tidak bisa dikurangkan, dan PPh 21 Ny. Rina dipakai di SPT Ny. Rina sendiri. Cara ingat: pada status MT, tiap orang hanya memakai bukti potong atas namanya, dan pajak final tidak pernah jadi pengurang.",
         inti: "Pada status MT tiap pasangan menyampaikan SPT sendiri dan mengkreditkan pajak atas namanya. Kredit Tuan Yudha: PPh Pasal 21 dari BPA1, PPh Pasal 23 atas jasa katering, dan PPh Pasal 25 yang ia setor (Pasal 28 ayat (1) UU PPh). PPh final saham tidak dikreditkan, dan PPh Pasal 21 Ny. Rina menjadi kredit di SPT Ny. Rina.",
         jejakHitung: [
           ["Bagian PPh terutang Tuan Yudha (80% × Rp82.375.000)", "Rp65.900.000"],
@@ -4208,6 +4354,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya: apakah surat permintaan penjelasan dari KPP menutup hak membetulkan SPT, dan berapa bunganya. Hak itu baru tertutup ketika pemeriksaan resmi dimulai, yaitu saat surat pemberitahuan pemeriksaan disampaikan, jadi Ny. Wulan masih boleh membetulkan. Bunganya suku bunga acuan + 5%, dibagi 12, per bulan. Bunga dihitung sejak batas akhir SPT (31 Maret 2026) sampai tanggal bayar, paling lama 24 bulan. Cara ingat: membetulkan sukarela tambah 5%, mengungkapkan saat diperiksa tambah 10%.",
         inti: "Pasal 8 ayat (1) membolehkan pembetulan atas kemauan sendiri selama DJP belum melakukan tindakan pemeriksaan; menurut Penjelasannya, tindakan pemeriksaan dimulai saat Surat Pemberitahuan Pemeriksaan Pajak disampaikan, sehingga permintaan penjelasan data dari KPP tidak menutup hak membetulkan. Pasal 8 ayat (2) dan (2b): kurang bayar akibat pembetulan SPT Tahunan dikenai bunga dengan tarif (suku bunga acuan + 5%) ÷ 12 per bulan, dihitung sejak saat penyampaian SPT berakhir (31 Maret 2026) sampai tanggal pembayaran, paling lama 24 bulan, bagian bulan dihitung penuh.",
         jejakHitung: [
           ["Syarat pembetulan (Pasal 8 ayat (1))", "DJP belum melakukan tindakan pemeriksaan"],
@@ -4242,6 +4389,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Aturannya sederhana: kurang bayar dalam SPT Tahunan harus lunas dulu, baru SPT dikirim. Pembayaran dianggap sah kalau sudah ada NTPN (nomor bukti uang benar-benar masuk kas negara), atau kalau dibayar dengan memindahkan saldo Deposit Pajak. Kode billing saja belum berarti bayar, dan tenggang 1 bulan itu untuk surat tagihan dan ketetapan, bukan untuk SPT. Jadi siapkan konsep dan lampiran, lunasi Rp3.180.000, lalu tandatangani dan kirim paling lambat 31 Maret 2027. Cara ingat: bayar dulu, kirim kemudian.",
         inti: "Pasal 9 ayat (2) UU KUP mewajibkan kekurangan pajak menurut SPT Tahunan PPh dibayar lunas sebelum SPT disampaikan. Pembayaran sah bila Surat Setoran Pajak telah mendapat validasi (Pasal 10 ayat (1a) UU KUP), yaitu NTPN untuk pembayaran dengan kode billing (PMK 81/2024 Pasal 102 ayat (5)); pembayaran dengan Deposit Pajak dilakukan melalui Pemindahbukuan dan dibuktikan dengan Bukti Pemindahbukuan (Pasal 102 ayat (4) huruf c dan Pasal 103 ayat (2)). Jadi PPh Pasal 29 dilunasi dahulu, baru SPT ditandatangani secara elektronik dan dikirim paling lambat 31 Maret 2027.",
         jejakHitung: [
           ["Langkah 1", "buat konsep SPT Tahunan OP Tahun Pajak 2026"],
@@ -4275,6 +4423,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari laba komersial Rp548,6 juta, lalu cari pos yang menurut pajak tidak boleh jadi biaya. Tambahkan kembali PPh 25 Rp24 juta, telepon rumah pribadi Rp7,2 juta, dan bunga STP Rp1,8 juta. Tambahkan juga kelebihan penyusutan Rp24 juta, karena penyusutan pajaknya hanya 12,5% x Rp320 juta = Rp40 juta. Keluarkan bunga deposito Rp9,5 juta yang pajaknya sudah final, hasilnya Rp596.100.000. Cara ingat: gaji, THR, PBB, listrik gudang, dan promosi tetap biaya, sedangkan PPN dan hibah tidak menyentuh laba usaha.",
         inti: "Koreksi positif: PPh Pasal 25 yang dibebankan, biaya pribadi rumah tinggal, sanksi bunga STP, dan kelebihan penyusutan komersial atas penyusutan fiskal (Rp64 juta − 12,5% × Rp320 juta). Koreksi negatif: bunga deposito yang dikenai PPh final. Gaji, THR dan bingkisan karyawan, PBB gudang, listrik gudang, dan promosi adalah biaya untuk mendapatkan, menagih, dan memelihara penghasilan; data PPN, peredaran bruto, dan hibah tidak memengaruhi neto usaha.",
         jejakHitung: [
           ["Laba komersial", "Rp548.600.000"],
@@ -4312,6 +4461,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Hitungannya: neto Rp596,1 juta dikurangi zakat Rp10 juta, rugi 2021 Rp30 juta, dan PTKP K/1 Rp63 juta, hasilnya PKP Rp493,1 juta. Rugi 2021 masih boleh dipakai karena jatahnya lima tahun (2022 sampai 2026), sedangkan sisa rugi 2020 sudah hangus. PTKP dilihat dari keadaan 1 Januari, jadi anak yang lahir Agustus belum dihitung, dan infak sukarela tidak bisa dikurangkan. PPh = Rp31,5 juta + 25% x Rp243,1 juta = Rp92.275.000. Cara ingat: tanggungan dihitung per 1 Januari, rugi dipakai paling lama lima tahun.",
         inti: "PKP = neto − zakat BAZNAS − kompensasi rugi 2021 − PTKP K/1. Rugi 2021 masih dapat dikompensasikan sampai Tahun Pajak 2026 (5 tahun mulai 2022), sedangkan sisa rugi 2020 hangus setelah 2025. Status PTKP ditentukan keadaan 1 Januari 2026, sehingga anak yang lahir Agustus belum dihitung. Infak sukarela tidak dapat dikurangkan; bunga deposito, hibah ibu kandung, dan PPh Pasal 25 tidak memengaruhi PPh terutang.",
         jejakHitung: [
           ["Neto fiskal usaha", "Rp596.100.000"],
@@ -4348,6 +4498,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Untung atau rugi tidak berpengaruh di sini. Penjualan tanah kena pajak final 2,5% dari harga jual yang benar-benar diterima, bukan dari keuntungannya. Jadi 2,5% x Rp870 juta = Rp21.750.000, disetor sendiri sebelum akta ditandatangani. Karena final, pajak ini tidak bisa dikurangkan dari pajak praktik dokter gigi dan ruginya tidak bisa dibawa ke tahun berikutnya; cukup dilaporkan sebagai penghasilan final dan tanahnya dihapus dari daftar harta. Cara ingat: pajak jual tanah dihitung dari harga jual, rugi pun tetap bayar.",
         inti: "PP 34/2016 mengenakan PPh final 2,5% atas jumlah bruto nilai pengalihan hak atas tanah dan/atau bangunan; untuk jual beli tanpa hubungan istimewa nilainya adalah nilai yang sesungguhnya diterima (Rp870.000.000), tanpa memperhitungkan untung atau rugi. PPh itu disetor sendiri sebelum akta ditandatangani, tidak dapat dikreditkan, dan transaksinya dilaporkan pada bagian penghasilan final SPT; tanah dikeluarkan dari daftar harta.",
         jejakHitung: [
           ["Dasar pengenaan: nilai yang sesungguhnya diterima (tanpa hubungan istimewa)", "Rp870.000.000"],
@@ -4380,6 +4531,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Pesangon dan JHT yang dibayar sekaligus kena pajak final berlapis, dihitung sendiri-sendiri dan tanpa PTKP. Pesangon Rp520 juta: Rp50 juta pertama 0%, Rp50 juta berikutnya 5% = Rp2,5 juta, Rp400 juta berikutnya 15% = Rp60 juta, sisa Rp20 juta 25% = Rp5 juta. JHT Rp95 juta: Rp50 juta pertama 0%, sisa Rp45 juta 5% = Rp2,25 juta. Totalnya Rp69.750.000, dilaporkan sebagai penghasilan final, tidak digabung dengan gaji, dan tidak dikreditkan. Cara ingat: pesangon dan JHT masing-masing punya jatah 0% untuk Rp50 juta pertama.",
         inti: "PP 68/2009 mengenakan PPh 21 final berlapis atas uang pesangon (0%, 5%, 15%, 25%) dan atas JHT yang dibayarkan sekaligus (0% sampai Rp50 juta, 5% di atasnya). Lapisan pesangon dan lapisan JHT dihitung sendiri-sendiri, dari bruto, tanpa PTKP. Keduanya dilaporkan pada bagian penghasilan final SPT dan PPh-nya tidak dikreditkan; pekerjaan baru sejak Agustus tidak memengaruhi penghitungan ini.",
         jejakHitung: [
           ["Pesangon: 0% × Rp50.000.000", "Rp0"],
@@ -4415,6 +4567,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Soal ini menguji isi tiap baris SPT bagi pengguna norma. Baris pekerjaan bebas diisi neto, yaitu 40% dari seluruh penerimaan Rp420 juta = Rp168 juta, termasuk dari klien orang pribadi yang tidak memotong pajak. Baris pekerjaan diisi neto dari kantor Rp96 juta, dan baris pajak yang dipotong pihak lain berisi Rp2,1 juta + Rp7,5 juta = Rp9,6 juta. Sewa rumah sudah kena pajak final, jadi dicatat di lampiran penghasilan final dan pajaknya tidak dikreditkan. Cara ingat: potongan biasa jadi kredit, potongan final tidak.",
         inti: "Pengguna NPPN mengisi angka 1 dengan neto norma atas seluruh penerimaan bruto pekerjaan bebas, baik dari klien badan maupun orang pribadi (40% × Rp420 juta = Rp168 juta), neto dari pemberi kerja pada angka 2, dan seluruh PPh 21 yang dipotong (pemberi kerja dan klien badan) sebagai kredit pada angka 15. Penghasilan sewa rumah dikenai PPh final 10% (PP 34/2017): dilaporkan pada lampiran penghasilan final dan PPh-nya tidak dikreditkan. Formulir 1770 dipakai karena Tahun Pajaknya 2024.",
         jejakHitung: [
           ["Angka 1: 40% × (Rp300.000.000 + Rp120.000.000)", "Rp168.000.000"],
@@ -4448,6 +4601,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Yang perlu dihafal: ada sepuluh ibu kota provinsi yang dikelompokkan tersendiri, yaitu Medan, Palembang, Jakarta, Bandung, Semarang, Surabaya, Denpasar, Manado, Makassar, dan Pontianak. Manado ada di daftar itu, jadi pasangan Manado dengan kelompok 10 ibu kota provinsi benar. Padang memang ibu kota provinsi tetapi tidak masuk daftar sepuluh, sedangkan Semarang justru termasuk. Balikpapan bukan ibu kota provinsi (ibu kota Kalimantan Timur adalah Samarinda), jadi masuk daerah lainnya. Cara ingat: kota besar belum tentu ibu kota, ibu kota belum tentu masuk sepuluh.",
         inti: "Pasal 4 ayat (1) PER-17/PJ/2015 membagi wilayah menjadi 10 ibu kota provinsi (Medan, Palembang, Jakarta, Bandung, Semarang, Surabaya, Denpasar, Manado, Makassar, Pontianak), ibu kota provinsi lainnya, dan daerah lainnya. Manado termasuk 10 ibu kota provinsi.",
         jejakHitung: [
           ["Kelompok 10 ibu kota provinsi", "Medan, Palembang, Jakarta, Bandung, Semarang, Surabaya, Denpasar, Manado, Makassar, Pontianak"],
@@ -4480,6 +4634,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Dengan norma, kita tidak menghitung biaya satu per satu: neto langsung didapat dari persentase norma dikali seluruh penerimaan pekerjaan bebas. Penerimaannya Rp840 juta + Rp210 juta = Rp1.050 juta, jadi 35% x Rp1.050 juta = Rp367.500.000. Sewa studio, gaji juru gambar, dan gaji Bu Sari tidak dikurangkan lagi karena dianggap sudah tercakup dalam norma. PPh 21 yang dipotong klien adalah kredit pajak, hadiah undian kena pajak final, dan hibah dari ayah bukan objek pajak. Cara ingat: neto norma = persentase x penerimaan pekerjaan bebas saja.",
         inti: "Pengguna NPPN menghitung neto = persentase norma × seluruh peredaran bruto pekerjaan bebas (dari klien badan maupun orang pribadi). Biaya riil seperti sewa studio dan gaji (termasuk gaji Bu Sari) tidak dikurangkan lagi, PPh 21 yang dipotong klien adalah kredit pajak, hadiah undian dikenai PPh final, dan hibah dari ayah kandung bukan objek pajak.",
         jejakHitung: [
           ["Peredaran bruto (Rp840.000.000 + Rp210.000.000)", "Rp1.050.000.000"],
@@ -4514,6 +4669,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pertanyaan pentingnya: apakah gaji Bu Sari digabung dengan penghasilan suami. Gaji istri baru bisa dipisah kalau pekerjaannya tidak berhubungan dengan usaha atau pekerjaan bebas suami; Bu Sari bekerja di studio suaminya, jadi digabung dan PTKP bertambah Rp54 juta. Tanggungan per 1 Januari: anak dan ibu Bu Sari dihitung, adik tidak (bukan garis lurus), anak yang lahir Maret belum, jadi K/I/2 Rp121,5 juta. PKP = Rp367,5 juta + Rp74,1 juta, dikurangi zakat Rp15 juta dan PTKP, yaitu Rp305,1 juta. PPh = Rp31,5 juta + 25% x Rp55,1 juta = Rp45.275.000.",
         inti: "Penghasilan Bu Sari tidak memenuhi syarat pengecualian Pasal 8 ayat (1) karena pekerjaannya berhubungan dengan pekerjaan bebas suami, sehingga digabung dan PTKP bertambah Rp54 juta untuk istri. Tanggungan dihitung menurut keadaan 1 Januari: anak kandung dan ibu kandung Bu Sari (mertua, garis lurus) dihitung; adik kandung (garis ke samping) tidak; anak yang lahir Maret 2026 baru dihitung 2027. Status K/I/2.",
         jejakHitung: [
           ["Neto Ir. Bagus (NPPN)", "Rp367.500.000"],
@@ -4550,6 +4706,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Lihat dulu bukti mana yang boleh jadi pengurang. Karena gaji Bu Sari digabung ke SPT keluarga, PPh 21 di bukti potongnya (Rp1.005.000) ikut dikurangkan. Rp45.275.000 dikurangi PPh 21 dari klien Rp21 juta, PPh 21 Bu Sari Rp1.005.000, dan angsuran 12 x Rp1.250.000 = Rp15 juta, hasilnya Rp8.270.000. Pajak final hadiah undian dan bunga STP Rp18.750 tidak dikurangkan, karena bunga itu sanksi, bukan pajak yang dibayar di muka. Cara ingat: yang dikreditkan hanya pajak tidak final yang sudah dibayar di muka.",
         inti: "Karena penghasilan Bu Sari digabung, PPh 21 pada BPA1-nya tidak bersifat final dan menjadi kredit dalam SPT Ir. Bagus (Penjelasan Pasal 8 ayat (1)). Kredit lainnya PPh 21 bukan pegawai dan PPh 25. PPh final hadiah undian dan bunga STP bukan kredit pajak (Pasal 28 ayat (2) UU PPh).",
         jejakHitung: [
           ["PPh terutang", "Rp45.275.000"],
@@ -4584,6 +4741,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-hitung", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Perjanjian pisah harta tidak berarti pajaknya dihitung terpisah penuh. Untuk suami istri yang pisah harta, neto keduanya digabung dulu, PPh dihitung sekali dengan PTKP gabungan, lalu dibagi sebanding neto masing-masing. Jadi yang penghasilannya lebih besar menanggung bagian pajak lebih besar, bukan dibagi dua sama rata. Hitung terpisah penuh tanpa digabung hanya untuk pasangan yang hidup berpisah karena putusan hakim, dan perjanjian tertulis ini tidak memerlukan putusan hakim. Cara ingat: pisah harta berarti gabung dulu, lalu bagi sesuai porsi.",
         inti: "Pasal 8 ayat (2) huruf b UU PPh: suami-istri yang menghendaki secara tertulis berdasarkan perjanjian pemisahan harta dan penghasilan (PH) dikenai pajak secara terpisah, tetapi menurut Pasal 8 ayat (3) PPh-nya dihitung dari penggabungan penghasilan neto suami-istri dan dibagi sesuai perbandingan penghasilan neto mereka. Pemisahan penuh tanpa penggabungan hanya untuk HB (putusan hakim).",
         jejakHitung: [
           ["PH (perjanjian pisah harta) dan MT (istri memilih sendiri)", "digabung, lalu dibagi sebanding neto"],
@@ -4615,6 +4773,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-hitung", B: "angka-usang", D: "salah-baca" },
       pembahasan: {
+        mudah: "Langkah pertama yang sering terlupa: PKP dibulatkan ke bawah ke ribuan penuh, jadi Rp412.785.640 menjadi Rp412.785.000. Rp250 juta pertama kena pajak Rp31,5 juta (5% x Rp60 juta + 15% x Rp190 juta). Sisanya Rp162.785.000 kena 25% = Rp40.696.250, sehingga totalnya Rp72.196.250. Cara ingat: bulatkan dulu ke ribuan ke bawah, baru kalikan tarif berlapis.",
         inti: "PKP dibulatkan ke bawah dalam ribuan rupiah penuh menjadi Rp412.785.000. PPh = Rp31.500.000 (atas Rp250 juta pertama) + 25% × Rp162.785.000.",
         jejakHitung: [
           ["PKP dibulatkan ke bawah dalam ribuan", "Rp412.785.000"],
@@ -4647,6 +4806,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "salah-klasifikasi", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Ada dua dividen di sini dan perlakuannya berbeda. Dividen Singapura yang tidak diinvestasikan di Indonesia digabung dan kena tarif biasa, sedangkan dividen dalam negeri yang diinvestasikan dibebaskan. PKP = Rp4.735 juta + Rp410 juta, dikurangi zakat Rp68 juta dan PTKP K/0 Rp58,5 juta, yaitu Rp5.018,5 juta; infak sukarela tidak dikurangkan. Pajak atas Rp5 miliar pertama Rp1.444 juta, ditambah 35% x Rp18,5 juta = Rp6.475.000, totalnya Rp1.450.475.000. Cara ingat: PKP di atas Rp5 miliar kena lapisan 35%.",
         inti: "Dividen luar negeri yang tidak diinvestasikan di Indonesia digabung dan dikenai tarif Pasal 17 (pajak Singapura nanti menjadi kredit PPh 24), sedangkan dividen dalam negeri yang diinvestasikan dikecualikan dari objek. Zakat ke BAZNAS mengurangi penghasilan, infak sukarela tidak. PKP = neto dalam negeri + dividen Singapura − zakat − PTKP K/0 = Rp5.018.500.000, sehingga Rp18,5 juta teratas terkena lapisan 35%.",
         jejakHitung: [
           ["Neto dalam negeri + dividen Singapura", "Rp5.145.000.000"],
@@ -4683,6 +4843,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Zakat mengurangi penghasilan pada tahun zakat itu dibayar, bukan tahun penghasilan yang dizakati. Syaratnya dibayar ke lembaga resmi yang disahkan pemerintah dan ber-NPWP, dengan bukti setor sah. Zakat ke BAZNAS Rp4.625.000 dibayar Desember 2026, jadi masuk SPT 2026; zakat ke lembaga amil Rp7.500.000 dibayar Januari 2027, jadi masuk SPT 2027. Zakat ke panitia masjid yang tidak disahkan dan sedekah langsung ke anak yatim tidak bisa dikurangkan. Cara ingat: zakat mengurangi penghasilan, bukan pajak, dan ikut tanggal bayarnya.",
         inti: "Zakat dikurangkan dari penghasilan bruto pada Tahun Pajak zakat dibayarkan (Pasal 12 ayat (1) PMK 114/2025), bukan pada tahun penghasilan yang dizakati. Butir 1 dibayar 2026 ke BAZNAS ber-NPWP dengan bukti sah, jadi menjadi pengurang 2026. Butir 2 dibayar 8 Januari 2027, jadi menjadi pengurang 2027. Butir 3 tidak memenuhi syarat penerima (Pasal 9 ayat (1) huruf c dan Pasal 10), dan butir 4 adalah sedekah sukarela kepada perorangan.",
         jejakHitung: [
           ["(1) BAZNAS Kota, dibayar 22 Desember 2026", "pengurang 2026: Rp4.625.000"],
@@ -4716,6 +4877,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Orang yang pindah kerja di tengah tahun sering kurang bayar, dan ini sebabnya. Tiap kantor menghitung PPh 21 seolah-olah ia hanya bekerja di situ, jadi PTKP dan lapisan 5% terpakai dua kali. Di SPT, neto Rp96 juta + Rp204 juta = Rp300 juta dikurangi PTKP K/2 sekali Rp67,5 juta, sehingga PKP Rp232,5 juta dan PPh Rp28.875.000. Dikurangi PPh 21 kedua bukti potong Rp15,9 juta, kurang bayarnya Rp12.975.000; bunga deposito final dan premi asuransi pribadi tidak dihitung. Cara ingat: dua kantor, tetap satu PTKP.",
         inti: "Dalam SPT Tahunan, neto dari kedua BPA1 digabung dan PTKP K/2 dipakai sekali. Masing-masing pemberi kerja sudah memakai PTKP setahun penuh dan lapisan 5% dari awal, sehingga jumlah PPh 21 kedua BPA1 lebih kecil daripada PPh terutang setahun. Bunga deposito dikenai PPh final dan tidak masuk penghitungan maupun kredit, sedangkan premi asuransi kesehatan yang dibayar sendiri tidak dapat dikurangkan.",
         jejakHitung: [
           ["Neto pekerjaan (Rp96.000.000 + Rp204.000.000)", "Rp300.000.000"],
@@ -4752,6 +4914,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini menanyakan angka di tiap bagian induk SPT. Neto kedua bukti potong dijumlah menjadi Rp300 juta, PTKP K/2 ditulis sekali Rp67,5 juta, dan PPh 21 kedua bukti potong dijumlah menjadi Rp15,9 juta sebagai kredit. Bunga deposito dan pajak finalnya hanya dicatat di lampiran penghasilan final, tidak masuk neto maupun kredit. Hasilnya PPh setahun Rp28.875.000 dikurangi Rp15,9 juta, yaitu kurang bayar Rp12.975.000. Cara ingat: semua bukti potong gaji digabung, PTKP cukup sekali.",
         inti: "Neto kedua BPA1 dijumlahkan di Lampiran 1 Bagian D lalu ke induk Bagian B angka 1 huruf a, PTKP K/2 dicantumkan sekali di Bagian C angka 5, dan PPh 21 kedua BPA1 dijumlahkan di Lampiran 1 Bagian E lalu ke Bagian D angka 10 huruf a. Bunga deposito beserta PPh finalnya dilaporkan di Lampiran 2 Bagian A dan tidak masuk penghasilan neto maupun kredit pajak. Hasilnya kurang bayar Rp12.975.000 (Bagian E angka 11 huruf a).",
         jejakHitung: [
           ["Bagian B angka 1 huruf a (Rp96.000.000 + Rp204.000.000)", "Rp300.000.000"],
@@ -4789,6 +4952,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "angka-usang", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Yang menentukan di sini adalah status keluarganya. Karena tidak ada pisah harta dan istri tidak memilih mengurus pajaknya sendiri, omzet istri dianggap omzet suami, sehingga jatah omzet Rp500 juta yang tidak kena pajak hanya dipakai sekali. Omzet gabungan Rp290 juta + Rp640 juta = Rp930 juta, dikurangi Rp500 juta tinggal Rp430 juta. Pajaknya 0,5% x Rp430 juta = Rp2.150.000. Cara ingat: satu keluarga biasa, satu jatah Rp500 juta.",
         inti: "Tanpa perjanjian pemisahan harta dan tanpa pilihan istri menjalankan kewajibannya sendiri, penghasilan istri dianggap penghasilan suami (Pasal 8 ayat (1) UU PPh), sehingga bagian peredaran bruto Rp500 juta yang tidak dikenai PPh hanya berlaku sekali atas peredaran bruto gabungan. Perlakuan masing-masing hanya untuk suami-istri PH atau MT (Pasal 6 ayat (5) PMK 164/2023).",
         jejakHitung: [
           ["Peredaran bruto keluarga (Rp290.000.000 + Rp640.000.000)", "Rp930.000.000"],
@@ -4822,6 +4986,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "angka-usang" },
       pembahasan: {
+        mudah: "Mulai dari tanggal jatuh tempo setor, yaitu 15 September 2026, bukan akhir Agustus. Bunga dihitung per bulan sejak hari sesudahnya, dan sisa hari di bulan terakhir tetap dihitung satu bulan penuh. Dari 16 September sampai 9 Desember ada 2 bulan 24 hari, jadi dihitung 3 bulan. Bunga = Rp1.480.000 x 0,95% x 3 = Rp42.180. Cara ingat: hitung dari jatuh tempo, bulan yang belum penuh dibulatkan ke atas.",
         inti: "PPh final UMKM (PPh Pasal 4 ayat (2)) disetor paling lambat tanggal 15 bulan berikutnya, jadi jatuh tempo Masa Agustus 2026 adalah 15 September 2026. Bulan bunga pertama 16 September sampai 15 Oktober, kedua 16 Oktober sampai 15 November, ketiga 16 November sampai 15 Desember 2026; pembayaran 9 Desember 2026 jatuh di bulan ketiga (2 bulan 24 hari, dihitung 3 bulan). Bunga = Rp1.480.000 × 0,95% × 3 = Rp42.180.",
         jejakHitung: [
           ["Jatuh tempo (tanggal 15 bulan berikutnya)", "15 September 2026"],
@@ -4854,6 +5019,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
       pembahasan: {
+        mudah: "Dua hal diuji: apakah SPT 2025 masih wajib, dan apakah keterlambatannya didenda. Sepanjang 2025 Mr. Haruto tinggal di Indonesia, jadi SPT 2025 tetap wajib walaupun ia sudah pulang ke Jepang pada 2026. SPT-nya memang terlambat karena batasnya 31 Maret 2026, tetapi undang-undang membebaskan denda bagi warga negara asing yang sudah tidak tinggal lagi di Indonesia. Jadi SPT wajib disampaikan, tanpa denda keterlambatan. Cara ingat: terlambat belum tentu didenda, cek dulu daftar pengecualiannya.",
         inti: "Sepanjang 2025 Mr. Haruto adalah subjek pajak dalam negeri, sehingga kewajiban SPT Tahunan 2025 tetap ada walaupun kewajiban subjektifnya berakhir saat ia meninggalkan Indonesia untuk selama-lamanya pada 2026 (Pasal 2A ayat (1) UU PPh). SPT disampaikan setelah 31 Maret 2026, tetapi Pasal 7 ayat (2) huruf c UU KUP mengecualikan denda bagi Wajib Pajak orang pribadi warga negara asing yang tidak tinggal lagi di Indonesia.",
         jejakHitung: [
           ["Batas SPT Tahunan OP Tahun Pajak 2025", "31 Maret 2026"],
@@ -4885,6 +5051,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "salah-baca", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Ujian 183 hari menghitung hari kehadiran dalam satu rentang 12 bulan, bukan seluruh kunjungan yang pernah ada. Penugasan pertama 148 hari (Februari sampai Juni 2025) dan kedua 152 hari (Maret sampai Juli 2026). Keduanya berjarak terlalu jauh, jadi dalam rentang 12 bulan mana pun jumlahnya paling banyak 152 hari, tidak pernah lebih dari 183. Karena ia juga tidak tinggal dan tidak berniat tinggal di Indonesia, ia subjek pajak luar negeri. Cara ingat: hari hanya dijumlah bila berada dalam satu jendela 12 bulan.",
         inti: "Pasal 2 ayat (3) huruf a angka 2 UU PPh menguji kehadiran lebih dari 183 hari dalam jangka waktu 12 bulan; hari kehadiran tidak harus berturut-turut, tetapi hanya dijumlahkan bila berada dalam satu jangka waktu 12 bulan. Penugasan pertama (148 hari) dan kedua (152 hari) tidak pernah bersama-sama melebihi 183 hari dalam 12 bulan mana pun, dan Tuan Henrik tidak bertempat tinggal atau berniat bertempat tinggal di Indonesia. Karena itu ia subjek pajak luar negeri menurut Pasal 2 ayat (4) huruf b.",
         jejakHitung: [
           ["3 Feb sampai dengan 30 Jun 2025 (26 + 31 + 30 + 31 + 30)", "148 hari"],
@@ -4920,6 +5087,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Bagi tahun 2026 menjadi dua periode. Laba sampai Ibu Hartini meninggal pada 22 Agustus 2026 dilaporkan di SPT Ibu Hartini untuk sebagian tahun. Sejak ia meninggal, warisan yang belum dibagi menggantikannya sebagai pembayar pajak sampai warisan selesai dibagi. Karena pembagian baru terjadi pada 2027, laba sesudah 22 Agustus sampai akhir 2026 dipajaki atas nama warisan yang belum terbagi, belum atas nama ahli waris. Cara ingat: pewaris sampai hari wafat, lalu warisan belum terbagi, ahli waris baru setelah dibagi.",
         inti: "Kewajiban subjektif Ibu Hartini berakhir saat ia meninggal pada 22 Agustus 2026, sehingga laba sampai saat itu dilaporkan untuk bagian tahun pajak (Pasal 2A ayat (6)). Sejak saat meninggal, warisan yang belum terbagi menjadi subjek pajak pengganti (Pasal 2 ayat (1) huruf a angka 2 dan ayat (3) huruf c) sampai warisan selesai dibagi; karena pembagian baru terjadi pada 2027, seluruh laba sesudah tanggal meninggal sampai akhir 2026 dikenai pajak atas nama warisan yang belum terbagi.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4948,6 +5116,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini mencari orang yang TIDAK lolos pengecualian. Pejabat konsulat dan orang yang diperbantukan kepada mereka tidak termasuk subjek pajak hanya jika bukan WNI, ada perlakuan timbal balik, dan tidak punya penghasilan lain di Indonesia. Staf administrasi yang juga menerima honor mengajar dari universitas di Surabaya melanggar syarat terakhir, jadi ia tetap subjek pajak. Konsul Jenderal, kantor konsulat, dan juru masak tanpa penghasilan lain tetap dikecualikan. Cara ingat: begitu ada penghasilan lain di Indonesia, pengecualiannya hilang.",
         inti: "Pengecualian Pasal 3 ayat (1) huruf b bagi pejabat konsulat dan orang yang diperbantukan kepada mereka bersyarat: bukan WNI, tidak menerima atau memperoleh penghasilan di Indonesia di luar jabatan atau pekerjaannya, dan ada perlakuan timbal balik. Staf yang juga menerima honorarium mengajar dari universitas di Surabaya memperoleh penghasilan lain di luar pekerjaannya, sehingga pengecualian tidak berlaku dan ia tetap subjek pajak.",
         jejakHitung: [],
         mengapaSalah: {
@@ -4975,6 +5144,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Fasilitas tenaga ahli asing (hanya dipajaki atas penghasilan dari Indonesia) berlaku 4 tahun pajak, dihitung sejak pertama kali menjadi subjek pajak dalam negeri. Prof. Lukas pertama kali pada 2022, jadi jatahnya 2022, 2023, 2024, dan 2025. Kepulangannya ke Wina pada 2023 tidak menghentikan atau mengulang hitungan. Pada 2026 fasilitasnya sudah habis, sehingga gaji, dividen Wina yang tidak diinvestasikan, dan royalti Zurich semuanya dipajaki. Cara ingat: empat tahun sejak pertama datang, tidak diulang saat kembali.",
         inti: "Pasal 4 ayat (1a) UU PPh membatasi pemajakan WNA berkeahlian tertentu hanya atas penghasilan dari Indonesia selama 4 Tahun Pajak sejak menjadi SPDN. Pasal 444 PMK 81/2024 menghitungnya sejak WNA pertama kali menjadi SPDN, dan bila dalam jangka waktu itu WNA meninggalkan Indonesia, batas akhirnya tetap dihitung sejak pertama kali menjadi SPDN. Prof. Lukas pertama kali SPDN pada 2022, sehingga fasilitas berakhir pada Tahun Pajak 2025. Pada 2026 berlaku Pasal 4 ayat (1): sebagai SPDN ia dipajaki atas penghasilan dari Indonesia dan luar Indonesia.",
         jejakHitung: [
           ["Pertama kali menjadi SPDN", "Tahun Pajak 2022"],
@@ -5008,6 +5178,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "final-nonfinal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pertanyaannya: penghasilan mana yang masuk hitungan tarif biasa. Penghasilan yang pajaknya final atau yang bukan objek pajak tidak digabung. Keuntungan saham di bursa dan sewa rumah sudah kena pajak final, sedangkan bagian laba sekutu firma bukan objek karena firmanya sudah dipajaki. Yang tersisa gaji dan sewa mobil; potongan 2% atas sewa mobil tidak final, jadi sewanya digabung dan potongannya menjadi kredit. Cara ingat: dipotong belum tentu final, cek dulu jenis potongannya.",
         inti: "Penghasilan yang dikenai PPh final atau dikecualikan dari objek tidak digabung dengan penghasilan yang dikenai tarif umum. Keuntungan penjualan saham di bursa (Pasal 4 ayat (2) huruf c) dan sewa tanah dan/atau bangunan (Pasal 4 ayat (2) huruf d) dikenai PPh final; bagian laba sekutu firma bukan objek (Pasal 4 ayat (3) huruf i). Sewa mobil dipotong PPh Pasal 23 yang tidak final, sehingga digabung bersama gaji.",
         jejakHitung: [
           ["(1) Gaji", "tidak final → digabung"],
@@ -5042,6 +5213,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Dividen ini terbagi dua. Rp200 juta yang ditanam di deposito sesuai syarat (paling lambat akhir Maret 2027, ditahan minimal 3 tahun pajak, dan dilaporkan realisasinya) dibebaskan dari pajak. Sisanya Rp520 juta dikurangi Rp200 juta = Rp320 juta yang dipakai membeli mobil tetap kena pajak final 10%. Jadi 10% x Rp320 juta = Rp32.000.000, disetor sendiri. Cara ingat: bagian yang diinvestasikan bebas, bagian yang dibelanjakan kena 10%.",
         inti: "Bagian dividen yang diinvestasikan sesuai bentuk, tata cara, dan jangka waktu (deposito pada bank persepsi paling lambat akhir Maret 2027, ditahan paling singkat 3 Tahun Pajak) dan dilaporkan realisasinya dikecualikan dari objek. Bagian yang tidak diinvestasikan (Rp320.000.000) terutang PPh final 10% saat dividen diterima dan wajib disetor sendiri.",
         jejakHitung: [
           ["Dividen diterima", "Rp520.000.000"],
@@ -5074,6 +5246,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: bunga SBN ritel itu diperlakukan bagaimana di SPT. Bunga surat utang negara kena PPh final 10%, artinya pajaknya sudah selesai saat dipotong. Jadi bunga Rp24 juta tetap dilaporkan di bagian penghasilan final, tetapi tidak dijumlahkan dengan penghasilan lain, dan potongan Rp2,4 juta tidak boleh dipakai mengurangi kurang bayar. Cara ingat: final itu urusannya sudah tutup buku, wajib dilaporkan tapi tidak ikut dihitung lagi.",
         inti: "Bunga obligasi, termasuk surat utang negara, yang diterima Wajib Pajak dalam negeri dikenai PPh final 10% (PP 91/2021). Penghasilan final tetap dilaporkan di SPT agar SPT benar, lengkap, dan jelas, tetapi tidak digabung ke penghasilan kena pajak dan PPh-nya bukan kredit pajak, walaupun SPT kurang bayar.",
         jejakHitung: [
           ["PPh final 10% × Rp24.000.000", "Rp2.400.000"],
@@ -5106,6 +5279,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kita cari pengeluaran yang benar-benar biaya usaha apotek. Premi asuransi kesehatan pegawai yang dibayar Apoteker Ratna dan dihitung sebagai penghasilan pegawai boleh dikurangkan sebagai biaya. Pelunasan kurang bayar PPh tahun lalu miliknya sendiri dan sanksi bunga STP tidak boleh jadi biaya, karena itu pajak penghasilan sendiri dan denda pajak. Cadangan piutang tak tertagih hanya boleh dibentuk bank dan penyalur kredit tertentu, bukan apotek. Cara ingat: PPh milik sendiri dan denda pajak tidak pernah jadi biaya.",
         inti: "Premi asuransi kesehatan yang dibayar pemberi kerja untuk pegawainya dan dihitung sebagai penghasilan pegawai boleh dibebankan sebagai biaya (Pasal 9 ayat (1) huruf d beserta Penjelasannya). PPh, sanksi administrasi pajak, dan pembentukan cadangan piutang di luar usaha yang dikecualikan tidak boleh dikurangkan (Pasal 9 ayat (1) huruf h, k, dan c).",
         jejakHitung: [],
         mengapaSalah: {
@@ -5133,6 +5307,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Mulai dari menghitung penyusutan menurut pajak, dihitung sejak bulan beli. Komputer 25% x Rp18 juta x 5/12 = Rp1,875 juta, mobil pikap 12,5% x Rp240 juta x 8/12 = Rp20 juta, total Rp21,875 juta. Menurut buku: Rp2,5 juta + Rp16 juta = Rp18,5 juta. Biaya menurut pajak lebih besar Rp3,375 juta, sehingga laba fiskal turun dan koreksinya negatif. Cara ingat: biaya fiskal lebih besar berarti koreksi negatif.",
         inti: "Penyusutan fiskal dimulai pada bulan pengeluaran dan dihitung proporsional: komputer dan printer 25% × 5/12, mobil pikap 12,5% × 8/12. Penyusutan fiskal (Rp21.875.000) lebih besar daripada komersial (Rp18.500.000), sehingga selisihnya merupakan koreksi negatif.",
         jejakHitung: [
           ["Fiskal komputer: 18 jt × 25% × 5/12", "Rp1.875.000"],
@@ -5168,6 +5343,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kuncinya ada di satu ruko yang dipakai untuk dua jenis penghasilan. Biaya untuk mendapat penghasilan yang sudah kena PPh final tidak boleh dikurangkan, karena pajak sewa itu sudah selesai. Jadi bagian biaya yang terkait lantai 2 yang disewakan dikeluarkan dari biaya toko (koreksi positif), dan biaya bersama dibagi secara proporsional. Bagian lantai 1 dipakai toko sendiri, jadi biayanya tetap boleh dikurangkan. Cara ingat: yang dikoreksi hanya potongan biaya milik penghasilan final.",
         inti: "Biaya untuk mendapatkan, menagih, dan memelihara penghasilan yang dikenai PPh final tidak boleh dikurangkan (PP 94/2010 Pasal 13 huruf a). Wajib Pajak yang memiliki penghasilan final dan tidak final harus memisahkan pembukuannya, dan biaya bersama yang tidak dapat dipisahkan dialokasikan secara proporsional (Pasal 27). Jadi hanya bagian biaya ruko yang terkait lantai 2 (sewa final) yang dikoreksi; bagian lantai 1 yang dipakai toko tetap biaya usaha.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5195,6 +5371,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "angka-usang", B: "lupa-pasal", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Penghasilan neto fiskal didapat dari laba buku lalu dikoreksi. Tambahkan PPh 25 milik Tuan Rudi sendiri Rp36 juta dan uang sekolah anak Rp18 juta, karena pajak milik sendiri dan biaya pribadi tidak boleh jadi biaya. Kurangkan bunga deposito Rp12 juta yang sudah kena pajak final. Hasilnya Rp620 juta + Rp54 juta dikurangi Rp12 juta = Rp662 juta. PPh 21 karyawan yang ditanggung, PBB gudang, dan pelatihan tetap boleh jadi biaya.",
         inti: "Koreksi positif atas PPh Pasal 25 milik Tuan Rudi sendiri (Pasal 9 ayat (1) huruf h: PPh yang terutang oleh Wajib Pajak yang bersangkutan) dan uang sekolah anak (biaya untuk kepentingan pribadi, Pasal 9 ayat (1) huruf i), lalu koreksi negatif atas bunga deposito yang sudah dikenai PPh final. PPh Pasal 21 karyawan yang ditanggung pemberi kerja adalah penggantian dalam bentuk kenikmatan bagi pegawai (Lampiran PMK 168/2023), sehingga dapat dibiayakan menurut Pasal 6 ayat (1) huruf n UU PPh dan Pasal 2 ayat (1) PMK 66/2023. PBB gudang (pajak selain PPh) dan biaya pelatihan juga boleh dibiayakan.",
         jejakHitung: [
           ["Laba komersial", "Rp620.000.000"],
@@ -5229,6 +5406,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-baca", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Dua aturan menentukan soal ini: rugi tertua dipakai lebih dulu, dan tiap rugi hanya boleh dipakai 5 tahun sesudah tahun ruginya. Rugi 2020 dipakai laba 2021, 2023, 2024, dan 2025: 40 + 50 + 70 + 60 = Rp220 juta, jadi sisanya Rp40 juta hangus karena batasnya akhir 2025. Rugi 2022 masih utuh Rp120 juta dan berlaku sampai 2027. Laba 2026 Rp150 juta cukup untuk memakai seluruh Rp120 juta, jadi tidak ada sisa ke 2027.",
         inti: "Rugi tertua dipakai lebih dahulu, dan tiap rugi hanya dapat dikompensasikan mulai tahun berikutnya selama 5 tahun. Rugi 2020 (batas 2021 sampai 2025) terpakai Rp40 juta + Rp50 juta + Rp70 juta + Rp60 juta = Rp220 juta; sisanya Rp40 juta tidak dapat dipakai lagi pada 2026. Rugi 2022 (batas 2023 sampai 2027) masih utuh Rp120 juta dan seluruhnya dipakai pada 2026, sehingga tidak ada sisa ke 2027.",
         jejakHitung: [
           ["Rugi 2020 dipakai 2021, 2023, 2024, 2025 (40 + 50 + 70 + 60 juta)", "Rp220.000.000"],
@@ -5262,6 +5440,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-hitung", C: "lupa-pasal", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Soal ini meminta kita memilih rugi mana yang masih sah dipakai untuk SPT 2025. Rugi dalam negeri boleh dipakai selama 5 tahun mulai tahun sesudahnya, jadi rugi 2020 berlaku sampai 2025 dan masih bisa. Rugi 2019 hanya sampai 2024, jadi sudah lewat. Rugi cabang di luar negeri tidak boleh diperhitungkan, dan rugi jual saham di bursa berasal dari penghasilan final sehingga tidak dicampur. Cara ingat: tahun rugi ditambah 5 adalah tahun terakhirnya.",
         inti: "Rugi fiskal 2020 dapat dikompensasikan mulai 2021 sampai 2025, jadi masih dapat dipakai dalam SPT 2025. Rugi 2019 hanya sampai 2024; kerugian cabang di luar negeri tidak dapat diperhitungkan dalam Penghasilan Kena Pajak; rugi transaksi saham di bursa berasal dari penghasilan yang dikenai PPh final sehingga tidak digabungkan dengan penghasilan bertarif umum.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5289,6 +5468,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Rugi 2024 boleh dipakai lima tahun berturut-turut mulai tahun berikutnya, yaitu 2025 sampai 2029. Tahun 2025 yang impas tetap terhitung sebagai salah satu dari lima tahun itu, walaupun tidak ada rugi yang terpakai. Pada 2026 terpakai Rp45 juta, jadi sisanya Rp125 juta dikurangi Rp45 juta = Rp80 juta. Cara ingat: hitungan lima tahun terus berjalan, termasuk tahun yang labanya nol.",
         inti: "Rugi 2024 dikompensasikan mulai 2025 berturut-turut sampai 5 tahun (2025 sampai 2029). Tahun 2025 yang impas tetap dihitung sebagai salah satu tahun. Setelah dipakai Rp45.000.000 pada 2026, sisanya Rp80.000.000.",
         jejakHitung: [
           ["Rugi 2024", "Rp125.000.000"],
@@ -5322,6 +5502,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Pertanyaannya: angka rugi 2024 yang mana yang dipakai. Yang berlaku adalah keputusan paling akhir, yaitu Surat Keputusan Keberatan yang menetapkan rugi Rp100 juta, bukan angka SPT atau SKP. Rp50 juta sudah dipakai pada 2025, jadi sisanya Rp50 juta. Penghasilan 2026 Rp90 juta cukup besar, sehingga kompensasi maksimumnya Rp50 juta. Cara ingat: pakai angka dari keputusan terakhir.",
         inti: "Rugi fiskal yang dapat dikompensasikan disesuaikan dengan keputusan terakhir atas Tahun Pajak 2024, yaitu Surat Keputusan Keberatan (Rp100.000.000), bukan angka SPT dan bukan lagi angka SKP. Setelah dipakai Rp50.000.000 pada 2025, sisanya Rp50.000.000, lebih kecil dari penghasilan neto 2026 Rp90.000.000.",
         jejakHitung: [
           ["Rugi 2024 menurut Surat Keputusan Keberatan", "Rp100.000.000"],
@@ -5355,6 +5536,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Pajak luar negeri boleh dikreditkan, tetapi ada batasnya. Batasnya adalah bagian PPh Indonesia yang berasal dari penghasilan luar negeri itu. Penghasilan neto Rp663 juta dikurangi PTKP Rp63 juta = PKP Rp600 juta, dan PPh terutangnya Rp124 juta. Bagian sewa Australia: 150/600 x Rp124 juta = Rp31 juta, lebih kecil dari pajak Australia Rp40 juta, jadi kreditnya Rp31 juta. Cara ingat: ambil yang lebih kecil antara pajak di luar negeri dan batas hitungan ini.",
         inti: "PKP = Rp513 juta + Rp150 juta - PTKP K/1 Rp63 juta = Rp600.000.000; PPh terutang Rp124.000.000. Batas untuk penghasilan sewa dari Australia (dihitung per jenis penghasilan untuk tiap negara) = 150/600 × Rp124.000.000 = Rp31.000.000, lebih kecil dari pajak yang dibayar di Australia.",
         jejakHitung: [
           ["Neto dalam negeri + luar negeri", "Rp663.000.000"],
@@ -5389,6 +5571,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kredit pajak adalah pajak yang sudah dibayar di muka atas penghasilan yang dihitung dengan tarif umum. Itu meliputi PPh 21 Rp36 juta, PPh 22 impor Rp7,5 juta, PPh 22 barang sangat mewah Rp24 juta, dan PPh 25 Rp30 juta, totalnya Rp97,5 juta. PPh final sewa rumah tidak dikreditkan karena sudah tuntas sendiri. Sanksi bunga STP adalah denda, bukan pembayaran pajak. Cara ingat: final dan denda tidak pernah jadi kredit pajak.",
         inti: "Kredit pajak: PPh Pasal 21 (BPA1), PPh Pasal 22 impor, PPh Pasal 22 atas pembelian barang sangat mewah, dan PPh Pasal 25. PPh final atas sewa rumah dan sanksi bunga STP tidak dapat dikreditkan.",
         jejakHitung: [
           ["PPh 21 BPA1", "Rp36.000.000"],
@@ -5422,6 +5605,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari status Nyonya Ratih: notaris menjalankan pekerjaan bebas, jadi ia tidak memakai angsuran 0,75% walaupun kantornya terpisah dari rumah. Angsurannya dihitung dari PPh terutang tahun lalu dikurangi pajak yang dipotong pihak lain dan pajak luar negeri. Rp96,3 juta dikurangi Rp31,2 juta dan Rp4,5 juta = Rp60,6 juta, lalu dibagi 12 = Rp5,05 juta. PPh 25 tahun lalu tidak ikut dikurangkan.",
         inti: "Notaris menyerahkan jasa sehubungan dengan pekerjaan bebas, sehingga walaupun kantornya terpisah dari rumah tinggal ia bukan Wajib Pajak orang pribadi pengusaha tertentu; angsurannya mengikuti Pasal 25 ayat (1). Dasar angsuran = PPh terutang - PPh Pasal 21, 22, 23 - PPh Pasal 24 yang boleh dikreditkan, lalu dibagi 12; PPh Pasal 25 tahun lalu tidak dikurangkan.",
         jejakHitung: [
           ["PPh terutang 2025", "Rp96.300.000"],
@@ -5454,6 +5638,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "final-nonfinal", C: "angka-usang" },
       pembahasan: {
+        mudah: "Pak Darmawan punya toko di luar rumah, jadi ia termasuk pengusaha tertentu yang angsurannya 0,75% dari omzet bulanan tiap tempat usaha. Etalase di rumahnya juga ikut dihitung. Toko utama 0,75% x Rp540 juta = Rp4,05 juta dan etalase 0,75% x Rp60 juta = Rp450 ribu. Batas setornya tanggal 15 bulan berikutnya, yaitu 15 Juni 2026. Cara ingat: angsuran disetor paling lambat tanggal 15.",
         inti: "Pak Darmawan berdagang di tempat usaha yang berbeda dengan tempat tinggalnya, jadi ia Wajib Pajak orang pribadi pengusaha tertentu. Angsurannya 0,75% × peredaran bruto bulanan masing-masing tempat usaha, termasuk tempat usaha yang berada di tempat tinggalnya, disetor paling lambat tanggal 15 bulan berikutnya, dan menjadi kredit di SPT Tahunan.",
         jejakHitung: [
           ["Toko utama: 0,75% × Rp540.000.000", "Rp4.050.000"],
@@ -5485,6 +5670,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "angka-usang", C: "final-nonfinal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: apa yang harus disetor Pak Joko selama omzetnya masih kecil. Ia memakai PPh final 0,5%, dan bagi orang pribadi omzet sampai Rp500 juta setahun tidak kena pajak. Omzet kumulatif sampai Oktober baru Rp352 juta, jadi belum ada yang disetor. Pengguna PPh final juga tidak membayar angsuran PPh 25. Cara ingat: Rp500 juta pertama setahun bebas pajak bagi orang pribadi UMKM.",
         inti: "Bagi Wajib Pajak orang pribadi yang dikenai PPh final, bagian peredaran bruto sampai Rp500 juta setahun (dihitung kumulatif sejak Masa Pajak pertama) tidak dikenai PPh. Sampai Oktober 2026 peredaran bruto kumulatifnya baru Rp352 juta, jadi belum ada PPh final yang terutang. Wajib Pajak yang penghasilan usahanya dikenai PPh final tidak membayar angsuran PPh Pasal 25; angsuran baru wajib sejak Tahun Pajak pertama ia dikenai ketentuan umum.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5513,6 +5699,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Angsuran PPh 25 dihitung dari PPh terutang tahun lalu dikurangi pajak yang sudah dipotong atau dipungut pihak lain dan pajak luar negeri. Rp150 juta dikurangi PPh 22 impor Rp27,6 juta, PPh 23 Rp9 juta, dan PPh 24 Rp12,6 juta = Rp100,8 juta. Lalu dibagi 12 = Rp8,4 juta per bulan. PPh 25 tahun lalu dan PPh final deposito tidak ikut dikurangkan. Cara ingat: yang dikurangkan hanya PPh 21, 22, 23, dan 24.",
         inti: "Kutipan mengurangkan PPh terutang tahun lalu hanya dengan PPh Pasal 21, 22, dan 23 (huruf a) serta PPh Pasal 24 yang boleh dikreditkan (huruf b), lalu dibagi 12. PPh Pasal 25 yang disetor tahun lalu dan PPh final bunga deposito tidak dikurangkan.",
         jejakHitung: [
           ["PPh terutang SPT Tahunan 2025", "Rp150.000.000"],
@@ -5545,6 +5732,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini menguji kapan tarif 0,5% berhenti. Bila omzet melewati Rp4,8 miliar di tengah tahun, tarif 0,5% tetap dipakai sampai Desember tahun itu. Mulai tahun berikutnya ia memakai tarif umum. Karena omzet orang pribadi itu sudah pernah melebihi Rp4,8 miliar, ia tidak bisa kembali ke 0,5% walaupun omzet 2027 turun ke Rp3,2 miliar. Cara ingat: sekali lewat Rp4,8 miliar, pintu tarif 0,5% tertutup untuk tahun-tahun berikutnya.",
         inti: "Peredaran bruto 2025 Rp4,1 miliar sehingga 2026 boleh memakai tarif 0,5% (Pasal 57 ayat (1) dan Pasal 58 ayat (1)). Bila batas terlampaui dalam tahun berjalan, tarif 0,5% tetap dipakai sampai akhir tahun pajak itu (Pasal 61 ayat (1) PP 55/2022) dan mulai tahun berikutnya dikenai tarif Pasal 17 (Pasal 61 ayat (2)). WP OP yang peredaran brutonya pernah melebihi Rp4,8 miliar dalam satu tahun pajak tidak termasuk penerima PPh final dan untuk tahun-tahun pajak berikutnya tidak dapat lagi dikenai PPh final (Pasal 57 ayat (2) huruf e dan ayat (4) s.t.d.d. PP 20/2026), walaupun peredaran brutonya turun.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5572,6 +5760,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "angka-usang", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Kita cari siapa yang masih boleh memakai tarif 0,5% menurut aturan terbaru. Kini yang boleh hanya orang pribadi, perseroan perorangan yang didirikan satu orang, dan koperasi. Toko roti Nyonya Sekar memenuhi syarat. Perseroan perorangan milik arsitek untuk menjual jasa keahliannya dikecualikan, firma tidak lagi termasuk, dan imbalan endorsement influencer adalah jasa pekerjaan bebas yang juga dikecualikan. Cara ingat: jasa keahlian pribadi tidak masuk tarif 0,5%.",
         inti: "Sejak PP 20/2026 penerima PPh final 0,5% hanya WP OP serta WP badan berbentuk perseroan perorangan yang didirikan oleh 1 orang dan koperasi (Pasal 57 ayat (1)). Perseroan perorangan toko roti yang didirikan satu orang tanpa usaha lain memenuhi syarat. Perseroan perorangan yang didirikan tenaga ahli untuk menyerahkan jasa sejenis pekerjaan bebas dikecualikan (Pasal 57 ayat (2) huruf b), dan penghasilan OP dari jasa sehubungan dengan pekerjaan bebas dikecualikan (Pasal 56 ayat (3) huruf a PP 55/2022), termasuk pembuat konten daring (Pasal 56 ayat (4) huruf b).",
         jejakHitung: [],
         mengapaSalah: {
@@ -5599,6 +5788,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "final-nonfinal", D: "salah-baca" },
       pembahasan: {
+        mudah: "Uji batas Rp4,8 miliar memakai omzet dari usaha dan jasa pekerjaan bebas tahun sebelumnya, baik yang kena pajak final maupun tidak. Toko Rp2,95 miliar, jasa konsultan Rp0,9 miliar, dan sewa ruko Rp0,8 miliar ikut dijumlah, totalnya Rp4,65 miliar. Gaji direktur dan dividen bukan omzet usaha, jadi tidak dihitung. Karena Rp4,65 miliar belum melewati Rp4,8 miliar, tokonya masih boleh memakai 0,5% pada 2027.",
         inti: "Menurut Pasal 58 ayat (1) huruf a s.t.d.d. PP 20/2026, uji Rp4,8 miliar memakai jumlah keseluruhan peredaran bruto atas penghasilan dari usaha dan jasa sehubungan dengan pekerjaan bebas tahun pajak sebelumnya, baik yang dikenai PPh tidak final maupun final. Sewa ruko dari usaha persewaan ikut dihitung walaupun dikenai PPh final tersendiri (Penjelasan Pasal 58 ayat (1) contoh 1), sedangkan gaji dan dividen bukan peredaran bruto usaha atau pekerjaan bebas: Rp2,95 + Rp0,9 + Rp0,8 miliar = Rp4,65 miliar.",
         jejakHitung: [
           ["Toko perlengkapan bayi", "Rp2,95 miliar"],
@@ -5632,6 +5822,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "final-nonfinal", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pak Darto sudah punya Surat Keterangan PPh final, jadi PT Graha Medika memotong PPh final 0,5% dan memberi bukti potong. Syaratnya, Pak Darto menyerahkan salinan Surat Keterangan itu. Surat pernyataan sebagai pengganti hanya bisa dipakai selama omzet orang pribadi belum lewat Rp500 juta, padahal omzetnya sudah Rp640 juta. PPh 23 tidak dipotong karena ia masih memakai PPh final. Cara ingat: bertransaksi dengan pemotong, pajak finalnya dipotong pemotong.",
         inti: "Pemotong PPh yang membayar jasa kepada WP PPh final UMKM memotong PPh final 0,5% bila WP menyerahkan salinan Surat Keterangan, lalu menerbitkan bukti pemotongan (Pasal 8 ayat (1) PMK 164/2023). Surat pernyataan pengganti Surat Keterangan hanya untuk WP OP yang peredaran brutonya pada saat pemotongan belum melebihi Rp500 juta (Pasal 8 ayat (2) huruf c dan ayat (4)); peredaran bruto Pak Darto sudah Rp640 juta.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5659,6 +5850,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "final-nonfinal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Pertama, pilah mana yang digabung. Gaji, honor moderator, dan hibah dari paman digabung, karena hibah hanya bebas pajak bila dari orang tua atau anak kandung. Total Rp170 juta dikurangi PTKP Rp67,5 juta = PKP Rp102,5 juta, pajaknya Rp9,375 juta. Dikurangi PPh 21 Rp2,525 juta dan Rp300 ribu, SPT kurang bayar Rp6,55 juta. Bunga obligasi kena pajak final, jadi hanya dilaporkan tanpa dikreditkan.",
         inti: "Hibah dikecualikan dari objek pajak hanya bila diterima keluarga sedarah dalam garis keturunan lurus satu derajat (Pasal 4 ayat (3) huruf a angka 2 UU PPh); paman adalah keluarga sedarah garis menyamping, sehingga hibahnya digabung sebagai penghasilan. Gaji (BPA1) dan honorarium moderator adalah penghasilan tidak final yang digabung, dan PPh 21 keduanya menjadi kredit. Bunga obligasi dikenai PPh final 10% (PP 91/2021), dilaporkan pada bagian penghasilan final tanpa kredit.",
         jejakHitung: [
           ["Neto BPA1 + hibah paman + honorarium moderator (118 + 40 + 12 juta)", "Rp170.000.000"],
@@ -5695,6 +5887,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-hitung", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mobil yang dibeli dengan cicilan sudah menjadi harta Tuan Fajar sejak dibeli, walaupun BPKB masih dijaminkan. Harta dicatat sebesar harga belinya Rp480 juta, sedangkan sisa pinjaman Rp300 juta dicatat terpisah di daftar utang. Keduanya tidak boleh saling dikurangkan. NJKB hanya mengisi kolom nilai saat ini, bukan mengganti harga perolehan. Cara ingat: harta dan utang ditulis sendiri-sendiri, tidak dinetokan.",
         inti: "Harta bergerak dilaporkan sebesar harga perolehan (Pasal 10 UU PPh), sedangkan utang yang berkaitan langsung dengan perolehan harta dilaporkan terpisah sebesar sisa utang pada akhir tahun; keduanya tidak saling dikompensasikan. Di Coretax, Lampiran 1 Bagian A Tabel 4 (harta bergerak) juga memuat kolom nilai saat ini yang dapat diisi NJKB, tetapi kolom itu tidak menggantikan harga perolehan.",
         jejakHitung: [
           ["Lampiran 1 Bagian A Tabel 4, harga perolehan mobil", "Rp480.000.000"],
@@ -5728,6 +5921,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: siapa yang bebas dari status subjek pajak. Organisasi internasional yang ditetapkan Menteri Keuangan memang bebas. Pejabatnya juga bebas, tetapi hanya bila bukan WNI dan tidak punya pekerjaan lain untuk mencari penghasilan di Indonesia. Ms. Ingrid memenuhi keduanya, Mr. Paulo gugur karena jadi konsultan lepas, dan Dimas gugur karena WNI. Cara ingat: dua syarat sekaligus, bukan WNI dan tanpa kerja sampingan di sini.",
         inti: "Pasal 3 ayat (1) huruf c dan ayat (2) UU PPh mengecualikan organisasi internasional yang ditetapkan Menteri Keuangan, dengan syarat Indonesia menjadi anggota dan organisasi itu tidak berusaha selain memberikan pinjaman kepada pemerintah dari iuran anggota. Huruf d mengecualikan pejabat perwakilannya hanya bila bukan WNI dan tidak menjalankan usaha, kegiatan, atau pekerjaan lain untuk memperoleh penghasilan dari Indonesia. Ms. Ingrid memenuhi syarat; Mr. Paulo gugur karena bekerja sebagai konsultan lepas; Dimas tidak dikecualikan karena WNI.",
         jejakHitung: [],
         mengapaSalah: {
@@ -5756,6 +5950,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya ada di syarat orang yang ikut bekerja pada diplomat. Ia baru bebas pajak bila bekerja pada dan tinggal bersama diplomat itu, bukan WNI, tanpa penghasilan lain, dan negaranya timbal balik. Mr. Tomas sebagai pejabat memenuhi syarat. Ms. Lucia gugur karena tinggal di apartemen sendiri, dan Sari gugur karena WNI. Cara ingat: syarat diuji satu per satu pada tiap orang.",
         inti: "Pasal 3 ayat (1) huruf b UU PPh mengecualikan pejabat perwakilan diplomatik dan konsulat atau pejabat lain dari negara asing, serta orang yang diperbantukan kepada mereka yang bekerja pada dan bertempat tinggal bersama mereka, dengan syarat bukan WNI, tidak menerima penghasilan lain di Indonesia di luar jabatan atau pekerjaannya, dan ada perlakuan timbal balik. Syarat diuji pada masing-masing orang: Mr. Tomas memenuhi semuanya; Ms. Lucia tidak tinggal bersama Mr. Tomas; Sari WNI.",
         jejakHitung: [
           ["Syarat orang yang diperbantukan", "bekerja pada dan tinggal bersama + bukan WNI + tanpa penghasilan lain + timbal balik"],
@@ -5789,6 +5984,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-baca" },
       pembahasan: {
+        mudah: "Soal ini meminta pihak yang TETAP kena status subjek pajak, jadi kita cari yang syaratnya gugur. Kantor organisasi internasional dan kedutaan sama-sama bebas. Mr. Hugo gugur karena memberi pelatihan berbayar, dan Ratna gugur karena WNI. Mr. Dario gugur karena negaranya tidak memberi perlakuan timbal balik kepada Indonesia. Cara ingat: syarat timbal balik melekat pada pejabatnya, bukan pada kantor kedutaannya.",
         inti: "Kantor perwakilan organisasi internasional yang memenuhi huruf c (1) dan kantor perwakilan negara asing (4) dikecualikan. Pejabat organisasi internasional dikecualikan hanya bila bukan WNI dan tidak menjalankan usaha, kegiatan, atau pekerjaan lain untuk memperoleh penghasilan dari Indonesia: Mr. Hugo (2) memberi pelatihan berbayar dan Ratna (3) WNI, sehingga keduanya tetap subjek pajak. Pejabat diplomatik dikecualikan hanya bila negaranya memberikan perlakuan timbal balik: Mr. Dario (5) tetap subjek pajak.",
         jejakHitung: [
           ["(1) Organisasi internasional yang memenuhi huruf c", "dikecualikan"],
@@ -5822,6 +6018,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Dividen dalam negeri bebas pajak bila diinvestasikan di Indonesia paling lambat akhir bulan ketiga sesudah tahun pajaknya, dan ditahan minimal 3 tahun pajak. Jadi Rp260 juta harus masuk emas paling lambat akhir Maret 2027. Bagian Rp140 juta yang tidak diinvestasikan kena PPh final saat diterima. Pajaknya disetor sendiri paling lambat 15 Juni 2026 dan dilaporkan di SPT Masa PPh Unifikasi. Cara ingat: orang pribadi bulan ketiga, badan bulan keempat.",
         inti: "Dividen dalam negeri yang diterima orang pribadi dalam negeri dikecualikan dari objek pajak sepanjang diinvestasikan di Indonesia paling lambat akhir bulan ketiga setelah Tahun Pajak diterimanya dividen berakhir dan ditahan paling singkat 3 Tahun Pajak (Pasal 36 PMK 18/PMK.03/2021), dengan laporan realisasi investasi (Pasal 370 dan Pasal 374 PMK 81/2024). Bagian yang tidak diinvestasikan terutang PPh saat dividen diterima (Pasal 372), dikenai tarif final Pasal 17 ayat (2c), disetor sendiri paling lama tanggal 15 bulan berikutnya setelah Masa Pajak dividen diterima, dan dilaporkan dalam SPT Masa PPh Unifikasi (Pasal 373).",
         jejakHitung: [
           ["Bagian yang diinvestasikan", "Rp260.000.000: bukan objek PPh bila syarat investasi dipenuhi"],
@@ -5856,6 +6053,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Angsuran PPh 25 dihitung dari PPh terutang tahun lalu, dikurangi pajak yang dipotong pihak lain dan pajak luar negeri yang boleh dikreditkan. Rp27,6 juta dikurangi PPh 21 Rp12 juta, PPh 23 Rp3 juta, dan PPh 24 Rp1,2 juta = Rp11,4 juta. Dibagi 12 = Rp950 ribu per bulan. Pajak final sewa rumah dan PPh 25 tahun lalu tidak ikut dikurangkan, walaupun tercatat di Coretax.",
         inti: "Dasar angsuran adalah PPh terutang SPT tahun lalu dikurangi PPh Pasal 21 dan Pasal 23 yang dipotong, PPh Pasal 22 yang dipungut, dan PPh Pasal 24 yang boleh dikreditkan, lalu dibagi 12. PPh Pasal 4 ayat (2) atas sewa rumah bersifat final walaupun tercantum di BPPU, dan PPh Pasal 25 yang disetor selama 2025 tidak disebut dalam Pasal 25 ayat (1).",
         jejakHitung: [
           ["PPh terutang SPT 2025", "Rp27.600.000"],
@@ -5891,6 +6089,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
+        mudah: "Pertanyaannya: apakah Ibu Sekar otomatis menjadi subjek pajak luar negeri. Bagi WNI tidak otomatis, walaupun sudah lebih dari 183 hari di luar negeri dan tinggal tetap di Australia. Ia juga harus membuktikan status penduduk pajak Australia, membereskan kewajiban pajaknya di Indonesia, dan mendapat surat keterangan dari DJP atas permohonan. SPT 2025-nya belum disampaikan dan permohonan belum diajukan, jadi statusnya belum berubah. Cara ingat: WNI keluar status pajak lewat surat resmi.",
         inti: "WNI yang berada di luar Indonesia lebih dari 183 hari dalam 12 bulan dapat menjadi subjek pajak luar negeri bila memenuhi persyaratan Pasal 2 ayat (4) huruf c UU PPh yang dirinci Pasal 3 PMK 18/PMK.03/2021. Persyaratan tempat tinggal, pusat kegiatan utama, dan kebiasaan dipenuhi berjenjang (ayat (2)), sedangkan status subjek pajak negara lain dan persyaratan tertentu lainnya harus dipenuhi (ayat (3)). Persyaratan tertentu lainnya adalah telah menyelesaikan kewajiban pajak selama menjadi subjek pajak dalam negeri dan telah memperoleh Surat Keterangan WNI Memenuhi Persyaratan Menjadi Subjek Pajak Luar Negeri (ayat (5)), yang diterbitkan atas permohonan (Pasal 4).",
         jejakHitung: [
           ["Uji hari di luar Indonesia", "lebih dari 183 hari dalam 12 bulan: terpenuhi"],
@@ -5925,6 +6124,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-klasifikasi", B: "final-nonfinal", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang digabung hanya penghasilan yang kena pajak dan tidak final. Itu meliputi gaji Rp180 juta, bunga pinjaman Rp30 juta, hibah dari kakak Rp60 juta, dan untung jual mobil Rp20 juta, totalnya Rp290 juta. Bunga deposito dan sewa ruko sudah final. Hibah dari anak kandung, warisan, dan penggantian asuransi kesehatan bukan objek pajak. Cara ingat: hibah keluarga bebas hanya dari orang tua atau anak, bukan saudara.",
         inti: "Yang digabung hanya penghasilan yang merupakan objek dan tidak dikenai PPh final: neto pekerjaan (BPA1), bunga pinjaman yang dipotong PPh Pasal 23, hibah dari kakak kandung (bukan keluarga sedarah garis lurus), dan keuntungan penjualan harta (Pasal 4 ayat (1) huruf d). Bunga deposito dan sewa ruko dikenai PPh final; hibah dari anak kandung, warisan, dan pembayaran asuransi karena sakit dikecualikan dari objek (Pasal 4 ayat (3) huruf a angka 2, huruf b, dan huruf e).",
         jejakHitung: [
           ["(1) Neto pekerjaan menurut BPA1", "Rp180.000.000"],
@@ -5959,6 +6159,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Kuncinya: secara pajak mesin ini disusutkan lebih lambat, jadi nilai bukunya saat dijual masih tinggi. Penyusutan pajak Rp30 juta setahun, sehingga sampai September 2026 terkumpul Rp142,5 juta dan nilai bukunya Rp337,5 juta. Dijual Rp200 juta berarti rugi Rp137,5 juta menurut pajak, padahal pembukuan mencatat laba Rp5 juta, jadi koreksi minus Rp142,5 juta. Penyusutan 2026 di pembukuan Rp45 juta, menurut pajak hanya Rp22,5 juta, jadi koreksi plus Rp22,5 juta. Totalnya koreksi negatif Rp120 juta.",
         inti: "Penyusutan fiskal Kelompok 3 adalah 6,25% × Rp480 juta = Rp30 juta setahun, sehingga nilai sisa buku fiskal saat dijual Rp337,5 juta dan penjualan menghasilkan kerugian fiskal Rp137,5 juta yang boleh dibebankan (Pasal 11 ayat (8) dan Pasal 6 ayat (1) huruf d). Koreksi penyusutan 2026 +Rp22,5 juta (Rp45 juta − Rp22,5 juta) dan koreksi hasil penjualan −Rp142,5 juta (laba komersial Rp5 juta diganti rugi fiskal Rp137,5 juta), sehingga neto koreksi negatif Rp120 juta.",
         jejakHitung: [
           ["Penyusutan fiskal setahun (6,25% × Rp480.000.000)", "Rp30.000.000"],
@@ -5994,6 +6195,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari memisahkan tanah dan gudang, karena tanah tidak pernah disusutkan. Gudang kayu beratap seng yang bisa dibongkar dan dipindah termasuk bangunan tidak permanen, masa manfaatnya 10 tahun, jadi 10% dari Rp300 juta = Rp30 juta setahun. Gudang dibeli Agustus, jadi 2026 hanya dihitung 5 bulan: 5/12 x Rp30 juta = Rp12,5 juta. NJOP tidak dipakai sama sekali. Cara ingat: jenis bangunan dilihat dari fisiknya, bukan dari fungsinya.",
         inti: "Gudang yang bersifat sementara dan dapat dipindah-pindahkan termasuk bangunan tidak permanen (Penjelasan Pasal 11 ayat (6)), dengan masa manfaat 10 tahun dan tarif garis lurus 10%. Tanah tidak disusutkan. Penyusutan dimulai pada bulan pengeluaran, sehingga 2026 dihitung 5 bulan (Agustus sampai Desember).",
         jejakHitung: [
           ["Tanah Rp600.000.000", "tidak disusutkan"],
@@ -6027,6 +6229,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Yang ditanya: berapa sisa rugi 2021 yang masih boleh dipakai di 2026. Rugi boleh dibawa ke lima tahun berikutnya, dihitung mulai 2022, jadi 2026 adalah tahun terakhirnya. Dari Rp150 juta sudah terpakai Rp100 juta di 2022 sampai 2025, sisanya Rp50 juta. Tetapi kompensasi tidak boleh melebihi penghasilan tahun itu, yaitu Rp40 juta, jadi yang dipakai Rp40 juta dan Rp10 juta sisanya hangus. Cara ingat: ambil yang lebih kecil antara sisa rugi dan penghasilan tahun itu.",
         inti: "Rugi 2021 dapat dikompensasikan pada 2022 sampai 2026. Setelah terpakai Rp100 juta pada 2022 sampai 2025, sisanya Rp50 juta, tetapi kompensasi 2026 terbatas pada penghasilan neto 2026 Rp40 juta. Sisa Rp10 juta tidak dapat dikompensasikan lagi karena 2026 adalah tahun kelima.",
         jejakHitung: [
           ["Rugi 2021", "Rp150.000.000"],
@@ -6062,6 +6265,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Soal ini menanyakan apa yang dilakukan bila keputusan keberatan mengubah besar rugi tahun lalu. Aturannya, kalau rugi menurut keputusan berbeda dari rugi yang sudah dipakai di SPT tahun berikutnya, SPT itu boleh dibetulkan dalam 3 bulan sejak keputusan diterima, asal belum diperiksa. Hak ini berlaku baik rugi turun maupun naik. Angkanya mengikuti keputusan keberatan, Rp220 juta, bukan Rp250 juta di SPT awal. Cara ingat: rugi berubah karena keputusan, betulkan SPT berikutnya dalam 3 bulan.",
         inti: "Pasal 8 ayat (6) UU KUP berlaku bagi setiap SKP, Surat Keputusan Keberatan, Surat Keputusan Pembetulan, Putusan Banding, atau Putusan Peninjauan Kembali yang menyatakan rugi fiskal berbeda dengan rugi yang telah dikompensasikan, baik lebih kecil maupun lebih besar. Karena SPT 2025 belum diperiksa, Bapak Gunawan dapat membetulkannya dalam jangka waktu 3 bulan setelah menerima Surat Keputusan Keberatan, dengan kompensasi mengikuti rugi menurut keputusan itu (Rp220.000.000), sehingga penghasilan kena pajak 2025 turun Rp120.000.000.",
         jejakHitung: [
           ["Rugi 2024 menurut Surat Keputusan Keberatan", "Rp220.000.000"],
@@ -6095,6 +6299,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "lupa-pasal", B: "final-nonfinal", C: "salah-hitung" },
       pembahasan: {
+        mudah: "Pajak yang dibayar di luar negeri boleh dikreditkan, tetapi ada batasnya untuk tiap jenis penghasilan. Penghasilan kena pajak setahun Rp1 miliar, tanpa sewa yang sudah final dan tanpa rugi cabang Negara Q, sehingga pajaknya Rp244 juta. Royalti dan bunga masing-masing Rp150 juta dari Rp1 miliar, jadi batas tiap jenis 150/1.000 x Rp244 juta = Rp36,6 juta. Royalti dikreditkan Rp15 juta sesuai pajak yang dibayar, bunga hanya Rp36,6 juta walau dibayar Rp45 juta, totalnya Rp51,6 juta. Cara ingat: per jenis penghasilan, ambil yang lebih kecil.",
         inti: "Batas kredit dihitung per jenis penghasilan untuk tiap negara (Pasal 6 ayat (2) PMK 192/PMK.03/2018): (penghasilan jenis itu dari negara itu ÷ PKP) × PPh terutang, dan yang dikreditkan adalah jumlah paling sedikit antara batas itu dan pajak yang dibayar (Pasal 6 ayat (4)). PKP dalam rumus tidak termasuk penghasilan yang dikenai PPh final (Pasal 6 ayat (9)), dan rugi di Negara Q tidak digabung (Pasal 4 ayat (3)).",
         jejakHitung: [
           ["PKP (Rp754 jt + Rp150 jt + Rp150 jt − PTKP TK/0 Rp54 jt; sewa final dan rugi Negara Q tidak ikut)", "Rp1.000.000.000"],
@@ -6128,6 +6333,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya adalah cicilan pajak bulanan tahun ini, yang dasarnya pajak tahun lalu. Keuntungan kurs Rp150 juta tidak rutin terjadi, jadi dikeluarkan dulu supaya cicilan tidak ikut membengkak. Rp398,5 juta dikurangi PTKP Rp67,5 juta = Rp331 juta, dan pajaknya dengan tarif bertingkat Rp51,75 juta. Kurangi potongan PPh 22 dan PPh 23 Rp7,2 juta, sisa Rp44,55 juta, lalu dibagi 12 = Rp3.712.500 per bulan. Cicilan PPh 25 yang disetor tahun lalu tidak ikut dikurangkan.",
         inti: "Bila Wajib Pajak memperoleh penghasilan tidak teratur, PPh terutang untuk dasar angsuran dihitung ulang dari penghasilan neto SPT tahun lalu dikurangi penghasilan tidak teratur (Pasal 115 PER-11/PJ/2025), lalu dikurangi PPh 22 dan PPh 23 dan dibagi 12. Keuntungan selisih kurs dari utang dalam mata uang asing yang bukan penghasilan usaha pokok tidak termasuk penghasilan teratur (Pasal 113 ayat (5) huruf a).",
         jejakHitung: [
           ["PKP tanpa penghasilan tidak teratur (Rp398.500.000 − PTKP K/2 Rp67.500.000)", "Rp331.000.000"],
@@ -6161,6 +6367,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Pengusaha tertentu artinya orang yang berdagang atau menjual jasa di tempat usaha yang terpisah dari rumahnya. Ada satu syarat penting: jasa profesi seperti akuntan tidak termasuk, walaupun kantornya terpisah. Penjual daring yang semua kegiatannya di rumah juga tidak termasuk karena tidak punya tempat usaha lain. Penghasilan sewa ruko sudah kena pajak final, jadi tidak ada cicilan bulanan. Yang cocok hanya pemilik binatu dengan tiga gerai di luar rumah. Cara ingat: dagang atau jasa biasa, di tempat selain rumah.",
         inti: "Wajib Pajak orang pribadi pengusaha tertentu adalah orang pribadi yang melakukan kegiatan usaha perdagangan atau jasa, tidak termasuk jasa sehubungan dengan pekerjaan bebas, pada satu atau lebih tempat kegiatan usaha yang berbeda dengan tempat tinggalnya; angsurannya 0,75% × peredaran bruto bulanan masing-masing tempat usaha. Usaha binatu adalah usaha jasa yang bukan pekerjaan bebas dan dijalankan di tiga gerai yang terpisah dari rumah tinggal, sehingga Tuan Yusuf termasuk.",
         jejakHitung: [
           ["Kriteria OPPT", "usaha dagang atau jasa (bukan pekerjaan bebas) di tempat kegiatan usaha yang berbeda dengan tempat tinggal"],
@@ -6194,6 +6401,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Kuncinya ada di batas Rp500 juta yang dihitung kumulatif setahun, bukan per bulan. Sampai April omzet baru Rp460 juta, jadi belum ada pajak; sampai Mei menjadi Rp670 juta, sehingga yang kena pajak di Mei Rp170 juta. Pajaknya 0,5% x Rp170 juta = Rp850.000. Bendahara dinas sudah memungut Rp350.000 atas penjualan Rp70 juta, dan itu sudah melunasi sebagian. Jadi yang masih disetor sendiri Rp850.000 dikurangi Rp350.000 = Rp500.000.",
         inti: "Peredaran bruto kumulatif sampai April Rp460 juta, jadi sisa bagian yang tidak dikenai PPh tinggal Rp40 juta dan habis di Mei. Kumulatif sampai Mei Rp670 juta, sehingga dasar kena pajak Mei Rp170 juta dan PPh final terutang 0,5% × Rp170 juta = Rp850.000. Penjualan kepada dinas terjadi setelah batas Rp500 juta terlewati (kumulatif 25 Mei Rp555 juta) dan sudah dipungut bendahara Rp350.000 sebagai pelunasan PPh final, sehingga yang disetor sendiri Rp500.000.",
         jejakHitung: [
           ["Kumulatif s.d. April (Rp90 jt + Rp110 jt + Rp125 jt + Rp135 jt)", "Rp460.000.000 (belum melebihi Rp500 juta; Januari sampai April nihil)"],
@@ -6230,6 +6438,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "final-nonfinal", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Mulai dari laba pembukuan Rp652,3 juta, lalu buang yang tidak termasuk penghasilan usaha biasa. Sewa gudang dan bunga deposito sudah kena pajak final, jadi dikeluarkan sebesar yang tercatat (Rp81 juta dan Rp25 juta), dan biaya terkaitnya Rp12,5 juta ditambahkan kembali. Sumbangan pentas seni, bunga denda pajak, cicilan PPh 25, dan liburan keluarga bukan biaya usaha, jadi ditambah Rp59,2 juta. Zakat Rp22 juta juga ditambah karena dikurangkan tersendiri di SPT, hasilnya Rp640 juta. Gaji dan makan siang karyawan tetap biaya.",
         inti: "Penghasilan yang telah dikenai PPh final (sewa gudang dan bunga deposito) dikeluarkan dari laba sebesar yang tercatat, dan biaya untuk mendapatkan atau memelihara penghasilan final (penyusutan bagian gudang yang disewakan, PPh final deposito yang dibebankan) dikoreksi positif. Sumbangan kepada panitia pentas seni (bukan sumbangan yang dikecualikan Pasal 9 ayat (1) huruf g), bunga STP, PPh Pasal 25, dan biaya liburan keluarga tidak boleh dikurangkan. Zakat kepada BAZNAS memang boleh dikurangkan, tetapi di SPT Tahunan orang pribadi dikurangkan tersendiri sebagai pengurang penghasilan neto, sehingga beban zakat dikeluarkan dari neto usaha. Gaji dan makan siang untuk seluruh karyawan di tempat kerja tidak dikoreksi.",
         jejakHitung: [
           ["Laba komersial", "Rp652.300.000"],
@@ -6267,6 +6476,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", C: "final-nonfinal" },
       pembahasan: {
+        mudah: "Yang ditanya: rugi mana saja yang boleh mengurangi penghasilan 2026. Rugi 2021 berlaku lima tahun mulai 2022, jadi 2026 tahun terakhir; tahun 2023 yang nihil tetap terhitung. Dari Rp1,1 miliar sudah terpakai Rp850 juta, sisanya Rp250 juta, dan penghasilan 2026 cukup untuk menampungnya. Rugi cabang di luar negeri tidak boleh dihitung, dan rugi jual tanah juga tidak karena penjualan tanah kena pajak final. Cara ingat: yang dikompensasi hanya rugi usaha dalam negeri yang biasa.",
         inti: "Rugi 2021 dikompensasikan mulai tahun berikutnya berturut-turut sampai lima tahun, yaitu 2022 sampai 2026; tahun 2023 yang nihil tetap terhitung. Sampai 2025 terpakai Rp850.000.000, jadi sisa Rp250.000.000 masih dapat dipakai pada 2026 (tahun kelima) dan penghasilan neto 2026 setelah zakat (Rp618.000.000) mencukupi. Kerugian usaha cabang di luar negeri tidak dapat diperhitungkan, dan rugi atas pengalihan tanah yang dikenai PPh final tidak dikompensasikan.",
         jejakHitung: [
           ["Rugi fiskal 2021", "Rp1.100.000.000"],
@@ -6302,6 +6512,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Soal ini menguji urutan isian SPT. Penghasilan neto Rp640 juta dikurangi zakat dan kompensasi rugi sekaligus, Rp22 juta + Rp250 juta = Rp272 juta, sisanya Rp368 juta. Keponakan bukan keturunan lurus, jadi tidak menambah PTKP: statusnya kawin dengan dua tanggungan, PTKP Rp67,5 juta. Penghasilan kena pajak Rp300,5 juta, dan dengan tarif bertingkat pajaknya Rp44.125.000. Cara ingat: tanggungan PTKP hanya garis lurus ke atas atau ke bawah, plus anak angkat.",
         inti: "Pada induk SPT Tahunan orang pribadi Bagian C, penghasilan neto setahun (Angka 2) dikurangi pengurang penghasilan neto (Angka 3), yaitu zakat dan kompensasi kerugian yang dirinci di Lampiran 5, lalu dikurangi PTKP (Angka 5) menghasilkan Penghasilan Kena Pajak (Angka 6). Keponakan adalah keluarga sedarah garis menyamping, bukan garis keturunan lurus, sehingga tidak menambah PTKP: statusnya K/2, PTKP Rp67.500.000. PPh terutang dihitung dengan tarif Pasal 17 ayat (1) huruf a.",
         jejakHitung: [
           ["Angka 2: penghasilan neto setahun", "Rp640.000.000"],
@@ -6337,6 +6548,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Yang ditanya adalah di bagian mana angsuran 0,75% Tuan Bagas dilaporkan di SPT. Angsuran itu bukan pajak final, melainkan cicilan pajak yang nanti mengurangi pajak tahunannya, atau disebut kredit pajak. Karena itu angsurannya dirinci per tempat usaha dan per bulan di Lampiran 3B Bagian B. Jumlahnya lalu dipindahkan ke induk Bagian D angka 10b sebagai kredit pajak. Cara ingat: angsuran PPh 25 selalu jadi pengurang pajak tahunan.",
         inti: "Angsuran PPh Pasal 25 Wajib Pajak orang pribadi pengusaha tertentu (OPPT) ditetapkan 0,75% dari peredaran bruto tiap bulan untuk tiap tempat usaha, dan pembayarannya menjadi kredit pajak atas PPh terutang tahun itu (PMK 81/2024 Pasal 234). Di SPT Tahunan Coretax, Wajib Pajak OPPT menjawab \"Ya, saya termasuk Wajib Pajak OPPT\" di induk Bagian B, lalu mengisi Lampiran 3B Bagian B: peredaran bruto tiap tempat kegiatan usaha per bulan dan jumlah angsuran 0,75% yang sudah dibayar. Bagi yang menyelenggarakan pembukuan, jumlah angsuran itu dipindahkan ke induk Bagian D angka 10 huruf b (Angsuran PPh Pasal 25) sebagai kredit pajak. Jadi cara pelaporan Tuan Bagas adalah opsi A.",
         jejakHitung: [],
         mengapaSalah: {
@@ -6364,6 +6576,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "final-nonfinal", C: "final-nonfinal", D: "salah-klasifikasi" },
       pembahasan: {
+        mudah: "Yang ditanya di sini: apakah rugi toko yang kena PPh final boleh mengurangi laba jasa konsultasi. PPh final 0,5% dihitung dari omzet dan selesai di situ, sehingga penghasilannya tidak boleh dicampur dengan penghasilan yang kena tarif umum. Karena itu rugi toko kelontong tidak mengurangi laba konsultasi tahun yang sama, dan tidak bisa dibawa ke lima tahun berikutnya. Jasa konsultasi sendiri tetap dihitung dengan tarif umum. Cara ingat: yang sudah final berdiri sendiri, untung maupun rugi.",
         inti: "UU PPh menggabungkan semua penghasilan dalam satu tahun pajak, sehingga kerugian satu usaha pada dasarnya bisa dikompensasikan dengan penghasilan lain. Penjelasan Pasal 4 ayat (1) UU PPh membuat pengecualian: penghasilan yang dikenai pajak dengan tarif final tidak boleh digabungkan dengan penghasilan lain yang dikenai tarif umum. Toko kelontong Tuan Yusak dipajaki PPh final 0,5% atas peredaran bruto (Pasal 56 ayat (1) dan (2) PP 55/2022 s.t.d.d. PP 20/2026), jadi hasil usaha toko, termasuk kerugiannya, berada di luar penghitungan Penghasilan Kena Pajak. Kerugian itu tidak mengurangi laba jasa konsultasi pada tahun yang sama dan tidak masuk kompensasi kerugian Pasal 6 ayat (2) UU PPh, yang hanya untuk penghasilan yang dihitung dengan tarif umum. Jawabannya opsi A.",
         jejakHitung: [],
         mengapaSalah: {
@@ -6391,6 +6604,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "lupa-pasal" },
       pembahasan: {
+        mudah: "Soal ini menanyakan dua hal tentang baris penghasilan kena pajak di induk SPT orang pribadi. Pertama, penghasilan kena pajak selalu dibulatkan ke bawah dalam ribuan rupiah penuh. Kedua, suami istri yang pisah harta menghitung pajaknya bersama di lampiran khusus, yaitu Lampiran 4 Bagian B. Karena hitungannya sudah di lampiran itu, baris tersebut di induk SPT masing-masing cukup diisi 0. Cara ingat: pisah harta berarti hitungnya di lampiran, induknya nol.",
         inti: "Pasal 17 ayat (4) UU PPh mengatur bahwa untuk penerapan tarif, Penghasilan Kena Pajak dibulatkan ke bawah dalam ribuan rupiah penuh, dan petunjuk induk Bagian C angka 6 SPT Tahunan OP mengulang aturan itu. Petunjuk yang sama mengatur Wajib Pajak kawin berstatus pisah harta (PH) atau memilih terpisah (MT): angka 6 di induk SPT suami maupun istri diisi 0, karena PTKP, Penghasilan Kena Pajak, dan PPh terutang suami-istri dihitung bersama di Lampiran 4 Bagian B. Angka 5 (PTKP) juga diisi \"-/-\" dan 0. Jadi jawabannya opsi A.",
         jejakHitung: [],
         mengapaSalah: {
@@ -6418,6 +6632,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "salah-baca", C: "salah-hitung", D: "salah-baca" },
       pembahasan: {
+        mudah: "Pada SPT pembetulan, kita hanya membayar selisih yang belum pernah dibayar. Total yang sudah dibayar Tuan Kiki adalah Rp10 juta saat SPT normal ditambah Rp8 juta saat pembetulan pertama, jadi Rp18 juta. Kurang bayar menurut pembetulan kedua Rp30 juta. Selisihnya Rp30 juta dikurangi Rp18 juta = Rp12 juta, dan ini yang harus dilunasi sebelum pembetulan kedua disampaikan. Cara ingat: kurangi dengan semua yang sudah dibayar, bukan hanya pembayaran pertama.",
         inti: "Pada SPT pembetulan, induk Bagian F angka 12 huruf a diisi jumlah seluruh pembayaran PPh Pasal 29 untuk tahun pajak itu sebelum pembetulan disampaikan, dikurangi pengembalian pendahuluan (SKPPKP) bila ada. Angka 12 huruf b adalah selisih angka 11 huruf a pada SPT pembetulan dengan angka 12 huruf a. Tuan Kiki sudah membayar Rp10.000.000,00 saat SPT normal dan Rp8.000.000,00 saat Pembetulan ke-1, jadi angka 12 huruf a pada Pembetulan ke-2 sebesar Rp18.000.000,00. Angka 12 huruf b = Rp30.000.000,00 dikurangi Rp18.000.000,00 = Rp12.000.000,00, dan kekurangan ini harus dilunasi sebelum Pembetulan ke-2 disampaikan. Jawabannya opsi B.",
         jejakHitung: [
           ["Angka 12a (seluruh PPh Pasal 29 yang sudah dibayar)", "Rp10.000.000,00 + Rp8.000.000,00 = Rp18.000.000,00"],
@@ -6449,6 +6664,7 @@ UKP.register({
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Mulai dari angka 10b, yaitu PPh yang kita bayar sendiri. Menurut petunjuk yang dipakai aplikasi, isinya angsuran PPh 25 Rp12 juta ditambah pelunasan Rp20 juta saat minta perpanjangan, jadi Rp32 juta. Angka 11a adalah sisa kurang bayar: pajak terutang Rp50 juta dikurangi potongan pihak lain Rp10 juta dan Rp32 juta tadi, hasilnya Rp8 juta. Perlu diketahui, petunjuk pengisian yang lebih baru mengubah isi 10b, jadi jawaban ini belum sepenuhnya pasti. Aplikasi memakai petunjuk lama karena soal tidak menyebut tahun SPT.",
         inti: "Petunjuk pengisian induk SPT Tahunan PPh Orang Pribadi dalam Lampiran huruf G PER-11/PJ/2025 sebelum diubah PER-12/PJ/2026 mengisi angka 10 huruf b dengan PPh yang dibayar sendiri berupa PPh Pasal 25, termasuk pelunasan PPh terutang berdasarkan penghitungan sementara bila Wajib Pajak menyampaikan pemberitahuan perpanjangan SPT Tahunan. Tuan Doni memperpanjang SPT karena laporan keuangannya belum selesai dan sudah melunasi Rp20.000.000,00 menurut penghitungan sementara. Jadi angka 10b = Rp12.000.000,00 + Rp20.000.000,00 = Rp32.000.000,00. Angka 11 huruf a dihitung dari angka 9 dikurangi angka 10a, 10b, dan 10c, ditambah 10d: Rp50.000.000,00 - Rp10.000.000,00 - Rp32.000.000,00 = Rp8.000.000,00, yaitu sisa kurang bayar yang masih harus dilunasi sebelum SPT disampaikan. Jawabannya opsi B.",
         jejakHitung: [
           ["Angka 10b (angsuran PPh Pasal 25 + pelunasan saat perpanjangan)", "Rp12.000.000,00 + Rp20.000.000,00 = Rp32.000.000,00"],
@@ -6480,6 +6696,7 @@ UKP.register({
       kunci: "C",
       jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", D: "final-nonfinal" },
       pembahasan: {
+        mudah: "Pertama, pastikan dulu Ibu Wulan wajib lapor. Gaji Rp150 juta dikurangi biaya jabatan paling banyak Rp6 juta masih sekitar Rp144 juta, jauh di atas PTKP, jadi ia tetap wajib menyampaikan SPT. Sebagai karyawan, penghasilan dari pekerjaannya dilaporkan di Lampiran 1 Bagian D. Bukti potong PPh 21 dari kantornya dicatat di Lampiran 1 Bagian E. Lampiran rekonsiliasi dan peredaran bruto hanya untuk yang punya usaha.",
         inti: "Pegawai dengan satu pemberi kerja hanya dikecualikan dari kewajiban menyampaikan SPT Tahunan bila penghasilan netonya setahun tidak melebihi PTKP (Pasal 20 ayat (3) angka 2 PER-3/PJ/2026). Setelah dikurangi biaya jabatan paling banyak Rp6.000.000,00, penghasilan neto Ibu Wulan sekitar Rp144.000.000,00 (sebelum iuran pensiun bila ada), jauh di atas PTKP tertinggi Rp126.000.000,00, jadi ia wajib lapor. Di induk SPT ia menjawab \"Ya\" pada Bagian B angka 1 huruf a (penghasilan dari pekerjaan), sehingga wajib mengisi Lampiran 1 Bagian D. Ia juga menjawab \"Ya\" pada Bagian D angka 10 huruf a karena ada PPh Pasal 21 yang dipotong pemberi kerja, sehingga mengisi Lampiran 1 Bagian E. Jawabannya opsi C.",
         jejakHitung: [],
         mengapaSalah: {
@@ -6507,6 +6724,7 @@ UKP.register({
       kunci: "A",
       jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-hitung" },
       pembahasan: {
+        mudah: "Ada dua langkah yang sering terlewat. Pertama, penghasilan kena pajak dibulatkan ke bawah ke ribuan penuh, jadi Rp312.450.700 menjadi Rp312.450.000. Kedua, tarifnya berlapis seperti anak tangga: 5% x Rp60 juta = Rp3 juta, 15% x Rp190 juta = Rp28,5 juta, dan 25% x Rp62,45 juta = Rp15.612.500. Jumlahnya Rp47.112.500. Cara ingat: bulatkan dulu, lalu naik tangga tarif satu per satu.",
         inti: "Sebelum tarif Pasal 17 ayat (1) huruf a diterapkan, Penghasilan Kena Pajak dibulatkan ke bawah dalam ribuan rupiah penuh (Pasal 17 ayat (4)). Rp312.450.700 menjadi Rp312.450.000. Tarifnya berlapis: tiap lapisan dikenai tarifnya sendiri, bukan seluruh PKP dikenai tarif lapisan tertinggi. Lapisan sampai Rp60.000.000 kena 5%, lapisan di atas Rp60.000.000 sampai Rp250.000.000 kena 15%, dan sisa di atas Rp250.000.000 (masih di bawah Rp500.000.000) kena 25%. Jumlahnya Rp47.112.500.",
         jejakHitung: [
           ["PKP dibulatkan ke bawah (ribuan penuh)", "Rp312.450.700 menjadi Rp312.450.000"],
@@ -6540,6 +6758,7 @@ UKP.register({
       kunci: "D",
       jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", C: "lupa-pasal" },
       pembahasan: {
+        mudah: "Pertanyaannya: apakah istri diplomat yang bekerja di perusahaan swasta ikut bebas pajak. Pembebasan diplomatik hanya untuk pejabat perwakilan negara asing dan orang yang diperbantukan kepada mereka, itu pun dengan syarat tidak punya penghasilan lain di Indonesia. Keluarga pejabat tidak disebut dalam daftar itu. Ms. Rose bukan pejabat, bukan orang yang diperbantukan, dan menerima gaji dari perusahaan di Indonesia, jadi ia tetap subjek pajak. Cara ingat: pembebasan melekat pada jabatan, bukan pada keluarga.",
         inti: "Pasal 3 ayat (1) huruf b UU PPh mengecualikan dari subjek pajak hanya pejabat perwakilan diplomatik dan konsulat atau pejabat lain negara asing, serta orang yang diperbantukan kepada mereka yang bekerja pada dan tinggal bersama mereka. Syaratnya kumulatif: bukan warga negara Indonesia, tidak menerima penghasilan di Indonesia di luar jabatan atau pekerjaan itu, dan ada perlakuan timbal balik. Anggota keluarga pejabat tidak disebut dalam daftar itu. Ms. Rose bukan pejabat dan bukan orang yang diperbantukan, dan ia menerima gaji dari PT Ortax Distributor. Karena itu ia tetap subjek pajak, dan sebagai orang yang tinggal di Indonesia ia menjadi subjek pajak dalam negeri.",
         jejakHitung: [],
         mengapaSalah: {
@@ -6554,6 +6773,961 @@ UKP.register({
       verifikasi: "✅",
       sumber: { set: "TO-C-2026-11-2", no: 26, judul: "Try Out UKP C Paket 2 (transkrip 13 Nov 2026)", tingkat: "C" },
       sejak: "9.5.5"
+    },
+    {
+      id: "A1-220",
+      topik: "A1.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "Penghasilan Kena Pajak Wajib Pajak orang pribadi tahun 2025 Rp300.000.000. PPh terutang adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp75.000.000", B: "Rp41.500.000", C: "Rp45.000.000", D: "Rp44.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", C: "angka-usang" },
+      pembahasan: {
+        mudah: "Kita diminta menghitung pajak dari penghasilan kena pajak Rp300 juta. Tarif orang pribadi itu bertingkat: tiap potongan penghasilan punya tarifnya sendiri, bukan satu tarif untuk semuanya. Rp60 juta pertama kena 5% = Rp3 juta, Rp190 juta berikutnya kena 15% = Rp28,5 juta, dan sisa Rp50 juta kena 25% = Rp12,5 juta. Jumlahnya Rp44 juta. Cara ingat: batas lapisan 60, 250, dan 500 juta dengan tarif 5, 15, dan 25 persen.",
+        inti: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU 7/2021 memakai tarif progresif per lapisan: 5% sampai Rp60 juta, 15% di atas Rp60 juta sampai Rp250 juta, 25% di atas Rp250 juta sampai Rp500 juta, 30% di atas Rp500 juta sampai Rp5 miliar, dan 35% di atasnya. PKP Rp300.000.000 mengisi penuh dua lapisan pertama, lalu Rp50.000.000 masuk lapisan 25%.",
+        jejakHitung: [
+          ["Lapisan 5%", "5% x Rp60.000.000 = Rp3.000.000"],
+          ["Lapisan 15%", "15% x Rp190.000.000 = Rp28.500.000"],
+          ["Lapisan 25%", "25% x Rp50.000.000 = Rp12.500.000"],
+          ["PPh terutang", "Rp3.000.000 + Rp28.500.000 + Rp12.500.000 = Rp44.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp75.000.000 adalah 25% dikalikan seluruh Rp300 juta. Tarifnya bertingkat, jadi 25% hanya berlaku untuk bagian di atas Rp250 juta.",
+          B: "Rp41.500.000 berarti lapisan teratas hanya dihitung Rp10 juta (seperti 20% x Rp50 juta). Bagian di atas Rp250 juta kena 25%, yaitu Rp12,5 juta.",
+          C: "Rp45.000.000 memakai lapisan lama sebelum UU HPP, yaitu 5% hanya sampai Rp50 juta (Rp2,5 juta + Rp30 juta + Rp12,5 juta). Sejak 2022 lapisan pertama sampai Rp60 juta."
+        },
+        jebakan: "Lapisan pertama sekarang sampai Rp60 juta, bukan Rp50 juta seperti tarif lama."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 17 ayat (1) huruf a s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp40.500.000", alasan: "Rp40.500.000 muncul bila 15% dikenakan atas Rp250 juta penuh (Rp3 juta + Rp37,5 juta) lalu sisanya diabaikan. Lebar lapisan 15% hanya Rp190 juta, dan Rp50 juta sisanya kena 25%." },
+      sumber: { set: "LM-B-2026-11", no: 185, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-221",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "Besarnya PTKP setahun untuk Wajib Pajak kawin dengan 2 tanggungan (K/2), istri tidak berpenghasilan, adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp72.000.000", B: "Rp58.500.000", C: "Rp63.000.000", D: "Rp67.500.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-baca" },
+      pembahasan: {
+        mudah: "PTKP adalah bagian penghasilan yang tidak dikenai pajak, besarnya mengikuti keadaan keluarga. Ada tiga potong di sini: untuk diri sendiri Rp54 juta, tambahan karena kawin Rp4,5 juta, dan Rp4,5 juta untuk tiap tanggungan. Dua tanggungan berarti Rp9 juta. Jadi Rp54 juta + Rp4,5 juta + Rp9 juta = Rp67,5 juta. Tambahan Rp54 juta untuk istri hanya ada bila penghasilan istri digabung, dan di soal ini istri tidak berpenghasilan.",
+        inti: "Pasal 7 ayat (1) UU PPh (besaran sama dengan PMK 101/PMK.010/2016) memberi PTKP Rp54.000.000 untuk diri Wajib Pajak, tambahan Rp4.500.000 bagi yang kawin, dan Rp4.500.000 untuk tiap tanggungan sepenuhnya paling banyak tiga orang. Tambahan Rp54.000.000 untuk istri hanya bila penghasilan istri digabung. Untuk K/2: Rp54.000.000 + Rp4.500.000 + 2 x Rp4.500.000 = Rp67.500.000.",
+        jejakHitung: [
+          ["Diri Wajib Pajak", "Rp54.000.000"],
+          ["Tambahan kawin", "Rp4.500.000"],
+          ["Tanggungan 2 orang", "2 x Rp4.500.000 = Rp9.000.000"],
+          ["PTKP K/2", "Rp54.000.000 + Rp4.500.000 + Rp9.000.000 = Rp67.500.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp72.000.000 adalah PTKP K/3. Soal menyebut dua tanggungan, bukan tiga.",
+          B: "Rp58.500.000 adalah PTKP K/0. Tambahan Rp4,5 juta untuk tiap tanggungan terlupa.",
+          C: "Rp63.000.000 adalah PTKP K/1 (atau TK/2). Satu tanggungan atau tambahan kawin terlewat."
+        },
+        jebakan: "Tambahan Rp54 juta untuk istri tidak diberikan bila istri tidak berpenghasilan atau penghasilannya tidak digabung."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 7 ayat (1); PMK 101/PMK.010/2016", berlakuSejak: "2016-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp76.500.000", alasan: "Rp76.500.000 setara dengan empat tanggungan (Rp54 juta + Rp4,5 juta + 4 x Rp4,5 juta). Tanggungan di soal hanya dua, dan paling banyak pun hanya tiga yang dihitung." },
+      sumber: { set: "LM-B-2026-11", no: 186, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-222",
+      topik: "A1.3",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "Pegawai tetap menerima penghasilan bruto Rp200.000.000 setahun. Biaya jabatan yang dapat dikurangkan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp7.200.000", B: "Rp2.400.000", C: "Rp6.000.000", D: "Rp10.000.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Biaya jabatan adalah potongan biaya untuk pegawai tetap, dihitung otomatis tanpa perlu bukti pengeluaran. Besarnya 5% dari penghasilan bruto, tetapi paling banyak Rp6 juta setahun. 5% dari Rp200 juta = Rp10 juta, lebih besar dari batas. Jadi yang boleh dikurangkan hanya Rp6 juta. Cara ingat: 5%, tetapi paling banyak Rp500 ribu sebulan atau Rp6 juta setahun.",
+        inti: "Pasal 10 ayat (2) PMK 168/2023 menetapkan biaya jabatan pegawai tetap sebesar 5% dari penghasilan bruto, paling banyak Rp6.000.000 setahun atau Rp500.000 sebulan. Untuk bruto Rp200.000.000, 5% menghasilkan Rp10.000.000, sehingga yang dipakai adalah batas Rp6.000.000.",
+        jejakHitung: [
+          ["5% dari bruto", "5% x Rp200.000.000 = Rp10.000.000"],
+          ["Batas setahun", "Rp6.000.000"],
+          ["Biaya jabatan", "yang lebih kecil = Rp6.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp7.200.000 setara Rp600 ribu sebulan. Batas bulanan biaya jabatan Rp500 ribu, jadi setahun paling banyak Rp6 juta.",
+          B: "Rp2.400.000 adalah batas setahun biaya pensiun bagi penerima uang pensiun, bukan biaya jabatan pegawai tetap.",
+          D: "Rp10.000.000 adalah 5% dari bruto tanpa batas. Batas paling banyak Rp6 juta setahun terlupa."
+        },
+        jebakan: "Tarif 5% selalu harus dibandingkan dengan batas Rp6 juta setahun; untuk bruto di atas Rp120 juta hasilnya pasti Rp6 juta."
+      },
+      dasarHukum: [{ pasal: "PMK 168/2023 Pasal 10 ayat (1) huruf a dan ayat (2)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp12.000.000", alasan: "Rp12.000.000 adalah 6% dari bruto. Tarif biaya jabatan 5% dan tetap dibatasi Rp6 juta setahun." },
+      sumber: { set: "LM-B-2026-11", no: 187, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-223",
+      topik: "A1.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      stem: "WP orang pribadi dengan peredaran bruto kurang dari Rp4,8 miliar yang ingin menggunakan Norma Penghitungan Penghasilan Neto wajib memberitahukan kepada DJP paling lama ...",
+      kataKualifikasi: ["paling lama"],
+      opsi: { A: "3 bulan pertama tahun pajak", B: "1 bulan pertama tahun pajak", C: "Saat penyampaian SPT Tahunan", D: "Saat pendaftaran NPWP" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Norma adalah cara menghitung laba dengan persentase tetap dari omzet, jadi tidak perlu pembukuan lengkap. Pemakaiannya harus diberitahukan ke kantor pajak di awal tahun, yaitu dalam 3 bulan pertama tahun pajak. Kalau terlambat, kita dianggap memilih pembukuan. Cara ingat: mau pakai norma, lapor sebelum April.",
+        inti: "Pasal 14 ayat (2) UU PPh dan Pasal 450 ayat (2) PMK 81/2024 membolehkan orang pribadi dengan peredaran bruto kurang dari Rp4,8 miliar memakai Norma Penghitungan Penghasilan Neto dengan syarat memberitahukan kepada Direktur Jenderal Pajak dalam 3 bulan pertama tahun pajak. Yang tidak memberitahukan dianggap memilih pembukuan (Pasal 14 ayat (4)).",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "1 bulan terlalu pendek. Undang-undang memberi waktu 3 bulan pertama tahun pajak.",
+          C: "Saat SPT Tahunan sudah lewat tahun pajaknya. Pemberitahuan harus di awal tahun, dan yang tidak memberitahukan tepat waktu dianggap memilih pembukuan.",
+          D: "Saat pendaftaran NPWP bukan patokannya. Bagi yang baru terdaftar, batasnya 3 bulan sejak terdaftar atau akhir tahun pajak, mana yang lebih dulu."
+        },
+        jebakan: "Terlambat memberitahukan tidak sekadar kena denda: Wajib Pajak dianggap memilih menyelenggarakan pembukuan."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 14 ayat (2) dan ayat (4)", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 450 ayat (2)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "6 bulan pertama tahun pajak", alasan: "6 bulan melebihi batas. Jangka waktunya 3 bulan pertama tahun pajak." },
+      sumber: { set: "LM-B-2026-11", no: 188, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-224",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Suami istri hidup bersama tanpa perjanjian pisah harta. Istri hanya menerima penghasilan dari satu pemberi kerja yang telah dipotong PPh Pasal 21, dan pekerjaan tersebut tidak ada hubungannya dengan usaha/pekerjaan bebas suami atau anggota keluarga lain. Perlakuan atas penghasilan istri adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Wajib dilaporkan oleh istri dengan tarif final 0,5%", B: "Istri wajib menyampaikan SPT terpisah dengan NPWP sendiri", C: "Wajib digabung dengan penghasilan suami dan dihitung ulang dengan tarif Pasal 17", D: "Tidak digabungkan dengan penghasilan suami dan tidak perlu dihitung ulang dalam SPT suami" },
+      kunci: "D",
+      jebakanOpsi: { A: "final-nonfinal", B: "salah-klasifikasi", C: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Pada dasarnya penghasilan istri dianggap penghasilan suami dan digabung dalam satu SPT. Ada satu pengecualian: istri hanya bekerja pada satu pemberi kerja, gajinya sudah dipotong PPh 21, dan pekerjaannya tidak terkait usaha keluarga. Semua syarat itu terpenuhi di soal ini. Jadi gaji istri tidak digabung dan tidak dihitung ulang di SPT suami, karena potongan PPh 21-nya sudah dianggap selesai.",
+        inti: "Pasal 8 ayat (1) UU PPh menganggap penghasilan istri sebagai penghasilan suami, kecuali penghasilan itu semata-mata dari satu pemberi kerja yang telah dipotong PPh Pasal 21 dan pekerjaannya tidak berhubungan dengan usaha atau pekerjaan bebas suami atau anggota keluarga lain. Penjelasan ayat (1) menyebut pengenaan pajak atas penghasilan istri seperti itu bersifat final, sehingga tidak digabung dalam SPT suami.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tarif 0,5% adalah PPh final untuk peredaran bruto usaha tertentu, bukan untuk gaji. Gaji istri sudah dipotong PPh 21 dengan tarif biasa.",
+          B: "SPT terpisah dengan NPWP sendiri berlaku bila suami istri hidup berpisah, punya perjanjian pisah harta, atau istri memilih menjalankan kewajiban sendiri. Soal menyebut tidak ada perjanjian pisah harta.",
+          C: "Penggabungan memang aturan umum, tetapi soal memenuhi pengecualiannya: satu pemberi kerja, sudah dipotong PPh 21, dan tidak terkait usaha keluarga."
+        },
+        jebakan: "Pengecualian ini hanya berlaku bila istri bekerja pada SATU pemberi kerja; dua pemberi kerja atau ada usaha sendiri membuat penghasilannya digabung."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 8 ayat (1)", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Dikenai PPh final 0,5%", alasan: "Gaji tidak dikenai PPh final 0,5%. Tarif itu hanya untuk penghasilan usaha dengan peredaran bruto tertentu." },
+      sumber: { set: "LM-B-2026-11", no: 189, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-225",
+      topik: "A1.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Pegawai menerima uang pesangon sekaligus Rp150.000.000. PPh Pasal 21 final yang dipotong adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp22.500.000", B: "Rp10.000.000", C: "Rp7.500.000", D: "Rp15.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Pesangon yang dibayar sekaligus dipotong PPh 21 final dengan tarif bertingkat khusus. Rp50 juta pertama 0%, Rp50 juta sampai Rp100 juta 5%, dan Rp100 juta sampai Rp500 juta 15%. Untuk Rp150 juta: Rp50 juta pertama Rp0, Rp50 juta berikutnya 5% = Rp2,5 juta, dan Rp50 juta terakhir 15% = Rp7,5 juta. Totalnya Rp10 juta. Cara ingat: pesangon 0, 5, 15, 25 persen dengan batas 50, 100, dan 500 juta.",
+        inti: "Pasal 2 ayat (1) PP 68/2009 mengenakan PPh Pasal 21 final atas uang pesangon yang dibayarkan sekaligus. Pasal 4 mengatur tarifnya: 0% sampai Rp50 juta, 5% di atas Rp50 juta sampai Rp100 juta, 15% di atas Rp100 juta sampai Rp500 juta, dan 25% di atas Rp500 juta. Pesangon Rp150.000.000 mengisi lapisan 0%, 5%, dan Rp50.000.000 di lapisan 15%.",
+        jejakHitung: [
+          ["Lapisan 0%", "0% x Rp50.000.000 = Rp0"],
+          ["Lapisan 5%", "5% x Rp50.000.000 = Rp2.500.000"],
+          ["Lapisan 15%", "15% x Rp50.000.000 = Rp7.500.000"],
+          ["PPh 21 final", "Rp0 + Rp2.500.000 + Rp7.500.000 = Rp10.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp22.500.000 adalah 15% dikalikan seluruh Rp150 juta. Tarifnya bertingkat dan Rp50 juta pertama 0%.",
+          C: "Rp7.500.000 adalah 5% dikalikan seluruh Rp150 juta. Rp50 juta pertama 0% dan bagian di atas Rp100 juta kena 15%.",
+          D: "Rp15.000.000 adalah 15% atas Rp100 juta di atas Rp50 juta. Lapisan Rp50 juta sampai Rp100 juta seharusnya 5%, bukan 15%."
+        },
+        jebakan: "Tarif pesangon bukan tarif Pasal 17 dan dimulai dengan lapisan 0% sampai Rp50 juta."
+      },
+      dasarHukum: [{ pasal: "PP 68/2009 Pasal 2 ayat (1) dan Pasal 4", berlakuSejak: "2009-11-16" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp12.500.000", alasan: "Rp12.500.000 muncul bila Rp50 juta teratas dikenai 25%. Tarif 25% baru berlaku untuk bagian di atas Rp500 juta." },
+      sumber: { set: "LM-B-2026-11", no: 190, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-226",
+      topik: "A1.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Pegawai menerima Jaminan Hari Tua (JHT) yang dibayarkan sekaligus Rp80.000.000. PPh Pasal 21 final yang dipotong adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp4.500.000", B: "Rp4.000.000", C: "Rp0", D: "Rp1.500.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", C: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "JHT yang dibayar sekaligus dipotong PPh 21 final, dan tarifnya lebih ringan dari pesangon. Hanya ada dua lapisan: sampai Rp50 juta 0%, dan bagian di atas Rp50 juta 5%. Dari Rp80 juta, yang kena pajak hanya Rp30 juta. 5% dari Rp30 juta = Rp1,5 juta. Cara ingat: JHT, pensiun, dan THT sekaligus cukup dua lapisan, 0% lalu 5%.",
+        inti: "Pasal 2 ayat (1) PP 68/2009 mengenakan PPh Pasal 21 final atas Jaminan Hari Tua yang dibayarkan sekaligus. Pasal 5 menetapkan tarif 0% atas bruto sampai Rp50 juta dan 5% atas bruto di atas Rp50 juta. Untuk JHT Rp80.000.000, bagian yang kena 5% adalah Rp30.000.000.",
+        jejakHitung: [
+          ["Lapisan 0%", "0% x Rp50.000.000 = Rp0"],
+          ["Lapisan 5%", "5% x (Rp80.000.000 - Rp50.000.000) = 5% x Rp30.000.000 = Rp1.500.000"],
+          ["PPh 21 final", "Rp1.500.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp4.500.000 muncul bila Rp30 juta di atas batas dikenai 15%, tarif yang hanya ada pada pesangon di atas Rp100 juta. Untuk JHT tarif di atas Rp50 juta hanya 5%.",
+          B: "Rp4.000.000 adalah 5% atas seluruh Rp80 juta. Rp50 juta pertama dikenai 0%.",
+          C: "Rp0 keliru karena JHT sekaligus tetap objek PPh 21 final. Yang 0% hanya bagian sampai Rp50 juta."
+        },
+        jebakan: "Jangan memakai lapisan pesangon untuk JHT: JHT hanya punya lapisan 0% dan 5%."
+      },
+      dasarHukum: [{ pasal: "PP 68/2009 Pasal 2 ayat (1) dan Pasal 5", berlakuSejak: "2009-11-16" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp2.000.000", alasan: "Rp2.000.000 setara 5% atas Rp40 juta. Bagian di atas Rp50 juta adalah Rp30 juta, bukan Rp40 juta." },
+      sumber: { set: "LM-B-2026-11", no: 191, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-227",
+      topik: "A1.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      kasusId: "V-A1-19",
+      stem: "Data untuk soal vignette V-A1-19: dr. Rina adalah dokter praktik mandiri di ibu kota provinsi, berstatus janda (cerai) dengan 2 anak kandung yang menjadi tanggungannya. Peredaran bruto praktik tahun 2025 Rp1.200.000.000. Ia telah memberitahukan penggunaan Norma Penghitungan Penghasilan Neto tepat waktu; persentase norma untuk pekerjaannya di wilayah tersebut diasumsikan 50%. Ia tidak memiliki penghasilan lain. Penghasilan neto dr. Rina tahun 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp300.000.000", B: "Rp600.000.000", C: "Rp1.200.000.000", D: "Rp532.500.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Yang ditanya adalah penghasilan neto, yaitu laba sebelum dikurangi PTKP. Dengan norma, laba tidak dihitung dari catatan biaya, melainkan omzet dikali persentase norma. Persentase dr. Rina 50%, jadi 50% x Rp1,2 miliar = Rp600 juta. PTKP belum dikurangkan di tahap ini. Cara ingat: neto norma = omzet x persen norma.",
+        inti: "Pasal 14 ayat (2) UU PPh membolehkan orang pribadi dengan peredaran bruto kurang dari Rp4,8 miliar yang memberitahukan tepat waktu menghitung penghasilan neto dengan Norma Penghitungan Penghasilan Neto. Penghasilan neto = peredaran bruto x persentase norma = 50% x Rp1.200.000.000 = Rp600.000.000. PTKP baru dikurangkan saat menghitung Penghasilan Kena Pajak.",
+        jejakHitung: [
+          ["Syarat norma", "peredaran bruto Rp1.200.000.000 < Rp4.800.000.000 dan sudah memberitahukan"],
+          ["Penghasilan neto", "50% x Rp1.200.000.000 = Rp600.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp300.000.000 setara 25% dari peredaran bruto. Persentase norma di soal 50%.",
+          C: "Rp1.200.000.000 adalah peredaran bruto, bukan penghasilan neto. Norma justru dipakai untuk mengubah bruto menjadi neto.",
+          D: "Rp532.500.000 adalah Rp600 juta dikurangi PTKP K/2. Yang ditanya penghasilan neto, dan status dr. Rina pun tidak kawin."
+        },
+        jebakan: "Penghasilan neto belum dikurangi PTKP; PTKP baru masuk saat menghitung Penghasilan Kena Pajak."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 14 ayat (2)", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp540.000.000", alasan: "Rp540.000.000 setara 45% dari peredaran bruto. Persentase norma di kasus 50%, tanpa pengurangan lain." },
+      sumber: { set: "LM-B-2026-11", no: 192, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-228",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      kasusId: "V-A1-19",
+      stem: "Data untuk soal vignette V-A1-19: dr. Rina adalah dokter praktik mandiri di ibu kota provinsi, berstatus janda (cerai) dengan 2 anak kandung yang menjadi tanggungannya. Peredaran bruto praktik tahun 2025 Rp1.200.000.000. Ia telah memberitahukan penggunaan Norma Penghitungan Penghasilan Neto tepat waktu; persentase norma untuk pekerjaannya di wilayah tersebut diasumsikan 50%. Ia tidak memiliki penghasilan lain. PTKP yang digunakan dr. Rina adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp58.500.000 (TK/1)", B: "Rp63.000.000 (TK/2)", C: "Rp54.000.000 (TK/0)", D: "Rp67.500.000 (K/2)" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Status PTKP dilihat dari keadaan awal tahun. dr. Rina janda cerai, jadi ia berstatus tidak kawin dan tidak mendapat tambahan Rp4,5 juta untuk kawin. Dua anak kandung yang ia tanggung tetap dihitung, masing-masing Rp4,5 juta. Jadi Rp54 juta + Rp9 juta = Rp63 juta, status TK/2. Cara ingat: tambahan kawin hanya untuk yang masih kawin, tetapi tanggungan tetap dihitung.",
+        inti: "Pasal 7 ayat (1) UU PPh memberi Rp54.000.000 untuk diri Wajib Pajak, tambahan Rp4.500.000 hanya bagi Wajib Pajak yang kawin, dan Rp4.500.000 untuk tiap anggota keluarga sedarah dalam garis lurus yang menjadi tanggungan sepenuhnya (paling banyak tiga). Janda cerai tidak berstatus kawin, tetapi dua anak kandung yang ditanggung tetap menambah PTKP: Rp54.000.000 + 2 x Rp4.500.000 = Rp63.000.000 (TK/2).",
+        jejakHitung: [
+          ["Diri Wajib Pajak", "Rp54.000.000"],
+          ["Tanggungan 2 anak", "2 x Rp4.500.000 = Rp9.000.000"],
+          ["PTKP TK/2", "Rp54.000.000 + Rp9.000.000 = Rp63.000.000"]
+        ],
+        mengapaSalah: {
+          A: "TK/1 hanya menghitung satu anak. dr. Rina menanggung dua anak kandung.",
+          C: "TK/0 mengabaikan tanggungan. Anak kandung yang ditanggung sepenuhnya tetap menambah PTKP walaupun Wajib Pajak tidak kawin.",
+          D: "K/2 memberi tambahan kawin Rp4,5 juta. Janda cerai tidak lagi berstatus kawin."
+        },
+        jebakan: "Janda atau duda yang menanggung anak tetap mendapat tambahan tanggungan, hanya tambahan kawin yang hilang."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 7 ayat (1); PMK 101/PMK.010/2016", berlakuSejak: "2016-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp72.000.000 (K/3)", alasan: "K/3 salah status dan salah jumlah tanggungan: dr. Rina tidak kawin dan anaknya dua." },
+      sumber: { set: "LM-B-2026-11", no: 193, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-229",
+      topik: "A1.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-A1-19",
+      stem: "Data untuk soal vignette V-A1-19: dr. Rina adalah dokter praktik mandiri di ibu kota provinsi, berstatus janda (cerai) dengan 2 anak kandung yang menjadi tanggungannya. Peredaran bruto praktik tahun 2025 Rp1.200.000.000. Ia telah memberitahukan penggunaan Norma Penghitungan Penghasilan Neto tepat waktu; persentase norma untuk pekerjaannya di wilayah tersebut diasumsikan 50%. Ia tidak memiliki penghasilan lain. PPh terutang dr. Rina tahun 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp103.750.000", B: "Rp105.100.000", C: "Rp124.000.000", D: "Rp134.250.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Langkahnya tiga. Pertama, laba dengan norma: 50% x Rp1,2 miliar = Rp600 juta. Kedua, kurangi PTKP TK/2 Rp63 juta, sehingga penghasilan kena pajak Rp537 juta. Ketiga, pakai tarif bertingkat: Rp3 juta + Rp28,5 juta + Rp62,5 juta untuk sampai Rp500 juta, ditambah 30% x Rp37 juta = Rp11,1 juta. Totalnya Rp105,1 juta. Cara ingat: neto, kurangi PTKP, lalu tarif bertingkat.",
+        inti: "Penghasilan neto menurut norma Rp600.000.000 (Pasal 14 ayat (2) UU PPh) dikurangi PTKP TK/2 Rp63.000.000 (Pasal 7 ayat (1)) menjadi PKP Rp537.000.000. Tarif Pasal 17 ayat (1) huruf a: 5% x Rp60 juta, 15% x Rp190 juta, 25% x Rp250 juta, dan 30% x Rp37 juta.",
+        jejakHitung: [
+          ["Penghasilan neto", "50% x Rp1.200.000.000 = Rp600.000.000"],
+          ["PKP", "Rp600.000.000 - Rp63.000.000 = Rp537.000.000"],
+          ["Lapisan 5% dan 15%", "Rp3.000.000 + Rp28.500.000 = Rp31.500.000"],
+          ["Lapisan 25%", "25% x Rp250.000.000 = Rp62.500.000"],
+          ["Lapisan 30%", "30% x Rp37.000.000 = Rp11.100.000"],
+          ["PPh terutang", "Rp31.500.000 + Rp62.500.000 + Rp11.100.000 = Rp105.100.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp103.750.000 memakai PTKP K/2 (PKP Rp532,5 juta). dr. Rina janda cerai sehingga PTKP-nya TK/2.",
+          C: "Rp124.000.000 adalah pajak atas Rp600 juta tanpa dikurangi PTKP. PTKP Rp63 juta harus dikurangkan lebih dulu.",
+          D: "Rp134.250.000 adalah 25% dikalikan seluruh PKP Rp537 juta. Tarif Pasal 17 bertingkat."
+        },
+        jebakan: "PKP Rp537 juta sudah melewati Rp500 juta, jadi Rp37 juta teratas kena 30%."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 14 ayat (2)", berlakuSejak: "2009-01-01" }, { pasal: "UU PPh Pasal 7 ayat (1) dan Pasal 17 ayat (1) huruf a s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp98.875.000", alasan: "Rp98.875.000 tidak berasal dari PKP Rp537 juta dengan lapisan yang benar; angka ini setara PKP sekitar Rp516 juta, yang tidak ada dasarnya di kasus." },
+      sumber: { set: "LM-B-2026-11", no: 194, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-230",
+      topik: "A1.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      kasusId: "V-A1-19",
+      stem: "Data untuk soal vignette V-A1-19: dr. Rina adalah dokter praktik mandiri di ibu kota provinsi, berstatus janda (cerai) dengan 2 anak kandung yang menjadi tanggungannya. Peredaran bruto praktik tahun 2025 Rp1.200.000.000. Ia telah memberitahukan penggunaan Norma Penghitungan Penghasilan Neto tepat waktu; persentase norma untuk pekerjaannya di wilayah tersebut diasumsikan 50%. Ia tidak memiliki penghasilan lain. Jika peredaran bruto dr. Rina pada tahun berikutnya mencapai Rp5.000.000.000, maka ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tetap boleh menggunakan norma", B: "Persentase norma dinaikkan 10%", C: "Ia tidak lagi boleh menggunakan norma dan wajib menyelenggarakan pembukuan", D: "Wajib menggunakan PPh final 0,5%" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "final-nonfinal" },
+      pembahasan: {
+        mudah: "Norma hanya boleh dipakai bila omzet setahun kurang dari Rp4,8 miliar. Kalau omzet dr. Rina naik menjadi Rp5 miliar, batas itu terlewati. Akibatnya ia tidak boleh lagi memakai norma dan wajib menyelenggarakan pembukuan. PPh final 0,5% juga tidak bisa dipakai, karena dokter termasuk pekerjaan bebas dan omzetnya pun di atas Rp4,8 miliar. Cara ingat: omzet Rp4,8 miliar ke atas berarti wajib pembukuan.",
+        inti: "Pasal 14 ayat (2) UU PPh dan Pasal 450 ayat (1) PMK 81/2024 membatasi norma bagi orang pribadi dengan peredaran bruto kurang dari Rp4,8 miliar setahun. Dengan peredaran bruto Rp5 miliar, dr. Rina kembali ke aturan umum Pasal 28 ayat (1) UU KUP: orang pribadi yang melakukan pekerjaan bebas wajib menyelenggarakan pembukuan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Norma hanya untuk peredaran bruto kurang dari Rp4,8 miliar. Rp5 miliar melewati batas itu.",
+          B: "Tidak ada aturan yang menaikkan persentase norma bila omzet naik. Yang terjadi, norma tidak boleh dipakai lagi.",
+          D: "PPh final 0,5% tidak berlaku untuk jasa dokter karena termasuk pekerjaan bebas, dan omzet Rp5 miliar juga di atas batas Rp4,8 miliar."
+        },
+        jebakan: "Batas norma adalah \"kurang dari\" Rp4,8 miliar; omzet tepat Rp4,8 miliar pun sudah tidak boleh memakai norma."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 14 ayat (2)", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 450 ayat (1)", berlakuSejak: "2025-01-01" }, { pasal: "UU KUP Pasal 28 ayat (1) dan ayat (2)", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Ia dibebaskan dari SPT", alasan: "Omzet tinggi tidak membebaskan dari SPT. Wajib Pajak justru harus menyelenggarakan pembukuan dan tetap menyampaikan SPT." },
+      sumber: { set: "LM-B-2026-11", no: 195, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-231",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      kasusId: "V-A1-20",
+      stem: "Data untuk soal vignette V-A1-20: Pak Budi dan Bu Sari menikah dengan perjanjian pemisahan harta (PH) dan memiliki 1 anak tanggungan. Tahun 2025 penghasilan neto Pak Budi Rp400.000.000 dan penghasilan neto Bu Sari Rp200.000.000 (keduanya dari usaha). PTKP dihitung K/I/1. PTKP K/I/1 yang digunakan untuk menghitung PPh gabungan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp63.000.000", B: "Rp112.500.000", C: "Rp121.500.000", D: "Rp117.000.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-baca" },
+      pembahasan: {
+        mudah: "K/I/1 artinya kawin, penghasilan istri ikut dihitung bersama, dan satu tanggungan. Karena penghasilan suami dan istri dijumlahkan untuk menghitung pajak, istri juga mendapat jatah Rp54 juta. Jadi Rp54 juta untuk suami, Rp4,5 juta karena kawin, Rp54 juta untuk istri, dan Rp4,5 juta untuk satu anak. Totalnya Rp117 juta. Cara ingat: huruf I berarti tambah Rp54 juta untuk istri.",
+        inti: "Pasal 7 ayat (1) UU PPh: Rp54.000.000 untuk diri Wajib Pajak, Rp4.500.000 tambahan kawin, Rp54.000.000 tambahan untuk istri yang penghasilannya digabung, dan Rp4.500.000 per tanggungan. Pada pisah harta, Pasal 8 ayat (3) mengenakan pajak atas penggabungan penghasilan neto suami istri, sehingga PTKP gabungan dihitung K/I/1 sebagaimana disebut kasus.",
+        jejakHitung: [
+          ["Diri suami", "Rp54.000.000"],
+          ["Tambahan kawin", "Rp4.500.000"],
+          ["Tambahan istri (penghasilan digabung)", "Rp54.000.000"],
+          ["Tanggungan 1 anak", "Rp4.500.000"],
+          ["PTKP K/I/1", "Rp117.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp63.000.000 adalah K/1 tanpa tambahan istri. Dalam penghitungan gabungan, istri ikut mendapat Rp54 juta.",
+          B: "Rp112.500.000 adalah K/I/0. Tambahan Rp4,5 juta untuk satu anak terlupa.",
+          C: "Rp121.500.000 adalah K/I/2. Tanggungan di kasus hanya satu anak."
+        },
+        jebakan: "Pisah harta tidak berarti PTKP dihitung sendiri-sendiri; PTKP K/I dipakai atas penghasilan gabungan."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 7 ayat (1); PMK 101/PMK.010/2016", berlakuSejak: "2016-01-01" }, { pasal: "UU PPh Pasal 8 ayat (2) huruf b dan ayat (3)", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp108.000.000", alasan: "Rp108.000.000 hanya menjumlah Rp54 juta untuk suami dan istri. Tambahan kawin dan tambahan anak terlupa." },
+      sumber: { set: "LM-B-2026-11", no: 196, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-232",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-A1-20",
+      stem: "Data untuk soal vignette V-A1-20: Pak Budi dan Bu Sari menikah dengan perjanjian pemisahan harta (PH) dan memiliki 1 anak tanggungan. Tahun 2025 penghasilan neto Pak Budi Rp400.000.000 dan penghasilan neto Bu Sari Rp200.000.000 (keduanya dari usaha). PTKP dihitung K/I/1. PPh terutang gabungan suami-istri adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp101.450.000", B: "Rp75.250.000", C: "Rp124.000.000", D: "Rp89.750.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-hitung", C: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Walau ada perjanjian pisah harta, pajaknya dihitung dari penghasilan suami dan istri yang dijumlahkan dulu. Rp400 juta + Rp200 juta = Rp600 juta, lalu dikurangi PTKP K/I/1 Rp117 juta, sehingga penghasilan kena pajak Rp483 juta. Tarif bertingkat: Rp3 juta + Rp28,5 juta + 25% x Rp233 juta (Rp58,25 juta) = Rp89,75 juta. Cara ingat: pisah harta itu gabung dulu, baru dibagi.",
+        inti: "Pasal 8 ayat (2) huruf b dan ayat (3) UU PPh: penghasilan neto suami istri dengan perjanjian pemisahan harta dikenai pajak berdasarkan penggabungan penghasilan neto. PKP = Rp600.000.000 - Rp117.000.000 = Rp483.000.000. Tarif Pasal 17 ayat (1) huruf a menghasilkan Rp89.750.000.",
+        jejakHitung: [
+          ["Neto gabungan", "Rp400.000.000 + Rp200.000.000 = Rp600.000.000"],
+          ["PKP", "Rp600.000.000 - Rp117.000.000 = Rp483.000.000"],
+          ["Lapisan 5% dan 15%", "Rp3.000.000 + Rp28.500.000 = Rp31.500.000"],
+          ["Lapisan 25%", "25% x Rp233.000.000 = Rp58.250.000"],
+          ["PPh gabungan", "Rp31.500.000 + Rp58.250.000 = Rp89.750.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp101.450.000 tidak bisa diperoleh dari PKP Rp483 juta. PKP itu berhenti di lapisan 25%, sehingga pajaknya pasti di bawah Rp94 juta.",
+          B: "Rp75.250.000 setara pajak atas PKP Rp425 juta, terlalu kecil. PKP gabungan yang benar Rp483 juta.",
+          C: "Rp124.000.000 adalah pajak atas Rp600 juta tanpa dikurangi PTKP. PTKP K/I/1 Rp117 juta harus dikurangkan dulu."
+        },
+        jebakan: "Pisah harta tidak membuat suami dan istri menghitung pajak sendiri-sendiri; tarif dikenakan atas jumlah gabungan."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 8 ayat (2) huruf b dan ayat (3)", berlakuSejak: "2009-01-01" }, { pasal: "UU PPh Pasal 17 ayat (1) huruf a s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp93.800.000", alasan: "Rp93.800.000 juga tidak berasal dari PKP Rp483 juta; pajak lapisan 25% atas Rp233 juta hanya Rp58,25 juta, sehingga totalnya Rp89,75 juta." },
+      sumber: { set: "LM-B-2026-11", no: 197, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-233",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      kasusId: "V-A1-20",
+      stem: "Data untuk soal vignette V-A1-20: Pak Budi dan Bu Sari menikah dengan perjanjian pemisahan harta (PH) dan memiliki 1 anak tanggungan. Tahun 2025 penghasilan neto Pak Budi Rp400.000.000 dan penghasilan neto Bu Sari Rp200.000.000 (keduanya dari usaha). PTKP dihitung K/I/1. PPh terutang yang menjadi bagian Bu Sari adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp44.875.000", B: "Rp29.916.667", C: "Rp59.833.333", D: "Rp31.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-baca", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Pajak gabungan suami istri sebesar Rp89,75 juta dibagi sesuai besar penghasilan masing-masing, bukan dibagi rata. Bu Sari punya Rp200 juta dari total Rp600 juta, jadi bagiannya sepertiga. Sepertiga dari Rp89,75 juta = sekitar Rp29,92 juta (Rp29.916.667). Sisanya, dua pertiga, menjadi bagian Pak Budi. Cara ingat: siapa berpenghasilan lebih besar, menanggung pajak lebih besar.",
+        inti: "Pasal 8 ayat (3) UU PPh: pajak yang harus dilunasi masing-masing suami istri dihitung sesuai perbandingan penghasilan neto mereka. Bagian Bu Sari = Rp200.000.000 / Rp600.000.000 x Rp89.750.000 = Rp29.916.667 (dibulatkan).",
+        jejakHitung: [
+          ["Perbandingan neto", "Rp200.000.000 : Rp600.000.000 = 1/3"],
+          ["Bagian Bu Sari", "1/3 x Rp89.750.000 = Rp29.916.666,67, dibulatkan Rp29.916.667"]
+        ],
+        mengapaSalah: {
+          A: "Rp44.875.000 adalah setengah PPh gabungan. Pembagian harus sebanding penghasilan neto, bukan dibagi rata.",
+          C: "Rp59.833.333 adalah dua pertiga PPh gabungan, yaitu bagian Pak Budi, bukan Bu Sari.",
+          D: "Rp31.000.000 adalah seperempat dari Rp124 juta (pajak tanpa PTKP). Yang dibagi harus PPh gabungan setelah PTKP, dengan porsi sepertiga."
+        },
+        jebakan: "Bagian istri dihitung dari PPh gabungan dikali porsi penghasilan neto, bukan dari pajak atas penghasilannya sendiri."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 8 ayat (3)", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp23.500.000", alasan: "Rp23.500.000 tidak berasal dari perbandingan penghasilan neto atas PPh gabungan Rp89,75 juta." },
+      sumber: { set: "LM-B-2026-11", no: 198, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-234",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Penghasilan anak yang belum dewasa (bukan dari pekerjaan bebas) ...",
+      kataKualifikasi: [],
+      opsi: { A: "Bukan objek PPh", B: "Digabungkan dengan penghasilan orang tuanya", C: "Dilaporkan dalam SPT tersendiri", D: "Dikenai PPh final 10%" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "final-nonfinal" },
+      pembahasan: {
+        mudah: "Di sini kita diminta menentukan ke mana penghasilan anak yang masih di bawah umur dilaporkan. Anak yang belum dewasa tidak dipajaki sendiri. Penghasilannya ditambahkan ke penghasilan orang tuanya dan ikut dihitung di SPT orang tua. Belum dewasa artinya belum berumur 18 tahun dan belum pernah menikah. Cara ingat: anak di bawah umur ikut dompet orang tua.",
+        inti: "Pasal 8 ayat (4) UU PPh menetapkan penghasilan anak yang belum dewasa digabung dengan penghasilan orang tuanya. Penjelasannya menegaskan penggabungan berlaku dari mana pun sumber dan apa pun sifat pekerjaannya, dalam tahun pajak yang sama. Anak belum dewasa adalah anak yang belum berumur 18 tahun dan belum pernah menikah.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Penghasilan anak tetap tambahan kemampuan ekonomis yang menjadi objek pajak; yang diatur hanya siapa yang menanggung pelaporannya.",
+          C: "Anak yang belum dewasa tidak melaporkan penghasilannya dalam SPT sendiri, karena penghasilannya digabung ke orang tua.",
+          D: "Tidak ada tarif final 10% untuk penghasilan anak; penghasilan itu dikenai tarif umum bersama penghasilan orang tua."
+        },
+        jebakan: "Pengecualian \"bukan dari pekerjaan bebas\" di stem tidak mengubah apa pun, sebab penghasilan anak belum dewasa digabung apa pun jenisnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (4) UU PPh beserta Penjelasannya", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Digabung dengan penghasilan kakek-nenek", alasan: "Penggabungan dilakukan dengan penghasilan orang tua, bukan kakek atau nenek; undang-undang tidak mengenal penggabungan ke generasi di atas orang tua." },
+      sumber: { set: "LM-B-2026-11", no: 199, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-235",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Suami-istri yang telah hidup berpisah berdasarkan putusan hakim dikenai pajak ...",
+      kataKualifikasi: [],
+      opsi: { A: "Digabung seperti biasa", B: "Proporsional seperti PH", C: "Hanya suami yang dikenai pajak", D: "Secara terpisah, masing-masing sebagai wajib pajak sendiri" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-klasifikasi", C: "salah-baca" },
+      pembahasan: {
+        mudah: "Pertanyaannya: bagaimana memajaki suami istri yang sudah berpisah karena putusan hakim? Dalam keadaan ini mereka diperlakukan seperti dua orang yang terpisah. Masing-masing menghitung dan membayar pajaknya sendiri, tanpa menggabungkan penghasilan. Berbeda dengan pisah harta atau istri yang memilih sendiri, yang tetap dihitung gabungan lalu dibagi sebanding penghasilan. Cara ingat: pisah oleh hakim berarti pajak benar-benar terpisah.",
+        inti: "Pasal 8 ayat (2) huruf a UU PPh: penghasilan suami-isteri dikenai pajak secara terpisah bila mereka telah hidup berpisah berdasarkan putusan hakim. Pasal 8 ayat (3) yang mengatur penggabungan lalu pembagian proporsional hanya berlaku untuk huruf b (perjanjian pisah harta) dan huruf c (istri memilih menjalankan kewajiban sendiri), tidak untuk huruf a.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Penggabungan biasa berlaku bagi suami-istri yang hidup bersama tanpa perjanjian; putusan hakim membuat penghasilan mereka dikenai pajak terpisah.",
+          B: "Hitungan proporsional menurut Pasal 8 ayat (3) hanya untuk pisah harta (PH) dan istri yang memilih sendiri (MT), bukan untuk yang berpisah karena putusan hakim (HB).",
+          C: "Istri yang hidup berpisah tidak lagi digabung ke suami, sehingga tidak benar hanya suami yang dikenai pajak."
+        },
+        jebakan: "Status hidup berpisah karena putusan hakim sering tertukar dengan pisah harta, padahal hanya pisah harta yang dihitung proporsional."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (2) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Dibebaskan dari PPh", alasan: "Perpisahan tidak menghapus kewajiban pajak; keduanya tetap subjek pajak yang membayar PPh." },
+      sumber: { set: "LM-B-2026-11", no: 200, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-236",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Tanggungan yang dapat diperhitungkan dalam PTKP adalah anggota keluarga sedarah dan semenda dalam garis keturunan lurus serta anak angkat yang menjadi tanggungan sepenuhnya, paling banyak ...",
+      kataKualifikasi: ["paling banyak"],
+      opsi: { A: "2 orang", B: "3 orang", C: "4 orang", D: "Tidak terbatas" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Kita perlu tahu berapa orang tanggungan yang boleh ikut menambah PTKP. PTKP adalah bagian penghasilan yang tidak dikenai pajak. Tiap tanggungan menambah Rp4,5 juta, tetapi paling banyak tiga orang per keluarga. Anak keempat dan seterusnya tidak menambah PTKP lagi. Cara ingat: tanggungan maksimal tiga, jadi status paling tinggi K/3.",
+        inti: "Pasal 7 ayat (1) huruf d UU PPh memberi tambahan PTKP Rp4.500.000 untuk setiap anggota keluarga sedarah dan semenda dalam garis keturunan lurus serta anak angkat yang menjadi tanggungan sepenuhnya, paling banyak 3 orang untuk setiap keluarga. Keluarga garis menyamping seperti keponakan atau adik tidak termasuk.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Batasnya 3 orang, bukan 2; angka 2 sering muncul karena dikaitkan dengan anjuran dua anak, bukan aturan pajak.",
+          C: "Angka 4 melebihi batas; tanggungan keempat tidak menambah PTKP.",
+          D: "Jumlah tanggungan dibatasi tegas paling banyak 3 orang, jadi tidak tak terbatas."
+        },
+        jebakan: "Status PTKP tertinggi adalah K/3 atau TK/3, bukan menurut jumlah anak sebenarnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) UU PPh; PMK 101/PMK.010/2016", berlakuSejak: "2016-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "5 orang", alasan: "Batas 5 orang tidak dikenal; undang-undang membatasi tanggungan paling banyak 3 orang per keluarga." },
+      sumber: { set: "LM-B-2026-11", no: 201, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-237",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Pak Ahmad (K/0) memiliki anak pertama yang lahir pada 10 Februari 2025. PTKP Pak Ahmad untuk tahun pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp63.000.000", B: "Rp54.000.000", C: "Rp60.750.000", D: "Rp58.500.000" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        mudah: "Berapa PTKP Pak Ahmad tahun 2025, kalau anaknya baru lahir Februari 2025? PTKP dilihat dari keadaan keluarga pada 1 Januari. Pada 1 Januari 2025 anaknya belum lahir, jadi statusnya masih K/0. Hitungannya Rp54 juta untuk diri sendiri ditambah Rp4,5 juta karena kawin, jadi Rp58,5 juta. Cara ingat: PTKP dipotret tiap 1 Januari, anak yang lahir sesudahnya baru dihitung tahun depan.",
+        inti: "Pasal 7 ayat (2) UU PPh menetapkan penerapan PTKP ditentukan oleh keadaan pada awal tahun pajak. Pada 1 Januari 2025 Pak Ahmad kawin tanpa tanggungan, sehingga PTKP 2025 = Rp54.000.000 (diri sendiri) + Rp4.500.000 (kawin) = Rp58.500.000. Anak yang lahir 10 Februari 2025 baru menambah PTKP mulai tahun pajak 2026.",
+        jejakHitung: [
+          ["Status pada 1 Januari 2025", "K/0 (anak belum lahir)"],
+          ["PTKP diri sendiri", "Rp54.000.000"],
+          ["Tambahan kawin", "Rp4.500.000"],
+          ["PTKP 2025", "Rp54.000.000 + Rp4.500.000 = Rp58.500.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp63.000.000 adalah PTKP K/1 karena anak yang lahir Februari 2025 sudah dihitung; padahal yang menentukan keadaan pada awal tahun pajak.",
+          B: "Rp54.000.000 hanya PTKP diri sendiri; tambahan Rp4.500.000 karena sudah kawin terlupa.",
+          C: "Rp60.750.000 menambah separuh tanggungan seolah PTKP dihitung sebanding bulan, padahal PTKP tidak dihitung pro rata dan anak belum ada pada 1 Januari."
+        },
+        jebakan: "Anak yang lahir di tengah tahun sering langsung dihitung, padahal PTKP mengikuti keadaan pada awal tahun pajak."
+      },
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) dan (2) UU PPh; PMK 101/PMK.010/2016", berlakuSejak: "2016-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp67.500.000", alasan: "Rp67.500.000 setara status K/2 (dua tanggungan), padahal anak yang ada hanya satu dan itu pun belum lahir pada awal tahun." },
+      sumber: { set: "LM-B-2026-11", no: 202, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-238",
+      topik: "A1.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PPh terutang atas PKP Rp600.000.000 menurut tarif Pasal 17 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp114.000.000", B: "Rp124.000.000", C: "Rp150.000.000", D: "Rp180.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Yang ditanya di sini adalah PPh dari PKP Rp600 juta dengan tarif berlapis. Tarif berlapis artinya tiap potongan penghasilan punya tarif sendiri, bukan satu tarif untuk semuanya. Rp60 juta pertama kena 5% = Rp3 juta, Rp190 juta berikutnya 15% = Rp28,5 juta, Rp250 juta berikutnya 25% = Rp62,5 juta. Sisa Rp100 juta kena 30% = Rp30 juta, jadi totalnya Rp124 juta. Cara ingat: potong per lapisan dulu, baru dijumlahkan.",
+        inti: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU 7/2021 menetapkan tarif progresif: 5% sampai Rp60 juta, 15% di atas Rp60 juta sampai Rp250 juta, 25% di atas Rp250 juta sampai Rp500 juta, dan 30% di atas Rp500 juta sampai Rp5 miliar. PKP Rp600.000.000 mengisi empat lapisan pertama, sehingga PPh terutang Rp124.000.000.",
+        jejakHitung: [
+          ["5% x Rp60.000.000", "Rp3.000.000"],
+          ["15% x Rp190.000.000", "Rp28.500.000"],
+          ["25% x Rp250.000.000", "Rp62.500.000"],
+          ["30% x Rp100.000.000", "Rp30.000.000"],
+          ["PPh terutang", "Rp124.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp114.000.000 terjadi bila Rp100 juta teratas dikenai 20%; lapisan di atas Rp500 juta bertarif 30%, bukan 20%.",
+          C: "Rp150.000.000 adalah 25% x Rp600 juta: satu tarif dikenakan ke seluruh PKP, padahal tarifnya berlapis.",
+          D: "Rp180.000.000 adalah 30% x Rp600 juta: tarif lapisan tertinggi dipakai untuk seluruh PKP, padahal lapisan bawah bertarif lebih rendah."
+        },
+        jebakan: "Tarif tertinggi yang dicapai PKP sering dikalikan ke seluruh PKP, padahal tarif itu hanya untuk bagian di lapisannya."
+      },
+      dasarHukum: [{ pasal: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp134.000.000", alasan: "Rp134.000.000 lebih Rp10 juta dari hitungan benar, seperti Rp100 juta teratas dikenai 40%; tarif lapisan itu 30%." },
+      sumber: { set: "LM-B-2026-11", no: 203, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-239",
+      topik: "A1.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PPh terutang atas PKP Rp6.000.000.000 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp2.100.000.000", B: "Rp1.794.000.000", C: "Rp1.444.000.000", D: "Rp1.744.000.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Sekarang kita hitung PPh dari PKP Rp6 miliar dengan tarif berlapis. Sampai Rp5 miliar, pajaknya Rp3 juta + Rp28,5 juta + Rp62,5 juta + Rp1,35 miliar = Rp1,444 miliar. Sisa Rp1 miliar di atas Rp5 miliar kena tarif tertinggi 35% = Rp350 juta. Totalnya Rp1,444 miliar + Rp350 juta = Rp1,794 miliar. Cara ingat: tarif 35% hanya untuk bagian di atas Rp5 miliar.",
+        inti: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU 7/2021 menambah lapisan 35% untuk PKP di atas Rp5 miliar. Penjelasan pasal itu memuat contoh PKP Rp6.000.000.000 dengan hasil Rp1.794.000.000: 5% x 60 juta, 15% x 190 juta, 25% x 250 juta, 30% x 4,5 miliar, dan 35% x 1 miliar.",
+        jejakHitung: [
+          ["5% x Rp60.000.000", "Rp3.000.000"],
+          ["15% x Rp190.000.000", "Rp28.500.000"],
+          ["25% x Rp250.000.000", "Rp62.500.000"],
+          ["30% x Rp4.500.000.000", "Rp1.350.000.000"],
+          ["35% x Rp1.000.000.000", "Rp350.000.000"],
+          ["PPh terutang", "Rp1.794.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp2.100.000.000 adalah 35% x Rp6 miliar: tarif tertinggi dipakai untuk seluruh PKP.",
+          C: "Rp1.444.000.000 hanya pajak sampai Rp5 miliar; lapisan 35% atas Rp1 miliar sisanya terlupa.",
+          D: "Rp1.744.000.000 mengenakan 30% pada seluruh bagian di atas Rp500 juta sampai Rp6 miliar, sehingga lapisan 35% tidak dipakai."
+        },
+        jebakan: "Lapisan 35% di atas Rp5 miliar sejak UU HPP sering terlupa, sehingga hitungan berhenti di tarif 30%."
+      },
+      dasarHukum: [{ pasal: "Pasal 17 ayat (1) huruf a UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp1.800.000.000", alasan: "Rp1.800.000.000 adalah 30% x Rp6 miliar: satu tarif untuk seluruh PKP dan lapisan 35% diabaikan." },
+      sumber: { set: "LM-B-2026-11", no: 204, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-240",
+      topik: "A1.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "PKP sebesar Rp125.456.789 untuk keperluan penerapan tarif Pasal 17 dibulatkan menjadi ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp125.456.000", B: "Rp125.456.789", C: "Rp125.500.000", D: "Rp125.457.000" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Kali ini yang diuji cara membulatkan PKP sebelum dikalikan tarif. Aturannya, PKP dibulatkan ke bawah ke ribuan rupiah penuh. Jadi tiga angka terakhir dibuang begitu saja, tidak dibulatkan ke atas. Rp125.456.789 menjadi Rp125.456.000. Cara ingat: PKP selalu dibulatkan ke bawah, buang angka di bawah seribu.",
+        inti: "Pasal 17 ayat (4) UU PPh menetapkan bahwa untuk penerapan tarif, jumlah PKP dibulatkan ke bawah dalam ribuan rupiah penuh. Bagian Rp789 di bawah seribu dibuang, sehingga Rp125.456.789 menjadi Rp125.456.000.",
+        jejakHitung: [
+          ["PKP sebelum pembulatan", "Rp125.456.789"],
+          ["Bulatkan ke bawah ke ribuan penuh", "Rp125.456.000"]
+        ],
+        mengapaSalah: {
+          B: "PKP wajib dibulatkan dulu sebelum tarif diterapkan, jadi tidak dipakai apa adanya.",
+          C: "Rp125.500.000 dibulatkan ke ratusan ribu terdekat; aturannya ke bawah dalam ribuan penuh.",
+          D: "Rp125.457.000 dibulatkan ke atas atau ke ribuan terdekat; aturannya selalu ke bawah."
+        },
+        jebakan: "Kebiasaan membulatkan ke angka terdekat membuat Rp789 dibulatkan ke atas, padahal PKP selalu dibulatkan ke bawah."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 17 ayat (4) s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp125.000.000", alasan: "Rp125.000.000 dibulatkan ke jutaan; aturannya hanya membuang bagian di bawah seribu." },
+      sumber: { set: "LM-B-2026-11", no: 205, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-241",
+      topik: "A1.10",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Wajib pajak orang pribadi UMKM dengan peredaran bruto Rp900.000.000 setahun yang menggunakan PPh final PP 55/2022 membayar PPh final sebesar ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp0", B: "Rp4.500.000", C: "Rp2.000.000", D: "Rp2.500.000" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Berapa PPh final UMKM setahun yang dibayar pengusaha orang pribadi dengan omzet Rp900 juta? Tarifnya 0,5% dari omzet. Namun bagi orang pribadi, omzet sampai Rp500 juta setahun tidak dikenai pajak. Jadi yang kena hanya Rp900 juta dikurangi Rp500 juta = Rp400 juta, dan 0,5% x Rp400 juta = Rp2 juta. Cara ingat: orang pribadi dapat bebas Rp500 juta pertama, sisanya baru kena 0,5%.",
+        inti: "Pasal 7 ayat (2a) UU PPh s.t.d.t.d. UU 7/2021 membebaskan Wajib Pajak orang pribadi dengan peredaran bruto tertentu dari PPh atas bagian peredaran bruto sampai Rp500.000.000 setahun. Tarif PPh final menurut Pasal 56 ayat (2) PP 55/2022 s.t.d.d. PP 20/2026 adalah 0,5%. Dasar pengenaan = Rp900.000.000 - Rp500.000.000 = Rp400.000.000, sehingga PPh final Rp2.000.000.",
+        jejakHitung: [
+          ["Peredaran bruto setahun", "Rp900.000.000"],
+          ["Bagian tidak dikenai PPh", "Rp500.000.000"],
+          ["Bagian yang dikenai", "Rp400.000.000"],
+          ["PPh final 0,5%", "0,5% x Rp400.000.000 = Rp2.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Rp0 menganggap seluruh omzet di bawah Rp4,8 miliar bebas pajak; yang bebas hanya Rp500 juta pertama.",
+          B: "Rp4.500.000 adalah 0,5% x Rp900 juta: bagian Rp500 juta yang tidak dikenai PPh lupa dikurangkan.",
+          D: "Rp2.500.000 adalah 0,5% x Rp500 juta: tarif justru dikenakan pada bagian yang dibebaskan."
+        },
+        jebakan: "Batas Rp500 juta sering dibaca sebagai batas omzet seluruhnya, padahal ia hanya bagian omzet yang tidak dikenai PPh."
+      },
+      dasarHukum: [{ pasal: "Pasal 7 ayat (2a) UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "PP 55/2022 Pasal 56–60 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Rp1.500.000", alasan: "Rp1.500.000 setara 0,5% x Rp300 juta, seperti batas bebasnya Rp600 juta; batas bebas orang pribadi Rp500 juta." },
+      sumber: { set: "LM-B-2026-11", no: 206, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-242",
+      topik: "A1.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Wajib pajak orang pribadi yang menghitung penghasilan neto dengan norma ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dapat mengompensasikan kerugian 10 tahun", B: "Tidak dapat mengompensasikan kerugian", C: "Wajib menyelenggarakan pembukuan lengkap", D: "Dapat mengompensasikan kerugian 5 tahun" },
+      kunci: "B",
+      jebakanOpsi: { A: "angka-usang", C: "salah-klasifikasi", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Kita perlu tahu akibat memakai norma, yaitu cara menghitung laba dengan persentase tetap dari omzet. Dengan norma, laba bersih langsung dihitung, misalnya 20% dari omzet, tanpa mengurangkan biaya nyata. Hasilnya tidak pernah minus, jadi tidak ada rugi yang bisa dibawa ke tahun berikutnya. Kompensasi rugi hanya ada bila laba dihitung dari pembukuan, yaitu omzet dikurangi biaya. Cara ingat: norma tidak kenal rugi.",
+        inti: "Pasal 6 ayat (2) UU PPh mengaitkan kompensasi kerugian dengan kerugian yang timbul setelah penghasilan bruto dikurangi biaya menurut Pasal 6 ayat (1), yaitu penghitungan dengan pembukuan. Pengguna Norma Penghitungan Penghasilan Neto menurut Pasal 14 ayat (2) menghitung neto sebagai persentase dari peredaran bruto, sehingga tidak timbul kerugian fiskal yang dapat dikompensasikan. Pasal 14 ayat (3) hanya mewajibkan pencatatan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Kompensasi 10 tahun hanya fasilitas tertentu bagi badan, dan pengguna norma sama sekali tidak memiliki rugi fiskal untuk dikompensasikan.",
+          C: "Pengguna norma hanya wajib menyelenggarakan pencatatan, bukan pembukuan lengkap; pembukuan justru tidak dipakai bila memilih norma.",
+          D: "Kompensasi 5 tahun berlaku bagi kerugian yang timbul dari penghitungan dengan pembukuan; dengan norma, neto selalu positif sehingga tidak ada rugi."
+        },
+        jebakan: "Angka 5 tahun begitu melekat pada kompensasi kerugian sehingga sering dianggap berlaku juga bagi pengguna norma."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh dan Penjelasannya", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 14 ayat (2) dan (3) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Dibebaskan dari SPT Tahunan", alasan: "Pengguna norma tetap wajib menyampaikan SPT Tahunan; norma hanya cara menghitung neto." },
+      sumber: { set: "LM-B-2026-11", no: 207, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-243",
+      topik: "A1.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Zakat yang dibayarkan WP orang pribadi muslim kepada BAZNAS ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dapat dikreditkan dari PPh terutang", B: "Tidak berpengaruh apa pun", C: "Mengurangi PTKP", D: "Dapat dikurangkan dari penghasilan bruto" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Apa pengaruh zakat yang dibayar lewat BAZNAS terhadap pajak? Zakat itu boleh mengurangi penghasilan sebelum pajak dihitung, jadi yang dikenai pajak menjadi lebih kecil. Zakat tidak mengurangi pajaknya langsung seperti kredit pajak. Syaratnya dibayar ke badan atau lembaga amil zakat yang dibentuk atau disahkan pemerintah. Cara ingat: zakat mengurangi penghasilan, bukan mengurangi pajak.",
+        inti: "Pasal 9 ayat (1) huruf g UU PPh mengecualikan zakat yang diterima badan amil zakat atau lembaga amil zakat yang dibentuk atau disahkan pemerintah dari larangan pengurangan. PP 60/2010 Pasal 1 ayat (1) huruf a menegaskan zakat atas penghasilan yang dibayar Wajib Pajak orang pribadi pemeluk agama Islam kepada lembaga itu dapat dikurangkan dari penghasilan bruto.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Zakat tidak dikreditkan dari PPh terutang; ia mengurangi penghasilan sebelum tarif dikenakan.",
+          B: "Zakat yang dibayar ke BAZNAS berpengaruh, yaitu mengurangi penghasilan bruto sehingga PKP turun.",
+          C: "PTKP besarnya tetap menurut status keluarga; zakat dikurangkan dari penghasilan, bukan dari PTKP."
+        },
+        jebakan: "Zakat sering dikira kredit pajak yang langsung mengurangi PPh terutang, padahal ia pengurang penghasilan."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (1) huruf g UU PPh; PP 60/2010; PMK 114/2025", berlakuSejak: "2025-12-31" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Dikenai PPh final", alasan: "Zakat adalah pengeluaran pembayar, bukan penghasilan, sehingga tidak dikenai PPh final." },
+      sumber: { set: "LM-B-2026-11", no: 208, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-244",
+      topik: "A1.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "WNI yang bertempat tinggal di Indonesia memperoleh penghasilan dari luar negeri. Penghasilan tersebut ...",
+      kataKualifikasi: [],
+      opsi: { A: "Hanya dikenai pajak di luar negeri", B: "Dikenai PPh Pasal 26", C: "Bukan objek PPh di Indonesia", D: "Merupakan objek PPh di Indonesia dan pajak yang dibayar di luar negeri dapat dikreditkan sesuai Pasal 24" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Yang perlu dipastikan, apakah penghasilan dari luar negeri milik WNI yang tinggal di Indonesia ikut kena pajak di sini. Orang yang tinggal di Indonesia dipajaki atas semua penghasilannya, dari mana pun asalnya. Supaya tidak kena pajak dua kali, pajak yang sudah dibayar di luar negeri boleh dikurangkan dari pajak di Indonesia, dengan batas tertentu. Cara ingat: penduduk Indonesia lapor penghasilan seluruh dunia.",
+        inti: "Pasal 4 ayat (1) UU PPh menetapkan objek pajak sebagai tambahan kemampuan ekonomis yang berasal dari Indonesia maupun dari luar Indonesia, sehingga Wajib Pajak dalam negeri dikenai pajak atas penghasilan seluruh dunia. Pasal 24 ayat (1) membolehkan pajak yang dibayar atau terutang di luar negeri dikreditkan terhadap PPh terutang dalam tahun pajak yang sama, dengan batas menurut ayat (2).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Penghasilan itu tidak hanya dipajaki di luar negeri; sebagai subjek pajak dalam negeri, WNI itu juga dikenai PPh di Indonesia.",
+          B: "PPh Pasal 26 dipotong atas penghasilan Wajib Pajak luar negeri, bukan atas penghasilan luar negeri milik Wajib Pajak dalam negeri.",
+          C: "Objek pajak mencakup penghasilan dari luar Indonesia, jadi tetap objek PPh di Indonesia."
+        },
+        jebakan: "Tarif 20% dan PPh Pasal 26 sering dikaitkan dengan apa pun yang berbau luar negeri, padahal itu untuk Wajib Pajak luar negeri."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) UU PPh beserta Penjelasannya", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 24 ayat (1) dan (2) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Dikenai PPh final 20%", alasan: "Tidak ada PPh final 20% atas penghasilan luar negeri orang pribadi dalam negeri; penghasilan itu digabung dan dikenai tarif umum." },
+      sumber: { set: "LM-B-2026-11", no: 209, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-245",
+      topik: "A1.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Orang pribadi asing yang berada di Indonesia tidak lebih dari 183 hari dalam 12 bulan dan tidak berniat tinggal ...",
+      kataKualifikasi: [],
+      opsi: { A: "Merupakan subjek pajak dalam negeri", B: "Bukan subjek pajak", C: "Merupakan subjek pajak luar negeri", D: "Merupakan BUT" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Yang ditanya di sini adalah status pajak orang asing yang hanya sebentar di Indonesia. Orang asing baru menjadi subjek pajak dalam negeri bila tinggal di sini, berada lebih dari 183 hari dalam 12 bulan, atau berniat tinggal. Orang ini tidak memenuhi satu pun, jadi ia subjek pajak luar negeri. Ia tetap bisa kena pajak, tetapi hanya atas penghasilan dari Indonesia. Cara ingat: 183 hari adalah garis batasnya.",
+        inti: "Pasal 2 ayat (4) huruf b UU PPh menggolongkan warga negara asing yang berada di Indonesia tidak lebih dari 183 hari dalam 12 bulan sebagai subjek pajak luar negeri. Ia tidak memenuhi kriteria subjek pajak dalam negeri Pasal 2 ayat (3) huruf a (bertempat tinggal, lebih dari 183 hari, atau berniat tinggal).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Syarat subjek pajak dalam negeri adalah lebih dari 183 hari atau berniat tinggal; keduanya tidak terpenuhi.",
+          B: "Ia tetap subjek pajak, yaitu subjek pajak luar negeri, dan dapat dikenai pajak atas penghasilan dari Indonesia.",
+          D: "BUT adalah bentuk usaha, seperti kantor cabang atau proyek, bukan status orang pribadi yang sekadar berada di Indonesia."
+        },
+        jebakan: "Kata \"tidak lebih dari 183 hari\" sering terbaca terbalik dengan syarat subjek pajak dalam negeri \"lebih dari 183 hari\"."
+      },
+      dasarHukum: [{ pasal: "Pasal 2 ayat (4) huruf b UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Wajib memiliki NPWP sebagai SPDN", alasan: "Orang itu bukan subjek pajak dalam negeri, sehingga tidak tepat disebut wajib ber-NPWP sebagai subjek pajak dalam negeri." },
+      sumber: { set: "LM-B-2026-11", no: 210, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-246",
+      topik: "A1.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Warisan yang belum terbagi sebagai satu kesatuan merupakan subjek pajak yang ...",
+      kataKualifikasi: [],
+      opsi: { A: "Menjadi subjek pajak luar negeri", B: "Menggantikan yang berhak, yaitu ahli waris", C: "Bukan subjek pajak", D: "Sama dengan badan" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Pertanyaannya: bagaimana kedudukan warisan yang belum dibagi kepada ahli waris? Selama belum dibagi, warisan itu diperlakukan sebagai satu subjek pajak sendiri. Ia menggantikan para ahli waris yang nanti berhak. Penghasilan dari harta warisan, misalnya sewa rumah, dilaporkan atas nama warisan itu. Cara ingat: warisan belum dibagi berdiri sendiri, mewakili ahli waris.",
+        inti: "Pasal 2 ayat (1) huruf a angka 2 UU PPh menyebut warisan yang belum terbagi sebagai satu kesatuan menggantikan yang berhak sebagai subjek pajak, dan Pasal 2 ayat (3) huruf c menggolongkannya sebagai subjek pajak dalam negeri. Yang berhak itu adalah ahli waris.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Warisan belum terbagi digolongkan sebagai subjek pajak dalam negeri, bukan luar negeri.",
+          C: "Undang-undang tegas menyebut warisan belum terbagi sebagai subjek pajak.",
+          D: "Warisan belum terbagi berada dalam kelompok orang pribadi, menggantikan ahli waris, bukan dipersamakan dengan badan."
+        },
+        jebakan: "Warisan belum terbagi sering dianggap bukan subjek karena pewarisnya sudah meninggal, padahal ia menggantikan ahli waris."
+      },
+      dasarHukum: [{ pasal: "Pasal 2 ayat (1) huruf a angka 2 dan ayat (3) huruf c UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Dikenai PPh final 5%", alasan: "Warisan belum terbagi adalah subjek pajak, bukan jenis penghasilan, jadi tidak tepat dikaitkan dengan PPh final 5%." },
+      sumber: { set: "LM-B-2026-11", no: 211, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-247",
+      topik: "A1.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "Beasiswa yang diterima orang pribadi dari pihak yang memenuhi syarat tertentu ...",
+      kataKualifikasi: [],
+      opsi: { A: "Objek PPh 21 seluruhnya", B: "Dikecualikan dari objek PPh", C: "Hanya dikecualikan jika di bawah PTKP", D: "Objek PPh Pasal 23" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Apakah beasiswa kena pajak? Beasiswa yang memenuhi syarat tertentu dikecualikan dari objek pajak, artinya tidak dipajaki sama sekali. Syaratnya antara lain diberikan untuk biaya pendidikan dan pemberinya tidak punya hubungan istimewa dengan penerima. Besar kecilnya beasiswa tidak menjadi syarat. Cara ingat: beasiswa yang memenuhi syarat bebas pajak.",
+        inti: "Pasal 4 ayat (3) huruf l UU PPh mengecualikan dari objek pajak beasiswa yang memenuhi persyaratan tertentu. Persyaratannya diatur PMK 68/PMK.03/2020. Karena dikecualikan dari objek, beasiswa itu tidak dipotong PPh 21, PPh 23, maupun PPh final.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Beasiswa yang memenuhi syarat dikecualikan dari objek, sehingga tidak dipotong PPh 21.",
+          C: "Pengecualian tidak bergantung pada jumlah di bawah PTKP; yang menentukan adalah persyaratan tertentu.",
+          D: "PPh Pasal 23 dipotong atas imbalan seperti jasa, bunga, atau royalti, bukan atas beasiswa orang pribadi."
+        },
+        jebakan: "Beasiswa yang dibayar sebuah badan sering dikira imbalan yang dipotong PPh 21, padahal yang memenuhi syarat bukan objek pajak."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (3) huruf l UU PPh; PMK 68/PMK.03/2020", berlakuSejak: "2020-06-16" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Dikenai PPh final 5%", alasan: "Tidak ada PPh final 5% atas beasiswa; beasiswa yang memenuhi syarat sama sekali bukan objek pajak." },
+      sumber: { set: "LM-B-2026-11", no: 212, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-248",
+      topik: "A1.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Angsuran PPh Pasal 25 orang pribadi (bukan OP pengusaha tertentu) dihitung berdasarkan ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tarif Pasal 17 atas penghasilan bulan berjalan", B: "PPh terutang tahun lalu dikurangi kredit PPh 21, 22, 23, dan 24, dibagi 12", C: "0,75% dari omzet bulanan", D: "PPh 29 tahun lalu dibagi 12" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Intinya, kita mencari cara menghitung cicilan pajak bulanan orang pribadi biasa. Dasarnya pajak setahun menurut SPT tahun lalu. Dari angka itu dikurangi pajak yang sudah dipotong atau dipungut pihak lain dan pajak luar negeri yang boleh dikreditkan, lalu dibagi 12. Hasilnya dibayar sendiri tiap bulan. Cara ingat: pajak tahun lalu dikurangi kredit, bagi dua belas.",
+        inti: "Pasal 25 ayat (1) UU PPh: angsuran bulanan sebesar PPh terutang menurut SPT Tahunan tahun pajak lalu dikurangi PPh yang dipotong dan dipungut menurut Pasal 21, 22, dan 23 serta PPh luar negeri yang boleh dikreditkan menurut Pasal 24, dibagi 12. Angsuran 0,75% dari peredaran bruto hanya untuk orang pribadi pengusaha tertentu yang dikecualikan stem.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Angsuran tidak dihitung dari tarif Pasal 17 atas penghasilan bulan berjalan; dasarnya PPh terutang tahun lalu.",
+          C: "Angsuran 0,75% dari peredaran bruto bulanan per tempat usaha khusus untuk orang pribadi pengusaha tertentu, yang dikecualikan stem.",
+          D: "PPh Pasal 29 adalah kurang bayar akhir tahun; dasar angsuran adalah PPh terutang dikurangi kredit Pasal 21, 22, 23, dan 24, yang bisa berbeda dari PPh 29 karena angsuran PPh 25 tahun lalu ikut terkurang di PPh 29."
+        },
+        jebakan: "Kurang bayar PPh 29 tahun lalu sering dikira dasar angsuran, padahal dasarnya PPh terutang dikurangi kredit pajak tanpa angsuran PPh 25."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      opsiLepas: { teks: "PTKP dibagi 12", alasan: "PTKP adalah pengurang penghasilan, bukan dasar angsuran." },
+      sumber: { set: "LM-B-2026-11", no: 213, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
+    },
+    {
+      id: "A1-249",
+      topik: "A1.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Penghasilan istri yang diterima dari pekerjaan bebas (misalnya notaris) dan tidak ada perjanjian pisah harta ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dikenai pajak terpisah", B: "Bukan objek PPh", C: "Digabungkan dengan penghasilan suami", D: "Dikenai PPh final" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "final-nonfinal" },
+      pembahasan: {
+        mudah: "Yang dicari adalah apakah penghasilan istri yang bekerja sebagai notaris digabung dengan penghasilan suami. Aturan dasarnya, penghasilan istri dianggap penghasilan suami dan pajaknya dihitung bersama. Gaji istri dari satu kantor yang sudah dipotong PPh 21 tidak ikut digabung, tetapi notaris bukan karyawan, melainkan pekerjaan bebas. Karena tidak ada perjanjian pisah harta dan soal tidak menyebut istri memilih mengurus pajaknya sendiri, penghasilan itu digabung. Cara ingat: penghasilan usaha atau profesi istri ikut suami, kecuali ada pisah harta atau istri memilih sendiri.",
+        inti: "Pasal 8 ayat (1) UU PPh menganggap seluruh penghasilan wanita kawin sebagai penghasilan suaminya, kecuali penghasilan yang semata-mata diterima dari satu pemberi kerja yang telah dipotong PPh 21. Penghasilan notaris adalah penghasilan pekerjaan bebas, sehingga tanpa perjanjian pisah harta atau pilihan menjalankan kewajiban sendiri (Pasal 8 ayat (2) huruf b dan c), penghasilan itu digabung dengan penghasilan suami.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pajak terpisah hanya bila hidup berpisah karena putusan hakim, ada perjanjian pisah harta, atau istri memilih sendiri; stem menyebut tidak ada perjanjian pisah harta.",
+          B: "Penghasilan notaris adalah imbalan pekerjaan bebas yang termasuk objek PPh.",
+          D: "Penghasilan pekerjaan bebas dikenai tarif umum, bukan PPh final; jasa pekerjaan bebas bahkan dikecualikan dari PPh final UMKM."
+        },
+        jebakan: "Pengecualian gaji istri dari satu pemberi kerja sering diperluas ke semua penghasilan istri, padahal pekerjaan bebas tetap digabung."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      opsiLepas: { teks: "Dilaporkan oleh anak", alasan: "Anak tidak melaporkan penghasilan orang tuanya; yang terjadi justru penghasilan anak belum dewasa digabung ke orang tua." },
+      sumber: { set: "LM-B-2026-11", no: 214, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
+      sejak: "9.7.0"
     }
   ],
   kartu: [

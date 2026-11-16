@@ -100,7 +100,8 @@ describe('v9.4.5: temuan uji ulang tanpa kunci', () => {
 
 describe('v9.4.5: jumlah soal bertanda', () => {
   it('tersisa paling banyak 67 soal bertanda (sejak v9.5.4) di modul Tingkat B dan Etika dan 13 di modul Tingkat C', () => {
-    const tanda = k => semua.find(m => m.meta.kode === k).soal.filter(s => s.verifikasi === '◐').length;
+    // v9.7.0: paket LM punya batas sendiri di test/v970-data.test.js
+    const tanda = k => semua.find(m => m.meta.kode === k).soal.filter(s => s.verifikasi === '◐' && !(s.sumber && s.sumber.set === 'LM-B-2026-11')).length;
     const b = ['A1', 'A2', 'A3', 'A4', 'A5', 'B6', 'B7', 'B8', 'E'].reduce((a, k) => a + tanda(k), 0), c = tanda('C9') + tanda('C10');
     assert.ok(b <= 67, 'Tingkat B dan Etika: ' + b); assert.ok(c <= 13, 'Tingkat C: ' + c);
   });
