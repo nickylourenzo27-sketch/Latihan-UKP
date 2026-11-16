@@ -629,9 +629,11 @@
       dipilih = null; tandaiDipilih(); fs.querySelectorAll('input').forEach(i => { i.checked = false; });
       selesaikan('-');
     }
-    function selesaikan(jawab) {
+    // v9.7.3: pulih = { detik } saat soal yang sudah dijawab sebelum muat ulang digambar lagi (opsi.jawabanPulih): tanpa mencatat ulang,
+    // tanpa onPeriksa, tanpa toast kartu, tanpa memindah fokus atau menggulir
+    function selesaikan(jawab, pulih) {
       kunci();
-      const benar = jawab === soal.kunci; const detik = (performance.now() - mulai) / 1000;
+      const benar = jawab === soal.kunci; const detik = pulih ? Math.max(0, Number(pulih.detik) || 0) : (performance.now() - mulai) / 1000;
       const konteks = opsi.konteks || 'latih';
       tandaiHasil();
       const kid = 'KA-' + soal.id; const daftarKartu = () => UKP.store.get().kartuOtomatis || [];
@@ -642,23 +644,26 @@
       if (segYakin) segYakin.hidden = true;
       if (segAwal) segAwal.hidden = true;
       if (barisTidakTahu) barisTidakTahu.hidden = true;
-      if (!opsi.tanpaLog) {
+      if (!opsi.tanpaLog && !pulih) {
         UKP.belajar.catatJawaban(soal, jawab, detik, konteks);
         // catat keyakinan pada entri jawaban yang baru ditulis (field tambahan; penilaian tidak berubah)
         if (yk) { try { const arr = UKP.store.get().jawaban; const j = arr[arr.length - 1]; if (j && j.soal === soal.id && j.konteks === konteks) { j.keyakinan = yk; UKP.store.save(); } } catch (e) {} }
       }
-      if (opsi.onPeriksa) { try { opsi.onPeriksa(benar, jawab, detik, yk); } catch (e) { console.error(e); } }
+      if (opsi.onPeriksa && !pulih) { try { opsi.onPeriksa(benar, jawab, detik, yk); } catch (e) { console.error(e); } }
       // mode ringkas (diagnosis): tanpa panel 4 blok; umpan satu baris ditampilkan pemanggil pada soal berikutnya
       if (ringkas) { sudahLanjut = true; if (opsi.onLanjut) opsi.onLanjut(benar, jawab, detik, yk); return; }
       // teks kartu otomatis hanya bila kartu benar-benar dibuat (bukan simulasi, bukan tanpaLog)
       let kartu = null;
-      if (!benar && !opsi.tanpaLog && konteks !== 'simulasi') { const k = daftarKartu().find(x => x.id === kid); if (k) kartu = { id: kid, baru: !adaSebelum, perubahan: (k.dekTambahan || []).includes('perubahan-2025-2026') }; }
+      // v9.7.3 soal yang dipulihkan: kartu dianggap baru bila dibuat oleh jawaban itu (dibuatPada tidak lebih awal dari jawaban terakhir
+      // soal ini), supaya baris "Urungkan" tampil lagi; tanpa toast (lihat lewatToast)
+      const baruPulih = k => { const arr = UKP.store.get().jawaban || []; for (let i = arr.length - 1; i >= 0; i--) { const j = arr[i]; if (j && j.soal === soal.id) return typeof k.dibuatPada === 'number' && typeof j.pada === 'number' && k.dibuatPada >= j.pada; } return false; };
+      if (!benar && !opsi.tanpaLog && konteks !== 'simulasi') { const k = daftarKartu().find(x => x.id === kid); if (k) kartu = { id: kid, baru: pulih ? baruPulih(k) : !adaSebelum, perubahan: (k.dekTambahan || []).includes('perubahan-2025-2026') }; }
       // kartu baru: di desktop (pointer halus, ≥ 600 px) toast beraksi [Urungkan] (DESAIN-V6 C.20; core.js mengatur jaraknya dari
       // bar aksi). Di HP/pointer kasar, dan untuk "Yakin tetapi keliru" (kartu ditonjolkan), baris "… masuk dek Ulang · Urungkan"
       // di panel umpan, agar tidak ada toast yang menutupi Lanjut/Tanya Tutor (LT-2)
       const layarHp = cocok('(max-width: 599px)') || cocok('(pointer: coarse)');
       const yakinKeliru = yk === 'yakin' && !benar;
-      const lewatToast = !!(kartu && kartu.baru) && !layarHp && !yakinKeliru && toastBeraksi() && typeof UKP.belajar.hapusKartuOtomatis === 'function';
+      const lewatToast = !!(kartu && kartu.baru) && !pulih && !layarHp && !yakinKeliru && toastBeraksi() && typeof UKP.belajar.hapusKartuOtomatis === 'function';
       const panel = UKP.c.umpan(soal, jawab, detik, { kartu: lewatToast ? null : kartu, konteks, keyakinan: yk, langsung });
       if (bisaTadi && jawab !== '-') { segTadi = buatTadi(benar, konteks, panel); const st = panel.querySelector('.status'); if (st) st.after(segTadi); else panel.prepend(segTadi); }
       cadanganUmpan();
@@ -672,6 +677,7 @@
       aksi.replaceChildren(...[aksiKiri].concat(tombolSetelah(benar, jawab, detik, yk)).filter(Boolean)); aksi.hidden = false;
       gambarPetunjuk();
       // fokus ke kalimat inti (dibaca pembaca layar), Lanjut tetap di urutan Tab berikutnya; Enter pada kalimat inti = Lanjut
+      if (pulih) return;
       fokus(intiEl || aksi.querySelector('button'));
       if (langsung) gulirLangsung(); else { try { umpan.scrollIntoView({ block: 'nearest', behavior: halus() }); } catch (e) {} }
     }
@@ -839,6 +845,15 @@
     wrap.jedaPapan = bersama && !ujianB ? jedaPapan : null; wrap.dijeda = () => dijeda;
     // v8.1 papan mode ujian: wrap.raguBersama() → { nama: bool } (semua peserta)
     wrap.raguBersama = ujianB ? () => { const o = {}; pesertaB.forEach(n => { o[n] = !!rb[n]; }); return o; } : null;
+    // v9.7.3: opsi.jawabanPulih = { jawab: huruf opsi atau '-', detik, keyakinan }: soal yang sudah dijawab sebelum halaman dimuat ulang tampil
+    // lagi dalam keadaan terjawab (tanda opsi, vonis, pembahasan, penanda "Tadi Anda", tombol Lanjut). Jawaban tidak dicatat ulang
+    const jp = opsi.jawabanPulih;
+    if (jp && mode === 'belajar' && !hanyaBaca && !bersama && !ringkas && (jp.jawab === '-' || (HURUF.includes(jp.jawab) && labels[jp.jawab]))) {
+      dipilih = jp.jawab === '-' ? null : jp.jawab; tandaiDipilih();
+      fs.querySelectorAll('input').forEach(i => { i.checked = (i.value || i.getAttribute('value')) === dipilih; });
+      keyakinan = dipilih && LABEL_YAKIN[jp.keyakinan] ? jp.keyakinan : null;
+      selesaikan(jp.jawab, { detik: jp.detik });
+    }
     // setelah terpasang: fokus fieldset opsi agar pintasan A–D langsung berfungsi (mode ulas: hanya bila diminta).
     // Bila view meletakkan judul tepat di atas soal (mis. h1 "Soal 3 dari 8") dan memfokuskannya, fokus dibiarkan di judul
     // dan judul itu ikut meneruskan A–D ke soal ini (tetap terbatas pada komponen soal, bukan pintasan global).

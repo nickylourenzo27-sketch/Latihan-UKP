@@ -1222,7 +1222,83 @@
     UKP.toast('Penyimpanan peramban penuh atau tidak tersedia. Posisi latihan ini akan hilang bila halaman dimuat ulang. Simpan cadangan progres di Pengaturan, bagian Data dan pindah perangkat.', { ms: 12000 });
     return true;
   }
-  UKP.latihBank = { harusLanjut, papanDiTabLain, catatTabLain, nomorLanjut, teksGantiSesi, akhiriSesiLama, bolehGantiSesi, buatPenjagaMulai, dataSoalKurang, periksaLanjut, bolehLangsungMulai, pasangSimpanPergi, beritaPenuh, urutLatih, adaPetaResmi, saringResmi, luarResmi, teksBankKurang, jumlahMulaiRoom, nLatihTopik, nLatihDari, nLatihSalah };
+  // ================= v9.7.3: MUAT ULANG MELANJUTKAN LATIHAN SENDIRI =================
+  // Titik lanjut latihan sendiri per tab di sessionStorage (satu kunci). Disimpan saat soal tampil, saat menjawab, saat keyakinan diubah,
+  // saat ringkasan tampil, dan saat pagehide; dihapus saat halaman Latih dilepas oleh navigasi di dalam aplikasi. Dipakai hanya bila rute
+  // dipulihkan saat halaman dimuat ulang (pakaiTitikSendiri). Bentuk: lihat buatTitikSendiri
+  const KUNCI_SENDIRI = 'ukp.latihSendiri';
+  const UMUR_SENDIRI = 24 * 3600 * 1000;
+  // kunci rute: params terurut tanpa nilai kosong (null, '', false), supaya { mulai: true, lanjut: null } sama dengan { mulai: true }
+  function kunciRute(p) {
+    const o = {}; Object.keys(p || {}).sort().forEach(k => { const v = p[k]; if (v != null && v !== '' && v !== false) o[k] = v; });
+    try { return JSON.stringify(o); } catch (e) { return ''; }
+  }
+  // potret saringan latihan (f) untuk titik lanjut: hanya kunci yang dikenal dengan tipe yang benar. Sakelar dan segmen di halaman
+  // saringan mengubah f tanpa mengubah rute, jadi muat ulang memulihkan f dari sini (Waktu ketat, jumlah soal, kelompok)
+  const SARINGAN_TEKS = ['set', 'kode', 'topik', 'jenis', 'kesulitan', 'laporan', 'bank', 'butir'];
+  const SARINGAN_SAKELAR = ['hanyaSalah', 'kecuali', 'tempo', 'baru2025', 'gayaUkp', 'resmi'];
+  function saringanTitik(x) {
+    const o = {}; if (!x || typeof x !== 'object' || Array.isArray(x)) return o;
+    SARINGAN_TEKS.forEach(k => { if (typeof x[k] === 'string') o[k] = x[k]; });
+    SARINGAN_SAKELAR.forEach(k => { if (typeof x[k] === 'boolean') o[k] = x[k]; });
+    if (x.n === 'semua' || (typeof x.n === 'number' && isFinite(x.n) && x.n > 0)) o.n = x.n;
+    return o;
+  }
+  // o = { rute, ids, idx, benar, riwayat: [{ soal: { id }, benar, jawab, detik, keyakinan }], ulang, mulai, lama (ms aktif), detikSoal, selesai: { menit } | null, saringan, sekarang }
+  function buatTitikSendiri(o) {
+    const riwayat = (o.riwayat || []).map(r => ({ id: r.soal ? r.soal.id : r.id, b: r.benar ? 1 : 0, j: r.jawab === '-' || /^[A-E]$/.test(String(r.jawab)) ? r.jawab : '-', d: Math.max(0, Math.round((Number(r.detik) || 0) * 10) / 10), k: r.keyakinan || null }));
+    return { v: 1, rute: String(o.rute || ''), ids: (o.ids || []).slice(), idx: o.idx, benar: o.benar, riwayat, terjawab: riwayat.length > o.idx ? 1 : 0, ulang: o.ulang ? 1 : 0,
+      mulai: o.mulai, lama: Math.max(0, Math.round(Number(o.lama) || 0)), detikSoal: Math.max(0, Math.floor(Number(o.detikSoal) || 0)),
+      selesai: o.selesai ? { menit: Math.max(1, Math.round(Number(o.selesai.menit) || 1)) } : null, saringan: o.saringan ? saringanTitik(o.saringan) : null, disimpan: o.sekarang != null ? o.sekarang : Date.now() };
+  }
+  const bulatTak = (x, maks) => typeof x === 'number' && isFinite(x) && x >= 0 && Math.floor(x) === x && (maks == null || x <= maks);
+  const angkaTak = x => typeof x === 'number' && isFinite(x) && x >= 0;
+  const objekBiasa = x => !!x && typeof x === 'object' && !Array.isArray(x);
+  const YAKIN_SAH = ['yakin', 'ragu', 'menebak'];
+  function titikSendiriSah(t, sekarang) {
+    if (!t || typeof t !== 'object' || t.v !== 1 || typeof t.rute !== 'string') return false;
+    const now = sekarang != null ? sekarang : Date.now();
+    if (typeof t.disimpan !== 'number' || !isFinite(t.disimpan) || now - t.disimpan > UMUR_SENDIRI || t.disimpan - now > 60000) return false;
+    if (!Array.isArray(t.ids) || !t.ids.length || t.ids.some(id => typeof id !== 'string' || !id)) return false;
+    if (!Array.isArray(t.riwayat) || !bulatTak(t.idx, t.ids.length)) return false;
+    if (typeof t.mulai !== 'number' || !isFinite(t.mulai) || t.mulai > now + 60000) return false;
+    const terjawab = t.riwayat.length === t.idx + 1;
+    if (!(t.riwayat.length === t.idx || (terjawab && t.idx < t.ids.length))) return false;
+    if (!!t.terjawab !== terjawab) return false;
+    for (let i = 0; i < t.riwayat.length; i++) {
+      const r = t.riwayat[i];
+      if (!r || r.id !== t.ids[i] || !(r.j === '-' || /^[A-E]$/.test(String(r.j)))) return false;
+      if (!angkaTak(r.d) || !(r.k == null || YAKIN_SAH.includes(r.k))) return false;
+    }
+    if (!angkaTak(t.lama) || !angkaTak(t.detikSoal)) return false;
+    if (t.selesai != null && !(objekBiasa(t.selesai) && angkaTak(t.selesai.menit))) return false;
+    if (t.saringan != null && !objekBiasa(t.saringan)) return false;
+    if (t.benar !== t.riwayat.slice(0, t.idx).filter(r => r.b).length) return false;
+    if (!t.selesai && t.idx >= t.ids.length) return false; // semua soal dilanjutkan tetapi ringkasan belum tercatat
+    return true;
+  }
+  // keputusan memakai titik lanjut sendiri. o = { params, pulih, adaPeserta, titik, sekarang }
+  function pakaiTitikSendiri(o) {
+    if (!o || !o.pulih || o.adaPeserta) return false;
+    const p = o.params || {};
+    if (p.lanjut || p.evaluasi) return false;
+    return titikSendiriSah(o.titik, o.sekarang) && o.titik.rute === kunciRute(p);
+  }
+  // akses sessionStorage selalu dijaga: tidak tersedia atau melempar = tanpa titik lanjut (perilaku v9.7.2), tanpa galat konsol
+  function bacaTitikSendiri() {
+    try { const ss = root.sessionStorage; if (!ss) return null; const t = ss.getItem(KUNCI_SENDIRI); return t ? JSON.parse(t) : null; } catch (e) { return null; }
+  }
+  function tulisTitikSendiri(t) {
+    try { const ss = root.sessionStorage; if (!ss) return false; if (t) ss.setItem(KUNCI_SENDIRI, JSON.stringify(t)); else ss.removeItem(KUNCI_SENDIRI); return true; } catch (e) { return false; }
+  }
+  // v9.7.3 (b): rute { mulai } / { ids } yang dipulihkan saat muat ulang selama latihan bersama aktif tidak memulai latihan bersama baru
+  // (mis. entri riwayat buatan versi lama tanpa titik lanjut bersama); saringan yang tampil
+  function bolehMulaiDariRute(o) {
+    const p = (o && o.params) || {};
+    return !(o && o.pulih && o.adaPeserta && (p.mulai || p.ids));
+  }
+  UKP.latihBank = { harusLanjut, papanDiTabLain, catatTabLain, nomorLanjut, teksGantiSesi, akhiriSesiLama, bolehGantiSesi, buatPenjagaMulai, dataSoalKurang, periksaLanjut, bolehLangsungMulai, pasangSimpanPergi, beritaPenuh, urutLatih, adaPetaResmi, saringResmi, luarResmi, teksBankKurang, jumlahMulaiRoom, nLatihTopik, nLatihDari, nLatihSalah,
+    KUNCI_SENDIRI, kunciRute, saringanTitik, buatTitikSendiri, titikSendiriSah, pakaiTitikSendiri, bacaTitikSendiri, tulisTitikSendiri, bolehMulaiDariRute };
 
   // ================= LATIH =================
   UKP.views.latih = function (params) {
@@ -1236,6 +1312,9 @@
     let padaLepasRoom = null; // v8.2 B2: lepas pendengar room saat unmount (aktivitas room TIDAK diakhiri; pemandu bisa kembali)
     let lepasJalan = null; // v9.7.2: lepas pendengar pagehide dan kanal papan milik putaran jalankan() yang sedang tampil
     let dilepas = false; // v9.7.2: tampilan sudah dilepas router (pekerjaan tertunda tidak boleh memulai apa pun)
+    let titikSendiriAktif = false; // v9.7.3: tampilan ini menjalankan latihan sendiri; titik lanjutnya dihapus saat tampilan dilepas
+    let titikSendiriDiabaikan = false; // v9.7.3: titik sah diabaikan karena Mode mabar aktif; ikut dihapus saat tampilan dilepas
+    let gulirManual = false; // v9.7.3: latihan sendiri memasang history.scrollRestoration 'manual'; tampilan yang dilepas mengembalikan 'auto'
     // v9.7.2 D4 dan F5: satu penjaga untuk tombol Mulai dan baris Buku Kesalahan (dialog persetujuan, klik kedua diabaikan)
     const penjagaMulai = buatPenjagaMulai({ adaPeserta: () => !!pesertaAktif(), masihAda: () => !dilepas && page.isConnected });
     // paket soal bersumber (try out): f.set = kode paket (soal.sumber.set); pool = seluruh soal paket, lintas tingkat
@@ -1318,7 +1397,7 @@
     function jalankan(daftar, oj) {
       oj = oj || {};
       if (lepasJalan) { try { lepasJalan(); } catch (e) {} lepasJalan = null; }
-      hentikanTempo(); page.innerHTML = ''; let idx = 0, benar = 0; const mulaiWaktu = Date.now();
+      hentikanTempo(); page.innerHTML = ''; let idx = 0, benar = 0; let mulaiWaktu = Date.now();
       // v7.7: satu putaran tanpa jeda (penyebut tetap); soal yang salah dikumpulkan untuk "Ulangi N soal yang salah" di ringkasan
       const riwayat = [];
       // v7.9 latihan bersama: peserta dibaca saat putaran dimulai; riwayatB = [{ soal, per: { nama: { opsi, keyakinan, benar } } }]
@@ -1328,6 +1407,25 @@
       const lanjut = oj.lanjut || null;
       const sesiLama = lanjut && L.sesiBersamaDari ? L.sesiBersamaDari(lanjut.sesiId) : null;
       const peserta = sesiLama && sesiLama.peserta && sesiLama.peserta.length ? sesiLama.peserta.slice() : pesertaAktif(); const riwayatB = [];
+      // v9.7.3 latihan sendiri: oj.pulihS = titik lanjut yang sah (muat ulang). Riwayat, nomor soal, jumlah benar, waktu mulai asli, dan
+      // lama aktif dipulihkan; soal yang sedang tampil digambar lagi oleh gambar() (psSoal), ringkasan oleh selesai({ pulih })
+      const ps = !peserta && oj.pulihS ? oj.pulihS : null;
+      if (peserta && titikSendiriAktif) { titikSendiriAktif = false; tulisTitikSendiri(null); }
+      if (!peserta) titikSendiriAktif = true;
+      // v9.7.3: entri riwayat latihan sendiri tidak memakai pemulihan gulir peramban saat dimuat ulang (soal yang dilanjutkan mulai dari atas)
+      // Peramban menyalin nilai ini ke entri baru saat pushState, jadi unmount mengembalikannya (entri yang aktif saat itu sudah entri baru)
+      if (!peserta) { try { if (root.history && 'scrollRestoration' in root.history) { root.history.scrollRestoration = 'manual'; gulirManual = true; } } catch (e) {} }
+      let lamaSendiri = 0, selesaiS = null, psSoal = null, mulaiSoalS = Date.now(); const tAktif = Date.now();
+      if (ps) {
+        idx = ps.idx; benar = ps.benar; mulaiWaktu = ps.mulai; lamaSendiri = ps.lama || 0; psSoal = ps.selesai ? null : ps;
+        ps.riwayat.forEach((r, i) => riwayat.push({ soal: daftar[i], benar: !!r.b, jawab: r.j, detik: r.d || 0, ulang: !!oj.ulang, keyakinan: r.k || null }));
+      }
+      const lamaAktifS = () => lamaSendiri + (Date.now() - tAktif); // waktu selama halaman tertutup tidak ikut
+      const simpanSendiri = () => {
+        if (peserta || !titikSendiriAktif) return;
+        tulisTitikSendiri(buatTitikSendiri({ rute: kunciRute(params), ids: daftar.map(x => x.id), idx, benar, riwayat, ulang: oj.ulang, mulai: mulaiWaktu, lama: lamaAktifS(),
+          detikSoal: riwayat.length > idx || selesaiS ? 0 : (Date.now() - mulaiSoalS) / 1000, selesai: selesaiS, saringan: f }));
+      };
       // v8.2 B2 room tim: niat room (params.room saat mulai, atau titik lanjut yang membawa room); sesi room ≤ 120 soal
       const R = ruangR();
       // V3: lanjut.room === 'terbit' = sesi room yang sudah dipindah ke satu layar → tidak menyambung lagi, tetapi rekaman tetap diterbitkan
@@ -1455,6 +1553,8 @@
         }
         lepasJalan = () => { lepasPergi(); if (kanal) { try { kanal.close(); } catch (e) {} kanal = null; } };
       }
+      // v9.7.3: muat ulang atau tutup tab menyimpan titik lanjut latihan sendiri saat itu juga (detik soal dan lama aktif terbaru)
+      if (!peserta) lepasJalan = pasangSimpanPergi(() => { if (page.isConnected) simpanSendiri(); });
       const lepasAktif = () => { if (sesiId && L.simpanBersamaAktif) { const a = UKP.store.get().bersamaAktif; if (!a || a.sesiId === sesiId) L.simpanBersamaAktif(null); } };
       padaLepas = peserta ? simpanAktif : null; // unmount (pindah halaman di tengah sesi): simpan titik lanjut terakhir
       let tik = 0;
@@ -1641,8 +1741,16 @@
         if (idx >= daftar.length) { selesai(); return; }
         terapkanSusulan();
         const soal = daftar[idx]; const anggaran = soal.anggaranDetik || 150; const no = idx;
+        // v9.7.3: soal yang tampil saat halaman dimuat ulang: belum dijawab (detik lanjut) atau sudah dijawab (rPulih, tanpa mencatat ulang)
+        const pulihS = psSoal && psSoal.idx === idx && daftar[idx] && psSoal.ids[idx] === soal.id ? psSoal : null; psSoal = null;
+        const rPulih = pulihS && pulihS.terjawab && riwayat[idx] && riwayat[idx].soal === soal ? riwayat[idx] : null;
+        const detikS = pulihS && !rPulih ? Math.min(3600, Math.max(0, Number(pulihS.detikSoal) || 0)) : 0;
+        mulaiSoalS = Date.now() - detikS * 1000;
+        // v9.7.3 waktu ketat: hitung mundur lanjut dari detik yang tersimpan
+        const sisaAwalTempo = Math.max(0, anggaran - Math.floor(detikS));
         // v9.5.3 B1: papan bersama tidak memakai hitung mundur "Waktu ketat per soal"; waktu per soal hanya mengikuti "Waktu mengerjakan per soal"
         const tempoEl = f.tempo && !peserta ? h('span', { class: 'timer', role: 'timer' }, U.jam(anggaran)) : null;
+        if (tempoEl && detikS) { tempoEl.textContent = U.jam(sisaAwalTempo); if (sisaAwalTempo <= 30) tempoEl.dataset.sisa = 'sedikit'; }
         // v8.1 laju soal: mulai dari 0 (atau dari draf yang dipulihkan); papan soal berjalan dipulihkan lewat bersama.awal
         const pulihIni = pertama && pulihB && pulihB.idx === idx && pulihB.soalId === soal.id ? pulihB : null;
         const draf = !pulihIni && pertama && lanjut && lanjut.draf && lanjut.draf.soalId === soal.id ? lanjut.draf : null; pertama = false;
@@ -1657,9 +1765,11 @@
         if (lajuEl) gambarLaju();
         // nomor soal hanya di bar fokus (satu rumah per fakta); kop soal cukup menampilkan kesulitan
         tempoKini = tempoEl;
-        kop.atur(judulKop(no + 1, benar), no / Math.max(1, dari) * 100, peserta ? kananBersama() : [tempoEl, tautanAtur()]);
+        if (rPulih) kop.atur(judulKop(no + 1, benar + (rPulih.benar ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, [tautanAtur()]);
+        else kop.atur(judulKop(no + 1, benar), no / Math.max(1, dari) * 100, peserta ? kananBersama() : [tempoEl, tautanAtur()]);
         let triKini = null;
-        const el = UKP.c.soal(soal, { konteks: 'latih', detikAwal: detikDraf,
+        const el = UKP.c.soal(soal, { konteks: 'latih', detikAwal: peserta ? detikDraf : detikS,
+          jawabanPulih: rPulih ? { jawab: rPulih.jawab, detik: rPulih.detik, keyakinan: rPulih.keyakinan } : null,
           bersama: peserta ? { peserta, awal, hitungPenjelas, namaPemandu: roomNiat ? namaPemandu() : null, onTriase: tri => { triKini = tri; tunjuk(tri); },
             // v8.2 B2: isian dari HP tidak masuk draf lanjutan (setelah muat ulang diambil lagi dari room, hurufnya tetap tersembunyi)
             onUbah: (nama, v) => { const dariHp = !!(el && el.sumberBersama && el.sumberBersama()[nama] === 'hp'); if (v.o && !dariHp) drafSoal.jb[nama] = v.o; else delete drafSoal.jb[nama]; if (v.k && !dariHp) drafSoal.yb[nama] = v.k; else delete drafSoal.yb[nama]; simpanAktif(); },
@@ -1691,7 +1801,7 @@
           } : null,
           onKeMenu: peserta && !adaMenuKop ? keMenu : null, onSelesaiSekarang: peserta && !adaMenuKop ? selesaiSekarang : null, metaBersama,
           aksiKiri: soalSelesai().length ? tombolLihat() : null,
-          onPeriksa: (b, jawab, detik, keyakinan) => { hentikanTempo(); riwayat.push({ soal, benar: !!b, jawab, detik, ulang: !!oj.ulang, keyakinan: keyakinan || null }); kop.atur(peserta ? null : judulKop(no + 1, benar + (b ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, peserta ? undefined : [tautanAtur()]); }, onKeyakinan: v => { const r = riwayat[riwayat.length - 1]; if (r && r.soal === soal) r.keyakinan = v || null; },
+          onPeriksa: (b, jawab, detik, keyakinan) => { hentikanTempo(); riwayat.push({ soal, benar: !!b, jawab, detik, ulang: !!oj.ulang, keyakinan: keyakinan || null }); kop.atur(peserta ? null : judulKop(no + 1, benar + (b ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, peserta ? undefined : [tautanAtur()]); simpanSendiri(); }, onKeyakinan: v => { const r = riwayat[riwayat.length - 1]; if (r && r.soal === soal) r.keyakinan = v || null; simpanSendiri(); },
           onLanjut: (b) => { if (b) benar++; if (peserta && sesiId && triKini && triKini.kelas !== 'dikuasai' && L.tandaiBahas) L.tandaiBahas(sesiId, soal.id, true); catatBahasKini(); idx++; gambar(); if (idx < daftar.length) simpanAktif(); } });
         area.append(h('h1', { class: 'visually-hidden' }, (oj.ulang ? 'Putaran ulang, soal ' : 'Soal ') + (no + 1) + ' dari ' + dari), el);
         elKini = peserta ? el : null; soalKini = peserta ? soal : null; wrapKini = el;
@@ -1703,8 +1813,8 @@
           if (typeof el.bukaKunci === 'function') { try { el.bukaKunci(); } catch (e) { console.error(e); } }
           if (pulihKini) { pulihKini = null; idx++; gambar(); return; } // tidak bisa dibuka ulang → lanjut ke soal berikutnya seperti dulu
         }
-        if (tempoEl) {
-          let sisa = anggaran;
+        if (tempoEl && !rPulih && sisaAwalTempo > 0) {
+          let sisa = sisaAwalTempo;
           timer = setInterval(() => {
             // berhenti bila soal sudah diperiksa (panel umpan/terkunci) atau elemen sudah dilepas
             if (!tempoEl.isConnected || el.querySelector('.terkunci, .umpan')) { hentikanTempo(); return; }
@@ -1714,19 +1824,24 @@
         }
         window.scrollTo({ top: 0 });
         UKP.fokusNanti(area.querySelector('h1'));
+        simpanSendiri(); // v9.7.3
       }
-      function selesai() {
+      // v9.7.3: o.pulih = ringkasan latihan sendiri digambar lagi sesudah muat ulang (o.menit dari titik lanjut): kehadiran dan ringkasan
+      // tim tidak dikirim kedua kali. Latihan sendiri memakai lama aktif untuk durasi
+      function selesai(o) {
+        const dariPulih = !peserta && !!(o && o.pulih);
         tutupLihat(true);
         hentikanTempo(); area.innerHTML = ''; kop.remove(); if (skorEl) skorEl.remove(); modeFokus(false); elKini = null; soalKini = null;
-        const menit = Math.max(1, Math.round((Date.now() - mulaiWaktu) / 60000));
-        if (idx > 0) UKP.hadir.catat('HADIR', menit);
-        if (idx > 0 && UKP.tim) UKP.tim.kirimRingkasan({ selesai: true }); // dasbor tim (js/tim.js): ringkasan, debounce 5 dtk, diam bila tidak tersambung
+        const menit = dariPulih ? Math.max(1, Number(o.menit) || 1) : Math.max(1, Math.round((peserta ? Date.now() - mulaiWaktu : lamaAktifS()) / 60000));
+        if (idx > 0 && !dariPulih) UKP.hadir.catat('HADIR', menit);
+        if (idx > 0 && UKP.tim && !dariPulih) UKP.tim.kirimRingkasan({ selesai: true }); // dasbor tim (js/tim.js): ringkasan, debounce 5 dtk, diam bila tidak tersambung
         if (peserta) {
           hentikanSesi();
           const sesi = akhiriSesi();
           if (sesi && typeof UKP.c.evaluasiBersama === 'function') { tampilEvaluasi(sesi); return; }
           ringkasanBersama(menit); return;
         }
+        selesaiS = { menit }; simpanSendiri(); // v9.7.3: muat ulang di layar ini menggambar ringkasan yang sama
         const salahTerakhir = s.jawaban.filter(j => j.pada >= mulaiWaktu && !j.benar && j.opsi !== '-');
         const perTopik = {}; salahTerakhir.forEach(j => { perTopik[j.topik] = (perTopik[j.topik] || 0) + 1; });
         const top = Object.entries(perTopik).sort((a, b) => b[1] - a[1])[0];
@@ -1942,11 +2057,12 @@
       if (peserta) gambarSkor();
       if (roomNiat && !sambungRoom()) { if (lanjut) tungguRoom(); else { roomNiat = false; UKP.toast('Room tidak tersambung. Latihan berjalan di satu layar.'); } }
       padaLepasRoom = peserta ? lepasPendengar : null;
-      gambar();
+      if (ps && ps.selesai) { selesaiS = ps.selesai; selesai({ pulih: true, menit: ps.selesai.menit }); } else gambar(); // v9.7.3
       if (peserta) simpanAktif();
     }
     let tUmum = null; // jeda pengumuman jumlah cocok
-    const hasil = () => ({ node: page, unmount: () => { dilepas = true; if (padaLepas) { try { padaLepas(); } catch (e) {} } if (padaLepasRoom) { try { padaLepasRoom(); } catch (e) {} } if (lepasJalan) { try { lepasJalan(); } catch (e) {} lepasJalan = null; } hentikanTempo(); hentikanSesi(); clearTimeout(tUmum); modeFokus(false); } });
+    // v9.7.3: navigasi di dalam aplikasi melepas tampilan: titik lanjut latihan sendiri dihapus (muat ulang tidak melepas tampilan)
+    const hasil = () => ({ node: page, unmount: () => { dilepas = true; if (titikSendiriAktif || titikSendiriDiabaikan) { titikSendiriAktif = false; titikSendiriDiabaikan = false; tulisTitikSendiri(null); } if (gulirManual) { gulirManual = false; try { root.history.scrollRestoration = 'auto'; } catch (e) {} } if (padaLepas) { try { padaLepas(); } catch (e) {} } if (padaLepasRoom) { try { padaLepasRoom(); } catch (e) {} } if (lepasJalan) { try { lepasJalan(); } catch (e) {} lepasJalan = null; } hentikanTempo(); hentikanSesi(); clearTimeout(tUmum); modeFokus(false); } });
     // G4: layar evaluasi latihan bersama menulis rute { evaluasi: <id> }. Muat ulang, atau kembali ke entri itu, membuka evaluasi sesi
     // yang sudah selesai di halaman yang sudah ada untuk rekaman sesi (#tim/sesi:<id>), sama dengan tombol Lihat hasil lengkap
     if (typeof params.evaluasi === 'string' && !params.lanjut && !params.mulai && !params.ids) {
@@ -1960,6 +2076,9 @@
     // v7.7: #latih tanpa params (ubin Beranda, menu Latih) langsung mulai: acak dari tingkat target, 20 soal, jawab langsung.
     // Halaman saringan tetap lewat params apa pun (mis. { atur: 1 } dari "Atur saringan", atau kode/n tanpa mulai)
     // v8.1: sesi bersama yang bisa dilanjutkan → #latih tanpa params TIDAK memulai sesi baru; saringan menampilkan kartu "Lanjutkan"
+    // v9.7.3: dideklarasikan sebelum jalur lanjut. keluar() di papan yang dilanjutkan membacanya; dulu deklarasinya ada sesudah jalur
+    // lanjut selesai, sehingga tombol Keluar melempar galat dan papan tetap tampil bila belum ada kunci yang dibuka
+    let langsungMulai = false;
     const bisaLanjut0 = L.bersamaAktif ? L.bersamaAktif() : null;
     if (!bisaLanjut0 && s.bersamaAktif && L.simpanBersamaAktif) L.simpanBersamaAktif(null); // keadaan kedaluwarsa dibersihkan
     // v9.7.2 D7: titik lanjut yang soalnya tidak lengkap lagi (soal dihapus di versi baru) diakhiri di sini, supaya Beranda dan lobi room
@@ -2006,13 +2125,31 @@
       mulaiLanjut(); return hasil();
     }
     // F2: rute yang dipulihkan saat muat ulang selama latihan bersama aktif tidak langsung memulai (bolehLangsungMulai)
-    const langsungMulai = bolehLangsungMulai({ params, bisaLanjut: !!bisaLanjut, pulih: pulihRute, adaPeserta: !!pesertaAktif() });
+    langsungMulai = bolehLangsungMulai({ params, bisaLanjut: !!bisaLanjut, pulih: pulihRute, adaPeserta: !!pesertaAktif() });
     // params.mulai / params.ids juga tidak memulai sesi bersama baru selama ada sesi yang bisa dilanjutkan (mis. muat ulang halaman:
     // history.state masih membawa { mulai: true }); saringan menampilkan kartu "Lanjutkan"
-    const tahanMulai = !!bisaLanjut && !!pesertaAktif();
+    // v9.7.3 (b): rute { mulai } / { ids } yang dipulihkan saat muat ulang selama latihan bersama aktif juga ditahan (bolehMulaiDariRute)
+    const tahanMulai = (!!bisaLanjut && !!pesertaAktif()) || !bolehMulaiDariRute({ params, pulih: pulihRute, adaPeserta: !!pesertaAktif() });
+    // v9.7.3 (a): latihan sendiri yang sedang tampil saat halaman dimuat ulang dilanjutkan dari titik lanjutnya (pakaiTitikSendiri).
+    // Soal yang sudah tidak ada (semua data termuat): titik dibuang, alur biasa. Ada berkas data gagal dimuat: titik dibiarkan, saringan
+    // dengan banner Muat ulang, tanpa latihan baru
+    let tahanSendiri = false;
+    const titikS = bacaTitikSendiri();
+    if (titikS && pakaiTitikSendiri({ params, pulih: pulihRute, adaPeserta: !!pesertaAktif(), titik: titikS })) {
+      const cekS = periksaLanjut({ soalIds: titikS.ids });
+      if (!cekS.rusak && !cekS.kurang) {
+        // saringan yang dipilih di layar (tidak ada di rute) ikut dipulihkan; paket, butir, dan resmi tetap diperiksa seperti dari rute
+        Object.assign(f, saringanTitik(titikS.saringan));
+        if (f.set && !paketDari(f.set)) f.set = '';
+        if (f.butir && !infoButirF(f.butir)) f.butir = '';
+        f.resmi = !!f.resmi && adaPeta;
+        jalankan(cekS.arr, { ulang: !!titikS.ulang, pulihS: titikS }); return hasil();
+      }
+      if (cekS.kurang) tahanSendiri = true; else tulisTitikSendiri(null);
+    } else if (titikS && pesertaAktif() && pakaiTitikSendiri({ params, pulih: pulihRute, adaPeserta: false, titik: titikS })) titikSendiriDiabaikan = true;
     // v8.0: params.ids = 'B8-076,A3-138' → putaran ulang soal itu (dipakai "Ulangi N soal yang salah" di #tim/sesi:<id>); bersama bila s.bersama aktif
-    if (params.ids && !tahanMulai) { const arr = String(params.ids).split(',').map(id => K.soal(id.trim())).filter(Boolean); if (arr.length) { jalankan(U.acak(arr), { ulang: true }); return hasil(); } }
-    if ((params.mulai && !tahanMulai || langsungMulai) && mulai({ room: !!params.room && !langsungMulai })) return hasil();
+    if (params.ids && !tahanMulai && !tahanSendiri) { const arr = String(params.ids).split(',').map(id => K.soal(id.trim())).filter(Boolean); if (arr.length) { jalankan(U.acak(arr), { ulang: true }); return hasil(); } }
+    if (!tahanSendiri && (params.mulai && !tahanMulai || langsungMulai) && mulai({ room: !!params.room && !langsungMulai })) return hasil();
     // form filter (DESAIN-V6 D.5): jumlah soal di atas, sakelar role="switch", tombol Mulai membawa jumlah cocok (LT-1);
     // ≥ 1280 ringkasan jumlah cocok di panel kanan lengket
     page.classList.add('lebar');
@@ -2022,8 +2159,11 @@
     if (lanjutKurangData) page.appendChild(h('div', { class: 'banner banner-muat-kurang', 'data-tone': 'warn', role: 'alert' }, ikon('peringatan'),
       h('span', null, 'Sebagian data soal gagal dimuat. Muat ulang halaman untuk melanjutkan latihan. Latihan bersama yang belum selesai tetap tersimpan.'),
       h('button', { type: 'button', class: 'btn btn-ghost', onclick: () => root.location.reload() }, 'Muat ulang')));
+    if (tahanSendiri) page.appendChild(h('div', { class: 'banner banner-muat-kurang', 'data-tone': 'warn', role: 'alert' }, ikon('peringatan'),
+      h('span', null, 'Sebagian data soal gagal dimuat. Muat ulang halaman untuk melanjutkan latihan. Posisi latihan Anda tetap tersimpan.'),
+      h('button', { type: 'button', class: 'btn btn-ghost', onclick: () => root.location.reload() }, 'Muat ulang')));
     page.appendChild(kop({ pita: true, judul: 'Latih soal', lead: 'Pilih kelompok dan jumlah soal. Setiap jawaban langsung dibahas: inti jawaban, langkah hitung, dan dasar hukumnya.' }));
-    if ((params.mulai && !tahanMulai) || langsungMulai) page.appendChild(h('div', { class: 'banner', 'data-tone': 'warn', role: 'note' }, ikon('peringatan'), h('span', null, 'Tidak ada soal yang cocok dengan filter ini. Longgarkan filter di bawah lalu mulai lagi.')));
+    if (!tahanSendiri && ((params.mulai && !tahanMulai) || langsungMulai)) page.appendChild(h('div', { class: 'banner', 'data-tone': 'warn', role: 'note' }, ikon('peringatan'), h('span', null, 'Tidak ada soal yang cocok dengan filter ini. Longgarkan filter di bawah lalu mulai lagi.')));
     const semuaKel = K.semuaKelompok(); const luar = semuaKel.filter(k => !kelTingkat.includes(k));
     const opsiKel = k => h('option', { value: k, selected: f.kode === k ? true : null }, k + ' · ' + K.namaKelompok(k));
     const opsiSemuaKel = h('option', { value: '' }, 'Semua kelompok Tingkat ' + tingkat);

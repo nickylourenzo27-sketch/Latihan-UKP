@@ -16,6 +16,21 @@ Tampilan mengikuti kanvas desain pemilik ("MABAR UKP · Logo" dan "MABAR UKP · 
 - **Sambutan (v9.0).** Pengunjung baru di akar situs melihat halaman sambutan berkerangka sama, dengan tombol Masuk menuju formulir lima langkah. Tautan tim (`#room/<kode>`, `#ujiantim/<kode>`, `#lj`) tetap langsung ke layarnya.
 - **Mode mabar** adalah nama pintu fitur tim (halaman `#room`). Nama fitur di dalamnya tidak berubah.
 
+<!-- mabar-973:mulai -->
+## Muat ulang melanjutkan latihan sendiri (v9.7.3)
+
+Dulu, latihan sendiri mulai lagi dari soal 1 dengan soal baru setiap kali halaman dimuat ulang. Sekarang latihan berlanjut di tempat yang sama.
+
+- **Soal yang sama.** Nomor soal, urutan soal, jumlah benar, dan waktu soal itu tetap. Tombol "Soal sebelumnya" juga tetap berisi soal yang sudah dikerjakan. Pilihan saringan seperti Waktu ketat per soal dan jumlah soal juga tetap.
+- **Soal yang sudah dijawab.** Bila halaman dimuat ulang sesudah menjawab, soal itu tampil lagi lengkap dengan jawaban, hasil, dan pembahasannya. Jawaban tidak tercatat dua kali. Tekan Lanjut seperti biasa.
+- **Layar Latihan selesai.** Muat ulang menampilkan ringkasan yang sama, bukan latihan baru. Kehadiran dan ringkasan ke Dasbor tim tidak terkirim dua kali. Putaran "Ulangi soal yang salah" juga bertahan.
+- **Durasi.** Lama latihan di ringkasan hanya menghitung waktu halaman terbuka.
+- **Batasnya.** Posisi ini disimpan per tab dan berlaku 24 jam. Membuka Latih dari menu, atau pindah ke halaman lain lalu kembali, tetap memulai latihan baru. Bila sebagian data soal gagal dimuat, halaman meminta dimuat ulang dan posisi latihan tetap tersimpan.
+- **Mode mabar.** Bila Mode mabar aktif, halaman yang dimuat ulang tidak pernah memulai latihan bersama baru sendiri.
+- **Tombol Keluar di papan mabar.** Di papan yang dilanjutkan sesudah muat ulang, tombol Keluar (tanda silang) sekarang menutup papan walau belum ada kunci jawaban yang dibuka. Dulu latihannya berakhir tetapi papan tetap tampil.
+
+Cara menguji: `node --test test/` (uji `test/v973-*.test.js`), lalu di peramban `KASUS=s-kerja,s-bahas,s-hasil,s-ulang,s-baru,s-hilang,s-tanpasimpan,s-tempo NODE_PATH=$(npm root -g) node tools/uji-muat-ulang.js .` (tanpa broker). Kasus s- juga ikut pada pemakaian bawaan alat itu.
+<!-- mabar-973:selesai -->
 <!-- mabar-972:mulai -->
 ## Muat ulang melanjutkan sesi Mode mabar (v9.7.2)
 

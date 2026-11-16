@@ -438,3 +438,20 @@ test('G4: layar evaluasi menulis rute { evaluasi }; muat ulang membuka evaluasi 
   T.UKP.mulaiDariHash(); await tunggu(20);
   assert.equal(T.UKP.sekarang().view, 'latih'); assert.ok(!adaPapan(T)); assert.equal(T.s.sesiBersama.length, n0 - 1);
 });
+
+// v9.7.3: jalur lanjut selesai sebelum halaman saringan disusun. Tombol Keluar di kop papan yang dilanjutkan, saat belum ada kunci
+// yang dibuka, harus mengakhiri latihan dan membuka saringan tanpa galat (dulu: variabel langsungMulai belum dipasang, papan tetap tampil)
+test('v9.7.3: tombol Keluar pada papan yang dilanjutkan sebelum ada kunci dibuka membuka saringan tanpa galat', () => {
+  const T = siapkan(); T.bersama();
+  const id = T.L.mulaiSesiBersama(['Nicky', 'Mita'], IDS, 600, { tempo: 'ujian', detikPerSoal: 126, detikBahas: 120, mode: 'latihan' });
+  T.L.simpanBersamaAktif({ sesiId: id, soalIds: IDS, idx: 0, sisaDetik: 300, anggaranDetik: 600, tempo: 'ujian', detikPerSoal: 126 });
+  T.UKP.go('latih', { lanjut: 1 });
+  assert.ok(adaPapan(T), 'papan dilanjutkan'); assert.match(teks(T), /Soal 1 dari 4/);
+  const x = T.main.querySelectorAll('button').find(b => b.getAttribute('aria-label') === 'Keluar dari latihan'); assert.ok(x, 'tombol Keluar');
+  assert.doesNotThrow(() => x.click());
+  assert.ok(!adaPapan(T), 'papan ditinggalkan');
+  assert.match(teks(T), /Latih soal/);
+  assert.equal(T.L.bersamaAktif(), null, 'titik lanjut dilepas');
+  assert.equal(params(T.UKP).atur, 1, 'rute saringan');
+  T.UKP.go('beranda');
+});

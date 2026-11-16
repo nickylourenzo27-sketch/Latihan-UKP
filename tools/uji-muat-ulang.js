@@ -1,4 +1,5 @@
 // Uji peramban v9.7.2: muat ulang di Mode mabar melanjutkan sesi yang sama (papan pemimpin, room, dan HP anggota).
+// v9.7.3: juga latihan sendiri (kasus berawalan s-) melanjutkan soal, ringkasan, dan putaran ulang yang sama.
 // Berdiri sendiri (tidak memakai berkas lain di tools/). Cara dan pembantu sama dengan tools/uji-room-web.js.
 //
 // Menjalankan dengan relai lokal (disarankan):
@@ -22,6 +23,11 @@
 //        muatgagal (satu berkas soal gagal dimuat sekali saat muat ulang), salinan (tab salinan dimuat ulang sesudah latihan berakhir),
 //        enterdua (G1: Enter dua kali pada tombol Mulai), ketuk (G2 dan G3: Lanjutkan yang diketuk saat papan hidup di tab lain).
 //        Kasus akhir juga memeriksa G4 (muat ulang di layar evaluasi membuka evaluasi sesi itu).
+//        v9.7.3 latihan sendiri (tanpa room, tidak butuh broker atau RELAI; mis. KASUS=s-kerja,s-bahas node tools/uji-muat-ulang.js .):
+//        s-kerja (soal belum dijawab, 320 px), s-bahas (soal sudah dijawab dan "Tidak tahu", 390 px), s-hasil (layar Latihan selesai,
+//        selesai penuh dan keluar lebih awal, tanpa kehadiran dan ringkasan tim kedua), s-ulang (putaran ulang), s-baru (navigasi baru,
+//        Kembali, dan mode bersama tidak memakai titik), s-hilang (berkas soal gagal dimuat, lalu id yang sudah tidak ada),
+//        s-tanpasimpan (sessionStorage melempar galat), s-tempo (waktu ketat per soal lanjut). Kasus s- juga gagal bila ada galat konsol.
 // Keluar 0 bila semua periksa LULUS, 1 bila ada GAGAL.
 'use strict';
 const http = require('node:http'); const fs = require('node:fs'); const path = require('node:path');
@@ -30,7 +36,8 @@ let pw; try { pw = require('playwright'); } catch (e) { pw = require('playwright
 const root = path.resolve(process.argv[2] || '.'); const dirGambar = process.argv[3] || null;
 const RELAI = process.env.RELAI ? process.env.RELAI.split(',') : null;
 const PORT = Number(process.env.PORT || 19170);
-const SEMUA = ['kerja', 'bahas', 'dua', 'majumundur', 'putus', 'akhir', 'mulaibaru', 'dialogroom', 'hilang', 'transisi', 'penuh', 'k1', 'k2', 'k3', 'ulang', 'muatgagal', 'salinan', 'enterdua', 'ketuk'];
+const SEMUA = ['kerja', 'bahas', 'dua', 'majumundur', 'putus', 'akhir', 'mulaibaru', 'dialogroom', 'hilang', 'transisi', 'penuh', 'k1', 'k2', 'k3', 'ulang', 'muatgagal', 'salinan', 'enterdua', 'ketuk',
+  's-kerja', 's-bahas', 's-hasil', 's-ulang', 's-baru', 's-hilang', 's-tanpasimpan', 's-tempo'];
 const KASUS = process.env.KASUS ? process.env.KASUS.split(',').map(x => x.trim()).filter(Boolean) : SEMUA;
 const BROKER_CONF = (process.env.BROKER_CONF || '').split(',').map(x => x.trim()).filter(Boolean);
 const MOSQUITTO = process.env.MOSQUITTO || 'mosquitto';
@@ -488,6 +495,210 @@ const ringkasKasus = []; let gagalTotal = 0; const galatHalaman = [];
     },
   };
 
+  // ================= v9.7.3 latihan sendiri (kasus berawalan s-, tanpa broker) =================
+  const KUNCI_S = 'ukp.latihSendiri';
+  const galatKonsol = [];
+  // hitung panggilan UKP.tim.kirimRingkasan per muat halaman (window.__kirim); hadir dibaca dari store
+  const SADAP_KIRIM = () => {
+    window.__kirim = 0;
+    const t = setInterval(() => {
+      const U = window.UKP; if (!U || !U.tim || typeof U.tim.kirimRingkasan !== 'function' || U.tim.kirimRingkasan.__sadap) return;
+      clearInterval(t); const a = U.tim.kirimRingkasan; const w = function () { window.__kirim++; return a.apply(this, arguments); }; w.__sadap = true; U.tim.kirimRingkasan = w;
+    }, 2);
+  };
+  const SESI_LEMPAR = () => { try { Object.defineProperty(window, 'sessionStorage', { configurable: true, get() { throw new DOMException('ditolak', 'SecurityError'); } }); } catch (e) {} };
+  async function bukaS(nama, hash, vp, o) {
+    o = o || {};
+    const ctx = await browser.newContext({ viewport: vp || { width: 390, height: 844 }, serviceWorkers: 'block' });
+    konteks.push(ctx);
+    await ctx.addInitScript(p => { if (!localStorage.getItem('ukp.v1.seed')) { localStorage.setItem('ukp.v1.seed', '1'); localStorage.setItem('ukp.v1', JSON.stringify(p)); } }, { profil: { nama, tingkat: 'B', onboardingSelesai: true } });
+    await ctx.addInitScript(SADAP_KIRIM);
+    if (o.sesiLempar) await ctx.addInitScript(SESI_LEMPAR);
+    const page = await ctx.newPage();
+    page.on('pageerror', e => galatHalaman.push(kasusKini + ' ' + nama + ': ' + String(e.message).slice(0, 200)));
+    page.on('console', m => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) galatKonsol.push(kasusKini + ' ' + nama + ': ' + m.text().slice(0, 200)); });
+    await page.goto(URL0 + (hash || '#latih'), { waitUntil: 'load' });
+    await tunggu(page, () => window.UKP && UKP.sekarang && UKP.sekarang().view && document.querySelector('main .page'), null, 30000);
+    await tidur(600);
+    return { ctx, page, nama };
+  }
+  const bacaS = o => o.page.evaluate(k => {
+    let titik = null; try { titik = JSON.parse(sessionStorage.getItem(k) || 'null'); } catch (e) { titik = 'tidak tersedia'; }
+    const s = UKP.store.get(); const el = document.querySelector('.soal'); const a = document.activeElement; const de = document.documentElement;
+    const kal = document.querySelector('.ringkasan-latih .stack-sm p:not(.eyebrow)');
+    return { rute: history.state && history.state.params, pulih: !!UKP.sekarang().pulih, soalId: el ? el.dataset.id : null,
+      kop: ((document.querySelector('.fokus-bar') || {}).innerText || '').replace(/\n+/g, ' | ').slice(0, 160), h1: ((document.querySelector('main h1') || {}).textContent || '').trim().slice(0, 80),
+      titik: titik && typeof titik === 'object' ? { n: titik.ids.length, ids: titik.ids.join(','), idx: titik.idx, benar: titik.benar, nRiwayat: titik.riwayat.length, terjawab: titik.terjawab, detikSoal: titik.detikSoal, ulang: titik.ulang, selesai: titik.selesai } : titik,
+      nJawaban: (s.jawaban || []).length, hadir: JSON.stringify(s.hadir || {}), kirim: window.__kirim,
+      fokus: a ? a.tagName + ':' + (a.textContent || '').trim().slice(0, 40) : null, gulirY: Math.round(window.scrollY), mendatar: de.scrollWidth > de.clientWidth + 1,
+      status: ((document.querySelector('.soal .umpan .status') || {}).textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80), mudah: !!document.querySelector('.soal .umpan-mudah'),
+      punyaMudah: !!(el && UKP.konten.soal(el.dataset.id) && UKP.konten.soal(el.dataset.id).pembahasan && UKP.konten.soal(el.dataset.id).pembahasan.mudah),
+      salah: ((document.querySelector('.soal label[data-hasil="salah"] kbd') || {}).textContent || null), terkunci: !!document.querySelector('.soal fieldset.terkunci'),
+      sebelumnya: !!document.querySelector('.aksi-lihat-lagi'), ringkasan: kal ? kal.textContent.trim() : null, timer: (document.querySelector('.fokus-bar .timer') || {}).textContent || null,
+      banner: [...document.querySelectorAll('main .banner')].map(b => b.textContent.trim().replace(/\s+/g, ' ')) };
+  }, KUNCI_S);
+  // jawab soal yang tampil: benar (kunci), salah (huruf lain), atau '-' (Tidak tahu)
+  async function jawabS(o, cara) {
+    await o.page.evaluate(c => {
+      const el = document.querySelector('.soal'); const so = UKP.konten.soal(el.dataset.id);
+      if (c === '-') { const b = [...el.querySelectorAll('button')].find(x => x.textContent.trim() === 'Tidak tahu'); b.click(); return; }
+      const huruf = c === 'benar' ? so.kunci : ['A', 'B', 'C', 'D'].find(x => x !== so.kunci && so.opsi[x] != null);
+      el.querySelector('input[value="' + huruf + '"]').click();
+    }, cara);
+    await tunggu(o.page, () => !!document.querySelector('.soal .umpan .status'), null, 5000); await tidur(200);
+  }
+  async function lanjutS(o) {
+    const id = await o.page.evaluate(() => { const el = document.querySelector('.soal'); const b = [...document.querySelectorAll('.soal .sticky-actions .btn-primary')].find(x => /Lanjut/.test(x.textContent)); b.click(); return el ? el.dataset.id : null; });
+    await tunggu(o.page, i => { const el = document.querySelector('.soal'); return !el || el.dataset.id !== i || !el.querySelector('.umpan .status'); }, id, 5000); await tidur(300);
+  }
+  async function muatUlangS(o) {
+    await o.page.reload({ waitUntil: 'load' });
+    await tunggu(o.page, () => window.UKP && UKP.sekarang && UKP.sekarang().view && document.querySelector('main .page'), null, 30000);
+    await tidur(1200);
+  }
+  const noKop = kop => (/(Soal \d+ dari \d+ · \d+ benar)/.exec(kop || '') || [])[1] || null;
+  const cekTampilan = (label, B) => {
+    periksa(label + ': tanpa gulir mendatar', !B.mendatar, B.mendatar);
+    periksa(label + ': gulir di atas', B.gulirY === 0, B.gulirY);
+  };
+  const kasusS = {
+    async 's-kerja'() {
+      // kriteria 1 dan 10: muat ulang di soal yang belum dijawab, layar 320 px
+      const o = await bukaS('Nicky', '#latih', { width: 320, height: 700 });
+      const A0 = await bacaS(o); periksa('latihan langsung mulai, titik disimpan', !!A0.soalId && A0.titik && A0.titik.idx === 0, A0.titik);
+      await jawabS(o, 'benar'); await lanjutS(o); await tidur(3000);
+      const A = await bacaS(o); catat('SEBELUM', A); await foto(o, 'sebelum');
+      await muatUlangS(o);
+      const B = await bacaS(o); catat('SESUDAH', B); await foto(o, 'sesudah');
+      periksa('rute dipulihkan (tanda pulih)', B.pulih, B.pulih);
+      periksa('soal sama', !!B.soalId && B.soalId === A.soalId, [A.soalId, B.soalId]);
+      periksa('kop sama', noKop(B.kop) === noKop(A.kop) && /Soal 2 dari \d+ · 1 benar/.test(B.kop), [A.kop, B.kop]);
+      periksa('urutan daftar sama', B.titik && A.titik && B.titik.ids === A.titik.ids, null);
+      periksa('detik soal lanjut', B.titik && B.titik.detikSoal >= 3, B.titik && B.titik.detikSoal);
+      periksa('riwayat utuh (Soal sebelumnya ada)', B.sebelumnya && B.titik.nRiwayat === 1, { sebelumnya: B.sebelumnya, n: B.titik && B.titik.nRiwayat });
+      periksa('fokus ke judul soal', /^H1:Soal 2 dari/.test(B.fokus || ''), B.fokus);
+      cekTampilan('320 px', B);
+      await jawabS(o, 'benar'); await lanjutS(o);
+      const C = await bacaS(o); periksa('sesudah lanjut: hitungan benar tepat', /Soal 3 dari \d+ · 2 benar/.test(C.kop), C.kop);
+    },
+    async 's-bahas'() {
+      // kriteria 2: soal yang sudah dijawab (salah, lalu "Tidak tahu"), layar 390 px
+      const o = await bukaS('Nicky', '#latih', { width: 390, height: 844 });
+      await jawabS(o, 'salah');
+      const A = await bacaS(o); catat('SEBELUM', A);
+      await muatUlangS(o);
+      const B = await bacaS(o); catat('SESUDAH', B); await foto(o, 'terjawab');
+      periksa('soal sama dalam keadaan terjawab', B.soalId === A.soalId && B.terkunci && /Salah/.test(B.status), { soal: [A.soalId, B.soalId], status: B.status });
+      periksa('opsi yang dipilih ditandai', !!B.salah && B.salah === A.salah, [A.salah, B.salah]);
+      periksa('Penjelasan mudah tampil bila soal punya', B.mudah === B.punyaMudah, { mudah: B.mudah, punya: B.punyaMudah });
+      periksa('jawaban tidak dicatat dua kali', B.nJawaban === A.nJawaban, [A.nJawaban, B.nJawaban]);
+      periksa('riwayat tidak bertambah', B.titik && B.titik.nRiwayat === 1 && B.titik.terjawab === 1, B.titik);
+      periksa('kop sama', noKop(B.kop) === noKop(A.kop), [A.kop, B.kop]);
+      cekTampilan('390 px', B);
+      await lanjutS(o);
+      const C = await bacaS(o); periksa('Lanjut bekerja, hitungan benar tepat', /Soal 2 dari \d+ · 0 benar/.test(C.kop) && C.nJawaban === A.nJawaban, { kop: C.kop, n: C.nJawaban });
+      periksa('fokus ke judul soal sesudah Lanjut', /^H1:Soal 2 dari/.test(C.fokus || ''), C.fokus);
+      await jawabS(o, '-'); const D = await bacaS(o);
+      await muatUlangS(o);
+      const E = await bacaS(o); catat('Tidak tahu SESUDAH', E);
+      periksa('"Tidak tahu" dipulihkan', E.soalId === D.soalId && /Belum tahu/.test(E.status) && E.nJawaban === D.nJawaban, { status: E.status, n: [D.nJawaban, E.nJawaban] });
+      await lanjutS(o); const F = await bacaS(o);
+      periksa('sesudah "Tidak tahu": soal 3, 0 benar', /Soal 3 dari \d+ · 0 benar/.test(F.kop), F.kop);
+    },
+    async 's-hasil'() {
+      // kriteria 3 dan 5: muat ulang di layar Latihan selesai (selesai penuh, lalu keluar lebih awal)
+      const o = await bukaS('Nicky', '#beranda', { width: 1280, height: 900 });
+      await o.page.evaluate(() => UKP.go('latih', { mulai: true, n: 10 })); await tunggu(o.page, () => !!document.querySelector('.soal'), null, 8000);
+      for (let i = 0; i < 10; i++) { await jawabS(o, i % 3 ? 'benar' : 'salah'); await lanjutS(o); }
+      await tunggu(o.page, () => /Latihan selesai/.test((document.querySelector('main h1') || {}).textContent || ''), null, 5000);
+      const A = await bacaS(o); catat('SEBELUM', A); await foto(o, 'selesai');
+      periksa('ringkasan tampil, kehadiran dan ringkasan tim sekali', /Latihan selesai/.test(A.h1) && A.kirim === 1 && A.titik && A.titik.selesai, { h1: A.h1, kirim: A.kirim, titik: A.titik });
+      await muatUlangS(o);
+      const B = await bacaS(o); catat('SESUDAH', B); await foto(o, 'selesai-sesudah');
+      periksa('ringkasan yang sama, bukan latihan baru', /Latihan selesai/.test(B.h1) && !B.soalId && B.ringkasan === A.ringkasan, [A.ringkasan, B.ringkasan]);
+      periksa('kehadiran tidak dicatat lagi', B.hadir === A.hadir, [A.hadir, B.hadir]);
+      periksa('ringkasan tim tidak dikirim lagi', B.kirim === 0, B.kirim);
+      periksa('jawaban tidak bertambah', B.nJawaban === A.nJawaban, [A.nJawaban, B.nJawaban]);
+      // tombol di ringkasan tetap bekerja: Latih lagi memulai latihan baru
+      await o.page.evaluate(() => { const b = [...document.querySelectorAll('main .ringkasan-latih .btn-primary')][0]; b.click(); });
+      await tunggu(o.page, () => !!document.querySelector('.soal'), null, 5000);
+      const C = await bacaS(o); periksa('tombol utama ringkasan memulai latihan baru', !!C.soalId && /Soal 1 dari/.test(C.kop) && C.titik && C.titik.idx === 0, { kop: C.kop, titik: C.titik });
+      // keluar lebih awal
+      await jawabS(o, 'benar'); await lanjutS(o); await jawabS(o, 'salah');
+      await o.page.click('.fokus-bar .icon-btn'); await tidur(400); await klikDialog(o, 'Keluar dan lihat ringkasan');
+      await tunggu(o.page, () => /Latihan selesai/.test((document.querySelector('main h1') || {}).textContent || ''), null, 5000);
+      const D = await bacaS(o); await muatUlangS(o); const E = await bacaS(o); catat('keluar lebih awal SESUDAH', E);
+      periksa('keluar lebih awal: ringkasan yang sama', /berhenti di soal 2 dari/.test(E.ringkasan || '') && E.ringkasan === D.ringkasan && E.kirim === 0 && E.hadir === D.hadir, [D.ringkasan, E.ringkasan]);
+    },
+    async 's-ulang'() {
+      // kriteria 4: putaran ulang ("Ulangi N soal yang salah") bertahan
+      const o = await bukaS('Nicky', '#beranda', { width: 390, height: 844 });
+      await o.page.evaluate(() => UKP.go('latih', { mulai: true, n: 10 })); await tunggu(o.page, () => !!document.querySelector('.soal'), null, 8000);
+      for (let i = 0; i < 10; i++) { await jawabS(o, i < 4 ? 'salah' : 'benar'); await lanjutS(o); }
+      const ok = await o.page.evaluate(() => { const b = document.querySelector('.btn-ulang-salah'); if (b) b.click(); return b ? b.textContent.trim() : null; });
+      periksa('tombol Ulangi soal yang salah', /^Ulangi 4 soal yang salah$/.test(ok || ''), ok);
+      await tunggu(o.page, () => !!document.querySelector('.soal'), null, 5000);
+      await jawabS(o, 'benar'); await lanjutS(o);
+      const A = await bacaS(o); await muatUlangS(o); const B = await bacaS(o); catat('SESUDAH', B); await foto(o, 'ulang');
+      periksa('putaran ulang dilanjutkan', /Ulang · soal 2 dari 4 · 1 benar/.test(B.kop) && B.soalId === A.soalId && B.titik && B.titik.ulang === 1, { kop: B.kop, soal: [A.soalId, B.soalId] });
+    },
+    async 's-baru'() {
+      // navigasi baru, kembali/maju, dan mode bersama tidak memakai titik latihan sendiri
+      const o = await bukaS('Nicky', '#latih', { width: 1280, height: 900 });
+      await jawabS(o, 'benar'); await lanjutS(o);
+      await o.page.evaluate(() => UKP.go('beranda')); await tidur(500);
+      const A = await bacaS(o); periksa('navigasi ke Beranda menghapus titik', A.titik === null, A.titik);
+      await o.page.evaluate(() => UKP.go('latih', {})); await tunggu(o.page, () => !!document.querySelector('.soal'), null, 5000);
+      const B = await bacaS(o); periksa('navigasi baru ke Latih: latihan baru', /Soal 1 dari \d+ · 0 benar/.test(B.kop), B.kop);
+      await jawabS(o, 'benar'); await lanjutS(o);
+      await o.page.evaluate(() => UKP.go('beranda')); await tidur(400); await o.page.goBack(); await tunggu(o.page, () => !!document.querySelector('.soal'), null, 5000); await tidur(400);
+      const C = await bacaS(o); periksa('Kembali ke entri Latih: latihan baru seperti v9.7.2', /Soal 1 dari \d+ · 0 benar/.test(C.kop) && !C.pulih, C.kop);
+      // mode bersama aktif: muat ulang tidak memakai titik sendiri (saringan seperti F2 v9.7.2)
+      await jawabS(o, 'benar'); await lanjutS(o);
+      await o.page.evaluate(() => { const s = UKP.store.get(); UKP.belajar.siapBersama(s); s.bersama.aktif = true; s.bersama.peserta = ['Nicky', 'Mita']; UKP.store.flush(); });
+      const D0 = await bacaS(o); await muatUlangS(o); const D = await bacaS(o); catat('mode bersama SESUDAH', D);
+      periksa('mode bersama aktif: saringan, titik sendiri tidak dipakai dan tidak dibuang', !D.soalId && /Latih soal/.test(D.h1) && D.titik && D.titik.ids === D0.titik.ids, { h1: D.h1, soal: D.soalId });
+    },
+    async 's-hilang'() {
+      // kriteria 6: id yang tidak ada (semua data termuat) dan berkas data yang gagal dimuat
+      const o = await bukaS('Nicky', '#latih', { width: 390, height: 844 });
+      await jawabS(o, 'benar'); await lanjutS(o);
+      const A = await bacaS(o);
+      // berkas soal gagal dimuat sekali: titik dibiarkan, banner Muat ulang, tanpa latihan baru
+      const kode = String(A.soalId || '').split('-')[0]; const pola = new RegExp('/js/data/mu-' + kode + '\\.js');
+      let diblokir = 0; const blokir = r => { diblokir++; return r.abort('failed'); };
+      await o.page.route(pola, blokir); await muatUlangS(o); await o.page.unroute(pola, blokir);
+      const B = await bacaS(o); catat('data gagal SESUDAH', B); await foto(o, 'data-gagal');
+      periksa('berkas soal memang diblokir', diblokir >= 1, diblokir);
+      periksa('data gagal: tanpa latihan baru, banner Muat ulang', !B.soalId && B.banner.some(x => /Posisi latihan Anda tetap tersimpan/.test(x)) && !B.banner.some(x => /Tidak ada soal yang cocok/.test(x)), B.banner);
+      periksa('data gagal: titik tidak dibuang', B.titik && B.titik.ids === A.titik.ids && B.titik.idx === 1, B.titik);
+      await muatUlangS(o); const C = await bacaS(o);
+      periksa('jaringan pulih: latihan dilanjutkan di soal yang sama', C.soalId === A.soalId && noKop(C.kop) === noKop(A.kop), [A.soalId, C.soalId]);
+      // id yang sudah tidak ada sementara semua data termuat: titik dibuang, latihan baru
+      // pendengar pagehide halaman menulis titik lebih dulu; pendengar ini (dipasang belakangan) menimpanya dengan titik yang diubah
+      await o.page.evaluate(k => { window.addEventListener('pagehide', () => { const t = JSON.parse(sessionStorage.getItem(k)); t.ids[t.ids.length - 1] = t.ids[t.ids.length - 1].split('-')[0] + '-999'; sessionStorage.setItem(k, JSON.stringify(t)); }); }, KUNCI_S);
+      await muatUlangS(o); const D = await bacaS(o); catat('id hilang SESUDAH', D);
+      periksa('id hilang: latihan baru tanpa galat', !!D.soalId && /Soal 1 dari \d+ · 0 benar/.test(D.kop) && D.titik && !/-999/.test(D.titik.ids), { kop: D.kop });
+    },
+    async 's-tanpasimpan'() {
+      // kriteria 7: sessionStorage melempar galat: berjalan seperti v9.7.2, tanpa galat konsol
+      const o = await bukaS('Nicky', '#latih', { width: 390, height: 844 }, { sesiLempar: true });
+      await jawabS(o, 'benar'); await lanjutS(o);
+      const A = await bacaS(o); periksa('latihan berjalan', /Soal 2 dari \d+ · 1 benar/.test(A.kop) && A.titik === 'tidak tersedia', { kop: A.kop, titik: A.titik });
+      await muatUlangS(o); const B = await bacaS(o);
+      periksa('muat ulang: latihan baru seperti v9.7.2', /Soal 1 dari \d+ · 0 benar/.test(B.kop), B.kop);
+    },
+    async 's-tempo'() {
+      // kriteria 9: waktu ketat per soal lanjut dari detik yang tersimpan
+      const o = await bukaS('Nicky', '#beranda', { width: 1280, height: 900 });
+      await o.page.evaluate(() => UKP.go('latih', { mulai: true, n: 10, tempo: true })); await tunggu(o.page, () => !!document.querySelector('.fokus-bar .timer'), null, 8000);
+      await tidur(5200); const A = await bacaS(o);
+      await muatUlangS(o); const B = await bacaS(o); catat('waktu ketat', { sebelum: A.timer, sesudah: B.timer });
+      periksa('hitung mundur lanjut (tidak kembali ke anggaran penuh)', detik(B.timer) != null && detik(A.timer) != null && detik(B.timer) <= detik(A.timer) && detik(A.timer) - detik(B.timer) < 6, [A.timer, B.timer]);
+    },
+  };
+  Object.assign(kasusFn, kasusS);
+
   for (const k of KASUS) {
     if (!kasusFn[k]) { console.log('GAGAL kasus tidak dikenal: ' + k); gagalTotal++; continue; }
     kasusKini = k; gagal = 0; konteks = [];
@@ -496,6 +707,7 @@ const ringkasKasus = []; let gagalTotal = 0; const galatHalaman = [];
     for (const c of konteks) { try { await c.close(); } catch (e) {} }
     ringkasKasus.push(k + ' ' + (gagal ? 'GAGAL (' + gagal + ')' : 'LULUS'));
   }
+  if (galatKonsol.length) { gagalTotal++; console.log('GAGAL galat konsol kasus s-  ' + JSON.stringify(galatKonsol.slice(0, 8))); } else if (KASUS.some(k => /^s-/.test(k))) console.log('LULUS tanpa galat konsol (kasus s-)');
   if (galatHalaman.length) { gagalTotal++; console.log('GAGAL galat halaman  ' + JSON.stringify(galatHalaman.slice(0, 8))); } else console.log('LULUS tanpa galat halaman');
   console.log('RINGKAS ' + ringkasKasus.join(' · '));
   await browser.close(); server.close();
