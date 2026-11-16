@@ -1567,15 +1567,13 @@
       // DESAIN-V7 P3-01: mode fokus (tanpa topbar/bar bawah di HP); bar 48 px berisi Keluar · "Soal 7 dari 20 · 5 benar" · Atur saringan · progres 2 px.
       // "Selesai" ada di dalam konfirmasi Keluar
       modeFokus(true);
-      // v10 latih: latihan sendiri memakai kop sesi biru tua dengan ruas kemajuan (fokusBar opsi sesi); latihan bersama tetap seperti dulu
-      const kop = fokusBar({ label: 'Kemajuan latihan', onKeluar: () => keluar(), sesi: !peserta }); const area = h('div', { class: 'latih-area' });
+      const kop = fokusBar({ label: 'Kemajuan latihan', onKeluar: () => keluar() }); const area = h('div', { class: 'latih-area' });
       // v8.2 B2 (T1): skor tim kumulatif sebagai kepala, tepat di bawah bar fokus (latihan bersama, dengan atau tanpa room)
       const skorEl = peserta ? h('div', { class: 'kop-tim-latih', hidden: true }) : null;
       page.append(...[kop, skorEl, area].filter(Boolean));
       // latihan bersama selalu memakai halaman lebar (papan 6 orang dan stem selebar kartu), dari saringan maupun dari #latih langsung
       if (peserta) { kop.classList.add('fokus-bersama'); page.classList.add('lebar'); }
-      // v10 latih: label dibungkus span (di kop sesi HP sempit hanya ikon; nama tombol tetap "Atur saringan")
-      const tautanAtur = () => h('button', { type: 'button', class: 'btn btn-text btn-sm tautan-atur', 'aria-label': 'Atur saringan', onclick: () => { if (riwayat.length && UKP.tim) UKP.tim.kirimRingkasan({ selesai: true }); keSaringan(); } }, ikon('saring', 'tautan-atur-ikon', true), h('span', { class: 'tautan-atur-label' }, 'Atur saringan'));
+      const tautanAtur = () => h('button', { type: 'button', class: 'btn btn-text btn-sm tautan-atur', onclick: () => { if (riwayat.length && UKP.tim) UKP.tim.kirimRingkasan({ selesai: true }); keSaringan(); } }, 'Atur saringan');
       // v8.2 B2: Menu kop (fokusBar opsi menu, B4) berisi Ke menu · Atur saringan · Pindah ke satu layar (room) · Selesai sekarang;
       // bila fokusBar belum mendukung menu, tombol lama tetap di bar aksi
       const adaMenuKop = !!peserta && typeof kop.aturMenu === 'function';
@@ -1734,9 +1732,7 @@
       const judulKop = (no, nBenar) => peserta
         // v9.2 G1: daftar nama tidak lagi di kop (jumlah orang ada di bilah bawah papan)
         ? [h('span', { class: 'fokus-baris' }, (oj.ulang ? 'Ulang · soal ' : 'Soal ') + no + ' dari ' + dari + ' · ', waktuEl)]
-        // v10 latih: judul kiri dan angka kanan berlabel; pemisah tersembunyi menjaga teks utuh "Soal 3 dari 10 · 2 benar" untuk pembaca layar
-        : [h('span', { class: 'kop-sesi-judul' }, (oj.ulang ? 'Ulang · soal ' : 'Soal ') + no + ' dari ' + dari), h('span', { class: 'visually-hidden' }, ' · '),
-          h('span', { class: 'kop-sesi-kanan' }, h('b', null, String(nBenar)), h('small', null, ' benar'))];
+        : (oj.ulang ? 'Ulang · soal ' : 'Soal ') + no + ' dari ' + dari + ' · ' + nBenar + ' benar';
       let pertama = true;
       function gambar() {
         tutupLihat(true);
@@ -1771,12 +1767,8 @@
         tempoKini = tempoEl;
         if (rPulih) kop.atur(judulKop(no + 1, benar + (rPulih.benar ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, [tautanAtur()]);
         else kop.atur(judulKop(no + 1, benar), no / Math.max(1, dari) * 100, peserta ? kananBersama() : [tempoEl, tautanAtur()]);
-        // v10 latih: ruas soal ini kuning selama belum dijawab; soal yang sudah divonis langsung terisi
-        if (kop.aturRuas) kop.aturRuas(rPulih ? no + 1 : no, dari, !rPulih);
         let triKini = null;
         const el = UKP.c.soal(soal, { konteks: 'latih', detikAwal: peserta ? detikDraf : detikS,
-          // v10 latih: tampilan Langkah Tegas untuk latihan sendiri; tombol utama menyebut langkahnya
-          v10: !peserta, labelLanjut: peserta ? undefined : no + 1 < dari ? 'Lanjut ke soal ' + (no + 2) : 'Lihat hasil',
           jawabanPulih: rPulih ? { jawab: rPulih.jawab, detik: rPulih.detik, keyakinan: rPulih.keyakinan } : null,
           bersama: peserta ? { peserta, awal, hitungPenjelas, namaPemandu: roomNiat ? namaPemandu() : null, onTriase: tri => { triKini = tri; tunjuk(tri); },
             // v8.2 B2: isian dari HP tidak masuk draf lanjutan (setelah muat ulang diambil lagi dari room, hurufnya tetap tersembunyi)
@@ -1809,7 +1801,7 @@
           } : null,
           onKeMenu: peserta && !adaMenuKop ? keMenu : null, onSelesaiSekarang: peserta && !adaMenuKop ? selesaiSekarang : null, metaBersama,
           aksiKiri: soalSelesai().length ? tombolLihat() : null,
-          onPeriksa: (b, jawab, detik, keyakinan) => { hentikanTempo(); riwayat.push({ soal, benar: !!b, jawab, detik, ulang: !!oj.ulang, keyakinan: keyakinan || null }); kop.atur(peserta ? null : judulKop(no + 1, benar + (b ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, peserta ? undefined : [tautanAtur()]); if (kop.aturRuas) kop.aturRuas(no + 1, dari, false); simpanSendiri(); }, onKeyakinan: v => { const r = riwayat[riwayat.length - 1]; if (r && r.soal === soal) r.keyakinan = v || null; simpanSendiri(); },
+          onPeriksa: (b, jawab, detik, keyakinan) => { hentikanTempo(); riwayat.push({ soal, benar: !!b, jawab, detik, ulang: !!oj.ulang, keyakinan: keyakinan || null }); kop.atur(peserta ? null : judulKop(no + 1, benar + (b ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, peserta ? undefined : [tautanAtur()]); simpanSendiri(); }, onKeyakinan: v => { const r = riwayat[riwayat.length - 1]; if (r && r.soal === soal) r.keyakinan = v || null; simpanSendiri(); },
           onLanjut: (b) => { if (b) benar++; if (peserta && sesiId && triKini && triKini.kelas !== 'dikuasai' && L.tandaiBahas) L.tandaiBahas(sesiId, soal.id, true); catatBahasKini(); idx++; gambar(); if (idx < daftar.length) simpanAktif(); } });
         area.append(h('h1', { class: 'visually-hidden' }, (oj.ulang ? 'Putaran ulang, soal ' : 'Soal ') + (no + 1) + ' dari ' + dari), el);
         elKini = peserta ? el : null; soalKini = peserta ? soal : null; wrapKini = el;

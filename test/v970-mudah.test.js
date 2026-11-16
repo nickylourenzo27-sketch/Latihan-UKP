@@ -190,8 +190,7 @@ describe('v9.7: kait kelas, gaya, fokus, dan teks layar', () => {
     assert.match(blok, /@media print \{ \.umpan \.umpan-mudah \{ background: none; border-left-color: #555555; \} \}/);
   });
   it('fokus periksa dulu ke penjelasan mudah bila ada; status tetap untuk jawab langsung; papan bersama tidak diubah', () => {
-    // v10 latih: latihan sendiri memfokuskan judul vonis; konteks lain tetap seperti v9.7
-    assert.ok(src.includes("intiEl = (v10 && panel.querySelector('.vonis-judul')) || (langsung && panel.querySelector('.status')) || panel.querySelector('.umpan-mudah-isi') || panel.querySelector('.inti');"));
+    assert.ok(src.includes("intiEl = (langsung && panel.querySelector('.status')) || panel.querySelector('.umpan-mudah-isi') || panel.querySelector('.inti');"));
     assert.ok(src.includes('const sisa = [...panel.children].filter(x => x !== stBaru && x !== triEl);'));
     // Enter di .inti (difokuskan tombol Tutor) tetap Lanjut di periksa dulu walau intiEl menunjuk penjelasan mudah
     assert.ok(src.includes("(!langsung && t.classList && t.classList.contains('inti') && umpan.contains(t))"));

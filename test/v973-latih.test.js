@@ -148,8 +148,7 @@ const soalKini = T => { const el = T.main.querySelector('.soal'); return el ? el
 const tombol = (T, re) => T.main.querySelectorAll('button').find(b => re.test(b.textContent.replace(/\s+/g, ' ').trim()));
 // jawab lewat pintasan huruf (jalur yang sama dengan klik opsi: pilih lalu langsung diperiksa)
 const jawab = (T, huruf) => { const w = T.main.querySelector('.soal'); w.dispatchEvent(new T.Ev('keydown', { key: huruf, bubbles: true, target: w })); };
-// v10 latih: tombol utama menyebut langkahnya ("Lanjut ke soal N"; soal terakhir "Lihat hasil")
-const lanjut = T => { const b = T.main.querySelectorAll('.sticky-actions .btn-primary').find(x => /Lanjut|Lihat hasil/.test(x.textContent)); assert.ok(b, 'tombol Lanjut'); b.click(); };
+const lanjut = T => { const b = T.main.querySelectorAll('.sticky-actions .btn-primary').find(x => /Lanjut/.test(x.textContent)); assert.ok(b, 'tombol Lanjut'); b.click(); };
 const titik = T => { const t = T.sesi[KUNCI]; return t ? JSON.parse(t) : null; };
 // tiru muat ulang: pagehide di konteks lama, lalu konteks baru dengan salinan penyimpanan dan entri riwayat yang sama
 function muatUlang(T, o) {
@@ -202,8 +201,7 @@ test('kriteria 2: muat ulang di soal yang sudah dijawab: tampil terjawab, tidak 
   // jalur "Tidak tahu"
   tombol(B, /^Tidak tahu$/).click(); const n1 = nJawaban(B); assert.equal(n1, n0 + 1);
   const C = muatUlang(B);
-  // v10 latih: vonis "Tidak tahu" berbunyi "Kuncinya A." dengan baris "Ditandai tidak tahu" (dulu "Belum tahu · kunci A")
-  assert.match(teks(C), /Kuncinya A\./); assert.match(teks(C), /Ditandai tidak tahu/); assert.equal(nJawaban(C), n1);
+  assert.match(teks(C), /Belum tahu/); assert.equal(nJawaban(C), n1);
   lanjut(C); assert.match(teks(C), /Soal 4 dari 6 · 1 benar/);
   const t = titik(C); assert.equal(t.riwayat.length, 3); assert.equal(t.riwayat[2].j, '-');
   assert.deepEqual(B.galat.concat(C.galat), []);
@@ -434,9 +432,8 @@ test('keyakinan: diubah sesudah menjawab langsung disimpan, dipulihkan, dan tida
   assert.equal(titik(T).riwayat[0].k, 'yakin', 'disimpan saat keyakinan diubah');
   const n0 = nJawaban(T);
   const B = muatUlang(T);
-  // v10 latih: keyakinan yang sudah terisi tidak memunculkan penanda susulan lagi; baris keterangan vonis menyebutnya
-  assert.ok(!B.main.querySelector('.keyakinan-tadi'), 'penanda susulan hanya bila keyakinan kosong');
-  assert.match(B.main.querySelector('.vonis-ket').textContent, /^Dipilih dengan yakin/, 'keyakinan dipulihkan di baris keterangan');
+  const p = B.main.querySelector('.keyakinan-tadi').querySelectorAll('button').find(b => b.getAttribute('aria-pressed') === 'true');
+  assert.equal(p && p.getAttribute('data-yakin'), 'yakin', 'penanda Tadi Anda dipulihkan');
   lanjut(B); assert.equal(titik(B).riwayat[0].k, 'yakin', 'keyakinan riwayat dipulihkan'); assert.equal(nJawaban(B), n0);
 });
 
@@ -450,9 +447,7 @@ test('ringkasan yang dipulihkan memakai menit tersimpan', () => {
 test('soal salah yang dipulihkan menampilkan lagi baris kartu dengan Urungkan, tanpa toast kedua', () => {
   const T = siapkan({ toastAksi: true }); T.UKP.go('latih', {}); jawab(T, 'B');
   assert.equal((T.UKP.store.get().kartuOtomatis || []).length, 1);
-  // v10 latih: baris kartu dek Ulang selalu di panel, juga di desktop (toast tidak lagi menutupi tombol)
-  assert.ok(!T.toast.some(x => /Kartu dari soal ini/.test(x)), 'tanpa toast kartu saat menjawab');
-  assert.match(teks(T), /Kartu dari soal ini masuk dek Ulang/);
+  assert.ok(T.toast.some(x => /Kartu dari soal ini/.test(x)), 'desktop: toast kartu saat menjawab');
   const B = muatUlang(T, { toastAksi: true });
   assert.match(teks(B), /Kartu dari soal ini masuk dek Ulang/);
   assert.ok(tombol(B, /^Urungkan$/), 'tombol Urungkan');
