@@ -19,7 +19,9 @@ const HARAP = {
              // v9.7.1 putaran 2: sidikLM diperbarui lagi (dulu 73b6314c84706d66ac6889ef). Hanya A2-308 yang berubah: pembahasan.jebakan dan
              // pembahasan.mudah kini memuat pengecualian denda keberatan 30% bila banding dicabut atau tidak dapat diterima.
              // Stem, opsi, kunci, verifikasi, dan peta butirnya tetap, jadi batasTanda dan sidikPetaLM tidak berubah.
-             sidikLM: { n: 315, sidik: 'f31fbb38fc8798bbc685a884' }, sidikPetaLM: { n: 315, sidik: '2842263d317f2e1649efa2fe' } },
+  // v10.2.4: atas permintaan pemilik, butir (2) vignette V-A3-32 (A3-408 sampai A3-412) diubah dari CV tanpa NPWP menjadi sewa
+  // kendaraan dari orang pribadi tanpa NPWP; angka, opsi, dan kunci tetap. Sidik paket LM diperbarui karenanya.
+             sidikLM: { n: 315, sidik: 'b5faec2e351a36d8ede97bbb' }, sidikPetaLM: { n: 315, sidik: '2842263d317f2e1649efa2fe' } },
 }[TAHAP];
 HARAP.jumlah = Object.values(HARAP.jumlahBagian).reduce((a, n) => a + n, 0);
 // 8 soal tanpa butir resmi Tingkat B (alasanB di akhir.json): nomor paket, bukan id (id bergantung alokasi)
