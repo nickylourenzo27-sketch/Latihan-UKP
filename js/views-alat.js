@@ -2226,6 +2226,8 @@
   // palet cari (D.19): kolom 52 px berikon, hasil berkelompok per jenis (urutan skor dipertahankan), sorot kata,
   // pola combobox (fokus tetap di kolom; ↑ ↓ memilih, Enter membuka, Esc menutup); kueri kosong → terakhir dibuka + lompat cepat
   UKP.cari = function () {
+    // v10.1.1: pencarian membaca bank soal; selama bank soal masih dimuat (boot awal pengunjung baru) tidak menampilkan hasil kosong
+    { const pm = root.__ukpMuat; if (pm && typeof pm.dataSiap === 'function' && !pm.dataSiap()) { UKP.toast('Bank soal masih dimuat. Pencarian bisa dipakai sebentar lagi.'); return; } }
     if (simBerjalan()) { UKP.toast('Pencarian nonaktif selama simulasi.'); return; }
     const input = h('input', { class: 'input', type: 'search', id: 'cari-input', role: 'combobox', 'aria-expanded': 'false', 'aria-controls': 'cari-daftar', 'aria-autocomplete': 'list', autocomplete: 'off', spellcheck: 'false', placeholder: 'Topik, istilah, peraturan, kalkulator, kode soal…', 'aria-label': 'Cari', 'aria-describedby': 'cari-status' });
     const hasil = h('div', { class: 'cari-hasil', id: 'cari-daftar', role: 'listbox', 'aria-label': 'Hasil pencarian' });

@@ -14,6 +14,9 @@
   'use strict';
   const UKP = root.UKP; const h = UKP.h;
   const K = UKP.konten; const L = UKP.belajar || {};
+  // v10.1.1: keadaan room yang tidak memakai bank soal; bankSiap() benar bila tidak ada pemuat bank soal (berkas tunggal, uji) atau sudah selesai
+  const RUANG_TANPA_DATA = { tidakTersedia: 1, kodeSalah: 1, tabKedua: 1, gabung: 1, menunggu: 1, memulihkan: 1 };
+  const bankSiap = () => { const pm = root.__ukpMuat; return !pm || typeof pm.dataSiap !== 'function' || typeof pm.saatData !== 'function' || pm.dataSiap(); };
   const UI = UKP.ruangUI = UKP.ruangUI || {};
   UKP.c = UKP.c || {};
   const HURUF = ['A', 'B', 'C', 'D'];
@@ -1313,7 +1316,9 @@
     const r = R();
     let kodeParam = null, kodeSalah = false;
     if (params.kode) { kodeParam = r && fn(r, 'normalKode') ? r.normalKode(rapikanKodeTautan(params.kode)) : null; if (!kodeParam) kodeSalah = true; }
-    const keadaan = () => pilihKeadaan({ tersedia: !!r && tersedia(), tabKedua, kode: kodeParam, kodeSalah, info: info(), state: stR(), kodeSimpan: kodeSimpanBoot, memulihkan });
+    // v10.1.1: bank soal bisa masih dimuat (boot awal pengunjung baru, js/app.js). Layar tanpa soal (gabung, menunggu, memulihkan,
+    // tab kedua, kode salah, tidak tersedia) tampil langsung; lobi dan aktivitas menunggu bank soal di layar 'memuatData'
+    const keadaan = () => { const k = pilihKeadaan({ tersedia: !!r && tersedia(), tabKedua, kode: kodeParam, kodeSalah, info: info(), state: stR(), kodeSimpan: kodeSimpanBoot, memulihkan }); return RUANG_TANPA_DATA[k] || bankSiap() ? k : 'memuatData'; };
     function modeFokus(on) { if (on === modeFokusAktif) return; modeFokusAktif = on; try { UKP.mode.fokus(on); } catch (e) {} }
     function kunciLayar() {
       const k = keadaan();
@@ -1364,6 +1369,7 @@
     }
     const jadwal = () => { clearTimeout(tTunda); tTunda = setTimeout(() => gambar(false), 40); };
     lepasDengar = dengar(j => { if (!page.isConnected && layar) return; jadwal(); });
+    if (!bankSiap()) { const pm = root.__ukpMuat; pm.saatData(() => { if (page.isConnected || !layar) jadwal(); }); }
 
     function bangun(k) {
       modeFokus(k === 'latihanAnggota' || k === 'ujianAnggota');
@@ -1380,6 +1386,7 @@
         case 'latihanTuan': return layarLatihanTuan();
         case 'ujianAnggota': return layarUjianAnggota();
         case 'ujianTuan': return layarUjianTuan();
+        case 'memuatData': return layarMemuatData();
         default: return layarKosong();
       }
     }
@@ -1433,6 +1440,12 @@
     function layarMemulihkan() {
       return { node: h('div', { class: 'stack' }, kop('Menghubungkan ke room…'),
         h('section', { class: 'card stack-sm' }, h('p', { role: 'status' }, 'Sebentar, perangkat ini sedang menghubungi room.'))) };
+    }
+    function layarMemuatData() {
+      const pm = root.__ukpMuat; const p = pm && typeof pm.progresData === 'function' ? pm.progresData() : null;
+      const teks = h('p', { 'aria-live': 'polite' }, 'Bank soal sedang diunduh ke perangkat ini' + (p && p.total ? ' (' + p.n + '/' + p.total + ' berkas)' : '') + '. Room tersambung sendiri begitu selesai.');
+      return { node: h('div', { class: 'stack room-memuat-data', 'aria-busy': 'true' }, kopDenganMenu('Memuat bank soal…', { meta: [UKP.c.statusRoom()] }), h('section', { class: 'card stack-sm' }, teks)),
+        detik: () => { const q = pm && typeof pm.progresData === 'function' ? pm.progresData() : null; if (q && q.total) teks.textContent = 'Bank soal sedang diunduh ke perangkat ini (' + q.n + '/' + q.total + ' berkas). Room tersambung sendiri begitu selesai.'; } };
     }
     function layarMenunggu() {
       const tersambung = !!(statusR() || {}).tersambung;
@@ -2319,4 +2332,6 @@
     gambar(true);
     return { node: page, unmount: () => { clearInterval(tDetik); clearTimeout(tTunda); if (lepasDengar) lepasDengar(); modeFokus(false); try { document.body.removeAttribute('data-room-tamu'); if (lokal.lembar) lokal.lembar.close('pindah'); } catch (e) {} } };
   };
+  // v10.1.1: rute room menunggu bank soal sendiri per keadaan (keadaan() dan layarMemuatData di atas), bukan lewat gerbang render
+  UKP.views.room.tanpaData = true;
 })(typeof window !== 'undefined' ? window : globalThis);

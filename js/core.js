@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '10.1.1';
+  UKP.versi = '10.2.0';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
@@ -405,6 +405,14 @@
   function flush() { if (state) tulis(); }
   UKP.store = {
     get: load, save, flush, normal, rapikanPakai, migrasiPakai, BATAS_PAKAI,
+    // v10.1.1: pengunjung baru (profil belum diisi, tanpa migrasi data lama) yang boleh melihat layar pertama sebelum bank soal termuat
+    // (js/app.js). Dibaca dari localStorage tanpa memuat state; ragu (penyimpanan ditolak, JSON rusak) = tidak
+    tanpaProfil() {
+      if (state) return !state.profil.onboardingSelesai && !migrasiPakaiTunda;
+      let raw = null; try { raw = localStorage.getItem(KEY); } catch (e) { return false; }
+      if (raw == null) return true;
+      try { const d = JSON.parse(raw); return isObj(d) && !perluMigrasiPakai(d) && !normal(d).profil.onboardingSelesai; } catch (e) { return false; }
+    },
     get ok() { return penyimpananOK; },
     reset() { load(); isiUlang(DEFAULT()); try { localStorage.removeItem(KEY + '.rusak'); } catch (e) {} tulis(true); },
     ekspor() { const s = load(); s.eksporTerakhir = Date.now(); save(); return JSON.stringify({ aplikasi: 'pelatih-ukp', versi: UKP.versi, diekspor: new Date().toISOString(), data: s }, null, 1); },
@@ -914,6 +922,41 @@
     try { el.focus({ preventScroll: true }); } catch (e) { return false; }
     return document.activeElement === el;
   }
+  // v10.1.1 gerbang data: bank soal (js/data/mu-*.js) bisa masih dimuat sesudah boot awal pengunjung baru (js/app.js). View yang
+  // butuh soal menampilkan layar memuat yang jujur (progres berkas), lalu dirender ulang sebagai navigasi biasa begitu bank soal
+  // selesai, berhasil atau gagal (kegagalan ditangani seperti sebelumnya: penjaga muat, dataSoalKurang). View boleh menyatakan
+  // UKP.views.x.tanpaData = true atau fungsi(params) bila layarnya tidak memakai soal.
+  function tungguData(view, params) {
+    const pm = root.__ukpMuat;
+    if (!pm || typeof pm.dataSiap !== 'function' || typeof pm.saatData !== 'function' || pm.dataSiap()) return false;
+    const t = UKP.views[view] && UKP.views[view].tanpaData;
+    try { return !(t === true || (typeof t === 'function' && t(params || {}))); } catch (e) { return true; }
+  }
+  UKP.tungguData = tungguData;
+  function halamanTungguData(view, params, opsi) {
+    const pm = root.__ukpMuat;
+    const teks = h('p', { class: 'eyebrow' }, 'Memuat bank soal…');
+    const macet = h('div', { class: 'stack-sm', hidden: true },
+      h('p', { class: 'muted' }, 'Bank soal belum selesai terunduh. Biasanya karena koneksi lambat; halaman ini lanjut sendiri begitu selesai.'),
+      h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn', onclick: () => location.reload() }, 'Muat ulang')));
+    const page = h('div', { class: 'page muat muat-data', 'aria-busy': 'true', 'data-tunggu-data': view },
+      h('h1', { class: 'visually-hidden' }, 'Memuat bank soal'), teks,
+      h('span', { class: 'skeleton', 'aria-hidden': 'true' }), h('span', { class: 'skeleton', 'aria-hidden': 'true' }), h('span', { class: 'skeleton', 'aria-hidden': 'true' }), macet);
+    let aktif = true, nAkhir = -1, tAkhir = Date.now();
+    const detak = setInterval(() => {
+      if (!aktif) return;
+      const p = typeof pm.progresData === 'function' ? pm.progresData() : null; if (!p) return;
+      if (p.n !== nAkhir) { nAkhir = p.n; tAkhir = Date.now(); macet.hidden = true; }
+      if (p.total) teks.textContent = 'Memuat bank soal… ' + p.n + '/' + p.total + ' berkas';
+      if (Date.now() - tAkhir > 20000) macet.hidden = false;
+    }, 500);
+    pm.saatData(() => {
+      if (!aktif) return; aktif = false; clearInterval(detak);
+      if (current.view !== view || current.params !== params || !page.isConnected) return;
+      render(view, params, Object.assign({}, opsi, { renderUlang: false }));
+    });
+    return { node: page, unmount: () => { aktif = false; clearInterval(detak); } };
+  }
   function render(view, params, opsi) {
     opsi = opsi || {};
     const main = document.getElementById('main'); if (!main) return;
@@ -935,7 +978,7 @@
     document.body.dataset.view = view;
     main.textContent = '';
     let out;
-    try { out = UKP.views[view](params); } catch (e) { console.error(e); out = h('div', { class: 'page' }, h('h1', null, 'Terjadi kesalahan'), h('p', { class: 'muted' }, 'Halaman ini gagal dimuat: ' + e.message), h('button', { class: 'btn', onclick: () => UKP.go('beranda') }, 'Ke Beranda')); }
+    try { out = tungguData(view, params) ? halamanTungguData(view, params, opsi) : UKP.views[view](params); } catch (e) { console.error(e); out = h('div', { class: 'page' }, h('h1', null, 'Terjadi kesalahan'), h('p', { class: 'muted' }, 'Halaman ini gagal dimuat: ' + e.message), h('button', { class: 'btn', onclick: () => UKP.go('beranda') }, 'Ke Beranda')); }
     if (out && out.node) { unmount = out.unmount; out = out.node; }
     if (out) main.appendChild(out);
     // transisi antar-rute: pudar 120 ms pada main > .page (CSS main[data-masuk]); tidak untuk render ulang di tempat.

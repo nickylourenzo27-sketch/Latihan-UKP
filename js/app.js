@@ -715,5 +715,26 @@
     } catch (e) {}
   });
   function mulai() { if (UKP.akses && UKP.akses.perluMasuk()) layarMasuk(); else boot(); }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mulai); else mulai();
+  // v10.1.1: bank soal (js/data/mu-*.js di templat #ukp-data, index.html) mulai dimuat sekarang, sesudah semua skrip aplikasi.
+  // Boot tetap menunggu bank soal selesai (berhasil atau gagal), seperti saat bank soal masih skrip sinkron, KECUALI pengunjung baru
+  // (belum mengisi profil, tanpa migrasi data lama, tanpa gerbang akses): sambutan atau layar gabung room tampil lebih dulu, dan rute
+  // yang butuh soal menunggu lewat gerbang render (js/core.js tungguData). Versi berkas tunggal tidak punya templat: data sudah ada.
+  const pemuat = root.__ukpMuat;
+  const adaPemuat = !!(pemuat && typeof pemuat.muatData === 'function' && typeof pemuat.saatData === 'function' && typeof pemuat.dataSiap === 'function');
+  if (adaPemuat) { try { pemuat.muatData(); } catch (e) { console.error(e); } }
+  function mulaiSaatSiap() {
+    if (!adaPemuat || pemuat.dataSiap()) { mulai(); return; }
+    let awal = false;
+    try { awal = !(UKP.akses && UKP.akses.perluMasuk()) && !!(UKP.store.tanpaProfil && UKP.store.tanpaProfil()); } catch (e) { awal = false; }
+    if (!awal) { pemuat.saatData(mulai); return; }
+    mulai();
+    // berkas bank soal yang gagal sesudah boot awal: pemberitahuan yang sama seperti di boot()
+    pemuat.saatData(() => {
+      // lencana navigasi (kartu jatuh tempo, rencana) dihitung ulang dengan bank soal lengkap
+      try { UKP.perbaruiNav(UKP.sekarang().view); } catch (e) {}
+      const gagal = typeof pemuat.galat === 'function' ? pemuat.galat().filter(g => /^Berkas gagal dimuat: data\/mu-/.test(g)) : [];
+      if (gagal.length) setTimeout(() => UKP.toast(gagal.length + ' berkas materi gagal dimuat; sebagian materi mungkin tidak tampil.', { nada: 'warn', ms: 15000, lintasRute: true, aksi: { label: 'Muat ulang', onclick: () => location.reload() } }), 3000);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mulaiSaatSiap); else mulaiSaatSiap();
 })(typeof window !== 'undefined' ? window : globalThis);

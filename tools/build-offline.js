@@ -150,6 +150,9 @@ async function main() {
   });
   // komentar PWA di <head> tidak berlaku untuk berkas tunggal
   out = out.replace(/<!--\s*PWA:[\s\S]*?-->/, '<!-- versi offline berkas tunggal: manifest PWA dan service worker tidak dipakai (window.UKP_OFFLINE) -->');
+  // 1b. v10.1.1: bank soal di <template id="ukp-data"> (dimuat sesudah skrip aplikasi di web) dibuka bungkusnya: di berkas tunggal
+  //     semua skrip inline dan sinkron seperti sebelumnya, tanpa templat (penjaga muat lalu menganggap bank soal sudah ada)
+  out = out.replace(/<template id="ukp-data">\s*([\s\S]*?)\s*<\/template>/i, (m, isi) => isi);
   // 2. <script src> lokal → inline (urutan dokumen dipertahankan)
   out = out.replace(/<script\b([^>]*)><\/script>/gi, (tag, attrs) => {
     const src = atribut(' ' + attrs, 'src');
@@ -174,6 +177,7 @@ async function main() {
   if (/<link\b[^>]*rel=["']?stylesheet[^>]*href=["']?(?!https?:)/i.test(kerangka)) masalah.push('masih ada stylesheet lokal');
   if (/<link\b[^>]*rel=["']?manifest/i.test(kerangka)) masalah.push('masih ada <link rel="manifest">');
   if (/fonts\.(googleapis|gstatic)\.com/i.test(kerangka)) masalah.push('masih ada rujukan Google Fonts di luar skrip');
+  if (/<template\b[^>]*\bid=["']?ukp-data/i.test(kerangka)) masalah.push('templat bank soal (ukp-data) tidak terbuka');
   const nTagSkrip = (kerangka.match(/<script\b/gi) || []).length;
   const nInline = (html.match(/<script\b(?![^>]*\bsrc\s*=)[^>]*>/gi) || []).length; // skrip inline di index.html (mis. penjaga muat)
   if (nTagSkrip !== nSkrip + nInline + 1) masalah.push('jumlah <script> ' + nTagSkrip + ' ≠ ' + (nSkrip + nInline + 1) + ' (isi skrip memutus tag?)');

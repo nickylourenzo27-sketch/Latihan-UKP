@@ -220,6 +220,8 @@
     if (!params.isi && simpanan && pertama) { try { UKP.perbaruiParams({ isi: 1 }, 'mulai'); } catch (e) {} }
     return formulirMulai(simpanan);
   };
+  // v10.1.1: layar sambutan pengunjung baru tidak memakai bank soal (kartu soal hari ini menunggu sendiri); formulir profil menunggu
+  UKP.views.mulai.tanpaData = params => !(params && params.isi) && !UKP.store.get().profil.onboardingSelesai && !(mulaiPertama && bacaDraftOb());
   function formulirMulai(simpanan) {
     const s = UKP.store.get(); const p = s.profil;
     // nama (wajib, 2–40 karakter): sapaan dan nama di dasbor tim; bawaan dari gerbang akses tim bila sudah masuk
@@ -685,7 +687,19 @@
   }
   // D4 kartu "Soal hari ini". o.tingkat; o.catat (pengguna terdaftar: jawaban + keyakinan dicatat lewat L.catatJawaban /
   // L.aturKeyakinan dan keadaan terjawab disimpan di s.soalHari); o.latih: tujuan tautan "Latih 10 soal lagi"
+  // v10.1.1: sambutan pengunjung baru bisa tampil sebelum bank soal termuat (js/app.js). Kartu menampilkan keadaan memuat lalu
+  // diganti kartu sebenarnya begitu bank soal selesai (index.html __ukpMuat.saatData)
   function kartuSoalHari(o) {
+    const pm = root.__ukpMuat;
+    if (!pm || typeof pm.dataSiap !== 'function' || typeof pm.saatData !== 'function' || pm.dataSiap()) return kartuSoalHariSiap(o);
+    const tingkat = (o && o.tingkat) || 'A';
+    const el = h('section', { class: 'kartu-soal-hari', 'aria-labelledby': 'sh-judul', 'aria-busy': 'true' },
+      h('div', { class: 'sh-kepala' }, h('h2', { class: 'sh-label', id: 'sh-judul' }, 'SOAL HARI INI'), h('span', { class: 'sh-tingkat' }, 'TINGKAT ' + tingkat)),
+      h('p', { class: 'sh-kosong' }, 'Memuat soal hari ini…'));
+    pm.saatData(() => { if (!el.isConnected) return; try { el.replaceWith(kartuSoalHariSiap(o)); } catch (e) { console.error(e); } });
+    return el;
+  }
+  function kartuSoalHariSiap(o) {
     o = o || {}; const tingkat = o.tingkat || 'A'; const tgl = U.hariIni();
     // V6: soal yang sudah dijawab hari ini tetap tampil walau bank berubah (pembaruan data, ganti tingkat) — satu jawaban per hari
     let soal = null; try { soal = L.pilihSoalHari(K.semuaSoal(tingkat), tgl, tingkat, o.catat ? UKP.store.get().soalHari : null); } catch (e) { console.error(e); }
