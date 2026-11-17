@@ -1522,7 +1522,7 @@
         if (!lajuEl) return;
         const bahas = !!faseBahas; const d = bahas ? detikBahasKini() : detikSoalKini(); const target = bahas ? detikBahasT : detikTempo;
         const label = bahas ? 'Membahas' : 'Mengerjakan'; const sisa = target - d; const lewat = target > 0 && sisa < 0;
-        const angka = target > 0 ? (lewat ? 'lewat ' + fmtJamPendek(-sisa) : 'sisa ' + fmtJamPendek(sisa)) : fmtNaik(d);
+        const ketW = 'waktu ' + (bahas ? 'bahas ' : 'soal '); const angka = target > 0 ? (lewat ? 'lewat ' + ketW + fmtJamPendek(-sisa) : 'sisa ' + ketW + fmtJamPendek(sisa)) : fmtNaik(d); // v10.1.1 papan: "sisa waktu soal"
         const sep = target > 0 ? ' · ' : ' ';
         // v9.3 P1: ikon jam + label + angka (mono tebal, lihat blok CSS "v9.3 P1"); bagian dibuat sekali, tiap detik hanya teksnya diganti
         if (!lajuEl.querySelector('.laju-angka')) lajuEl.replaceChildren(ikon('jam', 'laju-ikon', true), h('span', { class: 'laju-label' }), h('span', { class: 'laju-sep' }), h('span', { class: 'laju-angka' }));
@@ -1530,9 +1530,9 @@
         if (elL.textContent !== label) elL.textContent = label;
         if (elS.textContent !== sep) elS.textContent = sep;
         // "sisa"/"lewat" huruf biasa (.laju-kata), angka waktu mono tebal (.laju-digit): muat di HP 320 px tanpa memotong angka
-        if (elA.textContent !== angka) { const m = /^(sisa |lewat )?(.*)$/.exec(angka); elA.replaceChildren(m[1] ? h('span', { class: 'laju-kata' }, m[1]) : null, h('span', { class: 'laju-digit' }, m[2])); }
+        if (elA.textContent !== angka) { const m = /^(sisa |lewat )?(waktu \S+ )?(.*)$/.exec(angka); elA.replaceChildren(m[1] ? h('span', { class: 'laju-kata' }, m[1]) : null, m[2] ? h('span', { class: 'laju-ket' }, m[2]) : null, h('span', { class: 'laju-digit' }, m[3])); }
         lajuEl.dataset.fase = bahas ? 'bahas' : 'kerja';
-        { const kb = lajuEl.closest ? lajuEl.closest('.fokus-bar') : null; if (kb) kb.dataset.fase = bahas ? 'bahas' : 'kerja'; } // v10.1 papan: pil fase dan bilah waktu
+        { const kb = lajuEl.closest ? lajuEl.closest('.fokus-bar') : null; if (kb) { kb.dataset.fase = bahas ? 'bahas' : 'kerja'; kb.toggleAttribute('data-batas', target > 0); if (target > 0 && kb.style && kb.style.setProperty) kb.style.setProperty('--sisa-fase', String(Math.round(Math.max(0, Math.min(1, sisa / target)) * 1000) / 10)); } } // v10.1 papan: pil fase dan bilah sisa waktu fase
         lajuEl.toggleAttribute('data-lewat', lewat);
         lajuEl.title = bahas ? (target > 0 ? 'Waktu membahas soal ini, target ' + fmtJamPendek(target) : 'Waktu membahas soal ini (bebas)') : target > 0 ? 'Waktu mengerjakan soal ini, target ' + fmtJamPendek(target) : 'Waktu mengerjakan soal ini (tanpa batas)';
         const kunciFase = (bahas ? 'b:' + faseBahas.soalId : 'k:' + ((daftar[idx] || {}).id || ''));

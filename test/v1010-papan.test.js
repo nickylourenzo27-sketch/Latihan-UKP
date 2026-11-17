@@ -59,10 +59,49 @@ test('v10.1 papan: sesudah kunci dibuka ada sebaran per opsi, lencana Kunci, dan
   assert.ok(T.main.querySelector('.papan-tim').hidden, 'hitungan menjawab diganti hasil');
   const b = T.main.querySelector('.papan-v10-panel .sticky-actions .btn-primary');
   assert.match(b.textContent, /^Lanjut ke soal 2/); assert.ok(b.querySelector('.kbd-spasi'));
-  // rincian per orang turun ke bawah pembahasan
+  // v10.1.1: ringkasan membahas di atas; status, triase, pembahasan, dan jawaban tiap orang utuh di lipatan "Rincian jawaban per orang"
   const isi = T.main.querySelector('.papan-v10-isi').children;
-  assert.ok(isi.indexOf(T.main.querySelector('.papan-bersama')) > isi.findIndex(x => x.querySelector && x.querySelector('.status')), 'rincian di bawah pembahasan');
-  assert.equal(T.main.querySelector('.papan-judul').textContent, 'Rincian jawaban per orang');
+  const iB = isi.findIndex(x => x.classList && x.classList.contains('papan-bahas')), iR = isi.findIndex(x => x.classList && x.classList.contains('papan-rincian'));
+  assert.ok(iB >= 0 && iR > iB, 'ringkasan di atas lipatan rincian');
+  const rin = isi[iR];
+  assert.equal(rin.tagName, 'DETAILS'); assert.equal(rin.querySelector('summary').textContent, 'Rincian jawaban per orang');
+  assert.ok(rin.querySelector('.status') && rin.querySelector('.papan-bersama'), 'rincian lama tetap ada di lipatan');
+  assert.equal(T.main.querySelector('.papan-judul').textContent, 'Jawaban tiap orang');
+  T.UKP.go('beranda');
+});
+
+test('v10.1.1 papan: panel membahas "Benar x dari y", Yang menjelaskan dengan kalimat berdata, Cara ingat atau Jebakan; tanpa nama yang salah', () => {
+  const T = siapkan(); T.bersama();
+  const buat = pb => {
+    const s = { id: 'B7-001', kode: 'B7', topik: 'B7.1', jenis: 'pg', stem: 'Soal', opsi: { A: 'a', B: 'b', C: 'c', D: 'd' }, kunci: 'C', pembahasan: pb };
+    const el = T.UKP.c.soal(s, { konteks: 'latih', papanV10: true, tanpaLog: true, bersama: { peserta: ['Nicky', 'Mita', 'Nora'] }, onLanjut() {} });
+    T.main.replaceChildren(el);
+    const tk = (nama, label) => el.querySelectorAll('.papan-baris').find(li => (li.querySelector('.papan-nama') || {}).textContent === nama).querySelectorAll('button').find(b => b.getAttribute('aria-label') === label).click();
+    tk('Nicky', 'Jawaban B'); tk('Nicky', 'Yakin'); tk('Mita', 'Jawaban C'); tk('Mita', 'Yakin');
+    el.querySelector('.aksi-buka-kunci').click();
+    return el.querySelector('.papan-bahas');
+  };
+  const bh = buat({ mudah: 'Kalimat pertama. Kalimat kedua. Cara ingat: jasa kesehatan tetap JKP.', jebakan: 'Teks jebakan.', mengapaSalah: { B: 'Alasan B.' } });
+  assert.ok(bh, 'panel membahas');
+  assert.equal(bh.querySelector('.papan-tim-label').textContent, 'Benar');
+  assert.equal(bh.querySelector('.papan-bahas-n').textContent, '1');
+  assert.equal(bh.querySelector('.papan-bahas-dari').textContent, 'dari 2 yang menjawab');
+  const pj = bh.querySelector('.papan-bahas-penjelas');
+  assert.equal(pj.querySelector('.papan-tim-label').textContent, 'Yang menjelaskan');
+  assert.equal(pj.querySelector('.papan-bahas-nama').textContent, 'Mita');
+  assert.equal(pj.querySelector('.papan-bahas-baca').textContent, 'Mita menjawab C dengan yakin. Minta ia jelaskan kenapa C, bukan B.');
+  assert.ok(!/Nicky|Nora/.test(bh.textContent), 'nama yang salah atau tidak menjawab tidak disebut di ringkasan');
+  const so = bh.querySelector('.papan-bahas-sorot');
+  assert.equal(so.getAttribute('data-jenis'), 'ingat'); assert.equal(so.querySelector('.papan-tim-label').textContent, 'Cara ingat');
+  assert.equal(so.querySelector('.papan-bahas-baca').textContent, 'Jasa kesehatan tetap JKP.');
+  assert.equal(T.main.querySelector('.soal-papan-v10').dataset.papanFase, 'bahas');
+  assert.ok(T.main.querySelector('.papan-rincian .papan-bersama'), 'jawaban per orang tetap bisa dibuka');
+  // tanpa Cara ingat: Jebakan
+  const bh2 = buat({ mudah: 'Hanya penjelasan.', jebakan: 'Teks jebakan.' });
+  const so2 = bh2.querySelector('.papan-bahas-sorot');
+  assert.equal(so2.getAttribute('data-jenis'), 'jebakan'); assert.equal(so2.querySelector('.papan-tim-label').textContent, 'Jebakan'); assert.equal(so2.querySelector('.papan-bahas-baca').textContent, 'Teks jebakan.');
+  // tanpa keduanya: tidak ada blok sorot
+  assert.equal(buat({ mudah: 'Hanya penjelasan.' }).querySelector('.papan-bahas-sorot'), null);
   T.UKP.go('beranda');
 });
 

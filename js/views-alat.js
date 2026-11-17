@@ -676,7 +676,8 @@
     const angka = (n, dari) => h('span', { class: 'vk-angka' }, String(n), dari != null ? h('small', null, ' dari ' + dari) : null);
     const ringkas = h('ul', { class: 'vk-ringkas', 'aria-label': 'Pekan ini' },
       h('li', null, angka(A.pekan.nHari, 7), h('span', { class: 'vk-label' }, 'hari belajar')),
-      h('li', null, angka(A.pekan.benar, A.pekan.n), h('span', { class: 'vk-label' }, 'benar')),
+      // v10.1.1 hasil: tanpa jawaban pekan ini ditulis "0 soal dijawab", bukan "0 dari 0 benar"
+      A.pekan.n ? h('li', null, angka(A.pekan.benar, A.pekan.n), h('span', { class: 'vk-label' }, 'benar')) : h('li', { 'data-kosong': '' }, angka(0), h('span', { class: 'vk-label' }, 'soal dijawab')),
       h('li', null, angka(A.nSalah), h('span', { class: 'vk-label' }, 'soal salah')));
     const lm = A.lemah; const nTk = (UKP.namaTingkat && UKP.namaTingkat[tingkat]) || 'Tingkat ' + tingkat;
     const mulai = h('section', { class: 'vk-mulai', 'aria-labelledby': 'vk-mulai-j' },
@@ -692,9 +693,9 @@
       h('div', { class: 'vh-bagian-kepala' }, h('h2', { class: 'vh-bagian-judul', id: 'vk-modul-j' }, 'Per mata uji, sejak mulai'), UKP.link('Peta materi', 'tingkat', { tingkat }, 'btn btn-ghost btn-text')),
       h('ul', { class: 'vh-daftar' }, A.per.map(x => h('li', null, UKP.link([h('span', { class: 'vk-kd' }, x.kode),
         h('span', { class: 'vh-baris-isi' }, h('span', { class: 'vh-baris-judul' }, judulKel(x.kode)), bilah(x)),
-        h('span', { class: 'vk-kolom' }, x.n ? x.b + ' dari ' + x.n : 'belum ada'), UKP.icon('chevron-kanan', 'vh-chevron', true)], 'kelompok', { kode: x.kode }, 'vh-baris')))));
+        h('span', { class: 'vk-kolom', 'data-kosong': x.n ? null : '' }, x.n ? x.b + ' dari ' + x.n : 'belum ada'), UKP.icon('chevron-kanan', 'vh-chevron', true)], 'kelompok', { kode: x.kode }, 'vh-baris')))));
     const Y = A.yakin; const totalY = Y.yakin.n + Y.ragu.n + Y.menebak.n + Y.tanpa.n; const yakinSalah = Y.yakin.n - Y.yakin.b;
-    const barisY = (label, x) => h('div', { class: 'vk-yakin-baris' }, h('span', null, label), bilah(x), h('b', null, x.n ? x.b + ' dari ' + x.n : 'belum ada'));
+    const barisY = (label, x) => h('div', { class: 'vk-yakin-baris' }, h('span', null, label), bilah(x), h('b', { 'data-kosong': x.n ? null : '' }, x.n ? x.b + ' dari ' + x.n : 'belum ada'));
     const yakinBlok = h('section', { class: 'vh-bagian', 'aria-labelledby': 'vk-yakin-j' },
       h('div', { class: 'vh-bagian-kepala' }, h('h2', { class: 'vh-bagian-judul', id: 'vk-yakin-j' }, 'Seberapa tepat rasa yakin, sejak mulai')),
       h('div', { class: 'vk-yakin' }, barisY('Yakin', Y.yakin), barisY('Ragu', Y.ragu), barisY('Nebak', Y.menebak), barisY('Tanpa tanda', Y.tanpa),
@@ -872,7 +873,21 @@
       if (baru.length) { try { sessionStorage.setItem('ukp.lencanaDilihat', JSON.stringify(dilihat.concat(baru))); } catch (e) {} }
     }
     // v10 hasil: tab Ringkasan dibuka dengan ringkasan v10 (UKP.kemajuanV10), lalu dasbor kesiapan lama tetap di bawahnya
-    const tabRingkasan = wadah => { try { wadah.appendChild(UKP.kemajuanV10(s)); } catch (e) { console.error(e); } wadah.appendChild(UKP.c.dasborKemajuan()); };
+    // v10.1.1 hasil: dasbor lama diberi kait .vk-dasbor-lama. Bagian yang mengulang blok v10 disembunyikan dari sini (views-home.js tidak
+    // diubah): baris rangkaian dan akurasi 7 hari (angkanya bertentangan dengan tiga angka pekan) dan, bila sudah ada jawaban,
+    // kartu Posisi penguasaan (daftar skor per mata uji dan tautan Peta materi kedua). Pemakai baru tetap melihat kartu itu
+    // karena berisi ajakan Diagnosis.
+    const tabRingkasan = wadah => {
+      let adaJawab = false;
+      try { wadah.appendChild(UKP.kemajuanV10(s)); adaJawab = UKP.angkaKemajuanV10(s).per.some(x => x.n > 0); } catch (e) { console.error(e); }
+      const lama = UKP.c.dasborKemajuan();
+      if (lama && lama.classList) {
+        lama.classList.add('vk-dasbor-lama');
+        lama.querySelectorAll('.baris-ringkas').forEach(el => { el.hidden = true; el.setAttribute('data-v10-ganda', ''); });
+        if (adaJawab) lama.querySelectorAll('.kartu-posisi').forEach(el => { el.hidden = true; el.setAttribute('data-v10-ganda', ''); });
+      }
+      wadah.appendChild(lama);
+    };
     const BANGUN = { ringkasan: tabRingkasan, hadir: tabHadir, peta: tabPeta, salah: tabSalah, laporan: tabLaporan, lencana: tabLencana };
     const nLap = Array.isArray(s.laporan) ? s.laporan.filter(l => !l.dibaca).length : 0;
     const tabs = UKP.c.tabs({ id: 'km', label: 'Bagian Kemajuan', aktif: awal,

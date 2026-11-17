@@ -156,6 +156,20 @@ Menurut ketentuan, Jebakan, Dasar hukum, dek Ulang, Buku Kesalahan, Urungkan, Ub
 - Konteks lain komponen soal (cek Materi, sesi Beranda, dialog soal) bisa memakai opsi `v10: true` pada `UKP.c.soal` tanpa mengubah
   komponennya.
 
+### Catatan halaman lain (sub-bagian "v10 lain")
+
+- **Lebar isi laptop (1024 px ke atas).** Semua halaman biasa di lingkup sub-bagian ini (Materi, Bank soal, Dasbor tim, Referensi,
+  Kalkulator, Pengaturan, Simulasi atur dan hasil, Studi kasus, Strategi, Cakupan, dan lainnya) serta saringan Latih memakai satu kolom
+  selebar isi kop (`--w-isi-kop`, 1056 px) dengan tepi kiri yang sama dengan merek di kop: x 112 di 1280, x 192 di 1440. Dulu ada
+  760, 960, dan 1056 px. Dasbor tim memakai lebar penuh kolom itu. Hanya berlaku tanpa `data-mode`, jadi layar sesi tidak kena;
+  Hasil latihan (`.page.papan-v10`) juga tidak. Di bawah 1024 px tidak ada yang berubah.
+- **Baris bacaan.** Paragraf, kalimat pita, definisi, dan teks bantu di halaman itu dibatasi token baru `--v10-w-baris: 34em`
+  (bukan warna, jadi hanya di `:root`), sekitar 68 huruf per baris. `68ch` Inter ternyata sekitar 88 huruf.
+- **Hasil Simulasi.** Skor dan status satu baris ("20 /100 Belum lulus"): kepala kartu dilebur dengan `display: contents`, status huruf
+  biasa 20 px tanpa bingkai stempel, "/100" huruf biasa redup. "Langkah berikutnya" label bagian 13/600 redup; satu tombol utama.
+- **Segmen terpilih** di lingkup ini (termasuk Format Simulasi: Kustom, Paket soal) memakai tepi `--v10-isi-garis`, jadi tidak lagi
+  bergaris kuning di tema gelap.
+
 ## 8. Cara menguji
 
 - `node --test test/`: termasuk `test/v10-latih.test.js`, `test/v10-beranda.test.js`, dan pagar `test/v960-tampilan.test.js`.

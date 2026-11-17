@@ -202,8 +202,8 @@ describe('v9.6: keadaan yang harus terlihat', () => {
 // dengan v9.6; bayangan hanya none, inset, atau var(--bayang-melayang); warna literal hanya di dalam definisi token.
 // Batas tahap 1 (v10.0.0): semula 48 KB, dinaikkan ke 56 KB sesudah dua jalur (Latih dan Beranda) digabung dan duplikasinya dipangkas.
 // Tahap 2 (Mode mabar) akan meninjau batas ini lagi bersama pemangkasan gaya lama.
-// Tahap 3: tujuh sub-bagian (dasar, latih, beranda, papan, room, hasil, lain), batas 128 KB.
-const V10_BATAS = 128 * 1024;
+// Tahap 3: tujuh sub-bagian (dasar, latih, beranda, papan, room, hasil, lain), batas 128 KB. v10.1.1: tinjauan papan, room, dan lebar laptop menambah aturan, batas jadi 144 KB.
+const V10_BATAS = 144 * 1024;
 const V10_SUB = ['dasar', 'latih', 'beranda', 'papan', 'room', 'hasil', 'lain'];
 function periksaPagarV10(teks) {
   const masalah = [];
@@ -274,7 +274,7 @@ function tokenTakAdaV10(teks, seluruh) {
 }
 
 describe('v10: bagian berpagar "v10 langkah tegas" di akhir css/app.css', () => {
-  it('satu bagian sesudah penutup v9.6 terakhir, tujuh sub-bagian berurutan, tanpa aturan sesudah penutup, paling banyak 128 KB', () => {
+  it('satu bagian sesudah penutup v9.6 terakhir, tujuh sub-bagian berurutan, tanpa aturan sesudah penutup, paling banyak 144 KB', () => {
     assert.deepEqual(pagarV10.masalah, []);
   });
   it('pemeriksa pagar menolak aturan sesudah penutup, bagian yang terlalu besar, pagar ganda, dan sub-bagian yang hilang', () => {

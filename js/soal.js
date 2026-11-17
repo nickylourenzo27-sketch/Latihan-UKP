@@ -457,11 +457,52 @@
       gulirV10El.hidden = !(kiriV10.scrollHeight > kiriV10.clientHeight + 4 && lb.bottom > kb.bottom - 8);
     }
     // sesudah kunci dibuka: pembahasan di atas rincian jawaban per orang, tombol utama "Lanjut ke soal n" dengan Spasi
-    function kunciPapanV10(lanjut) {
-      if (papan && umpan) { umpan.after(papan); const j = papan.querySelector('.papan-judul'); if (j) j.textContent = 'Rincian jawaban per orang'; }
+    // v10.1.1 papan: panel membahas seperti contoh: "Benar 4 dari 9 yang menjawab", "Yang menjelaskan" dengan satu kalimat berdata dari
+    // triase, lalu Cara ingat (UKP.pisahMudah) atau Jebakan. Blok lama (status, triase, pembahasan, jawaban tiap orang) pindah utuh ke
+    // lipatan "Rincian jawaban per orang". Kalimat penjelas tidak menyebut nama yang salah (hanya huruf opsi dan jumlah orang).
+    function kunciPapanV10(lanjut, per, tri) {
+      const kunciK = soal.kunci; per = per || {};
+      const nB = pesertaB.filter(n => jb[n] === kunciK).length, nJ = pesertaB.filter(n => jb[n] && jb[n] !== '-').length;
+      const lbl = t => h('p', { class: 'papan-tim-label' }, t);
+      const angka = nJ ? h('p', { class: 'papan-bahas-angka' }, h('b', { class: 'papan-bahas-n' }, String(nB)), h('span', { class: 'papan-bahas-dari' }, 'dari ' + nJ + ' yang menjawab'))
+        : h('p', { class: 'papan-bahas-angka papan-bahas-kosong' }, 'Tidak ada yang menjawab');
+      const KET = { yakin: 'dengan yakin', ragu: 'dengan ragu', menebak: 'dengan nebak' };
+      let penjelasEl = null;
+      if (tri && tri.penjelas) {
+        const p = tri.penjelas; const k = (per[p] || {}).keyakinan; let kal = p + ' menjawab ' + kunciK + ' ' + (KET[k] || 'tanpa tanda yakin') + '.';
+        if (tri.kelas === 'rapuh' && tri.tidakMenjawab && tri.tidakMenjawab.length) kal += ' Minta ia jelaskan ke ' + tri.tidakMenjawab.length + ' orang yang belum menjawab.';
+        else if (tri.kelas === 'rapuh') kal += ' Minta ia jelaskan singkat alasannya.';
+        else kal += ' Minta ia jelaskan kenapa ' + kunciK + (tri.opsiKeliru ? ', bukan ' + tri.opsiKeliru : '') + '.';
+        penjelasEl = h('div', { class: 'papan-bahas-blok papan-bahas-penjelas' }, lbl('Yang menjelaskan'), h('p', { class: 'papan-bahas-nama' }, p), h('p', { class: 'papan-bahas-baca' }, kal));
+      } else if (nJ) {
+        penjelasEl = h('div', { class: 'papan-bahas-blok papan-bahas-penjelas' }, h('p', { class: 'papan-bahas-baca' }, nB === nJ ? 'Semua yang menjawab benar. Lanjut ke soal berikutnya.' : 'Belum ada yang menjawab benar. Baca pembahasan bersama.'));
+      }
+      const pb = soal.pembahasan || {};
+      const pm = typeof pb.mudah === 'string' && UKP.pisahMudah ? UKP.pisahMudah(pb.mudah) : null;
+      const jeb = typeof pb.jebakan === 'string' ? pb.jebakan.trim() : '';
+      const sorotEl = pm && pm.ingat ? h('div', { class: 'papan-bahas-blok papan-bahas-sorot', 'data-jenis': 'ingat' }, lbl('Cara ingat'), h('p', { class: 'papan-bahas-baca' }, pm.ingat))
+        : jeb ? h('div', { class: 'papan-bahas-blok papan-bahas-sorot', 'data-jenis': 'jebakan' }, lbl('Jebakan'), h('p', { class: 'papan-bahas-baca' }, jeb)) : null;
+      const judul = h('div', { class: 'papan-bahas-kop', tabindex: '-1' }, lbl('Benar'), angka);
+      const bahas = h('div', { class: 'papan-bahas' }, judul, penjelasEl, sorotEl);
+      const rincian = h('details', { class: 'papan-rincian' }, h('summary', null, 'Rincian jawaban per orang'));
+      umpan.before(bahas); bahas.after(rincian); rincian.appendChild(umpan);
+      if (papan) rincian.appendChild(papan);
+      wrap.dataset.papanFase = 'bahas';
       lanjut.append(kbdSpasi());
-      const isi = umpan.parentNode; if (isi && isi.scrollTop) isi.scrollTop = 0;
+      const isi = bahas.parentNode; if (isi && isi.scrollTop) isi.scrollTop = 0;
       setelahPasang(cekGulirV10);
+      return judul;
+    }
+    // tautan "Rincian jawaban per orang" di bawah tombol utama (seperti contoh): membuka lipatan rincian dan menggulirnya ke pandangan
+    function tautRincianV10() {
+      const rin = wrap.querySelector('.papan-rincian'); if (!rin) return;
+      if (!rin.id) rin.id = 'papan-rincian-' + uid;
+      const t = h('button', { type: 'button', class: 'btn btn-text papan-rincian-buka', 'aria-controls': rin.id, 'aria-expanded': 'false', onclick: () => {
+        rin.open = !rin.open; t.setAttribute('aria-expanded', String(!!rin.open));
+        if (rin.open) { try { rin.scrollIntoView({ block: 'start', behavior: halus() }); } catch (e) {} }
+      } }, 'Rincian jawaban per orang');
+      rin.addEventListener('toggle', () => t.setAttribute('aria-expanded', String(!!rin.open)));
+      aksi.appendChild(t);
     }
     const pemandu = () => namaPemandu || pemimpinB || '';
     const samaN = (a, b) => !!a && !!b && String(a).toLowerCase() === String(b).toLowerCase();
@@ -854,8 +895,9 @@
       // v8.2 B2 (audit T5): tombol utama dan Enter ditahan 800 ms sesudah kunci terbuka, agar ketukan ganda tidak melompati pembahasan
       const tahanSampai = Date.now() + 800;
       const lanjut = h('button', { type: 'button', class: 'btn btn-primary', 'aria-disabled': 'true', onclick: () => { if (sudahLanjut || Date.now() < tahanSampai) return; sudahLanjut = true; clearInterval(tBahas); tBahas = null; if (opsi.onLanjut) opsi.onLanjut(benarP, jawabP, detik, ykP); } }, opsi.labelLanjut || 'Lanjut', ikon('chevron-kanan'));
-      if (papanV10) kunciPapanV10(lanjut);
+      if (papanV10) intiEl = kunciPapanV10(lanjut, per, tri) || intiEl;
       isiAksiBersama(lanjut);
+      if (papanV10) tautRincianV10();
       setTimeout(() => lanjut.removeAttribute('aria-disabled'), 800);
       gambarPetunjuk();
       fokus(intiEl);
