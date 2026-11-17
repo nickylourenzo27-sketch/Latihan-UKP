@@ -6282,4 +6282,212 @@ body[data-mode] main > .page > .fokus-bar.kop-sesi-room > .fokus-menu { order: -
   .lobi-aksi .lobi-lain { justify-content: center; }
 }
 /* v10 room: selesai */
+
+/* v10 hasil: mulai */
+/* ---- hasil latihan sendiri (.v10-hasil, js/views-belajar.js selesai()) dan Kemajuan (.v10-kemajuan, js/views-alat.js).
+   Daftar bergaris rambut .vh-daftar dan judul bagian .vh-bagian-judul dipakai keduanya. ---- */
+.v10-hasil, .v10-kemajuan { max-width: 40rem; min-width: 0; }
+.v10-hasil { padding-bottom: var(--v10-j-12); }
+/* skor: angka 88 px dan keterangan sebaris (satu garis dasar) */
+.v10-hasil .vh-skor { margin: var(--v10-j-6) 0 0; line-height: var(--v10-tb-skor); color: var(--v10-teks); }
+.v10-hasil .vh-skor-angka {
+  font-family: var(--v10-huruf-merek); font-weight: 700; font-size: var(--v10-t-skor); line-height: var(--v10-tb-skor);
+  letter-spacing: -.04em; font-variant-numeric: tabular-nums; margin-right: var(--v10-j-2);
+}
+.v10-hasil .vh-skor-ket { font-size: var(--v10-t-judul); line-height: var(--v10-tb-judul); font-weight: 500; color: var(--v10-redup); }
+.v10-hasil .vh-diagnosis { margin: var(--v10-j-2) 0 0; font-size: var(--v10-t-label); line-height: var(--v10-tb-label); color: var(--v10-redup); overflow-wrap: anywhere; }
+/* petak per soal: tombol 44 px, lima per baris di HP dan sepuluh mulai 600 px; benar berisi hijau, salah pucat bergaris merah */
+.v10-hasil .vh-petak { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--v10-sasaran), 1fr)); gap: var(--v10-j-1); margin-top: var(--v10-j-5); }
+.v10-hasil .vh-petak-10 { grid-template-columns: repeat(5, minmax(var(--v10-sasaran), 1fr)); }
+@media (min-width: 600px) { .v10-hasil .vh-petak-10 { grid-template-columns: repeat(10, minmax(var(--v10-sasaran), 1fr)); } }
+.v10-hasil .vh-petak-sel {
+  min-height: var(--v10-sasaran); min-width: var(--v10-sasaran); margin: 0; padding: 0; border: 0; border-radius: var(--v10-r-kendali);
+  display: grid; place-items: center; font-family: var(--v10-huruf-merek); font-weight: 700; font-size: var(--v10-t-label); line-height: 1;
+  font-variant-numeric: tabular-nums; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: transform var(--v10-d-tekan) var(--v10-k-standar);
+}
+.v10-hasil .vh-petak-sel[data-hasil="benar"] { background: var(--v10-benar); color: var(--v10-permukaan); }
+.v10-hasil .vh-petak-sel[data-hasil="salah"] { background: var(--v10-salah-lembut); color: var(--v10-salah); box-shadow: inset 0 0 0 2px var(--v10-salah); }
+.v10-hasil .vh-petak-sel:active { transform: scale(.96); }
+.v10-hasil .vh-petak-sel:focus-visible { outline: 2px solid var(--v10-fokus); outline-offset: 2px; }
+.v10-hasil .vh-petak-ket { display: flex; justify-content: space-between; margin: var(--v10-j-2) 0 0; font-size: var(--v10-t-label-kecil); line-height: var(--v10-tb-label-kecil); color: var(--v10-redup); }
+/* baris hasil menurut keyakinan */
+.v10-hasil .vh-fakta { list-style: none; margin: var(--v10-j-6) 0 0; padding: 0; border-top: 1px solid var(--v10-garis); }
+.v10-hasil .vh-fakta li {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--v10-j-3); padding: var(--v10-j-3) 0;
+  border-bottom: 1px solid var(--v10-garis); font-size: var(--v10-t-badan); line-height: 22px;
+}
+.v10-hasil .vh-fakta li span { color: var(--v10-redup); min-width: 0; }
+.v10-hasil .vh-fakta li b { font-weight: 600; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--v10-teks); }
+.v10-hasil .vh-catatan { margin: var(--v10-j-3) 0 0; font-size: var(--v10-t-label); line-height: var(--v10-tb-label); color: var(--v10-redup); }
+/* satu tombol utama penuh dan satu tombol teks di bawahnya */
+.v10-hasil .vh-aksi { display: grid; gap: var(--v10-j-2); justify-items: center; margin-top: var(--v10-j-6); }
+.v10-hasil .vh-aksi .btn-primary { width: 100%; min-height: var(--v10-tombol-besar-h); white-space: normal; text-align: center; justify-content: center; }
+.v10-hasil .vh-aksi .btn-text { min-height: var(--v10-sasaran); white-space: normal; text-align: center; max-width: 100%; }
+/* bagian dan daftar bergaris rambut */
+.vh-bagian { margin-top: var(--v10-j-8); min-width: 0; }
+.vh-bagian-kepala { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: var(--v10-j-3); min-height: var(--v10-sasaran); margin-bottom: var(--v10-j-2); }
+.vh-bagian .vh-bagian-judul {
+  margin: 0; font-family: var(--v10-huruf); font-size: var(--v10-t-label-kecil); font-weight: 600; line-height: var(--v10-tb-label-kecil);
+  letter-spacing: .01em; color: var(--v10-redup);
+}
+.vh-bagian-meta { font-size: var(--v10-t-label-kecil); line-height: var(--v10-tb-label-kecil); color: var(--v10-redup); }
+.vh-daftar { list-style: none; margin: 0; padding: 0; background: var(--v10-permukaan); border: 1px solid var(--v10-garis); border-radius: var(--v10-r-kartu); overflow: hidden; }
+.vh-daftar > li { margin: 0; }
+.vh-daftar .vh-baris {
+  display: flex; align-items: center; gap: var(--v10-j-3); width: 100%; min-height: 64px; margin: 0;
+  padding: var(--v10-j-3) var(--v10-j-3) var(--v10-j-3) var(--v10-j-4); border: 0; border-radius: 0; background: transparent;
+  font: inherit; text-align: left; color: var(--v10-teks); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--v10-d-warna) var(--v10-k-standar);
+}
+.vh-daftar > li + li > .vh-baris { border-top: 1px solid var(--v10-garis); }
+.vh-daftar .vh-baris:hover { background: var(--v10-permukaan-2); color: var(--v10-teks); }
+.vh-daftar .vh-baris:active { background: var(--v10-aksi-lembut); }
+.vh-daftar .vh-baris:focus-visible { outline: 2px solid var(--v10-fokus); outline-offset: -3px; border-radius: var(--v10-r-kartu); }
+.vh-daftar-ringkas .vh-baris { min-height: 56px; }
+.vh-baris-isi { flex: 1 1 auto; min-width: 0; }
+.vh-baris-judul { display: block; font-size: var(--v10-t-badan); font-weight: 600; line-height: 22px; overflow-wrap: anywhere; }
+.vh-salah .vh-baris-judul { font-weight: 500; }
+.vh-baris-ket { display: block; margin-top: 2px; font-size: var(--v10-t-label); line-height: var(--v10-tb-label); color: var(--v10-redup); overflow-wrap: anywhere; }
+.vh-daftar .vh-chevron { flex: none; width: 18px; height: 18px; color: var(--v10-redup); }
+.vh-salah .vh-baris { align-items: flex-start; }
+.vh-salah .vh-chevron { margin-top: 2px; }
+.vh-no {
+  flex: none; display: grid; place-items: center; width: 28px; height: 28px; margin-top: -3px; border-radius: var(--v10-r-pil);
+  background: var(--v10-salah-lembut); box-shadow: inset 0 0 0 2px var(--v10-salah); color: var(--v10-salah);
+  font-family: var(--v10-huruf-merek); font-weight: 700; font-size: var(--v10-t-label); line-height: 1; font-variant-numeric: tabular-nums;
+}
+
+/* ---- Kemajuan, tab Ringkasan: tiga angka satu notasi, kartu Mulai dari sini, daftar mata uji, blok keyakinan ---- */
+.v10-kemajuan { display: block; }
+.v10-kemajuan .vk-ringkas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.v10-kemajuan .vk-ringkas > li { min-width: 0; margin: 0; }
+.v10-kemajuan .vk-ringkas > li + li { border-left: 1px solid var(--v10-garis); padding-left: var(--v10-j-3); }
+.v10-kemajuan .vk-angka {
+  display: block; font-family: var(--v10-huruf-merek); font-weight: 700; font-size: var(--v10-t-judul); line-height: var(--v10-tb-judul);
+  font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--v10-teks);
+}
+.v10-kemajuan .vk-angka small { font-family: var(--v10-huruf); font-size: var(--v10-t-label-kecil); font-weight: 500; letter-spacing: 0; color: var(--v10-redup); }
+.v10-kemajuan .vk-label { display: block; margin-top: 2px; font-size: var(--v10-t-label-kecil); line-height: var(--v10-tb-label-kecil); color: var(--v10-redup); }
+.v10-kemajuan .vk-mulai { margin-top: var(--v10-j-6); padding: var(--v10-j-5); background: var(--v10-permukaan); border: 1px solid var(--v10-garis); border-radius: var(--v10-r-kartu); }
+.v10-kemajuan .vk-mulai-label { margin: 0; font-size: var(--v10-t-label-kecil); font-weight: 600; line-height: var(--v10-tb-label-kecil); color: var(--v10-redup); }
+.v10-kemajuan .vk-mulai-judul {
+  margin: var(--v10-j-1) 0 0; font-family: var(--v10-huruf-merek); font-weight: 700; font-size: var(--v10-t-vonis); line-height: var(--v10-tb-vonis);
+  color: var(--v10-teks); overflow-wrap: anywhere;
+}
+.v10-kemajuan .vk-mulai-ket { margin: var(--v10-j-1) 0 0; font-size: var(--v10-t-label); line-height: var(--v10-tb-label); color: var(--v10-redup); }
+.v10-kemajuan .vk-mulai .btn-primary { width: 100%; min-height: var(--v10-tombol-besar-h); margin-top: var(--v10-j-4); justify-content: center; white-space: normal; text-align: center; }
+.v10-kemajuan .vk-kd { flex: none; width: 28px; font-family: var(--v10-huruf-kode); font-weight: 500; font-size: var(--v10-t-label-kecil); color: var(--v10-redup); }
+.v10-kemajuan .vk-modul .vh-baris-judul { line-height: 20px; }
+/* kolom angka berlebar tetap 76 px: semua bilah sama panjang */
+.v10-kemajuan .vk-kolom { flex: none; width: 76px; text-align: right; font-size: var(--v10-t-label); font-weight: 600; line-height: var(--v10-tb-label); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.v10-kemajuan .vk-bilah { display: block; height: 6px; margin-top: var(--v10-j-2); border-radius: 3px; background: var(--v10-garis); overflow: hidden; }
+.v10-kemajuan .vk-bilah > i { display: block; height: 100%; border-radius: 3px; background: var(--v10-data); }
+.v10-kemajuan .vk-yakin { display: grid; gap: var(--v10-j-3); padding: var(--v10-j-4); background: var(--v10-permukaan); border: 1px solid var(--v10-garis); border-radius: var(--v10-r-kartu); }
+.v10-kemajuan .vk-yakin-baris { display: grid; grid-template-columns: 92px minmax(0, 1fr) 76px; align-items: center; gap: var(--v10-j-3); font-size: var(--v10-t-label); line-height: var(--v10-tb-label); color: var(--v10-teks); }
+.v10-kemajuan .vk-yakin-baris .vk-bilah { margin: 0; height: 8px; border-radius: 4px; }
+.v10-kemajuan .vk-yakin-baris b { font-weight: 600; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.v10-kemajuan .vk-yakin .vk-catatan { margin: 0; font-size: var(--v10-t-label); line-height: var(--v10-tb-label); color: var(--v10-redup); }
+@media (max-width: 359px) { .v10-kemajuan .vk-yakin-baris { grid-template-columns: 84px minmax(0, 1fr) 72px; gap: var(--v10-j-2); } }
+@media (forced-colors: active) {
+  .v10-hasil .vh-petak-sel { border: 2px solid CanvasText; }
+  .v10-kemajuan .vk-bilah > i { background: Highlight; forced-color-adjust: none; }
+}
+/* v10 hasil: selesai */
+
+/* v10 lain: mulai */
+/* ---- Tahap 3, halaman lain: Materi (peta, kelompok, topik, cakupan), Bank soal, Simulasi (atur dan hasil; layar berjalan memakai
+   data-mode="ujian" dan tidak tersentuh), Pengaturan, Dasbor tim, Referensi, Kalkulator, halaman Lainnya sejenis (Rencana, Peta
+   formulir, Studi kasus, Strategi, Lembar angka, Etika), dan halaman saringan Latih. Semua pemilih dibatasi body[data-view] yang
+   disebut satu per satu; saringan Latih dibatasi anak langsung halaman (main > .page > ...) dan .latih-form, karena Hasil latihan
+   berada di dalam .latih-area pada view yang sama. Beranda, Latih berjalan, Hasil latihan, Kemajuan, dan Mode mabar tidak kena. ---- */
+
+/* ---- pita tipis: padding 20 px, judul 24/30 dengan garis kuning tegak 4 x 22 px di kiri, kalimat 14/20; remah dan alis huruf biasa ---- */
+@media screen {
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head.kop-pita,
+  body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .page-head.kop-pita { padding-block: var(--v10-j-5); row-gap: var(--v10-j-1); }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head.kop-pita h1,
+  body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .page-head.kop-pita h1 {
+    position: relative; padding-left: var(--v10-j-4); font-size: var(--v10-t-judul); line-height: var(--v10-tb-judul); letter-spacing: -.01em;
+  }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head.kop-pita h1::before,
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head.kop-pita :is(.crumb, .eyebrow) ~ h1::before,
+  body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .page-head.kop-pita h1::before {
+    content: ""; display: block; position: absolute; left: 0; top: 4px; width: 4px; height: 22px; border-radius: 2px; background: var(--v10-aksen);
+  }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head.kop-pita .lead,
+  body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .page-head.kop-pita .lead { margin: 0; font-size: var(--v10-t-label); line-height: var(--v10-tb-label); color: var(--v10-merek-redup); }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head.kop-pita .page-meta { font-size: var(--v10-t-label-kecil); line-height: var(--v10-tb-label-kecil); }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head.kop-pita :is(.eyebrow, .crumb, .crumb a, .crumb-induk) {
+    font-family: var(--v10-huruf); font-size: var(--v10-t-label-kecil); line-height: var(--v10-tb-label-kecil); font-weight: 600;
+    letter-spacing: 0; text-transform: none; color: var(--v10-merek-redup);
+  }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head.kop-pita .crumb a:hover { color: var(--v10-merek-teks); }
+}
+@media screen and (min-width: 1024px) {
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head.kop-pita,
+  body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .page-head.kop-pita { padding-block: var(--v10-j-6); }
+}
+/* kepala tanpa pita (kelompok, topik): judul 24/30 dengan garis --v10-penanda (kuning di putih hanya 1,91:1); remah dan alis huruf biasa */
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head:not(.kop-pita) h1 {
+  position: relative; padding-left: var(--v10-j-4); font-size: var(--v10-t-judul); line-height: var(--v10-tb-judul); letter-spacing: -.01em;
+}
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head:not(.kop-pita) h1::before {
+  content: ""; position: absolute; left: 0; top: 4px; width: 4px; height: 22px; border-radius: 2px; background: var(--v10-penanda);
+}
+@media (forced-colors: active) {
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .page-head h1::before, body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page > .page-head h1::before { background: CanvasText; forced-color-adjust: none; }
+}
+
+/* ---- label kecil: alis, label ubin angka, dan judul kartu skor memakai huruf biasa 13/600 redup (mono kapital hanya untuk kode) ---- */
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(.eyebrow, .stat-tile .label, .kartu-skor .card-title) {
+  font-family: var(--v10-huruf); font-size: var(--v10-t-label-kecil); line-height: var(--v10-tb-label-kecil); font-weight: 600;
+  letter-spacing: 0; text-transform: none; color: var(--v10-redup);
+}
+
+/* ---- kartu satu rupa: permukaan, garis rambut, radius 12; garis aksen kiri berwarna dan garis atas tebal dihapus. Garis status
+   (banner, umpan benar/salah, peringatan) tidak disentuh. Kode kelompok tetap tampil di kolom kiri kartu, tanpa garis. ---- */
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .card { border-radius: var(--v10-r-kartu); }
+html:not(.tanpa-has) body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .card.klik.kartu-kelompok::before,
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .card[data-kode]::before { box-shadow: none; }
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .card.kartu-cakupan { border-left: var(--v10-tebal-rambut) solid var(--v10-garis); box-shadow: none; }
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .kartu-skor { border-top: var(--v10-tebal-rambut) solid var(--v10-garis); }
+
+/* ---- pemilih seragam: segmen dan chip terpilih memakai keadaan terisi v10 (biru tua di terang, biru gelap bergaris biru muda di gelap) ---- */
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .seg button:is([aria-pressed="true"], [aria-checked="true"]),
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .seg button:is([aria-pressed="true"], [aria-checked="true"]):hover,
+body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page .latih-form .seg button:is([aria-pressed="true"], [aria-checked="true"]),
+body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page .latih-form .seg button:is([aria-pressed="true"], [aria-checked="true"]):hover {
+  background: var(--v10-isi); color: var(--v10-isi-teks); font-weight: 600; box-shadow: inset 0 0 0 1.5px var(--v10-isi-garis);
+}
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(button, a).chip:is([aria-pressed="true"], [aria-selected="true"], .aktif),
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(button, a).chip:is([aria-pressed="true"], [aria-selected="true"], .aktif):hover {
+  background: var(--v10-isi); border-color: var(--v10-isi-garis); color: var(--v10-isi-teks); box-shadow: none;
+}
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(button, a).chip:is([aria-pressed="true"], [aria-selected="true"], .aktif)::before { background: currentColor; }
+body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(.tabs, .tablist) [role="tab"][aria-selected="true"] { color: var(--v10-teks); font-weight: 600; }
+@media (forced-colors: active) {
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .seg button:is([aria-pressed="true"], [aria-checked="true"]), body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(button, a).chip:is([aria-pressed="true"], [aria-selected="true"], .aktif) { outline: 2px solid Highlight; outline-offset: -2px; }
+}
+
+/* ---- sasaran 44 px tanpa menggeser tata letak: tautan teks di saringan Latih (bidang ketuk diperluas ::after) ---- */
+body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page .latih-form a.tautan { position: relative; }
+body[data-view="latih"]:not([data-mode="ujian"]):not([data-mode="fokus"]) main > .page .latih-form a.tautan::after { content: ""; position: absolute; inset: -14px -4px; }
+
+/* ---- tab dan chip bergulir di HP dan tablet: tanda bisa digulir. ::before = chevron lengket di tepi kanan jendela gulir; ::after =
+   penutup selebar chevron di ujung isi (tidak lengket), jadi chevron hanya tampak selama masih ada isi di kanan. Margin negatif
+   chevron = lebar penutup + jarak antar butir, sehingga di ujung gulir (atau bila tidak meluap) penutup tepat menimpanya. ---- */
+@media screen and (max-width: 1023px) {
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(.chip-row.gulir, .tabs)::before,
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(.chip-row.gulir, .tabs)::after { content: ""; flex: none; align-self: stretch; width: 32px; background: var(--bg); }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(.chip-row.gulir, .tabs)::before {
+    content: "\203A"; order: 98; position: sticky; right: 0; z-index: 1; display: flex; align-items: center; justify-content: center;
+    margin-right: -40px; font-size: var(--v10-t-vonis); font-weight: 600; color: var(--v10-redup); box-shadow: inset 1px 0 0 var(--v10-garis);
+  }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main :is(.chip-row.gulir, .tabs)::after { order: 99; position: relative; z-index: 2; }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .chip-row.gulir::before { right: -2px; }   /* baris chip berbantalan 2 px */
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .tabs::before { margin-right: -36px; box-shadow: inset 1px 0 0 var(--v10-garis), inset 0 -1px 0 var(--line); }
+  body:not([data-mode="ujian"]):not([data-mode="fokus"]):is([data-view="tingkat"], [data-view="belajar"], [data-view="cakupan"], [data-view="kelompok"], [data-view="topik"], [data-view="bank"], [data-view="simulasi"], [data-view="pengaturan"], [data-view="tim"], [data-view="referensi"], [data-view="kalkulator"], [data-view="rencana"], [data-view="formulir"], [data-view="kasus"], [data-view="strategi"], [data-view="lembar"], [data-view="profesi"]) main .tabs::after { box-shadow: inset 0 -1px 0 var(--line); }
+}
+/* v10 lain: selesai */
 /* ===== v10 langkah tegas: selesai ===== */

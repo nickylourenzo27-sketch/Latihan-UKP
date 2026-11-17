@@ -196,7 +196,8 @@ describe('v9.5.4 S13: tombol "Latih N soal <topik>" memakai jumlah soal yang ben
   });
   it('semua tombol "Latih 10 soal" yang menunjuk satu topik memakai pembantu; topik tanpa soal tidak menawarkan tombol', () => {
     assert.ok(vb.includes("'Latih ' + nLatihDari(soalTopik) + ' soal ' + t.id"));
-    assert.ok(vb.includes("tt && nLatihTopik(tt.id) ? h('button'") && vb.includes("'Latih ' + nLatihTopik(tt.id) + ' soal ' + tt.id"));
+    // v10 hasil: ringkasan latihan menyusun tujuan sebagai data (tombol utama, tombol teks, Pilihan lain); jumlah tetap dari nLatihTopik
+    assert.ok(vb.includes("const nTopik = tt ? nLatihTopik(tt.id) : 0;") && vb.includes("nTopik ? { id: 'topik', teks: 'Latih ' + nTopik + ' soal ' + tt.id"));
     assert.ok(va.includes("nLatih ? h('button'") && va.includes("'Latih ' + nLatih + ' soal')"));
     assert.ok(va.includes("nL ? { label: 'Latih ' + nL + ' soal topik ini'"));
     assert.ok(va.includes("'Latih ' + nLatihTopik(rows[0].t.id) + ' terlemah'"));

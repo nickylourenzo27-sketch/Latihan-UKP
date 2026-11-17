@@ -20,6 +20,18 @@
     if (top && top[1] > 0) return { teks: top[1] + ' kesalahan di ' + (o.judul || top[0]) + '.' + (belumTahuTeks ? ' ' + belumTahuTeks : ''), muted: false };
     return { teks: belumTahuTeks || nKeliru + ' soal keliru.', muted: false };
   };
+  // v10 hasil: satu kalimat diagnosis dari topik soal yang salah di sesi itu (bukan simpanan baru). topikSalah: id topik per soal yang
+  // salah, termasuk "Tidak tahu"; cariTopik(id) memberi { id, judul }. null bila tidak ada yang salah atau topik tidak dikenal
+  UKP.diagnosisHasilLatih = function (topikSalah, cariTopik) {
+    const arr = (topikSalah || []).filter(Boolean); if (!arr.length) return null;
+    const hit = {}; arr.forEach(t => { hit[t] = (hit[t] || 0) + 1; });
+    const urut = Object.keys(hit).sort((a, b) => hit[b] - hit[a] || arr.indexOf(a) - arr.indexOf(b));
+    const t = typeof cariTopik === 'function' ? cariTopik(urut[0]) : null; const nama = t ? t.id + ' ' + t.judul : urut[0];
+    if (arr.length === 1) return 'Soal yang salah ada di ' + nama + '.';
+    if (hit[urut[0]] === arr.length) return 'Semua ' + arr.length + ' yang salah ada di ' + nama + '.';
+    if (hit[urut[0]] >= 2) return hit[urut[0]] + ' dari ' + arr.length + ' yang salah ada di ' + nama + '.';
+    return 'Yang salah tersebar di ' + urut.length + ' topik berbeda.';
+  };
   const DEK_PERUBAHAN = 'perubahan-2025-2026';
   // kartu otomatis dari baris angka kunci topik (id KA-poin-<topik>-<i>); pakai mesin belajar bila tersedia
   const idKartuPoin = (t, i) => 'KA-poin-' + t.id + '-' + i;
@@ -1858,39 +1870,57 @@
         const salahTerakhir = s.jawaban.filter(j => j.pada >= mulaiWaktu && !j.benar && j.opsi !== '-');
         const perTopik = {}; salahTerakhir.forEach(j => { perTopik[j.topik] = (perTopik[j.topik] || 0) + 1; });
         const top = Object.entries(perTopik).sort((a, b) => b[1] - a[1])[0];
-        // ringkasan (LT-3): akurasi (cincin + hitung naik), daftar soal keliru yang bisa dibuka, "Ulangi N soal yang salah" (aksi sekunder)
+        // v10 hasil: skor besar "7 dari 10 benar", kalimat diagnosis topik, petak per soal (diketuk membuka ulasan), baris keyakinan
+        // termasuk tanpa tanda, kartu dek Ulang, satu tombol utama dan satu tombol teks; tujuan lain di daftar "Pilihan lain"
         const utama = riwayat; const ulangRun = !!oj.ulang;
-        const benarPertama = utama.filter(r => r.benar).length; const akurasi = utama.length ? Math.round(benarPertama / utama.length * 100) : null;
+        const benarPertama = utama.filter(r => r.benar).length;
         const keliru = utama.filter(r => !r.benar);
-        const labelAkurasi = ulangRun ? 'Akurasi putaran ulang' : 'Akurasi percobaan pertama';
-        const ring = akurasi != null ? UKP.c.ring(akurasi, { besar: true, label: labelAkurasi, teks: akurasi + '%', hitung: akurasi, akhiran: '%', animasi: true, valuetext: akurasi + ' persen benar' + (ulangRun ? ' pada putaran ulang' : ' pada percobaan pertama') }) : null;
         const kalimat = utama.length ? utama.length + (ulangRun ? ' soal diulang · ' + benarPertama + ' benar' : ' soal · ' + benarPertama + ' benar pada percobaan pertama') + (idx < daftar.length ? ' (berhenti di soal ' + (idx + 1) + ' dari ' + daftar.length + ')' : '') + ' · ' + menit + ' mnt.' : 'Belum ada soal yang dijawab.';
-        // kalibrasi keyakinan (Momen 2), percobaan pertama saja: yakin-benar, yakin-keliru, ragu, menebak
-        const berYakin = utama.filter(r => r.keyakinan); let kalibrasi = null;
-        if (berYakin.length) {
-          const grup = v => berYakin.filter(r => r.keyakinan === v); const nBenar = a => a.filter(r => r.benar).length;
-          const yk = grup('yakin'), rg = grup('ragu'), tb = grup('menebak');
-          const bagian = [yk.length ? 'yakin dan benar ' + nBenar(yk) : null, yk.length ? 'yakin tetapi keliru ' + (yk.length - nBenar(yk)) : null,
-            rg.length ? 'ragu ' + rg.length + ' (' + nBenar(rg) + ' benar)' : null, tb.length ? 'nebak ' + tb.length + ' (' + nBenar(tb) + ' benar)' : null].filter(Boolean);
-          const yakinKeliru = yk.length - nBenar(yk);
-          kalibrasi = h('p', { class: 'small kalibrasi' }, h('strong', null, 'Kalibrasi: '), bagian.join(' · ') + '.',
-            yakinKeliru ? h('span', { class: 'muted' }, ' Soal yang yakin tetapi keliru paling berharga untuk diulang.') : null);
-        }
+        // keyakinan, percobaan pertama saja; "Tidak tahu" tidak membawa keyakinan, jadi dihitung tersendiri
+        const nBenar = a => a.filter(r => r.benar).length; const dijawab = utama.filter(r => r.jawab !== '-');
+        const grupYakin = [['Saat Anda yakin', dijawab.filter(r => r.keyakinan === 'yakin')], ['Saat ragu atau nebak', dijawab.filter(r => r.keyakinan === 'ragu' || r.keyakinan === 'menebak')], ['Tanpa tanda yakin', dijawab.filter(r => !r.keyakinan)]];
+        const nTidakTahu = utama.length - dijawab.length; const yakinSalah = grupYakin[0][1].length - nBenar(grupYakin[0][1]);
+        const fakta = grupYakin.filter(g => g[1].length).map(g => h('li', null, h('span', null, g[0]), h('b', null, nBenar(g[1]) + ' dari ' + g[1].length + ' benar')));
+        if (nTidakTahu) fakta.push(h('li', null, h('span', null, 'Tidak tahu'), h('b', null, nTidakTahu + ' soal')));
+        const kk = UKP.kalimatKesalahanLatih({ nKeliru: keliru.length, nBelumTahu: keliru.filter(r => r.jawab === '-').length, top, judul: top ? (K.topik(top[0]) || {}).judul : '', adaJawaban: !!idx });
+        const diagnosis = UKP.diagnosisHasilLatih(keliru.map(r => r.soal && r.soal.topik), K.topik) || (kk ? kk.teks : '');
         const bukaSoal = r => UKP.dialog({ judul: 'Soal ' + r.soal.id, isi: () => h('div', { class: 'stack' }, UKP.c.soal(r.soal, { hanyaBaca: true, denganUmpan: true, fokus: false, jawabanAwal: r.jawab, detik: r.detik || 0, konteks: 'ulas', tanpaTutor: true })) });
-        // v9.6.5: kepala berpita lewat UKP.c.kop (h1 dan teksnya tetap)
-        area.append(UKP.c.kop({ judul: ulangRun ? 'Putaran ulang selesai' : 'Latihan selesai', pita: true }),
-          h('div', { class: 'card sorot ringkasan-latih' }, h('div', { class: 'between' }, h('div', { class: 'stack-sm' }, h('p', { class: 'eyebrow' }, 'Ringkasan'), h('p', null, kalimat), kalibrasi, (() => { const kk = UKP.kalimatKesalahanLatih({ nKeliru: keliru.length, nBelumTahu: keliru.filter(r => r.jawab === '-').length, top, judul: top ? (K.topik(top[0]) || {}).judul : '', adaJawaban: !!idx }); return kk ? h('p', { class: 'small' + (kk.muted ? ' muted' : '') }, kk.teks) : null; })()), ring),
-            // langkah berikutnya bernama (DESAIN-V7 D6): topik dengan kesalahan terbanyak disebut kode + judulnya
-            (() => { const tt = top ? K.topik(top[0]) : null; const latihLagi = () => UKP.go('latih', Object.assign({}, f, { mulai: true, lanjut: null, sesi: null }));
-              const ulangSalah = keliru.map(r => r.soal).filter((x, i, a) => a.indexOf(x) === i);
-              return h('div', { class: 'btn-row' },
-                tt && nLatihTopik(tt.id) ? h('button', { type: 'button', class: 'btn btn-primary', title: tt.id + ' ' + tt.judul, onclick: () => UKP.go('latih', { topik: tt.id, kode: tt.kode, n: 10, mulai: true }) }, 'Latih ' + nLatihTopik(tt.id) + ' soal ' + tt.id + ' ' + pendek(tt.judul, 32))
-                  : h('button', { type: 'button', class: 'btn btn-primary', onclick: latihLagi }, f.n === 'semua' ? 'Latih semua soal lagi' : 'Latih ' + f.n + ' soal lagi'),
-                ulangSalah.length ? h('button', { type: 'button', class: 'btn btn-ulang-salah', onclick: () => jalankan(U.acak(ulangSalah), { ulang: true }) }, 'Ulangi ' + ulangSalah.length + ' soal yang salah') : null,
-                h('button', { type: 'button', class: 'btn btn-ghost btn-text', onclick: keSaringan }, 'Atur saringan'),
-                UKP.link('Ke Hari Ini', 'beranda', null, 'btn btn-ghost btn-text')); })()),
-          keliru.length ? sect({ id: 'keliru-judul', judul: ulangRun ? 'Masih keliru' : 'Keliru pada percobaan pertama', meta: keliru.length + ' soal', isi:
-            h('div', { class: 'list-rows daftar-kartu' }, keliru.map(r => { const tag = r.jawab && r.jawab !== '-' ? (r.soal.jebakanOpsi || {})[r.jawab] : null; return h('button', { type: 'button', class: 'row-link baris-tombol', 'aria-haspopup': 'dialog', onclick: () => bukaSoal(r) }, h('span', { class: 'kode' }, r.soal.id.split('-').pop()), h('span', { class: 'row-isi' }, h('span', { class: 'row-title small' }, pendek(r.soal.stem, 110)), h('span', { class: 'row-meta' }, h('span', { class: 'meta' }, h('span', { class: 'kode' }, r.soal.id), h('span', { class: 'sep', 'aria-hidden': 'true' }, '·'), r.jawab === '-' ? 'belum tahu' : 'jawaban ' + r.jawab + ', kunci ' + r.soal.kunci), r.keyakinan === 'yakin' ? pill('yakin', 'attn', 'peringatan') : null, tag ? pill(UKP.tagLabel(tag), 'warn') : null)), ikon('chevron-kanan', 'chev', true)); })) }) : null);
+        const ulangSalah = keliru.map(r => r.soal).filter((x, i, a) => a.indexOf(x) === i);
+        const kartuAda = new Set((UKP.store.get().kartuOtomatis || []).map(k => k && k.id)); const nKartu = ulangSalah.filter(q => kartuAda.has('KA-' + q.id)).length;
+        // petak per soal: nomor = urutan soal di latihan ini; di atas 40 soal hanya daftar "Yang salah"
+        const salahNo = utama.map((r, i) => r.benar ? null : i + 1).filter(Boolean);
+        const kalimatPetak = !salahNo.length ? 'Semua soal benar.' : salahNo.length === utama.length ? 'Semua soal salah.' : 'Soal ' + (salahNo.length > 1 ? salahNo.slice(0, -1).join(', ') + ', dan ' + salahNo[salahNo.length - 1] : salahNo[0]) + ' salah. Sisanya benar.';
+        const petak = utama.length && utama.length <= 40 ? [h('div', { class: 'vh-petak' + (utama.length <= 10 ? ' vh-petak-10' : ''), role: 'group', 'aria-label': kalimatPetak + ' Ketuk nomor untuk membuka soalnya.' },
+          utama.map((r, i) => h('button', { type: 'button', class: 'vh-petak-sel', 'data-hasil': r.benar ? 'benar' : 'salah', 'aria-label': 'Soal ' + (i + 1) + ', ' + (r.benar ? 'benar' : r.jawab === '-' ? 'tidak tahu' : 'salah') + '. Buka ulasan.', 'aria-haspopup': 'dialog', onclick: () => bukaSoal(r) }, String(i + 1)))),
+          utama.length > 1 ? h('p', { class: 'vh-petak-ket', 'aria-hidden': 'true' }, h('span', null, 'Soal 1'), h('span', null, 'Soal ' + utama.length)) : null] : [];
+        // satu tombol utama (keadaan memilihnya) dan satu tombol teks; tujuan lama lainnya tetap ada sebagai baris daftar
+        const tt = top ? K.topik(top[0]) : null; const nTopik = tt ? nLatihTopik(tt.id) : 0;
+        const latihLagi = () => UKP.go('latih', Object.assign({}, f, { mulai: true, lanjut: null, sesi: null }));
+        const teksLagi = f.n === 'semua' ? 'Latih semua soal lagi' : 'Latih ' + f.n + ' soal lagi';
+        const tujuan = [
+          ulangSalah.length ? { id: 'ulang', teks: 'Ulangi ' + ulangSalah.length + ' soal yang salah', kelas: 'btn-ulang-salah', klik: () => jalankan(U.acak(ulangSalah), { ulang: true }) } : null,
+          nTopik ? { id: 'topik', teks: 'Latih ' + nTopik + ' soal ' + tt.id + ' ' + pendek(tt.judul, 32), title: tt.id + ' ' + tt.judul, klik: () => UKP.go('latih', { topik: tt.id, kode: tt.kode, n: 10, mulai: true }) } : null,
+          { id: 'lagi', teks: teksLagi, klik: latihLagi },
+          { id: 'saringan', teks: 'Atur saringan', klik: keSaringan }].filter(Boolean);
+        const tombolDari = (t, kelas) => h('button', { type: 'button', class: kelas + (t.kelas ? ' ' + t.kelas : ''), title: t.title || null, 'data-tujuan': t.id, onclick: t.klik }, t.teks);
+        const sisa = tujuan.slice(2);
+        // v9.6.5: kepala berpita lewat UKP.c.kop (h1 dan teksnya tetap); kalimat ringkasan lama menjadi teks di bawah judul
+        area.append(UKP.c.kop({ judul: ulangRun ? 'Putaran ulang selesai' : 'Latihan selesai', pita: true, lead: kalimat }),
+          h('div', { class: 'v10-hasil' },
+            h('section', { class: 'ringkasan-latih vh-ringkasan', 'aria-label': 'Hasil' },
+              utama.length ? h('p', { class: 'vh-skor' }, h('b', { class: 'vh-skor-angka', 'data-hitung': benarPertama }, String(benarPertama)), h('span', { class: 'vh-skor-ket' }, ' dari ' + utama.length + ' benar')) : null,
+              diagnosis ? h('p', { class: 'vh-diagnosis' }, diagnosis) : null,
+              petak,
+              fakta.length ? h('ul', { class: 'vh-fakta' }, fakta) : null,
+              yakinSalah ? h('p', { class: 'vh-catatan' }, yakinSalah + ' jawaban yakin ternyata salah. Itu yang paling berharga untuk diulang.') : null,
+              h('div', { class: 'vh-aksi' }, tombolDari(tujuan[0], 'btn btn-primary'), tujuan[1] ? tombolDari(tujuan[1], 'btn btn-ghost btn-text') : null)),
+            keliru.length ? h('section', { class: 'vh-bagian vh-salah', 'aria-labelledby': 'keliru-judul' },
+              h('div', { class: 'vh-bagian-kepala' }, h('h2', { class: 'vh-bagian-judul', id: 'keliru-judul' }, ulangRun ? 'Masih salah' : 'Yang salah'), h('span', { class: 'vh-bagian-meta' }, keliru.length + ' soal' + (nKartu ? ' · ' + nKartu + ' kartu di dek Ulang' : ''))),
+              h('ul', { class: 'vh-daftar' }, keliru.map(r => { const tag = r.jawab && r.jawab !== '-' ? (r.soal.jebakanOpsi || {})[r.jawab] : null; const no = utama.indexOf(r) + 1;
+                const ket = [r.soal.id, r.jawab === '-' ? 'tidak tahu, kunci ' + r.soal.kunci : 'Anda ' + r.jawab + ', kunci ' + r.soal.kunci, r.jawab === '-' ? null : r.keyakinan === 'menebak' ? 'nebak' : r.keyakinan || 'tanpa tanda', tag ? UKP.tagLabel(tag) : null].filter(Boolean).join(' · ');
+                return h('li', null, h('button', { type: 'button', class: 'row-link baris-tombol vh-baris', 'aria-haspopup': 'dialog', onclick: () => bukaSoal(r) }, h('span', { class: 'vh-no', 'aria-hidden': 'true' }, String(no)), h('span', { class: 'vh-baris-isi' }, h('span', { class: 'visually-hidden' }, 'Soal ' + no + ': '), h('span', { class: 'vh-baris-judul' }, pendek(r.soal.stem, 110)), h('span', { class: 'vh-baris-ket' }, ket)), ikon('chevron-kanan', 'chev vh-chevron', true))); }))) : null,
+            sisa.length ? h('section', { class: 'vh-bagian', 'aria-labelledby': 'hasil-lain-j' }, h('div', { class: 'vh-bagian-kepala' }, h('h2', { class: 'vh-bagian-judul', id: 'hasil-lain-j' }, 'Pilihan lain')),
+              h('ul', { class: 'vh-daftar vh-daftar-ringkas' }, sisa.map(t => h('li', null, h('button', { type: 'button', class: 'vh-baris' + (t.kelas ? ' ' + t.kelas : ''), title: t.title || null, 'data-tujuan': t.id, onclick: t.klik }, h('span', { class: 'vh-baris-isi vh-baris-judul' }, t.teks), ikon('chevron-kanan', 'chev vh-chevron', true)))))) : null));
         requestAnimationFrame(() => { if (typeof UKP.pasangHitung === 'function') UKP.pasangHitung(area); });
         UKP.fokus(area.querySelector('h1')); window.scrollTo({ top: 0 });
       }

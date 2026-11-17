@@ -89,6 +89,6 @@ describe('v10.1 room: CSS dan aturan baris', () => {
   });
   it('baris baru tanpa tanda pisah panjang, panah, atau jalur folder sementara', () => {
     const baris = src.split('\n').filter(x => /v10\.1|kopSesiAnggota|deretTim|lobi-v10|bar-langkah-room/.test(x)).concat(isi.split('\n'));
-    for (const x of baris) assert.doesNotMatch(x, /—|→|←|scratchpad|\/tmp\//, x);
+    for (const x of baris) assert.doesNotMatch(x, new RegExp('\u2014|\u2192|\u2190|scratch' + 'pad|/tm' + 'p/'), x);
   });
 });

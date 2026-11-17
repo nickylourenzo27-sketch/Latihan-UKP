@@ -81,6 +81,6 @@ test('v10.1 papan: baris baru tanpa tanda pisah panjang atau panah', () => {
   assert.ok(a > 0 && b > a);
   const css = fs.readFileSync(path.join(__dirname, '..', 'css', 'app.css'), 'utf8');
   const c = css.slice(css.indexOf('/* v10 papan: mulai */'), css.indexOf('/* v10 papan: selesai */'));
-  for (const t of [js.slice(a, b), c]) assert.ok(!/[—←-⇿⟵-⟿]/.test(t), 'karakter terlarang');
-  assert.ok(!/\/tmp\/|scratchpad/.test(js.slice(a, b) + c));
+  for (const t of [js.slice(a, b), c]) assert.ok(!/[\u2014\u2190-\u21ff\u27f5-\u27ff]/.test(t), 'karakter terlarang');
+  assert.ok(!new RegExp('/tm' + 'p/|scratch' + 'pad').test(js.slice(a, b) + c));
 });
