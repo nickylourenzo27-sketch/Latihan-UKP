@@ -1405,28 +1405,28 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "klasifikasi",
       kesulitan: 3,
-      kutipan: "Pasal 23 ayat (1a) UU PPh: dalam hal Wajib Pajak yang menerima atau memperoleh penghasilan sebagaimana dimaksud pada ayat (1) tidak memiliki Nomor Pokok Wajib Pajak, besarnya tarif pemotongan lebih tinggi 100% (seratus persen) daripada tarif sebagaimana dimaksud pada ayat (1).",
-      stem: "PT Sinar Pangan pada Agustus 2026 membayar KUB Prima Teknik (kelompok usaha bersama, perkumpulan yang belum mendaftarkan diri sebagai Wajib Pajak) atas jasa perawatan mesin produksi. Tagihan Rp30.000.000 (tanpa PPN karena bukan PKP) dirinci dalam kontrak: jasa perawatan Rp20.000.000 dan suku cadang Rp10.000.000 yang didukung faktur pembelian. KUB Prima Teknik tidak memiliki NPWP dan bukan penyedia jasa konstruksi bersertifikat. Berdasarkan kutipan tersebut, PPh Pasal 23 yang wajib dipotong PT Sinar Pangan adalah ...",
+      kutipan: "PMK 141/PMK.03/2015 Pasal 1 ayat (4) huruf b (parafrase): jumlah bruto imbalan jasa tidak termasuk pembayaran atas pengadaan atau pembelian barang atau material yang terkait dengan jasa yang diberikan, sepanjang dapat dibuktikan dengan faktur pembelian atas barang atau material tersebut.",
+      stem: "PT Sinar Pangan pada Agustus 2026 membayar CV Prima Teknik (ber-NPWP, bukan PKP) atas jasa perawatan mesin produksi. Tagihan Rp30.000.000 dirinci dalam kontrak: jasa perawatan Rp20.000.000 dan suku cadang Rp10.000.000 yang didukung faktur pembelian. CV Prima Teknik bukan penyedia jasa konstruksi bersertifikat. Berdasarkan kutipan tersebut, PPh Pasal 23 yang wajib dipotong PT Sinar Pangan adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Rp800.000", B: "Rp400.000", C: "Rp1.200.000", D: "Rp480.000" },
-      kunci: "A",
-      jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
+      opsi: { A: "Rp800.000", B: "Rp400.000", C: "Rp600.000", D: "Rp480.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-hitung", D: "salah-klasifikasi" },
       pembahasan: {
-        mudah: "Mulai dengan memisahkan jasa dari barang. Suku cadang Rp10 juta dirinci di kontrak dan ada faktur pembeliannya, jadi tidak ikut dipotong, dan yang dipotong hanya jasa Rp20 juta. Tarif PPh 23 jasa 2%, tetapi KUB Prima Teknik tidak punya NPWP sehingga tarifnya dua kali lipat menjadi 4%. Jadi 4% x Rp20 juta = Rp800 ribu. Cara ingat: tanpa NPWP, PPh 22 dan PPh 23 naik 100%, sedangkan PPh 21 naik 20%.",
-        inti: "Jumlah bruto jasa tidak termasuk pembelian material yang didukung faktur dan dirinci dalam kontrak, sehingga dasar pemotongan Rp20.000.000; karena penerima tidak ber-NPWP, tarif 2% naik 100% menjadi 4%.",
+        mudah: "Mulai dengan memisahkan jasa dari barang. Suku cadang Rp10 juta dirinci di kontrak dan ada faktur pembeliannya, jadi tidak ikut dipotong, dan yang dipotong hanya jasa Rp20 juta. Tarif PPh 23 jasa 2%, dan CV Prima Teknik ber-NPWP sehingga tidak ada kenaikan tarif. Jadi 2% x Rp20 juta = Rp400 ribu. Cara ingat: material boleh keluar dari dasar potong bila ada faktur pembeliannya.",
+        inti: "Jumlah bruto jasa tidak termasuk pembelian material yang didukung faktur dan dirinci dalam kontrak, sehingga dasar pemotongan Rp20.000.000; penerima ber-NPWP, jadi tarifnya tetap 2%.",
         jejakHitung: [
           ["Jumlah bruto jasa (suku cadang dikeluarkan)", "Rp20.000.000"],
-          ["Tarif tanpa NPWP = 2% × 200%", "4%"],
-          ["PPh 23 = 4% × Rp20.000.000", "Rp800.000"]
+          ["Tarif jasa lain, penerima ber-NPWP", "2%"],
+          ["PPh 23 = 2% × Rp20.000.000", "Rp400.000"]
         ],
         mengapaSalah: {
-          B: "Lupa kenaikan 100% bagi penerima tanpa NPWP",
-          C: "Memasukkan suku cadang ke jumlah bruto",
-          D: "Memakai kenaikan 20% milik PPh 21 (2% × 120%)"
+          A: "Menaikkan tarif 100% (4% × Rp20.000.000) padahal penerima ber-NPWP",
+          C: "Memasukkan suku cadang ke jumlah bruto (2% × Rp30.000.000)",
+          D: "Menambah 20% pada tarif (2,4% × Rp20.000.000); tambahan itu milik PPh 21 bagi penerima tanpa NPWP"
         },
-        jebakan: "Kenaikan tarif tanpa NPWP: 100% untuk PPh 22/23, 20% untuk PPh 21."
+        jebakan: "Suku cadang yang didukung faktur pembelian tidak masuk jumlah bruto jasa."
       },
-      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c angka 2 dan ayat (1a) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 Pasal 1 ayat (3) huruf b angka 2, ayat (4) huruf b, ayat (6) huruf z, dan ayat (7)", berlakuSejak: "2015-08-26" }],
+      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c angka 2 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 Pasal 1 ayat (3) huruf b angka 2, ayat (4) huruf b, ayat (6) huruf z, dan ayat (7)", berlakuSejak: "2015-08-26" }],
       anggaranDetik: 160,
       verifikasi: "✅"
     },
@@ -2198,14 +2198,14 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "kasus",
       kesulitan: 3,
-      stem: "PT Sinar Karya Logistik (PKP, peredaran bruto 2025 Rp120 miliar, memiliki tiga cabang ber-NITKU) pada Masa Pajak November 2026 melakukan pembayaran berikut (seluruhnya belum termasuk PPN): (1) sewa dua forklift tanpa operator dari PT Alat Prima (ber-NPWP) Rp36.000.000; (2) jasa perawatan genset dari KUB Teknik Daya (kelompok usaha bersama, perkumpulan yang belum mendaftarkan diri sebagai Wajib Pajak), yang bukan penyedia jasa konstruksi dan tidak memiliki NPWP, Rp24.000.000; (3) royalti penggunaan merek dagang kepada PT Merek Jaya (WP badan dalam negeri, ber-NPWP) Rp40.000.000; (4) jasa angkutan truk antarkota dari PT Truk Andal (ber-NPWP) Rp30.000.000; (5) voyage charter kapal tongkang dari PT Bahari Samudra, perusahaan pelayaran dalam negeri, Rp25.000.000; (6) sewa gudang di Cikarang dari Tuan Hendra Rp90.000.000; (7) bunga pinjaman modal kerja kepada PT Bank Nusa Rp12.000.000; dan (8) hadiah undian program loyalitas pelanggan berupa uang Rp10.000.000 kepada Ny. Wati. Jumlah PPh Pasal 23 yang wajib dipotong PT Sinar Karya Logistik pada Masa Pajak November 2026 adalah ...",
+      stem: "PT Sinar Karya Logistik (PKP, peredaran bruto 2025 Rp120 miliar, memiliki tiga cabang ber-NITKU) pada Masa Pajak November 2026 melakukan pembayaran berikut (seluruhnya belum termasuk PPN): (1) sewa dua forklift tanpa operator dari PT Alat Prima (ber-NPWP) Rp36.000.000; (2) sewa genset dari Tuan Dodi, orang pribadi yang tidak memiliki NPWP (NIK-nya belum dipadankan), Rp24.000.000; (3) royalti penggunaan merek dagang kepada PT Merek Jaya (WP badan dalam negeri, ber-NPWP) Rp40.000.000; (4) jasa angkutan truk antarkota dari PT Truk Andal (ber-NPWP) Rp30.000.000; (5) voyage charter kapal tongkang dari PT Bahari Samudra, perusahaan pelayaran dalam negeri, Rp25.000.000; (6) sewa gudang di Cikarang dari Tuan Hendra Rp90.000.000; (7) bunga pinjaman modal kerja kepada PT Bank Nusa Rp12.000.000; dan (8) hadiah undian program loyalitas pelanggan berupa uang Rp10.000.000 kepada Ny. Wati. Jumlah PPh Pasal 23 yang wajib dipotong PT Sinar Karya Logistik pada Masa Pajak November 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp7.680.000", B: "Rp7.800.000", C: "Rp8.280.000", D: "Rp8.780.000" },
       kunci: "C",
       jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", D: "salah-klasifikasi" },
       pembahasan: {
-        mudah: "Sebelum menghitung, pilah dulu delapan pembayaran itu, karena hanya empat yang kena PPh 23. Sewa forklift 2% = Rp720 ribu. Perawatan genset ke kelompok usaha tanpa NPWP kena dua kali tarif, 4% = Rp960 ribu. Royalti 15% = Rp6 juta, dan angkutan truk 2% = Rp600 ribu. Totalnya Rp8.280.000. Charter tongkang masuk PPh 15, sewa gudang dan hadiah undian masuk PPh final, dan bunga ke bank dikecualikan. Cara ingat: klasifikasi dulu, baru hitung.",
-        inti: "Hanya empat pembayaran yang objek PPh 23: sewa forklift (2%), perawatan genset oleh penerima tanpa NPWP (2% × 200% = 4%), royalti (15%), dan jasa angkutan darat (2%). Charter tongkang dari pelayaran dalam negeri adalah PPh 15, sewa gudang dan hadiah undian PPh 4 ayat (2), dan bunga kepada bank dikecualikan dari PPh 23.",
+        mudah: "Sebelum menghitung, pilah dulu delapan pembayaran itu, karena hanya empat yang kena PPh 23. Sewa forklift 2% = Rp720 ribu. Sewa genset dari orang pribadi tanpa NPWP kena dua kali tarif, 4% = Rp960 ribu. Royalti 15% = Rp6 juta, dan angkutan truk 2% = Rp600 ribu. Totalnya Rp8.280.000. Charter tongkang masuk PPh 15, sewa gudang dan hadiah undian masuk PPh final, dan bunga ke bank dikecualikan. Cara ingat: klasifikasi dulu, baru hitung.",
+        inti: "Hanya empat pembayaran yang objek PPh 23: sewa forklift (2%), sewa genset dari orang pribadi tanpa NPWP (2% × 200% = 4%), royalti (15%), dan jasa angkutan darat (2%). Charter tongkang dari pelayaran dalam negeri adalah PPh 15, sewa gudang dan hadiah undian PPh 4 ayat (2), dan bunga kepada bank dikecualikan dari PPh 23.",
         jejakHitung: [
           ["(1) Forklift: 2% × Rp36.000.000", "Rp720.000"],
           ["(2) Genset, tanpa NPWP: 4% × Rp24.000.000", "Rp960.000"],
@@ -2216,7 +2216,7 @@ UKP.register({
         ],
         mengapaSalah: {
           A: "Menganggap angkutan darat sebagai PPh 15; norma Pasal 15 hanya untuk pelayaran/penerbangan, sedangkan jasa angkutan darat termasuk jasa lain PPh 23",
-          B: "Lupa tarif 100% lebih tinggi bagi KUB Teknik Daya yang tidak ber-NPWP (2% × Rp24 juta = Rp480.000)",
+          B: "Lupa tarif 100% lebih tinggi bagi Tuan Dodi yang tidak ber-NPWP (2% × Rp24 juta = Rp480.000)",
           D: "Memotong PPh 23 2% atas charter tongkang (Rp500.000) yang merupakan objek PPh 15 1,2%"
         },
         jebakan: "Delapan pembayaran, hanya empat yang masuk PPh 23; selesaikan klasifikasi sebelum menghitung."
@@ -3565,13 +3565,13 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 3,
-      stem: "Pada Masa Pajak Juli 2026 PT Yasa Mandiri (WP badan dalam negeri) melakukan tiga pembayaran kepada penerima yang tidak memiliki NPWP (untuk orang pribadi, NIK-nya belum dipadankan): (1) imbalan jasa teknik kepada KUB Karya Teknik (kelompok usaha bersama, perkumpulan yang belum mendaftarkan diri sebagai Wajib Pajak) Rp50.000.000; (2) honorarium narasumber seminar kepada Tuan Bayu, orang pribadi bukan pegawai, Rp10.000.000 sekali bayar; (3) sewa ruko kepada Ny. Wati Rp100.000.000. Jumlah seluruh PPh yang dipotong PT Yasa Mandiri atas ketiga pembayaran tersebut adalah ...",
+      stem: "Pada Masa Pajak Juli 2026 PT Yasa Mandiri (WP badan dalam negeri) melakukan tiga pembayaran kepada penerima yang tidak memiliki NPWP (untuk orang pribadi, NIK-nya belum dipadankan): (1) sewa genset kepada Tuan Hadi, orang pribadi, Rp50.000.000; (2) honorarium narasumber seminar kepada Tuan Bayu, orang pribadi bukan pegawai, Rp10.000.000 sekali bayar; (3) sewa ruko kepada Ny. Wati Rp100.000.000. Jumlah seluruh PPh yang dipotong PT Yasa Mandiri atas ketiga pembayaran tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp12.300.000", B: "Rp22.300.000", C: "Rp11.250.000", D: "Rp12.500.000" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
-        mudah: "Kuncinya, tambahan tarif untuk penerima tanpa NPWP tidak sama untuk setiap jenis pajak. PPh 23 jasa teknik menjadi dua kali lipat: 2% x 2 x Rp50 juta = Rp2 juta. PPh 21 honorarium hanya naik 20%: 5% x 50% x Rp10 juta x 120% = Rp300.000. Sewa ruko kena pajak final 10% tanpa tambahan, yaitu Rp10 juta, sehingga totalnya Rp12.300.000. Cara ingat: tanpa NPWP, PPh 23 dobel, PPh 21 naik 20%, sewa bangunan tetap.",
+        mudah: "Kuncinya, tambahan tarif untuk penerima tanpa NPWP tidak sama untuk setiap jenis pajak. PPh 23 sewa genset menjadi dua kali lipat: 2% x 2 x Rp50 juta = Rp2 juta. PPh 21 honorarium hanya naik 20%: 5% x 50% x Rp10 juta x 120% = Rp300.000. Sewa ruko kena pajak final 10% tanpa tambahan, yaitu Rp10 juta, sehingga totalnya Rp12.300.000. Cara ingat: tanpa NPWP, PPh 23 dobel, PPh 21 naik 20%, sewa bangunan tetap.",
         inti: "Tambahan tarif berbeda per pasal: PPh 23 100% lebih tinggi, PPh 21 20% lebih tinggi, dan PPh 4 ayat (2) atas sewa tanah/bangunan tidak mengenal tambahan tarif.",
         jejakHitung: [
           ["PPh 23: 2% × 200% × Rp50.000.000", "Rp2.000.000"],
@@ -7877,28 +7877,28 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "klasifikasi",
       kesulitan: 3,
-      kutipan: "Pasal 23 ayat (1a) UU PPh: Dalam hal Wajib Pajak yang menerima atau memperoleh penghasilan sebagaimana dimaksud pada ayat (1) tidak memiliki Nomor Pokok Wajib Pajak, besarnya tarif pemotongan adalah lebih tinggi 100% (seratus persen) daripada tarif sebagaimana dimaksud pada ayat (1). PMK 141/PMK.03/2015 Pasal 1 ayat (5): Dalam hal tidak terdapat bukti sebagaimana dimaksud pada ayat (4), jumlah bruto sebagai dasar pemotongan Pajak Penghasilan Pasal 23 adalah sebesar keseluruhan pembayaran kepada penyedia jasa, tidak termasuk Pajak Pertambahan Nilai.",
-      stem: "PT Aneka Boga Lestari pada Oktober 2026 membayar KUB Sejuk Mandiri (kelompok usaha bersama, perkumpulan yang belum mendaftarkan diri sebagai Wajib Pajak) atas jasa perawatan 40 unit AC di pabriknya. Tagihan Rp45.000.000 (KUB Sejuk Mandiri bukan PKP sehingga tidak ada PPN) dirinci: jasa perawatan Rp30.000.000 serta freon dan suku cadang Rp15.000.000, tetapi KUB Sejuk Mandiri tidak dapat menunjukkan faktur pembelian freon dan suku cadang tersebut. KUB Sejuk Mandiri tidak memiliki NPWP dan tidak mempunyai izin atau sertifikasi sebagai pengusaha konstruksi. Berdasarkan kutipan tersebut, PPh Pasal 23 yang wajib dipotong PT Aneka Boga Lestari adalah ...",
+      kutipan: "PMK 141/PMK.03/2015 Pasal 1 ayat (5): Dalam hal tidak terdapat bukti sebagaimana dimaksud pada ayat (4), jumlah bruto sebagai dasar pemotongan Pajak Penghasilan Pasal 23 adalah sebesar keseluruhan pembayaran kepada penyedia jasa, tidak termasuk Pajak Pertambahan Nilai.",
+      stem: "PT Aneka Boga Lestari pada Oktober 2026 membayar CV Sejuk Mandiri (ber-NPWP) atas jasa perawatan 40 unit AC di pabriknya. Tagihan Rp45.000.000 (CV Sejuk Mandiri bukan PKP sehingga tidak ada PPN) dirinci: jasa perawatan Rp30.000.000 serta freon dan suku cadang Rp15.000.000, tetapi CV Sejuk Mandiri tidak dapat menunjukkan faktur pembelian freon dan suku cadang tersebut. CV Sejuk Mandiri tidak mempunyai izin atau sertifikasi sebagai pengusaha konstruksi. Berdasarkan kutipan tersebut, PPh Pasal 23 yang wajib dipotong PT Aneka Boga Lestari adalah ...",
       kataKualifikasi: [],
-      opsi: { A: "Rp1.200.000", B: "Rp900.000", C: "Rp1.080.000", D: "Rp1.800.000" },
-      kunci: "D",
-      jebakanOpsi: { A: "salah-baca", B: "lupa-pasal", C: "salah-klasifikasi" },
+      opsi: { A: "Rp600.000", B: "Rp900.000", C: "Rp1.080.000", D: "Rp1.800.000" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-baca", C: "salah-klasifikasi", D: "salah-baca" },
       pembahasan: {
-        mudah: "Yang ditanya: boleh tidak suku cadang dikeluarkan dari dasar potong? Bahan baru boleh dikeluarkan bila ada faktur pembeliannya, dan di sini fakturnya tidak ada, jadi seluruh Rp45 juta menjadi dasar. Tarif jasa PPh 23 biasanya 2%, tetapi karena KUB Sejuk Mandiri tidak punya NPWP tarifnya dua kali lipat menjadi 4%. Hasilnya 4% x Rp45 juta = Rp1,8 juta.",
-        inti: "Pembelian material hanya dikeluarkan dari jumlah bruto bila dibuktikan dengan faktur pembelian (PMK 141/PMK.03/2015 Pasal 1 ayat (4) huruf b). Tanpa faktur, jumlah bruto adalah seluruh pembayaran Rp45.000.000 (ayat (5)); karena penerima tidak ber-NPWP, tarif 2% naik 100% menjadi 4%.",
+        mudah: "Yang ditanya: boleh tidak suku cadang dikeluarkan dari dasar potong? Bahan baru boleh dikeluarkan bila ada faktur pembeliannya, dan di sini fakturnya tidak ada, jadi seluruh Rp45 juta menjadi dasar. Tarif jasa PPh 23 2%, dan CV Sejuk Mandiri ber-NPWP sehingga tidak ada kenaikan tarif. Hasilnya 2% x Rp45 juta = Rp900 ribu.",
+        inti: "Pembelian material hanya dikeluarkan dari jumlah bruto bila dibuktikan dengan faktur pembelian (PMK 141/PMK.03/2015 Pasal 1 ayat (4) huruf b). Tanpa faktur, jumlah bruto adalah seluruh pembayaran Rp45.000.000 (ayat (5)); penerima ber-NPWP, jadi tarifnya tetap 2%.",
         jejakHitung: [
           ["Jumlah bruto (suku cadang tidak didukung faktur pembelian)", "Rp45.000.000"],
-          ["Tarif tanpa NPWP = 2% × 200%", "4%"],
-          ["PPh 23 = 4% × Rp45.000.000", "Rp1.800.000"]
+          ["Tarif jasa lain, penerima ber-NPWP", "2%"],
+          ["PPh 23 = 2% × Rp45.000.000", "Rp900.000"]
         ],
         mengapaSalah: {
-          A: "Mengeluarkan freon dan suku cadang dari jumlah bruto padahal tidak ada faktur pembelian (4% × Rp30.000.000)",
-          B: "Lupa kenaikan 100% bagi penerima tanpa NPWP (2% × Rp45.000.000)",
-          C: "Memakai kenaikan 20% milik PPh 21 (2,4% × Rp45.000.000)"
+          A: "Mengeluarkan freon dan suku cadang dari jumlah bruto padahal tidak ada faktur pembelian (2% × Rp30.000.000)",
+          C: "Menambah 20% pada tarif (2,4% × Rp45.000.000); tambahan itu milik PPh 21 bagi penerima tanpa NPWP",
+          D: "Menaikkan tarif 100% (4% × Rp45.000.000) padahal penerima ber-NPWP"
         },
         jebakan: "Rincian tagihan saja tidak cukup; material baru boleh dikeluarkan dari jumlah bruto bila ada faktur pembelian."
       },
-      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c angka 2 dan ayat (1a) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 Pasal 1 ayat (3) huruf b angka 2, ayat (4) huruf b, ayat (5), dan ayat (6) huruf z", berlakuSejak: "2015-08-26" }],
+      dasarHukum: [{ pasal: "Pasal 23 ayat (1) huruf c angka 2 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 141/PMK.03/2015 Pasal 1 ayat (3) huruf b angka 2, ayat (4) huruf b, ayat (5), dan ayat (6) huruf z", berlakuSejak: "2015-08-26" }],
       anggaranDetik: 160,
       verifikasi: "✅",
       kembaranDari: "A3-043",
@@ -8833,24 +8833,24 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "kasus",
       kesulitan: 3,
-      stem: "PT Mitra Agrindo Sejahtera (PKP, perkebunan kelapa sawit, peredaran bruto 2025 Rp95 miliar) pada Masa Pajak Agustus 2026 melakukan pembayaran berikut (seluruhnya belum termasuk PPN): (1) sewa ekskavator tanpa operator dari PT Alat Berat Sakti (ber-NPWP) Rp48.000.000; (2) jasa kebersihan kantor dari KUB Bersih Cemerlang (kelompok usaha bersama, perkumpulan yang belum mendaftarkan diri sebagai Wajib Pajak), yang tidak memiliki NPWP, Rp18.000.000; (3) bunga pinjaman kepada PT Modal Sejahtera, perusahaan afiliasi yang bukan bank dan ber-NPWP, Rp20.000.000; (4) jasa manajemen dari PT Kelola Prima (ber-NPWP) Rp35.000.000; (5) dividen kepada PT Induk Agro, Wajib Pajak badan dalam negeri pemegang 60% saham, Rp250.000.000; (6) sewa ruko untuk kantor pemasaran dari PT Properti Jaya Rp60.000.000; (7) hadiah lomba inovasi kepada Tuan Fajar, peserta orang pribadi dari luar perusahaan, Rp5.000.000; dan (8) jasa angkutan laut minyak sawit dari PT Pelayaran Nusantara Biru, perusahaan pelayaran dalam negeri, Rp28.000.000. Jumlah PPh Pasal 23 yang wajib dipotong PT Mitra Agrindo Sejahtera pada Masa Pajak Agustus 2026 adalah ...",
+      stem: "PT Mitra Agrindo Sejahtera (PKP, perkebunan kelapa sawit, peredaran bruto 2025 Rp95 miliar) pada Masa Pajak Agustus 2026 melakukan pembayaran berikut (seluruhnya belum termasuk PPN): (1) sewa ekskavator tanpa operator dari PT Alat Berat Sakti (ber-NPWP) Rp48.000.000; (2) sewa genset dari Tuan Budi, orang pribadi yang tidak memiliki NPWP (NIK-nya belum dipadankan), Rp18.000.000; (3) bunga pinjaman kepada PT Modal Sejahtera, perusahaan afiliasi yang bukan bank dan ber-NPWP, Rp20.000.000; (4) jasa manajemen dari PT Kelola Prima (ber-NPWP) Rp35.000.000; (5) dividen kepada PT Induk Agro, Wajib Pajak badan dalam negeri pemegang 60% saham, Rp250.000.000; (6) sewa ruko untuk kantor pemasaran dari PT Properti Jaya Rp60.000.000; (7) hadiah lomba inovasi kepada Tuan Fajar, peserta orang pribadi dari luar perusahaan, Rp5.000.000; dan (8) jasa angkutan laut minyak sawit dari PT Pelayaran Nusantara Biru, perusahaan pelayaran dalam negeri, Rp28.000.000. Jumlah PPh Pasal 23 yang wajib dipotong PT Mitra Agrindo Sejahtera pada Masa Pajak Agustus 2026 adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp5.020.000", B: "Rp5.380.000", C: "Rp5.940.000", D: "Rp6.130.000" },
       kunci: "B",
       jebakanOpsi: { A: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
       pembahasan: {
-        mudah: "Pilah dulu, baru hitung, karena dari delapan pembayaran hanya empat yang kena PPh 23. Ekskavator 2% x Rp48 juta = Rp960.000; kebersihan dari penerima tanpa NPWP 4% x Rp18 juta = Rp720.000; bunga ke perusahaan bukan bank 15% x Rp20 juta = Rp3 juta; jasa manajemen 2% x Rp35 juta = Rp700.000. Totalnya Rp5.380.000. Dividen ke badan dalam negeri bebas, sewa ruko kena PPh final sewa bangunan, hadiah ke orang pribadi kena PPh 21, dan angkutan laut kena PPh 15. Cara ingat: tanpa NPWP, tarifnya dua kali lipat.",
-        inti: "Hanya empat pembayaran yang objek PPh 23: sewa ekskavator (2%), jasa kebersihan oleh penerima tanpa NPWP (2% × 200% = 4%), bunga kepada perusahaan bukan bank (15%), dan jasa manajemen (2%). Dividen kepada Wajib Pajak badan dalam negeri dikecualikan dari pemotongan, sewa ruko dikenai PPh Pasal 4 ayat (2), hadiah kepada orang pribadi dipotong PPh Pasal 21, dan angkutan laut oleh perusahaan pelayaran dalam negeri dikenai PPh Pasal 15 (1,2% final).",
+        mudah: "Pilah dulu, baru hitung, karena dari delapan pembayaran hanya empat yang kena PPh 23. Ekskavator 2% x Rp48 juta = Rp960.000; sewa genset dari orang pribadi tanpa NPWP 4% x Rp18 juta = Rp720.000; bunga ke perusahaan bukan bank 15% x Rp20 juta = Rp3 juta; jasa manajemen 2% x Rp35 juta = Rp700.000. Totalnya Rp5.380.000. Dividen ke badan dalam negeri bebas, sewa ruko kena PPh final sewa bangunan, hadiah ke orang pribadi kena PPh 21, dan angkutan laut kena PPh 15. Cara ingat: tanpa NPWP, tarifnya dua kali lipat.",
+        inti: "Hanya empat pembayaran yang objek PPh 23: sewa ekskavator (2%), sewa genset dari orang pribadi tanpa NPWP (2% × 200% = 4%), bunga kepada perusahaan bukan bank (15%), dan jasa manajemen (2%). Dividen kepada Wajib Pajak badan dalam negeri dikecualikan dari pemotongan, sewa ruko dikenai PPh Pasal 4 ayat (2), hadiah kepada orang pribadi dipotong PPh Pasal 21, dan angkutan laut oleh perusahaan pelayaran dalam negeri dikenai PPh Pasal 15 (1,2% final).",
         jejakHitung: [
           ["(1) Ekskavator: 2% × Rp48.000.000", "Rp960.000"],
-          ["(2) Kebersihan, tanpa NPWP: 4% × Rp18.000.000", "Rp720.000"],
+          ["(2) Sewa genset, tanpa NPWP: 4% × Rp18.000.000", "Rp720.000"],
           ["(3) Bunga kepada bukan bank: 15% × Rp20.000.000", "Rp3.000.000"],
           ["(4) Jasa manajemen: 2% × Rp35.000.000", "Rp700.000"],
           ["(5) dikecualikan; (6) PPh 4 ayat (2); (7) PPh 21; (8) PPh 15", "bukan PPh 23"],
           ["Total PPh 23", "Rp5.380.000"]
         ],
         mengapaSalah: {
-          A: "Lupa tarif 100% lebih tinggi bagi KUB Bersih Cemerlang yang tidak ber-NPWP (2% × Rp18.000.000 = Rp360.000)",
+          A: "Lupa tarif 100% lebih tinggi bagi Tuan Budi yang tidak ber-NPWP (2% × Rp18.000.000 = Rp360.000)",
           C: "Memotong PPh 23 2% atas angkutan laut (Rp560.000); jasa angkutan oleh perusahaan pelayaran dalam negeri dikenai PPh Pasal 15 sebesar 1,2% final",
           D: "Memotong PPh 23 15% atas hadiah lomba kepada Tuan Fajar (Rp750.000); hadiah kepada orang pribadi dipotong PPh Pasal 21, sedangkan PPh 23 hanya atas hadiah selain yang telah dipotong PPh Pasal 21"
         },
@@ -9893,16 +9893,16 @@ UKP.register({
       tingkat: ["A", "B", "C"],
       jenis: "hitung",
       kesulitan: 3,
-      stem: "Pada Masa Pajak Oktober 2026 PT Sinar Kencana Distribusi (WP badan dalam negeri) melakukan tiga pembayaran kepada penerima yang tidak memiliki NPWP (untuk orang pribadi, NIK-nya belum dapat dipakai sebagai NPWP): (1) imbalan jasa manajemen kepada KUB Prakarsa Mandiri (kelompok usaha bersama, perkumpulan yang belum mendaftarkan diri sebagai Wajib Pajak) Rp36.000.000; (2) honorarium Tuan Galih, pemain musik orang pribadi bukan pegawai, Rp18.000.000 untuk satu pertunjukan dan dibayar sekali; (3) sewa gudang kepada Tuan Rahmat Rp75.000.000. Jumlah seluruh PPh yang dipotong PT Sinar Kencana atas ketiga pembayaran tersebut adalah ...",
+      stem: "Pada Masa Pajak Oktober 2026 PT Sinar Kencana Distribusi (WP badan dalam negeri) melakukan tiga pembayaran kepada penerima yang tidak memiliki NPWP (untuk orang pribadi, NIK-nya belum dapat dipakai sebagai NPWP): (1) sewa sound system kepada Tuan Yoga, orang pribadi, Rp36.000.000; (2) honorarium Tuan Galih, pemain musik orang pribadi bukan pegawai, Rp18.000.000 untuk satu pertunjukan dan dibayar sekali; (3) sewa gudang kepada Tuan Rahmat Rp75.000.000. Jumlah seluruh PPh yang dipotong PT Sinar Kencana atas ketiga pembayaran tersebut adalah ...",
       kataKualifikasi: [],
       opsi: { A: "Rp9.480.000", B: "Rp16.980.000", C: "Rp8.670.000", D: "Rp9.840.000" },
       kunci: "A",
       jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-hitung" },
       pembahasan: {
-        mudah: "Penerima tanpa NPWP memang kena tarif lebih tinggi, tetapi tambahannya beda untuk tiap jenis PPh. PPh 23 jasa manajemen jadi dua kali lipat: 4% x Rp36 juta = Rp1,44 juta. PPh 21 pemain musik hanya naik 20%: 5% x 50% x Rp18 juta x 120% = Rp540 ribu. Sewa gudang tetap PPh final 10% x Rp75 juta = Rp7,5 juta tanpa tambahan, sehingga totalnya Rp9,48 juta. Cara ingat: PPh 23 dobel, PPh 21 tambah 20%, PPh final sewa tidak berubah.",
+        mudah: "Penerima tanpa NPWP memang kena tarif lebih tinggi, tetapi tambahannya beda untuk tiap jenis PPh. PPh 23 sewa sound system jadi dua kali lipat: 4% x Rp36 juta = Rp1,44 juta. PPh 21 pemain musik hanya naik 20%: 5% x 50% x Rp18 juta x 120% = Rp540 ribu. Sewa gudang tetap PPh final 10% x Rp75 juta = Rp7,5 juta tanpa tambahan, sehingga totalnya Rp9,48 juta. Cara ingat: PPh 23 dobel, PPh 21 tambah 20%, PPh final sewa tidak berubah.",
         inti: "Tarif lebih tinggi bagi penerima tanpa NPWP berbeda per pasal: PPh 23 lebih tinggi 100%, PPh 21 lebih tinggi 20%, sedangkan PPh final Pasal 4 ayat (2) atas sewa tanah dan/atau bangunan tetap 10% tanpa tambahan.",
         jejakHitung: [
-          ["PPh 23 jasa manajemen: 2% × 200% × Rp36.000.000", "Rp1.440.000"],
+          ["PPh 23 sewa sound system: 2% × 200% × Rp36.000.000", "Rp1.440.000"],
           ["PPh 21 bukan pegawai: 5% × 50% × Rp18.000.000 × 120%", "Rp540.000"],
           ["PPh 4 ayat (2) sewa gudang: 10% × Rp75.000.000", "Rp7.500.000"],
           ["Jumlah", "Rp9.480.000"]
