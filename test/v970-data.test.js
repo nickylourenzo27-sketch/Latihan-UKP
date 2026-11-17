@@ -23,7 +23,7 @@ const sha = t => crypto.createHash('sha256').update(t).digest('hex');
 // diselaraskan dengan PMK 172/2023: stem dan opsi C10-044, opsi pengecoh C10-093, serta stem C10-095 dan C10-148 dibetulkan. Kuncinya tetap.
 // v9.7.1 polesan akhir: bukan lagi sidik putaran 2 (f0ce62d6d729740afe155598). Peringatan A5-204 dilengkapi: pembeda kuncinya juga
 // ancaman 3 tahun atau Rp200 juta yang berlaku untuk meterai bekas, bukan meterai tiruan. Stem, opsi, dan kunci tetap.
-const SIDIK_LAMA = { n: 2791, sidik: '4535074d59fb980e9a2bff93' };
+const SIDIK_LAMA = { n: 2791, sidik: '197510445d95a6e6d7ea6d4f' };
 // Sidik penjelasan mudah soal lama: baris "id:mudah" semua soal di luar paket LM, urut id, digabung dengan baris baru, sha256 24 huruf pertama.
 // Nilainya dihitung dari pohon v9.7.0 yang terbukti sama persis dengan mudah-bank.json (2.791 soal). Perbarui bila penjelasan mudah soal lama diubah.
 // Sebelum rilis, tiga teks (A3-029, A4-086, E-044) diubah supaya tidak mengulang nama tokoh soal; berkas isi di luar repo ikut diubah.
@@ -34,7 +34,7 @@ const SIDIK_LAMA = { n: 2791, sidik: '4535074d59fb980e9a2bff93' };
 // baru tingkat Turunan; "diancam pidana" benar menurut bunyi lama maupun baru.
 // v9.7.1 polesan akhir: bukan lagi sidik putaran 2 (c6d402b89c6f9ef18ae2d1c1). Penjelasan mudah E-080 ditambah satu kalimat:
 // bunyi pasti ancaman sesudah 2 Januari 2026 belum dicocokkan.
-const SIDIK_MUDAH = { n: 2791, sidik: '77656aa495797f8f3dbc1c64' };
+const SIDIK_MUDAH = { n: 2791, sidik: '456aece83c49a8c5404a69ae' };
 // sha256 (16 huruf pertama) token dan pasangan token nama yang tidak boleh ditulis di berkas proyek. Namanya sengaja tidak ditulis.
 const SIDIK_NAMA = ['b3a8951420e0a46e', 'f5a180e8092bfd8a', '45528769b64cd18b', '423a2d91b863827b'];
 
