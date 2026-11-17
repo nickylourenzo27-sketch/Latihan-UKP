@@ -1514,6 +1514,25 @@
       menu.classList.add('fokus-menu');
       el.appendChild(menu);
     };
+    // v10 latih: o.sesi = kop sesi latihan sendiri (biru tua, ruas kemajuan). Tanpa o.sesi susunan dan perilaku fokusBar tidak berubah.
+    // el.aturRuas(selesai, total, kini): ruas per soal sampai 20 soal (selesai terisi, soal sekarang kuning bila kini benar),
+    // di atas 20 soal satu bilah menerus. Hanya hiasan (aria-hidden); angka dibaca dari judul kop
+    if (o.sesi) {
+      el.classList.add('kop-sesi-v10');
+      const ruas = h('div', { class: 'kop-sesi-ruas', 'aria-hidden': 'true' });
+      el.appendChild(ruas);
+      el.aturRuas = (selesai, total, kini) => {
+        total = Math.max(0, Math.round(Number(total) || 0)); selesai = Math.max(0, Math.min(total, Math.round(Number(selesai) || 0)));
+        if (total > 0 && total <= 20) {
+          ruas.removeAttribute('data-menerus'); ruas.style.removeProperty('--ruas-p');
+          const anak = []; for (let i = 0; i < total; i++) anak.push(h('i', { class: i < selesai ? 'ok' : i === selesai && kini ? 'kini' : null }));
+          ruas.replaceChildren(...anak);
+        } else {
+          ruas.setAttribute('data-menerus', ''); ruas.style.setProperty('--ruas-p', String(total ? Math.round(selesai / total * 1000) / 10 : 0));
+          ruas.replaceChildren(h('span', { class: 'ruas-trek' }, h('span', { class: 'ruas-isi' })));
+        }
+      };
+    }
     el.atur(null, o.p, o.aksi);
     if (o.tengah != null) el.aturTengah(o.tengah);
     if (o.menu) el.aturMenu(o.menu);

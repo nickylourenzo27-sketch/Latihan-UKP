@@ -527,11 +527,12 @@ const ringkasKasus = []; let gagalTotal = 0; const galatHalaman = [];
     const s = UKP.store.get(); const el = document.querySelector('.soal'); const a = document.activeElement; const de = document.documentElement;
     const kal = document.querySelector('.ringkasan-latih .stack-sm p:not(.eyebrow)');
     return { rute: history.state && history.state.params, pulih: !!UKP.sekarang().pulih, soalId: el ? el.dataset.id : null,
-      kop: ((document.querySelector('.fokus-bar') || {}).innerText || '').replace(/\n+/g, ' | ').slice(0, 160), h1: ((document.querySelector('main h1') || {}).textContent || '').trim().slice(0, 80),
+      // v10 latih: kop sesi latihan sendiri dibaca dari teks judul (angka kanan dan pemisah tersembunyi ada di dalamnya)
+      kop: (() => { const fb = document.querySelector('.fokus-bar'); if (!fb) return ''; const j = fb.classList.contains('kop-sesi-v10') ? fb.querySelector('.fokus-judul') : null; return (j ? j.textContent.replace(/\s+/g, ' ').trim() + ' | ' + ((fb.querySelector('.fokus-kanan') || {}).innerText || '') : (fb.innerText || '').replace(/\n+/g, ' | ')).slice(0, 160); })(), h1: ((document.querySelector('main h1') || {}).textContent || '').trim().slice(0, 80),
       titik: titik && typeof titik === 'object' ? { n: titik.ids.length, ids: titik.ids.join(','), idx: titik.idx, benar: titik.benar, nRiwayat: titik.riwayat.length, terjawab: titik.terjawab, detikSoal: titik.detikSoal, ulang: titik.ulang, selesai: titik.selesai } : titik,
       nJawaban: (s.jawaban || []).length, hadir: JSON.stringify(s.hadir || {}), kirim: window.__kirim,
       fokus: a ? a.tagName + ':' + (a.textContent || '').trim().slice(0, 40) : null, gulirY: Math.round(window.scrollY), mendatar: de.scrollWidth > de.clientWidth + 1,
-      status: ((document.querySelector('.soal .umpan .status') || {}).textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80), mudah: !!document.querySelector('.soal .umpan-mudah'),
+      status: ((document.querySelector('.soal .umpan .status') || {}).textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80), mudah: !!document.querySelector('.soal .umpan-mudah, .soal .umpan-jelas'),
       punyaMudah: !!(el && UKP.konten.soal(el.dataset.id) && UKP.konten.soal(el.dataset.id).pembahasan && UKP.konten.soal(el.dataset.id).pembahasan.mudah),
       salah: ((document.querySelector('.soal label[data-hasil="salah"] kbd') || {}).textContent || null), terkunci: !!document.querySelector('.soal fieldset.terkunci'),
       sebelumnya: !!document.querySelector('.aksi-lihat-lagi'), ringkasan: kal ? kal.textContent.trim() : null, timer: (document.querySelector('.fokus-bar .timer') || {}).textContent || null,
@@ -548,7 +549,7 @@ const ringkasKasus = []; let gagalTotal = 0; const galatHalaman = [];
     await tunggu(o.page, () => !!document.querySelector('.soal .umpan .status'), null, 5000); await tidur(200);
   }
   async function lanjutS(o) {
-    const id = await o.page.evaluate(() => { const el = document.querySelector('.soal'); const b = [...document.querySelectorAll('.soal .sticky-actions .btn-primary')].find(x => /Lanjut/.test(x.textContent)); b.click(); return el ? el.dataset.id : null; });
+    const id = await o.page.evaluate(() => { const el = document.querySelector('.soal'); const b = [...document.querySelectorAll('.soal .sticky-actions .btn-primary')].find(x => /Lanjut|Lihat hasil/.test(x.textContent)); b.click(); return el ? el.dataset.id : null; }); // v10 latih: soal terakhir "Lihat hasil"
     await tunggu(o.page, i => { const el = document.querySelector('.soal'); return !el || el.dataset.id !== i || !el.querySelector('.umpan .status'); }, id, 5000); await tidur(300);
   }
   async function muatUlangS(o) {
@@ -601,7 +602,7 @@ const ringkasKasus = []; let gagalTotal = 0; const galatHalaman = [];
       await jawabS(o, '-'); const D = await bacaS(o);
       await muatUlangS(o);
       const E = await bacaS(o); catat('Tidak tahu SESUDAH', E);
-      periksa('"Tidak tahu" dipulihkan', E.soalId === D.soalId && /Belum tahu/.test(E.status) && E.nJawaban === D.nJawaban, { status: E.status, n: [D.nJawaban, E.nJawaban] });
+      periksa('"Tidak tahu" dipulihkan', E.soalId === D.soalId && /Belum tahu|Ditandai tidak tahu/.test(E.status) && E.nJawaban === D.nJawaban, { status: E.status, n: [D.nJawaban, E.nJawaban] });
       await lanjutS(o); const F = await bacaS(o);
       periksa('sesudah "Tidak tahu": soal 3, 0 benar', /Soal 3 dari \d+ · 0 benar/.test(F.kop), F.kop);
     },
