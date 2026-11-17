@@ -643,6 +643,65 @@
         h('button', { type: 'button', class: 'btn', onclick: () => { dlg.close(); UKP.go('topik', { id: t.id }); } }, UKP.icon('book'), 'Baca ringkasan'),
         nLatih ? h('button', { type: 'button', class: 'btn btn-primary', autofocus: true, onclick: () => { dlg.close(); UKP.go('latih', { topik: t.id, kode: t.kode, n: 10, mulai: true }); } }, UKP.icon('pen'), 'Latih ' + nLatih + ' soal') : null] });
   }
+  // ---------- v10 hasil: ringkasan Kemajuan dari riwayat di perangkat ----------
+  // angka murni dari store: pekan kalender seperti Beranda (Senin sampai Minggu, batas 03.00), soal salah = Buku Kesalahan seperti Beranda,
+  // per mata uji dan keyakinan sejak mulai (jawaban kelompok tingkat ini; simulasi yang dikosongkan tidak dihitung)
+  const kosongSimK = j => j.konteks === 'simulasi' && (!j.opsi || j.opsi === '-' || j.opsi === 'kosong');
+  UKP.angkaKemajuanV10 = function (s) {
+    const tingkat = s.profil.tingkat; const kel = K.kelompok(tingkat); const hariIni = U.hariIni();
+    let pekan = null;
+    try { if (UKP.berandaUji && typeof UKP.berandaUji.ringkasPekan === 'function') pekan = UKP.berandaUji.ringkasPekan(s, hariIni); } catch (e) { console.error(e); }
+    if (!pekan) {
+      const d = new Date(hariIni + 'T12:00:00'); const senin = U.tambahHari(hariIni, -((d.getDay() + 6) % 7)); const hari = {};
+      for (let i = 0; i < 7; i++) { const t = U.tambahHari(senin, i); hari[t] = { n: 0, b: 0, hadir: !!(s.hadir && s.hadir[t] && s.hadir[t].status === 'HADIR') }; }
+      for (const j of s.jawaban || []) { if (!j || typeof j.pada !== 'number' || kosongSimK(j)) continue; const x = hari[U.hariDari ? U.hariDari(j.pada) : U.iso(new Date(j.pada))]; if (x) { x.n++; if (j.benar) x.b++; } }
+      const v = Object.values(hari); pekan = { nHari: v.filter(x => x.n || x.hadir).length, n: v.reduce((a, x) => a + x.n, 0), benar: v.reduce((a, x) => a + x.b, 0) };
+    }
+    let nSalah = 0; try { nSalah = L.bukuKesalahan(tingkat, 200).length; } catch (e) {}
+    const per = {}; kel.forEach(k => { per[k] = { kode: k, n: 0, b: 0 }; });
+    const yakin = { yakin: { n: 0, b: 0 }, ragu: { n: 0, b: 0 }, menebak: { n: 0, b: 0 }, tanpa: { n: 0, b: 0 } };
+    for (const j of s.jawaban || []) {
+      if (!j || kosongSimK(j)) continue;
+      const so = j.kode ? null : K.soal(j.soal); const kode = j.kode || (so && so.kode) || String(j.topik || '').split('.')[0];
+      const x = per[kode]; if (!x) continue; x.n++; if (j.benar) x.b++;
+      if (j.opsi === '-') continue;   // "Tidak tahu" tidak membawa keyakinan
+      const g = yakin[j.keyakinan] || yakin.tanpa; g.n++; if (j.benar) g.b++;
+    }
+    const BUTUH = 8; const cukup = kel.map(k => per[k]).filter(x => x.n >= BUTUH);
+    const lemah = cukup.slice().sort((a, b) => a.b / a.n - b.b / b.n || b.n - a.n)[0] || null;
+    return { pekan, nSalah, per: kel.map(k => per[k]), yakin, lemah, nCukup: cukup.length, butuh: BUTUH };
+  };
+  UKP.kemajuanV10 = function (s) {
+    const A = UKP.angkaKemajuanV10(s); const tingkat = s.profil.tingkat;
+    const angka = (n, dari) => h('span', { class: 'vk-angka' }, String(n), dari != null ? h('small', null, ' dari ' + dari) : null);
+    const ringkas = h('ul', { class: 'vk-ringkas', 'aria-label': 'Pekan ini' },
+      h('li', null, angka(A.pekan.nHari, 7), h('span', { class: 'vk-label' }, 'hari belajar')),
+      h('li', null, angka(A.pekan.benar, A.pekan.n), h('span', { class: 'vk-label' }, 'benar')),
+      h('li', null, angka(A.nSalah), h('span', { class: 'vk-label' }, 'soal salah')));
+    const lm = A.lemah; const nTk = (UKP.namaTingkat && UKP.namaTingkat[tingkat]) || 'Tingkat ' + tingkat;
+    const mulai = h('section', { class: 'vk-mulai', 'aria-labelledby': 'vk-mulai-j' },
+      h('p', { class: 'vk-mulai-label' }, 'Mulai dari sini'),
+      h('h2', { class: 'vk-mulai-judul', id: 'vk-mulai-j' }, lm ? lm.kode + ' ' + K.namaKelompok(lm.kode) + ' paling sering salah' : 'Belum ada mata uji dengan ' + A.butuh + ' jawaban'),
+      h('p', { class: 'vk-mulai-ket' }, lm ? lm.b + ' dari ' + lm.n + ' benar sejak mulai, ' + (A.nCukup > 1 ? 'terendah di ' + A.nCukup + ' mata uji.' : 'baru mata uji ini yang punya ' + A.butuh + ' jawaban atau lebih.') : 'Mata uji terlemah muncul sesudah ' + A.butuh + ' jawaban per mata uji di ' + nTk + '.'),
+      lm ? h('button', { type: 'button', class: 'btn btn-primary', 'data-k': 'latih-terlemah', onclick: () => UKP.go('latih', { kode: lm.kode, n: 10, mulai: true }) }, 'Latih ' + lm.kode + ', 10 soal')
+        : h('button', { type: 'button', class: 'btn btn-primary', 'data-k': 'latih-terlemah', onclick: () => UKP.go('latih', { n: 10, mulai: true }) }, 'Latih 10 soal'));
+    const persen = x => x.n ? Math.round(x.b / x.n * 100) : 0;
+    const bilah = x => h('span', { class: 'vk-bilah', 'aria-hidden': 'true' }, h('i', { style: { width: persen(x) + '%' } }));
+    const judulKel = k => { const t = K.namaKelompok(k); const i = t.indexOf('/'); return i < 0 ? t : [t.slice(0, i + 1), h('wbr'), t.slice(i + 1)]; };
+    const modul = h('section', { class: 'vh-bagian vk-modul', 'aria-labelledby': 'vk-modul-j' },
+      h('div', { class: 'vh-bagian-kepala' }, h('h2', { class: 'vh-bagian-judul', id: 'vk-modul-j' }, 'Per mata uji, sejak mulai'), UKP.link('Peta materi', 'tingkat', { tingkat }, 'btn btn-ghost btn-text')),
+      h('ul', { class: 'vh-daftar' }, A.per.map(x => h('li', null, UKP.link([h('span', { class: 'vk-kd' }, x.kode),
+        h('span', { class: 'vh-baris-isi' }, h('span', { class: 'vh-baris-judul' }, judulKel(x.kode)), bilah(x)),
+        h('span', { class: 'vk-kolom' }, x.n ? x.b + ' dari ' + x.n : 'belum ada'), UKP.icon('chevron-kanan', 'vh-chevron', true)], 'kelompok', { kode: x.kode }, 'vh-baris')))));
+    const Y = A.yakin; const totalY = Y.yakin.n + Y.ragu.n + Y.menebak.n + Y.tanpa.n; const yakinSalah = Y.yakin.n - Y.yakin.b;
+    const barisY = (label, x) => h('div', { class: 'vk-yakin-baris' }, h('span', null, label), bilah(x), h('b', null, x.n ? x.b + ' dari ' + x.n : 'belum ada'));
+    const yakinBlok = h('section', { class: 'vh-bagian', 'aria-labelledby': 'vk-yakin-j' },
+      h('div', { class: 'vh-bagian-kepala' }, h('h2', { class: 'vh-bagian-judul', id: 'vk-yakin-j' }, 'Seberapa tepat rasa yakin, sejak mulai')),
+      h('div', { class: 'vk-yakin' }, barisY('Yakin', Y.yakin), barisY('Ragu', Y.ragu), barisY('Nebak', Y.menebak), barisY('Tanpa tanda', Y.tanpa),
+        !totalY ? h('p', { class: 'vk-catatan' }, 'Belum ada jawaban. Pilih Yakin, Ragu, atau Nebak saat latihan supaya baris ini terisi.')
+          : yakinSalah ? h('p', { class: 'vk-catatan' }, yakinSalah + ' jawaban yakin ternyata salah. Itu yang paling berharga untuk diulang.') : null));
+    return h('div', { class: 'v10-kemajuan' }, ringkas, mulai, modul, yakinBlok);
+  };
   UKP.views.kemajuan = function (params) {
     params = params || {}; const s = UKP.store.get(); const tingkat = s.profil.tingkat; const page = h('div', { class: 'page lebar halaman-kemajuan' });
     // v7.2: tab Ringkasan hanya kesiapan, satu baris rangkaian/akurasi, dan posisi penguasaan (sesi hari ini ada di Rencana)
@@ -650,7 +709,10 @@
     const TAB = ['ringkasan', 'hadir', 'peta', 'salah', 'laporan', 'lencana']; const awal = TAB.includes(params.tab) && (params.tab !== 'ringkasan' || adaRingkasan) ? params.tab : adaRingkasan ? 'ringkasan' : 'hadir';
     const hariDari = ts => (U.hariDari ? U.hariDari(ts) : U.iso(new Date(ts)));
     const nRangkaian = UKP.hadir.rangkaian();
-    page.appendChild(UKP.c.kop({ pita: true, judul: 'Kemajuan', lead: 'Lihat topik yang masih lemah dan kesalahan yang berulang, lalu latih langsung dari sini.' }));
+    // v10 hasil: pita tipis menulis tingkat, sisa hari, dan asal angka (dulu "Lihat topik yang masih lemah ...")
+    const sisaHari = s.profil.tanggalUjian && U.selisihHari ? U.selisihHari(U.hariIni(), s.profil.tanggalUjian) : null;
+    const namaTk = (UKP.namaTingkat && UKP.namaTingkat[tingkat]) || 'Tingkat ' + tingkat;
+    page.appendChild(UKP.c.kop({ pita: true, judul: 'Kemajuan', lead: namaTk + (sisaHari == null || sisaHari < 0 ? '' : sisaHari === 0 ? ' · hari ujian' : ' · ' + sisaHari + ' hari lagi') + '. Dihitung dari jawaban di perangkat ini.' }));
     if (UKP.views.bank && typeof UKP.c.barisBank === 'function') { const bb = UKP.c.barisBank(tingkat); if (bb) page.appendChild(bb); }  // v9.5 satu baris Bank soal
     const ctaLatih = () => h('div', { class: 'btn-row' }, h('button', { class: 'btn btn-sm', onclick: () => UKP.go('latih', { n: 10, mulai: true }) }, UKP.icon('pen', null, true), 'Latih 10 soal'));
     const bk = L.bukuKesalahan(tingkat, 60);
@@ -809,7 +871,8 @@
       })));
       if (baru.length) { try { sessionStorage.setItem('ukp.lencanaDilihat', JSON.stringify(dilihat.concat(baru))); } catch (e) {} }
     }
-    const tabRingkasan = wadah => { wadah.appendChild(UKP.c.dasborKemajuan()); };
+    // v10 hasil: tab Ringkasan dibuka dengan ringkasan v10 (UKP.kemajuanV10), lalu dasbor kesiapan lama tetap di bawahnya
+    const tabRingkasan = wadah => { try { wadah.appendChild(UKP.kemajuanV10(s)); } catch (e) { console.error(e); } wadah.appendChild(UKP.c.dasborKemajuan()); };
     const BANGUN = { ringkasan: tabRingkasan, hadir: tabHadir, peta: tabPeta, salah: tabSalah, laporan: tabLaporan, lencana: tabLencana };
     const nLap = Array.isArray(s.laporan) ? s.laporan.filter(l => !l.dibaca).length : 0;
     const tabs = UKP.c.tabs({ id: 'km', label: 'Bagian Kemajuan', aktif: awal,

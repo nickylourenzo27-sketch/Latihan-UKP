@@ -184,6 +184,9 @@
     // Konteks lain (cek Materi, sesi Beranda, ulas, Simulasi, papan bersama, room, Tutor, dialog soal) tetap jalur lama
     const v10 = !!opsi.v10 && langsung && !bersama && mode === 'belajar' && !hanyaBaca && !ringkas;
     if (v10) wrap.classList.add('soal-v10');
+    // v10.1 papan: tata dua kolom Langkah Tegas untuk papan latihan bersama (runner Latih memberi opsi.papanV10); Ujian tim tetap jalur lama
+    const papanV10 = !!opsi.papanV10 && bersama && !ujianB && mode === 'belajar' && !hanyaBaca && !ringkas;
+    if (papanV10) wrap.classList.add('soal-papan-v10');
     // kop ringkas: ikon jenis + "A1-044 · Judul topik" (judul lengkap di title); kanan: nomor, atau kesulitan sebagai 3 batang
     const tingkatSulit = U.clamp(Number(soal.kesulitan) || 1, 1, 3);
     const kanan = opsi.nomor ? h('span', null, opsi.nomor)
@@ -350,9 +353,12 @@
           const jauhTeks = h('span', { class: 'papan-jauh-teks' }, 'Sudah menjawab dari HP');
           const jauhEl = ujianB ? null : h('span', { class: 'papan-jauh', hidden: true }, ikon('check', null, true), jauhTeks,
             h('button', { type: 'button', class: 'btn btn-text btn-sm papan-ubah', 'aria-label': 'Ubah jawaban ' + nama, onclick: () => { bukaUbah[nama] = true; aktif = i; gambarPapan(); const t = barisP[nama].tombol[0]; if (t) fokus(t); } }, 'Ubah'));
+          // v10.1 papan: kata keadaan satu baris (membaca soal, sudah menjawab, belum masuk)
+          const kataEl = papanV10 ? h('span', { class: 'papan-kata' }) : null;
           const li = h('li', { class: 'papan-baris' },
             h('span', { class: 'papan-no', 'aria-hidden': 'true' }, String(i + 1)),
             h('span', { class: 'papan-nama', id: nid, title: nama }, nama),
+            kataEl,
             h('span', { class: 'papan-sel' },
               h('span', { class: 'papan-pilihan' },
                 h('span', { class: 'papan-tombol', role: 'group', 'aria-label': 'Jawaban ' + nama }, tombol),
@@ -360,9 +366,102 @@
                 h('span', { class: 'papan-kosong-wadah' }, kosong)),
               jauhEl, isiEl),
             hasilEl);
-          barisP[nama] = { li, tombol: tombol.concat(kosong), tombolY, tombolRagu, hasilEl, statusEl, isiEl, jauhEl, jauhTeks };
+          barisP[nama] = { li, tombol: tombol.concat(kosong), tombolY, tombolRagu, hasilEl, statusEl, isiEl, jauhEl, jauhTeks, kataEl };
           return li;
         })));
+    }
+    // ---------- v10.1 papan: tata dua kolom Langkah Tegas (ARAH-DESAIN bagian 4 "Papan") ----------
+    // Kiri: kop soal, soal, opsi (kolom bergulir sendiri, petunjuk gulir). Kanan: panel tim ("Sudah menjawab", hitungan besar, ruas),
+    // daftar "Jawaban tiap orang" (tetap tempat pemimpin mengisi jawaban), pembahasan, lalu bar aksi yang selalu terlihat di bawah panel.
+    // Spasi menjalankan tombol utama di mana pun kecuali di kolom isian, lipatan, dan dialog. Data, pencatatan, dan room tidak berubah.
+    let timV10 = null, kiriV10 = null, gulirV10El = null, lepasSpasiV10 = null;
+    if (papanV10) {
+      const angka = h('b', { class: 'papan-tim-n' }); const dari = h('span', { class: 'papan-tim-dari' });
+      timV10 = h('div', { class: 'papan-tim' }, h('p', { class: 'papan-tim-label' }, 'Sudah menjawab'), h('p', { class: 'papan-tim-angka' }, angka, dari), h('div', { class: 'papan-tim-ruas', 'aria-hidden': 'true' }));
+      timV10._angka = angka; timV10._dari = dari;
+      // kolom angka opsi (jumlah, "orang", bilah sebaran) dan lencana Kunci; kosong sampai kunci dibuka sehingga tinggi opsi tetap
+      Object.keys(labels).forEach(k => {
+        const teks = labels[k].querySelector('.teks');
+        const lencana = h('span', { class: 'opsi-lencana-kunci', hidden: true }, ikon('check', null, true), 'Kunci');
+        if (teks) teks.after(lencana); else labels[k].appendChild(lencana);
+        labels[k].appendChild(h('span', { class: 'opsi-sebaran', 'data-kosong': '' }, h('b', { class: 'opsi-sebaran-n' }), h('small', null, ' orang'), h('span', { class: 'opsi-sebaran-trek', 'aria-hidden': 'true' }, h('span', { class: 'opsi-sebaran-isi' }))));
+      });
+    }
+    // kata keadaan (ARAH-DESAIN bagian 5): belum masuk, membaca soal, sudah menjawab; "HP terputus" tetap dari status room lama
+    function kataKeadaan(n) {
+      if (terkunci) return '';
+      if (jb[n]) return 'sudah menjawab';
+      if (hadirB && hadirB[n] === 'belum') return 'belum masuk';
+      if (hadirB && hadirB[n] === 'terputus') return 'HP terputus';
+      return 'membaca soal';
+    }
+    function gambarPapanV10() {
+      if (!timV10) return;
+      const nS = nSudah(), nP = pesertaB.length;
+      timV10._angka.textContent = String(nS); timV10._dari.textContent = ' dari ' + nP;
+      const ruas = timV10.querySelector('.papan-tim-ruas'); const anak = [];
+      for (let i = 0; i < nP; i++) anak.push(h('i', { class: i < nS ? 'ok' : null }));
+      ruas.replaceChildren(...anak);
+      timV10.hidden = terkunci;
+      // sebaran per opsi sesudah kunci dibuka: jumlah orang dan bilah sepanjang bagian dari yang menjawab
+      const nJawab = pesertaB.filter(n => jb[n] && jb[n] !== '-').length;
+      for (const k in labels) {
+        const sb = labels[k].querySelector('.opsi-sebaran'); const lk = labels[k].querySelector('.opsi-lencana-kunci');
+        if (lk) lk.hidden = !(terkunci && k === soal.kunci);
+        if (!sb) continue;
+        const c = terkunci ? pesertaB.filter(n => jb[n] === k).length : 0;
+        sb.querySelector('.opsi-sebaran-n').textContent = terkunci ? String(c) : '';
+        const isi = sb.querySelector('.opsi-sebaran-isi'); if (isi && isi.style && isi.style.setProperty) isi.style.setProperty('--sebaran', String(nJawab ? Math.round(c / nJawab * 100) : 0));
+        sb.toggleAttribute('data-kosong', !terkunci);
+      }
+    }
+    // dipanggil sesudah bar aksi dibuat: soal ke kolom kiri, panel tim ke kolom kanan
+    function pasangPapanV10() {
+      const kanan = [timV10, papan, umpan, petunjukWadah];
+      gulirV10El = h('p', { class: 'papan-v10-gulir', hidden: true }, 'Gulir ke bawah untuk opsi berikutnya.');
+      kiriV10 = h('div', { class: 'papan-v10-soal' });
+      [...wrap.childNodes].forEach(x => { if (x && kanan.indexOf(x) < 0 && x !== live && x !== aksi) kiriV10.appendChild(x); });
+      kiriV10.appendChild(gulirV10El);
+      const isi = h('div', { class: 'papan-v10-isi' }, ...kanan.filter(Boolean));
+      const panelV10 = h('div', { class: 'papan-v10-panel' }, isi, live, aksi);
+      wrap.append(kiriV10, panelV10);
+      if (btnKunci) btnKunci.append(kbdSpasi());
+      kiriV10.addEventListener('scroll', cekGulirV10, { passive: true });
+      // sesudah klik tetikus pada tombol lain di panel, fokus kembali ke tombol utama (Enter dan Spasi tetap bekerja)
+      panelV10.addEventListener('click', e => {
+        if (!e.detail) return; const t = e.target && e.target.closest ? e.target.closest('button') : null;
+        if (!t || t.classList.contains('btn-primary') || (t.closest && t.closest('details'))) return;
+        setTimeout(() => { const b = aksi.querySelector('.btn-primary'); if (b && wrap.isConnected && !document.querySelector('dialog[open]') && document.activeElement === t) { try { b.focus({ preventScroll: true }); } catch (x) {} } }, 0);
+      });
+      const spasi = e => {
+        if (!wrap.isConnected) { lepasSpasiV10(); return; }
+        if (e.key !== ' ' && e.key !== 'Spacebar') return;
+        if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
+        const t = e.target; if (mengetik(t) || (t && t.closest && t.closest('details, dialog, [role=dialog], .menu-lebih'))) return;
+        if (document.querySelector('dialog[open]') || wrap.closest('[hidden]')) return;
+        const b = aksi.querySelector('.btn-primary'); if (!b || b.hidden) return;
+        e.preventDefault(); if (!e.repeat) b.click();
+      };
+      lepasSpasiV10 = () => { try { document.removeEventListener('keydown', spasi); } catch (x) {} };
+      try { document.addEventListener('keydown', spasi); } catch (x) {}
+      try { root.addEventListener('resize', cekGulirV10, { passive: true }); } catch (x) {}
+      setelahPasang(() => setelahPasang(cekGulirV10));
+    }
+    function kbdSpasi() { return h('kbd', { class: 'kbd-spasi', 'aria-hidden': 'true' }, 'Spasi'); }
+    // petunjuk gulir bila opsi terakhir berada di luar kolom soal yang bergulir sendiri
+    function cekGulirV10() {
+      if (!kiriV10 || !gulirV10El) return;
+      if (!wrap.isConnected) { try { root.removeEventListener('resize', cekGulirV10); } catch (x) {} return; }
+      const ks = Object.keys(labels); const akhir = labels[ks[ks.length - 1]]; if (!akhir) return;
+      const kb = kiriV10.getBoundingClientRect(), lb = akhir.getBoundingClientRect();
+      gulirV10El.hidden = !(kiriV10.scrollHeight > kiriV10.clientHeight + 4 && lb.bottom > kb.bottom - 8);
+    }
+    // sesudah kunci dibuka: pembahasan di atas rincian jawaban per orang, tombol utama "Lanjut ke soal n" dengan Spasi
+    function kunciPapanV10(lanjut) {
+      if (papan && umpan) { umpan.after(papan); const j = papan.querySelector('.papan-judul'); if (j) j.textContent = 'Rincian jawaban per orang'; }
+      lanjut.append(kbdSpasi());
+      const isi = umpan.parentNode; if (isi && isi.scrollTop) isi.scrollTop = 0;
+      setelahPasang(cekGulirV10);
     }
     const pemandu = () => namaPemandu || pemimpinB || '';
     const samaN = (a, b) => !!a && !!b && String(a).toLowerCase() === String(b).toLowerCase();
@@ -402,6 +501,7 @@
         b.li.toggleAttribute('data-tertutup', tutupIsi);
         if (b.isiEl) { b.isiEl.hidden = !tutupIsi; b.isiEl.disabled = terkunci; }
         if (b.tombolRagu) { b.tombolRagu.setAttribute('aria-pressed', String(!!rb[n])); b.li.toggleAttribute('data-ragu', !!rb[n]); }
+        if (b.kataEl) { const kt = kataKeadaan(n); b.kataEl.textContent = kt; b.kataEl.hidden = !kt; b.li.toggleAttribute('data-sudah', !!jb[n]); }
         if (terkunci) {
           const v = jb[n]; const hs = v === '-' ? 'kosong' : v === soal.kunci ? 'benar' : 'salah';
           b.li.dataset.hasil = hs; b.hasilEl.hidden = false;
@@ -421,6 +521,7 @@
       if (hitungEl && !terkunci) hitungEl.textContent = teksHitung();
       if (arahanEl) { arahanEl.textContent = hadirB ? 'Anggota yang memegang HP menjawab sendiri. Ketuk tombol hanya untuk yang tidak memegang HP.' : 'Ketuk jawaban tiap orang.'; arahanEl.hidden = terkunci; }
       if (papan) papan.toggleAttribute('data-room', !!hadirB);
+      if (papanV10) gambarPapanV10();
     }
     let tUmumB = null; // pengumuman papan: hanya yang terakhir yang dibacakan (pengumuman tertunda sebelumnya dibatalkan)
     const umumkanBersama = (t, dariKeyboard) => { if (!live) return; live.textContent = ''; clearTimeout(tUmumB); tUmumB = setTimeout(() => { live.textContent = t; }, dariKeyboard ? 30 : 60); };
@@ -621,6 +722,7 @@
       if (aksiKiri) aksi.prepend(aksiKiri);
       wrap.append(umpan, live, aksi);
     }
+    if (papanV10) pasangPapanV10();
     // bar aksi mode bersama (meniru papan referensi): kiri "Ke menu" · tengah meta + hitungan · kanan "Selesai sekarang" + tombol utama
     function isiAksiBersama(primer) {
       aksi.classList.add('aksi-bersama');
@@ -752,6 +854,7 @@
       // v8.2 B2 (audit T5): tombol utama dan Enter ditahan 800 ms sesudah kunci terbuka, agar ketukan ganda tidak melompati pembahasan
       const tahanSampai = Date.now() + 800;
       const lanjut = h('button', { type: 'button', class: 'btn btn-primary', 'aria-disabled': 'true', onclick: () => { if (sudahLanjut || Date.now() < tahanSampai) return; sudahLanjut = true; clearInterval(tBahas); tBahas = null; if (opsi.onLanjut) opsi.onLanjut(benarP, jawabP, detik, ykP); } }, opsi.labelLanjut || 'Lanjut', ikon('chevron-kanan'));
+      if (papanV10) kunciPapanV10(lanjut);
       isiAksiBersama(lanjut);
       setTimeout(() => lanjut.removeAttribute('aria-disabled'), 800);
       gambarPetunjuk();

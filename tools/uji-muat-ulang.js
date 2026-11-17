@@ -525,7 +525,8 @@ const ringkasKasus = []; let gagalTotal = 0; const galatHalaman = [];
   const bacaS = o => o.page.evaluate(k => {
     let titik = null; try { titik = JSON.parse(sessionStorage.getItem(k) || 'null'); } catch (e) { titik = 'tidak tersedia'; }
     const s = UKP.store.get(); const el = document.querySelector('.soal'); const a = document.activeElement; const de = document.documentElement;
-    const kal = document.querySelector('.ringkasan-latih .stack-sm p:not(.eyebrow)');
+    // v10 hasil: kalimat ringkasan pindah ke teks di bawah judul berpita (dulu di kartu .ringkasan-latih)
+    const kal = document.querySelector('.ringkasan-latih .stack-sm p:not(.eyebrow)') || (document.querySelector('.v10-hasil') ? document.querySelector('main .page-head .lead') : null);
     return { rute: history.state && history.state.params, pulih: !!UKP.sekarang().pulih, soalId: el ? el.dataset.id : null,
       // v10 latih: kop sesi latihan sendiri dibaca dari teks judul (angka kanan dan pemisah tersembunyi ada di dalamnya)
       kop: (() => { const fb = document.querySelector('.fokus-bar'); if (!fb) return ''; const j = fb.classList.contains('kop-sesi-v10') ? fb.querySelector('.fokus-judul') : null; return (j ? j.textContent.replace(/\s+/g, ' ').trim() + ' | ' + ((fb.querySelector('.fokus-kanan') || {}).innerText || '') : (fb.innerText || '').replace(/\n+/g, ' | ')).slice(0, 160); })(), h1: ((document.querySelector('main h1') || {}).textContent || '').trim().slice(0, 80),
@@ -621,7 +622,8 @@ const ringkasKasus = []; let gagalTotal = 0; const galatHalaman = [];
       periksa('ringkasan tim tidak dikirim lagi', B.kirim === 0, B.kirim);
       periksa('jawaban tidak bertambah', B.nJawaban === A.nJawaban, [A.nJawaban, B.nJawaban]);
       // tombol di ringkasan tetap bekerja: Latih lagi memulai latihan baru
-      await o.page.evaluate(() => { const b = [...document.querySelectorAll('main .ringkasan-latih .btn-primary')][0]; b.click(); });
+      // v10 hasil: tombol utama menjadi "Ulangi N soal yang salah" bila ada yang salah; Latih lagi ada di daftar Pilihan lain
+      await o.page.evaluate(() => { const b = document.querySelector('main .v10-hasil [data-tujuan="lagi"]') || [...document.querySelectorAll('main .ringkasan-latih .btn-primary')][0]; b.click(); });
       await tunggu(o.page, () => !!document.querySelector('.soal'), null, 5000);
       const C = await bacaS(o); periksa('tombol utama ringkasan memulai latihan baru', !!C.soalId && /Soal 1 dari/.test(C.kop) && C.titik && C.titik.idx === 0, { kop: C.kop, titik: C.titik });
       // keluar lebih awal

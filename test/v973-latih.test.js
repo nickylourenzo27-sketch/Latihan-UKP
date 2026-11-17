@@ -219,7 +219,8 @@ test('kriteria 3 dan 5: muat ulang di layar Latihan selesai menggambar ringkasan
   assert.match(teks(B), /Latihan selesai/); assert.ok(!soalKini(B), 'bukan latihan baru');
   assert.ok(teks(B).includes(ring), 'kalimat ringkasan sama: ' + ring);
   assert.equal(B.efek.hadir, 0, 'kehadiran tidak dicatat lagi'); assert.equal(B.efek.kirim, 0, 'ringkasan tim tidak dikirim lagi');
-  assert.match(teks(B), /Keliru pada percobaan pertama/);
+  // v10 hasil: judul daftar soal yang salah menjadi "Yang salah" (dulu "Keliru pada percobaan pertama")
+  assert.match(teks(B), /Yang salah/);
   // kriteria 4: putaran ulang dari ringkasan yang dipulihkan, lalu muat ulang di tengahnya
   tombol(B, /^Ulangi 3 soal yang salah$/).click();
   assert.match(teks(B), /Ulang · soal 1 dari 3 · 0 benar/);
@@ -424,7 +425,8 @@ test('detik soal dan waktu mulai asli dipulihkan: detik jawaban, kop terjawab be
   lanjut(C); assert.match(teks(C), /Soal 3 dari 6 · 1 benar/);
   for (let i = 2; i < 6; i++) { jawab(C, 'A'); lanjut(C); }
   assert.match(teks(C), /6 soal · 5 benar/);
-  assert.match(teks(C), /1 kesalahan di Topik uji\./, 'kesalahan dari sebelum muat ulang ikut dihitung di ringkasan');
+  // v10 hasil: kalimat diagnosis dari riwayat sesi (dulu "1 kesalahan di Topik uji.")
+  assert.match(teks(C), /Soal yang salah ada di B7\.1 Topik uji\./, 'kesalahan dari sebelum muat ulang ikut dihitung di ringkasan');
 });
 
 test('keyakinan: diubah sesudah menjawab langsung disimpan, dipulihkan, dan tidak menambah jawaban', () => {
@@ -477,4 +479,40 @@ test('kartu yang sudah ada sebelum jawaban itu tidak menampilkan baris Urungkan 
   const B = muatUlang(T);
   assert.doesNotMatch(teks(B), /Kartu dari soal ini masuk dek Ulang/);
   assert.ok(!tombol(B, /^Urungkan$/));
+});
+
+// v10 hasil: ringkasan latihan sendiri (skor, diagnosis, petak, baris keyakinan, dek Ulang, satu tombol utama, satu tombol teks)
+test('v10 hasil: skor, petak bernomor yang membuka ulasan, keyakinan termasuk tanpa tanda, kartu dek Ulang, satu tombol utama', () => {
+  const T = siapkan(); T.UKP.go('latih', {});
+  const opened = []; T.UKP.dialog = o => { opened.push(o.judul); };
+  for (let i = 0; i < 6; i++) {
+    if (i === 0) { const b = T.main.querySelector('.keyakinan-awal button[data-yakin="yakin"]'); assert.ok(b, 'segmen keyakinan'); b.click(); }
+    if (i === 4) tombol(T, /^Tidak tahu$/).click(); else jawab(T, i === 1 || i === 3 ? 'B' : 'A');
+    lanjut(T);
+  }
+  const t = teks(T);
+  assert.match(t, /Latihan selesai/); assert.match(t, /3 dari 6 benar/);
+  assert.match(t, /Semua 3 yang salah ada di B7\.1 Topik uji\./);
+  assert.match(t, /Saat Anda yakin 1 dari 1 benar/); assert.match(t, /Tanpa tanda yakin 2 dari 4 benar/); assert.match(t, /Tidak tahu 1 soal/);
+  assert.match(t, /3 soal · 3 kartu di dek Ulang/, 'kartu dihitung dari dek Ulang yang tersimpan (Tidak tahu juga membuat kartu)');
+  const petak = T.main.querySelectorAll('.vh-petak-sel'); assert.equal(petak.length, 6);
+  assert.deepEqual(petak.map(p => p.getAttribute('data-hasil')), ['benar', 'salah', 'benar', 'salah', 'salah', 'benar']);
+  assert.equal(T.main.querySelector('.vh-petak').getAttribute('aria-label'), 'Soal 2, 4, dan 5 salah. Sisanya benar. Ketuk nomor untuk membuka soalnya.');
+  petak[1].click(); petak[0].click(); assert.equal(opened.length, 2, 'petak benar dan salah membuka ulasan');
+  const utama = T.main.querySelectorAll('.btn-primary'); assert.equal(utama.length, 1, 'satu tombol utama');
+  assert.equal(utama[0].textContent.trim(), 'Ulangi 3 soal yang salah');
+  assert.equal(T.main.querySelectorAll('.vh-aksi .btn-text').length, 1, 'satu tombol teks');
+  // tujuan lama tetap ada: latih topik, latih lagi, atur saringan
+  assert.ok(tombol(T, /^Latih \d+ soal B7\.1/)); assert.ok(tombol(T, /^Latih \d+ soal lagi$/)); assert.ok(tombol(T, /^Atur saringan$/));
+  assert.deepEqual(T.galat, []);
+});
+
+test('v10 hasil: semua benar: tombol utama latihan berikutnya, tombol teks Atur saringan, tanpa daftar Yang salah', () => {
+  const T = siapkan(); T.UKP.go('latih', {});
+  for (let i = 0; i < 6; i++) { jawab(T, 'A'); lanjut(T); }
+  const utama = T.main.querySelectorAll('.btn-primary'); assert.equal(utama.length, 1);
+  assert.match(utama[0].textContent, /^Latih \d+ soal lagi$/);
+  assert.equal(T.main.querySelector('.vh-aksi .btn-text').textContent.trim(), 'Atur saringan');
+  assert.doesNotMatch(teks(T), /Yang salah/); assert.match(teks(T), /Tidak ada kesalahan pada latihan ini\./);
+  assert.equal(T.main.querySelector('.vh-petak').getAttribute('aria-label'), 'Semua soal benar. Ketuk nomor untuk membuka soalnya.');
 });

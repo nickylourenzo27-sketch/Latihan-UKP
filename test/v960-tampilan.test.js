@@ -202,8 +202,9 @@ describe('v9.6: keadaan yang harus terlihat', () => {
 // dengan v9.6; bayangan hanya none, inset, atau var(--bayang-melayang); warna literal hanya di dalam definisi token.
 // Batas tahap 1 (v10.0.0): semula 48 KB, dinaikkan ke 56 KB sesudah dua jalur (Latih dan Beranda) digabung dan duplikasinya dipangkas.
 // Tahap 2 (Mode mabar) akan meninjau batas ini lagi bersama pemangkasan gaya lama.
-const V10_BATAS = 56 * 1024;
-const V10_SUB = ['dasar', 'latih', 'beranda'];
+// Tahap 3: tujuh sub-bagian (dasar, latih, beranda, papan, room, hasil, lain), batas 128 KB.
+const V10_BATAS = 128 * 1024;
+const V10_SUB = ['dasar', 'latih', 'beranda', 'papan', 'room', 'hasil', 'lain'];
 function periksaPagarV10(teks) {
   const masalah = [];
   const nBuka = teks.split(V10_BUKA).length - 1, nTutup = teks.split(V10_TUTUP).length - 1;
@@ -225,7 +226,7 @@ function periksaPagarV10(teks) {
     posisi = ib;
   }
   // di antara sub-bagian (di luar ketiganya) hanya komentar
-  const luar = isi.replace(/\/\* v10 (dasar|latih|beranda): mulai \*\/[\s\S]*?\/\* v10 \1: selesai \*\//g, '').replace(/\/\*[\s\S]*?\*\//g, '').trim();
+  const luar = isi.replace(/\/\* v10 (dasar|latih|beranda|papan|room|hasil|lain): mulai \*\/[\s\S]*?\/\* v10 \1: selesai \*\//g, '').replace(/\/\*[\s\S]*?\*\//g, '').trim();
   if (luar !== '') masalah.push('aturan di luar sub-bagian: ' + luar.slice(0, 80));
   return { masalah, isi };
 }
@@ -273,7 +274,7 @@ function tokenTakAdaV10(teks, seluruh) {
 }
 
 describe('v10: bagian berpagar "v10 langkah tegas" di akhir css/app.css', () => {
-  it('satu bagian sesudah penutup v9.6 terakhir, tiga sub-bagian berurutan, tanpa aturan sesudah penutup, paling banyak 56 KB', () => {
+  it('satu bagian sesudah penutup v9.6 terakhir, tujuh sub-bagian berurutan, tanpa aturan sesudah penutup, paling banyak 128 KB', () => {
     assert.deepEqual(pagarV10.masalah, []);
   });
   it('pemeriksa pagar menolak aturan sesudah penutup, bagian yang terlalu besar, pagar ganda, dan sub-bagian yang hilang', () => {
