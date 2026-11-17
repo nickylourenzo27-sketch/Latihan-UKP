@@ -245,8 +245,12 @@ describe('v9.5.4 Sx-B: keterangan kecil yang tidak cocok dengan perilaku', () =>
     assert.ok(!vh.includes('melewati hari ini tidak memutus kehadiran'));
     assert.ok(vh.includes("Sesi dikecilkan ke Kilat.' + (s.hadir[hariIni] ? '' : ' Bila tidak sempat belajar, tekan Lewati hari ini agar kehadiran tidak putus (dicatat CUTI).')"));
   });
-  it('Sx-B3: kartu 03 ikut sakelar "Periksa dulu"', () => {
-    assert.ok(vh.includes("p.jawabLangsung === false ? '20 soal acak, dibahas setelah Periksa' : '20 soal acak, langsung dibahas'"));
+  // v10: kartu 03 "Yakin, ragu, nebak" dibuang arah desain Langkah Tegas (Beranda: satu kartu langkah dan daftar Pilihan lain).
+  // Penjagaannya tetap: Beranda tidak boleh menjanjikan pembahasan langsung, karena sakelar "Periksa dulu" bisa mematikannya.
+  it('Sx-B3: Beranda tidak menjanjikan "langsung dibahas" (sakelar "Periksa dulu")', () => {
+    const blok = vh.slice(vh.indexOf('// D3.4 kartu Lanjutkan, v10'), vh.indexOf('// ----- Sambutan pengunjung baru'));
+    assert.ok(blok.length > 1000, 'blok Beranda v10 ditemukan');
+    assert.ok(!/langsung dibahas|Pembahasan langsung muncul/.test(blok));
   });
   it('Sx-B4: Cakupan menyebut pembagian dokumen sebagai mata ujian, bukan kelompok', () => {
     assert.ok(vb.includes("r.mataUjian + ' mata ujian'"));

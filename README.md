@@ -16,6 +16,19 @@ Tampilan mengikuti kanvas desain pemilik ("MABAR UKP · Logo" dan "MABAR UKP · 
 - **Sambutan (v9.0).** Pengunjung baru di akar situs melihat halaman sambutan berkerangka sama, dengan tombol Masuk menuju formulir lima langkah. Tautan tim (`#room/<kode>`, `#ujiantim/<kode>`, `#lj`) tetap langsung ke layarnya.
 - **Mode mabar** adalah nama pintu fitur tim (halaman `#room`). Nama fitur di dalamnya tidak berubah.
 
+<!-- desain-1000:mulai -->
+## Tampilan "Langkah Tegas", tahap 1 (v10.0.0)
+
+Tahap pertama tampilan baru. Setiap layar memberi satu langkah yang jelas, dan setiap jawaban langsung dijawab dengan kalimat berangka. Aturannya ada di `docs/DESAIN-V10.md`.
+
+- **Latih (latihan sendiri).** Kop biru tua menulis "Soal 3 dari 10" dan "2 benar", dengan ruas kemajuan per soal. Pilihan Yakin, Ragu, atau Nebak kini ada di atas opsi dan boleh dilewati; bila dilewati, sesudah menjawab muncul "Tadi Anda seberapa yakin?". Sesudah menjawab tampil "Benar." atau "Salah. Kuncinya C." beserta alasan opsi yang dipilih, Penjelasan mudah, Cara ingat (bila soal punya), dan satu lipatan "Pembahasan lengkap". Tombol utama menjadi "Lanjut ke soal N", di soal terakhir "Lihat hasil". Tidak tahu kini di bar bawah. Kartu dek Ulang tampil sebagai baris di panel dengan Urungkan.
+- **Beranda.** Pita menulis tingkat, hari tersisa sampai ujian, dan ringkasan pekan ini (tautan ke Kemajuan). Satu kartu langkah dengan satu tombol kuning memilih langkah berikutnya dari keadaan Anda, misalnya "Latih 10 soal A4.4" sesudah sesi kemarin. Simulasi, Mode mabar, dan Ulang soal yang salah ada di "Pilihan lain". Soal hari ini bisa dijawab langsung di Beranda. Bagian Tim hanya tampil bila ada room atau kegiatan tim.
+- **Kop HP.** Di Beranda tampil wordmark MABAR dan lencana UKP; Target ujian dan Tutor AI pindah ke lembar Lainnya. Kop laptop tetap.
+- **Seluruh aplikasi.** Tombol tiga tingkat (tombol teks selalu bergaris bawah), kartu radius 12, tab aktif bergaris di bar bawah, tautan lewati tidak lagi menutupi kop sesi.
+- **Belum berubah.** Mode mabar (lobi, papan, HP anggota), Hasil, Kemajuan, Simulasi, dan halaman lain dirombak di tahap 2 dan 3. Isi soal, pencatatan jawaban, dan data room tidak berubah.
+
+Cara menguji: `node --test test/` (uji `test/v10-*.test.js` dan pagar `test/v960-tampilan.test.js`), `NODE_PATH=$(npm root -g) node tools/potret-layar.js potret . <folder>` (41 layar), dan kasus s- `tools/uji-muat-ulang.js` seperti di bawah. Lalu buka Latih dan Beranda di HP 320 dan 390 px serta laptop, tema terang dan gelap.
+<!-- desain-1000:selesai -->
 <!-- mabar-973:mulai -->
 ## Muat ulang melanjutkan latihan sendiri (v9.7.3)
 

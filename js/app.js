@@ -192,6 +192,15 @@
       kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => { dlg.close(); UKP.go('pengaturan'); } }, 'Pengaturan'), h('button', { type: 'button', class: 'btn btn-primary', autofocus: true, onclick: () => { dlg.close(); UKP.go('rencana'); } }, 'Buka Rencana')] });
   }
   // lembar "Lainnya" (< 1024): kelompok sama dengan panel kop, ditambah Simulasi/Kalkulator; baris tema; Pengaturan di bawah garis
+  // v10: di HP chip target dan tombol Tutor tidak lagi di kop (kop: merek, cari, profil). Target ujian pindah ke baris lembar
+  // Lainnya ini; Tutor tetap lewat "Tutor AI" di kelompok Alat. Di laptop keduanya tetap di kop.
+  function targetBaris(dlg) {
+    const p = UKP.store.get().profil || {}; if (!p.onboardingSelesai) return null;
+    let sisa = null; if (p.tanggalUjian) { const d = U.selisihHari(U.hariIni(), p.tanggalUjian); if (d >= 0) sisa = d; }
+    const status = 'Tingkat ' + p.tingkat + (sisa == null ? '' : sisa === 0 ? ', hari ujian' : ', ' + sisa + ' hari lagi');
+    return h('button', { type: 'button', class: 'row-link lainnya-target', 'aria-haspopup': 'dialog', onclick: () => { dlg.close(); bukaTarget(); } },
+      UKP.icon('flag'), h('span', { class: 'row-title' }, 'Target ujian'), h('span', { class: 'lainnya-tema-status muted small' }, status));
+  }
   function bukaLainnya() {
     const kini = UKP.sekarang().view; const efektif = viewEfektif(kini, UKP.sekarang().params);
     const salinLencana = v => { const asal = document.getElementById(v === 'rencana' ? 'badge-rencana' : v === 'ulang' ? 'badge-ulang-sb' : ''); if (!asal || asal.hidden) return null; const b = asal.cloneNode(true); b.removeAttribute('id'); return b; };
@@ -207,7 +216,7 @@
         grupLembar().map((g, i) => h('section', { class: 'lainnya-grup stack-sm', 'aria-labelledby': 'lainnya-g' + i },
           h('h3', { class: 'eyebrow', id: 'lainnya-g' + i }, g.label),
           h('div', { class: 'menu-grid' }, g.item.filter(x => x[0] !== 'tim' || timTerlihat).map(x => tautan(dlg, x))))),
-        h('div', { class: 'list-rows lainnya-kaki' }, temaBaris, tautan(dlg, BUTIR_PENGATURAN, 'row-link')));
+        h('div', { class: 'list-rows lainnya-kaki' }, temaBaris, targetBaris(dlg), tautan(dlg, BUTIR_PENGATURAN, 'row-link')));
     } });
   }
   // kunci navigasi halaman kini: latihan bersama (params bersama/room) ditandai sebagai Mode mabar
@@ -222,6 +231,10 @@
     const view = UKP.sekarang().view;
     const judul = h1 ? h1.textContent.trim() : (LABEL_NAV[view] || '');
     const tulis = tampil => { el.classList.add('judul'); el.textContent = tampil ? judul : ''; el.title = tampil ? judul : ''; };
+    // v10: di Beranda kop HP selalu memakai logo dengan wordmark MABAR dan lencana UKP, tanpa judul ringkas
+    const tb = document.getElementById('topbar');
+    if (tb) { if (view === 'beranda') tb.dataset.v10Merek = ''; else delete tb.dataset.v10Merek; }
+    if (view === 'beranda') { tulis(false); return; }
     tulis(!h1);
     if (!h1 || !('IntersectionObserver' in root)) return;
     const tinggiBar = (document.getElementById('topbar') || {}).offsetHeight || 56;

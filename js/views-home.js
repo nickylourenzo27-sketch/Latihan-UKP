@@ -799,108 +799,290 @@
     };
     setTimeout(perbarui, Math.min(2147483000, Math.max(0, Number(sa.akhir) - Date.now()) + 500));
   }
-  // D3.4 kartu Lanjutkan (atau Mulai sesi pertama); tombolnya sekunder
+  // D3.4 kartu Lanjutkan, v10: kartu langkah yang menumpang di tepi pita. Satu tombol terisi (kuning di kedua tema lewat
+  // .v10-melayang); isinya dipilih pilihLangkah() dari keadaan pemakai. Nama kartuLanjut dipertahankan untuk segarkanSaatHabis.
   function kartuLanjut(s) {
-    const tingkat = s.profil.tingkat; const hariIni = U.hariIni();
-    const akhir = aktivitasTerakhir(s);
-    const hadir = !!(s.hadir[hariIni] && s.hadir[hariIni].status === 'HADIR');
-    const susun = () => { let x = null; try { x = L.susunSesi('standar'); } catch (e) {} return x && x.blok && x.blok.length ? x : null; };
-    const mulaiSesi = x => { s.sesiAktif = x; UKP.store.save(); UKP.go('sesi'); };
-    const tautanAlt = (teks, fn) => h('button', { type: 'button', class: 'lanjut-alt', onclick: fn }, teks);
-    const kartuAksi = (meta, judul, alt, tombol) => h('section', { class: 'card kartu-lanjut', 'aria-labelledby': 'lanjut-judul' },
-      h('div', { class: 'lanjut-teks' }, h('span', { class: 'meta' }, meta), h('h3', { class: 'lanjut-judul', id: 'lanjut-judul' }, judul), alt),
-      h('div', { class: 'btn-row' }, tombol));
-    if (akhir) {
-      const sesi = !akhir.sesi && !hadir ? susun() : null;
-      const kartu = kartuAksi(akhir.meta, akhir.judul, sesi ? tautanAlt('atau mulai sesi harian · ' + sesi.menit + ' mnt', () => mulaiSesi(sesi)) : null,
-        h('button', { type: 'button', class: 'btn', onclick: akhir.buka }, ikon('play'), 'Lanjutkan'));
-      if (akhir.berjalan) segarkanSaatHabis(kartu, s.simulasiAktif);
-      return kartu;
-    }
-    const sesi = susun(); const nDiag = K.kelompok(tingkat).length * 3; const menitDiag = Math.max(1, Math.round(nDiag * .8));
-    const diag = () => { const d = L.susunDiagnosis(); if (!d) { UKP.toast('Konten untuk tingkat ini belum dimuat.'); return; } mulaiSesi(d); };
-    return kartuAksi('Langkah pertama', 'Mulai sesi pertama', nDiag ? tautanAlt('atau diagnosis ' + nDiag + ' soal · ± ' + menitDiag + ' mnt', diag) : null,
-      h('button', { type: 'button', class: 'btn', disabled: !sesi, onclick: () => { if (sesi) mulaiSesi(sesi); } }, ikon('play'), sesi ? 'Mulai sesi · ' + sesi.menit + ' mnt' : 'Mulai sesi'));
+    const masukan = masukanLangkah(s);
+    const l = pilihLangkah(masukan);
+    const jalan = () => { const t = l.tujuan || ['beranda']; UKP.go(t[0], t[1] || {}); };
+    const kartu = h('section', { class: 'card v10-melayang bv-langkah', 'aria-labelledby': 'lanjut-judul', 'data-langkah': l.jenis },
+      h('p', { class: 'bv-langkah-label' }, l.label),
+      h('h2', { class: 'bv-langkah-judul', id: 'lanjut-judul' }, l.judul),
+      l.ket ? h('p', { class: 'bv-langkah-ket' }, l.ket) : null,
+      h('button', { type: 'button', class: 'btn btn-primary btn-lg btn-block bv-langkah-tombol', 'data-k': 'langkah-utama', onclick: jalan }, l.tombol));
+    const akhir = { berjalan: l.jenis === 'simulasi-berjalan' };
+    if (akhir.berjalan) segarkanSaatHabis(kartu, s.simulasiAktif);
+    return kartu;
   }
-  // meta hidup kartu 02: status room bila ada
+
+  // ----- v10: data untuk Beranda, hanya dari riwayat yang ada di perangkat -----
+  const BATAS_JEDA_SESI = 30 * 60000;   // jawaban latihan yang berjarak lebih dari 30 menit dianggap sesi lain
+  const NAMA_HARI = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+  // "hari ini", "kemarin", nama hari dalam sepekan, atau "12 Nov"
+  function kataHari(iso, hariIni) {
+    const d = U.selisihHari(iso, hariIni);
+    if (d <= 0) return 'hari ini'; if (d === 1) return 'kemarin';
+    const t = new Date(iso + 'T12:00:00');
+    return d < 7 ? NAMA_HARI[t.getDay()] : t.getDate() + ' ' + t.toLocaleDateString('id-ID', { month: 'short' });
+  }
+  const jawabanLatih = (j, s) => !!j && typeof j.pada === 'number' && j.konteks !== 'simulasi' && !!j.topik && !(L.dariSoalHari && L.dariSoalHari(j, s.soalHari));
+  // sesi latihan terakhir: jawaban latihan berurutan di hari yang sama tanpa jeda lebih dari 30 menit, tanpa Soal hari ini
+  function sesiLatihTerakhir(s) {
+    const jw = Array.isArray(s.jawaban) ? s.jawaban : []; const isi = [];
+    for (let i = jw.length - 1; i >= 0; i--) {
+      const j = jw[i]; if (!jawabanLatih(j, s) || !K.topik(j.topik)) continue;
+      if (isi.length) { const lalu = isi[isi.length - 1]; if (lalu.pada - j.pada > BATAS_JEDA_SESI || U.hariDari(lalu.pada) !== U.hariDari(j.pada)) break; }
+      isi.push(j);
+    }
+    if (!isi.length) return null;
+    const salah = isi.filter(j => !j.benar); const perTopik = {};
+    salah.forEach((j, urut) => { const x = perTopik[j.topik] || (perTopik[j.topik] = { id: j.topik, n: 0, urut }); x.n++; });
+    const kodes = [...new Set(isi.map(j => j.kode || String(j.topik).split('.')[0]))];
+    const atas = Object.values(perTopik).sort((a, b) => b.n - a.n || a.urut - b.urut)[0] || null;   // seri: yang salahnya paling baru
+    const tAtas = atas ? K.topik(atas.id) : null; const tAkhir = K.topik(isi[0].topik);
+    return { tgl: U.hariDari(isi[0].pada), n: isi.length, benar: isi.length - salah.length, salah: salah.length, kode: kodes.length === 1 ? kodes[0] : null,
+      topik: tAtas ? { id: tAtas.id, judul: tAtas.judul, kode: tAtas.kode || atas.id.split('.')[0], nSalah: atas.n } : null,
+      topikAkhir: tAkhir ? { id: tAkhir.id, judul: tAkhir.judul, kode: tAkhir.kode || tAkhir.id.split('.')[0] } : null };
+  }
+  // ringkasan pekan kalender (Senin sampai Minggu, batas hari 03.00): hari belajar = hari dengan jawaban atau kehadiran HADIR
+  function ringkasPekan(s, hariIni) {
+    const d = new Date(hariIni + 'T12:00:00'); const senin = U.tambahHari(hariIni, -((d.getDay() + 6) % 7));
+    const hari = Array.from({ length: 7 }, (_, i) => ({ tgl: U.tambahHari(senin, i), n: 0, benar: 0, hadir: false }));
+    const peta = {}; hari.forEach(x => { peta[x.tgl] = x; const st = s.hadir && s.hadir[x.tgl]; if (st && st.status === 'HADIR') x.hadir = true; });
+    for (const j of Array.isArray(s.jawaban) ? s.jawaban : []) {
+      if (!j || typeof j.pada !== 'number' || kosongSim(j)) continue;
+      const x = peta[U.hariDari(j.pada)]; if (!x) continue; x.n++; if (j.benar) x.benar++;
+    }
+    hari.forEach(x => { x.ya = x.n > 0 || x.hadir; x.kini = x.tgl === hariIni; x.nanti = x.tgl > hariIni; });
+    return { hari, nHari: hari.filter(x => x.ya).length, n: hari.reduce((a, x) => a + x.n, 0), benar: hari.reduce((a, x) => a + x.benar, 0) };
+  }
+  // masukan pilihLangkah dari store (satu-satunya bagian yang membaca keadaan aplikasi)
+  function masukanLangkah(s) {
+    const tingkat = s.profil.tingkat; const hariIni = U.hariIni(); const m = {};
+    const a = s.sesiAktif; if (a && !a.selesai && a.blok && a.blok.length) m.sesiAktif = { diagnosis: a.ukuran === 'diagnosis', posisi: (a.posisi || 0) + 1, total: a.blok.length };
+    if (UKP.simulasiBerjalan && UKP.simulasiBerjalan()) { const sa = s.simulasiAktif || {}; m.simulasi = { keadaan: 'berjalan', sisaMnt: sa.tanpaWaktu ? null : Math.max(1, Math.ceil((Number(sa.akhir) - Date.now()) / 60000)), tim: !!sa.tim }; }
+    else if (simulasiHabisBelumDikirim(s)) m.simulasi = { keadaan: 'habis' };
+    try {
+      const r = UKP.ruang; const i = r && typeof r.info === 'function' ? r.info() : null;
+      if (i) { const st = typeof r.state === 'function' ? r.state() : null; const ak = st && st.aktivitas; m.room = { nama: (st && st.room && st.room.nama) || i.namaRoom || 'Room tim', tuan: i.peran === 'tuan', aktivitas: ak && (ak.jenis === 'latihan' || ak.jenis === 'ujian') ? ak.jenis : null, no: ak && ak.jenis === 'latihan' ? (ak.idx || 0) + 1 : null, total: ak && Array.isArray(ak.soalIds) ? ak.soalIds.length : null }; }
+    } catch (e) { console.error(e); }
+    try {
+      const ba = L.bersamaAktif ? L.bersamaAktif() : null; const sb = ba && L.sesiBersamaDari ? L.sesiBersamaDari(ba.sesiId) : null;
+      if (ba && sb) m.bersama = { no: Math.min(ba.soalIds.length, (ba.idx || 0) + 1), total: ba.soalIds.length, orang: (sb.peserta || []).length };
+    } catch (e) { console.error(e); }
+    try { const u = L.ujianTim && typeof L.ujianTim.aktif === 'function' ? L.ujianTim.aktif() : null; if (u) m.ujianTim = { judul: u.judul || 'Ujian tim', total: (u.soalIds || []).length }; } catch (e) { console.error(e); }
+    const sl = sesiLatihTerakhir(s);
+    if (sl) m.sesiLatih = Object.assign(sl, { hariKata: kataHari(sl.tgl, hariIni), namaKode: sl.kode ? namaPendek(sl.kode) : null });
+    const akhir = aktivitasTerakhir(s);
+    if (akhir && !akhir.sesi && !akhir.berjalan && !akhir.habis) {
+      // sumber terbaru selain latihan: baca materi atau simulasi selesai (aktivitasTerakhir menimbang waktunya)
+      if (akhir.meta === 'Baca materi') { const t = K.topik(String(akhir.judul).split(' ')[0]); if (t) m.baca = { id: t.id, judul: t.judul, kode: t.kode || t.id.split('.')[0] }; }
+      else if (akhir.judul === 'Simulasi ujian') { const sim = s.simulasi.filter(x => x && x.selesai).slice(-1)[0]; if (sim) m.simSelesai = { skor: fmtSkor(sim.skor) }; }
+    }
+    m.baru = !m.sesiAktif && !m.simulasi && !m.sesiLatih && !m.baca && !m.simSelesai && !s.jawaban.some(j => j && !kosongSim(j));
+    m.tingkat = tingkat; m.namaTingkat = UKP.namaTingkat[tingkat] || 'Tingkat ' + tingkat;
+    return m;
+  }
+  // v10: pemilih langkah, fungsi murni (tanpa DOM dan tanpa store) supaya bisa diuji. Urutan: yang sedang berjalan dan terikat waktu
+  // dulu, lalu kegiatan tim yang berlangsung, sesi harian, simulasi yang belum dikirim, pemakai baru, latihan terakhir, lalu sumber lain.
+  // Keluaran: { jenis, label (alis faktual), judul, ket, tombol, tujuan: [view, params] }
+  function pilihLangkah(m) {
+    m = m || {}; const nt = m.namaTingkat || 'Tingkat ' + (m.tingkat || 'A');
+    const sim = m.simulasi;
+    if (sim && sim.keadaan === 'berjalan') return { jenis: 'simulasi-berjalan', label: sim.tim ? 'Ujian tim berjalan' : 'Simulasi berjalan', judul: 'Simulasi ujian',
+      ket: sim.sisaMnt == null ? 'Tanpa batas waktu. Jawaban Anda tersimpan.' : 'Sisa ' + sim.sisaMnt + ' mnt. Jawaban Anda tersimpan.', tombol: 'Lanjutkan simulasi', tujuan: ['simulasi', { jalan: true }] };
+    const r = m.room;
+    if (r && r.aktivitas === 'latihan') return { jenis: 'room-latihan', label: 'Room ' + r.nama, judul: 'Latihan bersama sedang berjalan',
+      ket: r.no && r.total ? 'Soal ' + r.no + ' dari ' + r.total + '.' : null, tombol: r.tuan ? 'Kembali ke latihan' : 'Ikut latihan sekarang', tujuan: r.tuan ? ['latih', { lanjut: 1, room: 1 }] : ['room'] };
+    if (r && r.aktivitas === 'ujian') return { jenis: 'room-ujian', label: 'Room ' + r.nama, judul: 'Ujian tim sedang berjalan', ket: null,
+      tombol: r.tuan ? 'Buka layar ujian' : 'Ikut ujian tim', tujuan: r.tuan ? ['ujiantim', { room: 1 }] : ['room'] };
+    const b = m.bersama;
+    if (b) return { jenis: 'bersama', label: 'Latihan bersama belum selesai', judul: 'Soal ' + b.no + ' dari ' + b.total,
+      ket: b.orang ? b.orang + ' orang ikut. Soal, urutan, dan sisa waktu dipulihkan.' : 'Soal, urutan, dan sisa waktu dipulihkan.', tombol: 'Lanjutkan latihan bersama', tujuan: ['latih', { lanjut: 1 }] };
+    if (m.ujianTim) return { jenis: 'ujian-tim', label: 'Ujian tim berjalan', judul: m.ujianTim.judul, ket: m.ujianTim.total ? m.ujianTim.total + ' soal.' : null, tombol: 'Buka ujian tim', tujuan: ['ujiantim'] };
+    if (m.sesiAktif) return { jenis: 'sesi', label: m.sesiAktif.diagnosis ? 'Diagnosis berjalan' : 'Sesi belajar berjalan', judul: 'Langkah ' + m.sesiAktif.posisi + ' dari ' + m.sesiAktif.total,
+      ket: null, tombol: m.sesiAktif.diagnosis ? 'Lanjutkan diagnosis' : 'Lanjutkan sesi', tujuan: ['sesi'] };
+    if (sim && sim.keadaan === 'habis') return { jenis: 'simulasi-habis', label: 'Waktu simulasi habis', judul: 'Simulasi ujian', ket: 'Jawaban Anda belum dikirim.', tombol: 'Buka simulasi', tujuan: ['simulasi'] };
+    if (m.baru) return { jenis: 'baru', label: 'Langkah pertama', judul: 'Coba 10 soal campuran ' + nt, ket: 'Sekitar 15 menit. Hasilnya menunjukkan topik yang perlu dikejar.', tombol: 'Mulai 10 soal', tujuan: ['latih', { n: 10, mulai: true }] };
+    const sl = m.sesiLatih;
+    if (sl) {
+      const ktKode = sl.kode ? sl.kode + (sl.namaKode && sl.namaKode !== sl.kode ? ' ' + sl.namaKode : '') : 'latihan campuran';
+      const label = 'Terakhir: ' + ktKode + ', ' + sl.hariKata + ' ' + sl.benar + ' dari ' + sl.n + ' benar';
+      const kapan = sl.hariKata === 'hari ini' || sl.hariKata === 'kemarin' ? sl.hariKata : 'pada ' + sl.hariKata;
+      if (sl.topik) {
+        const ket = sl.salah > 1 ? sl.topik.nSalah + ' dari ' + sl.salah + ' soal yang salah ' + kapan + ' ada di topik ' + sl.topik.id + ' ini.' : 'Soal yang salah ' + kapan + ' ada di topik ' + sl.topik.id + ' ini.';
+        return { jenis: 'latih-topik', label, judul: sl.topik.judul, ket, tombol: 'Latih 10 soal ' + sl.topik.id, tujuan: ['latih', { topik: sl.topik.id, kode: sl.topik.kode, n: 10, mulai: true }] };
+      }
+      if (sl.topikAkhir) return { jenis: 'latih-lanjut', label, judul: sl.topikAkhir.judul, ket: 'Semua benar. Topik ini yang terakhir Anda latih.', tombol: 'Latih 10 soal ' + sl.topikAkhir.id, tujuan: ['latih', { topik: sl.topikAkhir.id, kode: sl.topikAkhir.kode, n: 10, mulai: true }] };
+    }
+    if (m.baca) return { jenis: 'baca', label: 'Terakhir: baca materi ' + m.baca.id, judul: m.baca.judul, ket: 'Uji pemahaman dengan soal dari topik ini.', tombol: 'Latih 10 soal ' + m.baca.id, tujuan: ['latih', { topik: m.baca.id, kode: m.baca.kode, n: 10, mulai: true }] };
+    if (m.simSelesai) return { jenis: 'simulasi-selesai', label: 'Terakhir: simulasi, skor ' + m.simSelesai.skor, judul: 'Ulang soal yang salah', ket: 'Soal yang salah ada di Buku Kesalahan.', tombol: 'Latih 10 soal yang salah', tujuan: ['latih', { hanyaSalah: true, n: 10, mulai: true }] };
+    return { jenis: 'campuran', label: nt, judul: 'Latihan 10 soal campuran', ket: null, tombol: 'Mulai 10 soal', tujuan: ['latih', { n: 10, mulai: true }] };
+  }
+  // meta baris Mode mabar: status room bila ada
   function metaRoom() {
     try {
       const r = UKP.ruang; if (!r || typeof r.tersedia !== 'function') return 'Latihan satu layar bersama tim';
       const i = typeof r.info === 'function' ? r.info() : null;
-      if (i) { const st = typeof r.status === 'function' ? r.status() : null; const on = st && Array.isArray(st.online) ? st.online.length : 0; return (i.namaRoom || 'Room tim') + (st && st.tersambung ? ' · ' + on + ' online' : ''); }
-      return r.tersedia().tersedia ? 'Belum ada room tim' : 'Latihan satu layar bersama tim';
+      if (i) { const st = typeof r.status === 'function' ? r.status() : null; const on = st && Array.isArray(st.online) ? st.online.length : 0; return 'Buka room ' + (i.namaRoom || 'tim') + (st && st.tersambung && on ? '. ' + on + ' orang online.' : ''); }
+      return r.tersedia().tersedia ? 'Buat room atau tempel tautan dari grup' : 'Latihan satu layar bersama tim';
     } catch (e) { return 'Latihan satu layar bersama tim'; }
   }
+  // "Cara ingat" bukan bidang tersendiri: kalimat berawalan "Cara ingat:" di dalam pembahasan.mudah. Pemotongannya satu sumber dengan
+  // panel Latih: UKP.pisahMudah (js/soal.js) memberi { badan, ingat } dengan huruf pertama Cara ingat dikapitalkan
+  function pisahMudahSoal(soal) {
+    const t = soal && soal.pembahasan && typeof soal.pembahasan.mudah === 'string' ? soal.pembahasan.mudah : '';
+    return t && typeof UKP.pisahMudah === 'function' ? UKP.pisahMudah(t) : { badan: t.trim(), ingat: '' };
+  }
+  function caraIngat(soal) { return pisahMudahSoal(soal).ingat || null; }
+  // v10 Soal hari ini di Beranda: bisa dijawab di tempat. Satu kalimat hasil yang menerima fokus (tanpa wilayah status),
+  // halaman bergulir bila kalimat itu tertutup bar bawah. Keadaan terjawab tetap di s.soalHari ({ tgl, id, o, k }).
+  function kartuSoalHariV10(tingkat) {
+    const tgl = U.hariIni(); const s = UKP.store.get();
+    let soal = null; try { soal = L.pilihSoalHari(K.semuaSoal(tingkat), tgl, tingkat, s.soalHari); } catch (e) { console.error(e); }
+    if (!soal) return h('div', { class: 'card bv-hari kartu-soal-hari' }, h('p', { class: 'sh-kosong bv-bagian-ket' }, 'Soal hari ini belum tersedia. Bank soal tingkat ini sedang dimuat.'));
+    const st = bacaSoalHari(s, tgl, soal.id) || { o: null, k: null };
+    const t0 = Date.now(); const huruf = ['A', 'B', 'C', 'D'].filter(x => soal.opsi && soal.opsi[x] != null);
+    const tombol = huruf.map(x => h('button', { type: 'button', class: 'sh-opsi bv-opsi', 'data-h': x, onclick: () => jawab(x) },
+      h('span', { class: 'bv-huruf', 'aria-hidden': 'true' }, x), h('span', { class: 'bv-opsi-teks' }, h('span', { class: 'visually-hidden' }, x + '. '), soal.opsi[x]), h('span', { class: 'bv-tanda' })));
+    const hasil = h('p', { class: 'bv-hasil', id: 'sh-hasil', tabindex: '-1', hidden: true });
+    const dasar = teksDasar(soal);
+    const mudah = pisahMudahSoal(soal).badan;
+    const bahas = h('details', { class: 'bv-bahas', hidden: true }, h('summary', null, 'Buka pembahasan'),
+      mudah ? h('p', null, mudah) : null, dasar ? h('p', { class: 'bv-bahas-dasar' }, h('strong', null, dasar.label), ' ', dasar.teks) : null);
+    const kartu = h('div', { class: 'card bv-hari kartu-soal-hari', 'data-soal': soal.id },
+      h('p', { class: 'bv-meta' }, h('span', { class: 'bv-kode' }, soal.id), h('span', { 'aria-hidden': 'true' }, '·'), h('span', { class: 'bv-meta-topik' }, namaPendek(soal.kode))),
+      h('p', { class: 'sh-stem bv-stem', id: 'sh-stem' }, soal.stem),
+      h('div', { class: 'bv-opsi-daftar', role: 'group', 'aria-labelledby': 'sh-stem' }, tombol), hasil, bahas);
+    function terapkan() {
+      const ada = !!st.o;
+      tombol.forEach(b => {
+        const x = b.dataset.h; const kunci = ada && x === soal.kunci; const salah = ada && x === st.o && x !== soal.kunci;
+        if (ada) b.dataset.hasil = kunci ? 'kunci' : salah ? 'salah' : 'lain'; else delete b.dataset.hasil;
+        if (ada) { b.setAttribute('aria-disabled', 'true'); b.tabIndex = -1; } else { b.removeAttribute('aria-disabled'); b.removeAttribute('tabindex'); }
+        if (x === st.o) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+        const tanda = b.querySelector('.bv-tanda');
+        tanda.replaceChildren(...(kunci ? [svgGaris(IKON_CEK, { lebar: '2.5' }), x === st.o ? 'Jawaban Anda, benar' : 'Kunci'] : salah ? [svgGaris(IKON_SILANG, { lebar: '2.5' }), 'Jawaban Anda'] : []));
+      });
+      if (ada) kartu.dataset.terjawab = st.o === soal.kunci ? 'benar' : 'salah'; else delete kartu.dataset.terjawab;
+      hasil.hidden = !ada; bahas.hidden = !ada;
+      if (ada) {
+        const benar = st.o === soal.kunci; const alasan = !benar && soal.pembahasan && soal.pembahasan.mengapaSalah ? soal.pembahasan.mengapaSalah[st.o] : null; const ci = benar ? caraIngat(soal) : null;
+        hasil.replaceChildren(h('strong', null, benar ? 'Benar.' : 'Salah. Kuncinya ' + soal.kunci + '.'), benar ? (ci ? ' Cara ingat: ' + ci : '') : (alasan ? ' ' + alasan : ''));
+      }
+    }
+    function jawab(x) {
+      if (st.o) return;
+      const lain = bacaSoalHari(UKP.store.get(), tgl, soal.id); if (lain) { st.o = lain.o; st.k = lain.k; terapkan(); return; }
+      st.o = x;
+      try { L.catatJawaban(soal, x, (Date.now() - t0) / 1000, 'latih'); const s2 = UKP.store.get(); s2.soalHari = { tgl, id: soal.id, o: st.o, k: st.k }; UKP.store.save(); } catch (e) { console.error(e); }
+      terapkan();
+      if (UKP.gerakBoleh && UKP.gerakBoleh()) { hasil.classList.add('bv-muncul'); tombol.forEach(b => { if (b.dataset.hasil !== 'lain') b.classList.add('bv-muncul-tanda'); }); }
+      // fokus ke kalimat hasil; gulir seperti Latih bila kalimat itu tertutup bar bawah (40 persen, 55 persen di layar pendek)
+      try { hasil.focus({ preventScroll: true }); } catch (e) { hasil.focus(); }
+      try {
+        const r = hasil.getBoundingClientRect(); const bar = document.getElementById('bottomnav'); const tinggiBar = bar && !bar.hidden ? bar.offsetHeight : 0;
+        if (r.bottom > window.innerHeight - tinggiBar - 16) window.scrollBy({ top: r.top - window.innerHeight * (window.innerHeight < 700 ? 0.55 : 0.4), behavior: UKP.gulirHalus() });
+      } catch (e) {}
+    }
+    terapkan();
+    return kartu;
+  }
+  // ikon chevron baris daftar
+  const IKON_KANAN = '<path d="M9 6l6 6-6 6"/>';
+  const barisDaftar = (judul, ket, view, params, kelas) => h('li', null, UKP.link([h('span', { class: 'bv-baris-isi' }, h('span', { class: 'bv-baris-judul' }, judul), ket ? h('span', { class: 'bv-baris-ket' }, ket) : null), svgGaris(IKON_KANAN, { kelas: 'bv-chevron' })], view, params || null, 'bv-baris' + (kelas ? ' ' + kelas : '')));
+  const bagian = (id, judul, ...isi) => h('section', { class: 'bv-bagian', 'aria-labelledby': id }, h('h2', { class: 'bv-bagian-judul', id }, judul), ...isi);
 
   // ----- Beranda (pengguna yang sudah onboarding) -----
+  // v10 "Langkah Tegas": pita (alis, sapaan, ringkasan pekan sebagai tautan Kemajuan) + kartu langkah yang menumpang di tepi pita ·
+  // [Tim, bila ada room atau kegiatan tim] · Pilihan lain · Soal hari ini · Alat lain (atau dasbor lengkap). Laptop: pita dan kartu
+  // berdampingan, isi dua kolom.
   UKP.views.beranda = function () {
     const s = UKP.store.get(); const p = s.profil; const tingkat = p.tingkat; const hariIni = U.hariIni();
-    const page = h('div', { class: 'page beranda selebar' });
+    const page = h('div', { class: 'page beranda selebar beranda-v10' });
     const nama = typeof p.nama === 'string' ? p.nama.trim().split(/\s+/)[0] : '';
     const sisa = p.tanggalUjian ? U.selisihHari(hariIni, p.tanggalUjian) : null;
-    const eyebrow = 'UJI KOMPETENSI PERPAJAKAN · ' + (UKP.namaTingkat[tingkat] || 'Tingkat ' + tingkat).toUpperCase() + (sisa == null || sisa < 0 ? '' : sisa === 0 ? ' · HARI UJIAN' : ' · ' + sisa + ' HARI LAGI');
-    page.appendChild(pitaBeranda({ eyebrow, judul: sapaanJam() + (nama ? ', ' + nama + '.' : '.'),
-      lead: ['Belajar pajak bareng, lulus bareng. ', h('span', { class: 'pita-tgl' }, U.tglPanjang(hariIni) + '.')],
-      aksi: [UKP.link('Mulai simulasi', 'simulasi', null, 'tombol-pita utama'), UKP.link('Buka mode mabar', 'room', null, 'tombol-pita garis')],
-      kartu: kartuSoalHari({ tingkat, catat: true }) }));
-    page.appendChild(stripMataUjian(K.kelompok(tingkat).map(kode => ({ teks: namaPendek(kode), view: 'kelompok', params: { kode } }))));
+    const nt = UKP.namaTingkat[tingkat] || 'Tingkat ' + tingkat;
+    const langkah = kartuLanjut(s);
+    const baru = langkah.dataset.langkah === 'baru';
+    const alis = nt + (sisa == null || sisa < 0 ? '' : sisa === 0 ? ' · hari ujian' : ' · ' + sisa + ' hari lagi');
+    const pekan = ringkasPekan(s, hariIni);
+    let pekanEl;
+    if (pekan.nHari) {
+      const teksP = pekan.nHari + ' hari · ' + pekan.benar + ' dari ' + pekan.n + ' benar';
+      pekanEl = UKP.link([h('span', { class: 'bv-titik', 'aria-hidden': 'true' }, pekan.hari.map(x => h('i', { class: (x.ya ? 'ya' : '') + (x.kini ? ' kini' : '') || null }))),
+        h('span', { class: 'bv-pekan-teks', 'aria-hidden': 'true' }, teksP), svgGaris(IKON_KANAN, { kelas: 'bv-chevron' })], 'kemajuan', null, 'bv-pekan');
+      pekanEl.setAttribute('aria-label', 'Pekan ini ' + pekan.nHari + ' hari belajar, ' + pekan.benar + ' dari ' + pekan.n + ' benar. Buka Kemajuan.');
+    } else if (!baru) {
+      pekanEl = UKP.link([h('span', { class: 'bv-pekan-teks' }, 'Belum ada latihan pekan ini.'), svgGaris(IKON_KANAN, { kelas: 'bv-chevron' })], 'kemajuan', null, 'bv-pekan');
+      pekanEl.setAttribute('aria-label', 'Belum ada latihan pekan ini. Buka Kemajuan.');
+    } else pekanEl = h('p', { class: 'bv-pekan bv-pekan-kosong' }, 'Belum ada latihan pekan ini.');
+    const pita = h('section', { class: 'beranda-pita pita-kisi bv-pita', 'aria-labelledby': 'pita-judul' },
+      h('div', { class: 'wadah-situs bv-pita-dalam' },
+        h('p', { class: 'bv-alis' }, alis),
+        h('h1', { class: 'pita-judul bv-sapa', id: 'pita-judul', tabindex: '-1' }, (baru ? 'Selamat datang' : sapaanJam()) + (nama ? ', ' + nama + '.' : '.')),
+        pekanEl));
+    page.appendChild(h('div', { class: 'bv-atas' }, pita, langkah));
 
-    const isi = h('div', { class: 'wadah-situs beranda-isi' }); page.appendChild(isi);
+    const isi = h('div', { class: 'wadah-situs bv-isi' }); page.appendChild(isi);
     if (!UKP.store.ok) isi.appendChild(h('div', { class: 'banner', 'data-tone': 'warn' }, 'Penyimpanan browser tidak tersedia. Progres tidak tersimpan.'));
-    const duo = h('div', { class: 'beranda-duo' }); isi.appendChild(duo);
-    // D3.3 Mode mabar: blok Tim = UKP.c.kartuRoom() (kartu ujian tim / lanjut bersama sudah di dalamnya); tanpa kartuRoom →
-    // kartu ujian tim dan lanjut bersama v8.1 langsung. Di dalam blok tepat satu tombol utama.
+    // Tim: hanya bila perangkat ada di room atau ada ujian tim atau latihan bersama yang belum selesai. Tombol terisi di dalamnya
+    // diturunkan menjadi tombol kedua (satu tombol terisi per layar: kartu langkah); tombol yang sama dengan kartu langkah disembunyikan.
     let blokTim = null;
-    try { if (typeof UKP.c.kartuRoom === 'function') { const el = UKP.c.kartuRoom(); if (el && el.nodeType) blokTim = el; } } catch (e) { console.error(e); blokTim = null; }
-    if (!blokTim) {
-      try {
-        const kartu = [typeof UKP.c.kartuUjianTim === 'function' ? UKP.c.kartuUjianTim() : null, typeof UKP.c.kartuLanjutBersama === 'function' ? UKP.c.kartuLanjutBersama() : null].filter(x => x && x.nodeType);
-        if (kartu.length) blokTim = h('div', { class: 'stack-sm beranda-tim-aktif' }, kartu);
-      } catch (e) { console.error(e); }
-    }
-    // v9.2 G3: selama perangkat berada di room (pemimpin atau anggota/tamu), blok ini selalu punya jalan kembali ke room sebagai tombol utama.
-    // kartuRoom() biasanya sudah memuatnya (.room-utama); bila tidak ada (modul room belum termuat / gagal), tombol cadangan ditambahkan.
     try {
-      const r = UKP.ruang; const i = r && typeof r.info === 'function' ? r.info() : null;
-      if (i && !(blokTim && blokTim.querySelector('.room-utama'))) {
-        const namaR = i.namaRoom || 'Room tim';
-        const kembali = h('button', { type: 'button', class: 'btn btn-primary btn-lg btn-block room-utama', 'data-k': 'kembali-room', onclick: () => UKP.go('room') }, ikon('tim', null, true), 'Kembali ke room');
-        const kartu = h('section', { class: 'card kartu-room kartu-room-cadangan', 'aria-label': 'Room tim' }, h('p', { class: 'small' }, 'Anda masih di room ', h('strong', null, namaR), '.'), kembali);
-        blokTim = blokTim ? h('div', { class: 'stack-sm' }, kartu, blokTim) : kartu;
+      const r = UKP.ruang; const diRoom = !!(r && typeof r.info === 'function' && r.info());
+      const adaTim = diRoom || !!(L.bersamaAktif && L.bersamaAktif()) || !!(L.ujianTim && typeof L.ujianTim.aktif === 'function' && L.ujianTim.aktif());
+      if (adaTim) {
+        if (diRoom && typeof UKP.c.kartuRoom === 'function') { const el = UKP.c.kartuRoom(); if (el && el.nodeType) blokTim = el; }
+        if (!blokTim) { const kartu = [typeof UKP.c.kartuUjianTim === 'function' ? UKP.c.kartuUjianTim() : null, typeof UKP.c.kartuLanjutBersama === 'function' ? UKP.c.kartuLanjutBersama() : null].filter(x => x && x.nodeType); if (kartu.length) blokTim = h('div', { class: 'stack-sm beranda-tim-aktif' }, kartu); }
       }
-    } catch (e) { console.error(e); }
+    } catch (e) { console.error(e); blokTim = null; }
     const wadahTim = blokTim ? h('div', { class: 'beranda-tim', 'data-k': 'blok-tim' }, blokTim) : null;
-    if (wadahTim) duo.appendChild(h('section', { class: 'beranda-bagian bagian-mabar', 'aria-labelledby': 'mabar-judul' }, h('h2', { class: 'bagian-judul', id: 'mabar-judul' }, 'Mode mabar'), wadahTim));
-    // D3.4 Lanjutkan belajar (isi latihan pribadi, tidak dilipat)
-    duo.appendChild(h('section', { class: 'beranda-bagian bagian-lanjut', 'aria-labelledby': 'lanjut-bagian-judul' },
-      h('h2', { class: 'bagian-judul', id: 'lanjut-bagian-judul', 'data-k': 'latihan-pribadi' }, 'Lanjutkan belajar'), kartuLanjut(s)));
+    if (wadahTim) isi.appendChild(h('section', { class: 'bv-bagian bv-tim bagian-mabar', 'aria-labelledby': 'mabar-judul' }, h('h2', { class: 'bv-bagian-judul', id: 'mabar-judul' }, 'Tim'), wadahTim));
+
+    // Pilihan lain: baris bergaris rambut dengan chevron
+    let nSalah = 0; try { nSalah = L.bukuKesalahan(tingkat, 200).length; } catch (e) {}
+    const fmt = ((((UKP.ref || {}).ujian || {}).format || {}).UKP || {})[tingkat] || {};
+    const simAkhir = (s.simulasi || []).filter(x => x && x.selesai).slice(-1)[0];
+    const laptop = 'Lebih nyaman di laptop.';
+    isi.appendChild(bagian('lain-judul', 'Pilihan lain', h('ul', { class: 'bv-daftar', role: 'list' },
+      barisDaftar('Mode mabar', metaRoom(), 'room', null, 'bv-mabar'),
+      barisDaftar('Ulang soal yang salah', nSalah ? nSalah + ' soal di Buku Kesalahan' : 'Belum ada soal yang salah', 'latih', nSalah ? { hanyaSalah: true, n: 10, mulai: true } : null, 'bv-ulang'),
+      barisDaftar('Simulasi ujian', simAkhir ? 'Terakhir: skor ' + fmtSkor(simAkhir.skor) + '. ' + laptop : (fmt.menit ? fmt.menit + ' menit. ' : '') + laptop, 'simulasi', null, 'bv-simulasi'))));
+
+    isi.appendChild(h('section', { class: 'bv-bagian bv-bagian-hari', 'aria-labelledby': 'sh-judul' },
+      h('h2', { class: 'bv-bagian-judul', id: 'sh-judul' }, 'Soal hari ini'),
+      h('p', { class: 'bv-bagian-ket' }, 'Satu soal untuk hari yang sempit. Jawab di sini.'),
+      kartuSoalHariV10(tingkat)));
+
     if (p.berandaLengkap === true) {
-      // pilihan lama: dasbor lengkap menggantikan Empat cara dan Alat lain (tanpa kop dan h1 keduanya)
+      // pilihan lama: dasbor lengkap menggantikan Alat lain (tanpa kop dan h1)
       let dasbor = null; try { dasbor = berandaDasbor({ tanpaKop: true }); } catch (e) { console.error(e); }
-      if (dasbor && dasbor.nodeType) { dasbor.className = 'beranda-dasbor'; isi.appendChild(dasbor); }
+      if (dasbor && dasbor.nodeType) { dasbor.className = 'beranda-dasbor bv-dasbor'; isi.appendChild(dasbor); }
     } else {
-      let nTempo = 0; try { nTempo = UKP.srs.jatuhTempo(tingkat).length; } catch (e) {}
-      const simAkhir = (s.simulasi || []).filter(x => x && x.selesai).slice(-1)[0];
-      isi.appendChild(empatCara([
-        simAkhir ? 'Terakhir: skor ' + fmtSkor(simAkhir.skor) : 'Belum ada riwayat simulasi',
-        metaRoom(),
-        p.jawabLangsung === false ? '20 soal acak, dibahas setelah Periksa' : '20 soal acak, langsung dibahas',   // v9.5.4 Sx-B3: ikut sakelar "Periksa dulu"
-        nTempo ? nTempo + ' kartu jatuh tempo' : 'Peta materi ' + (UKP.namaTingkat[tingkat] || 'Tingkat ' + tingkat),
-      ], [['simulasi'], ['room'], ['latih'], ['tingkat', { tingkat }]]));
-      // D3.6 Alat lain
-      const alat = [['calc', 'Kalkulator pajak', 'kalkulator'], ['ref', 'Referensi', 'referensi'], ['kasus', 'Studi kasus', 'kasus'], ['formulir', 'Cakupan materi resmi', 'cakupan', { tingkat }]];
-      isi.appendChild(h('section', { class: 'beranda-bagian bagian-alat', 'aria-labelledby': 'alat-judul' }, h('h2', { class: 'bagian-judul', id: 'alat-judul' }, 'Alat lain'),
-        h('nav', { class: 'list-rows alat-ringkas', 'aria-labelledby': 'alat-judul' }, alat.map(([ik, judul, view, prm]) => UKP.link([ikon(ik, null, true), h('span', { class: 'row-title' }, judul), ikon('chevron-kanan', 'chev', true)], view, prm || null, 'row-link'))),
-        h('p', { class: 'tautan-tenang' }, UKP.link(['Lihat kemajuan', ikon('chevron-kanan', null, true)], 'kemajuan', null, 'tautan-kop rata'))));
+      isi.appendChild(bagian('alat-judul', 'Alat lain', h('ul', { class: 'bv-daftar bv-daftar-ringkas', role: 'list' },
+        barisDaftar('Kalkulator pajak', null, 'kalkulator'), barisDaftar('Referensi', null, 'referensi'), barisDaftar('Studi kasus', null, 'kasus'),
+        barisDaftar('Cakupan materi resmi', null, 'cakupan', { tingkat }), barisDaftar('Ujian tim', null, 'ujiantim'), barisDaftar('Riwayat tim', null, 'tim'))));
     }
     page.appendChild(kaki());
-    // satu tombol utama per layar: hanya di blok Tim (tombol pita bergaya sendiri, bukan .btn-primary)
+    // satu tombol terisi per layar: hanya kartu langkah. Di blok Tim tombol terisi turun menjadi tombol kedua; tombol yang
+    // menjalankan hal yang sama dengan kartu langkah disembunyikan supaya tidak ada dua ajakan yang sama.
     try {
-      page.querySelectorAll('.btn-primary').forEach(b => { if (!wadahTim || !wadahTim.contains(b)) b.classList.remove('btn-primary'); });
-      if (wadahTim) { const primer = [...wadahTim.querySelectorAll('.btn-primary')]; const utama = primer.find(b => b.classList.contains('room-utama')) || primer[0]; primer.forEach(b => { if (b !== utama) b.classList.remove('btn-primary'); }); }
+      page.querySelectorAll('.btn-primary').forEach(b => { if (b !== langkah.querySelector('.bv-langkah-tombol')) b.classList.remove('btn-primary'); });
+      if (wadahTim) {
+        const j = langkah.dataset.langkah;
+        if (/^room-/.test(j)) wadahTim.querySelectorAll('.room-utama').forEach(b => { b.hidden = true; });
+        if (j === 'bersama') wadahTim.querySelectorAll('.kartu-lanjut-bersama .btn-row > .btn:first-child').forEach(b => { b.hidden = true; });
+        if (j === 'ujian-tim') wadahTim.querySelectorAll('.kartu-ujian-tim > .btn').forEach(b => { b.hidden = true; });
+      }
     } catch (e) { console.error(e); }
     return page;
   };
+  UKP.berandaUji.pilihLangkah = m => pilihLangkah(m);
+  UKP.berandaUji.ringkasPekan = (s, hariIni) => ringkasPekan(s, hariIni);
+  UKP.berandaUji.sesiLatihTerakhir = s => sesiLatihTerakhir(s);
+  UKP.berandaUji.masukanLangkah = s => masukanLangkah(s);
+  UKP.berandaUji.caraIngat = soal => caraIngat(soal);
 
   // ----- Sambutan pengunjung baru (D5): mulai tanpa params; kop situs tampil (bukan mode fokus) -----
   const MATA_UJIAN_STATIS = ['KUP', 'PPh Orang Pribadi', 'PPh Badan', 'PPh Pemotongan dan Pemungutan', 'PPN dan PPnBM', 'PBB, BPHTB, Bea Meterai', 'Akuntansi Perpajakan', 'Kode Etik'];

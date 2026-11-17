@@ -111,7 +111,7 @@ const LANGKAH = {
   },
   'latih-pembahasan-paket': async p => {
     await pergi(p, 'latih', { set: 'LM-B-2026-11', n: 'semua' }, 900); await klikTeks(p, '^\\s*Mulai latihan', '', 1300); await jawabSalah(p);
-    await p.evaluate(() => { const e = document.querySelector('.umpan-mudah'); if (!e) throw new Error('blok Penjelasan mudah tidak ada'); window.scrollBy(0, Math.round(e.getBoundingClientRect().top - innerHeight * 0.2)); }); await tunggu(p, 300);
+    await p.evaluate(() => { const e = document.querySelector('.umpan-mudah, .umpan-jelas'); /* v10 latih: blok baru .umpan-jelas */ if (!e) throw new Error('blok Penjelasan mudah tidak ada'); window.scrollBy(0, Math.round(e.getBoundingClientRect().top - innerHeight * 0.2)); }); await tunggu(p, 300);
   },
   // soal yang baru dijawab salah, digulir ke daftar opsi: memperlihatkan tanda "Jawaban Anda" dan "Kunci jawaban" pada opsi
   'latih-terjawab': async p => {
@@ -121,7 +121,8 @@ const LANGKAH = {
   },
   'latih-hasil': async p => {
     await mulaiLatih(p);
-    for (let i = 0; i < 5; i++) { await pilihOpsi(p, 'ABCDA'[i], 600); await klikTeks(p, '^\\s*Lanjut\\s*$', '', 800); }
+    // v10 latih: tombol utama latihan sendiri "Lanjut ke soal N", soal terakhir "Lihat hasil"
+    for (let i = 0; i < 5; i++) { await pilihOpsi(p, 'ABCDA'[i], 600); await klikTeks(p, '^\\s*(Lanjut( ke soal \\d+)?|Lihat hasil)\\s*$', '', 800); }
     if (!await p.evaluate(() => /Latihan selesai/.test(document.body.innerText))) throw new Error('tidak sampai "Latihan selesai"');
   },
   'mabar-lobi': async p => { await pergi(p, 'room', null, 1500); },
