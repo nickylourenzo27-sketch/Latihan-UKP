@@ -25,7 +25,7 @@ function muat() {
     setTimeout: (f, ms) => { const t = setTimeout(f, ms); if (t && t.unref) t.unref(); return t; }, clearTimeout,
   };
   ctx.window = ctx; vm.createContext(ctx);
-  for (const rel of ['js/core.js', 'js/kalkulator.js', 'js/data/mu-A4.js', 'js/data/mu-B6.js', 'js/learn.js', 'js/views-home.js']) vm.runInContext(baca(rel), ctx, { filename: rel });
+  for (const rel of ['js/core.js', 'js/kalkulator.js', 'js/data/mu-A4.js', 'js/data/mu-B6.js', 'js/learn.js', 'js/soal.js', 'js/views-home.js']) vm.runInContext(baca(rel), ctx, { filename: rel });
   return ctx.UKP;
 }
 const UKP = muat(); const B = UKP.berandaUji; const K = UKP.konten;
@@ -130,6 +130,9 @@ describe('v10 Beranda: data dari riwayat di perangkat', () => {
     assert.equal(B.caraIngat({ pembahasan: { mudah: 'Penjelasan. Cara ingat: obligasi sekarang 10% final.' } }), 'Obligasi sekarang 10% final.');
     assert.equal(B.caraIngat({ pembahasan: { mudah: 'Penjelasan saja.' } }), null);
     assert.equal(B.caraIngat({}), null);
+    // satu sumber dengan panel Latih: views-home.js memakai UKP.pisahMudah milik soal.js, tanpa regex Cara ingat kedua
+    assert.match(vh, /UKP\.pisahMudah\(/);
+    assert.ok(!/\/[^/\n]*Cara ingat:[^/\n]*\//.test(vh), 'regex Cara ingat kedua di views-home.js');
   });
 });
 

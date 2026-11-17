@@ -928,12 +928,13 @@
       return r.tersedia().tersedia ? 'Buat room atau tempel tautan dari grup' : 'Latihan satu layar bersama tim';
     } catch (e) { return 'Latihan satu layar bersama tim'; }
   }
-  // "Cara ingat" bukan bidang tersendiri: kalimat berawalan "Cara ingat:" di dalam pembahasan.mudah (huruf pertama dikapitalkan)
-  const RE_CARA_INGAT = /Cara ingat:\s*([^]+?)\s*$/;
-  function caraIngat(soal) {
-    const m = soal && soal.pembahasan && typeof soal.pembahasan.mudah === 'string' ? RE_CARA_INGAT.exec(soal.pembahasan.mudah) : null;
-    return m && m[1] ? m[1].charAt(0).toUpperCase() + m[1].slice(1) : null;
+  // "Cara ingat" bukan bidang tersendiri: kalimat berawalan "Cara ingat:" di dalam pembahasan.mudah. Pemotongannya satu sumber dengan
+  // panel Latih: UKP.pisahMudah (js/soal.js) memberi { badan, ingat } dengan huruf pertama Cara ingat dikapitalkan
+  function pisahMudahSoal(soal) {
+    const t = soal && soal.pembahasan && typeof soal.pembahasan.mudah === 'string' ? soal.pembahasan.mudah : '';
+    return t && typeof UKP.pisahMudah === 'function' ? UKP.pisahMudah(t) : { badan: t.trim(), ingat: '' };
   }
+  function caraIngat(soal) { return pisahMudahSoal(soal).ingat || null; }
   // v10 Soal hari ini di Beranda: bisa dijawab di tempat. Satu kalimat hasil yang menerima fokus (tanpa wilayah status),
   // halaman bergulir bila kalimat itu tertutup bar bawah. Keadaan terjawab tetap di s.soalHari ({ tgl, id, o, k }).
   function kartuSoalHariV10(tingkat) {
@@ -946,7 +947,7 @@
       h('span', { class: 'bv-huruf', 'aria-hidden': 'true' }, x), h('span', { class: 'bv-opsi-teks' }, h('span', { class: 'visually-hidden' }, x + '. '), soal.opsi[x]), h('span', { class: 'bv-tanda' })));
     const hasil = h('p', { class: 'bv-hasil', id: 'sh-hasil', tabindex: '-1', hidden: true });
     const dasar = teksDasar(soal);
-    const mudah = soal.pembahasan && typeof soal.pembahasan.mudah === 'string' ? soal.pembahasan.mudah.replace(RE_CARA_INGAT, '').trim() : '';
+    const mudah = pisahMudahSoal(soal).badan;
     const bahas = h('details', { class: 'bv-bahas', hidden: true }, h('summary', null, 'Buka pembahasan'),
       mudah ? h('p', null, mudah) : null, dasar ? h('p', { class: 'bv-bahas-dasar' }, h('strong', null, dasar.label), ' ', dasar.teks) : null);
     const kartu = h('div', { class: 'card bv-hari kartu-soal-hari', 'data-soal': soal.id },

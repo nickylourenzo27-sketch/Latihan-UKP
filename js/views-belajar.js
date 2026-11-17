@@ -1520,6 +1520,7 @@
         // "sisa"/"lewat" huruf biasa (.laju-kata), angka waktu mono tebal (.laju-digit): muat di HP 320 px tanpa memotong angka
         if (elA.textContent !== angka) { const m = /^(sisa |lewat )?(.*)$/.exec(angka); elA.replaceChildren(m[1] ? h('span', { class: 'laju-kata' }, m[1]) : null, h('span', { class: 'laju-digit' }, m[2])); }
         lajuEl.dataset.fase = bahas ? 'bahas' : 'kerja';
+        { const kb = lajuEl.closest ? lajuEl.closest('.fokus-bar') : null; if (kb) kb.dataset.fase = bahas ? 'bahas' : 'kerja'; } // v10.1 papan: pil fase dan bilah waktu
         lajuEl.toggleAttribute('data-lewat', lewat);
         lajuEl.title = bahas ? (target > 0 ? 'Waktu membahas soal ini, target ' + fmtJamPendek(target) : 'Waktu membahas soal ini (bebas)') : target > 0 ? 'Waktu mengerjakan soal ini, target ' + fmtJamPendek(target) : 'Waktu mengerjakan soal ini (tanpa batas)';
         const kunciFase = (bahas ? 'b:' + faseBahas.soalId : 'k:' + ((daftar[idx] || {}).id || ''));
@@ -1574,6 +1575,8 @@
       page.append(...[kop, skorEl, area].filter(Boolean));
       // latihan bersama selalu memakai halaman lebar (papan 6 orang dan stem selebar kartu), dari saringan maupun dari #latih langsung
       if (peserta) { kop.classList.add('fokus-bersama'); page.classList.add('lebar'); }
+      // v10.1 papan: pita papan biru tua dan tata dua kolom di layar lebar (css "v10 papan")
+      if (peserta) { kop.classList.add('papan-v10-kop'); page.classList.add('papan-v10'); }
       // v10 latih: label dibungkus span (di kop sesi HP sempit hanya ikon; nama tombol tetap "Atur saringan")
       const tautanAtur = () => h('button', { type: 'button', class: 'btn btn-text btn-sm tautan-atur', 'aria-label': 'Atur saringan', onclick: () => { if (riwayat.length && UKP.tim) UKP.tim.kirimRingkasan({ selesai: true }); keSaringan(); } }, ikon('saring', 'tautan-atur-ikon', true), h('span', { class: 'tautan-atur-label' }, 'Atur saringan'));
       // v8.2 B2: Menu kop (fokusBar opsi menu, B4) berisi Ke menu · Atur saringan · Pindah ke satu layar (room) · Selesai sekarang;
@@ -1733,7 +1736,8 @@
       const dari = daftar.length;
       const judulKop = (no, nBenar) => peserta
         // v9.2 G1: daftar nama tidak lagi di kop (jumlah orang ada di bilah bawah papan)
-        ? [h('span', { class: 'fokus-baris' }, (oj.ulang ? 'Ulang · soal ' : 'Soal ') + no + ' dari ' + dari + ' · ', waktuEl)]
+        ? [h('span', { class: 'papan-kop-nama' }, (roomNiat && infoRoom() && infoRoom().namaRoom) || 'Latihan bersama'), h('span', { class: 'visually-hidden' }, ' · '), // v10.1 papan
+          h('span', { class: 'fokus-baris' }, (oj.ulang ? 'Ulang · soal ' : 'Soal ') + no + ' dari ' + dari + ' · ', waktuEl)]
         // v10 latih: judul kiri dan angka kanan berlabel; pemisah tersembunyi menjaga teks utuh "Soal 3 dari 10 · 2 benar" untuk pembaca layar
         : [h('span', { class: 'kop-sesi-judul' }, (oj.ulang ? 'Ulang · soal ' : 'Soal ') + no + ' dari ' + dari), h('span', { class: 'visually-hidden' }, ' · '),
           h('span', { class: 'kop-sesi-kanan' }, h('b', null, String(nBenar)), h('small', null, ' benar'))];
@@ -1776,7 +1780,8 @@
         let triKini = null;
         const el = UKP.c.soal(soal, { konteks: 'latih', detikAwal: peserta ? detikDraf : detikS,
           // v10 latih: tampilan Langkah Tegas untuk latihan sendiri; tombol utama menyebut langkahnya
-          v10: !peserta, labelLanjut: peserta ? undefined : no + 1 < dari ? 'Lanjut ke soal ' + (no + 2) : 'Lihat hasil',
+          v10: !peserta, labelLanjut: peserta ? (no + 1 < dari ? 'Lanjut ke soal ' + (no + 2) : 'Lanjut ke hasil') : no + 1 < dari ? 'Lanjut ke soal ' + (no + 2) : 'Lihat hasil',
+          papanV10: !!peserta, // v10.1 papan: tata dua kolom papan latihan bersama
           jawabanPulih: rPulih ? { jawab: rPulih.jawab, detik: rPulih.detik, keyakinan: rPulih.keyakinan } : null,
           bersama: peserta ? { peserta, awal, hitungPenjelas, namaPemandu: roomNiat ? namaPemandu() : null, onTriase: tri => { triKini = tri; tunjuk(tri); },
             // v8.2 B2: isian dari HP tidak masuk draf lanjutan (setelah muat ulang diambil lagi dari room, hurufnya tetap tersembunyi)

@@ -198,10 +198,13 @@ describe('v9.6: keadaan yang harus terlihat', () => {
 
 // ---------- v10 langkah tegas: satu bagian berpagar sesudah bagian v9.6 terakhir ----------
 // Pagar v10 (Tahap 0 arah desain v10): satu pembuka dan satu penutup, letaknya tepat sesudah penutup v9.6 terakhir, tidak ada aturan
-// sesudah penutup, besar seluruh bagian paling banyak 48 KB, tiga sub-bagian berurutan (dasar, latih, beranda). Larangan fitur sama
+// sesudah penutup, besar seluruh bagian paling banyak 56 KB, tiga sub-bagian berurutan (dasar, latih, beranda). Larangan fitur sama
 // dengan v9.6; bayangan hanya none, inset, atau var(--bayang-melayang); warna literal hanya di dalam definisi token.
-const V10_BATAS = 48 * 1024;
-const V10_SUB = ['dasar', 'latih', 'beranda'];
+// Batas tahap 1 (v10.0.0): semula 48 KB, dinaikkan ke 56 KB sesudah dua jalur (Latih dan Beranda) digabung dan duplikasinya dipangkas.
+// Tahap 2 (Mode mabar) akan meninjau batas ini lagi bersama pemangkasan gaya lama.
+// Tahap 2 (v10.1.0): batas 96 KB dan lima sub-bagian berurutan (dasar, latih, beranda, papan, room).
+const V10_BATAS = 96 * 1024;
+const V10_SUB = ['dasar', 'latih', 'beranda', 'papan', 'room'];
 function periksaPagarV10(teks) {
   const masalah = [];
   const nBuka = teks.split(V10_BUKA).length - 1, nTutup = teks.split(V10_TUTUP).length - 1;
@@ -223,7 +226,7 @@ function periksaPagarV10(teks) {
     posisi = ib;
   }
   // di antara sub-bagian (di luar ketiganya) hanya komentar
-  const luar = isi.replace(/\/\* v10 (dasar|latih|beranda): mulai \*\/[\s\S]*?\/\* v10 \1: selesai \*\//g, '').replace(/\/\*[\s\S]*?\*\//g, '').trim();
+  const luar = isi.replace(/\/\* v10 (dasar|latih|beranda|papan|room): mulai \*\/[\s\S]*?\/\* v10 \1: selesai \*\//g, '').replace(/\/\*[\s\S]*?\*\//g, '').trim();
   if (luar !== '') masalah.push('aturan di luar sub-bagian: ' + luar.slice(0, 80));
   return { masalah, isi };
 }
@@ -271,7 +274,7 @@ function tokenTakAdaV10(teks, seluruh) {
 }
 
 describe('v10: bagian berpagar "v10 langkah tegas" di akhir css/app.css', () => {
-  it('satu bagian sesudah penutup v9.6 terakhir, tiga sub-bagian berurutan, tanpa aturan sesudah penutup, paling banyak 48 KB', () => {
+  it('satu bagian sesudah penutup v9.6 terakhir, lima sub-bagian berurutan, tanpa aturan sesudah penutup, paling banyak 96 KB', () => {
     assert.deepEqual(pagarV10.masalah, []);
   });
   it('pemeriksa pagar menolak aturan sesudah penutup, bagian yang terlalu besar, pagar ganda, dan sub-bagian yang hilang', () => {

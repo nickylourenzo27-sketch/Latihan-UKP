@@ -1472,6 +1472,8 @@
     const kini = b.dataset.mode;
     if (on) { if (!kini || kini === 'fokus') { b.dataset.mode = 'fokus'; return true; } return false; }
     if (kini === 'fokus') delete b.dataset.mode;
+    // v10 dasar: penanda kop sesi (scroll-padding dan tautan lewati di css) ikut hilang saat mode fokus dimatikan
+    try { document.documentElement.removeAttribute('data-kop-sesi'); } catch (e) {}
     return false;
   };
   UKP.mode.aktif = () => (document.body && document.body.dataset.mode) || null;
@@ -1519,6 +1521,8 @@
     // di atas 20 soal satu bilah menerus. Hanya hiasan (aria-hidden); angka dibaca dari judul kop
     if (o.sesi) {
       el.classList.add('kop-sesi-v10');
+      // html[data-kop-sesi]: scroll-padding-top mengikuti tinggi kop sesi dan tautan lewati muncul di bawah kop (css v10 dasar)
+      try { document.documentElement.setAttribute('data-kop-sesi', ''); } catch (e) {}
       const ruas = h('div', { class: 'kop-sesi-ruas', 'aria-hidden': 'true' });
       el.appendChild(ruas);
       el.aturRuas = (selesai, total, kini) => {

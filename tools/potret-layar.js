@@ -130,7 +130,7 @@ const LANGKAH = {
   'bersama-kunci': async p => { await mulaiBersama(p); await isiPapan(p, 'ABA'); await klik(p, '.aksi-buka-kunci', 1200); },
   'bersama-evaluasi': async p => {
     await mulaiBersama(p);
-    for (let i = 0; i < 3; i++) { await isiPapan(p, ['ABA', 'CCB', 'DAD'][i]); await klik(p, '.aksi-buka-kunci', 1000); await klikTeks(p, '^\\s*Lanjut\\s*$', '', 1000); }
+    for (let i = 0; i < 3; i++) { await isiPapan(p, ['ABA', 'CCB', 'DAD'][i]); await klik(p, '.aksi-buka-kunci', 1000); await klikTeks(p, '^\\s*Lanjut( ke (soal \\d+|hasil))?(Spasi)?\\s*$', '', 1000); } // v10.1 papan: "Lanjut ke soal n" / "Lanjut ke hasil" dengan tanda Spasi
   },
   'ujiantim-jalan': async p => {
     await mulaiSim(p, 5, 15); await klik(p, '#sim-tim'); await klik(p, '[data-nilai="papan"]'); await klik(p, '.tim-mulai', 1300);

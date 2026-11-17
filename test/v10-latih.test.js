@@ -161,6 +161,17 @@ test('fokusBar tanpa opsi sesi tidak berubah (papan bersama, room, dek Ulang)', 
   assert.deepEqual(el.children.map(c => c.className), ['icon-btn', 'fokus-judul', 'fokus-kanan']);
 });
 
+test('kop sesi memasang html[data-kop-sesi] (scroll-padding dan tautan lewati); mode fokus mati mencabutnya', () => {
+  const T = siapkan(); const html = T.document.documentElement;
+  T.UKP.c.fokusBar({ onKeluar() {} }); assert.ok(!html.hasAttribute('data-kop-sesi'), 'fokusBar tanpa sesi tidak memasang');
+  T.UKP.mode.fokus(true); T.UKP.c.fokusBar({ sesi: true, onKeluar() {} }); assert.ok(html.hasAttribute('data-kop-sesi'));
+  T.UKP.mode.fokus(false); assert.ok(!html.hasAttribute('data-kop-sesi'));
+  const css = fs.readFileSync(path.join(__dirname, '..', 'css', 'app.css'), 'utf8');
+  const dasar = css.slice(css.indexOf('/* v10 dasar: mulai */'), css.indexOf('/* v10 dasar: selesai */'));
+  assert.match(dasar, /html\[data-kop-sesi\] \{ scroll-padding-top: calc\(var\(--v10-kop-sesi-h\)/);
+  assert.match(dasar, /html\[data-kop-sesi\] \.skip:focus-visible \{ top: calc\(var\(--v10-kop-sesi-h\)/);
+});
+
 test('ruas sesi panjang (lebih dari 20 soal) menjadi satu bilah menerus', () => {
   const T = siapkan(); const el = T.UKP.c.fokusBar({ sesi: true, onKeluar() {} });
   el.aturRuas(10, 50, true); const r = el.querySelector('.kop-sesi-ruas');
@@ -276,4 +287,17 @@ test('teks dan komentar baru tanpa tanda pisah panjang, tanda panah, atau jalur 
   // pola dirangkai dari potongan supaya baris ini sendiri tidak memuat karakter atau kata yang dilarang
   const larang = new RegExp('[\\u2014\\u2192\\u2190\\u21D2]|-' + '>|scratch' + 'pad|/' + 'tmp/');
   for (const b of baris) assert.ok(!larang.test(b), b.slice(0, 120));
+});
+
+test('dokumen v10: docs/DESAIN-V10.md ada, blok README desain-1000 tepat sebelum mabar-973, keduanya tanpa karakter terlarang', () => {
+  const akar = path.join(__dirname, '..');
+  const dok = fs.readFileSync(path.join(akar, 'docs', 'DESAIN-V10.md'), 'utf8');
+  const readme = fs.readFileSync(path.join(akar, 'README.md'), 'utf8');
+  for (const judul of ['## 1. Prinsip', '## 2. Token', '## 3. Aturan komponen', '## 4. Mikrocopy', '## 5. Yang tidak diubah', '## 7. Tahap berikutnya', '## 8. Cara menguji']) assert.ok(dok.includes(judul), judul);
+  const a = readme.indexOf('<!-- desain-1000:mulai -->'), b = readme.indexOf('<!-- desain-1000:selesai -->'), c = readme.indexOf('<!-- mabar-973:mulai -->');
+  assert.ok(a >= 0 && b > a && c > b, 'urutan blok README');
+  assert.equal(readme.slice(b, c).replace('<!-- desain-1000:selesai -->', '').trim(), '');
+  const larang = new RegExp('[\\u2014\\u2192\\u2190\\u21D2]|-' + '>|=' + '>|scratch' + 'pad|/' + 'tmp/');
+  const penanda = new RegExp('<!-' + '- [a-z0-9:-]+ -' + '-' + '>', 'g');   // penanda blok README boleh
+  for (const t of [dok, readme.slice(a, b)]) for (const baris of t.split('\n')) assert.ok(!larang.test(baris.replace(penanda, '')), baris.slice(0, 120));
 });
