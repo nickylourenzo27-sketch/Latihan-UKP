@@ -499,9 +499,28 @@
       if (!rin.id) rin.id = 'papan-rincian-' + uid;
       const t = h('button', { type: 'button', class: 'btn btn-text papan-rincian-buka', 'aria-controls': rin.id, 'aria-expanded': 'false', onclick: () => {
         rin.open = !rin.open; t.setAttribute('aria-expanded', String(!!rin.open));
-        if (rin.open) { try { rin.scrollIntoView({ block: 'start', behavior: halus() }); } catch (e) {} }
       } }, 'Rincian jawaban per orang');
-      rin.addEventListener('toggle', () => t.setAttribute('aria-expanded', String(!!rin.open)));
+      // v10.2.1: lipatan yang dibuka (rincian sendiri atau lipatan di dalamnya, lewat tombol di bawah maupun judulnya) digulir ke
+      // bagian layar yang terlihat. Dulu isi terbuka di bawah bar tombol dan layar diam, sehingga ketukan tampak tidak berpengaruh.
+      const gulirKe = (el, bilaPerlu) => {
+        try {
+          let g = el.parentElement;
+          while (g && g !== document.body) { const o = getComputedStyle(g).overflowY; if ((o === 'auto' || o === 'scroll') && g.scrollHeight > g.clientHeight + 1) break; g = g.parentElement; }
+          const dalam = !!g && g !== document.body;
+          let atas = dalam ? g.getBoundingClientRect().top : 0; let bawah = dalam ? g.getBoundingClientRect().bottom : root.innerHeight;
+          const kop = document.querySelector('.papan-v10-kop'); if (kop) { const k = kop.getBoundingClientRect(); if (k.top <= atas + 1 && k.bottom > atas) atas = k.bottom; }
+          const ak = aksi.getBoundingClientRect(); if (ak.height && ak.top > atas && ak.top < bawah) bawah = ak.top;
+          const r = el.getBoundingClientRect();
+          if (bilaPerlu && r.top >= atas && r.bottom <= bawah) return;
+          const geser = Math.round(r.top - atas - 8); if (!geser) return;
+          (dalam ? g : root).scrollBy({ top: geser, behavior: halus() });
+        } catch (e) {}
+      };
+      rin.addEventListener('toggle', e => {
+        t.setAttribute('aria-expanded', String(!!rin.open));
+        const d = e.target; if (!rin.open || !d || !d.open) return;
+        setelahPasang(() => gulirKe(d, d !== rin));
+      }, true);
       aksi.appendChild(t);
     }
     const pemandu = () => namaPemandu || pemimpinB || '';
