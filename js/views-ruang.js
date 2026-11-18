@@ -642,17 +642,33 @@
     r.on('jawaban', () => beriTahu('jawaban'));
     r.on('indeks', () => beriTahu('indeks'));
     r.on('sesi', () => beriTahu('sesi'));
-    r.on('peran', () => beriTahu('peran'));
+    r.on('peran', ev => {
+      // v10.2.5: perangkat ini berhenti memimpin (diambil alih, atau room dipimpin perangkat lain bernama sama): katakan, jangan diam-diam
+      // (toastnya di transisi(): kabar state menyusul kabar peran, dan toast dari sini akan tertimpa)
+      if (ev && ev.peran === 'anggota') baruTurun = true;
+      beriTahu('peran');
+    });
     r.on('tutup', ev => {
       if (!menutupSendiri) ditutupPemimpin = true;
       if (!menutupSendiri && !(stateLama && stateLama.ditutup)) toast('Room ditutup oleh pemimpin. Minta tautan baru bila perlu.', { lintasRute: true, penting: true });
       stateLama = null; lepasTab(); beriTahu('status');
     });
   }
+  let baruTurun = false;
+  function teksTurun(lama, baru, boleh) {
+    const a = lama && lama.room ? pesertaRoom(lama) : []; const b = baru && baru.room ? pesertaRoom(baru) : [];
+    const hilang = a.filter(p => !b.some(x => samaNama(x, p)));
+    return (hilang.length ? ' Belum ada di daftar pemimpin itu: ' + hilang.slice(0, 4).join(', ') + (hilang.length > 4 ? ', dan ' + (hilang.length - 4) + ' lainnya' : '') + '.' : '') + ((UKP.sekarang ? UKP.sekarang().view : null) === 'latih' ? ' Latihan ini berlanjut di satu layar.' : '') + (boleh ? '' : ' Nama Anda tidak ada di daftar tim pemimpin itu.');
+  }
   function transisi(lama, baru) {
     const i = info(); if (!i || !baru) return;
     if (baru.ditutup && !(lama && lama.ditutup)) { if (!menutupSendiri) ditutupPemimpin = true; toast('Room ditutup oleh pemimpin. Minta tautan baru bila perlu.', { lintasRute: true, penting: true }); lepasTab(); return; }
-    if (lama && lama.tuan && baru.tuan && !samaNama(lama.tuan, baru.tuan)) toast(samaNama(baru.tuan, i.nama) ? 'Anda sekarang memimpin room.' : baru.tuan + ' sekarang memimpin room', { lintasRute: true, penting: true });
+    if (lama && lama.tuan && baru.tuan && !samaNama(lama.tuan, baru.tuan)) {
+      // v10.2.5: perangkat yang baru saja turun dari pemimpin diberi tahu cara memimpin lagi dan nama yang belum ikut ke daftar pemimpin baru
+      const turun = baruTurun && samaNama(lama.tuan, i.nama) && i.peran !== 'tuan'; baruTurun = false;
+      if (turun) { const boleh = sayaDiDaftar(); toast(rapikan(baru.tuan) + ' sekarang memimpin room.' + teksTurun(lama, baru, boleh), { nada: 'warn', lintasRute: true, penting: true, ms: 12000, aksi: boleh ? { label: 'Pimpin dari sini', onclick: ambilAlih } : null }); }
+      else toast(samaNama(baru.tuan, i.nama) ? 'Anda sekarang memimpin room.' : baru.tuan + ' sekarang memimpin room', { lintasRute: true, penting: true });
+    }
     const aL = lama && lama.aktivitas, aB = baru.aktivitas;
     if (aB && (!aL || aL.id !== aB.id) && i.peran === 'anggota') {
       const v = UKP.sekarang ? UKP.sekarang().view : null;
@@ -693,7 +709,8 @@
   const calonTamu = new Map();   // kunciNama → nama (urut datang)
   const sudahToastTamu = new Set(); let kodeTamu = null, toastTamuTerakhir = 0;
   function periksaTamu() {
-    const i = info(); if (!i || i.peran !== 'tuan') return;
+    // v10.2.5: perangkat yang tidak (lagi) memimpin tidak menawarkan "Ingin ikut"; baris lama dibuang supaya tidak tersisa tombol mati
+    const i = info(); if (!i || i.peran !== 'tuan') { if (calonTamu.size) { calonTamu.clear(); return true; } return; }
     if (kodeTamu !== i.kode) { kodeTamu = i.kode; calonTamu.clear(); sudahToastTamu.clear(); }
     const on = onlineKini();
     if (!on.length && !calonTamu.size) return;
@@ -720,17 +737,21 @@
   const daftarCalonTamu = () => Array.from(calonTamu.values());
   function tambahkanTamu(nama) {
     const i = info(); const s = stR(); const r = R(); nama = rapikan(nama);
-    if (!i || i.peran !== 'tuan' || !s || !s.room || !r || !fn(r, 'aturRoom') || !namaSah(nama)) return false;
+    if (i && i.peran !== 'tuan') { calonTamu.clear(); beriTahu('tamu'); toast(PESAN_BUKAN_PEMIMPIN, { nada: 'warn', penting: true, ms: 9000 }); return false; }
+    if (!i || !s || !s.room || !r || !fn(r, 'aturRoom') || !namaSah(nama)) return false;
     const pes = pesertaRoom(s);
     if (!pes.some(p => samaNama(p, nama))) {
       if (pes.length >= 12) { toast('Daftar tim sudah penuh (12 nama). Hapus satu nama lewat menu Ubah room.', { nada: 'warn', penting: true, ms: 8000 }); return false; }
       const ok = aman(() => r.aturRoom({ peserta: pes.concat([nama]) }), false);
       if (!ok) { toast('Nama belum bisa ditambahkan. Coba lagi saat tersambung.', { nada: 'warn' }); return false; }
-      toast(nama + ' ditambahkan ke daftar tim', { nada: 'ok', ms: 4000 });
+      const stt = statusR();
+      if (stt && stt.tersambung === false) toast(nama + ' ditambahkan di perangkat ini. HP ' + nama + ' baru menerimanya saat perangkat ini tersambung lagi.', { nada: 'warn', ms: 7000 });
+      else toast(nama + ' ditambahkan ke daftar tim', { nada: 'ok', ms: 4000 });
     }
-    calonTamu.delete(kunciNama(nama)); beriTahu('tamu'); return true;
+    calonTamu.delete(kunciNama(nama)); periksaTamu(); beriTahu('tamu'); return true;
   }
-  function abaikanTamu(nama) { const i = info(); if (!i) return; abaikanNama(i.kode, nama); calonTamu.delete(kunciNama(nama)); beriTahu('tamu'); }
+  const PESAN_BUKAN_PEMIMPIN = 'Perangkat ini tidak sedang memimpin room, jadi belum bisa menambahkan nama. Buka menu room, lalu pilih "Pimpin dari perangkat ini".';
+  function abaikanTamu(nama) { const i = info(); if (!i) return; abaikanNama(i.kode, nama); calonTamu.delete(kunciNama(nama)); periksaTamu(); beriTahu('tamu'); }
   // anggota yang pernah memimpin room ini (menu "Pimpin dari perangkat ini" tetap tampil untuknya)
   function catatPernahTuan() { const i = info(); if (!i || i.peran !== 'tuan' || !i.kode) return; const d = lsBaca('ukp.tim.pernahTuan', {}) || {}; if (d[i.kode]) return; d[i.kode] = 1; lsTulis('ukp.tim.pernahTuan', d); }
   // kehadiran bisa menjadi basi tanpa peristiwa apa pun (detak berhenti), jadi status pemimpin dihitung ulang di sini juga
@@ -740,6 +761,7 @@
     if (!tuanHilangSejak) tuanHilangSejak = Date.now();
     return Date.now() - tuanHilangSejak > 60000;
   };
+  const sayaDiDaftar = () => { const i = info(); const s = stR(); return !!(i && s && s.room && pesertaRoom(s).some(p => samaNama(p, i.nama))); };
   const pernahTuan = () => { const i = info(); return !!(i && i.kode && (lsBaca('ukp.tim.pernahTuan', {}) || {})[i.kode]); };
   // B.7 v9.2: soal yang kunci jawabannya sudah dibuka di latihan ini, untuk lembar "Soal sebelumnya" di HP anggota (tanpa nama siapa pun)
   // sessionStorage ukp.tim.lalu = { a: aktivitasId, s: { soalId: { idx, kunci, o, k, benar, salah, kosong } } }
@@ -994,7 +1016,7 @@
     const teks = teksUndangan(namaR, i.tautan);
     const iid = UKP.util.id('tautan');
     const inp = h('input', { class: 'input mono tautan-room', id: iid, type: 'text', readonly: true, value: i.tautan, onfocus: e => e.target.select() });
-    return UKP.dialog({ judul: o.siap ? 'Room siap' : 'Undang anggota', kelas: 'dlg-room',
+    return UKP.dialog({ judul: o.siap ? 'Room siap' : 'Undang anggota', kelas: 'dlg-room', tembus: true,
       isi: () => h('div', { class: 'stack' },
         h('p', null, o.siap ? 'Kirim tautan ini ke grup WA tim. Anggota membukanya di HP, lalu mengetuk namanya.' : 'Anggota membuka tautan ini di HP, lalu mengetuk namanya.'),
         h('div', { class: 'field' }, h('label', { for: iid }, 'Tautan room'), inp),
@@ -1012,9 +1034,16 @@
     const anggota = editorNama(pesertaRoom(st), { label: 'Anggota tim', wajib: (info() || {}).nama, bantu: 'Tulis nama anggota satu per satu, lalu tekan Enter. Maksimal 12 nama.' });
     UKP.dialog({ judul: 'Ubah room', kelas: 'dlg-room', isi: () => h('div', { class: 'stack' }, h('div', { class: 'field' }, h('label', { for: iid }, 'Nama room'), nm), anggota),
       kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => dlg.close('batal') }, 'Batal'),
-        h('button', { type: 'button', class: 'btn btn-primary', onclick: () => { anggota.tambahIsian(); const baru = anggota.nilai(); const kode = (info() || {}).kode;
-          pesertaRoom(st).filter(p => !baru.some(x => samaNama(x, p))).forEach(p => abaikanNama(kode, p));   // V10 temuan 3: yang dihapus tidak ditawarkan lagi
-          const ok = r.aturRoom({ nama: rapikan(nm.value) || st.room.nama, peserta: baru }); dlg.close('ok'); toast(ok ? 'Room diperbarui.' : 'Room belum bisa diubah dari perangkat ini.', { nada: ok ? 'ok' : 'warn' }); } }, 'Simpan')] });
+        h('button', { type: 'button', class: 'btn btn-primary', onclick: () => { anggota.tambahIsian(); const isian = anggota.nilai(); const kode = (info() || {}).kode;
+          const awal = pesertaRoom(st); const ada = (arr, n) => arr.some(x => samaNama(x, n));
+          const dihapus = awal.filter(p => !ada(isian, p));
+          // v10.2.5: daftar dihitung terhadap keadaan TERBARU, bukan potret saat dialog dibuka. Nama yang masuk selagi dialog terbuka
+          // (mis. lewat Tambahkan di perangkat lain) tidak ikut terhapus; yang dihapus atau ditulis di dialog ini tetap berlaku.
+          const kini = stR(); const kiniPes = kini && kini.room ? pesertaRoom(kini) : awal;
+          const baru = isian.concat(kiniPes.filter(p => !ada(isian, p) && !ada(awal, p))).slice(0, 12);
+          const ok = r.aturRoom({ nama: rapikan(nm.value) || st.room.nama, peserta: baru });
+          if (ok) dihapus.forEach(p => abaikanNama(kode, p));   // V10 temuan 3: yang dihapus tidak ditawarkan lagi
+          dlg.close('ok'); toast(ok ? 'Room diperbarui.' : 'Room belum bisa diubah dari perangkat ini.', { nada: ok ? 'ok' : 'warn' }); } }, 'Simpan')] });
   }
   function dialogCekSambungan() {
     const r = R(); if (!r) return;
@@ -1077,7 +1106,7 @@
     const teks = 'Perangkat ini akan memimpin room: memulai latihan, membuka kunci jawaban, dan menyimpan hasil. Pakai hanya bila laptop ' + tuan + ' tidak bisa dipakai.' + (st.aktivitas ? ' Isian di laptop ' + tuan + ' tidak ikut pindah.' : '');
     if (!(await UKP.konfirmasi('Pimpin dari perangkat ini?', teks, { ya: 'Pimpin dari sini' }))) return;
     const ok = r.ambilAlih();
-    toast(ok ? 'Anda sekarang memimpin room.' : 'Belum bisa memimpin dari perangkat ini. Coba lagi saat tersambung.', { nada: ok ? 'ok' : 'warn' });
+    toast(ok ? 'Anda sekarang memimpin room.' : (!sayaDiDaftar() ? 'Nama Anda belum ada di daftar tim. Minta ' + tuan + ' menambahkan dulu.' : 'Belum bisa memimpin dari perangkat ini. Coba lagi saat tersambung.'), { nada: ok ? 'ok' : 'warn' });
     beriTahu('peran');
   }
   async function keluarRoom() {
@@ -1116,7 +1145,8 @@
       { teks: 'Cek sambungan', ikon: 'cek-lingkar', onclick: dialogCekSambungan },
       { teks: 'Info sambungan', ikon: 'info', onclick: () => dialogInfoSambungan() },
       // C.6 v9.2: hanya untuk yang pernah memimpin room ini, atau bila pemimpin sedang tidak tersambung
-      !tuan && (pernahTuan() || pemimpinHilang()) ? { teks: 'Pimpin dari perangkat ini', ikon: 'flag', onclick: ambilAlih } : null,
+      // v10.2.5: bila pemimpin tidak tersambung, hanya nama yang sudah ada di daftar tim yang ditawari memimpin
+      !tuan && sayaDiDaftar() && (pernahTuan() || pemimpinHilang()) ? { teks: 'Pimpin dari perangkat ini', ikon: 'flag', onclick: ambilAlih } : null,
       { teks: 'Keluar dari room', ikon: 'keluar', onclick: keluarRoom },
       tuan && r && fn(r, 'tutup') ? { teks: 'Tutup room', ikon: 'hapus', bahaya: true, onclick: tutupRoom } : null,
     ].filter(Boolean);
@@ -1655,11 +1685,12 @@
     }
     // V10 temuan 2: "Ingin ikut: Dodi" · Tambahkan · Abaikan (maks 3 baris, sisanya "dan N lainnya"); hanya nama yang sedang online
     function barisInginIkut() {
+      const iT = info(); if (!iT || iT.peran !== 'tuan') return null;
       const calon = daftarCalonTamu(); if (!calon.length) return null;
       const tampil = calon.slice(0, 3);
       return h('ul', { class: 'ingin-ikut', 'aria-label': 'Ingin ikut' }, tampil.map(n => h('li', { 'data-nama': n },
         h('span', { class: 'ingin-ikut-teks' }, 'Ingin ikut: ', h('strong', null, n)),
-        h('button', { type: 'button', class: 'btn btn-sm room-tambah-tamu', onclick: () => tambahkanTamu(n) }, UKP.icon('tambah', null, true), 'Tambahkan'),
+        h('button', { type: 'button', class: 'btn btn-sm room-tambah-tamu', 'data-tembus': '1', onclick: () => tambahkanTamu(n) }, UKP.icon('tambah', null, true), 'Tambahkan'),
         h('button', { type: 'button', class: 'tautan-tombol room-abaikan-tamu', onclick: () => abaikanTamu(n) }, 'Abaikan'))),
         calon.length > 3 ? h('li', { class: 'meta' }, 'dan ' + (calon.length - 3) + ' lainnya') : null);
     }

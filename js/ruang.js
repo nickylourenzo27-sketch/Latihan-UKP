@@ -158,6 +158,7 @@
     jitter: 0.3,              // + 0–30 % acak
     jedaRelaiBerikut: 300,    // anggota: jeda sebelum mencoba relai berikutnya dalam satu putaran
     graceMs: 1500,            // tuan: tunggu retained setelah tersambung sebelum menerbitkan ulang
+    tungguVersiMs: 30000,     // v10.2.5: jeda sesudah masa calon sebelum tanda versi di state ditulis ulang
     tungguCalonMs: 5000,      // v8.2 B0: pulihkan() sebagai tuan = calon tuan; terbit ulang hanya bila max(graceMs, ini) lewat tanpa state lebih baru
     detakMs: 30000,           // detak kehadiran
     detakTuanMs: 5000,        // v9.5 FC3: pemimpin mengirim kabar hadir (bentuk sama) ke tiap jalur lebih sering, agar anggota tahu jalurnya masih dipakai pemimpin
@@ -869,7 +870,10 @@
       if (r !== rt || !r.calon) return;
       r.calon = false; r.timerCalon = null;
       if (r.peran !== 'tuan') { pancarStatus(); return; }
-      if (r.state && versiKini() && r.state.versiApp !== versiKini()) ubahState(() => {});
+      // v10.2.5: tanda versi ditulis ulang belakangan (tungguVersiMs), bukan saat masa calon habis. Penulisan ulang memberi urut = jam
+      // sekarang, jadi bila jalur yang membawa state terbaru terlambat, state lama perangkat ini menimpa pemimpin yang sah.
+      clearTimeout(r.timerVersi);
+      r.timerVersi = setTimeout(() => { r.timerVersi = null; if (r === rt && r.peran === 'tuan' && !r.calon && r.state && versiKini() && r.state.versiApp !== versiKini()) ubahState(() => {}, { tanpaJam: true }); }, api.KONFIG.tungguVersiMs);
       r.koneksi.forEach(k => { if (k.status === 'tersambung') pulihkanDi(r, k); });
       pancarStatus();
     }
@@ -1147,7 +1151,7 @@
     }
     function hentiRt() {
       const r = rt; if (!r) return; r.hidup = false; rt = null;
-      clearInterval(r.timerDetak); clearInterval(r.timerBisu); clearTimeout(r.timerJawab); clearTimeout(r.timerBersih); clearTimeout(r.timerCalon); clearTimeout(r.timerKosong); clearTimeout(r.timerBalasJam);
+      clearInterval(r.timerDetak); clearInterval(r.timerBisu); clearTimeout(r.timerJawab); clearTimeout(r.timerBersih); clearTimeout(r.timerCalon); clearTimeout(r.timerVersi); clearTimeout(r.timerKosong); clearTimeout(r.timerBalasJam);
       clearTimeout(r.timerLomba); clearTimeout(r.timerCadangan); hentiLomba(r);
       r.koneksi.forEach(k => k.henti()); r.koneksi = [];
       r.menungguSesi.forEach(ws => ws.forEach(fn => fn(null))); r.menungguSesi.clear();
@@ -1286,10 +1290,11 @@
     };
 
     // ---------- khusus tuan ----------
-    function ubahState(fn) {
+    function ubahState(fn, o) {
       const r = rt; if (!r || r.peran !== 'tuan' || !r.state) return false;
       const s = salin(r.state); if (fn(s) === false) return false;
-      const t = now(); s.t = t; s.urut = Math.max(r.state.urut + 1, t); s.d = r.d; s.nama = r.nama; s.tuan = r.nama;
+      // o.tanpaJam (tulis ulang tanda versi): urut hanya naik satu, supaya state yang lebih baru di jalur yang belum terjangkau tetap menang
+      const t = now(); s.t = t; s.urut = o && o.tanpaJam ? r.state.urut + 1 : Math.max(r.state.urut + 1, t); s.d = r.d; s.nama = r.nama; s.tuan = r.nama;
       if (versiKini()) s.versiApp = versiKini();
       const v = validState(s); if (!v) return false;
       const lama = r.state; r.state = v; r.dedup.tambah(v.d + ':' + v.urut);
@@ -1387,6 +1392,8 @@
     };
     api.ambilAlih = function () {
       const r = rt; if (!r || !r.state) return false; if (r.peran === 'tuan') return salin(r.state);
+      // v10.2.5: hanya nama yang ada di daftar tim yang boleh memimpin (orang yang belum ditambahkan tidak bisa merebut room)
+      if (r.state.room && Array.isArray(r.state.room.peserta) && !r.state.room.peserta.some(p => kunciNama(p) === kunciNama(r.nama))) return false;
       r.peran = 'tuan'; perbaruiSimpan({ peran: 'tuan' }); aturKoneksi();
       const s = ubahState(() => {});
       kirimHadir(true); pancar('peran', { peran: 'tuan', tuan: r.nama }); pancarStatus();

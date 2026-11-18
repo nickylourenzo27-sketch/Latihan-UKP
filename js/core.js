@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '10.2.4';
+  UKP.versi = '10.2.5';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
@@ -742,7 +742,10 @@
     // tutup lewat latar hanya bila tekanan juga dimulai di latar (bukan seret seleksi teks keluar kotak)
     let tekanLatar = null;
     dlg.addEventListener('pointerdown', e => { tekanLatar = e.target === dlg; });
-    dlg.addEventListener('click', e => { const dariLatar = tekanLatar !== false; tekanLatar = null; if (e.target === dlg && dariLatar && bolehLatar) dlg.close('batal'); });
+    dlg.addEventListener('click', e => { const dariLatar = tekanLatar !== false; tekanLatar = null; if (!(e.target === dlg && dariLatar && bolehLatar)) return; dlg.close('batal'); teruskan(e); });
+    // v10.2.5: hanya dialog ber-opsi tembus (undangan room). Ketukan di latar yang jatuh tepat di tombol bertanda data-tembus
+    // ("Tambahkan" di lobi room) diteruskan ke tombol itu, supaya satu ketukan tidak habis hanya untuk menutup dialog.
+    function teruskan(e) { if (!opts.tembus) return; try { const b = document.elementFromPoint(e.clientX, e.clientY); const t = b && b.closest ? b.closest('button') : null; if (t && !t.disabled && t.closest('[data-tembus]')) t.click(); } catch (err) {} }
     dlg.addEventListener('cancel', e => { if (!bolehEsc) e.preventDefault(); });
     if (typeof dlg.showModal === 'function') { try { dlg.showModal(); return dlg; } catch (e) {} }
     // cadangan untuk peramban tanpa <dialog>.showModal
@@ -750,7 +753,7 @@
     // v9.4 Kb3: tanpa <dialog> (iOS < 15.4) kotak ini akan muncul di dasar halaman; data-cadangan + latar = tampil di tengah layar (CSS blok v9.4 Kb)
     dlg.setAttribute('data-cadangan', ''); const latar = h('div', { class: 'dlg-latar-cadangan', 'aria-hidden': 'true' });
     if (dlg.parentNode) dlg.parentNode.insertBefore(latar, dlg);
-    latar.addEventListener('click', () => { if (bolehLatar) dlg.close('batal'); }); dlg.addEventListener('close', () => latar.remove());
+    latar.addEventListener('click', e => { if (bolehLatar) { dlg.close('batal'); teruskan(e); } }); dlg.addEventListener('close', () => latar.remove());
     // v9.5 FC4: kotak bertumpuk: latar ke-n di atas kotak ke-(n-1) (z-index 1000 + 2n - 1, kotak 1000 + 2n)
     tumpukCadangan.push(dlg); const ke = tumpukCadangan.length;
     latar.style.zIndex = String(1000 + 2 * ke - 1); dlg.style.zIndex = String(1000 + 2 * ke);

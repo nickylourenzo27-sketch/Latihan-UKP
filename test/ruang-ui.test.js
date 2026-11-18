@@ -273,7 +273,7 @@ describe('ruang-ui: istilah baku dan tanpa nama dari kode (v9.2)', () => {
     assert.match(src, /'Daftar tim sudah penuh \(12 nama\)\. Hapus satu nama lewat menu Ubah room\.'/);
     assert.match(src, /'Nama itu tidak bisa dipakai\. Tulis nama panggilan Anda \(1 sampai 24 karakter\)\.'/);
     assert.match(src, /_protokol[\s\S]{0,80}validNama/);
-    assert.match(src, /pesertaRoom\(st\)\.filter\(p => !baru\.some\(x => samaNama\(x, p\)\)\)\.forEach\(p => abaikanNama\(kode, p\)\)/, 'yang dihapus lewat Ubah room tidak ditawarkan lagi');
+    assert.match(src, /const dihapus = awal\.filter\(p => !ada\(isian, p\)\);[\s\S]{0,900}if \(ok\) dihapus\.forEach\(p => abaikanNama\(kode, p\)\)/, 'yang dihapus lewat Ubah room tidak ditawarkan lagi');
     assert.ok(!/ditambahkan otomatis/.test(src.replace(/\/\/.*$/gm, '')));
   });
   it('V10 b: huruf dikirim saat diketuk (k: null) di alur biasa; mode Ubah tidak mengirim sampai lengkap', () => {
