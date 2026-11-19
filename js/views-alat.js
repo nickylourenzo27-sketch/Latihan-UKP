@@ -1611,7 +1611,8 @@
       catch (e) { galatImpor(galat); UKP.toast(galat, { nada: 'attn' }); }
     }
     const fileIn = h('input', { type: 'file', accept: 'application/json,.json', class: 'visually-hidden', tabindex: '-1', 'aria-hidden': 'true', onchange: e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { ta.value = r.result; ta.hidden = false; e.target.value = ''; impor(String(r.result || ''), GALAT_BERKAS); }; r.onerror = () => galatImpor(GALAT_BERKAS); r.readAsText(f); } });
-    const kartuData = grup('pg-data', 'Data dan pindah perangkat', 'Progres tersimpan hanya di browser ini. Untuk pindah perangkat: salin ekspor di sini, tempel di perangkat lain lalu Impor.',
+    // v10.2.6: room tidak ikut ekspor dan impor (UKP.store.ekspor dan impor di js/core.js); keterangan kartu menyebutnya
+    const kartuData = grup('pg-data', 'Data dan pindah perangkat', 'Progres tersimpan hanya di browser ini. Untuk pindah perangkat: salin ekspor di sini, tempel di perangkat lain lalu Impor. Room tidak ikut pindah. Di perangkat lain, buka tautan room lalu ketuk nama Anda.',
       infoEkspor,
       h('div', { class: 'btn-row' }, h('button', { class: 'btn', onclick: async () => { catatEkspor(); ta.value = UKP.store.ekspor(); ta.hidden = false; if (await UKP.salinTeks(ta.value, 'Salin ekspor')) UKP.toast('Ekspor disalin ke papan klip.', { nada: 'ok' }); } }, UKP.icon('copy'), 'Salin ekspor'),
         h('button', { class: 'btn btn-ghost btn-text', onclick: () => { catatEkspor(); ta.value = UKP.store.ekspor(); ta.hidden = false; ta.select(); } }, UKP.icon('mata'), 'Tampilkan ekspor'),

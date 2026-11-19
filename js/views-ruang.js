@@ -633,7 +633,7 @@
       if (st && st.tersambung) { putusSejak = null; if (!tersambungSejak) tersambungSejak = kini; }
       else { tersambungSejak = null; if (info() && !putusSejak) putusSejak = kini; }
       const s = stR();
-      if (s && s.tuan && st && st.tersambung) { const ada = (st.online || []).some(n => samaNama(n, s.tuan)); if (ada) tuanHilangSejak = null; else if (!tuanHilangSejak) tuanHilangSejak = kini; }
+      pemimpinHilang();   // v10.2.6: satu aturan kehadiran pemimpin (anggota senama tidak dihitung sebagai pemimpin hadir)
       cekLengkap(st); periksaTamu();
       beriTahu('status');
     });
@@ -757,7 +757,11 @@
   // kehadiran bisa menjadi basi tanpa peristiwa apa pun (detak berhenti), jadi status pemimpin dihitung ulang di sini juga
   const pemimpinHilang = () => {
     const s = stR(); const st = statusR(); if (!(s && s.tuan && st && st.tersambung)) return false;
-    if (onlineKini().some(n => samaNama(n, s.tuan))) { tuanHilangSejak = null; return false; }
+    // v10.2.6: perangkat ini sendiri (anggota yang namanya sama dengan pemimpin, mis. sesudah pindah perangkat) bukan tanda pemimpin hadir;
+    // pemimpin dianggap tersambung hanya bila nama itu juga dipakai perangkat lain
+    const iS = info(); const senama = !!(iS && iS.peran !== 'tuan' && samaNama(iS.nama, s.tuan));
+    const hadirTuan = senama ? (() => { const r = R(); const hd = r && fn(r, 'hadir') ? aman(() => ambilDari(r.hadir(), iS.nama), null) : null; return !!(hd && hd.ganda); })() : onlineKini().some(n => samaNama(n, s.tuan));
+    if (hadirTuan) { tuanHilangSejak = null; return false; }
     if (!tuanHilangSejak) tuanHilangSejak = Date.now();
     return Date.now() - tuanHilangSejak > 60000;
   };
@@ -1009,6 +1013,23 @@
     try { if (root.navigator && fn(root.navigator, 'share') && (root.matchMedia ? root.matchMedia('(pointer: coarse)').matches : true)) { await root.navigator.share({ text: teks }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
     try { root.open('https://wa.me/?text=' + encodeURIComponent(teks), '_blank', 'noopener'); } catch (e) {}
   }
+  // V10 temuan 2: "Ingin ikut: Dodi" · Tambahkan · Abaikan (maks 3 baris, sisanya "dan N lainnya"); hanya nama yang sedang online
+  function barisInginIkut() {
+    const iT = info(); if (!iT || iT.peran !== 'tuan') return null;
+    const calon = daftarCalonTamu(); if (!calon.length) return null;
+    const tampil = calon.slice(0, 3);
+    return h('ul', { class: 'ingin-ikut', 'aria-label': 'Ingin ikut' }, tampil.map(n => h('li', { 'data-nama': n },
+      h('span', { class: 'ingin-ikut-teks' }, 'Ingin ikut: ', h('strong', null, n)),
+      h('button', { type: 'button', class: 'btn btn-sm room-tambah-tamu', 'data-tembus': '1', onclick: () => tambahkanTamu(n) }, UKP.icon('tambah', null, true), 'Tambahkan'),
+      h('button', { type: 'button', class: 'tautan-tombol room-abaikan-tamu', onclick: () => abaikanTamu(n) }, 'Abaikan'))),
+      calon.length > 3 ? h('li', { class: 'meta' }, 'dan ' + (calon.length - 3) + ' lainnya') : null);
+  }
+  // V10 temuan 12: ganti isi slot hanya bila tampilannya berubah (ketukan tidak hilang saat ada kabar kehadiran)
+  function gantiBilaBeda(slot, anak) {
+    const tmp = h('div', null, ...[].concat(anak).filter(Boolean));
+    if (slot.innerHTML === tmp.innerHTML) return false;
+    slot.replaceChildren(...Array.from(tmp.childNodes)); return true;
+  }
   // "Room siap" / "Bagikan tautan": bagikan (berbagi bawaan HP atau WhatsApp) + salin; kode hanya di lipatan cadangan
   UI.dialogBagikan = function (o) {
     o = o || {}; const i = info(); if (!i) return null; const st = stR();
@@ -1016,7 +1037,12 @@
     const teks = teksUndangan(namaR, i.tautan);
     const iid = UKP.util.id('tautan');
     const inp = h('input', { class: 'input mono tautan-room', id: iid, type: 'text', readonly: true, value: i.tautan, onfocus: e => e.target.select() });
-    return UKP.dialog({ judul: o.siap ? 'Room siap' : 'Undang anggota', kelas: 'dlg-room', tembus: true,
+    // v10.2.6: di HP dan tablet tegak kotak ini menutupi baris "Ingin ikut" di lobi, jadi baris yang sama tampil di dalam dialog
+    // (di bawah kepala, di luar bagian yang bergulir). Hanya perangkat pemimpin yang mendapat isi (barisInginIkut). Digambar ulang
+    // lewat pendengar yang sudah ada dan gantiBilaBeda, lalu dilepas saat dialog ditutup atau dibuang.
+    const slotIngin = h('div', { class: 'ingin-dlg', 'aria-live': 'polite' });
+    let lepasIngin = null;
+    const dlg = UKP.dialog({ judul: o.siap ? 'Room siap' : 'Undang anggota', kelas: 'dlg-room', tembus: true,
       isi: () => h('div', { class: 'stack' },
         h('p', null, o.siap ? 'Kirim tautan ini ke grup WA tim. Anggota membukanya di HP, lalu mengetuk namanya.' : 'Anggota membuka tautan ini di HP, lalu mengetuk namanya.'),
         h('div', { class: 'field' }, h('label', { for: iid }, 'Tautan room'), inp),
@@ -1025,7 +1051,30 @@
           UKP.c.salin(teks, { label: 'Salin', kelas: 'btn room-salin', pesan: 'Undangan room disalin.', judul: 'Salin undangan room' })),
         h('p', { class: 'meta' }, 'Siapa pun yang memegang tautan bisa masuk, jadi bagikan hanya di grup tim.'),
         h('details', { class: 'lipat' }, h('summary', null, 'Cadangan: kode untuk diketik'), h('p', { class: 'kode-room mono' }, i.kodeTampil || ''))),
-      kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => dlg.close('ok') }, 'Selesai')] });
+      kaki: dlg => [h('button', { type: 'button', class: 'btn', onclick: () => dlg.close('ok') }, 'Selesai')],
+      onClose: () => { if (lepasIngin) { lepasIngin(); lepasIngin = null; } } });
+    const badan = dlg && dlg.querySelector ? dlg.querySelector('.dlg-body') : null;
+    if (badan && badan.parentNode === dlg) {
+      dlg.classList.add('dlg-bagikan'); dlg.insertBefore(slotIngin, badan);
+      const segarIngin = () => gantiBilaBeda(slotIngin, [barisInginIkut()]);
+      segarIngin();
+      // v10.2.6: tepi atas kotak ditahan di tempat kotak itu dibuka, supaya baris yang sudah ada tidak bergeser saat orang baru datang
+      // (ketukan tidak jatuh ke orang yang salah). Kotak tumbuh ke bawah; diukur ulang saat ukuran jendela berubah.
+      const tahanAtas = () => {
+        try {
+          const g = dlg.style; g.marginTop = ''; g.marginBottom = ''; g.maxHeight = ''; g.top = ''; g.transform = '';
+          const vh = root.innerHeight || 0; if (vh < 481) return;   // layar pendek: seluruh kotak bergulir (CSS)
+          const cad = dlg.hasAttribute('data-cadangan');
+          const t = Math.max(12, Math.round(cad ? dlg.getBoundingClientRect().top : dlg.offsetTop));
+          if (cad) { g.top = t + 'px'; g.transform = 'translateX(-50%)'; } else { g.marginTop = t + 'px'; g.marginBottom = 'auto'; }
+          g.maxHeight = Math.max(200, vh - t - 12) + 'px';
+        } catch (e) {}
+      };
+      tahanAtas(); root.addEventListener('resize', tahanAtas);
+      const lepasDengar = dengar(() => { if (!slotIngin.isConnected) { if (lepasIngin) { lepasIngin(); lepasIngin = null; } return; } segarIngin(); });
+      lepasIngin = () => { lepasDengar(); root.removeEventListener('resize', tahanAtas); };
+    }
+    return dlg;
   };
   function dialogUbahRoom() {
     const r = R(); const st = stR(); if (!r || !st) return;
@@ -1683,23 +1732,7 @@
         h('p', { class: 'pembuka-utama' }, 'Sudah masuk: ' + hadir.length + ' dari ' + pes.length + ' orang'),
         barisInisial(st));
     }
-    // V10 temuan 2: "Ingin ikut: Dodi" · Tambahkan · Abaikan (maks 3 baris, sisanya "dan N lainnya"); hanya nama yang sedang online
-    function barisInginIkut() {
-      const iT = info(); if (!iT || iT.peran !== 'tuan') return null;
-      const calon = daftarCalonTamu(); if (!calon.length) return null;
-      const tampil = calon.slice(0, 3);
-      return h('ul', { class: 'ingin-ikut', 'aria-label': 'Ingin ikut' }, tampil.map(n => h('li', { 'data-nama': n },
-        h('span', { class: 'ingin-ikut-teks' }, 'Ingin ikut: ', h('strong', null, n)),
-        h('button', { type: 'button', class: 'btn btn-sm room-tambah-tamu', 'data-tembus': '1', onclick: () => tambahkanTamu(n) }, UKP.icon('tambah', null, true), 'Tambahkan'),
-        h('button', { type: 'button', class: 'tautan-tombol room-abaikan-tamu', onclick: () => abaikanTamu(n) }, 'Abaikan'))),
-        calon.length > 3 ? h('li', { class: 'meta' }, 'dan ' + (calon.length - 3) + ' lainnya') : null);
-    }
-    // V10 temuan 12: ganti isi slot hanya bila tampilannya berubah (ketukan tidak hilang saat ada kabar kehadiran)
-    function gantiBilaBeda(slot, anak) {
-      const tmp = h('div', null, ...[].concat(anak).filter(Boolean));
-      if (slot.innerHTML === tmp.innerHTML) return false;
-      slot.replaceChildren(...Array.from(tmp.childNodes)); return true;
-    }
+    // v10.2.6: barisInginIkut dan gantiBilaBeda pindah ke tingkat modul (di atas UI.dialogBagikan) supaya dialog undangan memakainya juga
     function namaTopikSoal(id) {
       const q = K && fn(K, 'soal') ? aman(() => K.soal(id), null) : null; if (!q) return null;
       const t = fn(K, 'topik') ? aman(() => K.topik(q.topik), null) : null;

@@ -4461,6 +4461,25 @@ body[data-room-tamu] #kop-profil.kop-masuk { display: none; }
 .ingin-ikut > li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); padding: var(--s-2) var(--s-3); border-radius: var(--r-md); background: var(--warn-soft); }
 .ingin-ikut-teks { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
 .ingin-ikut > li.meta { background: none; padding: 0; }
+/* v10.2.6: "Ingin ikut" di dalam dialog undangan (Room siap, Undang anggota). Di HP kotak dialog menutupi baris lobi, jadi baris
+   yang sama tampil di bawah kepala dialog, di luar bagian yang bergulir: tautan dan tombol Salin tetap terlihat. */
+dialog.dlg-bagikan[open] { display: flex; flex-direction: column; max-height: calc(100dvh - 24px); overflow: hidden; }
+.dlg-bagikan > .dlg-head, .dlg-bagikan > .dlg-foot, .dlg-bagikan > .ingin-dlg { flex: none; }
+.dlg-bagikan > .dlg-body { flex: 1 1 auto; min-height: 0; max-height: none; }
+.ingin-dlg { padding: var(--s-3) var(--s-5) 0; }
+.ingin-dlg:empty { display: none; }
+.ingin-dlg:not(:empty) + .dlg-body { padding-top: var(--s-3); }
+.ingin-dlg .ingin-ikut { gap: var(--s-1); }
+.ingin-dlg .ingin-ikut > li { flex-wrap: nowrap; gap: var(--s-2); padding: 2px 2px 2px var(--s-2); font-size: var(--fs-small); line-height: 1.4; }
+.ingin-dlg .ingin-ikut > li.meta { padding: 0; }
+.ingin-dlg .ingin-ikut-teks { flex: 1 1 0; }
+.ingin-dlg .ingin-ikut button { flex: none; }
+.ingin-dlg .room-tambah-tamu { --btn-px: var(--s-2); }
+.ingin-dlg .room-tambah-tamu > svg { display: none; }
+.ingin-dlg .room-abaikan-tamu { padding-inline: 6px; }
+@media (max-width: 599px), (pointer: coarse) { .ingin-dlg .ingin-ikut button { --btn-h: 44px; min-height: 44px; } }
+/* v10.2.6: layar pendek (HP mendatar): seluruh kotak bergulir sebagai satu kesatuan */
+@media (max-height: 480px) { dialog.dlg-bagikan[open] { display: block; overflow-y: auto; } .dlg-bagikan > .dlg-body { max-height: none; overflow: visible; } }
 .nama-dua { color: var(--attn); font-weight: 600; }
 .batang-tim > li { grid-template-columns: 1.25rem minmax(0, 1fr) 1.75rem 6.25rem; }
 .batang-tim .tanda-kunci { white-space: nowrap; }
@@ -4631,6 +4650,7 @@ dialog.sheet[data-cadangan] { top: auto; bottom: 0; left: 0; transform: none; ma
   .dlg-body { max-height: 70vh; }
   .dlg-lalu-room .dlg-body { max-height: calc(88vh - 140px); }
   dialog.dlg-mulai-room[open] { max-height: calc(100vh - 24px); }
+  dialog.dlg-bagikan[open] { max-height: calc(100vh - 24px); }
   .tabel-wrap.tinggi { max-height: 70vh; }
 }
 /* (3) Tanpa :has() (html.tanpa-has dan atribut body diisi js/core.js): topbar tidak menutupi bar fokus/sesi yang berisi Menu dan Cukup,

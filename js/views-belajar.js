@@ -1123,11 +1123,11 @@
   }
   // teks dialog persetujuan sebelum latihan bersama baru menggantikan latihan yang belum selesai
   function teksGantiSesi(ba) {
-    const x = nomorLanjut(ba);
+    const x = nomorLanjut(ba); const diRoomBa = !!(ba && ba.room && ba.room !== 'ambil'); // v10.2.6: papan yang terlepas dari room bukan latihan room
     return { judul: 'Akhiri latihan bersama yang belum selesai?',
       isi: 'Latihan bersama soal ' + x.no + ' dari ' + x.n + ' belum selesai. Latihan itu masih bisa dilanjutkan dari kartu Lanjutkan di atas halaman Latih'
-        + (ba && ba.room ? ' atau tombol Kembali ke latihan di room' : '') + '. Bila Anda mulai baru, latihan itu diakhiri'
-        + (ba && ba.room ? ' dan HP anggota ikut pindah' : '') + '. Soal yang sudah dibahas tetap tersimpan di Dasbor tim.' };
+        + (diRoomBa ? ' atau tombol Kembali ke latihan di room' : '') + '. Bila Anda mulai baru, latihan itu diakhiri'
+        + (diRoomBa ? ' dan HP anggota ikut pindah' : '') + '. Soal yang sudah dibahas tetap tersimpan di Dasbor tim.' };
   }
   // tutup latihan bersama lama dengan benar: waktu membahas terakhir dicatat, rekaman ditutup (sesi tanpa soal dibuang), titik lanjut
   // dihapus, dan bila perangkat ini memandu room yang masih menjalankan sesi itu: rekaman diterbitkan dan aktivitas room diakhiri
@@ -1441,11 +1441,14 @@
       // v8.2 B2 room tim: niat room (params.room saat mulai, atau titik lanjut yang membawa room); sesi room ≤ 120 soal
       const R = ruangR();
       // V3: lanjut.room === 'terbit' = sesi room yang sudah dipindah ke satu layar → tidak menyambung lagi, tetapi rekaman tetap diterbitkan
-      let roomNiat = !!peserta && !oj.ulang && !!(oj.room || (lanjut && lanjut.room && lanjut.room !== 'terbit')) && ruangTersedia();
+      // v10.2.6: lanjut.room === 'ambil' = papan terlepas karena room dipimpin perangkat lain: tidak langsung menyambung; lihat sambungLagi
+      const lanjutAmbil = !!(lanjut && lanjut.room === 'ambil');
+      let roomNiat = !!peserta && !oj.ulang && !lanjutAmbil && !!(oj.room || (lanjut && lanjut.room && lanjut.room !== 'terbit')) && ruangTersedia();
       if (peserta && oj.room && !roomNiat && !lanjut) UKP.toast('Room tidak tersedia di halaman ini. Latihan berjalan di satu layar.');
       if (roomNiat && !lanjut && peranRoom() !== 'tuan') { roomNiat = false; UKP.toast('Perangkat ini bukan pemimpin room. Latihan berjalan di satu layar.'); }
       if (roomNiat && !sesiLama) { const pt = MR.potong(daftar); if (pt.dipotong) { daftar = pt.daftar; UKP.toast('Room memuat paling banyak ' + MR.MAKS_SOAL + ' soal; ' + MR.MAKS_SOAL + ' soal pertama dipakai.'); } }
       let diRoom = false, roomPernah = !!(peserta && lanjut && lanjut.room === 'terbit'), siar = null, lepasR = [], elKini = null, soalKini = null;
+      let roomLepas = !!peserta && !oj.ulang && lanjutAmbil && ruangTersedia(); // v10.2.6: papan terlepas dari room karena perangkat lain memimpin
       let kunciKini = null; // v9.3 W1: { soalId, perR, pj, tim } kiriman bukaKunci terakhir (dikirim ulang bila room tersambung saat papan membahas)
       const hadirSesi = new Set(); // V3: nama yang benar-benar online/menjawab dari HP selama sesi (untuk "x dari 6 hadir")
       // v9.4 W: tempo 'bebas' (tanpa batas) → detik 0; titik lanjut tanpa batas tetap tanpa batas
@@ -1548,7 +1551,7 @@
       let tCekPenuh = null; // v9.7.2 F4: pemeriksaan penyimpanan penuh sesudah tulisan berikutnya
       const simpanAktif = () => {
         if (!sesiId || sesiSelesai || !L.simpanBersamaAktif) return;
-        L.simpanBersamaAktif({ sesiId, soalIds: daftar.map(x => x.id), idx: idx + (kunciTerbuka ? 1 : 0), sisaDetik: tanpaBatas ? 0 : Math.max(0, sisaSesi()), anggaranDetik: anggaranSesi, tempo: tb.mode, detikPerSoal: detikTempo, lamaDetik: lamaSesi(), ulang: oj.ulang ? 1 : null, room: roomNiat ? 1 : roomPernah ? 'terbit' : null,
+        L.simpanBersamaAktif({ sesiId, soalIds: daftar.map(x => x.id), idx: idx + (kunciTerbuka ? 1 : 0), sisaDetik: tanpaBatas ? 0 : Math.max(0, sisaSesi()), anggaranDetik: anggaranSesi, tempo: tb.mode, detikPerSoal: detikTempo, lamaDetik: lamaSesi(), ulang: oj.ulang ? 1 : null, room: roomNiat ? 1 : roomLepas ? 'ambil' : roomPernah ? 'terbit' : null, // v10.2.6: 'ambil'
           detikBahas: detikBahasT, bahas: faseBahas ? { soalId: faseBahas.soalId, mulai: faseBahas.mulai } : null,
           draf: !kunciTerbuka && lajuJalan && daftar[idx] ? { soalId: daftar[idx].id, jb: (drafSoal && drafSoal.jb) || {}, yb: (drafSoal && drafSoal.yb) || {}, detikSoal: detikSoalKini() } : null });
         // v9.7.2 D5: titik lanjut pertama ditulis segera; bila penyimpanan peramban menolak, orang diberi tahu sekali per sesi.
@@ -1596,7 +1599,7 @@
       const adaMenuKop = !!peserta && typeof kop.aturMenu === 'function';
       function itemMenuKop() {
         // v9.2 G1: lewat room → Kembali ke lobi (latihan tetap berjalan) · Lanjut tanpa HP anggota · Akhiri; "Atur saringan" hanya di satu layar
-        const room = diRoom || roomNiat;
+        const room = diRoom || roomNiat || roomLepas; // v10.2.6: papan yang terlepas tetap punya jalan ke lobi room
         return [room ? { teks: 'Kembali ke lobi (latihan tetap berjalan)', ikon: 'back', onclick: () => keLobi() } : { teks: 'Atur saringan', ikon: 'saring', onclick: () => keMenu() },
           diRoom ? { teks: 'Lanjut tanpa HP anggota', ikon: 'tim', onclick: () => pindahSatuLayar() } : null,
           { teks: 'Akhiri latihan dan lihat hasil', ikon: 'keluar', bahaya: true, onclick: () => selesaiSekarang() }].filter(Boolean);
@@ -1681,7 +1684,7 @@
         // V9 T1: patokan daftar room awal disimpan di rekaman latihan (sekali), jadi tetap benar setelah muat ulang atau kembali dari lobi
         if (!daftarRoomAwal) { const rk = daftarRoomKini(); daftarRoomAwal = (typeof L.roomAwalSesi === 'function' ? L.roomAwalSesi(sesiId, rk) : null) || rk; }
         lepasR.push(R.on('state', () => { if (diRoom) cekSusulan(); }));
-        lepasR.push(R.on('peran', () => { if (diRoom && peranRoom() !== 'tuan') { const st = (() => { try { return R.state(); } catch (e) { return null; } })(); putusRoom(false); roomPernah = false; UKP.toast(((st && st.tuan) || 'Perangkat lain') + ' sekarang memandu room. Latihan ini berlanjut di satu layar.'); } }));
+        lepasR.push(R.on('peran', () => { if (diRoom && peranRoom() !== 'tuan') { const st = (() => { try { return R.state(); } catch (e) { return null; } })(); roomLepas = true; putusRoom(false); roomPernah = false; UKP.toast(((st && st.tuan) || 'Perangkat lain') + ' sekarang memandu room. Latihan ini berlanjut di satu layar.'); } }));
         if (adaMenuKop) kop.aturMenu(itemMenuKop());
         kop.atur(null, null, kananBersama());
         if (elKini && !(elKini.terkunci && elKini.terkunci()) && soalKini) { siar.soal(idx); isiPapanJauh(); }
@@ -1721,6 +1724,32 @@
         kop.atur(null, null, kananBersama());
         simpanAktif();
       }
+      // v10.2.6: perangkat ini memimpin room lagi sesudah papan terlepas (room sempat dipimpin perangkat lain). Aktivitas room masih
+      // latihan ini (id sama): papan menyambung lagi dan menyiarkan posisinya sekarang (sambungRoom: soal, fase, kunci yang sudah dibuka;
+      // jawaban HP yang masuk selama terlepas ikut tampil bila soalnya belum dikunci). Aktivitas lain atau sudah tidak ada: tidak
+      // menyambung diam-diam: latihan tetap di satu layar dan orang diberi tahu. Dijalankan lewat jeda (tidak di dalam pancaran room).
+      let tSambungLagi = null, lepasLagi = [];
+      function sambungLagi() {
+        // v10.2.6: room sudah tidak ada di perangkat ini (ditutup pemimpin baru): tanda terlepas dibuang, papan jadi latihan satu layar biasa
+        if (roomLepas && !diRoom && !dilepas && !infoRoom() && !(UKP.store.get() || {}).ruang) { roomLepas = false; if (adaMenuKop) kop.aturMenu(itemMenuKop()); simpanAktif(); return; }
+        if (!roomLepas || diRoom || sesiSelesai || dilepas || !sesiId || !R || peranRoom() !== 'tuan') return;
+        let st = null; try { st = R.state(); } catch (e) { st = null; }
+        if (!st) return; // room belum dipulihkan (muat ulang): tunggu kabar berikutnya
+        const a = st.aktivitas;
+        if (a && a.jenis === 'latihan' && a.id === sesiId) {
+          roomNiat = true;
+          if (sambungRoom()) { roomLepas = false; simpanAktif(); UKP.toast('HP anggota mengikuti papan ini lagi.'); }
+          else roomNiat = false; // belum bisa menyiarkan (mis. belum tersambung): dicoba lagi pada kabar room berikutnya
+          return;
+        }
+        roomLepas = false;
+        if (adaMenuKop) kop.aturMenu(itemMenuKop());
+        simpanAktif();
+        UKP.toast('Latihan ini tetap di satu layar. HP anggota tidak mengikuti papan ini.');
+      }
+      const jadwalSambungLagi = () => { if (!roomLepas || tSambungLagi) return; tSambungLagi = setTimeout(() => { tSambungLagi = null; sambungLagi(); }, 0); };
+      const lepasSambungLagi = () => { clearTimeout(tSambungLagi); tSambungLagi = null; lepasLagi.forEach(f => { try { f(); } catch (e) {} }); lepasLagi = []; };
+      if (peserta && !oj.ulang && R && typeof R.on === 'function' && ruangTersedia()) lepasLagi = ['status', 'state', 'peran'].map(nm => { try { return R.on(nm, jadwalSambungLagi); } catch (e) { return null; } }).filter(f => typeof f === 'function');
       // "Pindah ke satu layar" (T5): room dilepas untuk sesi ini; soal, nomor, dan jawaban yang sudah masuk tetap; rekaman tetap diterbitkan
       function pindahSatuLayar() {
         UKP.konfirmasi('Lanjut tanpa HP anggota?', 'HP anggota berhenti menerima soal dan kembali ke lobi. Soal, nomor soal, dan jawaban yang sudah masuk tetap di sini; jawaban berikutnya Anda ketuk di papan. Hasil tetap dikirim ke room saat latihan selesai.', { ya: 'Lanjut tanpa HP anggota', tidak: 'Tetap pakai HP anggota' })
@@ -1728,7 +1757,7 @@
       }
       // akhir sesi: rekaman dilengkapi tim (+ diisiPemimpin dari rekaman lokal) lalu diterbitkan; aktivitas room diakhiri
       function akhirRoom(sesi) {
-        lepasPendengar();
+        lepasPendengar(); lepasSambungLagi(); roomLepas = false; // v10.2.6
         const pernah = roomPernah; diRoom = false; roomNiat = false;
         if (!pernah || peranRoom() !== 'tuan') { siar = null; return; }
         const sr = siar || buatSiarRoom(R, { sesiId, soalIds: daftar.map(x => x.id), detikPerSoal: detikTempo, detikBahas: detikBahasT, akhirSesi: null }); siar = null;
@@ -1795,7 +1824,7 @@
           v10: !peserta, labelLanjut: peserta ? (no + 1 < dari ? 'Lanjut ke soal ' + (no + 2) : 'Lanjut ke hasil') : no + 1 < dari ? 'Lanjut ke soal ' + (no + 2) : 'Lihat hasil',
           papanV10: !!peserta, // v10.1 papan: tata dua kolom papan latihan bersama
           jawabanPulih: rPulih ? { jawab: rPulih.jawab, detik: rPulih.detik, keyakinan: rPulih.keyakinan } : null,
-          bersama: peserta ? { peserta, awal, hitungPenjelas, namaPemandu: roomNiat ? namaPemandu() : null, onTriase: tri => { triKini = tri; tunjuk(tri); },
+          bersama: peserta ? { peserta, awal, hitungPenjelas, namaPemandu: roomNiat || roomLepas ? namaPemandu() : null, onTriase: tri => { triKini = tri; tunjuk(tri); },
             // v8.2 B2: isian dari HP tidak masuk draf lanjutan (setelah muat ulang diambil lagi dari room, hurufnya tetap tersembunyi)
             onUbah: (nama, v) => { const dariHp = !!(el && el.sumberBersama && el.sumberBersama()[nama] === 'hp'); if (v.o && !dariHp) drafSoal.jb[nama] = v.o; else delete drafSoal.jb[nama]; if (v.k && !dariHp) drafSoal.yb[nama] = v.k; else delete drafSoal.yb[nama]; simpanAktif(); },
             // v8.2 B2: setelah kunci + triase → penjelas disimpan di rekaman lokal; room: bukaKunci(soalId, per, { penjelas, tim }) + catatan diisi pemandu
@@ -2099,7 +2128,8 @@
       }
       if (peserta) gambarSkor();
       if (roomNiat && !sambungRoom()) { if (lanjut) tungguRoom(); else { roomNiat = false; UKP.toast('Room tidak tersambung. Latihan berjalan di satu layar.'); } }
-      padaLepasRoom = peserta ? lepasPendengar : null;
+      padaLepasRoom = peserta ? () => { lepasPendengar(); lepasSambungLagi(); } : null; // v10.2.6
+      jadwalSambungLagi(); // v10.2.6: papan yang dibuka lagi sesudah perangkat ini memimpin lagi (lobi room, muat ulang)
       if (ps && ps.selesai) { selesaiS = ps.selesai; selesai({ pulih: true, menit: ps.selesai.menit }); } else gambar(); // v9.7.3
       if (peserta) simpanAktif();
     }

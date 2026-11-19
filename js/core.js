@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '10.2.5';
+  UKP.versi = '10.2.6';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
@@ -415,15 +415,22 @@
     },
     get ok() { return penyimpananOK; },
     reset() { load(); isiUlang(DEFAULT()); try { localStorage.removeItem(KEY + '.rusak'); } catch (e) {} tulis(true); },
-    ekspor() { const s = load(); s.eksporTerakhir = Date.now(); save(); return JSON.stringify({ aplikasi: 'pelatih-ukp', versi: UKP.versi, diekspor: new Date().toISOString(), data: s }, null, 1); },
+    // v10.2.6: room milik perangkat ini, bukan bagian dari data belajar. Ekspor tidak membawa "ruang" (kode room dan peran pemimpin
+    // tidak ikut ke berkas), sehingga perangkat lain yang mengimpor tidak ikut memimpin room yang sama
+    ekspor() { const s = load(); s.eksporTerakhir = Date.now(); save(); const data = Object.assign({}, s); delete data.ruang; return JSON.stringify({ aplikasi: 'pelatih-ukp', versi: UKP.versi, diekspor: new Date().toISOString(), data }, null, 1); },
+    // v10.2.6: teks atau berkas dari luar (string, tombol Impor di Pengaturan): "ruang" di dalamnya dibuang dan "ruang" perangkat ini
+    // dipertahankan, juga saat room sedang berjalan. Objek (arsip ganti akun di perangkat yang sama, js/tim.js) dipulihkan apa adanya
     impor(json) {
+      const dariLuar = typeof json === 'string';
       let o;
       try { o = typeof json === 'string' ? JSON.parse(json.replace(/^﻿/, '').trim()) : json; }
       catch (e) { throw new Error('Teks bukan JSON yang valid. Salin ulang seluruh isi ekspor dari perangkat asal.'); }
       if (isObj(o) && o.aplikasi != null && o.aplikasi !== 'pelatih-ukp') throw new Error('Berkas ini bukan ekspor MABAR UKP.');
       const d = isObj(o) && isObj(o.data) ? o.data : o;
       if (!isObj(d) || !isObj(d.profil)) throw new Error('Isinya bukan ekspor MABAR UKP yang utuh. Salin ulang dari perangkat asal.');
-      load(); isiUlang(normal(d));
+      load(); const baru = normal(d);
+      if (dariLuar) { const ruangSini = state.ruang; if (isObj(ruangSini)) baru.ruang = ruangSini; else delete baru.ruang; }  // v10.2.6
+      isiUlang(baru);
       if (perluMigrasiPakai(d)) { migrasiPakaiTunda = true; migrasiPakai(); }  // v9.5: ekspor lama tanpa buku pemakaian
       tulis(true);
       return true;
