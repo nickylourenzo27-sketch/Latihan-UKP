@@ -462,6 +462,8 @@
     const lebar = window.innerWidth >= 900; // desktop: panel daftar soal di kanan; HP: daftar soal sebagai lembar bawah
     const page = h('div', { class: 'page lebar halaman-ujian' });
     const bar = h('div', { class: 'ujian-bar', role: 'region', 'aria-label': 'Status ujian', style: { borderBottom: '0' } });
+    // v10.3.1: tombol "Aa" (ukuran teks soal) di bilah ujian. Satu simpul dipakai ulang tiap bilah digambar, jadi menu yang terbuka tidak tertutup
+    const aaSoal = UKP.c.tombolUkuranSoal ? UKP.c.tombolUkuranSoal() : null;
     // "Tersimpan otomatis" dengan ikon cek; jam simpan terakhir hanya di title (glosarium §5)
     const tersimpanTeks = h('span', null, 'Tersimpan otomatis');
     const tersimpanEl = h('span', { class: 'meta tersimpan', style: { display: 'inline-flex', alignItems: 'center', gap: '4px', fontFamily: 'var(--font-ui)' } }, h('span', { 'aria-hidden': 'true', style: { display: 'inline-grid', color: 'var(--muted)' } }, UKP.icon('check', null, true)), tersimpanTeks);
@@ -519,10 +521,11 @@
       const statusBar = h('span', { style: { display: 'flex', flexWrap: 'wrap', gap: '2px 12px', alignItems: 'center', minWidth: '0', fontFamily: 'var(--font-ui)' } }, tersimpanEl, statusJawab, pillTempo);
       const timerEl = a.tanpaWaktu ? h('span', { class: 'timer', 'aria-label': 'Tanpa batas waktu' }, '∞') : h('span', null, h('span', { class: 'timer', role: 'timer', 'aria-label': 'Sisa waktu', 'data-sisa': sisa <= 300 ? 'sedikit' : null }, U.jam(sisa)), ' ', h('span', { class: 'sisa tiny', hidden: sisa >= 300 ? true : null }, sisa >= 300 ? null : 'Sisa < 5 mnt'));
       const tombolBar = h('div', { class: 'btn-row ujian-bar-kanan', style: { flexWrap: 'nowrap', justifyContent: 'flex-end' } }, tinjau ? h('button', { type: 'button', class: 'btn btn-sm btn-ghost btn-text', onclick: () => { tinjau = null; gambar(false); UKP.umumkan('Mode tinjau ragu selesai.'); } }, 'Selesai tinjau') : null,
-        lebar ? null : h('button', { type: 'button', class: 'btn btn-sm', 'aria-keyshortcuts': 'G', onclick: bukaDaftar }, 'Daftar soal'), h('button', { type: 'button', class: 'btn btn-sm', onclick: ringkasanKirim }, sempit ? 'Kirim' : 'Selesai dan kirim'));
+        sempit ? null : aaSoal, lebar ? null : h('button', { type: 'button', class: 'btn btn-sm', 'aria-keyshortcuts': 'G', onclick: bukaDaftar }, 'Daftar soal'), h('button', { type: 'button', class: 'btn btn-sm', onclick: ringkasanKirim }, sempit ? 'Kirim' : 'Selesai dan kirim'));
       // HP: baris 1 = nomor soal + timer; baris 2 = status simpan/jawab + tombol; desktop: tiga zona dalam satu baris
       bar.replaceChildren(...(sempit
-        ? [h('div', { class: 'ujian-bar-kiri', style: { flex: '1 1 auto', minWidth: '0' } }, judulBar), h('div', { class: 'ujian-bar-tengah', style: { flex: 'none' } }, timerEl), h('div', { class: 'ujian-bar-bawah', style: { flex: '1 1 100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', minWidth: '0' } }, statusBar, tombolBar)]
+        ? [h('div', { class: 'ujian-bar-kiri', style: { flex: '1 1 auto', minWidth: '0' } }, judulBar), aaSoal, h('div', { class: 'ujian-bar-tengah', style: { flex: 'none' } }, timerEl),   // v10.3.1: di HP tombol Aa di baris pertama, sebelum jam
+          h('div', { class: 'ujian-bar-bawah', style: { flex: '1 1 100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', minWidth: '0' } }, statusBar, tombolBar)]
         : [h('div', { class: 'ujian-bar-kiri stack-sm', style: { gap: '0', minWidth: '0' } }, judulBar, statusBar), h('div', { class: 'ujian-bar-tengah', style: { textAlign: 'center' } }, timerEl), tombolBar]),
         progres);
       gambarProgres();

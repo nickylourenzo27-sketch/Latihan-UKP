@@ -16,7 +16,7 @@ const vm = require('node:vm');
 
 const ROOT = path.join(__dirname, '..');
 const J = x => JSON.parse(JSON.stringify(x));
-const LM = 'LM-B-2026-11', B = 'TO-B-2026-11', C1 = 'TO-C-2026-11-1', C2 = 'TO-C-2026-11-2';
+const LM = 'LM-B-2026-11', B = 'TO-B-2026-11', C1 = 'TO-C-2026-11-1', C2 = 'TO-C-2026-11-2', C3 = 'TO-C-2026-11-3'; // v10.3.1 Paket 3
 const JUDUL_LM = 'Latihan UKP B per mata uji (kiriman 16 Nov 2026)';
 const OP = 'PPh Orang Pribadi dan SPT PPh OP', KUP = 'KUP, PPSP, dan Pengadilan Pajak', PPN = 'PPN';
 const baca = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
@@ -64,7 +64,7 @@ const lepasLM = UKP => { for (const k of Object.keys(UKP.modul)) UKP.modul[k].so
 describe('v9.7.0 urutan paket dan paket bawaan', () => {
   const { UKP } = muat(); const K = UKP.konten; sisipLM(UKP);
   it('daftarSet: paket TO- lebih dulu menurut kode, paket LM terakhir', () => {
-    assert.deepEqual(J(K.daftarSet().map(p => p.set)), [B, C1, C2, LM]);
+    assert.deepEqual(J(K.daftarSet().map(p => p.set)), [B, C1, C2, C3, LM]);
     const lm = K.daftarSet().find(p => p.set === LM);
     assert.equal(lm.label, 'Latihan UKP B per mata uji'); assert.equal(lm.tingkat, 'B'); assert.equal(lm.n, 10);
   });
@@ -81,7 +81,7 @@ describe('v9.7.0 K.bagianSet', () => {
   });
   it('paket try out (tanpa sumber.bagian) memberi []', () => {
     const { UKP } = muat(); const K = UKP.konten;
-    for (const s of [B, C1, C2]) assert.deepEqual(J(K.bagianSet(s)), [], s);
+    for (const s of [B, C1, C2, C3]) assert.deepEqual(J(K.bagianSet(s)), [], s);
     assert.deepEqual(J(K.bagianSet('')), []); assert.deepEqual(J(K.bagianSet('TIDAK-ADA')), []);
   });
   it('satu soal tanpa bagian memberi []', () => {
@@ -98,7 +98,7 @@ describe('v9.7.0 Simulasi: potonganPaket, susunAttempt, labelSim, waktu', () => 
   const { UKP } = muat(); const K = UKP.konten; sisipLM(UKP); const M = UKP.simulasiTim._murni;
   const paket = set => K.daftarSet().find(p => p.set === set);
   it('potonganPaket: paket try out sama dengan potonganTO(n); LM = Semua mata uji + b1..b3', () => {
-    for (const s of [B, C1, C2]) assert.deepEqual(J(M.potonganPaket(paket(s))), J(M.potonganTO(paket(s).n)), s);
+    for (const s of [B, C1, C2, C3]) assert.deepEqual(J(M.potonganPaket(paket(s))), J(M.potonganTO(paket(s).n)), s);
     const pot = M.potonganPaket(paket(LM));
     assert.deepEqual(J(pot.map(x => x.nilai)), ['semua', 'b1', 'b2', 'b3']);
     assert.deepEqual(J(pot.map(x => x.label)), ['Semua mata uji', OP, KUP, PPN]);
@@ -139,7 +139,7 @@ describe('v9.7.0 tiga paket try out tidak berubah', () => {
     assert.deepEqual(J(M.potonganPaket(paket(B))), J(M.potonganTO(100)));
   });
   it('batas menit setara 300 untuk tiap paket try out', () => {
-    for (const s of [B, C1, C2]) for (const t of ['A', 'B', 'C']) assert.equal(Math.max(300, M.waktuPaket(paket(s), t).menit), 300, s + ' ' + t);
+    for (const s of [B, C1, C2, C3]) for (const t of ['A', 'B', 'C']) assert.equal(Math.max(300, M.waktuPaket(paket(s), t).menit), 300, s + ' ' + t);
   });
   it('labelSim potongan nomor paket C', () => {
     assert.ok(M.labelSim({ format: 'tryout', kode: C1, bagian: '41–50' }).endsWith(' · soal 41–50'));
@@ -258,6 +258,7 @@ describe('v9.7.0 Mulai latihan bersama: sumber per mata uji', () => {
     const op = S.opsiSumberPaket(K.daftarSet(), K);
     assert.deepEqual(J(op), [
       ['set:' + B, 'Try Out UKP B'], ['set:' + C1, 'Try Out UKP C Paket 1'], ['set:' + C2, 'Try Out UKP C Paket 2'],
+      ['set:' + C3, 'Try Out UKP C Paket 3'],
       ['set:' + LM, 'Latihan UKP B per mata uji'],
       ['set:' + LM + '|kode:A1', 'Latihan UKP B · ' + OP, 'Latihan UKP B per mata uji', OP],
       ['set:' + LM + '|kode:A2', 'Latihan UKP B · ' + KUP, 'Latihan UKP B per mata uji', KUP],
@@ -268,7 +269,7 @@ describe('v9.7.0 Mulai latihan bersama: sumber per mata uji', () => {
     const pilihan = [['acak', 'Acak Tingkat B']].concat(S.opsiSumberPaket(K.daftarSet(), K)).concat([['topik:A1.3', 'Topik terlemah: X']]);
     assert.deepEqual(J(S.kelompokPilihan(pilihan)), [
       { grup: null, opsi: [['acak', 'Acak Tingkat B']] },
-      { grup: null, opsi: [['set:' + B, 'Try Out UKP B']] }, { grup: null, opsi: [['set:' + C1, 'Try Out UKP C Paket 1']] }, { grup: null, opsi: [['set:' + C2, 'Try Out UKP C Paket 2']] },
+      { grup: null, opsi: [['set:' + B, 'Try Out UKP B']] }, { grup: null, opsi: [['set:' + C1, 'Try Out UKP C Paket 1']] }, { grup: null, opsi: [['set:' + C2, 'Try Out UKP C Paket 2']] }, { grup: null, opsi: [['set:' + C3, 'Try Out UKP C Paket 3']] },
       { grup: null, opsi: [['set:' + LM, 'Latihan UKP B per mata uji']] },
       { grup: 'Latihan UKP B per mata uji', opsi: [['set:' + LM + '|kode:A1', OP], ['set:' + LM + '|kode:A2', KUP], ['set:' + LM + '|kode:A4', PPN]] },
       { grup: null, opsi: [['topik:A1.3', 'Topik terlemah: X']] },
@@ -323,9 +324,9 @@ describe('v9.7.0 Mulai latihan bersama: sumber per mata uji', () => {
     // Kelompok memang berada di bawah Sumber soal
     assert.ok(src.indexOf("h('label', { for: 'f-set' }, 'Sumber soal')") < src.indexOf("h('label', { for: 'f-kode' }, 'Kelompok')"));
   });
-  it('tanpa paket LM: opsi tetap tiga paket try out', () => {
+  it('tanpa paket LM: opsi tetap empat paket try out (v10.3.1: Paket 3 ikut)', () => {
     lepasLM(UKP);
-    assert.deepEqual(J(S.opsiSumberPaket(K.daftarSet(), K).map(x => x[0])), ['set:' + B, 'set:' + C1, 'set:' + C2]);
+    assert.deepEqual(J(S.opsiSumberPaket(K.daftarSet(), K).map(x => x[0])), ['set:' + B, 'set:' + C1, 'set:' + C2, 'set:' + C3]);
   });
 });
 

@@ -99,17 +99,19 @@ describe('v9.4.5: temuan uji ulang tanpa kunci', () => {
 });
 
 describe('v9.4.5: jumlah soal bertanda', () => {
-  it('tersisa paling banyak 76 soal bertanda di modul Tingkat B dan Etika dan 14 di modul Tingkat C (sejak v9.7.1)', () => {
+  it('tersisa paling banyak 77 soal bertanda di modul Tingkat B dan Etika dan 14 di modul Tingkat C (sejak v9.7.1)', () => {
     // v9.7.1: batas 67 menjadi 74. Tujuh soal diberi ◐ karena ancaman pidananya disesuaikan UU 1/2026 dan bunyi barunya belum bisa dipastikan:
     // A2-111, A2-258, A4-142, A4-169, A5-204, E-068, E-080. Tidak ada soal lain yang bertambah tanda.
     // v9.7.1 putaran 2: batas Tingkat B 74 menjadi 76. A2-112 dan kembarannya A2-259 diberi ◐ karena memuat angka ancaman pidana
     // Pasal 7 UU 9/2017 yang ikut disesuaikan UU 1/2026 dan bunyi barunya belum ada di pustaka. Tidak ada soal lain yang bertambah tanda.
     // v9.7.1 putaran 2: batas Tingkat C 13 menjadi 14. C10-049 diberi ◐ karena opsi kuncinya memuat angka ancaman Pasal 7 UU 9/2017
     // yang ikut disesuaikan UU 1/2026. Kuncinya tetap.
+    // v10.3.1: batas Tingkat B 76 menjadi 77. B7-402 (Try Out UKP C Paket 3 nomor 51) masuk dengan tanda ◐: kunci try out dipakai, padahal
+    // larangan pengkreditan Pajak Masukan atas sedan sudah dihapus UU 7/2021. Tidak ada soal lain yang bertambah tanda.
     // v9.7.0: paket LM punya batas sendiri di test/v970-data.test.js
     const tanda = k => semua.find(m => m.meta.kode === k).soal.filter(s => s.verifikasi === '◐' && !(s.sumber && s.sumber.set === 'LM-B-2026-11')).length;
     const b = ['A1', 'A2', 'A3', 'A4', 'A5', 'B6', 'B7', 'B8', 'E'].reduce((a, k) => a + tanda(k), 0), c = tanda('C9') + tanda('C10');
-    assert.ok(b <= 76, 'Tingkat B dan Etika: ' + b); assert.ok(c <= 14, 'Tingkat C: ' + c);
+    assert.ok(b <= 77, 'Tingkat B dan Etika: ' + b); assert.ok(c <= 14, 'Tingkat C: ' + c);
   });
   it('jumlah soal tetap 1.494', () => {
     assert.equal([...peta.values()].filter(s => !s.sejak).length, 1494, 'jumlah soal lama (tanpa field sejak)');

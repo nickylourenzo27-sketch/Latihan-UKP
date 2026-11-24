@@ -12469,7 +12469,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PMK 81/2024 Pasal 265 ayat (2) huruf b dan ayat (4)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 60,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 13, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 13, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 93, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -12525,7 +12525,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PMK 164/2023 Pasal 17 ayat (1), ayat (3), dan ayat (7)", berlakuSejak: "2023-12-29" }, { pasal: "PMK 81/2024 Pasal 60 ayat (5)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 75,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 24, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 24, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 22, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -12557,7 +12557,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PMK 63/PMK.03/2022 Pasal 4 ayat (1), ayat (1a), dan ayat (2) huruf b s.t.d.d. PMK 11/2025", berlakuSejak: "2025-02-04" }, { pasal: "PMK 63/PMK.03/2022 Pasal 3 ayat (2) huruf b", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 90,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 51, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 51, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 69, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -14235,6 +14235,154 @@ UKP.register({
       opsiLepas: { teks: "Membayar PPh Pasal 22 ekspor 12%", alasan: "PPh Pasal 22 tidak dikenakan 12% atas ekspor pada umumnya, dan soal ini tentang PPN." },
       sumber: { set: "LM-B-2026-11", no: 315, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPN dan SPT PPN" },
       sejak: "9.7.0"
+    },
+    {
+      id: "A4-478",
+      topik: "A4.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Prinsipal Karya, PKP, menyerahkan BKP bukan barang mewah melalui PKP pedagang perantara. Data penyerahan tersebut sebagai berikut, keduanya tidak termasuk PPN. Harga antara PT Prinsipal Karya dan pedagang perantara Rp420.000.000,00; Harga yang disepakati pedagang perantara dengan pembeli Rp500.000.000,00. Berapakah PPN atas penyerahan tersebut?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp55.000.000,00", B: "Rp46.200.000,00", C: "Rp60.000.000,00", D: "Rp50.400.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Kalau barang dijual lewat pedagang perantara, harga yang dilihat adalah harga perantara dengan pembeli, yaitu Rp500.000.000. Dasar pajaknya 11/12 dari harga itu, lalu dikali tarif 12%. Hasilnya sama dengan 11% x Rp500.000.000 = Rp55.000.000. Harga Rp420.000.000 antara prinsipal dan perantara tidak dipakai. Cara ingat: lewat perantara, lihat harga ke pembeli, lalu kali sebelas persen.",
+        inti: "Untuk penyerahan BKP melalui pedagang perantara, Dasar Pengenaan Pajak memakai nilai lain, yaitu 11/12 dari harga yang disepakati antara pedagang perantara dengan pembeli (Pasal 2 huruf h PMK 75/PMK.03/2010 sebagaimana diubah terakhir dengan PMK 11/2025). DPP = 11/12 x Rp500.000.000 = Rp458.333.333, dan PPN = 12% x DPP = Rp55.000.000.",
+        jejakHitung: [
+          ["Harga perantara dengan pembeli", "Rp500.000.000"],
+          ["DPP nilai lain = 11/12 x Rp500.000.000", "Rp458.333.333"],
+          ["PPN = 12% x DPP", "Rp55.000.000"]
+        ],
+        mengapaSalah: {
+          B: "Angka ini adalah 11% x Rp420.000.000. Harga yang dipakai keliru: yang menjadi dasar adalah harga perantara dengan pembeli, bukan harga prinsipal dengan perantara.",
+          C: "Angka ini adalah 12% x Rp500.000.000 tanpa faktor 11/12. Untuk nilai lain ini, DPP adalah 11/12 dari harga yang disepakati.",
+          D: "Angka ini adalah 12% x Rp420.000.000: harga yang dipakai keliru dan faktor 11/12 juga dilupakan."
+        },
+        jebakan: "Ada dua harga di soal; yang dipakai adalah harga perantara dengan pembeli, lalu jangan lupa faktor 11/12."
+      },
+      dasarHukum: [{ pasal: "Pasal 2 huruf h PMK 75/PMK.03/2010 s.t.d.t.d. PMK 11/2025", berlakuSejak: "2025-02-04" }, { pasal: "Pasal 7 ayat (1) huruf b UU PPN (tarif 12%)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 55, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A4-479",
+      topik: "A4.6",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Bapak Baskoro adalah agen asuransi yang menerima komisi dari perusahaan asuransi sebesar Rp200.000.000,00 dalam satu Masa Pajak (sebelum dipotong PPh). Menurut PMK 81 Tahun 2024 sebagaimana telah diubah dengan PMK 11 Tahun 2025, berapakah PPN yang terutang atas jasa keagenan asuransi tersebut?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp4.400.000,00", B: "Rp22.000.000,00", C: "Rp24.000.000,00", D: "Rp2.200.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Agen asuransi tidak menghitung pajak pertambahan nilai dengan cara biasa. Ada rumus khusus: 10% x 11/12 x tarif 12% x komisi, atau 1,1% dari komisi. Komisinya dihitung sebelum dipotong pajak penghasilan. Jadi 1,1% x Rp200.000.000 = Rp2.200.000, dan perusahaan asuransi yang memungut serta menyetorkannya. Cara ingat: agen asuransi 1,1% dari komisi, pialang asuransi dua kalinya.",
+        inti: "Pasal 313 ayat (2) huruf a PMK 81/2024 sebagaimana diubah dengan PMK 11/2025: PPN atas jasa agen asuransi dipungut dan disetor dengan besaran tertentu sebesar 10% x 11/12 x tarif PPN Pasal 7 ayat (1) huruf b UU PPN (12%) x komisi atau imbalan yang dibayarkan kepada agen asuransi, yaitu 1,1% dari komisi. Komisi adalah nilai pembayaran sebelum dipotong PPh (ayat (4)). PPN = 1,1% x Rp200.000.000 = Rp2.200.000.",
+        jejakHitung: [
+          ["Besaran tertentu agen asuransi = 10% x 11/12 x 12%", "1,1%"],
+          ["Komisi sebelum dipotong PPh", "Rp200.000.000"],
+          ["PPN = 1,1% x Rp200.000.000", "Rp2.200.000"]
+        ],
+        mengapaSalah: {
+          A: "Angka ini adalah 2,2% x Rp200.000.000, yaitu besaran untuk perusahaan pialang asuransi atau pialang reasuransi (20% x 11/12 x 12%), bukan untuk agen asuransi.",
+          B: "Angka ini adalah 11% x Rp200.000.000 (12% x 11/12 dari komisi), yaitu cara umum tanpa besaran tertentu.",
+          C: "Angka ini adalah 12% x Rp200.000.000, tarif penuh atas seluruh komisi. Jasa agen asuransi memakai besaran tertentu."
+        },
+        jebakan: "Tertukar antara besaran agen asuransi (1,1%) dan pialang asuransi (2,2%)."
+      },
+      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 313 ayat (2) huruf a, ayat (3), dan ayat (4) s.t.d.d. PMK 11/2025", berlakuSejak: "2025-02-04" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 73, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A4-480",
+      topik: "A4.5",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Sentosa Abadi, PKP, menyerahkan Barang Kena Pajak kepada PT Pembeli Jaya, PKP, pada 10 Januari 2026. Faktur Pajak atas penyerahan tersebut baru dibuat dan diunggah pada 20 Mei 2026. Menurut PMK 81 Tahun 2024, akibat hukum dokumen tersebut bagi pembeli adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dokumen itu bukan Faktur Pajak sehingga Pajak Masukannya tidak dapat dikreditkan oleh pembeli", B: "Dokumen itu tetap Faktur Pajak yang sah dan Pajak Masukannya dapat dikreditkan pada Masa Pajak Mei 2026", C: "Dokumen itu tetap Faktur Pajak, tetapi Pajak Masukannya hanya dapat dikreditkan 50%", D: "Dokumen itu dianggap Faktur Pajak gabungan sehingga Pajak Masukannya dapat dikreditkan pada Masa Pajak Januari 2026" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Faktur pajak harus dibuat saat barang diserahkan, di sini 10 Januari 2026. Ada batas toleransi tiga bulan. Faktur ini baru dibuat 20 Mei 2026, sudah lebih dari empat bulan. Faktur yang terlambat lebih dari tiga bulan dianggap bukan faktur pajak, penjual dianggap tidak membuat faktur, dan pembeli tidak bisa mengkreditkan pajaknya. Cara ingat: faktur telat lebih dari tiga bulan sama dengan tidak ada faktur.",
+        inti: "Faktur Pajak harus dibuat pada saat penyerahan BKP (Pasal 382 ayat (2) huruf a PMK 81/2024), yaitu 10 Januari 2026. Pasal 384: Faktur Pajak yang dibuat setelah melewati 3 bulan sejak saat seharusnya dibuat tidak diperlakukan sebagai Faktur Pajak, PKP dianggap tidak membuat Faktur Pajak dan dikenai sanksi menurut UU KUP, dan PPN yang tercantum di dalamnya merupakan Pajak Masukan yang tidak dapat dikreditkan. Tanggal 20 Mei 2026 sudah melewati batas 3 bulan (sekitar 10 April 2026).",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Keterlambatan sampai 3 bulan masih menghasilkan Faktur Pajak (penjual kena denda). Di sini keterlambatannya lebih dari 3 bulan, sehingga dokumen itu bukan Faktur Pajak.",
+          C: "Tidak ada ketentuan pengkreditan 50% untuk faktur yang terlambat. Akibatnya tegas: tidak dapat dikreditkan.",
+          D: "Faktur Pajak gabungan dibuat paling lama akhir bulan penyerahan untuk semua penyerahan sebulan kepada pembeli yang sama. Faktur yang terlambat tidak berubah menjadi faktur gabungan."
+        },
+        jebakan: "Mengira faktur terlambat hanya berakibat denda bagi penjual, padahal lewat tiga bulan pembeli ikut kehilangan hak kredit."
+      },
+      dasarHukum: [{ pasal: "PMK 81/2024 Pasal 382 ayat (2) huruf a dan Pasal 384 ayat (1), ayat (2), dan ayat (4)", berlakuSejak: "2025-01-01" }, { pasal: "Pasal 13 ayat (1a) UU PPN", berlakuSejak: "2010-04-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 74, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A4-481",
+      topik: "A4.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Dalam pemeriksaan atas SPT Masa PPN Maret 2026, pemeriksa menemukan bahwa PT Teliti Karya belum mengkreditkan Pajak Masukan dari Faktur Pajak sah atas perolehan Barang Kena Pajak yang berhubungan dengan kegiatan usaha. Pajak Masukan tersebut tidak dilaporkan dalam SPT Masa PPN mana pun, dan Surat Pemberitahuan Hasil Pemeriksaan (SPHP) belum disampaikan. Menurut PMK 81 Tahun 2024, perlakuan atas Pajak Masukan tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tidak dapat dikreditkan karena tidak dilaporkan dalam jangka waktu 3 Masa Pajak", B: "Hanya dapat dikreditkan bila SPT Masa PPN dibetulkan sebelum pemeriksaan dimulai", C: "Dapat dikreditkan pada saat pemeriksaan sepanjang SPHP belum disampaikan", D: "Dapat dikreditkan setelah SPHP disampaikan bila Wajib Pajak menyetujui hasil pemeriksaan" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Pajak masukan adalah PPN atas pembelian yang boleh mengurangi PPN yang harus disetor. Kalau ada pajak masukan yang belum pernah dilaporkan lalu ketahuan saat pemeriksaan, pajak itu masih boleh dikreditkan dalam pemeriksaan tersebut. Batasnya satu: surat pemberitahuan hasil pemeriksaan belum disampaikan. Di kasus ini fakturnya sah, terkait usaha, dan surat itu belum disampaikan, jadi masih bisa dikreditkan. Cara ingat: selama surat hasil pemeriksaan belum keluar, pintu kredit masih terbuka.",
+        inti: "Pasal 9 ayat (9b) UU PPN membolehkan Pajak Masukan yang tidak dilaporkan dalam SPT Masa PPN, yang diberitahukan atau ditemukan saat pemeriksaan, untuk dikreditkan. Pasal 380 ayat (3) PMK 81/2024 menyatakan pengkreditan itu dilakukan pada saat pemeriksaan untuk diperhitungkan dalam ketetapan pajak yang akan diterbitkan, dan ayat (4) membatasinya: sepanjang surat pemberitahuan hasil pemeriksaan belum disampaikan kepada Pengusaha Kena Pajak. Faktur Pajak PT Teliti Karya sah dan SPHP belum disampaikan, sehingga Pajak Masukannya dapat dikreditkan saat pemeriksaan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Batas 3 Masa Pajak menurut Pasal 9 ayat (9) UU PPN berlaku untuk pengkreditan lewat SPT Masa PPN. Pasal 9 ayat (9b) memberi jalur tersendiri saat pemeriksaan.",
+          B: "Pembetulan SPT sebelum pemeriksaan bukan syarat. Pasal 380 justru mengatur Pajak Masukan yang tidak dilaporkan dan ditemukan pada waktu pemeriksaan.",
+          D: "Urutannya terbalik: setelah SPHP disampaikan, kesempatan menurut Pasal 380 ayat (4) sudah tertutup. Syarat menyetujui hasil pemeriksaan adalah milik Pasal 381 tentang Pajak Masukan yang ditagih dengan ketetapan pajak."
+        },
+        jebakan: "Terpaku pada batas 3 Masa Pajak, atau mencampur aturan ini dengan aturan Pajak Masukan yang ditagih lewat ketetapan pajak."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (9b) UU PPN (sisipan UU Cipta Kerja)", berlakuSejak: "2020-11-02" }, { pasal: "PMK 81/2024 Pasal 380 ayat (1), ayat (3), dan ayat (4)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 86, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A4-482",
+      topik: "A4.2",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Logam Mulia Impor, Pengusaha Kena Pajak, mengimpor emas batangan yang bukan untuk cadangan devisa negara. Menurut PP 49 Tahun 2022, perlakuan PPN atas impor emas batangan tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Bukan objek PPN, sama seperti emas batangan untuk cadangan devisa negara", B: "Dibebaskan dari pengenaan PPN sehingga Pajak Masukannya tidak dapat dikreditkan", C: "PPN tidak dipungut", D: "Dikenakan PPN dengan besaran tertentu 1,1% dari nilai impor" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Ada dua macam emas batangan dalam aturan PPN. Emas batangan untuk cadangan devisa negara sama sekali bukan barang yang dikenai PPN. Emas batangan lainnya tetap barang kena pajak, tetapi tergolong barang strategis yang PPN-nya tidak dipungut saat diimpor. Tidak dipungut berbeda dari dibebaskan, dan berbeda pula dari tarif khusus untuk emas perhiasan. Cara ingat: emas batangan devisa bukan objek, emas batangan lain tidak dipungut.",
+        inti: "Pasal 25 ayat (1) huruf h PP 49/2022 memasukkan emas batangan selain untuk kepentingan cadangan devisa negara ke dalam Barang Kena Pajak tertentu yang bersifat strategis yang atas impornya tidak dipungut PPN. Jadi impor PT Logam Mulia Impor terutang PPN, tetapi PPN-nya tidak dipungut. Emas batangan untuk kepentingan cadangan devisa negara diatur berbeda: Pasal 4A ayat (2) huruf d UU PPN menggolongkannya sebagai barang yang tidak dikenai PPN.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Bukan objek PPN hanya berlaku bagi emas batangan untuk kepentingan cadangan devisa negara menurut Pasal 4A ayat (2) huruf d UU PPN. Emas batangan lainnya tetap Barang Kena Pajak.",
+          B: "Fasilitasnya tidak dipungut, bukan dibebaskan. Daftar impor yang dibebaskan ada di Pasal 6 PP 49/2022 dan tidak memuat emas batangan, sedangkan Pasal 25 ayat (1) huruf h menyebutnya dalam daftar impor yang tidak dipungut.",
+          D: "Besaran tertentu adalah cara pungut PPN atas penyerahan emas perhiasan oleh pabrikan dan pedagang emas perhiasan menurut PMK 48/2023, dihitung dari harga jual. Cara itu bukan untuk impor emas batangan, yang mendapat fasilitas tidak dipungut."
+        },
+        jebakan: "Tertukar antara tiga status yang mirip: bukan objek, dibebaskan, dan tidak dipungut."
+      },
+      dasarHukum: [{ pasal: "PP 49/2022 Pasal 25 ayat (1) huruf h", berlakuSejak: "2022-12-12" }, { pasal: "Pasal 4A ayat (2) huruf d UU PPN s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-04-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 100, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
     }
   ],
   kartu: [

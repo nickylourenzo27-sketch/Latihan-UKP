@@ -5495,7 +5495,13 @@ body[data-view="kalkulator"] main .card[data-kode]::before { /* v9.6.4: kartu in
   --v10-t-skor: 88px;  --v10-tb-skor: 88px;
   --v10-t-judul: 24px; --v10-tb-judul: 30px;
   --v10-t-vonis: 20px; --v10-tb-vonis: 26px;
-  --v10-t-soal: 17px;  --v10-tb-soal: 27px;
+  /* v10.3.1 teks soal: ukuran sedang (bawaan). Satuan rem supaya setelan ukuran huruf peramban ikut berlaku (16px = 1rem).
+     html[data-soal="kecil|besar"] mengganti token ini di blok v10.3.1 paling bawah berkas */
+  --v10-t-soal: 1rem;  --v10-tb-soal: 1.5rem;          /* stem 16/24 */
+  --v10-t-baca: 1rem;  --v10-tb-baca: 1.5rem;          /* opsi, alasan vonis, penjelasan mudah, pembahasan, kutipan 16/24 */
+  --v10-t-hitung: .9375rem; --v10-tb-hitung: 1.375rem; /* jejak hitung 15/22 */
+  --v10-t-putus: 1.125rem;  --v10-tb-putus: 1.5rem;    /* judul vonis 18/24 */
+  --v10-soal-skala: .9;                                /* pengali huruf papan Mode mabar: kecil .8, sedang .9, besar 1 (besar = ukuran v10.3.0) */
   --v10-t-badan: 16px; --v10-tb-badan: 25px;
   --v10-t-label: 14px; --v10-tb-label: 20px;
   --v10-t-label-kecil: 13px; --v10-tb-label-kecil: 18px;   /* judul bagian 13/600 redup, meta soal */
@@ -5673,7 +5679,7 @@ main .soal.soal-v10 > .soal-kop { display: flex; flex-wrap: wrap; align-items: c
 main .soal.soal-v10 > .soal-kop .soal-id > span:not([class]) { font-family: var(--v10-huruf-kode); font-size: var(--v10-t-label-kecil); font-weight: 500; letter-spacing: 0; color: var(--v10-redup); }
 main .soal.soal-v10 > .soal-kop .soal-id > .topik { flex: 1 1 0; min-width: 0; font-family: var(--v10-huruf); font-size: var(--v10-t-label-kecil); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 main .soal.soal-v10 > .soal-kop .soal-id > .topik.sumber-set { flex: 1 1 100%; white-space: normal; overflow: visible; }
-main .soal.soal-v10 > .stem { margin-top: var(--v10-j-2); font-size: var(--v10-t-soal); line-height: var(--v10-tb-soal); font-weight: 500; letter-spacing: -.005em; color: var(--v10-teks); max-width: 66ch; }
+main .soal.soal-v10 > .stem { margin-top: var(--v10-j-2); font-size: var(--v10-t-soal); line-height: var(--v10-tb-soal); font-weight: 400; color: var(--v10-teks); max-width: 66ch; } /* v10.3.1: 16/24 tebal 400 (dulu 17/27 tebal 500) */
 main .soal.soal-v10 > .kutipan { margin-top: var(--v10-j-3); }
 
 /* segmen keyakinan: satu kelompok bergaris, tiga segmen 44 px (di atas opsi dan sebagai penanda susulan) */
@@ -6191,7 +6197,7 @@ body[data-mode] main > .page > .fokus-bar.kop-sesi-room > .fokus-menu { order: -
 .room-anggota-v10 > * + * { margin-top: var(--v10-j-4); }
 .room-anggota-v10 .soal-kop-room { margin: 0; font-size: var(--v10-t-label-kecil); line-height: var(--v10-tb-label-kecil); color: var(--v10-redup); }
 .room-anggota-v10 .soal-kop-room .kode { font-family: var(--v10-huruf-kode); font-weight: 500; }
-.room-anggota-v10 .stem-room { margin: var(--v10-j-2) 0 0; font-size: var(--v10-t-soal); line-height: var(--v10-tb-soal); font-weight: 500; color: var(--v10-teks); overflow-wrap: anywhere; }
+.room-anggota-v10 .stem-room { margin: var(--v10-j-2) 0 0; font-size: var(--v10-t-soal); line-height: var(--v10-tb-soal); font-weight: 400; color: var(--v10-teks); overflow-wrap: anywhere; }
 .room-anggota-v10 .jawab-room { margin-top: var(--v10-j-5); }
 .room-anggota-v10 .catatan-ubah { margin: 0; font-size: var(--v10-t-label); line-height: var(--v10-tb-label); color: var(--v10-redup); }
 
@@ -6715,5 +6721,158 @@ body:not([data-mode="ujian"]):not([data-mode="fokus"])[data-view="simulasi"] mai
 }
 body:not([data-mode="ujian"]):not([data-mode="fokus"])[data-view="simulasi"] main .halaman-hasil .langkah-berikut > li .nomor { font-family: var(--v10-huruf); }
 @media (forced-colors: active) { body:not([data-mode="ujian"]):not([data-mode="fokus"])[data-view="simulasi"] main .halaman-hasil .kartu-skor .stempel { border: 0; } }
+/* ================= v10.3.1: ukuran teks soal dan keterbacaan =================
+   Keluhan pemilik: tampilan soal terlalu besar; faktor penglihatan ikut ditimbang.
+   1. Tiga ukuran lewat html[data-soal] (js/core.js UKP.terapkanTema, pengaturan.ukuranSoal): kecil 15/22, sedang 16/24 (bawaan, tanpa atribut),
+      besar 18/28. Semua teks baca kartu soal memakai token --v10-t-soal, --v10-t-baca, --v10-t-hitung, --v10-t-putus (rem).
+      Setelan "Teks lebih besar" (html[data-teks="besar"], font-size 112%) memperbesar 1rem, jadi ikut memperbesar teks soal: keduanya saling mengalikan.
+   2. Tidak ada teks soal, opsi, pembahasan, atau jejak hitung di bawah 15px; jarak baris paling sedikit 1,45 kali ukuran huruf.
+   3. Warna hanya token v10 yang sudah ada. */
+:root[data-soal="kecil"] {
+  --v10-t-soal: .9375rem; --v10-tb-soal: 1.375rem; --v10-t-baca: .9375rem; --v10-tb-baca: 1.375rem;
+  --v10-t-hitung: .9375rem; --v10-tb-hitung: 1.375rem; --v10-t-putus: 1.0625rem; --v10-tb-putus: 1.5625rem; --v10-soal-skala: .8;
+}
+:root[data-soal="besar"] {
+  --v10-t-soal: 1.125rem; --v10-tb-soal: 1.75rem; --v10-t-baca: 1.0625rem; --v10-tb-baca: 1.625rem;
+  --v10-t-hitung: 1rem; --v10-tb-hitung: 1.5rem; --v10-t-putus: 1.25rem; --v10-tb-putus: 1.8125rem; --v10-soal-skala: 1;
+}
+
+/* ---- stem: Latih, Simulasi, HP anggota room. Lebar baris paling banyak 66 karakter ---- */
+body main .soal.soal-v10 > .stem, body[data-mode="fokus"] #main .soal.soal-v10 > .stem,
+body[data-mode="ujian"] #main .halaman-ujian .soal > .stem, .halaman-ujian .soal > .stem,
+.halaman-room .room-anggota-v10 .stem-room, .halaman-room .pembahasan-room .soal > .stem {
+  font-size: var(--v10-t-soal); line-height: var(--v10-tb-soal); font-weight: 400; letter-spacing: 0; max-width: 66ch;
+  color: var(--v10-teks); white-space: normal;
+}
+/* v10.3.1 kartu soal jalur lama (tanpa .soal-v10): Latih dengan setelan "Periksa dulu", cek Materi, sesi Beranda, ulas hasil, dialog Bank soal,
+   Buku Kesalahan, Tutor, ulas tim, papan Ujian tim. Stem, opsi, dan teks pembahasan memakai token yang sama, jadi ikut tiga ukuran.
+   Warna tetap milik jalur lama. Papan Mode mabar (.soal-papan-v10) punya skala sendiri di bawah */
+.soal:not(.soal-v10):not(.soal-papan-v10) > .stem, body[data-mode="fokus"] #main .latih-area > .soal:not(.soal-v10):not(.soal-papan-v10) > .stem {
+  font-size: var(--v10-t-soal); line-height: var(--v10-tb-soal); font-weight: 400; letter-spacing: 0; max-width: 66ch;
+}
+.soal:not(.soal-v10):not(.soal-papan-v10) .opsi label,
+.soal:not(.soal-v10):not(.soal-papan-v10) .umpan :is(.umpan-mudah-isi, .inti, .triase-alasan, .umpan-jebakan, details.lipat li, ul.dasar-hukum .pasal, ul.dasar-hukum .meta) {
+  font-size: var(--v10-t-baca); line-height: var(--v10-tb-baca);
+}
+.soal:not(.soal-v10):not(.soal-papan-v10) > .kutipan p, .soal:not(.soal-v10):not(.soal-papan-v10) .umpan .jejak, .soal:not(.soal-v10):not(.soal-papan-v10) .umpan .jejak td { font-size: var(--v10-t-hitung); line-height: var(--v10-tb-hitung); }
+/* opsi jalur lama dan Simulasi: dulu 56px berjarak 10px, kini 48px berjarak 8px (sama dengan Latih); huruf bulat 30px tidak menambah tinggi baris */
+.soal:not(.soal-v10):not(.soal-papan-v10) .opsi { gap: 8px; }
+.soal:not(.soal-v10):not(.soal-papan-v10) .opsi:not(.opsi-tampil) label { min-height: 48px; padding-block: 10.5px; }
+.soal:not(.soal-v10):not(.soal-papan-v10) .opsi:not(.opsi-tampil) kbd { margin-block: calc((var(--v10-tb-baca) - 30px) / 2); }
+/* kartu "Soal hari ini" di Beranda: stem dan opsi ikut tiga ukuran (sedang tetap 16/24 dan 15px seperti v10.3.0) */
+.kartu-soal-hari .sh-stem, .beranda-v10 .bv-hari .bv-stem { font-size: var(--v10-t-soal); line-height: var(--v10-tb-soal); }
+.kartu-soal-hari .sh-opsi { font-size: var(--v10-t-hitung); }
+/* butir bernomor "(1) ... (2) ...": tiap butir di baris sendiri dengan inden gantung; pembuka dan kalimat tanya tetap paragraf (UKP.c.isiStem) */
+.stem-susun { white-space: normal; }
+.stem-susun > .stem-alinea, .stem-susun > .stem-butir { display: block; }
+.stem-susun > .stem-butir { padding-left: 1.75em; text-indent: -1.75em; }
+.stem-susun > * + * { margin-top: .25em; }
+.stem-susun > .stem-butir + .stem-alinea, .stem-susun > .stem-alinea + .stem-butir { margin-top: .5em; }
+/* v10.3.1: di layar lebar (768px ke atas) butir dirapatkan supaya soal berbutir tidak lebih tinggi dari v10.3.0 */
+@media (min-width: 768px) { .stem-susun > * + * { margin-top: 0; } .stem-susun > .stem-butir + .stem-alinea, .stem-susun > .stem-alinea + .stem-butir { margin-top: .2em; } }
+.angka-utuh { white-space: nowrap; font-variant-numeric: tabular-nums; } /* v10.3.1: angka sejajar hanya pada angka uang dan tabel jejak hitung (.jejak); teks berjalan memakai angka biasa supaya tanda hubung dan garis miring tidak renggang */
+
+/* ---- teks baca: opsi, alasan vonis, penjelasan mudah, cara ingat, pembahasan, dasar hukum, kutipan ---- */
+main .soal.soal-v10 .opsi:not(.opsi-tampil) label,
+.halaman-ujian .soal .opsi label,
+.room-anggota-v10 .huruf-besar.opsi-v10r,
+main .soal .umpan-v10 .vonis-alasan, main .soal .umpan-v10 .jelas-isi, main .soal .umpan-v10 > .ingat span,
+main .soal .umpan-v10 .lipat-isi :is(p, li), main .soal .umpan-v10 .lipat-isi ul.dasar-hukum .meta,
+.halaman-room .pembahasan-room .soal .opsi label, .halaman-room .pembahasan-room .umpan :is(.inti, .triase-alasan, .umpan-jebakan, details.lipat li, ul.dasar-hukum .pasal, ul.dasar-hukum .meta),
+.hasil-v10 .kunci-isi-room, .halaman-room .peran-wadah-v10 .penjelas-pribadi, .jelas-room-v10 .jelas-isi, .jelas-room-v10 .ingat-room span {
+  font-size: var(--v10-t-baca); line-height: var(--v10-tb-baca);
+}
+main .soal .umpan-v10 .lipat-judul { font-size: var(--v10-t-baca); }
+/* kutipan peraturan: dulu 14px, kini paling kecil 15px */
+main .soal.soal-v10 > .kutipan p, .halaman-ujian .soal > .kutipan p, .halaman-room .room-anggota-v10 .kutipan, .soal-papan-v10 .kutipan p { font-size: var(--v10-t-hitung); line-height: var(--v10-tb-hitung); }
+main .soal.soal-v10 > .kutipan p, .halaman-ujian .soal > .kutipan p, .halaman-room .room-anggota-v10 .kutipan { color: var(--v10-teks); }
+main .soal .umpan-v10 .vonis-judul { font-size: var(--v10-t-putus); line-height: var(--v10-tb-putus); }
+/* jejak hitung: dulu 13px, kini paling kecil 15px */
+main .soal .umpan-v10 .jejak, .soal-papan-v10 .umpan .jejak, .halaman-room .room-anggota-v10 .jejak, .halaman-room .pembahasan-room .jejak { font-size: var(--v10-t-hitung); line-height: var(--v10-tb-hitung); }
+main .soal .umpan-v10 .jejak td, .soal-papan-v10 .umpan .jejak td, .halaman-room .room-anggota-v10 .jejak td, .halaman-room .pembahasan-room .jejak td { line-height: var(--v10-tb-hitung); color: var(--v10-teks); }
+
+/* ---- jarak tegak lebih hemat; sasaran ketuk opsi tetap paling sedikit 48px ---- */
+main .latih-area > .soal.soal-v10 { padding-top: var(--v10-j-3); }
+main .soal.soal-v10 > .stem { margin-top: 6px; }
+main .soal.soal-v10 > fieldset.opsi { margin-top: var(--v10-j-3); }
+main .soal.soal-v10 .opsi:not(.opsi-tampil) label { min-height: 48px; padding: 10.5px var(--v10-j-4) 10.5px var(--v10-j-3); }
+main .soal.soal-v10 .opsi label[data-hasil][data-hasil] { padding: 10px 15.5px 10px 11.5px; }
+main .soal.soal-v10 .opsi kbd { margin-top: calc((var(--v10-tb-baca) - 28px) / 2); }
+.room-anggota-v10 .huruf-besar.opsi-v10r { min-height: 48px; padding-block: 10.5px; }
+.room-anggota-v10 .opsi-v10r .opsi-huruf { margin-top: calc((var(--v10-tb-baca) - 28px) / 2); }
+.halaman-ujian .soal > .stem { margin-top: 0; }
+
+/* ---- papan Mode mabar: huruf papan dikali --v10-soal-skala (kecil .8, sedang .9, besar 1); jarak baris 1,45; stem tebal 400.
+   Opsi dan teks baca papan tidak turun di bawah 15px; butir bernomor lebih rapat supaya soal panjang tidak lebih tinggi dari v10.3.0 ---- */
+.soal-papan-v10 .stem { font-size: calc(var(--p-soal) * var(--v10-soal-skala)); line-height: 1.45; font-weight: 400; }
+.soal-papan-v10 .stem-susun > * + * { margin-top: .1em; }
+.soal-papan-v10 .stem-susun > .stem-butir + .stem-alinea, .soal-papan-v10 .stem-susun > .stem-alinea + .stem-butir { margin-top: .3em; }
+.page.papan-v10 .soal-papan-v10 fieldset.opsi > label { font-size: max(.9375rem, calc(var(--p-opsi) * var(--v10-soal-skala))); line-height: 1.45; }
+.soal-papan-v10 .papan-bahas-baca, .soal-papan-v10 .papan-v10-isi > div > .umpan { font-size: max(.9375rem, calc(var(--p-baca) * var(--v10-soal-skala))); }
+.soal-papan-v10 .papan-bahas-baca { line-height: 1.45; }
+/* panel membahas: "Penjelasan mudah" dan inti pembahasan ikut skala papan (dulu tetap 18px dan 17px) */
+.soal-papan-v10 .umpan .umpan-mudah-isi, .soal-papan-v10 .umpan .inti { font-size: max(.9375rem, calc(var(--p-baca) * var(--v10-soal-skala))); line-height: 1.5; }
+.soal-papan-v10 .umpan :is(.triase-alasan, .umpan-jebakan, details.lipat li, ul.dasar-hukum .pasal, ul.dasar-hukum .meta) { font-size: max(.9375rem, calc(.8 * var(--p-baca) * var(--v10-soal-skala))); line-height: 1.5; }
+
+/* ---- tombol "Aa" (UKP.c.tombolUkuranSoal): pemicu 44px, menu tiga pilihan, pilihan aktif bertanda garis dan huruf tebal ---- */
+.aa-soal { flex: none; }
+.aa-soal > summary.aa-soal-tombol {
+  display: inline-grid; place-items: center; min-width: var(--v10-sasaran); min-height: var(--v10-sasaran); padding: 0 var(--v10-j-2);
+  border: var(--v10-tebal-kendali) solid var(--v10-garis-kendali); border-radius: var(--v10-r-kendali); background: var(--v10-permukaan); color: var(--v10-teks);
+  font-family: var(--v10-huruf); font-size: 1rem; font-weight: 600; line-height: 1; letter-spacing: 0; cursor: pointer; user-select: none;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.aa-soal > summary.aa-soal-tombol:hover, .aa-soal[open] > summary.aa-soal-tombol { background: var(--v10-permukaan-2); color: var(--v10-teks); }
+.aa-soal > summary.aa-soal-tombol:focus-visible { outline: 2px solid var(--v10-fokus); outline-offset: 2px; }
+:is(.kop-sesi-v10, .papan-v10-kop) .aa-soal > summary.aa-soal-tombol { border-color: transparent; border-radius: var(--v10-r-pil); background: transparent; color: var(--v10-merek-teks); }
+:is(.kop-sesi-v10, .papan-v10-kop) .aa-soal > summary.aa-soal-tombol:hover, :is(.kop-sesi-v10, .papan-v10-kop) .aa-soal[open] > summary.aa-soal-tombol { background: var(--v10-pita-sorot); color: var(--v10-merek-teks); }
+:is(.kop-sesi-v10, .papan-v10-kop) .aa-soal > summary.aa-soal-tombol:focus-visible { outline-color: var(--v10-aksen); }
+.papan-v10-kop .aa-soal > summary.aa-soal-tombol { border-color: var(--v10-merek-redup); font-size: var(--p-kecil); padding-inline: var(--v10-j-3); }
+.aa-soal > .aa-soal-isi {
+  min-width: 168px; padding: var(--v10-j-1); gap: 2px; background: var(--v10-permukaan); color: var(--v10-teks);
+  border: var(--v10-tebal-rambut) solid var(--v10-garis-kendali); border-radius: var(--v10-r-kartu); box-shadow: var(--bayang-melayang);
+}
+.aa-soal > .aa-soal-isi > button {
+  min-height: var(--v10-sasaran); padding: 0 var(--v10-j-3); gap: var(--v10-j-3); border-radius: var(--v10-r-kendali);
+  font-family: var(--v10-huruf); font-size: 1rem; line-height: 1.5; font-weight: 400; color: var(--v10-teks); background: transparent;
+}
+.aa-soal > .aa-soal-isi > button:hover { background: var(--v10-permukaan-2); color: var(--v10-teks); }
+.aa-soal > .aa-soal-isi > button[aria-pressed="true"] { background: var(--v10-aksi-lembut); font-weight: 600; box-shadow: inset var(--v10-tebal-penanda) 0 0 var(--v10-penanda); }
+.aa-soal > .aa-soal-isi > button:focus-visible { outline: 2px solid var(--v10-fokus); outline-offset: -2px; }
+.aa-soal .aa-contoh { width: 1.75em; font-weight: 600; text-align: center; }
+.aa-soal button[data-ukuran="kecil"] .aa-contoh { font-size: .8125rem; }
+.aa-soal button[data-ukuran="besar"] .aa-contoh { font-size: 1.25rem; }
+.kop-sesi-room > .aa-soal { order: 0; }
+/* v10.3.1: di HP sempit (di bawah 380px) tombol Aa dan jarak kop dirapatkan supaya judul kop ("Ulang · soal 1 dari 1") tetap utuh; sasaran ketuk tetap 44px */
+@media (max-width: 379px) {
+  .kop-sesi-v10.ada-aa > .aa-soal { margin-inline: -6px; }
+  body[data-mode] main > .page > .fokus-bar.kop-sesi-v10.ada-aa > .fokus-judul { gap: 6px; }
+  .kop-sesi-v10.ada-aa .kop-sesi-kanan { padding-right: 0; }
+}
+/* v10.3.1: di HP (di bawah 430px) kata "benar" di samping angka skor disembunyikan dari layar supaya judul dua angka ("soal 10 dari 20") utuh; pembaca layar tetap membacanya */
+@media (max-width: 429px) {
+  .kop-sesi-v10.ada-aa:not(.kop-sesi-room) .kop-sesi-kanan small { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .kop-sesi-v10.ada-aa > .aa-soal { margin-inline: -6px -2px; }
+  body[data-mode] main > .page > .fokus-bar.kop-sesi-v10.ada-aa > .fokus-judul { gap: 6px; }
+}
+/* v10.3.1: "Catatan sumber" bisa menyebut kunci (soal bertanda perlu cek), jadi baru tampil sesudah soal dijawab; isinya teks baca, bukan meta */
+.soal > details.catatan-sumber[hidden] { display: none; }
+.soal > details.catatan-sumber > p { font-size: var(--v10-t-hitung); line-height: var(--v10-tb-hitung); color: var(--v10-teks); }
+/* papan Mode mabar: Aa di pita mulai 600px; di bawah itu pita terlalu sempit, Aa pindah ke kop soal */
+.soal-papan-v10 .soal-kop > .aa-soal { display: none; margin-left: auto; }
+@media (max-width: 599px) {
+  .papan-v10-kop > .aa-soal { display: none; }
+  .soal-papan-v10 .soal-kop > .aa-soal { display: inline-block; margin-block: -18px -4px; }
+  /* v10.3.1: Aa tidak boleh menambah tinggi kop soal. Topik dipotong elipsis di baris kode soal (judul lengkap di title), paket sumber tetap di baris kedua */
+  .soal-papan-v10 .soal-kop .soal-id > .topik:not(.sumber-set) { flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .soal-papan-v10 .soal-kop > .aa-soal > summary.aa-soal-tombol { font-size: 1rem; }
+}
+/* Simulasi di HP: Aa di baris pertama bilah, di antara nomor soal dan jam */
+.ujian-bar > .aa-soal { margin-block: -6px; } /* v10.3.1: sasaran 44px, tetapi baris pertama bilah tetap setinggi jam (32px), jadi bilah HP tetap 109px */
+.ujian-bar .aa-soal > summary.aa-soal-tombol { font-family: var(--font-ui); }
+.ujian-bar > .aa-soal:not([open]) > summary.aa-soal-tombol { border-color: transparent; background: transparent; } /* HP: tanpa bingkai supaya tidak menempel tombol baris kedua */
+@media (prefers-reduced-motion: reduce) { .aa-soal *, .stem-susun * { transition: none; animation: none; } }
+:root[data-gerak="kurang"] .aa-soal * { transition: none; animation: none; }
+@media print { .aa-soal { display: none !important; } }
 /* v10 lain: selesai */
 /* ===== v10 langkah tegas: selesai ===== */

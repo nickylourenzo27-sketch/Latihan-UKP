@@ -7745,7 +7745,7 @@ UKP.register({
       dasarHukum: [{ pasal: "Pasal 9 ayat (2) UU PBB (UU 12/1985 s.t.d.d. UU 12/1994)", berlakuSejak: "1995-01-01" }],
       anggaranDetik: 90,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 56, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 56, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 64, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -7773,7 +7773,7 @@ UKP.register({
       dasarHukum: [{ pasal: "Pasal 15 ayat (1) huruf c PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" }],
       anggaranDetik: 60,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 62, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 62, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 94, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -7829,7 +7829,7 @@ UKP.register({
       dasarHukum: [{ pasal: "Pasal 4 ayat (2) huruf a UU 1/2022", berlakuSejak: "2022-01-05" }, { pasal: "Pasal 38 ayat (1) UU 1/2022", berlakuSejak: "2022-01-05" }],
       anggaranDetik: 60,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 85, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 85, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 19, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -7865,7 +7865,7 @@ UKP.register({
       dasarHukum: [{ pasal: "Pasal 5, Pasal 6 ayat (3), dan Pasal 7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 huruf a PP 25/2002", berlakuSejak: "2002-01-01" }],
       anggaranDetik: 150,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 99, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 99, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 42, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -8437,6 +8437,96 @@ UKP.register({
       opsiLepas: { teks: "SPOP baru", alasan: "SPOP adalah formulir pendataan objek, bukan alat penagihan." },
       sumber: { set: "LM-B-2026-11", no: 131, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PBB-P5L" },
       sejak: "9.7.0"
+    },
+    {
+      id: "B8-271",
+      topik: "B8.1",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Geotermal Nusa memegang izin pengusahaan panas bumi atas suatu Wilayah Kerja Panas Bumi. Di dalam wilayah kerja tersebut terdapat areal permukaan bumi yang tidak dipunyai haknya dan tidak diperoleh manfaatnya oleh PT Geotermal Nusa. Menurut PMK 186/PMK.03/2019 s.t.d.d. PMK 234/PMK.03/2022, perlakuan PBB atas areal tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Tetap dikenakan PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi, karena areal tersebut berada di dalam Wilayah Kerja Panas Bumi", B: "Dikenakan PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi dengan NJOP areal tidak produktif", C: "Tidak dikenakan PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi", D: "Dikenakan PBB Sektor Lainnya, karena areal tersebut bukan bagian dari objek panas bumi" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Berada di dalam wilayah kerja saja belum membuat sebidang tanah kena PBB panas bumi. Permukaan tanah baru menjadi objek kalau perusahaan punya haknya atau mengambil manfaatnya untuk usaha panas bumi. Areal di soal ini tidak dipunyai haknya dan tidak dimanfaatkan perusahaan. Jadi areal itu tidak dikenai PBB sektor panas bumi. Cara ingat: tidak punya hak dan tidak ambil manfaat, tidak kena.",
+        inti: "Pasal 6 ayat (4) PMK 186/PMK.03/2019 membatasi permukaan bumi yang menjadi objek pada areal yang dimiliki dengan suatu hak atas tanah dan/atau diperoleh manfaatnya serta digunakan untuk pengusahaan panas bumi. Pasal 6 ayat (7) menegaskan areal di dalam kawasan yang tidak dipunyai haknya dan tidak diperoleh manfaatnya tidak dikenakan PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi. Pasal 6 tidak diubah PMK 234/PMK.03/2022.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Letak di dalam Wilayah Kerja Panas Bumi tidak cukup. Permukaan bumi harus dipunyai haknya atau diperoleh manfaatnya oleh Wajib Pajak (Pasal 6 ayat (4)).",
+          B: "Golongan areal tidak produktif hanya dipakai untuk menilai areal pada objek yang memang dikenakan PBB. Areal ini sejak awal tidak dikenakan PBB sektor panas bumi, jadi tidak ada NJOP yang perlu ditetapkan.",
+          D: "PBB Sektor Lainnya meliputi objek di wilayah perairan dan wilayah yurisdiksi tertentu, bukan penampung areal darat yang tidak dikenakan sektor panas bumi."
+        },
+        jebakan: "Menyamakan seluruh Wilayah Kerja dengan objek pajak permukaan bumi. Seluruh wilayah kerja hanya relevan untuk tubuh bumi."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (4) dan ayat (7) PMK 186/PMK.03/2019 (tidak diubah PMK 234/PMK.03/2022)", berlakuSejak: "2020-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 28, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B8-272",
+      topik: "B8.1",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 1,
+      stem: "PT Migas Bahari mengusahakan wilayah kerja minyak dan gas bumi. Di wilayah tersebut terdapat tangki penampungan minyak dan pipa penyalur minyak yang dilekatkan secara tetap pada tanah. Menurut Penjelasan Pasal 1 UU PBB (s.t.d.d. UU No. 12 Tahun 1994), tangki dan pipa tersebut termasuk ...",
+      kataKualifikasi: [],
+      opsi: { A: "Bumi, karena menyatu dengan tubuh bumi di bawahnya", B: "Peralatan produksi yang dikecualikan dari objek PBB", C: "Benda bergerak yang tidak termasuk objek PBB", D: "Bangunan, sehingga menjadi bagian dari objek PBB" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Dalam pajak bumi dan bangunan, bangunan tidak hanya gedung. Apa pun yang dibangun dan dilekatkan secara tetap pada tanah atau perairan ikut dihitung. Undang-undangnya sendiri memberi contoh: tempat penampungan atau kilang minyak, air, dan gas, serta pipa minyak. Jadi tangki dan pipa milik perusahaan migas itu adalah bangunan dan ikut dikenai pajak. Cara ingat: tertanam tetap di tanah berarti bangunan, walau bentuknya tangki atau pipa.",
+        inti: "Pasal 1 angka 2 UU PBB mendefinisikan bangunan sebagai konstruksi teknik yang ditanam atau dilekatkan secara tetap pada tanah dan/atau perairan. Penjelasannya menyebut contoh yang termasuk bangunan, antara lain tempat penampungan/kilang minyak, air dan gas, serta pipa minyak. Karena objek PBB adalah bumi dan/atau bangunan (Pasal 2), tangki dan pipa tersebut menjadi bagian dari objek PBB.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Bumi adalah permukaan bumi dan tubuh bumi di bawahnya. Tangki dan pipa adalah konstruksi buatan yang dilekatkan pada tanah, jadi masuk bangunan.",
+          B: "UU PBB tidak mengenal pengecualian untuk peralatan produksi. Objek yang tidak dikenakan PBB terbatas pada daftar Pasal 3, misalnya untuk ibadah, kuburan, dan hutan lindung.",
+          C: "Tangki dan pipa itu dilekatkan secara tetap pada tanah, jadi bukan benda bergerak, dan penjelasan undang-undang menyebutnya sebagai bangunan."
+        },
+        jebakan: "Mengira bangunan hanya gedung, padahal tangki, kilang, dan pipa minyak disebut sebagai bangunan."
+      },
+      dasarHukum: [{ pasal: "Pasal 1 angka 2 UU PBB beserta Penjelasannya (UU 12/1985 s.t.d.d. UU 12/1994)", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 2 ayat (1) UU PBB", berlakuSejak: "1995-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 58, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B8-273",
+      topik: "B8.4",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Rimba Cipta memegang IUPHHK atas areal seluas 800 hektare. Sebanyak 600 hektare merupakan areal produktif dengan NJOP Rp1.000,00 per m2, sedangkan 200 hektare lainnya ditetapkan pemerintah sebagai hutan lindung. NJKP yang berlaku 40%, NJOPTKP Rp12.000.000,00, dan tarif 0,5%. Berapakah PBB-P5L yang terutang?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp15.976.000,00", B: "Rp5.988.000,00", C: "Rp11.976.000,00", D: "Rp12.000.000,00" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "angka-usang", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Hutan lindung tidak dikenai pajak bumi dan bangunan, jadi 200 hektare itu dibuang dari hitungan. Sisanya 600 hektare sama dengan 6.000.000 meter persegi, senilai Rp6.000.000.000. Kurangi bagian yang tidak kena pajak Rp12.000.000, hasilnya Rp5.988.000.000. Lalu ambil 40% dan kalikan 0,5%, sama dengan 0,2%. Hasilnya Rp11.976.000. Cara ingat: buang yang dikecualikan, kurangi dua belas juta, lalu kali 0,2%.",
+        inti: "Hutan lindung adalah objek yang tidak dikenakan PBB (Pasal 3 ayat (1) huruf c UU PBB), sehingga hanya 600 hektare (6.000.000 m2) yang dihitung. NJOP = 6.000.000 m2 x Rp1.000 = Rp6.000.000.000. NJOP untuk penghitungan = Rp6.000.000.000 - NJOPTKP Rp12.000.000 = Rp5.988.000.000. NJKP 40% (sektor kehutanan) = Rp2.395.200.000. PBB = 0,5% x Rp2.395.200.000 = Rp11.976.000.",
+        jejakHitung: [
+          ["Luas yang dikenakan (hutan lindung 200 ha dikeluarkan)", "600 ha = 6.000.000 m2"],
+          ["NJOP = 6.000.000 m2 x Rp1.000", "Rp6.000.000.000"],
+          ["Dikurangi NJOPTKP Rp12.000.000", "Rp5.988.000.000"],
+          ["NJKP = 40% x Rp5.988.000.000", "Rp2.395.200.000"],
+          ["PBB = 0,5% x Rp2.395.200.000", "Rp11.976.000"]
+        ],
+        mengapaSalah: {
+          A: "Angka ini muncul bila seluruh 800 hektare dihitung: (Rp8.000.000.000 - Rp12.000.000) x 40% x 0,5%. Hutan lindung 200 hektare seharusnya dikeluarkan.",
+          B: "Angka ini memakai NJKP 20%: Rp5.988.000.000 x 20% x 0,5%. Soal menyebut NJKP 40%, dan itu memang persentase untuk sektor kehutanan.",
+          D: "Angka ini muncul bila NJOPTKP Rp12.000.000 tidak dikurangkan: Rp6.000.000.000 x 40% x 0,5%."
+        },
+        jebakan: "Ikut menghitung areal hutan lindung, atau lupa mengurangkan NJOPTKP sebelum mengalikan NJKP."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (1) huruf c UU PBB (UU 12/1985 s.t.d.d. UU 12/1994)", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 5, Pasal 6, dan Pasal 7 UU PBB", berlakuSejak: "1995-01-01" }, { pasal: "Pasal 1 huruf a PP 25/2002", berlakuSejak: "2002-01-01" }, { pasal: "Pasal 2 ayat (3) PMK 23/PMK.03/2014", berlakuSejak: "2014-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 75, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
     }
   ],
   kartu: [

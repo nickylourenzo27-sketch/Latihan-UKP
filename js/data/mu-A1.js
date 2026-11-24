@@ -7728,6 +7728,228 @@ UKP.register({
       opsiLepas: { teks: "Dilaporkan oleh anak", alasan: "Anak tidak melaporkan penghasilan orang tuanya; yang terjadi justru penghasilan anak belum dewasa digabung ke orang tua." },
       sumber: { set: "LM-B-2026-11", no: 214, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Orang Pribadi dan SPT PPh OP" },
       sejak: "9.7.0"
+    },
+    {
+      id: "A1-250",
+      topik: "A1.7",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "Dalam SPT Tahunan PPh Orang Pribadi Tahun Pajak 2025, penghasilan neto setelah pengurang (angka 4) adalah Rp187.654.321,00 dan PTKP yang berlaku Rp58.500.000,00 (K/0). Menurut petunjuk pengisian Lampiran G PER-11/PJ/2025, Penghasilan Kena Pajak (angka 6) yang dicantumkan adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp129.154.321,00", B: "Rp129.154.000,00", C: "Rp129.155.000,00", D: "Rp129.150.000,00" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Kurangkan dulu PTKP dari penghasilan neto: Rp187.654.321,00 dikurangi Rp58.500.000,00 sama dengan Rp129.154.321,00. Setelah itu buang semua angka di bawah seribu rupiah, karena penghasilan kena pajak dibulatkan ke bawah ke ribuan penuh. Hasilnya Rp129.154.000,00. Pembulatannya selalu turun, tidak pernah naik, dan cukup sampai ribuan. Cara ingat: tiga angka terakhir penghasilan kena pajak selalu nol.",
+        inti: "Petunjuk pengisian angka 6 induk SPT Tahunan PPh Orang Pribadi (Lampiran PER-11/PJ/2025) menyatakan Penghasilan Kena Pajak = angka 4 dikurangi angka 5, dan untuk keperluan penerapan tarif jumlahnya dibulatkan ke bawah dalam ribuan rupiah penuh, sejalan dengan Pasal 17 ayat (4) UU PPh. Rp187.654.321,00 dikurangi Rp58.500.000,00 = Rp129.154.321,00, dibulatkan ke bawah menjadi Rp129.154.000,00.",
+        jejakHitung: [
+          ["Penghasilan neto setelah pengurang (angka 4)", "Rp187.654.321,00"],
+          ["PTKP K/0 (angka 5)", "Rp58.500.000,00"],
+          ["Angka 4 dikurangi angka 5", "Rp129.154.321,00"],
+          ["Dibulatkan ke bawah dalam ribuan rupiah penuh (angka 6)", "Rp129.154.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Angka ini hasil pengurangan yang belum dibulatkan. Penghasilan Kena Pajak harus dibulatkan ke bawah dalam ribuan rupiah penuh.",
+          C: "Angka ini dibulatkan ke atas. Pembulatan Penghasilan Kena Pajak selalu ke bawah.",
+          D: "Angka ini dibulatkan ke bawah sampai puluhan ribu. Pembulatannya hanya sampai ribuan rupiah penuh."
+        },
+        jebakan: "Arah dan satuan pembulatan: selalu ke bawah dan hanya sampai ribuan rupiah penuh."
+      },
+      dasarHukum: [{ pasal: "PER-11/PJ/2025 Lampiran huruf G (petunjuk pengisian induk SPT Tahunan PPh Orang Pribadi, angka 4 sampai angka 6)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 17 ayat (4) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 5, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A1-251",
+      topik: "A1.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Mr. Daniel Reyes, WNA, tiba di Indonesia pada 1 Maret 2025 bersama keluarganya. Ia menyewa rumah jangka panjang, memasukkan anaknya ke sekolah di Jakarta, dan menyatakan berniat menetap di Indonesia. Selama Tahun Pajak 2025 ia berada di Indonesia 120 hari karena sering bepergian ke luar negeri. Status Mr. Daniel Reyes untuk Tahun Pajak 2025 menurut UU PPh adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "subjek pajak luar negeri karena berada di Indonesia tidak lebih dari 183 hari", B: "subjek pajak luar negeri sampai ia berada di Indonesia lebih dari 183 hari", C: "subjek pajak dalam negeri karena berada di Indonesia dan berniat menetap", D: "bukan subjek pajak karena berstatus WNA" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Batas 183 hari bukan satu-satunya ukuran untuk orang asing. Orang yang berada di Indonesia dalam suatu tahun pajak dan berniat menetap sudah menjadi subjek pajak dalam negeri. Niat itu dilihat dari keadaan, misalnya menyewa rumah jangka panjang dan menyekolahkan anak di sini. Jadi 120 hari pun cukup karena niat menetapnya nyata. Cara ingat: tinggal, lebih dari 183 hari, atau niat menetap, cukup satu.",
+        inti: "Pasal 2 ayat (3) huruf a UU PPh menyebut tiga kriteria alternatif subjek pajak dalam negeri orang pribadi: bertempat tinggal di Indonesia, berada di Indonesia lebih dari 183 hari dalam 12 bulan, atau dalam suatu tahun pajak berada di Indonesia dan mempunyai niat untuk bertempat tinggal di Indonesia. Mr. Daniel Reyes memenuhi kriteria ketiga. PMK 18/PMK.03/2021 menerima kontrak sewa tempat tinggal lebih dari 183 hari sebagai salah satu bukti niat.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tidak lebih dari 183 hari baru menjadikan orang asing subjek pajak luar negeri bila ia juga tidak bertempat tinggal dan tidak berniat menetap di Indonesia.",
+          B: "Status dalam negeri tidak harus menunggu hari ke-184. Kriteria niat bertempat tinggal berdiri sendiri dan sudah terpenuhi pada Tahun Pajak 2025.",
+          D: "Kewarganegaraan tidak menentukan. Pasal 2 ayat (3) huruf a berlaku bagi Warga Negara Indonesia maupun warga negara asing."
+        },
+        jebakan: "Terpaku pada angka 120 hari dan lupa bahwa tiga kriteria subjek pajak dalam negeri bersifat alternatif."
+      },
+      dasarHukum: [{ pasal: "Pasal 2 ayat (3) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 18/PMK.03/2021 Pasal 2 ayat (4) (dokumen bukti niat bertempat tinggal di Indonesia)", berlakuSejak: "2021-02-17" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 34, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A1-252",
+      topik: "A1.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Tuan Bimo adalah pedagang eceran berstatus Wajib Pajak Orang Pribadi Pengusaha Tertentu. Karena peredaran bruto usahanya pada Tahun Pajak 2026 melebihi Rp4,8 miliar, mulai Tahun Pajak 2027 penghasilannya dikenai PPh berdasarkan ketentuan umum. Peredaran bruto pada Januari 2027 sebagai berikut. Toko di Pasar Baru Rp300.000.000,00; Toko di rumah tinggal Rp100.000.000,00. Berapakah angsuran PPh Pasal 25 Masa Pajak Januari 2027 yang wajib dibayar Tuan Bimo?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp2.250.000,00", B: "Rp3.000.000,00", C: "Rp2.000.000,00", D: "Rp4.000.000,00" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "final-nonfinal", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Pedagang eceran dengan toko di luar rumahnya membayar angsuran pajak bulanan 0,75% dari omzet tiap toko. Toko di rumah tinggal juga ikut dihitung. Omzet Januari dua toko itu Rp400 juta, jadi angsurannya Rp3 juta. Tarif 0,5% tidak dipakai lagi karena omzet tahun sebelumnya sudah melewati Rp4,8 miliar. Cara ingat: pengusaha tertentu, 0,75% dari omzet semua toko.",
+        inti: "Angsuran PPh Pasal 25 Wajib Pajak Orang Pribadi Pengusaha Tertentu sebesar 0,75% dari peredaran bruto setiap bulan dari masing-masing tempat usaha, termasuk tempat usaha di tempat tinggal (Pasal 234 ayat (1) PMK 81/2024). Karena peredaran bruto 2026 melebihi Rp4,8 miliar, Tuan Bimo tidak dapat lagi dikenai PPh final dan wajib membayar angsuran mulai Tahun Pajak pertama dikenai ketentuan umum (Pasal 16 PMK 164/2023).",
+        jejakHitung: [
+          ["Toko di Pasar Baru = 0,75% x Rp300.000.000,00", "Rp2.250.000,00"],
+          ["Toko di rumah tinggal = 0,75% x Rp100.000.000,00", "Rp750.000,00"],
+          ["Angsuran PPh Pasal 25 Januari 2027 = Rp2.250.000,00 + Rp750.000,00", "Rp3.000.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Rp2.250.000,00 hanya menghitung toko di Pasar Baru. Tempat usaha yang berada di tempat tinggal juga termasuk dasar angsuran.",
+          C: "Rp2.000.000,00 memakai tarif 0,5%, yaitu tarif PPh final yang tidak dapat lagi dipakai setelah peredaran bruto setahun melebihi Rp4,8 miliar.",
+          D: "Rp4.000.000,00 memakai tarif 1%, yang bukan tarif angsuran Pengusaha Tertentu."
+        },
+        jebakan: "Mengeluarkan toko di rumah tinggal dari hitungan, atau masih memakai tarif final 0,5%."
+      },
+      dasarHukum: [{ pasal: "Pasal 25 ayat (7) huruf c UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 Pasal 234 ayat (1) (angsuran PPh Pasal 25 Wajib Pajak Orang Pribadi Pengusaha Tertentu)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 164/2023 Pasal 16 ayat (1) huruf b dan ayat (2) huruf a", berlakuSejak: "2023-12-29" }, { pasal: "Pasal 57 ayat (2) huruf e dan ayat (4) PP 55/2022 s.t.d.d. PP 20/2026", berlakuSejak: "2026-04-22" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 40, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A1-253",
+      topik: "A1.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      stem: "Tuan Hartono, Wajib Pajak orang pribadi, meninggal dunia pada bulan Agustus 2025 sehingga kewajiban subjektifnya berakhir dalam tahun berjalan. SPT Tahunan atas Bagian Tahun Pajak disampaikan. Menurut PER-3/PJ/2026, batas waktu penyampaian SPT Tahunan tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Paling lama 4 bulan setelah akhir Bagian Tahun Pajak", B: "Paling lama 31 Maret 2026", C: "Paling lama 3 bulan setelah akhir Bagian Tahun Pajak", D: "Paling lama 2 bulan setelah akhir Bagian Tahun Pajak" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Batas lapor tahunan orang pribadi adalah tiga bulan setelah tahun pajaknya berakhir. Kalau kewajiban pajaknya berhenti di tengah tahun, yang dilaporkan hanya sebagian tahun. Tiga bulan itu dihitung dari akhir bagian tahun tersebut, bukan dari akhir Desember. Empat bulan itu untuk badan, dan dua bulan itu lamanya perpanjangan. Cara ingat: orang pribadi tiga bulan, badan empat bulan, dihitung dari akhir tahun atau bagian tahunnya.",
+        inti: "Pasal 4 huruf a PER-3/PJ/2026: batas waktu penyampaian SPT Tahunan PPh Wajib Pajak orang pribadi paling lama 3 bulan setelah akhir Tahun Pajak atau Bagian Tahun Pajak. Karena kewajiban subjektif Tuan Hartono berakhir pada Agustus 2025, SPT-nya meliputi Bagian Tahun Pajak dan batasnya 3 bulan setelah akhir Bagian Tahun Pajak itu, sejalan dengan Pasal 3 ayat (3) huruf b UU KUP.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Empat bulan adalah batas untuk Wajib Pajak badan.",
+          B: "Tanggal 31 Maret 2026 baru benar bila Tahun Pajak berjalan penuh sampai 31 Desember 2025. Di sini yang dilaporkan Bagian Tahun Pajak yang berakhir lebih awal.",
+          D: "Dua bulan adalah jangka perpanjangan penyampaian SPT Tahunan paling lama, bukan batas waktu penyampaiannya."
+        },
+        jebakan: "Terpaku pada tanggal 31 Maret, padahal hitungan tiga bulan dimulai dari akhir Bagian Tahun Pajak."
+      },
+      dasarHukum: [{ pasal: "PER-3/PJ/2026 Pasal 4 huruf a", berlakuSejak: "2026-03-16" }, { pasal: "Pasal 3 ayat (3) huruf b UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 65, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A1-254",
+      topik: "A1.11",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 2,
+      stem: "Pak Taufik dan istrinya tidak berstatus PH maupun MT dan tetap menjadi satu kesatuan keluarga (KK). Harta mereka pada akhir Tahun Pajak 2025 sebagai berikut. Rumah: harga perolehan Rp800.000.000,00, NJOP Rp1.500.000.000,00, sisa KPR Rp300.000.000,00; Mobil: harga perolehan Rp300.000.000,00, NJKB Rp250.000.000,00; Deposito atas nama Pak Taufik Rp200.000.000,00; Deposito atas nama istri Rp100.000.000,00; Tabungan atas nama anak belum dewasa Rp20.000.000,00. Berapakah angka yang dicantumkan pada induk SPT Tahunan PPh Orang Pribadi Bagian I angka 14a (harta pada akhir tahun)?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp1.420.000.000,00", B: "Rp1.120.000.000,00", C: "Rp1.300.000.000,00", D: "Rp2.070.000.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-hitung", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Baris harta di halaman induk diisi dengan jumlah harga perolehan, yaitu harga saat harta itu didapat, bukan nilainya sekarang. Karena suami, istri, dan anak yang belum dewasa adalah satu kesatuan keluarga, harta mereka dilaporkan bersama. Jadi rumah Rp800 juta, mobil Rp300 juta, dua deposito Rp300 juta, dan tabungan anak Rp20 juta dijumlahkan menjadi Rp1,42 miliar. Sisa kredit rumah tidak dikurangkan karena utang punya barisnya sendiri. Cara ingat: harta diisi harga beli sekeluarga, utang dicatat terpisah.",
+        inti: "Petunjuk induk SPT Tahunan PPh Orang Pribadi menyatakan angka 14 huruf a diisi dari Lampiran 1 Bagian A Tabel 7 Ikhtisar Harta, baris jumlah harta pada akhir Tahun Pajak kolom (2) harga perolehan. Bagian I memuat transaksi Wajib Pajak sendiri dan anggota keluarganya, kecuali istri berstatus HB, PH, atau MT. Karena Pak Taufik berstatus KK, harta istri dan anak yang belum dewasa ikut dilaporkan: Rp800.000.000,00 + Rp300.000.000,00 + Rp200.000.000,00 + Rp100.000.000,00 + Rp20.000.000,00 = Rp1.420.000.000,00. Sisa KPR dilaporkan di angka 14 huruf b dari Lampiran 1 Bagian B, tidak dikurangkan dari harta.",
+        jejakHitung: [
+          ["Rumah (harga perolehan)", "Rp800.000.000,00"],
+          ["Mobil (harga perolehan)", "Rp300.000.000,00"],
+          ["Deposito Pak Taufik", "Rp200.000.000,00"],
+          ["Deposito istri", "Rp100.000.000,00"],
+          ["Tabungan anak belum dewasa", "Rp20.000.000,00"],
+          ["Angka 14a = jumlah harga perolehan", "Rp1.420.000.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Rp1.120.000.000,00 adalah harta dikurangi sisa KPR Rp300.000.000,00. Utang tidak dikurangkan di angka 14a karena dilaporkan sendiri di angka 14b.",
+          C: "Rp1.300.000.000,00 hanya menjumlahkan rumah, mobil, dan deposito Pak Taufik. Deposito istri dan tabungan anak ikut dilaporkan karena statusnya KK.",
+          D: "Rp2.070.000.000,00 memakai NJOP dan NJKB, yaitu nilai saat ini. Angka 14a diambil dari kolom harga perolehan."
+        },
+        jebakan: "Soal menyediakan tiga angka pengganggu: nilai saat ini (NJOP dan NJKB), sisa KPR, dan harta atas nama istri serta anak."
+      },
+      dasarHukum: [{ pasal: "Lampiran huruf G PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 (induk Bagian I angka 14 huruf a dan huruf b; Lampiran 1 Bagian A Tabel 7)", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 88, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A1-255",
+      topik: "A1.8",
+      tingkat: ["A", "B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Tuan Randi, pegawai tetap pada PT Karya, dipotong PPh Pasal 21 setiap bulan oleh pemberi kerja sepanjang Tahun Pajak 2025 dan menerima bukti pemotongan PPh Pasal 21 bagi pegawai tetap (BPA1). Dalam SPT Tahunan PPh Orang Pribadi, PPh Pasal 21 yang telah dipotong tersebut diperlakukan sebagai ...",
+      kataKualifikasi: [],
+      opsi: { A: "Penambah penghasilan bruto yang harus dikenai pajak kembali", B: "Kredit pajak yang mengurangi PPh terutang dalam SPT Tahunan", C: "Pajak final sehingga tidak perlu dilaporkan", D: "Denda administrasi yang harus dibayar kembali oleh Tuan Randi" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "final-nonfinal", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Pajak yang dipotong kantor tiap bulan dari gaji adalah cicilan pajak tahunan pegawai itu sendiri. Di akhir tahun, pajak setahun dihitung ulang dalam laporan tahunan, lalu dikurangi potongan yang sudah disetor kantor. Potongan itu disebut kredit pajak, dan buktinya adalah bukti potong dari pemberi kerja. Pajak atas gaji pegawai tetap tidak final, jadi gajinya tetap dilaporkan dan potongannya menjadi pengurang. Cara ingat: potongan gaji adalah uang muka pajak, bukan pajak tambahan.",
+        inti: "Pasal 28 ayat (1) huruf a UU PPh menyatakan pajak yang terutang dikurangi dengan kredit pajak untuk tahun pajak yang bersangkutan, antara lain pemotongan pajak atas penghasilan dari pekerjaan sebagaimana dimaksud dalam Pasal 21. Dalam SPT Tahunan PPh Orang Pribadi, PPh Pasal 21 dalam BPA1 diisi di induk Bagian D angka 10 huruf a sebagai PPh yang telah dipotong pihak lain dan dirinci di Lampiran 1 Bagian E. PPh Pasal 21 atas gaji pegawai tetap tidak bersifat final, sehingga berfungsi sebagai kredit pajak.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Yang dilaporkan sebagai penghasilan adalah gajinya. Pajak yang sudah dipotong bukan penghasilan baru, melainkan pengurang PPh terutang.",
+          C: "PPh Pasal 21 atas gaji pegawai tetap tidak final. Gajinya dihitung lagi dengan tarif umum di SPT Tahunan dan potongannya dikreditkan.",
+          D: "Potongan itu pelunasan pajak dalam tahun berjalan, bukan sanksi. Denda administrasi timbul karena pelanggaran, misalnya terlambat menyampaikan SPT."
+        },
+        jebakan: "Menganggap pajak yang sudah dipotong pemberi kerja berarti urusan selesai dan final, padahal harus diperhitungkan lagi sebagai kredit pajak."
+      },
+      dasarHukum: [{ pasal: "Pasal 28 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Lampiran huruf G PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 (induk Bagian D angka 10 huruf a; Lampiran 1 Bagian E)", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 91, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A1-256",
+      topik: "A1.9",
+      tingkat: ["A", "B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "Pak Lukman adalah pengusaha yang menyelenggarakan pembukuan dan berstatus K/1 (PTKP Rp63.000.000,00). Pada akhir Tahun Pajak 2025 ia menghitung angsuran PPh Pasal 25 tahun pajak berikutnya melalui Lampiran 4 Bagian A dengan data sebagai berikut. Penghasilan neto teratur Rp360.000.000,00; Kompensasi kerugian yang dapat dipakai tahun berikutnya (Lampiran 5 Bagian A kolom 9) Rp60.000.000,00; Tidak ada zakat dan tidak ada kredit pajak. Berapakah angsuran PPh Pasal 25 per bulan?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp2.462.500,00", B: "Rp2.575.000,00", C: "Rp2.962.500,00", D: "Rp29.550.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Angsuran bulanan tahun depan dihitung dari penghasilan teratur tahun ini. Penghasilan neto Rp360 juta dikurangi sisa rugi yang masih bisa dipakai Rp60 juta, lalu dikurangi penghasilan tidak kena pajak Rp63 juta, sehingga tersisa Rp237 juta. Pajaknya 5% untuk Rp60 juta pertama dan 15% untuk sisanya, jumlahnya Rp29,55 juta setahun. Karena tidak ada kredit pajak, angka itu dibagi 12 menjadi Rp2.462.500 per bulan. Cara ingat: neto, kurangi rugi dan pengurang pribadi, kenakan tarif berlapis, bagi dua belas.",
+        inti: "Lampiran 4 Bagian A SPT Tahunan PPh Orang Pribadi menghitung angsuran PPh Pasal 25 tahun pajak berikutnya: penghasilan neto dikurangi kompensasi kerugian tahun pajak berikutnya dan zakat, dikurangi PTKP, dikenai tarif Pasal 17 ayat (1) huruf a, dikurangi kredit pajak, lalu dibagi 12. PKP = Rp360.000.000,00 - Rp60.000.000,00 - Rp63.000.000,00 = Rp237.000.000,00. PPh = 5% x Rp60.000.000,00 + 15% x Rp177.000.000,00 = Rp29.550.000,00. Tanpa kredit pajak, angsuran = Rp29.550.000,00 / 12 = Rp2.462.500,00.",
+        jejakHitung: [
+          ["Penghasilan neto teratur (angka 1)", "Rp360.000.000,00"],
+          ["Kompensasi kerugian tahun berikutnya (angka 2)", "Rp60.000.000,00"],
+          ["Jumlah penghasilan neto (angka 4)", "Rp300.000.000,00"],
+          ["PTKP K/1 (angka 5)", "Rp63.000.000,00"],
+          ["Penghasilan kena pajak (angka 6)", "Rp237.000.000,00"],
+          ["5% x Rp60.000.000,00", "Rp3.000.000,00"],
+          ["15% x Rp177.000.000,00", "Rp26.550.000,00"],
+          ["PPh terutang dan PPh yang harus dibayar (kredit pajak nihil)", "Rp29.550.000,00"],
+          ["Angsuran per bulan = Rp29.550.000,00 / 12", "Rp2.462.500,00"]
+        ],
+        mengapaSalah: {
+          B: "Rp2.575.000,00 memakai PTKP Rp54.000.000,00 (tidak kawin tanpa tanggungan): PKP Rp246.000.000,00, PPh Rp30.900.000,00, dibagi 12.",
+          C: "Rp2.962.500,00 mengenakan 15% atas seluruh PKP (15% x Rp237.000.000,00 / 12) tanpa lapisan 5% untuk Rp60.000.000,00 pertama.",
+          D: "Rp29.550.000,00 adalah PPh setahun yang belum dibagi 12, padahal yang ditanya angsuran per bulan."
+        },
+        jebakan: "Memakai PTKP status lain, mengenakan satu tarif atas seluruh penghasilan kena pajak, atau berhenti di PPh setahun tanpa membagi 12. Sisa kerugian yang masih dapat dikompensasikan tahun berikutnya juga harus dikurangkan lebih dahulu."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 17 ayat (1) huruf a dan Pasal 25 ayat (1)", berlakuSejak: "2022-01-01" }, { pasal: "Lampiran huruf G PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 (Lampiran 4 Bagian A angka 1 sampai angka 11)", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 97, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
     }
   ],
   kartu: [

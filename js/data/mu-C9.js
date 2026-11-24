@@ -5096,7 +5096,7 @@ UKP.register({
       dasarHukum: [{ pasal: "UU PPh Pasal 24 ayat (1) dan ayat (2) s.t.d.t.d. UU 7/2021", berlakuSejak: "2009-01-01" }, { pasal: "PMK 192/PMK.03/2018 Pasal 6 ayat (2) dan ayat (4)", berlakuSejak: "2018-12-31" }],
       anggaranDetik: 120,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 94, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 94, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 80, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -5124,7 +5124,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PMK 136/2024 Pasal 1 angka 32 dan Pasal 5 ayat (1)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 60,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 97, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 97, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 77, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -5152,7 +5152,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PMK 136/2024 Pasal 26 ayat (1), ayat (2), dan ayat (4) (penghasilan pelayaran internasional)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 136/2024 Pasal 1 angka 23 dan angka 24 (Dividen yang Dikecualikan, Kepemilikan Saham Portofolio)", berlakuSejak: "2025-01-01" }],
       anggaranDetik: 75,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 100, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 100, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 98, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -6874,6 +6874,155 @@ UKP.register({
       anggaranDetik: 170,
       verifikasi: "✅",
       sejak: "10.3.0"
+    },
+    {
+      id: "C9-253",
+      topik: "C9.6",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Grup Mahkota, grup perusahaan multinasional yang memenuhi ambang pajak minimum global, memiliki entitas konstituen di Indonesia dengan data Tahun Pajak 2026 sebagai berikut: Penghasilan GloBE Indonesia: Rp1.000.000.000.000,00; Pajak tercakup (covered taxes): Rp100.000.000.000,00; Pengecualian berbasis substansi (substance-based income exclusion): Rp200.000.000.000,00. Tidak ada pengecualian de minimis dan tidak ada pajak tambahan lain. Jumlah pajak tambahan (top-up tax) atas yurisdiksi Indonesia menurut PMK 136 Tahun 2024 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp50.000.000.000,00", B: "Rp40.000.000.000,00", C: "Rp30.000.000.000,00", D: "Rp80.000.000.000,00" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Hitung dulu tarif pajak efektifnya: pajak Rp100 miliar dibagi laba Rp1 triliun sama dengan 10%. Tarif minimum 15%, jadi kekurangannya 5%. Kekurangan itu tidak dikalikan seluruh laba, tetapi laba setelah dikurangi pengecualian substansi, yaitu Rp800 miliar. Pajak tambahannya 5% dikali Rp800 miliar, yaitu Rp40 miliar. Cara ingat: selisih tarif dikali laba berlebih, bukan seluruh laba.",
+        inti: "Menurut Pasal 6 PMK 136/2024, pajak tambahan suatu yurisdiksi = persentase pajak tambahan x laba ekses. Persentase pajak tambahan = Tarif Minimum 15% dikurangi Tarif Pajak Efektif (ayat (3)), dan laba ekses = Laba GloBE Bersih dikurangi SBIE (ayat (4)). Tarif Pajak Efektif = Rp100 miliar : Rp1 triliun = 10%, sehingga persentasenya 5%. Laba ekses = Rp1 triliun dikurangi Rp200 miliar = Rp800 miliar. Pajak tambahan = 5% x Rp800 miliar = Rp40.000.000.000,00, karena tidak ada pajak tambahan lain.",
+        jejakHitung: [
+          ["Tarif Pajak Efektif = 100.000.000.000 : 1.000.000.000.000", "10%"],
+          ["Persentase pajak tambahan = 15% - 10%", "5%"],
+          ["Laba ekses = 1.000.000.000.000 - 200.000.000.000", "Rp800.000.000.000,00"],
+          ["Pajak tambahan = 5% x 800.000.000.000", "Rp40.000.000.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Angka ini 5% x Rp1 triliun, yaitu lupa mengurangkan pengecualian berbasis substansi dari laba.",
+          C: "Angka ini 15% x Rp200 miliar, yaitu tarif minimum dikalikan pengecualian substansi. Rumus itu tidak dikenal.",
+          D: "Angka ini 10% x Rp800 miliar, yaitu memakai tarif pajak efektif sebagai pengali. Pengalinya selisih tarif 5%."
+        },
+        jebakan: "Pengecualian berbasis substansi mengurangi dasar pengali (laba), bukan pajaknya, dan tidak ikut dalam penghitungan tarif pajak efektif."
+      },
+      dasarHukum: [{ pasal: "PMK 136/2024 Pasal 1 angka 33 (Tarif Minimum 15%), Pasal 5 ayat (1), dan Pasal 6 ayat (1), ayat (3), ayat (4), dan ayat (6)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 14, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "C9-254",
+      topik: "C9.4",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Nippon Haru Holdings, entitas induk grup, berkedudukan di negara yang tidak memiliki perjanjian pertukaran informasi (termasuk QCAA) dengan Indonesia. Peredaran bruto grup melampaui ambang batas. Grup memiliki dua entitas konstituen di Indonesia, yaitu PT Haru Mesin dan PT Haru Logistik. Entitas induk menunjuk PT Haru Mesin untuk menyampaikan laporan per negara. Kewajiban PT Haru Logistik adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "menyampaikan notifikasi, tanpa wajib menyampaikan laporan per negara karena telah disampaikan PT Haru Mesin", B: "menyampaikan laporan per negara sendiri karena kewajiban melekat pada setiap entitas konstituen", C: "tidak memiliki kewajiban apa pun, termasuk notifikasi", D: "menyampaikan notifikasi dan laporan per negara bersama-sama dengan PT Haru Mesin" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Induk grup berada di negara yang tidak bertukar laporan dengan Indonesia, jadi laporan per negara harus masuk lewat anak usaha di Indonesia. Kalau anak usahanya lebih dari satu, induk boleh menunjuk satu saja untuk menyampaikan laporan itu. Anak usaha yang tidak ditunjuk tidak perlu mengirim laporan yang sama. Pemberitahuan singkat ke kantor pajak tetap wajib bagi setiap anggota grup di dalam negeri. Cara ingat: laporan cukup satu, notifikasi tetap semua.",
+        inti: "Karena negara entitas induk tidak memiliki perjanjian pertukaran informasi dengan Indonesia, Wajib Pajak dalam negeri yang menjadi entitas konstituen wajib menyampaikan laporan per negara (Pasal 16 ayat (5) huruf b PMK 172/2023). Bila entitas konstituen dalam negeri lebih dari satu, entitas induk dapat menunjuk salah satunya untuk menyampaikan laporan itu (Pasal 21 ayat (4)). Notifikasi tetap wajib bagi setiap Wajib Pajak dalam negeri anggota Grup Usaha (Pasal 23 ayat (1)), sehingga PT Haru Logistik cukup menyampaikan notifikasi.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Pasal 21 ayat (4) PMK 172/2023 membolehkan entitas induk menunjuk satu entitas konstituen dalam negeri, jadi laporan per negara tidak perlu disampaikan oleh tiap entitas.",
+          C: "Notifikasi wajib bagi setiap Wajib Pajak dalam negeri anggota Grup Usaha menurut Pasal 23 ayat (1), termasuk yang tidak ditunjuk menyampaikan laporan per negara.",
+          D: "Yang menyampaikan laporan per negara bersamaan dengan notifikasi hanyalah Wajib Pajak yang punya kewajiban laporan itu, di sini PT Haru Mesin (Pasal 23 ayat (2)). PT Haru Logistik hanya notifikasi."
+        },
+        jebakan: "Menyamakan kewajiban notifikasi dengan kewajiban laporan per negara. Penunjukan hanya menggugurkan laporan, bukan notifikasi."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 16 ayat (5) huruf b dan Pasal 21 ayat (4) (laporan per negara oleh entitas konstituen dalam negeri yang ditunjuk)", berlakuSejak: "2023-12-29" }, { pasal: "PMK 172/2023 Pasal 23 ayat (1) dan ayat (2) (notifikasi)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 26, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "C9-255",
+      topik: "C9.4",
+      tingkat: ["C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "PT Tirta Logistik menguji harga jasa angkut kepada afiliasinya dengan metode berbasis laba. Pihak yang diuji berada di Indonesia. Tersedia dua kelompok pembanding eksternal dengan keandalan setara: pembanding dari Indonesia dan pembanding dari negara lain di kawasan yang sama. Pembanding yang diutamakan adalah ...",
+      kataKualifikasi: ["diutamakan"],
+      opsi: { A: "pembanding dari negara lain, karena datanya lebih banyak tersedia", B: "pembanding dari Indonesia, karena berasal dari yurisdiksi yang sama dengan pihak yang diuji", C: "pembanding dari negara lain, karena afiliasi berada di luar negeri", D: "salah satunya secara bebas, karena asal pembanding tidak dipertimbangkan" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Kalau dua kelompok pembanding dari luar sama andalnya, aturan memberi urutan pilihan. Yang dipakai adalah pembanding dari negara yang sama dengan pihak yang diuji. Pihak yang diuji di sini berada di Indonesia, jadi pembanding Indonesia yang dipilih. Banyaknya data atau lokasi lawan transaksi tidak menjadi ukuran. Cara ingat: pembanding ikut negara pihak yang diuji.",
+        inti: "Pasal 8 ayat (9) PMK 172/2023: bila tersedia lebih dari satu pembanding eksternal dengan tingkat kesebandingan dan keandalan yang sama, pembanding eksternal dari negara atau yurisdiksi yang sama dengan pihak yang diuji dipilih dan digunakan. Pihak yang diuji berada di Indonesia, sehingga pembanding Indonesia yang diutamakan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Ketersediaan data yang lebih banyak bukan ukuran pemilihan bila keandalannya sudah setara. Ukurannya kesamaan yurisdiksi dengan pihak yang diuji.",
+          C: "Acuannya lokasi pihak yang diuji, bukan lokasi afiliasi lawan transaksi.",
+          D: "Asal pembanding dipertimbangkan. Pasal 8 ayat (9) menetapkan urutan pilihan dan tidak membebaskan Wajib Pajak memilih."
+        },
+        jebakan: "Tertukar antara pihak yang diuji dan lawan transaksinya, atau mengira pembanding regional selalu lebih baik."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 8 ayat (5), ayat (7), dan ayat (9) (pemilihan pembanding eksternal)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 46, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "C9-256",
+      topik: "C9.4",
+      tingkat: ["C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Kencana Farma membayar royalti atas penggunaan merek milik afiliasinya di luar negeri sebesar 3% dari penjualan neto. Terdapat perjanjian lisensi merek antarpihak independen yang sebanding dengan persentase royalti 2% sampai dengan 4% dari penjualan neto. Terdapat pula data pembanding laba operasi bersih yang andal untuk metode TNMM, dengan keandalan yang setara. Metode yang diutamakan dalam menentukan kewajaran royalti tersebut adalah ...",
+      kataKualifikasi: ["diutamakan"],
+      opsi: { A: "Profit Split Method", B: "Transactional Net Margin Method", C: "Cost Plus Method", D: "Comparable Uncontrolled Transaction" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Royalti ini dihitung sebagai persen dari penjualan, dan ada perjanjian lisensi antarpihak bebas yang sebanding. Untuk harga yang dinyatakan dalam persen seperti itu, cara yang cocok adalah membandingkan langsung persennya dengan transaksi pihak bebas. Memang ada juga data laba operasi untuk cara lain dengan keandalan setara. Bila dua cara sama andalnya, aturan mendahulukan perbandingan langsung atas harga atau transaksinya. Cara ingat: kalau sama andal, bandingkan harganya dulu, baru labanya.",
+        inti: "Pasal 9 ayat (8) PMK 172/2023 menyatakan metode perbandingan transaksi independen (comparable uncontrolled transaction) sesuai untuk transaksi yang secara komersial dinilai dengan basis tertentu, antara lain persentase royalti terhadap penjualan atau laba operasi. Pasal 9 ayat (12) menetapkan bahwa bila metode perbandingan harga (CUP) atau metode perbandingan transaksi independen dan metode lain sama-sama dapat dipakai dengan keandalan setara, CUP atau metode perbandingan transaksi independen diutamakan. Karena pembanding royalti 2% sampai dengan 4% tersedia dan keandalannya setara dengan TNMM, yang diutamakan adalah comparable uncontrolled transaction.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Profit split dipakai bila para pihak sama-sama memberi kontribusi unik dan bernilai atau kegiatannya sangat terintegrasi. Data soal tidak menunjukkan keadaan itu.",
+          B: "TNMM memang dapat dipakai, tetapi Pasal 9 ayat (12) mendahulukan metode perbandingan transaksi independen bila keandalannya setara.",
+          C: "Cost plus menguji laba kotor atas biaya, cocok untuk pabrikan kontrak atau penyedia jasa. Royalti berbasis persentase penjualan tidak diuji dengan cara itu."
+        },
+        jebakan: "Memilih TNMM karena paling sering dipakai dalam praktik, padahal soal menyebut keandalan setara sehingga urutan prioritas yang menentukan."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 9 ayat (8) dan ayat (12)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 84, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "C9-257",
+      topik: "C9.4",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Data PT Sumber Alam pada tahun pajak sebelumnya, yaitu Tahun Pajak 2024: Peredaran bruto: Rp45.000.000.000,00; Transaksi afiliasi atas barang berwujud: Rp18.000.000.000,00; Transaksi afiliasi atas jasa manajemen: Rp6.000.000.000,00; Tidak ada afiliasi di negara dengan tarif PPh yang lebih rendah dari tarif PPh di Indonesia. Atas data tersebut, kewajiban PT Sumber Alam untuk Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "tidak wajib menyelenggarakan dokumen induk dan dokumen lokal karena peredaran bruto tidak melebihi Rp50.000.000.000,00", B: "tidak wajib menyelenggarakan dokumen induk dan dokumen lokal karena nilai transaksi barang tidak melebihi Rp20.000.000.000,00", C: "wajib menyelenggarakan dokumen induk dan dokumen lokal karena nilai transaksi jasa melebihi Rp5.000.000.000,00", D: "wajib menyelenggarakan dokumen induk, dokumen lokal, dan laporan per negara" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Dokumen harga transfer wajib dibuat bila satu saja ambang terlampaui pada tahun sebelumnya. Ambangnya: omzet di atas Rp50 miliar, transaksi barang dengan afiliasi di atas Rp20 miliar, atau transaksi jasa dengan afiliasi di atas Rp5 miliar. Omzet Rp45 miliar dan barang Rp18 miliar masih di bawah ambang, tetapi jasa manajemen Rp6 miliar sudah lewat. Jadi dokumen induk dan dokumen lokal wajib, sedangkan laporan per negara hanya untuk induk grup yang sangat besar. Cara ingat: cukup satu ambang lewat, dua dokumen wajib dibuat.",
+        inti: "Pasal 16 ayat (3) PMK 172/2023 mewajibkan dokumen induk dan dokumen lokal bagi Wajib Pajak yang melakukan Transaksi Afiliasi bila salah satu terpenuhi pada tahun pajak sebelumnya: peredaran bruto lebih dari Rp50.000.000.000,00; transaksi afiliasi barang berwujud lebih dari Rp20.000.000.000,00; atau masing-masing penyediaan jasa, pembayaran bunga, pemanfaatan barang tidak berwujud, atau transaksi afiliasi lainnya lebih dari Rp5.000.000.000,00; atau ada pihak afiliasi di yurisdiksi bertarif lebih rendah. Jasa manajemen Rp6.000.000.000,00 pada 2024 melampaui Rp5.000.000.000,00, sehingga kewajiban timbul untuk Tahun Pajak 2025. Laporan per negara menurut ayat (4) hanya untuk entitas induk grup dengan peredaran bruto konsolidasi paling sedikit Rp11.000.000.000.000,00.",
+        jejakHitung: [
+          ["Peredaran bruto 2024 Rp45.000.000.000,00", "tidak lebih dari Rp50.000.000.000,00"],
+          ["Barang berwujud 2024 Rp18.000.000.000,00", "tidak lebih dari Rp20.000.000.000,00"],
+          ["Jasa manajemen 2024 Rp6.000.000.000,00", "lebih dari Rp5.000.000.000,00, wajib dokumen induk dan dokumen lokal"]
+        ],
+        mengapaSalah: {
+          A: "Peredaran bruto memang di bawah ambang, tetapi kriterianya alternatif. Transaksi jasa Rp6.000.000.000,00 sudah cukup memicu kewajiban.",
+          B: "Transaksi barang memang di bawah ambang, tetapi ambang jasa Rp5.000.000.000,00 terlampaui sehingga dokumen tetap wajib.",
+          D: "Laporan per negara hanya untuk entitas induk grup dengan peredaran bruto konsolidasi paling sedikit Rp11.000.000.000.000,00 atau entitas konstituen dalam keadaan tertentu. Data soal tidak menunjukkannya."
+        },
+        jebakan: "Berhenti memeriksa setelah dua ambang pertama tidak terlampaui, padahal ada ambang ketiga untuk jasa yang jauh lebih rendah."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 16 ayat (3), ayat (4), dan ayat (5)", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 99, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
     }
   ],
   kartu: [

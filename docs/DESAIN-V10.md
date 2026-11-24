@@ -179,3 +179,20 @@ Menurut ketentuan, Jebakan, Dasar hukum, dek Ulang, Buku Kesalahan, Urungkan, Ub
 - Periksa dengan mata di 320, 390, dan 1280 px, tema terang dan gelap, serta gerak dikurangi: Latih sebelum menjawab, salah tanpa
   keyakinan, benar dan yakin, lipatan terbuka; Beranda pemakai baru dan pemakai yang sudah berlatih; Soal hari ini sesudah dijawab.
 - Tab dari awal halaman Latih: tautan lewati muncul di bawah kop sesi, dan tidak ada fokus yang tertutup kop atau bar bawah.
+
+## v10.3.1: ukuran teks soal dan keterbacaan
+
+Pemilik menilai tampilan soal terlalu besar dan meminta faktor penglihatan ikut ditimbang.
+
+- **Ukuran bawaan lebih ringkas.** Stem 16/24 dengan tebal 400 (dulu 17/27 tebal 500). Opsi, alasan vonis, Penjelasan mudah, dan pembahasan 16/24. Jejak hitung dan kutipan peraturan 15/22 (dulu 13 dan 14). Judul vonis 18/24.
+- **Tiga ukuran.** Kecil 15/22, Sedang 16/24, Besar 18/28. Tokennya `--v10-t-soal`, `--v10-t-baca`, `--v10-t-hitung`, `--v10-t-putus` beserta pasangan `--v10-tb-*`, semuanya dalam rem. Atribut `html[data-soal="kecil|besar"]` mengganti token; Sedang tanpa atribut. Papan Mode mabar memakai pengali `--v10-soal-skala` (0,8, 0,9, 1) atas huruf papan; Besar sama dengan ukuran v10.3.0, dan opsi serta teks baca papan tidak turun di bawah 15px.
+- **Tempat simpan.** `pengaturan.ukuranSoal`, diterapkan `UKP.terapkanTema` bersama `teksBesar`. `UKP.ukuranSoal.atur(v)` menyimpan dan menerapkan tanpa menggambar ulang halaman.
+- **Hubungan dengan "Teks lebih besar".** Setelan lama memperbesar 1rem seluruh aplikasi sebesar 12%. Karena teks soal memakai rem, keduanya saling mengalikan. Contoh: Besar dengan Teks lebih besar menjadi 20,16px.
+- **Tombol Aa.** `UKP.c.tombolUkuranSoal()` ada di kop Latih, bilah Simulasi, papan Mode mabar, dan kop HP anggota room, juga sebagai pilihan di Pengaturan. Sasaran 44px, label "Ukuran teks soal", pilihan aktif bertanda `aria-pressed`, garis di kiri, dan huruf tebal. Di papan selebar HP tombolnya ada di kop soal karena pita terlalu sempit.
+- **Stem berbutir.** `UKP.susunStem` mengenali butir "(1) ... (2) ..." yang berurutan mulai dari (1). Tiap butir tampil di baris sendiri dengan inden gantung; pembuka dan kalimat tanya tetap paragraf. Rujukan "ayat (1)", "angka", "huruf", "butir", "nomor", "poin", dan "Pasal 5" bukan butir. Teks soal tidak diubah. Angka uang dibungkus `.angka-utuh` supaya tidak terpenggal.
+- **Kartu soal jalur lama.** Kartu tanpa `.soal-v10` (Latih dengan setelan "Periksa dulu", cek Materi, sesi Beranda, ulas hasil, dialog soal, Tutor, ulas tim, papan Ujian tim) memakai token yang sama untuk stem, opsi, Penjelasan mudah, inti pembahasan, jebakan, dasar hukum, kutipan, dan jejak hitung. Opsinya 48px berjarak 8px, sama dengan Simulasi. Kartu "Soal hari ini" di Beranda ikut token. Narasi Studi kasus dan contoh terpecahkan di Materi tetap huruf badan karena keduanya bacaan materi, bukan stem soal; keduanya mengikuti "Teks lebih besar".
+- **Angka sejajar.** `tabular-nums` hanya pada `.angka-utuh` dan tabel jejak hitung. Teks berjalan memakai angka biasa supaya tanda hubung dan garis miring tidak renggang.
+- **Butir di layar lebar dan di papan.** Mulai 768px jarak antarbutir nol dan jarak ke paragraf 0,2em. Di papan 0,1em dan 0,3em.
+- **Aa tidak menambah tinggi.** Di kop soal papan selebar HP topik dipotong elipsis dan Aa bermargin tegak negatif. Di bilah Simulasi HP Aa tanpa bingkai dan bilah tetap 109px. Di bawah 380px jarak kop Latih dirapatkan supaya judul utuh. Tombol di dalam menu Aa bukan pintasan kartu soal.
+- **Ujung kalimat.** Huruf besar tunggal sesudah kata sebutan ("Negara M.", "PT A.", "Tuan C.") adalah ujung kalimat, bukan singkatan nama.
+- **Batas keterbacaan.** Tidak ada teks soal, opsi, atau pembahasan di bawah 15px. Jarak baris paling sedikit 1,45 kali ukuran huruf. Lebar baris stem paling banyak 66 karakter. Sasaran ketuk opsi paling sedikit 48px. Tidak ada warna baru.

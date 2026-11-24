@@ -1592,7 +1592,8 @@
       // "Selesai" ada di dalam konfirmasi Keluar
       modeFokus(true);
       // v10 latih: latihan sendiri memakai kop sesi biru tua dengan ruas kemajuan (fokusBar opsi sesi); latihan bersama tetap seperti dulu
-      const kop = fokusBar({ label: 'Kemajuan latihan', onKeluar: () => keluar(), sesi: !peserta }); const area = h('div', { class: 'latih-area' });
+      const kop = fokusBar({ label: 'Kemajuan latihan', onKeluar: () => keluar(), sesi: !peserta, ukuran: true });   // v10.3.1: ukuran = tombol Aa di kop Latih dan papan Mode mabar
+      const area = h('div', { class: 'latih-area' });
       // v8.2 B2 (T1): skor tim kumulatif sebagai kepala, tepat di bawah bar fokus (latihan bersama, dengan atau tanpa room)
       const skorEl = peserta ? h('div', { class: 'kop-tim-latih', hidden: true }) : null;
       page.append(...[kop, skorEl, area].filter(Boolean));

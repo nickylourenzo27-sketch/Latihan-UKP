@@ -7206,6 +7206,150 @@ UKP.register({
       anggaranDetik: 160,
       verifikasi: "✅",
       sejak: "10.3.0"
+    },
+    {
+      id: "C10-271",
+      topik: "C10.1",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Sunrise Machinery Ltd, penduduk negara mitra P3B, menjual mesin langsung dari negaranya kepada PT Karya Logam di Indonesia. Sunrise Machinery Ltd tidak mempunyai kantor, pegawai, atau agen di Indonesia sehingga tidak mempunyai bentuk usaha tetap di Indonesia. Menurut pasal laba usaha pada P3B, laba dari penjualan tersebut ...",
+      kataKualifikasi: [],
+      opsi: { A: "dapat dikenakan pajak di Indonesia karena pembelinya berkedudukan di Indonesia", B: "dapat dikenakan pajak di Indonesia menurut Pasal 26 UU PPh karena sumber penghasilannya di Indonesia", C: "dapat dikenakan pajak di Indonesia dan di negara mitra dengan hak yang sama", D: "hanya dapat dikenakan pajak di negara mitra karena tidak ada bentuk usaha tetap di Indonesia" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "lupa-pasal", C: "salah-baca" },
+      pembahasan: {
+        mudah: "Menurut perjanjian pajak, laba usaha perusahaan asing dipajaki di negaranya sendiri. Indonesia baru boleh ikut memajaki kalau perusahaan itu berusaha di sini lewat bentuk usaha tetap, misalnya kantor, cabang, atau agen. Sunrise hanya menjual mesin langsung dari negaranya dan tidak punya apa pun di Indonesia. Pembeli yang berada di Indonesia tidak mengubah hal itu. Cara ingat: tidak ada bentuk usaha tetap, tidak ada pajak atas laba usaha.",
+        inti: "Pasal laba usaha P3B (Pasal 7 ayat (1) Model OECD dan UN) menetapkan laba perusahaan suatu negara hanya dapat dikenai pajak di negara itu, kecuali perusahaan menjalankan usaha di negara lain melalui bentuk usaha tetap, dan itu pun sebatas laba yang dapat diatribusikan kepada bentuk usaha tetap tersebut. Sunrise Machinery Ltd tidak mempunyai bentuk usaha tetap di Indonesia, sehingga Indonesia melepaskan hak pemajakannya dan laba penjualan mesin hanya dipajaki di negara mitra. P3B sebagai ketentuan khusus mengesampingkan ketentuan domestik (Pasal 32A UU PPh).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Kedudukan pembeli bukan ukuran dalam pasal laba usaha. Ukurannya adalah ada atau tidaknya bentuk usaha tetap penjual di Indonesia.",
+          B: "P3B membatasi hak pemajakan negara sumber. Laba usaha tanpa bentuk usaha tetap tidak dapat dipajaki Indonesia, dan laba penjualan barang pun tidak termasuk jenis penghasilan yang dipotong menurut Pasal 26 UU PPh.",
+          C: "Rumusan pasal laba usaha adalah hanya dapat dikenai pajak di negara domisili. Tidak ada pembagian hak yang sama antara kedua negara."
+        },
+        jebakan: "Menganggap pembeli atau sumber pembayaran di Indonesia cukup untuk memberi hak pemajakan, padahal kuncinya ada atau tidaknya bentuk usaha tetap."
+      },
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) P3B (laba usaha) dan Pasal 5 P3B (bentuk usaha tetap), rumusan Model OECD dan UN", berlakuSejak: null }, { pasal: "Pasal 32A UU PPh", berlakuSejak: "2021-10-29" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 7, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "C10-272",
+      topik: "C10.5",
+      tingkat: ["C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Metode penentuan harga transfer yang sesuai untuk transaksi restrukturisasi usaha berupa pengalihan fungsi, aset, dan risiko adalah ...",
+      kataKualifikasi: ["sesuai"],
+      opsi: { A: "Comparable Uncontrolled Price", B: "Resale Price Method", C: "penilaian bisnis (business valuation)", D: "Cost Plus Method" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Restrukturisasi usaha memindahkan satu paket sekaligus: fungsi, aset, dan risiko. Paket seperti itu tidak punya harga pasar pembanding dan tidak bisa dihitung dari margin penjualan atau biaya produksi. Yang dinilai adalah nilai usaha yang berpindah, sehingga metode yang cocok adalah penilaian bisnis. Tiga metode lainnya dipakai untuk jual beli barang atau jasa sehari-hari. Cara ingat: usaha yang pindah, nilai usahanya yang dihitung.",
+        inti: "Pasal 9 ayat (10) huruf a PMK 172/2023 menyatakan metode dalam penilaian bisnis (business valuation) sesuai untuk transaksi sehubungan dengan restrukturisasi usaha, termasuk pengalihan fungsi, aset, dan/atau risiko antar-Pihak Afiliasi. Metode perbandingan harga, harga penjualan kembali, dan biaya-plus ditujukan untuk transaksi barang atau jasa yang punya pembanding harga atau margin.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Metode perbandingan harga cocok untuk barang atau jasa komersial yang punya pembanding sebanding. Paket fungsi, aset, dan risiko jarang punya harga pasar pembanding.",
+          B: "Metode harga penjualan kembali cocok untuk distributor yang menjual kembali barang tanpa menambah nilai berarti.",
+          D: "Metode biaya-plus cocok untuk pabrikan atau penyedia jasa yang dinilai dari markup atas biaya, bukan untuk pengalihan usaha."
+        },
+        jebakan: "Memilih salah satu metode tradisional karena paling dikenal, padahal objeknya pengalihan usaha, bukan penjualan barang atau jasa."
+      },
+      dasarHukum: [{ pasal: "PMK 172/2023 Pasal 9 ayat (1) huruf d angka 5 dan ayat (10) huruf a", berlakuSejak: "2023-12-29" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 11, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "C10-273",
+      topik: "C10.1",
+      tingkat: ["C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Orang pribadi yang menurut ketentuan pajak dalam negeri kedua negara pihak pada suatu P3B sama-sama merupakan penduduk (dual resident). Untuk menentukan residensinya menurut P3B, kriteria yang diterapkan pertama kali adalah ...",
+      kataKualifikasi: ["pertama kali"],
+      opsi: { A: "tempat tinggal tetap yang tersedia baginya", B: "kewarganegaraan orang pribadi tersebut", C: "tempat kebiasaan menetap orang pribadi tersebut", D: "pusat kepentingan vital orang pribadi tersebut" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Kalau dua negara sama-sama menganggap seseorang penduduknya, perjanjian pajak punya urutan pemutus. Pertama dilihat di mana ia punya tempat tinggal tetap yang tersedia baginya. Kalau ada di dua negara, barulah dilihat pusat kepentingan vitalnya, lalu tempat ia biasa menetap, lalu kewarganegaraannya. Bila masih buntu, kedua otoritas pajak berunding. Cara ingat: rumah, kepentingan, kebiasaan, kewarganegaraan, lalu runding.",
+        inti: "Aturan pemutus residen ganda orang pribadi dalam Pasal 4 ayat (2) P3B (Model OECD dan UN) berjenjang: (1) tempat tinggal tetap yang tersedia baginya, (2) pusat kepentingan vital, (3) tempat kebiasaan menetap, (4) kewarganegaraan, dan (5) persetujuan bersama pejabat berwenang. Kriteria yang diuji pertama adalah tempat tinggal tetap; kriteria berikutnya baru dipakai bila kriteria sebelumnya tidak memutus.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Kewarganegaraan adalah kriteria keempat, dipakai setelah tiga kriteria sebelumnya tidak memutus.",
+          C: "Tempat kebiasaan menetap adalah kriteria ketiga.",
+          D: "Pusat kepentingan vital adalah kriteria kedua, dipakai bila tempat tinggal tetap tersedia di kedua negara."
+        },
+        jebakan: "Semua opsi adalah kriteria yang benar; yang diuji adalah urutannya. Rumusan tiap P3B dapat berbeda, jadi teks P3B yang berlaku tetap harus dibaca."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (2) P3B (aturan pemutus residen ganda orang pribadi, rumusan Model OECD dan UN)", berlakuSejak: null }, { pasal: "Pasal 32A UU PPh", berlakuSejak: "2021-10-29" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 15, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "C10-274",
+      topik: "C10.1",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "Oceanic Lines Co., penduduk negara mitra P3B, mengoperasikan kapal dalam lalu lintas internasional dan mengangkut kargo dari Pelabuhan Tanjung Priok ke pelabuhan di negara mitra. Tempat kedudukan manajemen efektif perusahaan berada di negara mitra. Menurut pasal pelayaran dan penerbangan internasional P3B, laba dari pengoperasian kapal tersebut hanya dapat dipajaki di ...",
+      kataKualifikasi: ["hanya"],
+      opsi: { A: "Indonesia, karena kargo dimuat di Tanjung Priok", B: "negara mitra, tempat kedudukan manajemen efektif perusahaan berada", C: "negara bendera kapal, dengan persetujuan Indonesia", D: "kedua negara, masing-masing separuh" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Kapal yang berlayar antarnegara singgah di banyak pelabuhan, jadi labanya sulit dibagi per negara. Perjanjian pajak memilih cara sederhana: laba itu dipajaki di satu negara saja, yaitu tempat perusahaan dikelola secara efektif. Oceanic Lines dikelola dari negara mitra, jadi hanya negara mitra yang memajaki. Kargo yang dimuat di Tanjung Priok tidak memberi hak kepada Indonesia. Cara ingat: laba kapal ikut kantor pengelolanya, bukan pelabuhannya.",
+        inti: "Pasal pelayaran dan penerbangan internasional P3B (Pasal 8 ayat (1) Model OECD sebelum 2017 dan Model UN alternatif A) menetapkan laba dari pengoperasian kapal atau pesawat udara dalam lalu lintas internasional hanya dapat dikenai pajak di negara tempat kedudukan manajemen efektif perusahaan. Model OECD 2017 dan sebagian P3B memakai negara domisili perusahaan; dalam soal ini keduanya menunjuk negara mitra. Indonesia sebagai negara sumber melepaskan hak pemajakannya.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tempat kargo dimuat bukan ukuran. Pasal ini justru menghapus hak negara pelabuhan atas laba pelayaran internasional.",
+          C: "Bendera kapal bukan kriteria dalam pasal pelayaran P3B, dan tidak ada syarat persetujuan negara lain.",
+          D: "Rumusan yang ditanyakan adalah hanya dapat dipajaki di satu negara. Pembagian separuh tidak ada dalam rumusan baku pasal ini."
+        },
+        jebakan: "Terpancing asas sumber karena kargo dimuat di pelabuhan Indonesia, atau terbawa aturan domestik atas pelayaran luar negeri yang baru berlaku bila P3B tidak membatasinya."
+      },
+      dasarHukum: [{ pasal: "Pasal 8 ayat (1) P3B (pelayaran dan penerbangan internasional, rumusan Model OECD dan Model UN alternatif A)", berlakuSejak: null }, { pasal: "Pasal 32A UU PPh", berlakuSejak: "2021-10-29" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 16, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "C10-275",
+      topik: "C10.1",
+      tingkat: ["C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Samudra Karya membayar bunga pinjaman sebesar Rp2.000.000.000,00 kepada Alba Finance Pte Ltd, penduduk negara mitra P3B yang tarif maksimum bunganya 10%. Alba Finance menyerahkan SKD yang sah. Berdasarkan perjanjian, dalam 30 hari setelah menerima bunga, Alba Finance wajib meneruskan 95% bunga kepada Delta Corp, penduduk negara non-mitra. Alba Finance tidak memiliki pegawai dan kegiatan usaha lain, serta tidak menanggung risiko atas pinjaman. PPh Pasal 26 yang terutang atas pembayaran bunga tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp200.000.000,00, karena SKD yang sah memberi hak atas tarif P3B 10%", B: "Rp400.000.000,00, karena Alba Finance bukan pemilik manfaat bunga", C: "Rp100.000.000,00, karena hanya 5% bunga yang tertahan di Alba Finance", D: "Rp0,00, karena bunga diteruskan ke luar negeri" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-hitung", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Tarif murah dari perjanjian pajak hanya untuk penerima yang benar-benar menikmati uangnya. Alba Finance cuma tempat lewat: 95% bunga wajib diteruskan, tidak ada pegawai, tidak ada usaha lain, dan tidak menanggung risiko. Karena itu surat keterangan domisili yang sah belum cukup, dan yang dipakai tarif undang-undang 20%. Pajaknya 20% x Rp2.000.000.000 = Rp400.000.000. Cara ingat: surat domisili membuka pintu, tetapi hanya pemilik manfaat yang boleh masuk.",
+        inti: "Manfaat P3B hanya diberikan kepada Wajib Pajak luar negeri yang tidak menyalahgunakan P3B, antara lain harus merupakan pihak yang sebenarnya menerima manfaat dari penghasilan (beneficial owner). Menurut Pasal 19 PMK 112/2025, badan luar negeri baru disebut beneficial owner bila tidak bertindak sebagai agen, nomine, atau perusahaan conduit, punya kendali atas dana, tidak memakai lebih dari 50% penghasilannya untuk memenuhi kewajiban kepada pihak lain, menanggung risiko, dan tidak wajib meneruskan penghasilan dari Indonesia kepada pihak lain. Alba Finance gagal di hampir semua syarat: wajib meneruskan 95% bunga dalam 30 hari, tidak punya pegawai dan usaha lain, dan tidak menanggung risiko pinjaman. Jadi tarif P3B 10% tidak dapat dipakai dan berlaku tarif Pasal 26 ayat (1) UU PPh: 20% x Rp2.000.000.000,00 = Rp400.000.000,00.",
+        jejakHitung: [
+          ["Uji pemilik manfaat (wajib meneruskan 95%, tanpa pegawai, tanpa risiko)", "tidak terpenuhi"],
+          ["Tarif yang berlaku", "20% (Pasal 26 UU PPh), bukan 10% P3B"],
+          ["PPh Pasal 26 = 20% x Rp2.000.000.000", "Rp400.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Angka ini adalah 10% x Rp2.000.000.000,00. Surat keterangan domisili hanya membuktikan bahwa Alba Finance penduduk negara mitra. Syarat lain, yaitu tidak ada penyalahgunaan P3B dan penerima adalah pemilik manfaat, tidak terpenuhi.",
+          C: "Angka ini adalah 5% x Rp2.000.000.000,00, yaitu bagian bunga yang tertinggal di Alba Finance, bukan hasil suatu tarif pajak. PPh Pasal 26 dihitung dari jumlah bruto bunga yang dibayarkan, bukan dari bagian yang tertinggal di perantara.",
+          D: "Bunga yang dibayarkan badan dalam negeri kepada Wajib Pajak luar negeri adalah objek PPh Pasal 26. Penerusan bunga ke negara lain tidak menghapus pajak di Indonesia, malah menjadi tanda bahwa penerima hanya perantara."
+        },
+        jebakan: "Menganggap SKD yang sah otomatis memberi tarif P3B, padahal masih ada uji pemilik manfaat."
+      },
+      dasarHukum: [{ pasal: "PMK 112/2025 Pasal 2 ayat (4) dan ayat (5), Pasal 18 ayat (3) huruf a, dan Pasal 19 ayat (1) dan ayat (2)", berlakuSejak: "2025-12-31" }, { pasal: "Pasal 26 ayat (1) huruf b UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 53, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
     }
   ],
   kartu: [

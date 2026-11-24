@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '10.3.0';
+  UKP.versi = '10.3.1';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
@@ -267,7 +267,7 @@
   const KEY = 'ukp.v1';
   const DEFAULT = () => ({
     profil: { tingkat: 'A', status: 'baru', tanggalUjian: null, menitHariKerja: 15, menitAkhirPekan: 30, latar: 'non', perangkat: 'tahu', onboardingSelesai: false, dibuat: UKP.util.hariIni() },
-    pengaturan: { tema: 'system', kurangiGerak: false, sorotKualifikasi: true, tutorAktif: true, tts: true, teksBesar: false, pintasan: true, jamPengingat: '19:30', icsSeq: 0, icsUbah: null, icsMulai: null },
+    pengaturan: { tema: 'system', kurangiGerak: false, sorotKualifikasi: true, tutorAktif: true, tts: true, teksBesar: false, ukuranSoal: 'sedang', pintasan: true, jamPengingat: '19:30', icsSeq: 0, icsUbah: null, icsMulai: null },
     jawaban: [], topikDibaca: {}, cekSelesai: {}, kartu: {}, kartuOtomatis: [], sesi: [], hadir: {}, simulasi: [], simulasiAktif: null,
     tutorKuota: { tgl: '', n: 0 }, lencana: {}, tugasRencana: {}, cekPerangkat: {}, bannerTutup: {}, angkaDilihat: {}, sesiAktif: null, kesanUjian: '',
     kasusProgres: {}, eksporTerakhir: null, pengingatEksporTerakhir: null,
@@ -333,6 +333,7 @@
     if (!['A', 'B', 'C'].includes(p.tingkat)) p.tingkat = 'A';
     if (p.tanggalUjian != null && !(typeof p.tanggalUjian === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(p.tanggalUjian))) p.tanggalUjian = null;
     if (!['system', 'light', 'dark'].includes(g.tema)) g.tema = 'system';
+    if (!['kecil', 'sedang', 'besar'].includes(g.ukuranSoal)) g.ukuranSoal = 'sedang';   // v10.3.1 ukuran teks soal
     const a = o.simulasiAktif;
     if (a !== null) { if (isObj(a) && Array.isArray(a.soalIds) && isObj(a.jawaban)) { if (!Array.isArray(a.ragu)) a.ragu = []; if (!isObj(a.detik)) a.detik = {}; } else o.simulasiAktif = null; }
     if (o.sesiAktif !== null && !(isObj(o.sesiAktif) && Array.isArray(o.sesiAktif.blok))) o.sesiAktif = null;
@@ -533,6 +534,10 @@
     if (p.tema === 'light' || p.tema === 'dark') r.setAttribute('data-theme', p.tema); else r.removeAttribute('data-theme');
     if (p.kurangiGerak) r.setAttribute('data-gerak', 'kurang'); else r.removeAttribute('data-gerak');
     if (p.teksBesar) r.setAttribute('data-teks', 'besar'); else r.removeAttribute('data-teks');
+    // v10.3.1: ukuran teks soal (kecil, sedang, besar). Sedang = bawaan, tanpa atribut. Token --v10-t-soal dan kawan-kawannya di css/app.css
+    // mengikuti html[data-soal]. Setelan "Teks lebih besar" (data-teks) memperbesar 1rem untuk seluruh aplikasi; ukuran soal memakai rem,
+    // jadi keduanya saling mengalikan dan tidak bertabrakan
+    if (p.ukuranSoal === 'kecil' || p.ukuranSoal === 'besar') r.setAttribute('data-soal', p.ukuranSoal); else r.removeAttribute('data-soal');
     // warna bilah peramban mengikuti tema manual (DESAIN-V6 §G.12)
     try {
       const WARNA = { light: '#F6F7F9', dark: '#0A1626' }; // = --bg terang/gelap (v8.3)
@@ -541,6 +546,66 @@
         m.setAttribute('content', WARNA[p.tema === 'light' || p.tema === 'dark' ? p.tema : asal]);
       });
     } catch (e) {}
+  };
+  // ---------- v10.3.1: ukuran teks soal ----------
+  // UKP.ukuranSoal.baca(): 'kecil' | 'sedang' | 'besar'; .atur(v) menyimpan di pengaturan.ukuranSoal dan langsung menerapkannya lewat
+  // UKP.terapkanTema (atribut html[data-soal]); halaman tidak digambar ulang, jadi jawaban dan posisi soal tidak berubah
+  UKP.ukuranSoal = {
+    DAFTAR: [['kecil', 'Kecil'], ['sedang', 'Sedang'], ['besar', 'Besar']],
+    baca() { try { const v = load().pengaturan.ukuranSoal; return v === 'kecil' || v === 'besar' ? v : 'sedang'; } catch (e) { return 'sedang'; } },
+    atur(v) {
+      v = v === 'kecil' || v === 'besar' ? v : 'sedang';
+      try { load().pengaturan.ukuranSoal = v; save(); } catch (e) {}
+      UKP.terapkanTema();
+      try { document.dispatchEvent(new CustomEvent('ukp:ukuran-soal', { detail: v })); } catch (e) {}
+      return v;
+    },
+  };
+  // ---------- v10.3.1: stem panjang lebih mudah dipindai (hanya tampilan, teks soal tidak diubah) ----------
+  // UKP.susunStem(teks): null, atau { pembuka, butir: [{ no, teks }], penutup } bila stem memuat butir bernomor berurutan "(1) … (2) …"
+  // (mulai dari (1), paling sedikit dua). pembuka + semua butir.teks + penutup SAMA PERSIS dengan teks asal.
+  // Rujukan pasal ("Pasal 5 ayat (1)", "ayat (2)", "angka (3)", "huruf", "butir (4)", "nomor", "poin") bukan butir. Rujukan balik seperti
+  // "penyerahan (1) dan (2)" juga bukan: tiap butir harus punya isi, bukan hanya kata sambung.
+  // Butir terakhir berakhir di ujung kalimatnya; kalimat sesudahnya (biasanya kalimat tanya) menjadi penutup
+  const RUJUK_BUTIR = /(?:\b(?:ayat|angka|huruf|butir|nomor|no\.|poin|Pasal\s+\d+[A-Za-z]{0,2})\s*)$/i;
+  const SAMBUNG_BUTIR = /^(?:dan|atau|dan\/atau|serta|sampai|hingga|s\.d\.|dengan)?[\s,;.]*$/i;
+  const SINGKAT_TITIK = /(?:^|[\s(])(?:[A-Za-z]|Tn|Ny|Nn|Mr|Mrs|Ms|Dr|Drs|Dra|drg|Ir|Prof|Bpk|Sdr|Sdri|Hj|No|Tbk|Ltd|Pte|Pty|Bhd|Sdn|Inc|Corp|Co|GmbH|PT|CV|UD|Jl|St|dkk|dll|dsb|dst|hlm|tgl|cq|vs|mis)$/i;
+  // v10.3.1: huruf besar tunggal sesudah kata sebutan ("Negara M.", "Kota B.", "PT A.", "Tuan C.") adalah nama di ujung kalimat, bukan singkatan
+  // nama depan, jadi titiknya tetap ujung kalimat (C9-023: kalimat tanya tidak lagi menempel di butir terakhir)
+  const NAMA_HURUF = /(?:^|[\s(])(?:Negara|Kota|Kabupaten|Provinsi|Perusahaan|Bank|Tuan|Nyonya|Nona|Bapak|Ibu|Saudara|Saudari|PT|CV|UD|Tn\.|Ny\.|Nn\.)\s+[A-Z]$/;
+  function ujungKalimat(t, dari) {
+    const re = /[.?!](\s+)(?=[A-ZÀ-Þ0-9"“(])/g; re.lastIndex = dari; let m;
+    while ((m = re.exec(t))) {
+      if (t[m.index] === '.' && !NAMA_HURUF.test(t.slice(Math.max(0, m.index - 16), m.index)) && SINGKAT_TITIK.test(t.slice(Math.max(0, m.index - 8), m.index))) continue;
+      return m.index + m[0].length;
+    }
+    return -1;
+  }
+  UKP.susunStem = function (teks) {
+    const t = String(teks == null ? '' : teks); if (t.length < 20 || t.indexOf('(1)') < 0) return null;
+    const re = /(^|[\s:;,])\((\d{1,2})\)(?=\s)/g; let m; const calon = [];
+    while ((m = re.exec(t))) {
+      const awal = m.index + m[1].length;
+      if (RUJUK_BUTIR.test(t.slice(Math.max(0, awal - 24), awal))) continue;
+      calon.push({ pos: awal, no: Number(m[2]), isi: awal + m[2].length + 2 });
+    }
+    for (let i = 0; i < calon.length; i++) {
+      if (calon[i].no !== 1) continue;
+      const rantai = [calon[i]]; for (let j = i + 1; j < calon.length; j++) if (calon[j].no === rantai.length + 1) rantai.push(calon[j]);
+      if (rantai.length < 2) continue;
+      let sah = true;
+      for (let k = 0; k < rantai.length - 1 && sah; k++) { const isi = t.slice(rantai[k].isi, rantai[k + 1].pos); if (isi.trim().length < 8 || SAMBUNG_BUTIR.test(isi)) sah = false; }
+      const akhir = rantai[rantai.length - 1];
+      if (sah && t.slice(akhir.isi).trim().length < 3) sah = false;
+      if (!sah) continue;
+      const ujung = ujungKalimat(t, akhir.isi); const batas = ujung < 0 ? t.length : ujung;
+      return {
+        pembuka: t.slice(0, rantai[0].pos),
+        butir: rantai.map((c, k) => ({ no: c.no, teks: t.slice(c.pos, k < rantai.length - 1 ? rantai[k + 1].pos : batas) })),
+        penutup: t.slice(batas),
+      };
+    }
+    return null;
   };
   // tema efektif saat ini ('light' | 'dark'), termasuk "ikut sistem"
   UKP.temaEfektif = function () {
@@ -1204,6 +1269,40 @@
     const re = new RegExp('\\b(' + kata.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'gi');
     return h('span', { html: esc.replace(re, '<mark>$1</mark>') });
   };
+  // v10.3.1: isi stem soal
+  // potongan teks stem: daftar simpul: kata kualifikasi jadi <mark> (bila setelan sorot menyala), angka uang jadi span.angka-utuh
+  // (tidak terpenggal di tengah, mis. "Rp400.000.000" dan "Rp15.000.000/bulan"). Tanpa keduanya: teks apa adanya
+  const POLA_UANG = '(?:Rp|USD|US\\$|EUR|SGD|JPY|GBP|AUD)\\s?\\d(?:[\\d.,]*\\d)?(?:\\/[A-Za-z²³]+)?|\\b\\d{1,3}(?:\\.\\d{3})+(?:,\\d+)?(?:\\/[A-Za-z²³]+)?';
+  function simpulStem(t, kata, sorot) {
+    t = String(t == null ? '' : t); if (!t) return [];
+    const k = sorot && kata && kata.length ? kata.filter(x => typeof x === 'string' && x).map(x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) : [];
+    const re = new RegExp((k.length ? '(\\b(?:' + k.join('|') + ')\\b)|' : '()') + '(' + POLA_UANG + ')', 'gi');
+    const out = []; let akhir = 0, m;
+    while ((m = re.exec(t))) {
+      if (!m[0]) { re.lastIndex++; continue; }
+      if (m.index > akhir) out.push(t.slice(akhir, m.index));
+      out.push(m[1] ? h('mark', null, m[1]) : h('span', { class: 'angka-utuh' }, m[2]));
+      akhir = m.index + m[0].length;
+    }
+    if (!out.length) return [t];
+    if (akhir < t.length) out.push(t.slice(akhir));
+    return out;
+  }
+  // UKP.c.isiStem(el, teks, { kata, sorot }): el. Mengisi elemen stem (p.stem, p.stem-room). Stem berbutir: el diberi kelas .stem-susun dan
+  // berisi span.stem-alinea (pembuka, penutup) serta span.stem-butir per butir (baris sendiri, inden gantung; gaya di css/app.css v10.3.1).
+  // opsi.sorot === false (ujian, simulasi) tidak menyorot kata kualifikasi
+  UKP.c.isiStem = function (el, teks, o) {
+    o = o || {}; const t = String(teks == null ? '' : teks);
+    let sorot = o.sorot !== false; if (sorot) { try { sorot = !!load().pengaturan.sorotKualifikasi; } catch (e) { sorot = false; } }
+    const isi = x => simpulStem(x, o.kata, sorot);
+    const s = UKP.susunStem(t);
+    if (!s) { el.append(...isi(t)); return el; }
+    el.classList.add('stem-susun');
+    if (s.pembuka.trim()) el.append(h('span', { class: 'stem-alinea' }, isi(s.pembuka)));
+    s.butir.forEach(b => el.append(h('span', { class: 'stem-butir' }, isi(b.teks))));
+    if (s.penutup.trim()) el.append(h('span', { class: 'stem-alinea stem-tanya' }, isi(s.penutup)));
+    return el;
+  };
   // ---------- sinonim pencarian ----------
   // Dipakai Cari global (UKP.cari) dan saringan lokal (Referensi, Peta formulir): singkatan ↔ bentuk panjang.
   // Kunci dan nilai huruf kecil; boleh ditambah modul lain (UKP.sinonim.xyz = '...').
@@ -1590,6 +1689,8 @@
         }
       };
     }
+    // v10.3.1: o.ukuran = tombol "Aa" (ukuran teks soal) di kop, tepat sebelum .fokus-kanan. Tetap di tempat saat el.atur mengganti isi kanan
+    if (o.ukuran && C7.tombolUkuranSoal) { el.classList.add('ada-aa'); el.insertBefore(C7.tombolUkuranSoal(), kanan); }
     el.atur(null, o.p, o.aksi);
     if (o.tengah != null) el.aturTengah(o.tengah);
     if (o.menu) el.aturMenu(o.menu);
@@ -1721,6 +1822,30 @@
     const luar = e => { if (det.open && !det.contains(e.target)) tutup(false); };
     det.addEventListener('toggle', () => {
       if (det.open) { document.addEventListener('pointerdown', luar, true); const p = isi.querySelector('button, a'); if (p) requestAnimationFrame(() => UKP.fokus(p)); }
+      else document.removeEventListener('pointerdown', luar, true);
+    });
+    det.addEventListener('focusout', e => { if (det.open && e.relatedTarget && !det.contains(e.relatedTarget)) tutup(false); });
+    return det;
+  };
+
+  // v10.3.1 tombol "Aa": UKP.c.tombolUkuranSoal(): details.menu-lebih.aa-soal. Pemicu summary (aria-label "Ukuran teks soal", 44 px);
+  //   isinya grup tiga tombol Kecil, Sedang, Besar (aria-pressed menandai yang aktif). Memilih langsung berlaku (UKP.ukuranSoal.atur) dan
+  //   menu tetap terbuka supaya ukuran bisa dibandingkan; Esc, ketuk di luar, atau pindah fokus ke luar menutupnya.
+  //   Dipakai kop Latih, papan Mode mabar, kop HP anggota room (opsi ukuran fokusBar), dan bilah Simulasi
+  C7.tombolUkuranSoal = function () {
+    const US = UKP.ukuranSoal; const LABEL = 'Ukuran teks soal';
+    const ringkas = h('summary', { class: 'aa-soal-tombol', 'aria-label': LABEL, title: LABEL }, h('span', { 'aria-hidden': 'true' }, 'Aa'));
+    const det = h('details', { class: 'menu-lebih aa-soal' });
+    const tombol = US.DAFTAR.map(([v, l]) => h('button', { type: 'button', 'data-ukuran': v, 'aria-pressed': 'false',
+      onclick: () => { US.atur(v); tandai(); UKP.umumkan(LABEL + ': ' + l + '.'); } }, h('span', { class: 'aa-contoh', 'aria-hidden': 'true' }, 'Aa'), h('span', null, l)));
+    function tandai() { const kini = US.baca(); tombol.forEach(b => b.setAttribute('aria-pressed', String(b.getAttribute('data-ukuran') === kini))); }
+    const isi = h('div', { class: 'menu-lebih-isi aa-soal-isi', role: 'group', 'aria-label': LABEL }, tombol);
+    det.append(ringkas, isi); tandai();
+    const tutup = fokusKembali => { if (!det.open) return; det.open = false; if (fokusKembali) UKP.fokus(ringkas); };
+    det.addEventListener('keydown', e => { if (e.key === 'Escape' && det.open) { e.preventDefault(); e.stopPropagation(); tutup(true); } });
+    const luar = e => { if (det.open && !det.contains(e.target)) tutup(false); };
+    det.addEventListener('toggle', () => {
+      if (det.open) { tandai(); document.addEventListener('pointerdown', luar, true); }
       else document.removeEventListener('pointerdown', luar, true);
     });
     det.addEventListener('focusout', e => { if (det.open && e.relatedTarget && !det.contains(e.relatedTarget)) tutup(false); });

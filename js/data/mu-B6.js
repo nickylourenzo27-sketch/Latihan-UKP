@@ -10012,7 +10012,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PMK 172/2023 Pasal 19 ayat (1) sampai ayat (3)", berlakuSejak: "2023-12-29" }, { pasal: "Lampiran huruf H PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 (induk Bagian H angka 21 huruf b, induk Bagian I huruf i, dan Lampiran 10D)", berlakuSejak: "2025-05-22" }],
       anggaranDetik: 100,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 20, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 20, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 52, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -10044,7 +10044,7 @@ UKP.register({
       dasarHukum: [{ pasal: "UU PPh Pasal 17 ayat (1) huruf b s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "UU PPh Pasal 31E ayat (1)", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 75,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 35, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 35, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 13, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -11838,6 +11838,252 @@ UKP.register({
       opsiLepas: { teks: "Selalu nol", alasan: "Harga perolehan tidak pernah otomatis nol; harta tetap dinilai sebesar jumlah yang seharusnya dibayar." },
       sumber: { set: "LM-B-2026-11", no: 184, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Badan dan SPT PPh Badan" },
       sejak: "9.7.0"
+    },
+    {
+      id: "B6-354",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Cahaya Mandiri adalah perseroan perorangan yang didirikan oleh satu orang dan bergerak di bidang perdagangan. Pendirinya tidak menyerahkan jasa yang sejenis dengan pekerjaan bebas. Peredaran bruto PT Cahaya Mandiri dalam Tahun Pajak 2027 tidak melebihi Rp4,8 miliar dan ia tidak memilih dikenai tarif Pasal 17. Tarif PPh final yang dikenakan atas peredaran bruto PT Cahaya Mandiri adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "0,5%", B: "1%", C: "11%", D: "22%" },
+      kunci: "A",
+      jebakanOpsi: { B: "angka-usang", C: "salah-klasifikasi", D: "final-nonfinal" },
+      pembahasan: {
+        mudah: "Pajak final setengah persen dari omzet sekarang hanya untuk orang pribadi, koperasi, dan perseroan perorangan yang didirikan satu orang. Omzetnya tidak boleh lebih dari Rp4,8 miliar setahun. PT Cahaya Mandiri memenuhi semuanya: perseroan perorangan, usaha dagang, pendirinya tidak menjual jasa keahlian, dan tidak memilih tarif umum. Jadi omzetnya dikenai 0,5%. Cara ingat: satu pendiri, omzet kecil, setengah persen.",
+        inti: "Pasal 56 ayat (2) PP 55/2022 s.t.d.d. PP 20/2026 menetapkan tarif PPh final 0,5%. Pasal 57 ayat (1) huruf b memasukkan Wajib Pajak badan berbentuk perseroan perorangan yang didirikan oleh 1 orang dengan peredaran bruto tidak melebihi Rp4,8 miliar dalam 1 Tahun Pajak. PT Cahaya Mandiri tidak terkena pengecualian Pasal 57 ayat (2): tidak memilih tarif Pasal 17 (huruf a) dan pendirinya tidak menyerahkan jasa sejenis pekerjaan bebas (huruf b). Tarifnya 0,5% dari peredaran bruto.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Tarif 1% adalah tarif lama PP 46/2013 yang sudah diganti 0,5% sejak PP 23/2018.",
+          C: "Angka 11% adalah tarif efektif fasilitas Pasal 31E (50% x 22%) atas Penghasilan Kena Pajak, bukan tarif final atas peredaran bruto.",
+          D: "Tarif 22% adalah tarif umum badan atas Penghasilan Kena Pajak, yang dipakai bila Wajib Pajak memilih atau wajib memakai ketentuan umum."
+        },
+        jebakan: "Mengira semua perseroan sudah keluar dari PPh final. Perseroan perorangan satu pendiri masih termasuk, selama pendirinya tidak menyerahkan jasa sejenis pekerjaan bebas."
+      },
+      dasarHukum: [{ pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 56 ayat (1) dan (2)", berlakuSejak: "2026-04-22" }, { pasal: "PP 55/2022 s.t.d.d. PP 20/2026 Pasal 57 ayat (1) huruf b dan ayat (2) huruf a dan huruf b", berlakuSejak: "2026-04-22" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 10, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B6-355",
+      topik: "B6.11",
+      tingkat: ["B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 1,
+      stem: "Penghitungan fasilitas pengurangan tarif PPh berdasarkan Pasal 31E ayat (1) UU PPh dalam SPT Tahunan PPh Wajib Pajak Badan menurut PER-11/PJ/2025 dilaporkan dalam ...",
+      kataKualifikasi: [],
+      opsi: { A: "Lampiran 7", B: "Lampiran 8", C: "Lampiran 9", D: "Lampiran 14" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Formulir SPT Tahunan badan yang baru punya lampiran bernomor, masing-masing dengan isi tertentu. Hitungan potongan tarif untuk badan beromzet sampai Rp50 miliar ditaruh di lampiran nomor delapan. Lampiran tujuh untuk kompensasi rugi dan lampiran sembilan untuk penyusutan dan amortisasi. Lampiran empat belas untuk penggunaan sisa lebih. Cara ingat: tujuh rugi, delapan potongan tarif, sembilan susut.",
+        inti: "Pasal 85 ayat (1) PER-11/PJ/2025 merinci lampiran SPT Tahunan PPh Wajib Pajak Badan. Lampiran 8 adalah Penghitungan Fasilitas Pengurangan Tarif Pajak Penghasilan bagi Wajib Pajak Badan Dalam Negeri Berdasarkan Pasal 31E Ayat (1) UU PPh. Petunjuk pengisian induk juga mengarahkan Wajib Pajak yang memilih fasilitas itu untuk mengisi Lampiran 8.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Lampiran 7 memuat Penghitungan Kompensasi Kerugian Fiskal.",
+          C: "Lampiran 9 memuat Daftar Penyusutan dan Amortisasi Fiskal.",
+          D: "Lampiran 14 memuat Penggunaan Sisa Lebih untuk Pembangunan dan Pengadaan Sarana dan Prasarana."
+        },
+        jebakan: "Tertukar nomor lampiran yang berdekatan, terutama Lampiran 7 (kompensasi kerugian) dan Lampiran 9 (penyusutan)."
+      },
+      dasarHukum: [{ pasal: "PER-11/PJ/2025 Pasal 85 ayat (1) dan Lampiran (petunjuk pengisian SPT Tahunan PPh Badan, Lampiran 8)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 31E ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 30, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B6-356",
+      topik: "B6.6",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Nusantara Mandiri (bukan Tbk dan bukan bank) memiliki peredaran bruto Rp62 miliar. Data Tahun Pajak 2025 sebagai berikut. Laba komersial Rp3.250.000.000,00, sudah termasuk: Bunga deposito yang dikenai PPh final Rp35.000.000,00; Dividen dari PT dalam negeri Rp50.000.000,00. Beban yang tercatat mencakup: Biaya pribadi pemegang saham Rp60.000.000,00; Sanksi administrasi pajak Rp15.000.000,00. Kerugian fiskal yang belum dikompensasikan: Tahun Pajak 2019 Rp150.000.000,00; Tahun Pajak 2020 Rp200.000.000,00; Tahun Pajak 2022 Rp500.000.000,00. Kredit dan pembayaran pajak: PPh Pasal 22 Rp25.000.000,00; PPh Pasal 23 Rp90.000.000,00; Angsuran PPh Pasal 25 Rp360.000.000,00; Pokok STP PPh Pasal 25 Rp10.000.000,00. Berapakah PPh kurang bayar yang dilaporkan pada angka 17a?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp40.800.000,00", B: "Rp83.800.000,00", C: "Rp227.800.000,00", D: "Rp73.800.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        mudah: "Mulai dari laba buku, lalu tambah biaya yang tidak boleh dikurangkan dan buang penghasilan yang sudah final atau bukan objek. Hasilnya Rp3.240.000.000. Rugi hanya boleh dibawa lima tahun, jadi rugi 2019 sudah hangus pada 2025 dan yang dipakai Rp700.000.000. Pajaknya 22% x Rp2.540.000.000 = Rp558.800.000, lalu dikurangi semua yang sudah dibayar Rp485.000.000. Sisanya Rp73.800.000. Cara ingat: koreksi dulu, rugi lima tahun, tarif, lalu kurangi semua setoran termasuk pokok tagihan angsuran.",
+        inti: "Penghasilan neto fiskal = Rp3.250.000.000 + Rp60.000.000 (biaya pribadi pemegang saham, Pasal 9 ayat (1) huruf b) + Rp15.000.000 (sanksi administrasi, Pasal 9 ayat (1) huruf k) - Rp35.000.000 (bunga deposito final) - Rp50.000.000 (dividen dalam negeri yang diterima badan dalam negeri, bukan objek) = Rp3.240.000.000. Kerugian dikompensasikan paling lama 5 tahun berturut-turut mulai tahun berikutnya (Pasal 6 ayat (2)): rugi 2019 terakhir dapat dipakai pada 2024 sehingga hangus, rugi 2020 (sampai 2025) dan rugi 2022 (sampai 2027) masih dapat dipakai, jumlahnya Rp700.000.000. Penghasilan Kena Pajak Rp2.540.000.000. Peredaran bruto perusahaan di atas Rp50 miliar sehingga tidak ada fasilitas Pasal 31E; PPh terutang 22% x Rp2.540.000.000 = Rp558.800.000. Pada induk SPT Tahunan PPh Badan, angka 17a = angka 12 - 13 - 14 - 15 - 16, sehingga pokok STP PPh Pasal 25 (angka 15) ikut mengurangi: Rp558.800.000 - Rp115.000.000 - Rp360.000.000 - Rp10.000.000 = Rp73.800.000.",
+        jejakHitung: [
+          ["Laba komersial", "Rp3.250.000.000"],
+          ["Koreksi positif: biaya pribadi pemegang saham + sanksi administrasi", "Rp75.000.000"],
+          ["Koreksi negatif: bunga deposito final + dividen dalam negeri", "Rp85.000.000"],
+          ["Penghasilan neto fiskal", "Rp3.240.000.000"],
+          ["Kompensasi kerugian (2020 Rp200.000.000 + 2022 Rp500.000.000; 2019 hangus)", "Rp700.000.000"],
+          ["Penghasilan Kena Pajak", "Rp2.540.000.000"],
+          ["PPh terutang 22% (angka 12)", "Rp558.800.000"],
+          ["Kredit PPh Pasal 22 dan Pasal 23 (angka 13)", "Rp115.000.000"],
+          ["Angsuran PPh Pasal 25 (angka 14)", "Rp360.000.000"],
+          ["Pokok STP PPh Pasal 25 (angka 15)", "Rp10.000.000"],
+          ["PPh kurang bayar (angka 17a)", "Rp73.800.000"]
+        ],
+        mengapaSalah: {
+          A: "Angka ini muncul bila rugi 2019 Rp150.000.000 ikut dikompensasikan (Penghasilan Kena Pajak Rp2.390.000.000, pajak Rp525.800.000). Rugi 2019 hanya dapat dipakai sampai Tahun Pajak 2024.",
+          B: "Angka ini muncul bila pokok STP PPh Pasal 25 Rp10.000.000 tidak dikurangkan. Di induk SPT, angka 15 ikut mengurangi PPh terutang.",
+          C: "Angka ini muncul bila kerugian sama sekali tidak dikompensasikan: 22% x Rp3.240.000.000 = Rp712.800.000 dikurangi Rp485.000.000."
+        },
+        jebakan: "Memasukkan rugi 2019 yang sudah lewat lima tahun, atau lupa bahwa pokok STP PPh Pasal 25 juga pengurang di angka 15."
+      },
+      dasarHukum: [{ pasal: "Pasal 6 ayat (2) UU PPh (kompensasi kerugian)", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 9 ayat (1) huruf b dan huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "UU PPh Pasal 4 ayat (3) huruf f angka 1 huruf b) s.t.d.t.d. UU 6/2023", berlakuSejak: "2020-11-02" }, { pasal: "Pasal 17 ayat (1) huruf b UU PPh s.t.d.t.d. UU 7/2021 (tarif 22%)", berlakuSejak: "2022-01-01" }, { pasal: "PER-11/PJ/2025 Lampiran huruf H (induk SPT Tahunan PPh Badan Bagian E angka 13 sampai 16 dan Bagian F angka 17 huruf a)", berlakuSejak: "2025-05-22" }, { pasal: "Pasal 31E ayat (1) UU PPh (fasilitas hanya untuk peredaran bruto sampai dengan Rp50 miliar)", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 54, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B6-357",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Bahtera Jaya membeli sebuah sedan yang disediakan untuk dipakai seorang manajernya karena jabatan, dan menanggung seluruh biaya pemeliharaannya. Pemakaian kendaraan itu berkaitan dengan kegiatan usaha perusahaan, dan masa manfaat sedan lebih dari satu tahun. Perlakuan biaya perolehan dan biaya pemeliharaan sedan tersebut sebagai pengurang penghasilan bruto PT Bahtera Jaya adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Hanya 50% dari biaya perolehan dan biaya pemeliharaan yang dapat dibebankan karena ada unsur pemakaian pribadi", B: "Biaya perolehan dibebankan melalui penyusutan, dan biaya pemeliharaan dibebankan pada tahun terjadinya", C: "Tidak dapat dibebankan sama sekali karena kenikmatan bagi pegawai bukan biaya perusahaan", D: "Biaya perolehan dan biaya pemeliharaan dapat dibebankan sekaligus seluruhnya pada tahun pembelian" },
+      kunci: "B",
+      jebakanOpsi: { A: "angka-usang", C: "angka-usang", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Sejak aturan natura yang baru, fasilitas untuk pegawai boleh menjadi biaya perusahaan asal berkaitan dengan usaha. Caranya mengikuti umur manfaat. Sedan dipakai lebih dari satu tahun, jadi harganya dibebankan sedikit demi sedikit lewat penyusutan. Biaya servis rutin habis dalam setahun, jadi langsung menjadi biaya pada tahun terjadinya. Cara ingat: barang awet disusutkan, biaya rutin langsung dibiayakan.",
+        inti: "Pasal 2 PMK 66/2023 mengatur bahwa biaya penggantian atau imbalan dalam bentuk natura dan/atau kenikmatan sehubungan dengan pekerjaan dapat dikurangkan dari penghasilan bruto pemberi kerja sepanjang merupakan biaya untuk mendapatkan, menagih, dan memelihara penghasilan. Kenikmatan yang masa manfaatnya lebih dari 1 tahun dibebankan melalui penyusutan atau amortisasi (ayat (4)), dan yang masa manfaatnya kurang dari 1 tahun dibebankan pada tahun terjadinya pengeluaran (ayat (5)). Sedan dibebankan lewat penyusutan, biaya pemeliharaan rutin dibebankan pada tahun terjadinya. Bagi manajer, kenikmatan kendaraan itu merupakan penghasilan, kecuali memenuhi batasan yang dikecualikan. Pembatasan 50% untuk sedan yang dipakai pegawai tertentu karena jabatan berasal dari KEP-220/PJ./2002, dan keputusan itu sudah dicabut oleh Pasal 147 PER-8/PJ/2025 sejak 21 Mei 2025.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Pembatasan 50% berasal dari KEP-220/PJ./2002, ketika kenikmatan pegawai belum boleh dibiayakan. Keputusan itu sudah dicabut PER-8/PJ/2025, dan PMK 66/2023 tidak memuat pembatasan 50%; ukurannya adalah kaitan dengan usaha dan masa manfaat.",
+          C: "Ini aturan sebelum Tahun Pajak 2022. Sekarang imbalan natura dan kenikmatan sehubungan dengan pekerjaan dapat dikurangkan sepanjang untuk mendapatkan, menagih, dan memelihara penghasilan.",
+          D: "Sedan bermasa manfaat lebih dari satu tahun, jadi biaya perolehannya tidak boleh dibebankan sekaligus, tetapi lewat penyusutan."
+        },
+        jebakan: "Masih memakai aturan lama 50% untuk kendaraan yang dipakai pegawai tertentu karena jabatan, padahal keputusan itu sudah dicabut."
+      },
+      dasarHukum: [{ pasal: "PMK 66/2023 Pasal 2 ayat (1), ayat (4), dan ayat (5)", berlakuSejak: "2023-07-01" }, { pasal: "Pasal 6 ayat (1) huruf n dan Pasal 11 UU PPh s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "PER-8/PJ/2025 Pasal 147 angka 26 (mencabut KEP-220/PJ./2002)", berlakuSejak: "2025-05-21" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 57, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B6-358",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "PT Tambang Nusantara, badan usaha yang bergerak di bidang pertambangan, membentuk cadangan biaya reklamasi untuk kegiatan pertambangan sesuai dengan izin usaha pertambangan yang dimilikinya. Dalam penghitungan Penghasilan Kena Pajak, pembentukan cadangan biaya reklamasi tersebut ...",
+      kataKualifikasi: [],
+      opsi: { A: "Dapat dikurangkan dari penghasilan bruto sebagai salah satu jenis cadangan yang diperkenankan menurut UU PPh, sepanjang memenuhi syarat yang diatur Menteri Keuangan", B: "Tidak dapat dikurangkan karena pembentukan dana cadangan pada dasarnya dilarang bagi seluruh jenis usaha tanpa pengecualian", C: "Dapat dikurangkan hanya jika biaya reklamasi telah benar-benar dikeluarkan dan dibayarkan tunai kepada pihak ketiga", D: "Dapat dikurangkan sepenuhnya tanpa syarat khusus karena merupakan kewajiban sesuai perizinan pertambangan" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Pada umumnya dana cadangan tidak boleh menjadi biaya, karena uangnya belum keluar. Undang-undang memberi beberapa pengecualian untuk usaha tertentu. Salah satunya cadangan biaya reklamasi untuk usaha pertambangan. Pengecualian itu tidak otomatis: cadangannya harus memenuhi syarat yang diatur Menteri Keuangan. Cara ingat: cadangan pada dasarnya dilarang, kecuali daftar khusus seperti reklamasi tambang, itu pun bersyarat.",
+        inti: "Pasal 9 ayat (1) huruf c UU PPh melarang pengurangan pembentukan atau pemupukan dana cadangan, kecuali enam jenis cadangan, antara lain cadangan biaya reklamasi untuk usaha pertambangan (angka 4), yang memenuhi persyaratan tertentu. Pasal 20 ayat (3) PP 55/2022 menyerahkan pengaturan persyaratan itu kepada Peraturan Menteri Keuangan. Jadi cadangan reklamasi PT Tambang Nusantara dapat dikurangkan sepanjang syaratnya dipenuhi.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Larangan cadangan punya pengecualian yang disebut satu per satu, termasuk cadangan biaya reklamasi untuk usaha pertambangan.",
+          C: "Cadangan justru dibentuk sebelum biaya benar-benar dikeluarkan. Syarat sudah dibayar tunai kepada pihak ketiga tidak ada dalam ketentuan ini.",
+          D: "Undang-undang menutup daftar pengecualian dengan kata-kata yang memenuhi persyaratan tertentu, jadi tidak tanpa syarat."
+        },
+        jebakan: "Berhenti di aturan umum bahwa cadangan dilarang, atau sebaliknya mengira pengecualiannya tanpa syarat."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 9 ayat (1) huruf c angka 4 s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "PP 55/2022 Pasal 20 ayat (2) huruf d dan ayat (3)", berlakuSejak: "2022-12-20" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 68, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B6-359",
+      topik: "B6.7",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Menurut PP 55 Tahun 2022 sebagaimana telah diubah dengan PP 20 Tahun 2026, badan yang dapat memanfaatkan PPh final 0,5% atas peredaran bruto tanpa batas jangka waktu pemanfaatan adalah ...",
+      kataKualifikasi: ["tanpa batas jangka waktu"],
+      opsi: { A: "Perseroan terbatas biasa", B: "Perseroan perorangan", C: "Commanditaire vennootschap (CV)", D: "Firma" },
+      kunci: "B",
+      jebakanOpsi: { A: "angka-usang", C: "angka-usang", D: "angka-usang" },
+      pembahasan: {
+        mudah: "Aturan pajak final 0,5% dari omzet berubah pada April 2026. Sekarang badan yang boleh memakainya hanya perseroan perorangan yang didirikan satu orang dan koperasi. Koperasi dibatasi empat tahun pajak, sedangkan ketentuan tentang batas waktu bagi yang lain sudah dihapus, sehingga perseroan perorangan tidak lagi dibatasi waktu. Perseroan terbatas biasa, persekutuan komanditer, dan firma hanya meneruskan sisa jangka waktu lamanya. Cara ingat: perseroan perorangan tanpa batas waktu, koperasi empat tahun, yang lain tinggal menghabiskan sisa.",
+        inti: "Pasal 57 ayat (1) huruf b PP 55/2022 s.t.d.d. PP 20/2026 membatasi Wajib Pajak badan yang dikenai PPh final 0,5% menjadi perseroan perorangan yang didirikan oleh 1 (satu) orang dan koperasi, dengan peredaran bruto tidak melebihi Rp4.800.000.000,00 setahun. Pasal 57 ayat (2) huruf f mengeluarkan koperasi yang telah melewati 4 Tahun Pajak sejak terdaftar, dan Pasal 59 tentang jangka waktu tertentu dihapus. Jadi batas waktu hanya tersisa untuk koperasi, sedangkan perseroan perorangan tidak dibatasi waktu. Menurut Pasal II, persekutuan komanditer, firma, dan perseroan terbatas selain perseroan perorangan hanya dapat memakainya sampai jangka waktu lamanya berakhir.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Perseroan terbatas biasa tidak lagi termasuk Pasal 57 ayat (1). Menurut ketentuan peralihan, ia hanya meneruskan sisa jangka waktu lama (3 Tahun Pajak) yang belum berakhir.",
+          C: "Persekutuan komanditer tidak lagi termasuk Pasal 57 ayat (1). Ia hanya meneruskan sisa jangka waktu lama (4 Tahun Pajak) yang belum berakhir.",
+          D: "Firma tidak lagi termasuk Pasal 57 ayat (1). Ia hanya meneruskan sisa jangka waktu lama (4 Tahun Pajak) yang belum berakhir."
+        },
+        jebakan: "Masih memakai daftar lama PP 55/2022, saat persekutuan komanditer, firma, dan perseroan terbatas ikut berhak dengan batas 4 atau 3 Tahun Pajak."
+      },
+      dasarHukum: [{ pasal: "PP 55/2022 Pasal 57 ayat (1) huruf b dan ayat (2) huruf f s.t.d.d. PP 20/2026; Pasal 59 dihapus; Pasal II angka 1 huruf e PP 20/2026", berlakuSejak: "2026-04-22" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 90, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B6-360",
+      topik: "B6.3",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Karya Logam menjual mesin yang digunakan dalam usahanya. Data penjualan mesin sebagai berikut. Harga jual Rp60.000.000,00; Nilai buku komersial Rp100.000.000,00; Sisa nilai buku fiskal Rp70.000.000,00; Rugi penjualan mesin pada laporan laba rugi Rp40.000.000,00. Koreksi fiskal atas rugi tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Koreksi fiskal positif Rp30.000.000,00", B: "Tidak ada koreksi fiskal", C: "Koreksi fiskal negatif Rp30.000.000,00", D: "Koreksi fiskal positif Rp40.000.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-hitung", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Rugi menjual mesin yang dipakai usaha boleh dikurangkan, tetapi besarnya dihitung dengan angka pajak, bukan angka buku perusahaan. Menurut pajak, sisa nilai mesin Rp70 juta dan laku Rp60 juta, jadi ruginya hanya Rp10 juta. Laporan laba rugi sudah mencatat rugi Rp40 juta karena memakai nilai buku Rp100 juta. Selisih Rp30 juta harus ditambahkan kembali ke laba, dan itulah koreksi positif. Cara ingat: rugi jual aset dihitung dari nilai buku pajak, selisihnya dikoreksi.",
+        inti: "Pasal 6 ayat (1) huruf d UU PPh membolehkan kerugian karena penjualan harta yang dimiliki dan digunakan dalam perusahaan dikurangkan dari penghasilan bruto. Pasal 11 ayat (8) menetapkan cara hitungnya: jumlah nilai sisa buku harta dibebankan sebagai kerugian dan harga jualnya dibukukan sebagai penghasilan. Rugi fiskal = Rp70.000.000,00 - Rp60.000.000,00 = Rp10.000.000,00, sedangkan rugi komersial Rp40.000.000,00. Beban komersial lebih besar Rp30.000.000,00, sehingga dikoreksi fiskal positif Rp30.000.000,00.",
+        jejakHitung: [
+          ["Rugi komersial = Rp100.000.000,00 - Rp60.000.000,00", "Rp40.000.000,00"],
+          ["Rugi fiskal = Rp70.000.000,00 - Rp60.000.000,00", "Rp10.000.000,00"],
+          ["Koreksi fiskal positif = Rp40.000.000,00 - Rp10.000.000,00", "Rp30.000.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Tanpa koreksi, rugi yang dikurangkan Rp40.000.000,00, padahal menurut nilai sisa buku fiskal ruginya hanya Rp10.000.000,00.",
+          C: "Angkanya benar tetapi arahnya terbalik. Koreksi negatif menambah beban, padahal beban komersial sudah terlalu besar Rp30.000.000,00.",
+          D: "Mengoreksi seluruh rugi Rp40.000.000,00 berarti menganggap rugi itu tidak boleh dikurangkan sama sekali, padahal rugi fiskal Rp10.000.000,00 boleh dikurangkan."
+        },
+        jebakan: "Selisih nilai buku komersial dan fiskal Rp30.000.000,00 mudah dihitung, tetapi arahnya sering terbalik: rugi komersial lebih besar berarti koreksi positif."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 6 ayat (1) huruf d dan Pasal 11 ayat (8)", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 95, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B6-361",
+      topik: "B6.11",
+      tingkat: ["B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 2,
+      stem: "Pada induk SPT Tahunan PPh Badan (rupiah) menurut PER-11/PJ/2025, Wajib Pajak tidak memakai fasilitas tarif apa pun dan memakai tarif Pasal 17 ayat (1) huruf b UU PPh. Data penghitungannya sebagai berikut. Penghasilan neto setelah fasilitas Rp2.345.678.912,00; Kompensasi kerugian fiskal Rp345.678.000,00. PPh terutang pada angka 12 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp440.000.000,00", B: "Rp440.000.201,00", C: "Rp440.000.220,00", D: "Rp440.220.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-hitung", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Penghasilan kena pajak didapat dari penghasilan neto dikurangi kompensasi rugi, hasilnya Rp2.000.000.912. Sebelum dikalikan tarif, angka itu dibulatkan ke bawah sampai ribuan penuh, jadi Rp2.000.000.000. Tarif badan tanpa fasilitas adalah 22%, sehingga pajaknya Rp440 juta. Tiga pilihan lain muncul bila angkanya tidak dibulatkan atau malah dibulatkan ke atas. Cara ingat: buang dulu angka di bawah seribu, baru kalikan tarif.",
+        inti: "Petunjuk induk SPT Tahunan PPh Badan Bagian D angka 9 menyatakan penghasilan kena pajak adalah penghasilan neto fiskal setelah fasilitas (angka 7) dikurangi kompensasi kerugian fiskal (angka 8), dan untuk keperluan penerapan tarif dibulatkan ke bawah dalam ribuan rupiah penuh. Rp2.345.678.912,00 - Rp345.678.000,00 = Rp2.000.000.912,00, dibulatkan menjadi Rp2.000.000.000,00. PPh terutang pada angka 12 dengan tarif Pasal 17 ayat (1) huruf b sebesar 22% adalah Rp440.000.000,00.",
+        jejakHitung: [
+          ["Penghasilan neto setelah fasilitas (angka 7)", "Rp2.345.678.912,00"],
+          ["Kompensasi kerugian fiskal (angka 8)", "Rp345.678.000,00"],
+          ["Selisih", "Rp2.000.000.912,00"],
+          ["Penghasilan kena pajak (angka 9), dibulatkan ke bawah ke ribuan", "Rp2.000.000.000,00"],
+          ["PPh terutang (angka 12) = 22% x Rp2.000.000.000,00", "Rp440.000.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Rp440.000.201,00 adalah 22% x Rp2.000.000.912,00 (Rp440.000.200,64 dibulatkan), yaitu tanpa membulatkan penghasilan kena pajak.",
+          C: "Rp440.000.220,00 adalah 22% x Rp2.000.001.000,00, yaitu penghasilan kena pajak dibulatkan ke atas ke ribuan.",
+          D: "Rp440.220.000,00 adalah 22% x Rp2.001.000.000,00, yaitu penghasilan kena pajak dibulatkan ke atas ke jutaan."
+        },
+        jebakan: "Angka Rp912,00 di ujung sengaja dipasang untuk menguji pembulatan ke bawah dalam ribuan rupiah penuh sebelum tarif diterapkan."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 17 ayat (1) huruf b dan ayat (4) s.t.d.t.d. UU 7/2021", berlakuSejak: "2022-01-01" }, { pasal: "Lampiran huruf H PER-11/PJ/2025 s.t.d.d. PER-12/PJ/2026 (induk Bagian D angka 9 dan angka 12)", berlakuSejak: "2026-10-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 96, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
     }
   ],
   kartu: [

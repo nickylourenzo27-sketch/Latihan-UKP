@@ -1936,7 +1936,8 @@
     // sisa waktu soal atau bahas (barisWaktuHP); tanpa target per soal: sisa waktu latihan. Sisa latihan tetap terbaca di baris "Anda".
     function kopSesiAnggota(st, a, opsi, keluar) {
       const n = Array.isArray(a.soalIds) ? a.soalIds.length : 0;
-      const o2 = Object.assign({}, opsi, { sesi: true, tengah: null, labelMenu: 'Menu room',
+      const o2 = Object.assign({}, opsi, { sesi: true, ukuran: true, tengah: null, labelMenu: 'Menu room',   // v10.3.1: ukuran = tombol Aa (ukuran teks soal)
+       
         menu: [{ teks: opsi.labelKeluar, ikon: 'keluar', onclick: keluar }].concat(UI.itemMenu()) });
       const bar = UKP.c.fokusBar(o2);
       bar.classList.add('bar-room', 'kop-sesi-room');
@@ -2148,7 +2149,8 @@
       const kut = soal.kutipan ? h('details', { class: 'lipat kutipan-room' }, h('summary', null, 'Tampilkan kutipan peraturan'), h('blockquote', { class: 'kutipan' }, String(soal.kutipan))) : null;
       // kode soal tidak tampil sendirian: selalu didampingi nama topik / kelompok
       return [h('p', { class: 'meta soal-kop-room' }, topik || kel || '', ' ', h('span', { class: 'kode-soal-room' }, h('span', { class: 'sep', 'aria-hidden': 'true' }, '· '), h('span', { class: 'kode' }, soal.id))),
-        kut, h('p', { class: 'stem-room' }, soal.stem),
+        kut, UKP.c.isiStem ? UKP.c.isiStem(h('p', { class: 'stem-room' }), soal.stem, { sorot: false }) : h('p', { class: 'stem-room' }, soal.stem),   // v10.3.1: butir bernomor di baris sendiri
+       
         h('ol', { class: 'opsi-room', type: 'A' }, HURUF.filter(x => soal.opsi && soal.opsi[x] != null).map(x => h('li', { 'data-huruf': x }, h('span', { class: 'huruf', 'aria-hidden': 'true' }, x), h('span', { class: 'teks' }, String(soal.opsi[x])))))];
     }
     function kirim(a, sid, patch) {

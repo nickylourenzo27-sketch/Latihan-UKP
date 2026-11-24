@@ -13251,6 +13251,90 @@ UKP.register({
       opsiLepas: { teks: "30 April 2026", alasan: "30 April 2026 adalah hari terakhir Masa Pajak itu sendiri; penyetoran baru jatuh tempo pada bulan berikutnya." },
       sumber: { set: "LM-B-2026-11", no: 270, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "PPh Pemotongan/Pemungutan" },
       sejak: "9.7.0"
+    },
+    {
+      id: "A3-449",
+      topik: "A3.5",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Menurut PMK 51 Tahun 2025, yang tidak termasuk pengecualian dari pemungutan PPh Pasal 22 adalah ...",
+      kataKualifikasi: ["tidak termasuk"],
+      opsi: { A: "Impor barang pindahan yang dibebaskan dari pungutan bea masuk", B: "Pembayaran oleh Instansi Pemerintah atas pembelian barang sebesar Rp1.800.000,00 (tidak termasuk PPN) yang bukan pecahan dari transaksi yang lebih besar", C: "Penjualan semen oleh badan usaha industri semen kepada distributor di dalam negeri senilai Rp500.000.000,00", D: "Impor kembali barang yang sebelumnya diekspor untuk keperluan perbaikan dan telah memenuhi syarat yang ditentukan Direktorat Jenderal Bea dan Cukai" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Yang dicari adalah transaksi yang tetap kena pungutan. Pabrik semen memang ditunjuk memungut pajak saat menjual hasil produksinya ke distributor, berapa pun nilainya. Barang pindahan yang bebas bea masuk tidak dipungut. Belanja pemerintah sampai Rp2 juta yang tidak dipecah dan barang yang diimpor kembali setelah diperbaiki juga tidak dipungut. Cara ingat: semen ke distributor selalu dipungut 0,25%.",
+        inti: "Pasal 2 ayat (1) huruf d PMK 51/2025 menunjuk badan usaha industri semen sebagai pemungut PPh Pasal 22 atas penjualan hasil produksinya kepada distributor di dalam negeri, dengan besaran 0,25% (Pasal 3 ayat (1) huruf d angka 1). Transaksi itu tidak ada dalam daftar pengecualian Pasal 4 ayat (1), sedangkan tiga transaksi lainnya ada.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Impor barang pindahan yang dibebaskan dari pungutan bea masuk dikecualikan (Pasal 4 ayat (1) huruf b angka 8).",
+          B: "Pembayaran oleh Instansi Pemerintah paling banyak Rp2.000.000,00 tidak termasuk PPN dan bukan pecahan transaksi dikecualikan (Pasal 4 ayat (1) huruf e angka 1 butir a). Rp1.800.000,00 masih di bawah batas itu.",
+          D: "Impor kembali barang yang telah diekspor untuk perbaikan, pengerjaan, dan pengujian yang memenuhi syarat Direktorat Jenderal Bea dan Cukai dikecualikan (Pasal 4 ayat (1) huruf d)."
+        },
+        jebakan: "Kata tidak termasuk membalik pertanyaan: yang dicari justru transaksi yang dipungut. Nilai Rp500.000.000,00 pada semen hanya pengalih, karena pungutan industri semen tidak punya batas nilai."
+      },
+      dasarHukum: [{ pasal: "PMK 51/2025 Pasal 2 ayat (1) huruf d dan Pasal 3 ayat (1) huruf d angka 1 (industri semen, 0,25%)", berlakuSejak: "2025-08-01" }, { pasal: "PMK 51/2025 Pasal 4 ayat (1) huruf b angka 8, huruf d, dan huruf e angka 1 butir a) (pengecualian pemungutan)", berlakuSejak: "2025-08-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 37, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A3-450",
+      topik: "A3.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "PT Karya Sentosa mengikutsertakan seluruh pegawai tetapnya dalam program BPJS Ketenagakerjaan. Iuran Jaminan Kecelakaan Kerja (JKK) dan Jaminan Kematian (JKM) dibayar oleh PT Karya Sentosa, demikian pula bagian iuran Jaminan Hari Tua (JHT) yang menjadi tanggungan pemberi kerja. Dalam penghitungan PPh Pasal 21 pegawai, perlakuan iuran JKK dan JKM serta iuran JHT bagian pemberi kerja tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Iuran JKK dan JKM ditambahkan ke penghasilan bruto, sedangkan iuran JHT bagian pemberi kerja tidak", B: "Iuran JKK, JKM, dan JHT bagian pemberi kerja seluruhnya ditambahkan ke penghasilan bruto", C: "Iuran JKK, JKM, dan JHT bagian pemberi kerja seluruhnya tidak ditambahkan ke penghasilan bruto", D: "Iuran JHT bagian pemberi kerja ditambahkan ke penghasilan bruto, sedangkan iuran JKK dan JKM tidak" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "lupa-pasal", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Dua jenis iuran ini diperlakukan berbeda walaupun sama-sama dibayar kantor. Iuran jaminan kecelakaan kerja dan jaminan kematian yang dibayar pemberi kerja dianggap penghasilan pegawai, jadi ikut dijumlahkan ke penghasilan bruto. Iuran jaminan hari tua bagian pemberi kerja tidak dijumlahkan. Pajak atas jaminan hari tua baru muncul nanti, ketika manfaatnya dibayarkan kepada pegawai. Cara ingat: kecelakaan dan kematian masuk bruto sekarang, hari tua dipajaki saat cair.",
+        inti: "Pasal 5 ayat (3) huruf d PMK 168/2023 memasukkan pembayaran iuran jaminan kecelakaan kerja dan iuran jaminan kematian kepada badan penyelenggara jaminan sosial ketenagakerjaan yang dibayarkan pemberi kerja ke dalam penghasilan Pegawai Tetap. Sebaliknya, Pasal 7 huruf c mengecualikan dari penghasilan yang dipotong PPh Pasal 21 iuran terkait program pensiun dan hari tua yang dibayar pemberi kerja kepada dana pensiun yang disahkan, badan penyelenggara jaminan sosial tenaga kerja, atau badan penyelenggara tunjangan hari tua. Jadi JKK dan JKM menambah penghasilan bruto, sedangkan JHT bagian pemberi kerja tidak.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Mengabaikan Pasal 7 huruf c: iuran hari tua yang dibayar pemberi kerja kepada badan penyelenggara jaminan sosial tenaga kerja bukan penghasilan yang dipotong PPh Pasal 21.",
+          C: "Mengabaikan Pasal 5 ayat (3) huruf d: iuran JKK dan JKM yang dibayar pemberi kerja termasuk penghasilan Pegawai Tetap.",
+          D: "Perlakuannya terbalik. Yang ditambahkan ke penghasilan bruto adalah JKK dan JKM, sedangkan JHT bagian pemberi kerja dikecualikan."
+        },
+        jebakan: "Menyamaratakan semua iuran BPJS Ketenagakerjaan yang dibayar pemberi kerja, padahal JKK dan JKM berbeda perlakuan dari JHT."
+      },
+      dasarHukum: [{ pasal: "PMK 168/2023 Pasal 5 ayat (3) huruf d dan Pasal 7 huruf c", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 87, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A3-451",
+      topik: "A3.5",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Instansi Pemerintah dan Badan Usaha Milik Negara (BUMN) yang melakukan pembayaran atas pembelian barang memungut PPh Pasal 22 sebesar ...",
+      kataKualifikasi: [],
+      opsi: { A: "3% dari harga pembelian tidak termasuk PPN", B: "2% dari harga pembelian termasuk PPN", C: "0,5% dari harga pembelian termasuk PPN", D: "1,5% dari harga pembelian tidak termasuk PPN" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Instansi pemerintah dan BUMN wajib memungut pajak saat membayar pembelian barang dari rekanan. Tarifnya sama untuk keduanya, yaitu 1,5% dari harga pembelian. PPN tidak ikut dihitung, jadi yang dikalikan hanya harga barangnya. Misalnya harga barang Rp100 juta, pungutannya Rp1,5 juta. Cara ingat: pemerintah dan BUMN sama-sama memungut 1,5% dari harga tanpa PPN.",
+        inti: "Pasal 2 ayat (1) huruf b PMK 51/2025 menunjuk Instansi Pemerintah sebagai pemungut PPh Pasal 22 atas pembayaran pembelian barang, dan huruf c angka 1 menunjuk Badan Usaha Milik Negara sebagai badan usaha tertentu pemungut atas pembelian barang dan/atau bahan untuk keperluan kegiatan usahanya. Pasal 3 ayat (1) huruf b menetapkan besarnya pungutan untuk keduanya: 1,5% dari harga pembelian tidak termasuk Pajak Pertambahan Nilai.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Dasarnya sudah benar tanpa PPN, tetapi tarifnya bukan 3%. Pasal 3 ayat (1) huruf b menetapkan 1,5%.",
+          B: "Keliru pada tarif dan dasar. 2% adalah tarif PPh Pasal 23 atas jasa, dan dasar pungutan PPh Pasal 22 ini tidak memasukkan PPN.",
+          C: "Keliru pada tarif dan dasar. 0,5% adalah tarif PPh final atas peredaran bruto tertentu yang disetor sendiri oleh penjual, bukan pungutan PPh Pasal 22."
+        },
+        jebakan: "Tarif 1,5% saja belum cukup; dasar pungutannya harga pembelian tidak termasuk PPN."
+      },
+      dasarHukum: [{ pasal: "PMK 51/2025 Pasal 2 ayat (1) huruf b dan huruf c serta Pasal 3 ayat (1) huruf b", berlakuSejak: "2025-08-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 89, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
     }
   ],
   kartu: [

@@ -123,7 +123,7 @@ describe('v9.4.4: tanda perlu cek dan keutuhan bank soal', () => {
       else assert.equal(s.peringatan, undefined, s.id + ' tanpa peringatan');
     }
   });
-  it('soal bertanda: Tingkat B paling banyak 76, Tingkat C paling banyak 14 (dari 109 sebelum dicocokkan)', () => {
+  it('soal bertanda: Tingkat B paling banyak 77, Tingkat C paling banyak 14 (dari 109 sebelum dicocokkan)', () => {
     let b = 0, c = 0;
     // v9.7.1: batas 67 menjadi 74. Tujuh soal diberi ◐ karena ancaman pidananya disesuaikan UU 1/2026 dan bunyi barunya belum bisa dipastikan:
     // A2-111, A2-258, A4-142, A4-169, A5-204, E-068, E-080. Tidak ada soal lain yang bertambah tanda.
@@ -131,9 +131,11 @@ describe('v9.4.4: tanda perlu cek dan keutuhan bank soal', () => {
     // Pasal 7 UU 9/2017 yang ikut disesuaikan UU 1/2026 dan bunyi barunya belum ada di pustaka. Tidak ada soal lain yang bertambah tanda.
     // v9.7.1 putaran 2: batas Tingkat C 13 menjadi 14. C10-049 diberi ◐ karena opsi kuncinya memuat angka ancaman Pasal 7 UU 9/2017
     // yang ikut disesuaikan UU 1/2026. Kuncinya tetap.
+    // v10.3.1: batas Tingkat B 76 menjadi 77. B7-402 (Try Out UKP C Paket 3 nomor 51) masuk dengan tanda ◐: kunci try out dipakai, padahal
+    // larangan pengkreditan Pajak Masukan atas sedan sudah dihapus UU 7/2021. Tidak ada soal lain yang bertambah tanda.
     // v9.7.0: paket LM punya batas sendiri di test/v970-data.test.js
     for (const m of semua) { const n = m.soal.filter(s => s.verifikasi === '◐' && !(s.sumber && s.sumber.set === 'LM-B-2026-11')).length; if (['C9', 'C10'].includes(m.meta.kode)) c += n; else b += n; }
-    assert.ok(b <= 76, 'bertanda di modul Tingkat B: ' + b);
+    assert.ok(b <= 77, 'bertanda di modul Tingkat B: ' + b);
     assert.ok(c <= 14, 'bertanda di modul Tingkat C: ' + c);
   });
   it('soal try out tetap utuh: 100 soal dengan nomor 1 sampai 100', () => {

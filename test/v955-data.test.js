@@ -8,7 +8,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const ROOT = path.join(__dirname, '..');
 const J = x => JSON.parse(JSON.stringify(x));
-const B = 'TO-B-2026-11', C1 = 'TO-C-2026-11-1', C2 = 'TO-C-2026-11-2';
+const B = 'TO-B-2026-11', C1 = 'TO-C-2026-11-1', C2 = 'TO-C-2026-11-2', C3 = 'TO-C-2026-11-3'; // v10.3.1 Paket 3
 const { LM, HARAP } = require('./_harap-970'); // v9.7.0 paket keempat
 function muat() {
   const noop = () => {};
@@ -31,16 +31,16 @@ function muat() {
 
 describe('v9.5.5 data asli: tiga paket try out', () => {
   const UKP = muat(); const K = UKP.konten;
-  it('daftarSet: empat paket, tiga try out menurut kode paket lalu paket latihan LM (v9.7.0)', () => {
+  it('daftarSet: lima paket, empat try out menurut kode paket lalu paket latihan LM (v9.7.0; v10.3.1 Paket 3)', () => {
     const d = K.daftarSet();
-    assert.deepEqual(J(d.map(p => p.set)), [B, C1, C2, LM]);
-    assert.deepEqual(J(d.map(p => p.n)), [100, 100, 50, HARAP.jumlah]);
-    assert.deepEqual(J(d.map(p => p.tingkat)), ['B', 'C', 'C', 'B']);
-    assert.deepEqual(J(d.map(p => p.label)), ['Try Out UKP B', 'Try Out UKP C Paket 1', 'Try Out UKP C Paket 2', 'Latihan UKP B per mata uji']);
+    assert.deepEqual(J(d.map(p => p.set)), [B, C1, C2, C3, LM]);
+    assert.deepEqual(J(d.map(p => p.n)), [100, 100, 50, 100, HARAP.jumlah]);
+    assert.deepEqual(J(d.map(p => p.tingkat)), ['B', 'C', 'C', 'C', 'B']);
+    assert.deepEqual(J(d.map(p => p.label)), ['Try Out UKP B', 'Try Out UKP C Paket 1', 'Try Out UKP C Paket 2', 'Try Out UKP C Paket 3', 'Latihan UKP B per mata uji']);
     for (const p of d) assert.equal(Object.values(p.perKelompok).reduce((a, n) => a + n, 0), p.n, p.set + ': jumlah per kelompok');
   });
   it('soalSet: urutan nomor asli tanpa ganda; empat soal Try Out UKP B muncul di Paket 2 pada nomor 11, 15, 34, 39', () => {
-    for (const [set, n] of [[B, 100], [C1, 100], [C2, 50]]) { const a = K.soalSet(set); assert.equal(a.length, n, set); assert.equal(new Set(a.map(x => x.id)).size, n, set + ': id ganda'); }
+    for (const [set, n] of [[B, 100], [C1, 100], [C2, 50], [C3, 100]]) { const a = K.soalSet(set); assert.equal(a.length, n, set); assert.equal(new Set(a.map(x => x.id)).size, n, set + ': id ganda'); }
     const c2 = K.soalSet(C2);
     assert.deepEqual([11, 15, 34, 39].map(no => c2[no - 1].id), ['A3-161', 'A3-162', 'B6-132', 'B6-141']);
     const b = K.soalSet(B); assert.deepEqual([75, 81, 17, 72].map(no => b[no - 1].id), ['A3-161', 'A3-162', 'B6-132', 'B6-141'], 'di Try Out UKP B nomornya tetap');

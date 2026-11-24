@@ -19,16 +19,11 @@
     .replace(/\boleh riset\b/gi, 'oleh sumber sekunder').replace(/\bpengetahuan peneliti\b/gi, 'pemahaman umum')
     .replace(/\briset(\s+\d+[a-z]?)?\b/gi, 'sumber sekunder').replace(/\s{2,}/g, ' ').trim();
   // stem berisi daftar bernomor "(1) … (2) …": baris baru sebelum tiap nomor berurutan (bukan "ayat (3)" atau "angka (2)")
+  // v10.3.1: deteksi butir pindah ke UKP.susunStem (js/core.js), dipakai juga layar HP anggota room. Fungsi ini tinggal pembungkus
+  // untuk pemanggil lama: teks dengan baris baru sebelum tiap butir dan sebelum kalimat penutup, atau null bila bukan daftar
   function pecahDaftar(t) {
-    t = String(t || ''); const re = /(^|[\s:;,])\((\d{1,2})\)\s/g; let m, harap = 1; const pos = [];
-    while ((m = re.exec(t))) {
-      const awal = m.index + m[1].length;
-      if (/\b(ayat|angka|huruf|Pasal\s+\d+\w*)\s*$/i.test(t.slice(Math.max(0, awal - 16), awal))) continue;
-      if (Number(m[2]) === harap) { pos.push(awal); harap++; }
-    }
-    if (pos.length < 2) return null;
-    let out = '', akhir = 0; pos.forEach(p => { out += t.slice(akhir, p).replace(/\s+$/, '') + '\n'; akhir = p; });
-    return out + t.slice(akhir);
+    const s = UKP.susunStem ? UKP.susunStem(t) : null; if (!s) return null;
+    return [s.pembuka].concat(s.butir.map(b => b.teks), s.penutup ? [s.penutup] : []).map(x => x.replace(/\s+$/, '')).filter(Boolean).join('\n');
   }
   UKP.pecahDaftarStem = pecahDaftar;
   // K-03 dasar hukum: ul.dasar-hukum, satu pasal per baris (sans), tanggal berlaku .meta; status per tanggal di title
@@ -196,6 +191,9 @@
     // v9.5.5 K-4e: chip tetap paket utama; bila soal juga anggota paket lain (sumber.juga), title menyebut semua paket beserta nomornya
     const judulSumber = so => { const sb = so.sumber; const ag = K && K.anggotaSet ? K.anggotaSet(so) : []; return ag.length > 1 ? ag.map(a => (a.judul || a.set) + ' no ' + a.no).join(' · ') : (sb.judul || sb.set) + (typeof sb.bagian === 'string' && sb.bagian ? ' · ' + sb.bagian : ''); };
     const kop = h('div', { class: 'soal-kop' }, h('span', { class: 'soal-id', title: soal.id + ' · ' + namaKel + (topik ? ' · ' + topik.judul : '') }, ikonJ, h('span', null, soal.id), h('span', { class: 'topik' }, '· ' + (topik ? (v10 ? topik.id + ' ' : '') + topik.judul : namaKel)), soal.sumber && soal.sumber.set ? h('span', { class: 'topik sumber-set', title: judulSumber(soal) }, '· ' + String(soal.sumber.judul || soal.sumber.set).replace(/\s*\(.*$/, '') + ' no ' + soal.sumber.no) : null), kanan);
+    // v10.3.1: di papan Mode mabar selebar HP pita kop terlalu sempit, jadi tombol "Aa" kedua ada di kop soal. CSS menampilkan salah satu saja:
+    // di pita mulai 600 px, di kop soal di bawah 600 px (css/app.css blok v10.3.1)
+    if (papanV10 && UKP.c.tombolUkuranSoal) kop.appendChild(UKP.c.tombolUkuranSoal());
     // kutipan peraturan: di HP kutipan panjang diringkas dengan tombol "Tampilkan kutipan lengkap"
     let kutipan = null;
     if (soal.kutipan) {
@@ -212,8 +210,9 @@
       }
     }
     const stemId = 'stem-' + uid;
-    const stemDaftar = pecahDaftar(soal.stem); const teksStem = stemDaftar || soal.stem;
-    const stem = h('p', { class: 'stem', id: stemId, style: stemDaftar ? { whiteSpace: 'pre-line' } : null }, mode === 'ujian' || ujianB ? teksStem : UKP.c.sorot(teksStem, soal.kataKualifikasi));
+    // v10.3.1: isi stem lewat UKP.c.isiStem (butir bernomor di baris sendiri dengan inden gantung, angka uang tidak terpenggal);
+    // teks soal tidak diubah. Ujian dan papan ujian tim tetap tanpa sorot kata kualifikasi
+    const stem = UKP.c.isiStem(h('p', { class: 'stem', id: stemId }), soal.stem, { kata: soal.kataKualifikasi, sorot: !(mode === 'ujian' || ujianB) });
     const fs = h('fieldset', { class: 'opsi' + (bersama ? ' opsi-tampil' : ''), 'aria-describedby': stemId }, h('legend', { class: 'visually-hidden' }, bersama ? 'Pilihan jawaban (jawaban tiap orang dicatat di papan di bawah)' : 'Pilihan jawaban'));
     const labels = {};
     for (const k of HURUF) {
@@ -739,7 +738,14 @@
     // catatan verifikasi: tidak dirender selama simulasi berjalan (mode ujian); di latihan dan ulas sebagai lipatan "Catatan sumber"
     if (soal.verifikasi === '◐' && !(mode === 'ujian' && !hanyaBaca) && !ujianB) {
       const cat = UKP.rapikanCatatan(soal.peringatan) || 'Sebagian ketentuan soal ini belum dicek ulang ke teks peraturan.';
-      wrap.appendChild(h('details', { class: 'lipat catatan-sumber' }, h('summary', null, 'Catatan sumber'), h('p', { class: 'small muted' }, cat)));
+      const cs = h('details', { class: 'lipat catatan-sumber' }, h('summary', null, 'Catatan sumber'), h('p', { class: 'small muted' }, cat));
+      // v10.3.1: catatan ini bisa menyebut kunci, jadi baru tampil sesudah pembahasan muncul (sesudah soal dijawab); di mode ulas langsung tampil
+      if (!hanyaBaca && typeof MutationObserver === 'function') {
+        cs.hidden = true;
+        const mo = new MutationObserver(() => { if (wrap.querySelector('.umpan')) { cs.hidden = false; mo.disconnect(); } });
+        mo.observe(wrap, { childList: true, subtree: true });
+      }
+      wrap.appendChild(cs);
     }
     const galatPilih = mode === 'belajar' && !hanyaBaca ? h('p', { class: 'small galat galat-pilih', role: 'alert', hidden: true, style: { color: 'var(--attn)', margin: 0 } }) : null;
     if (galatPilih) fs.after(galatPilih);
@@ -1001,6 +1007,9 @@
     wrap.addEventListener('keydown', e => {
       if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
       const t = e.target; if (mengetik(t)) return;
+      // v10.3.1: tombol di dalam menu "Aa" (ukuran teks soal, ada di kop soal papan selebar HP) bukan pintasan kartu: huruf A sampai D,
+      // angka, dan Enter di sana tidak boleh mengubah jawaban atau membuka kunci
+      if (t && t.closest && t.closest('.aa-soal')) return;
       // jawab langsung: panah di grup opsi hanya memindah fokus (tidak memilih, karena memilih = menjawab); Spasi/klik memilih
       if (langsung && !terkunci && t.tagName === 'INPUT' && t.type === 'radio' && /^Arrow(Up|Down|Left|Right)$/.test(e.key)) {
         const ins = [...fs.querySelectorAll('input')]; const i = ins.indexOf(t); const maju = e.key === 'ArrowDown' || e.key === 'ArrowRight';

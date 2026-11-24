@@ -8144,7 +8144,7 @@ UKP.register({
       dasarHukum: [{ pasal: "UU PPh Pasal 23 ayat (1) huruf c angka 2 s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }],
       anggaranDetik: 75,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 7, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 7, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 43, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -8232,7 +8232,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PSAK 201 Penyajian Laporan Keuangan paragraf 56", berlakuSejak: null }],
       anggaranDetik: 60,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 17, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 17, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 38, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -8357,7 +8357,7 @@ UKP.register({
       dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan", berlakuSejak: "2024-01-01" }],
       anggaranDetik: 60,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 32, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 32, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 1, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -8389,7 +8389,7 @@ UKP.register({
       dasarHukum: [{ pasal: "Pasal 28 ayat (1) dan Pasal 29 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PSAK 212 Pajak Penghasilan", berlakuSejak: "2024-01-01" }],
       anggaranDetik: 90,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 33, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 33, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 36, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -8983,7 +8983,7 @@ UKP.register({
       dasarHukum: [{ pasal: "UU PPh Pasal 23 ayat (1) huruf c angka 2 s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "UU PPh Pasal 28 ayat (1) huruf c", berlakuSejak: "2009-01-01" }, { pasal: "PMK 131/2024 Pasal 3 ayat (1) sampai (3)", berlakuSejak: "2025-01-01" }, { pasal: "PMK 141/PMK.03/2015 Pasal 1 ayat (1) (jumlah bruto tidak termasuk PPN)", berlakuSejak: "2015-08-26" }],
       anggaranDetik: 150,
       verifikasi: "✅",
-      sumber: { set: "TO-C-2026-11-1", no: 98, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C" },
+      sumber: { set: "TO-C-2026-11-1", no: 98, judul: "Try Out UKP C Paket 1 (transkrip 13 Nov 2026)", tingkat: "C", juga: [{ set: "TO-C-2026-11-3", no: 70, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" }] },
       sejak: "9.5.5"
     },
     {
@@ -10767,6 +10767,698 @@ UKP.register({
       opsiLepas: { teks: "Rp5.000.000", alasan: "Rp5.000.000 adalah 6,25% x Rp80.000.000, tarif garis lurus kelompok 3 (16 tahun), bukan kelompok 1." },
       sumber: { set: "LM-B-2026-11", no: 52, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Akuntansi Perpajakan" },
       sejak: "9.7.0"
+    },
+    {
+      id: "B7-388",
+      topik: "B7.3",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "PT Teknik Andalan memiliki mesin dengan sisa nilai buku fiskal Rp600.000.000,00. Dengan persetujuan Direktur Jenderal Pajak, mesin tersebut dinilai kembali sehingga nilai barunya Rp1.150.000.000,00. Berapakah PPh final yang terutang atas selisih lebih penilaian kembali tersebut?",
+      kataKualifikasi: [],
+      opsi: { A: "Rp115.000.000,00", B: "Rp121.000.000,00", C: "Rp55.000.000,00", D: "Rp60.000.000,00" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "final-nonfinal", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Yang dipajaki hanya kenaikan nilainya, bukan seluruh nilai mesin. Nilai baru Rp1.150.000.000,00 dikurangi sisa nilai buku fiskal Rp600.000.000,00, jadi selisih lebihnya Rp550.000.000,00. Selisih itu dikenai pajak final 10%, sehingga pajaknya Rp55.000.000,00. Tarif umum badan 22% tidak dipakai di sini. Cara ingat: revaluasi itu selisih lebih dikali sepuluh persen.",
+        inti: "Atas selisih lebih penilaian kembali aktiva tetap di atas nilai sisa buku fiskal semula dikenai PPh final 10% (Pasal 5 PMK 79/PMK.03/2008, pelaksanaan Pasal 19 UU PPh). Selisih lebih = Rp1.150.000.000,00 dikurangi Rp600.000.000,00 = Rp550.000.000,00, sehingga PPh final = 10% x Rp550.000.000,00 = Rp55.000.000,00.",
+        jejakHitung: [
+          ["Nilai baru hasil penilaian kembali", "Rp1.150.000.000,00"],
+          ["Sisa nilai buku fiskal semula", "Rp600.000.000,00"],
+          ["Selisih lebih = 1.150.000.000 - 600.000.000", "Rp550.000.000,00"],
+          ["PPh final = 10% x 550.000.000", "Rp55.000.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Angka ini 10% dari seluruh nilai baru Rp1.150.000.000,00. Dasar pengenaannya hanya selisih lebih di atas sisa nilai buku fiskal.",
+          B: "Angka ini 22% x Rp550.000.000,00. Selisih lebih penilaian kembali dikenai PPh final 10%, bukan tarif umum badan.",
+          D: "Angka ini 10% dari sisa nilai buku fiskal Rp600.000.000,00, padahal yang dipajaki adalah kenaikan nilainya."
+        },
+        jebakan: "Mengalikan tarif dengan nilai baru atau nilai buku, atau memakai tarif umum 22%, padahal dasarnya selisih lebih dan tarifnya final 10%."
+      },
+      dasarHukum: [{ pasal: "Pasal 19 UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 79/PMK.03/2008 Pasal 5", berlakuSejak: "2008-05-23" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 2, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-389",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Menurut PSAK 212 Pajak Penghasilan, aset pajak tangguhan atas beda temporer yang dapat dikurangkan diakui sepanjang ...",
+      kataKualifikasi: ["sepanjang"],
+      opsi: { A: "Entitas mencatat laba akuntansi pada tahun berjalan", B: "Kemungkinan besar (probable) tersedia laba kena pajak masa depan yang dapat dimanfaatkan terhadap beda temporer tersebut", C: "Beda temporer tersebut berasal dari beban yang telah dibayar tunai", D: "Entitas telah memperoleh persetujuan otoritas pajak atas pemanfaatan aset tersebut" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Aset pajak tangguhan adalah penghematan pajak pada tahun-tahun mendatang. Penghematan itu baru terasa kalau nanti perusahaan punya laba yang kena pajak. Karena itu aset ini hanya boleh dicatat bila besar kemungkinan laba kena pajak masa depan tersedia. Laba tahun ini, pembayaran tunai, atau izin kantor pajak tidak menjadi syaratnya. Cara ingat: tanpa laba kena pajak nanti, tidak ada yang bisa dihemat.",
+        inti: "PSAK 212 mengakui aset pajak tangguhan atas seluruh beda temporer yang dapat dikurangkan sepanjang kemungkinan besar (probable) laba kena pajak akan tersedia sehingga beda temporer itu dapat dimanfaatkan (paragraf 24). Ukurannya adalah laba kena pajak masa depan, bukan laba akuntansi tahun berjalan, cara pembayaran beban, atau persetujuan otoritas pajak.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Syaratnya laba kena pajak pada masa depan, bukan laba akuntansi tahun berjalan. Entitas yang sedang laba pun belum tentu punya laba fiskal pada periode pembalikan.",
+          C: "Beda temporer timbul dari selisih jumlah tercatat dengan dasar pengenaan pajak. Sudah dibayar tunai atau belum tidak menentukan pengakuannya.",
+          D: "Pengakuan aset pajak tangguhan adalah pertimbangan akuntansi entitas. Standar tidak mensyaratkan persetujuan otoritas pajak."
+        },
+        jebakan: "Menyamakan laba akuntansi tahun berjalan dengan laba kena pajak masa depan yang menjadi syarat pengakuan."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan paragraf 24 dan paragraf 27", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 3, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-390",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Menurut PSAK 201 Penyajian Laporan Keuangan, pada laporan posisi keuangan yang memisahkan klasifikasi lancar dan tidak lancar, aset pajak tangguhan dan liabilitas pajak tangguhan disajikan sebagai ...",
+      kataKualifikasi: [],
+      opsi: { A: "Aset dan liabilitas tidak lancar, dan tidak boleh diklasifikasikan sebagai lancar", B: "Aset atau liabilitas lancar jika diperkirakan berbalik dalam 12 bulan", C: "Lancar atau tidak lancar sesuai pilihan manajemen asalkan konsisten", D: "Komponen ekuitas karena tidak menimbulkan arus kas" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-baca", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Kalau neraca memisahkan pos lancar dan tidak lancar, pajak tangguhan selalu masuk kelompok tidak lancar. Aturan ini berlaku walaupun selisihnya diperkirakan berbalik dalam dua belas bulan. Manajemen tidak boleh memilih sendiri, dan pajak tangguhan bukan bagian dari ekuitas. Jadi baik aset maupun liabilitas pajak tangguhan tidak pernah ditaruh di kelompok lancar. Cara ingat: tangguhan selalu tidak lancar.",
+        inti: "PSAK 201 paragraf 56 menyatakan bahwa bila entitas menyajikan aset lancar dan tidak lancar serta liabilitas jangka pendek dan jangka panjang secara terpisah, aset (liabilitas) pajak tangguhan tidak diklasifikasikan sebagai aset lancar (liabilitas jangka pendek). Jadi keduanya selalu disajikan sebagai pos tidak lancar, kapan pun pembalikannya.",
+        jejakHitung: [],
+        mengapaSalah: {
+          B: "Uji 12 bulan berlaku untuk pos lain. Untuk pajak tangguhan klasifikasi lancar dilarang walaupun pembalikannya dalam 12 bulan.",
+          C: "Tidak ada pilihan kebijakan. Larangan klasifikasi lancar berlaku untuk semua entitas yang memisahkan lancar dan tidak lancar.",
+          D: "Pajak tangguhan adalah aset atau liabilitas, bukan komponen ekuitas."
+        },
+        jebakan: "Menerapkan uji pembalikan 12 bulan pada pajak tangguhan seperti pada aset atau liabilitas lain."
+      },
+      dasarHukum: [{ pasal: "PSAK 201 Penyajian Laporan Keuangan paragraf 56", berlakuSejak: null }, { pasal: "PSAK 212 Pajak Penghasilan", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 9, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-391",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Dalam rekonsiliasi fiskal Tahun Pajak 2025, PT Multi Usaha mengidentifikasi beberapa perbedaan antara laba komersial dan laba fiskal sebagai berikut. (1) Beban sanksi administrasi berupa denda pajak yang tidak dapat dikurangkan; (2) Beban penyusutan komersial yang lebih kecil daripada penyusutan fiskal karena perbedaan masa manfaat; (3) Pendapatan bunga deposito yang telah dikenai Pajak Penghasilan final. Perbedaan yang seharusnya menimbulkan pengakuan aset atau liabilitas pajak tangguhan menurut PSAK 212 adalah ...",
+      kataKualifikasi: ["seharusnya"],
+      opsi: { A: "Ketiganya, karena setiap koreksi fiskal dalam rekonsiliasi fiskal selalu menimbulkan aset atau liabilitas pajak tangguhan", B: "Hanya angka (2), karena selisih penyusutan akan berbalik, sedangkan angka (1) dan angka (3) tidak akan pernah berbalik", C: "Hanya angka (1) dan angka (3), karena keduanya dikoreksi secara permanen sehingga dampak pajaknya harus ditangguhkan", D: "Tidak ada, karena seluruh koreksi fiskal dalam rekonsiliasi bersifat permanen dan tidak akan berbalik di masa depan" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Pajak tangguhan hanya lahir dari selisih yang nanti berbalik sendiri. Beda masa manfaat penyusutan seperti itu: tahun ini fiskal lebih besar, kelak komersial yang lebih besar. Denda pajak tidak akan pernah boleh dikurangkan, dan bunga deposito sudah selesai dipajaki secara final. Dua pos itu beda tetap, jadi tidak ada yang ditangguhkan. Cara ingat: yang berbalik ditangguhkan, yang tetap dilupakan.",
+        inti: "PSAK 212 mengakui pajak tangguhan atas perbedaan temporer, yaitu selisih jumlah tercatat aset atau liabilitas dengan dasar pengenaan pajaknya yang akan terpulihkan pada periode mendatang. Selisih penyusutan karena beda masa manfaat (angka 2) adalah perbedaan temporer. Sanksi administrasi pajak tidak dapat dikurangkan (Pasal 9 ayat (1) huruf k UU PPh) dan bunga deposito dikenai PPh final (Pasal 4 ayat (2) huruf a UU PPh); keduanya beda tetap yang tidak pernah berbalik. Hanya angka (2) yang menimbulkan pajak tangguhan, dalam kasus ini liabilitas pajak tangguhan.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Tidak setiap koreksi fiskal menimbulkan pajak tangguhan. Beda tetap seperti denda pajak dan penghasilan final tidak menimbulkannya.",
+          C: "Terbalik. Koreksi permanen justru tidak punya dampak pajak masa depan sehingga tidak ada yang ditangguhkan.",
+          D: "Selisih penyusutan karena beda masa manfaat bukan beda permanen. Selisih itu berbalik selama sisa umur aset."
+        },
+        jebakan: "Menyamakan semua koreksi fiskal. Tanyakan dulu apakah selisihnya akan berbalik di tahun lain."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan (perbedaan temporer)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 9 ayat (1) huruf k UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 4 ayat (2) huruf a UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 20, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-392",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Pada tahun pertama, PT Alfa menyusutkan mesin secara fiskal lebih cepat daripada penyusutan komersialnya, sehingga jumlah tercatat mesin lebih besar daripada dasar pengenaan pajaknya. Menurut PSAK 212 Pajak Penghasilan, perbedaan tersebut menimbulkan ...",
+      kataKualifikasi: [],
+      opsi: { A: "Beda tetap sehingga tidak diakui pajak tangguhan", B: "Beda temporer kena pajak sehingga diakui liabilitas pajak tangguhan", C: "Beda temporer yang dapat dikurangkan sehingga diakui aset pajak tangguhan", D: "Tidak ada perbedaan yang perlu diperhitungkan karena penyusutan hanya berdampak pada laba komersial" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Penyusutan fiskal yang lebih cepat membuat pajak tahun ini lebih kecil. Penghematan itu hanya pinjaman waktu: pada tahun-tahun akhir, penyusutan fiskal habis lebih dulu dan pajaknya menjadi lebih besar. Pajak yang kelak harus dibayar itu dicatat sekarang sebagai liabilitas pajak tangguhan. Tandanya, nilai mesin di pembukuan lebih besar daripada nilainya menurut pajak. Cara ingat: aset di buku lebih besar daripada di pajak berarti utang pajak tangguhan.",
+        inti: "Menurut PSAK 212, bila jumlah tercatat aset lebih besar daripada dasar pengenaan pajaknya, pemulihan aset itu akan menghasilkan jumlah kena pajak pada periode mendatang. Selisihnya adalah perbedaan temporer kena pajak dan atasnya diakui liabilitas pajak tangguhan (paragraf 5 dan paragraf 15). Penyusutan fiskal yang lebih cepat daripada komersial menghasilkan keadaan itu.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Selisih penyusutan berbalik selama sisa umur aset, sehingga bersifat temporer, bukan tetap.",
+          C: "Arahnya terbalik. Aset pajak tangguhan timbul bila jumlah tercatat aset lebih kecil daripada dasar pengenaan pajaknya.",
+          D: "Penyusutan fiskal memengaruhi Penghasilan Kena Pajak, dan selisihnya dengan penyusutan komersial wajib diperhitungkan sebagai pajak tangguhan."
+        },
+        jebakan: "Arah mudah tertukar. Untuk aset: jumlah tercatat lebih besar daripada dasar pengenaan pajak berarti liabilitas pajak tangguhan."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan paragraf 5 dan paragraf 15", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 11 UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 21, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-393",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 3,
+      stem: "Pada akhir Tahun Pajak 2024, PT Mega Tekno tidak mengakui aset pajak tangguhan atas beda temporer yang dapat dikurangkan karena belum ada kemungkinan besar tersedianya laba kena pajak pada masa depan. Pada akhir Tahun Pajak 2025, manajemen menilai kembali dan menyimpulkan bahwa kemungkinan besar tersedia laba kena pajak untuk memanfaatkan beda temporer tersebut. Perlakuan yang tepat atas aset pajak tangguhan tersebut adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "Menyajikan kembali laporan keuangan 2024 karena tidak diakuinya aset pajak tangguhan merupakan kesalahan periode lalu", B: "Mengakui aset pajak tangguhan pada 2025 dengan lawan saldo laba awal, tanpa melalui laba rugi tahun berjalan", C: "Menunda pengakuan aset pajak tangguhan sampai beda temporer tersebut benar-benar terealisasi secara fiskal", D: "Mengakui aset pajak tangguhan pada 2025 sebesar yang kemungkinan besar dapat dimanfaatkan, melalui laba rugi 2025" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-baca", C: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Setiap akhir tahun perusahaan menilai ulang aset pajak tangguhan yang dulu belum dicatat. Pada 2024 belum ada harapan laba, jadi keputusan tidak mencatat saat itu sudah benar. Pada 2025 harapan laba muncul, maka aset dicatat pada 2025 sebesar yang kemungkinan besar terpakai. Ini perubahan perkiraan, bukan kesalahan, sehingga dampaknya masuk laba rugi 2025 dan laporan 2024 tidak diubah. Cara ingat: perkiraan berubah, catat di tahun berubahnya.",
+        inti: "PSAK 212 paragraf 37 mewajibkan entitas menilai kembali aset pajak tangguhan yang tidak diakui pada setiap akhir periode pelaporan, lalu mengakuinya sepanjang kemungkinan besar laba kena pajak masa depan memungkinkan pemulihannya. Perubahan penilaian itu adalah perubahan estimasi menurut PSAK 208, sehingga diakui prospektif pada periode perubahan. Menurut paragraf 58, pajak tangguhan diakui dalam laba rugi kecuali berasal dari pos di luar laba rugi atau kombinasi bisnis. Jadi aset diakui pada 2025 melalui laba rugi 2025.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Keputusan 2024 benar menurut informasi saat itu, jadi bukan kesalahan periode lalu dan laporan 2024 tidak disajikan kembali.",
+          B: "Penyesuaian saldo laba awal dipakai untuk koreksi kesalahan atau perubahan kebijakan secara retrospektif, bukan untuk perubahan estimasi.",
+          C: "Pengakuan tidak menunggu realisasi fiskal. Aset diakui begitu kemungkinan besar tersedia laba kena pajak."
+        },
+        jebakan: "Mengira aset yang dulu tidak diakui berarti ada kesalahan, lalu memilih penyajian kembali atau penyesuaian saldo laba."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan paragraf 37 dan paragraf 58", berlakuSejak: "2024-01-01" }, { pasal: "PSAK 208 Kebijakan Akuntansi, Perubahan Estimasi Akuntansi, dan Kesalahan", berlakuSejak: null }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 23, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-394",
+      topik: "B7.1",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Pada akhir Tahun Pajak 2025, PT Mega Karya menghitung PPh badan terutang sebesar Rp200.000.000,00. Kredit pajak (PPh Pasal 22, Pasal 23, dan Pasal 25) yang telah dicatat sebagai pajak dibayar dimuka berjumlah Rp250.000.000,00. Manajemen akan meminta pengembalian kelebihan pembayaran pajak tersebut dan besar kemungkinan permintaan itu diterima. Jurnal penyesuaian yang tepat adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "Debit Beban pajak kini Rp200.000.000,00; Debit Tagihan restitusi pajak Rp50.000.000,00; Kredit Pajak dibayar dimuka Rp250.000.000,00", B: "Debit Beban pajak kini Rp250.000.000,00; Kredit Pajak dibayar dimuka Rp250.000.000,00", C: "Debit Beban pajak kini Rp200.000.000,00; Kredit Utang pajak Rp200.000.000,00", D: "Debit Beban pajak kini Rp200.000.000,00; Debit Beban pajak lain-lain Rp50.000.000,00; Kredit Pajak dibayar dimuka Rp250.000.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "lupa-pasal", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Beban pajak tahun ini sebesar pajak yang benar-benar terutang, yaitu Rp200.000.000,00. Pajak yang sudah dibayar di muka Rp250.000.000,00, jadi ada kelebihan Rp50.000.000,00. Kelebihan itu akan diminta kembali dan kemungkinan besar diterima, sehingga dicatat sebagai tagihan, bukan beban. Akun pajak dibayar di muka dihapus seluruhnya karena sudah diperhitungkan. Cara ingat: beban sebesar terutang, kelebihannya jadi tagihan.",
+        inti: "Beban pajak kini diakui sebesar PPh terutang Rp200.000.000,00. Kredit pajak Rp250.000.000,00 diperhitungkan seluruhnya (Pasal 28 ayat (1) UU PPh) sehingga akun pajak dibayar dimuka dikredit penuh. Menurut PSAK 212 paragraf 12, jumlah pajak yang telah dibayar melebihi jumlah terutang diakui sebagai aset, di sini tagihan restitusi Rp50.000.000,00 (Pasal 28A UU PPh).",
+        jejakHitung: [
+          ["Beban pajak kini = PPh badan terutang", "Rp200.000.000,00"],
+          ["Pajak dibayar dimuka (PPh Pasal 22, 23, dan 25)", "Rp250.000.000,00"],
+          ["Lebih bayar = 250.000.000 - 200.000.000", "Rp50.000.000,00"],
+          ["Debit Beban pajak kini 200.000.000 + Debit Tagihan restitusi pajak 50.000.000", "Kredit Pajak dibayar dimuka Rp250.000.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Beban pajak kini dicatat Rp250.000.000,00, padahal pajak terutang hanya Rp200.000.000,00. Kelebihan Rp50.000.000,00 masih dapat ditagih kembali.",
+          C: "Kredit pajak diabaikan sehingga muncul utang pajak Rp200.000.000,00, padahal pajak itu sudah dilunasi lewat pembayaran di muka.",
+          D: "Kelebihan Rp50.000.000,00 dibebankan seolah tidak dapat dipulihkan, padahal restitusi akan diminta dan besar kemungkinan diterima."
+        },
+        jebakan: "Membebankan seluruh pajak dibayar dimuka. Beban pajak kini hanya sebesar pajak terutang, sedangkan kelebihannya menjadi aset."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan paragraf 12", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 28 ayat (1) dan Pasal 28A UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 17 ayat (1) dan Pasal 17B ayat (1) UU KUP", berlakuSejak: "2008-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 24, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-395",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "Nilai tercatat suatu aset tetap dalam laporan posisi keuangan PT Kencana Rp800.000.000,00, sedangkan dasar pengenaan pajak (tax base) aset tersebut Rp600.000.000,00. Tarif PPh badan 22%. Atas aset tersebut ...",
+      kataKualifikasi: [],
+      opsi: { A: "Diakui liabilitas pajak tangguhan sebesar Rp44.000.000,00", B: "Diakui aset pajak tangguhan sebesar Rp44.000.000,00", C: "Diakui liabilitas pajak tangguhan sebesar Rp200.000.000,00", D: "Tidak diakui pajak tangguhan karena merupakan perbedaan tetap" },
+      kunci: "A",
+      jebakanOpsi: { B: "salah-klasifikasi", C: "salah-hitung", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Bandingkan dua nilai aset: di pembukuan Rp800.000.000,00, menurut pajak Rp600.000.000,00. Selisihnya Rp200.000.000,00 dan kelak akan menambah penghasilan kena pajak, jadi ini calon utang pajak. Besarnya selisih dikali tarif: Rp200.000.000,00 dikali 22% sama dengan Rp44.000.000,00. Yang dicatat adalah pajaknya, bukan selisihnya. Cara ingat: aset di buku lebih besar daripada di pajak berarti liabilitas, lalu kalikan tarif.",
+        inti: "Jumlah tercatat aset Rp800.000.000,00 lebih besar daripada dasar pengenaan pajaknya Rp600.000.000,00, sehingga timbul perbedaan temporer kena pajak Rp200.000.000,00. Menurut PSAK 212, atas perbedaan temporer kena pajak diakui liabilitas pajak tangguhan yang diukur dengan tarif pajak yang berlaku: 22% x Rp200.000.000,00 = Rp44.000.000,00.",
+        jejakHitung: [
+          ["Jumlah tercatat aset", "Rp800.000.000,00"],
+          ["Dasar pengenaan pajak", "Rp600.000.000,00"],
+          ["Perbedaan temporer kena pajak = 800.000.000 - 600.000.000", "Rp200.000.000,00"],
+          ["Liabilitas pajak tangguhan = 22% x 200.000.000", "Rp44.000.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Angkanya benar tetapi arahnya terbalik. Aset pajak tangguhan timbul bila jumlah tercatat aset lebih kecil daripada dasar pengenaan pajaknya.",
+          C: "Rp200.000.000,00 adalah perbedaan temporernya dan belum dikalikan tarif 22%.",
+          D: "Selisih jumlah tercatat dan dasar pengenaan pajak aset tetap akan terpulihkan lewat penyusutan atau pelepasan, jadi bukan perbedaan tetap."
+        },
+        jebakan: "Dua hal sekaligus: arah (liabilitas, bukan aset) dan pengukuran (selisih dikali tarif, bukan selisihnya)."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan (perbedaan temporer kena pajak dan liabilitas pajak tangguhan)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 17 ayat (1) huruf b UU PPh", berlakuSejak: "2022-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 25, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-396",
+      topik: "B7.1",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "PT Mitra Global mengumumkan dan membayar dividen tunai sebesar Rp500.000.000,00 kepada pemegang saham orang pribadi bukan penduduk Indonesia. Tidak ada P3B yang diterapkan, sehingga atas dividen tersebut dipotong PPh Pasal 26 dengan tarif 20%. Jurnal yang tepat atas pembayaran dividen tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Debit Laba ditahan Rp500.000.000,00; Kredit Kas Rp400.000.000,00; Kredit Utang PPh Pasal 26 Rp100.000.000,00", B: "Debit Laba ditahan Rp500.000.000,00; Kredit Kas Rp500.000.000,00", C: "Debit Laba ditahan Rp400.000.000,00; Debit Beban pajak Rp100.000.000,00; Kredit Kas Rp500.000.000,00", D: "Debit Laba ditahan Rp400.000.000,00; Debit PPh Pasal 26 dibayar dimuka Rp100.000.000,00; Kredit Kas Rp500.000.000,00" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Dividen mengurangi laba ditahan sebesar jumlah kotornya, yaitu Rp500 juta. Perusahaan wajib memotong pajak 20% atau Rp100 juta dari dividen untuk pemegang saham luar negeri. Uang yang benar-benar keluar ke pemegang saham hanya Rp400 juta. Potongan Rp100 juta itu titipan untuk negara, jadi dicatat sebagai utang pajak sampai disetor. Cara ingat: laba ditahan kotor, kas bersih, selisihnya utang pajak.",
+        inti: "Dividen kepada Wajib Pajak luar negeri dipotong PPh Pasal 26 sebesar 20% dari jumlah bruto oleh pihak yang membayarkan (Pasal 26 ayat (1) huruf a UU PPh). Bagi perseroan, pajak yang dipotong adalah kewajiban menyetor kepada negara, bukan beban dan bukan pajak dibayar dimuka. Laba ditahan didebit sebesar dividen bruto, kas dikredit sebesar jumlah bersih, dan selisihnya dikredit sebagai utang PPh Pasal 26.",
+        jejakHitung: [
+          ["Dividen bruto (debit Laba ditahan)", "Rp500.000.000,00"],
+          ["PPh Pasal 26 = 20% x Rp500.000.000,00 (kredit Utang PPh Pasal 26)", "Rp100.000.000,00"],
+          ["Kas dibayarkan = Rp500.000.000,00 - Rp100.000.000,00 (kredit Kas)", "Rp400.000.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Jurnal ini tidak memotong pajak sama sekali, padahal pembayar dividen kepada Wajib Pajak luar negeri wajib memotong 20% dari jumlah bruto.",
+          C: "Pajak atas dividen ditanggung penerima dividen dan hanya dipotong oleh perseroan, jadi bukan beban pajak perseroan. Laba ditahan tetap berkurang Rp500.000.000,00.",
+          D: "Pajak dibayar dimuka adalah kredit pajak milik pihak yang dipotong. Bagi pemotong, jumlah yang dipotong adalah utang kepada negara."
+        },
+        jebakan: "Tertukar posisi pemotong dan pihak yang dipotong: pemotong mencatat utang pajak, pihak yang dipotong mencatat pajak dibayar dimuka atau pajak final."
+      },
+      dasarHukum: [{ pasal: "Pasal 26 ayat (1) huruf a UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 81/2024 (pemotongan, penyetoran, dan bukti potong PPh Pasal 26)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 29, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-397",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Alat Berat Sentosa (tarif PPh badan 22%) menerima pembayaran sewa alat berat untuk 12 bulan sebesar Rp120.000.000,00 sekaligus pada 1 Oktober 2025. Secara akuntansi, pendapatan sewa diakui dengan metode garis lurus selama masa sewa. Menurut ketentuan fiskal yang berlaku bagi perusahaan, seluruh penerimaan tersebut menjadi penghasilan pada tahun diterima. Pajak tangguhan yang diakui pada akhir Tahun Pajak 2025 adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Aset pajak tangguhan Rp26.400.000,00", B: "Liabilitas pajak tangguhan Rp19.800.000,00", C: "Aset pajak tangguhan Rp6.600.000,00", D: "Aset pajak tangguhan Rp19.800.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-hitung" },
+      pembahasan: {
+        mudah: "Uang sewa Rp120 juta sudah dipajaki seluruhnya di tahun 2025. Di pembukuan, baru tiga bulan yang diakui sebagai pendapatan, yaitu Rp30 juta. Sisa Rp90 juta masih tercatat sebagai pendapatan diterima di muka dan pajaknya sudah telanjur dibayar. Pajak yang sudah dibayar lebih dulu itu menjadi aset pajak tangguhan sebesar 22% x Rp90 juta, yaitu Rp19,8 juta. Cara ingat: pajak bayar duluan, buku akui belakangan, hasilnya aset.",
+        inti: "Pendapatan diterima di muka adalah liabilitas dengan jumlah tercatat Rp90.000.000,00. Karena seluruh penerimaan sudah dikenai pajak pada 2025, dasar pengenaan pajak liabilitas itu nol, sehingga timbul perbedaan temporer dapat dikurangkan Rp90.000.000,00. Menurut PSAK 212, perbedaan temporer dapat dikurangkan menimbulkan aset pajak tangguhan sebesar tarif dikali selisihnya.",
+        jejakHitung: [
+          ["Pendapatan komersial 2025 = 3/12 x Rp120.000.000,00 (Oktober sampai Desember)", "Rp30.000.000,00"],
+          ["Pendapatan diterima di muka akhir 2025 = Rp120.000.000,00 - Rp30.000.000,00", "Rp90.000.000,00"],
+          ["Dasar pengenaan pajak liabilitas (sudah dipajaki seluruhnya)", "Rp0,00"],
+          ["Perbedaan temporer dapat dikurangkan", "Rp90.000.000,00"],
+          ["Aset pajak tangguhan = 22% x Rp90.000.000,00", "Rp19.800.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Rp26.400.000,00 adalah 22% x Rp120.000.000,00, memakai seluruh penerimaan. Bagian tiga bulan sudah diakui di buku dan di pajak, jadi tidak ada selisihnya.",
+          B: "Angkanya benar tetapi arahnya terbalik. Penghasilan dipajaki lebih dulu daripada diakui di buku, sehingga timbul aset, bukan liabilitas pajak tangguhan.",
+          C: "Rp6.600.000,00 adalah 22% x Rp30.000.000,00, memakai bagian yang sudah diakui sebagai pendapatan. Selisih temporernya justru bagian yang belum diakui."
+        },
+        jebakan: "Salah menghitung jumlah bulan (1 Oktober sampai 31 Desember adalah 3 bulan) dan salah menentukan arah: pajak lebih dulu berarti aset pajak tangguhan."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan (dasar pengenaan pajak liabilitas dan perbedaan temporer dapat dikurangkan)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 4 ayat (1) UU PPh", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 33, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-398",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Dwi Sentosa (tarif PPh badan 22%) membeli mesin seharga Rp400.000.000,00 pada 2 Januari 2025. Secara komersial, mesin disusutkan dengan metode garis lurus selama 10 tahun tanpa nilai residu. Secara fiskal, mesin termasuk Kelompok 1 menurut PMK 72 Tahun 2023 dengan masa manfaat 4 tahun dan metode garis lurus. Pajak tangguhan yang diakui pada akhir Tahun Pajak 2025 atas perbedaan penyusutan tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Aset pajak tangguhan Rp13.200.000,00", B: "Liabilitas pajak tangguhan Rp13.200.000,00", C: "Liabilitas pajak tangguhan Rp22.000.000,00", D: "Liabilitas pajak tangguhan Rp8.800.000,00" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Pajak menyusutkan mesin ini lebih cepat daripada pembukuan: Rp100 juta setahun melawan Rp40 juta setahun. Selisih Rp60 juta membuat pajak tahun ini lebih kecil, tetapi nanti berbalik menjadi pajak yang lebih besar. Pajak yang tertunda itu dicatat sebagai liabilitas pajak tangguhan. Besarnya 22% x Rp60 juta, yaitu Rp13,2 juta. Cara ingat: susut pajak lebih cepat, timbul utang pajak tangguhan.",
+        inti: "Jumlah tercatat mesin akhir 2025 Rp360.000.000,00, sedangkan dasar pengenaan pajaknya Rp300.000.000,00 karena penyusutan fiskal Kelompok 1 garis lurus 25% setahun. Jumlah tercatat aset yang lebih besar daripada dasar pengenaan pajaknya adalah perbedaan temporer kena pajak, yang menurut PSAK 212 menimbulkan liabilitas pajak tangguhan sebesar tarif dikali selisih.",
+        jejakHitung: [
+          ["Penyusutan komersial 2025 = Rp400.000.000,00 : 10", "Rp40.000.000,00"],
+          ["Penyusutan fiskal 2025 = Rp400.000.000,00 : 4 (Kelompok 1, garis lurus 25%)", "Rp100.000.000,00"],
+          ["Jumlah tercatat = Rp400.000.000,00 - Rp40.000.000,00", "Rp360.000.000,00"],
+          ["Dasar pengenaan pajak = Rp400.000.000,00 - Rp100.000.000,00", "Rp300.000.000,00"],
+          ["Perbedaan temporer kena pajak = Rp360.000.000,00 - Rp300.000.000,00", "Rp60.000.000,00"],
+          ["Liabilitas pajak tangguhan = 22% x Rp60.000.000,00", "Rp13.200.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Angkanya benar tetapi arahnya terbalik. Penyusutan fiskal yang lebih besar membuat jumlah tercatat melebihi dasar pengenaan pajak, sehingga timbul liabilitas, bukan aset.",
+          C: "Rp22.000.000,00 adalah 22% x Rp100.000.000,00, memakai seluruh penyusutan fiskal, bukan selisihnya dengan penyusutan komersial.",
+          D: "Rp8.800.000,00 adalah 22% x Rp40.000.000,00, memakai penyusutan komersial saja, bukan selisih kedua penyusutan."
+        },
+        jebakan: "Mengalikan tarif dengan salah satu angka penyusutan, bukan dengan selisih jumlah tercatat dan dasar pengenaan pajak."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan (perbedaan temporer kena pajak)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 11 ayat (1) dan ayat (6) UU PPh", berlakuSejak: "2009-01-01" }, { pasal: "PMK 72/2023 (kelompok harta berwujud dan tarif penyusutan)", berlakuSejak: "2023-07-17" }],
+      anggaranDetik: 120,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 35, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-399",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Epsilon Niaga mengurangkan biaya Rp200.000.000,00 dalam SPT Tahunan dengan perlakuan fiskal yang tidak pasti. Manajemen menyimpulkan tidak terdapat kemungkinan besar (not probable) otoritas pajak menerima perlakuan tersebut. Dengan asumsi otoritas pajak memeriksa dengan pengetahuan penuh, manajemen menilai hasil yang mungkin terjadi sebagai berikut. Seluruh biaya diterima, probabilitas 50%; Rp100.000.000,00 ditolak, probabilitas 30%; Seluruh Rp200.000.000,00 ditolak, probabilitas 20%. Manajemen menyimpulkan bahwa metode nilai diharapkan lebih baik dalam memprediksi penyelesaian ketidakpastian. Dengan tarif 22%, tambahan pajak kini yang diakui akibat ketidakpastian ini adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp0,00 karena probabilitas diterima (50%) merupakan yang terbesar", B: "Rp22.000.000,00 berdasarkan penolakan sebesar Rp100.000.000,00", C: "Rp44.000.000,00 berdasarkan penolakan seluruh biaya", D: "Rp15.400.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-baca", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        mudah: "Manajemen sudah memilih metode nilai diharapkan, jadi semua kemungkinan ditimbang dengan peluangnya. Koreksi yang diharapkan adalah 30% x Rp100 juta ditambah 20% x Rp200 juta, yaitu Rp70 juta. Kemungkinan biaya diterima seluruhnya menyumbang nol. Tambahan pajaknya 22% x Rp70 juta, yaitu Rp15,4 juta. Cara ingat: nilai diharapkan berarti jumlah tiap hasil dikali peluangnya.",
+        inti: "Menurut ISAK 123, bila tidak terdapat kemungkinan besar otoritas pajak menerima perlakuan pajak yang tidak pasti, pengaruh ketidakpastian dicerminkan dalam pajak kini dengan metode yang lebih baik memprediksi penyelesaiannya: jumlah paling mungkin atau nilai diharapkan. Soal menyatakan manajemen memilih nilai diharapkan, yaitu jumlah tertimbang probabilitas dari seluruh kemungkinan hasil.",
+        jejakHitung: [
+          ["Seluruh biaya diterima = 50% x Rp0,00", "Rp0,00"],
+          ["Rp100.000.000,00 ditolak = 30% x Rp100.000.000,00", "Rp30.000.000,00"],
+          ["Seluruh biaya ditolak = 20% x Rp200.000.000,00", "Rp40.000.000,00"],
+          ["Koreksi yang diharapkan = Rp0,00 + Rp30.000.000,00 + Rp40.000.000,00", "Rp70.000.000,00"],
+          ["Tambahan pajak kini = 22% x Rp70.000.000,00", "Rp15.400.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Rp0,00 adalah hasil metode jumlah paling mungkin, padahal soal menyatakan manajemen menilai metode nilai diharapkan lebih baik memprediksi penyelesaian.",
+          B: "Rp22.000.000,00 hanya memakai skenario penolakan Rp100.000.000,00 dengan bobot penuh, tanpa menimbang probabilitas ketiga skenario.",
+          C: "Rp44.000.000,00 menganggap seluruh biaya pasti ditolak, padahal probabilitasnya hanya 20%."
+        },
+        jebakan: "Memilih skenario berpeluang terbesar (50%) padahal metode yang ditetapkan soal adalah nilai diharapkan."
+      },
+      dasarHukum: [{ pasal: "ISAK 123 Ketidakpastian dalam Perlakuan Pajak Penghasilan (pengukuran dengan jumlah paling mungkin atau nilai diharapkan)", berlakuSejak: "2024-01-01" }, { pasal: "PSAK 212 Pajak Penghasilan", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 44, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-400",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 1,
+      stem: "Tahun Pajak 2025, PT Lentera mencatat beban pajak kini Rp900.000.000,00 dan terjadi kenaikan liabilitas pajak tangguhan Rp120.000.000,00 selama tahun tersebut. Beban pajak penghasilan yang disajikan dalam laporan laba rugi adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp780.000.000,00", B: "Rp900.000.000,00", C: "Rp1.020.000.000,00", D: "Rp120.000.000,00" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "lupa-pasal", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Beban pajak di laporan laba rugi terdiri atas dua bagian, yaitu pajak kini dan pajak tangguhan. Kenaikan liabilitas pajak tangguhan berarti ada pajak masa depan yang bebannya diakui sekarang. Jadi kenaikan Rp120 juta itu menambah beban, bukan mengurangi. Totalnya Rp900 juta ditambah Rp120 juta, yaitu Rp1,02 miliar. Cara ingat: liabilitas tangguhan naik, beban pajak ikut naik.",
+        inti: "Menurut PSAK 212, beban pajak penghasilan adalah jumlah pajak kini dan pajak tangguhan yang diakui dalam laba rugi. Kenaikan liabilitas pajak tangguhan selama tahun berjalan diakui sebagai beban pajak tangguhan, sehingga menambah beban pajak penghasilan.",
+        jejakHitung: [
+          ["Beban pajak kini", "Rp900.000.000,00"],
+          ["Beban pajak tangguhan (kenaikan liabilitas pajak tangguhan)", "Rp120.000.000,00"],
+          ["Beban pajak penghasilan = Rp900.000.000,00 + Rp120.000.000,00", "Rp1.020.000.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Rp780.000.000,00 mengurangkan Rp120.000.000,00. Pengurangan hanya benar bila ada manfaat pajak tangguhan, misalnya kenaikan aset pajak tangguhan.",
+          B: "Rp900.000.000,00 hanya pajak kini dan mengabaikan beban pajak tangguhan.",
+          D: "Rp120.000.000,00 hanya komponen pajak tangguhan, tanpa pajak kini."
+        },
+        jebakan: "Salah arah: kenaikan liabilitas pajak tangguhan menambah beban, kenaikan aset pajak tangguhan mengurangi beban."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan (beban pajak terdiri atas pajak kini dan pajak tangguhan)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 48, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-401",
+      topik: "B7.8",
+      tingkat: ["C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Pengakuisisi Utama membeli 100% saham PT Target Prima seharga Rp1.000.000.000,00. Data PT Target Prima pada tanggal akuisisi sebagai berikut. Nilai wajar aset teridentifikasi Rp1.200.000.000,00; Dasar pengenaan pajak aset teridentifikasi Rp1.000.000.000,00; Nilai wajar liabilitas Rp400.000.000,00 (sama dengan dasar pengenaan pajaknya). Dengan tarif 22%, goodwill yang diakui dalam akuntansi akuisisi adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp200.000.000,00", B: "Rp156.000.000,00", C: "Rp288.000.000,00", D: "Rp244.000.000,00" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", C: "salah-hitung" },
+      pembahasan: {
+        mudah: "Pembeli saham tidak mendapat dasar pajak baru atas aset perusahaan yang dibelinya. Aset dicatat Rp1,2 miliar padahal dasar pajaknya Rp1 miliar, jadi ada pajak tertunda 22% x Rp200 juta, yaitu Rp44 juta. Pajak tertunda itu ikut menjadi kewajiban yang diambil alih, sehingga aset bersih tinggal Rp756 juta. Goodwill adalah harga beli Rp1 miliar dikurangi Rp756 juta, yaitu Rp244 juta. Cara ingat: pajak tangguhan atas kenaikan nilai wajar memperbesar goodwill.",
+        inti: "Dalam kombinasi bisnis, aset dan liabilitas teridentifikasi diakui pada nilai wajar. Bila dasar pengenaan pajaknya tidak ikut berubah, timbul perbedaan temporer kena pajak yang diakui sebagai liabilitas pajak tangguhan dan memengaruhi goodwill (PSAK 212). Goodwill adalah imbalan yang dialihkan dikurangi aset neto teridentifikasi setelah liabilitas pajak tangguhan.",
+        jejakHitung: [
+          ["Perbedaan temporer kena pajak = Rp1.200.000.000,00 - Rp1.000.000.000,00", "Rp200.000.000,00"],
+          ["Liabilitas pajak tangguhan = 22% x Rp200.000.000,00", "Rp44.000.000,00"],
+          ["Aset neto teridentifikasi = Rp1.200.000.000,00 - Rp400.000.000,00 - Rp44.000.000,00", "Rp756.000.000,00"],
+          ["Goodwill = Rp1.000.000.000,00 - Rp756.000.000,00", "Rp244.000.000,00"]
+        ],
+        mengapaSalah: {
+          A: "Rp200.000.000,00 adalah Rp1.000.000.000,00 dikurangi Rp800.000.000,00, tanpa mengakui liabilitas pajak tangguhan atas selisih nilai wajar.",
+          B: "Rp156.000.000,00 mengurangkan Rp44.000.000,00 dari goodwill. Liabilitas pajak tangguhan mengurangi aset neto, sehingga goodwill bertambah, bukan berkurang.",
+          C: "Rp288.000.000,00 menambahkan Rp44.000.000,00 sekali lagi ke goodwill Rp244.000.000,00, sehingga liabilitas pajak tangguhan terhitung dua kali."
+        },
+        jebakan: "Lupa bahwa liabilitas pajak tangguhan menambah liabilitas yang diambil alih, sehingga arah pengaruhnya ke goodwill adalah menambah."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan (perbedaan temporer dalam kombinasi bisnis dan pengaruhnya pada goodwill)", berlakuSejak: "2024-01-01" }, { pasal: "PSAK 103 Kombinasi Bisnis (pengukuran goodwill)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 49, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-402",
+      topik: "B7.1",
+      tingkat: ["B", "C"],
+      jenis: "kasus",
+      kesulitan: 2,
+      stem: "PT Distribusi Alat, Pengusaha Kena Pajak, membeli sebuah sedan yang tergolong barang mewah untuk operasional direksi seharga Rp400.000.000,00 ditambah PPN Rp48.000.000,00 (12% x harga jual), dengan Faktur Pajak yang lengkap. Sedan tersebut bukan barang dagangan dan tidak disewakan. Jurnal yang tepat atas pembelian tunai tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Kendaraan Rp400.000.000,00 dan PPN masukan Rp48.000.000,00 (debit); Kas Rp448.000.000,00 (kredit)", B: "Kendaraan Rp448.000.000,00 (debit); Kas Rp448.000.000,00 (kredit)", C: "Kendaraan Rp400.000.000,00 dan beban lain-lain Rp48.000.000,00 (debit); Kas Rp448.000.000,00 (kredit)", D: "Kendaraan Rp448.000.000,00 (debit); Kas Rp400.000.000,00 dan utang PPN Rp48.000.000,00 (kredit)" },
+      kunci: "A",
+      jebakanOpsi: { B: "angka-usang", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Dulu pajak atas pembelian sedan tidak boleh dikreditkan, kecuali sedan itu barang dagangan atau disewakan. Larangan khusus itu sudah dihapus sejak 1 April 2022. Sekarang ukurannya satu saja, yaitu apakah barang dipakai untuk kegiatan usaha. Sedan untuk operasional direksi dipakai untuk mengelola perusahaan, jadi pajaknya boleh dikreditkan dan dicatat terpisah dari harga mobil. Cara ingat: lihat pemakaiannya untuk usaha, bukan jenis mobilnya.",
+        inti: "PPN atas pembelian dicatat terpisah sebagai PPN masukan bila dapat dikreditkan, dan baru masuk biaya perolehan aset bila tidak dapat dikreditkan (PSAK 216). Pasal 9 ayat (8) UU PPN s.t.d.d. UU 7/2021 hanya menyisakan larangan untuk perolehan yang tidak berhubungan langsung dengan kegiatan usaha (huruf b) dan untuk Faktur Pajak yang tidak memenuhi syarat (huruf f dan huruf g). Huruf c tentang sedan dan station wagon dihapus sejak 1 April 2022. Penjelasan huruf b menyebut kegiatan manajemen sebagai kegiatan usaha, sehingga PPN sedan operasional direksi dengan Faktur Pajak lengkap dapat dikreditkan. Jurnalnya: debit Kendaraan Rp400.000.000,00 dan PPN masukan Rp48.000.000,00, kredit Kas Rp448.000.000,00. Kunci try out memilih jurnal yang memasukkan PPN ke harga kendaraan berdasarkan larangan lama; alasan penggantian kunci ada di catatan.",
+        jejakHitung: [
+          ["PPN = 12% x Rp400.000.000,00", "Rp48.000.000,00"],
+          ["Debit Kendaraan (harga tanpa PPN)", "Rp400.000.000,00"],
+          ["Debit PPN masukan (dapat dikreditkan)", "Rp48.000.000,00"],
+          ["Kredit Kas = Rp400.000.000,00 + Rp48.000.000,00", "Rp448.000.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Memasukkan PPN ke harga kendaraan hanya tepat bila PPN itu tidak dapat dikreditkan. Jurnal ini memakai larangan lama atas sedan dan station wagon (Pasal 9 ayat (8) huruf c UU PPN) yang sudah dihapus UU 7/2021 sejak 1 April 2022, padahal transaksinya memakai PPN 12%. Ini jawaban menurut kunci try out.",
+          C: "PPN ini dapat dikreditkan sehingga bukan beban. Andai pun tidak dapat dikreditkan, pajak pembelian aset tetap masuk biaya perolehan aset, bukan beban lain-lain yang dibebankan seketika.",
+          D: "Pembelian dibayar tunai Rp448.000.000,00 termasuk PPN, jadi pembeli tidak mempunyai utang PPN. PPN atas pembelian dipungut dan disetor oleh penjual; bagi pembeli jumlah itu Pajak Masukan."
+        },
+        jebakan: "Stem menyebut sedan mewah, bukan barang dagangan, dan tidak disewakan, yaitu unsur larangan lama. Sejak 1 April 2022 jenis kendaraan tidak lagi menentukan; yang diuji adalah hubungan langsung dengan kegiatan usaha."
+      },
+      dasarHukum: [{ pasal: "Pasal 9 ayat (2) dan ayat (8) huruf b UU PPN (huruf c tentang sedan dan station wagon dihapus UU 7/2021, berlaku 1 April 2022)", berlakuSejak: "2022-04-01" }, { pasal: "PMK 131/2024 Pasal 2 ayat (2) dan ayat (3) (PPN 12% x harga jual untuk barang mewah)", berlakuSejak: "2025-01-01" }, { pasal: "PSAK 216 Aset Tetap (biaya perolehan hanya memuat pajak pembelian yang tidak dapat dikreditkan)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 100,
+      verifikasi: "◐",
+      peringatan: "Kunci di sini A, berbeda dari kunci try out (B). Pemimpin tim menyetujui penggantian ini pada 24 November 2026. Kunci try out bersandar pada larangan mengkreditkan Pajak Masukan atas sedan dan station wagon (Pasal 9 ayat (8) huruf c UU PPN). UU 7/2021 menghapus larangan itu sejak 1 April 2022, dan transaksi di soal memakai PPN 12% sehingga terjadi 2025 atau sesudahnya. Sedan untuk operasional direksi berhubungan langsung dengan kegiatan usaha, jadi Pajak Masukannya dapat dikreditkan. Penyusun dan pengerja buta sama-sama sampai ke A. Bila soal serupa di ujian jelas memakai aturan lama, jawaban versi lama adalah B (PPN masuk harga kendaraan).",
+      sumber: { set: "TO-C-2026-11-3", no: 51, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-403",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 3,
+      stem: "PT Samudra Jaya menjual sebuah mesin pada tahun 2025 dengan harga Rp700.000.000,00 (di luar PPN). Data mesin tersebut sebagai berikut. Harga perolehan Rp1.000.000.000,00; Akumulasi penyusutan komersial Rp400.000.000,00; Akumulasi penyusutan fiskal Rp550.000.000,00. Sebelum penjualan, PT Samudra Jaya telah mengakui liabilitas pajak tangguhan atas mesin tersebut dengan tarif 22%. Perlakuan yang tepat atas penjualan mesin tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Koreksi fiskal negatif Rp150.000.000,00 dan selisihnya dibebankan ke ekuitas", B: "Tidak ada koreksi fiskal karena beda tetap dan liabilitas pajak tangguhan tetap", C: "Koreksi fiskal positif Rp250.000.000,00 dan liabilitas pajak tangguhan Rp55.000.000,00 dibalik", D: "Koreksi fiskal positif Rp150.000.000,00 dan liabilitas pajak tangguhan Rp33.000.000,00 dibalik dengan mengkredit beban pajak tangguhan" },
+      kunci: "D",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", C: "salah-hitung" },
+      pembahasan: {
+        mudah: "Mesin ini punya dua nilai buku: Rp600.000.000 menurut akuntansi dan Rp450.000.000 menurut pajak. Dijual Rp700.000.000, labanya Rp100.000.000 di buku tetapi Rp250.000.000 menurut pajak. Selisih Rp150.000.000 ditambahkan ke laba fiskal. Mesinnya sudah tidak ada, jadi utang pajak tangguhan 22% x Rp150.000.000 = Rp33.000.000 dihapus dan mengurangi beban pajak tangguhan. Cara ingat: aset dijual, selisih nilai buku selesai, pajak tangguhannya ikut dibalik.",
+        inti: "Laba penjualan komersial = Rp700.000.000 - (Rp1.000.000.000 - Rp400.000.000) = Rp100.000.000. Laba penjualan fiskal = Rp700.000.000 - nilai sisa buku fiskal Rp450.000.000 = Rp250.000.000. Laba fiskal lebih besar Rp150.000.000 sehingga koreksi fiskalnya positif Rp150.000.000. Sebelum dijual, nilai tercatat Rp600.000.000 lebih besar daripada dasar pengenaan pajak Rp450.000.000, yaitu beda temporer kena pajak Rp150.000.000 dengan liabilitas pajak tangguhan 22% x Rp150.000.000 = Rp33.000.000. Setelah mesin dijual beda temporer itu habis, sehingga liabilitas pajak tangguhan Rp33.000.000 dibalik: debit liabilitas pajak tangguhan, kredit beban (manfaat) pajak tangguhan. Pajak kini naik Rp33.000.000 dan beban pajak tangguhan turun Rp33.000.000.",
+        jejakHitung: [
+          ["Nilai buku komersial = Rp1.000.000.000 - Rp400.000.000", "Rp600.000.000"],
+          ["Nilai sisa buku fiskal = Rp1.000.000.000 - Rp550.000.000", "Rp450.000.000"],
+          ["Laba komersial = Rp700.000.000 - Rp600.000.000", "Rp100.000.000"],
+          ["Laba fiskal = Rp700.000.000 - Rp450.000.000", "Rp250.000.000"],
+          ["Koreksi fiskal positif = Rp250.000.000 - Rp100.000.000", "Rp150.000.000"],
+          ["Liabilitas pajak tangguhan yang dibalik = 22% x Rp150.000.000", "Rp33.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Arah koreksinya terbalik. Laba fiskal lebih besar daripada laba komersial, jadi koreksinya positif. Pembalikan pajak tangguhan atas mesin ini juga lewat laba rugi, bukan ekuitas.",
+          B: "Beda penyusutan adalah beda temporer, bukan beda tetap. Saat aset dijual beda itu berbalik, jadi ada koreksi fiskal dan liabilitas pajak tangguhan tidak boleh dibiarkan.",
+          C: "Rp250.000.000 adalah laba fiskal seluruhnya, bukan koreksinya. Koreksi hanya selisih laba fiskal dan laba komersial, Rp150.000.000, sehingga liabilitas yang dibalik Rp33.000.000, bukan Rp55.000.000."
+        },
+        jebakan: "Memakai seluruh laba fiskal Rp250.000.000 sebagai koreksi, padahal koreksi hanya selisihnya dengan laba komersial."
+      },
+      dasarHukum: [{ pasal: "Pasal 4 ayat (1) huruf d dan Pasal 11 ayat (8) UU PPh (keuntungan pengalihan harta dihitung dari nilai sisa buku fiskal)", berlakuSejak: "2009-01-01" }, { pasal: "PSAK 212 Pajak Penghasilan (beda temporer kena pajak, liabilitas pajak tangguhan, dan pembalikannya di laba rugi)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 180,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 56, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-404",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Beban penyusutan komersial atas suatu aset tetap berbeda dari beban penyusutan fiskal atas aset yang sama. Perbedaan tersebut berakibat ...",
+      kataKualifikasi: [],
+      opsi: { A: "Perbedaan tetap (permanent difference) yang tidak menimbulkan pajak tangguhan", B: "Koreksi fiskal yang tidak berpengaruh sama sekali terhadap laporan keuangan", C: "Perbedaan temporer yang menimbulkan aset atau liabilitas pajak tangguhan", D: "Penghasilan komprehensif lain yang disajikan di luar laba rugi" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-klasifikasi", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Harga aset pada akhirnya habis disusutkan, baik di buku akuntansi maupun di hitungan pajak. Yang berbeda hanya kecepatannya dari tahun ke tahun. Selisih seperti ini nanti berbalik sendiri, jadi disebut beda temporer. Karena nilai aset di buku tidak sama dengan nilainya menurut pajak, perusahaan mencatat aset atau liabilitas pajak tangguhan. Cara ingat: beda waktu melahirkan pajak tangguhan, beda tetap tidak.",
+        inti: "Penyusutan komersial mengikuti kebijakan akuntansi, sedangkan penyusutan fiskal mengikuti kelompok harta dan tarif Pasal 11 UU PPh. Jumlah yang disusutkan sepanjang umur aset sama, hanya alokasi antarperiodenya berbeda, sehingga nilai tercatat aset berbeda dari dasar pengenaan pajaknya. Menurut PSAK 212, selisih itu adalah perbedaan temporer yang menimbulkan aset pajak tangguhan (bila penyusutan fiskal lebih lambat) atau liabilitas pajak tangguhan (bila penyusutan fiskal lebih cepat).",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Beda tetap tidak pernah berbalik, misalnya sanksi administrasi pajak atau penghasilan yang bukan objek pajak. Selisih penyusutan berbalik pada periode berikutnya atau saat aset dilepas.",
+          B: "Koreksi fiskal atas penyusutan justru berpengaruh pada laporan keuangan: ada aset atau liabilitas pajak tangguhan di neraca dan beban atau manfaat pajak tangguhan di laba rugi.",
+          D: "Selisih penyusutan komersial dan fiskal tidak diakui sebagai penghasilan komprehensif lain. Dampak pajaknya masuk laba rugi."
+        },
+        jebakan: "Menyamakan semua koreksi fiskal dengan beda tetap; uji dulu apakah selisihnya nanti berbalik."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan (perbedaan temporer dan pajak tangguhan)", berlakuSejak: "2024-01-01" }, { pasal: "Pasal 11 UU PPh s.t.d.t.d. UU 6/2023 (penyusutan fiskal)", berlakuSejak: "2009-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 62, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-405",
+      topik: "B7.6",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Sentra Niaga adalah Wajib Pajak badan dalam negeri dengan peredaran bruto Rp40.000.000.000,00 dan Penghasilan Kena Pajak Rp6.000.000.000,00 pada Tahun Pajak 2025, tanpa penghasilan final dan tanpa fasilitas lain. PT Sentra Niaga memenuhi syarat fasilitas pengurangan tarif 50% bagi Wajib Pajak badan dengan peredaran bruto sampai dengan Rp50.000.000.000,00. Beban pajak kini yang diakui PT Sentra Niaga adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Rp1.320.000.000,00", B: "Rp792.000.000,00", C: "Rp1.240.800.000,00", D: "Rp660.000.000,00" },
+      kunci: "C",
+      jebakanOpsi: { A: "lupa-pasal", B: "salah-hitung", D: "salah-hitung" },
+      pembahasan: {
+        mudah: "Diskon tarif 50% tidak berlaku untuk semua laba. Diskon hanya untuk bagian laba yang sebanding dengan omzet Rp4.800.000.000 pertama. Omzetnya Rp40.000.000.000, jadi bagiannya 12% dari laba, yaitu Rp720.000.000, dengan tarif 11%. Sisanya Rp5.280.000.000 tetap kena 22%. Jumlahnya Rp79.200.000 + Rp1.161.600.000 = Rp1.240.800.000. Cara ingat: bagi laba menurut porsi omzet 4,8 miliar, porsi itu saja yang setengah tarif.",
+        inti: "Pasal 31E ayat (1) UU PPh memberi pengurangan tarif 50% atas Penghasilan Kena Pajak dari bagian peredaran bruto sampai dengan Rp4.800.000.000 bagi badan dalam negeri dengan peredaran bruto sampai Rp50.000.000.000. Bagian yang mendapat fasilitas = Rp4.800.000.000 / Rp40.000.000.000 x Rp6.000.000.000 = Rp720.000.000, dikenai 50% x 22% = 11%, yaitu Rp79.200.000. Sisanya Rp5.280.000.000 dikenai 22%, yaitu Rp1.161.600.000. Beban pajak kini = Rp1.240.800.000.",
+        jejakHitung: [
+          ["Porsi fasilitas = Rp4.800.000.000 / Rp40.000.000.000", "12%"],
+          ["Penghasilan Kena Pajak berfasilitas = 12% x Rp6.000.000.000", "Rp720.000.000"],
+          ["PPh bagian berfasilitas = 11% x Rp720.000.000", "Rp79.200.000"],
+          ["Penghasilan Kena Pajak tanpa fasilitas", "Rp5.280.000.000"],
+          ["PPh bagian tanpa fasilitas = 22% x Rp5.280.000.000", "Rp1.161.600.000"],
+          ["Beban pajak kini", "Rp1.240.800.000"]
+        ],
+        mengapaSalah: {
+          A: "Angka ini adalah 22% x Rp6.000.000.000, seolah tidak ada fasilitas. Peredaran bruto Rp40 miliar masih di bawah Rp50 miliar sehingga fasilitas berlaku.",
+          B: "Angka ini muncul bila Rp4.800.000.000 dianggap laba yang mendapat fasilitas: 11% x Rp4.800.000.000 + 22% x Rp1.200.000.000. Rp4.800.000.000 adalah batas peredaran bruto, bukan batas laba.",
+          D: "Angka ini adalah 11% x Rp6.000.000.000. Tarif setengah hanya untuk seluruh laba bila peredaran bruto tidak melebihi Rp4.800.000.000."
+        },
+        jebakan: "Menganggap Rp4,8 miliar sebagai batas laba, padahal itu batas peredaran bruto yang dipakai untuk menghitung porsi laba."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 31E ayat (1)", berlakuSejak: "2009-01-01" }, { pasal: "Pasal 17 ayat (1) huruf b UU PPh s.t.d.t.d. UU 7/2021 (tarif 22%)", berlakuSejak: "2022-01-01" }, { pasal: "PSAK 212 Pajak Penghasilan (pajak kini)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 150,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 63, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-406",
+      topik: "B7.1",
+      tingkat: ["B", "C"],
+      jenis: "prosedur",
+      kesulitan: 1,
+      stem: "PT Jasa Mandiri menagih jasa konsultansi Rp100.000.000,00 (PPN diabaikan) kepada pelanggan badan dan telah mencatat piutang usaha sebesar jumlah tersebut. Pelanggan, sebagai pemotong PPh Pasal 23 dengan tarif 2%, membayar Rp98.000.000,00 dan menyerahkan bukti potong BPPU atas potongan Rp2.000.000,00. Jurnal PT Jasa Mandiri atas penerimaan pembayaran tersebut yang tepat adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Debit Kas Rp100.000.000,00; Kredit Piutang usaha Rp100.000.000,00", B: "Debit Kas Rp98.000.000,00; Debit Beban pajak penghasilan Rp2.000.000,00; Kredit Piutang usaha Rp100.000.000,00", C: "Debit Kas Rp98.000.000,00; Debit PPh Pasal 23 dibayar dimuka Rp2.000.000,00; Kredit Piutang usaha Rp100.000.000,00", D: "Debit Kas Rp98.000.000,00; Debit Utang PPh Pasal 23 Rp2.000.000,00; Kredit Piutang usaha Rp100.000.000,00" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-hitung", B: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Pelanggan memotong pajak 2% dari tagihan dan menyetorkannya ke negara atas nama PT Jasa Mandiri. Uang yang masuk hanya Rp98.000.000, tetapi piutang Rp100.000.000 lunas seluruhnya. Potongan Rp2.000.000 bukan biaya dan bukan utang. Itu pajak yang sudah dibayar lebih dulu dan nanti mengurangi pajak tahunan, jadi dicatat sebagai pajak dibayar dimuka. Cara ingat: dipotong orang lain berarti punya pajak dibayar dimuka, memotong orang lain berarti punya utang pajak.",
+        inti: "PPh Pasal 23 atas jasa konsultansi dipotong 2% dari jumlah bruto oleh pemberi penghasilan. Bagi penerima, potongan yang tidak bersifat final ini adalah kredit pajak tahun berjalan (Pasal 28 ayat (1) huruf c UU PPh) dengan bukti potong BPPU. Jurnal penerimaan: debit Kas Rp98.000.000, debit PPh Pasal 23 dibayar dimuka Rp2.000.000, kredit Piutang usaha Rp100.000.000.",
+        jejakHitung: [
+          ["PPh Pasal 23 dipotong = 2% x Rp100.000.000", "Rp2.000.000"],
+          ["Kas diterima = Rp100.000.000 - Rp2.000.000", "Rp98.000.000"],
+          ["Piutang usaha yang dilunasi", "Rp100.000.000"]
+        ],
+        mengapaSalah: {
+          A: "Kas yang benar-benar diterima hanya Rp98.000.000. Jurnal ini mengabaikan potongan pajak dan membuat kas lebih saji.",
+          B: "Potongan PPh Pasal 23 bukan beban. Itu pembayaran pajak di muka yang akan dikreditkan terhadap PPh terutang dalam SPT Tahunan.",
+          D: "Utang PPh Pasal 23 dicatat oleh pihak yang memotong, yaitu pelanggan. PT Jasa Mandiri adalah pihak yang dipotong, jadi yang timbul aset pajak."
+        },
+        jebakan: "Tertukar antara sudut pandang pemotong (utang pajak) dan pihak yang dipotong (pajak dibayar dimuka)."
+      },
+      dasarHukum: [{ pasal: "UU PPh Pasal 23 ayat (1) huruf c angka 2 s.t.d.t.d. UU 6/2023", berlakuSejak: "2009-01-01" }, { pasal: "UU PPh Pasal 28 ayat (1) huruf c", berlakuSejak: "2009-01-01" }, { pasal: "PSAK 212 Pajak Penghasilan (pajak kini)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 71, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-407",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 2,
+      stem: "Menurut ISAK 225 Perubahan Status Pajak Entitas atau Pemegang Sahamnya, dampak pajak kini dan pajak tangguhan akibat perubahan status pajak entitas diakui ...",
+      kataKualifikasi: [],
+      opsi: { A: "Langsung pada saldo laba awal tanpa melalui laba rugi, karena perubahan status pajak bukan hasil kegiatan usaha", B: "Dalam laba rugi periode berjalan, kecuali dampak atas pos yang sebelumnya diakui di luar laba rugi", C: "Dalam laba rugi secara bertahap, diamortisasi selama sisa masa manfaat aset yang menimbulkan beda temporer", D: "Baru diakui pada periode status pajak yang baru itu pertama kali dilaporkan dalam SPT Tahunan PPh Badan" },
+      kunci: "B",
+      jebakanOpsi: { A: "salah-klasifikasi", C: "salah-klasifikasi", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Status pajak perusahaan bisa berubah, misalnya mendapat atau kehilangan fasilitas. Akibatnya jumlah pajak kini dan pajak tangguhan ikut berubah. Dampak perubahan itu langsung masuk laba rugi pada periode terjadinya. Ada satu pengecualian: bila pos asalnya dulu dicatat di luar laba rugi, misalnya revaluasi aset, dampak pajaknya juga dicatat di luar laba rugi. Cara ingat: dampak pajak mengikuti tempat pos asalnya, dan umumnya itu laba rugi.",
+        inti: "ISAK 225 (adopsi SIC-25) menyatakan bahwa perubahan status pajak entitas atau pemegang sahamnya tidak menimbulkan kenaikan atau penurunan jumlah yang diakui di luar laba rugi. Konsekuensi pajak kini dan pajak tangguhan dari perubahan itu dimasukkan dalam laba rugi periode berjalan, kecuali konsekuensi yang terkait dengan transaksi atau peristiwa yang diakui di luar laba rugi (penghasilan komprehensif lain atau langsung di ekuitas), yang dicatat di tempat yang sama dengan pos asalnya.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Saldo laba awal dipakai untuk penerapan retrospektif perubahan kebijakan akuntansi atau koreksi kesalahan. Perubahan status pajak adalah peristiwa periode berjalan, jadi dampaknya masuk laba rugi.",
+          C: "Tidak ada amortisasi dampak pajak. Pajak tangguhan diukur ulang seluruhnya saat status berubah dan selisihnya diakui pada periode itu.",
+          D: "Pengakuan akuntansi tidak menunggu pelaporan di SPT Tahunan. Dampaknya diakui pada periode terjadinya perubahan status pajak."
+        },
+        jebakan: "Melupakan pengecualian untuk pos yang dulu diakui di luar laba rugi."
+      },
+      dasarHukum: [{ pasal: "ISAK 225 Pajak Penghasilan: Perubahan Status Pajak Entitas atau Pemegang Sahamnya, paragraf 4", berlakuSejak: "2024-01-01" }, { pasal: "PSAK 212 Pajak Penghasilan (pajak atas pos yang diakui di luar laba rugi)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 75,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 72, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-408",
+      topik: "B7.7",
+      tingkat: ["B", "C"],
+      jenis: "konsep",
+      kesulitan: 1,
+      stem: "Menurut PSAK 212 Pajak Penghasilan, aset pajak tangguhan dan liabilitas pajak tangguhan ...",
+      kataKualifikasi: [],
+      opsi: { A: "Didiskontokan dengan suku bunga bebas risiko", B: "Didiskontokan apabila realisasinya diperkirakan lebih dari lima tahun", C: "Didiskontokan apabila jumlahnya material", D: "Tidak boleh didiskontokan" },
+      kunci: "D",
+      jebakanOpsi: { A: "lupa-pasal", B: "lupa-pasal", C: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Mendiskontokan berarti menghitung suatu jumlah di masa depan ke nilainya hari ini. Standar akuntansi pajak penghasilan melarang cara itu untuk aset dan utang pajak tangguhan. Alasannya, entitas harus tahu persis kapan tiap selisih waktu berbalik, dan jadwal serinci itu sering tidak bisa dibuat dengan andal. Larangan ini berlaku tanpa syarat, berapa pun jumlahnya dan selama apa pun pemulihannya. Cara ingat: pajak tangguhan dicatat apa adanya, tidak pernah dihitung ke nilai kini.",
+        inti: "PSAK 212 Pajak Penghasilan paragraf 53 menyatakan aset pajak tangguhan dan liabilitas pajak tangguhan tidak didiskontokan. Paragraf 54 memberi alasannya: pendiskontoan yang andal memerlukan penjadwalan rinci saat pembalikan tiap perbedaan temporer, yang dalam banyak kasus tidak praktis atau sangat rumit. Standar tidak membuka pengecualian menurut suku bunga, jangka waktu, atau materialitas.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Standar tidak menunjuk suku bunga apa pun karena pendiskontoan pajak tangguhan memang dilarang, termasuk dengan suku bunga bebas risiko.",
+          B: "Tidak ada batas lima tahun dalam standar. Selama apa pun perkiraan realisasinya, pajak tangguhan tetap tidak didiskontokan.",
+          C: "Materialitas bukan syarat yang membuka pendiskontoan. Larangannya berlaku untuk semua saldo pajak tangguhan."
+        },
+        jebakan: "Terbawa kebiasaan mendiskontokan pos jangka panjang lain, misalnya provisi atau liabilitas sewa, padahal pajak tangguhan dikecualikan dari cara itu."
+      },
+      dasarHukum: [{ pasal: "PSAK 212 Pajak Penghasilan paragraf 53 dan paragraf 54 (larangan pendiskontoan pajak tangguhan)", berlakuSejak: "2024-01-01" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 78, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "B7-409",
+      topik: "B7.1",
+      tingkat: ["B", "C"],
+      jenis: "hitung",
+      kesulitan: 2,
+      stem: "PT Maju Lestari, Pengusaha Kena Pajak, menjual barang kena pajak yang bukan barang mewah secara kredit dengan harga jual Rp200.000.000,00 sebelum PPN. Tarif PPN 12% dengan dasar pengenaan pajak nilai lain sebesar 11/12 dari harga jual. Jurnal penjualan yang tepat adalah ...",
+      kataKualifikasi: ["tepat"],
+      opsi: { A: "Piutang usaha Rp222.000.000,00 (debit); Penjualan Rp200.000.000,00 dan PPN keluaran Rp22.000.000,00 (kredit)", B: "Piutang usaha Rp224.000.000,00 (debit); Penjualan Rp200.000.000,00 dan PPN keluaran Rp24.000.000,00 (kredit)", C: "Piutang usaha Rp222.000.000,00 (debit); Penjualan Rp200.000.000,00 dan PPN masukan Rp22.000.000,00 (kredit)", D: "Piutang usaha Rp200.000.000,00 dan PPN keluaran Rp22.000.000,00 (debit); Penjualan Rp222.000.000,00 (kredit)" },
+      kunci: "A",
+      jebakanOpsi: { B: "lupa-pasal", C: "salah-klasifikasi", D: "salah-klasifikasi" },
+      pembahasan: {
+        mudah: "Penjual memungut PPN dari pembeli, jadi pembeli berutang harga barang ditambah PPN. Untuk barang yang bukan barang mewah, tarif 12% dikalikan 11/12 dari harga jual, sehingga hasilnya sama dengan 11% dari harga jual. Dari harga Rp200 juta, PPN-nya Rp22 juta dan piutangnya Rp222 juta. Penjualan dicatat sebesar harga barang saja, sedangkan PPN yang dipungut dicatat sebagai utang kepada negara di sisi kredit. Cara ingat: piutang sama dengan harga ditambah pajak, pajaknya titipan untuk negara.",
+        inti: "Pasal 3 ayat (2) dan ayat (3) PMK 131/2024 menghitung PPN atas penyerahan BKP selain barang mewah dengan tarif 12% dikali DPP nilai lain sebesar 11/12 dari harga jual: 12% x 11/12 x Rp200.000.000,00 = Rp22.000.000,00. Jurnal penjual: debit Piutang usaha Rp222.000.000,00; kredit Penjualan Rp200.000.000,00 dan kredit PPN keluaran Rp22.000.000,00. PPN keluaran adalah liabilitas kepada negara, bukan pendapatan.",
+        jejakHitung: [
+          ["DPP nilai lain = 11/12 x Rp200.000.000,00", "Rp183.333.333,33"],
+          ["PPN keluaran = 12% x 11/12 x Rp200.000.000,00", "Rp22.000.000,00"],
+          ["Piutang usaha = Rp200.000.000,00 + Rp22.000.000,00", "Rp222.000.000,00"],
+          ["Jurnal", "Dr Piutang usaha Rp222.000.000,00; Cr Penjualan Rp200.000.000,00; Cr PPN keluaran Rp22.000.000,00"]
+        ],
+        mengapaSalah: {
+          B: "Rp24.000.000,00 adalah 12% dari harga jual penuh. Cara itu hanya untuk barang mewah; untuk barang lain dasarnya 11/12 dari harga jual.",
+          C: "Angkanya benar, tetapi akunnya keliru. Penjual memungut PPN keluaran; PPN masukan adalah pajak yang dibayar saat membeli dan dicatat di debit.",
+          D: "Sisi jurnalnya terbalik. PPN keluaran adalah liabilitas sehingga dicatat di kredit, dan penjualan dicatat tanpa PPN sebesar Rp200.000.000,00."
+        },
+        jebakan: "Langsung mengalikan 12% dengan harga jual, atau benar menghitung Rp22.000.000,00 tetapi salah memilih akun dan sisi jurnalnya."
+      },
+      dasarHukum: [{ pasal: "Pasal 7 ayat (1) huruf b UU PPN", berlakuSejak: "2025-01-01" }, { pasal: "PMK 131/2024 Pasal 3 ayat (2) dan ayat (3) (DPP nilai lain 11/12)", berlakuSejak: "2025-01-01" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 81, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
     }
   ],
   kartu: [

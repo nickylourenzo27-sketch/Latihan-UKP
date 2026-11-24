@@ -6528,6 +6528,66 @@ UKP.register({
       opsiLepas: { teks: "Dikenai PPN sebagai pengganti", alasan: "PPN adalah pajak atas penyerahan barang atau jasa, bukan pengganti bea meterai; dokumen elektronik tetap kena bea meterai." },
       sumber: { set: "LM-B-2026-11", no: 68, judul: "Latihan UKP B per mata uji (kiriman 16 Nov 2026)", tingkat: "B", bagian: "Bea Meterai" },
       sejak: "9.7.0"
+    },
+    {
+      id: "A5-228",
+      topik: "A5.1",
+      tingkat: ["A", "B", "C"],
+      jenis: "klasifikasi",
+      kesulitan: 2,
+      stem: "Dalam transaksi surat berharga di bursa efek, seorang investor menerima dua konfirmasi transaksi (trade confirmation), yaitu satu bernilai Rp9.500.000,00 dan satu bernilai Rp15.000.000,00. Menurut UU Nomor 10 Tahun 2020 dan PP Nomor 3 Tahun 2022, dokumen yang mendapat fasilitas pembebasan dan Bea Meterai yang masih terutang atas kedua dokumen tersebut adalah ...",
+      kataKualifikasi: [],
+      opsi: { A: "Kedua konfirmasi dibebaskan; Bea Meterai terutang Rp0,00", B: "Hanya konfirmasi Rp9.500.000,00 yang dibebaskan; Bea Meterai terutang Rp10.000,00", C: "Hanya konfirmasi Rp15.000.000,00 yang dibebaskan; Bea Meterai terutang Rp10.000,00", D: "Tidak ada yang dibebaskan; Bea Meterai terutang Rp20.000,00" },
+      kunci: "B",
+      jebakanOpsi: { A: "lupa-pasal", C: "salah-baca", D: "lupa-pasal" },
+      pembahasan: {
+        mudah: "Konfirmasi transaksi saham di bursa adalah dokumen yang kena meterai Rp10.000. Supaya investor kecil tidak terbebani, pemerintah membebaskan konfirmasi yang nilainya paling banyak Rp10.000.000. Konfirmasi Rp9.500.000 masih di bawah batas, jadi bebas. Konfirmasi Rp15.000.000 melewati batas, jadi tetap kena Rp10.000. Cara ingat: transaksi bursa sampai sepuluh juta bebas meterai, di atasnya kena sepuluh ribu.",
+        inti: "Dokumen transaksi surat berharga adalah objek Bea Meterai (Pasal 3 ayat (2) huruf e UU 10/2020) dengan tarif tetap Rp10.000,00 (Pasal 5). Pasal 22 ayat (1) huruf c UU 10/2020 membuka fasilitas pembebasan untuk dokumen dalam rangka program pemerintah atau kebijakan lembaga di bidang moneter atau jasa keuangan, dan Pasal 5 huruf b PP 3/2022 melaksanakannya: konfirmasi transaksi (trade confirmation) atas transaksi surat berharga di bursa efek dibebaskan bila nilainya paling banyak Rp10.000.000,00 per dokumen. Konfirmasi Rp9.500.000,00 dibebaskan, konfirmasi Rp15.000.000,00 tetap terutang Rp10.000,00, sehingga yang terutang Rp10.000,00.",
+        jejakHitung: [
+          ["Konfirmasi Rp9.500.000 (paling banyak Rp10.000.000)", "dibebaskan, Rp0"],
+          ["Konfirmasi Rp15.000.000 (di atas Rp10.000.000)", "Rp10.000"],
+          ["Bea Meterai yang masih terutang", "Rp10.000"]
+        ],
+        mengapaSalah: {
+          A: "Pembebasan punya batas nilai. Konfirmasi Rp15.000.000,00 melebihi Rp10.000.000,00 sehingga tetap terutang.",
+          C: "Batasnya terbalik. Yang dibebaskan adalah konfirmasi bernilai kecil (paling banyak Rp10.000.000,00), bukan yang bernilai besar.",
+          D: "Ini mengabaikan fasilitas pembebasan untuk konfirmasi transaksi bursa bernilai paling banyak Rp10.000.000,00."
+        },
+        jebakan: "Batas Rp10.000.000 ini khusus fasilitas konfirmasi transaksi bursa, berbeda dari batas Rp5.000.000 untuk dokumen penerimaan uang."
+      },
+      dasarHukum: [{ pasal: "Pasal 3 ayat (2) huruf e, Pasal 5, dan Pasal 22 ayat (1) huruf c UU 10/2020", berlakuSejak: "2021-01-01" }, { pasal: "PP 3/2022 Pasal 2 ayat (2) huruf c dan Pasal 5 huruf b (pembebasan konfirmasi transaksi bursa bernilai paling banyak Rp10.000.000,00)", berlakuSejak: "2022-01-12" }],
+      anggaranDetik: 90,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 59, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
+    },
+    {
+      id: "A5-229",
+      topik: "A5.4",
+      tingkat: ["A", "B", "C"],
+      jenis: "baris-spt",
+      kesulitan: 2,
+      stem: "Pada Bagian B (Objek Bea Meterai) induk SPT Masa Bea Meterai, baris 3 digunakan untuk melaporkan ...",
+      kataKualifikasi: [],
+      opsi: { A: "Cek dan bilyet giro", B: "Dokumen yang menyebutkan penerimaan uang lebih dari Rp5.000.000,00", C: "Surat keterangan, surat pernyataan, atau surat sejenis beserta rangkapnya", D: "Dokumen transaksi surat berharga termasuk kontrak berjangka" },
+      kunci: "C",
+      jebakanOpsi: { A: "salah-baca", B: "salah-baca", D: "salah-baca" },
+      pembahasan: {
+        mudah: "Bagian objek pada laporan bulanan pemungut meterai punya empat baris. Baris pertama untuk cek dan bilyet giro. Baris kedua untuk dokumen transaksi surat berharga, termasuk kontrak berjangka. Baris ketiga untuk surat keterangan, surat pernyataan, atau surat sejenis beserta rangkapnya. Baris keempat untuk dokumen bernilai uang di atas Rp5.000.000. Cara ingat: urutannya cek, transaksi efek, surat keterangan, lalu dokumen uang.",
+        inti: "Menurut Lampiran huruf F PER-11/PJ/2025, Bagian B (Objek Bea Meterai) induk SPT Masa Bea Meterai berisi: angka 1 surat berharga berupa cek dan bilyet giro; angka 2 Dokumen transaksi surat berharga, termasuk Dokumen transaksi kontrak berjangka; angka 3 surat keterangan, surat pernyataan, atau surat lainnya yang sejenis, beserta rangkapnya; angka 4 Dokumen yang menyatakan jumlah uang lebih dari Rp5.000.000,00 (huruf a menyebutkan penerimaan uang, huruf b pengakuan pelunasan utang). Jadi baris 3 adalah surat keterangan, surat pernyataan, atau surat sejenis beserta rangkapnya.",
+        jejakHitung: [],
+        mengapaSalah: {
+          A: "Cek dan bilyet giro dilaporkan di baris 1.",
+          B: "Dokumen yang menyebutkan penerimaan uang lebih dari Rp5.000.000,00 dilaporkan di baris 4 huruf a.",
+          D: "Dokumen transaksi surat berharga, termasuk kontrak berjangka, dilaporkan di baris 2."
+        },
+        jebakan: "Urutan baris formulir tidak sama dengan urutan huruf objek di undang-undang, jadi jangan menebak dari urutan pasal."
+      },
+      dasarHukum: [{ pasal: "PER-11/PJ/2025 Lampiran huruf F (induk SPT Masa Bea Meterai Bagian B angka 3)", berlakuSejak: "2025-05-22" }],
+      anggaranDetik: 60,
+      verifikasi: "✅",
+      sumber: { set: "TO-C-2026-11-3", no: 76, judul: "Try Out UKP C Paket 3 (transkrip 24 Nov 2026)", tingkat: "C" },
+      sejak: "10.3.1"
     }
   ],
   kartu: [
