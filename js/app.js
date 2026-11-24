@@ -32,7 +32,7 @@
   // (keduanya punya tautan kop di desktop) dan tidak mengulang tujuan yang sudah menjadi tab bar bawah
   const GRUP_LAINNYA = [
     { label: 'Harian', item: [['beranda', 'Hari Ini', 'home', ['sesi']], ['rencana', 'Rencana', 'plan'], ['kemajuan', 'Kemajuan', 'chart']] },
-    { label: 'Berlatih', item: [['simulasi', 'Simulasi ujian', 'sim', null, null, null, 'hp'], ['ulang', 'Ulang kartu', 'repeat'], ['kasus', 'Studi kasus', 'kasus'], ['strategi', 'Strategi PG', 'strategi']] },
+    { label: 'Berlatih', item: [['simulasi', 'Simulasi ujian', 'sim', null, null, null, 'hp'], ['ulang', 'Ulang kartu', 'repeat'], ['kasus', 'Studi kasus', 'kasus'], ['strategi', 'Strategi PG', 'strategi'], ['fokus', 'Fokus UKP C', 'flag', ['contekan']]] },  // v10.3.0: + Fokus UKP C (cheat sheet = rute anaknya)
     { label: 'Tim', item: [['latih', 'Latihan bersama', 'play', null, { atur: 1, bersama: 1 }, 'latih-bersama'], ['ujiantim', 'Ujian tim', 'sim'], ['tim', 'Dasbor tim', 'chart']] },
     { label: 'Alat', item: [['kalkulator', 'Kalkulator', 'calc', null, null, null, 'hp'], ['referensi', 'Referensi', 'ref'], ['formulir', 'Peta formulir', 'formulir'], ['tutor', 'Tutor AI', 'chat']] },
     { label: 'Ujian', item: [['info-ujian', 'Info ujian', 'info'], ['profesi', 'Etika & Profesi', 'etika']] },
@@ -46,8 +46,8 @@
   const tercakup = (daftar, v) => daftar.some(x => kunciNav(x) === v || (x[3] || []).includes(v));
   const viewLainnya = daftar => [].concat(...GRUP_LAINNYA.map(g => g.item), [BUTIR_PENGATURAN]).map(kunciNav)
     .filter((v, i, a) => a.indexOf(v) === i && v !== 'beranda' && !tercakup(daftar, v));
-  const ALIAS_LAINNYA_KOP = viewLainnya(KOP_NAV);
-  const ALIAS_LAINNYA_TAB = viewLainnya(TAB_BAWAH);
+  const ALIAS_LAINNYA_KOP = viewLainnya(KOP_NAV).concat(['contekan']);  // v10.3.0: cheat sheet menyalakan Lainnya seperti induknya (Fokus UKP C)
+  const ALIAS_LAINNYA_TAB = viewLainnya(TAB_BAWAH).concat(['contekan']);
   const navLink = (v, alias, ...isi) => h('a', { href: UKP.href(v), 'data-go': v, 'data-nav': v, 'data-alias': (alias || []).join(' ') }, ...isi);
   // tautan butir: params (data-params) dan kunci navigasi tersendiri bila ada
   const navLinkGrup = ([v, , , alias, params, kunci], ...isi) => { const a = navLink(v, alias, ...isi); if (params) { a.setAttribute('href', UKP.href(v, params)); a.dataset.params = JSON.stringify(params); } if (kunci) a.dataset.nav = kunci; return a; };

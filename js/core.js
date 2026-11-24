@@ -1,7 +1,7 @@
 /* MABAR UKP — inti: registri konten, penyimpanan, util DOM, router, dialog, toast, tema, ikon */
 (function (root) {
   const UKP = root.UKP = root.UKP || {};
-  UKP.versi = '10.2.6';
+  UKP.versi = '10.3.0';
   // append/prepend/replaceChildren aman: abaikan null/false, ratakan array
   (function () { const filt = c => c.flat(Infinity).filter(x => x != null && x !== false); for (const P of [Element.prototype, DocumentFragment.prototype]) { const ap = P.append, pp = P.prepend, rc = P.replaceChildren; P.append = function (...c) { return ap.apply(this, filt(c)); }; P.prepend = function (...c) { return pp.apply(this, filt(c)); }; P.replaceChildren = function (...c) { if (typeof rc === 'function') return rc.apply(this, filt(c)); this.textContent = ''; return ap.apply(this, filt(c)); }; } })();
   // v9.4 Kb3: peramban tanpa :has() (Safari < 15.4, Chrome < 105, Samsung Internet < 20) membuang aturan CSS ber-:has() utuh.
@@ -485,7 +485,7 @@
     return true;
   }
   // view tampilan yang aman dirender ulang; view kerja (simulasi, sesi, latih, ulang, kasus, …) tidak diganggu
-  const RENDER_ULANG_AMAN = ['beranda', 'tingkat', 'belajar', 'kelompok', 'kemajuan', 'rencana', 'info-ujian', 'profesi', 'pengaturan', 'strategi', 'formulir', 'lembar', 'cakupan', 'bank'];  // v9.5: + bank
+  const RENDER_ULANG_AMAN = ['beranda', 'tingkat', 'belajar', 'kelompok', 'kemajuan', 'rencana', 'info-ujian', 'profesi', 'pengaturan', 'strategi', 'formulir', 'lembar', 'cakupan', 'bank', 'fokus'];  // v9.5: + bank; v10.3.0: + fokus
   let tundaRender = false, tundaToast = false, toastSinkronTerakhir = 0, renderSinkronTerakhir = 0, renderSinkronTimer = null;
   // render ulang akibat tab lain: paling sering sekali per 2 detik (cegah saling-picu antar-tab yang sama-sama terlihat)
   function renderSinkron() {
@@ -807,7 +807,7 @@
   // menuju halaman sambutan (mulai tanpa params)
   const paramsMulai = view => (!view || view === 'beranda' || view === 'mulai') ? {} : { isi: 1 };
   UKP.paramsMulai = paramsMulai;
-  const TOKEN = { beranda: 'beranda', belajar: 'belajar', latih: 'latih', ulang: 'ulang', kalkulator: 'kalkulator', simulasi: 'simulasi', kasus: 'kasus', rencana: 'rencana', kemajuan: 'kemajuan', referensi: 'referensi', 'info-ujian': 'infoujian', profesi: 'profesi', pengaturan: 'pengaturan', strategi: 'strategi', tutor: 'tutor', mulai: 'mulai', tingkat: 'tingkat', kelompok: 'kelompok', topik: 'topik', formulir: 'formulir', lembar: 'lembar', cakupan: 'cakupan', tim: 'tim', ujiantim: 'ujiantim', lj: 'lj', room: 'room', bank: 'bank' };  // v9.5: + #bank (Bank soal)
+  const TOKEN = { beranda: 'beranda', belajar: 'belajar', latih: 'latih', ulang: 'ulang', kalkulator: 'kalkulator', simulasi: 'simulasi', kasus: 'kasus', rencana: 'rencana', kemajuan: 'kemajuan', referensi: 'referensi', 'info-ujian': 'infoujian', profesi: 'profesi', pengaturan: 'pengaturan', strategi: 'strategi', tutor: 'tutor', mulai: 'mulai', tingkat: 'tingkat', kelompok: 'kelompok', topik: 'topik', formulir: 'formulir', lembar: 'lembar', cakupan: 'cakupan', tim: 'tim', ujiantim: 'ujiantim', lj: 'lj', room: 'room', bank: 'bank', fokus: 'fokus', contekan: 'contekan' };  // v9.5: + #bank (Bank soal); v10.3.0: + #fokus (Fokus UKP C) dan #contekan/<jalur> (cheat sheet)
   const DARI_TOKEN = Object.create(null); for (const k in TOKEN) DARI_TOKEN[TOKEN[k]] = k;
   // token hash (#infoujian, #topik/A2.8) atau nama view mentah (#info-ujian) → nama view; selain itu null
   function viewDariToken(tok) {
@@ -822,10 +822,10 @@
   // #topik/A2.8 · #kelompok/B7 · #kalkulator/kurs · #lembar/A1 · #tingkat/B · #kasus/K-A1-01 · #cakupan/C ·
   // #formulir/1771 (formulir) atau #formulir/1771.induk.1 (baris). Params lain tetap hanya di history.state.
   // v8.1: #ujiantim/<kode ujian> (UKP.belajar.ujianTim.buatKode; hanya [A-Za-z0-9._~-]) dan #lj (lembar jawab pribadi, tanpa params).
-  const PARAM_HASH = { topik: 'id', kelompok: 'kode', kalkulator: 'jenis', lembar: 'kode', tingkat: 'tingkat', kasus: 'id', cakupan: 'tingkat', 'info-ujian': 'tab', tim: 'anggota', ujiantim: 'kode', room: 'kode', mulai: 'isi' };
+  const PARAM_HASH = { topik: 'id', kelompok: 'kode', kalkulator: 'jenis', lembar: 'kode', tingkat: 'tingkat', kasus: 'id', cakupan: 'tingkat', 'info-ujian': 'tab', tim: 'anggota', ujiantim: 'kode', room: 'kode', mulai: 'isi', contekan: 'jalur' };  // v10.3.0: + #contekan/but
   // view yang tak bermakna tanpa params → induknya (bukan halaman "tidak ditemukan"); kalkulator, lembar, formulir,
   // dan kasus tanpa params sudah menampilkan daftar induknya sendiri
-  const INDUK_TANPA_PARAMS = { topik: 'tingkat', kelompok: 'tingkat' };
+  const INDUK_TANPA_PARAMS = { topik: 'tingkat', kelompok: 'tingkat', contekan: 'fokus' };  // v10.3.0: #contekan tanpa jalur menuju Fokus UKP C
   function nilaiHash(view, params) {
     const p = params && typeof params === 'object' ? params : {};
     const v = view === 'formulir' ? (p.baris || p.id) : PARAM_HASH[view] ? p[PARAM_HASH[view]] : null;

@@ -1061,7 +1061,10 @@
   // v9.5 urutan soal sesi Latih baru (dipisah dari mulai agar bisa diuji): paket try out + "Semua" tetap urutan asli;
   // selain itu L.urutBank (satu keluarga satu soal; f.bank = campur | baru | pengganti). o = { sudah: Set benar hari ini, salah: Set, acak }
   function urutLatih(arr, f, o) {
-    o = o || {}; const opsi = { cara: f.bank, salah: o.salah || new Set() }; if (o.acak) opsi.acak = o.acak;
+    o = o || {};
+    // v10.3.0 latihan intens Fokus UKP C: urutan khusus (belum pernah dan kesulitan 3, lalu pernah salah, lalu sisanya; topik diselang)
+    if (f.fokus && L.fokus && L.fokus.jalur(f.fokus)) { const of = {}; if (o.acak) of.acak = o.acak; if (o.jawaban) of.jawaban = o.jawaban; if (f.n !== 'semua') return L.fokus.urut(arr, Number(f.n) || 20, of); const sisaF = arr.filter(x => !(o.sudah && o.sudah.has(x.id))); return L.fokus.urut(sisaF.length ? sisaF : arr, null, of); }
+    const opsi = { cara: f.bank, salah: o.salah || new Set() }; if (o.acak) opsi.acak = o.acak;
     if (f.n !== 'semua') return L.urutBank(arr, Number(f.n) || 20, opsi);
     const sudah = o.sudah || new Set(); const sisa = arr.filter(x => !sudah.has(x.id));
     return f.set ? (sisa.length ? sisa : arr) : L.urutBank(sisa.length ? sisa : arr, null, opsi);
@@ -1247,7 +1250,7 @@
   }
   // potret saringan latihan (f) untuk titik lanjut: hanya kunci yang dikenal dengan tipe yang benar. Sakelar dan segmen di halaman
   // saringan mengubah f tanpa mengubah rute, jadi muat ulang memulihkan f dari sini (Waktu ketat, jumlah soal, kelompok)
-  const SARINGAN_TEKS = ['set', 'kode', 'topik', 'jenis', 'kesulitan', 'laporan', 'bank', 'butir'];
+  const SARINGAN_TEKS = ['set', 'kode', 'topik', 'jenis', 'kesulitan', 'laporan', 'bank', 'butir', 'fokus'];  // v10.3.0: + fokus
   const SARINGAN_SAKELAR = ['hanyaSalah', 'kecuali', 'tempo', 'baru2025', 'gayaUkp', 'resmi'];
   function saringanTitik(x) {
     const o = {}; if (!x || typeof x !== 'object' || Array.isArray(x)) return o;
@@ -1336,6 +1339,9 @@
     f.bank = params.bank === 'baru' || params.bank === 'pengganti' ? params.bank : 'campur';
     const infoButirF = id => id && UKP.cakupan && typeof UKP.cakupan.butir === 'function' ? UKP.cakupan.butir(id) : null;
     f.butir = typeof params.butir === 'string' && infoButirF(params.butir) ? params.butir : '';
+    // v10.3.0 f.fokus = id jalur Fokus UKP C (but | intl): pool = soal topik jalur itu, lintas tingkat; urutan lihat urutLatih
+    const jalurF = id => typeof id === 'string' && L.fokus ? L.fokus.jalur(id) : null;
+    f.fokus = jalurF(params.fokus) ? params.fokus : '';
     // v9.5 resmi=1: hanya soal dengan butir resmi tingkat target; diabaikan bila peta kosong atau saringan butir aktif
     const adaPeta = adaPetaResmi(); f.resmi = !!params.resmi && adaPeta;
     const resmiAktif = g => !!g.resmi && adaPeta && !g.butir;
@@ -1373,6 +1379,8 @@
         : lapAktif(g) ? soalLap(g.laporan).filter(x => !g.kode || x.kode === g.kode)
         : g.butir ? soalButirF(g.butir).filter(x => !g.kode || x.kode === g.kode)
         : g.kode ? K.soalKelompok(g.kode, luarTingkat(g.kode) ? undefined : tingkat) : K.semuaSoal(tingkat);
+      // v10.3.0: saringan fokus menggantikan basis (soal topik jalur, lintas tingkat); saringan lain di pool() tetap berlaku
+      if (g.fokus && jalurF(g.fokus)) arr = L.fokus.soal(g.fokus).filter(x => !g.kode || x.kode === g.kode);
       // v9.5: saringan butir juga mempersempit paket try out dan laporan peserta
       if (g.butir && (g.set || lapAktif(g))) { const ids = new Set(soalButirF(g.butir).map(x => x.id)); arr = arr.filter(x => ids.has(x.id)); }
       if (g.topik) arr = arr.filter(x => x.topik === g.topik);
@@ -1857,7 +1865,8 @@
           aksiKiri: soalSelesai().length ? tombolLihat() : null,
           onPeriksa: (b, jawab, detik, keyakinan) => { hentikanTempo(); riwayat.push({ soal, benar: !!b, jawab, detik, ulang: !!oj.ulang, keyakinan: keyakinan || null }); kop.atur(peserta ? null : judulKop(no + 1, benar + (b ? 1 : 0)), (no + 1) / Math.max(1, dari) * 100, peserta ? undefined : [tautanAtur()]); if (kop.aturRuas) kop.aturRuas(no + 1, dari, false); simpanSendiri(); }, onKeyakinan: v => { const r = riwayat[riwayat.length - 1]; if (r && r.soal === soal) r.keyakinan = v || null; simpanSendiri(); },
           onLanjut: (b) => { if (b) benar++; if (peserta && sesiId && triKini && triKini.kelas !== 'dikuasai' && L.tandaiBahas) L.tandaiBahas(sesiId, soal.id, true); catatBahasKini(); idx++; gambar(); if (idx < daftar.length) simpanAktif(); } });
-        area.append(h('h1', { class: 'visually-hidden' }, (oj.ulang ? 'Putaran ulang, soal ' : 'Soal ') + (no + 1) + ' dari ' + dari), el);
+        // v10.3.0: label sesi fokus ("Fokus: BUT") di atas soal, juga sesudah halaman dimuat ulang (f.fokus dipulihkan dari titik lanjut)
+        area.append(h('h1', { class: 'visually-hidden' }, (oj.ulang ? 'Putaran ulang, soal ' : 'Soal ') + (no + 1) + ' dari ' + dari), f.fokus ? h('p', { class: 'fokus-label', 'data-fokus': f.fokus }, L.fokus.label(f.fokus)) : null, el);
         elKini = peserta ? el : null; soalKini = peserta ? soal : null; wrapKini = el;
         // v9.3 P1: soal yang dipulihkan ke fase membahas: room yang sudah di fase kunci soal ini dibiarkan (tetapKunci)
         if (diRoom && siar) { siar.soal(idx, !!pulihIni); isiPapanJauh(); }
@@ -2215,6 +2224,7 @@
         Object.assign(f, saringanTitik(titikS.saringan));
         if (f.set && !paketDari(f.set)) f.set = '';
         if (f.butir && !infoButirF(f.butir)) f.butir = '';
+        if (f.fokus && !jalurF(f.fokus)) f.fokus = '';  // v10.3.0
         f.resmi = !!f.resmi && adaPeta;
         jalankan(cekS.arr, { ulang: !!titikS.ulang, pulihS: titikS }); return hasil();
       }
@@ -2236,6 +2246,8 @@
       h('span', null, 'Sebagian data soal gagal dimuat. Muat ulang halaman untuk melanjutkan latihan. Posisi latihan Anda tetap tersimpan.'),
       h('button', { type: 'button', class: 'btn btn-ghost', onclick: () => root.location.reload() }, 'Muat ulang')));
     page.appendChild(kop({ pita: true, judul: 'Latih soal', lead: 'Pilih kelompok dan jumlah soal. Setiap jawaban langsung dibahas: inti jawaban, langkah hitung, dan dasar hukumnya.' }));
+    // v10.3.0: ajakan Fokus UKP C (profil tingkat C saja; null untuk tingkat lain)
+    const ajakFokus = typeof UKP.c.ajakFokus === 'function' ? UKP.c.ajakFokus(tingkat) : null; if (ajakFokus) page.appendChild(ajakFokus);
     if (!tahanSendiri && ((params.mulai && !tahanMulai) || langsungMulai)) page.appendChild(h('div', { class: 'banner', 'data-tone': 'warn', role: 'note' }, ikon('peringatan'), h('span', null, 'Tidak ada soal yang cocok dengan filter ini. Longgarkan filter di bawah lalu mulai lagi.')));
     const semuaKel = K.semuaKelompok(); const luar = semuaKel.filter(k => !kelTingkat.includes(k));
     const opsiKel = k => h('option', { value: k, selected: f.kode === k ? true : null }, k + ' · ' + K.namaKelompok(k));
@@ -2361,7 +2373,7 @@
       const aktif = [f.kode ? chip(f.kode + (f.topik ? ' · ' + f.topik : ''), { kode: '', topik: '' }) : null, f.jenis ? chip(JENIS_LABEL[f.jenis] || f.jenis, { jenis: '' }) : null, f.kesulitan ? chip('kesulitan ' + f.kesulitan, { kesulitan: '' }) : null,
         f.set ? chip((paketDari(f.set) || {}).label || 'Paket soal', { set: '' }) : null, f.laporan ? chip('mirip ujian ' + tingkatLap(f.laporan), { laporan: '' }) : null, f.hanyaSalah ? chip('pernah keliru', { hanyaSalah: false }) : null, f.gayaUkp ? chip('kasus berangkai', { gayaUkp: false }) : null,
         f.kecuali ? chip('soal "kecuali"', { kecuali: false }) : null, f.baru2025 ? chip('ketentuan 2025+', { baru2025: false }) : null, f.tempo && modeLatih !== 'bersama' ? chip('waktu ketat', { tempo: false }) : null,
-        f.butir ? chipButir() : null, resmiAktif(f) ? chip('butir resmi', { resmi: false }) : null, f.bank !== 'campur' ? chip(f.bank === 'baru' ? 'belum pernah dipakai' : 'pengganti soal lama', { bank: '' }) : null].filter(Boolean);
+        f.butir ? chipButir() : null, f.fokus ? chip(L.fokus.label(f.fokus), { fokus: '' }) : null, resmiAktif(f) ? chip('butir resmi', { resmi: false }) : null, f.bank !== 'campur' ? chip(f.bank === 'baru' ? 'belum pernah dipakai' : 'pengganti soal lama', { bank: '' }) : null].filter(Boolean);
       function chipButir() {
         const b = infoButirF(f.butir); const teks = 'butir ' + (b ? (b.tingkat + ' ' + (b.mu.no ? b.mu.no + '.' : '') + b.nomor) : f.butir);
         const el = chip(b ? teks + ' · ' + pendek(b.teks, 34) : teks, { butir: '' }); el.classList.add('chip-butir');

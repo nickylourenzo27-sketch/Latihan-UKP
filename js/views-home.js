@@ -1059,7 +1059,10 @@
     const fmt = ((((UKP.ref || {}).ujian || {}).format || {}).UKP || {})[tingkat] || {};
     const simAkhir = (s.simulasi || []).filter(x => x && x.selesai).slice(-1)[0];
     const laptop = 'Lebih nyaman di laptop.';
+    // v10.3.0: ajakan Fokus UKP C hanya untuk profil tingkat C (halamannya sendiri terbuka untuk semua tingkat lewat menu Lainnya)
+    const barisFokus = tingkat === 'C' && UKP.views.fokus && UKP.fokusC ? barisDaftar('Fokus UKP C: BUT dan Pajak Internasional', 'Latihan intens dan cheat sheet', 'fokus', null, 'bv-fokus') : null;
     isi.appendChild(bagian('lain-judul', 'Pilihan lain', h('ul', { class: 'bv-daftar', role: 'list' },
+      barisFokus,
       barisDaftar('Mode mabar', metaRoom(), 'room', null, 'bv-mabar'),
       barisDaftar('Ulang soal yang salah', nSalah ? nSalah + ' soal di Buku Kesalahan' : 'Belum ada soal yang salah', 'latih', nSalah ? { hanyaSalah: true, n: 10, mulai: true } : null, 'bv-ulang'),
       barisDaftar('Simulasi ujian', simAkhir ? 'Terakhir: skor ' + fmtSkor(simAkhir.skor) + '. ' + laptop : (fmt.menit ? fmt.menit + ' menit. ' : '') + laptop, 'simulasi', null, 'bv-simulasi'))));

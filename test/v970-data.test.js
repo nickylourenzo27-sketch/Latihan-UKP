@@ -23,7 +23,9 @@ const sha = t => crypto.createHash('sha256').update(t).digest('hex');
 // diselaraskan dengan PMK 172/2023: stem dan opsi C10-044, opsi pengecoh C10-093, serta stem C10-095 dan C10-148 dibetulkan. Kuncinya tetap.
 // v9.7.1 polesan akhir: bukan lagi sidik putaran 2 (f0ce62d6d729740afe155598). Peringatan A5-204 dilengkapi: pembeda kuncinya juga
 // ancaman 3 tahun atau Rp200 juta yang berlaku untuk meterai bekas, bukan meterai tiruan. Stem, opsi, dan kunci tetap.
-const SIDIK_LAMA = { n: 2791, sidik: 'a14f65e7274ed31d307bf54b' };
+// v10.3.0: bukan lagi sidik v10.2.4 (n 2791, a14f65e7274ed31d307bf54b). Ditambah 122 soal baru Tingkat C (C9-201 sampai C9-252,
+// C10-201 sampai C10-270) untuk halaman Fokus UKP C, dan rujukan Pasal 5 ayat (3) UU PPh dibetulkan di pembahasan tiga soal C9.1 serta satu kalimat pembahasan C9-057.
+const SIDIK_LAMA = { n: 2913, sidik: '01f017566f4672173e8fd825' };
 // Sidik penjelasan mudah soal lama: baris "id:mudah" semua soal di luar paket LM, urut id, digabung dengan baris baru, sha256 24 huruf pertama.
 // Nilainya dihitung dari pohon v9.7.0 yang terbukti sama persis dengan mudah-bank.json (2.791 soal). Perbarui bila penjelasan mudah soal lama diubah.
 // Sebelum rilis, tiga teks (A3-029, A4-086, E-044) diubah supaya tidak mengulang nama tokoh soal; berkas isi di luar repo ikut diubah.
@@ -34,7 +36,9 @@ const SIDIK_LAMA = { n: 2791, sidik: 'a14f65e7274ed31d307bf54b' };
 // baru tingkat Turunan; "diancam pidana" benar menurut bunyi lama maupun baru.
 // v9.7.1 polesan akhir: bukan lagi sidik putaran 2 (c6d402b89c6f9ef18ae2d1c1). Penjelasan mudah E-080 ditambah satu kalimat:
 // bunyi pasti ancaman sesudah 2 Januari 2026 belum dicocokkan.
-const SIDIK_MUDAH = { n: 2791, sidik: '0ef2ed1a9ba7f9acf4c4d976' };
+// v10.3.0: bukan lagi sidik v10.2.4 (n 2791, 0ef2ed1a9ba7f9acf4c4d976). Ditambah penjelasan mudah 122 soal baru Tingkat C, dan satu kalimat
+// penjelasan mudah C9-057 dirapikan.
+const SIDIK_MUDAH = { n: 2913, sidik: 'e6da560d26747fd7ebee127e' };
 // sha256 (16 huruf pertama) token dan pasangan token nama yang tidak boleh ditulis di berkas proyek. Namanya sengaja tidak ditulis.
 const SIDIK_NAMA = ['b3a8951420e0a46e', 'f5a180e8092bfd8a', '45528769b64cd18b', '423a2d91b863827b'];
 

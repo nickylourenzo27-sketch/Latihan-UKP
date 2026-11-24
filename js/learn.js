@@ -2051,6 +2051,89 @@
     if (baru.length) UKP.store.save();
     return baru;
   };
+  // ================= v10.3.0: FOKUS UKP C (jalur BUT dan Pajak Internasional) =================
+  // Data jalur ada di js/data/fokus-c.js (UKP.fokusC). Semua fungsi di sini murni terhadap masukannya (riwayat jawaban dan pengacak
+  // boleh disuntikkan), jadi bisa diuji di Node. Dipakai halaman Fokus, cheat sheet, dan saringan fokus di Latih.
+  const FK = L.fokus = {};
+  FK.semua = function () { const F = UKP.fokusC; return F && Array.isArray(F.jalur) ? F.jalur.filter(j => j && typeof j.id === 'string' && Array.isArray(j.topik)) : []; };
+  FK.jalur = function (id) { return typeof id === 'string' && id ? FK.semua().find(j => j.id === id) || null : null; };
+  FK.label = function (id) { const j = FK.jalur(id); return j ? 'Fokus: ' + j.judul : ''; };
+  // semua soal topik jalur, lintas tingkat (jalur ini bisa dibuka profil tingkat mana pun), tanpa id ganda
+  FK.soal = function (id) {
+    const j = FK.jalur(id); if (!j) return [];
+    const out = []; const ada = new Set();
+    j.topik.forEach(t => K.soalTopik(t).forEach(x => { if (x && !ada.has(x.id)) { ada.add(x.id); out.push(x); } }));
+    return out;
+  };
+  // riwayat per soal dari daftar jawaban: Map id ke { n, salah (pernah salah), akhir (jawaban terakhir benar) }; simulasi kosong dilewati
+  FK.riwayat = function (jawaban) {
+    const m = new Map();
+    for (const j of Array.isArray(jawaban) ? jawaban : []) {
+      if (!j || typeof j.soal !== 'string' || kosongSim(j)) continue;
+      const r = m.get(j.soal) || { n: 0, salah: false, akhir: false }; r.n++; if (!j.benar) r.salah = true; r.akhir = !!j.benar; m.set(j.soal, r);
+    }
+    return m;
+  };
+  // kelas urutan: 0 = belum pernah dikerjakan dan kesulitan 3 · 1 = pernah salah · 2 = belum pernah (kesulitan lain) · 3 = sudah, tidak pernah salah
+  FK.kelas = function (soal, riw) {
+    const r = riw && typeof riw.get === 'function' ? riw.get(soal.id) : null;
+    if (!r) return Number(soal.kesulitan) === 3 ? 0 : 2;
+    return r.salah ? 1 : 3;
+  };
+  // selang topik: tiap langkah mengambil dari topik bersisa terbanyak yang bukan topik sebelumnya (dua soal setopik beruntun hanya bila
+  // tidak ada pilihan lain). kel = Map topik ke soal[]; sebelum = topik soal terakhir di kelas sebelumnya
+  function selangTopik(kel, sebelum) {
+    const out = []; let akhir = sebelum; let sisa = 0; kel.forEach(a => { sisa += a.length; });
+    while (sisa > 0) {
+      let pilih = null, cadangan = null;
+      kel.forEach((a, t) => { if (!a.length) return; if (t === akhir) { cadangan = t; return; } if (pilih == null || a.length > kel.get(pilih).length) pilih = t; });
+      const t = pilih != null ? pilih : cadangan; out.push(kel.get(t).shift()); akhir = t; sisa--;
+    }
+    return out;
+  }
+  // antrean latihan intens: n soal (null = semua), kelas 0 lalu 1 lalu 2 lalu 3, topik diselang, satu soal satu kali dan satu keluarga
+  // (soal lama dengan penggantinya) satu soal. opsi = { jawaban (bawaan: riwayat di perangkat), acak (bawaan U.acak) }
+  FK.urut = function (pool, n, opsi) {
+    opsi = opsi && typeof opsi === 'object' ? opsi : {};
+    const acak = typeof opsi.acak === 'function' ? opsi.acak : U.acak;
+    const riw = FK.riwayat(Array.isArray(opsi.jawaban) ? opsi.jawaban : UKP.store.get().jawaban);
+    const idAda = new Set(); const perAkar = new Map();
+    for (const x of acak(Array.isArray(pool) ? pool : [])) {
+      if (!x || typeof x.id !== 'string' || idAda.has(x.id)) continue; idAda.add(x.id);
+      const akar = K.akar(x) || x.id; const k = FK.kelas(x, riw); const lama = perAkar.get(akar);
+      if (!lama || k < lama.k) perAkar.set(akar, { x, k });
+    }
+    const semua = [...perAkar.values()];
+    const N = n == null || n === '' || !(Number(n) >= 0) ? semua.length : Math.min(semua.length, Math.floor(Number(n)));
+    const hasil = []; let akhir = null;
+    for (let k = 0; k <= 3 && hasil.length < N; k++) {
+      const kel = new Map(); semua.forEach(e => { if (e.k !== k) return; const t = e.x.topik || ''; if (!kel.has(t)) kel.set(t, []); kel.get(t).push(e.x); });
+      if (!kel.size) continue;
+      // kelas yang hanya terpakai sebagian: diambil bergiliran per topik supaya semua topik jalur ikut terwakili
+      const butuh = N - hasil.length; let jml = 0; kel.forEach(a => { jml += a.length; });
+      if (jml > butuh) {
+        const ambil = new Map(); let sisa = butuh;
+        while (sisa > 0) for (const [t, a] of kel) { if (sisa <= 0) break; if (!a.length) continue; if (!ambil.has(t)) ambil.set(t, []); ambil.get(t).push(a.shift()); sisa--; }
+        kel.clear(); ambil.forEach((a, t) => kel.set(t, a));
+      }
+      const urut = selangTopik(kel, akhir);
+      urut.forEach(x => hasil.push(x)); if (urut.length) akhir = urut[urut.length - 1].topik || '';
+    }
+    return hasil;
+  };
+  // angka kartu jalur: { nSoal, nDikerjakan, nBenar (jawaban terakhir benar), persen | null, terlemah: { topik, n, persen } | null }
+  // topik terlemah = topik jalur dengan paling sedikit 3 soal yang sudah dikerjakan dan persentase benar terendah
+  FK.ringkas = function (id, jawaban) {
+    const soal = FK.soal(id); const riw = FK.riwayat(Array.isArray(jawaban) ? jawaban : UKP.store.get().jawaban);
+    let nD = 0, nB = 0; const perT = new Map();
+    for (const x of soal) {
+      const r = riw.get(x.id); if (!r) continue; nD++; if (r.akhir) nB++;
+      const t = perT.get(x.topik) || { n: 0, b: 0 }; t.n++; if (r.akhir) t.b++; perT.set(x.topik, t);
+    }
+    let lemah = null;
+    perT.forEach((v, t) => { if (v.n < 3) return; const p = Math.round(v.b / v.n * 100); if (!lemah || p < lemah.persen || (p === lemah.persen && v.n > lemah.n)) lemah = { topik: K.topik(t) || { id: t, judul: '' }, n: v.n, persen: p }; });
+    return { nSoal: soal.length, nDikerjakan: nD, nBenar: nB, persen: nD ? Math.round(nB / nD * 100) : null, terlemah: lemah };
+  };
   // v9.5: migrasi buku pemakaian yang tertunda (state dimuat sebelum learn.js), lihat js/core.js migrasiPakai
   if (UKP.store && typeof UKP.store.migrasiPakai === 'function') UKP.store.migrasiPakai();
 })(typeof window !== 'undefined' ? window : globalThis);
