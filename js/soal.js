@@ -1264,6 +1264,16 @@
     panel.aturKet = yk => { ket.replaceChildren(...isiKetV10(jawab, benar, yk, detik)); };
     return panel;
   }
+  // v10.3.2 isi Penjelasan mudah di panel jalur lama: kalimat pokok (kalimat pertama) ditebalkan dan "Cara ingat" jadi baris sendiri.
+  // Potongan diambil dari teks asli tanpa mengubah satu huruf pun, jadi textContent tetap sama persis dengan pembahasan.mudah
+  function susunMudah(t) {
+    const m = /\s*Cara ingat:\s*([\s\S]+)$/.exec(t);
+    const badan = m ? t.slice(0, m.index) : t; const pm = pisahMudah(badan);
+    const pokok = pm.sisa && badan.indexOf(pm.pertama) === 0 ? pm.pertama : '';
+    const isi = pokok ? [h('span', { class: 'mudah-pokok' }, pokok), badan.slice(pokok.length)] : [badan];
+    if (m) { const ekor = t.slice(m.index); const jeda = /^\s*/.exec(ekor)[0]; isi.push(jeda, h('span', { class: 'mudah-ingat' }, h('span', { class: 'mudah-ingat-ket' }, 'Cara ingat:'), ekor.slice(jeda.length + 'Cara ingat:'.length))); }
+    return isi;
+  }
   UKP.c.umpan = function (soal, dipilih, detik, opsiU) {
     opsiU = opsiU || {};
     // v10 latih: opsiU.v10 memakai panel berlapis latihan sendiri; tanpa itu jalur lama tidak berubah
@@ -1297,7 +1307,7 @@
     // v9.7 penjelasan mudah (pembahasan.mudah): bahasa sehari-hari, dibaca sesudah vonis dan sebelum pembahasan menurut ketentuan.
     // Hanya bila berisi; tanpa mudah tidak ada simpul tambahan, jadi soal lama tampil sama dengan v9.6.6
     const teksMudah = typeof pb.mudah === 'string' ? pb.mudah.trim() : '';
-    const mudahEl = teksMudah ? h('div', { class: 'umpan-mudah' }, h('p', { class: 'umpan-mudah-judul' }, 'Penjelasan mudah'), h('p', { class: 'umpan-mudah-isi', tabindex: '-1' }, teksMudah)) : null;
+    const mudahEl = teksMudah ? h('div', { class: 'umpan-mudah' }, h('p', { class: 'umpan-mudah-judul' }, 'Penjelasan mudah'), h('p', { class: 'umpan-mudah-isi', tabindex: '-1' }, susunMudah(teksMudah))) : null;
     // kalimat inti (fokus setelah Periksa bila tanpa penjelasan mudah; Enter di sini = Lanjut)
     const teksInti = (pb.inti || '').trim();
     const inti = h('p', { class: 'inti blok', tabindex: '-1' }, mudahEl && teksInti ? h('span', { class: 'inti-ket' }, 'Menurut ketentuan: ') : null, teksInti || ket || (langsung ? 'Kunci jawaban ' + soal.kunci + '.' : judulStatus));
@@ -1355,7 +1365,8 @@
     const kaki = tag || waktuTeks ? h('p', { class: 'umpan-kaki blok' },
       tag ? h('span', { class: 'pill tag-sebab', 'data-tone': 'warn', title: 'Jenis kesalahan' }, h('span', { class: 'visually-hidden' }, 'Jenis kesalahan: '), UKP.tagLabel(tag)) : null,
       waktuTeks ? h('span', { class: 'meta waktu-soal' }, waktuTeks) : null) : null;
-    const bukaSalah = langsung && !benar && !kosong && !!(pb.mengapaSalah && pb.mengapaSalah[dipilih]); // jawab langsung & salah: alasan opsi yang dipilih langsung terlihat
+    // jawaban salah: alasan opsi yang dipilih langsung terlihat (v10.3.2: juga saat mengulas dan "Periksa dulu", bukan hanya jawab langsung)
+    const bukaSalah = !benar && !kosong && !!(pb.mengapaSalah && pb.mengapaSalah[dipilih]);
     // v9.7 opsi berkas asal yang dilepas (soal lima opsi dijadikan empat): butir terakhir, tanpa strong di depan (strong pertama = lencana huruf)
     const ol = soal.opsiLepas && typeof soal.opsiLepas === 'object' ? soal.opsiLepas : null;
     const teksLepas = ol && typeof ol.teks === 'string' ? ol.teks.trim().replace(/[\s.]+$/, '') : '';

@@ -6874,5 +6874,38 @@ main .soal.soal-v10 .opsi kbd { margin-top: calc((var(--v10-tb-baca) - 28px) / 2
 @media (prefers-reduced-motion: reduce) { .aa-soal *, .stem-susun * { transition: none; animation: none; } }
 :root[data-gerak="kurang"] .aa-soal * { transition: none; animation: none; }
 @media print { .aa-soal { display: none !important; } }
+/* ================= v10.3.2: panel pembahasan jalur lama (Ulas jawaban Simulasi, dialog Bank soal, Buku Kesalahan, ulas tim, "Periksa dulu") =================
+   Keluhan pemilik atas layar Ulas jawaban: huruf terlalu besar, dua paragraf panjang dengan lebar berbeda, dan separuh kartu kosong.
+   1. Isi Penjelasan mudah: kalimat pokok tebal, "Cara ingat" di baris sendiri (js/soal.js susunMudah). "Menurut ketentuan" jadi label kecil di atas paragrafnya.
+   2. Ulas jawaban Simulasi: panelnya saudara kartu soal, bukan anaknya, jadi dulu lolos dari token ukuran v10.3.1 (18px, 17px, 14px bercampur).
+      Kini semua teks baca memakai --v10-t-baca dan ikut tiga ukuran Aa.
+   3. Laptop: soal, opsi, dan pembahasan satu kolom baca 40rem; tiap blok teks selebar kartunya, tidak lagi dibatasi sendiri-sendiri. */
+.umpan .mudah-pokok { font-weight: var(--fw-semi); }
+.umpan .mudah-ingat { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); font-weight: var(--fw-semi); }
+.umpan .mudah-ingat-ket { color: var(--info); }
+.umpan .inti > .inti-ket { display: block; margin-bottom: 2px; font-family: var(--font-display); font-size: var(--fs-caption); line-height: 1.4; font-weight: var(--fw-semi); color: var(--muted); }
+.halaman-ulas .umpan { font-size: var(--v10-t-baca); line-height: var(--v10-tb-baca); }
+.halaman-ulas .umpan :is(.umpan-mudah-isi, .inti, .triase-alasan, .umpan-jebakan, details.lipat li) { font-size: var(--v10-t-baca); line-height: var(--v10-tb-baca); }
+.halaman-ulas .umpan ul.dasar-hukum :is(.pasal, .meta), .halaman-ulas .umpan .jejak, .halaman-ulas .umpan .jejak td { font-size: var(--v10-t-hitung); line-height: var(--v10-tb-hitung); }
+.halaman-ulas .umpan .umpan-mudah { padding: 12px 16px; }
+/* jejak hitung di Ulas jawaban: nama langkah di atas, hitungannya di bawah, rata kiri. Tidak ada rumus yang terpotong ke kanan */
+.halaman-ulas .umpan .jejak, .halaman-ulas .umpan .jejak tbody { display: block; }
+.halaman-ulas .umpan .jejak colgroup { display: none; }
+.halaman-ulas .umpan .jejak tr { display: block; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.halaman-ulas .umpan .jejak td, .halaman-ulas .umpan .jejak tr:not(.penuh) td:last-child { display: block; float: none; padding: 0; border: 0; text-align: left; }
+.halaman-ulas .umpan .jejak tr:not(.penuh) td:first-child { font-size: var(--fs-caption); line-height: 1.4; color: var(--muted); }
+.halaman-ulas .umpan .jejak tr:last-child { border-bottom: 3px double var(--line-strong); }
+@media screen and (min-width: 1100px) {
+  /* laptop: soal di kiri, pembahasan di kanan. Dua-duanya terlihat tanpa menggulir bolak-balik */
+  body[data-view="simulasi"] main .halaman-ulas [role="tabpanel"] > .stack { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); column-gap: var(--s-6, 32px); align-items: start; }
+  body[data-view="simulasi"] main .halaman-ulas [role="tabpanel"] > .stack > * { grid-column: 1 / -1; }
+  body[data-view="simulasi"] main .halaman-ulas [role="tabpanel"] > .stack > .soal { grid-column: 1; }
+  /* soal ikut terlihat selama pembahasan digulir; soal yang lebih tinggi dari layar bisa digulir sendiri */
+  body[data-view="simulasi"] main .halaman-ulas [role="tabpanel"] > .stack > .soal { position: sticky; top: 76px; max-height: calc(100vh - 76px - 92px); overflow-y: auto; }
+  body[data-view="simulasi"] main .halaman-ulas [role="tabpanel"] > .stack > .soal ~ :is(.umpan, .ulas-kaki) { grid-column: 2; margin-top: 0; }
+  body[data-view="simulasi"] main .halaman-ulas [role="tabpanel"] > .stack :is(.soal > .stem, .umpan p, .umpan li) { max-width: none; }
+}
+@media (forced-colors: active) { .umpan .mudah-ingat { border-top-color: CanvasText; } }
+@media print { .umpan .mudah-ingat { border-top-color: #555555; } }
 /* v10 lain: selesai */
 /* ===== v10 langkah tegas: selesai ===== */
