@@ -11,7 +11,7 @@
    cache versi lama dihapus saat activate. Daftar skrip juga dibaca ulang dari index.html saat install, jadi berkas baru tetap ikut. */
 'use strict';
 /* <ASET-OTOMATIS> ditulis ulang oleh tools/build-artifact.js — jangan diubah manual */
-const VERSI = '1e35d55359eb';
+const VERSI = '8522c0947b81';
 const ASET = [
   "index.html",
   "js/core.js",

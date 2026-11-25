@@ -204,7 +204,8 @@ describe('v9.6: keadaan yang harus terlihat', () => {
 // Tahap 2 (Mode mabar) akan meninjau batas ini lagi bersama pemangkasan gaya lama.
 // Tahap 3: tujuh sub-bagian (dasar, latih, beranda, papan, room, hasil, lain), batas 128 KB. v10.1.1: tinjauan papan, room, dan lebar laptop menambah aturan, batas jadi 144 KB.
 // v10.3.1: blok ukuran teks soal (tiga ukuran, butir bernomor, tombol Aa) menambah sekitar 10 KB, batas jadi 152 KB.
-const V10_BATAS = 152 * 1024;
+// v10.3.2: blok panel pembahasan Ulas jawaban (dua kolom, jejak hitung bertumpuk) menambah sekitar 4 KB, batas jadi 157 KB.
+const V10_BATAS = 157 * 1024;
 const V10_SUB = ['dasar', 'latih', 'beranda', 'papan', 'room', 'hasil', 'lain'];
 function periksaPagarV10(teks) {
   const masalah = [];

@@ -1267,11 +1267,12 @@
   // v10.3.2 isi Penjelasan mudah di panel jalur lama: kalimat pokok (kalimat pertama) ditebalkan dan "Cara ingat" jadi baris sendiri.
   // Potongan diambil dari teks asli tanpa mengubah satu huruf pun, jadi textContent tetap sama persis dengan pembahasan.mudah
   function susunMudah(t) {
-    const m = /\s*Cara ingat:\s*([\s\S]+)$/.exec(t);
+    // label boleh berkata tambahan ("Cara ingat urutannya:"); label dipakai apa adanya dari teks
+    const m = /\s*(Cara ingat(?: [^:.]{1,40})?:)\s*[\s\S]+$/.exec(t);
     const badan = m ? t.slice(0, m.index) : t; const pm = pisahMudah(badan);
     const pokok = pm.sisa && badan.indexOf(pm.pertama) === 0 ? pm.pertama : '';
     const isi = pokok ? [h('span', { class: 'mudah-pokok' }, pokok), badan.slice(pokok.length)] : [badan];
-    if (m) { const ekor = t.slice(m.index); const jeda = /^\s*/.exec(ekor)[0]; isi.push(jeda, h('span', { class: 'mudah-ingat' }, h('span', { class: 'mudah-ingat-ket' }, 'Cara ingat:'), ekor.slice(jeda.length + 'Cara ingat:'.length))); }
+    if (m) { const ekor = t.slice(m.index); const jeda = /^\s*/.exec(ekor)[0]; isi.push(jeda, h('span', { class: 'mudah-ingat' }, h('span', { class: 'mudah-ingat-ket' }, m[1]), ekor.slice(jeda.length + m[1].length))); }
     return isi;
   }
   UKP.c.umpan = function (soal, dipilih, detik, opsiU) {
@@ -1372,7 +1373,7 @@
     const teksLepas = ol && typeof ol.teks === 'string' ? ol.teks.trim().replace(/[\s.]+$/, '') : '';
     const alasanLepas = teksLepas && typeof ol.alasan === 'string' ? ol.alasan.trim() : '';
     const lepasEl = teksLepas ? h('li', { class: 'umpan-lepas' }, h('span', { class: 'umpan-lepas-ket' }, 'Pilihan berkas asal yang tidak dipakai: '), '\u201c' + teksLepas + '\u201d.' + (alasanLepas ? ' ' + alasanLepas : '')) : null;
-    const lipatSalah = salahLain.length || pb.jebakan || lepasEl ? h('details', { class: 'lipat blok', open: bukaSalah ? true : null }, h('summary', null, langsung ? 'Mengapa opsi lain salah' : 'Mengapa opsi lain keliru'), h('ul', { class: 'bersih small umpan-salah-opsi' }, (bukaSalah ? [dipilih].concat(salahLain.filter(k => k !== dipilih)) : salahLain).map(k => h('li', { 'data-dipilih': bukaSalah && k === dipilih ? '' : null }, h('strong', null, k + '. '), pb.mengapaSalah[k])), lepasEl), pb.jebakan ? h('p', { class: 'small umpan-jebakan' }, h('strong', null, 'Jebakan: '), pb.jebakan) : null) : null;
+    const lipatSalah = salahLain.length || pb.jebakan || lepasEl ? h('details', { class: 'lipat blok', open: bukaSalah ? true : null }, h('summary', null, langsung ? 'Mengapa opsi lain salah' : bukaSalah ? 'Mengapa jawaban Anda dan opsi lain keliru' : 'Mengapa opsi lain keliru'), h('ul', { class: 'bersih small umpan-salah-opsi' }, (bukaSalah ? [dipilih].concat(salahLain.filter(k => k !== dipilih)) : salahLain).map(k => h('li', { 'data-dipilih': bukaSalah && k === dipilih ? '' : null }, h('strong', null, k + '. '), pb.mengapaSalah[k])), lepasEl), pb.jebakan ? h('p', { class: 'small umpan-jebakan' }, h('strong', null, 'Jebakan: '), pb.jebakan) : null) : null;
     const panel = h('div', { class: 'umpan', 'data-hasil': hasil, 'data-langsung': langsung ? '' : null },
       status,
       kartuDitonjolkan ? kartuEl : null,

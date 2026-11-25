@@ -73,6 +73,8 @@ describe('v10.3.2: susunan Penjelasan mudah', () => {
   it('satu kalimat: tanpa penebalan; tanpa Cara ingat: tanpa baris ingat', () => {
     const p = isiMudah('Hanya satu kalimat di sini.'); assert.equal(p.cari('mudah-pokok').length, 0); assert.equal(p.cari('mudah-ingat').length, 0);
     assert.equal(p.textContent, 'Hanya satu kalimat di sini.');
+    const r = isiMudah('Urutannya tetap. Lalu hitung. Cara ingat urutannya: bruto, biaya, neto.'); assert.equal(r.cari('mudah-ingat-ket')[0].textContent, 'Cara ingat urutannya:');
+    assert.equal(r.textContent, 'Urutannya tetap. Lalu hitung. Cara ingat urutannya: bruto, biaya, neto.');
     const q = isiMudah('Dasar pengenaan Rp5.000.000 per bulan. Tarifnya 5%.'); assert.equal(q.cari('mudah-pokok')[0].textContent, 'Dasar pengenaan Rp5.000.000 per bulan.');
   });
   it('semua pembahasan.mudah di bank soal: textContent sama persis dengan data (sesudah trim)', () => {
@@ -91,7 +93,7 @@ describe('v10.3.2: alasan opsi yang dipilih langsung terlihat', () => {
     const p = UKP.c.umpan(dengan(() => {}), 'B', 60, { hanyaBaca: true });
     const ul = p.cari('umpan-salah-opsi')[0]; const det = ul.parentNode;
     assert.equal(det.tagName, 'DETAILS'); assert.ok(det.hasAttribute('open') || det.open === true, 'lipatan terbuka');
-    assert.equal(ul.elemen[0].textContent, 'B. Alasan B.'); assert.equal(ul.elemen[0].getAttribute('data-dipilih'), '');
+    assert.equal(det.elemen[0].textContent, 'Mengapa jawaban Anda dan opsi lain keliru'); assert.equal(ul.elemen[0].textContent, 'B. Alasan B.'); assert.equal(ul.elemen[0].getAttribute('data-dipilih'), '');
     assert.deepEqual(ul.elemen.map(li => li.textContent.slice(0, 1)), ['B', 'A', 'D']);
   });
   it('benar atau tidak dijawab: lipatan tetap tertutup dan urutan huruf biasa', () => {
@@ -109,11 +111,11 @@ describe('v10.3.2: gaya', () => {
   it('kait baru bergaya', () => { for (const k of ['.umpan .mudah-pokok', '.umpan .mudah-ingat', '.umpan .mudah-ingat-ket', '.umpan .inti > .inti-ket']) assert.ok(blok.includes(k + ' {'), k); });
   it('Ulas jawaban memakai token ukuran teks soal', () => {
     assert.match(blok, /\.halaman-ulas \.umpan \{ font-size: var\(--v10-t-baca\); line-height: var\(--v10-tb-baca\); \}/);
-    assert.ok(blok.includes('.halaman-ulas .umpan :is(.umpan-mudah-isi, .inti,'));
+    assert.ok(blok.includes('.halaman-ulas .umpan :is(.umpan-mudah-isi, .inti,')); assert.ok(!/jejak[^{]*\{[^}]*--fs-caption/.test(blok), 'nama langkah jejak tidak di bawah ukuran hitung');
   });
   it('dua kolom mulai 1100px: soal kiri, pembahasan kanan', () => {
     const m = blok.slice(blok.indexOf('@media screen and (min-width: 1100px)'));
-    assert.ok(m.includes('grid-template-columns: minmax(0, 5fr) minmax(0, 6fr)')); assert.ok(m.includes('> .stack > .soal { grid-column: 1; }')); assert.ok(m.includes(':is(.umpan, .ulas-kaki) { grid-column: 2;'));
+    assert.ok(m.includes('grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)')); assert.ok(!m.includes('position: sticky') && !m.includes('overflow'), 'kartu soal tidak dipotong'); assert.ok(m.includes('> .stack > .soal { grid-column: 1; }')); assert.ok(m.includes(':is(.umpan, .ulas-kaki) { grid-column: 2;'));
   });
   it('layar Ulas jawaban tetap menaruh panel sebagai saudara kartu soal di dalam .halaman-ulas', () => {
     const v = baca('js/views-simulasi.js'); assert.ok(v.includes("class: 'page halaman-ulas'")); assert.ok(v.includes("el.querySelector('.umpan') ? null : UKP.c.umpan(so, dipilih || 'kosong', r.detik[so.id] || 0)"));
